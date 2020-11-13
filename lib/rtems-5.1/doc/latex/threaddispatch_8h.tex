@@ -1,0 +1,47 @@
+\hypertarget{threaddispatch_8h}{}\section{cpukit/include/rtems/score/threaddispatch.h File Reference}
+\label{threaddispatch_8h}\index{cpukit/include/rtems/score/threaddispatch.h@{cpukit/include/rtems/score/threaddispatch.h}}
+
+
+Constants and Structures Related with Thread Dispatch.  
+
+
+{\ttfamily \#include $<$rtems/score/percpu.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/score/isrlock.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/score/profiling.\+h$>$}\newline
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__RTEMSScoreThread_gaf826e03e6ef568e8773a98274b64e069}{R\+T\+E\+M\+S\+\_\+\+S\+C\+O\+R\+E\+\_\+\+R\+O\+B\+U\+S\+T\+\_\+\+T\+H\+R\+E\+A\+D\+\_\+\+D\+I\+S\+P\+A\+T\+CH}}
+\begin{DoxyCompactList}\small\item\em Enables a robust thread dispatch. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} bool \mbox{\hyperlink{group__RTEMSScoreThread_gaa847ae7c8e3c4cf3f3f3f082124eac8e}{\+\_\+\+Thread\+\_\+\+Dispatch\+\_\+is\+\_\+enabled}} (void)
+\begin{DoxyCompactList}\small\item\em Indicates if the executing thread is inside a thread dispatch critical section. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} uint32\+\_\+t \mbox{\hyperlink{group__RTEMSScoreThread_ga3f098a76c363d6d1daff302c5d7a9d9b}{\+\_\+\+Thread\+\_\+\+Dispatch\+\_\+get\+\_\+disable\+\_\+level}} (void)
+\begin{DoxyCompactList}\small\item\em Gets thread dispatch disable level. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \mbox{\hyperlink{group__RTEMSScoreThread_gae1b097ce535f591840d891f691812759}{\+\_\+\+Thread\+\_\+\+Dispatch\+\_\+initialization}} (void)
+\begin{DoxyCompactList}\small\item\em Thread dispatch initialization. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__RTEMSScoreThread_ga14e949c0f400cda43b1e7547e50b088d}{\+\_\+\+Thread\+\_\+\+Dispatch}} (void)
+\begin{DoxyCompactList}\small\item\em Performs a thread dispatch if necessary. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__RTEMSScoreThread_gab4251559fe6a0c06762de333bca275f5}{\+\_\+\+Thread\+\_\+\+Dispatch\+\_\+direct}} (\mbox{\hyperlink{structPer__CPU__Control}{Per\+\_\+\+C\+P\+U\+\_\+\+Control}} $\ast$cpu\+\_\+self)
+\begin{DoxyCompactList}\small\item\em Directly do a thread dispatch. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__RTEMSScoreThread_gaf0ea5fef985f18cd60d85d9cedab4c6c}{\+\_\+\+Thread\+\_\+\+Do\+\_\+dispatch}} (\mbox{\hyperlink{structPer__CPU__Control}{Per\+\_\+\+C\+P\+U\+\_\+\+Control}} $\ast$cpu\+\_\+self, \mbox{\hyperlink{group__RTEMSScoreISR_gad1af728587ebcefec5b5cf94fc7909b9}{I\+S\+R\+\_\+\+Level}} level)
+\begin{DoxyCompactList}\small\item\em Performs a thread dispatch on the current processor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} \mbox{\hyperlink{structPer__CPU__Control}{Per\+\_\+\+C\+P\+U\+\_\+\+Control}} $\ast$ \mbox{\hyperlink{group__RTEMSScoreThread_ga80a71da4ea096f7ea92781a872b955ae}{\+\_\+\+Thread\+\_\+\+Dispatch\+\_\+disable\+\_\+with\+\_\+\+C\+PU}} (\mbox{\hyperlink{structPer__CPU__Control}{Per\+\_\+\+C\+P\+U\+\_\+\+Control}} $\ast$cpu\+\_\+self, const \mbox{\hyperlink{structISR__lock__Context}{I\+S\+R\+\_\+lock\+\_\+\+Context}} $\ast$lock\+\_\+context)
+\begin{DoxyCompactList}\small\item\em Disables thread dispatching inside a critical section (interrupts disabled) with the current processor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} \mbox{\hyperlink{structPer__CPU__Control}{Per\+\_\+\+C\+P\+U\+\_\+\+Control}} $\ast$ \mbox{\hyperlink{group__RTEMSScoreThread_ga5ffeb81480c63293a317f69efc74dec3}{\+\_\+\+Thread\+\_\+\+Dispatch\+\_\+disable\+\_\+critical}} (const \mbox{\hyperlink{structISR__lock__Context}{I\+S\+R\+\_\+lock\+\_\+\+Context}} $\ast$lock\+\_\+context)
+\begin{DoxyCompactList}\small\item\em Disables thread dispatching inside a critical section (interrupts disabled). \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} \mbox{\hyperlink{structPer__CPU__Control}{Per\+\_\+\+C\+P\+U\+\_\+\+Control}} $\ast$ \mbox{\hyperlink{group__RTEMSScoreThread_ga044bfb6e9317180d21b05c5338cedd1a}{\+\_\+\+Thread\+\_\+\+Dispatch\+\_\+disable}} (void)
+\begin{DoxyCompactList}\small\item\em Disables thread dispatching. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__RTEMSScoreThread_gab0c773b97624be1dc304a2d3d038f19a}{\+\_\+\+Thread\+\_\+\+Dispatch\+\_\+enable}} (\mbox{\hyperlink{structPer__CPU__Control}{Per\+\_\+\+C\+P\+U\+\_\+\+Control}} $\ast$cpu\+\_\+self)
+\begin{DoxyCompactList}\small\item\em Enables thread dispatching. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \mbox{\hyperlink{group__RTEMSScoreThread_ga89324d5b965715261d6fa55527297b1a}{\+\_\+\+Thread\+\_\+\+Dispatch\+\_\+unnest}} (\mbox{\hyperlink{structPer__CPU__Control}{Per\+\_\+\+C\+P\+U\+\_\+\+Control}} $\ast$cpu\+\_\+self)
+\begin{DoxyCompactList}\small\item\em Unnests thread dispatching. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \mbox{\hyperlink{group__RTEMSScoreThread_ga216a6330c178a36afc4eb50a4a66ba4a}{\+\_\+\+Thread\+\_\+\+Dispatch\+\_\+request}} (\mbox{\hyperlink{structPer__CPU__Control}{Per\+\_\+\+C\+P\+U\+\_\+\+Control}} $\ast$cpu\+\_\+self, \mbox{\hyperlink{structPer__CPU__Control}{Per\+\_\+\+C\+P\+U\+\_\+\+Control}} $\ast$cpu\+\_\+target)
+\begin{DoxyCompactList}\small\item\em Requests a thread dispatch on the target processor. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Constants and Structures Related with Thread Dispatch. 
+

@@ -1,0 +1,65 @@
+\hypertarget{structSemaphore__Control}{}\section{Semaphore\+\_\+\+Control Struct Reference}
+\label{structSemaphore__Control}\index{Semaphore\_Control@{Semaphore\_Control}}
+
+
+{\ttfamily \#include $<$semdata.\+h$>$}
+
+\subsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structObjects__Control}{Objects\+\_\+\+Control}} \mbox{\hyperlink{structSemaphore__Control_a18fdf9ca5b2a9cf682ec2115b6e2ba95}{Object}}
+\begin{DoxyCompactList}\small\item\em The object management portion of a semaphore instance. \end{DoxyCompactList}\item 
+\begin{tabbing}
+xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=\kill
+union \{\\
+\>\mbox{\hyperlink{structThread__queue__Control}{Thread\_queue\_Control}} \mbox{\hyperlink{structSemaphore__Control_a09ade1ef519c1be3601c8aeb8c75bf25}{Wait\_queue}}\\
+\>\>{\em The thread queue present in all other variants. }\\
+\>\mbox{\hyperlink{structCORE__ceiling__mutex__Control}{CORE\_ceiling\_mutex\_Control}} \mbox{\hyperlink{structSemaphore__Control_a6113e1e92ab2bc062ded9ac885188b3d}{Mutex}}\\
+\>\mbox{\hyperlink{structCORE__semaphore__Control}{CORE\_semaphore\_Control}} \mbox{\hyperlink{structSemaphore__Control_a415970ccb41ee900c5b77cc060f51932}{Semaphore}}\\
+\} \mbox{\hyperlink{structSemaphore__Control_abfcffe005d3e94d1735f4a9659a3b3e1}{Core\_control}}\\
+
+\end{tabbing}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+The following defines the control block used to manage each semaphore. 
+
+\subsection{Field Documentation}
+\mbox{\Hypertarget{structSemaphore__Control_abfcffe005d3e94d1735f4a9659a3b3e1}\label{structSemaphore__Control_abfcffe005d3e94d1735f4a9659a3b3e1}} 
+\index{Semaphore\_Control@{Semaphore\_Control}!Core\_control@{Core\_control}}
+\index{Core\_control@{Core\_control}!Semaphore\_Control@{Semaphore\_Control}}
+\subsubsection{\texorpdfstring{Core\_control}{Core\_control}}
+{\footnotesize\ttfamily union \{ ... \}   Semaphore\+\_\+\+Control\+::\+Core\+\_\+control}
+
+This contains the memory associated with the Super\+Core Semaphore or Mutex instance that provides the primary functionality of each Classic A\+PI Semaphore instance. The structure used is dependent on the attributes specified by the user on the create directive.
+
+\begin{DoxyNote}{Note}
+Only one of these has meaning in a particular Classic A\+PI Semaphore instance. 
+\end{DoxyNote}
+\mbox{\Hypertarget{structSemaphore__Control_a6113e1e92ab2bc062ded9ac885188b3d}\label{structSemaphore__Control_a6113e1e92ab2bc062ded9ac885188b3d}} 
+\index{Semaphore\_Control@{Semaphore\_Control}!Mutex@{Mutex}}
+\index{Mutex@{Mutex}!Semaphore\_Control@{Semaphore\_Control}}
+\subsubsection{\texorpdfstring{Mutex}{Mutex}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structCORE__ceiling__mutex__Control}{C\+O\+R\+E\+\_\+ceiling\+\_\+mutex\+\_\+\+Control}} Semaphore\+\_\+\+Control\+::\+Mutex}
+
+This is the Super\+Core Mutex instance associated with this Classic A\+PI Semaphore instance. \mbox{\Hypertarget{structSemaphore__Control_a18fdf9ca5b2a9cf682ec2115b6e2ba95}\label{structSemaphore__Control_a18fdf9ca5b2a9cf682ec2115b6e2ba95}} 
+\index{Semaphore\_Control@{Semaphore\_Control}!Object@{Object}}
+\index{Object@{Object}!Semaphore\_Control@{Semaphore\_Control}}
+\subsubsection{\texorpdfstring{Object}{Object}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structObjects__Control}{Objects\+\_\+\+Control}} Semaphore\+\_\+\+Control\+::\+Object}
+
+
+
+The object management portion of a semaphore instance. 
+
+A pointer of the node of active semaphores contains the semaphore flags, see \+\_\+\+Semaphore\+\_\+\+Get\+\_\+flags(). The rational for this optimization is a reduction of the semaphore control size in general and the ability to allow a configuration dependent size of the semaphore control block, e.\+g. for the MrsP semaphores. \mbox{\Hypertarget{structSemaphore__Control_a415970ccb41ee900c5b77cc060f51932}\label{structSemaphore__Control_a415970ccb41ee900c5b77cc060f51932}} 
+\index{Semaphore\_Control@{Semaphore\_Control}!Semaphore@{Semaphore}}
+\index{Semaphore@{Semaphore}!Semaphore\_Control@{Semaphore\_Control}}
+\subsubsection{\texorpdfstring{Semaphore}{Semaphore}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structCORE__semaphore__Control}{C\+O\+R\+E\+\_\+semaphore\+\_\+\+Control}} Semaphore\+\_\+\+Control\+::\+Semaphore}
+
+This is the Super\+Core Semaphore instance associated with this Classic A\+PI Semaphore instance. 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+cpukit/include/rtems/rtems/\mbox{\hyperlink{semdata_8h}{semdata.\+h}}\end{DoxyCompactItemize}

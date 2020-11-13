@@ -1,0 +1,203 @@
+\hypertarget{spi__dma_8h}{}\section{bsps/arm/atsam/include/libchip/include/spi\+\_\+dma.h File Reference}
+\label{spi__dma_8h}\index{bsps/arm/atsam/include/libchip/include/spi\_dma.h@{bsps/arm/atsam/include/libchip/include/spi\_dma.h}}
+{\ttfamily \#include \char`\"{}chip.\+h\char`\"{}}\newline
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct__SpidCmd}{\+\_\+\+Spid\+Cmd}}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{structSpi}{Spi}} Transfer Request prepared by the application upper layer. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{struct__Spid}{\+\_\+\+Spid}}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{spi__dma_8h_a7f2e704bcee6233e727de0d7907e2834}{S\+P\+I\+D\+\_\+\+E\+R\+R\+OR}}~1
+\item 
+\#define \mbox{\hyperlink{spi__dma_8h_abfcf7777c4bb3d21f5e67b04b793e4fb}{S\+P\+I\+D\+\_\+\+E\+R\+R\+O\+R\+\_\+\+L\+O\+CK}}~2
+\item 
+\#define \mbox{\hyperlink{spi__dma_8h_aee751b4a981d9bc65688a7ee3fba61f8}{S\+P\+I\+D\+\_\+\+C\+S\+R\+\_\+\+S\+C\+BR}}(mck,  spck)~S\+P\+I\+\_\+\+C\+S\+R\+\_\+\+S\+C\+BR((mck) / (spck))
+\item 
+\#define \mbox{\hyperlink{spi__dma_8h_abbb61b55b22f0e3be865799be4e05eb9}{S\+P\+I\+D\+\_\+\+C\+S\+R\+\_\+\+D\+L\+Y\+BS}}(mck,  delay)
+\item 
+\#define \mbox{\hyperlink{spi__dma_8h_a8b91175e70818bc295c1a903dd3b44a4}{S\+P\+I\+D\+\_\+\+C\+S\+R\+\_\+\+D\+L\+Y\+B\+CT}}(mck,  delay)
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef void($\ast$ \mbox{\hyperlink{spi__dma_8h_aebc642e37d24ab8f4151260c8a268541}{Spid\+Callback}}) (uint8\+\_\+t, void $\ast$)
+\item 
+typedef struct \mbox{\hyperlink{struct__SpidCmd}{\+\_\+\+Spid\+Cmd}} \mbox{\hyperlink{spi__dma_8h_a8bc9732eedc1e8f02a7bfaf99d97837b}{Spid\+Cmd}}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{structSpi}{Spi}} Transfer Request prepared by the application upper layer. \end{DoxyCompactList}\item 
+typedef struct \mbox{\hyperlink{struct__Spid}{\+\_\+\+Spid}} \mbox{\hyperlink{spi__dma_8h_a9c6dff4e6aa11c3609620b9436a3f6da}{Spid}}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{spi__dma_8h_a9592feff98f0b7d84dcf2bfb4f49b40d}{S\+P\+I\+D\+\_\+\+Configure}} (\mbox{\hyperlink{spi__dma_8h_a9c6dff4e6aa11c3609620b9436a3f6da}{Spid}} $\ast$p\+Spid, \mbox{\hyperlink{structSpi}{Spi}} $\ast$p\+Spi\+Hw, uint8\+\_\+t spi\+Id, uint32\+\_\+t Spi\+Mode, \mbox{\hyperlink{group__dmad__structs_gaf2c13151514615a6beb35c0d868a5053}{s\+Xdmad}} $\ast$p\+Xdmad)
+\begin{DoxyCompactList}\small\item\em Initializes the Spid structure and the corresponding S\+PI \& D\+MA hardware. select value. The driver will uses D\+MA channel 0 for RX and D\+MA channel 1 for TX. The D\+MA channels are freed automatically when no S\+PI command processing. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{spi__dma_8h_a36e110a3cda7abf52985f30626c47b5f}{S\+P\+I\+D\+\_\+\+Configure\+CS}} (\mbox{\hyperlink{spi__dma_8h_a9c6dff4e6aa11c3609620b9436a3f6da}{Spid}} $\ast$p\+Spid, uint32\+\_\+t dw\+CS, uint32\+\_\+t dw\+Csr)
+\begin{DoxyCompactList}\small\item\em Configures the parameters for the device corresponding to the cs value. \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{spi__dma_8h_ae3c774fb7e4bcf2db4e5d9e8891b6abd}{S\+P\+I\+D\+\_\+\+Send\+Command}} (\mbox{\hyperlink{spi__dma_8h_a9c6dff4e6aa11c3609620b9436a3f6da}{Spid}} $\ast$p\+Spid, \mbox{\hyperlink{spi__dma_8h_a8bc9732eedc1e8f02a7bfaf99d97837b}{Spid\+Cmd}} $\ast$p\+Command)
+\begin{DoxyCompactList}\small\item\em Starts a S\+PI master transfer. This is a non blocking function. It will return as soon as the transfer is started. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{spi__dma_8h_a1a3c8803c9b7a4afa168b5d3912d0e4f}\label{spi__dma_8h_a1a3c8803c9b7a4afa168b5d3912d0e4f}} 
+void {\bfseries S\+P\+I\+D\+\_\+\+Handler} (\mbox{\hyperlink{spi__dma_8h_a9c6dff4e6aa11c3609620b9436a3f6da}{Spid}} $\ast$p\+Spid)
+\item 
+\mbox{\Hypertarget{spi__dma_8h_a6828b97f4c33b6e809954f39086e12a9}\label{spi__dma_8h_a6828b97f4c33b6e809954f39086e12a9}} 
+void {\bfseries S\+P\+I\+D\+\_\+\+Dma\+Handler} (\mbox{\hyperlink{spi__dma_8h_a9c6dff4e6aa11c3609620b9436a3f6da}{Spid}} $\ast$p\+Spid)
+\item 
+uint32\+\_\+t \mbox{\hyperlink{spi__dma_8h_a570a26a429bb5c77a48336209bd8acc5}{S\+P\+I\+D\+\_\+\+Is\+Busy}} (const \mbox{\hyperlink{spi__dma_8h_a9c6dff4e6aa11c3609620b9436a3f6da}{Spid}} $\ast$p\+Spid)
+\begin{DoxyCompactList}\small\item\em Check if the S\+PI driver is busy. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Implementation of S\+PI driver, transfer data through D\+MA. 
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{spi__dma_8h_a8b91175e70818bc295c1a903dd3b44a4}\label{spi__dma_8h_a8b91175e70818bc295c1a903dd3b44a4}} 
+\index{spi\_dma.h@{spi\_dma.h}!SPID\_CSR\_DLYBCT@{SPID\_CSR\_DLYBCT}}
+\index{SPID\_CSR\_DLYBCT@{SPID\_CSR\_DLYBCT}!spi\_dma.h@{spi\_dma.h}}
+\subsubsection{\texorpdfstring{SPID\_CSR\_DLYBCT}{SPID\_CSR\_DLYBCT}}
+{\footnotesize\ttfamily \#define S\+P\+I\+D\+\_\+\+C\+S\+R\+\_\+\+D\+L\+Y\+B\+CT(\begin{DoxyParamCaption}\item[{}]{mck,  }\item[{}]{delay }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{SPI\_CSR\_DLYBCT((((delay) / 32 * \(\backslash\)}
+\DoxyCodeLine{        ((mck) / 1000000)) / 1000) + 1)}
+
+\end{DoxyCode}
+Calculates the value of the D\+L\+Y\+B\+CT field of the Chip Select Register given delay in ns and M\+CK. \mbox{\Hypertarget{spi__dma_8h_abbb61b55b22f0e3be865799be4e05eb9}\label{spi__dma_8h_abbb61b55b22f0e3be865799be4e05eb9}} 
+\index{spi\_dma.h@{spi\_dma.h}!SPID\_CSR\_DLYBS@{SPID\_CSR\_DLYBS}}
+\index{SPID\_CSR\_DLYBS@{SPID\_CSR\_DLYBS}!spi\_dma.h@{spi\_dma.h}}
+\subsubsection{\texorpdfstring{SPID\_CSR\_DLYBS}{SPID\_CSR\_DLYBS}}
+{\footnotesize\ttfamily \#define S\+P\+I\+D\+\_\+\+C\+S\+R\+\_\+\+D\+L\+Y\+BS(\begin{DoxyParamCaption}\item[{}]{mck,  }\item[{}]{delay }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{SPI\_CSR\_DLYBS((((delay) * \(\backslash\)}
+\DoxyCodeLine{        ((mck) / 1000000)) / 1000) + 1)}
+
+\end{DoxyCode}
+Calculates the value of the D\+L\+Y\+BS field of the Chip Select Register given delay in ns and M\+CK. \mbox{\Hypertarget{spi__dma_8h_aee751b4a981d9bc65688a7ee3fba61f8}\label{spi__dma_8h_aee751b4a981d9bc65688a7ee3fba61f8}} 
+\index{spi\_dma.h@{spi\_dma.h}!SPID\_CSR\_SCBR@{SPID\_CSR\_SCBR}}
+\index{SPID\_CSR\_SCBR@{SPID\_CSR\_SCBR}!spi\_dma.h@{spi\_dma.h}}
+\subsubsection{\texorpdfstring{SPID\_CSR\_SCBR}{SPID\_CSR\_SCBR}}
+{\footnotesize\ttfamily \#define S\+P\+I\+D\+\_\+\+C\+S\+R\+\_\+\+S\+C\+BR(\begin{DoxyParamCaption}\item[{}]{mck,  }\item[{}]{spck }\end{DoxyParamCaption})~S\+P\+I\+\_\+\+C\+S\+R\+\_\+\+S\+C\+BR((mck) / (spck))}
+
+Calculates the value of the S\+C\+BR field of the Chip Select Register given M\+CK and S\+P\+CK. \mbox{\Hypertarget{spi__dma_8h_a7f2e704bcee6233e727de0d7907e2834}\label{spi__dma_8h_a7f2e704bcee6233e727de0d7907e2834}} 
+\index{spi\_dma.h@{spi\_dma.h}!SPID\_ERROR@{SPID\_ERROR}}
+\index{SPID\_ERROR@{SPID\_ERROR}!spi\_dma.h@{spi\_dma.h}}
+\subsubsection{\texorpdfstring{SPID\_ERROR}{SPID\_ERROR}}
+{\footnotesize\ttfamily \#define S\+P\+I\+D\+\_\+\+E\+R\+R\+OR~1}
+
+An unspecified error has occurred. \mbox{\Hypertarget{spi__dma_8h_abfcf7777c4bb3d21f5e67b04b793e4fb}\label{spi__dma_8h_abfcf7777c4bb3d21f5e67b04b793e4fb}} 
+\index{spi\_dma.h@{spi\_dma.h}!SPID\_ERROR\_LOCK@{SPID\_ERROR\_LOCK}}
+\index{SPID\_ERROR\_LOCK@{SPID\_ERROR\_LOCK}!spi\_dma.h@{spi\_dma.h}}
+\subsubsection{\texorpdfstring{SPID\_ERROR\_LOCK}{SPID\_ERROR\_LOCK}}
+{\footnotesize\ttfamily \#define S\+P\+I\+D\+\_\+\+E\+R\+R\+O\+R\+\_\+\+L\+O\+CK~2}
+
+S\+PI driver is currently in use. 
+
+\subsection{Typedef Documentation}
+\mbox{\Hypertarget{spi__dma_8h_a9c6dff4e6aa11c3609620b9436a3f6da}\label{spi__dma_8h_a9c6dff4e6aa11c3609620b9436a3f6da}} 
+\index{spi\_dma.h@{spi\_dma.h}!Spid@{Spid}}
+\index{Spid@{Spid}!spi\_dma.h@{spi\_dma.h}}
+\subsubsection{\texorpdfstring{Spid}{Spid}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{struct__Spid}{\+\_\+\+Spid}}  \mbox{\hyperlink{spi__dma_8h_a9c6dff4e6aa11c3609620b9436a3f6da}{Spid}}}
+
+Constant structure associated with S\+PI port. This structure prevents client applications to have access in the same time. \mbox{\Hypertarget{spi__dma_8h_aebc642e37d24ab8f4151260c8a268541}\label{spi__dma_8h_aebc642e37d24ab8f4151260c8a268541}} 
+\index{spi\_dma.h@{spi\_dma.h}!SpidCallback@{SpidCallback}}
+\index{SpidCallback@{SpidCallback}!spi\_dma.h@{spi\_dma.h}}
+\subsubsection{\texorpdfstring{SpidCallback}{SpidCallback}}
+{\footnotesize\ttfamily typedef void($\ast$ Spid\+Callback) (uint8\+\_\+t, void $\ast$)}
+
+S\+PI transfer complete callback. \mbox{\Hypertarget{spi__dma_8h_a8bc9732eedc1e8f02a7bfaf99d97837b}\label{spi__dma_8h_a8bc9732eedc1e8f02a7bfaf99d97837b}} 
+\index{spi\_dma.h@{spi\_dma.h}!SpidCmd@{SpidCmd}}
+\index{SpidCmd@{SpidCmd}!spi\_dma.h@{spi\_dma.h}}
+\subsubsection{\texorpdfstring{SpidCmd}{SpidCmd}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{struct__SpidCmd}{\+\_\+\+Spid\+Cmd}}  \mbox{\hyperlink{spi__dma_8h_a8bc9732eedc1e8f02a7bfaf99d97837b}{Spid\+Cmd}}}
+
+
+
+\mbox{\hyperlink{structSpi}{Spi}} Transfer Request prepared by the application upper layer. 
+
+This structure is sent to the S\+P\+I\+\_\+\+Send\+Command function to start the transfer. At the end of the transfer, the callback is invoked by the interrupt handler. 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{spi__dma_8h_a9592feff98f0b7d84dcf2bfb4f49b40d}\label{spi__dma_8h_a9592feff98f0b7d84dcf2bfb4f49b40d}} 
+\index{spi\_dma.h@{spi\_dma.h}!SPID\_Configure@{SPID\_Configure}}
+\index{SPID\_Configure@{SPID\_Configure}!spi\_dma.h@{spi\_dma.h}}
+\subsubsection{\texorpdfstring{SPID\_Configure()}{SPID\_Configure()}}
+{\footnotesize\ttfamily uint32\+\_\+t S\+P\+I\+D\+\_\+\+Configure (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{spi__dma_8h_a9c6dff4e6aa11c3609620b9436a3f6da}{Spid}} $\ast$}]{p\+Spid,  }\item[{\mbox{\hyperlink{structSpi}{Spi}} $\ast$}]{p\+Spi\+Hw,  }\item[{uint8\+\_\+t}]{spi\+Id,  }\item[{uint32\+\_\+t}]{spi\+Mode,  }\item[{\mbox{\hyperlink{group__dmad__structs_gaf2c13151514615a6beb35c0d868a5053}{s\+Xdmad}} $\ast$}]{p\+Xdmad }\end{DoxyParamCaption})}
+
+
+
+Initializes the Spid structure and the corresponding S\+PI \& D\+MA hardware. select value. The driver will uses D\+MA channel 0 for RX and D\+MA channel 1 for TX. The D\+MA channels are freed automatically when no S\+PI command processing. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Spid} & Pointer to a Spid instance. \\
+\hline
+{\em p\+Spi\+Hw} & Associated S\+PI peripheral. \\
+\hline
+{\em spi\+Id} & S\+PI peripheral identifier. \\
+\hline
+{\em p\+Dmad} & Pointer to a Dmad instance. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{spi__dma_8h_a36e110a3cda7abf52985f30626c47b5f}\label{spi__dma_8h_a36e110a3cda7abf52985f30626c47b5f}} 
+\index{spi\_dma.h@{spi\_dma.h}!SPID\_ConfigureCS@{SPID\_ConfigureCS}}
+\index{SPID\_ConfigureCS@{SPID\_ConfigureCS}!spi\_dma.h@{spi\_dma.h}}
+\subsubsection{\texorpdfstring{SPID\_ConfigureCS()}{SPID\_ConfigureCS()}}
+{\footnotesize\ttfamily void S\+P\+I\+D\+\_\+\+Configure\+CS (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{spi__dma_8h_a9c6dff4e6aa11c3609620b9436a3f6da}{Spid}} $\ast$}]{p\+Spid,  }\item[{uint32\+\_\+t}]{dw\+CS,  }\item[{uint32\+\_\+t}]{dw\+Csr }\end{DoxyParamCaption})}
+
+
+
+Configures the parameters for the device corresponding to the cs value. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Spid} & Pointer to a Spid instance. \\
+\hline
+{\em cs} & number corresponding to the S\+PI chip select. \\
+\hline
+{\em csr} & S\+P\+I\+\_\+\+C\+SR value to setup. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{spi__dma_8h_a570a26a429bb5c77a48336209bd8acc5}\label{spi__dma_8h_a570a26a429bb5c77a48336209bd8acc5}} 
+\index{spi\_dma.h@{spi\_dma.h}!SPID\_IsBusy@{SPID\_IsBusy}}
+\index{SPID\_IsBusy@{SPID\_IsBusy}!spi\_dma.h@{spi\_dma.h}}
+\subsubsection{\texorpdfstring{SPID\_IsBusy()}{SPID\_IsBusy()}}
+{\footnotesize\ttfamily uint32\+\_\+t S\+P\+I\+D\+\_\+\+Is\+Busy (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{spi__dma_8h_a9c6dff4e6aa11c3609620b9436a3f6da}{Spid}} $\ast$}]{p\+Spid }\end{DoxyParamCaption})}
+
+
+
+Check if the S\+PI driver is busy. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Spid} & Pointer to a Spid instance. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if the S\+PI driver is currently busy executing a command; otherwise 
+\end{DoxyReturn}
+\mbox{\Hypertarget{spi__dma_8h_ae3c774fb7e4bcf2db4e5d9e8891b6abd}\label{spi__dma_8h_ae3c774fb7e4bcf2db4e5d9e8891b6abd}} 
+\index{spi\_dma.h@{spi\_dma.h}!SPID\_SendCommand@{SPID\_SendCommand}}
+\index{SPID\_SendCommand@{SPID\_SendCommand}!spi\_dma.h@{spi\_dma.h}}
+\subsubsection{\texorpdfstring{SPID\_SendCommand()}{SPID\_SendCommand()}}
+{\footnotesize\ttfamily uint32\+\_\+t S\+P\+I\+D\+\_\+\+Send\+Command (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{spi__dma_8h_a9c6dff4e6aa11c3609620b9436a3f6da}{Spid}} $\ast$}]{p\+Spid,  }\item[{\mbox{\hyperlink{spi__dma_8h_a8bc9732eedc1e8f02a7bfaf99d97837b}{Spid\+Cmd}} $\ast$}]{p\+Command }\end{DoxyParamCaption})}
+
+
+
+Starts a S\+PI master transfer. This is a non blocking function. It will return as soon as the transfer is started. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Spid} & Pointer to a Spid instance. \\
+\hline
+{\em p\+Command} & Pointer to the S\+PI command to execute. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if the transfer has been started successfully; otherwise returns S\+P\+I\+D\+\_\+\+E\+R\+R\+O\+R\+\_\+\+L\+O\+CK is the driver is in use, or S\+P\+I\+D\+\_\+\+E\+R\+R\+OR if the command is not valid. 
+\end{DoxyReturn}

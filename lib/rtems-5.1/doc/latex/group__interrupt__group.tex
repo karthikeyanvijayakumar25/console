@@ -1,0 +1,121 @@
+\hypertarget{group__interrupt__group}{}\section{Interrupt Support}
+\label{group__interrupt__group}\index{Interrupt Support@{Interrupt Support}}
+\subsection*{Modules}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{group__interrupt__deprecated__group}{Interrupt\+\_\+deprecated\+\_\+group}}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bfseries cpu\+\_\+irq\+\_\+enable}()
+\item 
+\#define {\bfseries cpu\+\_\+irq\+\_\+disable}()
+\item 
+\mbox{\Hypertarget{group__interrupt__group_gae1545a2473614564550b9c4015c94978}\label{group__interrupt__group_gae1545a2473614564550b9c4015c94978}} 
+\#define {\bfseries cpu\+\_\+irq\+\_\+is\+\_\+enabled}()~(\+\_\+\+\_\+get\+\_\+\+P\+R\+I\+M\+A\+SK() == 0)
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{group__interrupt__group_ga6cb555807af15bd10cbcc4101ab840c7}\label{group__interrupt__group_ga6cb555807af15bd10cbcc4101ab840c7}} 
+typedef uint32\+\_\+t {\bfseries irqflags\+\_\+t}
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{group__interrupt__group_ga18a272af1cdb2009183461e1647f4e86}\label{group__interrupt__group_ga18a272af1cdb2009183461e1647f4e86}} 
+volatile bool {\bfseries g\+\_\+interrupt\+\_\+enabled}
+\end{DoxyCompactItemize}
+\subsection*{Interrupt Service Routine definition}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__interrupt__group_ga931b667f6490ad3d8905fa25bebb24b1}{irq\+\_\+initialize\+\_\+vectors}}()
+\begin{DoxyCompactList}\small\item\em Initialize interrupt vectors. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__interrupt__group_gaa746642b1132af054826fb169f541965}{irq\+\_\+register\+\_\+handler}}(int\+\_\+num,  int\+\_\+prio)
+\begin{DoxyCompactList}\small\item\em Register handler for interrupt. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{group__interrupt__group_ga7b77391ed86e2e027f9ee1dd99a06980}\label{group__interrupt__group_ga7b77391ed86e2e027f9ee1dd99a06980}} 
+\index{Interrupt Support@{Interrupt Support}!cpu\_irq\_disable@{cpu\_irq\_disable}}
+\index{cpu\_irq\_disable@{cpu\_irq\_disable}!Interrupt Support@{Interrupt Support}}
+\subsubsection{\texorpdfstring{cpu\_irq\_disable}{cpu\_irq\_disable}}
+{\footnotesize\ttfamily \#define cpu\+\_\+irq\+\_\+disable(\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do} \{                                       \(\backslash\)}
+\DoxyCodeLine{        \_\_disable\_irq();                       \(\backslash\)}
+\DoxyCodeLine{        \_\_DMB();                               \(\backslash\)}
+\DoxyCodeLine{        \textcolor{comment}{/*g\_interrupt\_enabled = false; */}          \(\backslash\)}
+\DoxyCodeLine{    \} \textcolor{keywordflow}{while} (0)}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{group__interrupt__group_gae4922a4bd8ba4150211fbc7f2302403c}\label{group__interrupt__group_gae4922a4bd8ba4150211fbc7f2302403c}} 
+\index{Interrupt Support@{Interrupt Support}!cpu\_irq\_enable@{cpu\_irq\_enable}}
+\index{cpu\_irq\_enable@{cpu\_irq\_enable}!Interrupt Support@{Interrupt Support}}
+\subsubsection{\texorpdfstring{cpu\_irq\_enable}{cpu\_irq\_enable}}
+{\footnotesize\ttfamily \#define cpu\+\_\+irq\+\_\+enable(\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do} \{                                       \(\backslash\)}
+\DoxyCodeLine{        \textcolor{comment}{/*g\_interrupt\_enabled = true; */}           \(\backslash\)}
+\DoxyCodeLine{        \_\_DMB();                               \(\backslash\)}
+\DoxyCodeLine{        \_\_enable\_irq();                        \(\backslash\)}
+\DoxyCodeLine{    \} \textcolor{keywordflow}{while} (0)}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{group__interrupt__group_ga931b667f6490ad3d8905fa25bebb24b1}\label{group__interrupt__group_ga931b667f6490ad3d8905fa25bebb24b1}} 
+\index{Interrupt Support@{Interrupt Support}!irq\_initialize\_vectors@{irq\_initialize\_vectors}}
+\index{irq\_initialize\_vectors@{irq\_initialize\_vectors}!Interrupt Support@{Interrupt Support}}
+\subsubsection{\texorpdfstring{irq\_initialize\_vectors}{irq\_initialize\_vectors}}
+{\footnotesize\ttfamily \#define irq\+\_\+initialize\+\_\+vectors(\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do} \{                             \(\backslash\)}
+\DoxyCodeLine{    \} \textcolor{keywordflow}{while} (0)}
+
+\end{DoxyCode}
+
+
+Initialize interrupt vectors. 
+
+For N\+V\+IC the interrupt vectors are put in vector table. So nothing to do to initialize them, except defined the vector function with right name.
+
+This must be called prior to \mbox{\hyperlink{group__interrupt__group_gaa746642b1132af054826fb169f541965}{irq\+\_\+register\+\_\+handler}}. \mbox{\Hypertarget{group__interrupt__group_gaa746642b1132af054826fb169f541965}\label{group__interrupt__group_gaa746642b1132af054826fb169f541965}} 
+\index{Interrupt Support@{Interrupt Support}!irq\_register\_handler@{irq\_register\_handler}}
+\index{irq\_register\_handler@{irq\_register\_handler}!Interrupt Support@{Interrupt Support}}
+\subsubsection{\texorpdfstring{irq\_register\_handler}{irq\_register\_handler}}
+{\footnotesize\ttfamily \#define irq\+\_\+register\+\_\+handler(\begin{DoxyParamCaption}\item[{}]{int\+\_\+num,  }\item[{}]{int\+\_\+prio }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{group__CMSIS__Core__NVICFunctions_ga332e10ef9605dc6eb10b9e14511930f8}{NVIC\_ClearPendingIRQ}}((\mbox{\hyperlink{group__SAME70J19__cmsis_gac3af4a32370fb28c4ade8bf2add80251}{IRQn\_Type}})int\_num);                      \(\backslash\)}
+\DoxyCodeLine{    NVIC\_SetPriority((\mbox{\hyperlink{group__SAME70J19__cmsis_gac3af4a32370fb28c4ade8bf2add80251}{IRQn\_Type}})int\_num, int\_prio);                \(\backslash\)}
+\DoxyCodeLine{    NVIC\_EnableIRQ((\mbox{\hyperlink{group__SAME70J19__cmsis_gac3af4a32370fb28c4ade8bf2add80251}{IRQn\_Type}})int\_num);                          \(\backslash\)}
+
+\end{DoxyCode}
+
+
+Register handler for interrupt. 
+
+For N\+V\+IC the interrupt vectors are put in vector table. So nothing to do to register them, except defined the vector function with right name.
+
+Usage\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{group__interrupt__group_ga931b667f6490ad3d8905fa25bebb24b1}{irq\_initialize\_vectors}}();}
+\DoxyCodeLine{\mbox{\hyperlink{group__interrupt__group_gaa746642b1132af054826fb169f541965}{irq\_register\_handler}}(foo\_irq\_handler);}
+\end{DoxyCode}
+
+
+\begin{DoxyNote}{Note}
+The function {\itshape func} must be defined with the \mbox{\hyperlink{group__gumstix__dp8390_ga421ef10418d62e6b65390cb8cdab5c15}{I\+SR}} macro. 
+
+The functions prototypes can be found in the device exception header files (\mbox{\hyperlink{exceptions_8h}{exceptions.\+h}}). 
+\end{DoxyNote}

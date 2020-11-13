@@ -1,0 +1,125 @@
+\hypertarget{group__ALT__I2C__GEN__CALL}{}\section{General Call}
+\label{group__ALT__I2C__GEN__CALL}\index{General Call@{General Call}}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__ALT__I2C__GEN__CALL_gadf63bde5b3f565154bc4bd101176f1b2}{alt\+\_\+i2c\+\_\+master\+\_\+general\+\_\+call}} (\mbox{\hyperlink{structALT__I2C__DEV__s}{A\+L\+T\+\_\+\+I2\+C\+\_\+\+D\+E\+V\+\_\+t}} $\ast$\mbox{\hyperlink{structi2c__dev}{i2c\+\_\+dev}}, const void $\ast$data, const size\+\_\+t \mbox{\hyperlink{sun4u_2tte_8h_a245260f6f74972558f61b85227df5aae}{size}}, const bool issue\+\_\+restart, const bool issue\+\_\+stop)
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__ALT__I2C__GEN__CALL_gab82cad6cc438695db0f5c68e3447c422}{alt\+\_\+i2c\+\_\+general\+\_\+call\+\_\+ack\+\_\+disable}} (\mbox{\hyperlink{structALT__I2C__DEV__s}{A\+L\+T\+\_\+\+I2\+C\+\_\+\+D\+E\+V\+\_\+t}} $\ast$\mbox{\hyperlink{structi2c__dev}{i2c\+\_\+dev}})
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__ALT__I2C__GEN__CALL_ga649f8983f2840fbaa480ca33b2ff82b6}{alt\+\_\+i2c\+\_\+general\+\_\+call\+\_\+ack\+\_\+enable}} (\mbox{\hyperlink{structALT__I2C__DEV__s}{A\+L\+T\+\_\+\+I2\+C\+\_\+\+D\+E\+V\+\_\+t}} $\ast$\mbox{\hyperlink{structi2c__dev}{i2c\+\_\+dev}})
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__ALT__I2C__GEN__CALL_gadb0801fc81c23610fc980552c52dede4}{alt\+\_\+i2c\+\_\+general\+\_\+call\+\_\+ack\+\_\+is\+\_\+enabled}} (\mbox{\hyperlink{structALT__I2C__DEV__s}{A\+L\+T\+\_\+\+I2\+C\+\_\+\+D\+E\+V\+\_\+t}} $\ast$\mbox{\hyperlink{structi2c__dev}{i2c\+\_\+dev}})
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+The functions in this group support General Call addresses.
+
+The general call address is for addressing every device connected to the I2C bus at the same time. However, if a device does not need any of the data supplied within the general call structure, it can ignore this address by not issuing an acknowledgment. If a device does require data from a general call address, it acknowledges this address and behaves as a slave-\/receiver. The master does not actually know how many devices acknowledged if one or more devices respond. The second and following bytes are acknowledged by every slave-\/receiver capable of handling this data. A slave who cannot process one of these bytes must ignore it by not-\/acknowledging. If one or more slaves acknowledge, the not-\/acknowledge will not be seen by the master.
+
+The functions in this group do not provide any general call functional command interpretation or implementation (e.\+g. software reset). 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{group__ALT__I2C__GEN__CALL_gab82cad6cc438695db0f5c68e3447c422}\label{group__ALT__I2C__GEN__CALL_gab82cad6cc438695db0f5c68e3447c422}} 
+\index{General Call@{General Call}!alt\_i2c\_general\_call\_ack\_disable@{alt\_i2c\_general\_call\_ack\_disable}}
+\index{alt\_i2c\_general\_call\_ack\_disable@{alt\_i2c\_general\_call\_ack\_disable}!General Call@{General Call}}
+\subsubsection{\texorpdfstring{alt\_i2c\_general\_call\_ack\_disable()}{alt\_i2c\_general\_call\_ack\_disable()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} alt\+\_\+i2c\+\_\+general\+\_\+call\+\_\+ack\+\_\+disable (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structALT__I2C__DEV__s}{A\+L\+T\+\_\+\+I2\+C\+\_\+\+D\+E\+V\+\_\+t}} $\ast$}]{i2c\+\_\+dev }\end{DoxyParamCaption})}
+
+Disables the I2C controller from responding to a General Call address. The controller will respond with a N\+A\+CK and no General Call status conditions or interrupts are generated.
+
+
+\begin{DoxyParams}{Parameters}
+{\em \mbox{\hyperlink{structi2c__dev}{i2c\+\_\+dev}}} & A pointer to the I2C controller device block instance.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em A\+L\+T\+\_\+\+E\+\_\+\+S\+U\+C\+C\+E\+SS} & Successful status. \\
+\hline
+{\em A\+L\+T\+\_\+\+E\+\_\+\+E\+R\+R\+OR} & Details about error status code \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{group__ALT__I2C__GEN__CALL_ga649f8983f2840fbaa480ca33b2ff82b6}\label{group__ALT__I2C__GEN__CALL_ga649f8983f2840fbaa480ca33b2ff82b6}} 
+\index{General Call@{General Call}!alt\_i2c\_general\_call\_ack\_enable@{alt\_i2c\_general\_call\_ack\_enable}}
+\index{alt\_i2c\_general\_call\_ack\_enable@{alt\_i2c\_general\_call\_ack\_enable}!General Call@{General Call}}
+\subsubsection{\texorpdfstring{alt\_i2c\_general\_call\_ack\_enable()}{alt\_i2c\_general\_call\_ack\_enable()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} alt\+\_\+i2c\+\_\+general\+\_\+call\+\_\+ack\+\_\+enable (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structALT__I2C__DEV__s}{A\+L\+T\+\_\+\+I2\+C\+\_\+\+D\+E\+V\+\_\+t}} $\ast$}]{i2c\+\_\+dev }\end{DoxyParamCaption})}
+
+Enables the I2C controller to respond with an A\+CK when it receives a General Call address.
+
+
+\begin{DoxyParams}{Parameters}
+{\em \mbox{\hyperlink{structi2c__dev}{i2c\+\_\+dev}}} & A pointer to the I2C controller device block instance.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em A\+L\+T\+\_\+\+E\+\_\+\+S\+U\+C\+C\+E\+SS} & Successful status. \\
+\hline
+{\em A\+L\+T\+\_\+\+E\+\_\+\+E\+R\+R\+OR} & Details about error status code \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{group__ALT__I2C__GEN__CALL_gadb0801fc81c23610fc980552c52dede4}\label{group__ALT__I2C__GEN__CALL_gadb0801fc81c23610fc980552c52dede4}} 
+\index{General Call@{General Call}!alt\_i2c\_general\_call\_ack\_is\_enabled@{alt\_i2c\_general\_call\_ack\_is\_enabled}}
+\index{alt\_i2c\_general\_call\_ack\_is\_enabled@{alt\_i2c\_general\_call\_ack\_is\_enabled}!General Call@{General Call}}
+\subsubsection{\texorpdfstring{alt\_i2c\_general\_call\_ack\_is\_enabled()}{alt\_i2c\_general\_call\_ack\_is\_enabled()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} alt\+\_\+i2c\+\_\+general\+\_\+call\+\_\+ack\+\_\+is\+\_\+enabled (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structALT__I2C__DEV__s}{A\+L\+T\+\_\+\+I2\+C\+\_\+\+D\+E\+V\+\_\+t}} $\ast$}]{i2c\+\_\+dev }\end{DoxyParamCaption})}
+
+Returns A\+L\+T\+\_\+\+E\+\_\+\+T\+R\+UE if the I2C controller is enabled to respond to General Call addresses.
+
+
+\begin{DoxyParams}{Parameters}
+{\em \mbox{\hyperlink{structi2c__dev}{i2c\+\_\+dev}}} & A pointer to the I2C controller device block instance.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em A\+L\+T\+\_\+\+E\+\_\+\+S\+U\+C\+C\+E\+SS} & Successful status. \\
+\hline
+{\em A\+L\+T\+\_\+\+E\+\_\+\+E\+R\+R\+OR} & Details about error status code \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{group__ALT__I2C__GEN__CALL_gadf63bde5b3f565154bc4bd101176f1b2}\label{group__ALT__I2C__GEN__CALL_gadf63bde5b3f565154bc4bd101176f1b2}} 
+\index{General Call@{General Call}!alt\_i2c\_master\_general\_call@{alt\_i2c\_master\_general\_call}}
+\index{alt\_i2c\_master\_general\_call@{alt\_i2c\_master\_general\_call}!General Call@{General Call}}
+\subsubsection{\texorpdfstring{alt\_i2c\_master\_general\_call()}{alt\_i2c\_master\_general\_call()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} alt\+\_\+i2c\+\_\+master\+\_\+general\+\_\+call (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structALT__I2C__DEV__s}{A\+L\+T\+\_\+\+I2\+C\+\_\+\+D\+E\+V\+\_\+t}} $\ast$}]{i2c\+\_\+dev,  }\item[{const void $\ast$}]{data,  }\item[{const size\+\_\+t}]{size,  }\item[{const bool}]{issue\+\_\+restart,  }\item[{const bool}]{issue\+\_\+stop }\end{DoxyParamCaption})}
+
+This function acts in the role of a master-\/transmitter by issuing a general call command to all devices connected to the I2C bus.
+
+The {\itshape issue\+\_\+restart} and {\itshape issue\+\_\+stop} parameters apply to the final write transaction in the {\itshape num\+\_\+data\+\_\+entries} byte transmission sequence.
+
+The I2C controller must be in master mode before calling this function.
+
+The target slave address will be modified by this function. Call \mbox{\hyperlink{group__ALT__I2C_ga9069f423699fb1a1a7ba60ce524a8320}{alt\+\_\+i2c\+\_\+master\+\_\+target\+\_\+set()}} to reset the slave target address for subsequent \mbox{\hyperlink{structIO}{IO}}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em \mbox{\hyperlink{structi2c__dev}{i2c\+\_\+dev}}} & A pointer to the I2C controller device block instance.\\
+\hline
+{\em data} & An array of data byte(s) to transmit.\\
+\hline
+{\em num\+\_\+data\+\_\+entries} & The number of entries (bytes) in {\itshape data} to place in the TX F\+I\+FO.\\
+\hline
+{\em issue\+\_\+restart} & This parameter controls whether a R\+E\+S\+T\+A\+RT is issued before the byte is sent or received. If\+:
+\begin{DoxyItemize}
+\item {\bfseries{true}} -\/ if {\itshape restart\+\_\+enabled} in \mbox{\hyperlink{group__ALT__I2C_ga4f317dbba3080bb537f6c145ca30d503}{A\+L\+T\+\_\+\+I2\+C\+\_\+\+M\+A\+S\+T\+E\+R\+\_\+\+C\+O\+N\+F\+I\+G\+\_\+t}} is {\bfseries{true}}, a R\+E\+S\+T\+A\+RT is issued before the data is sent/received (according to the value of C\+MD), regardless of whether or not the transfer direction is changing from the previous command; if {\itshape restart\+\_\+enabled} is {\bfseries{false}}, a S\+T\+OP followed by a S\+T\+A\+RT is issued instead.
+\item {\bfseries{false}} -\/ If {\itshape restart\+\_\+enabled} in \mbox{\hyperlink{group__ALT__I2C_ga4f317dbba3080bb537f6c145ca30d503}{A\+L\+T\+\_\+\+I2\+C\+\_\+\+M\+A\+S\+T\+E\+R\+\_\+\+C\+O\+N\+F\+I\+G\+\_\+t}} is {\bfseries{true}}, a R\+E\+S\+T\+A\+RT is issued only if the transfer direction is changing from the previous command; if {\itshape restart\+\_\+enabled} is {\bfseries{false}}, a S\+T\+OP followed by a S\+T\+A\+RT is issued instead.
+\end{DoxyItemize}\\
+\hline
+{\em issue\+\_\+stop} & This parameter controls whether a S\+T\+OP is issued after the byte is sent or received. If\+:
+\begin{DoxyItemize}
+\item {\bfseries{true}} -\/ S\+T\+OP is issued after this byte, regardless of whether or not the Tx F\+I\+FO is empty. If the Tx F\+I\+FO is not empty, the master immediately tries to start a new transfer by issuing a S\+T\+A\+RT and arbitrating for the bus.
+\item {\bfseries{false}} -\/ S\+T\+OP is not issued after this byte, regardless of whether or not the Tx F\+I\+FO is empty. If the Tx F\+I\+FO is not empty, the master continues the current transfer by sending/receiving data bytes according to the value of the C\+MD bit. If the Tx F\+I\+FO is empty, the master holds the S\+CL line low and stalls the bus until a new command is available in the Tx F\+I\+FO.
+\end{DoxyItemize}\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em A\+L\+T\+\_\+\+E\+\_\+\+S\+U\+C\+C\+E\+SS} & Successful status. \\
+\hline
+{\em A\+L\+T\+\_\+\+E\+\_\+\+E\+R\+R\+OR} & Details about error status code \\
+\hline
+\end{DoxyRetVals}

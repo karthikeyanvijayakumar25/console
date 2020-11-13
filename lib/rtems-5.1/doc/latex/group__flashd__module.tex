@@ -1,0 +1,29 @@
+\hypertarget{group__flashd__module}{}\section{Flash Memory Interface}
+\label{group__flashd__module}\index{Flash Memory Interface@{Flash Memory Interface}}
+The flash driver manages the programming, erasing, locking and unlocking sequences with dedicated commands.
+
+To implement flash programming operation, the user has to follow these few steps \+: 
+\begin{DoxyItemize}
+\item Configure flash wait states to initializes the flash.  
+\item Checks whether a region to be programmed is locked.  
+\item Unlocks the user region to be programmed if the region have locked before. 
+\item Erases the user page before program (optional). 
+\item Writes the user page from the page buffer. 
+\item Locks the region of programmed area if any. 
+\end{DoxyItemize}
+
+Writing 8-\/bit and 16-\/bit data is not allowed and may lead to unpredictable data corruption. A check of this validity and padding for 32-\/bit alignment should be done in write algorithm. Lock/unlock range associated with the user address range is automatically translated.
+
+This security bit can be enabled through the command \char`\"{}\+Set General Purpose
+\+N\+V\+M Bit 0\char`\"{}.
+
+A 128-\/bit factory programmed unique ID could be read to serve several purposes.
+
+The driver accesses the flash memory by calling the lowlevel module provided in \mbox{\hyperlink{group__efc__module}{Working with E\+E\+FC}}. For more accurate information, please look at the E\+E\+FC section of the Datasheet.
+
+Related files \+:~\newline
+flashd.\+c~\newline
+ flashd.\+h.~\newline
+ efc.\+c~\newline
+ efc.\+h.~\newline
+ 

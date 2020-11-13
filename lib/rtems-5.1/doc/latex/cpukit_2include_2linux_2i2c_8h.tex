@@ -1,0 +1,127 @@
+\hypertarget{cpukit_2include_2linux_2i2c_8h}{}\section{cpukit/include/linux/i2c.h File Reference}
+\label{cpukit_2include_2linux_2i2c_8h}\index{cpukit/include/linux/i2c.h@{cpukit/include/linux/i2c.h}}
+
+
+R\+T\+E\+MS Port of Linux I2C A\+PI.  
+
+
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structi2c__msg}{i2c\+\_\+msg}}
+\begin{DoxyCompactList}\small\item\em I2C transfer message. \end{DoxyCompactList}\item 
+union \mbox{\hyperlink{unioni2c__smbus__data}{i2c\+\_\+smbus\+\_\+data}}
+\begin{DoxyCompactList}\small\item\em S\+M\+Bus data. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__I2CLinux_gac2dd8b77e329bba4a3ca9cd275f9bf50}{I2\+C\+\_\+\+S\+M\+B\+U\+S\+\_\+\+B\+L\+O\+C\+K\+\_\+\+M\+AX}}~32
+\begin{DoxyCompactList}\small\item\em Maximum S\+M\+Bus data block count. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{Indent}\textbf{ I2C Message Flags}\par
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__I2CLinux_gabe53ff15e0717ccbd1d4c656c09ee53a}{I2\+C\+\_\+\+M\+\_\+\+T\+EN}}~0x0010
+\begin{DoxyCompactList}\small\item\em I2C message flag to indicate a 10-\/bit address. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__I2CLinux_gadb8eddbb89e88c4fc0e44306fc878b85}{I2\+C\+\_\+\+M\+\_\+\+RD}}~0x0001
+\begin{DoxyCompactList}\small\item\em I2C message flag to indicate a read transfer (from slave to master). \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__I2CLinux_gaf8026e2132312a148edbe7ff4ce52a72}{I2\+C\+\_\+\+M\+\_\+\+S\+T\+OP}}~0x8000
+\begin{DoxyCompactList}\small\item\em I2C message flag to signal a stop condition even if this is not the last message. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__I2CLinux_ga7a467d37a113d97496f0fa69c6c15650}{I2\+C\+\_\+\+M\+\_\+\+N\+O\+S\+T\+A\+RT}}~0x4000
+\begin{DoxyCompactList}\small\item\em I2C message flag to omit start condition and slave address. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__I2CLinux_ga6392dd65e4022a3ed20fc2d7dca3392f}{I2\+C\+\_\+\+M\+\_\+\+R\+E\+V\+\_\+\+D\+I\+R\+\_\+\+A\+D\+DR}}~0x2000
+\begin{DoxyCompactList}\small\item\em I2C message flag to reverse the direction flag. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__I2CLinux_ga0629c50bb05b4c037e726373da50755b}{I2\+C\+\_\+\+M\+\_\+\+I\+G\+N\+O\+R\+E\+\_\+\+N\+AK}}~0x1000
+\begin{DoxyCompactList}\small\item\em I2C message flag to ignore a non-\/acknowledge. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__I2CLinux_gadb8351c5c02ca2b6909baa9d374ff6d4}{I2\+C\+\_\+\+M\+\_\+\+N\+O\+\_\+\+R\+D\+\_\+\+A\+CK}}~0x0800
+\begin{DoxyCompactList}\small\item\em I2C message flag to omit a master acknowledge/non-\/acknowledge in a read transfer. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__I2CLinux_gad1b3262018276534d433daaf96648480}{I2\+C\+\_\+\+M\+\_\+\+R\+E\+C\+V\+\_\+\+L\+EN}}~0x0400
+\begin{DoxyCompactList}\small\item\em I2C message flag to indicate that the message data length is the first received byte. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ I2C Controller Functionality}\par
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bfseries I2\+C\+\_\+\+F\+U\+N\+C\+\_\+\+I2C}~0x00000001
+\item 
+\#define {\bfseries I2\+C\+\_\+\+F\+U\+N\+C\+\_\+10\+B\+I\+T\+\_\+\+A\+D\+DR}~0x00000002
+\item 
+\#define {\bfseries I2\+C\+\_\+\+F\+U\+N\+C\+\_\+\+P\+R\+O\+T\+O\+C\+O\+L\+\_\+\+M\+A\+N\+G\+L\+I\+NG}~0x00000004
+\item 
+\#define {\bfseries I2\+C\+\_\+\+F\+U\+N\+C\+\_\+\+S\+M\+B\+U\+S\+\_\+\+P\+EC}~0x00000008
+\item 
+\#define {\bfseries I2\+C\+\_\+\+F\+U\+N\+C\+\_\+\+N\+O\+S\+T\+A\+RT}~0x00000010
+\item 
+\#define {\bfseries I2\+C\+\_\+\+F\+U\+N\+C\+\_\+\+S\+M\+B\+U\+S\+\_\+\+B\+L\+O\+C\+K\+\_\+\+P\+R\+O\+C\+\_\+\+C\+A\+LL}~0x00008000
+\item 
+\#define {\bfseries I2\+C\+\_\+\+F\+U\+N\+C\+\_\+\+S\+M\+B\+U\+S\+\_\+\+Q\+U\+I\+CK}~0x00010000
+\item 
+\#define {\bfseries I2\+C\+\_\+\+F\+U\+N\+C\+\_\+\+S\+M\+B\+U\+S\+\_\+\+R\+E\+A\+D\+\_\+\+B\+Y\+TE}~0x00020000
+\item 
+\#define {\bfseries I2\+C\+\_\+\+F\+U\+N\+C\+\_\+\+S\+M\+B\+U\+S\+\_\+\+W\+R\+I\+T\+E\+\_\+\+B\+Y\+TE}~0x00040000
+\item 
+\#define {\bfseries I2\+C\+\_\+\+F\+U\+N\+C\+\_\+\+S\+M\+B\+U\+S\+\_\+\+R\+E\+A\+D\+\_\+\+B\+Y\+T\+E\+\_\+\+D\+A\+TA}~0x00080000
+\item 
+\#define {\bfseries I2\+C\+\_\+\+F\+U\+N\+C\+\_\+\+S\+M\+B\+U\+S\+\_\+\+W\+R\+I\+T\+E\+\_\+\+B\+Y\+T\+E\+\_\+\+D\+A\+TA}~0x00100000
+\item 
+\#define {\bfseries I2\+C\+\_\+\+F\+U\+N\+C\+\_\+\+S\+M\+B\+U\+S\+\_\+\+R\+E\+A\+D\+\_\+\+W\+O\+R\+D\+\_\+\+D\+A\+TA}~0x00200000
+\item 
+\#define {\bfseries I2\+C\+\_\+\+F\+U\+N\+C\+\_\+\+S\+M\+B\+U\+S\+\_\+\+W\+R\+I\+T\+E\+\_\+\+W\+O\+R\+D\+\_\+\+D\+A\+TA}~0x00400000
+\item 
+\#define {\bfseries I2\+C\+\_\+\+F\+U\+N\+C\+\_\+\+S\+M\+B\+U\+S\+\_\+\+P\+R\+O\+C\+\_\+\+C\+A\+LL}~0x00800000
+\item 
+\#define {\bfseries I2\+C\+\_\+\+F\+U\+N\+C\+\_\+\+S\+M\+B\+U\+S\+\_\+\+R\+E\+A\+D\+\_\+\+B\+L\+O\+C\+K\+\_\+\+D\+A\+TA}~0x01000000
+\item 
+\#define {\bfseries I2\+C\+\_\+\+F\+U\+N\+C\+\_\+\+S\+M\+B\+U\+S\+\_\+\+W\+R\+I\+T\+E\+\_\+\+B\+L\+O\+C\+K\+\_\+\+D\+A\+TA}~0x02000000
+\item 
+\#define {\bfseries I2\+C\+\_\+\+F\+U\+N\+C\+\_\+\+S\+M\+B\+U\+S\+\_\+\+R\+E\+A\+D\+\_\+\+I2\+C\+\_\+\+B\+L\+O\+CK}~0x04000000
+\item 
+\#define {\bfseries I2\+C\+\_\+\+F\+U\+N\+C\+\_\+\+S\+M\+B\+U\+S\+\_\+\+W\+R\+I\+T\+E\+\_\+\+I2\+C\+\_\+\+B\+L\+O\+CK}~0x08000000
+\item 
+\#define {\bfseries I2\+C\+\_\+\+F\+U\+N\+C\+\_\+\+S\+M\+B\+U\+S\+\_\+\+B\+Y\+TE}~(I2\+C\+\_\+\+F\+U\+N\+C\+\_\+\+S\+M\+B\+U\+S\+\_\+\+R\+E\+A\+D\+\_\+\+B\+Y\+TE $\vert$ I2\+C\+\_\+\+F\+U\+N\+C\+\_\+\+S\+M\+B\+U\+S\+\_\+\+W\+R\+I\+T\+E\+\_\+\+B\+Y\+TE)
+\item 
+\#define {\bfseries I2\+C\+\_\+\+F\+U\+N\+C\+\_\+\+S\+M\+B\+U\+S\+\_\+\+B\+Y\+T\+E\+\_\+\+D\+A\+TA}~(I2\+C\+\_\+\+F\+U\+N\+C\+\_\+\+S\+M\+B\+U\+S\+\_\+\+R\+E\+A\+D\+\_\+\+B\+Y\+T\+E\+\_\+\+D\+A\+TA $\vert$ I2\+C\+\_\+\+F\+U\+N\+C\+\_\+\+S\+M\+B\+U\+S\+\_\+\+W\+R\+I\+T\+E\+\_\+\+B\+Y\+T\+E\+\_\+\+D\+A\+TA)
+\item 
+\#define {\bfseries I2\+C\+\_\+\+F\+U\+N\+C\+\_\+\+S\+M\+B\+U\+S\+\_\+\+W\+O\+R\+D\+\_\+\+D\+A\+TA}~(I2\+C\+\_\+\+F\+U\+N\+C\+\_\+\+S\+M\+B\+U\+S\+\_\+\+R\+E\+A\+D\+\_\+\+W\+O\+R\+D\+\_\+\+D\+A\+TA $\vert$ I2\+C\+\_\+\+F\+U\+N\+C\+\_\+\+S\+M\+B\+U\+S\+\_\+\+W\+R\+I\+T\+E\+\_\+\+W\+O\+R\+D\+\_\+\+D\+A\+TA)
+\item 
+\#define {\bfseries I2\+C\+\_\+\+F\+U\+N\+C\+\_\+\+S\+M\+B\+U\+S\+\_\+\+B\+L\+O\+C\+K\+\_\+\+D\+A\+TA}~(I2\+C\+\_\+\+F\+U\+N\+C\+\_\+\+S\+M\+B\+U\+S\+\_\+\+R\+E\+A\+D\+\_\+\+B\+L\+O\+C\+K\+\_\+\+D\+A\+TA $\vert$ I2\+C\+\_\+\+F\+U\+N\+C\+\_\+\+S\+M\+B\+U\+S\+\_\+\+W\+R\+I\+T\+E\+\_\+\+B\+L\+O\+C\+K\+\_\+\+D\+A\+TA)
+\item 
+\#define {\bfseries I2\+C\+\_\+\+F\+U\+N\+C\+\_\+\+S\+M\+B\+U\+S\+\_\+\+I2\+C\+\_\+\+B\+L\+O\+CK}~(I2\+C\+\_\+\+F\+U\+N\+C\+\_\+\+S\+M\+B\+U\+S\+\_\+\+R\+E\+A\+D\+\_\+\+I2\+C\+\_\+\+B\+L\+O\+CK $\vert$ I2\+C\+\_\+\+F\+U\+N\+C\+\_\+\+S\+M\+B\+U\+S\+\_\+\+W\+R\+I\+T\+E\+\_\+\+I2\+C\+\_\+\+B\+L\+O\+CK)
+\item 
+\#define {\bfseries I2\+C\+\_\+\+F\+U\+N\+C\+\_\+\+S\+M\+B\+U\+S\+\_\+\+E\+M\+UL}
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ S\+M\+Bus Transfer Read and Write Markers}\par
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bfseries I2\+C\+\_\+\+S\+M\+B\+U\+S\+\_\+\+R\+E\+AD}~1
+\item 
+\#define {\bfseries I2\+C\+\_\+\+S\+M\+B\+U\+S\+\_\+\+W\+R\+I\+TE}~0
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ S\+M\+Bus Transaction Types}\par
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bfseries I2\+C\+\_\+\+S\+M\+B\+U\+S\+\_\+\+Q\+U\+I\+CK}~0
+\item 
+\#define {\bfseries I2\+C\+\_\+\+S\+M\+B\+U\+S\+\_\+\+B\+Y\+TE}~1
+\item 
+\#define {\bfseries I2\+C\+\_\+\+S\+M\+B\+U\+S\+\_\+\+B\+Y\+T\+E\+\_\+\+D\+A\+TA}~2
+\item 
+\#define {\bfseries I2\+C\+\_\+\+S\+M\+B\+U\+S\+\_\+\+W\+O\+R\+D\+\_\+\+D\+A\+TA}~3
+\item 
+\#define {\bfseries I2\+C\+\_\+\+S\+M\+B\+U\+S\+\_\+\+P\+R\+O\+C\+\_\+\+C\+A\+LL}~4
+\item 
+\#define {\bfseries I2\+C\+\_\+\+S\+M\+B\+U\+S\+\_\+\+B\+L\+O\+C\+K\+\_\+\+D\+A\+TA}~5
+\item 
+\#define {\bfseries I2\+C\+\_\+\+S\+M\+B\+U\+S\+\_\+\+I2\+C\+\_\+\+B\+L\+O\+C\+K\+\_\+\+B\+R\+O\+K\+EN}~6
+\item 
+\#define {\bfseries I2\+C\+\_\+\+S\+M\+B\+U\+S\+\_\+\+B\+L\+O\+C\+K\+\_\+\+P\+R\+O\+C\+\_\+\+C\+A\+LL}~7
+\item 
+\#define {\bfseries I2\+C\+\_\+\+S\+M\+B\+U\+S\+\_\+\+I2\+C\+\_\+\+B\+L\+O\+C\+K\+\_\+\+D\+A\+TA}~8
+\end{DoxyCompactItemize}
+\end{Indent}
+
+
+\subsection{Detailed Description}
+R\+T\+E\+MS Port of Linux I2C A\+PI. 
+

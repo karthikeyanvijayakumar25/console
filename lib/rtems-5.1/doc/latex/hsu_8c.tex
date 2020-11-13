@@ -1,0 +1,74 @@
+\hypertarget{hsu_8c}{}\section{bsps/arm/lpc32xx/console/hsu.c File Reference}
+\label{hsu_8c}\index{bsps/arm/lpc32xx/console/hsu.c@{bsps/arm/lpc32xx/console/hsu.c}}
+
+
+High speed U\+A\+RT driver (14-\/clock).  
+
+
+{\ttfamily \#include $<$bsp.\+h$>$}\newline
+{\ttfamily \#include $<$bsp/lpc32xx.\+h$>$}\newline
+{\ttfamily \#include $<$bsp/irq.\+h$>$}\newline
+{\ttfamily \#include $<$bsp/hsu.\+h$>$}\newline
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{hsu_8c_a9edf152d9abc48f248346982932f1239}\label{hsu_8c_a9edf152d9abc48f248346982932f1239}} 
+\#define {\bfseries H\+S\+U\+\_\+\+F\+I\+F\+O\+\_\+\+S\+I\+ZE}~64
+\item 
+\mbox{\Hypertarget{hsu_8c_aa483c8570e21f25ca0d998925bf545d2}\label{hsu_8c_aa483c8570e21f25ca0d998925bf545d2}} 
+\#define {\bfseries H\+S\+U\+\_\+\+L\+E\+V\+E\+L\+\_\+\+R\+X\+\_\+\+M\+A\+SK}~0xffU
+\item 
+\mbox{\Hypertarget{hsu_8c_af24e518036961374743bfb7c875e1023}\label{hsu_8c_af24e518036961374743bfb7c875e1023}} 
+\#define {\bfseries H\+S\+U\+\_\+\+L\+E\+V\+E\+L\+\_\+\+T\+X\+\_\+\+M\+A\+SK}~0xff00U
+\item 
+\mbox{\Hypertarget{hsu_8c_aa13b8f26b669ddb7aa5499b6aac26445}\label{hsu_8c_aa13b8f26b669ddb7aa5499b6aac26445}} 
+\#define {\bfseries H\+S\+U\+\_\+\+L\+E\+V\+E\+L\+\_\+\+T\+X\+\_\+\+S\+H\+I\+FT}~8
+\item 
+\mbox{\Hypertarget{hsu_8c_adb5a81829843dc50aa6978d6f5d76748}\label{hsu_8c_adb5a81829843dc50aa6978d6f5d76748}} 
+\#define {\bfseries H\+S\+U\+\_\+\+R\+X\+\_\+\+D\+A\+T\+A\+\_\+\+M\+A\+SK}~0xffU
+\item 
+\mbox{\Hypertarget{hsu_8c_a2fd757b30659807c78a1b778f592b240}\label{hsu_8c_a2fd757b30659807c78a1b778f592b240}} 
+\#define {\bfseries H\+S\+U\+\_\+\+R\+X\+\_\+\+E\+M\+P\+TY}~(1\+U $<$$<$ 8)
+\item 
+\mbox{\Hypertarget{hsu_8c_a9c5dd6e72e251fc2c693ea8d58f0dc7b}\label{hsu_8c_a9c5dd6e72e251fc2c693ea8d58f0dc7b}} 
+\#define {\bfseries H\+S\+U\+\_\+\+R\+X\+\_\+\+E\+R\+R\+OR}~(1\+U $<$$<$ 9)
+\item 
+\mbox{\Hypertarget{hsu_8c_a04f29c81a26bdc66c8d8a887e2d7079a}\label{hsu_8c_a04f29c81a26bdc66c8d8a887e2d7079a}} 
+\#define {\bfseries H\+S\+U\+\_\+\+R\+X\+\_\+\+B\+R\+E\+AK}~(1\+U $<$$<$ 10)
+\item 
+\mbox{\Hypertarget{hsu_8c_ad32ad9d715d0b236ac7b4cab1e363475}\label{hsu_8c_ad32ad9d715d0b236ac7b4cab1e363475}} 
+\#define {\bfseries H\+S\+U\+\_\+\+I\+I\+R\+\_\+\+TX}~(1\+U $<$$<$ 0)
+\item 
+\mbox{\Hypertarget{hsu_8c_a438d9bb2c28442682876691eeefdcbe6}\label{hsu_8c_a438d9bb2c28442682876691eeefdcbe6}} 
+\#define {\bfseries H\+S\+U\+\_\+\+I\+I\+R\+\_\+\+R\+X\+\_\+\+T\+R\+IG}~(1\+U $<$$<$ 1)
+\item 
+\mbox{\Hypertarget{hsu_8c_aefb501b2e75ccc4b0e9867157afbdc72}\label{hsu_8c_aefb501b2e75ccc4b0e9867157afbdc72}} 
+\#define {\bfseries H\+S\+U\+\_\+\+I\+I\+R\+\_\+\+R\+X\+\_\+\+T\+I\+M\+E\+O\+UT}~(1\+U $<$$<$ 2)
+\item 
+\mbox{\Hypertarget{hsu_8c_a5e73f4cddb224b74c43afc51acd0135b}\label{hsu_8c_a5e73f4cddb224b74c43afc51acd0135b}} 
+\#define {\bfseries H\+S\+U\+\_\+\+C\+T\+R\+L\+\_\+\+I\+N\+T\+R\+\_\+\+D\+I\+S\+A\+B\+L\+ED}~0x1280fU
+\item 
+\mbox{\Hypertarget{hsu_8c_a5a098d0811a55cbd3a2a25a944e388bf}\label{hsu_8c_a5a098d0811a55cbd3a2a25a944e388bf}} 
+\#define {\bfseries H\+S\+U\+\_\+\+C\+T\+R\+L\+\_\+\+R\+X\+\_\+\+I\+N\+T\+R\+\_\+\+E\+N\+A\+B\+L\+ED}~0x1284fU
+\item 
+\mbox{\Hypertarget{hsu_8c_aba5aa8c74f22cc523c7830f88a37c229}\label{hsu_8c_aba5aa8c74f22cc523c7830f88a37c229}} 
+\#define {\bfseries H\+S\+U\+\_\+\+C\+T\+R\+L\+\_\+\+R\+X\+\_\+\+A\+N\+D\+\_\+\+T\+X\+\_\+\+I\+N\+T\+R\+\_\+\+E\+N\+A\+B\+L\+ED}~0x1286fU
+\item 
+\mbox{\Hypertarget{hsu_8c_aff43a77859602bc924e9838e4a90c522}\label{hsu_8c_aff43a77859602bc924e9838e4a90c522}} 
+\#define {\bfseries H\+S\+U\+\_\+\+I\+I\+R\+\_\+\+M\+A\+SK}~0x7U
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool {\bfseries lpc32xx\+\_\+hsu\+\_\+probe} (\mbox{\hyperlink{structrtems__termios__device__context}{rtems\+\_\+termios\+\_\+device\+\_\+context}} $\ast$base)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const \mbox{\hyperlink{structrtems__termios__device__handler}{rtems\+\_\+termios\+\_\+device\+\_\+handler}} {\bfseries lpc32xx\+\_\+hsu\+\_\+fns}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+High speed U\+A\+RT driver (14-\/clock). 
+

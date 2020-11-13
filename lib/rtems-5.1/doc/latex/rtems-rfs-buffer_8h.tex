@@ -1,0 +1,327 @@
+\hypertarget{rtems-rfs-buffer_8h}{}\section{cpukit/include/rtems/rfs/rtems-\/rfs-\/buffer.h File Reference}
+\label{rtems-rfs-buffer_8h}\index{cpukit/include/rtems/rfs/rtems-\/rfs-\/buffer.h@{cpukit/include/rtems/rfs/rtems-\/rfs-\/buffer.h}}
+
+
+Maps Blocks to the Media Interface Layers.  
+
+
+{\ttfamily \#include $<$errno.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/rfs/rtems-\/rfs-\/file-\/system-\/fwd.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/rfs/rtems-\/rfs-\/trace.\+h$>$}\newline
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct__rtems__rfs__buffer}{\+\_\+rtems\+\_\+rfs\+\_\+buffer}}
+\item 
+struct \mbox{\hyperlink{structrtems__rfs__buffer__handle__t}{rtems\+\_\+rfs\+\_\+buffer\+\_\+handle\+\_\+t}}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{rtems-rfs-buffer_8h_ad721fbac05d9722e86823a37be95e473}\label{rtems-rfs-buffer_8h_ad721fbac05d9722e86823a37be95e473}} 
+\#define {\bfseries rtems\+\_\+rfs\+\_\+buffer\+\_\+io\+\_\+request}~\mbox{\hyperlink{rtems-rfs-buffer_8h_ace9647e355198f86ffd4d637b9ddb900}{rtems\+\_\+rfs\+\_\+buffer\+\_\+deviceio\+\_\+request}}
+\item 
+\mbox{\Hypertarget{rtems-rfs-buffer_8h_aa6c398be3359dd07fa6b4fc23672ab7f}\label{rtems-rfs-buffer_8h_aa6c398be3359dd07fa6b4fc23672ab7f}} 
+\#define {\bfseries rtems\+\_\+rfs\+\_\+buffer\+\_\+io\+\_\+release}~\mbox{\hyperlink{rtems-rfs-buffer_8h_a93fca5a06bf0618e3ced9c3f1d167178}{rtems\+\_\+rfs\+\_\+buffer\+\_\+deviceio\+\_\+release}}
+\item 
+\#define \mbox{\hyperlink{rtems-rfs-buffer_8h_a1d8f88aa8f5bf93f53163ab4e5c9a3de}{rtems\+\_\+rfs\+\_\+buffer\+\_\+link}}(\+\_\+h)~(\&(\+\_\+h)-\/$>$buffer-\/$>$\mbox{\hyperlink{link_8c_a8c94afd0b7e5bb4ce95fefd964241f7f}{link}})
+\item 
+\#define \mbox{\hyperlink{rtems-rfs-buffer_8h_aeb8816b42da7435346c907b381188402}{rtems\+\_\+rfs\+\_\+buffer\+\_\+data}}(\+\_\+h)~((void$\ast$)((\+\_\+h)-\/$>$buffer-\/$>$buffer))
+\item 
+\#define \mbox{\hyperlink{rtems-rfs-buffer_8h_a61b3830c7a42a4f4eeacf65415083e36}{rtems\+\_\+rfs\+\_\+buffer\+\_\+size}}(\+\_\+h)~((\+\_\+h)-\/$>$buffer-\/$>$\mbox{\hyperlink{sun4u_2tte_8h_a245260f6f74972558f61b85227df5aae}{size}})
+\item 
+\#define \mbox{\hyperlink{rtems-rfs-buffer_8h_a033ed348d383f050ca39826a7d651b6b}{rtems\+\_\+rfs\+\_\+buffer\+\_\+bnum}}(\+\_\+h)~((\+\_\+h)-\/$>$bnum)
+\item 
+\#define \mbox{\hyperlink{rtems-rfs-buffer_8h_a89510f87db8455d566eceb93e73141ae}{rtems\+\_\+rfs\+\_\+buffer\+\_\+dirty}}(\+\_\+h)~((\+\_\+h)-\/$>$dirty)
+\item 
+\#define \mbox{\hyperlink{rtems-rfs-buffer_8h_a5ed1947b948ae286c8f7010bba2587e1}{rtems\+\_\+rfs\+\_\+buffer\+\_\+handle\+\_\+has\+\_\+block}}(\+\_\+h)~((\+\_\+h)-\/$>$buffer ? true \+: false)
+\item 
+\#define \mbox{\hyperlink{rtems-rfs-buffer_8h_a79aed6fb6f1fb4d118c2197184800ddc}{rtems\+\_\+rfs\+\_\+buffer\+\_\+mark\+\_\+dirty}}(\+\_\+h)~((\+\_\+h)-\/$>$dirty = true)
+\item 
+\#define \mbox{\hyperlink{rtems-rfs-buffer_8h_ab507313ddcfdbc27f2837d5655b81256}{rtems\+\_\+rfs\+\_\+buffer\+\_\+refs}}(\+\_\+h)~((\+\_\+h)-\/$>$buffer-\/$>$references)
+\item 
+\#define \mbox{\hyperlink{rtems-rfs-buffer_8h_ab7a683a0d8d62ca1dcad8bc715cdcef2}{rtems\+\_\+rfs\+\_\+buffer\+\_\+refs\+\_\+up}}(\+\_\+h)~((\+\_\+h)-\/$>$buffer-\/$>$references += 1)
+\item 
+\#define \mbox{\hyperlink{rtems-rfs-buffer_8h_a5dedbca1ff6273273639eae1353f7447}{rtems\+\_\+rfs\+\_\+buffer\+\_\+refs\+\_\+down}}(\+\_\+h)~((\+\_\+h)-\/$>$buffer-\/$>$references -\/= 1)
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef uint32\+\_\+t \mbox{\hyperlink{rtems-rfs-buffer_8h_a5650d53328a5af0a78198fe780aec043}{rtems\+\_\+rfs\+\_\+buffer\+\_\+block}}
+\item 
+\mbox{\Hypertarget{rtems-rfs-buffer_8h_a6965d5fc4dd67f79945301931fbcb367}\label{rtems-rfs-buffer_8h_a6965d5fc4dd67f79945301931fbcb367}} 
+typedef struct \mbox{\hyperlink{struct__rtems__rfs__buffer}{\+\_\+rtems\+\_\+rfs\+\_\+buffer}} {\bfseries rtems\+\_\+rfs\+\_\+buffer}
+\item 
+typedef struct \mbox{\hyperlink{structrtems__rfs__buffer__handle__t}{rtems\+\_\+rfs\+\_\+buffer\+\_\+handle\+\_\+t}} \mbox{\hyperlink{rtems-rfs-buffer_8h_a17f97c37c5273ad28d413dfd2d175e23}{rtems\+\_\+rfs\+\_\+buffer\+\_\+handle}}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{rtems-rfs-buffer_8h_ace9647e355198f86ffd4d637b9ddb900}{rtems\+\_\+rfs\+\_\+buffer\+\_\+deviceio\+\_\+request}} (\mbox{\hyperlink{struct__rtems__rfs__file__system}{rtems\+\_\+rfs\+\_\+file\+\_\+system}} $\ast$fs, \mbox{\hyperlink{rtems-rfs-buffer_8h_a5650d53328a5af0a78198fe780aec043}{rtems\+\_\+rfs\+\_\+buffer\+\_\+block}} block, bool \mbox{\hyperlink{libcsupport_2src_2read_8c_a26d4711c05afec4c7771c3d17b2db9e9}{read}}, \mbox{\hyperlink{struct__rtems__rfs__buffer}{rtems\+\_\+rfs\+\_\+buffer}} $\ast$buffer)
+\item 
+int \mbox{\hyperlink{rtems-rfs-buffer_8h_a93fca5a06bf0618e3ced9c3f1d167178}{rtems\+\_\+rfs\+\_\+buffer\+\_\+deviceio\+\_\+release}} (\mbox{\hyperlink{struct__rtems__rfs__buffer}{rtems\+\_\+rfs\+\_\+buffer}} $\ast$handle, bool modified)
+\item 
+int \mbox{\hyperlink{rtems-rfs-buffer_8h_a0663516c5bc4844f8b6f47ebb9705dea}{rtems\+\_\+rfs\+\_\+buffer\+\_\+handle\+\_\+request}} (\mbox{\hyperlink{struct__rtems__rfs__file__system}{rtems\+\_\+rfs\+\_\+file\+\_\+system}} $\ast$fs, \mbox{\hyperlink{rtems-rfs-buffer_8h_a17f97c37c5273ad28d413dfd2d175e23}{rtems\+\_\+rfs\+\_\+buffer\+\_\+handle}} $\ast$handle, \mbox{\hyperlink{rtems-rfs-buffer_8h_a5650d53328a5af0a78198fe780aec043}{rtems\+\_\+rfs\+\_\+buffer\+\_\+block}} block, bool \mbox{\hyperlink{libcsupport_2src_2read_8c_a26d4711c05afec4c7771c3d17b2db9e9}{read}})
+\item 
+int \mbox{\hyperlink{rtems-rfs-buffer_8h_ab50227fce5883f922c86d14e0e558270}{rtems\+\_\+rfs\+\_\+buffer\+\_\+handle\+\_\+release}} (\mbox{\hyperlink{struct__rtems__rfs__file__system}{rtems\+\_\+rfs\+\_\+file\+\_\+system}} $\ast$fs, \mbox{\hyperlink{rtems-rfs-buffer_8h_a17f97c37c5273ad28d413dfd2d175e23}{rtems\+\_\+rfs\+\_\+buffer\+\_\+handle}} $\ast$handle)
+\item 
+int \mbox{\hyperlink{rtems-rfs-buffer_8h_af8b9acf77d20824a7121b89ab7b29bf9}{rtems\+\_\+rfs\+\_\+buffer\+\_\+open}} (const char $\ast$name, \mbox{\hyperlink{struct__rtems__rfs__file__system}{rtems\+\_\+rfs\+\_\+file\+\_\+system}} $\ast$fs)
+\item 
+int \mbox{\hyperlink{rtems-rfs-buffer_8h_ae5b347848c87353252dde82820821b05}{rtems\+\_\+rfs\+\_\+buffer\+\_\+close}} (\mbox{\hyperlink{struct__rtems__rfs__file__system}{rtems\+\_\+rfs\+\_\+file\+\_\+system}} $\ast$fs)
+\item 
+int \mbox{\hyperlink{rtems-rfs-buffer_8h_ae563bb0d8d88241eba145f94ab3056f7}{rtems\+\_\+rfs\+\_\+buffer\+\_\+sync}} (\mbox{\hyperlink{struct__rtems__rfs__file__system}{rtems\+\_\+rfs\+\_\+file\+\_\+system}} $\ast$fs)
+\item 
+int \mbox{\hyperlink{rtems-rfs-buffer_8h_ab9a25f519ce861f9781f99faee5c903e}{rtems\+\_\+rfs\+\_\+buffer\+\_\+setblksize}} (\mbox{\hyperlink{struct__rtems__rfs__file__system}{rtems\+\_\+rfs\+\_\+file\+\_\+system}} $\ast$fs, uint32\+\_\+t \mbox{\hyperlink{sun4u_2tte_8h_a245260f6f74972558f61b85227df5aae}{size}})
+\item 
+int \mbox{\hyperlink{rtems-rfs-buffer_8h_a26b599aacf6e9230ab77cf47d9fad0d9}{rtems\+\_\+rfs\+\_\+buffers\+\_\+release}} (\mbox{\hyperlink{struct__rtems__rfs__file__system}{rtems\+\_\+rfs\+\_\+file\+\_\+system}} $\ast$fs)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Maps Blocks to the Media Interface Layers. 
+
+These functions map blocks to the media interface layers. 
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{rtems-rfs-buffer_8h_a033ed348d383f050ca39826a7d651b6b}\label{rtems-rfs-buffer_8h_a033ed348d383f050ca39826a7d651b6b}} 
+\index{rtems-\/rfs-\/buffer.h@{rtems-\/rfs-\/buffer.h}!rtems\_rfs\_buffer\_bnum@{rtems\_rfs\_buffer\_bnum}}
+\index{rtems\_rfs\_buffer\_bnum@{rtems\_rfs\_buffer\_bnum}!rtems-\/rfs-\/buffer.h@{rtems-\/rfs-\/buffer.h}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_buffer\_bnum}{rtems\_rfs\_buffer\_bnum}}
+{\footnotesize\ttfamily \#define rtems\+\_\+rfs\+\_\+buffer\+\_\+bnum(\begin{DoxyParamCaption}\item[{}]{\+\_\+h }\end{DoxyParamCaption})~((\+\_\+h)-\/$>$bnum)}
+
+Return the block number. \mbox{\Hypertarget{rtems-rfs-buffer_8h_aeb8816b42da7435346c907b381188402}\label{rtems-rfs-buffer_8h_aeb8816b42da7435346c907b381188402}} 
+\index{rtems-\/rfs-\/buffer.h@{rtems-\/rfs-\/buffer.h}!rtems\_rfs\_buffer\_data@{rtems\_rfs\_buffer\_data}}
+\index{rtems\_rfs\_buffer\_data@{rtems\_rfs\_buffer\_data}!rtems-\/rfs-\/buffer.h@{rtems-\/rfs-\/buffer.h}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_buffer\_data}{rtems\_rfs\_buffer\_data}}
+{\footnotesize\ttfamily \#define rtems\+\_\+rfs\+\_\+buffer\+\_\+data(\begin{DoxyParamCaption}\item[{}]{\+\_\+h }\end{DoxyParamCaption})~((void$\ast$)((\+\_\+h)-\/$>$buffer-\/$>$buffer))}
+
+Return the start of the data area of the buffer given a handle. \mbox{\Hypertarget{rtems-rfs-buffer_8h_a89510f87db8455d566eceb93e73141ae}\label{rtems-rfs-buffer_8h_a89510f87db8455d566eceb93e73141ae}} 
+\index{rtems-\/rfs-\/buffer.h@{rtems-\/rfs-\/buffer.h}!rtems\_rfs\_buffer\_dirty@{rtems\_rfs\_buffer\_dirty}}
+\index{rtems\_rfs\_buffer\_dirty@{rtems\_rfs\_buffer\_dirty}!rtems-\/rfs-\/buffer.h@{rtems-\/rfs-\/buffer.h}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_buffer\_dirty}{rtems\_rfs\_buffer\_dirty}}
+{\footnotesize\ttfamily \#define rtems\+\_\+rfs\+\_\+buffer\+\_\+dirty(\begin{DoxyParamCaption}\item[{}]{\+\_\+h }\end{DoxyParamCaption})~((\+\_\+h)-\/$>$dirty)}
+
+Return the buffer dirty status. \mbox{\Hypertarget{rtems-rfs-buffer_8h_a5ed1947b948ae286c8f7010bba2587e1}\label{rtems-rfs-buffer_8h_a5ed1947b948ae286c8f7010bba2587e1}} 
+\index{rtems-\/rfs-\/buffer.h@{rtems-\/rfs-\/buffer.h}!rtems\_rfs\_buffer\_handle\_has\_block@{rtems\_rfs\_buffer\_handle\_has\_block}}
+\index{rtems\_rfs\_buffer\_handle\_has\_block@{rtems\_rfs\_buffer\_handle\_has\_block}!rtems-\/rfs-\/buffer.h@{rtems-\/rfs-\/buffer.h}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_buffer\_handle\_has\_block}{rtems\_rfs\_buffer\_handle\_has\_block}}
+{\footnotesize\ttfamily \#define rtems\+\_\+rfs\+\_\+buffer\+\_\+handle\+\_\+has\+\_\+block(\begin{DoxyParamCaption}\item[{}]{\+\_\+h }\end{DoxyParamCaption})~((\+\_\+h)-\/$>$buffer ? true \+: false)}
+
+Does the handle have a valid block attached ? \mbox{\Hypertarget{rtems-rfs-buffer_8h_a1d8f88aa8f5bf93f53163ab4e5c9a3de}\label{rtems-rfs-buffer_8h_a1d8f88aa8f5bf93f53163ab4e5c9a3de}} 
+\index{rtems-\/rfs-\/buffer.h@{rtems-\/rfs-\/buffer.h}!rtems\_rfs\_buffer\_link@{rtems\_rfs\_buffer\_link}}
+\index{rtems\_rfs\_buffer\_link@{rtems\_rfs\_buffer\_link}!rtems-\/rfs-\/buffer.h@{rtems-\/rfs-\/buffer.h}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_buffer\_link}{rtems\_rfs\_buffer\_link}}
+{\footnotesize\ttfamily \#define rtems\+\_\+rfs\+\_\+buffer\+\_\+link(\begin{DoxyParamCaption}\item[{}]{\+\_\+h }\end{DoxyParamCaption})~(\&(\+\_\+h)-\/$>$buffer-\/$>$\mbox{\hyperlink{link_8c_a8c94afd0b7e5bb4ce95fefd964241f7f}{link}})}
+
+The buffer linkage. \mbox{\Hypertarget{rtems-rfs-buffer_8h_a79aed6fb6f1fb4d118c2197184800ddc}\label{rtems-rfs-buffer_8h_a79aed6fb6f1fb4d118c2197184800ddc}} 
+\index{rtems-\/rfs-\/buffer.h@{rtems-\/rfs-\/buffer.h}!rtems\_rfs\_buffer\_mark\_dirty@{rtems\_rfs\_buffer\_mark\_dirty}}
+\index{rtems\_rfs\_buffer\_mark\_dirty@{rtems\_rfs\_buffer\_mark\_dirty}!rtems-\/rfs-\/buffer.h@{rtems-\/rfs-\/buffer.h}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_buffer\_mark\_dirty}{rtems\_rfs\_buffer\_mark\_dirty}}
+{\footnotesize\ttfamily \#define rtems\+\_\+rfs\+\_\+buffer\+\_\+mark\+\_\+dirty(\begin{DoxyParamCaption}\item[{}]{\+\_\+h }\end{DoxyParamCaption})~((\+\_\+h)-\/$>$dirty = true)}
+
+Mark the buffer as dirty. \mbox{\Hypertarget{rtems-rfs-buffer_8h_ab507313ddcfdbc27f2837d5655b81256}\label{rtems-rfs-buffer_8h_ab507313ddcfdbc27f2837d5655b81256}} 
+\index{rtems-\/rfs-\/buffer.h@{rtems-\/rfs-\/buffer.h}!rtems\_rfs\_buffer\_refs@{rtems\_rfs\_buffer\_refs}}
+\index{rtems\_rfs\_buffer\_refs@{rtems\_rfs\_buffer\_refs}!rtems-\/rfs-\/buffer.h@{rtems-\/rfs-\/buffer.h}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_buffer\_refs}{rtems\_rfs\_buffer\_refs}}
+{\footnotesize\ttfamily \#define rtems\+\_\+rfs\+\_\+buffer\+\_\+refs(\begin{DoxyParamCaption}\item[{}]{\+\_\+h }\end{DoxyParamCaption})~((\+\_\+h)-\/$>$buffer-\/$>$references)}
+
+Return the reference count. \mbox{\Hypertarget{rtems-rfs-buffer_8h_a5dedbca1ff6273273639eae1353f7447}\label{rtems-rfs-buffer_8h_a5dedbca1ff6273273639eae1353f7447}} 
+\index{rtems-\/rfs-\/buffer.h@{rtems-\/rfs-\/buffer.h}!rtems\_rfs\_buffer\_refs\_down@{rtems\_rfs\_buffer\_refs\_down}}
+\index{rtems\_rfs\_buffer\_refs\_down@{rtems\_rfs\_buffer\_refs\_down}!rtems-\/rfs-\/buffer.h@{rtems-\/rfs-\/buffer.h}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_buffer\_refs\_down}{rtems\_rfs\_buffer\_refs\_down}}
+{\footnotesize\ttfamily \#define rtems\+\_\+rfs\+\_\+buffer\+\_\+refs\+\_\+down(\begin{DoxyParamCaption}\item[{}]{\+\_\+h }\end{DoxyParamCaption})~((\+\_\+h)-\/$>$buffer-\/$>$references -\/= 1)}
+
+Decrement the reference count. \mbox{\Hypertarget{rtems-rfs-buffer_8h_ab7a683a0d8d62ca1dcad8bc715cdcef2}\label{rtems-rfs-buffer_8h_ab7a683a0d8d62ca1dcad8bc715cdcef2}} 
+\index{rtems-\/rfs-\/buffer.h@{rtems-\/rfs-\/buffer.h}!rtems\_rfs\_buffer\_refs\_up@{rtems\_rfs\_buffer\_refs\_up}}
+\index{rtems\_rfs\_buffer\_refs\_up@{rtems\_rfs\_buffer\_refs\_up}!rtems-\/rfs-\/buffer.h@{rtems-\/rfs-\/buffer.h}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_buffer\_refs\_up}{rtems\_rfs\_buffer\_refs\_up}}
+{\footnotesize\ttfamily \#define rtems\+\_\+rfs\+\_\+buffer\+\_\+refs\+\_\+up(\begin{DoxyParamCaption}\item[{}]{\+\_\+h }\end{DoxyParamCaption})~((\+\_\+h)-\/$>$buffer-\/$>$references += 1)}
+
+Increment the reference count. \mbox{\Hypertarget{rtems-rfs-buffer_8h_a61b3830c7a42a4f4eeacf65415083e36}\label{rtems-rfs-buffer_8h_a61b3830c7a42a4f4eeacf65415083e36}} 
+\index{rtems-\/rfs-\/buffer.h@{rtems-\/rfs-\/buffer.h}!rtems\_rfs\_buffer\_size@{rtems\_rfs\_buffer\_size}}
+\index{rtems\_rfs\_buffer\_size@{rtems\_rfs\_buffer\_size}!rtems-\/rfs-\/buffer.h@{rtems-\/rfs-\/buffer.h}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_buffer\_size}{rtems\_rfs\_buffer\_size}}
+{\footnotesize\ttfamily \#define rtems\+\_\+rfs\+\_\+buffer\+\_\+size(\begin{DoxyParamCaption}\item[{}]{\+\_\+h }\end{DoxyParamCaption})~((\+\_\+h)-\/$>$buffer-\/$>$\mbox{\hyperlink{sun4u_2tte_8h_a245260f6f74972558f61b85227df5aae}{size}})}
+
+Return the size of the buffer given a handle. 
+
+\subsection{Typedef Documentation}
+\mbox{\Hypertarget{rtems-rfs-buffer_8h_a5650d53328a5af0a78198fe780aec043}\label{rtems-rfs-buffer_8h_a5650d53328a5af0a78198fe780aec043}} 
+\index{rtems-\/rfs-\/buffer.h@{rtems-\/rfs-\/buffer.h}!rtems\_rfs\_buffer\_block@{rtems\_rfs\_buffer\_block}}
+\index{rtems\_rfs\_buffer\_block@{rtems\_rfs\_buffer\_block}!rtems-\/rfs-\/buffer.h@{rtems-\/rfs-\/buffer.h}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_buffer\_block}{rtems\_rfs\_buffer\_block}}
+{\footnotesize\ttfamily typedef uint32\+\_\+t \mbox{\hyperlink{rtems-rfs-buffer_8h_a5650d53328a5af0a78198fe780aec043}{rtems\+\_\+rfs\+\_\+buffer\+\_\+block}}}
+
+Define the method used to interface to the buffers. It can be libblock or device I/O. The libblock interface is to the R\+T\+E\+MS cache and block devices and device I/O accesses the media via a device file handle.\+The R\+T\+E\+MS R\+FS I/O Layering. \mbox{\Hypertarget{rtems-rfs-buffer_8h_a17f97c37c5273ad28d413dfd2d175e23}\label{rtems-rfs-buffer_8h_a17f97c37c5273ad28d413dfd2d175e23}} 
+\index{rtems-\/rfs-\/buffer.h@{rtems-\/rfs-\/buffer.h}!rtems\_rfs\_buffer\_handle@{rtems\_rfs\_buffer\_handle}}
+\index{rtems\_rfs\_buffer\_handle@{rtems\_rfs\_buffer\_handle}!rtems-\/rfs-\/buffer.h@{rtems-\/rfs-\/buffer.h}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_buffer\_handle}{rtems\_rfs\_buffer\_handle}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structrtems__rfs__buffer__handle__t}{rtems\+\_\+rfs\+\_\+buffer\+\_\+handle\+\_\+t}}  \mbox{\hyperlink{rtems-rfs-buffer_8h_a17f97c37c5273ad28d413dfd2d175e23}{rtems\+\_\+rfs\+\_\+buffer\+\_\+handle}}}
+
+R\+FS Buffer handle. 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{rtems-rfs-buffer_8h_ae5b347848c87353252dde82820821b05}\label{rtems-rfs-buffer_8h_ae5b347848c87353252dde82820821b05}} 
+\index{rtems-\/rfs-\/buffer.h@{rtems-\/rfs-\/buffer.h}!rtems\_rfs\_buffer\_close@{rtems\_rfs\_buffer\_close}}
+\index{rtems\_rfs\_buffer\_close@{rtems\_rfs\_buffer\_close}!rtems-\/rfs-\/buffer.h@{rtems-\/rfs-\/buffer.h}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_buffer\_close()}{rtems\_rfs\_buffer\_close()}}
+{\footnotesize\ttfamily int rtems\+\_\+rfs\+\_\+buffer\+\_\+close (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__rtems__rfs__file__system}{rtems\+\_\+rfs\+\_\+file\+\_\+system}} $\ast$}]{fs }\end{DoxyParamCaption})}
+
+Close the buffer interface.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em fs} & is the file system data.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em 0} & Successful operation. \\
+\hline
+{\em error\+\_\+code} & An error occurred. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{rtems-rfs-buffer_8h_a93fca5a06bf0618e3ced9c3f1d167178}\label{rtems-rfs-buffer_8h_a93fca5a06bf0618e3ced9c3f1d167178}} 
+\index{rtems-\/rfs-\/buffer.h@{rtems-\/rfs-\/buffer.h}!rtems\_rfs\_buffer\_deviceio\_release@{rtems\_rfs\_buffer\_deviceio\_release}}
+\index{rtems\_rfs\_buffer\_deviceio\_release@{rtems\_rfs\_buffer\_deviceio\_release}!rtems-\/rfs-\/buffer.h@{rtems-\/rfs-\/buffer.h}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_buffer\_deviceio\_release()}{rtems\_rfs\_buffer\_deviceio\_release()}}
+{\footnotesize\ttfamily int rtems\+\_\+rfs\+\_\+buffer\+\_\+deviceio\+\_\+release (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__rtems__rfs__buffer}{rtems\+\_\+rfs\+\_\+buffer}} $\ast$}]{handle,  }\item[{bool}]{modified }\end{DoxyParamCaption})}
+
+Release a buffer to the R\+T\+E\+MS libblock BD buffer cache. \mbox{\Hypertarget{rtems-rfs-buffer_8h_ace9647e355198f86ffd4d637b9ddb900}\label{rtems-rfs-buffer_8h_ace9647e355198f86ffd4d637b9ddb900}} 
+\index{rtems-\/rfs-\/buffer.h@{rtems-\/rfs-\/buffer.h}!rtems\_rfs\_buffer\_deviceio\_request@{rtems\_rfs\_buffer\_deviceio\_request}}
+\index{rtems\_rfs\_buffer\_deviceio\_request@{rtems\_rfs\_buffer\_deviceio\_request}!rtems-\/rfs-\/buffer.h@{rtems-\/rfs-\/buffer.h}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_buffer\_deviceio\_request()}{rtems\_rfs\_buffer\_deviceio\_request()}}
+{\footnotesize\ttfamily int rtems\+\_\+rfs\+\_\+buffer\+\_\+deviceio\+\_\+request (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__rtems__rfs__file__system}{rtems\+\_\+rfs\+\_\+file\+\_\+system}} $\ast$}]{fs,  }\item[{\mbox{\hyperlink{rtems-rfs-buffer_8h_a5650d53328a5af0a78198fe780aec043}{rtems\+\_\+rfs\+\_\+buffer\+\_\+block}}}]{block,  }\item[{bool}]{read,  }\item[{\mbox{\hyperlink{struct__rtems__rfs__buffer}{rtems\+\_\+rfs\+\_\+buffer}} $\ast$}]{buffer }\end{DoxyParamCaption})}
+
+Request a buffer from the device I/O. \mbox{\Hypertarget{rtems-rfs-buffer_8h_ab50227fce5883f922c86d14e0e558270}\label{rtems-rfs-buffer_8h_ab50227fce5883f922c86d14e0e558270}} 
+\index{rtems-\/rfs-\/buffer.h@{rtems-\/rfs-\/buffer.h}!rtems\_rfs\_buffer\_handle\_release@{rtems\_rfs\_buffer\_handle\_release}}
+\index{rtems\_rfs\_buffer\_handle\_release@{rtems\_rfs\_buffer\_handle\_release}!rtems-\/rfs-\/buffer.h@{rtems-\/rfs-\/buffer.h}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_buffer\_handle\_release()}{rtems\_rfs\_buffer\_handle\_release()}}
+{\footnotesize\ttfamily int rtems\+\_\+rfs\+\_\+buffer\+\_\+handle\+\_\+release (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__rtems__rfs__file__system}{rtems\+\_\+rfs\+\_\+file\+\_\+system}} $\ast$}]{fs,  }\item[{\mbox{\hyperlink{rtems-rfs-buffer_8h_a17f97c37c5273ad28d413dfd2d175e23}{rtems\+\_\+rfs\+\_\+buffer\+\_\+handle}} $\ast$}]{handle }\end{DoxyParamCaption})}
+
+Release a buffer. If the buffer is dirty the buffer is written to disk. The result does not indicate if the data was successfully written to the disk as this operation may be performed in asynchronously to this release.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em fs} & is the file system data. \\
+\hline
+\mbox{\texttt{ in}}  & {\em handle} & is the handle the requested buffer is attached to.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em 0} & Successful operation. \\
+\hline
+{\em error\+\_\+code} & An error occurred. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{rtems-rfs-buffer_8h_a0663516c5bc4844f8b6f47ebb9705dea}\label{rtems-rfs-buffer_8h_a0663516c5bc4844f8b6f47ebb9705dea}} 
+\index{rtems-\/rfs-\/buffer.h@{rtems-\/rfs-\/buffer.h}!rtems\_rfs\_buffer\_handle\_request@{rtems\_rfs\_buffer\_handle\_request}}
+\index{rtems\_rfs\_buffer\_handle\_request@{rtems\_rfs\_buffer\_handle\_request}!rtems-\/rfs-\/buffer.h@{rtems-\/rfs-\/buffer.h}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_buffer\_handle\_request()}{rtems\_rfs\_buffer\_handle\_request()}}
+{\footnotesize\ttfamily int rtems\+\_\+rfs\+\_\+buffer\+\_\+handle\+\_\+request (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__rtems__rfs__file__system}{rtems\+\_\+rfs\+\_\+file\+\_\+system}} $\ast$}]{fs,  }\item[{\mbox{\hyperlink{rtems-rfs-buffer_8h_a17f97c37c5273ad28d413dfd2d175e23}{rtems\+\_\+rfs\+\_\+buffer\+\_\+handle}} $\ast$}]{handle,  }\item[{\mbox{\hyperlink{rtems-rfs-buffer_8h_a5650d53328a5af0a78198fe780aec043}{rtems\+\_\+rfs\+\_\+buffer\+\_\+block}}}]{block,  }\item[{bool}]{read }\end{DoxyParamCaption})}
+
+Request a buffer. The buffer can be filled with data from the media (read == true) or you can request a buffer to fill with data.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em fs} & is the file system data. \\
+\hline
+\mbox{\texttt{ in}}  & {\em handle} & is the handle the requested buffer is attached to. \\
+\hline
+\mbox{\texttt{ in}}  & {\em block} & is the block number. \\
+\hline
+\mbox{\texttt{ in}}  & {\em read} & Read the data from the disk.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em 0} & Successful operation. \\
+\hline
+{\em error\+\_\+code} & An error occurred. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{rtems-rfs-buffer_8h_af8b9acf77d20824a7121b89ab7b29bf9}\label{rtems-rfs-buffer_8h_af8b9acf77d20824a7121b89ab7b29bf9}} 
+\index{rtems-\/rfs-\/buffer.h@{rtems-\/rfs-\/buffer.h}!rtems\_rfs\_buffer\_open@{rtems\_rfs\_buffer\_open}}
+\index{rtems\_rfs\_buffer\_open@{rtems\_rfs\_buffer\_open}!rtems-\/rfs-\/buffer.h@{rtems-\/rfs-\/buffer.h}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_buffer\_open()}{rtems\_rfs\_buffer\_open()}}
+{\footnotesize\ttfamily int rtems\+\_\+rfs\+\_\+buffer\+\_\+open (\begin{DoxyParamCaption}\item[{const char $\ast$}]{name,  }\item[{\mbox{\hyperlink{struct__rtems__rfs__file__system}{rtems\+\_\+rfs\+\_\+file\+\_\+system}} $\ast$}]{fs }\end{DoxyParamCaption})}
+
+Open the buffer interface.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em name} & is a pointer to the device name to the media. \\
+\hline
+\mbox{\texttt{ in}}  & {\em fs} & is the file system data.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em 0} & Successful operation. \\
+\hline
+{\em error\+\_\+code} & An error occurred. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{rtems-rfs-buffer_8h_ab9a25f519ce861f9781f99faee5c903e}\label{rtems-rfs-buffer_8h_ab9a25f519ce861f9781f99faee5c903e}} 
+\index{rtems-\/rfs-\/buffer.h@{rtems-\/rfs-\/buffer.h}!rtems\_rfs\_buffer\_setblksize@{rtems\_rfs\_buffer\_setblksize}}
+\index{rtems\_rfs\_buffer\_setblksize@{rtems\_rfs\_buffer\_setblksize}!rtems-\/rfs-\/buffer.h@{rtems-\/rfs-\/buffer.h}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_buffer\_setblksize()}{rtems\_rfs\_buffer\_setblksize()}}
+{\footnotesize\ttfamily int rtems\+\_\+rfs\+\_\+buffer\+\_\+setblksize (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__rtems__rfs__file__system}{rtems\+\_\+rfs\+\_\+file\+\_\+system}} $\ast$}]{fs,  }\item[{uint32\+\_\+t}]{size }\end{DoxyParamCaption})}
+
+Set the block size of the device.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em fs} & is the file system data. \\
+\hline
+\mbox{\texttt{ in}}  & {\em size} & is the new block size.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em 0} & Successful operation. \\
+\hline
+{\em error\+\_\+code} & An error occurred. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{rtems-rfs-buffer_8h_ae563bb0d8d88241eba145f94ab3056f7}\label{rtems-rfs-buffer_8h_ae563bb0d8d88241eba145f94ab3056f7}} 
+\index{rtems-\/rfs-\/buffer.h@{rtems-\/rfs-\/buffer.h}!rtems\_rfs\_buffer\_sync@{rtems\_rfs\_buffer\_sync}}
+\index{rtems\_rfs\_buffer\_sync@{rtems\_rfs\_buffer\_sync}!rtems-\/rfs-\/buffer.h@{rtems-\/rfs-\/buffer.h}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_buffer\_sync()}{rtems\_rfs\_buffer\_sync()}}
+{\footnotesize\ttfamily int rtems\+\_\+rfs\+\_\+buffer\+\_\+sync (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__rtems__rfs__file__system}{rtems\+\_\+rfs\+\_\+file\+\_\+system}} $\ast$}]{fs }\end{DoxyParamCaption})}
+
+Sync all buffers to the media.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em fs} & is the file system data.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em 0} & Successful operation. \\
+\hline
+{\em error\+\_\+code} & An error occurred. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{rtems-rfs-buffer_8h_a26b599aacf6e9230ab77cf47d9fad0d9}\label{rtems-rfs-buffer_8h_a26b599aacf6e9230ab77cf47d9fad0d9}} 
+\index{rtems-\/rfs-\/buffer.h@{rtems-\/rfs-\/buffer.h}!rtems\_rfs\_buffers\_release@{rtems\_rfs\_buffers\_release}}
+\index{rtems\_rfs\_buffers\_release@{rtems\_rfs\_buffers\_release}!rtems-\/rfs-\/buffer.h@{rtems-\/rfs-\/buffer.h}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_buffers\_release()}{rtems\_rfs\_buffers\_release()}}
+{\footnotesize\ttfamily int rtems\+\_\+rfs\+\_\+buffers\+\_\+release (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__rtems__rfs__file__system}{rtems\+\_\+rfs\+\_\+file\+\_\+system}} $\ast$}]{fs }\end{DoxyParamCaption})}
+
+Release any chained buffers.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em fs} & is the file system data.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em 0} & Successful operation. \\
+\hline
+{\em error\+\_\+code} & An error occurred. \\
+\hline
+\end{DoxyRetVals}

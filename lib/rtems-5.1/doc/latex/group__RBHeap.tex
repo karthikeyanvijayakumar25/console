@@ -1,0 +1,167 @@
+\hypertarget{group__RBHeap}{}\section{Red-\/\+Black Tree Heap}
+\label{group__RBHeap}\index{Red-\/Black Tree Heap@{Red-\/Black Tree Heap}}
+
+
+Red-\/\+Black Tree Heap A\+PI.  
+
+
+\subsection*{Files}
+\begin{DoxyCompactItemize}
+\item 
+file \mbox{\hyperlink{rbheap_8c}{rbheap.\+c}}
+\begin{DoxyCompactList}\small\item\em Red-\/\+Black Tree Heap implementation. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structrtems__rbheap__chunk}{rtems\+\_\+rbheap\+\_\+chunk}}
+\begin{DoxyCompactList}\small\item\em Red-\/black heap chunk descriptor. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structrtems__rbheap__control}{rtems\+\_\+rbheap\+\_\+control}}
+\begin{DoxyCompactList}\small\item\em Red-\/black heap control. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{group__RBHeap_gad5aaee5a75cae8272a616e28fe89d473}\label{group__RBHeap_gad5aaee5a75cae8272a616e28fe89d473}} 
+typedef struct \mbox{\hyperlink{structrtems__rbheap__control}{rtems\+\_\+rbheap\+\_\+control}} {\bfseries rtems\+\_\+rbheap\+\_\+control}
+\item 
+typedef void($\ast$ \mbox{\hyperlink{group__RBHeap_gaa15b8f5425b4d2aa188607bb9941fb20}{rtems\+\_\+rbheap\+\_\+extend\+\_\+descriptors}}) (\mbox{\hyperlink{structrtems__rbheap__control}{rtems\+\_\+rbheap\+\_\+control}} $\ast$\mbox{\hyperlink{structcontrol}{control}})
+\begin{DoxyCompactList}\small\item\em Handler to extend the available chunk descriptors. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{group__RBHeap_ga0274b53388fbaefe582c6c1752539b16}{rtems\+\_\+rbheap\+\_\+initialize}} (\mbox{\hyperlink{structrtems__rbheap__control}{rtems\+\_\+rbheap\+\_\+control}} $\ast$\mbox{\hyperlink{structcontrol}{control}}, void $\ast$area\+\_\+begin, uintptr\+\_\+t area\+\_\+size, uintptr\+\_\+t alignment, \mbox{\hyperlink{group__RBHeap_gaa15b8f5425b4d2aa188607bb9941fb20}{rtems\+\_\+rbheap\+\_\+extend\+\_\+descriptors}} extend\+\_\+descriptors, void $\ast$handler\+\_\+arg)
+\begin{DoxyCompactList}\small\item\em Initializes the red-\/black tree heap {\itshape control}. \end{DoxyCompactList}\item 
+void $\ast$ \mbox{\hyperlink{group__RBHeap_ga2eb3695546542f459cc424d1a36ea6f6}{rtems\+\_\+rbheap\+\_\+allocate}} (\mbox{\hyperlink{structrtems__rbheap__control}{rtems\+\_\+rbheap\+\_\+control}} $\ast$\mbox{\hyperlink{structcontrol}{control}}, size\+\_\+t \mbox{\hyperlink{sun4u_2tte_8h_a245260f6f74972558f61b85227df5aae}{size}})
+\begin{DoxyCompactList}\small\item\em Allocates a chunk of memory of at least {\itshape size} bytes from the red-\/black tree heap {\itshape control}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{group__RBHeap_ga1bd7fd933947dcdf26a49f4ce10418b4}{rtems\+\_\+rbheap\+\_\+free}} (\mbox{\hyperlink{structrtems__rbheap__control}{rtems\+\_\+rbheap\+\_\+control}} $\ast$\mbox{\hyperlink{structcontrol}{control}}, void $\ast$ptr)
+\begin{DoxyCompactList}\small\item\em Frees a chunk of memory {\itshape ptr} allocated from the red-\/black tree heap {\itshape control}. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__RBHeap_ga9896930146188b96df52a73099cf8d10}\label{group__RBHeap_ga9896930146188b96df52a73099cf8d10}} 
+void \mbox{\hyperlink{group__RBHeap_ga9896930146188b96df52a73099cf8d10}{rtems\+\_\+rbheap\+\_\+extend\+\_\+descriptors\+\_\+never}} (\mbox{\hyperlink{structrtems__rbheap__control}{rtems\+\_\+rbheap\+\_\+control}} $\ast$\mbox{\hyperlink{structcontrol}{control}})
+\begin{DoxyCompactList}\small\item\em Chunk descriptor extend handler that does nothing. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__RBHeap_gaa1ea1346258fa0d79fc4ac9da02f761d}\label{group__RBHeap_gaa1ea1346258fa0d79fc4ac9da02f761d}} 
+void \mbox{\hyperlink{group__RBHeap_gaa1ea1346258fa0d79fc4ac9da02f761d}{rtems\+\_\+rbheap\+\_\+extend\+\_\+descriptors\+\_\+with\+\_\+malloc}} (\mbox{\hyperlink{structrtems__rbheap__control}{rtems\+\_\+rbheap\+\_\+control}} $\ast$\mbox{\hyperlink{structcontrol}{control}})
+\begin{DoxyCompactList}\small\item\em Chunk descriptor extend handler that uses malloc(). \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Red-\/\+Black Tree Heap A\+PI. 
+
+The red-\/black tree heap provides a memory allocator suitable to implement the malloc() and free() interface. It uses a first-\/fit allocation strategy. In the red-\/black tree heap the administration data structures are not contained in the managed memory area. Thus writing beyond the boundaries of a chunk does not damage the data to maintain the heap. This can be used for example in a task stack allocator which protects the task stacks from access by other tasks. The allocated and free memory parts of the managed area are called chunks. Each chunk needs a descriptor which is stored outside of the managed area. 
+
+\subsection{Typedef Documentation}
+\mbox{\Hypertarget{group__RBHeap_gaa15b8f5425b4d2aa188607bb9941fb20}\label{group__RBHeap_gaa15b8f5425b4d2aa188607bb9941fb20}} 
+\index{Red-\/Black Tree Heap@{Red-\/Black Tree Heap}!rtems\_rbheap\_extend\_descriptors@{rtems\_rbheap\_extend\_descriptors}}
+\index{rtems\_rbheap\_extend\_descriptors@{rtems\_rbheap\_extend\_descriptors}!Red-\/Black Tree Heap@{Red-\/Black Tree Heap}}
+\subsubsection{\texorpdfstring{rtems\_rbheap\_extend\_descriptors}{rtems\_rbheap\_extend\_descriptors}}
+{\footnotesize\ttfamily typedef void($\ast$ rtems\+\_\+rbheap\+\_\+extend\+\_\+descriptors) (\mbox{\hyperlink{structrtems__rbheap__control}{rtems\+\_\+rbheap\+\_\+control}} $\ast$\mbox{\hyperlink{structcontrol}{control}})}
+
+
+
+Handler to extend the available chunk descriptors. 
+
+This handler is called when no more chunk descriptors are available. An example implementation is this\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{void} extend\_descriptors\_with\_malloc(\mbox{\hyperlink{structrtems__rbheap__control}{rtems\_rbheap\_control}} *\mbox{\hyperlink{structcontrol}{control}})}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{  \mbox{\hyperlink{structrtems__rbheap__chunk}{rtems\_rbheap\_chunk}} *chunk = malloc(\textcolor{keyword}{sizeof}(*chunk));}
+\DoxyCodeLine{}
+\DoxyCodeLine{  \textcolor{keywordflow}{if} (chunk != \mbox{\hyperlink{bestcomm__api_8h_a872bb74de61c3689ccd5b41873fce42c}{NULL}}) \{}
+\DoxyCodeLine{    rtems\_rbheap\_add\_to\_spare\_descriptor\_chain(\mbox{\hyperlink{structcontrol}{control}}, chunk);}
+\DoxyCodeLine{  \}}
+\DoxyCodeLine{\}}
+\end{DoxyCode}
+
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{group__RBHeap_ga9896930146188b96df52a73099cf8d10}{rtems\+\_\+rbheap\+\_\+extend\+\_\+descriptors\+\_\+never()}} and \mbox{\hyperlink{group__RBHeap_gaa1ea1346258fa0d79fc4ac9da02f761d}{rtems\+\_\+rbheap\+\_\+extend\+\_\+descriptors\+\_\+with\+\_\+malloc()}}. 
+\end{DoxySeeAlso}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{group__RBHeap_ga2eb3695546542f459cc424d1a36ea6f6}\label{group__RBHeap_ga2eb3695546542f459cc424d1a36ea6f6}} 
+\index{Red-\/Black Tree Heap@{Red-\/Black Tree Heap}!rtems\_rbheap\_allocate@{rtems\_rbheap\_allocate}}
+\index{rtems\_rbheap\_allocate@{rtems\_rbheap\_allocate}!Red-\/Black Tree Heap@{Red-\/Black Tree Heap}}
+\subsubsection{\texorpdfstring{rtems\_rbheap\_allocate()}{rtems\_rbheap\_allocate()}}
+{\footnotesize\ttfamily void$\ast$ rtems\+\_\+rbheap\+\_\+allocate (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structrtems__rbheap__control}{rtems\+\_\+rbheap\+\_\+control}} $\ast$}]{control,  }\item[{size\+\_\+t}]{size }\end{DoxyParamCaption})}
+
+
+
+Allocates a chunk of memory of at least {\itshape size} bytes from the red-\/black tree heap {\itshape control}. 
+
+The chunk begin is aligned by the value specified in \mbox{\hyperlink{group__RBHeap_ga0274b53388fbaefe582c6c1752539b16}{rtems\+\_\+rbheap\+\_\+initialize()}}.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em control} & The red-\/black tree heap. \\
+\hline
+\mbox{\texttt{ in}}  & {\em size} & The requested chunk size in bytes.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em N\+U\+LL} & Not enough free space in the heap. \\
+\hline
+{\em otherwise} & Pointer to allocated chunk of memory. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{group__RBHeap_ga1bd7fd933947dcdf26a49f4ce10418b4}\label{group__RBHeap_ga1bd7fd933947dcdf26a49f4ce10418b4}} 
+\index{Red-\/Black Tree Heap@{Red-\/Black Tree Heap}!rtems\_rbheap\_free@{rtems\_rbheap\_free}}
+\index{rtems\_rbheap\_free@{rtems\_rbheap\_free}!Red-\/Black Tree Heap@{Red-\/Black Tree Heap}}
+\subsubsection{\texorpdfstring{rtems\_rbheap\_free()}{rtems\_rbheap\_free()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} rtems\+\_\+rbheap\+\_\+free (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structrtems__rbheap__control}{rtems\+\_\+rbheap\+\_\+control}} $\ast$}]{control,  }\item[{void $\ast$}]{ptr }\end{DoxyParamCaption})}
+
+
+
+Frees a chunk of memory {\itshape ptr} allocated from the red-\/black tree heap {\itshape control}. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em control} & The red-\/black tree heap. \\
+\hline
+\mbox{\texttt{ in}}  & {\em ptr} & The pointer to the chunk of memory.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em R\+T\+E\+M\+S\+\_\+\+S\+U\+C\+C\+E\+S\+S\+F\+UL} & Successful operation. \\
+\hline
+{\em R\+T\+E\+M\+S\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+ID} & The chunk of memory is not a valid chunk in the red-\/black tree heap. \\
+\hline
+{\em R\+T\+E\+M\+S\+\_\+\+I\+N\+C\+O\+R\+R\+E\+C\+T\+\_\+\+S\+T\+A\+TE} & The chunk of memory is not in the right state. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{group__RBHeap_ga0274b53388fbaefe582c6c1752539b16}\label{group__RBHeap_ga0274b53388fbaefe582c6c1752539b16}} 
+\index{Red-\/Black Tree Heap@{Red-\/Black Tree Heap}!rtems\_rbheap\_initialize@{rtems\_rbheap\_initialize}}
+\index{rtems\_rbheap\_initialize@{rtems\_rbheap\_initialize}!Red-\/Black Tree Heap@{Red-\/Black Tree Heap}}
+\subsubsection{\texorpdfstring{rtems\_rbheap\_initialize()}{rtems\_rbheap\_initialize()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} rtems\+\_\+rbheap\+\_\+initialize (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structrtems__rbheap__control}{rtems\+\_\+rbheap\+\_\+control}} $\ast$}]{control,  }\item[{void $\ast$}]{area\+\_\+begin,  }\item[{uintptr\+\_\+t}]{area\+\_\+size,  }\item[{uintptr\+\_\+t}]{alignment,  }\item[{\mbox{\hyperlink{group__RBHeap_gaa15b8f5425b4d2aa188607bb9941fb20}{rtems\+\_\+rbheap\+\_\+extend\+\_\+descriptors}}}]{extend\+\_\+descriptors,  }\item[{void $\ast$}]{handler\+\_\+arg }\end{DoxyParamCaption})}
+
+
+
+Initializes the red-\/black tree heap {\itshape control}. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em control} & The red-\/black tree heap. \\
+\hline
+\mbox{\texttt{ in}}  & {\em area\+\_\+begin} & The managed memory area begin. \\
+\hline
+\mbox{\texttt{ in}}  & {\em area\+\_\+size} & The managed memory area size. \\
+\hline
+\mbox{\texttt{ in}}  & {\em alignment} & The minimum chunk alignment. \\
+\hline
+\mbox{\texttt{ in}}  & {\em extend\+\_\+descriptors} & The handler to extend the available chunk descriptors. \\
+\hline
+\mbox{\texttt{ in}}  & {\em handler\+\_\+arg} & The handler argument.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em R\+T\+E\+M\+S\+\_\+\+S\+U\+C\+C\+E\+S\+S\+F\+UL} & Successful operation. \\
+\hline
+{\em R\+T\+E\+M\+S\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+A\+D\+D\+R\+E\+SS} & The memory area is invalid. \\
+\hline
+{\em R\+T\+E\+M\+S\+\_\+\+N\+O\+\_\+\+M\+E\+M\+O\+RY} & Not enough chunk descriptors. \\
+\hline
+\end{DoxyRetVals}

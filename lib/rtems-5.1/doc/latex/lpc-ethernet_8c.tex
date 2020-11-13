@@ -1,0 +1,374 @@
+\hypertarget{lpc-ethernet_8c}{}\section{bsps/arm/shared/net/lpc-\/ethernet.c File Reference}
+\label{lpc-ethernet_8c}\index{bsps/arm/shared/net/lpc-\/ethernet.c@{bsps/arm/shared/net/lpc-\/ethernet.c}}
+
+
+Ethernet driver.  
+
+
+{\ttfamily \#include $<$machine/rtems-\/bsd-\/kernel-\/space.\+h$>$}\newline
+{\ttfamily \#include $<$errno.\+h$>$}\newline
+{\ttfamily \#include $<$inttypes.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$assert.\+h$>$}\newline
+{\ttfamily \#include $<$rtems.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/rtems\+\_\+bsdnet.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/rtems\+\_\+mii\+\_\+ioctl.\+h$>$}\newline
+{\ttfamily \#include $<$sys/param.\+h$>$}\newline
+{\ttfamily \#include $<$sys/socket.\+h$>$}\newline
+{\ttfamily \#include $<$sys/sockio.\+h$>$}\newline
+{\ttfamily \#include $<$sys/mbuf.\+h$>$}\newline
+{\ttfamily \#include $<$net/if.\+h$>$}\newline
+{\ttfamily \#include $<$net/if\+\_\+arp.\+h$>$}\newline
+{\ttfamily \#include $<$netinet/in.\+h$>$}\newline
+{\ttfamily \#include $<$netinet/if\+\_\+ether.\+h$>$}\newline
+{\ttfamily \#include $<$netinet/in\+\_\+systm.\+h$>$}\newline
+{\ttfamily \#include $<$netinet/ip.\+h$>$}\newline
+{\ttfamily \#include $<$bsp.\+h$>$}\newline
+{\ttfamily \#include $<$bsp/irq.\+h$>$}\newline
+{\ttfamily \#include $<$bsp/lpc-\/ethernet-\/config.\+h$>$}\newline
+{\ttfamily \#include $<$bsp/utility.\+h$>$}\newline
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structlpc__eth__transfer__descriptor}{lpc\+\_\+eth\+\_\+transfer\+\_\+descriptor}}
+\item 
+struct \mbox{\hyperlink{structlpc__eth__receive__status}{lpc\+\_\+eth\+\_\+receive\+\_\+status}}
+\item 
+struct \mbox{\hyperlink{structlpc__eth__controller}{lpc\+\_\+eth\+\_\+controller}}
+\item 
+struct \mbox{\hyperlink{structlpc__eth__driver__entry}{lpc\+\_\+eth\+\_\+driver\+\_\+entry}}
+\item 
+struct \mbox{\hyperlink{structlpc__eth__phy__action}{lpc\+\_\+eth\+\_\+phy\+\_\+action}}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{lpc-ethernet_8c_ac728aa3c853ae51d5250884e0f9c4198}\label{lpc-ethernet_8c_ac728aa3c853ae51d5250884e0f9c4198}} 
+\#define {\bfseries L\+P\+C\+\_\+\+E\+T\+H\+\_\+\+C\+O\+N\+F\+I\+G\+\_\+\+T\+X\+\_\+\+B\+U\+F\+\_\+\+S\+I\+ZE}~1518U
+\item 
+\mbox{\Hypertarget{lpc-ethernet_8c_a0fa1778b7ac45f087d9797d5868b96fc}\label{lpc-ethernet_8c_a0fa1778b7ac45f087d9797d5868b96fc}} 
+\#define {\bfseries D\+E\+F\+A\+U\+L\+T\+\_\+\+P\+HY}~0
+\item 
+\mbox{\Hypertarget{lpc-ethernet_8c_abf89628d486477bd0db5a5890cd38a05}\label{lpc-ethernet_8c_abf89628d486477bd0db5a5890cd38a05}} 
+\#define {\bfseries W\+A\+T\+C\+H\+D\+O\+G\+\_\+\+T\+I\+M\+E\+O\+UT}~5
+\item 
+\mbox{\Hypertarget{lpc-ethernet_8c_a003639436efbeaa6568b90a1ae7f92c3}\label{lpc-ethernet_8c_a003639436efbeaa6568b90a1ae7f92c3}} 
+\#define {\bfseries E\+T\+H\+\_\+\+R\+X\+\_\+\+C\+T\+R\+L\+\_\+\+S\+I\+Z\+E\+\_\+\+M\+A\+SK}~0x000007ffU
+\item 
+\mbox{\Hypertarget{lpc-ethernet_8c_a1bca6c13982b7035cea2ccf26b88e615}\label{lpc-ethernet_8c_a1bca6c13982b7035cea2ccf26b88e615}} 
+\#define {\bfseries E\+T\+H\+\_\+\+R\+X\+\_\+\+C\+T\+R\+L\+\_\+\+I\+N\+T\+E\+R\+R\+U\+PT}~0x80000000U
+\item 
+\mbox{\Hypertarget{lpc-ethernet_8c_a2eaa9a1cd1f6fc2d051741e22098c45a}\label{lpc-ethernet_8c_a2eaa9a1cd1f6fc2d051741e22098c45a}} 
+\#define {\bfseries E\+T\+H\+\_\+\+R\+X\+\_\+\+S\+T\+A\+T\+\_\+\+R\+X\+S\+I\+Z\+E\+\_\+\+M\+A\+SK}~0x000007ffU
+\item 
+\mbox{\Hypertarget{lpc-ethernet_8c_ae56c557ca95628be200cea6f2aa5a4aa}\label{lpc-ethernet_8c_ae56c557ca95628be200cea6f2aa5a4aa}} 
+\#define {\bfseries E\+T\+H\+\_\+\+R\+X\+\_\+\+S\+T\+A\+T\+\_\+\+B\+Y\+T\+ES}~0x00000100U
+\item 
+\mbox{\Hypertarget{lpc-ethernet_8c_a4c27de7a2bd8338c14b6be7bdf4aae11}\label{lpc-ethernet_8c_a4c27de7a2bd8338c14b6be7bdf4aae11}} 
+\#define {\bfseries E\+T\+H\+\_\+\+R\+X\+\_\+\+S\+T\+A\+T\+\_\+\+C\+O\+N\+T\+R\+O\+L\+\_\+\+F\+R\+A\+ME}~0x00040000U
+\item 
+\mbox{\Hypertarget{lpc-ethernet_8c_aef6e290d1fd0d3db31759570f0266627}\label{lpc-ethernet_8c_aef6e290d1fd0d3db31759570f0266627}} 
+\#define {\bfseries E\+T\+H\+\_\+\+R\+X\+\_\+\+S\+T\+A\+T\+\_\+\+V\+L\+AN}~0x00080000U
+\item 
+\mbox{\Hypertarget{lpc-ethernet_8c_a3f78a048119fb2148215750ee828adf3}\label{lpc-ethernet_8c_a3f78a048119fb2148215750ee828adf3}} 
+\#define {\bfseries E\+T\+H\+\_\+\+R\+X\+\_\+\+S\+T\+A\+T\+\_\+\+F\+A\+I\+L\+\_\+\+F\+I\+L\+T\+ER}~0x00100000U
+\item 
+\mbox{\Hypertarget{lpc-ethernet_8c_ad59f9ddd49f162f95c568c9a28153587}\label{lpc-ethernet_8c_ad59f9ddd49f162f95c568c9a28153587}} 
+\#define {\bfseries E\+T\+H\+\_\+\+R\+X\+\_\+\+S\+T\+A\+T\+\_\+\+M\+U\+L\+T\+I\+C\+A\+ST}~0x00200000U
+\item 
+\mbox{\Hypertarget{lpc-ethernet_8c_ac3dd58495ac7873b2c13b05308195b70}\label{lpc-ethernet_8c_ac3dd58495ac7873b2c13b05308195b70}} 
+\#define {\bfseries E\+T\+H\+\_\+\+R\+X\+\_\+\+S\+T\+A\+T\+\_\+\+B\+R\+O\+A\+D\+C\+A\+ST}~0x00400000U
+\item 
+\mbox{\Hypertarget{lpc-ethernet_8c_acdab399a3291871896b7b8980605853c}\label{lpc-ethernet_8c_acdab399a3291871896b7b8980605853c}} 
+\#define {\bfseries E\+T\+H\+\_\+\+R\+X\+\_\+\+S\+T\+A\+T\+\_\+\+C\+R\+C\+\_\+\+E\+R\+R\+OR}~0x00800000U
+\item 
+\mbox{\Hypertarget{lpc-ethernet_8c_a5a177181505f81c8f058ce7c90f0d13c}\label{lpc-ethernet_8c_a5a177181505f81c8f058ce7c90f0d13c}} 
+\#define {\bfseries E\+T\+H\+\_\+\+R\+X\+\_\+\+S\+T\+A\+T\+\_\+\+S\+Y\+M\+B\+O\+L\+\_\+\+E\+R\+R\+OR}~0x01000000U
+\item 
+\mbox{\Hypertarget{lpc-ethernet_8c_aa66d2c3a92285943ab96cc4b53a48113}\label{lpc-ethernet_8c_aa66d2c3a92285943ab96cc4b53a48113}} 
+\#define {\bfseries E\+T\+H\+\_\+\+R\+X\+\_\+\+S\+T\+A\+T\+\_\+\+L\+E\+N\+G\+T\+H\+\_\+\+E\+R\+R\+OR}~0x02000000U
+\item 
+\mbox{\Hypertarget{lpc-ethernet_8c_a64f6646e665405b48a358de9cdedd616}\label{lpc-ethernet_8c_a64f6646e665405b48a358de9cdedd616}} 
+\#define {\bfseries E\+T\+H\+\_\+\+R\+X\+\_\+\+S\+T\+A\+T\+\_\+\+R\+A\+N\+G\+E\+\_\+\+E\+R\+R\+OR}~0x04000000U
+\item 
+\mbox{\Hypertarget{lpc-ethernet_8c_a09373f0816d9b89ea3d412b28c57a3c3}\label{lpc-ethernet_8c_a09373f0816d9b89ea3d412b28c57a3c3}} 
+\#define {\bfseries E\+T\+H\+\_\+\+R\+X\+\_\+\+S\+T\+A\+T\+\_\+\+A\+L\+I\+G\+N\+M\+E\+N\+T\+\_\+\+E\+R\+R\+OR}~0x08000000U
+\item 
+\mbox{\Hypertarget{lpc-ethernet_8c_a7bbb1af3029e6e6d80201fa3d6ea5804}\label{lpc-ethernet_8c_a7bbb1af3029e6e6d80201fa3d6ea5804}} 
+\#define {\bfseries E\+T\+H\+\_\+\+R\+X\+\_\+\+S\+T\+A\+T\+\_\+\+O\+V\+E\+R\+R\+UN}~0x10000000U
+\item 
+\mbox{\Hypertarget{lpc-ethernet_8c_a77031a9665a8bb8379411fbcf07a78f4}\label{lpc-ethernet_8c_a77031a9665a8bb8379411fbcf07a78f4}} 
+\#define {\bfseries E\+T\+H\+\_\+\+R\+X\+\_\+\+S\+T\+A\+T\+\_\+\+N\+O\+\_\+\+D\+E\+S\+C\+R\+I\+P\+T\+OR}~0x20000000U
+\item 
+\mbox{\Hypertarget{lpc-ethernet_8c_a8dbc0976ca0e4922b3b90761f195d908}\label{lpc-ethernet_8c_a8dbc0976ca0e4922b3b90761f195d908}} 
+\#define {\bfseries E\+T\+H\+\_\+\+R\+X\+\_\+\+S\+T\+A\+T\+\_\+\+L\+A\+S\+T\+\_\+\+F\+L\+AG}~0x40000000U
+\item 
+\mbox{\Hypertarget{lpc-ethernet_8c_abb6e16683426b847ba78c7be8d99c526}\label{lpc-ethernet_8c_abb6e16683426b847ba78c7be8d99c526}} 
+\#define {\bfseries E\+T\+H\+\_\+\+R\+X\+\_\+\+S\+T\+A\+T\+\_\+\+E\+R\+R\+OR}~0x80000000U
+\item 
+\mbox{\Hypertarget{lpc-ethernet_8c_a4d2d799865ce60fe1f2c785ac402618c}\label{lpc-ethernet_8c_a4d2d799865ce60fe1f2c785ac402618c}} 
+\#define {\bfseries E\+T\+H\+\_\+\+T\+X\+\_\+\+C\+T\+R\+L\+\_\+\+S\+I\+Z\+E\+\_\+\+M\+A\+SK}~0x7ffU
+\item 
+\mbox{\Hypertarget{lpc-ethernet_8c_a9e42aa06978c56f5a1cea0da12d2786d}\label{lpc-ethernet_8c_a9e42aa06978c56f5a1cea0da12d2786d}} 
+\#define {\bfseries E\+T\+H\+\_\+\+T\+X\+\_\+\+C\+T\+R\+L\+\_\+\+S\+I\+Z\+E\+\_\+\+S\+H\+I\+FT}~0
+\item 
+\mbox{\Hypertarget{lpc-ethernet_8c_a888c7348b018828c6a4a4a1c7334b8cc}\label{lpc-ethernet_8c_a888c7348b018828c6a4a4a1c7334b8cc}} 
+\#define {\bfseries E\+T\+H\+\_\+\+T\+X\+\_\+\+C\+T\+R\+L\+\_\+\+O\+V\+E\+R\+R\+I\+DE}~0x04000000U
+\item 
+\mbox{\Hypertarget{lpc-ethernet_8c_a0c9c2c100e280a0ef92dec2c98c6f64e}\label{lpc-ethernet_8c_a0c9c2c100e280a0ef92dec2c98c6f64e}} 
+\#define {\bfseries E\+T\+H\+\_\+\+T\+X\+\_\+\+C\+T\+R\+L\+\_\+\+H\+U\+GE}~0x08000000U
+\item 
+\mbox{\Hypertarget{lpc-ethernet_8c_a7c7e8f027e257d29e3c84e773fb27ffc}\label{lpc-ethernet_8c_a7c7e8f027e257d29e3c84e773fb27ffc}} 
+\#define {\bfseries E\+T\+H\+\_\+\+T\+X\+\_\+\+C\+T\+R\+L\+\_\+\+P\+AD}~0x10000000U
+\item 
+\mbox{\Hypertarget{lpc-ethernet_8c_a0be98a723bb9350078db2115a5d70e71}\label{lpc-ethernet_8c_a0be98a723bb9350078db2115a5d70e71}} 
+\#define {\bfseries E\+T\+H\+\_\+\+T\+X\+\_\+\+C\+T\+R\+L\+\_\+\+C\+RC}~0x20000000U
+\item 
+\mbox{\Hypertarget{lpc-ethernet_8c_a19328c96e0057e3df0eaf63cd0042921}\label{lpc-ethernet_8c_a19328c96e0057e3df0eaf63cd0042921}} 
+\#define {\bfseries E\+T\+H\+\_\+\+T\+X\+\_\+\+C\+T\+R\+L\+\_\+\+L\+A\+ST}~0x40000000U
+\item 
+\mbox{\Hypertarget{lpc-ethernet_8c_acf25b1c8e49c2685d06fd3513d8dbe01}\label{lpc-ethernet_8c_acf25b1c8e49c2685d06fd3513d8dbe01}} 
+\#define {\bfseries E\+T\+H\+\_\+\+T\+X\+\_\+\+C\+T\+R\+L\+\_\+\+I\+N\+T\+E\+R\+R\+U\+PT}~0x80000000U
+\item 
+\mbox{\Hypertarget{lpc-ethernet_8c_a1bf570eee2720599195c67299c45be1c}\label{lpc-ethernet_8c_a1bf570eee2720599195c67299c45be1c}} 
+\#define {\bfseries E\+T\+H\+\_\+\+T\+X\+\_\+\+S\+T\+A\+T\+\_\+\+C\+O\+L\+L\+I\+S\+I\+O\+N\+\_\+\+C\+O\+U\+N\+T\+\_\+\+M\+A\+SK}~0x01e00000U
+\item 
+\mbox{\Hypertarget{lpc-ethernet_8c_a0a49095281f795029fcc301b0118b5f4}\label{lpc-ethernet_8c_a0a49095281f795029fcc301b0118b5f4}} 
+\#define {\bfseries E\+T\+H\+\_\+\+T\+X\+\_\+\+S\+T\+A\+T\+\_\+\+D\+E\+F\+ER}~0x02000000U
+\item 
+\mbox{\Hypertarget{lpc-ethernet_8c_a9bb15c929c1f3a394c724ef0cd8c6cbf}\label{lpc-ethernet_8c_a9bb15c929c1f3a394c724ef0cd8c6cbf}} 
+\#define {\bfseries E\+T\+H\+\_\+\+T\+X\+\_\+\+S\+T\+A\+T\+\_\+\+E\+X\+C\+E\+S\+S\+I\+V\+E\+\_\+\+D\+E\+F\+ER}~0x04000000U
+\item 
+\mbox{\Hypertarget{lpc-ethernet_8c_ac442075e48b95174b45c554061063f98}\label{lpc-ethernet_8c_ac442075e48b95174b45c554061063f98}} 
+\#define {\bfseries E\+T\+H\+\_\+\+T\+X\+\_\+\+S\+T\+A\+T\+\_\+\+E\+X\+C\+E\+S\+S\+I\+V\+E\+\_\+\+C\+O\+L\+L\+I\+S\+I\+ON}~0x08000000U
+\item 
+\mbox{\Hypertarget{lpc-ethernet_8c_afb06f69f7dcec72fa1784f813ae72939}\label{lpc-ethernet_8c_afb06f69f7dcec72fa1784f813ae72939}} 
+\#define {\bfseries E\+T\+H\+\_\+\+T\+X\+\_\+\+S\+T\+A\+T\+\_\+\+L\+A\+T\+E\+\_\+\+C\+O\+L\+L\+I\+S\+I\+ON}~0x10000000U
+\item 
+\mbox{\Hypertarget{lpc-ethernet_8c_aff1dd2c418281e15364ce0dc55419379}\label{lpc-ethernet_8c_aff1dd2c418281e15364ce0dc55419379}} 
+\#define {\bfseries E\+T\+H\+\_\+\+T\+X\+\_\+\+S\+T\+A\+T\+\_\+\+U\+N\+D\+E\+R\+R\+UN}~0x20000000U
+\item 
+\mbox{\Hypertarget{lpc-ethernet_8c_a344f0f08557950f3e12a7541b39eb340}\label{lpc-ethernet_8c_a344f0f08557950f3e12a7541b39eb340}} 
+\#define {\bfseries E\+T\+H\+\_\+\+T\+X\+\_\+\+S\+T\+A\+T\+\_\+\+N\+O\+\_\+\+D\+E\+S\+C\+R\+I\+P\+T\+OR}~0x40000000U
+\item 
+\mbox{\Hypertarget{lpc-ethernet_8c_a6565ebcb2049717481139af61afa1320}\label{lpc-ethernet_8c_a6565ebcb2049717481139af61afa1320}} 
+\#define {\bfseries E\+T\+H\+\_\+\+T\+X\+\_\+\+S\+T\+A\+T\+\_\+\+E\+R\+R\+OR}~0x80000000U
+\item 
+\mbox{\Hypertarget{lpc-ethernet_8c_af2f263e6815e5e58fa87236d90564d0a}\label{lpc-ethernet_8c_af2f263e6815e5e58fa87236d90564d0a}} 
+\#define {\bfseries E\+T\+H\+\_\+\+I\+N\+T\+\_\+\+R\+X\+\_\+\+O\+V\+E\+R\+R\+UN}~0x00000001U
+\item 
+\mbox{\Hypertarget{lpc-ethernet_8c_a60c5b6001fce13882218e1270b527ed5}\label{lpc-ethernet_8c_a60c5b6001fce13882218e1270b527ed5}} 
+\#define {\bfseries E\+T\+H\+\_\+\+I\+N\+T\+\_\+\+R\+X\+\_\+\+E\+R\+R\+OR}~0x00000002U
+\item 
+\mbox{\Hypertarget{lpc-ethernet_8c_a48e775c699380ee94ddd9a7b6e832457}\label{lpc-ethernet_8c_a48e775c699380ee94ddd9a7b6e832457}} 
+\#define {\bfseries E\+T\+H\+\_\+\+I\+N\+T\+\_\+\+R\+X\+\_\+\+F\+I\+N\+I\+S\+H\+ED}~0x00000004U
+\item 
+\mbox{\Hypertarget{lpc-ethernet_8c_ab6641100e85d9d3733d58aba1e5da543}\label{lpc-ethernet_8c_ab6641100e85d9d3733d58aba1e5da543}} 
+\#define {\bfseries E\+T\+H\+\_\+\+I\+N\+T\+\_\+\+R\+X\+\_\+\+D\+O\+NE}~0x00000008U
+\item 
+\mbox{\Hypertarget{lpc-ethernet_8c_ae5852ab086c4edb00063c95dca84e264}\label{lpc-ethernet_8c_ae5852ab086c4edb00063c95dca84e264}} 
+\#define {\bfseries E\+T\+H\+\_\+\+I\+N\+T\+\_\+\+T\+X\+\_\+\+U\+N\+D\+E\+R\+R\+UN}~0x00000010U
+\item 
+\mbox{\Hypertarget{lpc-ethernet_8c_acf118d689f31aaca96b36f312fc136e5}\label{lpc-ethernet_8c_acf118d689f31aaca96b36f312fc136e5}} 
+\#define {\bfseries E\+T\+H\+\_\+\+I\+N\+T\+\_\+\+T\+X\+\_\+\+E\+R\+R\+OR}~0x00000020U
+\item 
+\mbox{\Hypertarget{lpc-ethernet_8c_a4d5d107071dc2e90cada6aba4e2eea85}\label{lpc-ethernet_8c_a4d5d107071dc2e90cada6aba4e2eea85}} 
+\#define {\bfseries E\+T\+H\+\_\+\+I\+N\+T\+\_\+\+T\+X\+\_\+\+F\+I\+N\+I\+S\+H\+ED}~0x00000040U
+\item 
+\mbox{\Hypertarget{lpc-ethernet_8c_a96f37b7fe52acc0469fb6e8bf131c3fb}\label{lpc-ethernet_8c_a96f37b7fe52acc0469fb6e8bf131c3fb}} 
+\#define {\bfseries E\+T\+H\+\_\+\+I\+N\+T\+\_\+\+T\+X\+\_\+\+D\+O\+NE}~0x00000080U
+\item 
+\mbox{\Hypertarget{lpc-ethernet_8c_a80ec60d40a74b1156747020f531f13bb}\label{lpc-ethernet_8c_a80ec60d40a74b1156747020f531f13bb}} 
+\#define {\bfseries E\+T\+H\+\_\+\+I\+N\+T\+\_\+\+S\+O\+FT}~0x00001000U
+\item 
+\mbox{\Hypertarget{lpc-ethernet_8c_af6e688ad09f2fde63c3f699c64fbeec4}\label{lpc-ethernet_8c_af6e688ad09f2fde63c3f699c64fbeec4}} 
+\#define {\bfseries E\+T\+H\+\_\+\+I\+N\+T\+\_\+\+W\+A\+K\+E\+UP}~0x00002000U
+\item 
+\mbox{\Hypertarget{lpc-ethernet_8c_a5b1b802439786df40639f9763b4f1891}\label{lpc-ethernet_8c_a5b1b802439786df40639f9763b4f1891}} 
+\#define {\bfseries E\+T\+H\+\_\+\+R\+X\+\_\+\+F\+I\+L\+\_\+\+C\+T\+R\+L\+\_\+\+A\+C\+C\+E\+P\+T\+\_\+\+U\+N\+I\+C\+A\+ST}~0x00000001U
+\item 
+\mbox{\Hypertarget{lpc-ethernet_8c_ae88f8606770fd22c47dce43c1e0bbcec}\label{lpc-ethernet_8c_ae88f8606770fd22c47dce43c1e0bbcec}} 
+\#define {\bfseries E\+T\+H\+\_\+\+R\+X\+\_\+\+F\+I\+L\+\_\+\+C\+T\+R\+L\+\_\+\+A\+C\+C\+E\+P\+T\+\_\+\+B\+R\+O\+A\+D\+C\+A\+ST}~0x00000002U
+\item 
+\mbox{\Hypertarget{lpc-ethernet_8c_acb5cd59c24803952e4df95ae7b227937}\label{lpc-ethernet_8c_acb5cd59c24803952e4df95ae7b227937}} 
+\#define {\bfseries E\+T\+H\+\_\+\+R\+X\+\_\+\+F\+I\+L\+\_\+\+C\+T\+R\+L\+\_\+\+A\+C\+C\+E\+P\+T\+\_\+\+M\+U\+L\+T\+I\+C\+A\+ST}~0x00000004U
+\item 
+\mbox{\Hypertarget{lpc-ethernet_8c_a08676bfb73beefea28d37f99ee4e5892}\label{lpc-ethernet_8c_a08676bfb73beefea28d37f99ee4e5892}} 
+\#define {\bfseries E\+T\+H\+\_\+\+R\+X\+\_\+\+F\+I\+L\+\_\+\+C\+T\+R\+L\+\_\+\+A\+C\+C\+E\+P\+T\+\_\+\+U\+N\+I\+C\+A\+S\+T\+\_\+\+H\+A\+SH}~0x00000008U
+\item 
+\mbox{\Hypertarget{lpc-ethernet_8c_a8f4408f8812b1017c14b50ad2e89be35}\label{lpc-ethernet_8c_a8f4408f8812b1017c14b50ad2e89be35}} 
+\#define {\bfseries E\+T\+H\+\_\+\+R\+X\+\_\+\+F\+I\+L\+\_\+\+C\+T\+R\+L\+\_\+\+A\+C\+C\+E\+P\+T\+\_\+\+M\+U\+L\+T\+I\+C\+A\+S\+T\+\_\+\+H\+A\+SH}~0x00000010U
+\item 
+\mbox{\Hypertarget{lpc-ethernet_8c_ae6399dfa7ee155cae05e2387021e30fa}\label{lpc-ethernet_8c_ae6399dfa7ee155cae05e2387021e30fa}} 
+\#define {\bfseries E\+T\+H\+\_\+\+R\+X\+\_\+\+F\+I\+L\+\_\+\+C\+T\+R\+L\+\_\+\+A\+C\+C\+E\+P\+T\+\_\+\+P\+E\+R\+F\+E\+CT}~0x00000020U
+\item 
+\mbox{\Hypertarget{lpc-ethernet_8c_af95b3aa8f110171bcdc593f359c1d905}\label{lpc-ethernet_8c_af95b3aa8f110171bcdc593f359c1d905}} 
+\#define {\bfseries E\+T\+H\+\_\+\+R\+X\+\_\+\+F\+I\+L\+\_\+\+C\+T\+R\+L\+\_\+\+M\+A\+G\+I\+C\+\_\+\+P\+A\+C\+K\+E\+T\+\_\+\+W\+OL}~0x00001000U
+\item 
+\mbox{\Hypertarget{lpc-ethernet_8c_a980d417cbda2311d31b1aa53dc120cb3}\label{lpc-ethernet_8c_a980d417cbda2311d31b1aa53dc120cb3}} 
+\#define {\bfseries E\+T\+H\+\_\+\+R\+X\+\_\+\+F\+I\+L\+\_\+\+C\+T\+R\+L\+\_\+\+R\+X\+\_\+\+F\+I\+L\+T\+E\+R\+\_\+\+W\+OL}~0x00002000U
+\item 
+\mbox{\Hypertarget{lpc-ethernet_8c_a3f397a4d855809f92aa5649ccee8a0ec}\label{lpc-ethernet_8c_a3f397a4d855809f92aa5649ccee8a0ec}} 
+\#define {\bfseries E\+T\+H\+\_\+\+C\+M\+D\+\_\+\+R\+X\+\_\+\+E\+N\+A\+B\+LE}~0x00000001U
+\item 
+\mbox{\Hypertarget{lpc-ethernet_8c_aebb803511f8bfea1082fc0ab24975b7a}\label{lpc-ethernet_8c_aebb803511f8bfea1082fc0ab24975b7a}} 
+\#define {\bfseries E\+T\+H\+\_\+\+C\+M\+D\+\_\+\+T\+X\+\_\+\+E\+N\+A\+B\+LE}~0x00000002U
+\item 
+\mbox{\Hypertarget{lpc-ethernet_8c_ad62a0479c167fe900515f232df16a137}\label{lpc-ethernet_8c_ad62a0479c167fe900515f232df16a137}} 
+\#define {\bfseries E\+T\+H\+\_\+\+C\+M\+D\+\_\+\+R\+E\+G\+\_\+\+R\+E\+S\+ET}~0x00000008U
+\item 
+\mbox{\Hypertarget{lpc-ethernet_8c_a7bbc3087e255bb936b3e68081524de68}\label{lpc-ethernet_8c_a7bbc3087e255bb936b3e68081524de68}} 
+\#define {\bfseries E\+T\+H\+\_\+\+C\+M\+D\+\_\+\+T\+X\+\_\+\+R\+E\+S\+ET}~0x00000010U
+\item 
+\mbox{\Hypertarget{lpc-ethernet_8c_a34147e58c4ccd52937a251512e8580f4}\label{lpc-ethernet_8c_a34147e58c4ccd52937a251512e8580f4}} 
+\#define {\bfseries E\+T\+H\+\_\+\+C\+M\+D\+\_\+\+R\+X\+\_\+\+R\+E\+S\+ET}~0x00000020U
+\item 
+\mbox{\Hypertarget{lpc-ethernet_8c_a9c932c4b2332b2d9f121cc82a09ecbdc}\label{lpc-ethernet_8c_a9c932c4b2332b2d9f121cc82a09ecbdc}} 
+\#define {\bfseries E\+T\+H\+\_\+\+C\+M\+D\+\_\+\+P\+A\+S\+S\+\_\+\+R\+U\+N\+T\+\_\+\+F\+R\+A\+ME}~0x00000040U
+\item 
+\mbox{\Hypertarget{lpc-ethernet_8c_a78f591c06119bc24239199fdbe0bb4dc}\label{lpc-ethernet_8c_a78f591c06119bc24239199fdbe0bb4dc}} 
+\#define {\bfseries E\+T\+H\+\_\+\+C\+M\+D\+\_\+\+P\+A\+S\+S\+\_\+\+R\+X\+\_\+\+F\+I\+L\+T\+ER}~0\+X00000080U
+\item 
+\mbox{\Hypertarget{lpc-ethernet_8c_a48a5a8a0549814d6810c6f5eb1be4eea}\label{lpc-ethernet_8c_a48a5a8a0549814d6810c6f5eb1be4eea}} 
+\#define {\bfseries E\+T\+H\+\_\+\+C\+M\+D\+\_\+\+T\+X\+\_\+\+F\+L\+O\+W\+\_\+\+C\+O\+N\+T\+R\+OL}~0x00000100U
+\item 
+\mbox{\Hypertarget{lpc-ethernet_8c_a5273f77a1f884be130100820a850f779}\label{lpc-ethernet_8c_a5273f77a1f884be130100820a850f779}} 
+\#define {\bfseries E\+T\+H\+\_\+\+C\+M\+D\+\_\+\+R\+M\+II}~0x00000200U
+\item 
+\mbox{\Hypertarget{lpc-ethernet_8c_ab918cd69810baa452a7e079c7ff9bc28}\label{lpc-ethernet_8c_ab918cd69810baa452a7e079c7ff9bc28}} 
+\#define {\bfseries E\+T\+H\+\_\+\+C\+M\+D\+\_\+\+F\+U\+L\+L\+\_\+\+D\+U\+P\+L\+EX}~0x00000400U
+\item 
+\mbox{\Hypertarget{lpc-ethernet_8c_a4e3898d2f25cbdc0579eed5fd9f2f416}\label{lpc-ethernet_8c_a4e3898d2f25cbdc0579eed5fd9f2f416}} 
+\#define {\bfseries E\+T\+H\+\_\+\+S\+T\+A\+T\+\_\+\+R\+X\+\_\+\+A\+C\+T\+I\+VE}~0x00000001U
+\item 
+\mbox{\Hypertarget{lpc-ethernet_8c_a6e8bbd8208cbe83ce5ff8e2420ff08ad}\label{lpc-ethernet_8c_a6e8bbd8208cbe83ce5ff8e2420ff08ad}} 
+\#define {\bfseries E\+T\+H\+\_\+\+S\+T\+A\+T\+\_\+\+T\+X\+\_\+\+A\+C\+T\+I\+VE}~0x00000002U
+\item 
+\mbox{\Hypertarget{lpc-ethernet_8c_a9ee0581a9dd5ef581cd5f78aa433d1c5}\label{lpc-ethernet_8c_a9ee0581a9dd5ef581cd5f78aa433d1c5}} 
+\#define {\bfseries E\+T\+H\+\_\+\+M\+A\+C2\+\_\+\+F\+U\+L\+L\+\_\+\+D\+U\+P\+L\+EX}~B\+S\+P\+\_\+\+B\+I\+T32(8)
+\item 
+\mbox{\Hypertarget{lpc-ethernet_8c_a52e89c0f0b6fe6b08dba434d1e0c2bc6}\label{lpc-ethernet_8c_a52e89c0f0b6fe6b08dba434d1e0c2bc6}} 
+\#define {\bfseries E\+T\+H\+\_\+\+S\+U\+P\+P\+\_\+\+S\+P\+E\+ED}~B\+S\+P\+\_\+\+B\+I\+T32(8)
+\item 
+\mbox{\Hypertarget{lpc-ethernet_8c_a05ae6fd03ab551251e4ac653941f0bc3}\label{lpc-ethernet_8c_a05ae6fd03ab551251e4ac653941f0bc3}} 
+\#define {\bfseries E\+T\+H\+\_\+\+M\+C\+F\+G\+\_\+\+C\+L\+O\+C\+K\+\_\+\+S\+E\+L\+E\+CT}(val)~B\+S\+P\+\_\+\+F\+L\+D32(val, 2, 4)
+\item 
+\mbox{\Hypertarget{lpc-ethernet_8c_a971e72211351c5c6447499a870a0b9c0}\label{lpc-ethernet_8c_a971e72211351c5c6447499a870a0b9c0}} 
+\#define {\bfseries E\+T\+H\+\_\+\+M\+C\+F\+G\+\_\+\+R\+E\+S\+E\+T\+M\+I\+I\+M\+G\+MT}~B\+S\+P\+\_\+\+B\+I\+T32(15)
+\item 
+\mbox{\Hypertarget{lpc-ethernet_8c_a758db6f66484db0aae9c6a336f8d3223}\label{lpc-ethernet_8c_a758db6f66484db0aae9c6a336f8d3223}} 
+\#define {\bfseries E\+T\+H\+\_\+\+M\+C\+M\+D\+\_\+\+R\+E\+AD}~B\+S\+P\+\_\+\+B\+I\+T32(0)
+\item 
+\mbox{\Hypertarget{lpc-ethernet_8c_add11d61b98525216f262a9e2ad9b011c}\label{lpc-ethernet_8c_add11d61b98525216f262a9e2ad9b011c}} 
+\#define {\bfseries E\+T\+H\+\_\+\+M\+C\+M\+D\+\_\+\+S\+C\+AN}~B\+S\+P\+\_\+\+B\+I\+T32(1)
+\item 
+\mbox{\Hypertarget{lpc-ethernet_8c_a6106230a56102183a120adf9f4b3d9eb}\label{lpc-ethernet_8c_a6106230a56102183a120adf9f4b3d9eb}} 
+\#define {\bfseries E\+T\+H\+\_\+\+M\+A\+D\+R\+\_\+\+R\+EG}(val)~B\+S\+P\+\_\+\+F\+L\+D32(val, 0, 4)
+\item 
+\mbox{\Hypertarget{lpc-ethernet_8c_a02a4c62c3f21d335e11f13623fe7be3c}\label{lpc-ethernet_8c_a02a4c62c3f21d335e11f13623fe7be3c}} 
+\#define {\bfseries E\+T\+H\+\_\+\+M\+A\+D\+R\+\_\+\+P\+HY}(val)~B\+S\+P\+\_\+\+F\+L\+D32(val, 8, 12)
+\item 
+\mbox{\Hypertarget{lpc-ethernet_8c_a6d0b89c54d84e1ffeab0521f0ab8d46d}\label{lpc-ethernet_8c_a6d0b89c54d84e1ffeab0521f0ab8d46d}} 
+\#define {\bfseries E\+T\+H\+\_\+\+M\+I\+N\+D\+\_\+\+B\+U\+SY}~B\+S\+P\+\_\+\+B\+I\+T32(0)
+\item 
+\mbox{\Hypertarget{lpc-ethernet_8c_a6071da130a786aec780aa6419795d7f9}\label{lpc-ethernet_8c_a6071da130a786aec780aa6419795d7f9}} 
+\#define {\bfseries E\+T\+H\+\_\+\+M\+I\+N\+D\+\_\+\+S\+C\+A\+N\+N\+I\+NG}~B\+S\+P\+\_\+\+B\+I\+T32(1)
+\item 
+\mbox{\Hypertarget{lpc-ethernet_8c_a295638da991a9a5855bde5d289d83918}\label{lpc-ethernet_8c_a295638da991a9a5855bde5d289d83918}} 
+\#define {\bfseries E\+T\+H\+\_\+\+M\+I\+N\+D\+\_\+\+N\+O\+T\+\_\+\+V\+A\+L\+ID}~B\+S\+P\+\_\+\+B\+I\+T32(2)
+\item 
+\mbox{\Hypertarget{lpc-ethernet_8c_aefd5061662ec8304800010f3f80a9963}\label{lpc-ethernet_8c_aefd5061662ec8304800010f3f80a9963}} 
+\#define {\bfseries E\+T\+H\+\_\+\+M\+I\+N\+D\+\_\+\+M\+I\+I\+\_\+\+L\+I\+N\+K\+\_\+\+F\+A\+IL}~B\+S\+P\+\_\+\+B\+I\+T32(3)
+\item 
+\mbox{\Hypertarget{lpc-ethernet_8c_a11a4b564ac50b581bf0f0cbea90da4d1}\label{lpc-ethernet_8c_a11a4b564ac50b581bf0f0cbea90da4d1}} 
+\#define {\bfseries L\+P\+C\+\_\+\+E\+T\+H\+\_\+\+E\+V\+E\+N\+T\+\_\+\+I\+N\+I\+T\+I\+A\+L\+I\+ZE}~\mbox{\hyperlink{group__ClassicEventSet_ga9f027021d0070d4f9e35cccb41029e2d}{R\+T\+E\+M\+S\+\_\+\+E\+V\+E\+N\+T\+\_\+1}}
+\item 
+\mbox{\Hypertarget{lpc-ethernet_8c_ab112fa84a3f212d504cd23fdf04f867b}\label{lpc-ethernet_8c_ab112fa84a3f212d504cd23fdf04f867b}} 
+\#define {\bfseries L\+P\+C\+\_\+\+E\+T\+H\+\_\+\+E\+V\+E\+N\+T\+\_\+\+T\+X\+S\+T\+A\+RT}~\mbox{\hyperlink{group__ClassicEventSet_gabe43c4a86241e31321b3cfe70045dca6}{R\+T\+E\+M\+S\+\_\+\+E\+V\+E\+N\+T\+\_\+2}}
+\item 
+\mbox{\Hypertarget{lpc-ethernet_8c_ac4d8baf108d3ae9b03746baf17856cc8}\label{lpc-ethernet_8c_ac4d8baf108d3ae9b03746baf17856cc8}} 
+\#define {\bfseries L\+P\+C\+\_\+\+E\+T\+H\+\_\+\+E\+V\+E\+N\+T\+\_\+\+I\+N\+T\+E\+R\+R\+U\+PT}~\mbox{\hyperlink{group__ClassicEventSet_ga59fb1c14abb8996e91c0cbf3276be503}{R\+T\+E\+M\+S\+\_\+\+E\+V\+E\+N\+T\+\_\+3}}
+\item 
+\mbox{\Hypertarget{lpc-ethernet_8c_a111cd15228bb586cef0f728c095ed728}\label{lpc-ethernet_8c_a111cd15228bb586cef0f728c095ed728}} 
+\#define {\bfseries L\+P\+C\+\_\+\+E\+T\+H\+\_\+\+E\+V\+E\+N\+T\+\_\+\+S\+T\+OP}~\mbox{\hyperlink{group__ClassicEventSet_gaa8fcddcabf4b0acda9a5d80c43968b51}{R\+T\+E\+M\+S\+\_\+\+E\+V\+E\+N\+T\+\_\+4}}
+\item 
+\mbox{\Hypertarget{lpc-ethernet_8c_a122106fa62e8a8ca04275a7056a83620}\label{lpc-ethernet_8c_a122106fa62e8a8ca04275a7056a83620}} 
+\#define {\bfseries L\+P\+C\+\_\+\+E\+T\+H\+\_\+\+I\+N\+T\+E\+R\+R\+U\+P\+T\+\_\+\+R\+E\+C\+E\+I\+VE}~(E\+T\+H\+\_\+\+I\+N\+T\+\_\+\+R\+X\+\_\+\+E\+R\+R\+OR $\vert$ E\+T\+H\+\_\+\+I\+N\+T\+\_\+\+R\+X\+\_\+\+F\+I\+N\+I\+S\+H\+ED $\vert$ E\+T\+H\+\_\+\+I\+N\+T\+\_\+\+R\+X\+\_\+\+D\+O\+NE)
+\item 
+\mbox{\Hypertarget{lpc-ethernet_8c_ad1de1c96b19ee95fa8c3962e52f0a2cd}\label{lpc-ethernet_8c_ad1de1c96b19ee95fa8c3962e52f0a2cd}} 
+\#define {\bfseries L\+P\+C\+\_\+\+E\+T\+H\+\_\+\+I\+N\+T\+E\+R\+R\+U\+P\+T\+\_\+\+T\+R\+A\+N\+S\+M\+IT}~(E\+T\+H\+\_\+\+I\+N\+T\+\_\+\+T\+X\+\_\+\+D\+O\+NE $\vert$ E\+T\+H\+\_\+\+I\+N\+T\+\_\+\+T\+X\+\_\+\+F\+I\+N\+I\+S\+H\+ED $\vert$ E\+T\+H\+\_\+\+I\+N\+T\+\_\+\+T\+X\+\_\+\+E\+R\+R\+OR)
+\item 
+\#define {\bfseries L\+P\+C\+\_\+\+E\+T\+H\+\_\+\+R\+X\+\_\+\+S\+T\+A\+T\+\_\+\+E\+R\+R\+O\+RS}
+\item 
+\#define {\bfseries L\+P\+C\+\_\+\+E\+T\+H\+\_\+\+L\+A\+S\+T\+\_\+\+F\+R\+A\+G\+M\+E\+N\+T\+\_\+\+F\+L\+A\+GS}
+\item 
+\mbox{\Hypertarget{lpc-ethernet_8c_a8fb9ae7fcb62d05bc685d9e137c6f18b}\label{lpc-ethernet_8c_a8fb9ae7fcb62d05bc685d9e137c6f18b}} 
+\#define {\bfseries L\+P\+C\+\_\+\+E\+T\+H\+\_\+\+P\+R\+I\+N\+TF}(...)
+\item 
+\mbox{\Hypertarget{lpc-ethernet_8c_a05eef440020caf32bf7101e6c5437afd}\label{lpc-ethernet_8c_a05eef440020caf32bf7101e6c5437afd}} 
+\#define {\bfseries L\+P\+C\+\_\+\+E\+T\+H\+\_\+\+P\+R\+I\+N\+TK}(...)
+\item 
+\mbox{\Hypertarget{lpc-ethernet_8c_a847f76505177b395d959444b36d791af}\label{lpc-ethernet_8c_a847f76505177b395d959444b36d791af}} 
+\#define {\bfseries L\+P\+C\+\_\+\+E\+T\+H\+\_\+\+R\+X\+\_\+\+D\+A\+T\+A\+\_\+\+O\+F\+F\+S\+ET}~2
+\item 
+\mbox{\Hypertarget{lpc-ethernet_8c_ab94714ab09f47b637d73b9299c06f30a}\label{lpc-ethernet_8c_ab94714ab09f47b637d73b9299c06f30a}} 
+\#define {\bfseries P\+H\+Y\+\_\+\+K\+S\+Z80\+X1\+R\+NL}~0x221550
+\item 
+\mbox{\Hypertarget{lpc-ethernet_8c_a4116104e091683d25b233e64e0fe15fa}\label{lpc-ethernet_8c_a4116104e091683d25b233e64e0fe15fa}} 
+\#define {\bfseries P\+H\+Y\+\_\+\+D\+P83848}~0x20005c90
+\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{lpc-ethernet_8c_a1dabe0f36de27751bfeb29d1a0b691b3}\label{lpc-ethernet_8c_a1dabe0f36de27751bfeb29d1a0b691b3}} 
+enum {\bfseries lpc\+\_\+eth\+\_\+state} \{ {\bfseries L\+P\+C\+\_\+\+E\+T\+H\+\_\+\+S\+T\+A\+T\+E\+\_\+\+N\+O\+T\+\_\+\+I\+N\+I\+T\+I\+A\+L\+I\+Z\+ED} = 0, 
+{\bfseries L\+P\+C\+\_\+\+E\+T\+H\+\_\+\+S\+T\+A\+T\+E\+\_\+\+D\+O\+WN}, 
+{\bfseries L\+P\+C\+\_\+\+E\+T\+H\+\_\+\+S\+T\+A\+T\+E\+\_\+\+UP}
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{group__RTEMSBSPsARMLPC24XX_ga1ee87990424a1bed28cb5081a56043b2}{lpc\+\_\+eth\+\_\+attach\+\_\+detach}} (struct rtems\+\_\+bsdnet\+\_\+ifconfig $\ast$\mbox{\hyperlink{structconfig__s}{config}}, int attaching)
+\begin{DoxyCompactList}\small\item\em Network driver attach and detach function. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Ethernet driver. 
+
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{lpc-ethernet_8c_a1fcf5c9d950ed1641274279b68e79efa}\label{lpc-ethernet_8c_a1fcf5c9d950ed1641274279b68e79efa}} 
+\index{lpc-\/ethernet.c@{lpc-\/ethernet.c}!LPC\_ETH\_LAST\_FRAGMENT\_FLAGS@{LPC\_ETH\_LAST\_FRAGMENT\_FLAGS}}
+\index{LPC\_ETH\_LAST\_FRAGMENT\_FLAGS@{LPC\_ETH\_LAST\_FRAGMENT\_FLAGS}!lpc-\/ethernet.c@{lpc-\/ethernet.c}}
+\subsubsection{\texorpdfstring{LPC\_ETH\_LAST\_FRAGMENT\_FLAGS}{LPC\_ETH\_LAST\_FRAGMENT\_FLAGS}}
+{\footnotesize\ttfamily \#define L\+P\+C\+\_\+\+E\+T\+H\+\_\+\+L\+A\+S\+T\+\_\+\+F\+R\+A\+G\+M\+E\+N\+T\+\_\+\+F\+L\+A\+GS}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(ETH\_TX\_CTRL\_OVERRIDE \(\backslash\)}
+\DoxyCodeLine{    | ETH\_TX\_CTRL\_PAD \(\backslash\)}
+\DoxyCodeLine{    | ETH\_TX\_CTRL\_CRC \(\backslash\)}
+\DoxyCodeLine{    | ETH\_TX\_CTRL\_INTERRUPT \(\backslash\)}
+\DoxyCodeLine{    | ETH\_TX\_CTRL\_LAST)}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{lpc-ethernet_8c_ac5f72856dd85b6d14247265b65d2990a}\label{lpc-ethernet_8c_ac5f72856dd85b6d14247265b65d2990a}} 
+\index{lpc-\/ethernet.c@{lpc-\/ethernet.c}!LPC\_ETH\_RX\_STAT\_ERRORS@{LPC\_ETH\_RX\_STAT\_ERRORS}}
+\index{LPC\_ETH\_RX\_STAT\_ERRORS@{LPC\_ETH\_RX\_STAT\_ERRORS}!lpc-\/ethernet.c@{lpc-\/ethernet.c}}
+\subsubsection{\texorpdfstring{LPC\_ETH\_RX\_STAT\_ERRORS}{LPC\_ETH\_RX\_STAT\_ERRORS}}
+{\footnotesize\ttfamily \#define L\+P\+C\+\_\+\+E\+T\+H\+\_\+\+R\+X\+\_\+\+S\+T\+A\+T\+\_\+\+E\+R\+R\+O\+RS}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(ETH\_RX\_STAT\_CRC\_ERROR \(\backslash\)}
+\DoxyCodeLine{    | ETH\_RX\_STAT\_SYMBOL\_ERROR \(\backslash\)}
+\DoxyCodeLine{    | ETH\_RX\_STAT\_LENGTH\_ERROR \(\backslash\)}
+\DoxyCodeLine{    | ETH\_RX\_STAT\_ALIGNMENT\_ERROR \(\backslash\)}
+\DoxyCodeLine{    | ETH\_RX\_STAT\_OVERRUN \(\backslash\)}
+\DoxyCodeLine{    | ETH\_RX\_STAT\_NO\_DESCRIPTOR)}
+
+\end{DoxyCode}

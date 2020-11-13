@@ -1,0 +1,56 @@
+\hypertarget{sparc_2leon2_2clock_2ckinit_8c}{}\section{bsps/sparc/leon2/clock/ckinit.c File Reference}
+\label{sparc_2leon2_2clock_2ckinit_8c}\index{bsps/sparc/leon2/clock/ckinit.c@{bsps/sparc/leon2/clock/ckinit.c}}
+
+
+Clock Tick Device Driver.  
+
+
+{\ttfamily \#include $<$bsp.\+h$>$}\newline
+{\ttfamily \#include $<$bspopts.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/sysinit.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/timecounter.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/score/sparcimpl.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}../../../shared/dev/clock/clockimpl.\+h\char`\"{}}\newline
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{sparc_2leon2_2clock_2ckinit_8c_ad65eea2e407370afe04141f773a1e729}\label{sparc_2leon2_2clock_2ckinit_8c_ad65eea2e407370afe04141f773a1e729}} 
+\#define {\bfseries L\+E\+O\+N2\+\_\+\+T\+I\+M\+E\+R\+\_\+1\+\_\+\+F\+R\+E\+Q\+U\+E\+N\+CY}~1000000
+\item 
+\mbox{\Hypertarget{sparc_2leon2_2clock_2ckinit_8c_a4edae1f7872fdace9eb64c197b3f952d}\label{sparc_2leon2_2clock_2ckinit_8c_a4edae1f7872fdace9eb64c197b3f952d}} 
+\#define {\bfseries C\+L\+O\+C\+K\+\_\+\+V\+E\+C\+T\+OR}~L\+E\+O\+N\+\_\+\+T\+R\+A\+P\+\_\+\+T\+Y\+PE( L\+E\+O\+N\+\_\+\+I\+N\+T\+E\+R\+R\+U\+P\+T\+\_\+\+T\+I\+M\+E\+R1 )
+\item 
+\mbox{\Hypertarget{sparc_2leon2_2clock_2ckinit_8c_a98b2c75f88d730742ba1e0b5b4950a4d}\label{sparc_2leon2_2clock_2ckinit_8c_a98b2c75f88d730742ba1e0b5b4950a4d}} 
+\#define {\bfseries Clock\+\_\+driver\+\_\+support\+\_\+install\+\_\+isr}(\+\_\+new)~\mbox{\hyperlink{group__RTEMSBSPsBfinBF537Stamp_gab3388042c56b34c40be81fd5f028d97e}{set\+\_\+vector}}( \+\_\+new, C\+L\+O\+C\+K\+\_\+\+V\+E\+C\+T\+OR, 1 )
+\item 
+\mbox{\Hypertarget{sparc_2leon2_2clock_2ckinit_8c_ad0860321c2b7838ffea30059aebd26fa}\label{sparc_2leon2_2clock_2ckinit_8c_ad0860321c2b7838ffea30059aebd26fa}} 
+\#define {\bfseries Clock\+\_\+driver\+\_\+support\+\_\+at\+\_\+tick}()~leon2\+\_\+clock\+\_\+at\+\_\+tick()
+\item 
+\mbox{\Hypertarget{sparc_2leon2_2clock_2ckinit_8c_a37475981ff0420ed43474fb3bdde8cbf}\label{sparc_2leon2_2clock_2ckinit_8c_a37475981ff0420ed43474fb3bdde8cbf}} 
+\#define {\bfseries Clock\+\_\+driver\+\_\+support\+\_\+initialize\+\_\+hardware}()~leon2\+\_\+clock\+\_\+init()
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{sparc_2leon2_2clock_2ckinit_8c_acbe686d130e20a1c279a4cfc123a5825}\label{sparc_2leon2_2clock_2ckinit_8c_acbe686d130e20a1c279a4cfc123a5825}} 
+{\bfseries R\+T\+E\+M\+S\+\_\+\+S\+Y\+S\+I\+N\+I\+T\+\_\+\+I\+T\+EM} (leon2\+\_\+clock\+\_\+initialize\+\_\+early, R\+T\+E\+M\+S\+\_\+\+S\+Y\+S\+I\+N\+I\+T\+\_\+\+C\+P\+U\+\_\+\+C\+O\+U\+N\+T\+ER, R\+T\+E\+M\+S\+\_\+\+S\+Y\+S\+I\+N\+I\+T\+\_\+\+O\+R\+D\+E\+R\+\_\+\+F\+I\+R\+ST)
+\item 
+uint32\+\_\+t \mbox{\hyperlink{group__RTEMSScoreCPUARM_gaa675150e5d00169c99410a82011b6117}{\+\_\+\+C\+P\+U\+\_\+\+Counter\+\_\+frequency}} (void)
+\begin{DoxyCompactList}\small\item\em Returns the current C\+PU counter frequency in Hz. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{sparc_2leon2_2clock_2ckinit_8c_a48501d2b46d84f08b7f1312d4b102cb6}\label{sparc_2leon2_2clock_2ckinit_8c_a48501d2b46d84f08b7f1312d4b102cb6}} 
+int {\bfseries C\+L\+O\+C\+K\+\_\+\+S\+P\+E\+ED}
+\item 
+\mbox{\Hypertarget{sparc_2leon2_2clock_2ckinit_8c_a7362036d41dbf1ab611126691f681289}\label{sparc_2leon2_2clock_2ckinit_8c_a7362036d41dbf1ab611126691f681289}} 
+{\bfseries S\+P\+A\+R\+C\+\_\+\+C\+O\+U\+N\+T\+E\+R\+\_\+\+D\+E\+F\+I\+N\+I\+T\+I\+ON}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Clock Tick Device Driver. 
+
+This routine initializes L\+E\+ON timer 1 which used for the clock tick.
+
+The tick frequency is directly programmed to the configured number of microseconds per tick. 

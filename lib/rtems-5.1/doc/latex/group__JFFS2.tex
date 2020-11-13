@@ -1,0 +1,462 @@
+\hypertarget{group__JFFS2}{}\section{Journalling Flash File System Version 2 (J\+F\+F\+S2) Support}
+\label{group__JFFS2}\index{Journalling Flash File System Version 2 (JFFS2) Support@{Journalling Flash File System Version 2 (JFFS2) Support}}
+
+
+Mount options for the Journalling Flash File System, Version 2 (J\+F\+F\+S2).  
+
+
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structrtems__jffs2__flash__control}{rtems\+\_\+jffs2\+\_\+flash\+\_\+control}}
+\begin{DoxyCompactList}\small\item\em J\+F\+F\+S2 flash device control. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structrtems__jffs2__compressor__control}{rtems\+\_\+jffs2\+\_\+compressor\+\_\+control}}
+\begin{DoxyCompactList}\small\item\em J\+F\+F\+S2 compressor control. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structrtems__jffs2__compressor__zlib__control}{rtems\+\_\+jffs2\+\_\+compressor\+\_\+zlib\+\_\+control}}
+\begin{DoxyCompactList}\small\item\em Z\+L\+IB compressor control structure. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structrtems__jffs2__mount__data}{rtems\+\_\+jffs2\+\_\+mount\+\_\+data}}
+\begin{DoxyCompactList}\small\item\em J\+F\+F\+S2 mount options. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structrtems__jffs2__info}{rtems\+\_\+jffs2\+\_\+info}}
+\begin{DoxyCompactList}\small\item\em J\+F\+F\+S2 filesystem instance information. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__JFFS2_ga9069cf243a2d497d065c41ef3c735783}{R\+T\+E\+M\+S\+\_\+\+J\+F\+F\+S2\+\_\+\+G\+E\+T\+\_\+\+I\+N\+FO}}~\+\_\+\+I\+OR(\textquotesingle{}F\textquotesingle{}, 1, \mbox{\hyperlink{structrtems__jffs2__info}{rtems\+\_\+jffs2\+\_\+info}})
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{structIO}{IO}} control to get the J\+F\+F\+S2 filesystem instance information. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__JFFS2_ga67c3e575d73069c20422e38ecdee1006}{R\+T\+E\+M\+S\+\_\+\+J\+F\+F\+S2\+\_\+\+O\+N\+\_\+\+D\+E\+M\+A\+N\+D\+\_\+\+G\+A\+R\+B\+A\+G\+E\+\_\+\+C\+O\+L\+L\+E\+C\+T\+I\+ON}}~\+\_\+\+IO(\textquotesingle{}F\textquotesingle{}, 2)
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{structIO}{IO}} control to perform an on demand garbage collection in a J\+F\+F\+S2 filesystem instance. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__JFFS2_ga3bbcee8a5af837fa3780d95cd45aa59b}{R\+T\+E\+M\+S\+\_\+\+J\+F\+F\+S2\+\_\+\+F\+O\+R\+C\+E\+\_\+\+G\+A\+R\+B\+A\+G\+E\+\_\+\+C\+O\+L\+L\+E\+C\+T\+I\+ON}}~\+\_\+\+IO(\textquotesingle{}F\textquotesingle{}, 3)
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{structIO}{IO}} control to force a garbage collection in a J\+F\+F\+S2 filesystem instance. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef int($\ast$ \mbox{\hyperlink{group__JFFS2_ga1865e220fec00e764a6284642d2f46df}{rtems\+\_\+jffs2\+\_\+flash\+\_\+read}}) (\mbox{\hyperlink{structrtems__jffs2__flash__control}{rtems\+\_\+jffs2\+\_\+flash\+\_\+control}} $\ast$self, uint32\+\_\+t offset, unsigned char $\ast$buffer, size\+\_\+t size\+\_\+of\+\_\+buffer)
+\begin{DoxyCompactList}\small\item\em Read from flash operation. \end{DoxyCompactList}\item 
+typedef int($\ast$ \mbox{\hyperlink{group__JFFS2_gaf1353f456ea63b4a2c66881c001e6593}{rtems\+\_\+jffs2\+\_\+flash\+\_\+write}}) (\mbox{\hyperlink{structrtems__jffs2__flash__control}{rtems\+\_\+jffs2\+\_\+flash\+\_\+control}} $\ast$self, uint32\+\_\+t offset, const unsigned char $\ast$buffer, size\+\_\+t size\+\_\+of\+\_\+buffer)
+\begin{DoxyCompactList}\small\item\em Write to flash operation. \end{DoxyCompactList}\item 
+typedef int($\ast$ \mbox{\hyperlink{group__JFFS2_ga0dd6899e74b1d84287f44dc9296084e9}{rtems\+\_\+jffs2\+\_\+flash\+\_\+erase}}) (\mbox{\hyperlink{structrtems__jffs2__flash__control}{rtems\+\_\+jffs2\+\_\+flash\+\_\+control}} $\ast$self, uint32\+\_\+t offset)
+\begin{DoxyCompactList}\small\item\em Flash erase operation. \end{DoxyCompactList}\item 
+typedef void($\ast$ \mbox{\hyperlink{group__JFFS2_gad29663a4ea8c8bee3ca505f648dfe564}{rtems\+\_\+jffs2\+\_\+flash\+\_\+destroy}}) (\mbox{\hyperlink{structrtems__jffs2__flash__control}{rtems\+\_\+jffs2\+\_\+flash\+\_\+control}} $\ast$self)
+\begin{DoxyCompactList}\small\item\em Flash destroy operation. \end{DoxyCompactList}\item 
+typedef void($\ast$ \mbox{\hyperlink{group__JFFS2_ga3abb194d2d804eb99116694f8204afaf}{rtems\+\_\+jffs2\+\_\+trigger\+\_\+garbage\+\_\+collection}}) (\mbox{\hyperlink{structrtems__jffs2__flash__control}{rtems\+\_\+jffs2\+\_\+flash\+\_\+control}} $\ast$self)
+\begin{DoxyCompactList}\small\item\em Trigger garbage collection operation. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__JFFS2_gaee4d247481fdc7a3f1b457be80c5e792}\label{group__JFFS2_gaee4d247481fdc7a3f1b457be80c5e792}} 
+typedef struct \mbox{\hyperlink{structrtems__jffs2__compressor__control}{rtems\+\_\+jffs2\+\_\+compressor\+\_\+control}} {\bfseries rtems\+\_\+jffs2\+\_\+compressor\+\_\+control}
+\item 
+typedef uint16\+\_\+t($\ast$ \mbox{\hyperlink{group__JFFS2_ga38bf7fa8284a6ebf3db7df30916b266f}{rtems\+\_\+jffs2\+\_\+compressor\+\_\+compress}}) (\mbox{\hyperlink{structrtems__jffs2__compressor__control}{rtems\+\_\+jffs2\+\_\+compressor\+\_\+control}} $\ast$self, unsigned char $\ast$data\+\_\+in, unsigned char $\ast$cdata\+\_\+out, uint32\+\_\+t $\ast$datalen, uint32\+\_\+t $\ast$cdatalen)
+\begin{DoxyCompactList}\small\item\em Compress operation. \end{DoxyCompactList}\item 
+typedef int($\ast$ \mbox{\hyperlink{group__JFFS2_gac59895fce451303d0b8c0851acbfa353}{rtems\+\_\+jffs2\+\_\+compressor\+\_\+decompress}}) (\mbox{\hyperlink{structrtems__jffs2__compressor__control}{rtems\+\_\+jffs2\+\_\+compressor\+\_\+control}} $\ast$self, uint16\+\_\+t comprtype, unsigned char $\ast$cdata\+\_\+in, unsigned char $\ast$data\+\_\+out, uint32\+\_\+t cdatalen, uint32\+\_\+t datalen)
+\begin{DoxyCompactList}\small\item\em Decompress operation. \end{DoxyCompactList}\item 
+typedef void($\ast$ \mbox{\hyperlink{group__JFFS2_ga728f7d3454f5621b992c0c40447ae0a3}{rtems\+\_\+jffs2\+\_\+compressor\+\_\+destroy}}) (\mbox{\hyperlink{structrtems__jffs2__compressor__control}{rtems\+\_\+jffs2\+\_\+compressor\+\_\+control}} $\ast$self)
+\begin{DoxyCompactList}\small\item\em Compressor destroy operation. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{group__JFFS2_ga2779523833441c943d39987446552fd6}\label{group__JFFS2_ga2779523833441c943d39987446552fd6}} 
+uint16\+\_\+t \mbox{\hyperlink{group__JFFS2_ga2779523833441c943d39987446552fd6}{rtems\+\_\+jffs2\+\_\+compressor\+\_\+rtime\+\_\+compress}} (\mbox{\hyperlink{structrtems__jffs2__compressor__control}{rtems\+\_\+jffs2\+\_\+compressor\+\_\+control}} $\ast$self, unsigned char $\ast$data\+\_\+in, unsigned char $\ast$cdata\+\_\+out, uint32\+\_\+t $\ast$datalen, uint32\+\_\+t $\ast$cdatalen)
+\begin{DoxyCompactList}\small\item\em R\+T\+I\+ME compressor compress operation. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__JFFS2_ga052f4d3275e57586b742d10b600a1cac}\label{group__JFFS2_ga052f4d3275e57586b742d10b600a1cac}} 
+int \mbox{\hyperlink{group__JFFS2_ga052f4d3275e57586b742d10b600a1cac}{rtems\+\_\+jffs2\+\_\+compressor\+\_\+rtime\+\_\+decompress}} (\mbox{\hyperlink{structrtems__jffs2__compressor__control}{rtems\+\_\+jffs2\+\_\+compressor\+\_\+control}} $\ast$self, uint16\+\_\+t comprtype, unsigned char $\ast$cdata\+\_\+in, unsigned char $\ast$data\+\_\+out, uint32\+\_\+t cdatalen, uint32\+\_\+t datalen)
+\begin{DoxyCompactList}\small\item\em R\+T\+I\+ME compressor decompress operation. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__JFFS2_ga6ed59e494e655bd21dc6608184618154}\label{group__JFFS2_ga6ed59e494e655bd21dc6608184618154}} 
+uint16\+\_\+t \mbox{\hyperlink{group__JFFS2_ga6ed59e494e655bd21dc6608184618154}{rtems\+\_\+jffs2\+\_\+compressor\+\_\+zlib\+\_\+compress}} (\mbox{\hyperlink{structrtems__jffs2__compressor__control}{rtems\+\_\+jffs2\+\_\+compressor\+\_\+control}} $\ast$self, unsigned char $\ast$data\+\_\+in, unsigned char $\ast$cdata\+\_\+out, uint32\+\_\+t $\ast$datalen, uint32\+\_\+t $\ast$cdatalen)
+\begin{DoxyCompactList}\small\item\em Z\+L\+IB compressor compress operation. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__JFFS2_gadb16dfa3863ac961f1f88533fa37e5c7}\label{group__JFFS2_gadb16dfa3863ac961f1f88533fa37e5c7}} 
+int \mbox{\hyperlink{group__JFFS2_gadb16dfa3863ac961f1f88533fa37e5c7}{rtems\+\_\+jffs2\+\_\+compressor\+\_\+zlib\+\_\+decompress}} (\mbox{\hyperlink{structrtems__jffs2__compressor__control}{rtems\+\_\+jffs2\+\_\+compressor\+\_\+control}} $\ast$self, uint16\+\_\+t comprtype, unsigned char $\ast$cdata\+\_\+in, unsigned char $\ast$data\+\_\+out, uint32\+\_\+t cdatalen, uint32\+\_\+t datalen)
+\begin{DoxyCompactList}\small\item\em Z\+L\+IB compressor decompress operation. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__JFFS2_gac493238b3bfd792173aacb9a7f57949e}{rtems\+\_\+jffs2\+\_\+initialize}} (\mbox{\hyperlink{structrtems__filesystem__mount__table__entry__tt}{rtems\+\_\+filesystem\+\_\+mount\+\_\+table\+\_\+entry\+\_\+t}} $\ast$mt\+\_\+entry, const void $\ast$data)
+\begin{DoxyCompactList}\small\item\em Initialization handler of the J\+F\+F\+S2 file system. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Mount options for the Journalling Flash File System, Version 2 (J\+F\+F\+S2). 
+
+The application must provide flash device geometry information and flash device operations in the flash control structure \mbox{\hyperlink{structrtems__jffs2__flash__control}{rtems\+\_\+jffs2\+\_\+flash\+\_\+control}}.
+
+The application can optionally provide a compressor control structure to enable data compression using the selected compression algorithm.
+
+The application must enable J\+F\+F\+S2 support with \mbox{\hyperlink{group__FileSystemTypesAndMount_gaac7f1c7fe78f3acc145272809cef62a2}{rtems\+\_\+filesystem\+\_\+register()}} or C\+O\+N\+F\+I\+G\+U\+R\+E\+\_\+\+F\+I\+L\+E\+S\+Y\+S\+T\+E\+M\+\_\+\+J\+F\+F\+S2 via $<$\mbox{\hyperlink{confdefs_8h}{rtems/confdefs.\+h}}$>$.
+
+An example mount with a simple memory based flash device simulation follows. The zlib is used for as the compressor.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include <string.h>}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include <rtems/jffs2.h>}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include <\mbox{\hyperlink{libio_8h}{rtems/libio.h}}>}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{preprocessor}{\#define BLOCK\_SIZE (32UL * 1024UL)}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{preprocessor}{\#define FLASH\_SIZE (32UL * BLOCK\_SIZE)}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keyword}{typedef} \textcolor{keyword}{struct }\{}
+\DoxyCodeLine{  \mbox{\hyperlink{structrtems__jffs2__flash__control}{rtems\_jffs2\_flash\_control}} super;}
+\DoxyCodeLine{  \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} area[FLASH\_SIZE];}
+\DoxyCodeLine{\} flash\_control;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keyword}{static} flash\_control *get\_flash\_control(\mbox{\hyperlink{structrtems__jffs2__flash__control}{rtems\_jffs2\_flash\_control}} *super)}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{  \textcolor{keywordflow}{return} (flash\_control *) super;}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keyword}{static} \textcolor{keywordtype}{int} flash\_read(}
+\DoxyCodeLine{  \mbox{\hyperlink{structrtems__jffs2__flash__control}{rtems\_jffs2\_flash\_control}} *super,}
+\DoxyCodeLine{  uint32\_t offset,}
+\DoxyCodeLine{  \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} *buffer,}
+\DoxyCodeLine{  \textcolor{keywordtype}{size\_t} size\_of\_buffer}
+\DoxyCodeLine{)}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{  flash\_control *\textcolor{keyword}{self} = get\_flash\_control(super);}
+\DoxyCodeLine{  \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} *chunk = \&\textcolor{keyword}{self}->area[offset];}
+\DoxyCodeLine{}
+\DoxyCodeLine{  memcpy(buffer, chunk, size\_of\_buffer);}
+\DoxyCodeLine{}
+\DoxyCodeLine{  \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keyword}{static} \textcolor{keywordtype}{int} flash\_write(}
+\DoxyCodeLine{  \mbox{\hyperlink{structrtems__jffs2__flash__control}{rtems\_jffs2\_flash\_control}} *super,}
+\DoxyCodeLine{  uint32\_t offset,}
+\DoxyCodeLine{  \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} *buffer,}
+\DoxyCodeLine{  \textcolor{keywordtype}{size\_t} size\_of\_buffer}
+\DoxyCodeLine{)}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{  flash\_control *\textcolor{keyword}{self} = get\_flash\_control(super);}
+\DoxyCodeLine{  \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} *chunk = \&\textcolor{keyword}{self}->area[offset];}
+\DoxyCodeLine{  \textcolor{keywordtype}{size\_t} i;}
+\DoxyCodeLine{}
+\DoxyCodeLine{  \textcolor{keywordflow}{for} (i = 0; i < size\_of\_buffer; ++i) \{}
+\DoxyCodeLine{    chunk[i] \&= buffer[i];}
+\DoxyCodeLine{  \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{  \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keyword}{static} \textcolor{keywordtype}{int} flash\_erase(}
+\DoxyCodeLine{  \mbox{\hyperlink{structrtems__jffs2__flash__control}{rtems\_jffs2\_flash\_control}} *super,}
+\DoxyCodeLine{  uint32\_t offset}
+\DoxyCodeLine{)}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{  flash\_control *\textcolor{keyword}{self} = get\_flash\_control(super);}
+\DoxyCodeLine{  \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} *chunk = \&\textcolor{keyword}{self}->area[offset];}
+\DoxyCodeLine{}
+\DoxyCodeLine{  memset(chunk, 0xff, BLOCK\_SIZE);}
+\DoxyCodeLine{}
+\DoxyCodeLine{  \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keyword}{static} flash\_control flash\_instance = \{}
+\DoxyCodeLine{  .super = \{}
+\DoxyCodeLine{    .block\_size = BLOCK\_SIZE,}
+\DoxyCodeLine{    .flash\_size = FLASH\_SIZE,}
+\DoxyCodeLine{    .read = flash\_read,}
+\DoxyCodeLine{    .write = flash\_write,}
+\DoxyCodeLine{    .erase = flash\_erase,}
+\DoxyCodeLine{    .device\_identifier = 0xc01dc0fe}
+\DoxyCodeLine{  \}}
+\DoxyCodeLine{\};}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keyword}{static} \mbox{\hyperlink{structrtems__jffs2__compressor__zlib__control}{rtems\_jffs2\_compressor\_zlib\_control}} compressor\_instance = \{}
+\DoxyCodeLine{  .super = \{}
+\DoxyCodeLine{    .\mbox{\hyperlink{structrtems__jffs2__compressor__control_a21416a969e3e5674cdd7bd08fc8f552a}{compress}} = \mbox{\hyperlink{group__JFFS2_ga6ed59e494e655bd21dc6608184618154}{rtems\_jffs2\_compressor\_zlib\_compress}},}
+\DoxyCodeLine{    .decompress = \mbox{\hyperlink{group__JFFS2_gadb16dfa3863ac961f1f88533fa37e5c7}{rtems\_jffs2\_compressor\_zlib\_decompress}}}
+\DoxyCodeLine{  \}}
+\DoxyCodeLine{\};}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keyword}{static} \textcolor{keyword}{const} \mbox{\hyperlink{structrtems__jffs2__mount__data}{rtems\_jffs2\_mount\_data}} mount\_data = \{}
+\DoxyCodeLine{  .\mbox{\hyperlink{structrtems__jffs2__mount__data_a999ba6b5fd33ad5f0c77b9805e102bf5}{flash\_control}} = \&flash\_instance.super,}
+\DoxyCodeLine{  .compressor\_control = \&compressor\_instance.super}
+\DoxyCodeLine{\};}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keyword}{static} \textcolor{keywordtype}{void} erase\_all(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{  memset(\&flash\_instance.area[0], 0xff, FLASH\_SIZE);}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{void} example\_jffs2\_mount(\textcolor{keyword}{const} \textcolor{keywordtype}{char} *mount\_dir)}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{  \textcolor{keywordtype}{int} rv;}
+\DoxyCodeLine{}
+\DoxyCodeLine{  erase\_all();}
+\DoxyCodeLine{}
+\DoxyCodeLine{  rv = \mbox{\hyperlink{group__FileSystemTypesAndMount_ga27af6440b4ef795576c94e870c5d997f}{mount\_and\_make\_target\_path}}(}
+\DoxyCodeLine{    \mbox{\hyperlink{bestcomm__api_8h_a872bb74de61c3689ccd5b41873fce42c}{NULL}},}
+\DoxyCodeLine{    mount\_dir,}
+\DoxyCodeLine{    RTEMS\_FILESYSTEM\_TYPE\_JFFS2,}
+\DoxyCodeLine{    RTEMS\_FILESYSTEM\_READ\_WRITE,}
+\DoxyCodeLine{    \&mount\_data}
+\DoxyCodeLine{  );}
+\DoxyCodeLine{  assert(rv == 0);}
+\DoxyCodeLine{\}}
+\end{DoxyCode}
+ 
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{group__JFFS2_ga3bbcee8a5af837fa3780d95cd45aa59b}\label{group__JFFS2_ga3bbcee8a5af837fa3780d95cd45aa59b}} 
+\index{Journalling Flash File System Version 2 (JFFS2) Support@{Journalling Flash File System Version 2 (JFFS2) Support}!RTEMS\_JFFS2\_FORCE\_GARBAGE\_COLLECTION@{RTEMS\_JFFS2\_FORCE\_GARBAGE\_COLLECTION}}
+\index{RTEMS\_JFFS2\_FORCE\_GARBAGE\_COLLECTION@{RTEMS\_JFFS2\_FORCE\_GARBAGE\_COLLECTION}!Journalling Flash File System Version 2 (JFFS2) Support@{Journalling Flash File System Version 2 (JFFS2) Support}}
+\subsubsection{\texorpdfstring{RTEMS\_JFFS2\_FORCE\_GARBAGE\_COLLECTION}{RTEMS\_JFFS2\_FORCE\_GARBAGE\_COLLECTION}}
+{\footnotesize\ttfamily \#define R\+T\+E\+M\+S\+\_\+\+J\+F\+F\+S2\+\_\+\+F\+O\+R\+C\+E\+\_\+\+G\+A\+R\+B\+A\+G\+E\+\_\+\+C\+O\+L\+L\+E\+C\+T\+I\+ON~\+\_\+\+IO(\textquotesingle{}F\textquotesingle{}, 3)}
+
+
+
+\mbox{\hyperlink{structIO}{IO}} control to force a garbage collection in a J\+F\+F\+S2 filesystem instance. 
+
+Use this operation with care since it may wear out your flash. \mbox{\Hypertarget{group__JFFS2_ga9069cf243a2d497d065c41ef3c735783}\label{group__JFFS2_ga9069cf243a2d497d065c41ef3c735783}} 
+\index{Journalling Flash File System Version 2 (JFFS2) Support@{Journalling Flash File System Version 2 (JFFS2) Support}!RTEMS\_JFFS2\_GET\_INFO@{RTEMS\_JFFS2\_GET\_INFO}}
+\index{RTEMS\_JFFS2\_GET\_INFO@{RTEMS\_JFFS2\_GET\_INFO}!Journalling Flash File System Version 2 (JFFS2) Support@{Journalling Flash File System Version 2 (JFFS2) Support}}
+\subsubsection{\texorpdfstring{RTEMS\_JFFS2\_GET\_INFO}{RTEMS\_JFFS2\_GET\_INFO}}
+{\footnotesize\ttfamily \#define R\+T\+E\+M\+S\+\_\+\+J\+F\+F\+S2\+\_\+\+G\+E\+T\+\_\+\+I\+N\+FO~\+\_\+\+I\+OR(\textquotesingle{}F\textquotesingle{}, 1, \mbox{\hyperlink{structrtems__jffs2__info}{rtems\+\_\+jffs2\+\_\+info}})}
+
+
+
+\mbox{\hyperlink{structIO}{IO}} control to get the J\+F\+F\+S2 filesystem instance information. 
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{structrtems__jffs2__info}{rtems\+\_\+jffs2\+\_\+info}}. 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{group__JFFS2_ga67c3e575d73069c20422e38ecdee1006}\label{group__JFFS2_ga67c3e575d73069c20422e38ecdee1006}} 
+\index{Journalling Flash File System Version 2 (JFFS2) Support@{Journalling Flash File System Version 2 (JFFS2) Support}!RTEMS\_JFFS2\_ON\_DEMAND\_GARBAGE\_COLLECTION@{RTEMS\_JFFS2\_ON\_DEMAND\_GARBAGE\_COLLECTION}}
+\index{RTEMS\_JFFS2\_ON\_DEMAND\_GARBAGE\_COLLECTION@{RTEMS\_JFFS2\_ON\_DEMAND\_GARBAGE\_COLLECTION}!Journalling Flash File System Version 2 (JFFS2) Support@{Journalling Flash File System Version 2 (JFFS2) Support}}
+\subsubsection{\texorpdfstring{RTEMS\_JFFS2\_ON\_DEMAND\_GARBAGE\_COLLECTION}{RTEMS\_JFFS2\_ON\_DEMAND\_GARBAGE\_COLLECTION}}
+{\footnotesize\ttfamily \#define R\+T\+E\+M\+S\+\_\+\+J\+F\+F\+S2\+\_\+\+O\+N\+\_\+\+D\+E\+M\+A\+N\+D\+\_\+\+G\+A\+R\+B\+A\+G\+E\+\_\+\+C\+O\+L\+L\+E\+C\+T\+I\+ON~\+\_\+\+IO(\textquotesingle{}F\textquotesingle{}, 2)}
+
+
+
+\mbox{\hyperlink{structIO}{IO}} control to perform an on demand garbage collection in a J\+F\+F\+S2 filesystem instance. 
+
+This operation is intended to be used by an optional garbage collection thread. See \mbox{\hyperlink{structrtems__jffs2__flash__control_a17585e3c9fe032117f98c3b832fdcd09}{rtems\+\_\+jffs2\+\_\+flash\+\_\+control\+::trigger\+\_\+garbage\+\_\+collection}}. 
+
+\subsection{Typedef Documentation}
+\mbox{\Hypertarget{group__JFFS2_ga38bf7fa8284a6ebf3db7df30916b266f}\label{group__JFFS2_ga38bf7fa8284a6ebf3db7df30916b266f}} 
+\index{Journalling Flash File System Version 2 (JFFS2) Support@{Journalling Flash File System Version 2 (JFFS2) Support}!rtems\_jffs2\_compressor\_compress@{rtems\_jffs2\_compressor\_compress}}
+\index{rtems\_jffs2\_compressor\_compress@{rtems\_jffs2\_compressor\_compress}!Journalling Flash File System Version 2 (JFFS2) Support@{Journalling Flash File System Version 2 (JFFS2) Support}}
+\subsubsection{\texorpdfstring{rtems\_jffs2\_compressor\_compress}{rtems\_jffs2\_compressor\_compress}}
+{\footnotesize\ttfamily typedef uint16\+\_\+t($\ast$ rtems\+\_\+jffs2\+\_\+compressor\+\_\+compress) (\mbox{\hyperlink{structrtems__jffs2__compressor__control}{rtems\+\_\+jffs2\+\_\+compressor\+\_\+control}} $\ast$self, unsigned char $\ast$data\+\_\+in, unsigned char $\ast$cdata\+\_\+out, uint32\+\_\+t $\ast$datalen, uint32\+\_\+t $\ast$cdatalen)}
+
+
+
+Compress operation. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em self} & The compressor control. \\
+\hline
+\mbox{\texttt{ in}}  & {\em data\+\_\+in} & The uncompressed data. \\
+\hline
+\mbox{\texttt{ out}}  & {\em cdata\+\_\+out} & Pointer to buffer with the compressed data. \\
+\hline
+\mbox{\texttt{ in,out}}  & {\em datalen} & On entry, the size in bytes of the uncompressed data. On exit, the size in bytes of uncompressed data which was actually compressed. \\
+\hline
+\mbox{\texttt{ in,out}}  & {\em cdatalen} & On entry, the size in bytes available for compressed data. On exit, the size in bytes of the actually compressed data.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The compressor type. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{group__JFFS2_gac59895fce451303d0b8c0851acbfa353}\label{group__JFFS2_gac59895fce451303d0b8c0851acbfa353}} 
+\index{Journalling Flash File System Version 2 (JFFS2) Support@{Journalling Flash File System Version 2 (JFFS2) Support}!rtems\_jffs2\_compressor\_decompress@{rtems\_jffs2\_compressor\_decompress}}
+\index{rtems\_jffs2\_compressor\_decompress@{rtems\_jffs2\_compressor\_decompress}!Journalling Flash File System Version 2 (JFFS2) Support@{Journalling Flash File System Version 2 (JFFS2) Support}}
+\subsubsection{\texorpdfstring{rtems\_jffs2\_compressor\_decompress}{rtems\_jffs2\_compressor\_decompress}}
+{\footnotesize\ttfamily typedef int($\ast$ rtems\+\_\+jffs2\+\_\+compressor\+\_\+decompress) (\mbox{\hyperlink{structrtems__jffs2__compressor__control}{rtems\+\_\+jffs2\+\_\+compressor\+\_\+control}} $\ast$self, uint16\+\_\+t comprtype, unsigned char $\ast$cdata\+\_\+in, unsigned char $\ast$data\+\_\+out, uint32\+\_\+t cdatalen, uint32\+\_\+t datalen)}
+
+
+
+Decompress operation. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em self} & The compressor control. \\
+\hline
+\mbox{\texttt{ in}}  & {\em comprtype} & The compressor type. \\
+\hline
+\mbox{\texttt{ in}}  & {\em cdata\+\_\+in} & The compressed data. \\
+\hline
+\mbox{\texttt{ out}}  & {\em data\+\_\+out} & The uncompressed data. \\
+\hline
+\mbox{\texttt{ in}}  & {\em cdatalen} & The size in bytes of the compressed data. \\
+\hline
+\mbox{\texttt{ in}}  & {\em datalen} & The size in bytes of the uncompressed data.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em 0} & Successful operation. \\
+\hline
+{\em -\/\+E\+IO} & An error occurred. Please note that the value is negative. \\
+\hline
+{\em other} & All other values are reserved and must not be used. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{group__JFFS2_ga728f7d3454f5621b992c0c40447ae0a3}\label{group__JFFS2_ga728f7d3454f5621b992c0c40447ae0a3}} 
+\index{Journalling Flash File System Version 2 (JFFS2) Support@{Journalling Flash File System Version 2 (JFFS2) Support}!rtems\_jffs2\_compressor\_destroy@{rtems\_jffs2\_compressor\_destroy}}
+\index{rtems\_jffs2\_compressor\_destroy@{rtems\_jffs2\_compressor\_destroy}!Journalling Flash File System Version 2 (JFFS2) Support@{Journalling Flash File System Version 2 (JFFS2) Support}}
+\subsubsection{\texorpdfstring{rtems\_jffs2\_compressor\_destroy}{rtems\_jffs2\_compressor\_destroy}}
+{\footnotesize\ttfamily typedef void($\ast$ rtems\+\_\+jffs2\+\_\+compressor\+\_\+destroy) (\mbox{\hyperlink{structrtems__jffs2__compressor__control}{rtems\+\_\+jffs2\+\_\+compressor\+\_\+control}} $\ast$self)}
+
+
+
+Compressor destroy operation. 
+
+The compressor destroy operation is called during unmount of the file system instance. It can be used to free the resources associated with the now unused compressor operations.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em self} & The compressor control. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__JFFS2_gad29663a4ea8c8bee3ca505f648dfe564}\label{group__JFFS2_gad29663a4ea8c8bee3ca505f648dfe564}} 
+\index{Journalling Flash File System Version 2 (JFFS2) Support@{Journalling Flash File System Version 2 (JFFS2) Support}!rtems\_jffs2\_flash\_destroy@{rtems\_jffs2\_flash\_destroy}}
+\index{rtems\_jffs2\_flash\_destroy@{rtems\_jffs2\_flash\_destroy}!Journalling Flash File System Version 2 (JFFS2) Support@{Journalling Flash File System Version 2 (JFFS2) Support}}
+\subsubsection{\texorpdfstring{rtems\_jffs2\_flash\_destroy}{rtems\_jffs2\_flash\_destroy}}
+{\footnotesize\ttfamily typedef void($\ast$ rtems\+\_\+jffs2\+\_\+flash\+\_\+destroy) (\mbox{\hyperlink{structrtems__jffs2__flash__control}{rtems\+\_\+jffs2\+\_\+flash\+\_\+control}} $\ast$self)}
+
+
+
+Flash destroy operation. 
+
+The flash destroy operation is called during unmount of the file system instance. It can be used to free the resources associated with the now unused flash control
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em self} & The flash control. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__JFFS2_ga0dd6899e74b1d84287f44dc9296084e9}\label{group__JFFS2_ga0dd6899e74b1d84287f44dc9296084e9}} 
+\index{Journalling Flash File System Version 2 (JFFS2) Support@{Journalling Flash File System Version 2 (JFFS2) Support}!rtems\_jffs2\_flash\_erase@{rtems\_jffs2\_flash\_erase}}
+\index{rtems\_jffs2\_flash\_erase@{rtems\_jffs2\_flash\_erase}!Journalling Flash File System Version 2 (JFFS2) Support@{Journalling Flash File System Version 2 (JFFS2) Support}}
+\subsubsection{\texorpdfstring{rtems\_jffs2\_flash\_erase}{rtems\_jffs2\_flash\_erase}}
+{\footnotesize\ttfamily typedef int($\ast$ rtems\+\_\+jffs2\+\_\+flash\+\_\+erase) (\mbox{\hyperlink{structrtems__jffs2__flash__control}{rtems\+\_\+jffs2\+\_\+flash\+\_\+control}} $\ast$self, uint32\+\_\+t offset)}
+
+
+
+Flash erase operation. 
+
+This operation must erase one block specified by the offset.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em self} & The flash control. \\
+\hline
+\mbox{\texttt{ in}}  & {\em offset} & The offset to erase from the flash begin in bytes.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em 0} & Successful operation. \\
+\hline
+{\em -\/\+E\+IO} & An error occurred. Please note that the value is negative. \\
+\hline
+{\em other} & All other values are reserved and must not be used. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{group__JFFS2_ga1865e220fec00e764a6284642d2f46df}\label{group__JFFS2_ga1865e220fec00e764a6284642d2f46df}} 
+\index{Journalling Flash File System Version 2 (JFFS2) Support@{Journalling Flash File System Version 2 (JFFS2) Support}!rtems\_jffs2\_flash\_read@{rtems\_jffs2\_flash\_read}}
+\index{rtems\_jffs2\_flash\_read@{rtems\_jffs2\_flash\_read}!Journalling Flash File System Version 2 (JFFS2) Support@{Journalling Flash File System Version 2 (JFFS2) Support}}
+\subsubsection{\texorpdfstring{rtems\_jffs2\_flash\_read}{rtems\_jffs2\_flash\_read}}
+{\footnotesize\ttfamily typedef int($\ast$ rtems\+\_\+jffs2\+\_\+flash\+\_\+read) (\mbox{\hyperlink{structrtems__jffs2__flash__control}{rtems\+\_\+jffs2\+\_\+flash\+\_\+control}} $\ast$self, uint32\+\_\+t offset, unsigned char $\ast$buffer, size\+\_\+t size\+\_\+of\+\_\+buffer)}
+
+
+
+Read from flash operation. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em self} & The flash control. \\
+\hline
+\mbox{\texttt{ in}}  & {\em offset} & The offset to read from the flash begin in bytes. \\
+\hline
+\mbox{\texttt{ out}}  & {\em buffer} & The buffer receiving the data. \\
+\hline
+\mbox{\texttt{ in}}  & {\em size\+\_\+of\+\_\+buffer} & The size of the buffer in bytes.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em 0} & Successful operation. \\
+\hline
+{\em -\/\+E\+IO} & An error occurred. Please note that the value is negative. \\
+\hline
+{\em other} & All other values are reserved and must not be used. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{group__JFFS2_gaf1353f456ea63b4a2c66881c001e6593}\label{group__JFFS2_gaf1353f456ea63b4a2c66881c001e6593}} 
+\index{Journalling Flash File System Version 2 (JFFS2) Support@{Journalling Flash File System Version 2 (JFFS2) Support}!rtems\_jffs2\_flash\_write@{rtems\_jffs2\_flash\_write}}
+\index{rtems\_jffs2\_flash\_write@{rtems\_jffs2\_flash\_write}!Journalling Flash File System Version 2 (JFFS2) Support@{Journalling Flash File System Version 2 (JFFS2) Support}}
+\subsubsection{\texorpdfstring{rtems\_jffs2\_flash\_write}{rtems\_jffs2\_flash\_write}}
+{\footnotesize\ttfamily typedef int($\ast$ rtems\+\_\+jffs2\+\_\+flash\+\_\+write) (\mbox{\hyperlink{structrtems__jffs2__flash__control}{rtems\+\_\+jffs2\+\_\+flash\+\_\+control}} $\ast$self, uint32\+\_\+t offset, const unsigned char $\ast$buffer, size\+\_\+t size\+\_\+of\+\_\+buffer)}
+
+
+
+Write to flash operation. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em self} & The flash control. \\
+\hline
+\mbox{\texttt{ in}}  & {\em offset} & The offset to write from the flash begin in bytes. \\
+\hline
+\mbox{\texttt{ in}}  & {\em buffer} & The buffer containing the data to write. \\
+\hline
+\mbox{\texttt{ in}}  & {\em size\+\_\+of\+\_\+buffer} & The size of the buffer in bytes.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em 0} & Successful operation. \\
+\hline
+{\em -\/\+E\+IO} & An error occurred. Please note that the value is negative. \\
+\hline
+{\em other} & All other values are reserved and must not be used. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{group__JFFS2_ga3abb194d2d804eb99116694f8204afaf}\label{group__JFFS2_ga3abb194d2d804eb99116694f8204afaf}} 
+\index{Journalling Flash File System Version 2 (JFFS2) Support@{Journalling Flash File System Version 2 (JFFS2) Support}!rtems\_jffs2\_trigger\_garbage\_collection@{rtems\_jffs2\_trigger\_garbage\_collection}}
+\index{rtems\_jffs2\_trigger\_garbage\_collection@{rtems\_jffs2\_trigger\_garbage\_collection}!Journalling Flash File System Version 2 (JFFS2) Support@{Journalling Flash File System Version 2 (JFFS2) Support}}
+\subsubsection{\texorpdfstring{rtems\_jffs2\_trigger\_garbage\_collection}{rtems\_jffs2\_trigger\_garbage\_collection}}
+{\footnotesize\ttfamily typedef void($\ast$ rtems\+\_\+jffs2\+\_\+trigger\+\_\+garbage\+\_\+collection) (\mbox{\hyperlink{structrtems__jffs2__flash__control}{rtems\+\_\+jffs2\+\_\+flash\+\_\+control}} $\ast$self)}
+
+
+
+Trigger garbage collection operation. 
+
+An optional garbage collection thread may perform now a garbage collection using the R\+T\+E\+M\+S\+\_\+\+J\+F\+F\+S2\+\_\+\+O\+N\+\_\+\+D\+E\+M\+A\+N\+D\+\_\+\+G\+A\+R\+B\+A\+G\+E\+\_\+\+C\+O\+L\+L\+E\+C\+T\+I\+ON \mbox{\hyperlink{structIO}{IO}} control.
+
+The garbage collection must not run in the executing context.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em self} & The flash control. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{group__JFFS2_gac493238b3bfd792173aacb9a7f57949e}\label{group__JFFS2_gac493238b3bfd792173aacb9a7f57949e}} 
+\index{Journalling Flash File System Version 2 (JFFS2) Support@{Journalling Flash File System Version 2 (JFFS2) Support}!rtems\_jffs2\_initialize@{rtems\_jffs2\_initialize}}
+\index{rtems\_jffs2\_initialize@{rtems\_jffs2\_initialize}!Journalling Flash File System Version 2 (JFFS2) Support@{Journalling Flash File System Version 2 (JFFS2) Support}}
+\subsubsection{\texorpdfstring{rtems\_jffs2\_initialize()}{rtems\_jffs2\_initialize()}}
+{\footnotesize\ttfamily int rtems\+\_\+jffs2\+\_\+initialize (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structrtems__filesystem__mount__table__entry__tt}{rtems\+\_\+filesystem\+\_\+mount\+\_\+table\+\_\+entry\+\_\+t}} $\ast$}]{mt\+\_\+entry,  }\item[{const void $\ast$}]{data }\end{DoxyParamCaption})}
+
+
+
+Initialization handler of the J\+F\+F\+S2 file system. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em mt\+\_\+entry} & The mount table entry. \\
+\hline
+\mbox{\texttt{ in}}  & {\em data} & The mount options are mandatory for J\+F\+F\+S2 and data must point to a valid \mbox{\hyperlink{structrtems__jffs2__mount__data}{rtems\+\_\+jffs2\+\_\+mount\+\_\+data}} structure used for this file system instance.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em 0} & Successful operation. \\
+\hline
+{\em -\/1} & An error occurred. The {\ttfamily errno} indicates the error.\\
+\hline
+\end{DoxyRetVals}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{group__FileSystemTypesAndMount_gaf3c1bed49bb0f3dec88d330b4f88d48b}{mount()}}. 
+\end{DoxySeeAlso}

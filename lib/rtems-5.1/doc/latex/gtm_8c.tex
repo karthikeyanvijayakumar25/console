@@ -1,0 +1,106 @@
+\hypertarget{gtm_8c}{}\section{bsps/powerpc/gen83xx/dev/gtm.c File Reference}
+\label{gtm_8c}\index{bsps/powerpc/gen83xx/dev/gtm.c@{bsps/powerpc/gen83xx/dev/gtm.c}}
+
+
+Source file for timer functions.  
+
+
+{\ttfamily \#include $<$rtems/bsp\+Io.\+h$>$}\newline
+{\ttfamily \#include $<$mpc83xx/mpc83xx.\+h$>$}\newline
+{\ttfamily \#include $<$mpc83xx/gtm.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/status-\/checks.\+h$>$}\newline
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{gtm_8c_ae737fe8278f1f17a5f58df1be75a1a16}\label{gtm_8c_ae737fe8278f1f17a5f58df1be75a1a16}} 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+H\+E\+C\+K\+S\+\_\+\+U\+S\+E\+\_\+\+P\+R\+I\+N\+TK}
+\item 
+\#define {\bfseries M\+P\+C83\+X\+X\+\_\+\+G\+T\+M\+\_\+\+C\+H\+E\+C\+K\+\_\+\+I\+N\+D\+EX}(timer)
+\item 
+\mbox{\Hypertarget{gtm_8c_ac465dbc5b603a957544cf6b711cce721}\label{gtm_8c_ac465dbc5b603a957544cf6b711cce721}} 
+\#define {\bfseries G\+T\+M\+\_\+\+M\+O\+D\+U\+LE}(timer)~((timer)/4)
+\item 
+\mbox{\Hypertarget{gtm_8c_a20f90a781867c4d5ac323d91bb03ebfd}\label{gtm_8c_a20f90a781867c4d5ac323d91bb03ebfd}} 
+\#define {\bfseries G\+T\+M\+\_\+\+M\+O\+D\+U\+L\+E\+\_\+\+T\+I\+M\+ER}(timer)~((timer)\%4)
+\item 
+\mbox{\Hypertarget{gtm_8c_a1044f439026b743232b9c33bece4008e}\label{gtm_8c_a1044f439026b743232b9c33bece4008e}} 
+\#define {\bfseries G\+T\+M\+\_\+\+H\+I\+GH}(timer)~(G\+T\+M\+\_\+\+M\+O\+D\+U\+L\+E\+\_\+\+T\+I\+M\+ER(timer)/2)
+\item 
+\mbox{\Hypertarget{gtm_8c_a29b220b260dee7a117c469d5e7e3cf6b}\label{gtm_8c_a29b220b260dee7a117c469d5e7e3cf6b}} 
+\#define {\bfseries G\+T\+M\+\_\+\+L\+OW}(timer)~(G\+T\+M\+\_\+\+M\+O\+D\+U\+L\+E\+\_\+\+T\+I\+M\+ER(timer)\%2)
+\item 
+\mbox{\Hypertarget{gtm_8c_ab3adf56f800408490031ef0570443b1b}\label{gtm_8c_ab3adf56f800408490031ef0570443b1b}} 
+\#define {\bfseries M\+P\+C83\+X\+X\+\_\+\+G\+T\+M\+\_\+\+C\+L\+O\+C\+K\+\_\+\+M\+A\+SK}~M\+P\+C83\+X\+X\+\_\+\+G\+T\+M\+\_\+\+C\+L\+O\+C\+K\+\_\+\+E\+X\+T\+E\+RN
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{gtm_8c_a9798176ae295f1b5a986c168c19e00fa}\label{gtm_8c_a9798176ae295f1b5a986c168c19e00fa}} 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} {\bfseries mpc83xx\+\_\+gtm\+\_\+initialize} (int timer, int clock)
+\item 
+\mbox{\Hypertarget{gtm_8c_a7815695aa8f591772da1acb08a4b8791}\label{gtm_8c_a7815695aa8f591772da1acb08a4b8791}} 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} {\bfseries mpc83xx\+\_\+gtm\+\_\+enable\+\_\+restart} (int timer, bool enable)
+\item 
+\mbox{\Hypertarget{gtm_8c_ad804ed67ba8dea70cbe8c476e9655264}\label{gtm_8c_ad804ed67ba8dea70cbe8c476e9655264}} 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} {\bfseries mpc83xx\+\_\+gtm\+\_\+set\+\_\+clock} (int timer, int clock)
+\item 
+\mbox{\Hypertarget{gtm_8c_ad910b12d21e72f7dde2d93555dc60c5b}\label{gtm_8c_ad910b12d21e72f7dde2d93555dc60c5b}} 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} {\bfseries mpc83xx\+\_\+gtm\+\_\+get\+\_\+clock} (int timer, int $\ast$clock)
+\item 
+\mbox{\Hypertarget{gtm_8c_a7c696c26c07dbdea69313710a126057e}\label{gtm_8c_a7c696c26c07dbdea69313710a126057e}} 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} {\bfseries mpc83xx\+\_\+gtm\+\_\+start} (int timer)
+\item 
+\mbox{\Hypertarget{gtm_8c_ab34ffaa961b6b516290e91dd963db9b8}\label{gtm_8c_ab34ffaa961b6b516290e91dd963db9b8}} 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} {\bfseries mpc83xx\+\_\+gtm\+\_\+stop} (int timer)
+\item 
+\mbox{\Hypertarget{gtm_8c_a8a5e68dbc49cb57988cc8ad87530ff4f}\label{gtm_8c_a8a5e68dbc49cb57988cc8ad87530ff4f}} 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} {\bfseries mpc83xx\+\_\+gtm\+\_\+set\+\_\+value} (int timer, uint16\+\_\+t value)
+\item 
+\mbox{\Hypertarget{gtm_8c_a2078d07ffc7b9dc96f712a9e5281c0ce}\label{gtm_8c_a2078d07ffc7b9dc96f712a9e5281c0ce}} 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} {\bfseries mpc83xx\+\_\+gtm\+\_\+get\+\_\+value} (int timer, uint16\+\_\+t $\ast$value)
+\item 
+\mbox{\Hypertarget{gtm_8c_ae643b8ead6330557e41669c5d9b4e70a}\label{gtm_8c_ae643b8ead6330557e41669c5d9b4e70a}} 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} {\bfseries mpc83xx\+\_\+gtm\+\_\+set\+\_\+reference} (int timer, uint16\+\_\+t reference)
+\item 
+\mbox{\Hypertarget{gtm_8c_a42d02e5932fc8595ed9f648bc4b9ef62}\label{gtm_8c_a42d02e5932fc8595ed9f648bc4b9ef62}} 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} {\bfseries mpc83xx\+\_\+gtm\+\_\+get\+\_\+reference} (int timer, uint16\+\_\+t $\ast$reference)
+\item 
+\mbox{\Hypertarget{gtm_8c_af2cbf37e3bef13bb8dd3f99966f21033}\label{gtm_8c_af2cbf37e3bef13bb8dd3f99966f21033}} 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} {\bfseries mpc83xx\+\_\+gtm\+\_\+set\+\_\+prescale} (int timer, uint8\+\_\+t prescale)
+\item 
+\mbox{\Hypertarget{gtm_8c_a799989fba2a5f0bdafa0ba37eef2c280}\label{gtm_8c_a799989fba2a5f0bdafa0ba37eef2c280}} 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} {\bfseries mpc83xx\+\_\+gtm\+\_\+get\+\_\+prescale} (int timer, uint8\+\_\+t $\ast$prescale)
+\item 
+\mbox{\Hypertarget{gtm_8c_a87942e17c513e1c0b08c124d9d82a01f}\label{gtm_8c_a87942e17c513e1c0b08c124d9d82a01f}} 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} {\bfseries mpc83xx\+\_\+gtm\+\_\+interrupt\+\_\+get\+\_\+vector} (int timer, \mbox{\hyperlink{group__ClassicINTR_ga3e434c197d99f128e78cae4d9358bd8b}{rtems\+\_\+vector\+\_\+number}} $\ast$vector)
+\item 
+\mbox{\Hypertarget{gtm_8c_a1048833c923274cbdfd141fcf2c3c897}\label{gtm_8c_a1048833c923274cbdfd141fcf2c3c897}} 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} {\bfseries mpc83xx\+\_\+gtm\+\_\+interrupt\+\_\+enable} (int timer)
+\item 
+\mbox{\Hypertarget{gtm_8c_a4c141f305468763b685992b8cf28f77b}\label{gtm_8c_a4c141f305468763b685992b8cf28f77b}} 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} {\bfseries mpc83xx\+\_\+gtm\+\_\+interrupt\+\_\+disable} (int timer)
+\item 
+\mbox{\Hypertarget{gtm_8c_a5dd5f1a61dc87237d873abac4cbd272e}\label{gtm_8c_a5dd5f1a61dc87237d873abac4cbd272e}} 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} {\bfseries mpc83xx\+\_\+gtm\+\_\+interrupt\+\_\+clear} (int timer)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Source file for timer functions. 
+
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{gtm_8c_a595a4b9e7210364e0490574f39635c9e}\label{gtm_8c_a595a4b9e7210364e0490574f39635c9e}} 
+\index{gtm.c@{gtm.c}!MPC83XX\_GTM\_CHECK\_INDEX@{MPC83XX\_GTM\_CHECK\_INDEX}}
+\index{MPC83XX\_GTM\_CHECK\_INDEX@{MPC83XX\_GTM\_CHECK\_INDEX}!gtm.c@{gtm.c}}
+\subsubsection{\texorpdfstring{MPC83XX\_GTM\_CHECK\_INDEX}{MPC83XX\_GTM\_CHECK\_INDEX}}
+{\footnotesize\ttfamily \#define M\+P\+C83\+X\+X\+\_\+\+G\+T\+M\+\_\+\+C\+H\+E\+C\+K\+\_\+\+I\+N\+D\+EX(\begin{DoxyParamCaption}\item[{}]{timer }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{if} (( timer) < 0 || ( timer) >= MPC83XX\_GTM\_NUMBER) \{ \(\backslash\)}
+\DoxyCodeLine{        return \mbox{\hyperlink{group__ClassicStatus_gga545d41846817eaba6143d52ee4d9e9feaf5c6025cfb52b9d8128e4993cc357d3f}{RTEMS\_INVALID\_NUMBER}}; \(\backslash\)}
+\DoxyCodeLine{    \}}
+
+\end{DoxyCode}

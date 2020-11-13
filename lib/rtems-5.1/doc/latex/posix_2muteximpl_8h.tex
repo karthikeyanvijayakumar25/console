@@ -1,0 +1,175 @@
+\hypertarget{posix_2muteximpl_8h}{}\section{cpukit/include/rtems/posix/muteximpl.h File Reference}
+\label{posix_2muteximpl_8h}\index{cpukit/include/rtems/posix/muteximpl.h@{cpukit/include/rtems/posix/muteximpl.h}}
+
+
+Private Inlined Routines for P\+O\+S\+IX Mutex\textquotesingle{}s.  
+
+
+{\ttfamily \#include $<$errno.\+h$>$}\newline
+{\ttfamily \#include $<$pthread.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/score/percpu.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/score/muteximpl.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/score/threadimpl.\+h$>$}\newline
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structPOSIX__Mutex__Control}{P\+O\+S\+I\+X\+\_\+\+Mutex\+\_\+\+Control}}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{posix_2muteximpl_8h_ad39579a07c653f724688b0850f672ac1}\label{posix_2muteximpl_8h_ad39579a07c653f724688b0850f672ac1}} 
+\#define {\bfseries P\+O\+S\+I\+X\+\_\+\+M\+U\+T\+E\+X\+\_\+\+P\+R\+O\+T\+O\+C\+O\+L\+\_\+\+M\+A\+SK}~0x3\+UL
+\item 
+\mbox{\Hypertarget{posix_2muteximpl_8h_ab5be0dd44211ce9f8baf9dec6eaeda72}\label{posix_2muteximpl_8h_ab5be0dd44211ce9f8baf9dec6eaeda72}} 
+\#define {\bfseries P\+O\+S\+I\+X\+\_\+\+M\+U\+T\+E\+X\+\_\+\+R\+E\+C\+U\+R\+S\+I\+VE}~0x4\+UL
+\item 
+\mbox{\Hypertarget{posix_2muteximpl_8h_a50c2637d5565c2d0fbb368d2ce45db7f}\label{posix_2muteximpl_8h_a50c2637d5565c2d0fbb368d2ce45db7f}} 
+\#define {\bfseries P\+O\+S\+I\+X\+\_\+\+M\+U\+T\+E\+X\+\_\+\+F\+L\+A\+G\+S\+\_\+\+M\+A\+SK}~0x7\+UL
+\item 
+\mbox{\Hypertarget{posix_2muteximpl_8h_a8d16371c254d720fc2261aefd774465d}\label{posix_2muteximpl_8h_a8d16371c254d720fc2261aefd774465d}} 
+\#define {\bfseries P\+O\+S\+I\+X\+\_\+\+M\+U\+T\+E\+X\+\_\+\+M\+A\+G\+IC}~0x961c13b8\+UL
+\item 
+\mbox{\Hypertarget{posix_2muteximpl_8h_a23d3e641bb25762f4924a08eb2675f54}\label{posix_2muteximpl_8h_a23d3e641bb25762f4924a08eb2675f54}} 
+\#define {\bfseries P\+O\+S\+I\+X\+\_\+\+M\+U\+T\+E\+X\+\_\+\+N\+O\+\_\+\+P\+R\+O\+T\+O\+C\+O\+L\+\_\+\+T\+Q\+\_\+\+O\+P\+E\+R\+A\+T\+I\+O\+NS}~\&\+\_\+\+Thread\+\_\+queue\+\_\+\+Operations\+\_\+\+F\+I\+FO
+\item 
+\mbox{\Hypertarget{posix_2muteximpl_8h_a67bec3976bfb7c902d9f12ada27b79a1}\label{posix_2muteximpl_8h_a67bec3976bfb7c902d9f12ada27b79a1}} 
+\#define {\bfseries P\+O\+S\+I\+X\+\_\+\+M\+U\+T\+E\+X\+\_\+\+P\+R\+I\+O\+R\+I\+T\+Y\+\_\+\+I\+N\+H\+E\+R\+I\+T\+\_\+\+T\+Q\+\_\+\+O\+P\+E\+R\+A\+T\+I\+O\+NS}~\&\+\_\+\+Thread\+\_\+queue\+\_\+\+Operations\+\_\+priority\+\_\+inherit
+\item 
+\mbox{\Hypertarget{posix_2muteximpl_8h_a2249f8b27af432e218b170871805cd1c}\label{posix_2muteximpl_8h_a2249f8b27af432e218b170871805cd1c}} 
+\#define {\bfseries P\+O\+S\+I\+X\+\_\+\+M\+U\+T\+E\+X\+\_\+\+P\+R\+I\+O\+R\+I\+T\+Y\+\_\+\+C\+E\+I\+L\+I\+N\+G\+\_\+\+T\+Q\+\_\+\+O\+P\+E\+R\+A\+T\+I\+O\+NS}~\&\+\_\+\+Thread\+\_\+queue\+\_\+\+Operations\+\_\+priority
+\item 
+\mbox{\Hypertarget{posix_2muteximpl_8h_a4602baa4b1deef69cdd519c3ac25aeaa}\label{posix_2muteximpl_8h_a4602baa4b1deef69cdd519c3ac25aeaa}} 
+\#define {\bfseries P\+O\+S\+I\+X\+\_\+\+M\+U\+T\+E\+X\+\_\+\+A\+B\+S\+T\+I\+M\+E\+\_\+\+T\+R\+Y\+\_\+\+L\+O\+CK}~((uintptr\+\_\+t) 1)
+\item 
+\#define {\bfseries P\+O\+S\+I\+X\+\_\+\+M\+U\+T\+E\+X\+\_\+\+V\+A\+L\+I\+D\+A\+T\+E\+\_\+\+O\+B\+J\+E\+CT}(the\+\_\+mutex,  flags)
+\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{posix_2muteximpl_8h_a6cbe57cd9fc88bcb0b2a32022a4ae958}{P\+O\+S\+I\+X\+\_\+\+Mutex\+\_\+\+Protocol}} \{ {\bfseries P\+O\+S\+I\+X\+\_\+\+M\+U\+T\+E\+X\+\_\+\+N\+O\+\_\+\+P\+R\+O\+T\+O\+C\+OL}, 
+{\bfseries P\+O\+S\+I\+X\+\_\+\+M\+U\+T\+E\+X\+\_\+\+P\+R\+I\+O\+R\+I\+T\+Y\+\_\+\+I\+N\+H\+E\+R\+IT}, 
+{\bfseries P\+O\+S\+I\+X\+\_\+\+M\+U\+T\+E\+X\+\_\+\+P\+R\+I\+O\+R\+I\+T\+Y\+\_\+\+C\+E\+I\+L\+I\+NG}
+ \}
+\begin{DoxyCompactList}\small\item\em Supported P\+O\+S\+IX mutex protocols. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{posix_2muteximpl_8h_a323133f16e9b90524bc25774f82c3c6f}\label{posix_2muteximpl_8h_a323133f16e9b90524bc25774f82c3c6f}} 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} \mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$ {\bfseries \+\_\+\+P\+O\+S\+I\+X\+\_\+\+Mutex\+\_\+\+Acquire} (\mbox{\hyperlink{structPOSIX__Mutex__Control}{P\+O\+S\+I\+X\+\_\+\+Mutex\+\_\+\+Control}} $\ast$the\+\_\+mutex, \mbox{\hyperlink{structThread__queue__Context}{Thread\+\_\+queue\+\_\+\+Context}} $\ast$queue\+\_\+context)
+\item 
+\mbox{\Hypertarget{posix_2muteximpl_8h_a7d79a81165ff9936fcac8cfd5912a5f5}\label{posix_2muteximpl_8h_a7d79a81165ff9936fcac8cfd5912a5f5}} 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void {\bfseries \+\_\+\+P\+O\+S\+I\+X\+\_\+\+Mutex\+\_\+\+Release} (\mbox{\hyperlink{structPOSIX__Mutex__Control}{P\+O\+S\+I\+X\+\_\+\+Mutex\+\_\+\+Control}} $\ast$the\+\_\+mutex, \mbox{\hyperlink{structThread__queue__Context}{Thread\+\_\+queue\+\_\+\+Context}} $\ast$queue\+\_\+context)
+\item 
+\mbox{\Hypertarget{posix_2muteximpl_8h_a4ed8bbad395c18c78a8d6c14b3990475}\label{posix_2muteximpl_8h_a4ed8bbad395c18c78a8d6c14b3990475}} 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} \mbox{\hyperlink{posix_2muteximpl_8h_a6cbe57cd9fc88bcb0b2a32022a4ae958}{P\+O\+S\+I\+X\+\_\+\+Mutex\+\_\+\+Protocol}} {\bfseries \+\_\+\+P\+O\+S\+I\+X\+\_\+\+Mutex\+\_\+\+Get\+\_\+protocol} (unsigned long flags)
+\item 
+\mbox{\Hypertarget{posix_2muteximpl_8h_a6ba9e7b10187c10a233aa11919a08ee6}\label{posix_2muteximpl_8h_a6ba9e7b10187c10a233aa11919a08ee6}} 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} bool {\bfseries \+\_\+\+P\+O\+S\+I\+X\+\_\+\+Mutex\+\_\+\+Is\+\_\+recursive} (unsigned long flags)
+\item 
+\mbox{\Hypertarget{posix_2muteximpl_8h_a7b63c2b142623855104b334604b4f80f}\label{posix_2muteximpl_8h_a7b63c2b142623855104b334604b4f80f}} 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} \mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$ {\bfseries \+\_\+\+P\+O\+S\+I\+X\+\_\+\+Mutex\+\_\+\+Get\+\_\+owner} (const \mbox{\hyperlink{structPOSIX__Mutex__Control}{P\+O\+S\+I\+X\+\_\+\+Mutex\+\_\+\+Control}} $\ast$the\+\_\+mutex)
+\item 
+\mbox{\Hypertarget{posix_2muteximpl_8h_a7298812dbe4afa6719e4e9da4108cd20}\label{posix_2muteximpl_8h_a7298812dbe4afa6719e4e9da4108cd20}} 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} bool {\bfseries \+\_\+\+P\+O\+S\+I\+X\+\_\+\+Mutex\+\_\+\+Is\+\_\+locked} (const \mbox{\hyperlink{structPOSIX__Mutex__Control}{P\+O\+S\+I\+X\+\_\+\+Mutex\+\_\+\+Control}} $\ast$the\+\_\+mutex)
+\item 
+\mbox{\Hypertarget{posix_2muteximpl_8h_af5a36f147a0bac173e2c0efaae0c01c1}\label{posix_2muteximpl_8h_af5a36f147a0bac173e2c0efaae0c01c1}} 
+Status\+\_\+\+Control {\bfseries \+\_\+\+P\+O\+S\+I\+X\+\_\+\+Mutex\+\_\+\+Seize\+\_\+slow} (\mbox{\hyperlink{structPOSIX__Mutex__Control}{P\+O\+S\+I\+X\+\_\+\+Mutex\+\_\+\+Control}} $\ast$the\+\_\+mutex, const \mbox{\hyperlink{structThread__queue__Operations}{Thread\+\_\+queue\+\_\+\+Operations}} $\ast$operations, \mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$executing, const struct timespec $\ast$abstime, \mbox{\hyperlink{structThread__queue__Context}{Thread\+\_\+queue\+\_\+\+Context}} $\ast$queue\+\_\+context)
+\item 
+\mbox{\Hypertarget{posix_2muteximpl_8h_aac5c3781d95e2db54e2f66ebb0869dbc}\label{posix_2muteximpl_8h_aac5c3781d95e2db54e2f66ebb0869dbc}} 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void {\bfseries \+\_\+\+P\+O\+S\+I\+X\+\_\+\+Mutex\+\_\+\+Set\+\_\+owner} (\mbox{\hyperlink{structPOSIX__Mutex__Control}{P\+O\+S\+I\+X\+\_\+\+Mutex\+\_\+\+Control}} $\ast$the\+\_\+mutex, \mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$owner)
+\item 
+\mbox{\Hypertarget{posix_2muteximpl_8h_aeb6b81be11464de12b09beeaf876d155}\label{posix_2muteximpl_8h_aeb6b81be11464de12b09beeaf876d155}} 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} bool {\bfseries \+\_\+\+P\+O\+S\+I\+X\+\_\+\+Mutex\+\_\+\+Is\+\_\+owner} (const \mbox{\hyperlink{structPOSIX__Mutex__Control}{P\+O\+S\+I\+X\+\_\+\+Mutex\+\_\+\+Control}} $\ast$the\+\_\+mutex, const \mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$the\+\_\+thread)
+\item 
+\mbox{\Hypertarget{posix_2muteximpl_8h_a1edc3f81cdf62fda42e43874e522f117}\label{posix_2muteximpl_8h_a1edc3f81cdf62fda42e43874e522f117}} 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} Status\+\_\+\+Control {\bfseries \+\_\+\+P\+O\+S\+I\+X\+\_\+\+Mutex\+\_\+\+Seize} (\mbox{\hyperlink{structPOSIX__Mutex__Control}{P\+O\+S\+I\+X\+\_\+\+Mutex\+\_\+\+Control}} $\ast$the\+\_\+mutex, unsigned long flags, const \mbox{\hyperlink{structThread__queue__Operations}{Thread\+\_\+queue\+\_\+\+Operations}} $\ast$operations, \mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$executing, const struct timespec $\ast$abstime, \mbox{\hyperlink{structThread__queue__Context}{Thread\+\_\+queue\+\_\+\+Context}} $\ast$queue\+\_\+context)
+\item 
+\mbox{\Hypertarget{posix_2muteximpl_8h_ad4a37d46a0bf09c90475738e982235c0}\label{posix_2muteximpl_8h_ad4a37d46a0bf09c90475738e982235c0}} 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} Status\+\_\+\+Control {\bfseries \+\_\+\+P\+O\+S\+I\+X\+\_\+\+Mutex\+\_\+\+Surrender} (\mbox{\hyperlink{structPOSIX__Mutex__Control}{P\+O\+S\+I\+X\+\_\+\+Mutex\+\_\+\+Control}} $\ast$the\+\_\+mutex, const \mbox{\hyperlink{structThread__queue__Operations}{Thread\+\_\+queue\+\_\+\+Operations}} $\ast$operations, \mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$executing, \mbox{\hyperlink{structThread__queue__Context}{Thread\+\_\+queue\+\_\+\+Context}} $\ast$queue\+\_\+context)
+\item 
+\mbox{\Hypertarget{posix_2muteximpl_8h_afd56aa9fbb5eb3148f459a018d53a535}\label{posix_2muteximpl_8h_afd56aa9fbb5eb3148f459a018d53a535}} 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} const \mbox{\hyperlink{struct__Scheduler__Control}{Scheduler\+\_\+\+Control}} $\ast$ {\bfseries \+\_\+\+P\+O\+S\+I\+X\+\_\+\+Mutex\+\_\+\+Get\+\_\+scheduler} (const \mbox{\hyperlink{structPOSIX__Mutex__Control}{P\+O\+S\+I\+X\+\_\+\+Mutex\+\_\+\+Control}} $\ast$the\+\_\+mutex)
+\item 
+\mbox{\Hypertarget{posix_2muteximpl_8h_abfafb525a73733f9fdb9d99cfa8b865a}\label{posix_2muteximpl_8h_abfafb525a73733f9fdb9d99cfa8b865a}} 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void {\bfseries \+\_\+\+P\+O\+S\+I\+X\+\_\+\+Mutex\+\_\+\+Set\+\_\+priority} (\mbox{\hyperlink{structPOSIX__Mutex__Control}{P\+O\+S\+I\+X\+\_\+\+Mutex\+\_\+\+Control}} $\ast$the\+\_\+mutex, \mbox{\hyperlink{group__RTEMSScorePriority_ga59d02b58072d31a9a1cfe644557aefe2}{Priority\+\_\+\+Control}} priority\+\_\+ceiling, \mbox{\hyperlink{structThread__queue__Context}{Thread\+\_\+queue\+\_\+\+Context}} $\ast$queue\+\_\+context)
+\item 
+\mbox{\Hypertarget{posix_2muteximpl_8h_aeb3cd37796faa08ccc994500ce9ea7b8}\label{posix_2muteximpl_8h_aeb3cd37796faa08ccc994500ce9ea7b8}} 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} \mbox{\hyperlink{group__RTEMSScorePriority_ga59d02b58072d31a9a1cfe644557aefe2}{Priority\+\_\+\+Control}} {\bfseries \+\_\+\+P\+O\+S\+I\+X\+\_\+\+Mutex\+\_\+\+Get\+\_\+priority} (const \mbox{\hyperlink{structPOSIX__Mutex__Control}{P\+O\+S\+I\+X\+\_\+\+Mutex\+\_\+\+Control}} $\ast$the\+\_\+mutex)
+\item 
+\mbox{\Hypertarget{posix_2muteximpl_8h_aa099656aca92ad7c919c40cac2b1e226}\label{posix_2muteximpl_8h_aa099656aca92ad7c919c40cac2b1e226}} 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} Status\+\_\+\+Control {\bfseries \+\_\+\+P\+O\+S\+I\+X\+\_\+\+Mutex\+\_\+\+Ceiling\+\_\+set\+\_\+owner} (\mbox{\hyperlink{structPOSIX__Mutex__Control}{P\+O\+S\+I\+X\+\_\+\+Mutex\+\_\+\+Control}} $\ast$the\+\_\+mutex, \mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$owner, \mbox{\hyperlink{structThread__queue__Context}{Thread\+\_\+queue\+\_\+\+Context}} $\ast$queue\+\_\+context)
+\item 
+\mbox{\Hypertarget{posix_2muteximpl_8h_a02b950e3dfc08bf48aafac65eeaf58e7}\label{posix_2muteximpl_8h_a02b950e3dfc08bf48aafac65eeaf58e7}} 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} Status\+\_\+\+Control {\bfseries \+\_\+\+P\+O\+S\+I\+X\+\_\+\+Mutex\+\_\+\+Ceiling\+\_\+seize} (\mbox{\hyperlink{structPOSIX__Mutex__Control}{P\+O\+S\+I\+X\+\_\+\+Mutex\+\_\+\+Control}} $\ast$the\+\_\+mutex, unsigned long flags, \mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$executing, const struct timespec $\ast$abstime, \mbox{\hyperlink{structThread__queue__Context}{Thread\+\_\+queue\+\_\+\+Context}} $\ast$queue\+\_\+context)
+\item 
+\mbox{\Hypertarget{posix_2muteximpl_8h_aef2cdaf26c7b8333787140155835917f}\label{posix_2muteximpl_8h_aef2cdaf26c7b8333787140155835917f}} 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} Status\+\_\+\+Control {\bfseries \+\_\+\+P\+O\+S\+I\+X\+\_\+\+Mutex\+\_\+\+Ceiling\+\_\+surrender} (\mbox{\hyperlink{structPOSIX__Mutex__Control}{P\+O\+S\+I\+X\+\_\+\+Mutex\+\_\+\+Control}} $\ast$the\+\_\+mutex, \mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$executing, \mbox{\hyperlink{structThread__queue__Context}{Thread\+\_\+queue\+\_\+\+Context}} $\ast$queue\+\_\+context)
+\item 
+\mbox{\Hypertarget{posix_2muteximpl_8h_a80ec56e99a95d286fea326d74c8fb679}\label{posix_2muteximpl_8h_a80ec56e99a95d286fea326d74c8fb679}} 
+int {\bfseries \+\_\+\+P\+O\+S\+I\+X\+\_\+\+Mutex\+\_\+\+Lock\+\_\+support} (pthread\+\_\+mutex\+\_\+t $\ast$\mbox{\hyperlink{structmutex}{mutex}}, const struct timespec $\ast$abstime, \mbox{\hyperlink{group__RTEMSScoreThreadQueue_ga3dd59055cd68c42978de9cd8e007ce1d}{Thread\+\_\+queue\+\_\+\+Enqueue\+\_\+callout}} enqueue\+\_\+callout)
+\item 
+\mbox{\Hypertarget{posix_2muteximpl_8h_a81814e44ec3f65f41aee2aa51fc9622e}\label{posix_2muteximpl_8h_a81814e44ec3f65f41aee2aa51fc9622e}} 
+bool {\bfseries \+\_\+\+P\+O\+S\+I\+X\+\_\+\+Mutex\+\_\+\+Auto\+\_\+initialization} (\mbox{\hyperlink{structPOSIX__Mutex__Control}{P\+O\+S\+I\+X\+\_\+\+Mutex\+\_\+\+Control}} $\ast$the\+\_\+mutex)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const pthread\+\_\+mutexattr\+\_\+t \mbox{\hyperlink{posix_2muteximpl_8h_acec046ad5dcc6810ba08aa0b91366424}{\+\_\+\+P\+O\+S\+I\+X\+\_\+\+Mutex\+\_\+\+Default\+\_\+attributes}}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Private Inlined Routines for P\+O\+S\+IX Mutex\textquotesingle{}s. 
+
+This include file contains the static inline implementation of the private inlined routines for P\+O\+S\+IX mutex\textquotesingle{}s. 
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{posix_2muteximpl_8h_a14c4cb80a1e312ccd6d6dcbff1963ea0}\label{posix_2muteximpl_8h_a14c4cb80a1e312ccd6d6dcbff1963ea0}} 
+\index{muteximpl.h@{muteximpl.h}!POSIX\_MUTEX\_VALIDATE\_OBJECT@{POSIX\_MUTEX\_VALIDATE\_OBJECT}}
+\index{POSIX\_MUTEX\_VALIDATE\_OBJECT@{POSIX\_MUTEX\_VALIDATE\_OBJECT}!muteximpl.h@{muteximpl.h}}
+\subsubsection{\texorpdfstring{POSIX\_MUTEX\_VALIDATE\_OBJECT}{POSIX\_MUTEX\_VALIDATE\_OBJECT}}
+{\footnotesize\ttfamily \#define P\+O\+S\+I\+X\+\_\+\+M\+U\+T\+E\+X\+\_\+\+V\+A\+L\+I\+D\+A\+T\+E\+\_\+\+O\+B\+J\+E\+CT(\begin{DoxyParamCaption}\item[{}]{the\+\_\+mutex,  }\item[{}]{flags }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do} \{ \(\backslash\)}
+\DoxyCodeLine{    if ( ( the\_mutex ) == \mbox{\hyperlink{bestcomm__api_8h_a872bb74de61c3689ccd5b41873fce42c}{NULL}} ) \{ \(\backslash\)}
+\DoxyCodeLine{      return EINVAL; \(\backslash\)}
+\DoxyCodeLine{    \} \(\backslash\)}
+\DoxyCodeLine{    flags = ( the\_mutex )->flags; \(\backslash\)}
+\DoxyCodeLine{    if ( \(\backslash\)}
+\DoxyCodeLine{      ( ( (uintptr\_t) ( the\_mutex ) \string^ POSIX\_MUTEX\_MAGIC ) \(\backslash\)}
+\DoxyCodeLine{          \& ~POSIX\_MUTEX\_FLAGS\_MASK ) \(\backslash\)}
+\DoxyCodeLine{        != ( flags \& ~POSIX\_MUTEX\_FLAGS\_MASK ) \(\backslash\)}
+\DoxyCodeLine{    ) \{ \(\backslash\)}
+\DoxyCodeLine{      if ( !\_POSIX\_Mutex\_Auto\_initialization( the\_mutex ) ) \{ \(\backslash\)}
+\DoxyCodeLine{        return EINVAL; \(\backslash\)}
+\DoxyCodeLine{      \} \(\backslash\)}
+\DoxyCodeLine{    \} \(\backslash\)}
+\DoxyCodeLine{  \} \textcolor{keywordflow}{while} ( 0 )}
+
+\end{DoxyCode}
+
+
+\subsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{posix_2muteximpl_8h_a6cbe57cd9fc88bcb0b2a32022a4ae958}\label{posix_2muteximpl_8h_a6cbe57cd9fc88bcb0b2a32022a4ae958}} 
+\index{muteximpl.h@{muteximpl.h}!POSIX\_Mutex\_Protocol@{POSIX\_Mutex\_Protocol}}
+\index{POSIX\_Mutex\_Protocol@{POSIX\_Mutex\_Protocol}!muteximpl.h@{muteximpl.h}}
+\subsubsection{\texorpdfstring{POSIX\_Mutex\_Protocol}{POSIX\_Mutex\_Protocol}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{posix_2muteximpl_8h_a6cbe57cd9fc88bcb0b2a32022a4ae958}{P\+O\+S\+I\+X\+\_\+\+Mutex\+\_\+\+Protocol}}}
+
+
+
+Supported P\+O\+S\+IX mutex protocols. 
+
+Must be in synchronization with P\+O\+S\+I\+X\+\_\+\+Mutex\+\_\+\+Control\+::protocol. 
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{posix_2muteximpl_8h_acec046ad5dcc6810ba08aa0b91366424}\label{posix_2muteximpl_8h_acec046ad5dcc6810ba08aa0b91366424}} 
+\index{muteximpl.h@{muteximpl.h}!\_POSIX\_Mutex\_Default\_attributes@{\_POSIX\_Mutex\_Default\_attributes}}
+\index{\_POSIX\_Mutex\_Default\_attributes@{\_POSIX\_Mutex\_Default\_attributes}!muteximpl.h@{muteximpl.h}}
+\subsubsection{\texorpdfstring{\_POSIX\_Mutex\_Default\_attributes}{\_POSIX\_Mutex\_Default\_attributes}}
+{\footnotesize\ttfamily const pthread\+\_\+mutexattr\+\_\+t \+\_\+\+P\+O\+S\+I\+X\+\_\+\+Mutex\+\_\+\+Default\+\_\+attributes}
+
+The default mutex attributes structure. 

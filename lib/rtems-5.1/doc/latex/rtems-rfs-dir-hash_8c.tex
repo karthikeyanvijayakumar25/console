@@ -1,0 +1,129 @@
+\hypertarget{rtems-rfs-dir-hash_8c}{}\section{cpukit/libfs/src/rfs/rtems-\/rfs-\/dir-\/hash.c File Reference}
+\label{rtems-rfs-dir-hash_8c}\index{cpukit/libfs/src/rfs/rtems-\/rfs-\/dir-\/hash.c@{cpukit/libfs/src/rfs/rtems-\/rfs-\/dir-\/hash.c}}
+
+
+R\+T\+E\+MS File Systems Directory Hash function.  
+
+
+{\ttfamily \#include $<$rtems/rfs/rtems-\/rfs-\/dir-\/hash.\+h$>$}\newline
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{rtems-rfs-dir-hash_8c_a8c49a94782a573ded31a7bb1949cbf47}\label{rtems-rfs-dir-hash_8c_a8c49a94782a573ded31a7bb1949cbf47}} 
+\#define {\bfseries H\+A\+S\+H\+\_\+\+L\+I\+T\+T\+L\+E\+\_\+\+E\+N\+D\+I\+AN}~0
+\item 
+\mbox{\Hypertarget{rtems-rfs-dir-hash_8c_a129f72057b84147c7c3e2a6d107f0e3b}\label{rtems-rfs-dir-hash_8c_a129f72057b84147c7c3e2a6d107f0e3b}} 
+\#define {\bfseries H\+A\+S\+H\+\_\+\+B\+I\+G\+\_\+\+E\+N\+D\+I\+AN}~0
+\item 
+\mbox{\Hypertarget{rtems-rfs-dir-hash_8c_a86173ca25b300cf3276b088d3fc6bdaf}\label{rtems-rfs-dir-hash_8c_a86173ca25b300cf3276b088d3fc6bdaf}} 
+\#define {\bfseries hashsize}(n)~((uint32\+\_\+t)1$<$$<$(n))
+\item 
+\mbox{\Hypertarget{rtems-rfs-dir-hash_8c_aacd6ed104463685849b2550389d05ff3}\label{rtems-rfs-dir-hash_8c_aacd6ed104463685849b2550389d05ff3}} 
+\#define {\bfseries hashmask}(n)~(hashsize(n)-\/1)
+\item 
+\mbox{\Hypertarget{rtems-rfs-dir-hash_8c_aae44e21ada356d9d84450d5440fbb0c4}\label{rtems-rfs-dir-hash_8c_aae44e21ada356d9d84450d5440fbb0c4}} 
+\#define {\bfseries rot}(x,  k)~(((x)$<$$<$(k)) $\vert$ ((x)$>$$>$(32-\/(k))))
+\item 
+\#define {\bfseries mix}(a,  b,  c)
+\item 
+\#define {\bfseries final}(a,  b,  c)
+\item 
+\#define \mbox{\hyperlink{rtems-rfs-dir-hash_8c_ab923cd808775ddf3747372391084f778}{initval}}~(20010928)
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{rtems-rfs-dir-hash_8c_a9a48bb16458d3a175e425382193e75f3}{rtems\+\_\+rfs\+\_\+dir\+\_\+hash}} (const void $\ast$key, size\+\_\+t length)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+R\+T\+E\+MS File Systems Directory Hash function. 
+
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{rtems-rfs-dir-hash_8c_ab4646d77540701d2eb2c877effbe5739}\label{rtems-rfs-dir-hash_8c_ab4646d77540701d2eb2c877effbe5739}} 
+\index{rtems-\/rfs-\/dir-\/hash.c@{rtems-\/rfs-\/dir-\/hash.c}!final@{final}}
+\index{final@{final}!rtems-\/rfs-\/dir-\/hash.c@{rtems-\/rfs-\/dir-\/hash.c}}
+\subsubsection{\texorpdfstring{final}{final}}
+{\footnotesize\ttfamily \#define final(\begin{DoxyParamCaption}\item[{}]{a,  }\item[{}]{b,  }\item[{}]{c }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{                         \(\backslash\)}
+\DoxyCodeLine{    c \string^= b; c -= rot(b,14); \(\backslash\)}
+\DoxyCodeLine{    a \string^= c; a -= rot(c,11); \(\backslash\)}
+\DoxyCodeLine{    b \string^= a; b -= rot(a,25); \(\backslash\)}
+\DoxyCodeLine{    c \string^= b; c -= rot(b,16); \(\backslash\)}
+\DoxyCodeLine{    a \string^= c; a -= rot(c,4);  \(\backslash\)}
+\DoxyCodeLine{    b \string^= a; b -= rot(a,14); \(\backslash\)}
+\DoxyCodeLine{    c \string^= b; c -= rot(b,24); \(\backslash\)}
+\DoxyCodeLine{  \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{rtems-rfs-dir-hash_8c_ab923cd808775ddf3747372391084f778}\label{rtems-rfs-dir-hash_8c_ab923cd808775ddf3747372391084f778}} 
+\index{rtems-\/rfs-\/dir-\/hash.c@{rtems-\/rfs-\/dir-\/hash.c}!initval@{initval}}
+\index{initval@{initval}!rtems-\/rfs-\/dir-\/hash.c@{rtems-\/rfs-\/dir-\/hash.c}}
+\subsubsection{\texorpdfstring{initval}{initval}}
+{\footnotesize\ttfamily \#define initval~(20010928)}
+
+The follow is the documentation from Bob Jenkin\textquotesingle{}s hash function\+:
+
+\href{http://burtleburtle.net/bob/hash/doobs.html}{\texttt{ http\+://burtleburtle.\+net/bob/hash/doobs.\+html}}
+
+The function hashlittle() has been renamed.
+
+hashlittle() -- hash a variable-\/length key into a 32-\/bit value
+
+k \+: the key (the unaligned variable-\/length array of bytes) length \+: the length of the key, counting by bytes initval \+: can be any 4-\/byte value
+
+Returns a 32-\/bit value. Every bit of the key affects every bit of the return value. Two keys differing by one or two bits will have totally different hash values.
+
+The best hash table sizes are powers of 2. There is no need to do mod a prime (mod is sooo slow!). If you need less than 32 bits, use a bitmask. For example, if you need only 10 bits, do h = (h \& hashmask(10)); In which case, the hash table should have hashsize(10) elements.
+
+If you are hashing n strings (uint8\+\_\+t $\ast$$\ast$)k, do it like this\+: for (i=0, h=0; i$<$n; ++i) h = hashlittle( k\mbox{[}i\mbox{]}, len\mbox{[}i\mbox{]}, h);
+
+By Bob Jenkins, 2006. \href{mailto:bob_jenkins@burtleburtle.net}{\texttt{ bob\+\_\+jenkins@burtleburtle.\+net}}. You may use this code any way you wish, private, educational, or commercial. It\textquotesingle{}s free.
+
+Use for hash table lookup, or anything where one collision in 2$^\wedge$$^\wedge$32 is acceptable. Do N\+OT use for cryptographic purposes. \mbox{\Hypertarget{rtems-rfs-dir-hash_8c_afd9fa1747724ec6142812721997394c3}\label{rtems-rfs-dir-hash_8c_afd9fa1747724ec6142812721997394c3}} 
+\index{rtems-\/rfs-\/dir-\/hash.c@{rtems-\/rfs-\/dir-\/hash.c}!mix@{mix}}
+\index{mix@{mix}!rtems-\/rfs-\/dir-\/hash.c@{rtems-\/rfs-\/dir-\/hash.c}}
+\subsubsection{\texorpdfstring{mix}{mix}}
+{\footnotesize\ttfamily \#define mix(\begin{DoxyParamCaption}\item[{}]{a,  }\item[{}]{b,  }\item[{}]{c }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{ \(\backslash\)}
+\DoxyCodeLine{  a -= c;  a \string^= rot(c, 4);  c += b; \(\backslash\)}
+\DoxyCodeLine{  b -= a;  b \string^= rot(a, 6);  a += c; \(\backslash\)}
+\DoxyCodeLine{  c -= b;  c \string^= rot(b, 8);  b += a; \(\backslash\)}
+\DoxyCodeLine{  a -= c;  a \string^= rot(c,16);  c += b; \(\backslash\)}
+\DoxyCodeLine{  b -= a;  b \string^= rot(a,19);  a += c; \(\backslash\)}
+\DoxyCodeLine{  c -= b;  c \string^= rot(b, 4);  b += a; \(\backslash\)}
+\DoxyCodeLine{  \}}
+
+\end{DoxyCode}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{rtems-rfs-dir-hash_8c_a9a48bb16458d3a175e425382193e75f3}\label{rtems-rfs-dir-hash_8c_a9a48bb16458d3a175e425382193e75f3}} 
+\index{rtems-\/rfs-\/dir-\/hash.c@{rtems-\/rfs-\/dir-\/hash.c}!rtems\_rfs\_dir\_hash@{rtems\_rfs\_dir\_hash}}
+\index{rtems\_rfs\_dir\_hash@{rtems\_rfs\_dir\_hash}!rtems-\/rfs-\/dir-\/hash.c@{rtems-\/rfs-\/dir-\/hash.c}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_dir\_hash()}{rtems\_rfs\_dir\_hash()}}
+{\footnotesize\ttfamily uint32\+\_\+t rtems\+\_\+rfs\+\_\+dir\+\_\+hash (\begin{DoxyParamCaption}\item[{const void $\ast$}]{key,  }\item[{size\+\_\+t}]{length }\end{DoxyParamCaption})}
+
+Compute a hash of the key over the length of string.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em key} & is a pointer to the key to calculate the hash of. \\
+\hline
+\mbox{\texttt{ in}}  & {\em length} & is the length of the key in bytes.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em hash} & The computed uint32\+\_\+t hash. \\
+\hline
+\end{DoxyRetVals}

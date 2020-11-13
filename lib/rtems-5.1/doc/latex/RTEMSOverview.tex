@@ -1,0 +1,78 @@
+\hypertarget{RTEMSOverview_RTEMSOverviewSecIntroduction}{}\section{Introduction}\label{RTEMSOverview_RTEMSOverviewSecIntroduction}
+R\+T\+E\+MS, Real-\/\+Time Executive for Multiprocessor Systems, is a real-\/time executive (kernel) which provides a high performance environment for embedded military applications including the following features\+:
+
+
+\begin{DoxyItemize}
+\item multitasking capabilities
+\item homogeneous and heterogeneous multiprocessor systems
+\item event-\/driven, priority-\/based, preemptive scheduling
+\item optional rate monotonic scheduling
+\item intertask communication and synchronization
+\item priority inheritance
+\item responsive interrupt management
+\item dynamic memory allocation
+\item high level of user configurability
+\end{DoxyItemize}
+
+This manual describes the usage of R\+T\+E\+MS for applications written in the C programming language. Those implementation details that are processor dependent are provided in the Applications Supplement documents. A supplement document which addresses specific architectural issues that affect R\+T\+E\+MS is provided for each processor type that is supported.\hypertarget{RTEMSOverview_RTEMSOverviewSecRealtimeApplicationSystems}{}\section{Real-\/time Application Systems}\label{RTEMSOverview_RTEMSOverviewSecRealtimeApplicationSystems}
+Real-\/time application systems are a special class of computer applications. They have a complex set of characteristics that distinguish them from other software problems. Generally, they must adhere to more rigorous requirements. The correctness of the system depends not only on the results of computations, but also on the time at which the results are produced. The most important and complex characteristic of real-\/time application systems is that they must receive and respond to a set of external stimuli within rigid and critical time constraints referred to as deadlines. Systems can be buried by an avalanche of interdependent, asynchronous or cyclical event streams.
+
+Deadlines can be further characterized as either hard or soft based upon the value of the results when produced after the deadline has passed. A deadline is hard if the results have no value or if their use will result in a catastrophic event. In contrast, results which are produced after a soft deadline may have some value.
+
+Another distinguishing requirement of real-\/time application systems is the ability to coordinate or manage a large number of concurrent activities. Since software is a synchronous entity, this presents special problems. One instruction follows another in a repeating synchronous cycle. Even though mechanisms have been developed to allow for the processing of external asynchronous events, the software design efforts required to process and manage these events and tasks are growing more complicated.
+
+The design process is complicated further by spreading this activity over a set of processors instead of a single processor. The challenges associated with designing and building real-\/time application systems become very complex when multiple processors are involved. New requirements such as interprocessor communication channels and global resources that must be shared between competing processors are introduced. The ramifications of multiple processors complicate each and every characteristic of a real-\/time system.\hypertarget{RTEMSOverview_RTEMSOverviewSecRealtimeExecutive}{}\section{Real-\/time Executive}\label{RTEMSOverview_RTEMSOverviewSecRealtimeExecutive}
+Fortunately, real-\/time operating systems or real-\/time executives serve as a cornerstone on which to build the application system. A real-\/time multitasking executive allows an application to be cast into a set of logical, autonomous processes or tasks which become quite manageable. Each task is internally synchronous, but different tasks execute independently, resulting in an asynchronous processing stream. Tasks can be dynamically paused for many reasons resulting in a different task being allowed to execute for a period of time. The executive also provides an interface to other system components such as interrupt handlers and device drivers. System components may request the executive to allocate and coordinate resources, and to wait for and trigger synchronizing conditions. The executive system calls effectively extend the C\+PU instruction set to support efficient multitasking. By causing tasks to travel through well-\/defined state transitions, system calls permit an application to demand-\/switch between tasks in response to real-\/time events.
+
+By proper grouping of responses to stimuli into separate tasks, a system can now asynchronously switch between independent streams of execution, directly responding to external stimuli as they occur. This allows the system design to meet critical performance specifications which are typically measured by guaranteed response time and transaction throughput. The multiprocessor extensions of R\+T\+E\+MS provide the features necessary to manage the extra requirements introduced by a system distributed across several processors. It removes the physical barriers of processor boundaries from the world of the system designer, enabling more critical aspects of the system to receive the required attention. Such a system, based on an efficient real-\/time, multiprocessor executive, is a more realistic model of the outside world or environment for which it is designed. As a result, the system will always be more logical, efficient, and reliable.
+
+By using the directives provided by R\+T\+E\+MS, the real-\/time applications developer is freed from the problem of controlling and synchronizing multiple tasks and processors. In addition, one need not develop, test, debug, and document routines to manage memory, pass messages, or provide mutual exclusion. The developer is then able to concentrate solely on the application. By using standard software components, the time and cost required to develop sophisticated real-\/time applications is significantly reduced.\hypertarget{RTEMSOverview_RTEMSOverviewSecApplicationArchitecture}{}\section{R\+T\+E\+M\+S Application Architecture}\label{RTEMSOverview_RTEMSOverviewSecApplicationArchitecture}
+One important design goal of R\+T\+E\+MS was to provide a bridge between two critical layers of typical real-\/time systems. As shown in the following figure, R\+T\+E\+MS serves as a buffer between the project dependent application code and the target hardware. Most hardware dependencies for real-\/time applications can be localized to the low level device drivers.
+
+\begin{DoxyRefDesc}{Todo}
+\item[\mbox{\hyperlink{todo__todo000003}{Todo}}]Image R\+T\+E\+MS Application Architecture\end{DoxyRefDesc}
+
+
+The R\+T\+E\+MS I/O interface manager provides an efficient tool for incorporating these hardware dependencies into the system while simultaneously providing a general mechanism to the application code that accesses them. A well designed real-\/time system can benefit from this architecture by building a rich library of standard application components which can be used repeatedly in other real-\/time projects.\hypertarget{RTEMSOverview_RTEMSOverviewSecInternalArchitecture}{}\section{R\+T\+E\+M\+S Internal Architecture}\label{RTEMSOverview_RTEMSOverviewSecInternalArchitecture}
+R\+T\+E\+MS can be viewed as a set of layered components that work in harmony to provide a set of services to a real-\/time application system. The executive interface presented to the application is formed by grouping directives into logical sets called resource managers. Functions utilized by multiple managers such as scheduling, dispatching, and object management are provided in the executive core. The executive core depends on a small set of C\+PU dependent routines. Together these components provide a powerful run time environment that promotes the development of efficient real-\/time application systems. The following figure illustrates this organization\+:
+
+\begin{DoxyRefDesc}{Todo}
+\item[\mbox{\hyperlink{todo__todo000004}{Todo}}]Image R\+T\+E\+MS Architecture\end{DoxyRefDesc}
+
+
+Subsequent chapters present a detailed description of the capabilities provided by each of the following R\+T\+E\+MS managers\+:
+
+
+\begin{DoxyItemize}
+\item initialization
+\item task
+\item interrupt
+\item clock
+\item timer
+\item semaphore
+\item message
+\item event
+\item signal
+\item partition
+\item region
+\item dual ported memory
+\item I/O
+\item fatal error
+\item rate monotonic
+\item user extensions
+\item multiprocessing
+\end{DoxyItemize}\hypertarget{RTEMSOverview_RTEMSOverviewSecUserCustomization}{}\section{User Customization and Extensibility}\label{RTEMSOverview_RTEMSOverviewSecUserCustomization}
+As 32-\/bit microprocessors have decreased in cost, they have become increasingly common in a variety of embedded systems. A wide range of custom and general-\/purpose processor boards are based on various 32-\/bit processors. R\+T\+E\+MS was designed to make no assumptions concerning the characteristics of individual microprocessor families or of specific support hardware. In addition, R\+T\+E\+MS allows the system developer a high degree of freedom in customizing and extending its features.
+
+R\+T\+E\+MS assumes the existence of a supported microprocessor and sufficient memory for both R\+T\+E\+MS and the real-\/time application. Board dependent components such as clocks, interrupt controllers, or I/O devices can be easily integrated with R\+T\+E\+MS. The customization and extensibility features allow R\+T\+E\+MS to efficiently support as many environments as possible.\hypertarget{RTEMSOverview_RTEMSOverviewSecPortability}{}\section{Portability}\label{RTEMSOverview_RTEMSOverviewSecPortability}
+The issue of portability was the major factor in the creation of R\+T\+E\+MS. Since R\+T\+E\+MS is designed to isolate the hardware dependencies in the specific board support packages, the real-\/time application should be easily ported to any other processor. The use of R\+T\+E\+MS allows the development of real-\/time applications which can be completely independent of a particular microprocessor architecture.\hypertarget{RTEMSOverview_RTEMSOverviewSecMemoryRequirements}{}\section{Memory Requirements}\label{RTEMSOverview_RTEMSOverviewSecMemoryRequirements}
+Since memory is a critical resource in many real-\/time embedded systems, R\+T\+E\+MS was specifically designed to automatically leave out all services that are not required from the run-\/time environment. Features such as networking, various filesystems, and many other features are completely optional. This allows the application designer the flexibility to tailor R\+T\+E\+MS to most efficiently meet system requirements while still satisfying even the most stringent memory constraints. As a result, the size of the R\+T\+E\+MS executive is application dependent.
+
+R\+T\+E\+MS requires R\+AM to manage each instance of an R\+T\+E\+MS object that is created. Thus the more R\+T\+E\+MS objects an application needs, the more memory that must be reserved. See Configuring a System Determining Memory Requirements for more details.
+
+\begin{DoxyRefDesc}{Todo}
+\item[\mbox{\hyperlink{todo__todo000005}{Todo}}]Link to Configuring a System\+Determining Memory Requirements\end{DoxyRefDesc}
+
+
+R\+T\+E\+MS utilizes memory for both code and data space. Although R\+T\+E\+MS\textquotesingle{} data space must be in R\+AM, its code space can be located in either R\+OM or R\+AM.\hypertarget{RTEMSOverview_RTEMSOverviewSecAudience}{}\section{Audience}\label{RTEMSOverview_RTEMSOverviewSecAudience}
+This manual was written for experienced real-\/time software developers. Although some background is provided, it is assumed that the reader is familiar with the concepts of task management as well as intertask communication and synchronization. Since directives, user related data structures, and examples are presented in C, a basic understanding of the C programming language is required to fully understand the material presented. However, because of the similarity of the Ada and C R\+T\+E\+MS implementations, users will find that the use and behavior of the two implementations is very similar. A working knowledge of the target processor is helpful in understanding some of R\+T\+E\+MS\textquotesingle{} features. A thorough understanding of the executive cannot be obtained without studying the entire manual because many of R\+T\+E\+MS\textquotesingle{} concepts and features are interrelated. Experienced R\+T\+E\+MS users will find that the manual organization facilitates its use as a reference document. 

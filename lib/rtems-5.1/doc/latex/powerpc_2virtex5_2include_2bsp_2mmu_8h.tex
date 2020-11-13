@@ -1,0 +1,120 @@
+\hypertarget{powerpc_2virtex5_2include_2bsp_2mmu_8h}{}\section{bsps/powerpc/virtex5/include/bsp/mmu.h File Reference}
+\label{powerpc_2virtex5_2include_2bsp_2mmu_8h}\index{bsps/powerpc/virtex5/include/bsp/mmu.h@{bsps/powerpc/virtex5/include/bsp/mmu.h}}
+
+
+Routines to manipulate the P\+PC 440 M\+MU.  
+
+
+{\ttfamily \#include $<$rtems.\+h$>$}\newline
+{\ttfamily \#include $<$inttypes.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structbsp__tlb__entry__t}{bsp\+\_\+tlb\+\_\+entry\+\_\+t}}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bfseries N\+T\+L\+BS}~64
+\item 
+\#define {\bfseries M\+M\+U\+\_\+\+M\+\_\+\+S\+I\+Z\+E\+\_\+1K}~(0x00000000\+U)
+\item 
+\#define {\bfseries M\+M\+U\+\_\+\+M\+\_\+\+S\+I\+Z\+E\+\_\+4K}~(0x08000000\+U)
+\item 
+\#define {\bfseries M\+M\+U\+\_\+\+M\+\_\+\+S\+I\+Z\+E\+\_\+16K}~(0x10000000\+U)
+\item 
+\#define {\bfseries M\+M\+U\+\_\+\+M\+\_\+\+S\+I\+Z\+E\+\_\+64K}~(0x18000000\+U)
+\item 
+\#define {\bfseries M\+M\+U\+\_\+\+M\+\_\+\+S\+I\+Z\+E\+\_\+256K}~(0x20000000\+U)
+\item 
+\#define {\bfseries M\+M\+U\+\_\+\+M\+\_\+\+S\+I\+Z\+E\+\_\+1M}~(0x28000000\+U)
+\item 
+\#define {\bfseries M\+M\+U\+\_\+\+M\+\_\+\+S\+I\+Z\+E\+\_\+16M}~(0x38000000\+U)
+\item 
+\#define {\bfseries M\+M\+U\+\_\+\+M\+\_\+\+S\+I\+Z\+E\+\_\+256M}~(0x48000000\+U)
+\item 
+\#define {\bfseries M\+M\+U\+\_\+\+M\+\_\+\+S\+I\+Z\+E\+\_\+\+M\+IN}~(M\+M\+U\+\_\+\+M\+\_\+\+S\+I\+Z\+E\+\_\+1K)
+\item 
+\#define {\bfseries M\+M\+U\+\_\+\+M\+\_\+\+S\+I\+Z\+E\+\_\+\+M\+AX}~(M\+M\+U\+\_\+\+M\+\_\+\+S\+I\+Z\+E\+\_\+256M)
+\item 
+\#define {\bfseries M\+M\+U\+\_\+\+M\+\_\+\+S\+I\+ZE}~(0x78000000\+U)
+\item 
+\#define {\bfseries M\+M\+U\+\_\+\+V\+\_\+\+S\+I\+ZE}~(27)
+\item 
+\#define {\bfseries M\+M\+U\+\_\+\+M\+\_\+\+A\+T\+T\+R\+\_\+\+U\+S\+E\+R0}~(0x00010000\+U)
+\item 
+\#define {\bfseries M\+M\+U\+\_\+\+M\+\_\+\+A\+T\+T\+R\+\_\+\+U\+S\+E\+R1}~(0x00008000\+U)
+\item 
+\#define {\bfseries M\+M\+U\+\_\+\+M\+\_\+\+A\+T\+T\+R\+\_\+\+U\+S\+E\+R2}~(0x00004000\+U)
+\item 
+\#define {\bfseries M\+M\+U\+\_\+\+M\+\_\+\+A\+T\+T\+R\+\_\+\+U\+S\+E\+R3}~(0x00002000\+U)
+\item 
+\#define {\bfseries M\+M\+U\+\_\+\+M\+\_\+\+A\+T\+TR}~(0x0001e000\+U)
+\item 
+\#define {\bfseries M\+M\+U\+\_\+\+V\+\_\+\+A\+T\+TR}~(13)
+\item 
+\#define {\bfseries M\+M\+U\+\_\+\+M\+\_\+\+P\+R\+O\+P\+\_\+\+W\+R\+I\+T\+E\+\_\+\+T\+H\+R\+O\+U\+GH}~(0x00001000\+U)
+\item 
+\#define {\bfseries M\+M\+U\+\_\+\+M\+\_\+\+P\+R\+O\+P\+\_\+\+U\+N\+C\+A\+C\+H\+ED}~(0x00000800\+U)
+\item 
+\#define {\bfseries M\+M\+U\+\_\+\+M\+\_\+\+P\+R\+O\+P\+\_\+\+M\+E\+M\+\_\+\+C\+O\+H\+E\+R\+E\+NT}~(0x00000400\+U)
+\item 
+\#define {\bfseries M\+M\+U\+\_\+\+M\+\_\+\+P\+R\+O\+P\+\_\+\+G\+U\+A\+R\+D\+ED}~(0x00000200\+U)
+\item 
+\#define {\bfseries M\+M\+U\+\_\+\+M\+\_\+\+P\+R\+O\+P\+\_\+\+L\+I\+T\+T\+L\+E\+\_\+\+E\+N\+D\+I\+AN}~(0x00000100\+U)
+\item 
+\#define {\bfseries M\+M\+U\+\_\+\+M\+\_\+\+P\+R\+OP}~(0x00000f00\+U)
+\item 
+\#define {\bfseries M\+M\+U\+\_\+\+V\+\_\+\+P\+R\+OP}~(8)
+\item 
+\#define {\bfseries M\+M\+U\+\_\+\+M\+\_\+\+P\+E\+R\+M\+\_\+\+U\+S\+E\+R\+\_\+\+E\+X\+EC}~(0x00000020\+U)
+\item 
+\#define {\bfseries M\+M\+U\+\_\+\+M\+\_\+\+P\+E\+R\+M\+\_\+\+U\+S\+E\+R\+\_\+\+W\+R\+I\+TE}~(0x00000010\+U)
+\item 
+\#define {\bfseries M\+M\+U\+\_\+\+M\+\_\+\+P\+E\+R\+M\+\_\+\+U\+S\+E\+R\+\_\+\+R\+E\+AD}~(0x00000008\+U)
+\item 
+\#define {\bfseries M\+M\+U\+\_\+\+M\+\_\+\+P\+E\+R\+M\+\_\+\+S\+U\+P\+E\+R\+\_\+\+E\+X\+EC}~(0x00000004\+U)
+\item 
+\#define {\bfseries M\+M\+U\+\_\+\+M\+\_\+\+P\+E\+R\+M\+\_\+\+S\+U\+P\+E\+R\+\_\+\+W\+R\+I\+TE}~(0x00000002\+U)
+\item 
+\#define {\bfseries M\+M\+U\+\_\+\+M\+\_\+\+P\+E\+R\+M\+\_\+\+S\+U\+P\+E\+R\+\_\+\+R\+E\+AD}~(0x00000001\+U)
+\item 
+\#define {\bfseries M\+M\+U\+\_\+\+M\+\_\+\+P\+E\+RM}~(0x0000003f\+U)
+\item 
+\#define {\bfseries M\+M\+U\+\_\+\+V\+\_\+\+P\+E\+RM}~(0)
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef int {\bfseries bsp\+\_\+tlb\+\_\+idx\+\_\+t}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void {\bfseries bsp\+\_\+mmu\+\_\+dump\+\_\+cache} (F\+I\+LE $\ast$f)
+\item 
+int {\bfseries bsp\+\_\+mmu\+\_\+update} (bsp\+\_\+tlb\+\_\+idx\+\_\+t key, bool quiet, F\+I\+LE $\ast$f)
+\item 
+int {\bfseries bsp\+\_\+mmu\+\_\+initialize} (void)
+\item 
+bsp\+\_\+tlb\+\_\+idx\+\_\+t {\bfseries bsp\+\_\+mmu\+\_\+find\+\_\+first\+\_\+free} (void)
+\item 
+bsp\+\_\+tlb\+\_\+idx\+\_\+t {\bfseries bsp\+\_\+mmu\+\_\+write} (bsp\+\_\+tlb\+\_\+idx\+\_\+t idx, uint32\+\_\+t ea, uint32\+\_\+t pa, int sz, uint32\+\_\+t flgs, uint32\+\_\+t tid, uint32\+\_\+t ts, uint32\+\_\+t erpn)
+\item 
+bsp\+\_\+tlb\+\_\+idx\+\_\+t {\bfseries bsp\+\_\+mmu\+\_\+match} (uint32\+\_\+t ea, int sz, uint32\+\_\+t tid, uint32\+\_\+t ts)
+\item 
+bsp\+\_\+tlb\+\_\+idx\+\_\+t {\bfseries bsp\+\_\+mmu\+\_\+find} (uint32\+\_\+t ea, uint32\+\_\+t tid, uint32\+\_\+t ts)
+\item 
+int {\bfseries bsp\+\_\+mmu\+\_\+invalidate} (bsp\+\_\+tlb\+\_\+idx\+\_\+t key)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structbsp__tlb__entry__t}{bsp\+\_\+tlb\+\_\+entry\+\_\+t}} $\ast$ {\bfseries bsp\+\_\+mmu\+\_\+cache}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Routines to manipulate the P\+PC 440 M\+MU. 
+

@@ -1,0 +1,330 @@
+\hypertarget{arm_2atsam_2include_2libchip_2include_2twi_8h}{}\section{bsps/arm/atsam/include/libchip/include/twi.h File Reference}
+\label{arm_2atsam_2include_2libchip_2include_2twi_8h}\index{bsps/arm/atsam/include/libchip/include/twi.h@{bsps/arm/atsam/include/libchip/include/twi.h}}
+{\ttfamily \#include \char`\"{}chip.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{arm_2atsam_2include_2libchip_2include_2twi_8h_af7e15b22aaa6d2e9e782afed5b59374d}\label{arm_2atsam_2include_2libchip_2include_2twi_8h_af7e15b22aaa6d2e9e782afed5b59374d}} 
+\#define {\bfseries T\+W\+I\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+T\+X\+R\+DY}(status)~((status \& \mbox{\hyperlink{group__SAMV71__TWIHS_ga5bdee198f4a1c34b583374f4d643d46c}{T\+W\+I\+H\+S\+\_\+\+S\+R\+\_\+\+T\+X\+R\+DY}}) == \mbox{\hyperlink{group__SAMV71__TWIHS_ga5bdee198f4a1c34b583374f4d643d46c}{T\+W\+I\+H\+S\+\_\+\+S\+R\+\_\+\+T\+X\+R\+DY}})
+\item 
+\mbox{\Hypertarget{arm_2atsam_2include_2libchip_2include_2twi_8h_a0e22913ecfdece55b1b8f553351893bb}\label{arm_2atsam_2include_2libchip_2include_2twi_8h_a0e22913ecfdece55b1b8f553351893bb}} 
+\#define {\bfseries T\+W\+I\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+R\+X\+R\+DY}(status)~((status \& \mbox{\hyperlink{group__SAMV71__TWIHS_ga0af9878bc9db95db94b0bf024cc00138}{T\+W\+I\+H\+S\+\_\+\+S\+R\+\_\+\+R\+X\+R\+DY}}) == \mbox{\hyperlink{group__SAMV71__TWIHS_ga0af9878bc9db95db94b0bf024cc00138}{T\+W\+I\+H\+S\+\_\+\+S\+R\+\_\+\+R\+X\+R\+DY}})
+\item 
+\mbox{\Hypertarget{arm_2atsam_2include_2libchip_2include_2twi_8h_a249be77a569ec813dfeb2983085e9423}\label{arm_2atsam_2include_2libchip_2include_2twi_8h_a249be77a569ec813dfeb2983085e9423}} 
+\#define {\bfseries T\+W\+I\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+T\+X\+C\+O\+MP}(status)~((status \& \mbox{\hyperlink{group__SAMV71__TWIHS_gad1a38e3c4d41f5b30cd53f9e59a00a45}{T\+W\+I\+H\+S\+\_\+\+S\+R\+\_\+\+T\+X\+C\+O\+MP}}) == \mbox{\hyperlink{group__SAMV71__TWIHS_gad1a38e3c4d41f5b30cd53f9e59a00a45}{T\+W\+I\+H\+S\+\_\+\+S\+R\+\_\+\+T\+X\+C\+O\+MP}})
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{arm_2atsam_2include_2libchip_2include_2twi_8h_ac90d2f32c99191c21f02626a9584b6bb}{T\+W\+I\+\_\+\+Configure\+Master}} (\mbox{\hyperlink{structTwihs}{Twihs}} $\ast$p\+Twi, uint32\+\_\+t twck, uint32\+\_\+t mck)
+\begin{DoxyCompactList}\small\item\em Configures a T\+WI peripheral to operate in master mode, at the given frequency (in Hz). The duty cycle of the T\+WI clock is set to 50\%. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{arm_2atsam_2include_2libchip_2include_2twi_8h_adf540599d435de6b06ddc35427a17fed}{T\+W\+I\+\_\+\+Configure\+Slave}} (\mbox{\hyperlink{structTwihs}{Twihs}} $\ast$p\+Twi, uint8\+\_\+t slave\+Address)
+\begin{DoxyCompactList}\small\item\em Configures a T\+WI peripheral to operate in slave mode. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{arm_2atsam_2include_2libchip_2include_2twi_8h_ab6f6a89c7dbb1075f904386273252977}{T\+W\+I\+\_\+\+Stop}} (\mbox{\hyperlink{structTwihs}{Twihs}} $\ast$p\+Twi)
+\begin{DoxyCompactList}\small\item\em Sends a S\+T\+OP condition on the T\+WI. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{arm_2atsam_2include_2libchip_2include_2twi_8h_a806d1ace472ce5f4e2fe2de6f5a425ff}{T\+W\+I\+\_\+\+Start\+Read}} (\mbox{\hyperlink{structTwihs}{Twihs}} $\ast$p\+Twi, uint8\+\_\+t address, uint32\+\_\+t iaddress, uint8\+\_\+t isize)
+\begin{DoxyCompactList}\small\item\em Starts a read operation on the T\+WI bus with the specified slave, it returns immediately. Data must then be read using \mbox{\hyperlink{arm_2atsam_2contrib_2libraries_2libchip_2source_2twi_8c_a8b4e96e6ce1126921517147b048fde51}{T\+W\+I\+\_\+\+Read\+Byte()}} whenever a byte is available (poll using \mbox{\hyperlink{arm_2atsam_2contrib_2libraries_2libchip_2source_2twi_8c_a2bb399b4984df2fdaabf741326636de2}{T\+W\+I\+\_\+\+Byte\+Received()}}). \end{DoxyCompactList}\item 
+uint8\+\_\+t \mbox{\hyperlink{arm_2atsam_2include_2libchip_2include_2twi_8h_a8b4e96e6ce1126921517147b048fde51}{T\+W\+I\+\_\+\+Read\+Byte}} (\mbox{\hyperlink{structTwihs}{Twihs}} $\ast$p\+Twi)
+\begin{DoxyCompactList}\small\item\em Reads a byte from the T\+WI bus. The read operation must have been started using \mbox{\hyperlink{arm_2atsam_2contrib_2libraries_2libchip_2source_2twi_8c_a806d1ace472ce5f4e2fe2de6f5a425ff}{T\+W\+I\+\_\+\+Start\+Read()}} and a byte must be available (check with \mbox{\hyperlink{arm_2atsam_2contrib_2libraries_2libchip_2source_2twi_8c_a2bb399b4984df2fdaabf741326636de2}{T\+W\+I\+\_\+\+Byte\+Received()}}). \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{arm_2atsam_2include_2libchip_2include_2twi_8h_ad728b448499f0b4d4633dfe0cc4a5ee7}{T\+W\+I\+\_\+\+Write\+Byte}} (\mbox{\hyperlink{structTwihs}{Twihs}} $\ast$p\+Twi, uint8\+\_\+t byte)
+\begin{DoxyCompactList}\small\item\em Sends a byte of data to one of the T\+WI slaves on the bus. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{arm_2atsam_2include_2libchip_2include_2twi_8h_a933fafb0a0d430f7feb10d01138b0466}{T\+W\+I\+\_\+\+Start\+Write}} (\mbox{\hyperlink{structTwihs}{Twihs}} $\ast$p\+Twi, uint8\+\_\+t address, uint32\+\_\+t iaddress, uint8\+\_\+t isize, uint8\+\_\+t byte)
+\begin{DoxyCompactList}\small\item\em Starts a write operation on the T\+WI to access the selected slave, then returns immediately. A byte of data must be provided to start the write; other bytes are written next. after that to send the remaining bytes. \end{DoxyCompactList}\item 
+uint8\+\_\+t \mbox{\hyperlink{arm_2atsam_2include_2libchip_2include_2twi_8h_a2bb399b4984df2fdaabf741326636de2}{T\+W\+I\+\_\+\+Byte\+Received}} (\mbox{\hyperlink{structTwihs}{Twihs}} $\ast$p\+Twi)
+\begin{DoxyCompactList}\small\item\em Check if a byte have been received from T\+WI. \end{DoxyCompactList}\item 
+uint8\+\_\+t \mbox{\hyperlink{arm_2atsam_2include_2libchip_2include_2twi_8h_a908535df2873ebeaa63f6fda73ea6708}{T\+W\+I\+\_\+\+Byte\+Sent}} (\mbox{\hyperlink{structTwihs}{Twihs}} $\ast$p\+Twi)
+\begin{DoxyCompactList}\small\item\em Check if a byte have been sent to T\+WI. \end{DoxyCompactList}\item 
+uint8\+\_\+t \mbox{\hyperlink{arm_2atsam_2include_2libchip_2include_2twi_8h_a8d8a0d10a7d128428c350f7337191fbd}{T\+W\+I\+\_\+\+Transfer\+Complete}} (\mbox{\hyperlink{structTwihs}{Twihs}} $\ast$p\+Twi)
+\begin{DoxyCompactList}\small\item\em Check if current transmission is completed. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{arm_2atsam_2include_2libchip_2include_2twi_8h_ab3bf1b5df694229af5fae34ca569ab7b}{T\+W\+I\+\_\+\+Enable\+It}} (\mbox{\hyperlink{structTwihs}{Twihs}} $\ast$p\+Twi, uint32\+\_\+t sources)
+\begin{DoxyCompactList}\small\item\em Enables the selected interrupts sources on a T\+WI peripheral. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{arm_2atsam_2include_2libchip_2include_2twi_8h_ac976e61b9b9d4488753f960d3df80c63}{T\+W\+I\+\_\+\+Disable\+It}} (\mbox{\hyperlink{structTwihs}{Twihs}} $\ast$p\+Twi, uint32\+\_\+t sources)
+\begin{DoxyCompactList}\small\item\em Disables the selected interrupts sources on a T\+WI peripheral. \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{arm_2atsam_2include_2libchip_2include_2twi_8h_a316b5d5ffbfa49a8d6517a061b92a4a6}{T\+W\+I\+\_\+\+Get\+Status}} (\mbox{\hyperlink{structTwihs}{Twihs}} $\ast$p\+Twi)
+\begin{DoxyCompactList}\small\item\em Get the current status register of the given T\+WI peripheral. \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{arm_2atsam_2include_2libchip_2include_2twi_8h_aee8c3520f24c54aedbad6cee6ab2eeaa}{T\+W\+I\+\_\+\+Get\+Masked\+Status}} (\mbox{\hyperlink{structTwihs}{Twihs}} $\ast$p\+Twi)
+\begin{DoxyCompactList}\small\item\em Returns the current status register of the given T\+WI peripheral, but masking interrupt sources which are not currently enabled. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{arm_2atsam_2include_2libchip_2include_2twi_8h_ade1813a089ae27dac920fa1b07d46b94}{T\+W\+I\+\_\+\+Send\+S\+T\+O\+P\+Condition}} (\mbox{\hyperlink{structTwihs}{Twihs}} $\ast$p\+Twi)
+\begin{DoxyCompactList}\small\item\em Sends a S\+T\+OP condition. S\+T\+OP Condition is sent just after completing the current byte transmission in master read mode. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Interface for configuration the Two Wire Interface (T\+WI) peripheral. 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{arm_2atsam_2include_2libchip_2include_2twi_8h_a2bb399b4984df2fdaabf741326636de2}\label{arm_2atsam_2include_2libchip_2include_2twi_8h_a2bb399b4984df2fdaabf741326636de2}} 
+\index{twi.h@{twi.h}!TWI\_ByteReceived@{TWI\_ByteReceived}}
+\index{TWI\_ByteReceived@{TWI\_ByteReceived}!twi.h@{twi.h}}
+\subsubsection{\texorpdfstring{TWI\_ByteReceived()}{TWI\_ByteReceived()}}
+{\footnotesize\ttfamily uint8\+\_\+t T\+W\+I\+\_\+\+Byte\+Received (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structTwihs}{Twihs}} $\ast$}]{p\+Twi }\end{DoxyParamCaption})}
+
+
+
+Check if a byte have been received from T\+WI. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Twi} & Pointer to an \mbox{\hyperlink{structTwihs}{Twihs}} instance. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if a byte has been received and can be read on the given T\+WI peripheral; otherwise, returns 0. This function resets the status register. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{arm_2atsam_2include_2libchip_2include_2twi_8h_a908535df2873ebeaa63f6fda73ea6708}\label{arm_2atsam_2include_2libchip_2include_2twi_8h_a908535df2873ebeaa63f6fda73ea6708}} 
+\index{twi.h@{twi.h}!TWI\_ByteSent@{TWI\_ByteSent}}
+\index{TWI\_ByteSent@{TWI\_ByteSent}!twi.h@{twi.h}}
+\subsubsection{\texorpdfstring{TWI\_ByteSent()}{TWI\_ByteSent()}}
+{\footnotesize\ttfamily uint8\+\_\+t T\+W\+I\+\_\+\+Byte\+Sent (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structTwihs}{Twihs}} $\ast$}]{p\+Twi }\end{DoxyParamCaption})}
+
+
+
+Check if a byte have been sent to T\+WI. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Twi} & Pointer to an \mbox{\hyperlink{structTwihs}{Twihs}} instance. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if a byte has been sent so another one can be stored for transmission; otherwise returns 0. This function clears the status register. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{arm_2atsam_2include_2libchip_2include_2twi_8h_ac90d2f32c99191c21f02626a9584b6bb}\label{arm_2atsam_2include_2libchip_2include_2twi_8h_ac90d2f32c99191c21f02626a9584b6bb}} 
+\index{twi.h@{twi.h}!TWI\_ConfigureMaster@{TWI\_ConfigureMaster}}
+\index{TWI\_ConfigureMaster@{TWI\_ConfigureMaster}!twi.h@{twi.h}}
+\subsubsection{\texorpdfstring{TWI\_ConfigureMaster()}{TWI\_ConfigureMaster()}}
+{\footnotesize\ttfamily void T\+W\+I\+\_\+\+Configure\+Master (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structTwihs}{Twihs}} $\ast$}]{p\+Twi,  }\item[{uint32\+\_\+t}]{dw\+Tw\+Ck,  }\item[{uint32\+\_\+t}]{dw\+M\+Ck }\end{DoxyParamCaption})}
+
+
+
+Configures a T\+WI peripheral to operate in master mode, at the given frequency (in Hz). The duty cycle of the T\+WI clock is set to 50\%. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Twi} & Pointer to an \mbox{\hyperlink{structTwihs}{Twihs}} instance. \\
+\hline
+{\em twck} & Desired T\+WI clock frequency. \\
+\hline
+{\em mck} & Master clock frequency. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{arm_2atsam_2include_2libchip_2include_2twi_8h_adf540599d435de6b06ddc35427a17fed}\label{arm_2atsam_2include_2libchip_2include_2twi_8h_adf540599d435de6b06ddc35427a17fed}} 
+\index{twi.h@{twi.h}!TWI\_ConfigureSlave@{TWI\_ConfigureSlave}}
+\index{TWI\_ConfigureSlave@{TWI\_ConfigureSlave}!twi.h@{twi.h}}
+\subsubsection{\texorpdfstring{TWI\_ConfigureSlave()}{TWI\_ConfigureSlave()}}
+{\footnotesize\ttfamily void T\+W\+I\+\_\+\+Configure\+Slave (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structTwihs}{Twihs}} $\ast$}]{p\+Twi,  }\item[{uint8\+\_\+t}]{slave\+Address }\end{DoxyParamCaption})}
+
+
+
+Configures a T\+WI peripheral to operate in slave mode. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Twi} & Pointer to an \mbox{\hyperlink{structTwihs}{Twihs}} instance. \\
+\hline
+{\em slave\+Address} & Slave address. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{arm_2atsam_2include_2libchip_2include_2twi_8h_ac976e61b9b9d4488753f960d3df80c63}\label{arm_2atsam_2include_2libchip_2include_2twi_8h_ac976e61b9b9d4488753f960d3df80c63}} 
+\index{twi.h@{twi.h}!TWI\_DisableIt@{TWI\_DisableIt}}
+\index{TWI\_DisableIt@{TWI\_DisableIt}!twi.h@{twi.h}}
+\subsubsection{\texorpdfstring{TWI\_DisableIt()}{TWI\_DisableIt()}}
+{\footnotesize\ttfamily void T\+W\+I\+\_\+\+Disable\+It (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structTwihs}{Twihs}} $\ast$}]{p\+Twi,  }\item[{uint32\+\_\+t}]{sources }\end{DoxyParamCaption})}
+
+
+
+Disables the selected interrupts sources on a T\+WI peripheral. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Twi} & Pointer to an \mbox{\hyperlink{structTwihs}{Twihs}} instance. \\
+\hline
+{\em sources} & Bitwise OR of selected interrupt sources. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{arm_2atsam_2include_2libchip_2include_2twi_8h_ab3bf1b5df694229af5fae34ca569ab7b}\label{arm_2atsam_2include_2libchip_2include_2twi_8h_ab3bf1b5df694229af5fae34ca569ab7b}} 
+\index{twi.h@{twi.h}!TWI\_EnableIt@{TWI\_EnableIt}}
+\index{TWI\_EnableIt@{TWI\_EnableIt}!twi.h@{twi.h}}
+\subsubsection{\texorpdfstring{TWI\_EnableIt()}{TWI\_EnableIt()}}
+{\footnotesize\ttfamily void T\+W\+I\+\_\+\+Enable\+It (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structTwihs}{Twihs}} $\ast$}]{p\+Twi,  }\item[{uint32\+\_\+t}]{sources }\end{DoxyParamCaption})}
+
+
+
+Enables the selected interrupts sources on a T\+WI peripheral. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Twi} & Pointer to an \mbox{\hyperlink{structTwihs}{Twihs}} instance. \\
+\hline
+{\em sources} & Bitwise OR of selected interrupt sources. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{arm_2atsam_2include_2libchip_2include_2twi_8h_aee8c3520f24c54aedbad6cee6ab2eeaa}\label{arm_2atsam_2include_2libchip_2include_2twi_8h_aee8c3520f24c54aedbad6cee6ab2eeaa}} 
+\index{twi.h@{twi.h}!TWI\_GetMaskedStatus@{TWI\_GetMaskedStatus}}
+\index{TWI\_GetMaskedStatus@{TWI\_GetMaskedStatus}!twi.h@{twi.h}}
+\subsubsection{\texorpdfstring{TWI\_GetMaskedStatus()}{TWI\_GetMaskedStatus()}}
+{\footnotesize\ttfamily uint32\+\_\+t T\+W\+I\+\_\+\+Get\+Masked\+Status (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structTwihs}{Twihs}} $\ast$}]{p\+Twi }\end{DoxyParamCaption})}
+
+
+
+Returns the current status register of the given T\+WI peripheral, but masking interrupt sources which are not currently enabled. 
+
+\begin{DoxyNote}{Note}
+This resets the internal value of the status register, so further read may yield different values. 
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Twi} & Pointer to an \mbox{\hyperlink{structTwihs}{Twihs}} instance. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{arm_2atsam_2include_2libchip_2include_2twi_8h_a316b5d5ffbfa49a8d6517a061b92a4a6}\label{arm_2atsam_2include_2libchip_2include_2twi_8h_a316b5d5ffbfa49a8d6517a061b92a4a6}} 
+\index{twi.h@{twi.h}!TWI\_GetStatus@{TWI\_GetStatus}}
+\index{TWI\_GetStatus@{TWI\_GetStatus}!twi.h@{twi.h}}
+\subsubsection{\texorpdfstring{TWI\_GetStatus()}{TWI\_GetStatus()}}
+{\footnotesize\ttfamily uint32\+\_\+t T\+W\+I\+\_\+\+Get\+Status (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structTwihs}{Twihs}} $\ast$}]{p\+Twi }\end{DoxyParamCaption})}
+
+
+
+Get the current status register of the given T\+WI peripheral. 
+
+\begin{DoxyNote}{Note}
+This resets the internal value of the status register, so further read may yield different values. 
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Twi} & Pointer to an \mbox{\hyperlink{structTwihs}{Twihs}} instance. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+T\+WI status register. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{arm_2atsam_2include_2libchip_2include_2twi_8h_a8b4e96e6ce1126921517147b048fde51}\label{arm_2atsam_2include_2libchip_2include_2twi_8h_a8b4e96e6ce1126921517147b048fde51}} 
+\index{twi.h@{twi.h}!TWI\_ReadByte@{TWI\_ReadByte}}
+\index{TWI\_ReadByte@{TWI\_ReadByte}!twi.h@{twi.h}}
+\subsubsection{\texorpdfstring{TWI\_ReadByte()}{TWI\_ReadByte()}}
+{\footnotesize\ttfamily uint8\+\_\+t T\+W\+I\+\_\+\+Read\+Byte (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structTwihs}{Twihs}} $\ast$}]{p\+Twi }\end{DoxyParamCaption})}
+
+
+
+Reads a byte from the T\+WI bus. The read operation must have been started using \mbox{\hyperlink{arm_2atsam_2contrib_2libraries_2libchip_2source_2twi_8c_a806d1ace472ce5f4e2fe2de6f5a425ff}{T\+W\+I\+\_\+\+Start\+Read()}} and a byte must be available (check with \mbox{\hyperlink{arm_2atsam_2contrib_2libraries_2libchip_2source_2twi_8c_a2bb399b4984df2fdaabf741326636de2}{T\+W\+I\+\_\+\+Byte\+Received()}}). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Twi} & Pointer to an \mbox{\hyperlink{structTwihs}{Twihs}} instance. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+byte read. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{arm_2atsam_2include_2libchip_2include_2twi_8h_ade1813a089ae27dac920fa1b07d46b94}\label{arm_2atsam_2include_2libchip_2include_2twi_8h_ade1813a089ae27dac920fa1b07d46b94}} 
+\index{twi.h@{twi.h}!TWI\_SendSTOPCondition@{TWI\_SendSTOPCondition}}
+\index{TWI\_SendSTOPCondition@{TWI\_SendSTOPCondition}!twi.h@{twi.h}}
+\subsubsection{\texorpdfstring{TWI\_SendSTOPCondition()}{TWI\_SendSTOPCondition()}}
+{\footnotesize\ttfamily void T\+W\+I\+\_\+\+Send\+S\+T\+O\+P\+Condition (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structTwihs}{Twihs}} $\ast$}]{p\+Twi }\end{DoxyParamCaption})}
+
+
+
+Sends a S\+T\+OP condition. S\+T\+OP Condition is sent just after completing the current byte transmission in master read mode. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Twi} & Pointer to an \mbox{\hyperlink{structTwihs}{Twihs}} instance. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{arm_2atsam_2include_2libchip_2include_2twi_8h_a806d1ace472ce5f4e2fe2de6f5a425ff}\label{arm_2atsam_2include_2libchip_2include_2twi_8h_a806d1ace472ce5f4e2fe2de6f5a425ff}} 
+\index{twi.h@{twi.h}!TWI\_StartRead@{TWI\_StartRead}}
+\index{TWI\_StartRead@{TWI\_StartRead}!twi.h@{twi.h}}
+\subsubsection{\texorpdfstring{TWI\_StartRead()}{TWI\_StartRead()}}
+{\footnotesize\ttfamily void T\+W\+I\+\_\+\+Start\+Read (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structTwihs}{Twihs}} $\ast$}]{p\+Twi,  }\item[{uint8\+\_\+t}]{address,  }\item[{uint32\+\_\+t}]{iaddress,  }\item[{uint8\+\_\+t}]{isize }\end{DoxyParamCaption})}
+
+
+
+Starts a read operation on the T\+WI bus with the specified slave, it returns immediately. Data must then be read using \mbox{\hyperlink{arm_2atsam_2contrib_2libraries_2libchip_2source_2twi_8c_a8b4e96e6ce1126921517147b048fde51}{T\+W\+I\+\_\+\+Read\+Byte()}} whenever a byte is available (poll using \mbox{\hyperlink{arm_2atsam_2contrib_2libraries_2libchip_2source_2twi_8c_a2bb399b4984df2fdaabf741326636de2}{T\+W\+I\+\_\+\+Byte\+Received()}}). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Twi} & Pointer to an \mbox{\hyperlink{structTwihs}{Twihs}} instance. \\
+\hline
+{\em address} & Slave address on the bus. \\
+\hline
+{\em iaddress} & Optional internal address bytes. \\
+\hline
+{\em isize} & Number of internal address bytes. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{arm_2atsam_2include_2libchip_2include_2twi_8h_a933fafb0a0d430f7feb10d01138b0466}\label{arm_2atsam_2include_2libchip_2include_2twi_8h_a933fafb0a0d430f7feb10d01138b0466}} 
+\index{twi.h@{twi.h}!TWI\_StartWrite@{TWI\_StartWrite}}
+\index{TWI\_StartWrite@{TWI\_StartWrite}!twi.h@{twi.h}}
+\subsubsection{\texorpdfstring{TWI\_StartWrite()}{TWI\_StartWrite()}}
+{\footnotesize\ttfamily void T\+W\+I\+\_\+\+Start\+Write (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structTwihs}{Twihs}} $\ast$}]{p\+Twi,  }\item[{uint8\+\_\+t}]{address,  }\item[{uint32\+\_\+t}]{iaddress,  }\item[{uint8\+\_\+t}]{isize,  }\item[{uint8\+\_\+t}]{byte }\end{DoxyParamCaption})}
+
+
+
+Starts a write operation on the T\+WI to access the selected slave, then returns immediately. A byte of data must be provided to start the write; other bytes are written next. after that to send the remaining bytes. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Twi} & Pointer to an \mbox{\hyperlink{structTwihs}{Twihs}} instance. \\
+\hline
+{\em address} & Address of slave to acccess on the bus. \\
+\hline
+{\em iaddress} & Optional slave internal address. \\
+\hline
+{\em isize} & Number of internal address bytes. \\
+\hline
+{\em byte} & First byte to send. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{arm_2atsam_2include_2libchip_2include_2twi_8h_ab6f6a89c7dbb1075f904386273252977}\label{arm_2atsam_2include_2libchip_2include_2twi_8h_ab6f6a89c7dbb1075f904386273252977}} 
+\index{twi.h@{twi.h}!TWI\_Stop@{TWI\_Stop}}
+\index{TWI\_Stop@{TWI\_Stop}!twi.h@{twi.h}}
+\subsubsection{\texorpdfstring{TWI\_Stop()}{TWI\_Stop()}}
+{\footnotesize\ttfamily void T\+W\+I\+\_\+\+Stop (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structTwihs}{Twihs}} $\ast$}]{p\+Twi }\end{DoxyParamCaption})}
+
+
+
+Sends a S\+T\+OP condition on the T\+WI. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Twi} & Pointer to an \mbox{\hyperlink{structTwihs}{Twihs}} instance. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{arm_2atsam_2include_2libchip_2include_2twi_8h_a8d8a0d10a7d128428c350f7337191fbd}\label{arm_2atsam_2include_2libchip_2include_2twi_8h_a8d8a0d10a7d128428c350f7337191fbd}} 
+\index{twi.h@{twi.h}!TWI\_TransferComplete@{TWI\_TransferComplete}}
+\index{TWI\_TransferComplete@{TWI\_TransferComplete}!twi.h@{twi.h}}
+\subsubsection{\texorpdfstring{TWI\_TransferComplete()}{TWI\_TransferComplete()}}
+{\footnotesize\ttfamily uint8\+\_\+t T\+W\+I\+\_\+\+Transfer\+Complete (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structTwihs}{Twihs}} $\ast$}]{p\+Twi }\end{DoxyParamCaption})}
+
+
+
+Check if current transmission is completed. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Twi} & Pointer to an \mbox{\hyperlink{structTwihs}{Twihs}} instance. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if the current transmission is complete (the S\+T\+OP has been sent); otherwise returns 0. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{arm_2atsam_2include_2libchip_2include_2twi_8h_ad728b448499f0b4d4633dfe0cc4a5ee7}\label{arm_2atsam_2include_2libchip_2include_2twi_8h_ad728b448499f0b4d4633dfe0cc4a5ee7}} 
+\index{twi.h@{twi.h}!TWI\_WriteByte@{TWI\_WriteByte}}
+\index{TWI\_WriteByte@{TWI\_WriteByte}!twi.h@{twi.h}}
+\subsubsection{\texorpdfstring{TWI\_WriteByte()}{TWI\_WriteByte()}}
+{\footnotesize\ttfamily void T\+W\+I\+\_\+\+Write\+Byte (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structTwihs}{Twihs}} $\ast$}]{p\+Twi,  }\item[{uint8\+\_\+t}]{byte }\end{DoxyParamCaption})}
+
+
+
+Sends a byte of data to one of the T\+WI slaves on the bus. 
+
+\begin{DoxyNote}{Note}
+This function must be called once before \mbox{\hyperlink{arm_2atsam_2contrib_2libraries_2libchip_2source_2twi_8c_a933fafb0a0d430f7feb10d01138b0466}{T\+W\+I\+\_\+\+Start\+Write()}} with the first byte of data to send, then it shall be called repeatedly after that to send the remaining bytes. 
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Twi} & Pointer to an \mbox{\hyperlink{structTwihs}{Twihs}} instance. \\
+\hline
+{\em byte} & Byte to send. \\
+\hline
+\end{DoxyParams}

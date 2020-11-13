@@ -1,0 +1,254 @@
+\hypertarget{dosfs_8h}{}\section{cpukit/include/rtems/dosfs.h File Reference}
+\label{dosfs_8h}\index{cpukit/include/rtems/dosfs.h@{cpukit/include/rtems/dosfs.h}}
+
+
+Application Interface to F\+AT Filesystem.  
+
+
+{\ttfamily \#include $<$rtems.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/libio.\+h$>$}\newline
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structrtems__dosfs__convert__handler}{rtems\+\_\+dosfs\+\_\+convert\+\_\+handler}}
+\begin{DoxyCompactList}\small\item\em F\+AT filesystem convert handler. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structrtems__dosfs__buffer}{rtems\+\_\+dosfs\+\_\+buffer}}
+\item 
+struct \mbox{\hyperlink{structrtems__dosfs__convert__control}{rtems\+\_\+dosfs\+\_\+convert\+\_\+control}}
+\begin{DoxyCompactList}\small\item\em F\+AT filesystem convert control. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structrtems__dosfs__mount__options}{rtems\+\_\+dosfs\+\_\+mount\+\_\+options}}
+\begin{DoxyCompactList}\small\item\em F\+AT filesystem mount options. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structmsdos__format__request__param__t}{msdos\+\_\+format\+\_\+request\+\_\+param\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em F\+AT file system format request parameters. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__DOSFS_gaf5f22bc1798c9fd6a8f577ebd38aaa42}{R\+T\+E\+M\+S\+\_\+\+D\+O\+S\+F\+S\+\_\+\+S\+E\+M\+A\+P\+H\+O\+R\+E\+S\+\_\+\+P\+E\+R\+\_\+\+I\+N\+S\+T\+A\+N\+CE}}~1
+\begin{DoxyCompactList}\small\item\em Semaphore count per F\+AT filesystem instance. \end{DoxyCompactList}\item 
+\#define {\bfseries M\+S\+D\+O\+S\+\_\+\+F\+M\+T\+\_\+\+I\+N\+F\+O\+\_\+\+L\+E\+V\+E\+L\+\_\+\+N\+O\+NE}~(0)
+\item 
+\#define {\bfseries M\+S\+D\+O\+S\+\_\+\+F\+M\+T\+\_\+\+I\+N\+F\+O\+\_\+\+L\+E\+V\+E\+L\+\_\+\+I\+N\+FO}~(1)
+\item 
+\#define {\bfseries M\+S\+D\+O\+S\+\_\+\+F\+M\+T\+\_\+\+I\+N\+F\+O\+\_\+\+L\+E\+V\+E\+L\+\_\+\+D\+E\+T\+A\+IL}~(2)
+\item 
+\#define {\bfseries M\+S\+D\+O\+S\+\_\+\+F\+M\+T\+\_\+\+I\+N\+F\+O\+\_\+\+L\+E\+V\+E\+L\+\_\+\+D\+E\+B\+UG}~(3)
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{dosfs_8h_a65d182fbe23961155945c00eb2461262}\label{dosfs_8h_a65d182fbe23961155945c00eb2461262}} 
+typedef struct \mbox{\hyperlink{structrtems__dosfs__convert__control}{rtems\+\_\+dosfs\+\_\+convert\+\_\+control}} {\bfseries rtems\+\_\+dosfs\+\_\+convert\+\_\+control}
+\item 
+typedef int($\ast$ \mbox{\hyperlink{dosfs_8h_abe2a0ddc21aef4050b25dd06f60adbd3}{rtems\+\_\+dosfs\+\_\+utf8\+\_\+to\+\_\+codepage}}) (\mbox{\hyperlink{structrtems__dosfs__convert__control}{rtems\+\_\+dosfs\+\_\+convert\+\_\+control}} $\ast$self, const uint8\+\_\+t $\ast$src, size\+\_\+t src\+\_\+size, char $\ast$dst, size\+\_\+t $\ast$dst\+\_\+size)
+\begin{DoxyCompactList}\small\item\em Converts from U\+T\+F-\/8 into a specific code page. \end{DoxyCompactList}\item 
+typedef int($\ast$ \mbox{\hyperlink{dosfs_8h_a119bce3cbc82fe28235837d3d2e892fb}{rtems\+\_\+dosfs\+\_\+codepage\+\_\+to\+\_\+utf8}}) (\mbox{\hyperlink{structrtems__dosfs__convert__control}{rtems\+\_\+dosfs\+\_\+convert\+\_\+control}} $\ast$self, const char $\ast$src, size\+\_\+t src\+\_\+size, uint8\+\_\+t $\ast$dst, size\+\_\+t $\ast$dst\+\_\+size)
+\begin{DoxyCompactList}\small\item\em Converts from a specific code page into U\+T\+F-\/8. \end{DoxyCompactList}\item 
+typedef int($\ast$ \mbox{\hyperlink{dosfs_8h_a37e4ab29a3cedbe4db59c630e7d6bf28}{rtems\+\_\+dosfs\+\_\+utf8\+\_\+to\+\_\+utf16}}) (\mbox{\hyperlink{structrtems__dosfs__convert__control}{rtems\+\_\+dosfs\+\_\+convert\+\_\+control}} $\ast$self, const uint8\+\_\+t $\ast$src, size\+\_\+t src\+\_\+size, uint16\+\_\+t $\ast$dst, size\+\_\+t $\ast$dst\+\_\+size)
+\begin{DoxyCompactList}\small\item\em Converts from U\+T\+F-\/8 to U\+T\+F-\/16. \end{DoxyCompactList}\item 
+typedef int($\ast$ \mbox{\hyperlink{dosfs_8h_a18b1fce23a06d886f19811f365f31858}{rtems\+\_\+dosfs\+\_\+utf16\+\_\+to\+\_\+utf8}}) (\mbox{\hyperlink{structrtems__dosfs__convert__control}{rtems\+\_\+dosfs\+\_\+convert\+\_\+control}} $\ast$self, const uint16\+\_\+t $\ast$src, size\+\_\+t src\+\_\+size, uint8\+\_\+t $\ast$dst, size\+\_\+t $\ast$dst\+\_\+size)
+\begin{DoxyCompactList}\small\item\em Converts from U\+T\+F-\/16 to U\+T\+F-\/8. \end{DoxyCompactList}\item 
+typedef int($\ast$ \mbox{\hyperlink{dosfs_8h_a58a731e0d2cbb18220d0c5f70d5c2632}{rtems\+\_\+dosfs\+\_\+utf8\+\_\+normalize\+\_\+and\+\_\+fold}}) (\mbox{\hyperlink{structrtems__dosfs__convert__control}{rtems\+\_\+dosfs\+\_\+convert\+\_\+control}} $\ast$self, const uint8\+\_\+t $\ast$src, size\+\_\+t src\+\_\+size, uint8\+\_\+t $\ast$dst, size\+\_\+t $\ast$dst\+\_\+size)
+\begin{DoxyCompactList}\small\item\em Converts from U\+T\+F-\/8 to Normalized Form Canonical Decomposition. \end{DoxyCompactList}\item 
+typedef void($\ast$ \mbox{\hyperlink{dosfs_8h_a5e43d1ba2070a2fdf5e8de0d6ae02cec}{rtems\+\_\+dosfs\+\_\+convert\+\_\+destroy}}) (\mbox{\hyperlink{structrtems__dosfs__convert__control}{rtems\+\_\+dosfs\+\_\+convert\+\_\+control}} $\ast$self)
+\begin{DoxyCompactList}\small\item\em Destroys a convert control structure. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structrtems__dosfs__convert__control}{rtems\+\_\+dosfs\+\_\+convert\+\_\+control}} $\ast$ \mbox{\hyperlink{group__DOSFS_ga9dc28ad698d4946c7bf691fa0b0a6c78}{rtems\+\_\+dosfs\+\_\+create\+\_\+default\+\_\+converter}} (void)
+\begin{DoxyCompactList}\small\item\em Allocates and initializes a default converter. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structrtems__dosfs__convert__control}{rtems\+\_\+dosfs\+\_\+convert\+\_\+control}} $\ast$ \mbox{\hyperlink{group__DOSFS_ga47cec61b81f7868a5b821709246a8509}{rtems\+\_\+dosfs\+\_\+create\+\_\+utf8\+\_\+converter}} (const char $\ast$codepage)
+\begin{DoxyCompactList}\small\item\em Allocates and initializes a U\+T\+F-\/8 converter. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__DOSFS_ga89cdc98023478833b6291f2e3cea56f2}{msdos\+\_\+format}} (const char $\ast$devname, const \mbox{\hyperlink{structmsdos__format__request__param__t}{msdos\+\_\+format\+\_\+request\+\_\+param\+\_\+t}} $\ast$rqdata)
+\begin{DoxyCompactList}\small\item\em Formats a block device with a F\+AT file system. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{dosfs_8h_a028cf6049af2889f4fc61006cf20c9d2}\label{dosfs_8h_a028cf6049af2889f4fc61006cf20c9d2}} 
+int {\bfseries rtems\+\_\+dosfs\+\_\+initialize} (\mbox{\hyperlink{structrtems__filesystem__mount__table__entry__tt}{rtems\+\_\+filesystem\+\_\+mount\+\_\+table\+\_\+entry\+\_\+t}} $\ast$mt\+\_\+entry, const void $\ast$data)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Application Interface to F\+AT Filesystem. 
+
+
+
+\subsection{Typedef Documentation}
+\mbox{\Hypertarget{dosfs_8h_a119bce3cbc82fe28235837d3d2e892fb}\label{dosfs_8h_a119bce3cbc82fe28235837d3d2e892fb}} 
+\index{dosfs.h@{dosfs.h}!rtems\_dosfs\_codepage\_to\_utf8@{rtems\_dosfs\_codepage\_to\_utf8}}
+\index{rtems\_dosfs\_codepage\_to\_utf8@{rtems\_dosfs\_codepage\_to\_utf8}!dosfs.h@{dosfs.h}}
+\subsubsection{\texorpdfstring{rtems\_dosfs\_codepage\_to\_utf8}{rtems\_dosfs\_codepage\_to\_utf8}}
+{\footnotesize\ttfamily typedef int($\ast$ rtems\+\_\+dosfs\+\_\+codepage\+\_\+to\+\_\+utf8) (\mbox{\hyperlink{structrtems__dosfs__convert__control}{rtems\+\_\+dosfs\+\_\+convert\+\_\+control}} $\ast$self, const char $\ast$src, size\+\_\+t src\+\_\+size, uint8\+\_\+t $\ast$dst, size\+\_\+t $\ast$dst\+\_\+size)}
+
+
+
+Converts from a specific code page into U\+T\+F-\/8. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em self} & The convert control. \\
+\hline
+\mbox{\texttt{ in}}  & {\em src} & A well-\/formed string in code page format. \\
+\hline
+\mbox{\texttt{ in}}  & {\em src\+\_\+size} & The size of the string in bytes (inludes \textquotesingle{}\textbackslash{}0\textquotesingle{} if any). \\
+\hline
+\mbox{\texttt{ out}}  & {\em dst} & The address the converted string will get copied to. \\
+\hline
+\mbox{\texttt{ in,out}}  & {\em dst\+\_\+size} & The size of the buffer in bytes respectively the number of bytes written to the buffer.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em 0} & Successful operation. \\
+\hline
+{\em E\+I\+N\+V\+AL} & Conversion was successful, but is not reversible. \\
+\hline
+{\em E\+N\+O\+M\+EM} & Conversion failed (possibly due to insufficient buffer size). \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{dosfs_8h_a5e43d1ba2070a2fdf5e8de0d6ae02cec}\label{dosfs_8h_a5e43d1ba2070a2fdf5e8de0d6ae02cec}} 
+\index{dosfs.h@{dosfs.h}!rtems\_dosfs\_convert\_destroy@{rtems\_dosfs\_convert\_destroy}}
+\index{rtems\_dosfs\_convert\_destroy@{rtems\_dosfs\_convert\_destroy}!dosfs.h@{dosfs.h}}
+\subsubsection{\texorpdfstring{rtems\_dosfs\_convert\_destroy}{rtems\_dosfs\_convert\_destroy}}
+{\footnotesize\ttfamily typedef void($\ast$ rtems\+\_\+dosfs\+\_\+convert\+\_\+destroy) (\mbox{\hyperlink{structrtems__dosfs__convert__control}{rtems\+\_\+dosfs\+\_\+convert\+\_\+control}} $\ast$self)}
+
+
+
+Destroys a convert control structure. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em self} & The convert control for destruction. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{dosfs_8h_a18b1fce23a06d886f19811f365f31858}\label{dosfs_8h_a18b1fce23a06d886f19811f365f31858}} 
+\index{dosfs.h@{dosfs.h}!rtems\_dosfs\_utf16\_to\_utf8@{rtems\_dosfs\_utf16\_to\_utf8}}
+\index{rtems\_dosfs\_utf16\_to\_utf8@{rtems\_dosfs\_utf16\_to\_utf8}!dosfs.h@{dosfs.h}}
+\subsubsection{\texorpdfstring{rtems\_dosfs\_utf16\_to\_utf8}{rtems\_dosfs\_utf16\_to\_utf8}}
+{\footnotesize\ttfamily typedef int($\ast$ rtems\+\_\+dosfs\+\_\+utf16\+\_\+to\+\_\+utf8) (\mbox{\hyperlink{structrtems__dosfs__convert__control}{rtems\+\_\+dosfs\+\_\+convert\+\_\+control}} $\ast$self, const uint16\+\_\+t $\ast$src, size\+\_\+t src\+\_\+size, uint8\+\_\+t $\ast$dst, size\+\_\+t $\ast$dst\+\_\+size)}
+
+
+
+Converts from U\+T\+F-\/16 to U\+T\+F-\/8. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em self} & The convert control. \\
+\hline
+\mbox{\texttt{ in}}  & {\em src} & A well-\/formed U\+T\+F-\/16 string to be converted. \\
+\hline
+\mbox{\texttt{ in}}  & {\em src\+\_\+size} & The size of the string in bytes (inludes \textquotesingle{}\textbackslash{}0\textquotesingle{} if any). \\
+\hline
+\mbox{\texttt{ out}}  & {\em dst} & The address the converted string will get copied to. \\
+\hline
+\mbox{\texttt{ in,out}}  & {\em dst\+\_\+size} & The size of the buffer in bytes respectively the number of bytes written to the buffer\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em 0} & Successful operation. \\
+\hline
+{\em E\+I\+N\+V\+AL} & Conversion was successful, but is not reversible. \\
+\hline
+{\em E\+N\+O\+M\+EM} & Conversion failed (possibly due to insufficient buffer size). \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{dosfs_8h_a58a731e0d2cbb18220d0c5f70d5c2632}\label{dosfs_8h_a58a731e0d2cbb18220d0c5f70d5c2632}} 
+\index{dosfs.h@{dosfs.h}!rtems\_dosfs\_utf8\_normalize\_and\_fold@{rtems\_dosfs\_utf8\_normalize\_and\_fold}}
+\index{rtems\_dosfs\_utf8\_normalize\_and\_fold@{rtems\_dosfs\_utf8\_normalize\_and\_fold}!dosfs.h@{dosfs.h}}
+\subsubsection{\texorpdfstring{rtems\_dosfs\_utf8\_normalize\_and\_fold}{rtems\_dosfs\_utf8\_normalize\_and\_fold}}
+{\footnotesize\ttfamily typedef int($\ast$ rtems\+\_\+dosfs\+\_\+utf8\+\_\+normalize\+\_\+and\+\_\+fold) (\mbox{\hyperlink{structrtems__dosfs__convert__control}{rtems\+\_\+dosfs\+\_\+convert\+\_\+control}} $\ast$self, const uint8\+\_\+t $\ast$src, size\+\_\+t src\+\_\+size, uint8\+\_\+t $\ast$dst, size\+\_\+t $\ast$dst\+\_\+size)}
+
+
+
+Converts from U\+T\+F-\/8 to Normalized Form Canonical Decomposition. 
+
+Does canonical decomposition of the U\+T\+F-\/8 string and in addition also converts upper case alphabetic characters to lower case characters
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em self} & The convert control. \\
+\hline
+\mbox{\texttt{ in}}  & {\em src} & A well-\/formed U\+T\+F-\/8 string to be normalized and fold. \\
+\hline
+\mbox{\texttt{ in}}  & {\em src\+\_\+size} & The size of the string in bytes (inludes \textquotesingle{}\textbackslash{}0\textquotesingle{} if any). \\
+\hline
+\mbox{\texttt{ out}}  & {\em dst} & The address the normalized and fold string will get copied to. \\
+\hline
+\mbox{\texttt{ in,out}}  & {\em dst\+\_\+size} & The size of the buffer in bytes respectively the number of bytes written to the buffer.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em 0} & Successful operation. \\
+\hline
+{\em E\+I\+N\+V\+AL} & Conversion failed. \\
+\hline
+{\em E\+N\+O\+M\+EM} & Conversion failed (possibly due to insufficient buffer size). \\
+\hline
+{\em E\+O\+V\+E\+R\+F\+L\+OW} & Conversion failed. \\
+\hline
+{\em E\+N\+O\+E\+NT} & Conversion failed. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{dosfs_8h_abe2a0ddc21aef4050b25dd06f60adbd3}\label{dosfs_8h_abe2a0ddc21aef4050b25dd06f60adbd3}} 
+\index{dosfs.h@{dosfs.h}!rtems\_dosfs\_utf8\_to\_codepage@{rtems\_dosfs\_utf8\_to\_codepage}}
+\index{rtems\_dosfs\_utf8\_to\_codepage@{rtems\_dosfs\_utf8\_to\_codepage}!dosfs.h@{dosfs.h}}
+\subsubsection{\texorpdfstring{rtems\_dosfs\_utf8\_to\_codepage}{rtems\_dosfs\_utf8\_to\_codepage}}
+{\footnotesize\ttfamily typedef int($\ast$ rtems\+\_\+dosfs\+\_\+utf8\+\_\+to\+\_\+codepage) (\mbox{\hyperlink{structrtems__dosfs__convert__control}{rtems\+\_\+dosfs\+\_\+convert\+\_\+control}} $\ast$self, const uint8\+\_\+t $\ast$src, size\+\_\+t src\+\_\+size, char $\ast$dst, size\+\_\+t $\ast$dst\+\_\+size)}
+
+
+
+Converts from U\+T\+F-\/8 into a specific code page. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em self} & The convert control. \\
+\hline
+\mbox{\texttt{ in}}  & {\em src} & A well-\/formed U\+T\+F-\/8 string to be converted. \\
+\hline
+\mbox{\texttt{ in}}  & {\em src\+\_\+size} & The size of the string in bytes (inludes \textquotesingle{}\textbackslash{}0\textquotesingle{} if any). \\
+\hline
+\mbox{\texttt{ out}}  & {\em dst} & The address the converted string will get copied to. \\
+\hline
+\mbox{\texttt{ in,out}}  & {\em dst\+\_\+size} & The size of the buffer in bytes respectively the number of bytes written to the buffer.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em 0} & Successful operation. \\
+\hline
+{\em E\+I\+N\+V\+AL} & Conversion was successful, but is not reversible. \\
+\hline
+{\em E\+N\+O\+M\+EM} & Conversion failed (possibly due to insufficient buffer size). \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{dosfs_8h_a37e4ab29a3cedbe4db59c630e7d6bf28}\label{dosfs_8h_a37e4ab29a3cedbe4db59c630e7d6bf28}} 
+\index{dosfs.h@{dosfs.h}!rtems\_dosfs\_utf8\_to\_utf16@{rtems\_dosfs\_utf8\_to\_utf16}}
+\index{rtems\_dosfs\_utf8\_to\_utf16@{rtems\_dosfs\_utf8\_to\_utf16}!dosfs.h@{dosfs.h}}
+\subsubsection{\texorpdfstring{rtems\_dosfs\_utf8\_to\_utf16}{rtems\_dosfs\_utf8\_to\_utf16}}
+{\footnotesize\ttfamily typedef int($\ast$ rtems\+\_\+dosfs\+\_\+utf8\+\_\+to\+\_\+utf16) (\mbox{\hyperlink{structrtems__dosfs__convert__control}{rtems\+\_\+dosfs\+\_\+convert\+\_\+control}} $\ast$self, const uint8\+\_\+t $\ast$src, size\+\_\+t src\+\_\+size, uint16\+\_\+t $\ast$dst, size\+\_\+t $\ast$dst\+\_\+size)}
+
+
+
+Converts from U\+T\+F-\/8 to U\+T\+F-\/16. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em self} & The convert control. \\
+\hline
+\mbox{\texttt{ in}}  & {\em src} & A well-\/formed U\+T\+F-\/8 string to be converted. \\
+\hline
+\mbox{\texttt{ in}}  & {\em src\+\_\+size} & The size of the string in bytes (inludes \textquotesingle{}\textbackslash{}0\textquotesingle{} if any). \\
+\hline
+\mbox{\texttt{ out}}  & {\em dst} & The address the converted string will get copied to \\
+\hline
+\mbox{\texttt{ in,out}}  & {\em dst\+\_\+size} & The size of the buffer in bytes respectively the number of bytes written to the buffer.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em 0} & Successful operation. \\
+\hline
+{\em E\+I\+N\+V\+AL} & Conversion was successful, but is not reversible. \\
+\hline
+{\em E\+N\+O\+M\+EM} & Conversion failed (possibly due to insufficient buffer size). \\
+\hline
+\end{DoxyRetVals}

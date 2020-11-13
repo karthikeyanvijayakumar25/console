@@ -1,0 +1,64 @@
+\hypertarget{msdos__init_8c}{}\section{cpukit/libfs/src/dosfs/msdos\+\_\+init.c File Reference}
+\label{msdos__init_8c}\index{cpukit/libfs/src/dosfs/msdos\_init.c@{cpukit/libfs/src/dosfs/msdos\_init.c}}
+
+
+Init Routine for M\+S\+D\+OS.  
+
+
+{\ttfamily \#include $<$rtems/libio\+\_\+.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/dosfs.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}msdos.\+h\char`\"{}}\newline
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void {\bfseries msdos\+\_\+lock} (const \mbox{\hyperlink{structrtems__filesystem__mount__table__entry__tt}{rtems\+\_\+filesystem\+\_\+mount\+\_\+table\+\_\+entry\+\_\+t}} $\ast$mt\+\_\+entry)
+\item 
+void {\bfseries msdos\+\_\+unlock} (const \mbox{\hyperlink{structrtems__filesystem__mount__table__entry__tt}{rtems\+\_\+filesystem\+\_\+mount\+\_\+table\+\_\+entry\+\_\+t}} $\ast$mt\+\_\+entry)
+\item 
+\mbox{\Hypertarget{msdos__init_8c_a028cf6049af2889f4fc61006cf20c9d2}\label{msdos__init_8c_a028cf6049af2889f4fc61006cf20c9d2}} 
+int {\bfseries rtems\+\_\+dosfs\+\_\+initialize} (\mbox{\hyperlink{structrtems__filesystem__mount__table__entry__tt}{rtems\+\_\+filesystem\+\_\+mount\+\_\+table\+\_\+entry\+\_\+t}} $\ast$mt\+\_\+entry, const void $\ast$data)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const \mbox{\hyperlink{struct__rtems__filesystem__operations__table}{rtems\+\_\+filesystem\+\_\+operations\+\_\+table}} {\bfseries msdos\+\_\+ops}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Init Routine for M\+S\+D\+OS. 
+
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{msdos__init_8c_a0911ae803392597d95f2a4df3373d867}\label{msdos__init_8c_a0911ae803392597d95f2a4df3373d867}} 
+\index{msdos\_init.c@{msdos\_init.c}!msdos\_ops@{msdos\_ops}}
+\index{msdos\_ops@{msdos\_ops}!msdos\_init.c@{msdos\_init.c}}
+\subsubsection{\texorpdfstring{msdos\_ops}{msdos\_ops}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{struct__rtems__filesystem__operations__table}{rtems\+\_\+filesystem\+\_\+operations\+\_\+table}} msdos\+\_\+ops}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{  .lock\_h         =  msdos\_lock,}
+\DoxyCodeLine{  .unlock\_h       =  msdos\_unlock,}
+\DoxyCodeLine{  .eval\_path\_h    =  msdos\_eval\_path,}
+\DoxyCodeLine{  .link\_h         =  \mbox{\hyperlink{group__LibIOFSOps_gaf49aa8c3671b5c5282bb3f865b8e162a}{rtems\_filesystem\_default\_link}},}
+\DoxyCodeLine{  .are\_nodes\_equal\_h = \mbox{\hyperlink{group__LibIOFSOps_ga590c632457e7ce877651d41bbb4c1bad}{rtems\_filesystem\_default\_are\_nodes\_equal}},}
+\DoxyCodeLine{  .mknod\_h        =  \mbox{\hyperlink{group__libfs__msdos_gad2d321f559fc408da551e9b13adb5241}{msdos\_mknod}},}
+\DoxyCodeLine{  .rmnod\_h        =  \mbox{\hyperlink{group__libfs__msdos_gadc2a558d9dd4a7b65b22cd0ec527c236}{msdos\_rmnod}},}
+\DoxyCodeLine{  .fchmod\_h       =  \mbox{\hyperlink{group__LibIOFSOps_ga3dd804eb9c4578e02e07eb0ee445af43}{rtems\_filesystem\_default\_fchmod}},}
+\DoxyCodeLine{  .chown\_h        =  \mbox{\hyperlink{group__LibIOFSOps_gae95fe9ae3c0b953cc789a3885a9fe20b}{rtems\_filesystem\_default\_chown}},}
+\DoxyCodeLine{  .clonenod\_h     =  msdos\_clone\_node\_info,}
+\DoxyCodeLine{  .freenod\_h      =  \mbox{\hyperlink{group__libfs__msdos_gac3300c45043a2ca7b0ddac74eadf7606}{msdos\_free\_node\_info}},}
+\DoxyCodeLine{  .mount\_h        =  \mbox{\hyperlink{group__LibIOFSOps_ga6c134a7f03171ac182a6430be97b1cef}{rtems\_filesystem\_default\_mount}},}
+\DoxyCodeLine{  .unmount\_h      =  \mbox{\hyperlink{group__LibIOFSOps_ga0fe302d1177a5be4f6b69110240cb08a}{rtems\_filesystem\_default\_unmount}},}
+\DoxyCodeLine{  .fsunmount\_me\_h =  \mbox{\hyperlink{group__libfs__msdos_gada4176631aabceb7071617611720a04a}{msdos\_shut\_down}},}
+\DoxyCodeLine{  .utime\_h        =  msdos\_utime,}
+\DoxyCodeLine{  .symlink\_h      =  \mbox{\hyperlink{group__LibIOFSOps_gab04c987aeb43aca10df08f0d20d3c462}{rtems\_filesystem\_default\_symlink}},}
+\DoxyCodeLine{  .readlink\_h     =  \mbox{\hyperlink{group__LibIOFSOps_gaebd8dda0956f23082c6d9cb151d3db8c}{rtems\_filesystem\_default\_readlink}},}
+\DoxyCodeLine{  .rename\_h       =  \mbox{\hyperlink{group__libfs__msdos_ga8f13c780cd05667aef2b563ee03154c1}{msdos\_rename}},}
+\DoxyCodeLine{  .statvfs\_h      =  msdos\_statvfs}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}

@@ -1,0 +1,108 @@
+\hypertarget{structrtems__bdbuf__buffer}{}\section{rtems\+\_\+bdbuf\+\_\+buffer Struct Reference}
+\label{structrtems__bdbuf__buffer}\index{rtems\_bdbuf\_buffer@{rtems\_bdbuf\_buffer}}
+
+
+{\ttfamily \#include $<$bdbuf.\+h$>$}
+
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structrtems__bdbuf__buffer_1_1rtems__bdbuf__avl__node}{rtems\+\_\+bdbuf\+\_\+avl\+\_\+node}}
+\end{DoxyCompactItemize}
+\subsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structChain__Node__struct}{rtems\+\_\+chain\+\_\+node}} \mbox{\hyperlink{structrtems__bdbuf__buffer_adc0235d4ee0b777a16433f3057cacdb8}{link}}
+\item 
+\mbox{\Hypertarget{structrtems__bdbuf__buffer_a8d3eda69fc7189a3d2181894afe9bc5c}\label{structrtems__bdbuf__buffer_a8d3eda69fc7189a3d2181894afe9bc5c}} 
+struct \mbox{\hyperlink{structrtems__bdbuf__buffer_1_1rtems__bdbuf__avl__node}{rtems\+\_\+bdbuf\+\_\+buffer\+::rtems\+\_\+bdbuf\+\_\+avl\+\_\+node}} {\bfseries avl}
+\item 
+\mbox{\hyperlink{structrtems__disk__device}{rtems\+\_\+disk\+\_\+device}} $\ast$ \mbox{\hyperlink{structrtems__bdbuf__buffer_a30a0b9fb07a8e1debae704dbe2b06dd0}{dd}}
+\item 
+\mbox{\hyperlink{group__rtems__disk_ga5fbcfd40b657bff6c54d9e393fab3274}{rtems\+\_\+blkdev\+\_\+bnum}} \mbox{\hyperlink{structrtems__bdbuf__buffer_a5d67de9a2fe5257419575b98b26d7bca}{block}}
+\item 
+unsigned char $\ast$ \mbox{\hyperlink{structrtems__bdbuf__buffer_a501e0c67a7da6ca60fb570b338599d89}{buffer}}
+\item 
+\mbox{\hyperlink{group__rtems__bdbuf_ga0169f36547d36f0723b6456172eeef0a}{rtems\+\_\+bdbuf\+\_\+buf\+\_\+state}} \mbox{\hyperlink{structrtems__bdbuf__buffer_aee5d6927ffc83840b051e62f40ed4377}{state}}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{structrtems__bdbuf__buffer_a1b1faa7c6d016c8c66a0c620a2908f6f}{waiters}}
+\item 
+\mbox{\hyperlink{structrtems__bdbuf__group}{rtems\+\_\+bdbuf\+\_\+group}} $\ast$ \mbox{\hyperlink{structrtems__bdbuf__buffer_ac3f028ff82e1d2a5a5068106ea531037}{group}}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{structrtems__bdbuf__buffer_aec2379d26f4703257d9843bff6f6f733}{hold\+\_\+timer}}
+\item 
+int \mbox{\hyperlink{structrtems__bdbuf__buffer_a8d37d05349026cb2504cf7f692a798db}{references}}
+\item 
+void $\ast$ \mbox{\hyperlink{structrtems__bdbuf__buffer_a822b3c32a9b3042cbdf5632824d19c62}{user}}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+To manage buffers we using buffer descriptors (BD). A BD holds a buffer plus a range of other information related to managing the buffer in the cache. To speed-\/up buffer lookup descriptors are organized in A\+V\+L-\/\+Tree. The fields \textquotesingle{}dd\textquotesingle{} and \textquotesingle{}block\textquotesingle{} are search keys. 
+
+\subsection{Field Documentation}
+\mbox{\Hypertarget{structrtems__bdbuf__buffer_a5d67de9a2fe5257419575b98b26d7bca}\label{structrtems__bdbuf__buffer_a5d67de9a2fe5257419575b98b26d7bca}} 
+\index{rtems\_bdbuf\_buffer@{rtems\_bdbuf\_buffer}!block@{block}}
+\index{block@{block}!rtems\_bdbuf\_buffer@{rtems\_bdbuf\_buffer}}
+\subsubsection{\texorpdfstring{block}{block}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__rtems__disk_ga5fbcfd40b657bff6c54d9e393fab3274}{rtems\+\_\+blkdev\+\_\+bnum}} rtems\+\_\+bdbuf\+\_\+buffer\+::block}
+
+block number on the device \mbox{\Hypertarget{structrtems__bdbuf__buffer_a501e0c67a7da6ca60fb570b338599d89}\label{structrtems__bdbuf__buffer_a501e0c67a7da6ca60fb570b338599d89}} 
+\index{rtems\_bdbuf\_buffer@{rtems\_bdbuf\_buffer}!buffer@{buffer}}
+\index{buffer@{buffer}!rtems\_bdbuf\_buffer@{rtems\_bdbuf\_buffer}}
+\subsubsection{\texorpdfstring{buffer}{buffer}}
+{\footnotesize\ttfamily unsigned char$\ast$ rtems\+\_\+bdbuf\+\_\+buffer\+::buffer}
+
+Pointer to the buffer memory area \mbox{\Hypertarget{structrtems__bdbuf__buffer_a30a0b9fb07a8e1debae704dbe2b06dd0}\label{structrtems__bdbuf__buffer_a30a0b9fb07a8e1debae704dbe2b06dd0}} 
+\index{rtems\_bdbuf\_buffer@{rtems\_bdbuf\_buffer}!dd@{dd}}
+\index{dd@{dd}!rtems\_bdbuf\_buffer@{rtems\_bdbuf\_buffer}}
+\subsubsection{\texorpdfstring{dd}{dd}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structrtems__disk__device}{rtems\+\_\+disk\+\_\+device}}$\ast$ rtems\+\_\+bdbuf\+\_\+buffer\+::dd}
+
+disk device \mbox{\Hypertarget{structrtems__bdbuf__buffer_ac3f028ff82e1d2a5a5068106ea531037}\label{structrtems__bdbuf__buffer_ac3f028ff82e1d2a5a5068106ea531037}} 
+\index{rtems\_bdbuf\_buffer@{rtems\_bdbuf\_buffer}!group@{group}}
+\index{group@{group}!rtems\_bdbuf\_buffer@{rtems\_bdbuf\_buffer}}
+\subsubsection{\texorpdfstring{group}{group}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structrtems__bdbuf__group}{rtems\+\_\+bdbuf\+\_\+group}}$\ast$ rtems\+\_\+bdbuf\+\_\+buffer\+::group}
+
+Pointer to the group of B\+Ds this BD is part of. \mbox{\Hypertarget{structrtems__bdbuf__buffer_aec2379d26f4703257d9843bff6f6f733}\label{structrtems__bdbuf__buffer_aec2379d26f4703257d9843bff6f6f733}} 
+\index{rtems\_bdbuf\_buffer@{rtems\_bdbuf\_buffer}!hold\_timer@{hold\_timer}}
+\index{hold\_timer@{hold\_timer}!rtems\_bdbuf\_buffer@{rtems\_bdbuf\_buffer}}
+\subsubsection{\texorpdfstring{hold\_timer}{hold\_timer}}
+{\footnotesize\ttfamily uint32\+\_\+t rtems\+\_\+bdbuf\+\_\+buffer\+::hold\+\_\+timer}
+
+Timer to indicate how long a buffer has been held in the cache modified. \mbox{\Hypertarget{structrtems__bdbuf__buffer_adc0235d4ee0b777a16433f3057cacdb8}\label{structrtems__bdbuf__buffer_adc0235d4ee0b777a16433f3057cacdb8}} 
+\index{rtems\_bdbuf\_buffer@{rtems\_bdbuf\_buffer}!link@{link}}
+\index{link@{link}!rtems\_bdbuf\_buffer@{rtems\_bdbuf\_buffer}}
+\subsubsection{\texorpdfstring{link}{link}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structChain__Node__struct}{rtems\+\_\+chain\+\_\+node}} rtems\+\_\+bdbuf\+\_\+buffer\+::link}
+
+Link the BD onto a number of lists. \mbox{\Hypertarget{structrtems__bdbuf__buffer_a8d37d05349026cb2504cf7f692a798db}\label{structrtems__bdbuf__buffer_a8d37d05349026cb2504cf7f692a798db}} 
+\index{rtems\_bdbuf\_buffer@{rtems\_bdbuf\_buffer}!references@{references}}
+\index{references@{references}!rtems\_bdbuf\_buffer@{rtems\_bdbuf\_buffer}}
+\subsubsection{\texorpdfstring{references}{references}}
+{\footnotesize\ttfamily int rtems\+\_\+bdbuf\+\_\+buffer\+::references}
+
+Allow reference counting by owner. \mbox{\Hypertarget{structrtems__bdbuf__buffer_aee5d6927ffc83840b051e62f40ed4377}\label{structrtems__bdbuf__buffer_aee5d6927ffc83840b051e62f40ed4377}} 
+\index{rtems\_bdbuf\_buffer@{rtems\_bdbuf\_buffer}!state@{state}}
+\index{state@{state}!rtems\_bdbuf\_buffer@{rtems\_bdbuf\_buffer}}
+\subsubsection{\texorpdfstring{state}{state}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__rtems__bdbuf_ga0169f36547d36f0723b6456172eeef0a}{rtems\+\_\+bdbuf\+\_\+buf\+\_\+state}} rtems\+\_\+bdbuf\+\_\+buffer\+::state}
+
+State of the buffer. \mbox{\Hypertarget{structrtems__bdbuf__buffer_a822b3c32a9b3042cbdf5632824d19c62}\label{structrtems__bdbuf__buffer_a822b3c32a9b3042cbdf5632824d19c62}} 
+\index{rtems\_bdbuf\_buffer@{rtems\_bdbuf\_buffer}!user@{user}}
+\index{user@{user}!rtems\_bdbuf\_buffer@{rtems\_bdbuf\_buffer}}
+\subsubsection{\texorpdfstring{user}{user}}
+{\footnotesize\ttfamily void$\ast$ rtems\+\_\+bdbuf\+\_\+buffer\+::user}
+
+User data. \mbox{\Hypertarget{structrtems__bdbuf__buffer_a1b1faa7c6d016c8c66a0c620a2908f6f}\label{structrtems__bdbuf__buffer_a1b1faa7c6d016c8c66a0c620a2908f6f}} 
+\index{rtems\_bdbuf\_buffer@{rtems\_bdbuf\_buffer}!waiters@{waiters}}
+\index{waiters@{waiters}!rtems\_bdbuf\_buffer@{rtems\_bdbuf\_buffer}}
+\subsubsection{\texorpdfstring{waiters}{waiters}}
+{\footnotesize\ttfamily uint32\+\_\+t rtems\+\_\+bdbuf\+\_\+buffer\+::waiters}
+
+The number of threads waiting on this buffer. 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+cpukit/include/rtems/\mbox{\hyperlink{bdbuf_8h}{bdbuf.\+h}}\end{DoxyCompactItemize}

@@ -1,0 +1,1068 @@
+\hypertarget{group__RTEMSScorePriority}{}\section{Priority Handler}
+\label{group__RTEMSScorePriority}\index{Priority Handler@{Priority Handler}}
+
+
+Priority Handler.  
+
+
+\subsection*{Files}
+\begin{DoxyCompactItemize}
+\item 
+file \mbox{\hyperlink{rtems_2score_2priority_8h}{priority.\+h}}
+\begin{DoxyCompactList}\small\item\em Priority Handler A\+PI. \end{DoxyCompactList}\item 
+file \mbox{\hyperlink{prioritybitmapimpl_8h}{prioritybitmapimpl.\+h}}
+\begin{DoxyCompactList}\small\item\em Inlined Routines in the Priority Handler Bit Map Implementation. \end{DoxyCompactList}\item 
+file \mbox{\hyperlink{score_2priorityimpl_8h}{priorityimpl.\+h}}
+\begin{DoxyCompactList}\small\item\em Priority Handler A\+PI Implementation. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structPriority__Node}{Priority\+\_\+\+Node}}
+\begin{DoxyCompactList}\small\item\em The priority node to build up a priority aggregation. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structPriority__Aggregation}{Priority\+\_\+\+Aggregation}}
+\begin{DoxyCompactList}\small\item\em The priority aggregation. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structPriority__Actions}{Priority\+\_\+\+Actions}}
+\begin{DoxyCompactList}\small\item\em A list of priority actions. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{group__RTEMSScorePriority_ga4e541913996f017db9428a9fe621d5d7}\label{group__RTEMSScorePriority_ga4e541913996f017db9428a9fe621d5d7}} 
+\#define \mbox{\hyperlink{group__RTEMSScorePriority_ga4e541913996f017db9428a9fe621d5d7}{P\+R\+I\+O\+R\+I\+T\+Y\+\_\+\+M\+I\+N\+I\+M\+UM}}~0
+\begin{DoxyCompactList}\small\item\em The highest (most important) thread priority value. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTEMSScorePriority_gaa1513d851789c6be74feab5874c30ec8}{P\+R\+I\+O\+R\+I\+T\+Y\+\_\+\+P\+S\+E\+U\+D\+O\+\_\+\+I\+SR}}~\mbox{\hyperlink{group__RTEMSScorePriority_ga4e541913996f017db9428a9fe621d5d7}{P\+R\+I\+O\+R\+I\+T\+Y\+\_\+\+M\+I\+N\+I\+M\+UM}}
+\begin{DoxyCompactList}\small\item\em The priority value of pseudo-\/\+I\+SR threads. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTEMSScorePriority_ga2711e6c0b0a209b78f35ad5f76db56f3}{P\+R\+I\+O\+R\+I\+T\+Y\+\_\+\+D\+E\+F\+A\+U\+L\+T\+\_\+\+M\+A\+X\+I\+M\+UM}}~255
+\begin{DoxyCompactList}\small\item\em The default lowest (least important) thread priority value. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef uint64\+\_\+t \mbox{\hyperlink{group__RTEMSScorePriority_ga59d02b58072d31a9a1cfe644557aefe2}{Priority\+\_\+\+Control}}
+\begin{DoxyCompactList}\small\item\em The thread priority control. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__RTEMSScorePriority_gae30d9a22259203f453e5165b97fdf471}\label{group__RTEMSScorePriority_gae30d9a22259203f453e5165b97fdf471}} 
+typedef struct \mbox{\hyperlink{structPriority__Aggregation}{Priority\+\_\+\+Aggregation}} {\bfseries Priority\+\_\+\+Aggregation}
+\item 
+\mbox{\Hypertarget{group__RTEMSScorePriority_ga28d1b10b7655f7c4353ee4db20f90bdf}\label{group__RTEMSScorePriority_ga28d1b10b7655f7c4353ee4db20f90bdf}} 
+typedef void($\ast$ {\bfseries Priority\+\_\+\+Add\+\_\+handler}) (\mbox{\hyperlink{structPriority__Aggregation}{Priority\+\_\+\+Aggregation}} $\ast$aggregation, \mbox{\hyperlink{structPriority__Actions}{Priority\+\_\+\+Actions}} $\ast$actions, void $\ast$arg)
+\item 
+\mbox{\Hypertarget{group__RTEMSScorePriority_gaac6dfb6e12d51323dd149dbb405e15c9}\label{group__RTEMSScorePriority_gaac6dfb6e12d51323dd149dbb405e15c9}} 
+typedef void($\ast$ {\bfseries Priority\+\_\+\+Change\+\_\+handler}) (\mbox{\hyperlink{structPriority__Aggregation}{Priority\+\_\+\+Aggregation}} $\ast$aggregation, bool prepend\+\_\+it, \mbox{\hyperlink{structPriority__Actions}{Priority\+\_\+\+Actions}} $\ast$actions, void $\ast$arg)
+\item 
+\mbox{\Hypertarget{group__RTEMSScorePriority_gac50c2321303f6712b46433ac2477c5f6}\label{group__RTEMSScorePriority_gac50c2321303f6712b46433ac2477c5f6}} 
+typedef void($\ast$ {\bfseries Priority\+\_\+\+Remove\+\_\+handler}) (\mbox{\hyperlink{structPriority__Aggregation}{Priority\+\_\+\+Aggregation}} $\ast$aggregation, \mbox{\hyperlink{structPriority__Actions}{Priority\+\_\+\+Actions}} $\ast$actions, void $\ast$arg)
+\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{group__RTEMSScorePriority_gae6fceeae8a1c66316277dc3b52e3ba27}\label{group__RTEMSScorePriority_gae6fceeae8a1c66316277dc3b52e3ba27}} 
+enum \mbox{\hyperlink{group__RTEMSScorePriority_gae6fceeae8a1c66316277dc3b52e3ba27}{Priority\+\_\+\+Action\+\_\+type}} \{ {\bfseries P\+R\+I\+O\+R\+I\+T\+Y\+\_\+\+A\+C\+T\+I\+O\+N\+\_\+\+A\+DD}, 
+{\bfseries P\+R\+I\+O\+R\+I\+T\+Y\+\_\+\+A\+C\+T\+I\+O\+N\+\_\+\+C\+H\+A\+N\+GE}, 
+{\bfseries P\+R\+I\+O\+R\+I\+T\+Y\+\_\+\+A\+C\+T\+I\+O\+N\+\_\+\+R\+E\+M\+O\+VE}, 
+{\bfseries P\+R\+I\+O\+R\+I\+T\+Y\+\_\+\+A\+C\+T\+I\+O\+N\+\_\+\+I\+N\+V\+A\+L\+ID}
+ \}
+\begin{DoxyCompactList}\small\item\em The priority action type. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} unsigned int \mbox{\hyperlink{group__RTEMSScorePriority_gacf3f0ba39c90e26e3f821c04a2e48ee5}{\+\_\+\+Bitfield\+\_\+\+Find\+\_\+first\+\_\+bit}} (unsigned int value)
+\begin{DoxyCompactList}\small\item\em Returns the bit number of the first bit set in the specified value. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} Priority\+\_\+bit\+\_\+map\+\_\+\+Word \mbox{\hyperlink{group__RTEMSScorePriority_gadf554c1cf4e5a358ebb28e90e013ccb1}{\+\_\+\+Priority\+\_\+\+Mask}} (unsigned int bit\+\_\+number)
+\begin{DoxyCompactList}\small\item\em Returns the priority bit mask for the specified major or minor bit number. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} unsigned int \mbox{\hyperlink{group__RTEMSScorePriority_ga7e9cb59c60f7231a454824509f3a1b6a}{\+\_\+\+Priority\+\_\+\+Bits\+\_\+index}} (unsigned int bit\+\_\+number)
+\begin{DoxyCompactList}\small\item\em Returns the bit index position for the specified major or minor bit number. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} unsigned int \mbox{\hyperlink{group__RTEMSScorePriority_ga1e9fd447bd6120ec504a82d5e4f4dc24}{\+\_\+\+Priority\+\_\+\+Major}} (unsigned int the\+\_\+priority)
+\begin{DoxyCompactList}\small\item\em Returns the major portion of the\+\_\+priority. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} unsigned int \mbox{\hyperlink{group__RTEMSScorePriority_gaaf7dd3dde9aa776f2c16fee4c1e572ed}{\+\_\+\+Priority\+\_\+\+Minor}} (unsigned int the\+\_\+priority)
+\begin{DoxyCompactList}\small\item\em Returns the minor portion of the\+\_\+priority. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \mbox{\hyperlink{group__RTEMSScorePriority_gae1b3ddc145139b8cedba8169214f2dab}{\+\_\+\+Priority\+\_\+bit\+\_\+map\+\_\+\+Initialize}} (\mbox{\hyperlink{structPriority__bit__map__Control}{Priority\+\_\+bit\+\_\+map\+\_\+\+Control}} $\ast$bit\+\_\+map)
+\begin{DoxyCompactList}\small\item\em Initializes a bit map. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \mbox{\hyperlink{group__RTEMSScorePriority_gaadf94736b9e458d8a92afbbfb2485e12}{\+\_\+\+Priority\+\_\+bit\+\_\+map\+\_\+\+Add}} (\mbox{\hyperlink{structPriority__bit__map__Control}{Priority\+\_\+bit\+\_\+map\+\_\+\+Control}} $\ast$bit\+\_\+map, \mbox{\hyperlink{structPriority__bit__map__Information}{Priority\+\_\+bit\+\_\+map\+\_\+\+Information}} $\ast$bit\+\_\+map\+\_\+info)
+\begin{DoxyCompactList}\small\item\em Adds Priority queue bit map information. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \mbox{\hyperlink{group__RTEMSScorePriority_gab4a3b896e05ca0e5b2b1227e851447f8}{\+\_\+\+Priority\+\_\+bit\+\_\+map\+\_\+\+Remove}} (\mbox{\hyperlink{structPriority__bit__map__Control}{Priority\+\_\+bit\+\_\+map\+\_\+\+Control}} $\ast$bit\+\_\+map, \mbox{\hyperlink{structPriority__bit__map__Information}{Priority\+\_\+bit\+\_\+map\+\_\+\+Information}} $\ast$bit\+\_\+map\+\_\+info)
+\begin{DoxyCompactList}\small\item\em Removes Priority queue bit map information. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} unsigned int \mbox{\hyperlink{group__RTEMSScorePriority_ga1f62e66dfe278e0aa74677bcb444d4bf}{\+\_\+\+Priority\+\_\+bit\+\_\+map\+\_\+\+Get\+\_\+highest}} (const \mbox{\hyperlink{structPriority__bit__map__Control}{Priority\+\_\+bit\+\_\+map\+\_\+\+Control}} $\ast$bit\+\_\+map)
+\begin{DoxyCompactList}\small\item\em Gets highest portion of Priority queue bit map. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} bool \mbox{\hyperlink{group__RTEMSScorePriority_ga957c4e569087b83bf77d27e03e121606}{\+\_\+\+Priority\+\_\+bit\+\_\+map\+\_\+\+Is\+\_\+empty}} (const \mbox{\hyperlink{structPriority__bit__map__Control}{Priority\+\_\+bit\+\_\+map\+\_\+\+Control}} $\ast$bit\+\_\+map)
+\begin{DoxyCompactList}\small\item\em Checks if the Priority queue bit map is empty. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \mbox{\hyperlink{group__RTEMSScorePriority_gab11e5706b0623eda6bb5a0c7f85f3a50}{\+\_\+\+Priority\+\_\+bit\+\_\+map\+\_\+\+Initialize\+\_\+information}} (\mbox{\hyperlink{structPriority__bit__map__Control}{Priority\+\_\+bit\+\_\+map\+\_\+\+Control}} $\ast$bit\+\_\+map, \mbox{\hyperlink{structPriority__bit__map__Information}{Priority\+\_\+bit\+\_\+map\+\_\+\+Information}} $\ast$bit\+\_\+map\+\_\+info, unsigned int new\+\_\+priority)
+\begin{DoxyCompactList}\small\item\em Initializes the bit map information. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \mbox{\hyperlink{group__RTEMSScorePriority_ga7bc66b35e181e6b877defc90ec74c893}{\+\_\+\+Priority\+\_\+\+Actions\+\_\+initialize\+\_\+empty}} (\mbox{\hyperlink{structPriority__Actions}{Priority\+\_\+\+Actions}} $\ast$actions)
+\begin{DoxyCompactList}\small\item\em Initializes the priority actions empty. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \mbox{\hyperlink{group__RTEMSScorePriority_gad2be4119adbe29c7da28463477622c8c}{\+\_\+\+Priority\+\_\+\+Actions\+\_\+initialize\+\_\+one}} (\mbox{\hyperlink{structPriority__Actions}{Priority\+\_\+\+Actions}} $\ast$actions, \mbox{\hyperlink{structPriority__Aggregation}{Priority\+\_\+\+Aggregation}} $\ast$aggregation, \mbox{\hyperlink{structPriority__Node}{Priority\+\_\+\+Node}} $\ast$node, \mbox{\hyperlink{group__RTEMSScorePriority_gae6fceeae8a1c66316277dc3b52e3ba27}{Priority\+\_\+\+Action\+\_\+type}} type)
+\begin{DoxyCompactList}\small\item\em Initializes the priority actions with the given information. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} bool \mbox{\hyperlink{group__RTEMSScorePriority_ga11ca5379e29efb02baa8366570cfa87b}{\+\_\+\+Priority\+\_\+\+Actions\+\_\+is\+\_\+empty}} (const \mbox{\hyperlink{structPriority__Actions}{Priority\+\_\+\+Actions}} $\ast$actions)
+\begin{DoxyCompactList}\small\item\em Checks if the priority actions is empty. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} bool \mbox{\hyperlink{group__RTEMSScorePriority_gabfe1f29214b3da4b3f09d607c8ebb7d3}{\+\_\+\+Priority\+\_\+\+Actions\+\_\+is\+\_\+valid}} (const \mbox{\hyperlink{structPriority__Aggregation}{Priority\+\_\+\+Aggregation}} $\ast$aggregation)
+\begin{DoxyCompactList}\small\item\em Checks if the priority actions is valid. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} \mbox{\hyperlink{structPriority__Aggregation}{Priority\+\_\+\+Aggregation}} $\ast$ \mbox{\hyperlink{group__RTEMSScorePriority_ga96d8f44d7473f32a8740950d41f2fa7c}{\+\_\+\+Priority\+\_\+\+Actions\+\_\+move}} (\mbox{\hyperlink{structPriority__Actions}{Priority\+\_\+\+Actions}} $\ast$actions)
+\begin{DoxyCompactList}\small\item\em Moves the priority actions\textquotesingle{} actions. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \mbox{\hyperlink{group__RTEMSScorePriority_ga62c96ae193f0f06dd79cbb72976e0384}{\+\_\+\+Priority\+\_\+\+Actions\+\_\+add}} (\mbox{\hyperlink{structPriority__Actions}{Priority\+\_\+\+Actions}} $\ast$actions, \mbox{\hyperlink{structPriority__Aggregation}{Priority\+\_\+\+Aggregation}} $\ast$aggregation)
+\begin{DoxyCompactList}\small\item\em Adds actions to the priority actions\textquotesingle{} actions. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \mbox{\hyperlink{group__RTEMSScorePriority_ga10c99a53ad7cb8f77e5de8aa06deb934}{\+\_\+\+Priority\+\_\+\+Node\+\_\+initialize}} (\mbox{\hyperlink{structPriority__Node}{Priority\+\_\+\+Node}} $\ast$node, \mbox{\hyperlink{group__RTEMSScorePriority_ga59d02b58072d31a9a1cfe644557aefe2}{Priority\+\_\+\+Control}} priority)
+\begin{DoxyCompactList}\small\item\em Initializes the priority node to the given priority. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \mbox{\hyperlink{group__RTEMSScorePriority_ga8f7626eed557998923ac78733f8790c9}{\+\_\+\+Priority\+\_\+\+Node\+\_\+set\+\_\+priority}} (\mbox{\hyperlink{structPriority__Node}{Priority\+\_\+\+Node}} $\ast$node, \mbox{\hyperlink{group__RTEMSScorePriority_ga59d02b58072d31a9a1cfe644557aefe2}{Priority\+\_\+\+Control}} priority)
+\begin{DoxyCompactList}\small\item\em Sets the priority of the priority node to the given priority. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \mbox{\hyperlink{group__RTEMSScorePriority_gaae4c7c5c4cc58ddbfd2376615e43d710}{\+\_\+\+Priority\+\_\+\+Node\+\_\+set\+\_\+inactive}} (\mbox{\hyperlink{structPriority__Node}{Priority\+\_\+\+Node}} $\ast$node)
+\begin{DoxyCompactList}\small\item\em Sets the priority node inactive. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} bool \mbox{\hyperlink{group__RTEMSScorePriority_ga3b20401cbb459264526c37edc5b1c89f}{\+\_\+\+Priority\+\_\+\+Node\+\_\+is\+\_\+active}} (const \mbox{\hyperlink{structPriority__Node}{Priority\+\_\+\+Node}} $\ast$node)
+\begin{DoxyCompactList}\small\item\em Checks if the priority node is active. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \mbox{\hyperlink{group__RTEMSScorePriority_ga8d8c4f07bd22c4dd27a592368fadedcf}{\+\_\+\+Priority\+\_\+\+Initialize\+\_\+empty}} (\mbox{\hyperlink{structPriority__Aggregation}{Priority\+\_\+\+Aggregation}} $\ast$aggregation)
+\begin{DoxyCompactList}\small\item\em Initializes the priority aggregation empty. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \mbox{\hyperlink{group__RTEMSScorePriority_gac0c058cfd317fde243a7645b7a64b41c}{\+\_\+\+Priority\+\_\+\+Initialize\+\_\+one}} (\mbox{\hyperlink{structPriority__Aggregation}{Priority\+\_\+\+Aggregation}} $\ast$aggregation, \mbox{\hyperlink{structPriority__Node}{Priority\+\_\+\+Node}} $\ast$node)
+\begin{DoxyCompactList}\small\item\em Initializes the priority aggregation with the given information. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} bool \mbox{\hyperlink{group__RTEMSScorePriority_ga0344d5313d3b010417b4c84ce5d45d42}{\+\_\+\+Priority\+\_\+\+Is\+\_\+empty}} (const \mbox{\hyperlink{structPriority__Aggregation}{Priority\+\_\+\+Aggregation}} $\ast$aggregation)
+\begin{DoxyCompactList}\small\item\em Checks if the priority aggregation is empty. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} \mbox{\hyperlink{group__RTEMSScorePriority_ga59d02b58072d31a9a1cfe644557aefe2}{Priority\+\_\+\+Control}} \mbox{\hyperlink{group__RTEMSScorePriority_gaea7676bde1276ab7042195c043e25bd5}{\+\_\+\+Priority\+\_\+\+Get\+\_\+priority}} (const \mbox{\hyperlink{structPriority__Aggregation}{Priority\+\_\+\+Aggregation}} $\ast$aggregation)
+\begin{DoxyCompactList}\small\item\em Gets the priority aggregation\textquotesingle{}s priority. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} const \mbox{\hyperlink{struct__Scheduler__Control}{Scheduler\+\_\+\+Control}} $\ast$ \mbox{\hyperlink{group__RTEMSScorePriority_ga9d5749b9c6af6a152e99ec4f60ba8d64}{\+\_\+\+Priority\+\_\+\+Get\+\_\+scheduler}} (const \mbox{\hyperlink{structPriority__Aggregation}{Priority\+\_\+\+Aggregation}} $\ast$aggregation)
+\begin{DoxyCompactList}\small\item\em Gets the priority aggregation\textquotesingle{}s scheduler. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} \mbox{\hyperlink{structPriority__Node}{Priority\+\_\+\+Node}} $\ast$ \mbox{\hyperlink{group__RTEMSScorePriority_ga8a6a36d25c2f1d7e797a252b79888445}{\+\_\+\+Priority\+\_\+\+Get\+\_\+minimum\+\_\+node}} (const \mbox{\hyperlink{structPriority__Aggregation}{Priority\+\_\+\+Aggregation}} $\ast$aggregation)
+\begin{DoxyCompactList}\small\item\em Gets the minimum node of the priority aggregation. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \mbox{\hyperlink{group__RTEMSScorePriority_gaebeadb369618aee744159e9edea5e10b}{\+\_\+\+Priority\+\_\+\+Set\+\_\+action\+\_\+node}} (\mbox{\hyperlink{structPriority__Aggregation}{Priority\+\_\+\+Aggregation}} $\ast$aggregation, \mbox{\hyperlink{structPriority__Node}{Priority\+\_\+\+Node}} $\ast$node)
+\begin{DoxyCompactList}\small\item\em Sets the action node of the priority aggregation. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \mbox{\hyperlink{group__RTEMSScorePriority_ga0557d9c3a8c3c6d33705c9619c72ac84}{\+\_\+\+Priority\+\_\+\+Set\+\_\+action\+\_\+type}} (\mbox{\hyperlink{structPriority__Aggregation}{Priority\+\_\+\+Aggregation}} $\ast$aggregation, \mbox{\hyperlink{group__RTEMSScorePriority_gae6fceeae8a1c66316277dc3b52e3ba27}{Priority\+\_\+\+Action\+\_\+type}} type)
+\begin{DoxyCompactList}\small\item\em Sets the action type of the priority aggregation. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \mbox{\hyperlink{group__RTEMSScorePriority_ga22ce55962b30d24d69e874c247c4e5cd}{\+\_\+\+Priority\+\_\+\+Set\+\_\+action}} (\mbox{\hyperlink{structPriority__Aggregation}{Priority\+\_\+\+Aggregation}} $\ast$aggregation, \mbox{\hyperlink{structPriority__Node}{Priority\+\_\+\+Node}} $\ast$node, \mbox{\hyperlink{group__RTEMSScorePriority_gae6fceeae8a1c66316277dc3b52e3ba27}{Priority\+\_\+\+Action\+\_\+type}} type)
+\begin{DoxyCompactList}\small\item\em Sets the action type and action node of the priority aggregation. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} \mbox{\hyperlink{structPriority__Aggregation}{Priority\+\_\+\+Aggregation}} $\ast$ \mbox{\hyperlink{group__RTEMSScorePriority_gae4ca26c57754bbcd572d40ee95e38fd5}{\+\_\+\+Priority\+\_\+\+Get\+\_\+next\+\_\+action}} (const \mbox{\hyperlink{structPriority__Aggregation}{Priority\+\_\+\+Aggregation}} $\ast$aggregation)
+\begin{DoxyCompactList}\small\item\em Gets the next action of the priority aggregation. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} bool \mbox{\hyperlink{group__RTEMSScorePriority_ga7b22bc7ca1475fd603d1929d34776453}{\+\_\+\+Priority\+\_\+\+Less}} (const void $\ast$left, const \mbox{\hyperlink{structRBTree__Node}{R\+B\+Tree\+\_\+\+Node}} $\ast$right)
+\begin{DoxyCompactList}\small\item\em Compares two priorities. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} bool \mbox{\hyperlink{group__RTEMSScorePriority_ga2ced6d3277df7f8ed31b06d97f60e59d}{\+\_\+\+Priority\+\_\+\+Plain\+\_\+insert}} (\mbox{\hyperlink{structPriority__Aggregation}{Priority\+\_\+\+Aggregation}} $\ast$aggregation, \mbox{\hyperlink{structPriority__Node}{Priority\+\_\+\+Node}} $\ast$node, \mbox{\hyperlink{group__RTEMSScorePriority_ga59d02b58072d31a9a1cfe644557aefe2}{Priority\+\_\+\+Control}} priority)
+\begin{DoxyCompactList}\small\item\em Inserts the node with the given priority into the priority aggregation\textquotesingle{}s contributors. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \mbox{\hyperlink{group__RTEMSScorePriority_ga3f23c793bc3fa87aa768c81154f1b54a}{\+\_\+\+Priority\+\_\+\+Plain\+\_\+extract}} (\mbox{\hyperlink{structPriority__Aggregation}{Priority\+\_\+\+Aggregation}} $\ast$aggregation, \mbox{\hyperlink{structPriority__Node}{Priority\+\_\+\+Node}} $\ast$node)
+\begin{DoxyCompactList}\small\item\em Extracts the priority node from the aggregation. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \mbox{\hyperlink{group__RTEMSScorePriority_ga96c4da0740e220f6f9a130b00a08c336}{\+\_\+\+Priority\+\_\+\+Plain\+\_\+changed}} (\mbox{\hyperlink{structPriority__Aggregation}{Priority\+\_\+\+Aggregation}} $\ast$aggregation, \mbox{\hyperlink{structPriority__Node}{Priority\+\_\+\+Node}} $\ast$node)
+\begin{DoxyCompactList}\small\item\em Updates the priority of the node in the aggregation. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \mbox{\hyperlink{group__RTEMSScorePriority_ga376808ed1ec1863f949b35f8dbabaea5}{\+\_\+\+Priority\+\_\+\+Change\+\_\+nothing}} (\mbox{\hyperlink{structPriority__Aggregation}{Priority\+\_\+\+Aggregation}} $\ast$aggregation, bool prepend\+\_\+it, \mbox{\hyperlink{structPriority__Actions}{Priority\+\_\+\+Actions}} $\ast$actions, void $\ast$arg)
+\begin{DoxyCompactList}\small\item\em Does nothing. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \mbox{\hyperlink{group__RTEMSScorePriority_ga5992ef5ea71b1219fe7a884e0ccc52af}{\+\_\+\+Priority\+\_\+\+Remove\+\_\+nothing}} (\mbox{\hyperlink{structPriority__Aggregation}{Priority\+\_\+\+Aggregation}} $\ast$aggregation, \mbox{\hyperlink{structPriority__Actions}{Priority\+\_\+\+Actions}} $\ast$actions, void $\ast$arg)
+\begin{DoxyCompactList}\small\item\em Does nothing. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \mbox{\hyperlink{group__RTEMSScorePriority_ga73b5cce2b5df3b31ab208e64cc0348a9}{\+\_\+\+Priority\+\_\+\+Non\+\_\+empty\+\_\+insert}} (\mbox{\hyperlink{structPriority__Aggregation}{Priority\+\_\+\+Aggregation}} $\ast$aggregation, \mbox{\hyperlink{structPriority__Node}{Priority\+\_\+\+Node}} $\ast$node, \mbox{\hyperlink{structPriority__Actions}{Priority\+\_\+\+Actions}} $\ast$actions, Priority\+\_\+\+Change\+\_\+handler change, void $\ast$arg)
+\begin{DoxyCompactList}\small\item\em Inserts the node in a nonempty aggregation and handles change if the node is the new minimum. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \mbox{\hyperlink{group__RTEMSScorePriority_gad7a0e6788cb685ddd6dc8b884f4b797a}{\+\_\+\+Priority\+\_\+\+Insert}} (\mbox{\hyperlink{structPriority__Aggregation}{Priority\+\_\+\+Aggregation}} $\ast$aggregation, \mbox{\hyperlink{structPriority__Node}{Priority\+\_\+\+Node}} $\ast$node, \mbox{\hyperlink{structPriority__Actions}{Priority\+\_\+\+Actions}} $\ast$actions, Priority\+\_\+\+Add\+\_\+handler add, Priority\+\_\+\+Change\+\_\+handler change, void $\ast$arg)
+\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \mbox{\hyperlink{group__RTEMSScorePriority_ga4a779aca3d3f5d714c7468398c30399d}{\+\_\+\+Priority\+\_\+\+Extract}} (\mbox{\hyperlink{structPriority__Aggregation}{Priority\+\_\+\+Aggregation}} $\ast$aggregation, \mbox{\hyperlink{structPriority__Node}{Priority\+\_\+\+Node}} $\ast$node, \mbox{\hyperlink{structPriority__Actions}{Priority\+\_\+\+Actions}} $\ast$actions, Priority\+\_\+\+Remove\+\_\+handler remove, Priority\+\_\+\+Change\+\_\+handler change, void $\ast$arg)
+\begin{DoxyCompactList}\small\item\em Extracts the node from the aggregation. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \mbox{\hyperlink{group__RTEMSScorePriority_ga8628c09ae0aafba6264881d74cf3bcc6}{\+\_\+\+Priority\+\_\+\+Extract\+\_\+non\+\_\+empty}} (\mbox{\hyperlink{structPriority__Aggregation}{Priority\+\_\+\+Aggregation}} $\ast$aggregation, \mbox{\hyperlink{structPriority__Node}{Priority\+\_\+\+Node}} $\ast$node, \mbox{\hyperlink{structPriority__Actions}{Priority\+\_\+\+Actions}} $\ast$actions, Priority\+\_\+\+Change\+\_\+handler change, void $\ast$arg)
+\begin{DoxyCompactList}\small\item\em Extracts the node from the aggregation. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \mbox{\hyperlink{group__RTEMSScorePriority_gaf09a0d40270cffbc84c45ca0655d2d78}{\+\_\+\+Priority\+\_\+\+Changed}} (\mbox{\hyperlink{structPriority__Aggregation}{Priority\+\_\+\+Aggregation}} $\ast$aggregation, \mbox{\hyperlink{structPriority__Node}{Priority\+\_\+\+Node}} $\ast$node, bool prepend\+\_\+it, \mbox{\hyperlink{structPriority__Actions}{Priority\+\_\+\+Actions}} $\ast$actions, Priority\+\_\+\+Change\+\_\+handler change, void $\ast$arg)
+\begin{DoxyCompactList}\small\item\em Updates the priority of the node in the aggregation. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \mbox{\hyperlink{group__RTEMSScorePriority_ga5571db1b8c4f7e5a5aa4ce4398e55f6a}{\+\_\+\+Priority\+\_\+\+Replace}} (\mbox{\hyperlink{structPriority__Aggregation}{Priority\+\_\+\+Aggregation}} $\ast$aggregation, \mbox{\hyperlink{structPriority__Node}{Priority\+\_\+\+Node}} $\ast$victim, \mbox{\hyperlink{structPriority__Node}{Priority\+\_\+\+Node}} $\ast$replacement)
+\begin{DoxyCompactList}\small\item\em Replaces one node by another. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const unsigned char \mbox{\hyperlink{group__RTEMSScorePriority_gae7a955bc5864ff213306e21ec75ee0a1}{\+\_\+\+Bitfield\+\_\+\+Leading\+\_\+zeros}} \mbox{[}256\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Priority Handler. 
+
+This handler encapsulates functionality which is used to manage thread priorities. The actual priority of a thread is an aggregation of priority nodes. The thread priority aggregation for the home scheduler instance of a thread consists of at least one priority node, which is normally the real priority of the thread. The locking protocols (e.\+g. priority ceiling and priority inheritance), rate-\/monotonic period objects and the P\+O\+S\+IX sporadic server add, change and remove priority nodes. 
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{group__RTEMSScorePriority_ga2711e6c0b0a209b78f35ad5f76db56f3}\label{group__RTEMSScorePriority_ga2711e6c0b0a209b78f35ad5f76db56f3}} 
+\index{Priority Handler@{Priority Handler}!PRIORITY\_DEFAULT\_MAXIMUM@{PRIORITY\_DEFAULT\_MAXIMUM}}
+\index{PRIORITY\_DEFAULT\_MAXIMUM@{PRIORITY\_DEFAULT\_MAXIMUM}!Priority Handler@{Priority Handler}}
+\subsubsection{\texorpdfstring{PRIORITY\_DEFAULT\_MAXIMUM}{PRIORITY\_DEFAULT\_MAXIMUM}}
+{\footnotesize\ttfamily \#define P\+R\+I\+O\+R\+I\+T\+Y\+\_\+\+D\+E\+F\+A\+U\+L\+T\+\_\+\+M\+A\+X\+I\+M\+UM~255}
+
+
+
+The default lowest (least important) thread priority value. 
+
+This value is C\+PU port dependent. \mbox{\Hypertarget{group__RTEMSScorePriority_gaa1513d851789c6be74feab5874c30ec8}\label{group__RTEMSScorePriority_gaa1513d851789c6be74feab5874c30ec8}} 
+\index{Priority Handler@{Priority Handler}!PRIORITY\_PSEUDO\_ISR@{PRIORITY\_PSEUDO\_ISR}}
+\index{PRIORITY\_PSEUDO\_ISR@{PRIORITY\_PSEUDO\_ISR}!Priority Handler@{Priority Handler}}
+\subsubsection{\texorpdfstring{PRIORITY\_PSEUDO\_ISR}{PRIORITY\_PSEUDO\_ISR}}
+{\footnotesize\ttfamily \#define P\+R\+I\+O\+R\+I\+T\+Y\+\_\+\+P\+S\+E\+U\+D\+O\+\_\+\+I\+SR~\mbox{\hyperlink{group__RTEMSScorePriority_ga4e541913996f017db9428a9fe621d5d7}{P\+R\+I\+O\+R\+I\+T\+Y\+\_\+\+M\+I\+N\+I\+M\+UM}}}
+
+
+
+The priority value of pseudo-\/\+I\+SR threads. 
+
+Examples are the M\+P\+CI and timer server threads. 
+
+\subsection{Typedef Documentation}
+\mbox{\Hypertarget{group__RTEMSScorePriority_ga59d02b58072d31a9a1cfe644557aefe2}\label{group__RTEMSScorePriority_ga59d02b58072d31a9a1cfe644557aefe2}} 
+\index{Priority Handler@{Priority Handler}!Priority\_Control@{Priority\_Control}}
+\index{Priority\_Control@{Priority\_Control}!Priority Handler@{Priority Handler}}
+\subsubsection{\texorpdfstring{Priority\_Control}{Priority\_Control}}
+{\footnotesize\ttfamily typedef uint64\+\_\+t \mbox{\hyperlink{group__RTEMSScorePriority_ga59d02b58072d31a9a1cfe644557aefe2}{Priority\+\_\+\+Control}}}
+
+
+
+The thread priority control. 
+
+Lower values represent higher priorities. So, a priority value of zero represents the highest priority thread. This value is reserved for internal threads and the priority ceiling protocol.
+
+The format of the thread priority control depends on the context. A thread priority control may contain a user visible priority for A\+PI import/export. It may also contain a scheduler internal priority value. Values are translated via the scheduler map/unmap priority operations. The format of scheduler interal values depend on the particular scheduler implementation. It may for example encode a deadline in case of the E\+DF scheduler.
+
+The thread priority control value contained in the scheduler node (Scheduler\+\_\+\+Node\+::\+Priority\+::value) uses the least-\/significant bit to indicate if the thread should be appended or prepended to its priority group, see \mbox{\hyperlink{group__RTEMSScoreScheduler_ga2bc5f17fd4204768543893a50c09bd26}{S\+C\+H\+E\+D\+U\+L\+E\+R\+\_\+\+P\+R\+I\+O\+R\+I\+T\+Y\+\_\+\+A\+P\+P\+E\+N\+D()}}. 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{group__RTEMSScorePriority_gacf3f0ba39c90e26e3f821c04a2e48ee5}\label{group__RTEMSScorePriority_gacf3f0ba39c90e26e3f821c04a2e48ee5}} 
+\index{Priority Handler@{Priority Handler}!\_Bitfield\_Find\_first\_bit@{\_Bitfield\_Find\_first\_bit}}
+\index{\_Bitfield\_Find\_first\_bit@{\_Bitfield\_Find\_first\_bit}!Priority Handler@{Priority Handler}}
+\subsubsection{\texorpdfstring{\_Bitfield\_Find\_first\_bit()}{\_Bitfield\_Find\_first\_bit()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} unsigned int \+\_\+\+Bitfield\+\_\+\+Find\+\_\+first\+\_\+bit (\begin{DoxyParamCaption}\item[{unsigned int}]{value }\end{DoxyParamCaption})}
+
+
+
+Returns the bit number of the first bit set in the specified value. 
+
+The correspondence between the bit number and actual bit position is C\+PU architecture dependent. The search for the first bit set may run from most to least significant bit or vice-\/versa.
+
+
+\begin{DoxyParams}{Parameters}
+{\em value} & The value to bit scan.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The bit number of the first bit set.
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{group__RTEMSScorePriority_ga7e9cb59c60f7231a454824509f3a1b6a}{\+\_\+\+Priority\+\_\+\+Bits\+\_\+index()}} and \mbox{\hyperlink{group__RTEMSScorePriority_gadf554c1cf4e5a358ebb28e90e013ccb1}{\+\_\+\+Priority\+\_\+\+Mask()}}. 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{group__RTEMSScorePriority_ga62c96ae193f0f06dd79cbb72976e0384}\label{group__RTEMSScorePriority_ga62c96ae193f0f06dd79cbb72976e0384}} 
+\index{Priority Handler@{Priority Handler}!\_Priority\_Actions\_add@{\_Priority\_Actions\_add}}
+\index{\_Priority\_Actions\_add@{\_Priority\_Actions\_add}!Priority Handler@{Priority Handler}}
+\subsubsection{\texorpdfstring{\_Priority\_Actions\_add()}{\_Priority\_Actions\_add()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \+\_\+\+Priority\+\_\+\+Actions\+\_\+add (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structPriority__Actions}{Priority\+\_\+\+Actions}} $\ast$}]{actions,  }\item[{\mbox{\hyperlink{structPriority__Aggregation}{Priority\+\_\+\+Aggregation}} $\ast$}]{aggregation }\end{DoxyParamCaption})}
+
+
+
+Adds actions to the priority actions\textquotesingle{} actions. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em actions} & The priority actions to add actions to. \\
+\hline
+\mbox{\texttt{ out}}  & {\em aggregation} & The actions to add to {\itshape actions}. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__RTEMSScorePriority_ga7bc66b35e181e6b877defc90ec74c893}\label{group__RTEMSScorePriority_ga7bc66b35e181e6b877defc90ec74c893}} 
+\index{Priority Handler@{Priority Handler}!\_Priority\_Actions\_initialize\_empty@{\_Priority\_Actions\_initialize\_empty}}
+\index{\_Priority\_Actions\_initialize\_empty@{\_Priority\_Actions\_initialize\_empty}!Priority Handler@{Priority Handler}}
+\subsubsection{\texorpdfstring{\_Priority\_Actions\_initialize\_empty()}{\_Priority\_Actions\_initialize\_empty()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \+\_\+\+Priority\+\_\+\+Actions\+\_\+initialize\+\_\+empty (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structPriority__Actions}{Priority\+\_\+\+Actions}} $\ast$}]{actions }\end{DoxyParamCaption})}
+
+
+
+Initializes the priority actions empty. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em actions} & The actions to be initialized empty. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__RTEMSScorePriority_gad2be4119adbe29c7da28463477622c8c}\label{group__RTEMSScorePriority_gad2be4119adbe29c7da28463477622c8c}} 
+\index{Priority Handler@{Priority Handler}!\_Priority\_Actions\_initialize\_one@{\_Priority\_Actions\_initialize\_one}}
+\index{\_Priority\_Actions\_initialize\_one@{\_Priority\_Actions\_initialize\_one}!Priority Handler@{Priority Handler}}
+\subsubsection{\texorpdfstring{\_Priority\_Actions\_initialize\_one()}{\_Priority\_Actions\_initialize\_one()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \+\_\+\+Priority\+\_\+\+Actions\+\_\+initialize\+\_\+one (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structPriority__Actions}{Priority\+\_\+\+Actions}} $\ast$}]{actions,  }\item[{\mbox{\hyperlink{structPriority__Aggregation}{Priority\+\_\+\+Aggregation}} $\ast$}]{aggregation,  }\item[{\mbox{\hyperlink{structPriority__Node}{Priority\+\_\+\+Node}} $\ast$}]{node,  }\item[{\mbox{\hyperlink{group__RTEMSScorePriority_gae6fceeae8a1c66316277dc3b52e3ba27}{Priority\+\_\+\+Action\+\_\+type}}}]{type }\end{DoxyParamCaption})}
+
+
+
+Initializes the priority actions with the given information. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em actions} & The actions to be initialized. \\
+\hline
+ & {\em aggregation} & The aggregation for the {\itshape actions} to be initialized. \\
+\hline
+ & {\em node} & The action node for the {\itshape actions} to be initialized. \\
+\hline
+ & {\em type} & The action type for the {\itshape actions} to be initialized. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__RTEMSScorePriority_ga11ca5379e29efb02baa8366570cfa87b}\label{group__RTEMSScorePriority_ga11ca5379e29efb02baa8366570cfa87b}} 
+\index{Priority Handler@{Priority Handler}!\_Priority\_Actions\_is\_empty@{\_Priority\_Actions\_is\_empty}}
+\index{\_Priority\_Actions\_is\_empty@{\_Priority\_Actions\_is\_empty}!Priority Handler@{Priority Handler}}
+\subsubsection{\texorpdfstring{\_Priority\_Actions\_is\_empty()}{\_Priority\_Actions\_is\_empty()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} bool \+\_\+\+Priority\+\_\+\+Actions\+\_\+is\+\_\+empty (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structPriority__Actions}{Priority\+\_\+\+Actions}} $\ast$}]{actions }\end{DoxyParamCaption})}
+
+
+
+Checks if the priority actions is empty. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em actions} & The priority actions to check if it is empty.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em true} & The priority actions {\itshape actions} is empty. \\
+\hline
+{\em false} & The priority actions {\itshape actions} is empty. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{group__RTEMSScorePriority_gabfe1f29214b3da4b3f09d607c8ebb7d3}\label{group__RTEMSScorePriority_gabfe1f29214b3da4b3f09d607c8ebb7d3}} 
+\index{Priority Handler@{Priority Handler}!\_Priority\_Actions\_is\_valid@{\_Priority\_Actions\_is\_valid}}
+\index{\_Priority\_Actions\_is\_valid@{\_Priority\_Actions\_is\_valid}!Priority Handler@{Priority Handler}}
+\subsubsection{\texorpdfstring{\_Priority\_Actions\_is\_valid()}{\_Priority\_Actions\_is\_valid()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} bool \+\_\+\+Priority\+\_\+\+Actions\+\_\+is\+\_\+valid (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structPriority__Aggregation}{Priority\+\_\+\+Aggregation}} $\ast$}]{aggregation }\end{DoxyParamCaption})}
+
+
+
+Checks if the priority actions is valid. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em aggregation} & The aggregation of the priority action.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em true} & The {\itshape aggregation} is valid. \\
+\hline
+{\em false} & The {\itshape aggregation} is not valid. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{group__RTEMSScorePriority_ga96d8f44d7473f32a8740950d41f2fa7c}\label{group__RTEMSScorePriority_ga96d8f44d7473f32a8740950d41f2fa7c}} 
+\index{Priority Handler@{Priority Handler}!\_Priority\_Actions\_move@{\_Priority\_Actions\_move}}
+\index{\_Priority\_Actions\_move@{\_Priority\_Actions\_move}!Priority Handler@{Priority Handler}}
+\subsubsection{\texorpdfstring{\_Priority\_Actions\_move()}{\_Priority\_Actions\_move()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} \mbox{\hyperlink{structPriority__Aggregation}{Priority\+\_\+\+Aggregation}}$\ast$ \+\_\+\+Priority\+\_\+\+Actions\+\_\+move (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structPriority__Actions}{Priority\+\_\+\+Actions}} $\ast$}]{actions }\end{DoxyParamCaption})}
+
+
+
+Moves the priority actions\textquotesingle{} actions. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em actions} & The priority actions to move the actions away from.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The former actions of {\itshape actions} that were moved. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{group__RTEMSScorePriority_gaadf94736b9e458d8a92afbbfb2485e12}\label{group__RTEMSScorePriority_gaadf94736b9e458d8a92afbbfb2485e12}} 
+\index{Priority Handler@{Priority Handler}!\_Priority\_bit\_map\_Add@{\_Priority\_bit\_map\_Add}}
+\index{\_Priority\_bit\_map\_Add@{\_Priority\_bit\_map\_Add}!Priority Handler@{Priority Handler}}
+\subsubsection{\texorpdfstring{\_Priority\_bit\_map\_Add()}{\_Priority\_bit\_map\_Add()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \+\_\+\+Priority\+\_\+bit\+\_\+map\+\_\+\+Add (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structPriority__bit__map__Control}{Priority\+\_\+bit\+\_\+map\+\_\+\+Control}} $\ast$}]{bit\+\_\+map,  }\item[{\mbox{\hyperlink{structPriority__bit__map__Information}{Priority\+\_\+bit\+\_\+map\+\_\+\+Information}} $\ast$}]{bit\+\_\+map\+\_\+info }\end{DoxyParamCaption})}
+
+
+
+Adds Priority queue bit map information. 
+
+Priority Queue implemented by bit map.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em bit\+\_\+map} & The bit map to be altered by {\itshape bit\+\_\+map\+\_\+info}. \\
+\hline
+ & {\em bit\+\_\+map\+\_\+info} & The information with which to alter {\itshape bit\+\_\+map}. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__RTEMSScorePriority_ga1f62e66dfe278e0aa74677bcb444d4bf}\label{group__RTEMSScorePriority_ga1f62e66dfe278e0aa74677bcb444d4bf}} 
+\index{Priority Handler@{Priority Handler}!\_Priority\_bit\_map\_Get\_highest@{\_Priority\_bit\_map\_Get\_highest}}
+\index{\_Priority\_bit\_map\_Get\_highest@{\_Priority\_bit\_map\_Get\_highest}!Priority Handler@{Priority Handler}}
+\subsubsection{\texorpdfstring{\_Priority\_bit\_map\_Get\_highest()}{\_Priority\_bit\_map\_Get\_highest()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} unsigned int \+\_\+\+Priority\+\_\+bit\+\_\+map\+\_\+\+Get\+\_\+highest (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structPriority__bit__map__Control}{Priority\+\_\+bit\+\_\+map\+\_\+\+Control}} $\ast$}]{bit\+\_\+map }\end{DoxyParamCaption})}
+
+
+
+Gets highest portion of Priority queue bit map. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em bit\+\_\+map} & The bitmap to get the highest portion from.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The highest portion of the bitmap. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{group__RTEMSScorePriority_gae1b3ddc145139b8cedba8169214f2dab}\label{group__RTEMSScorePriority_gae1b3ddc145139b8cedba8169214f2dab}} 
+\index{Priority Handler@{Priority Handler}!\_Priority\_bit\_map\_Initialize@{\_Priority\_bit\_map\_Initialize}}
+\index{\_Priority\_bit\_map\_Initialize@{\_Priority\_bit\_map\_Initialize}!Priority Handler@{Priority Handler}}
+\subsubsection{\texorpdfstring{\_Priority\_bit\_map\_Initialize()}{\_Priority\_bit\_map\_Initialize()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \+\_\+\+Priority\+\_\+bit\+\_\+map\+\_\+\+Initialize (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structPriority__bit__map__Control}{Priority\+\_\+bit\+\_\+map\+\_\+\+Control}} $\ast$}]{bit\+\_\+map }\end{DoxyParamCaption})}
+
+
+
+Initializes a bit map. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em bit\+\_\+map} & The bit map to initialize. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__RTEMSScorePriority_gab11e5706b0623eda6bb5a0c7f85f3a50}\label{group__RTEMSScorePriority_gab11e5706b0623eda6bb5a0c7f85f3a50}} 
+\index{Priority Handler@{Priority Handler}!\_Priority\_bit\_map\_Initialize\_information@{\_Priority\_bit\_map\_Initialize\_information}}
+\index{\_Priority\_bit\_map\_Initialize\_information@{\_Priority\_bit\_map\_Initialize\_information}!Priority Handler@{Priority Handler}}
+\subsubsection{\texorpdfstring{\_Priority\_bit\_map\_Initialize\_information()}{\_Priority\_bit\_map\_Initialize\_information()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \+\_\+\+Priority\+\_\+bit\+\_\+map\+\_\+\+Initialize\+\_\+information (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structPriority__bit__map__Control}{Priority\+\_\+bit\+\_\+map\+\_\+\+Control}} $\ast$}]{bit\+\_\+map,  }\item[{\mbox{\hyperlink{structPriority__bit__map__Information}{Priority\+\_\+bit\+\_\+map\+\_\+\+Information}} $\ast$}]{bit\+\_\+map\+\_\+info,  }\item[{unsigned int}]{new\+\_\+priority }\end{DoxyParamCaption})}
+
+
+
+Initializes the bit map information. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+ & {\em bit\+\_\+map} & The bit map for the initialization of the bit map information. \\
+\hline
+\mbox{\texttt{ out}}  & {\em bit\+\_\+map\+\_\+info} & The bit map information to initialize. \\
+\hline
+ & {\em new\+\_\+priority} & The new priority for the initialization of the bit map information. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__RTEMSScorePriority_ga957c4e569087b83bf77d27e03e121606}\label{group__RTEMSScorePriority_ga957c4e569087b83bf77d27e03e121606}} 
+\index{Priority Handler@{Priority Handler}!\_Priority\_bit\_map\_Is\_empty@{\_Priority\_bit\_map\_Is\_empty}}
+\index{\_Priority\_bit\_map\_Is\_empty@{\_Priority\_bit\_map\_Is\_empty}!Priority Handler@{Priority Handler}}
+\subsubsection{\texorpdfstring{\_Priority\_bit\_map\_Is\_empty()}{\_Priority\_bit\_map\_Is\_empty()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} bool \+\_\+\+Priority\+\_\+bit\+\_\+map\+\_\+\+Is\+\_\+empty (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structPriority__bit__map__Control}{Priority\+\_\+bit\+\_\+map\+\_\+\+Control}} $\ast$}]{bit\+\_\+map }\end{DoxyParamCaption})}
+
+
+
+Checks if the Priority queue bit map is empty. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em bit\+\_\+map} & The bit map of which to check if it is empty.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em true} & The Priority queue bit map is empty \\
+\hline
+{\em false} & The Priority queue bit map is not empty. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{group__RTEMSScorePriority_gab4a3b896e05ca0e5b2b1227e851447f8}\label{group__RTEMSScorePriority_gab4a3b896e05ca0e5b2b1227e851447f8}} 
+\index{Priority Handler@{Priority Handler}!\_Priority\_bit\_map\_Remove@{\_Priority\_bit\_map\_Remove}}
+\index{\_Priority\_bit\_map\_Remove@{\_Priority\_bit\_map\_Remove}!Priority Handler@{Priority Handler}}
+\subsubsection{\texorpdfstring{\_Priority\_bit\_map\_Remove()}{\_Priority\_bit\_map\_Remove()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \+\_\+\+Priority\+\_\+bit\+\_\+map\+\_\+\+Remove (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structPriority__bit__map__Control}{Priority\+\_\+bit\+\_\+map\+\_\+\+Control}} $\ast$}]{bit\+\_\+map,  }\item[{\mbox{\hyperlink{structPriority__bit__map__Information}{Priority\+\_\+bit\+\_\+map\+\_\+\+Information}} $\ast$}]{bit\+\_\+map\+\_\+info }\end{DoxyParamCaption})}
+
+
+
+Removes Priority queue bit map information. 
+
+Priority Queue implemented by bit map.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em bit\+\_\+map} & The bit map to be altered by {\itshape bit\+\_\+map\+\_\+info}. \\
+\hline
+ & {\em bit\+\_\+map\+\_\+info} & The information with which to alter {\itshape bit\+\_\+map}. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__RTEMSScorePriority_ga7e9cb59c60f7231a454824509f3a1b6a}\label{group__RTEMSScorePriority_ga7e9cb59c60f7231a454824509f3a1b6a}} 
+\index{Priority Handler@{Priority Handler}!\_Priority\_Bits\_index@{\_Priority\_Bits\_index}}
+\index{\_Priority\_Bits\_index@{\_Priority\_Bits\_index}!Priority Handler@{Priority Handler}}
+\subsubsection{\texorpdfstring{\_Priority\_Bits\_index()}{\_Priority\_Bits\_index()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} unsigned int \+\_\+\+Priority\+\_\+\+Bits\+\_\+index (\begin{DoxyParamCaption}\item[{unsigned int}]{bit\+\_\+number }\end{DoxyParamCaption})}
+
+
+
+Returns the bit index position for the specified major or minor bit number. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em bit\+\_\+number} & The bit number for which we need an index.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The corresponding array index into the priority bit map. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{group__RTEMSScorePriority_ga376808ed1ec1863f949b35f8dbabaea5}\label{group__RTEMSScorePriority_ga376808ed1ec1863f949b35f8dbabaea5}} 
+\index{Priority Handler@{Priority Handler}!\_Priority\_Change\_nothing@{\_Priority\_Change\_nothing}}
+\index{\_Priority\_Change\_nothing@{\_Priority\_Change\_nothing}!Priority Handler@{Priority Handler}}
+\subsubsection{\texorpdfstring{\_Priority\_Change\_nothing()}{\_Priority\_Change\_nothing()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \+\_\+\+Priority\+\_\+\+Change\+\_\+nothing (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structPriority__Aggregation}{Priority\+\_\+\+Aggregation}} $\ast$}]{aggregation,  }\item[{bool}]{prepend\+\_\+it,  }\item[{\mbox{\hyperlink{structPriority__Actions}{Priority\+\_\+\+Actions}} $\ast$}]{actions,  }\item[{void $\ast$}]{arg }\end{DoxyParamCaption})}
+
+
+
+Does nothing. 
+
+This method does nothing.
+
+
+\begin{DoxyParams}{Parameters}
+{\em aggregation} & Is ignored by the method. \\
+\hline
+{\em prepend\+\_\+it} & Is ignored by the method. \\
+\hline
+{\em actions} & Is ignored by the method. \\
+\hline
+{\em arg} & Is ignored by the method. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__RTEMSScorePriority_gaf09a0d40270cffbc84c45ca0655d2d78}\label{group__RTEMSScorePriority_gaf09a0d40270cffbc84c45ca0655d2d78}} 
+\index{Priority Handler@{Priority Handler}!\_Priority\_Changed@{\_Priority\_Changed}}
+\index{\_Priority\_Changed@{\_Priority\_Changed}!Priority Handler@{Priority Handler}}
+\subsubsection{\texorpdfstring{\_Priority\_Changed()}{\_Priority\_Changed()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \+\_\+\+Priority\+\_\+\+Changed (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structPriority__Aggregation}{Priority\+\_\+\+Aggregation}} $\ast$}]{aggregation,  }\item[{\mbox{\hyperlink{structPriority__Node}{Priority\+\_\+\+Node}} $\ast$}]{node,  }\item[{bool}]{prepend\+\_\+it,  }\item[{\mbox{\hyperlink{structPriority__Actions}{Priority\+\_\+\+Actions}} $\ast$}]{actions,  }\item[{Priority\+\_\+\+Change\+\_\+handler}]{change,  }\item[{void $\ast$}]{arg }\end{DoxyParamCaption})}
+
+
+
+Updates the priority of the node in the aggregation. 
+
+This method handles the case that {\itshape node} was the minimal node in {\itshape aggregation}.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em aggregation} & The aggregation to change the node in. \\
+\hline
+ & {\em node} & The node that has a new priority and will be reinserted in the aggregation. \\
+\hline
+ & {\em prepend\+\_\+it} & Indicates whether {\itshape change} should prepend if the minimal priority is incorrectly set after the change. \\
+\hline
+ & {\em actions} & The actions for the case that the minimal priority is incorrectly set after the change. \\
+\hline
+ & {\em change} & Is called if the minimal priority is incorrectly set after the change. \\
+\hline
+ & {\em arg} & The arguments for {\itshape change}. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__RTEMSScorePriority_ga4a779aca3d3f5d714c7468398c30399d}\label{group__RTEMSScorePriority_ga4a779aca3d3f5d714c7468398c30399d}} 
+\index{Priority Handler@{Priority Handler}!\_Priority\_Extract@{\_Priority\_Extract}}
+\index{\_Priority\_Extract@{\_Priority\_Extract}!Priority Handler@{Priority Handler}}
+\subsubsection{\texorpdfstring{\_Priority\_Extract()}{\_Priority\_Extract()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \+\_\+\+Priority\+\_\+\+Extract (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structPriority__Aggregation}{Priority\+\_\+\+Aggregation}} $\ast$}]{aggregation,  }\item[{\mbox{\hyperlink{structPriority__Node}{Priority\+\_\+\+Node}} $\ast$}]{node,  }\item[{\mbox{\hyperlink{structPriority__Actions}{Priority\+\_\+\+Actions}} $\ast$}]{actions,  }\item[{Priority\+\_\+\+Remove\+\_\+handler}]{remove,  }\item[{Priority\+\_\+\+Change\+\_\+handler}]{change,  }\item[{void $\ast$}]{arg }\end{DoxyParamCaption})}
+
+
+
+Extracts the node from the aggregation. 
+
+This method extracts the node from the aggregation and handles the cases that {\itshape aggregation} is empty after the extraction, or that {\itshape node} was the minimal node in {\itshape aggregation} by calling remove (if empty) or change (if {\itshape node} was the minimal node).
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em aggregation} & The aggregation to extract the {\itshape node} from. \\
+\hline
+ & {\em node} & The node to extract from {\itshape aggregation}. \\
+\hline
+ & {\em actions} & The actions for the cases that the aggregation is empty after the extraction, or the minimal node was extracted. \\
+\hline
+ & {\em remove} & Is called in the case that the aggregation is empty after the extraction. \\
+\hline
+ & {\em change} & Is called in the case that the minimal node was extracted. \\
+\hline
+ & {\em arg} & The arguments for {\itshape remove} and {\itshape change}. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__RTEMSScorePriority_ga8628c09ae0aafba6264881d74cf3bcc6}\label{group__RTEMSScorePriority_ga8628c09ae0aafba6264881d74cf3bcc6}} 
+\index{Priority Handler@{Priority Handler}!\_Priority\_Extract\_non\_empty@{\_Priority\_Extract\_non\_empty}}
+\index{\_Priority\_Extract\_non\_empty@{\_Priority\_Extract\_non\_empty}!Priority Handler@{Priority Handler}}
+\subsubsection{\texorpdfstring{\_Priority\_Extract\_non\_empty()}{\_Priority\_Extract\_non\_empty()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \+\_\+\+Priority\+\_\+\+Extract\+\_\+non\+\_\+empty (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structPriority__Aggregation}{Priority\+\_\+\+Aggregation}} $\ast$}]{aggregation,  }\item[{\mbox{\hyperlink{structPriority__Node}{Priority\+\_\+\+Node}} $\ast$}]{node,  }\item[{\mbox{\hyperlink{structPriority__Actions}{Priority\+\_\+\+Actions}} $\ast$}]{actions,  }\item[{Priority\+\_\+\+Change\+\_\+handler}]{change,  }\item[{void $\ast$}]{arg }\end{DoxyParamCaption})}
+
+
+
+Extracts the node from the aggregation. 
+
+This method extracts the node from the aggregation and handles the case that {\itshape node} was the minimal node in {\itshape aggregation} by calling change (if {\itshape node} was the minimal node).
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em aggregation} & The aggregation to extract the {\itshape node} from. \\
+\hline
+ & {\em node} & The node to extract from {\itshape aggregation}. \\
+\hline
+ & {\em actions} & The actions for the case that the minimal node was extracted. \\
+\hline
+ & {\em change} & Is called in the case that the minimal node was extracted. \\
+\hline
+ & {\em arg} & The arguments for {\itshape change}. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__RTEMSScorePriority_ga8a6a36d25c2f1d7e797a252b79888445}\label{group__RTEMSScorePriority_ga8a6a36d25c2f1d7e797a252b79888445}} 
+\index{Priority Handler@{Priority Handler}!\_Priority\_Get\_minimum\_node@{\_Priority\_Get\_minimum\_node}}
+\index{\_Priority\_Get\_minimum\_node@{\_Priority\_Get\_minimum\_node}!Priority Handler@{Priority Handler}}
+\subsubsection{\texorpdfstring{\_Priority\_Get\_minimum\_node()}{\_Priority\_Get\_minimum\_node()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} \mbox{\hyperlink{structPriority__Node}{Priority\+\_\+\+Node}}$\ast$ \+\_\+\+Priority\+\_\+\+Get\+\_\+minimum\+\_\+node (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structPriority__Aggregation}{Priority\+\_\+\+Aggregation}} $\ast$}]{aggregation }\end{DoxyParamCaption})}
+
+
+
+Gets the minimum node of the priority aggregation. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em aggregation} & The priority aggregation to get the minimum node from.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The minimum node of {\itshape aggregation} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{group__RTEMSScorePriority_gae4ca26c57754bbcd572d40ee95e38fd5}\label{group__RTEMSScorePriority_gae4ca26c57754bbcd572d40ee95e38fd5}} 
+\index{Priority Handler@{Priority Handler}!\_Priority\_Get\_next\_action@{\_Priority\_Get\_next\_action}}
+\index{\_Priority\_Get\_next\_action@{\_Priority\_Get\_next\_action}!Priority Handler@{Priority Handler}}
+\subsubsection{\texorpdfstring{\_Priority\_Get\_next\_action()}{\_Priority\_Get\_next\_action()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} \mbox{\hyperlink{structPriority__Aggregation}{Priority\+\_\+\+Aggregation}}$\ast$ \+\_\+\+Priority\+\_\+\+Get\+\_\+next\+\_\+action (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structPriority__Aggregation}{Priority\+\_\+\+Aggregation}} $\ast$}]{aggregation }\end{DoxyParamCaption})}
+
+
+
+Gets the next action of the priority aggregation. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em aggregation} & The priority aggregation to get the next action of.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em next\+\_\+action} & The next action of {\itshape aggregation} if R\+T\+E\+M\+S\+\_\+\+S\+MP is defined. \\
+\hline
+{\em N\+U\+LL} & R\+T\+E\+M\+S\+\_\+\+S\+MP is not defined. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{group__RTEMSScorePriority_gaea7676bde1276ab7042195c043e25bd5}\label{group__RTEMSScorePriority_gaea7676bde1276ab7042195c043e25bd5}} 
+\index{Priority Handler@{Priority Handler}!\_Priority\_Get\_priority@{\_Priority\_Get\_priority}}
+\index{\_Priority\_Get\_priority@{\_Priority\_Get\_priority}!Priority Handler@{Priority Handler}}
+\subsubsection{\texorpdfstring{\_Priority\_Get\_priority()}{\_Priority\_Get\_priority()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} \mbox{\hyperlink{group__RTEMSScorePriority_ga59d02b58072d31a9a1cfe644557aefe2}{Priority\+\_\+\+Control}} \+\_\+\+Priority\+\_\+\+Get\+\_\+priority (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structPriority__Aggregation}{Priority\+\_\+\+Aggregation}} $\ast$}]{aggregation }\end{DoxyParamCaption})}
+
+
+
+Gets the priority aggregation\textquotesingle{}s priority. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em aggregation} & The priority aggregation to get the priority from.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The priority of {\itshape aggregation}. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{group__RTEMSScorePriority_ga9d5749b9c6af6a152e99ec4f60ba8d64}\label{group__RTEMSScorePriority_ga9d5749b9c6af6a152e99ec4f60ba8d64}} 
+\index{Priority Handler@{Priority Handler}!\_Priority\_Get\_scheduler@{\_Priority\_Get\_scheduler}}
+\index{\_Priority\_Get\_scheduler@{\_Priority\_Get\_scheduler}!Priority Handler@{Priority Handler}}
+\subsubsection{\texorpdfstring{\_Priority\_Get\_scheduler()}{\_Priority\_Get\_scheduler()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} const \mbox{\hyperlink{struct__Scheduler__Control}{Scheduler\+\_\+\+Control}}$\ast$ \+\_\+\+Priority\+\_\+\+Get\+\_\+scheduler (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structPriority__Aggregation}{Priority\+\_\+\+Aggregation}} $\ast$}]{aggregation }\end{DoxyParamCaption})}
+
+
+
+Gets the priority aggregation\textquotesingle{}s scheduler. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em aggregation} & The priority aggregation to get the scheduler from.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The scheduler of {\itshape aggregation}. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{group__RTEMSScorePriority_ga8d8c4f07bd22c4dd27a592368fadedcf}\label{group__RTEMSScorePriority_ga8d8c4f07bd22c4dd27a592368fadedcf}} 
+\index{Priority Handler@{Priority Handler}!\_Priority\_Initialize\_empty@{\_Priority\_Initialize\_empty}}
+\index{\_Priority\_Initialize\_empty@{\_Priority\_Initialize\_empty}!Priority Handler@{Priority Handler}}
+\subsubsection{\texorpdfstring{\_Priority\_Initialize\_empty()}{\_Priority\_Initialize\_empty()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \+\_\+\+Priority\+\_\+\+Initialize\+\_\+empty (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structPriority__Aggregation}{Priority\+\_\+\+Aggregation}} $\ast$}]{aggregation }\end{DoxyParamCaption})}
+
+
+
+Initializes the priority aggregation empty. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em aggregation} & The priority aggregaton to initialize empty. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__RTEMSScorePriority_gac0c058cfd317fde243a7645b7a64b41c}\label{group__RTEMSScorePriority_gac0c058cfd317fde243a7645b7a64b41c}} 
+\index{Priority Handler@{Priority Handler}!\_Priority\_Initialize\_one@{\_Priority\_Initialize\_one}}
+\index{\_Priority\_Initialize\_one@{\_Priority\_Initialize\_one}!Priority Handler@{Priority Handler}}
+\subsubsection{\texorpdfstring{\_Priority\_Initialize\_one()}{\_Priority\_Initialize\_one()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \+\_\+\+Priority\+\_\+\+Initialize\+\_\+one (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structPriority__Aggregation}{Priority\+\_\+\+Aggregation}} $\ast$}]{aggregation,  }\item[{\mbox{\hyperlink{structPriority__Node}{Priority\+\_\+\+Node}} $\ast$}]{node }\end{DoxyParamCaption})}
+
+
+
+Initializes the priority aggregation with the given information. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em aggregation} & The priority aggregaton to initialize. \\
+\hline
+ & {\em node} & The priority node to initialize {\itshape aggregation} with. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__RTEMSScorePriority_gad7a0e6788cb685ddd6dc8b884f4b797a}\label{group__RTEMSScorePriority_gad7a0e6788cb685ddd6dc8b884f4b797a}} 
+\index{Priority Handler@{Priority Handler}!\_Priority\_Insert@{\_Priority\_Insert}}
+\index{\_Priority\_Insert@{\_Priority\_Insert}!Priority Handler@{Priority Handler}}
+\subsubsection{\texorpdfstring{\_Priority\_Insert()}{\_Priority\_Insert()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \+\_\+\+Priority\+\_\+\+Insert (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structPriority__Aggregation}{Priority\+\_\+\+Aggregation}} $\ast$}]{aggregation,  }\item[{\mbox{\hyperlink{structPriority__Node}{Priority\+\_\+\+Node}} $\ast$}]{node,  }\item[{\mbox{\hyperlink{structPriority__Actions}{Priority\+\_\+\+Actions}} $\ast$}]{actions,  }\item[{Priority\+\_\+\+Add\+\_\+handler}]{add,  }\item[{Priority\+\_\+\+Change\+\_\+handler}]{change,  }\item[{void $\ast$}]{arg }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em aggregation} & The aggregation to insert the node in. \\
+\hline
+ & {\em node} & The node to be inserted. The node\textquotesingle{}s priority is used as key. \\
+\hline
+ & {\em actions} & Priority actions for the case that the aggregation was empty before the insert or the node is the new minimum. \\
+\hline
+ & {\em add} & Is called in the case that {\itshape aggregation} was empty before the insert. \\
+\hline
+ & {\em change} & Is called in the case that {\itshape aggregation} was nonempty before the insert and {\itshape node} is the new minimum of the aggregation. \\
+\hline
+ & {\em arg} & The arguments for {\itshape change}. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__RTEMSScorePriority_ga0344d5313d3b010417b4c84ce5d45d42}\label{group__RTEMSScorePriority_ga0344d5313d3b010417b4c84ce5d45d42}} 
+\index{Priority Handler@{Priority Handler}!\_Priority\_Is\_empty@{\_Priority\_Is\_empty}}
+\index{\_Priority\_Is\_empty@{\_Priority\_Is\_empty}!Priority Handler@{Priority Handler}}
+\subsubsection{\texorpdfstring{\_Priority\_Is\_empty()}{\_Priority\_Is\_empty()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} bool \+\_\+\+Priority\+\_\+\+Is\+\_\+empty (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structPriority__Aggregation}{Priority\+\_\+\+Aggregation}} $\ast$}]{aggregation }\end{DoxyParamCaption})}
+
+
+
+Checks if the priority aggregation is empty. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em aggregation} & The priority aggregation that shall be verified if it is empty.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em true} & The priority aggregation is empty. \\
+\hline
+{\em false} & The priority aggregation is not empty. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{group__RTEMSScorePriority_ga7b22bc7ca1475fd603d1929d34776453}\label{group__RTEMSScorePriority_ga7b22bc7ca1475fd603d1929d34776453}} 
+\index{Priority Handler@{Priority Handler}!\_Priority\_Less@{\_Priority\_Less}}
+\index{\_Priority\_Less@{\_Priority\_Less}!Priority Handler@{Priority Handler}}
+\subsubsection{\texorpdfstring{\_Priority\_Less()}{\_Priority\_Less()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} bool \+\_\+\+Priority\+\_\+\+Less (\begin{DoxyParamCaption}\item[{const void $\ast$}]{left,  }\item[{const \mbox{\hyperlink{structRBTree__Node}{R\+B\+Tree\+\_\+\+Node}} $\ast$}]{right }\end{DoxyParamCaption})}
+
+
+
+Compares two priorities. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em left} & The priority control on the left hand side of the comparison. \\
+\hline
+{\em right} & T\+He \mbox{\hyperlink{structRBTree__Node}{R\+B\+Tree\+\_\+\+Node}} to get the priority for the comparison from.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em true} & The priority on the left hand side of the comparison is smaller. \\
+\hline
+{\em false} & The priority on the left hand side of the comparison is greater of equal. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{group__RTEMSScorePriority_ga1e9fd447bd6120ec504a82d5e4f4dc24}\label{group__RTEMSScorePriority_ga1e9fd447bd6120ec504a82d5e4f4dc24}} 
+\index{Priority Handler@{Priority Handler}!\_Priority\_Major@{\_Priority\_Major}}
+\index{\_Priority\_Major@{\_Priority\_Major}!Priority Handler@{Priority Handler}}
+\subsubsection{\texorpdfstring{\_Priority\_Major()}{\_Priority\_Major()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} unsigned int \+\_\+\+Priority\+\_\+\+Major (\begin{DoxyParamCaption}\item[{unsigned int}]{the\+\_\+priority }\end{DoxyParamCaption})}
+
+
+
+Returns the major portion of the\+\_\+priority. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em the\+\_\+priority} & The priority of which we want the major portion.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The major portion of the priority. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{group__RTEMSScorePriority_gadf554c1cf4e5a358ebb28e90e013ccb1}\label{group__RTEMSScorePriority_gadf554c1cf4e5a358ebb28e90e013ccb1}} 
+\index{Priority Handler@{Priority Handler}!\_Priority\_Mask@{\_Priority\_Mask}}
+\index{\_Priority\_Mask@{\_Priority\_Mask}!Priority Handler@{Priority Handler}}
+\subsubsection{\texorpdfstring{\_Priority\_Mask()}{\_Priority\_Mask()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} Priority\+\_\+bit\+\_\+map\+\_\+\+Word \+\_\+\+Priority\+\_\+\+Mask (\begin{DoxyParamCaption}\item[{unsigned int}]{bit\+\_\+number }\end{DoxyParamCaption})}
+
+
+
+Returns the priority bit mask for the specified major or minor bit number. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em bit\+\_\+number} & The bit number for which we need a mask.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The priority bit mask. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{group__RTEMSScorePriority_gaaf7dd3dde9aa776f2c16fee4c1e572ed}\label{group__RTEMSScorePriority_gaaf7dd3dde9aa776f2c16fee4c1e572ed}} 
+\index{Priority Handler@{Priority Handler}!\_Priority\_Minor@{\_Priority\_Minor}}
+\index{\_Priority\_Minor@{\_Priority\_Minor}!Priority Handler@{Priority Handler}}
+\subsubsection{\texorpdfstring{\_Priority\_Minor()}{\_Priority\_Minor()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} unsigned int \+\_\+\+Priority\+\_\+\+Minor (\begin{DoxyParamCaption}\item[{unsigned int}]{the\+\_\+priority }\end{DoxyParamCaption})}
+
+
+
+Returns the minor portion of the\+\_\+priority. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em the\+\_\+priority} & The priority of which we want the minor portion.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The minor portion of the priority. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{group__RTEMSScorePriority_ga10c99a53ad7cb8f77e5de8aa06deb934}\label{group__RTEMSScorePriority_ga10c99a53ad7cb8f77e5de8aa06deb934}} 
+\index{Priority Handler@{Priority Handler}!\_Priority\_Node\_initialize@{\_Priority\_Node\_initialize}}
+\index{\_Priority\_Node\_initialize@{\_Priority\_Node\_initialize}!Priority Handler@{Priority Handler}}
+\subsubsection{\texorpdfstring{\_Priority\_Node\_initialize()}{\_Priority\_Node\_initialize()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \+\_\+\+Priority\+\_\+\+Node\+\_\+initialize (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structPriority__Node}{Priority\+\_\+\+Node}} $\ast$}]{node,  }\item[{\mbox{\hyperlink{group__RTEMSScorePriority_ga59d02b58072d31a9a1cfe644557aefe2}{Priority\+\_\+\+Control}}}]{priority }\end{DoxyParamCaption})}
+
+
+
+Initializes the priority node to the given priority. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em node} & The priority node to be initialized. \\
+\hline
+ & {\em priority} & The priority to initialize {\itshape node} to. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__RTEMSScorePriority_ga3b20401cbb459264526c37edc5b1c89f}\label{group__RTEMSScorePriority_ga3b20401cbb459264526c37edc5b1c89f}} 
+\index{Priority Handler@{Priority Handler}!\_Priority\_Node\_is\_active@{\_Priority\_Node\_is\_active}}
+\index{\_Priority\_Node\_is\_active@{\_Priority\_Node\_is\_active}!Priority Handler@{Priority Handler}}
+\subsubsection{\texorpdfstring{\_Priority\_Node\_is\_active()}{\_Priority\_Node\_is\_active()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} bool \+\_\+\+Priority\+\_\+\+Node\+\_\+is\+\_\+active (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structPriority__Node}{Priority\+\_\+\+Node}} $\ast$}]{node }\end{DoxyParamCaption})}
+
+
+
+Checks if the priority node is active. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em node} & The priority node that shall be verified if it is active.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em true} & The priority node is active. \\
+\hline
+{\em false} & The priority node is inactive. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{group__RTEMSScorePriority_gaae4c7c5c4cc58ddbfd2376615e43d710}\label{group__RTEMSScorePriority_gaae4c7c5c4cc58ddbfd2376615e43d710}} 
+\index{Priority Handler@{Priority Handler}!\_Priority\_Node\_set\_inactive@{\_Priority\_Node\_set\_inactive}}
+\index{\_Priority\_Node\_set\_inactive@{\_Priority\_Node\_set\_inactive}!Priority Handler@{Priority Handler}}
+\subsubsection{\texorpdfstring{\_Priority\_Node\_set\_inactive()}{\_Priority\_Node\_set\_inactive()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \+\_\+\+Priority\+\_\+\+Node\+\_\+set\+\_\+inactive (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structPriority__Node}{Priority\+\_\+\+Node}} $\ast$}]{node }\end{DoxyParamCaption})}
+
+
+
+Sets the priority node inactive. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em node} & The priority node to set inactive. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__RTEMSScorePriority_ga8f7626eed557998923ac78733f8790c9}\label{group__RTEMSScorePriority_ga8f7626eed557998923ac78733f8790c9}} 
+\index{Priority Handler@{Priority Handler}!\_Priority\_Node\_set\_priority@{\_Priority\_Node\_set\_priority}}
+\index{\_Priority\_Node\_set\_priority@{\_Priority\_Node\_set\_priority}!Priority Handler@{Priority Handler}}
+\subsubsection{\texorpdfstring{\_Priority\_Node\_set\_priority()}{\_Priority\_Node\_set\_priority()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \+\_\+\+Priority\+\_\+\+Node\+\_\+set\+\_\+priority (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structPriority__Node}{Priority\+\_\+\+Node}} $\ast$}]{node,  }\item[{\mbox{\hyperlink{group__RTEMSScorePriority_ga59d02b58072d31a9a1cfe644557aefe2}{Priority\+\_\+\+Control}}}]{priority }\end{DoxyParamCaption})}
+
+
+
+Sets the priority of the priority node to the given priority. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em node} & The priority node to set the priority of. \\
+\hline
+ & {\em priority} & The new priority for {\itshape node}. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__RTEMSScorePriority_ga73b5cce2b5df3b31ab208e64cc0348a9}\label{group__RTEMSScorePriority_ga73b5cce2b5df3b31ab208e64cc0348a9}} 
+\index{Priority Handler@{Priority Handler}!\_Priority\_Non\_empty\_insert@{\_Priority\_Non\_empty\_insert}}
+\index{\_Priority\_Non\_empty\_insert@{\_Priority\_Non\_empty\_insert}!Priority Handler@{Priority Handler}}
+\subsubsection{\texorpdfstring{\_Priority\_Non\_empty\_insert()}{\_Priority\_Non\_empty\_insert()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \+\_\+\+Priority\+\_\+\+Non\+\_\+empty\+\_\+insert (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structPriority__Aggregation}{Priority\+\_\+\+Aggregation}} $\ast$}]{aggregation,  }\item[{\mbox{\hyperlink{structPriority__Node}{Priority\+\_\+\+Node}} $\ast$}]{node,  }\item[{\mbox{\hyperlink{structPriority__Actions}{Priority\+\_\+\+Actions}} $\ast$}]{actions,  }\item[{Priority\+\_\+\+Change\+\_\+handler}]{change,  }\item[{void $\ast$}]{arg }\end{DoxyParamCaption})}
+
+
+
+Inserts the node in a nonempty aggregation and handles change if the node is the new minimum. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em aggregation} & The aggregation to insert the node into. \\
+\hline
+ & {\em node} & The node to be inserted. The node\textquotesingle{}s priority is used as a key. \\
+\hline
+ & {\em actions} & Parameter for {\itshape change} that is used if the node is the new minimum. \\
+\hline
+ & {\em change} & The priority change handler that is called in the case that the new node is the minimum of the aggregation. \\
+\hline
+ & {\em arg} & Arguments for {\itshape change} that is used if the node is the new minimum. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__RTEMSScorePriority_ga96c4da0740e220f6f9a130b00a08c336}\label{group__RTEMSScorePriority_ga96c4da0740e220f6f9a130b00a08c336}} 
+\index{Priority Handler@{Priority Handler}!\_Priority\_Plain\_changed@{\_Priority\_Plain\_changed}}
+\index{\_Priority\_Plain\_changed@{\_Priority\_Plain\_changed}!Priority Handler@{Priority Handler}}
+\subsubsection{\texorpdfstring{\_Priority\_Plain\_changed()}{\_Priority\_Plain\_changed()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \+\_\+\+Priority\+\_\+\+Plain\+\_\+changed (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structPriority__Aggregation}{Priority\+\_\+\+Aggregation}} $\ast$}]{aggregation,  }\item[{\mbox{\hyperlink{structPriority__Node}{Priority\+\_\+\+Node}} $\ast$}]{node }\end{DoxyParamCaption})}
+
+
+
+Updates the priority of the node in the aggregation. 
+
+It first extracts the node and inserts it again, with the new {\itshape node} priority as key. This method does not handle the case that {\itshape node} was the minimal node.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em aggregation} & The aggregation to change the node in. \\
+\hline
+ & {\em node} & The node that has a new priority and will be reinserted in the aggregation. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__RTEMSScorePriority_ga3f23c793bc3fa87aa768c81154f1b54a}\label{group__RTEMSScorePriority_ga3f23c793bc3fa87aa768c81154f1b54a}} 
+\index{Priority Handler@{Priority Handler}!\_Priority\_Plain\_extract@{\_Priority\_Plain\_extract}}
+\index{\_Priority\_Plain\_extract@{\_Priority\_Plain\_extract}!Priority Handler@{Priority Handler}}
+\subsubsection{\texorpdfstring{\_Priority\_Plain\_extract()}{\_Priority\_Plain\_extract()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \+\_\+\+Priority\+\_\+\+Plain\+\_\+extract (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structPriority__Aggregation}{Priority\+\_\+\+Aggregation}} $\ast$}]{aggregation,  }\item[{\mbox{\hyperlink{structPriority__Node}{Priority\+\_\+\+Node}} $\ast$}]{node }\end{DoxyParamCaption})}
+
+
+
+Extracts the priority node from the aggregation. 
+
+This method does not handle the case that {\itshape node} was the minimal node.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em aggregation} & The aggregation to extract the node from. \\
+\hline
+ & {\em node} & The node to be extracted. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__RTEMSScorePriority_ga2ced6d3277df7f8ed31b06d97f60e59d}\label{group__RTEMSScorePriority_ga2ced6d3277df7f8ed31b06d97f60e59d}} 
+\index{Priority Handler@{Priority Handler}!\_Priority\_Plain\_insert@{\_Priority\_Plain\_insert}}
+\index{\_Priority\_Plain\_insert@{\_Priority\_Plain\_insert}!Priority Handler@{Priority Handler}}
+\subsubsection{\texorpdfstring{\_Priority\_Plain\_insert()}{\_Priority\_Plain\_insert()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} bool \+\_\+\+Priority\+\_\+\+Plain\+\_\+insert (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structPriority__Aggregation}{Priority\+\_\+\+Aggregation}} $\ast$}]{aggregation,  }\item[{\mbox{\hyperlink{structPriority__Node}{Priority\+\_\+\+Node}} $\ast$}]{node,  }\item[{\mbox{\hyperlink{group__RTEMSScorePriority_ga59d02b58072d31a9a1cfe644557aefe2}{Priority\+\_\+\+Control}}}]{priority }\end{DoxyParamCaption})}
+
+
+
+Inserts the node with the given priority into the priority aggregation\textquotesingle{}s contributors. 
+
+This method does not handle the case that {\itshape node} was the minimal node.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em aggregation} & The aggregation to insert the node in its contributors. \\
+\hline
+\mbox{\texttt{ in}}  & {\em node} & The node to insert in the contributors. \\
+\hline
+ & {\em priority} & The priority control for the inserted node.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em true} & The inserted node with its priority is the minimum of the R\+B\+Tree. \\
+\hline
+{\em false} & The inserted node with its priority is not the minimum of the R\+B\+Tree. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{group__RTEMSScorePriority_ga5992ef5ea71b1219fe7a884e0ccc52af}\label{group__RTEMSScorePriority_ga5992ef5ea71b1219fe7a884e0ccc52af}} 
+\index{Priority Handler@{Priority Handler}!\_Priority\_Remove\_nothing@{\_Priority\_Remove\_nothing}}
+\index{\_Priority\_Remove\_nothing@{\_Priority\_Remove\_nothing}!Priority Handler@{Priority Handler}}
+\subsubsection{\texorpdfstring{\_Priority\_Remove\_nothing()}{\_Priority\_Remove\_nothing()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \+\_\+\+Priority\+\_\+\+Remove\+\_\+nothing (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structPriority__Aggregation}{Priority\+\_\+\+Aggregation}} $\ast$}]{aggregation,  }\item[{\mbox{\hyperlink{structPriority__Actions}{Priority\+\_\+\+Actions}} $\ast$}]{actions,  }\item[{void $\ast$}]{arg }\end{DoxyParamCaption})}
+
+
+
+Does nothing. 
+
+This method does nothing.
+
+
+\begin{DoxyParams}{Parameters}
+{\em aggregation} & Is ignored by the method. \\
+\hline
+{\em actions} & Is ignored by the method. \\
+\hline
+{\em arg} & Is ignored by the method. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__RTEMSScorePriority_ga5571db1b8c4f7e5a5aa4ce4398e55f6a}\label{group__RTEMSScorePriority_ga5571db1b8c4f7e5a5aa4ce4398e55f6a}} 
+\index{Priority Handler@{Priority Handler}!\_Priority\_Replace@{\_Priority\_Replace}}
+\index{\_Priority\_Replace@{\_Priority\_Replace}!Priority Handler@{Priority Handler}}
+\subsubsection{\texorpdfstring{\_Priority\_Replace()}{\_Priority\_Replace()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \+\_\+\+Priority\+\_\+\+Replace (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structPriority__Aggregation}{Priority\+\_\+\+Aggregation}} $\ast$}]{aggregation,  }\item[{\mbox{\hyperlink{structPriority__Node}{Priority\+\_\+\+Node}} $\ast$}]{victim,  }\item[{\mbox{\hyperlink{structPriority__Node}{Priority\+\_\+\+Node}} $\ast$}]{replacement }\end{DoxyParamCaption})}
+
+
+
+Replaces one node by another. 
+
+The new node has the priority of the old node.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em aggregation} & The aggregation to replace {\itshape victim} by {\itshape replacement} in. \\
+\hline
+ & {\em victim} & The node that will be replaced. \\
+\hline
+\mbox{\texttt{ out}}  & {\em replacement} & The node that replaces {\itshape victim}. It obtains its priority from {\itshape victim}. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__RTEMSScorePriority_ga22ce55962b30d24d69e874c247c4e5cd}\label{group__RTEMSScorePriority_ga22ce55962b30d24d69e874c247c4e5cd}} 
+\index{Priority Handler@{Priority Handler}!\_Priority\_Set\_action@{\_Priority\_Set\_action}}
+\index{\_Priority\_Set\_action@{\_Priority\_Set\_action}!Priority Handler@{Priority Handler}}
+\subsubsection{\texorpdfstring{\_Priority\_Set\_action()}{\_Priority\_Set\_action()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \+\_\+\+Priority\+\_\+\+Set\+\_\+action (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structPriority__Aggregation}{Priority\+\_\+\+Aggregation}} $\ast$}]{aggregation,  }\item[{\mbox{\hyperlink{structPriority__Node}{Priority\+\_\+\+Node}} $\ast$}]{node,  }\item[{\mbox{\hyperlink{group__RTEMSScorePriority_gae6fceeae8a1c66316277dc3b52e3ba27}{Priority\+\_\+\+Action\+\_\+type}}}]{type }\end{DoxyParamCaption})}
+
+
+
+Sets the action type and action node of the priority aggregation. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em aggregation} & The priority aggregation to set the action type and action node of. \\
+\hline
+ & {\em node} & The new action node for {\itshape aggregation}. \\
+\hline
+ & {\em type} & The new action type for {\itshape aggregation}. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__RTEMSScorePriority_gaebeadb369618aee744159e9edea5e10b}\label{group__RTEMSScorePriority_gaebeadb369618aee744159e9edea5e10b}} 
+\index{Priority Handler@{Priority Handler}!\_Priority\_Set\_action\_node@{\_Priority\_Set\_action\_node}}
+\index{\_Priority\_Set\_action\_node@{\_Priority\_Set\_action\_node}!Priority Handler@{Priority Handler}}
+\subsubsection{\texorpdfstring{\_Priority\_Set\_action\_node()}{\_Priority\_Set\_action\_node()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \+\_\+\+Priority\+\_\+\+Set\+\_\+action\+\_\+node (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structPriority__Aggregation}{Priority\+\_\+\+Aggregation}} $\ast$}]{aggregation,  }\item[{\mbox{\hyperlink{structPriority__Node}{Priority\+\_\+\+Node}} $\ast$}]{node }\end{DoxyParamCaption})}
+
+
+
+Sets the action node of the priority aggregation. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em aggregation} & The priority aggregation to set the action node of. \\
+\hline
+ & {\em node} & The new priority node for {\itshape aggregation}. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__RTEMSScorePriority_ga0557d9c3a8c3c6d33705c9619c72ac84}\label{group__RTEMSScorePriority_ga0557d9c3a8c3c6d33705c9619c72ac84}} 
+\index{Priority Handler@{Priority Handler}!\_Priority\_Set\_action\_type@{\_Priority\_Set\_action\_type}}
+\index{\_Priority\_Set\_action\_type@{\_Priority\_Set\_action\_type}!Priority Handler@{Priority Handler}}
+\subsubsection{\texorpdfstring{\_Priority\_Set\_action\_type()}{\_Priority\_Set\_action\_type()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \+\_\+\+Priority\+\_\+\+Set\+\_\+action\+\_\+type (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structPriority__Aggregation}{Priority\+\_\+\+Aggregation}} $\ast$}]{aggregation,  }\item[{\mbox{\hyperlink{group__RTEMSScorePriority_gae6fceeae8a1c66316277dc3b52e3ba27}{Priority\+\_\+\+Action\+\_\+type}}}]{type }\end{DoxyParamCaption})}
+
+
+
+Sets the action type of the priority aggregation. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em aggregation} & The priority aggregation to set the action type of. \\
+\hline
+ & {\em type} & The new action type for {\itshape aggregation}. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{group__RTEMSScorePriority_gae7a955bc5864ff213306e21ec75ee0a1}\label{group__RTEMSScorePriority_gae7a955bc5864ff213306e21ec75ee0a1}} 
+\index{Priority Handler@{Priority Handler}!\_Bitfield\_Leading\_zeros@{\_Bitfield\_Leading\_zeros}}
+\index{\_Bitfield\_Leading\_zeros@{\_Bitfield\_Leading\_zeros}!Priority Handler@{Priority Handler}}
+\subsubsection{\texorpdfstring{\_Bitfield\_Leading\_zeros}{\_Bitfield\_Leading\_zeros}}
+{\footnotesize\ttfamily const unsigned char \+\_\+\+Bitfield\+\_\+\+Leading\+\_\+zeros\mbox{[}256\mbox{]}}
+
+This table is used by the generic bitfield routines to perform a highly optimized bit scan without the use of special C\+PU instructions. 

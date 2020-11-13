@@ -1,0 +1,352 @@
+\hypertarget{bsps_2arm_2atsam_2include_2libchip_2include_2spi_8h}{}\section{bsps/arm/atsam/include/libchip/include/spi.h File Reference}
+\label{bsps_2arm_2atsam_2include_2libchip_2include_2spi_8h}\index{bsps/arm/atsam/include/libchip/include/spi.h@{bsps/arm/atsam/include/libchip/include/spi.h}}
+{\ttfamily \#include \char`\"{}chip.\+h\char`\"{}}\newline
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{bsps_2arm_2atsam_2include_2libchip_2include_2spi_8h_ad35127f0b8a356695d317647e0c394a7}{S\+P\+I\+\_\+\+P\+CS}}(npcs)~S\+P\+I\+\_\+\+M\+R\+\_\+\+P\+CS(($\sim$(1 $<$$<$ npcs) \& 0x\+F))
+\item 
+\#define \mbox{\hyperlink{bsps_2arm_2atsam_2include_2libchip_2include_2spi_8h_a9e33ac29bb1ece30bf14951a27a5c217}{S\+P\+I\+\_\+\+S\+C\+BR}}(baudrate,  master\+Clock)~S\+P\+I\+\_\+\+C\+S\+R\+\_\+\+S\+C\+BR((uint32\+\_\+t)(master\+Clock / baudrate))
+\item 
+\#define \mbox{\hyperlink{bsps_2arm_2atsam_2include_2libchip_2include_2spi_8h_a80ce960146111a3f346baf92c51a9f12}{S\+P\+I\+\_\+\+D\+L\+Y\+BS}}(delay,  master\+Clock)~S\+P\+I\+\_\+\+C\+S\+R\+\_\+\+D\+L\+Y\+BS((uint32\+\_\+t) (((master\+Clock / 1000000) $\ast$ delay) / 1000)+1)
+\item 
+\#define \mbox{\hyperlink{bsps_2arm_2atsam_2include_2libchip_2include_2spi_8h_a56328d95ea102e1801b78d3918f17201}{S\+P\+I\+\_\+\+D\+L\+Y\+B\+CT}}(delay,  master\+Clock)~S\+P\+I\+\_\+\+C\+S\+R\+\_\+\+D\+L\+Y\+B\+CT ((uint32\+\_\+t) (((master\+Clock / 1000000) $\ast$ delay) / 32000)+1)
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{bsps_2arm_2atsam_2include_2libchip_2include_2spi_8h_ad983db901253eb7cc58874a4d495a106}{S\+P\+I\+\_\+\+Enable}} (\mbox{\hyperlink{structSpi}{Spi}} $\ast$spi)
+\begin{DoxyCompactList}\small\item\em Enables a S\+PI peripheral. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{bsps_2arm_2atsam_2include_2libchip_2include_2spi_8h_aa8212f6819071a9ca247a0236b109e98}{S\+P\+I\+\_\+\+Disable}} (\mbox{\hyperlink{structSpi}{Spi}} $\ast$spi)
+\begin{DoxyCompactList}\small\item\em Disables a S\+PI peripheral. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{bsps_2arm_2atsam_2include_2libchip_2include_2spi_8h_a8b21dac92bc25ba80264fe26d0bd0d7e}{S\+P\+I\+\_\+\+Enable\+It}} (\mbox{\hyperlink{structSpi}{Spi}} $\ast$spi, uint32\+\_\+t dw\+Sources)
+\begin{DoxyCompactList}\small\item\em Enables one or more interrupt sources of a S\+PI peripheral. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{bsps_2arm_2atsam_2include_2libchip_2include_2spi_8h_afe62fe37b2185b40c33f3659618ef010}{S\+P\+I\+\_\+\+Disable\+It}} (\mbox{\hyperlink{structSpi}{Spi}} $\ast$spi, uint32\+\_\+t dw\+Sources)
+\begin{DoxyCompactList}\small\item\em Disables one or more interrupt sources of a S\+PI peripheral. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{bsps_2arm_2atsam_2include_2libchip_2include_2spi_8h_a0ebb1d25f8889b00a9dd846059456175}{S\+P\+I\+\_\+\+Configure}} (\mbox{\hyperlink{structSpi}{Spi}} $\ast$spi, uint32\+\_\+t dw\+Id, uint32\+\_\+t dw\+Configuration)
+\begin{DoxyCompactList}\small\item\em Configures a S\+PI peripheral as specified. The configuration can be computed using several macros (see \mbox{\hyperlink{bsps_2arm_2atsam_2include_2libchip_2include_2spi_8h_spi_configuration_macros}{S\+PI Configuration Macros}}). \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{bsps_2arm_2atsam_2include_2libchip_2include_2spi_8h_abfe4aa422995a3177b95d49e7c090e18}{S\+P\+I\+\_\+\+Set\+Mode}} (\mbox{\hyperlink{structSpi}{Spi}} $\ast$spi, uint32\+\_\+t dw\+Configuration)
+\begin{DoxyCompactList}\small\item\em Configures S\+PI Mode Register. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{bsps_2arm_2atsam_2include_2libchip_2include_2spi_8h_a43013aa88577daf7494eec9bfc4359aa}{S\+P\+I\+\_\+\+Chip\+Select}} (\mbox{\hyperlink{structSpi}{Spi}} $\ast$spi, uint8\+\_\+t cS)
+\begin{DoxyCompactList}\small\item\em Configures S\+PI chip select. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{bsps_2arm_2atsam_2include_2libchip_2include_2spi_8h_afec585b57cc1c95453808449f5d74fcd}{S\+P\+I\+\_\+\+Release\+CS}} (\mbox{\hyperlink{structSpi}{Spi}} $\ast$spi)
+\begin{DoxyCompactList}\small\item\em Configures S\+PI to release last used CS line. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{bsps_2arm_2atsam_2include_2libchip_2include_2spi_8h_a3f06d5a5d0d4475c4a2a46657235ac92}{S\+P\+I\+\_\+\+Configure\+N\+P\+CS}} (\mbox{\hyperlink{structSpi}{Spi}} $\ast$spi, uint32\+\_\+t dw\+Npcs, uint32\+\_\+t dw\+Configuration)
+\begin{DoxyCompactList}\small\item\em Configures a chip select of a S\+PI peripheral. The chip select configuration is computed using several macros (see \mbox{\hyperlink{bsps_2arm_2atsam_2include_2libchip_2include_2spi_8h_spi_configuration_macros}{S\+PI Configuration Macros}}). \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{bsps_2arm_2atsam_2include_2libchip_2include_2spi_8h_aaac7454e325a4827d0f43cb8102c9462}{S\+P\+I\+\_\+\+Configure\+C\+S\+Mode}} (\mbox{\hyperlink{structSpi}{Spi}} $\ast$spi, uint32\+\_\+t dw\+Npcs, uint32\+\_\+t b\+Release\+On\+Last)
+\begin{DoxyCompactList}\small\item\em Configures a chip select active mode of a S\+PI peripheral. \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{bsps_2arm_2atsam_2include_2libchip_2include_2spi_8h_a3e757f48d1ee59e6027ac4c4319556ca}{S\+P\+I\+\_\+\+Read}} (\mbox{\hyperlink{structSpi}{Spi}} $\ast$spi)
+\begin{DoxyCompactList}\small\item\em Reads and returns the last word of data received by a S\+PI peripheral. This method must be called after a successful S\+P\+I\+\_\+\+Write call. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{bsps_2arm_2atsam_2include_2libchip_2include_2spi_8h_a564ab3c6c710a126ae9fc731e46c1294}{S\+P\+I\+\_\+\+Write}} (\mbox{\hyperlink{structSpi}{Spi}} $\ast$spi, uint32\+\_\+t dw\+Npcs, uint16\+\_\+t w\+Data)
+\begin{DoxyCompactList}\small\item\em Sends data through a S\+PI peripheral. If the S\+PI is configured to use a fixed peripheral select, the npcs value is meaningless. Otherwise, it identifies the component which shall be addressed. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{bsps_2arm_2atsam_2include_2libchip_2include_2spi_8h_a9f1fbc924f96427094bdc17f75f8996e}{S\+P\+I\+\_\+\+Write\+Last}} (\mbox{\hyperlink{structSpi}{Spi}} $\ast$spi, uint32\+\_\+t dw\+Npcs, uint16\+\_\+t w\+Data)
+\begin{DoxyCompactList}\small\item\em Sends last data through a S\+PI peripheral. If the S\+PI is configured to use a fixed peripheral select, the npcs value is meaningless. Otherwise, it identifies the component which shall be addressed. \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{bsps_2arm_2atsam_2include_2libchip_2include_2spi_8h_a8dd28805d667314cb874428c10349731}{S\+P\+I\+\_\+\+Get\+Status}} (\mbox{\hyperlink{structSpi}{Spi}} $\ast$spi)
+\begin{DoxyCompactList}\small\item\em Get the current status register of the given S\+PI peripheral. \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{bsps_2arm_2atsam_2include_2libchip_2include_2spi_8h_a7b850a9897b6d489e64d456211470441}{S\+P\+I\+\_\+\+Is\+Finished}} (\mbox{\hyperlink{structSpi}{Spi}} $\ast$p\+Spi)
+\begin{DoxyCompactList}\small\item\em Check if S\+PI transfer finish. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Interface for Serial Peripheral Interface (S\+PI) controller. 
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{bsps_2arm_2atsam_2include_2libchip_2include_2spi_8h_a56328d95ea102e1801b78d3918f17201}\label{bsps_2arm_2atsam_2include_2libchip_2include_2spi_8h_a56328d95ea102e1801b78d3918f17201}} 
+\index{spi.h@{spi.h}!SPI\_DLYBCT@{SPI\_DLYBCT}}
+\index{SPI\_DLYBCT@{SPI\_DLYBCT}!spi.h@{spi.h}}
+\subsubsection{\texorpdfstring{SPI\_DLYBCT}{SPI\_DLYBCT}}
+{\footnotesize\ttfamily \#define S\+P\+I\+\_\+\+D\+L\+Y\+B\+CT(\begin{DoxyParamCaption}\item[{}]{delay,  }\item[{}]{master\+Clock }\end{DoxyParamCaption})~S\+P\+I\+\_\+\+C\+S\+R\+\_\+\+D\+L\+Y\+B\+CT ((uint32\+\_\+t) (((master\+Clock / 1000000) $\ast$ delay) / 32000)+1)}
+
+Calculates the value of the C\+SR D\+L\+Y\+B\+CT field given the desired delay (in ns) \mbox{\Hypertarget{bsps_2arm_2atsam_2include_2libchip_2include_2spi_8h_a80ce960146111a3f346baf92c51a9f12}\label{bsps_2arm_2atsam_2include_2libchip_2include_2spi_8h_a80ce960146111a3f346baf92c51a9f12}} 
+\index{spi.h@{spi.h}!SPI\_DLYBS@{SPI\_DLYBS}}
+\index{SPI\_DLYBS@{SPI\_DLYBS}!spi.h@{spi.h}}
+\subsubsection{\texorpdfstring{SPI\_DLYBS}{SPI\_DLYBS}}
+{\footnotesize\ttfamily \#define S\+P\+I\+\_\+\+D\+L\+Y\+BS(\begin{DoxyParamCaption}\item[{}]{delay,  }\item[{}]{master\+Clock }\end{DoxyParamCaption})~S\+P\+I\+\_\+\+C\+S\+R\+\_\+\+D\+L\+Y\+BS((uint32\+\_\+t) (((master\+Clock / 1000000) $\ast$ delay) / 1000)+1)}
+
+Calculates the value of the C\+SR D\+L\+Y\+BS field given the desired delay (in ns) \mbox{\Hypertarget{bsps_2arm_2atsam_2include_2libchip_2include_2spi_8h_ad35127f0b8a356695d317647e0c394a7}\label{bsps_2arm_2atsam_2include_2libchip_2include_2spi_8h_ad35127f0b8a356695d317647e0c394a7}} 
+\index{spi.h@{spi.h}!SPI\_PCS@{SPI\_PCS}}
+\index{SPI\_PCS@{SPI\_PCS}!spi.h@{spi.h}}
+\subsubsection{\texorpdfstring{SPI\_PCS}{SPI\_PCS}}
+{\footnotesize\ttfamily \#define S\+P\+I\+\_\+\+P\+CS(\begin{DoxyParamCaption}\item[{}]{npcs }\end{DoxyParamCaption})~S\+P\+I\+\_\+\+M\+R\+\_\+\+P\+CS(($\sim$(1 $<$$<$ npcs) \& 0x\+F))}
+
+Here are several macros which should be used when configuring a S\+PI peripheral.\hypertarget{bsps_2arm_2atsam_2include_2libchip_2include_2spi_8h_spi_configuration_macros}{}\subsection{S\+P\+I Configuration Macros}\label{bsps_2arm_2atsam_2include_2libchip_2include_2spi_8h_spi_configuration_macros}
+
+\begin{DoxyItemize}
+\item \mbox{\hyperlink{bsps_2arm_2atsam_2include_2libchip_2include_2spi_8h_ad35127f0b8a356695d317647e0c394a7}{S\+P\+I\+\_\+\+P\+CS}}
+\item \mbox{\hyperlink{bsps_2arm_2atsam_2include_2libchip_2include_2spi_8h_a9e33ac29bb1ece30bf14951a27a5c217}{S\+P\+I\+\_\+\+S\+C\+BR}}
+\item \mbox{\hyperlink{bsps_2arm_2atsam_2include_2libchip_2include_2spi_8h_a80ce960146111a3f346baf92c51a9f12}{S\+P\+I\+\_\+\+D\+L\+Y\+BS}}
+\item S\+P\+I\+\_\+\+D\+L\+Y\+B\+C\+T\+Calculate the P\+CS field value given the chip select N\+P\+CS value 
+\end{DoxyItemize}\mbox{\Hypertarget{bsps_2arm_2atsam_2include_2libchip_2include_2spi_8h_a9e33ac29bb1ece30bf14951a27a5c217}\label{bsps_2arm_2atsam_2include_2libchip_2include_2spi_8h_a9e33ac29bb1ece30bf14951a27a5c217}} 
+\index{spi.h@{spi.h}!SPI\_SCBR@{SPI\_SCBR}}
+\index{SPI\_SCBR@{SPI\_SCBR}!spi.h@{spi.h}}
+\subsubsection{\texorpdfstring{SPI\_SCBR}{SPI\_SCBR}}
+{\footnotesize\ttfamily \#define S\+P\+I\+\_\+\+S\+C\+BR(\begin{DoxyParamCaption}\item[{}]{baudrate,  }\item[{}]{master\+Clock }\end{DoxyParamCaption})~S\+P\+I\+\_\+\+C\+S\+R\+\_\+\+S\+C\+BR((uint32\+\_\+t)(master\+Clock / baudrate))}
+
+Calculates the value of the C\+SR S\+C\+BR field given the baudrate and M\+CK. 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{bsps_2arm_2atsam_2include_2libchip_2include_2spi_8h_a43013aa88577daf7494eec9bfc4359aa}\label{bsps_2arm_2atsam_2include_2libchip_2include_2spi_8h_a43013aa88577daf7494eec9bfc4359aa}} 
+\index{spi.h@{spi.h}!SPI\_ChipSelect@{SPI\_ChipSelect}}
+\index{SPI\_ChipSelect@{SPI\_ChipSelect}!spi.h@{spi.h}}
+\subsubsection{\texorpdfstring{SPI\_ChipSelect()}{SPI\_ChipSelect()}}
+{\footnotesize\ttfamily void S\+P\+I\+\_\+\+Chip\+Select (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structSpi}{Spi}} $\ast$}]{spi,  }\item[{uint8\+\_\+t}]{cS }\end{DoxyParamCaption})}
+
+
+
+Configures S\+PI chip select. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em spi} & Pointer to an S\+PI instance. \\
+\hline
+{\em cS} & Chip select of N\+P\+S\+Cx. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{bsps_2arm_2atsam_2include_2libchip_2include_2spi_8h_a0ebb1d25f8889b00a9dd846059456175}\label{bsps_2arm_2atsam_2include_2libchip_2include_2spi_8h_a0ebb1d25f8889b00a9dd846059456175}} 
+\index{spi.h@{spi.h}!SPI\_Configure@{SPI\_Configure}}
+\index{SPI\_Configure@{SPI\_Configure}!spi.h@{spi.h}}
+\subsubsection{\texorpdfstring{SPI\_Configure()}{SPI\_Configure()}}
+{\footnotesize\ttfamily void S\+P\+I\+\_\+\+Configure (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structSpi}{Spi}} $\ast$}]{spi,  }\item[{uint32\+\_\+t}]{dw\+Id,  }\item[{uint32\+\_\+t}]{dw\+Configuration }\end{DoxyParamCaption})}
+
+
+
+Configures a S\+PI peripheral as specified. The configuration can be computed using several macros (see \mbox{\hyperlink{bsps_2arm_2atsam_2include_2libchip_2include_2spi_8h_spi_configuration_macros}{S\+PI Configuration Macros}}). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em spi} & Pointer to an S\+PI instance. \\
+\hline
+{\em id} & Peripheral ID of the S\+PI. \\
+\hline
+{\em configuration} & Value of the S\+PI configuration register. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{bsps_2arm_2atsam_2include_2libchip_2include_2spi_8h_aaac7454e325a4827d0f43cb8102c9462}\label{bsps_2arm_2atsam_2include_2libchip_2include_2spi_8h_aaac7454e325a4827d0f43cb8102c9462}} 
+\index{spi.h@{spi.h}!SPI\_ConfigureCSMode@{SPI\_ConfigureCSMode}}
+\index{SPI\_ConfigureCSMode@{SPI\_ConfigureCSMode}!spi.h@{spi.h}}
+\subsubsection{\texorpdfstring{SPI\_ConfigureCSMode()}{SPI\_ConfigureCSMode()}}
+{\footnotesize\ttfamily void S\+P\+I\+\_\+\+Configure\+C\+S\+Mode (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structSpi}{Spi}} $\ast$}]{spi,  }\item[{uint32\+\_\+t}]{dw\+Npcs,  }\item[{uint32\+\_\+t}]{b\+Release\+On\+Last }\end{DoxyParamCaption})}
+
+
+
+Configures a chip select active mode of a S\+PI peripheral. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em spi} & Pointer to an S\+PI instance. \\
+\hline
+{\em dw\+Npcs} & Chip select to configure (0, 1, 2 or 3). \\
+\hline
+{\em b\+Release\+On\+Last} & CS controlled by last transfer. \mbox{\hyperlink{arm_2atsam_2contrib_2libraries_2libchip_2source_2spi_8c_afec585b57cc1c95453808449f5d74fcd}{S\+P\+I\+\_\+\+Release\+C\+S()}} is used to release CS. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{bsps_2arm_2atsam_2include_2libchip_2include_2spi_8h_a3f06d5a5d0d4475c4a2a46657235ac92}\label{bsps_2arm_2atsam_2include_2libchip_2include_2spi_8h_a3f06d5a5d0d4475c4a2a46657235ac92}} 
+\index{spi.h@{spi.h}!SPI\_ConfigureNPCS@{SPI\_ConfigureNPCS}}
+\index{SPI\_ConfigureNPCS@{SPI\_ConfigureNPCS}!spi.h@{spi.h}}
+\subsubsection{\texorpdfstring{SPI\_ConfigureNPCS()}{SPI\_ConfigureNPCS()}}
+{\footnotesize\ttfamily void S\+P\+I\+\_\+\+Configure\+N\+P\+CS (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structSpi}{Spi}} $\ast$}]{spi,  }\item[{uint32\+\_\+t}]{dw\+Npcs,  }\item[{uint32\+\_\+t}]{dw\+Configuration }\end{DoxyParamCaption})}
+
+
+
+Configures a chip select of a S\+PI peripheral. The chip select configuration is computed using several macros (see \mbox{\hyperlink{bsps_2arm_2atsam_2include_2libchip_2include_2spi_8h_spi_configuration_macros}{S\+PI Configuration Macros}}). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em spi} & Pointer to an S\+PI instance. \\
+\hline
+{\em npcs} & Chip select to configure (0, 1, 2 or 3). \\
+\hline
+{\em configuration} & Desired chip select configuration. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{bsps_2arm_2atsam_2include_2libchip_2include_2spi_8h_aa8212f6819071a9ca247a0236b109e98}\label{bsps_2arm_2atsam_2include_2libchip_2include_2spi_8h_aa8212f6819071a9ca247a0236b109e98}} 
+\index{spi.h@{spi.h}!SPI\_Disable@{SPI\_Disable}}
+\index{SPI\_Disable@{SPI\_Disable}!spi.h@{spi.h}}
+\subsubsection{\texorpdfstring{SPI\_Disable()}{SPI\_Disable()}}
+{\footnotesize\ttfamily void S\+P\+I\+\_\+\+Disable (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structSpi}{Spi}} $\ast$}]{spi }\end{DoxyParamCaption})}
+
+
+
+Disables a S\+PI peripheral. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em spi} & Pointer to an S\+PI instance. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{bsps_2arm_2atsam_2include_2libchip_2include_2spi_8h_afe62fe37b2185b40c33f3659618ef010}\label{bsps_2arm_2atsam_2include_2libchip_2include_2spi_8h_afe62fe37b2185b40c33f3659618ef010}} 
+\index{spi.h@{spi.h}!SPI\_DisableIt@{SPI\_DisableIt}}
+\index{SPI\_DisableIt@{SPI\_DisableIt}!spi.h@{spi.h}}
+\subsubsection{\texorpdfstring{SPI\_DisableIt()}{SPI\_DisableIt()}}
+{\footnotesize\ttfamily void S\+P\+I\+\_\+\+Disable\+It (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structSpi}{Spi}} $\ast$}]{spi,  }\item[{uint32\+\_\+t}]{dw\+Sources }\end{DoxyParamCaption})}
+
+
+
+Disables one or more interrupt sources of a S\+PI peripheral. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em spi} & Pointer to an S\+PI instance. \\
+\hline
+{\em sources} & Bitwise OR of selected interrupt sources. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{bsps_2arm_2atsam_2include_2libchip_2include_2spi_8h_ad983db901253eb7cc58874a4d495a106}\label{bsps_2arm_2atsam_2include_2libchip_2include_2spi_8h_ad983db901253eb7cc58874a4d495a106}} 
+\index{spi.h@{spi.h}!SPI\_Enable@{SPI\_Enable}}
+\index{SPI\_Enable@{SPI\_Enable}!spi.h@{spi.h}}
+\subsubsection{\texorpdfstring{SPI\_Enable()}{SPI\_Enable()}}
+{\footnotesize\ttfamily void S\+P\+I\+\_\+\+Enable (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structSpi}{Spi}} $\ast$}]{spi }\end{DoxyParamCaption})}
+
+
+
+Enables a S\+PI peripheral. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em spi} & Pointer to an S\+PI instance. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{bsps_2arm_2atsam_2include_2libchip_2include_2spi_8h_a8b21dac92bc25ba80264fe26d0bd0d7e}\label{bsps_2arm_2atsam_2include_2libchip_2include_2spi_8h_a8b21dac92bc25ba80264fe26d0bd0d7e}} 
+\index{spi.h@{spi.h}!SPI\_EnableIt@{SPI\_EnableIt}}
+\index{SPI\_EnableIt@{SPI\_EnableIt}!spi.h@{spi.h}}
+\subsubsection{\texorpdfstring{SPI\_EnableIt()}{SPI\_EnableIt()}}
+{\footnotesize\ttfamily void S\+P\+I\+\_\+\+Enable\+It (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structSpi}{Spi}} $\ast$}]{spi,  }\item[{uint32\+\_\+t}]{dw\+Sources }\end{DoxyParamCaption})}
+
+
+
+Enables one or more interrupt sources of a S\+PI peripheral. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em spi} & Pointer to an S\+PI instance. \\
+\hline
+{\em sources} & Bitwise OR of selected interrupt sources. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{bsps_2arm_2atsam_2include_2libchip_2include_2spi_8h_a8dd28805d667314cb874428c10349731}\label{bsps_2arm_2atsam_2include_2libchip_2include_2spi_8h_a8dd28805d667314cb874428c10349731}} 
+\index{spi.h@{spi.h}!SPI\_GetStatus@{SPI\_GetStatus}}
+\index{SPI\_GetStatus@{SPI\_GetStatus}!spi.h@{spi.h}}
+\subsubsection{\texorpdfstring{SPI\_GetStatus()}{SPI\_GetStatus()}}
+{\footnotesize\ttfamily uint32\+\_\+t S\+P\+I\+\_\+\+Get\+Status (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structSpi}{Spi}} $\ast$}]{spi }\end{DoxyParamCaption})}
+
+
+
+Get the current status register of the given S\+PI peripheral. 
+
+\begin{DoxyNote}{Note}
+This resets the internal value of the status register, so further read may yield different values. 
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em spi} & Pointer to a \mbox{\hyperlink{structSpi}{Spi}} instance. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+S\+PI status register. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{bsps_2arm_2atsam_2include_2libchip_2include_2spi_8h_a7b850a9897b6d489e64d456211470441}\label{bsps_2arm_2atsam_2include_2libchip_2include_2spi_8h_a7b850a9897b6d489e64d456211470441}} 
+\index{spi.h@{spi.h}!SPI\_IsFinished@{SPI\_IsFinished}}
+\index{SPI\_IsFinished@{SPI\_IsFinished}!spi.h@{spi.h}}
+\subsubsection{\texorpdfstring{SPI\_IsFinished()}{SPI\_IsFinished()}}
+{\footnotesize\ttfamily uint32\+\_\+t S\+P\+I\+\_\+\+Is\+Finished (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structSpi}{Spi}} $\ast$}]{spi }\end{DoxyParamCaption})}
+
+
+
+Check if S\+PI transfer finish. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em spi} & Pointer to an S\+PI instance.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns 1 if there is no pending write operation on the S\+PI; otherwise returns 0. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{bsps_2arm_2atsam_2include_2libchip_2include_2spi_8h_a3e757f48d1ee59e6027ac4c4319556ca}\label{bsps_2arm_2atsam_2include_2libchip_2include_2spi_8h_a3e757f48d1ee59e6027ac4c4319556ca}} 
+\index{spi.h@{spi.h}!SPI\_Read@{SPI\_Read}}
+\index{SPI\_Read@{SPI\_Read}!spi.h@{spi.h}}
+\subsubsection{\texorpdfstring{SPI\_Read()}{SPI\_Read()}}
+{\footnotesize\ttfamily uint32\+\_\+t S\+P\+I\+\_\+\+Read (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structSpi}{Spi}} $\ast$}]{spi }\end{DoxyParamCaption})}
+
+
+
+Reads and returns the last word of data received by a S\+PI peripheral. This method must be called after a successful S\+P\+I\+\_\+\+Write call. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em spi} & Pointer to an \mbox{\hyperlink{structSpi}{Spi}} instance.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+read data. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{bsps_2arm_2atsam_2include_2libchip_2include_2spi_8h_afec585b57cc1c95453808449f5d74fcd}\label{bsps_2arm_2atsam_2include_2libchip_2include_2spi_8h_afec585b57cc1c95453808449f5d74fcd}} 
+\index{spi.h@{spi.h}!SPI\_ReleaseCS@{SPI\_ReleaseCS}}
+\index{SPI\_ReleaseCS@{SPI\_ReleaseCS}!spi.h@{spi.h}}
+\subsubsection{\texorpdfstring{SPI\_ReleaseCS()}{SPI\_ReleaseCS()}}
+{\footnotesize\ttfamily void S\+P\+I\+\_\+\+Release\+CS (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structSpi}{Spi}} $\ast$}]{spi }\end{DoxyParamCaption})}
+
+
+
+Configures S\+PI to release last used CS line. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em spi} & Pointer to an S\+PI instance. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{bsps_2arm_2atsam_2include_2libchip_2include_2spi_8h_abfe4aa422995a3177b95d49e7c090e18}\label{bsps_2arm_2atsam_2include_2libchip_2include_2spi_8h_abfe4aa422995a3177b95d49e7c090e18}} 
+\index{spi.h@{spi.h}!SPI\_SetMode@{SPI\_SetMode}}
+\index{SPI\_SetMode@{SPI\_SetMode}!spi.h@{spi.h}}
+\subsubsection{\texorpdfstring{SPI\_SetMode()}{SPI\_SetMode()}}
+{\footnotesize\ttfamily void S\+P\+I\+\_\+\+Set\+Mode (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structSpi}{Spi}} $\ast$}]{spi,  }\item[{uint32\+\_\+t}]{dw\+Configuration }\end{DoxyParamCaption})}
+
+
+
+Configures S\+PI Mode Register. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em spi} & Pointer to an S\+PI instance. \\
+\hline
+{\em configuration} & Value of the S\+PI mode register. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{bsps_2arm_2atsam_2include_2libchip_2include_2spi_8h_a564ab3c6c710a126ae9fc731e46c1294}\label{bsps_2arm_2atsam_2include_2libchip_2include_2spi_8h_a564ab3c6c710a126ae9fc731e46c1294}} 
+\index{spi.h@{spi.h}!SPI\_Write@{SPI\_Write}}
+\index{SPI\_Write@{SPI\_Write}!spi.h@{spi.h}}
+\subsubsection{\texorpdfstring{SPI\_Write()}{SPI\_Write()}}
+{\footnotesize\ttfamily void S\+P\+I\+\_\+\+Write (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structSpi}{Spi}} $\ast$}]{spi,  }\item[{uint32\+\_\+t}]{dw\+Npcs,  }\item[{uint16\+\_\+t}]{w\+Data }\end{DoxyParamCaption})}
+
+
+
+Sends data through a S\+PI peripheral. If the S\+PI is configured to use a fixed peripheral select, the npcs value is meaningless. Otherwise, it identifies the component which shall be addressed. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em spi} & Pointer to an S\+PI instance. \\
+\hline
+{\em npcs} & Chip select of the component to address (0, 1, 2 or 3). \\
+\hline
+{\em data} & Word of data to send. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{bsps_2arm_2atsam_2include_2libchip_2include_2spi_8h_a9f1fbc924f96427094bdc17f75f8996e}\label{bsps_2arm_2atsam_2include_2libchip_2include_2spi_8h_a9f1fbc924f96427094bdc17f75f8996e}} 
+\index{spi.h@{spi.h}!SPI\_WriteLast@{SPI\_WriteLast}}
+\index{SPI\_WriteLast@{SPI\_WriteLast}!spi.h@{spi.h}}
+\subsubsection{\texorpdfstring{SPI\_WriteLast()}{SPI\_WriteLast()}}
+{\footnotesize\ttfamily void S\+P\+I\+\_\+\+Write\+Last (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structSpi}{Spi}} $\ast$}]{spi,  }\item[{uint32\+\_\+t}]{dw\+Npcs,  }\item[{uint16\+\_\+t}]{w\+Data }\end{DoxyParamCaption})}
+
+
+
+Sends last data through a S\+PI peripheral. If the S\+PI is configured to use a fixed peripheral select, the npcs value is meaningless. Otherwise, it identifies the component which shall be addressed. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em spi} & Pointer to an S\+PI instance. \\
+\hline
+{\em npcs} & Chip select of the component to address (0, 1, 2 or 3). \\
+\hline
+{\em data} & Word of data to send. \\
+\hline
+\end{DoxyParams}

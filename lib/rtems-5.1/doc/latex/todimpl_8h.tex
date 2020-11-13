@@ -1,0 +1,123 @@
+\hypertarget{todimpl_8h}{}\section{cpukit/include/rtems/score/todimpl.h File Reference}
+\label{todimpl_8h}\index{cpukit/include/rtems/score/todimpl.h@{cpukit/include/rtems/score/todimpl.h}}
+
+
+Time of Day Handler A\+PI.  
+
+
+{\ttfamily \#include $<$rtems/score/status.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/score/timestamp.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/score/timecounterimpl.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/score/watchdog.\+h$>$}\newline
+{\ttfamily \#include $<$sys/time.\+h$>$}\newline
+{\ttfamily \#include $<$time.\+h$>$}\newline
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structTOD__Control}{T\+O\+D\+\_\+\+Control}}
+\begin{DoxyCompactList}\small\item\em T\+OD control. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structTOD__Hook}{T\+O\+D\+\_\+\+Hook}}
+\begin{DoxyCompactList}\small\item\em Structure to manage each T\+OD action hook. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__RTEMSScoreTOD_ga59d0190424f2881828ba7bb02d9d5148}{T\+O\+D\+\_\+\+S\+E\+C\+O\+N\+D\+S\+\_\+\+P\+E\+R\+\_\+\+M\+I\+N\+U\+TE}}~(uint32\+\_\+t)60
+\item 
+\#define \mbox{\hyperlink{group__RTEMSScoreTOD_ga077821b8d136ad62d2f9b4352cf3436f}{T\+O\+D\+\_\+\+M\+I\+N\+U\+T\+E\+S\+\_\+\+P\+E\+R\+\_\+\+H\+O\+UR}}~(uint32\+\_\+t)60
+\item 
+\#define \mbox{\hyperlink{group__RTEMSScoreTOD_gaa12f08e6cc5fdbc7c3ae82c551e61315}{T\+O\+D\+\_\+\+M\+O\+N\+T\+H\+S\+\_\+\+P\+E\+R\+\_\+\+Y\+E\+AR}}~(uint32\+\_\+t)12
+\item 
+\#define \mbox{\hyperlink{group__RTEMSScoreTOD_ga27b62f5494a5cb908c2c3ef6f14bc459}{T\+O\+D\+\_\+\+D\+A\+Y\+S\+\_\+\+P\+E\+R\+\_\+\+Y\+E\+AR}}~(uint32\+\_\+t)365
+\item 
+\#define \mbox{\hyperlink{group__RTEMSScoreTOD_gaedf73c32dd63f856df47e26052f62410}{T\+O\+D\+\_\+\+H\+O\+U\+R\+S\+\_\+\+P\+E\+R\+\_\+\+D\+AY}}~(uint32\+\_\+t)24
+\item 
+\#define \mbox{\hyperlink{group__RTEMSScoreTOD_gac064f77025e49ee110224ebde3fc72e7}{T\+O\+D\+\_\+\+S\+E\+C\+O\+N\+D\+S\+\_\+\+P\+E\+R\+\_\+\+D\+AY}}
+\item 
+\#define \mbox{\hyperlink{group__RTEMSScoreTOD_ga645242ab0b8238dbeb24659653c99961}{T\+O\+D\+\_\+\+S\+E\+C\+O\+N\+D\+S\+\_\+\+P\+E\+R\+\_\+\+N\+O\+N\+\_\+\+L\+E\+A\+P\+\_\+\+Y\+E\+AR}}~(365 $\ast$ \mbox{\hyperlink{group__RTEMSScoreTOD_gac064f77025e49ee110224ebde3fc72e7}{T\+O\+D\+\_\+\+S\+E\+C\+O\+N\+D\+S\+\_\+\+P\+E\+R\+\_\+\+D\+AY}})
+\item 
+\#define \mbox{\hyperlink{group__RTEMSScoreTOD_gaacf9a11c2eb518ce004371fbb6b7899c}{T\+O\+D\+\_\+\+M\+I\+L\+L\+I\+S\+E\+C\+O\+N\+D\+S\+\_\+\+P\+E\+R\+\_\+\+S\+E\+C\+O\+ND}}~(uint32\+\_\+t)1000
+\item 
+\#define \mbox{\hyperlink{group__RTEMSScoreTOD_ga73e4390e03bc6841bf67a6a6b2af50fb}{T\+O\+D\+\_\+\+M\+I\+C\+R\+O\+S\+E\+C\+O\+N\+D\+S\+\_\+\+P\+E\+R\+\_\+\+S\+E\+C\+O\+ND}}~(uint32\+\_\+t)1000000
+\item 
+\#define \mbox{\hyperlink{group__RTEMSScoreTOD_gaf651497d56452a096aa08f62e2c5e332}{T\+O\+D\+\_\+\+N\+A\+N\+O\+S\+E\+C\+O\+N\+D\+S\+\_\+\+P\+E\+R\+\_\+\+S\+E\+C\+O\+ND}}~(uint32\+\_\+t)1000000000
+\item 
+\#define \mbox{\hyperlink{group__RTEMSScoreTOD_gaab190efd7d5cb11ee85d4fcd4a528ddf}{T\+O\+D\+\_\+\+N\+A\+N\+O\+S\+E\+C\+O\+N\+D\+S\+\_\+\+P\+E\+R\+\_\+\+M\+I\+C\+R\+O\+S\+E\+C\+O\+ND}}~(uint32\+\_\+t)1000
+\item 
+\#define \mbox{\hyperlink{todimpl_8h_a804c40e4352c156a9596b5d08aec9141}{T\+O\+D\+\_\+\+S\+E\+C\+O\+N\+D\+S\+\_\+1970\+\_\+\+T\+H\+R\+O\+U\+G\+H\+\_\+1988}}
+\item 
+\#define \mbox{\hyperlink{todimpl_8h_a82e9353968bd1b3c98958838c5c4c73a}{T\+O\+D\+\_\+\+B\+A\+S\+E\+\_\+\+Y\+E\+AR}}~1988
+\begin{DoxyCompactList}\small\item\em Earliest year to which an time of day can be initialized. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTEMSScoreTOD_ga00b749daf216fa5d13cc6ed43af0627a}{T\+O\+D\+\_\+\+T\+I\+C\+K\+S\+\_\+\+P\+E\+R\+\_\+\+S\+E\+C\+O\+ND}}~\mbox{\hyperlink{group__RTEMSScoreTOD_ga8bcb0f19ff76e742900cc90ebe6a49bd}{T\+O\+D\+\_\+\+T\+I\+C\+K\+S\+\_\+\+P\+E\+R\+\_\+\+S\+E\+C\+O\+N\+D\+\_\+method}}()
+\begin{DoxyCompactList}\small\item\em Gets number of ticks in a second. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \mbox{\hyperlink{structTOD__Hook}{T\+O\+D\+\_\+\+Hook}} \mbox{\hyperlink{group__RTEMSScoreTODHooks_ga7d9ee399e6082e0eb83b84718431a9b8}{T\+O\+D\+\_\+\+Hook}}
+\begin{DoxyCompactList}\small\item\em Structure to manage each T\+OD action hook. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{group__RTEMSScoreTODHooks_gab9b3d7e3a626139950c25efa888d4332}{T\+O\+D\+\_\+\+Action}} \{ \mbox{\hyperlink{group__RTEMSScoreTODHooks_ggab9b3d7e3a626139950c25efa888d4332a93091d0c963aeebf2726ecdb20f74105}{T\+O\+D\+\_\+\+A\+C\+T\+I\+O\+N\+\_\+\+S\+E\+T\+\_\+\+C\+L\+O\+CK}}
+ \}
+\begin{DoxyCompactList}\small\item\em Possible actions where a registered hook could be invoked. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{group__RTEMSScoreTOD_gaa2df91a104bbb9f17074543979bf0e1c}{\+\_\+\+T\+O\+D\+\_\+\+Lock}} (void)
+\begin{DoxyCompactList}\small\item\em Locks the time of day mutex. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__RTEMSScoreTOD_ga5fc2b439addee0c1c8372dc4db417c1f}{\+\_\+\+T\+O\+D\+\_\+\+Unlock}} (void)
+\begin{DoxyCompactList}\small\item\em Unlocks the time of day mutex. \end{DoxyCompactList}\item 
+Status\+\_\+\+Control \mbox{\hyperlink{group__RTEMSScoreTOD_ga1c22915a212fe0e27a891dfc57d4bfcb}{\+\_\+\+T\+O\+D\+\_\+\+Set}} (const struct timespec $\ast$tod, \mbox{\hyperlink{structISR__lock__Context}{I\+S\+R\+\_\+lock\+\_\+\+Context}} $\ast$lock\+\_\+context)
+\begin{DoxyCompactList}\small\item\em Sets the time of day. \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{group__RTEMSScoreTOD_ga8bcb0f19ff76e742900cc90ebe6a49bd}{T\+O\+D\+\_\+\+T\+I\+C\+K\+S\+\_\+\+P\+E\+R\+\_\+\+S\+E\+C\+O\+N\+D\+\_\+method}} (void)
+\begin{DoxyCompactList}\small\item\em Gets number of ticks in a second. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \mbox{\hyperlink{group__RTEMSScoreTOD_ga607a5281a16201ae5175c1146d7aab91}{\+\_\+\+T\+O\+D\+\_\+\+Get\+\_\+timeval}} (struct timeval $\ast$time)
+\begin{DoxyCompactList}\small\item\em This routine returns a timeval based upon the internal timespec format T\+OD. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__RTEMSScoreTOD_ga672f574f652f79e2c365869a8c7b7895}{\+\_\+\+T\+O\+D\+\_\+\+Adjust}} (const struct timespec $\ast$delta)
+\begin{DoxyCompactList}\small\item\em Adjusts the Time of Time. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} bool \mbox{\hyperlink{group__RTEMSScoreTOD_gad7357f287de1aec092ef824c185229b9}{\+\_\+\+T\+O\+D\+\_\+\+Is\+\_\+set}} (void)
+\begin{DoxyCompactList}\small\item\em Check if the T\+OD is Set. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__RTEMSScoreTODHooks_ga9db96e52b259d049f468578e081605ff}{\+\_\+\+T\+O\+D\+\_\+\+Hook\+\_\+\+Register}} (\mbox{\hyperlink{structTOD__Hook}{T\+O\+D\+\_\+\+Hook}} $\ast$hook)
+\begin{DoxyCompactList}\small\item\em Add a T\+OD Action Hook. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__RTEMSScoreTODHooks_ga1d70eadc6cc3f1c7766d9fb6b8709e65}{\+\_\+\+T\+O\+D\+\_\+\+Hook\+\_\+\+Unregister}} (\mbox{\hyperlink{structTOD__Hook}{T\+O\+D\+\_\+\+Hook}} $\ast$hook)
+\begin{DoxyCompactList}\small\item\em Remove a T\+OD Action Hook. \end{DoxyCompactList}\item 
+Status\+\_\+\+Control \mbox{\hyperlink{group__RTEMSScoreTODHooks_ga115a4768c4a7c4fd838809465fc3d6e8}{\+\_\+\+T\+O\+D\+\_\+\+Hook\+\_\+\+Run}} (\mbox{\hyperlink{group__RTEMSScoreTODHooks_gab9b3d7e3a626139950c25efa888d4332}{T\+O\+D\+\_\+\+Action}} action, const struct timespec $\ast$tod)
+\begin{DoxyCompactList}\small\item\em Run the T\+OD Action Hooks. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structTOD__Control}{T\+O\+D\+\_\+\+Control}} \mbox{\hyperlink{group__RTEMSScoreTOD_ga437c5ed735e03c0449d68cd8f54c44ad}{\+\_\+\+T\+OD}}
+\begin{DoxyCompactList}\small\item\em T\+OD Management information. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{unionChain__Control}{Chain\+\_\+\+Control}} \mbox{\hyperlink{group__RTEMSScoreTODHooks_ga1185059aa76531a8be5cc3dfe29d4d2b}{\+\_\+\+T\+O\+D\+\_\+\+Hooks}}
+\begin{DoxyCompactList}\small\item\em Set of registered methods for T\+OD Actions. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Time of Day Handler A\+PI. 
+
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{todimpl_8h_a82e9353968bd1b3c98958838c5c4c73a}\label{todimpl_8h_a82e9353968bd1b3c98958838c5c4c73a}} 
+\index{todimpl.h@{todimpl.h}!TOD\_BASE\_YEAR@{TOD\_BASE\_YEAR}}
+\index{TOD\_BASE\_YEAR@{TOD\_BASE\_YEAR}!todimpl.h@{todimpl.h}}
+\subsubsection{\texorpdfstring{TOD\_BASE\_YEAR}{TOD\_BASE\_YEAR}}
+{\footnotesize\ttfamily \#define T\+O\+D\+\_\+\+B\+A\+S\+E\+\_\+\+Y\+E\+AR~1988}
+
+
+
+Earliest year to which an time of day can be initialized. 
+
+The following constant define the earliest year to which an time of day can be initialized. This is considered the epoch. \mbox{\Hypertarget{todimpl_8h_a804c40e4352c156a9596b5d08aec9141}\label{todimpl_8h_a804c40e4352c156a9596b5d08aec9141}} 
+\index{todimpl.h@{todimpl.h}!TOD\_SECONDS\_1970\_THROUGH\_1988@{TOD\_SECONDS\_1970\_THROUGH\_1988}}
+\index{TOD\_SECONDS\_1970\_THROUGH\_1988@{TOD\_SECONDS\_1970\_THROUGH\_1988}!todimpl.h@{todimpl.h}}
+\subsubsection{\texorpdfstring{TOD\_SECONDS\_1970\_THROUGH\_1988}{TOD\_SECONDS\_1970\_THROUGH\_1988}}
+{\footnotesize\ttfamily \#define T\+O\+D\+\_\+\+S\+E\+C\+O\+N\+D\+S\+\_\+1970\+\_\+\+T\+H\+R\+O\+U\+G\+H\+\_\+1988}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(((1987 - 1970 + 1)  * \mbox{\hyperlink{group__RTEMSScoreTOD_ga645242ab0b8238dbeb24659653c99961}{TOD\_SECONDS\_PER\_NON\_LEAP\_YEAR}}) + \(\backslash\)}
+\DoxyCodeLine{  (4 * \mbox{\hyperlink{group__RTEMSScoreTOD_gac064f77025e49ee110224ebde3fc72e7}{TOD\_SECONDS\_PER\_DAY}}))}
+
+\end{DoxyCode}
+Seconds from January 1, 1970 to January 1, 1988. Used to account for differences between P\+O\+S\+IX A\+PI and R\+T\+E\+MS core. The timespec format time is kept in P\+O\+S\+IX compliant form. 

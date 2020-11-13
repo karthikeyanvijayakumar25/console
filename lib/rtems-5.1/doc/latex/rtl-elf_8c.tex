@@ -1,0 +1,172 @@
+\hypertarget{rtl-elf_8c}{}\section{cpukit/libdl/rtl-\/elf.c File Reference}
+\label{rtl-elf_8c}\index{cpukit/libdl/rtl-\/elf.c@{cpukit/libdl/rtl-\/elf.c}}
+
+
+R\+T\+E\+MS Run-\/\+Time Link Editor.  
+
+
+{\ttfamily \#include $<$errno.\+h$>$}\newline
+{\ttfamily \#include $<$fcntl.\+h$>$}\newline
+{\ttfamily \#include $<$inttypes.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/rtl/rtl.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}rtl-\/elf.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}rtl-\/error.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$rtems/rtl/rtl-\/trace.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}rtl-\/trampoline.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}rtl-\/unwind.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$rtems/rtl/rtl-\/unresolved.\+h$>$}\newline
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structrtems__rtl__elf__reloc__data}{rtems\+\_\+rtl\+\_\+elf\+\_\+reloc\+\_\+data}}
+\item 
+struct \mbox{\hyperlink{structrtems__rtl__elf__common__data}{rtems\+\_\+rtl\+\_\+elf\+\_\+common\+\_\+data}}
+\item 
+struct \mbox{\hyperlink{structrtems__rtl__tramp__data}{rtems\+\_\+rtl\+\_\+tramp\+\_\+data}}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{rtl-elf_8c_a8809de6f03e511a56892b94bb0ed49dd}{R\+E\+L\+\_\+\+R\+\_\+\+O\+F\+F\+S\+ET}}~(0)
+\item 
+\mbox{\Hypertarget{rtl-elf_8c_a439f57647c949873428cde19d81e0216}\label{rtl-elf_8c_a439f57647c949873428cde19d81e0216}} 
+\#define {\bfseries R\+E\+L\+\_\+\+R\+\_\+\+I\+N\+FO}~(1)
+\item 
+\mbox{\Hypertarget{rtl-elf_8c_a032a46e321b9ba0b02ff84228c22679f}\label{rtl-elf_8c_a032a46e321b9ba0b02ff84228c22679f}} 
+\#define {\bfseries R\+E\+L\+\_\+\+R\+\_\+\+A\+D\+D\+E\+ND}~(2)
+\item 
+\mbox{\Hypertarget{rtl-elf_8c_ac4e2fc4d2f41e73958f7b8c552b521d1}\label{rtl-elf_8c_ac4e2fc4d2f41e73958f7b8c552b521d1}} 
+\#define {\bfseries S\+E\+P\+A\+R\+A\+T\+E\+D\+\_\+\+P\+R\+E\+F\+IX}(\+\_\+p)~\{ \+\_\+p, sizeof (\+\_\+p) -\/ 1 \}
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef bool($\ast$ \mbox{\hyperlink{rtl-elf_8c_a49100f2820d4b5ab9d71e7a5cc856bd9}{rtems\+\_\+rtl\+\_\+elf\+\_\+reloc\+\_\+handler}}) (\mbox{\hyperlink{structrtems__rtl__obj}{rtems\+\_\+rtl\+\_\+obj}} $\ast$obj, bool is\+\_\+rela, void $\ast$relbuf, \mbox{\hyperlink{structrtems__rtl__obj__sect}{rtems\+\_\+rtl\+\_\+obj\+\_\+sect}} $\ast$targetsect, \mbox{\hyperlink{structrtems__rtl__obj__sym}{rtems\+\_\+rtl\+\_\+obj\+\_\+sym}} $\ast$symbol, Elf\+\_\+\+Sym $\ast$sym, const char $\ast$symname, Elf\+\_\+\+Word symvalue, bool resolved, void $\ast$data)
+\item 
+typedef struct \mbox{\hyperlink{structrtems__rtl__tramp__data}{rtems\+\_\+rtl\+\_\+tramp\+\_\+data}} \mbox{\hyperlink{rtl-elf_8c_a28bb76c7d71d2cd980d0da6c20795fc7}{rtems\+\_\+rtl\+\_\+tramp\+\_\+data}}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{rtl-elf_8c_ad6bfd56d63e3cf2562d48a39b7fffc24}{rtems\+\_\+rtl\+\_\+obj\+\_\+relocate\+\_\+unresolved}} (\mbox{\hyperlink{structrtems__rtl__unresolv__reloc}{rtems\+\_\+rtl\+\_\+unresolv\+\_\+reloc}} $\ast$reloc, \mbox{\hyperlink{structrtems__rtl__obj__sym}{rtems\+\_\+rtl\+\_\+obj\+\_\+sym}} $\ast$sym)
+\item 
+bool \mbox{\hyperlink{rtl-elf_8c_a83c2600373c123a070d3762fbb90d367}{rtems\+\_\+rtl\+\_\+elf\+\_\+file\+\_\+check}} (\mbox{\hyperlink{structrtems__rtl__obj}{rtems\+\_\+rtl\+\_\+obj}} $\ast$obj, int fd)
+\item 
+bool \mbox{\hyperlink{rtl-elf_8c_a6432bdb0006ee34a7b89b3f3088aa5b5}{rtems\+\_\+rtl\+\_\+elf\+\_\+file\+\_\+load}} (\mbox{\hyperlink{structrtems__rtl__obj}{rtems\+\_\+rtl\+\_\+obj}} $\ast$obj, int fd)
+\item 
+bool \mbox{\hyperlink{rtl-elf_8c_a11980d1727cffdcc360b8f2d02e836df}{rtems\+\_\+rtl\+\_\+elf\+\_\+file\+\_\+unload}} (\mbox{\hyperlink{structrtems__rtl__obj}{rtems\+\_\+rtl\+\_\+obj}} $\ast$obj)
+\item 
+\mbox{\hyperlink{structrtems__rtl__loader__format}{rtems\+\_\+rtl\+\_\+loader\+\_\+format}} $\ast$ \mbox{\hyperlink{rtl-elf_8c_a89a86f305b09923b92f18b72a5478427}{rtems\+\_\+rtl\+\_\+elf\+\_\+file\+\_\+sig}} (void)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+R\+T\+E\+MS Run-\/\+Time Link Editor. 
+
+This is the R\+TL implementation. 
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{rtl-elf_8c_a8809de6f03e511a56892b94bb0ed49dd}\label{rtl-elf_8c_a8809de6f03e511a56892b94bb0ed49dd}} 
+\index{rtl-\/elf.c@{rtl-\/elf.c}!REL\_R\_OFFSET@{REL\_R\_OFFSET}}
+\index{REL\_R\_OFFSET@{REL\_R\_OFFSET}!rtl-\/elf.c@{rtl-\/elf.c}}
+\subsubsection{\texorpdfstring{REL\_R\_OFFSET}{REL\_R\_OFFSET}}
+{\footnotesize\ttfamily \#define R\+E\+L\+\_\+\+R\+\_\+\+O\+F\+F\+S\+ET~(0)}
+
+The offsets in the reloc words. 
+
+\subsection{Typedef Documentation}
+\mbox{\Hypertarget{rtl-elf_8c_a49100f2820d4b5ab9d71e7a5cc856bd9}\label{rtl-elf_8c_a49100f2820d4b5ab9d71e7a5cc856bd9}} 
+\index{rtl-\/elf.c@{rtl-\/elf.c}!rtems\_rtl\_elf\_reloc\_handler@{rtems\_rtl\_elf\_reloc\_handler}}
+\index{rtems\_rtl\_elf\_reloc\_handler@{rtems\_rtl\_elf\_reloc\_handler}!rtl-\/elf.c@{rtl-\/elf.c}}
+\subsubsection{\texorpdfstring{rtems\_rtl\_elf\_reloc\_handler}{rtems\_rtl\_elf\_reloc\_handler}}
+{\footnotesize\ttfamily typedef bool($\ast$ rtems\+\_\+rtl\+\_\+elf\+\_\+reloc\+\_\+handler) (\mbox{\hyperlink{structrtems__rtl__obj}{rtems\+\_\+rtl\+\_\+obj}} $\ast$obj, bool is\+\_\+rela, void $\ast$relbuf, \mbox{\hyperlink{structrtems__rtl__obj__sect}{rtems\+\_\+rtl\+\_\+obj\+\_\+sect}} $\ast$targetsect, \mbox{\hyperlink{structrtems__rtl__obj__sym}{rtems\+\_\+rtl\+\_\+obj\+\_\+sym}} $\ast$symbol, Elf\+\_\+\+Sym $\ast$sym, const char $\ast$symname, Elf\+\_\+\+Word symvalue, bool resolved, void $\ast$data)}
+
+Relocation worker routine. \mbox{\Hypertarget{rtl-elf_8c_a28bb76c7d71d2cd980d0da6c20795fc7}\label{rtl-elf_8c_a28bb76c7d71d2cd980d0da6c20795fc7}} 
+\index{rtl-\/elf.c@{rtl-\/elf.c}!rtems\_rtl\_tramp\_data@{rtems\_rtl\_tramp\_data}}
+\index{rtems\_rtl\_tramp\_data@{rtems\_rtl\_tramp\_data}!rtl-\/elf.c@{rtl-\/elf.c}}
+\subsubsection{\texorpdfstring{rtems\_rtl\_tramp\_data}{rtems\_rtl\_tramp\_data}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structrtems__rtl__tramp__data}{rtems\+\_\+rtl\+\_\+tramp\+\_\+data}}  \mbox{\hyperlink{structrtems__rtl__tramp__data}{rtems\+\_\+rtl\+\_\+tramp\+\_\+data}}}
+
+Struct to handle trampoline reloc recs in the unresolved table. 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{rtl-elf_8c_a83c2600373c123a070d3762fbb90d367}\label{rtl-elf_8c_a83c2600373c123a070d3762fbb90d367}} 
+\index{rtl-\/elf.c@{rtl-\/elf.c}!rtems\_rtl\_elf\_file\_check@{rtems\_rtl\_elf\_file\_check}}
+\index{rtems\_rtl\_elf\_file\_check@{rtems\_rtl\_elf\_file\_check}!rtl-\/elf.c@{rtl-\/elf.c}}
+\subsubsection{\texorpdfstring{rtems\_rtl\_elf\_file\_check()}{rtems\_rtl\_elf\_file\_check()}}
+{\footnotesize\ttfamily bool rtems\+\_\+rtl\+\_\+elf\+\_\+file\+\_\+check (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structrtems__rtl__obj}{rtems\+\_\+rtl\+\_\+obj}} $\ast$}]{obj,  }\item[{int}]{fd }\end{DoxyParamCaption})}
+
+The E\+LF format check handler.
+
+
+\begin{DoxyParams}{Parameters}
+{\em obj} & The object being checked. \\
+\hline
+{\em fd} & The file descriptor. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{rtl-elf_8c_a6432bdb0006ee34a7b89b3f3088aa5b5}\label{rtl-elf_8c_a6432bdb0006ee34a7b89b3f3088aa5b5}} 
+\index{rtl-\/elf.c@{rtl-\/elf.c}!rtems\_rtl\_elf\_file\_load@{rtems\_rtl\_elf\_file\_load}}
+\index{rtems\_rtl\_elf\_file\_load@{rtems\_rtl\_elf\_file\_load}!rtl-\/elf.c@{rtl-\/elf.c}}
+\subsubsection{\texorpdfstring{rtems\_rtl\_elf\_file\_load()}{rtems\_rtl\_elf\_file\_load()}}
+{\footnotesize\ttfamily bool rtems\+\_\+rtl\+\_\+elf\+\_\+file\+\_\+load (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structrtems__rtl__obj}{rtems\+\_\+rtl\+\_\+obj}} $\ast$}]{obj,  }\item[{int}]{fd }\end{DoxyParamCaption})}
+
+The E\+LF format load handler.
+
+
+\begin{DoxyParams}{Parameters}
+{\em obj} & The object to load. \\
+\hline
+{\em fd} & The file descriptor. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{rtl-elf_8c_a89a86f305b09923b92f18b72a5478427}\label{rtl-elf_8c_a89a86f305b09923b92f18b72a5478427}} 
+\index{rtl-\/elf.c@{rtl-\/elf.c}!rtems\_rtl\_elf\_file\_sig@{rtems\_rtl\_elf\_file\_sig}}
+\index{rtems\_rtl\_elf\_file\_sig@{rtems\_rtl\_elf\_file\_sig}!rtl-\/elf.c@{rtl-\/elf.c}}
+\subsubsection{\texorpdfstring{rtems\_rtl\_elf\_file\_sig()}{rtems\_rtl\_elf\_file\_sig()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structrtems__rtl__loader__format}{rtems\+\_\+rtl\+\_\+loader\+\_\+format}}$\ast$ rtems\+\_\+rtl\+\_\+elf\+\_\+file\+\_\+sig (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+The E\+LF format signature handler.
+
+\begin{DoxyReturn}{Returns}
+rtems\+\_\+rtl\+\_\+loader\+\_\+format$\ast$ The format\textquotesingle{}s signature. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{rtl-elf_8c_a11980d1727cffdcc360b8f2d02e836df}\label{rtl-elf_8c_a11980d1727cffdcc360b8f2d02e836df}} 
+\index{rtl-\/elf.c@{rtl-\/elf.c}!rtems\_rtl\_elf\_file\_unload@{rtems\_rtl\_elf\_file\_unload}}
+\index{rtems\_rtl\_elf\_file\_unload@{rtems\_rtl\_elf\_file\_unload}!rtl-\/elf.c@{rtl-\/elf.c}}
+\subsubsection{\texorpdfstring{rtems\_rtl\_elf\_file\_unload()}{rtems\_rtl\_elf\_file\_unload()}}
+{\footnotesize\ttfamily bool rtems\+\_\+rtl\+\_\+elf\+\_\+file\+\_\+unload (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structrtems__rtl__obj}{rtems\+\_\+rtl\+\_\+obj}} $\ast$}]{obj }\end{DoxyParamCaption})}
+
+The E\+LF format unload handler.
+
+
+\begin{DoxyParams}{Parameters}
+{\em obj} & The object to unload. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{rtl-elf_8c_ad6bfd56d63e3cf2562d48a39b7fffc24}\label{rtl-elf_8c_ad6bfd56d63e3cf2562d48a39b7fffc24}} 
+\index{rtl-\/elf.c@{rtl-\/elf.c}!rtems\_rtl\_obj\_relocate\_unresolved@{rtems\_rtl\_obj\_relocate\_unresolved}}
+\index{rtems\_rtl\_obj\_relocate\_unresolved@{rtems\_rtl\_obj\_relocate\_unresolved}!rtl-\/elf.c@{rtl-\/elf.c}}
+\subsubsection{\texorpdfstring{rtems\_rtl\_obj\_relocate\_unresolved()}{rtems\_rtl\_obj\_relocate\_unresolved()}}
+{\footnotesize\ttfamily bool rtems\+\_\+rtl\+\_\+obj\+\_\+relocate\+\_\+unresolved (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structrtems__rtl__unresolv__reloc}{rtems\+\_\+rtl\+\_\+unresolv\+\_\+reloc}} $\ast$}]{reloc,  }\item[{\mbox{\hyperlink{structrtems__rtl__obj__sym}{rtems\+\_\+rtl\+\_\+obj\+\_\+sym}} $\ast$}]{sym }\end{DoxyParamCaption})}
+
+Relocate an object file\textquotesingle{}s unresolved reference.
+
+
+\begin{DoxyParams}{Parameters}
+{\em rec} & The unresolved relocation record. \\
+\hline
+{\em sym} & The unresolved relocation\textquotesingle{}s referenced symbol. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em true} & The object file record was relocated. \\
+\hline
+{\em false} & The relocation failed. The R\+TL error is set. \\
+\hline
+\end{DoxyRetVals}

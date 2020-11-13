@@ -1,0 +1,89 @@
+\hypertarget{pio__it_8h}{}\section{bsps/arm/atsam/include/libchip/include/pio\+\_\+it.h File Reference}
+\label{pio__it_8h}\index{bsps/arm/atsam/include/libchip/include/pio\_it.h@{bsps/arm/atsam/include/libchip/include/pio\_it.h}}
+{\ttfamily \#include \char`\"{}pio.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$rtems.\+h$>$}\newline
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{pio__it_8h_ad31e05d6debb1e88af6124cd7751af22}\label{pio__it_8h_ad31e05d6debb1e88af6124cd7751af22}} 
+void {\bfseries P\+I\+O\+\_\+\+Initialize\+Interrupts} (uint32\+\_\+t dw\+Priority)
+\item 
+void \mbox{\hyperlink{pio__it_8h_a8fb47fc6c9f3c5032ec174ac5c1ee36f}{P\+I\+O\+\_\+\+Configure\+It}} (const \mbox{\hyperlink{struct__Pin}{Pin}} $\ast$p\+Pin, void($\ast$handler)(const \mbox{\hyperlink{struct__Pin}{Pin}} $\ast$, void $\ast$arg), void $\ast$arg)
+\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{pio__it_8h_aeaf06391f018c096b2c4d450b6557998}{P\+I\+O\+\_\+\+Remove\+It}} (const \mbox{\hyperlink{struct__Pin}{Pin}} $\ast$p\+Pin, void($\ast$handler)(const \mbox{\hyperlink{struct__Pin}{Pin}} $\ast$, void $\ast$arg), void $\ast$arg)
+\item 
+\mbox{\Hypertarget{pio__it_8h_aea8518ebb0c0604ceb1af0741aecbf4a}\label{pio__it_8h_aea8518ebb0c0604ceb1af0741aecbf4a}} 
+void {\bfseries P\+I\+O\+\_\+\+I\+T\+\_\+\+Interrupt\+Handler} (void)
+\item 
+\mbox{\Hypertarget{pio__it_8h_a1fc023afbbf0cdd67bf3f28ea3ceb06d}\label{pio__it_8h_a1fc023afbbf0cdd67bf3f28ea3ceb06d}} 
+void {\bfseries Pio\+Interrupt\+Handler} (uint32\+\_\+t id, \mbox{\hyperlink{structPio}{Pio}} $\ast$p\+Pio)
+\item 
+\mbox{\Hypertarget{pio__it_8h_adaf2253c76b14e77d0dbca31f2c93690}\label{pio__it_8h_adaf2253c76b14e77d0dbca31f2c93690}} 
+void \mbox{\hyperlink{pio__it_8h_adaf2253c76b14e77d0dbca31f2c93690}{P\+I\+O\+\_\+\+Capture\+Handler}} (void)
+\begin{DoxyCompactList}\small\item\em The P\+I\+O\+\_\+\+Capture\+Handler must be called by the P\+IO Capture Interrupt Service Routine with the corresponding P\+IO Capture instance. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\begin{DoxyParagraph}{Purpose}
+
+\end{DoxyParagraph}
+Configuration and handling of interrupts on P\+IO status changes. The A\+PI provided here have several advantages over the traditional P\+IO interrupt configuration approach\+:
+\begin{DoxyItemize}
+\item It is highly portable
+\item It automatically demultiplexes interrupts when multiples pins have been configured on a single P\+IO controller
+\item It allows a group of pins to share the same interrupt
+\end{DoxyItemize}
+
+However, it also has several minor drawbacks that may prevent from using it in particular applications\+:
+\begin{DoxyItemize}
+\item It enables the clocks of all P\+IO controllers
+\item P\+IO controllers all share the same interrupt handler, which does the demultiplexing and can be slower than direct configuration
+\item It reserves space for a fixed number of interrupts, which can be increased by modifying the appropriate constant in pio\+\_\+it.\+c.
+\end{DoxyItemize}
+
+\begin{DoxyParagraph}{Usage}
+
+\end{DoxyParagraph}
+
+\begin{DoxyEnumerate}
+\item Initialize the P\+IO interrupt mechanism using P\+I\+O\+\_\+\+Initialize\+Interrupts() with the desired priority (0 ... 7).
+\item Configure a status change interrupt on one or more pin(s) with \mbox{\hyperlink{pio__it_8h_a8fb47fc6c9f3c5032ec174ac5c1ee36f}{P\+I\+O\+\_\+\+Configure\+It()}}.
+\item Enable \& disable interrupts on pins using P\+I\+O\+\_\+\+Enable\+It() and P\+I\+O\+\_\+\+Disable\+It(). 
+\end{DoxyEnumerate}
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{pio__it_8h_a8fb47fc6c9f3c5032ec174ac5c1ee36f}\label{pio__it_8h_a8fb47fc6c9f3c5032ec174ac5c1ee36f}} 
+\index{pio\_it.h@{pio\_it.h}!PIO\_ConfigureIt@{PIO\_ConfigureIt}}
+\index{PIO\_ConfigureIt@{PIO\_ConfigureIt}!pio\_it.h@{pio\_it.h}}
+\subsubsection{\texorpdfstring{PIO\_ConfigureIt()}{PIO\_ConfigureIt()}}
+{\footnotesize\ttfamily void P\+I\+O\+\_\+\+Configure\+It (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct__Pin}{Pin}} $\ast$}]{p\+Pin,  }\item[{void($\ast$)(const \mbox{\hyperlink{struct__Pin}{Pin}} $\ast$, void $\ast$arg)}]{handler,  }\item[{void $\ast$}]{arg }\end{DoxyParamCaption})}
+
+Configures a P\+IO or a group of P\+IO to generate an interrupt on status change. The provided interrupt handler will be called with the triggering pin as its parameter (enabling different pin instances to share the same handler). 
+\begin{DoxyParams}{Parameters}
+{\em p\+Pin} & Pointer to a Pin instance. \\
+\hline
+{\em handler} & Interrupt handler function pointer. \\
+\hline
+{\em arg} & Pointer to interrupt handler argument \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{pio__it_8h_aeaf06391f018c096b2c4d450b6557998}\label{pio__it_8h_aeaf06391f018c096b2c4d450b6557998}} 
+\index{pio\_it.h@{pio\_it.h}!PIO\_RemoveIt@{PIO\_RemoveIt}}
+\index{PIO\_RemoveIt@{PIO\_RemoveIt}!pio\_it.h@{pio\_it.h}}
+\subsubsection{\texorpdfstring{PIO\_RemoveIt()}{PIO\_RemoveIt()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} P\+I\+O\+\_\+\+Remove\+It (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct__Pin}{Pin}} $\ast$}]{p\+Pin,  }\item[{void($\ast$)(const \mbox{\hyperlink{struct__Pin}{Pin}} $\ast$, void $\ast$arg)}]{handler,  }\item[{void $\ast$}]{arg }\end{DoxyParamCaption})}
+
+Search for a P\+IO interrupt and remove it if it is there. 
+\begin{DoxyParams}{Parameters}
+{\em p\+Pin} & Pointer to a Pin instance. \\
+\hline
+{\em handler} & Interrupt handler function pointer. \\
+\hline
+{\em arg} & Pointer to interrupt handler argument \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+R\+T\+E\+M\+S\+\_\+\+S\+U\+C\+C\+E\+S\+S\+F\+UL if removed. 
+
+R\+T\+E\+M\+S\+\_\+\+U\+N\+S\+A\+T\+I\+S\+F\+I\+ED if the handler couldn\textquotesingle{}t be found 
+\end{DoxyReturn}

@@ -1,0 +1,63 @@
+\hypertarget{timetick_8h}{}\section{bsps/arm/atsam/include/libchip/include/timetick.h File Reference}
+\label{timetick_8h}\index{bsps/arm/atsam/include/libchip/include/timetick.h@{bsps/arm/atsam/include/libchip/include/timetick.h}}
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structSyTickDelayCounter__t}{Sy\+Tick\+Delay\+Counter\+\_\+t}}
+\item 
+struct \mbox{\hyperlink{struct__TimeEvent}{\+\_\+\+Time\+Event}}
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{timetick_8h_a4604298232cd754046e9139adcb96049}\label{timetick_8h_a4604298232cd754046e9139adcb96049}} 
+typedef struct \mbox{\hyperlink{struct__TimeEvent}{\+\_\+\+Time\+Event}} {\bfseries Time\+Event}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{timetick_8h_aa2dae3f4bc7d890535afc5bc707feacc}\label{timetick_8h_aa2dae3f4bc7d890535afc5bc707feacc}} 
+uint32\+\_\+t {\bfseries Time\+Tick\+\_\+\+Configure} (void)
+\item 
+\mbox{\Hypertarget{timetick_8h_a5c738c3919321ebf950001e535f7d2bd}\label{timetick_8h_a5c738c3919321ebf950001e535f7d2bd}} 
+void {\bfseries Time\+Tick\+\_\+\+Increment} (uint32\+\_\+t dw\+Inc)
+\item 
+\mbox{\Hypertarget{timetick_8h_a125704795ef25b9a4887b18916658f2d}\label{timetick_8h_a125704795ef25b9a4887b18916658f2d}} 
+uint32\+\_\+t {\bfseries Get\+Delay\+In\+Ticks} (uint32\+\_\+t start\+Tick, uint32\+\_\+t end\+Tick)
+\item 
+\mbox{\Hypertarget{timetick_8h_ae626fb68b4503701534936d10ec97067}\label{timetick_8h_ae626fb68b4503701534936d10ec97067}} 
+uint32\+\_\+t {\bfseries Get\+Ticks} (void)
+\item 
+\mbox{\Hypertarget{timetick_8h_a2b6066c4eacf5089da661bd9e13bc9ed}\label{timetick_8h_a2b6066c4eacf5089da661bd9e13bc9ed}} 
+void {\bfseries Wait} (volatile uint32\+\_\+t dw\+Ms)
+\item 
+\mbox{\Hypertarget{timetick_8h_af275659c1e8514e6f3b61f0b32f09a79}\label{timetick_8h_af275659c1e8514e6f3b61f0b32f09a79}} 
+void {\bfseries Sleep} (volatile uint32\+\_\+t dw\+Ms)
+\item 
+\mbox{\Hypertarget{timetick_8h_a587d064d88b3a763f9140f571485eb21}\label{timetick_8h_a587d064d88b3a763f9140f571485eb21}} 
+void {\bfseries Set\+Time\+Event} (\mbox{\hyperlink{struct__TimeEvent}{Time\+Event}} $\ast$p\+Event)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\begin{DoxyParagraph}{Purpose}
+
+\end{DoxyParagraph}
+Methods and definitions for Global time tick and wait functions.
+
+Defines a common and simplest use of Time Tick, to increase tick\+Count every 1ms, the application can get this value through Get\+Tick\+Count().
+
+\begin{DoxyParagraph}{Usage}
+
+\end{DoxyParagraph}
+
+\begin{DoxyEnumerate}
+\item Configure the System Tick with Time\+Tick\+\_\+\+Configure() when M\+CK changed \begin{DoxyNote}{Note}
+Must be done before any invoke of Get\+Tick\+Count(), Wait() or Sleep().
+\end{DoxyNote}
+
+\item Uses Get\+Tick\+Count to get current tick value.
+\item Uses Wait to wait several ms.
+\item Uses Sleep to enter wait for interrupt mode to wait several ms. 
+\end{DoxyEnumerate}

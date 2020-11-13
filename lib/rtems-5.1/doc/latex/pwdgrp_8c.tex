@@ -1,0 +1,59 @@
+\hypertarget{pwdgrp_8c}{}\section{cpukit/libcsupport/src/pwdgrp.c File Reference}
+\label{pwdgrp_8c}\index{cpukit/libcsupport/src/pwdgrp.c@{cpukit/libcsupport/src/pwdgrp.c}}
+
+
+User Database Access Routines.  
+
+
+{\ttfamily \#include $<$sys/stat.\+h$>$}\newline
+{\ttfamily \#include $<$pwd.\+h$>$}\newline
+{\ttfamily \#include $<$grp.\+h$>$}\newline
+{\ttfamily \#include $<$errno.\+h$>$}\newline
+{\ttfamily \#include $<$fcntl.\+h$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$limits.\+h$>$}\newline
+{\ttfamily \#include $<$ctype.\+h$>$}\newline
+{\ttfamily \#include $<$pthread.\+h$>$}\newline
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/seterr.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}pwdgrp.\+h\char`\"{}}\newline
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{pwdgrp_8c_a1bbeedf0ac0ab1f4c4b39a1ed89e175f}\label{pwdgrp_8c_a1bbeedf0ac0ab1f4c4b39a1ed89e175f}} 
+void {\bfseries \+\_\+libcsupport\+\_\+pwdgrp\+\_\+init} (void)
+\item 
+\mbox{\Hypertarget{pwdgrp_8c_a56ac5c13ca0be8408a88756f7787b156}\label{pwdgrp_8c_a56ac5c13ca0be8408a88756f7787b156}} 
+int {\bfseries \+\_\+libcsupport\+\_\+scanpw} (F\+I\+LE $\ast$\mbox{\hyperlink{group__mips__regs_gae771351dd440a8640270282362e338d0}{fp}}, struct passwd $\ast$pwd, char $\ast$buffer, size\+\_\+t bufsize)
+\item 
+\mbox{\Hypertarget{pwdgrp_8c_a5d239708fd6ce37fbd8c78a86d5f8d63}\label{pwdgrp_8c_a5d239708fd6ce37fbd8c78a86d5f8d63}} 
+int {\bfseries getpwnam\+\_\+r} (const char $\ast$name, struct passwd $\ast$pwd, char $\ast$buffer, size\+\_\+t bufsize, struct passwd $\ast$$\ast$result)
+\item 
+\mbox{\Hypertarget{pwdgrp_8c_a171c52c8fac39d01f77ed0d69efbaa61}\label{pwdgrp_8c_a171c52c8fac39d01f77ed0d69efbaa61}} 
+int {\bfseries getpwuid\+\_\+r} (uid\+\_\+t uid, struct passwd $\ast$pwd, char $\ast$buffer, size\+\_\+t bufsize, struct passwd $\ast$$\ast$result)
+\item 
+int \mbox{\hyperlink{pwdgrp_8c_a3b589ffb97bfc51a691bbfe95ff24ae6}{\+\_\+libcsupport\+\_\+scangr}} (F\+I\+LE $\ast$\mbox{\hyperlink{group__mips__regs_gae771351dd440a8640270282362e338d0}{fp}}, struct group $\ast$grp, char $\ast$buffer, size\+\_\+t bufsize)
+\item 
+\mbox{\Hypertarget{pwdgrp_8c_acf054c85917adbbc3687004d51317685}\label{pwdgrp_8c_acf054c85917adbbc3687004d51317685}} 
+int {\bfseries getgrnam\+\_\+r} (const char $\ast$name, struct group $\ast$grp, char $\ast$buffer, size\+\_\+t bufsize, struct group $\ast$$\ast$result)
+\item 
+\mbox{\Hypertarget{pwdgrp_8c_a64e84dfb3f386daaa7530fc8177a6056}\label{pwdgrp_8c_a64e84dfb3f386daaa7530fc8177a6056}} 
+int {\bfseries getgrgid\+\_\+r} (gid\+\_\+t gid, struct group $\ast$grp, char $\ast$buffer, size\+\_\+t bufsize, struct group $\ast$$\ast$result)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+User Database Access Routines. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{pwdgrp_8c_a3b589ffb97bfc51a691bbfe95ff24ae6}\label{pwdgrp_8c_a3b589ffb97bfc51a691bbfe95ff24ae6}} 
+\index{pwdgrp.c@{pwdgrp.c}!\_libcsupport\_scangr@{\_libcsupport\_scangr}}
+\index{\_libcsupport\_scangr@{\_libcsupport\_scangr}!pwdgrp.c@{pwdgrp.c}}
+\subsubsection{\texorpdfstring{\_libcsupport\_scangr()}{\_libcsupport\_scangr()}}
+{\footnotesize\ttfamily int \+\_\+libcsupport\+\_\+scangr (\begin{DoxyParamCaption}\item[{F\+I\+LE $\ast$}]{fp,  }\item[{struct group $\ast$}]{grp,  }\item[{char $\ast$}]{buffer,  }\item[{size\+\_\+t}]{bufsize }\end{DoxyParamCaption})}
+
+Extract a single group record from the database 

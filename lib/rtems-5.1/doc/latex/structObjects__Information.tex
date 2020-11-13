@@ -1,0 +1,181 @@
+\hypertarget{structObjects__Information}{}\section{Objects\+\_\+\+Information Struct Reference}
+\label{structObjects__Information}\index{Objects\_Information@{Objects\_Information}}
+
+
+The information structure used to manage each A\+PI class of objects.  
+
+
+
+
+{\ttfamily \#include $<$objectdata.\+h$>$}
+
+\subsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{group__RTEMSScoreObject_ga5821f52a51072941bdd603e542d0863e}{Objects\+\_\+\+Id}} \mbox{\hyperlink{structObjects__Information_a4f4f5708f3462a8231a2d5061fde16ca}{maximum\+\_\+id}}
+\begin{DoxyCompactList}\small\item\em This is the maximum valid ID of this object A\+PI class. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structObjects__Control}{Objects\+\_\+\+Control}} $\ast$$\ast$ \mbox{\hyperlink{structObjects__Information_a50defdb521eb333efa15a2c3d88a8306}{local\+\_\+table}}
+\begin{DoxyCompactList}\small\item\em This points to the table of local object control blocks. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structObjects__Control}{Objects\+\_\+\+Control}} $\ast$($\ast$ \mbox{\hyperlink{structObjects__Information_a7af43991511d7dd62eb13de9542b96e2}{allocate}} )(\mbox{\hyperlink{structObjects__Information}{Objects\+\_\+\+Information}} $\ast$)
+\begin{DoxyCompactList}\small\item\em Allocate an object. \end{DoxyCompactList}\item 
+void($\ast$ \mbox{\hyperlink{structObjects__Information_a96ea4d5b8aed745245138190485220f6}{deallocate}} )(\mbox{\hyperlink{structObjects__Information}{Objects\+\_\+\+Information}} $\ast$, \mbox{\hyperlink{structObjects__Control}{Objects\+\_\+\+Control}} $\ast$)
+\begin{DoxyCompactList}\small\item\em Free an object. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreObject_gaa2735357885ec7d7157c32f3f835f9ae}{Objects\+\_\+\+Maximum}} \mbox{\hyperlink{structObjects__Information_a82080af967cdcab49e96eee49318e6fe}{inactive}}
+\begin{DoxyCompactList}\small\item\em This is the number of object control blocks on the inactive chain. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreObject_gaa2735357885ec7d7157c32f3f835f9ae}{Objects\+\_\+\+Maximum}} \mbox{\hyperlink{structObjects__Information_acd5a58dad9203b694688f47b7948418a}{objects\+\_\+per\+\_\+block}}
+\begin{DoxyCompactList}\small\item\em This is the number of object control blocks in an allocation block. \end{DoxyCompactList}\item 
+uint16\+\_\+t \mbox{\hyperlink{structObjects__Information_a0dd4f0af287535a342ebec694d704292}{object\+\_\+size}}
+\begin{DoxyCompactList}\small\item\em This is the size in bytes of each object control block. \end{DoxyCompactList}\item 
+uint16\+\_\+t \mbox{\hyperlink{structObjects__Information_a98fd0f4571cc24ceb57c70869bbc7154}{name\+\_\+length}}
+\begin{DoxyCompactList}\small\item\em This is the maximum length of names. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{unionChain__Control}{Chain\+\_\+\+Control}} \mbox{\hyperlink{structObjects__Information_a585fc550e6e38619c4a3698f4b043dea}{Inactive}}
+\begin{DoxyCompactList}\small\item\em This is the chain of inactive object control blocks. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreObject_gaa2735357885ec7d7157c32f3f835f9ae}{Objects\+\_\+\+Maximum}} $\ast$ \mbox{\hyperlink{structObjects__Information_a922f0aeeb969a99c7e45812b0283f04a}{inactive\+\_\+per\+\_\+block}}
+\begin{DoxyCompactList}\small\item\em This is the number of inactive object control blocks per allocation block. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structObjects__Control}{Objects\+\_\+\+Control}} $\ast$$\ast$ \mbox{\hyperlink{structObjects__Information_abf727c0782225fa94a341268cfcbf412}{object\+\_\+blocks}}
+\begin{DoxyCompactList}\small\item\em This is a table to allocation blocks of object control blocks. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structObjects__Control}{Objects\+\_\+\+Control}} $\ast$ \mbox{\hyperlink{structObjects__Information_a2fd8dfa896cce1535cb3fd890c7c4d84}{initial\+\_\+objects}}
+\begin{DoxyCompactList}\small\item\em This points to the object control blocks initially available. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+The information structure used to manage each A\+PI class of objects. 
+
+If objects for the A\+PI class are configured, an instance of this structure is statically allocated and pre-\/initialized by \mbox{\hyperlink{group__RTEMSScoreObject_gac485289406e4297a576a74f72a28f608}{O\+B\+J\+E\+C\+T\+S\+\_\+\+I\+N\+F\+O\+R\+M\+A\+T\+I\+O\+N\+\_\+\+D\+E\+F\+I\+N\+E()}} through $<$\mbox{\hyperlink{confdefs_8h}{rtems/confdefs.\+h}}$>$. The R\+T\+E\+MS library contains a statically allocated and pre-\/initialized instance for each A\+PI class providing zero objects, see \mbox{\hyperlink{group__RTEMSScoreObject_ga95e30a95356d2254e6b8839e654cccfc}{O\+B\+J\+E\+C\+T\+S\+\_\+\+I\+N\+F\+O\+R\+M\+A\+T\+I\+O\+N\+\_\+\+D\+E\+F\+I\+N\+E\+\_\+\+Z\+E\+R\+O()}}. 
+
+\subsection{Field Documentation}
+\mbox{\Hypertarget{structObjects__Information_a7af43991511d7dd62eb13de9542b96e2}\label{structObjects__Information_a7af43991511d7dd62eb13de9542b96e2}} 
+\index{Objects\_Information@{Objects\_Information}!allocate@{allocate}}
+\index{allocate@{allocate}!Objects\_Information@{Objects\_Information}}
+\subsubsection{\texorpdfstring{allocate}{allocate}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structObjects__Control}{Objects\+\_\+\+Control}}$\ast$( $\ast$ Objects\+\_\+\+Information\+::allocate) (\mbox{\hyperlink{structObjects__Information}{Objects\+\_\+\+Information}} $\ast$)}
+
+
+
+Allocate an object. 
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{group__RTEMSScoreObject_gab0861c8e235b2892f2785b6cf582c74e}{\+\_\+\+Objects\+\_\+\+Allocate\+\_\+none()}}, \mbox{\hyperlink{group__RTEMSScoreObject_ga93a072e4b17ff04e60d29e57e6901ce1}{\+\_\+\+Objects\+\_\+\+Allocate\+\_\+static()}}, and \mbox{\hyperlink{group__RTEMSScoreObject_ga0a7f6c580a3b8f84842df598a283b890}{\+\_\+\+Objects\+\_\+\+Allocate\+\_\+unlimited()}}. 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{structObjects__Information_a96ea4d5b8aed745245138190485220f6}\label{structObjects__Information_a96ea4d5b8aed745245138190485220f6}} 
+\index{Objects\_Information@{Objects\_Information}!deallocate@{deallocate}}
+\index{deallocate@{deallocate}!Objects\_Information@{Objects\_Information}}
+\subsubsection{\texorpdfstring{deallocate}{deallocate}}
+{\footnotesize\ttfamily void( $\ast$ Objects\+\_\+\+Information\+::deallocate) (\mbox{\hyperlink{structObjects__Information}{Objects\+\_\+\+Information}} $\ast$, \mbox{\hyperlink{structObjects__Control}{Objects\+\_\+\+Control}} $\ast$)}
+
+
+
+Free an object. 
+
+In case \mbox{\hyperlink{group__RTEMSScoreObject_gab0861c8e235b2892f2785b6cf582c74e}{\+\_\+\+Objects\+\_\+\+Allocate\+\_\+none()}} is used, then this may be the N\+U\+LL pointer.
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{group__RTEMSScoreObject_ga080ce791a8c319fbad853973fa53cf58}{\+\_\+\+Objects\+\_\+\+Free\+\_\+static()}}, and \mbox{\hyperlink{group__RTEMSScoreObject_gae07a394b03c4cb77414045f2fca32e62}{\+\_\+\+Objects\+\_\+\+Free\+\_\+unlimited()}}. 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{structObjects__Information_a82080af967cdcab49e96eee49318e6fe}\label{structObjects__Information_a82080af967cdcab49e96eee49318e6fe}} 
+\index{Objects\_Information@{Objects\_Information}!inactive@{inactive}}
+\index{inactive@{inactive}!Objects\_Information@{Objects\_Information}}
+\subsubsection{\texorpdfstring{inactive}{inactive}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreObject_gaa2735357885ec7d7157c32f3f835f9ae}{Objects\+\_\+\+Maximum}} Objects\+\_\+\+Information\+::inactive}
+
+
+
+This is the number of object control blocks on the inactive chain. 
+
+This member is only used if unlimited objects are configured for this A\+PI class. It is used to trigger calls to \mbox{\hyperlink{group__RTEMSScoreObject_ga1d3e97a3ed2e9d19c544269a7444be21}{\+\_\+\+Objects\+\_\+\+Shrink\+\_\+information()}} in \mbox{\hyperlink{group__RTEMSScoreObject_ga2215dcf7e3251e6f629b6a3a96fff44e}{\+\_\+\+Objects\+\_\+\+Free()}}. \mbox{\Hypertarget{structObjects__Information_a585fc550e6e38619c4a3698f4b043dea}\label{structObjects__Information_a585fc550e6e38619c4a3698f4b043dea}} 
+\index{Objects\_Information@{Objects\_Information}!Inactive@{Inactive}}
+\index{Inactive@{Inactive}!Objects\_Information@{Objects\_Information}}
+\subsubsection{\texorpdfstring{Inactive}{Inactive}}
+{\footnotesize\ttfamily \mbox{\hyperlink{unionChain__Control}{Chain\+\_\+\+Control}} Objects\+\_\+\+Information\+::\+Inactive}
+
+
+
+This is the chain of inactive object control blocks. 
+
+This member is statically initialized to an empty chain. The \mbox{\hyperlink{group__RTEMSScoreObject_ga968b850454008bc4e68ab83c2f033282}{\+\_\+\+Objects\+\_\+\+Initialize\+\_\+information()}} will populate this chain with the object control blocks initially configured. \mbox{\Hypertarget{structObjects__Information_a922f0aeeb969a99c7e45812b0283f04a}\label{structObjects__Information_a922f0aeeb969a99c7e45812b0283f04a}} 
+\index{Objects\_Information@{Objects\_Information}!inactive\_per\_block@{inactive\_per\_block}}
+\index{inactive\_per\_block@{inactive\_per\_block}!Objects\_Information@{Objects\_Information}}
+\subsubsection{\texorpdfstring{inactive\_per\_block}{inactive\_per\_block}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreObject_gaa2735357885ec7d7157c32f3f835f9ae}{Objects\+\_\+\+Maximum}}$\ast$ Objects\+\_\+\+Information\+::inactive\+\_\+per\+\_\+block}
+
+
+
+This is the number of inactive object control blocks per allocation block. 
+
+It is only used if unlimited objects are configured for this A\+PI class. \mbox{\Hypertarget{structObjects__Information_a2fd8dfa896cce1535cb3fd890c7c4d84}\label{structObjects__Information_a2fd8dfa896cce1535cb3fd890c7c4d84}} 
+\index{Objects\_Information@{Objects\_Information}!initial\_objects@{initial\_objects}}
+\index{initial\_objects@{initial\_objects}!Objects\_Information@{Objects\_Information}}
+\subsubsection{\texorpdfstring{initial\_objects}{initial\_objects}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structObjects__Control}{Objects\+\_\+\+Control}}$\ast$ Objects\+\_\+\+Information\+::initial\+\_\+objects}
+
+
+
+This points to the object control blocks initially available. 
+
+This member is statically initialized and read-\/only. In case objects for this A\+PI class are configured, it points to a statically allocated table of object control blocks defined by $<$\mbox{\hyperlink{confdefs_8h}{rtems/confdefs.\+h}}$>$, otherwise this member is N\+U\+LL. \mbox{\Hypertarget{structObjects__Information_a50defdb521eb333efa15a2c3d88a8306}\label{structObjects__Information_a50defdb521eb333efa15a2c3d88a8306}} 
+\index{Objects\_Information@{Objects\_Information}!local\_table@{local\_table}}
+\index{local\_table@{local\_table}!Objects\_Information@{Objects\_Information}}
+\subsubsection{\texorpdfstring{local\_table}{local\_table}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structObjects__Control}{Objects\+\_\+\+Control}}$\ast$$\ast$ Objects\+\_\+\+Information\+::local\+\_\+table}
+
+
+
+This points to the table of local object control blocks. 
+
+This member is statically initialized. In case objects for this A\+PI class are configured, it initially points to a statically allocated table defined by $<$\mbox{\hyperlink{confdefs_8h}{rtems/confdefs.\+h}}$>$. \mbox{\hyperlink{group__RTEMSScoreObject_gaf7d69e3b4cf8305b8f880a8362024fb8}{\+\_\+\+Objects\+\_\+\+Extend\+\_\+information()}} may replace the table with a larger one on demand. \mbox{\Hypertarget{structObjects__Information_a4f4f5708f3462a8231a2d5061fde16ca}\label{structObjects__Information_a4f4f5708f3462a8231a2d5061fde16ca}} 
+\index{Objects\_Information@{Objects\_Information}!maximum\_id@{maximum\_id}}
+\index{maximum\_id@{maximum\_id}!Objects\_Information@{Objects\_Information}}
+\subsubsection{\texorpdfstring{maximum\_id}{maximum\_id}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreObject_ga5821f52a51072941bdd603e542d0863e}{Objects\+\_\+\+Id}} Objects\+\_\+\+Information\+::maximum\+\_\+id}
+
+
+
+This is the maximum valid ID of this object A\+PI class. 
+
+This member is statically initialized and provides also the object A\+PI, class and multiprocessing node information.
+
+It is used by \mbox{\hyperlink{group__RTEMSScoreObject_gaccc5682133e4f65b8cb374eab9be2c9d}{\+\_\+\+Objects\+\_\+\+Get()}} to validate an object ID. \mbox{\Hypertarget{structObjects__Information_a98fd0f4571cc24ceb57c70869bbc7154}\label{structObjects__Information_a98fd0f4571cc24ceb57c70869bbc7154}} 
+\index{Objects\_Information@{Objects\_Information}!name\_length@{name\_length}}
+\index{name\_length@{name\_length}!Objects\_Information@{Objects\_Information}}
+\subsubsection{\texorpdfstring{name\_length}{name\_length}}
+{\footnotesize\ttfamily uint16\+\_\+t Objects\+\_\+\+Information\+::name\+\_\+length}
+
+
+
+This is the maximum length of names. 
+
+This member is statically initialized and read-\/only. A length of zero indicates that this A\+PI class has a no string name (O\+B\+J\+E\+C\+T\+S\+\_\+\+N\+O\+\_\+\+S\+T\+R\+I\+N\+G\+\_\+\+N\+A\+ME). \mbox{\Hypertarget{structObjects__Information_abf727c0782225fa94a341268cfcbf412}\label{structObjects__Information_abf727c0782225fa94a341268cfcbf412}} 
+\index{Objects\_Information@{Objects\_Information}!object\_blocks@{object\_blocks}}
+\index{object\_blocks@{object\_blocks}!Objects\_Information@{Objects\_Information}}
+\subsubsection{\texorpdfstring{object\_blocks}{object\_blocks}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structObjects__Control}{Objects\+\_\+\+Control}}$\ast$$\ast$ Objects\+\_\+\+Information\+::object\+\_\+blocks}
+
+
+
+This is a table to allocation blocks of object control blocks. 
+
+It is only used if unlimited objects are configured for this A\+PI class. The object control blocks extend and shrink by these allocation blocks. \mbox{\Hypertarget{structObjects__Information_a0dd4f0af287535a342ebec694d704292}\label{structObjects__Information_a0dd4f0af287535a342ebec694d704292}} 
+\index{Objects\_Information@{Objects\_Information}!object\_size@{object\_size}}
+\index{object\_size@{object\_size}!Objects\_Information@{Objects\_Information}}
+\subsubsection{\texorpdfstring{object\_size}{object\_size}}
+{\footnotesize\ttfamily uint16\+\_\+t Objects\+\_\+\+Information\+::object\+\_\+size}
+
+
+
+This is the size in bytes of each object control block. 
+
+This member is statically initialized and read-\/only. \mbox{\Hypertarget{structObjects__Information_acd5a58dad9203b694688f47b7948418a}\label{structObjects__Information_acd5a58dad9203b694688f47b7948418a}} 
+\index{Objects\_Information@{Objects\_Information}!objects\_per\_block@{objects\_per\_block}}
+\index{objects\_per\_block@{objects\_per\_block}!Objects\_Information@{Objects\_Information}}
+\subsubsection{\texorpdfstring{objects\_per\_block}{objects\_per\_block}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreObject_gaa2735357885ec7d7157c32f3f835f9ae}{Objects\+\_\+\+Maximum}} Objects\+\_\+\+Information\+::objects\+\_\+per\+\_\+block}
+
+
+
+This is the number of object control blocks in an allocation block. 
+
+This member is statically initialized and read-\/only. It is only used if unlimited objects are configured for this A\+PI class. It defines the count of object control blocks used to extend and shrink this A\+PI class. 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+cpukit/include/rtems/score/\mbox{\hyperlink{objectdata_8h}{objectdata.\+h}}\end{DoxyCompactItemize}

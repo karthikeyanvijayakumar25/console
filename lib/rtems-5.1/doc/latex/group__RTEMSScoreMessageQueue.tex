@@ -1,0 +1,705 @@
+\hypertarget{group__RTEMSScoreMessageQueue}{}\section{Message Queue Handler}
+\label{group__RTEMSScoreMessageQueue}\index{Message Queue Handler@{Message Queue Handler}}
+
+
+Message Queue Handler.  
+
+
+\subsection*{Files}
+\begin{DoxyCompactItemize}
+\item 
+file \mbox{\hyperlink{coremsg_8h}{coremsg.\+h}}
+\begin{DoxyCompactList}\small\item\em Constants and Structures Associated with the Message Queue Handler. \end{DoxyCompactList}\item 
+file \mbox{\hyperlink{coremsgimpl_8h}{coremsgimpl.\+h}}
+\begin{DoxyCompactList}\small\item\em Inlined Routines in the Core Message Handler. \end{DoxyCompactList}\item 
+file \mbox{\hyperlink{coremsg_8c}{coremsg.\+c}}
+\begin{DoxyCompactList}\small\item\em Initialize a Message Queue. \end{DoxyCompactList}\item 
+file \mbox{\hyperlink{coremsgbroadcast_8c}{coremsgbroadcast.\+c}}
+\begin{DoxyCompactList}\small\item\em Broadcast a Message to the Message Queue. \end{DoxyCompactList}\item 
+file \mbox{\hyperlink{coremsgclose_8c}{coremsgclose.\+c}}
+\begin{DoxyCompactList}\small\item\em Close a Message Queue. \end{DoxyCompactList}\item 
+file \mbox{\hyperlink{coremsgflush_8c}{coremsgflush.\+c}}
+\begin{DoxyCompactList}\small\item\em Flush Messages Routine. \end{DoxyCompactList}\item 
+file \mbox{\hyperlink{coremsgflushwait_8c}{coremsgflushwait.\+c}}
+\begin{DoxyCompactList}\small\item\em Flush Waiting Threads. \end{DoxyCompactList}\item 
+file \mbox{\hyperlink{coremsginsert_8c}{coremsginsert.\+c}}
+\begin{DoxyCompactList}\small\item\em Insert a Message into the Message Queue. \end{DoxyCompactList}\item 
+file \mbox{\hyperlink{coremsgseize_8c}{coremsgseize.\+c}}
+\begin{DoxyCompactList}\small\item\em Seize a Message from the Message Queue. \end{DoxyCompactList}\item 
+file \mbox{\hyperlink{coremsgsubmit_8c}{coremsgsubmit.\+c}}
+\begin{DoxyCompactList}\small\item\em C\+O\+RE Message Queue Submit. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structCORE__message__queue__Buffer}{C\+O\+R\+E\+\_\+message\+\_\+queue\+\_\+\+Buffer}}
+\begin{DoxyCompactList}\small\item\em Data types needed to manipulate the contents of message buffers. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structCORE__message__queue__Buffer__control}{C\+O\+R\+E\+\_\+message\+\_\+queue\+\_\+\+Buffer\+\_\+control}}
+\begin{DoxyCompactList}\small\item\em The organization of a message buffer. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structCORE__message__queue__Control}{C\+O\+R\+E\+\_\+message\+\_\+queue\+\_\+\+Control}}
+\begin{DoxyCompactList}\small\item\em Control block used to manage each message queue. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__RTEMSScoreMessageQueue_ga5079fee7785d8c344030ead557c2e729}{R\+T\+E\+M\+S\+\_\+\+S\+C\+O\+R\+E\+\_\+\+C\+O\+R\+E\+M\+S\+G\+\_\+\+E\+N\+A\+B\+L\+E\+\_\+\+M\+E\+S\+S\+A\+G\+E\+\_\+\+P\+R\+I\+O\+R\+I\+TY}}
+\item 
+\#define \mbox{\hyperlink{group__RTEMSScoreMessageQueue_ga09634a9686956a9d7e984334e6d1d9a9}{R\+T\+E\+M\+S\+\_\+\+S\+C\+O\+R\+E\+\_\+\+C\+O\+R\+E\+M\+S\+G\+\_\+\+E\+N\+A\+B\+L\+E\+\_\+\+B\+L\+O\+C\+K\+I\+N\+G\+\_\+\+S\+E\+ND}}
+\item 
+\#define \mbox{\hyperlink{group__RTEMSScoreMessageQueue_ga6153ca90c7d1c79275c5b41313aba55b}{C\+O\+R\+E\+\_\+\+M\+E\+S\+S\+A\+G\+E\+\_\+\+Q\+U\+E\+U\+E\+\_\+\+S\+E\+N\+D\+\_\+\+R\+E\+Q\+U\+E\+ST}}~I\+N\+T\+\_\+\+M\+AX
+\begin{DoxyCompactList}\small\item\em Used when appending messages onto a message queue. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTEMSScoreMessageQueue_ga054fb313d79bf47d885a938654cedf6c}{C\+O\+R\+E\+\_\+\+M\+E\+S\+S\+A\+G\+E\+\_\+\+Q\+U\+E\+U\+E\+\_\+\+U\+R\+G\+E\+N\+T\+\_\+\+R\+E\+Q\+U\+E\+ST}}~I\+N\+T\+\_\+\+M\+IN
+\begin{DoxyCompactList}\small\item\em Used when prepending messages onto a message queue. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTEMSScoreMessageQueue_ga9ff0250bdbba22ed859cd8a1a5352c2e}{\+\_\+\+C\+O\+R\+E\+\_\+message\+\_\+queue\+\_\+\+Set\+\_\+notify}}(the\+\_\+message\+\_\+queue,  the\+\_\+handler)~do \{ \} while ( 0 )
+\begin{DoxyCompactList}\small\item\em Initializes notification information. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{group__RTEMSScoreMessageQueue_ga1e092537383da83906a4d8dea257bb37}\label{group__RTEMSScoreMessageQueue_ga1e092537383da83906a4d8dea257bb37}} 
+typedef struct \mbox{\hyperlink{structCORE__message__queue__Control}{C\+O\+R\+E\+\_\+message\+\_\+queue\+\_\+\+Control}} {\bfseries C\+O\+R\+E\+\_\+message\+\_\+queue\+\_\+\+Control}
+\item 
+typedef int \mbox{\hyperlink{group__RTEMSScoreMessageQueue_ga0859edb437502e53fd2c7a73bce6b33c}{C\+O\+R\+E\+\_\+message\+\_\+queue\+\_\+\+Submit\+\_\+types}}
+\begin{DoxyCompactList}\small\item\em The modes in which a message may be submitted to a message queue. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{group__RTEMSScoreMessageQueue_gaaeca88271cd9bc9ed7cf6996915481d0}{C\+O\+R\+E\+\_\+message\+\_\+queue\+\_\+\+Disciplines}} \{ \mbox{\hyperlink{group__RTEMSScoreMessageQueue_ggaaeca88271cd9bc9ed7cf6996915481d0aaee6e501f376da8c4495cf5e9114b35b}{C\+O\+R\+E\+\_\+\+M\+E\+S\+S\+A\+G\+E\+\_\+\+Q\+U\+E\+U\+E\+\_\+\+D\+I\+S\+C\+I\+P\+L\+I\+N\+E\+S\+\_\+\+F\+I\+FO}}, 
+\mbox{\hyperlink{group__RTEMSScoreMessageQueue_ggaaeca88271cd9bc9ed7cf6996915481d0ae543ef8fec653c663fc43daba4d5a5f0}{C\+O\+R\+E\+\_\+\+M\+E\+S\+S\+A\+G\+E\+\_\+\+Q\+U\+E\+U\+E\+\_\+\+D\+I\+S\+C\+I\+P\+L\+I\+N\+E\+S\+\_\+\+P\+R\+I\+O\+R\+I\+TY}}
+ \}
+\begin{DoxyCompactList}\small\item\em The possible blocking disciplines for a message queue. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{group__RTEMSScoreMessageQueue_ga5358dca7fe0334940c9bfed58b4e520a}{\+\_\+\+C\+O\+R\+E\+\_\+message\+\_\+queue\+\_\+\+Initialize}} (\mbox{\hyperlink{structCORE__message__queue__Control}{C\+O\+R\+E\+\_\+message\+\_\+queue\+\_\+\+Control}} $\ast$the\+\_\+message\+\_\+queue, \mbox{\hyperlink{group__RTEMSScoreMessageQueue_gaaeca88271cd9bc9ed7cf6996915481d0}{C\+O\+R\+E\+\_\+message\+\_\+queue\+\_\+\+Disciplines}} discipline, uint32\+\_\+t maximum\+\_\+pending\+\_\+messages, size\+\_\+t maximum\+\_\+message\+\_\+size)
+\begin{DoxyCompactList}\small\item\em Initializes a message queue. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__RTEMSScoreMessageQueue_ga98d64cbe51135fb2e313644c1158a1f7}{\+\_\+\+C\+O\+R\+E\+\_\+message\+\_\+queue\+\_\+\+Close}} (\mbox{\hyperlink{structCORE__message__queue__Control}{C\+O\+R\+E\+\_\+message\+\_\+queue\+\_\+\+Control}} $\ast$the\+\_\+message\+\_\+queue, \mbox{\hyperlink{structThread__queue__Context}{Thread\+\_\+queue\+\_\+\+Context}} $\ast$queue\+\_\+context)
+\begin{DoxyCompactList}\small\item\em Closes a message queue. \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{group__RTEMSScoreMessageQueue_gabe86da1ead8e6b01ecf69c94e1de29f2}{\+\_\+\+C\+O\+R\+E\+\_\+message\+\_\+queue\+\_\+\+Flush}} (\mbox{\hyperlink{structCORE__message__queue__Control}{C\+O\+R\+E\+\_\+message\+\_\+queue\+\_\+\+Control}} $\ast$the\+\_\+message\+\_\+queue, \mbox{\hyperlink{structThread__queue__Context}{Thread\+\_\+queue\+\_\+\+Context}} $\ast$queue\+\_\+context)
+\begin{DoxyCompactList}\small\item\em Flushes pending messages. \end{DoxyCompactList}\item 
+Status\+\_\+\+Control \mbox{\hyperlink{group__RTEMSScoreMessageQueue_gac2f24b796e0bfb124ab4e246ed476f5b}{\+\_\+\+C\+O\+R\+E\+\_\+message\+\_\+queue\+\_\+\+Broadcast}} (\mbox{\hyperlink{structCORE__message__queue__Control}{C\+O\+R\+E\+\_\+message\+\_\+queue\+\_\+\+Control}} $\ast$the\+\_\+message\+\_\+queue, const void $\ast$buffer, size\+\_\+t \mbox{\hyperlink{sun4u_2tte_8h_a245260f6f74972558f61b85227df5aae}{size}}, uint32\+\_\+t $\ast$count, \mbox{\hyperlink{structThread__queue__Context}{Thread\+\_\+queue\+\_\+\+Context}} $\ast$queue\+\_\+context)
+\begin{DoxyCompactList}\small\item\em Broadcasts a message to the message queue. \end{DoxyCompactList}\item 
+Status\+\_\+\+Control \mbox{\hyperlink{group__RTEMSScoreMessageQueue_ga36a76a49f99537867181014cd88af33a}{\+\_\+\+C\+O\+R\+E\+\_\+message\+\_\+queue\+\_\+\+Submit}} (\mbox{\hyperlink{structCORE__message__queue__Control}{C\+O\+R\+E\+\_\+message\+\_\+queue\+\_\+\+Control}} $\ast$the\+\_\+message\+\_\+queue, \mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$executing, const void $\ast$buffer, size\+\_\+t \mbox{\hyperlink{sun4u_2tte_8h_a245260f6f74972558f61b85227df5aae}{size}}, \mbox{\hyperlink{group__RTEMSScoreMessageQueue_ga0859edb437502e53fd2c7a73bce6b33c}{C\+O\+R\+E\+\_\+message\+\_\+queue\+\_\+\+Submit\+\_\+types}} submit\+\_\+type, bool wait, \mbox{\hyperlink{structThread__queue__Context}{Thread\+\_\+queue\+\_\+\+Context}} $\ast$queue\+\_\+context)
+\begin{DoxyCompactList}\small\item\em Submits a message to the message queue. \end{DoxyCompactList}\item 
+Status\+\_\+\+Control \mbox{\hyperlink{group__RTEMSScoreMessageQueue_ga7a7153b494ffd575d84276072f37dfd3}{\+\_\+\+C\+O\+R\+E\+\_\+message\+\_\+queue\+\_\+\+Seize}} (\mbox{\hyperlink{structCORE__message__queue__Control}{C\+O\+R\+E\+\_\+message\+\_\+queue\+\_\+\+Control}} $\ast$the\+\_\+message\+\_\+queue, \mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$executing, void $\ast$buffer, size\+\_\+t $\ast$size\+\_\+p, bool wait, \mbox{\hyperlink{structThread__queue__Context}{Thread\+\_\+queue\+\_\+\+Context}} $\ast$queue\+\_\+context)
+\begin{DoxyCompactList}\small\item\em Seizes a message from the message queue. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__RTEMSScoreMessageQueue_ga04e5a29d51194c8151bdaf94d2694a63}{\+\_\+\+C\+O\+R\+E\+\_\+message\+\_\+queue\+\_\+\+Insert\+\_\+message}} (\mbox{\hyperlink{structCORE__message__queue__Control}{C\+O\+R\+E\+\_\+message\+\_\+queue\+\_\+\+Control}} $\ast$the\+\_\+message\+\_\+queue, \mbox{\hyperlink{structCORE__message__queue__Buffer__control}{C\+O\+R\+E\+\_\+message\+\_\+queue\+\_\+\+Buffer\+\_\+control}} $\ast$the\+\_\+message, const void $\ast$content\+\_\+source, size\+\_\+t content\+\_\+size, \mbox{\hyperlink{group__RTEMSScoreMessageQueue_ga0859edb437502e53fd2c7a73bce6b33c}{C\+O\+R\+E\+\_\+message\+\_\+queue\+\_\+\+Submit\+\_\+types}} submit\+\_\+type)
+\begin{DoxyCompactList}\small\item\em Inserts a message into the message queue. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} Status\+\_\+\+Control \mbox{\hyperlink{group__RTEMSScoreMessageQueue_gac18a4d268009cbc9b85e28d680f31c9f}{\+\_\+\+C\+O\+R\+E\+\_\+message\+\_\+queue\+\_\+\+Send}} (\mbox{\hyperlink{structCORE__message__queue__Control}{C\+O\+R\+E\+\_\+message\+\_\+queue\+\_\+\+Control}} $\ast$the\+\_\+message\+\_\+queue, const void $\ast$buffer, size\+\_\+t \mbox{\hyperlink{sun4u_2tte_8h_a245260f6f74972558f61b85227df5aae}{size}}, bool wait, \mbox{\hyperlink{structThread__queue__Context}{Thread\+\_\+queue\+\_\+\+Context}} $\ast$queue\+\_\+context)
+\begin{DoxyCompactList}\small\item\em Sends a message to the message queue. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} Status\+\_\+\+Control \mbox{\hyperlink{group__RTEMSScoreMessageQueue_ga323f421bffd8f2257e425617d6048077}{\+\_\+\+C\+O\+R\+E\+\_\+message\+\_\+queue\+\_\+\+Urgent}} (\mbox{\hyperlink{structCORE__message__queue__Control}{C\+O\+R\+E\+\_\+message\+\_\+queue\+\_\+\+Control}} $\ast$the\+\_\+message\+\_\+queue, const void $\ast$buffer, size\+\_\+t \mbox{\hyperlink{sun4u_2tte_8h_a245260f6f74972558f61b85227df5aae}{size}}, bool wait, \mbox{\hyperlink{structThread__queue__Context}{Thread\+\_\+queue\+\_\+\+Context}} $\ast$queue\+\_\+context)
+\begin{DoxyCompactList}\small\item\em Sends an urgent message to the message queue. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \mbox{\hyperlink{group__RTEMSScoreMessageQueue_ga8b25ad850dd2b7eb4d3b752a4b231ac3}{\+\_\+\+C\+O\+R\+E\+\_\+message\+\_\+queue\+\_\+\+Acquire}} (\mbox{\hyperlink{structCORE__message__queue__Control}{C\+O\+R\+E\+\_\+message\+\_\+queue\+\_\+\+Control}} $\ast$the\+\_\+message\+\_\+queue, \mbox{\hyperlink{structThread__queue__Context}{Thread\+\_\+queue\+\_\+\+Context}} $\ast$queue\+\_\+context)
+\begin{DoxyCompactList}\small\item\em Acquires the message queue. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \mbox{\hyperlink{group__RTEMSScoreMessageQueue_ga589be0ab807a01d3d55e6be17a1f708f}{\+\_\+\+C\+O\+R\+E\+\_\+message\+\_\+queue\+\_\+\+Acquire\+\_\+critical}} (\mbox{\hyperlink{structCORE__message__queue__Control}{C\+O\+R\+E\+\_\+message\+\_\+queue\+\_\+\+Control}} $\ast$the\+\_\+message\+\_\+queue, \mbox{\hyperlink{structThread__queue__Context}{Thread\+\_\+queue\+\_\+\+Context}} $\ast$queue\+\_\+context)
+\begin{DoxyCompactList}\small\item\em Acquires the message queue critical. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \mbox{\hyperlink{group__RTEMSScoreMessageQueue_gabb2d48506286ad10b4bbdd3684dcb924}{\+\_\+\+C\+O\+R\+E\+\_\+message\+\_\+queue\+\_\+\+Release}} (\mbox{\hyperlink{structCORE__message__queue__Control}{C\+O\+R\+E\+\_\+message\+\_\+queue\+\_\+\+Control}} $\ast$the\+\_\+message\+\_\+queue, \mbox{\hyperlink{structThread__queue__Context}{Thread\+\_\+queue\+\_\+\+Context}} $\ast$queue\+\_\+context)
+\begin{DoxyCompactList}\small\item\em Releases the message queue. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \mbox{\hyperlink{group__RTEMSScoreMessageQueue_gac4393bd0fea722792b78b1a17cbf5766}{\+\_\+\+C\+O\+R\+E\+\_\+message\+\_\+queue\+\_\+\+Copy\+\_\+buffer}} (const void $\ast$source, void $\ast$destination, size\+\_\+t \mbox{\hyperlink{sun4u_2tte_8h_a245260f6f74972558f61b85227df5aae}{size}})
+\begin{DoxyCompactList}\small\item\em Copies the source message buffer to the destination message buffer. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} \mbox{\hyperlink{structCORE__message__queue__Buffer__control}{C\+O\+R\+E\+\_\+message\+\_\+queue\+\_\+\+Buffer\+\_\+control}} $\ast$ \mbox{\hyperlink{group__RTEMSScoreMessageQueue_ga58f369b0c41641f951f6d9eb4cc902d0}{\+\_\+\+C\+O\+R\+E\+\_\+message\+\_\+queue\+\_\+\+Allocate\+\_\+message\+\_\+buffer}} (\mbox{\hyperlink{structCORE__message__queue__Control}{C\+O\+R\+E\+\_\+message\+\_\+queue\+\_\+\+Control}} $\ast$the\+\_\+message\+\_\+queue)
+\begin{DoxyCompactList}\small\item\em Allocates a message buffer from the inactive message buffer chain. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \mbox{\hyperlink{group__RTEMSScoreMessageQueue_ga72417493b43560bd9513c4aaba4fbe45}{\+\_\+\+C\+O\+R\+E\+\_\+message\+\_\+queue\+\_\+\+Free\+\_\+message\+\_\+buffer}} (\mbox{\hyperlink{structCORE__message__queue__Control}{C\+O\+R\+E\+\_\+message\+\_\+queue\+\_\+\+Control}} $\ast$the\+\_\+message\+\_\+queue, \mbox{\hyperlink{structCORE__message__queue__Buffer__control}{C\+O\+R\+E\+\_\+message\+\_\+queue\+\_\+\+Buffer\+\_\+control}} $\ast$the\+\_\+message)
+\begin{DoxyCompactList}\small\item\em Frees a message buffer to inactive message buffer chain. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} int \mbox{\hyperlink{group__RTEMSScoreMessageQueue_ga2d7c15075a18043190881cede6cb6749}{\+\_\+\+C\+O\+R\+E\+\_\+message\+\_\+queue\+\_\+\+Get\+\_\+message\+\_\+priority}} (const \mbox{\hyperlink{structCORE__message__queue__Buffer__control}{C\+O\+R\+E\+\_\+message\+\_\+queue\+\_\+\+Buffer\+\_\+control}} $\ast$the\+\_\+message)
+\begin{DoxyCompactList}\small\item\em Gets message priority. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} \mbox{\hyperlink{structCORE__message__queue__Buffer__control}{C\+O\+R\+E\+\_\+message\+\_\+queue\+\_\+\+Buffer\+\_\+control}} $\ast$ \mbox{\hyperlink{group__RTEMSScoreMessageQueue_gaae44a17e0ce00b0cff6f9894f4fe9845}{\+\_\+\+C\+O\+R\+E\+\_\+message\+\_\+queue\+\_\+\+Get\+\_\+pending\+\_\+message}} (\mbox{\hyperlink{structCORE__message__queue__Control}{C\+O\+R\+E\+\_\+message\+\_\+queue\+\_\+\+Control}} $\ast$the\+\_\+message\+\_\+queue)
+\begin{DoxyCompactList}\small\item\em Gets first message of message queue and removes it. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} \mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$ \mbox{\hyperlink{group__RTEMSScoreMessageQueue_ga64d8088809673c8f4492ac5f46987537}{\+\_\+\+C\+O\+R\+E\+\_\+message\+\_\+queue\+\_\+\+Dequeue\+\_\+receiver}} (\mbox{\hyperlink{structCORE__message__queue__Control}{C\+O\+R\+E\+\_\+message\+\_\+queue\+\_\+\+Control}} $\ast$the\+\_\+message\+\_\+queue, const void $\ast$buffer, size\+\_\+t \mbox{\hyperlink{sun4u_2tte_8h_a245260f6f74972558f61b85227df5aae}{size}}, \mbox{\hyperlink{group__RTEMSScoreMessageQueue_ga0859edb437502e53fd2c7a73bce6b33c}{C\+O\+R\+E\+\_\+message\+\_\+queue\+\_\+\+Submit\+\_\+types}} submit\+\_\+type, \mbox{\hyperlink{structThread__queue__Context}{Thread\+\_\+queue\+\_\+\+Context}} $\ast$queue\+\_\+context)
+\begin{DoxyCompactList}\small\item\em Gets the first locked thread waiting to receive and dequeues it. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Message Queue Handler. 
+
+This handler encapsulates functionality which provides the foundation Message Queue services used in all of the A\+P\+Is supported by R\+T\+E\+MS. 
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{group__RTEMSScoreMessageQueue_ga9ff0250bdbba22ed859cd8a1a5352c2e}\label{group__RTEMSScoreMessageQueue_ga9ff0250bdbba22ed859cd8a1a5352c2e}} 
+\index{Message Queue Handler@{Message Queue Handler}!\_CORE\_message\_queue\_Set\_notify@{\_CORE\_message\_queue\_Set\_notify}}
+\index{\_CORE\_message\_queue\_Set\_notify@{\_CORE\_message\_queue\_Set\_notify}!Message Queue Handler@{Message Queue Handler}}
+\subsubsection{\texorpdfstring{\_CORE\_message\_queue\_Set\_notify}{\_CORE\_message\_queue\_Set\_notify}}
+{\footnotesize\ttfamily \#define \+\_\+\+C\+O\+R\+E\+\_\+message\+\_\+queue\+\_\+\+Set\+\_\+notify(\begin{DoxyParamCaption}\item[{}]{the\+\_\+message\+\_\+queue,  }\item[{}]{the\+\_\+handler }\end{DoxyParamCaption})~do \{ \} while ( 0 )}
+
+
+
+Initializes notification information. 
+
+This routine initializes the notification information for {\itshape the\+\_\+message\+\_\+queue}.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em the\+\_\+message\+\_\+queue} & The message queue to initialize the notification information. \\
+\hline
+\mbox{\texttt{ out}}  & {\em the\+\_\+handler} & The notification information for the message queue. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__RTEMSScoreMessageQueue_ga6153ca90c7d1c79275c5b41313aba55b}\label{group__RTEMSScoreMessageQueue_ga6153ca90c7d1c79275c5b41313aba55b}} 
+\index{Message Queue Handler@{Message Queue Handler}!CORE\_MESSAGE\_QUEUE\_SEND\_REQUEST@{CORE\_MESSAGE\_QUEUE\_SEND\_REQUEST}}
+\index{CORE\_MESSAGE\_QUEUE\_SEND\_REQUEST@{CORE\_MESSAGE\_QUEUE\_SEND\_REQUEST}!Message Queue Handler@{Message Queue Handler}}
+\subsubsection{\texorpdfstring{CORE\_MESSAGE\_QUEUE\_SEND\_REQUEST}{CORE\_MESSAGE\_QUEUE\_SEND\_REQUEST}}
+{\footnotesize\ttfamily \#define C\+O\+R\+E\+\_\+\+M\+E\+S\+S\+A\+G\+E\+\_\+\+Q\+U\+E\+U\+E\+\_\+\+S\+E\+N\+D\+\_\+\+R\+E\+Q\+U\+E\+ST~I\+N\+T\+\_\+\+M\+AX}
+
+
+
+Used when appending messages onto a message queue. 
+
+This is the priority constant used when appending messages onto a message queue. \mbox{\Hypertarget{group__RTEMSScoreMessageQueue_ga054fb313d79bf47d885a938654cedf6c}\label{group__RTEMSScoreMessageQueue_ga054fb313d79bf47d885a938654cedf6c}} 
+\index{Message Queue Handler@{Message Queue Handler}!CORE\_MESSAGE\_QUEUE\_URGENT\_REQUEST@{CORE\_MESSAGE\_QUEUE\_URGENT\_REQUEST}}
+\index{CORE\_MESSAGE\_QUEUE\_URGENT\_REQUEST@{CORE\_MESSAGE\_QUEUE\_URGENT\_REQUEST}!Message Queue Handler@{Message Queue Handler}}
+\subsubsection{\texorpdfstring{CORE\_MESSAGE\_QUEUE\_URGENT\_REQUEST}{CORE\_MESSAGE\_QUEUE\_URGENT\_REQUEST}}
+{\footnotesize\ttfamily \#define C\+O\+R\+E\+\_\+\+M\+E\+S\+S\+A\+G\+E\+\_\+\+Q\+U\+E\+U\+E\+\_\+\+U\+R\+G\+E\+N\+T\+\_\+\+R\+E\+Q\+U\+E\+ST~I\+N\+T\+\_\+\+M\+IN}
+
+
+
+Used when prepending messages onto a message queue. 
+
+This is the priority constant used when prepending messages onto a message queue. \mbox{\Hypertarget{group__RTEMSScoreMessageQueue_ga09634a9686956a9d7e984334e6d1d9a9}\label{group__RTEMSScoreMessageQueue_ga09634a9686956a9d7e984334e6d1d9a9}} 
+\index{Message Queue Handler@{Message Queue Handler}!RTEMS\_SCORE\_COREMSG\_ENABLE\_BLOCKING\_SEND@{RTEMS\_SCORE\_COREMSG\_ENABLE\_BLOCKING\_SEND}}
+\index{RTEMS\_SCORE\_COREMSG\_ENABLE\_BLOCKING\_SEND@{RTEMS\_SCORE\_COREMSG\_ENABLE\_BLOCKING\_SEND}!Message Queue Handler@{Message Queue Handler}}
+\subsubsection{\texorpdfstring{RTEMS\_SCORE\_COREMSG\_ENABLE\_BLOCKING\_SEND}{RTEMS\_SCORE\_COREMSG\_ENABLE\_BLOCKING\_SEND}}
+{\footnotesize\ttfamily \#define R\+T\+E\+M\+S\+\_\+\+S\+C\+O\+R\+E\+\_\+\+C\+O\+R\+E\+M\+S\+G\+\_\+\+E\+N\+A\+B\+L\+E\+\_\+\+B\+L\+O\+C\+K\+I\+N\+G\+\_\+\+S\+E\+ND}
+
+This macro is defined when an A\+PI is enabled that requires the Message Queue Handler include support for blocking send operations. \mbox{\Hypertarget{group__RTEMSScoreMessageQueue_ga5079fee7785d8c344030ead557c2e729}\label{group__RTEMSScoreMessageQueue_ga5079fee7785d8c344030ead557c2e729}} 
+\index{Message Queue Handler@{Message Queue Handler}!RTEMS\_SCORE\_COREMSG\_ENABLE\_MESSAGE\_PRIORITY@{RTEMS\_SCORE\_COREMSG\_ENABLE\_MESSAGE\_PRIORITY}}
+\index{RTEMS\_SCORE\_COREMSG\_ENABLE\_MESSAGE\_PRIORITY@{RTEMS\_SCORE\_COREMSG\_ENABLE\_MESSAGE\_PRIORITY}!Message Queue Handler@{Message Queue Handler}}
+\subsubsection{\texorpdfstring{RTEMS\_SCORE\_COREMSG\_ENABLE\_MESSAGE\_PRIORITY}{RTEMS\_SCORE\_COREMSG\_ENABLE\_MESSAGE\_PRIORITY}}
+{\footnotesize\ttfamily \#define R\+T\+E\+M\+S\+\_\+\+S\+C\+O\+R\+E\+\_\+\+C\+O\+R\+E\+M\+S\+G\+\_\+\+E\+N\+A\+B\+L\+E\+\_\+\+M\+E\+S\+S\+A\+G\+E\+\_\+\+P\+R\+I\+O\+R\+I\+TY}
+
+This macro is defined when an A\+PI is enabled that requires that the Message Queue Handler include support for priority based enqueuing of messages. 
+
+\subsection{Typedef Documentation}
+\mbox{\Hypertarget{group__RTEMSScoreMessageQueue_ga0859edb437502e53fd2c7a73bce6b33c}\label{group__RTEMSScoreMessageQueue_ga0859edb437502e53fd2c7a73bce6b33c}} 
+\index{Message Queue Handler@{Message Queue Handler}!CORE\_message\_queue\_Submit\_types@{CORE\_message\_queue\_Submit\_types}}
+\index{CORE\_message\_queue\_Submit\_types@{CORE\_message\_queue\_Submit\_types}!Message Queue Handler@{Message Queue Handler}}
+\subsubsection{\texorpdfstring{CORE\_message\_queue\_Submit\_types}{CORE\_message\_queue\_Submit\_types}}
+{\footnotesize\ttfamily typedef int \mbox{\hyperlink{group__RTEMSScoreMessageQueue_ga0859edb437502e53fd2c7a73bce6b33c}{C\+O\+R\+E\+\_\+message\+\_\+queue\+\_\+\+Submit\+\_\+types}}}
+
+
+
+The modes in which a message may be submitted to a message queue. 
+
+The following type details the modes in which a message may be submitted to a message queue. The message may be posted in a send or urgent fashion.
+
+\begin{DoxyNote}{Note}
+All other values are message priorities. Numerically smaller priorities indicate higher priority messages. 
+\end{DoxyNote}
+
+
+\subsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{group__RTEMSScoreMessageQueue_gaaeca88271cd9bc9ed7cf6996915481d0}\label{group__RTEMSScoreMessageQueue_gaaeca88271cd9bc9ed7cf6996915481d0}} 
+\index{Message Queue Handler@{Message Queue Handler}!CORE\_message\_queue\_Disciplines@{CORE\_message\_queue\_Disciplines}}
+\index{CORE\_message\_queue\_Disciplines@{CORE\_message\_queue\_Disciplines}!Message Queue Handler@{Message Queue Handler}}
+\subsubsection{\texorpdfstring{CORE\_message\_queue\_Disciplines}{CORE\_message\_queue\_Disciplines}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{group__RTEMSScoreMessageQueue_gaaeca88271cd9bc9ed7cf6996915481d0}{C\+O\+R\+E\+\_\+message\+\_\+queue\+\_\+\+Disciplines}}}
+
+
+
+The possible blocking disciplines for a message queue. 
+
+This enumerated types defines the possible blocking disciplines for a message queue. \begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CORE\_MESSAGE\_QUEUE\_DISCIPLINES\_FIFO@{CORE\_MESSAGE\_QUEUE\_DISCIPLINES\_FIFO}!Message Queue Handler@{Message Queue Handler}}\index{Message Queue Handler@{Message Queue Handler}!CORE\_MESSAGE\_QUEUE\_DISCIPLINES\_FIFO@{CORE\_MESSAGE\_QUEUE\_DISCIPLINES\_FIFO}}}\mbox{\Hypertarget{group__RTEMSScoreMessageQueue_ggaaeca88271cd9bc9ed7cf6996915481d0aaee6e501f376da8c4495cf5e9114b35b}\label{group__RTEMSScoreMessageQueue_ggaaeca88271cd9bc9ed7cf6996915481d0aaee6e501f376da8c4495cf5e9114b35b}} 
+C\+O\+R\+E\+\_\+\+M\+E\+S\+S\+A\+G\+E\+\_\+\+Q\+U\+E\+U\+E\+\_\+\+D\+I\+S\+C\+I\+P\+L\+I\+N\+E\+S\+\_\+\+F\+I\+FO&This value indicates that blocking tasks are in F\+I\+FO order. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CORE\_MESSAGE\_QUEUE\_DISCIPLINES\_PRIORITY@{CORE\_MESSAGE\_QUEUE\_DISCIPLINES\_PRIORITY}!Message Queue Handler@{Message Queue Handler}}\index{Message Queue Handler@{Message Queue Handler}!CORE\_MESSAGE\_QUEUE\_DISCIPLINES\_PRIORITY@{CORE\_MESSAGE\_QUEUE\_DISCIPLINES\_PRIORITY}}}\mbox{\Hypertarget{group__RTEMSScoreMessageQueue_ggaaeca88271cd9bc9ed7cf6996915481d0ae543ef8fec653c663fc43daba4d5a5f0}\label{group__RTEMSScoreMessageQueue_ggaaeca88271cd9bc9ed7cf6996915481d0ae543ef8fec653c663fc43daba4d5a5f0}} 
+C\+O\+R\+E\+\_\+\+M\+E\+S\+S\+A\+G\+E\+\_\+\+Q\+U\+E\+U\+E\+\_\+\+D\+I\+S\+C\+I\+P\+L\+I\+N\+E\+S\+\_\+\+P\+R\+I\+O\+R\+I\+TY&This value indicates that blocking tasks are in priority order. \\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{group__RTEMSScoreMessageQueue_ga8b25ad850dd2b7eb4d3b752a4b231ac3}\label{group__RTEMSScoreMessageQueue_ga8b25ad850dd2b7eb4d3b752a4b231ac3}} 
+\index{Message Queue Handler@{Message Queue Handler}!\_CORE\_message\_queue\_Acquire@{\_CORE\_message\_queue\_Acquire}}
+\index{\_CORE\_message\_queue\_Acquire@{\_CORE\_message\_queue\_Acquire}!Message Queue Handler@{Message Queue Handler}}
+\subsubsection{\texorpdfstring{\_CORE\_message\_queue\_Acquire()}{\_CORE\_message\_queue\_Acquire()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \+\_\+\+C\+O\+R\+E\+\_\+message\+\_\+queue\+\_\+\+Acquire (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCORE__message__queue__Control}{C\+O\+R\+E\+\_\+message\+\_\+queue\+\_\+\+Control}} $\ast$}]{the\+\_\+message\+\_\+queue,  }\item[{\mbox{\hyperlink{structThread__queue__Context}{Thread\+\_\+queue\+\_\+\+Context}} $\ast$}]{queue\+\_\+context }\end{DoxyParamCaption})}
+
+
+
+Acquires the message queue. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em the\+\_\+message\+\_\+queue} & Rhe message queue to acquire. \\
+\hline
+ & {\em queue\+\_\+context} & The thread queue context. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__RTEMSScoreMessageQueue_ga589be0ab807a01d3d55e6be17a1f708f}\label{group__RTEMSScoreMessageQueue_ga589be0ab807a01d3d55e6be17a1f708f}} 
+\index{Message Queue Handler@{Message Queue Handler}!\_CORE\_message\_queue\_Acquire\_critical@{\_CORE\_message\_queue\_Acquire\_critical}}
+\index{\_CORE\_message\_queue\_Acquire\_critical@{\_CORE\_message\_queue\_Acquire\_critical}!Message Queue Handler@{Message Queue Handler}}
+\subsubsection{\texorpdfstring{\_CORE\_message\_queue\_Acquire\_critical()}{\_CORE\_message\_queue\_Acquire\_critical()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \+\_\+\+C\+O\+R\+E\+\_\+message\+\_\+queue\+\_\+\+Acquire\+\_\+critical (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCORE__message__queue__Control}{C\+O\+R\+E\+\_\+message\+\_\+queue\+\_\+\+Control}} $\ast$}]{the\+\_\+message\+\_\+queue,  }\item[{\mbox{\hyperlink{structThread__queue__Context}{Thread\+\_\+queue\+\_\+\+Context}} $\ast$}]{queue\+\_\+context }\end{DoxyParamCaption})}
+
+
+
+Acquires the message queue critical. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em the\+\_\+message\+\_\+queue} & The message queue to acquire critical. \\
+\hline
+ & {\em queue\+\_\+context} & The thread queue context. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__RTEMSScoreMessageQueue_ga58f369b0c41641f951f6d9eb4cc902d0}\label{group__RTEMSScoreMessageQueue_ga58f369b0c41641f951f6d9eb4cc902d0}} 
+\index{Message Queue Handler@{Message Queue Handler}!\_CORE\_message\_queue\_Allocate\_message\_buffer@{\_CORE\_message\_queue\_Allocate\_message\_buffer}}
+\index{\_CORE\_message\_queue\_Allocate\_message\_buffer@{\_CORE\_message\_queue\_Allocate\_message\_buffer}!Message Queue Handler@{Message Queue Handler}}
+\subsubsection{\texorpdfstring{\_CORE\_message\_queue\_Allocate\_message\_buffer()}{\_CORE\_message\_queue\_Allocate\_message\_buffer()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} \mbox{\hyperlink{structCORE__message__queue__Buffer__control}{C\+O\+R\+E\+\_\+message\+\_\+queue\+\_\+\+Buffer\+\_\+control}}$\ast$ \+\_\+\+C\+O\+R\+E\+\_\+message\+\_\+queue\+\_\+\+Allocate\+\_\+message\+\_\+buffer (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCORE__message__queue__Control}{C\+O\+R\+E\+\_\+message\+\_\+queue\+\_\+\+Control}} $\ast$}]{the\+\_\+message\+\_\+queue }\end{DoxyParamCaption})}
+
+
+
+Allocates a message buffer from the inactive message buffer chain. 
+
+This function allocates a message buffer from the inactive message buffer chain.
+
+
+\begin{DoxyParams}{Parameters}
+{\em the\+\_\+message\+\_\+queue} & The message queue to operate upon.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em pointer} & The allocated message buffer. \\
+\hline
+{\em N\+U\+LL} & The inactive message buffer chain is empty. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{group__RTEMSScoreMessageQueue_gac2f24b796e0bfb124ab4e246ed476f5b}\label{group__RTEMSScoreMessageQueue_gac2f24b796e0bfb124ab4e246ed476f5b}} 
+\index{Message Queue Handler@{Message Queue Handler}!\_CORE\_message\_queue\_Broadcast@{\_CORE\_message\_queue\_Broadcast}}
+\index{\_CORE\_message\_queue\_Broadcast@{\_CORE\_message\_queue\_Broadcast}!Message Queue Handler@{Message Queue Handler}}
+\subsubsection{\texorpdfstring{\_CORE\_message\_queue\_Broadcast()}{\_CORE\_message\_queue\_Broadcast()}}
+{\footnotesize\ttfamily Status\+\_\+\+Control \+\_\+\+C\+O\+R\+E\+\_\+message\+\_\+queue\+\_\+\+Broadcast (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCORE__message__queue__Control}{C\+O\+R\+E\+\_\+message\+\_\+queue\+\_\+\+Control}} $\ast$}]{the\+\_\+message\+\_\+queue,  }\item[{const void $\ast$}]{buffer,  }\item[{size\+\_\+t}]{size,  }\item[{uint32\+\_\+t $\ast$}]{count,  }\item[{\mbox{\hyperlink{structThread__queue__Context}{Thread\+\_\+queue\+\_\+\+Context}} $\ast$}]{queue\+\_\+context }\end{DoxyParamCaption})}
+
+
+
+Broadcasts a message to the message queue. 
+
+This package is the implementation of the C\+O\+RE Message Queue Handler. This core object provides task synchronization and communication functions via messages passed to queue objects.
+
+This function sends a message for every thread waiting on the queue and returns the number of threads made ready by the message.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em the\+\_\+message\+\_\+queue} & The message queue to operate upon. \\
+\hline
+ & {\em buffer} & The starting address of the message to broadcast. \\
+\hline
+ & {\em size} & The size of the message being broadcast. \\
+\hline
+\mbox{\texttt{ out}}  & {\em count} & The variable that will contain the number of tasks that are sent this message. \\
+\hline
+ & {\em queue\+\_\+context} & The thread queue context used for \mbox{\hyperlink{group__RTEMSScoreMessageQueue_ga8b25ad850dd2b7eb4d3b752a4b231ac3}{\+\_\+\+C\+O\+R\+E\+\_\+message\+\_\+queue\+\_\+\+Acquire()}} or \mbox{\hyperlink{group__RTEMSScoreMessageQueue_ga589be0ab807a01d3d55e6be17a1f708f}{\+\_\+\+C\+O\+R\+E\+\_\+message\+\_\+queue\+\_\+\+Acquire\+\_\+critical()}}.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em S\+T\+A\+T\+U\+S\+\_\+\+S\+U\+C\+C\+E\+S\+S\+F\+UL} & The message was successfully broadcast. \\
+\hline
+{\em S\+T\+A\+T\+U\+S\+\_\+\+M\+E\+S\+S\+A\+G\+E\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+S\+I\+ZE} & The message size was too big. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{group__RTEMSScoreMessageQueue_ga98d64cbe51135fb2e313644c1158a1f7}\label{group__RTEMSScoreMessageQueue_ga98d64cbe51135fb2e313644c1158a1f7}} 
+\index{Message Queue Handler@{Message Queue Handler}!\_CORE\_message\_queue\_Close@{\_CORE\_message\_queue\_Close}}
+\index{\_CORE\_message\_queue\_Close@{\_CORE\_message\_queue\_Close}!Message Queue Handler@{Message Queue Handler}}
+\subsubsection{\texorpdfstring{\_CORE\_message\_queue\_Close()}{\_CORE\_message\_queue\_Close()}}
+{\footnotesize\ttfamily void \+\_\+\+C\+O\+R\+E\+\_\+message\+\_\+queue\+\_\+\+Close (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCORE__message__queue__Control}{C\+O\+R\+E\+\_\+message\+\_\+queue\+\_\+\+Control}} $\ast$}]{the\+\_\+message\+\_\+queue,  }\item[{\mbox{\hyperlink{structThread__queue__Context}{Thread\+\_\+queue\+\_\+\+Context}} $\ast$}]{queue\+\_\+context }\end{DoxyParamCaption})}
+
+
+
+Closes a message queue. 
+
+This package is the implementation of the C\+O\+RE Message Queue Handler. This core object provides task synchronization and communication functions via messages passed to queue objects.
+
+This function closes a message by returning all allocated space and flushing {\itshape the\+\_\+message\+\_\+queue\textquotesingle{}s} task wait queue.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em the\+\_\+message\+\_\+queue} & The message queue to close. \\
+\hline
+\mbox{\texttt{ in,out}}  & {\em queue\+\_\+context} & The thread queue context used for \mbox{\hyperlink{group__RTEMSScoreMessageQueue_ga8b25ad850dd2b7eb4d3b752a4b231ac3}{\+\_\+\+C\+O\+R\+E\+\_\+message\+\_\+queue\+\_\+\+Acquire()}} or \mbox{\hyperlink{group__RTEMSScoreMessageQueue_ga589be0ab807a01d3d55e6be17a1f708f}{\+\_\+\+C\+O\+R\+E\+\_\+message\+\_\+queue\+\_\+\+Acquire\+\_\+critical()}}. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__RTEMSScoreMessageQueue_gac4393bd0fea722792b78b1a17cbf5766}\label{group__RTEMSScoreMessageQueue_gac4393bd0fea722792b78b1a17cbf5766}} 
+\index{Message Queue Handler@{Message Queue Handler}!\_CORE\_message\_queue\_Copy\_buffer@{\_CORE\_message\_queue\_Copy\_buffer}}
+\index{\_CORE\_message\_queue\_Copy\_buffer@{\_CORE\_message\_queue\_Copy\_buffer}!Message Queue Handler@{Message Queue Handler}}
+\subsubsection{\texorpdfstring{\_CORE\_message\_queue\_Copy\_buffer()}{\_CORE\_message\_queue\_Copy\_buffer()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \+\_\+\+C\+O\+R\+E\+\_\+message\+\_\+queue\+\_\+\+Copy\+\_\+buffer (\begin{DoxyParamCaption}\item[{const void $\ast$}]{source,  }\item[{void $\ast$}]{destination,  }\item[{size\+\_\+t}]{size }\end{DoxyParamCaption})}
+
+
+
+Copies the source message buffer to the destination message buffer. 
+
+This routine copies the contents of the source message buffer to the destination message buffer.
+
+
+\begin{DoxyParams}[1]{Parameters}
+ & {\em source} & The source message buffer to be copied. \\
+\hline
+\mbox{\texttt{ out}}  & {\em destination} & The destination messag buffer to copy the source to. \\
+\hline
+ & {\em size} & The size of the source buffer. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__RTEMSScoreMessageQueue_ga64d8088809673c8f4492ac5f46987537}\label{group__RTEMSScoreMessageQueue_ga64d8088809673c8f4492ac5f46987537}} 
+\index{Message Queue Handler@{Message Queue Handler}!\_CORE\_message\_queue\_Dequeue\_receiver@{\_CORE\_message\_queue\_Dequeue\_receiver}}
+\index{\_CORE\_message\_queue\_Dequeue\_receiver@{\_CORE\_message\_queue\_Dequeue\_receiver}!Message Queue Handler@{Message Queue Handler}}
+\subsubsection{\texorpdfstring{\_CORE\_message\_queue\_Dequeue\_receiver()}{\_CORE\_message\_queue\_Dequeue\_receiver()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} \mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}}$\ast$ \+\_\+\+C\+O\+R\+E\+\_\+message\+\_\+queue\+\_\+\+Dequeue\+\_\+receiver (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCORE__message__queue__Control}{C\+O\+R\+E\+\_\+message\+\_\+queue\+\_\+\+Control}} $\ast$}]{the\+\_\+message\+\_\+queue,  }\item[{const void $\ast$}]{buffer,  }\item[{size\+\_\+t}]{size,  }\item[{\mbox{\hyperlink{group__RTEMSScoreMessageQueue_ga0859edb437502e53fd2c7a73bce6b33c}{C\+O\+R\+E\+\_\+message\+\_\+queue\+\_\+\+Submit\+\_\+types}}}]{submit\+\_\+type,  }\item[{\mbox{\hyperlink{structThread__queue__Context}{Thread\+\_\+queue\+\_\+\+Context}} $\ast$}]{queue\+\_\+context }\end{DoxyParamCaption})}
+
+
+
+Gets the first locked thread waiting to receive and dequeues it. 
+
+This method dequeues the first locked thread waiting to receive a message, dequeues it and returns the corresponding Thread\+\_\+\+Control.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em the\+\_\+message\+\_\+queue} & The message queue to operate upon. \\
+\hline
+ & {\em buffer} & The buffer that is copied to the threads mutable\+\_\+object. \\
+\hline
+ & {\em size} & The size of the buffer. \\
+\hline
+ & {\em submit\+\_\+type} & Indicates whether the thread should be willing to block in the future. \\
+\hline
+ & {\em queue\+\_\+context} & The thread queue context.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em thread} & The Thread\+\_\+\+Control for the first locked thread, if there is a locked thread. \\
+\hline
+{\em N\+U\+LL} & There are pending messages or no thread waiting to receive. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{group__RTEMSScoreMessageQueue_gabe86da1ead8e6b01ecf69c94e1de29f2}\label{group__RTEMSScoreMessageQueue_gabe86da1ead8e6b01ecf69c94e1de29f2}} 
+\index{Message Queue Handler@{Message Queue Handler}!\_CORE\_message\_queue\_Flush@{\_CORE\_message\_queue\_Flush}}
+\index{\_CORE\_message\_queue\_Flush@{\_CORE\_message\_queue\_Flush}!Message Queue Handler@{Message Queue Handler}}
+\subsubsection{\texorpdfstring{\_CORE\_message\_queue\_Flush()}{\_CORE\_message\_queue\_Flush()}}
+{\footnotesize\ttfamily uint32\+\_\+t \+\_\+\+C\+O\+R\+E\+\_\+message\+\_\+queue\+\_\+\+Flush (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCORE__message__queue__Control}{C\+O\+R\+E\+\_\+message\+\_\+queue\+\_\+\+Control}} $\ast$}]{the\+\_\+message\+\_\+queue,  }\item[{\mbox{\hyperlink{structThread__queue__Context}{Thread\+\_\+queue\+\_\+\+Context}} $\ast$}]{queue\+\_\+context }\end{DoxyParamCaption})}
+
+
+
+Flushes pending messages. 
+
+This package is the implementation of the C\+O\+RE Message Queue Handler. This core object provides task synchronization and communication functions via messages passed to queue objects.
+
+This function flushes {\itshape the\+\_\+message\+\_\+queue\textquotesingle{}s} pending message queue. The number of messages flushed from the queue is returned.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em the\+\_\+message\+\_\+queue} & The message queue to flush. \\
+\hline
+ & {\em queue\+\_\+context} & The thread queue context with interrupts disabled.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+This method returns the number of message pending messages flushed. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{group__RTEMSScoreMessageQueue_ga72417493b43560bd9513c4aaba4fbe45}\label{group__RTEMSScoreMessageQueue_ga72417493b43560bd9513c4aaba4fbe45}} 
+\index{Message Queue Handler@{Message Queue Handler}!\_CORE\_message\_queue\_Free\_message\_buffer@{\_CORE\_message\_queue\_Free\_message\_buffer}}
+\index{\_CORE\_message\_queue\_Free\_message\_buffer@{\_CORE\_message\_queue\_Free\_message\_buffer}!Message Queue Handler@{Message Queue Handler}}
+\subsubsection{\texorpdfstring{\_CORE\_message\_queue\_Free\_message\_buffer()}{\_CORE\_message\_queue\_Free\_message\_buffer()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \+\_\+\+C\+O\+R\+E\+\_\+message\+\_\+queue\+\_\+\+Free\+\_\+message\+\_\+buffer (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCORE__message__queue__Control}{C\+O\+R\+E\+\_\+message\+\_\+queue\+\_\+\+Control}} $\ast$}]{the\+\_\+message\+\_\+queue,  }\item[{\mbox{\hyperlink{structCORE__message__queue__Buffer__control}{C\+O\+R\+E\+\_\+message\+\_\+queue\+\_\+\+Buffer\+\_\+control}} $\ast$}]{the\+\_\+message }\end{DoxyParamCaption})}
+
+
+
+Frees a message buffer to inactive message buffer chain. 
+
+This routine frees a message buffer to the inactive message buffer chain.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em the\+\_\+message\+\_\+queue} & The message queue to free the message buffer to. \\
+\hline
+\mbox{\texttt{ out}}  & {\em the\+\_\+message} & The message to be freed. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__RTEMSScoreMessageQueue_ga2d7c15075a18043190881cede6cb6749}\label{group__RTEMSScoreMessageQueue_ga2d7c15075a18043190881cede6cb6749}} 
+\index{Message Queue Handler@{Message Queue Handler}!\_CORE\_message\_queue\_Get\_message\_priority@{\_CORE\_message\_queue\_Get\_message\_priority}}
+\index{\_CORE\_message\_queue\_Get\_message\_priority@{\_CORE\_message\_queue\_Get\_message\_priority}!Message Queue Handler@{Message Queue Handler}}
+\subsubsection{\texorpdfstring{\_CORE\_message\_queue\_Get\_message\_priority()}{\_CORE\_message\_queue\_Get\_message\_priority()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} int \+\_\+\+C\+O\+R\+E\+\_\+message\+\_\+queue\+\_\+\+Get\+\_\+message\+\_\+priority (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structCORE__message__queue__Buffer__control}{C\+O\+R\+E\+\_\+message\+\_\+queue\+\_\+\+Buffer\+\_\+control}} $\ast$}]{the\+\_\+message }\end{DoxyParamCaption})}
+
+
+
+Gets message priority. 
+
+This function returns the priority of {\itshape the\+\_\+message}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em the\+\_\+message} & The message to obtain the priority from.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em priority} & The priority of this message. \\
+\hline
+{\em 0} & Message priority is disabled.\\
+\hline
+\end{DoxyRetVals}
+\begin{DoxyNote}{Note}
+It encapsulates the optional behavior that message priority is disabled if no A\+PI requires it. 
+\end{DoxyNote}
+\mbox{\Hypertarget{group__RTEMSScoreMessageQueue_gaae44a17e0ce00b0cff6f9894f4fe9845}\label{group__RTEMSScoreMessageQueue_gaae44a17e0ce00b0cff6f9894f4fe9845}} 
+\index{Message Queue Handler@{Message Queue Handler}!\_CORE\_message\_queue\_Get\_pending\_message@{\_CORE\_message\_queue\_Get\_pending\_message}}
+\index{\_CORE\_message\_queue\_Get\_pending\_message@{\_CORE\_message\_queue\_Get\_pending\_message}!Message Queue Handler@{Message Queue Handler}}
+\subsubsection{\texorpdfstring{\_CORE\_message\_queue\_Get\_pending\_message()}{\_CORE\_message\_queue\_Get\_pending\_message()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} \mbox{\hyperlink{structCORE__message__queue__Buffer__control}{C\+O\+R\+E\+\_\+message\+\_\+queue\+\_\+\+Buffer\+\_\+control}}$\ast$ \+\_\+\+C\+O\+R\+E\+\_\+message\+\_\+queue\+\_\+\+Get\+\_\+pending\+\_\+message (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCORE__message__queue__Control}{C\+O\+R\+E\+\_\+message\+\_\+queue\+\_\+\+Control}} $\ast$}]{the\+\_\+message\+\_\+queue }\end{DoxyParamCaption})}
+
+
+
+Gets first message of message queue and removes it. 
+
+This function removes the first message from the\+\_\+message\+\_\+queue and returns a pointer to it.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em the\+\_\+message\+\_\+queue} & The message queue to get the first message from.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em pointer} & The first message if the message queue is not empty. \\
+\hline
+{\em N\+U\+LL} & The message queue is empty. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{group__RTEMSScoreMessageQueue_ga5358dca7fe0334940c9bfed58b4e520a}\label{group__RTEMSScoreMessageQueue_ga5358dca7fe0334940c9bfed58b4e520a}} 
+\index{Message Queue Handler@{Message Queue Handler}!\_CORE\_message\_queue\_Initialize@{\_CORE\_message\_queue\_Initialize}}
+\index{\_CORE\_message\_queue\_Initialize@{\_CORE\_message\_queue\_Initialize}!Message Queue Handler@{Message Queue Handler}}
+\subsubsection{\texorpdfstring{\_CORE\_message\_queue\_Initialize()}{\_CORE\_message\_queue\_Initialize()}}
+{\footnotesize\ttfamily bool \+\_\+\+C\+O\+R\+E\+\_\+message\+\_\+queue\+\_\+\+Initialize (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCORE__message__queue__Control}{C\+O\+R\+E\+\_\+message\+\_\+queue\+\_\+\+Control}} $\ast$}]{the\+\_\+message\+\_\+queue,  }\item[{\mbox{\hyperlink{group__RTEMSScoreMessageQueue_gaaeca88271cd9bc9ed7cf6996915481d0}{C\+O\+R\+E\+\_\+message\+\_\+queue\+\_\+\+Disciplines}}}]{discipline,  }\item[{uint32\+\_\+t}]{maximum\+\_\+pending\+\_\+messages,  }\item[{size\+\_\+t}]{maximum\+\_\+message\+\_\+size }\end{DoxyParamCaption})}
+
+
+
+Initializes a message queue. 
+
+This package is the implementation of the C\+O\+RE Message Queue Handler. This core object provides task synchronization and communication functions via messages passed to queue objects.
+
+This routine initializes {\itshape the\+\_\+message\+\_\+queue} based on the parameters passed.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em the\+\_\+message\+\_\+queue} & The message queue to initialize. \\
+\hline
+ & {\em discipline} & The blocking discipline for the message queue. \\
+\hline
+ & {\em maximum\+\_\+pending\+\_\+messages} & The maximum number of messages that will be allowed to pend at any given time. \\
+\hline
+ & {\em maximum\+\_\+message\+\_\+size} & The size of the largest message that may be sent to this message queue instance.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em true} & The message queue can be initialized. \\
+\hline
+{\em false} & Memory for the pending messages cannot be allocated. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{group__RTEMSScoreMessageQueue_ga04e5a29d51194c8151bdaf94d2694a63}\label{group__RTEMSScoreMessageQueue_ga04e5a29d51194c8151bdaf94d2694a63}} 
+\index{Message Queue Handler@{Message Queue Handler}!\_CORE\_message\_queue\_Insert\_message@{\_CORE\_message\_queue\_Insert\_message}}
+\index{\_CORE\_message\_queue\_Insert\_message@{\_CORE\_message\_queue\_Insert\_message}!Message Queue Handler@{Message Queue Handler}}
+\subsubsection{\texorpdfstring{\_CORE\_message\_queue\_Insert\_message()}{\_CORE\_message\_queue\_Insert\_message()}}
+{\footnotesize\ttfamily void \+\_\+\+C\+O\+R\+E\+\_\+message\+\_\+queue\+\_\+\+Insert\+\_\+message (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCORE__message__queue__Control}{C\+O\+R\+E\+\_\+message\+\_\+queue\+\_\+\+Control}} $\ast$}]{the\+\_\+message\+\_\+queue,  }\item[{\mbox{\hyperlink{structCORE__message__queue__Buffer__control}{C\+O\+R\+E\+\_\+message\+\_\+queue\+\_\+\+Buffer\+\_\+control}} $\ast$}]{the\+\_\+message,  }\item[{const void $\ast$}]{content\+\_\+source,  }\item[{size\+\_\+t}]{content\+\_\+size,  }\item[{\mbox{\hyperlink{group__RTEMSScoreMessageQueue_ga0859edb437502e53fd2c7a73bce6b33c}{C\+O\+R\+E\+\_\+message\+\_\+queue\+\_\+\+Submit\+\_\+types}}}]{submit\+\_\+type }\end{DoxyParamCaption})}
+
+
+
+Inserts a message into the message queue. 
+
+Copies the specified content into the message storage space and then inserts the message into the message queue according to the submit type.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em the\+\_\+message\+\_\+queue} & The message queue to insert a message in. \\
+\hline
+\mbox{\texttt{ in,out}}  & {\em the\+\_\+message} & The message to insert in the message queue. \\
+\hline
+ & {\em content\+\_\+source} & The message content source. \\
+\hline
+ & {\em content\+\_\+size} & The message content size in bytes. \\
+\hline
+ & {\em submit\+\_\+type} & Determines whether the message is prepended, appended, or enqueued in priority order. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__RTEMSScoreMessageQueue_gabb2d48506286ad10b4bbdd3684dcb924}\label{group__RTEMSScoreMessageQueue_gabb2d48506286ad10b4bbdd3684dcb924}} 
+\index{Message Queue Handler@{Message Queue Handler}!\_CORE\_message\_queue\_Release@{\_CORE\_message\_queue\_Release}}
+\index{\_CORE\_message\_queue\_Release@{\_CORE\_message\_queue\_Release}!Message Queue Handler@{Message Queue Handler}}
+\subsubsection{\texorpdfstring{\_CORE\_message\_queue\_Release()}{\_CORE\_message\_queue\_Release()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \+\_\+\+C\+O\+R\+E\+\_\+message\+\_\+queue\+\_\+\+Release (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCORE__message__queue__Control}{C\+O\+R\+E\+\_\+message\+\_\+queue\+\_\+\+Control}} $\ast$}]{the\+\_\+message\+\_\+queue,  }\item[{\mbox{\hyperlink{structThread__queue__Context}{Thread\+\_\+queue\+\_\+\+Context}} $\ast$}]{queue\+\_\+context }\end{DoxyParamCaption})}
+
+
+
+Releases the message queue. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em the\+\_\+message\+\_\+queue} & The message queue to release. \\
+\hline
+ & {\em queue\+\_\+context} & The thread queue context. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__RTEMSScoreMessageQueue_ga7a7153b494ffd575d84276072f37dfd3}\label{group__RTEMSScoreMessageQueue_ga7a7153b494ffd575d84276072f37dfd3}} 
+\index{Message Queue Handler@{Message Queue Handler}!\_CORE\_message\_queue\_Seize@{\_CORE\_message\_queue\_Seize}}
+\index{\_CORE\_message\_queue\_Seize@{\_CORE\_message\_queue\_Seize}!Message Queue Handler@{Message Queue Handler}}
+\subsubsection{\texorpdfstring{\_CORE\_message\_queue\_Seize()}{\_CORE\_message\_queue\_Seize()}}
+{\footnotesize\ttfamily Status\+\_\+\+Control \+\_\+\+C\+O\+R\+E\+\_\+message\+\_\+queue\+\_\+\+Seize (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCORE__message__queue__Control}{C\+O\+R\+E\+\_\+message\+\_\+queue\+\_\+\+Control}} $\ast$}]{the\+\_\+message\+\_\+queue,  }\item[{\mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$}]{executing,  }\item[{void $\ast$}]{buffer,  }\item[{size\+\_\+t $\ast$}]{size\+\_\+p,  }\item[{bool}]{wait,  }\item[{\mbox{\hyperlink{structThread__queue__Context}{Thread\+\_\+queue\+\_\+\+Context}} $\ast$}]{queue\+\_\+context }\end{DoxyParamCaption})}
+
+
+
+Seizes a message from the message queue. 
+
+This package is the implementation of the C\+O\+RE Message Queue Handler. This core object provides task synchronization and communication functions via messages passed to queue objects.
+
+This kernel routine dequeues a message, copies the message buffer to a given destination buffer, and frees the message buffer to the inactive message pool. The thread will be blocked if wait is true, otherwise an error will be given to the thread if no messages are available.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em the\+\_\+message\+\_\+queue} & The message queue to seize a message from. \\
+\hline
+ & {\em executing} & The executing thread. \\
+\hline
+\mbox{\texttt{ out}}  & {\em buffer} & The starting address of the message buffer to to be filled in with a message. \\
+\hline
+\mbox{\texttt{ out}}  & {\em size\+\_\+p} & The size of the {\itshape buffer}, indicates the maximum size message that the caller can receive. \\
+\hline
+ & {\em wait} & Indicates whether the calling thread is willing to block if the message queue is empty. \\
+\hline
+ & {\em queue\+\_\+context} & The thread queue context used for \mbox{\hyperlink{group__RTEMSScoreMessageQueue_ga8b25ad850dd2b7eb4d3b752a4b231ac3}{\+\_\+\+C\+O\+R\+E\+\_\+message\+\_\+queue\+\_\+\+Acquire()}} or \mbox{\hyperlink{group__RTEMSScoreMessageQueue_ga589be0ab807a01d3d55e6be17a1f708f}{\+\_\+\+C\+O\+R\+E\+\_\+message\+\_\+queue\+\_\+\+Acquire\+\_\+critical()}}.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em S\+T\+A\+T\+U\+S\+\_\+\+S\+U\+C\+C\+E\+S\+S\+F\+UL} & The message was successfully seized from the message queue. \\
+\hline
+{\em S\+T\+A\+T\+U\+S\+\_\+\+U\+N\+S\+A\+T\+I\+S\+F\+I\+ED} & Wait was set to false and there is currently no pending message. \\
+\hline
+{\em S\+T\+A\+T\+U\+S\+\_\+\+T\+I\+M\+E\+O\+UT} & A timeout occured.\\
+\hline
+\end{DoxyRetVals}
+\begin{DoxyNote}{Note}
+Returns message priority via return area in T\+CB.
+\end{DoxyNote}
+
+\begin{DoxyItemize}
+\item I\+N\+T\+E\+R\+R\+U\+PT L\+A\+T\+E\+N\+CY\+:
+\begin{DoxyItemize}
+\item available
+\item wait 
+\end{DoxyItemize}
+\end{DoxyItemize}\mbox{\Hypertarget{group__RTEMSScoreMessageQueue_gac18a4d268009cbc9b85e28d680f31c9f}\label{group__RTEMSScoreMessageQueue_gac18a4d268009cbc9b85e28d680f31c9f}} 
+\index{Message Queue Handler@{Message Queue Handler}!\_CORE\_message\_queue\_Send@{\_CORE\_message\_queue\_Send}}
+\index{\_CORE\_message\_queue\_Send@{\_CORE\_message\_queue\_Send}!Message Queue Handler@{Message Queue Handler}}
+\subsubsection{\texorpdfstring{\_CORE\_message\_queue\_Send()}{\_CORE\_message\_queue\_Send()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} Status\+\_\+\+Control \+\_\+\+C\+O\+R\+E\+\_\+message\+\_\+queue\+\_\+\+Send (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCORE__message__queue__Control}{C\+O\+R\+E\+\_\+message\+\_\+queue\+\_\+\+Control}} $\ast$}]{the\+\_\+message\+\_\+queue,  }\item[{const void $\ast$}]{buffer,  }\item[{size\+\_\+t}]{size,  }\item[{bool}]{wait,  }\item[{\mbox{\hyperlink{structThread__queue__Context}{Thread\+\_\+queue\+\_\+\+Context}} $\ast$}]{queue\+\_\+context }\end{DoxyParamCaption})}
+
+
+
+Sends a message to the message queue. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em the\+\_\+message\+\_\+queue} & The message queue to send a message to. \\
+\hline
+ & {\em buffer} & The starting address of the message to send. \\
+\hline
+ & {\em sizeis} & The size of the message being send. \\
+\hline
+ & {\em wait} & Indicates whether the calling thread is willing to block if the message queue is full. \\
+\hline
+ & {\em queue\+\_\+context} & The thread queue context used for \mbox{\hyperlink{group__RTEMSScoreMessageQueue_ga8b25ad850dd2b7eb4d3b752a4b231ac3}{\+\_\+\+C\+O\+R\+E\+\_\+message\+\_\+queue\+\_\+\+Acquire()}} or \mbox{\hyperlink{group__RTEMSScoreMessageQueue_ga589be0ab807a01d3d55e6be17a1f708f}{\+\_\+\+C\+O\+R\+E\+\_\+message\+\_\+queue\+\_\+\+Acquire\+\_\+critical()}}.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em S\+T\+A\+T\+U\+S\+\_\+\+S\+U\+C\+C\+E\+S\+S\+F\+UL} & The message was successfully submitted to the message queue. \\
+\hline
+{\em S\+T\+A\+T\+U\+S\+\_\+\+M\+E\+S\+S\+A\+G\+E\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+S\+I\+ZE} & The message size was too big. \\
+\hline
+{\em S\+T\+A\+T\+U\+S\+\_\+\+T\+O\+O\+\_\+\+M\+A\+NY} & No message buffers were available. \\
+\hline
+{\em S\+T\+A\+T\+U\+S\+\_\+\+M\+E\+S\+S\+A\+G\+E\+\_\+\+Q\+U\+E\+U\+E\+\_\+\+W\+A\+I\+T\+\_\+\+I\+N\+\_\+\+I\+SR} & The caller is in an I\+SR, do not block! \\
+\hline
+{\em S\+T\+A\+T\+U\+S\+\_\+\+T\+I\+M\+E\+O\+UT} & A timeout occured. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{group__RTEMSScoreMessageQueue_ga36a76a49f99537867181014cd88af33a}\label{group__RTEMSScoreMessageQueue_ga36a76a49f99537867181014cd88af33a}} 
+\index{Message Queue Handler@{Message Queue Handler}!\_CORE\_message\_queue\_Submit@{\_CORE\_message\_queue\_Submit}}
+\index{\_CORE\_message\_queue\_Submit@{\_CORE\_message\_queue\_Submit}!Message Queue Handler@{Message Queue Handler}}
+\subsubsection{\texorpdfstring{\_CORE\_message\_queue\_Submit()}{\_CORE\_message\_queue\_Submit()}}
+{\footnotesize\ttfamily Status\+\_\+\+Control \+\_\+\+C\+O\+R\+E\+\_\+message\+\_\+queue\+\_\+\+Submit (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCORE__message__queue__Control}{C\+O\+R\+E\+\_\+message\+\_\+queue\+\_\+\+Control}} $\ast$}]{the\+\_\+message\+\_\+queue,  }\item[{\mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$}]{executing,  }\item[{const void $\ast$}]{buffer,  }\item[{size\+\_\+t}]{size,  }\item[{\mbox{\hyperlink{group__RTEMSScoreMessageQueue_ga0859edb437502e53fd2c7a73bce6b33c}{C\+O\+R\+E\+\_\+message\+\_\+queue\+\_\+\+Submit\+\_\+types}}}]{submit\+\_\+type,  }\item[{bool}]{wait,  }\item[{\mbox{\hyperlink{structThread__queue__Context}{Thread\+\_\+queue\+\_\+\+Context}} $\ast$}]{queue\+\_\+context }\end{DoxyParamCaption})}
+
+
+
+Submits a message to the message queue. 
+
+This routine implements the send and urgent message functions. It processes a message that is to be submitted to the designated message queue. The message will either be processed as a send message which it will be inserted at the rear of the queue or it will be processed as an urgent message which will be inserted at the front of the queue.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em the\+\_\+message\+\_\+queue} & The message queue to operate upon. \\
+\hline
+ & {\em executing} & The executing thread. \\
+\hline
+ & {\em buffer} & The starting address of the message to send. \\
+\hline
+ & {\em size} & The size of the message being send. \\
+\hline
+ & {\em submit\+\_\+type} & Determines whether the message is prepended, appended, or enqueued in priority order. \\
+\hline
+ & {\em wait} & Indicates whether the calling thread is willing to block if the message queue is full. \\
+\hline
+ & {\em queue\+\_\+context} & The thread queue context used for \mbox{\hyperlink{group__RTEMSScoreMessageQueue_ga8b25ad850dd2b7eb4d3b752a4b231ac3}{\+\_\+\+C\+O\+R\+E\+\_\+message\+\_\+queue\+\_\+\+Acquire()}} or \mbox{\hyperlink{group__RTEMSScoreMessageQueue_ga589be0ab807a01d3d55e6be17a1f708f}{\+\_\+\+C\+O\+R\+E\+\_\+message\+\_\+queue\+\_\+\+Acquire\+\_\+critical()}}.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em S\+T\+A\+T\+U\+S\+\_\+\+S\+U\+C\+C\+E\+S\+S\+F\+UL} & The message was successfully submitted to the message queue. \\
+\hline
+{\em S\+T\+A\+T\+U\+S\+\_\+\+M\+E\+S\+S\+A\+G\+E\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+S\+I\+ZE} & The message size was too big. \\
+\hline
+{\em S\+T\+A\+T\+U\+S\+\_\+\+T\+O\+O\+\_\+\+M\+A\+NY} & No message buffers were available. \\
+\hline
+{\em S\+T\+A\+T\+U\+S\+\_\+\+M\+E\+S\+S\+A\+G\+E\+\_\+\+Q\+U\+E\+U\+E\+\_\+\+W\+A\+I\+T\+\_\+\+I\+N\+\_\+\+I\+SR} & The caller is in an I\+SR, do not block! \\
+\hline
+{\em S\+T\+A\+T\+U\+S\+\_\+\+T\+I\+M\+E\+O\+UT} & A timeout occured. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{group__RTEMSScoreMessageQueue_ga323f421bffd8f2257e425617d6048077}\label{group__RTEMSScoreMessageQueue_ga323f421bffd8f2257e425617d6048077}} 
+\index{Message Queue Handler@{Message Queue Handler}!\_CORE\_message\_queue\_Urgent@{\_CORE\_message\_queue\_Urgent}}
+\index{\_CORE\_message\_queue\_Urgent@{\_CORE\_message\_queue\_Urgent}!Message Queue Handler@{Message Queue Handler}}
+\subsubsection{\texorpdfstring{\_CORE\_message\_queue\_Urgent()}{\_CORE\_message\_queue\_Urgent()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} Status\+\_\+\+Control \+\_\+\+C\+O\+R\+E\+\_\+message\+\_\+queue\+\_\+\+Urgent (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCORE__message__queue__Control}{C\+O\+R\+E\+\_\+message\+\_\+queue\+\_\+\+Control}} $\ast$}]{the\+\_\+message\+\_\+queue,  }\item[{const void $\ast$}]{buffer,  }\item[{size\+\_\+t}]{size,  }\item[{bool}]{wait,  }\item[{\mbox{\hyperlink{structThread__queue__Context}{Thread\+\_\+queue\+\_\+\+Context}} $\ast$}]{queue\+\_\+context }\end{DoxyParamCaption})}
+
+
+
+Sends an urgent message to the message queue. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em the\+\_\+message\+\_\+queue} & The message queue to send an urgent message to. \\
+\hline
+ & {\em buffer} & The starting address of the message to send. \\
+\hline
+ & {\em sizeis} & The size of the message being send. \\
+\hline
+ & {\em wait} & Indicates whether the calling thread is willing to block if the message queue is full. \\
+\hline
+ & {\em queue\+\_\+context} & The thread queue context used for \mbox{\hyperlink{group__RTEMSScoreMessageQueue_ga8b25ad850dd2b7eb4d3b752a4b231ac3}{\+\_\+\+C\+O\+R\+E\+\_\+message\+\_\+queue\+\_\+\+Acquire()}} or \mbox{\hyperlink{group__RTEMSScoreMessageQueue_ga589be0ab807a01d3d55e6be17a1f708f}{\+\_\+\+C\+O\+R\+E\+\_\+message\+\_\+queue\+\_\+\+Acquire\+\_\+critical()}}.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em S\+T\+A\+T\+U\+S\+\_\+\+S\+U\+C\+C\+E\+S\+S\+F\+UL} & The message was successfully submitted to the message queue. \\
+\hline
+{\em S\+T\+A\+T\+U\+S\+\_\+\+M\+E\+S\+S\+A\+G\+E\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+S\+I\+ZE} & The message size was too big. \\
+\hline
+{\em S\+T\+A\+T\+U\+S\+\_\+\+T\+O\+O\+\_\+\+M\+A\+NY} & No message buffers were available. \\
+\hline
+{\em S\+T\+A\+T\+U\+S\+\_\+\+M\+E\+S\+S\+A\+G\+E\+\_\+\+Q\+U\+E\+U\+E\+\_\+\+W\+A\+I\+T\+\_\+\+I\+N\+\_\+\+I\+SR} & The caller is in an I\+SR, do not block! \\
+\hline
+{\em S\+T\+A\+T\+U\+S\+\_\+\+T\+I\+M\+E\+O\+UT} & A timeout occured. \\
+\hline
+\end{DoxyRetVals}

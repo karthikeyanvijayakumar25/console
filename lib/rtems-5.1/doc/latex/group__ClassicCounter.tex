@@ -1,0 +1,174 @@
+\hypertarget{group__ClassicCounter}{}\section{Free-\/\+Running Counter and Busy Wait Delay}
+\label{group__ClassicCounter}\index{Free-\/Running Counter and Busy Wait Delay@{Free-\/Running Counter and Busy Wait Delay}}
+
+
+Free-\/running counter and busy wait delay functions.  
+
+
+\subsection*{Files}
+\begin{DoxyCompactItemize}
+\item 
+file \mbox{\hyperlink{counter_8h}{counter.\+h}}
+\begin{DoxyCompactList}\small\item\em Free-\/\+Running Counter and Busy Wait Delay A\+PI. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{group__ClassicCounter_gafda796220404920ac0af841d9f555262}\label{group__ClassicCounter_gafda796220404920ac0af841d9f555262}} 
+typedef \mbox{\hyperlink{no__cpu_2include_2rtems_2score_2cpu_8h_a67f8550aad58bccb6fcb4589894444ad}{C\+P\+U\+\_\+\+Counter\+\_\+ticks}} \mbox{\hyperlink{group__ClassicCounter_gafda796220404920ac0af841d9f555262}{rtems\+\_\+counter\+\_\+ticks}}
+\begin{DoxyCompactList}\small\item\em Unsigned integer type for counter values. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+uint64\+\_\+t \mbox{\hyperlink{group__ClassicCounter_ga3e50a042e60bfcafdff5dbd46cad8947}{rtems\+\_\+counter\+\_\+ticks\+\_\+to\+\_\+nanoseconds}} (\mbox{\hyperlink{group__ClassicCounter_gafda796220404920ac0af841d9f555262}{rtems\+\_\+counter\+\_\+ticks}} ticks)
+\begin{DoxyCompactList}\small\item\em Converts counter ticks into nanoseconds. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicCounter_gafda796220404920ac0af841d9f555262}{rtems\+\_\+counter\+\_\+ticks}} \mbox{\hyperlink{group__ClassicCounter_ga9a475dea5b0d7689a94f0806cf21f396}{rtems\+\_\+counter\+\_\+nanoseconds\+\_\+to\+\_\+ticks}} (uint32\+\_\+t nanoseconds)
+\begin{DoxyCompactList}\small\item\em Converts nanoseconds into counter ticks. \end{DoxyCompactList}\item 
+int64\+\_\+t \mbox{\hyperlink{group__ClassicCounter_ga57c10408f9570d199408745197f014de}{rtems\+\_\+counter\+\_\+ticks\+\_\+to\+\_\+sbintime}} (\mbox{\hyperlink{group__ClassicCounter_gafda796220404920ac0af841d9f555262}{rtems\+\_\+counter\+\_\+ticks}} ticks)
+\begin{DoxyCompactList}\small\item\em Converts counter ticks into signed binary time (sbintime\+\_\+t). \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicCounter_gafda796220404920ac0af841d9f555262}{rtems\+\_\+counter\+\_\+ticks}} \mbox{\hyperlink{group__ClassicCounter_ga2cc1e89d4abdd736de597533ee747187}{rtems\+\_\+counter\+\_\+sbintime\+\_\+to\+\_\+ticks}} (int64\+\_\+t sbt)
+\begin{DoxyCompactList}\small\item\em Converts signed binary time (sbintime\+\_\+t) into counter ticks. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__ClassicCounter_gac05da1fad44ca8d492d00b3890b80415}{rtems\+\_\+counter\+\_\+initialize\+\_\+converter}} (uint32\+\_\+t frequency)
+\begin{DoxyCompactList}\small\item\em Initializes the counter ticks to/from nanoseconds converter functions. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__ClassicCounter_gae1a4a949021ae54cf5d1c267fe0f9493}{rtems\+\_\+counter\+\_\+delay\+\_\+ticks}} (\mbox{\hyperlink{group__ClassicCounter_gafda796220404920ac0af841d9f555262}{rtems\+\_\+counter\+\_\+ticks}} ticks)
+\begin{DoxyCompactList}\small\item\em Busy wait for some counter ticks. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__ClassicCounter_gaa8fddf3e4ad1abb10170e61db04525ae}{rtems\+\_\+counter\+\_\+delay\+\_\+nanoseconds}} (uint32\+\_\+t nanoseconds)
+\begin{DoxyCompactList}\small\item\em Busy wait for some nanoseconds. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Free-\/running counter and busy wait delay functions. 
+
+The R\+T\+E\+MS counter is some free-\/running counter. It ticks usually with a frequency close to the C\+PU or system bus clock.
+
+The counter can be used in case the overhead of the \mbox{\hyperlink{group__ClassicClock_ga0e2b9de0054d75a0820203f00e152aa7}{rtems\+\_\+clock\+\_\+get\+\_\+uptime\+\_\+nanoseconds()}} is too high. The step from counter ticks to/from nanoseconds is explicit in this A\+PI unlike to \mbox{\hyperlink{group__ClassicClock_ga0e2b9de0054d75a0820203f00e152aa7}{rtems\+\_\+clock\+\_\+get\+\_\+uptime\+\_\+nanoseconds()}} which performs the conversion on each invocation.
+
+This counter works without a clock driver and during system initialization.
+
+The counter can be used to profile low-\/level operations like S\+MP locks or interrupt disabled critical sections. The counter can act also as an entropy source for a random number generator.
+
+The period of the counter depends on the actual hardware. 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{group__ClassicCounter_gaa8fddf3e4ad1abb10170e61db04525ae}\label{group__ClassicCounter_gaa8fddf3e4ad1abb10170e61db04525ae}} 
+\index{Free-\/Running Counter and Busy Wait Delay@{Free-\/Running Counter and Busy Wait Delay}!rtems\_counter\_delay\_nanoseconds@{rtems\_counter\_delay\_nanoseconds}}
+\index{rtems\_counter\_delay\_nanoseconds@{rtems\_counter\_delay\_nanoseconds}!Free-\/Running Counter and Busy Wait Delay@{Free-\/Running Counter and Busy Wait Delay}}
+\subsubsection{\texorpdfstring{rtems\_counter\_delay\_nanoseconds()}{rtems\_counter\_delay\_nanoseconds()}}
+{\footnotesize\ttfamily void rtems\+\_\+counter\+\_\+delay\+\_\+nanoseconds (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{nanoseconds }\end{DoxyParamCaption})}
+
+
+
+Busy wait for some nanoseconds. 
+
+This function does not disable interrupts. Thus task switches and interrupts can interfere with this busy wait may prolong the delay. This function busy waits at least the specified time. Due to some overhead the actual delay may be longer.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em nanoseconds} & The minimum busy wait time in nanoseconds. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__ClassicCounter_gae1a4a949021ae54cf5d1c267fe0f9493}\label{group__ClassicCounter_gae1a4a949021ae54cf5d1c267fe0f9493}} 
+\index{Free-\/Running Counter and Busy Wait Delay@{Free-\/Running Counter and Busy Wait Delay}!rtems\_counter\_delay\_ticks@{rtems\_counter\_delay\_ticks}}
+\index{rtems\_counter\_delay\_ticks@{rtems\_counter\_delay\_ticks}!Free-\/Running Counter and Busy Wait Delay@{Free-\/Running Counter and Busy Wait Delay}}
+\subsubsection{\texorpdfstring{rtems\_counter\_delay\_ticks()}{rtems\_counter\_delay\_ticks()}}
+{\footnotesize\ttfamily void rtems\+\_\+counter\+\_\+delay\+\_\+ticks (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__ClassicCounter_gafda796220404920ac0af841d9f555262}{rtems\+\_\+counter\+\_\+ticks}}}]{ticks }\end{DoxyParamCaption})}
+
+
+
+Busy wait for some counter ticks. 
+
+This function does not disable interrupts. Thus task switches and interrupts can interfere with this busy wait may prolong the delay. This function busy waits at least the specified time. Due to some overhead the actual delay may be longer.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em ticks} & The minimum busy wait time in counter ticks. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__ClassicCounter_gac05da1fad44ca8d492d00b3890b80415}\label{group__ClassicCounter_gac05da1fad44ca8d492d00b3890b80415}} 
+\index{Free-\/Running Counter and Busy Wait Delay@{Free-\/Running Counter and Busy Wait Delay}!rtems\_counter\_initialize\_converter@{rtems\_counter\_initialize\_converter}}
+\index{rtems\_counter\_initialize\_converter@{rtems\_counter\_initialize\_converter}!Free-\/Running Counter and Busy Wait Delay@{Free-\/Running Counter and Busy Wait Delay}}
+\subsubsection{\texorpdfstring{rtems\_counter\_initialize\_converter()}{rtems\_counter\_initialize\_converter()}}
+{\footnotesize\ttfamily void rtems\+\_\+counter\+\_\+initialize\+\_\+converter (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{frequency }\end{DoxyParamCaption})}
+
+
+
+Initializes the counter ticks to/from nanoseconds converter functions. 
+
+This function must be used to initialize the \mbox{\hyperlink{group__ClassicCounter_ga3e50a042e60bfcafdff5dbd46cad8947}{rtems\+\_\+counter\+\_\+ticks\+\_\+to\+\_\+nanoseconds()}} and \mbox{\hyperlink{group__ClassicCounter_ga9a475dea5b0d7689a94f0806cf21f396}{rtems\+\_\+counter\+\_\+nanoseconds\+\_\+to\+\_\+ticks()}} functions. It should be called during system initialization by the board support package.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em frequency} & The current counter frequency in Hz. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__ClassicCounter_ga9a475dea5b0d7689a94f0806cf21f396}\label{group__ClassicCounter_ga9a475dea5b0d7689a94f0806cf21f396}} 
+\index{Free-\/Running Counter and Busy Wait Delay@{Free-\/Running Counter and Busy Wait Delay}!rtems\_counter\_nanoseconds\_to\_ticks@{rtems\_counter\_nanoseconds\_to\_ticks}}
+\index{rtems\_counter\_nanoseconds\_to\_ticks@{rtems\_counter\_nanoseconds\_to\_ticks}!Free-\/Running Counter and Busy Wait Delay@{Free-\/Running Counter and Busy Wait Delay}}
+\subsubsection{\texorpdfstring{rtems\_counter\_nanoseconds\_to\_ticks()}{rtems\_counter\_nanoseconds\_to\_ticks()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__ClassicCounter_gafda796220404920ac0af841d9f555262}{rtems\+\_\+counter\+\_\+ticks}} rtems\+\_\+counter\+\_\+nanoseconds\+\_\+to\+\_\+ticks (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{nanoseconds }\end{DoxyParamCaption})}
+
+
+
+Converts nanoseconds into counter ticks. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em nanoseconds} & The nanoseconds value to convert.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The counter ticks value corresponding to the nanoseconds value. The value is rounded up. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{group__ClassicCounter_ga2cc1e89d4abdd736de597533ee747187}\label{group__ClassicCounter_ga2cc1e89d4abdd736de597533ee747187}} 
+\index{Free-\/Running Counter and Busy Wait Delay@{Free-\/Running Counter and Busy Wait Delay}!rtems\_counter\_sbintime\_to\_ticks@{rtems\_counter\_sbintime\_to\_ticks}}
+\index{rtems\_counter\_sbintime\_to\_ticks@{rtems\_counter\_sbintime\_to\_ticks}!Free-\/Running Counter and Busy Wait Delay@{Free-\/Running Counter and Busy Wait Delay}}
+\subsubsection{\texorpdfstring{rtems\_counter\_sbintime\_to\_ticks()}{rtems\_counter\_sbintime\_to\_ticks()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__ClassicCounter_gafda796220404920ac0af841d9f555262}{rtems\+\_\+counter\+\_\+ticks}} rtems\+\_\+counter\+\_\+sbintime\+\_\+to\+\_\+ticks (\begin{DoxyParamCaption}\item[{int64\+\_\+t}]{sbt }\end{DoxyParamCaption})}
+
+
+
+Converts signed binary time (sbintime\+\_\+t) into counter ticks. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em sbt} & The signed binary time value to convert.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The counter ticks value corresponding to the nanoseconds value. The value is rounded up. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{group__ClassicCounter_ga3e50a042e60bfcafdff5dbd46cad8947}\label{group__ClassicCounter_ga3e50a042e60bfcafdff5dbd46cad8947}} 
+\index{Free-\/Running Counter and Busy Wait Delay@{Free-\/Running Counter and Busy Wait Delay}!rtems\_counter\_ticks\_to\_nanoseconds@{rtems\_counter\_ticks\_to\_nanoseconds}}
+\index{rtems\_counter\_ticks\_to\_nanoseconds@{rtems\_counter\_ticks\_to\_nanoseconds}!Free-\/Running Counter and Busy Wait Delay@{Free-\/Running Counter and Busy Wait Delay}}
+\subsubsection{\texorpdfstring{rtems\_counter\_ticks\_to\_nanoseconds()}{rtems\_counter\_ticks\_to\_nanoseconds()}}
+{\footnotesize\ttfamily uint64\+\_\+t rtems\+\_\+counter\+\_\+ticks\+\_\+to\+\_\+nanoseconds (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__ClassicCounter_gafda796220404920ac0af841d9f555262}{rtems\+\_\+counter\+\_\+ticks}}}]{ticks }\end{DoxyParamCaption})}
+
+
+
+Converts counter ticks into nanoseconds. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em ticks} & The counter ticks value to convert.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The nanoseconds value corresponding to the counter ticks. The value is rounded up. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{group__ClassicCounter_ga57c10408f9570d199408745197f014de}\label{group__ClassicCounter_ga57c10408f9570d199408745197f014de}} 
+\index{Free-\/Running Counter and Busy Wait Delay@{Free-\/Running Counter and Busy Wait Delay}!rtems\_counter\_ticks\_to\_sbintime@{rtems\_counter\_ticks\_to\_sbintime}}
+\index{rtems\_counter\_ticks\_to\_sbintime@{rtems\_counter\_ticks\_to\_sbintime}!Free-\/Running Counter and Busy Wait Delay@{Free-\/Running Counter and Busy Wait Delay}}
+\subsubsection{\texorpdfstring{rtems\_counter\_ticks\_to\_sbintime()}{rtems\_counter\_ticks\_to\_sbintime()}}
+{\footnotesize\ttfamily int64\+\_\+t rtems\+\_\+counter\+\_\+ticks\+\_\+to\+\_\+sbintime (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__ClassicCounter_gafda796220404920ac0af841d9f555262}{rtems\+\_\+counter\+\_\+ticks}}}]{ticks }\end{DoxyParamCaption})}
+
+
+
+Converts counter ticks into signed binary time (sbintime\+\_\+t). 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em ticks} & The counter ticks value to convert.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The signed binary time value corresponding to the counter ticks value. The value is rounded up. 
+\end{DoxyReturn}

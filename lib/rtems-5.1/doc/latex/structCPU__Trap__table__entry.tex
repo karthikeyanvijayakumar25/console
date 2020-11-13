@@ -1,0 +1,78 @@
+\hypertarget{structCPU__Trap__table__entry}{}\section{C\+P\+U\+\_\+\+Trap\+\_\+table\+\_\+entry Struct Reference}
+\label{structCPU__Trap__table__entry}\index{CPU\_Trap\_table\_entry@{CPU\_Trap\_table\_entry}}
+
+
+{\ttfamily \#include $<$cpu.\+h$>$}
+
+\subsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{structCPU__Trap__table__entry_a7b5bf63979937f0faab4c9c98f5e4e81}{mov\+\_\+psr\+\_\+l0}}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{structCPU__Trap__table__entry_ae8670a93c509a7ee0afe51f35edc3393}{sethi\+\_\+of\+\_\+handler\+\_\+to\+\_\+l4}}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{structCPU__Trap__table__entry_ae8287de69b4c1f4d2461f5e4789c0697}{jmp\+\_\+to\+\_\+low\+\_\+of\+\_\+handler\+\_\+plus\+\_\+l4}}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{structCPU__Trap__table__entry_a3ab22d0875a0395652bcd4e0d6955240}{mov\+\_\+vector\+\_\+l3}}
+\item 
+\mbox{\Hypertarget{structCPU__Trap__table__entry_a4464dd30edbcfafe4c92814e8a3ff2dc}\label{structCPU__Trap__table__entry_a4464dd30edbcfafe4c92814e8a3ff2dc}} 
+uint32\+\_\+t {\bfseries rdpr\+\_\+tstate\+\_\+g4}
+\item 
+\mbox{\Hypertarget{structCPU__Trap__table__entry_a63f0974f978c5937b6f6ccaa5ea5f401}\label{structCPU__Trap__table__entry_a63f0974f978c5937b6f6ccaa5ea5f401}} 
+uint32\+\_\+t {\bfseries sethi\+\_\+of\+\_\+hh\+\_\+handler\+\_\+to\+\_\+g2}
+\item 
+\mbox{\Hypertarget{structCPU__Trap__table__entry_a83c2620e13331c0e52461dddd71aabcc}\label{structCPU__Trap__table__entry_a83c2620e13331c0e52461dddd71aabcc}} 
+uint32\+\_\+t {\bfseries or\+\_\+g2\+\_\+hm\+\_\+handler\+\_\+to\+\_\+g2}
+\item 
+\mbox{\Hypertarget{structCPU__Trap__table__entry_a93745e8efaaf38fed8ac86f987aa5a43}\label{structCPU__Trap__table__entry_a93745e8efaaf38fed8ac86f987aa5a43}} 
+uint32\+\_\+t {\bfseries sllx\+\_\+g2\+\_\+by\+\_\+32\+\_\+to\+\_\+g2}
+\item 
+\mbox{\Hypertarget{structCPU__Trap__table__entry_ad2afdcbd51a8bc78b0a1ca7bb19dc5e3}\label{structCPU__Trap__table__entry_ad2afdcbd51a8bc78b0a1ca7bb19dc5e3}} 
+uint32\+\_\+t {\bfseries sethi\+\_\+of\+\_\+handler\+\_\+to\+\_\+g3}
+\item 
+\mbox{\Hypertarget{structCPU__Trap__table__entry_af8b16d62e8f8df4655c7d71f4ed73af8}\label{structCPU__Trap__table__entry_af8b16d62e8f8df4655c7d71f4ed73af8}} 
+uint32\+\_\+t {\bfseries or\+\_\+g3\+\_\+g2\+\_\+to\+\_\+g3}
+\item 
+\mbox{\Hypertarget{structCPU__Trap__table__entry_a20c757f635a7e829988883b320091f89}\label{structCPU__Trap__table__entry_a20c757f635a7e829988883b320091f89}} 
+uint32\+\_\+t {\bfseries jmp\+\_\+to\+\_\+low\+\_\+of\+\_\+handler\+\_\+plus\+\_\+g3}
+\item 
+\mbox{\Hypertarget{structCPU__Trap__table__entry_ad728d5a3e021ac0ffb80d75435b30814}\label{structCPU__Trap__table__entry_ad728d5a3e021ac0ffb80d75435b30814}} 
+uint32\+\_\+t {\bfseries mov\+\_\+vector\+\_\+g2}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+The following type defines an entry in the S\+P\+A\+RC\textquotesingle{}s trap table.
+
+N\+O\+TE\+: The instructions chosen are R\+T\+E\+MS dependent although one is obligated to use two of the four instructions to perform a long jump. The other instructions load one register with the trap type (a.\+k.\+a. vector) and another with the psr. 
+
+\subsection{Field Documentation}
+\mbox{\Hypertarget{structCPU__Trap__table__entry_ae8287de69b4c1f4d2461f5e4789c0697}\label{structCPU__Trap__table__entry_ae8287de69b4c1f4d2461f5e4789c0697}} 
+\index{CPU\_Trap\_table\_entry@{CPU\_Trap\_table\_entry}!jmp\_to\_low\_of\_handler\_plus\_l4@{jmp\_to\_low\_of\_handler\_plus\_l4}}
+\index{jmp\_to\_low\_of\_handler\_plus\_l4@{jmp\_to\_low\_of\_handler\_plus\_l4}!CPU\_Trap\_table\_entry@{CPU\_Trap\_table\_entry}}
+\subsubsection{\texorpdfstring{jmp\_to\_low\_of\_handler\_plus\_l4}{jmp\_to\_low\_of\_handler\_plus\_l4}}
+{\footnotesize\ttfamily uint32\+\_\+t C\+P\+U\+\_\+\+Trap\+\_\+table\+\_\+entry\+::jmp\+\_\+to\+\_\+low\+\_\+of\+\_\+handler\+\_\+plus\+\_\+l4}
+
+This will contain a \char`\"{}jmp \%l4 + \%lo(\+\_\+handler)\char`\"{} instruction. \mbox{\Hypertarget{structCPU__Trap__table__entry_a7b5bf63979937f0faab4c9c98f5e4e81}\label{structCPU__Trap__table__entry_a7b5bf63979937f0faab4c9c98f5e4e81}} 
+\index{CPU\_Trap\_table\_entry@{CPU\_Trap\_table\_entry}!mov\_psr\_l0@{mov\_psr\_l0}}
+\index{mov\_psr\_l0@{mov\_psr\_l0}!CPU\_Trap\_table\_entry@{CPU\_Trap\_table\_entry}}
+\subsubsection{\texorpdfstring{mov\_psr\_l0}{mov\_psr\_l0}}
+{\footnotesize\ttfamily uint32\+\_\+t C\+P\+U\+\_\+\+Trap\+\_\+table\+\_\+entry\+::mov\+\_\+psr\+\_\+l0}
+
+This will contain a \char`\"{}mov \%psr, \%l0\char`\"{} instruction. \mbox{\Hypertarget{structCPU__Trap__table__entry_a3ab22d0875a0395652bcd4e0d6955240}\label{structCPU__Trap__table__entry_a3ab22d0875a0395652bcd4e0d6955240}} 
+\index{CPU\_Trap\_table\_entry@{CPU\_Trap\_table\_entry}!mov\_vector\_l3@{mov\_vector\_l3}}
+\index{mov\_vector\_l3@{mov\_vector\_l3}!CPU\_Trap\_table\_entry@{CPU\_Trap\_table\_entry}}
+\subsubsection{\texorpdfstring{mov\_vector\_l3}{mov\_vector\_l3}}
+{\footnotesize\ttfamily uint32\+\_\+t C\+P\+U\+\_\+\+Trap\+\_\+table\+\_\+entry\+::mov\+\_\+vector\+\_\+l3}
+
+This will contain a \char`\"{} mov \+\_\+vector, \%l3\char`\"{} instruction. \mbox{\Hypertarget{structCPU__Trap__table__entry_ae8670a93c509a7ee0afe51f35edc3393}\label{structCPU__Trap__table__entry_ae8670a93c509a7ee0afe51f35edc3393}} 
+\index{CPU\_Trap\_table\_entry@{CPU\_Trap\_table\_entry}!sethi\_of\_handler\_to\_l4@{sethi\_of\_handler\_to\_l4}}
+\index{sethi\_of\_handler\_to\_l4@{sethi\_of\_handler\_to\_l4}!CPU\_Trap\_table\_entry@{CPU\_Trap\_table\_entry}}
+\subsubsection{\texorpdfstring{sethi\_of\_handler\_to\_l4}{sethi\_of\_handler\_to\_l4}}
+{\footnotesize\ttfamily uint32\+\_\+t C\+P\+U\+\_\+\+Trap\+\_\+table\+\_\+entry\+::sethi\+\_\+of\+\_\+handler\+\_\+to\+\_\+l4}
+
+This will contain a \char`\"{}sethi \%hi(\+\_\+handler), \%l4\char`\"{} instruction. 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+cpukit/score/cpu/sparc/include/rtems/score/\mbox{\hyperlink{sparc_2include_2rtems_2score_2cpu_8h}{cpu.\+h}}\end{DoxyCompactItemize}

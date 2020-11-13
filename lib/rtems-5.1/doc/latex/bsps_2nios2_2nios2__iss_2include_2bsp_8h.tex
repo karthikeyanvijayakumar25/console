@@ -1,0 +1,117 @@
+\hypertarget{bsps_2nios2_2nios2__iss_2include_2bsp_8h}{}\section{bsps/nios2/nios2\+\_\+iss/include/bsp.h File Reference}
+\label{bsps_2nios2_2nios2__iss_2include_2bsp_8h}\index{bsps/nios2/nios2\_iss/include/bsp.h@{bsps/nios2/nios2\_iss/include/bsp.h}}
+
+
+Global B\+SP definitions.  
+
+
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include $<$bspopts.\+h$>$}\newline
+{\ttfamily \#include $<$bsp/default-\/initial-\/extension.\+h$>$}\newline
+{\ttfamily \#include $<$rtems.\+h$>$}\newline
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structaltera__avalon__timer__regs}{altera\+\_\+avalon\+\_\+timer\+\_\+regs}}
+\item 
+struct \mbox{\hyperlink{structaltera__avalon__jtag__uart__regs}{altera\+\_\+avalon\+\_\+jtag\+\_\+uart\+\_\+regs}}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bfseries S\+Y\+S\+T\+E\+M\+\_\+\+B\+U\+S\+\_\+\+W\+I\+D\+TH}~32
+\item 
+\#define {\bfseries J\+T\+A\+G\+\_\+\+U\+A\+R\+T\+\_\+\+B\+A\+SE}~0x08000000
+\item 
+\#define {\bfseries J\+T\+A\+G\+\_\+\+U\+A\+R\+T\+\_\+\+I\+RQ}~2
+\item 
+\#define {\bfseries C\+L\+O\+C\+K\+\_\+\+B\+A\+SE}~0x08001000
+\item 
+\#define {\bfseries C\+L\+O\+C\+K\+\_\+\+F\+R\+EQ}~50000000
+\item 
+\#define {\bfseries C\+L\+O\+C\+K\+\_\+\+V\+E\+C\+T\+OR}~1
+\item 
+\#define {\bfseries T\+I\+M\+E\+R\+\_\+\+B\+A\+SE}~0x08002000
+\item 
+\#define {\bfseries T\+I\+M\+E\+R\+\_\+\+F\+R\+EQ}~50000000
+\item 
+\#define {\bfseries T\+I\+M\+E\+R\+\_\+\+V\+E\+C\+T\+OR}~3
+\item 
+\#define {\bfseries N\+I\+O\+S2\+\_\+\+B\+Y\+P\+A\+S\+S\+\_\+\+C\+A\+C\+HE}~((uint32\+\_\+t)0x80000000ul)
+\item 
+\#define {\bfseries N\+I\+O\+S2\+\_\+\+I\+O\+\_\+\+B\+A\+SE}(x)~( (void$\ast$) ((uint32\+\_\+t)x $\vert$ N\+I\+O\+S2\+\_\+\+B\+Y\+P\+A\+S\+S\+\_\+\+C\+A\+C\+HE ) )
+\item 
+\#define {\bfseries N\+I\+O\+S2\+\_\+\+I\+E\+N\+A\+B\+LE}(x)~do\{ \+\_\+\+\_\+builtin\+\_\+wrctl(3,\+\_\+\+\_\+builtin\+\_\+rdctl(3)$\vert$x);\}while(0)
+\item 
+\#define {\bfseries N\+I\+O\+S2\+\_\+\+I\+R\+Q\+\_\+\+E\+N\+A\+B\+LE}(x)~do \{\+\_\+\+\_\+builtin\+\_\+wrctl(3,\+\_\+\+\_\+builtin\+\_\+rdctl(3)$\vert$x);\} while(0)
+\item 
+\#define {\bfseries A\+L\+T\+E\+R\+A\+\_\+\+A\+V\+A\+L\+O\+N\+\_\+\+T\+I\+M\+E\+R\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+T\+O\+\_\+\+M\+SK}~(0x1)
+\item 
+\#define {\bfseries A\+L\+T\+E\+R\+A\+\_\+\+A\+V\+A\+L\+O\+N\+\_\+\+T\+I\+M\+E\+R\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+T\+O\+\_\+\+O\+F\+ST}~(0)
+\item 
+\#define {\bfseries A\+L\+T\+E\+R\+A\+\_\+\+A\+V\+A\+L\+O\+N\+\_\+\+T\+I\+M\+E\+R\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+R\+U\+N\+\_\+\+M\+SK}~(0x2)
+\item 
+\#define {\bfseries A\+L\+T\+E\+R\+A\+\_\+\+A\+V\+A\+L\+O\+N\+\_\+\+T\+I\+M\+E\+R\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+R\+U\+N\+\_\+\+O\+F\+ST}~(1)
+\item 
+\#define {\bfseries A\+L\+T\+E\+R\+A\+\_\+\+A\+V\+A\+L\+O\+N\+\_\+\+T\+I\+M\+E\+R\+\_\+\+C\+O\+N\+T\+R\+O\+L\+\_\+\+I\+T\+O\+\_\+\+M\+SK}~(0x1)
+\item 
+\#define {\bfseries A\+L\+T\+E\+R\+A\+\_\+\+A\+V\+A\+L\+O\+N\+\_\+\+T\+I\+M\+E\+R\+\_\+\+C\+O\+N\+T\+R\+O\+L\+\_\+\+I\+T\+O\+\_\+\+O\+F\+ST}~(0)
+\item 
+\#define {\bfseries A\+L\+T\+E\+R\+A\+\_\+\+A\+V\+A\+L\+O\+N\+\_\+\+T\+I\+M\+E\+R\+\_\+\+C\+O\+N\+T\+R\+O\+L\+\_\+\+C\+O\+N\+T\+\_\+\+M\+SK}~(0x2)
+\item 
+\#define {\bfseries A\+L\+T\+E\+R\+A\+\_\+\+A\+V\+A\+L\+O\+N\+\_\+\+T\+I\+M\+E\+R\+\_\+\+C\+O\+N\+T\+R\+O\+L\+\_\+\+C\+O\+N\+T\+\_\+\+O\+F\+ST}~(1)
+\item 
+\#define {\bfseries A\+L\+T\+E\+R\+A\+\_\+\+A\+V\+A\+L\+O\+N\+\_\+\+T\+I\+M\+E\+R\+\_\+\+C\+O\+N\+T\+R\+O\+L\+\_\+\+S\+T\+A\+R\+T\+\_\+\+M\+SK}~(0x4)
+\item 
+\#define {\bfseries A\+L\+T\+E\+R\+A\+\_\+\+A\+V\+A\+L\+O\+N\+\_\+\+T\+I\+M\+E\+R\+\_\+\+C\+O\+N\+T\+R\+O\+L\+\_\+\+S\+T\+A\+R\+T\+\_\+\+O\+F\+ST}~(2)
+\item 
+\#define {\bfseries A\+L\+T\+E\+R\+A\+\_\+\+A\+V\+A\+L\+O\+N\+\_\+\+T\+I\+M\+E\+R\+\_\+\+C\+O\+N\+T\+R\+O\+L\+\_\+\+S\+T\+O\+P\+\_\+\+M\+SK}~(0x8)
+\item 
+\#define {\bfseries A\+L\+T\+E\+R\+A\+\_\+\+A\+V\+A\+L\+O\+N\+\_\+\+T\+I\+M\+E\+R\+\_\+\+C\+O\+N\+T\+R\+O\+L\+\_\+\+S\+T\+O\+P\+\_\+\+O\+F\+ST}~(3)
+\item 
+\#define {\bfseries A\+L\+T\+E\+R\+A\+\_\+\+A\+V\+A\+L\+O\+N\+\_\+\+J\+T\+A\+G\+\_\+\+U\+A\+R\+T\+\_\+\+D\+A\+T\+A\+\_\+\+D\+A\+T\+A\+\_\+\+M\+SK}~(0x000000\+F\+Fu)
+\item 
+\#define {\bfseries A\+L\+T\+E\+R\+A\+\_\+\+A\+V\+A\+L\+O\+N\+\_\+\+J\+T\+A\+G\+\_\+\+U\+A\+R\+T\+\_\+\+D\+A\+T\+A\+\_\+\+D\+A\+T\+A\+\_\+\+O\+F\+ST}~(0)
+\item 
+\#define {\bfseries A\+L\+T\+E\+R\+A\+\_\+\+A\+V\+A\+L\+O\+N\+\_\+\+J\+T\+A\+G\+\_\+\+U\+A\+R\+T\+\_\+\+D\+A\+T\+A\+\_\+\+R\+V\+A\+L\+I\+D\+\_\+\+M\+SK}~(0x00008000u)
+\item 
+\#define {\bfseries A\+L\+T\+E\+R\+A\+\_\+\+A\+V\+A\+L\+O\+N\+\_\+\+J\+T\+A\+G\+\_\+\+U\+A\+R\+T\+\_\+\+D\+A\+T\+A\+\_\+\+R\+V\+A\+L\+I\+D\+\_\+\+O\+F\+ST}~(15)
+\item 
+\#define {\bfseries A\+L\+T\+E\+R\+A\+\_\+\+A\+V\+A\+L\+O\+N\+\_\+\+J\+T\+A\+G\+\_\+\+U\+A\+R\+T\+\_\+\+D\+A\+T\+A\+\_\+\+R\+A\+V\+A\+I\+L\+\_\+\+M\+SK}~(0x\+F\+F\+F\+F0000u)
+\item 
+\#define {\bfseries A\+L\+T\+E\+R\+A\+\_\+\+A\+V\+A\+L\+O\+N\+\_\+\+J\+T\+A\+G\+\_\+\+U\+A\+R\+T\+\_\+\+D\+A\+T\+A\+\_\+\+R\+A\+V\+A\+I\+L\+\_\+\+O\+F\+ST}~(16)
+\item 
+\#define {\bfseries A\+L\+T\+E\+R\+A\+\_\+\+A\+V\+A\+L\+O\+N\+\_\+\+J\+T\+A\+G\+\_\+\+U\+A\+R\+T\+\_\+\+C\+O\+N\+T\+R\+O\+L\+\_\+\+R\+E\+\_\+\+M\+SK}~(0x00000001u)
+\item 
+\#define {\bfseries A\+L\+T\+E\+R\+A\+\_\+\+A\+V\+A\+L\+O\+N\+\_\+\+J\+T\+A\+G\+\_\+\+U\+A\+R\+T\+\_\+\+C\+O\+N\+T\+R\+O\+L\+\_\+\+R\+E\+\_\+\+O\+F\+ST}~(0)
+\item 
+\#define {\bfseries A\+L\+T\+E\+R\+A\+\_\+\+A\+V\+A\+L\+O\+N\+\_\+\+J\+T\+A\+G\+\_\+\+U\+A\+R\+T\+\_\+\+C\+O\+N\+T\+R\+O\+L\+\_\+\+W\+E\+\_\+\+M\+SK}~(0x00000002u)
+\item 
+\#define {\bfseries A\+L\+T\+E\+R\+A\+\_\+\+A\+V\+A\+L\+O\+N\+\_\+\+J\+T\+A\+G\+\_\+\+U\+A\+R\+T\+\_\+\+C\+O\+N\+T\+R\+O\+L\+\_\+\+W\+E\+\_\+\+O\+F\+ST}~(1)
+\item 
+\#define {\bfseries A\+L\+T\+E\+R\+A\+\_\+\+A\+V\+A\+L\+O\+N\+\_\+\+J\+T\+A\+G\+\_\+\+U\+A\+R\+T\+\_\+\+C\+O\+N\+T\+R\+O\+L\+\_\+\+R\+I\+\_\+\+M\+SK}~(0x00000100u)
+\item 
+\#define {\bfseries A\+L\+T\+E\+R\+A\+\_\+\+A\+V\+A\+L\+O\+N\+\_\+\+J\+T\+A\+G\+\_\+\+U\+A\+R\+T\+\_\+\+C\+O\+N\+T\+R\+O\+L\+\_\+\+R\+I\+\_\+\+O\+F\+ST}~(8)
+\item 
+\#define {\bfseries A\+L\+T\+E\+R\+A\+\_\+\+A\+V\+A\+L\+O\+N\+\_\+\+J\+T\+A\+G\+\_\+\+U\+A\+R\+T\+\_\+\+C\+O\+N\+T\+R\+O\+L\+\_\+\+W\+I\+\_\+\+M\+SK}~(0x00000200u)
+\item 
+\#define {\bfseries A\+L\+T\+E\+R\+A\+\_\+\+A\+V\+A\+L\+O\+N\+\_\+\+J\+T\+A\+G\+\_\+\+U\+A\+R\+T\+\_\+\+C\+O\+N\+T\+R\+O\+L\+\_\+\+W\+I\+\_\+\+O\+F\+ST}~(9)
+\item 
+\#define {\bfseries A\+L\+T\+E\+R\+A\+\_\+\+A\+V\+A\+L\+O\+N\+\_\+\+J\+T\+A\+G\+\_\+\+U\+A\+R\+T\+\_\+\+C\+O\+N\+T\+R\+O\+L\+\_\+\+A\+C\+\_\+\+M\+SK}~(0x00000400u)
+\item 
+\#define {\bfseries A\+L\+T\+E\+R\+A\+\_\+\+A\+V\+A\+L\+O\+N\+\_\+\+J\+T\+A\+G\+\_\+\+U\+A\+R\+T\+\_\+\+C\+O\+N\+T\+R\+O\+L\+\_\+\+A\+C\+\_\+\+O\+F\+ST}~(10)
+\item 
+\#define {\bfseries A\+L\+T\+E\+R\+A\+\_\+\+A\+V\+A\+L\+O\+N\+\_\+\+J\+T\+A\+G\+\_\+\+U\+A\+R\+T\+\_\+\+C\+O\+N\+T\+R\+O\+L\+\_\+\+W\+S\+P\+A\+C\+E\+\_\+\+M\+SK}~(0x\+F\+F\+F\+F0000u)
+\item 
+\#define {\bfseries A\+L\+T\+E\+R\+A\+\_\+\+A\+V\+A\+L\+O\+N\+\_\+\+J\+T\+A\+G\+\_\+\+U\+A\+R\+T\+\_\+\+C\+O\+N\+T\+R\+O\+L\+\_\+\+W\+S\+P\+A\+C\+E\+\_\+\+O\+F\+ST}~(16)
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+rtems\+\_\+isr\+\_\+entry \mbox{\hyperlink{group__RTEMSBSPsNios2ISS_gab3388042c56b34c40be81fd5f028d97e}{set\+\_\+vector}} (rtems\+\_\+isr\+\_\+entry handler, \mbox{\hyperlink{group__ClassicINTR_ga3e434c197d99f128e78cae4d9358bd8b}{rtems\+\_\+vector\+\_\+number}} vector, int type)
+\begin{DoxyCompactList}\small\item\em Install an interrupt handler. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Global B\+SP definitions. 
+

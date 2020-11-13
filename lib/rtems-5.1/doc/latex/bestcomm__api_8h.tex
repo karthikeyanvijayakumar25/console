@@ -1,0 +1,560 @@
+\hypertarget{bestcomm__api_8h}{}\section{bsps/powerpc/gen5200/include/bsp/bestcomm/bestcomm\+\_\+api.h File Reference}
+\label{bestcomm__api_8h}\index{bsps/powerpc/gen5200/include/bsp/bestcomm/bestcomm\_api.h@{bsps/powerpc/gen5200/include/bsp/bestcomm/bestcomm\_api.h}}
+{\ttfamily \#include $<$rtems.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}include/ppctypes.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}include/mgt5200/sdma.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}task\+\_\+api/tasksetup\+\_\+bdtable.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}task\+\_\+api/bestcomm\+\_\+cntrl.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}task\+\_\+api/bestcomm\+\_\+api\+\_\+mem.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}bestcomm\+\_\+priv.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}dma\+\_\+image.\+capi.\+h\char`\"{}}\newline
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structTaskSetupParamSet__t}{Task\+Setup\+Param\+Set\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Parameters for Task\+Setup() \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structTaskDebugParamSet__t}{Task\+Debug\+Param\+Set\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Parameters for \mbox{\hyperlink{bestcomm__api_8c_a455957c637fde5586390764bbc17cbfd}{Task\+Debug()}} \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structTaskBD__t}{Task\+B\+D\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Generic buffer descriptor. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structTaskBD1__t}{Task\+B\+D1\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Single buffer descriptor. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structTaskBD2__t}{Task\+B\+D2\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Dual buffer descriptor. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{bestcomm__api_8h_a77d2b06841dfb0faf94b154adb62643e}{D\+E\+B\+U\+G\+\_\+\+B\+E\+S\+T\+C\+O\+M\+M\+\_\+\+A\+PI}}~0
+\begin{DoxyCompactList}\small\item\em Task\+Setup() debugging. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{bestcomm__api_8h_aac747bed84189f8cfa509b94d488e622}\label{bestcomm__api_8h_aac747bed84189f8cfa509b94d488e622}} 
+\#define \mbox{\hyperlink{bestcomm__api_8h_aac747bed84189f8cfa509b94d488e622}{M\+A\+X\+\_\+\+T\+A\+S\+KS}}~16
+\begin{DoxyCompactList}\small\item\em Maximum number of tasks in the system. This number is hardware-\/dependent and not user configuration. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{bestcomm__api_8h_ac2017f357c8bb0fc398472e229ca01da}\label{bestcomm__api_8h_ac2017f357c8bb0fc398472e229ca01da}} 
+\#define \mbox{\hyperlink{bestcomm__api_8h_ac2017f357c8bb0fc398472e229ca01da}{D\+E\+B\+U\+G\+\_\+\+I\+N\+T\+R\+\_\+\+ID}}~S\+D\+M\+A\+\_\+\+I\+N\+T\+\_\+\+B\+I\+T\+\_\+\+D\+BG
+\begin{DoxyCompactList}\small\item\em Debug interrupt \char`\"{}task I\+D\char`\"{}. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{bestcomm__api_8h_ade7d95076e57c293245b74138eda4aaa}\label{bestcomm__api_8h_ade7d95076e57c293245b74138eda4aaa}} 
+\#define \mbox{\hyperlink{bestcomm__api_8h_ade7d95076e57c293245b74138eda4aaa}{T\+E\+A\+\_\+\+I\+N\+T\+R\+\_\+\+ID}}~S\+D\+M\+A\+\_\+\+I\+N\+T\+\_\+\+B\+I\+T\+\_\+\+T\+EA
+\begin{DoxyCompactList}\small\item\em T\+EA interrupt \char`\"{}task I\+D\char`\"{}. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{bestcomm__api_8h_aa9876145e46d47a77a1ccab559815bd3}\label{bestcomm__api_8h_aa9876145e46d47a77a1ccab559815bd3}} 
+\#define \mbox{\hyperlink{bestcomm__api_8h_aa9876145e46d47a77a1ccab559815bd3}{T\+A\+S\+K\+\_\+\+A\+U\+T\+O\+S\+T\+A\+R\+T\+\_\+\+E\+N\+A\+B\+LE}}~1
+\begin{DoxyCompactList}\small\item\em Task start autostart enable. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{bestcomm__api_8h_af98480823beeda82d948a6757adba3c1}\label{bestcomm__api_8h_af98480823beeda82d948a6757adba3c1}} 
+\#define \mbox{\hyperlink{bestcomm__api_8h_af98480823beeda82d948a6757adba3c1}{T\+A\+S\+K\+\_\+\+A\+U\+T\+O\+S\+T\+A\+R\+T\+\_\+\+D\+I\+S\+A\+B\+LE}}~0
+\begin{DoxyCompactList}\small\item\em Task start autostart disable. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{bestcomm__api_8h_a3cce3a41889b553dd205b38c3d92b8a5}\label{bestcomm__api_8h_a3cce3a41889b553dd205b38c3d92b8a5}} 
+\#define \mbox{\hyperlink{bestcomm__api_8h_a3cce3a41889b553dd205b38c3d92b8a5}{T\+A\+S\+K\+\_\+\+I\+N\+T\+E\+R\+R\+U\+P\+T\+\_\+\+E\+N\+A\+B\+LE}}~1
+\begin{DoxyCompactList}\small\item\em Task start interrupt enable. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{bestcomm__api_8h_ac0c0d15ec2d8f43be6caaa01ea8ee43f}\label{bestcomm__api_8h_ac0c0d15ec2d8f43be6caaa01ea8ee43f}} 
+\#define \mbox{\hyperlink{bestcomm__api_8h_ac0c0d15ec2d8f43be6caaa01ea8ee43f}{T\+A\+S\+K\+\_\+\+I\+N\+T\+E\+R\+R\+U\+P\+T\+\_\+\+D\+I\+S\+A\+B\+LE}}~0
+\begin{DoxyCompactList}\small\item\em Task start interrupt disable. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{bestcomm__api_8h_a989a3027eda2dd1407ee3758361e86d7}\label{bestcomm__api_8h_a989a3027eda2dd1407ee3758361e86d7}} 
+\#define \mbox{\hyperlink{bestcomm__api_8h_a989a3027eda2dd1407ee3758361e86d7}{T\+A\+S\+K\+\_\+\+B\+D\+\_\+\+T\+FD}}~(1 $<$$<$ S\+D\+M\+A\+\_\+\+D\+R\+D\+\_\+\+B\+I\+T\+\_\+\+T\+FD)
+\begin{DoxyCompactList}\small\item\em Transmit frame done. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{bestcomm__api_8h_a8acb925715ab865253708f6357f38416}\label{bestcomm__api_8h_a8acb925715ab865253708f6357f38416}} 
+\#define \mbox{\hyperlink{bestcomm__api_8h_a8acb925715ab865253708f6357f38416}{T\+A\+S\+K\+\_\+\+B\+D\+\_\+\+I\+NT}}~(1 $<$$<$ S\+D\+M\+A\+\_\+\+D\+R\+D\+\_\+\+B\+I\+T\+\_\+\+I\+NT)
+\begin{DoxyCompactList}\small\item\em Interrupt on frame done. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{bestcomm__api_8h_ad9c3a8528c3ad65a171d35059fa800d3}{Task\+Setup\+Helper}}(Task\+Name,  Task\+Setup\+Params)~Task\+Setup\+\_\+ \#\# Task\+Name (Task\+Name \#\# \+\_\+api, Task\+Setup\+Params)
+\begin{DoxyCompactList}\small\item\em Initialize a single task. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{bestcomm__api_8h_a0bb0ffaf997ab87a956650a3088e7003}\label{bestcomm__api_8h_a0bb0ffaf997ab87a956650a3088e7003}} 
+\#define {\bfseries Task\+Setup}(Task\+Name,  Task\+Setup\+Params)~\mbox{\hyperlink{bestcomm__api_8h_ad9c3a8528c3ad65a171d35059fa800d3}{Task\+Setup\+Helper}}(Task\+Name, Task\+Setup\+Params)
+\end{DoxyCompactItemize}
+\begin{Indent}\textbf{ gpio Usage}\par
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{bestcomm__api_8h_a872bb74de61c3689ccd5b41873fce42c}{N\+U\+LL}}~((void $\ast$)0)
+\begin{DoxyCompactList}\small\item\em Requests a G\+P\+IO pin group configuration. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{bestcomm__api_8h_ae08a241f3af1719cb00d56a385bdb08a}\label{bestcomm__api_8h_ae08a241f3af1719cb00d56a385bdb08a}} 
+typedef sint8 {\bfseries Task\+Id}
+\item 
+\mbox{\Hypertarget{bestcomm__api_8h_aa4135dbe2fa16263655d4edf15babcc7}\label{bestcomm__api_8h_aa4135dbe2fa16263655d4edf15babcc7}} 
+typedef sint32 {\bfseries B\+D\+Idx}
+\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{bestcomm__api_8h_a83efcf1363a5d57a19933e5149ecc816}{Sz\+\_\+t}} \{ \mbox{\hyperlink{bestcomm__api_8h_a83efcf1363a5d57a19933e5149ecc816ab7348946303cde70c86babe56778e476}{S\+Z\+\_\+\+F\+L\+EX}} = 3, 
+\mbox{\hyperlink{bestcomm__api_8h_a83efcf1363a5d57a19933e5149ecc816a670aab914a44a0a394ff0d04561383d8}{S\+Z\+\_\+\+U\+I\+N\+T8}} = 1, 
+\mbox{\hyperlink{bestcomm__api_8h_a83efcf1363a5d57a19933e5149ecc816a1635d997e6a6edff00b46d22208197fd}{S\+Z\+\_\+\+U\+I\+N\+T16}} = 2, 
+\mbox{\hyperlink{bestcomm__api_8h_a83efcf1363a5d57a19933e5149ecc816a3401e43f08a19e47941746a4b1873f9c}{S\+Z\+\_\+\+U\+I\+N\+T32}} = 4
+ \}
+\begin{DoxyCompactList}\small\item\em Data transfer size. \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{bestcomm__api_8h_a88a5206e2df4c716723a957a223dec41}{Task\+Err\+\_\+t}} \{ \newline
+\mbox{\hyperlink{bestcomm__api_8h_a88a5206e2df4c716723a957a223dec41a0aea041a904c1ff90e0a82b4647a9355}{T\+A\+S\+K\+\_\+\+E\+R\+R\+\_\+\+N\+O\+\_\+\+E\+RR}} = -\/1, 
+\mbox{\hyperlink{bestcomm__api_8h_a88a5206e2df4c716723a957a223dec41ae83253c577c0995303e57d8943048d34}{T\+A\+S\+K\+\_\+\+E\+R\+R\+\_\+\+N\+O\+\_\+\+I\+N\+TR}} = T\+A\+S\+K\+\_\+\+E\+R\+R\+\_\+\+N\+O\+\_\+\+E\+RR, 
+\mbox{\hyperlink{bestcomm__api_8h_a88a5206e2df4c716723a957a223dec41a536e2b674d9165e844391cc23e337d25}{T\+A\+S\+K\+\_\+\+E\+R\+R\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+A\+RG}} = -\/2, 
+\mbox{\hyperlink{bestcomm__api_8h_a88a5206e2df4c716723a957a223dec41a3f5dc51ede27d348f6ccb62db1ffc704}{T\+A\+S\+K\+\_\+\+E\+R\+R\+\_\+\+B\+D\+\_\+\+R\+I\+N\+G\+\_\+\+F\+U\+LL}} = -\/3, 
+\newline
+\mbox{\hyperlink{bestcomm__api_8h_a88a5206e2df4c716723a957a223dec41a1e8da990d0bbf1e80623c0a28c51959d}{T\+A\+S\+K\+\_\+\+E\+R\+R\+\_\+\+A\+P\+I\+\_\+\+A\+L\+R\+E\+A\+D\+Y\+\_\+\+I\+N\+I\+T\+I\+A\+L\+I\+Z\+ED}} = -\/4, 
+\mbox{\hyperlink{bestcomm__api_8h_a88a5206e2df4c716723a957a223dec41adc682ce812f1af42b3e675c96544e7f0}{T\+A\+S\+K\+\_\+\+E\+R\+R\+\_\+\+S\+I\+Z\+E\+\_\+\+T\+O\+O\+\_\+\+L\+A\+R\+GE}} = -\/5, 
+\mbox{\hyperlink{bestcomm__api_8h_a88a5206e2df4c716723a957a223dec41ae9a4330979631d836f9a97a5b9b03300}{T\+A\+S\+K\+\_\+\+E\+R\+R\+\_\+\+B\+D\+\_\+\+R\+I\+N\+G\+\_\+\+E\+M\+P\+TY}} = -\/6, 
+\mbox{\hyperlink{bestcomm__api_8h_a88a5206e2df4c716723a957a223dec41a0d2648affa028b96540fa218dd3b9d32}{T\+A\+S\+K\+\_\+\+E\+R\+R\+\_\+\+B\+D\+\_\+\+B\+U\+SY}} = -\/7, 
+\newline
+\mbox{\hyperlink{bestcomm__api_8h_a88a5206e2df4c716723a957a223dec41a84dd62c2fe6d051b7ad43e4037bc98c1}{T\+A\+S\+K\+\_\+\+E\+R\+R\+\_\+\+T\+A\+S\+K\+\_\+\+R\+U\+N\+N\+I\+NG}} = -\/8
+ \}
+\begin{DoxyCompactList}\small\item\em A\+PI error codes. \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{bestcomm__api_8h_a6590b0d43c4d03b9deeb566a946cc4a1}{M\+P\+C5200\+Initiator\+\_\+t}} \{ \newline
+{\bfseries I\+N\+I\+T\+I\+A\+T\+O\+R\+\_\+\+A\+L\+W\+A\+YS} = 0, 
+{\bfseries I\+N\+I\+T\+I\+A\+T\+O\+R\+\_\+\+S\+C\+T\+M\+R\+\_\+0} = 1, 
+{\bfseries I\+N\+I\+T\+I\+A\+T\+O\+R\+\_\+\+S\+C\+T\+M\+R\+\_\+1} = 2, 
+{\bfseries I\+N\+I\+T\+I\+A\+T\+O\+R\+\_\+\+F\+E\+C\+\_\+\+RX} = 3, 
+\newline
+{\bfseries I\+N\+I\+T\+I\+A\+T\+O\+R\+\_\+\+F\+E\+C\+\_\+\+TX} = 4, 
+{\bfseries I\+N\+I\+T\+I\+A\+T\+O\+R\+\_\+\+A\+T\+A\+\_\+\+RX} = 5, 
+{\bfseries I\+N\+I\+T\+I\+A\+T\+O\+R\+\_\+\+A\+T\+A\+\_\+\+TX} = 6, 
+{\bfseries I\+N\+I\+T\+I\+A\+T\+O\+R\+\_\+\+S\+C\+P\+C\+I\+\_\+\+RX} = 7, 
+\newline
+{\bfseries I\+N\+I\+T\+I\+A\+T\+O\+R\+\_\+\+S\+C\+P\+C\+I\+\_\+\+TX} = 8, 
+{\bfseries I\+N\+I\+T\+I\+A\+T\+O\+R\+\_\+\+P\+S\+C3\+\_\+\+RX} = 9, 
+{\bfseries I\+N\+I\+T\+I\+A\+T\+O\+R\+\_\+\+P\+S\+C3\+\_\+\+TX} = 10, 
+{\bfseries I\+N\+I\+T\+I\+A\+T\+O\+R\+\_\+\+P\+S\+C2\+\_\+\+RX} = 11, 
+\newline
+{\bfseries I\+N\+I\+T\+I\+A\+T\+O\+R\+\_\+\+P\+S\+C2\+\_\+\+TX} = 12, 
+{\bfseries I\+N\+I\+T\+I\+A\+T\+O\+R\+\_\+\+P\+S\+C1\+\_\+\+RX} = 13, 
+{\bfseries I\+N\+I\+T\+I\+A\+T\+O\+R\+\_\+\+P\+S\+C1\+\_\+\+TX} = 14, 
+{\bfseries I\+N\+I\+T\+I\+A\+T\+O\+R\+\_\+\+S\+C\+T\+M\+R\+\_\+2} = 15, 
+\newline
+{\bfseries I\+N\+I\+T\+I\+A\+T\+O\+R\+\_\+\+S\+C\+L\+PC} = 16, 
+{\bfseries I\+N\+I\+T\+I\+A\+T\+O\+R\+\_\+\+P\+S\+C5\+\_\+\+RX} = 17, 
+{\bfseries I\+N\+I\+T\+I\+A\+T\+O\+R\+\_\+\+P\+S\+C5\+\_\+\+TX} = 18, 
+{\bfseries I\+N\+I\+T\+I\+A\+T\+O\+R\+\_\+\+P\+S\+C4\+\_\+\+RX} = 19, 
+\newline
+{\bfseries I\+N\+I\+T\+I\+A\+T\+O\+R\+\_\+\+P\+S\+C4\+\_\+\+TX} = 20, 
+{\bfseries I\+N\+I\+T\+I\+A\+T\+O\+R\+\_\+\+I2\+C2\+\_\+\+RX} = 21, 
+{\bfseries I\+N\+I\+T\+I\+A\+T\+O\+R\+\_\+\+I2\+C2\+\_\+\+TX} = 22, 
+{\bfseries I\+N\+I\+T\+I\+A\+T\+O\+R\+\_\+\+I2\+C1\+\_\+\+RX} = 23, 
+\newline
+{\bfseries I\+N\+I\+T\+I\+A\+T\+O\+R\+\_\+\+I2\+C1\+\_\+\+TX} = 24, 
+{\bfseries I\+N\+I\+T\+I\+A\+T\+O\+R\+\_\+\+P\+S\+C6\+\_\+\+RX} = 25, 
+{\bfseries I\+N\+I\+T\+I\+A\+T\+O\+R\+\_\+\+P\+S\+C6\+\_\+\+TX} = 26, 
+{\bfseries I\+N\+I\+T\+I\+A\+T\+O\+R\+\_\+\+I\+R\+D\+A\+\_\+\+RX} = 25, 
+\newline
+{\bfseries I\+N\+I\+T\+I\+A\+T\+O\+R\+\_\+\+I\+R\+D\+A\+\_\+\+TX} = 26, 
+{\bfseries I\+N\+I\+T\+I\+A\+T\+O\+R\+\_\+\+S\+C\+T\+M\+R\+\_\+3} = 27, 
+{\bfseries I\+N\+I\+T\+I\+A\+T\+O\+R\+\_\+\+S\+C\+T\+M\+R\+\_\+4} = 28, 
+{\bfseries I\+N\+I\+T\+I\+A\+T\+O\+R\+\_\+\+S\+C\+T\+M\+R\+\_\+5} = 29, 
+\newline
+{\bfseries I\+N\+I\+T\+I\+A\+T\+O\+R\+\_\+\+S\+C\+T\+M\+R\+\_\+6} = 30, 
+{\bfseries I\+N\+I\+T\+I\+A\+T\+O\+R\+\_\+\+S\+C\+T\+M\+R\+\_\+7} = 31
+ \}
+\begin{DoxyCompactList}\small\item\em Best\+Comm initiators. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+const char $\ast$ \mbox{\hyperlink{bestcomm__api_8h_a1fe2b4c534707dc2ffa76134dbdd18a6}{Task\+Version}} (void)
+\begin{DoxyCompactList}\small\item\em Get a string containing A\+PI version information. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{bestcomm__api_8h_ae914efa36122a772ac8ad8848ec0812a}{Tasks\+Init\+A\+PI}} (uint8 $\ast$M\+Bar\+Ref)
+\begin{DoxyCompactList}\small\item\em Initialize the A\+PI. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{bestcomm__api_8h_a218e71b4e0b0e6e1fdbda806bdf937f7}{Tasks\+Init\+A\+P\+I\+\_\+\+VM}} (uint8 $\ast$M\+Bar\+Ref, uint8 $\ast$M\+Bar\+Phys)
+\begin{DoxyCompactList}\small\item\em Initialize the A\+PI when virtual memory is used. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{bestcomm__api_8h_a62dc500dc177e7beb3ea18bd488f08bd}{Tasks\+Load\+Image}} (\mbox{\hyperlink{structsdma__register__set}{sdma\+\_\+regs}} $\ast$sdma)
+\begin{DoxyCompactList}\small\item\em Load Best\+Comm tasks into S\+R\+AM. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{bestcomm__api_8h_af0debe7b5957175c27dd80de6359d264}{Tasks\+Attach\+Image}} (\mbox{\hyperlink{structsdma__register__set}{sdma\+\_\+regs}} $\ast$sdma)
+\begin{DoxyCompactList}\small\item\em {\itshape Deprecated} \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{bestcomm__api_8h_a2b48145c6c0418944c8226075ba97e7a}{Task\+Start}} (Task\+Id task\+Id, uint32 auto\+Start\+Enable, Task\+Id auto\+Start\+Task, uint32 intr\+Enable)
+\begin{DoxyCompactList}\small\item\em Start an initialized task running. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{bestcomm__api_8h_a50a0e8468075caefc2c8594375e095fd}{Task\+Stop}} (Task\+Id task\+Id)
+\begin{DoxyCompactList}\small\item\em Stop a running task. \end{DoxyCompactList}\item 
+B\+D\+Idx \mbox{\hyperlink{bestcomm__api_8h_a4117e7e78d83c86e3430384f56004629}{Task\+B\+D\+Assign}} (Task\+Id task\+Id, void $\ast$buffer0, void $\ast$buffer1, int \mbox{\hyperlink{sun4u_2tte_8h_a245260f6f74972558f61b85227df5aae}{size}}, uint32 bd\+Flags)
+\begin{DoxyCompactList}\small\item\em Assign a buffer to a buffer descriptor. \end{DoxyCompactList}\item 
+B\+D\+Idx \mbox{\hyperlink{bestcomm__api_8h_adaf12022da391fada14f3a5621da86a3}{Task\+B\+D\+Release}} (Task\+Id task\+Id)
+\begin{DoxyCompactList}\small\item\em Release last buffer in the buffer descriptor ring. \end{DoxyCompactList}\item 
+B\+D\+Idx \mbox{\hyperlink{bestcomm__api_8h_a3d74620a816775576cfa503865033827}{Task\+B\+D\+Reset}} (Task\+Id task\+Id)
+\begin{DoxyCompactList}\small\item\em Release all buffers. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{bestcomm__api_8h_a455957c637fde5586390764bbc17cbfd}{Task\+Debug}} (Task\+Id task\+Id, \mbox{\hyperlink{structTaskDebugParamSet__t}{Task\+Debug\+Param\+Set\+\_\+t}} $\ast$param\+Set)
+\begin{DoxyCompactList}\small\item\em Return Best\+Comm debug information. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Bestcomm\+\_\+api.\+h is the only header necessary for inclusion by user code. The include path the C compiler searches to find .h files should contain bestcomm/capi and one of bestcomm/code\+\_\+dma/image\+\_\+$\ast$. This second entry selects which set of Best\+Comm tasks will be used. Of course the appropriate files in image\+\_\+$\ast$ must also be compiled and linked. 
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{bestcomm__api_8h_a77d2b06841dfb0faf94b154adb62643e}\label{bestcomm__api_8h_a77d2b06841dfb0faf94b154adb62643e}} 
+\index{bestcomm\_api.h@{bestcomm\_api.h}!DEBUG\_BESTCOMM\_API@{DEBUG\_BESTCOMM\_API}}
+\index{DEBUG\_BESTCOMM\_API@{DEBUG\_BESTCOMM\_API}!bestcomm\_api.h@{bestcomm\_api.h}}
+\subsubsection{\texorpdfstring{DEBUG\_BESTCOMM\_API}{DEBUG\_BESTCOMM\_API}}
+{\footnotesize\ttfamily \#define D\+E\+B\+U\+G\+\_\+\+B\+E\+S\+T\+C\+O\+M\+M\+\_\+\+A\+PI~0}
+
+
+
+Task\+Setup() debugging. 
+
+Define this macro as follows for debugging printf()s to see what the A\+PI receives and sets from the \mbox{\hyperlink{structTaskSetupParamSet__t}{Task\+Setup\+Param\+Set\+\_\+t}} struct. Implemented in capi/task\+\_\+api/tasksetup\+\_\+general.\+h.
+
+\begin{DoxyVerb}* >0  : print basic debug messages
+* >=10: also print C-API interface variables
+* >=20: also print task API interface variables
+* else: do nothing
+* \end{DoxyVerb}
+ \mbox{\Hypertarget{bestcomm__api_8h_a872bb74de61c3689ccd5b41873fce42c}\label{bestcomm__api_8h_a872bb74de61c3689ccd5b41873fce42c}} 
+\index{bestcomm\_api.h@{bestcomm\_api.h}!NULL@{NULL}}
+\index{NULL@{NULL}!bestcomm\_api.h@{bestcomm\_api.h}}
+\subsubsection{\texorpdfstring{NULL}{NULL}}
+{\footnotesize\ttfamily pins array is N\+U\+LL~((void $\ast$)0)}
+
+
+
+Requests a G\+P\+IO pin group configuration. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em group\+\_\+definition} & \mbox{\hyperlink{structrtems__gpio__group__definition}{rtems\+\_\+gpio\+\_\+group\+\_\+definition}} structure filled with the group pins configurations. \\
+\hline
+\mbox{\texttt{ out}}  & {\em group} & Reference to the created group.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em R\+T\+E\+M\+S\+\_\+\+S\+U\+C\+C\+E\+S\+S\+F\+UL} & Pin group was configured successfully. \\
+\hline
+{\em R\+T\+E\+M\+S\+\_\+\+U\+N\+S\+A\+T\+I\+S\+F\+I\+ED} & the\\
+\hline
+{\em $\ast$} & \\
+\hline
+\end{DoxyRetVals}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{gpio_8h_a365b5cf4bcbb396316f2d99569ad95ec}{rtems\+\_\+gpio\+\_\+release\+\_\+pin()}}. 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{bestcomm__api_8h_ad9c3a8528c3ad65a171d35059fa800d3}\label{bestcomm__api_8h_ad9c3a8528c3ad65a171d35059fa800d3}} 
+\index{bestcomm\_api.h@{bestcomm\_api.h}!TaskSetupHelper@{TaskSetupHelper}}
+\index{TaskSetupHelper@{TaskSetupHelper}!bestcomm\_api.h@{bestcomm\_api.h}}
+\subsubsection{\texorpdfstring{TaskSetupHelper}{TaskSetupHelper}}
+{\footnotesize\ttfamily \#define Task\+Setup\+Helper(\begin{DoxyParamCaption}\item[{}]{Task\+Name,  }\item[{}]{Task\+Setup\+Params }\end{DoxyParamCaption})~Task\+Setup\+\_\+ \#\# Task\+Name (Task\+Name \#\# \+\_\+api, Task\+Setup\+Params)}
+
+
+
+Initialize a single task. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Task\+Name} & Type of task to initialize. E.\+g. P\+CI transmit, ethernet receive, general purpose dual-\/pointer. Values expected can be found in the Task\+Name\+\_\+t enum defined in \mbox{\hyperlink{dma__image_8capi_8h_source}{dma\+\_\+image.\+capi.\+h}}. \\
+\hline
+{\em Task\+Setup\+Params} & Task-\/specific parameters. The user must fill out the pertinent parts of a \mbox{\hyperlink{structTaskSetupParamSet__t}{Task\+Setup\+Param\+Set\+\_\+t}} data structure. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Task\+Id task identification token which is a required parameter for most other A\+PI functions.
+\end{DoxyReturn}
+This function returns a task identification token which is a required parameter for most other A\+PI functions.
+
+Certain values of the structure pointed to by Task\+Params are set as a side-\/effect based on task type. These may be examined after a successful call to Task\+Setup(). User-\/specified values may be overridden.
+
+Task\+Id Task\+Setup( Task\+Name\+\_\+t Task\+Name, \mbox{\hyperlink{structTaskSetupParamSet__t}{Task\+Setup\+Param\+Set\+\_\+t}} $\ast$\+Task\+Setup\+Params ); 
+
+\subsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{bestcomm__api_8h_a6590b0d43c4d03b9deeb566a946cc4a1}\label{bestcomm__api_8h_a6590b0d43c4d03b9deeb566a946cc4a1}} 
+\index{bestcomm\_api.h@{bestcomm\_api.h}!MPC5200Initiator\_t@{MPC5200Initiator\_t}}
+\index{MPC5200Initiator\_t@{MPC5200Initiator\_t}!bestcomm\_api.h@{bestcomm\_api.h}}
+\subsubsection{\texorpdfstring{MPC5200Initiator\_t}{MPC5200Initiator\_t}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{bestcomm__api_8h_a6590b0d43c4d03b9deeb566a946cc4a1}{M\+P\+C5200\+Initiator\+\_\+t}}}
+
+
+
+Best\+Comm initiators. 
+
+These are assigned by Task\+Setup(). \mbox{\Hypertarget{bestcomm__api_8h_a83efcf1363a5d57a19933e5149ecc816}\label{bestcomm__api_8h_a83efcf1363a5d57a19933e5149ecc816}} 
+\index{bestcomm\_api.h@{bestcomm\_api.h}!Sz\_t@{Sz\_t}}
+\index{Sz\_t@{Sz\_t}!bestcomm\_api.h@{bestcomm\_api.h}}
+\subsubsection{\texorpdfstring{Sz\_t}{Sz\_t}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{bestcomm__api_8h_a83efcf1363a5d57a19933e5149ecc816}{Sz\+\_\+t}}}
+
+
+
+Data transfer size. 
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SZ\_FLEX@{SZ\_FLEX}!bestcomm\_api.h@{bestcomm\_api.h}}\index{bestcomm\_api.h@{bestcomm\_api.h}!SZ\_FLEX@{SZ\_FLEX}}}\mbox{\Hypertarget{bestcomm__api_8h_a83efcf1363a5d57a19933e5149ecc816ab7348946303cde70c86babe56778e476}\label{bestcomm__api_8h_a83efcf1363a5d57a19933e5149ecc816ab7348946303cde70c86babe56778e476}} 
+S\+Z\+\_\+\+F\+L\+EX&invalid for \mbox{\hyperlink{structTaskSetupParamSet__t}{Task\+Setup\+Param\+Set\+\_\+t}} \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SZ\_UINT8@{SZ\_UINT8}!bestcomm\_api.h@{bestcomm\_api.h}}\index{bestcomm\_api.h@{bestcomm\_api.h}!SZ\_UINT8@{SZ\_UINT8}}}\mbox{\Hypertarget{bestcomm__api_8h_a83efcf1363a5d57a19933e5149ecc816a670aab914a44a0a394ff0d04561383d8}\label{bestcomm__api_8h_a83efcf1363a5d57a19933e5149ecc816a670aab914a44a0a394ff0d04561383d8}} 
+S\+Z\+\_\+\+U\+I\+N\+T8&1-\/byte \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SZ\_UINT16@{SZ\_UINT16}!bestcomm\_api.h@{bestcomm\_api.h}}\index{bestcomm\_api.h@{bestcomm\_api.h}!SZ\_UINT16@{SZ\_UINT16}}}\mbox{\Hypertarget{bestcomm__api_8h_a83efcf1363a5d57a19933e5149ecc816a1635d997e6a6edff00b46d22208197fd}\label{bestcomm__api_8h_a83efcf1363a5d57a19933e5149ecc816a1635d997e6a6edff00b46d22208197fd}} 
+S\+Z\+\_\+\+U\+I\+N\+T16&2-\/byte \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SZ\_UINT32@{SZ\_UINT32}!bestcomm\_api.h@{bestcomm\_api.h}}\index{bestcomm\_api.h@{bestcomm\_api.h}!SZ\_UINT32@{SZ\_UINT32}}}\mbox{\Hypertarget{bestcomm__api_8h_a83efcf1363a5d57a19933e5149ecc816a3401e43f08a19e47941746a4b1873f9c}\label{bestcomm__api_8h_a83efcf1363a5d57a19933e5149ecc816a3401e43f08a19e47941746a4b1873f9c}} 
+S\+Z\+\_\+\+U\+I\+N\+T32&4-\/byte \\
+\hline
+
+\end{DoxyEnumFields}
+\mbox{\Hypertarget{bestcomm__api_8h_a88a5206e2df4c716723a957a223dec41}\label{bestcomm__api_8h_a88a5206e2df4c716723a957a223dec41}} 
+\index{bestcomm\_api.h@{bestcomm\_api.h}!TaskErr\_t@{TaskErr\_t}}
+\index{TaskErr\_t@{TaskErr\_t}!bestcomm\_api.h@{bestcomm\_api.h}}
+\subsubsection{\texorpdfstring{TaskErr\_t}{TaskErr\_t}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{bestcomm__api_8h_a88a5206e2df4c716723a957a223dec41}{Task\+Err\+\_\+t}}}
+
+
+
+A\+PI error codes. 
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{TASK\_ERR\_NO\_ERR@{TASK\_ERR\_NO\_ERR}!bestcomm\_api.h@{bestcomm\_api.h}}\index{bestcomm\_api.h@{bestcomm\_api.h}!TASK\_ERR\_NO\_ERR@{TASK\_ERR\_NO\_ERR}}}\mbox{\Hypertarget{bestcomm__api_8h_a88a5206e2df4c716723a957a223dec41a0aea041a904c1ff90e0a82b4647a9355}\label{bestcomm__api_8h_a88a5206e2df4c716723a957a223dec41a0aea041a904c1ff90e0a82b4647a9355}} 
+T\+A\+S\+K\+\_\+\+E\+R\+R\+\_\+\+N\+O\+\_\+\+E\+RR&No error \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{TASK\_ERR\_NO\_INTR@{TASK\_ERR\_NO\_INTR}!bestcomm\_api.h@{bestcomm\_api.h}}\index{bestcomm\_api.h@{bestcomm\_api.h}!TASK\_ERR\_NO\_INTR@{TASK\_ERR\_NO\_INTR}}}\mbox{\Hypertarget{bestcomm__api_8h_a88a5206e2df4c716723a957a223dec41ae83253c577c0995303e57d8943048d34}\label{bestcomm__api_8h_a88a5206e2df4c716723a957a223dec41ae83253c577c0995303e57d8943048d34}} 
+T\+A\+S\+K\+\_\+\+E\+R\+R\+\_\+\+N\+O\+\_\+\+I\+N\+TR&No interrupt \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{TASK\_ERR\_INVALID\_ARG@{TASK\_ERR\_INVALID\_ARG}!bestcomm\_api.h@{bestcomm\_api.h}}\index{bestcomm\_api.h@{bestcomm\_api.h}!TASK\_ERR\_INVALID\_ARG@{TASK\_ERR\_INVALID\_ARG}}}\mbox{\Hypertarget{bestcomm__api_8h_a88a5206e2df4c716723a957a223dec41a536e2b674d9165e844391cc23e337d25}\label{bestcomm__api_8h_a88a5206e2df4c716723a957a223dec41a536e2b674d9165e844391cc23e337d25}} 
+T\+A\+S\+K\+\_\+\+E\+R\+R\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+A\+RG&Invalid function argument \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{TASK\_ERR\_BD\_RING\_FULL@{TASK\_ERR\_BD\_RING\_FULL}!bestcomm\_api.h@{bestcomm\_api.h}}\index{bestcomm\_api.h@{bestcomm\_api.h}!TASK\_ERR\_BD\_RING\_FULL@{TASK\_ERR\_BD\_RING\_FULL}}}\mbox{\Hypertarget{bestcomm__api_8h_a88a5206e2df4c716723a957a223dec41a3f5dc51ede27d348f6ccb62db1ffc704}\label{bestcomm__api_8h_a88a5206e2df4c716723a957a223dec41a3f5dc51ede27d348f6ccb62db1ffc704}} 
+T\+A\+S\+K\+\_\+\+E\+R\+R\+\_\+\+B\+D\+\_\+\+R\+I\+N\+G\+\_\+\+F\+U\+LL&Buffer descriptor ring full \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{TASK\_ERR\_API\_ALREADY\_INITIALIZED@{TASK\_ERR\_API\_ALREADY\_INITIALIZED}!bestcomm\_api.h@{bestcomm\_api.h}}\index{bestcomm\_api.h@{bestcomm\_api.h}!TASK\_ERR\_API\_ALREADY\_INITIALIZED@{TASK\_ERR\_API\_ALREADY\_INITIALIZED}}}\mbox{\Hypertarget{bestcomm__api_8h_a88a5206e2df4c716723a957a223dec41a1e8da990d0bbf1e80623c0a28c51959d}\label{bestcomm__api_8h_a88a5206e2df4c716723a957a223dec41a1e8da990d0bbf1e80623c0a28c51959d}} 
+T\+A\+S\+K\+\_\+\+E\+R\+R\+\_\+\+A\+P\+I\+\_\+\+A\+L\+R\+E\+A\+D\+Y\+\_\+\+I\+N\+I\+T\+I\+A\+L\+I\+Z\+ED&A\+PI has already been initialized \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{TASK\_ERR\_SIZE\_TOO\_LARGE@{TASK\_ERR\_SIZE\_TOO\_LARGE}!bestcomm\_api.h@{bestcomm\_api.h}}\index{bestcomm\_api.h@{bestcomm\_api.h}!TASK\_ERR\_SIZE\_TOO\_LARGE@{TASK\_ERR\_SIZE\_TOO\_LARGE}}}\mbox{\Hypertarget{bestcomm__api_8h_a88a5206e2df4c716723a957a223dec41adc682ce812f1af42b3e675c96544e7f0}\label{bestcomm__api_8h_a88a5206e2df4c716723a957a223dec41adc682ce812f1af42b3e675c96544e7f0}} 
+T\+A\+S\+K\+\_\+\+E\+R\+R\+\_\+\+S\+I\+Z\+E\+\_\+\+T\+O\+O\+\_\+\+L\+A\+R\+GE&Buffer descriptor cannot support size parameter \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{TASK\_ERR\_BD\_RING\_EMPTY@{TASK\_ERR\_BD\_RING\_EMPTY}!bestcomm\_api.h@{bestcomm\_api.h}}\index{bestcomm\_api.h@{bestcomm\_api.h}!TASK\_ERR\_BD\_RING\_EMPTY@{TASK\_ERR\_BD\_RING\_EMPTY}}}\mbox{\Hypertarget{bestcomm__api_8h_a88a5206e2df4c716723a957a223dec41ae9a4330979631d836f9a97a5b9b03300}\label{bestcomm__api_8h_a88a5206e2df4c716723a957a223dec41ae9a4330979631d836f9a97a5b9b03300}} 
+T\+A\+S\+K\+\_\+\+E\+R\+R\+\_\+\+B\+D\+\_\+\+R\+I\+N\+G\+\_\+\+E\+M\+P\+TY&Buffer descriptor ring is empty \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{TASK\_ERR\_BD\_BUSY@{TASK\_ERR\_BD\_BUSY}!bestcomm\_api.h@{bestcomm\_api.h}}\index{bestcomm\_api.h@{bestcomm\_api.h}!TASK\_ERR\_BD\_BUSY@{TASK\_ERR\_BD\_BUSY}}}\mbox{\Hypertarget{bestcomm__api_8h_a88a5206e2df4c716723a957a223dec41a0d2648affa028b96540fa218dd3b9d32}\label{bestcomm__api_8h_a88a5206e2df4c716723a957a223dec41a0d2648affa028b96540fa218dd3b9d32}} 
+T\+A\+S\+K\+\_\+\+E\+R\+R\+\_\+\+B\+D\+\_\+\+B\+U\+SY&The buffer descriptor is in use by the Best\+Comm \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{TASK\_ERR\_TASK\_RUNNING@{TASK\_ERR\_TASK\_RUNNING}!bestcomm\_api.h@{bestcomm\_api.h}}\index{bestcomm\_api.h@{bestcomm\_api.h}!TASK\_ERR\_TASK\_RUNNING@{TASK\_ERR\_TASK\_RUNNING}}}\mbox{\Hypertarget{bestcomm__api_8h_a88a5206e2df4c716723a957a223dec41a84dd62c2fe6d051b7ad43e4037bc98c1}\label{bestcomm__api_8h_a88a5206e2df4c716723a957a223dec41a84dd62c2fe6d051b7ad43e4037bc98c1}} 
+T\+A\+S\+K\+\_\+\+E\+R\+R\+\_\+\+T\+A\+S\+K\+\_\+\+R\+U\+N\+N\+I\+NG&The task is running. \\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{bestcomm__api_8h_a4117e7e78d83c86e3430384f56004629}\label{bestcomm__api_8h_a4117e7e78d83c86e3430384f56004629}} 
+\index{bestcomm\_api.h@{bestcomm\_api.h}!TaskBDAssign@{TaskBDAssign}}
+\index{TaskBDAssign@{TaskBDAssign}!bestcomm\_api.h@{bestcomm\_api.h}}
+\subsubsection{\texorpdfstring{TaskBDAssign()}{TaskBDAssign()}}
+{\footnotesize\ttfamily B\+D\+Idx Task\+B\+D\+Assign (\begin{DoxyParamCaption}\item[{Task\+Id}]{task\+Id,  }\item[{void $\ast$}]{buffer0,  }\item[{void $\ast$}]{buffer1,  }\item[{int}]{size,  }\item[{uint32}]{bd\+Flags }\end{DoxyParamCaption})}
+
+
+
+Assign a buffer to a buffer descriptor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em task\+Id} & Task handle passed back from a successful Task\+Setup() \\
+\hline
+{\em buffer0} & A buffer to send data from or receive data into a device \\
+\hline
+{\em buffer1} & A second buffer to send data from or receive data into a device for use with double-\/buffer tasks. \\
+\hline
+{\em size} & Size of the buffer in bytes. \\
+\hline
+{\em bd\+Flags} & Buffer descriptor flags to set. Used by ethernet BD tasks. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Handle to the buffer descriptor used by this D\+MA transfer. Error is indicated by a negative return value (see Task\+Err\+\_\+t).
+\end{DoxyReturn}
+This function is used for both transmit and receive buffer descriptor tasks. The buffer may be freed by the \mbox{\hyperlink{bestcomm__api_8c_adaf12022da391fada14f3a5621da86a3}{Task\+B\+D\+Release()}} function. In the case of tasks with a buffer descriptor with two buffer pointers this function uses both buffer0 and buffer1 where buffer0 is a source and buffer1 is a destination. When the buffer descriptor is a single pointer type, the buffer0 is the only pointer used and buffer1 is ignored.
+
+Using this function on non-\/buffer descriptor tasks will produce unpredictable results. \mbox{\Hypertarget{bestcomm__api_8h_adaf12022da391fada14f3a5621da86a3}\label{bestcomm__api_8h_adaf12022da391fada14f3a5621da86a3}} 
+\index{bestcomm\_api.h@{bestcomm\_api.h}!TaskBDRelease@{TaskBDRelease}}
+\index{TaskBDRelease@{TaskBDRelease}!bestcomm\_api.h@{bestcomm\_api.h}}
+\subsubsection{\texorpdfstring{TaskBDRelease()}{TaskBDRelease()}}
+{\footnotesize\ttfamily B\+D\+Idx Task\+B\+D\+Release (\begin{DoxyParamCaption}\item[{Task\+Id}]{task\+Id }\end{DoxyParamCaption})}
+
+
+
+Release last buffer in the buffer descriptor ring. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em task\+Id} & Task handle passed back from a successful Task\+Setup()\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Buffer descriptor index of next buffer index that will be released by another call of this function. T\+A\+S\+K\+\_\+\+E\+R\+R\+\_\+\+B\+D\+\_\+\+R\+I\+N\+G\+\_\+\+E\+M\+P\+TY is returned if the ring is already empty.
+\end{DoxyReturn}
+This function allows the system to reallocate the memory used by the buffer. It also cleans up the structure in the BD ring by removing the tail buffer in the ring. The buffer descriptor tasks are designed around this. Non-\/\+BD tasks do not use this function.
+
+Using this function on non-\/buffer descriptor tasks will produce unpredictable results. \mbox{\Hypertarget{bestcomm__api_8h_a3d74620a816775576cfa503865033827}\label{bestcomm__api_8h_a3d74620a816775576cfa503865033827}} 
+\index{bestcomm\_api.h@{bestcomm\_api.h}!TaskBDReset@{TaskBDReset}}
+\index{TaskBDReset@{TaskBDReset}!bestcomm\_api.h@{bestcomm\_api.h}}
+\subsubsection{\texorpdfstring{TaskBDReset()}{TaskBDReset()}}
+{\footnotesize\ttfamily B\+D\+Idx Task\+B\+D\+Reset (\begin{DoxyParamCaption}\item[{Task\+Id}]{task\+Id }\end{DoxyParamCaption})}
+
+
+
+Release all buffers. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em task\+Id} & Task handle passed back from a successful Task\+Setup()\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Buffer descriptor index of next buffer that will be assigned by \mbox{\hyperlink{bestcomm__api_8c_a4117e7e78d83c86e3430384f56004629}{Task\+B\+D\+Assign()}} which will also be the first released by the next call to \mbox{\hyperlink{bestcomm__api_8c_adaf12022da391fada14f3a5621da86a3}{Task\+B\+D\+Release()}} or T\+A\+S\+K\+\_\+\+E\+R\+R\+\_\+\+T\+A\+S\+K\+\_\+\+R\+U\+N\+N\+I\+NG if the task has not been stopped.
+\end{DoxyReturn}
+This function is similar to \mbox{\hyperlink{bestcomm__api_8c_adaf12022da391fada14f3a5621da86a3}{Task\+B\+D\+Release()}} except that it releases all assigned buffers including those not yet processed by the Best\+Comm task; i.\+e. S\+D\+M\+A\+\_\+\+B\+D\+\_\+\+M\+A\+S\+K\+\_\+\+R\+E\+A\+DY is set. Non-\/\+BD tasks do not use this function.
+
+The task should not be running. Call \mbox{\hyperlink{bestcomm__api_8c_a50a0e8468075caefc2c8594375e095fd}{Task\+Stop()}} first.
+
+{\itshape Note\+:} Partially transmitted buffers are up to the user to handle.
+
+Using this function on non-\/buffer descriptor tasks will produce unpredictable results. \mbox{\Hypertarget{bestcomm__api_8h_a455957c637fde5586390764bbc17cbfd}\label{bestcomm__api_8h_a455957c637fde5586390764bbc17cbfd}} 
+\index{bestcomm\_api.h@{bestcomm\_api.h}!TaskDebug@{TaskDebug}}
+\index{TaskDebug@{TaskDebug}!bestcomm\_api.h@{bestcomm\_api.h}}
+\subsubsection{\texorpdfstring{TaskDebug()}{TaskDebug()}}
+{\footnotesize\ttfamily int Task\+Debug (\begin{DoxyParamCaption}\item[{Task\+Id}]{task\+Id,  }\item[{\mbox{\hyperlink{structTaskDebugParamSet__t}{Task\+Debug\+Param\+Set\+\_\+t}} $\ast$}]{param\+Set }\end{DoxyParamCaption})}
+
+
+
+Return Best\+Comm debug information. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em task\+Id} & Task handle passed back from a successful Task\+Setup() \\
+\hline
+{\em param\+Set} & T\+BD \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+T\+BD
+\end{DoxyReturn}
+The implementation of this function is yet to be determined. \mbox{\Hypertarget{bestcomm__api_8h_af0debe7b5957175c27dd80de6359d264}\label{bestcomm__api_8h_af0debe7b5957175c27dd80de6359d264}} 
+\index{bestcomm\_api.h@{bestcomm\_api.h}!TasksAttachImage@{TasksAttachImage}}
+\index{TasksAttachImage@{TasksAttachImage}!bestcomm\_api.h@{bestcomm\_api.h}}
+\subsubsection{\texorpdfstring{TasksAttachImage()}{TasksAttachImage()}}
+{\footnotesize\ttfamily int Tasks\+Attach\+Image (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structsdma__register__set}{sdma\+\_\+regs}} $\ast$}]{sdma }\end{DoxyParamCaption})}
+
+
+
+{\itshape Deprecated} 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sdma} & Base address of the Best\+Comm register set\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+T\+A\+S\+K\+\_\+\+E\+R\+R\+\_\+\+N\+O\+\_\+\+E\+RR
+\end{DoxyReturn}
+Use of this function is no longer necessary. It is retained for compatibility with previous versions of the A\+PI. \mbox{\Hypertarget{bestcomm__api_8h_ae914efa36122a772ac8ad8848ec0812a}\label{bestcomm__api_8h_ae914efa36122a772ac8ad8848ec0812a}} 
+\index{bestcomm\_api.h@{bestcomm\_api.h}!TasksInitAPI@{TasksInitAPI}}
+\index{TasksInitAPI@{TasksInitAPI}!bestcomm\_api.h@{bestcomm\_api.h}}
+\subsubsection{\texorpdfstring{TasksInitAPI()}{TasksInitAPI()}}
+{\footnotesize\ttfamily int Tasks\+Init\+A\+PI (\begin{DoxyParamCaption}\item[{uint8 $\ast$}]{M\+Bar\+Ref }\end{DoxyParamCaption})}
+
+
+
+Initialize the A\+PI. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em M\+Bar\+Ref} & Reference pointer to the device register memory map.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+T\+A\+S\+K\+\_\+\+E\+R\+R\+\_\+\+N\+O\+\_\+\+E\+RR on successful initialization. or T\+A\+S\+K\+\_\+\+E\+R\+R\+\_\+\+A\+P\+I\+\_\+\+A\+L\+R\+E\+A\+D\+Y\+\_\+\+I\+N\+I\+T\+I\+A\+L\+I\+Z\+ED.
+\end{DoxyReturn}
+This function is only used with physical addresses.
+
+This function will also initialize A\+PI internal variables. The return value T\+A\+S\+K\+\_\+\+E\+R\+R\+\_\+\+A\+P\+I\+\_\+\+A\+L\+R\+E\+A\+D\+Y\+\_\+\+I\+N\+I\+T\+I\+A\+L\+I\+Z\+ED is intended to help determine if another process has already instantiated a version of the A\+PI. \mbox{\Hypertarget{bestcomm__api_8h_a218e71b4e0b0e6e1fdbda806bdf937f7}\label{bestcomm__api_8h_a218e71b4e0b0e6e1fdbda806bdf937f7}} 
+\index{bestcomm\_api.h@{bestcomm\_api.h}!TasksInitAPI\_VM@{TasksInitAPI\_VM}}
+\index{TasksInitAPI\_VM@{TasksInitAPI\_VM}!bestcomm\_api.h@{bestcomm\_api.h}}
+\subsubsection{\texorpdfstring{TasksInitAPI\_VM()}{TasksInitAPI\_VM()}}
+{\footnotesize\ttfamily int Tasks\+Init\+A\+P\+I\+\_\+\+VM (\begin{DoxyParamCaption}\item[{uint8 $\ast$}]{M\+Bar\+Ref,  }\item[{uint8 $\ast$}]{M\+Bar\+Phys }\end{DoxyParamCaption})}
+
+
+
+Initialize the A\+PI when virtual memory is used. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em M\+Bar\+Ref} & Reference pointer to the device register memory map. \\
+\hline
+{\em M\+Bar\+Phys} & Actual physical location of M\+B\+AR device register memory map.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+T\+A\+S\+K\+\_\+\+E\+R\+R\+\_\+\+N\+O\+\_\+\+E\+RR on successful initialization. or T\+A\+S\+K\+\_\+\+E\+R\+R\+\_\+\+A\+P\+I\+\_\+\+A\+L\+R\+E\+A\+D\+Y\+\_\+\+I\+N\+I\+T\+I\+A\+L\+I\+Z\+ED.
+\end{DoxyReturn}
+This function allows using virtual memory addresses as well as physical addresses. All device registers are offset to the address supplied here, so the virtual memory space should include enough space for the entire register set of the device to include the S\+R\+AM space.
+
+This function will also initialize A\+PI internal variables. The return value T\+A\+S\+K\+\_\+\+E\+R\+R\+\_\+\+A\+P\+I\+\_\+\+A\+L\+R\+E\+A\+D\+Y\+\_\+\+I\+N\+I\+T\+I\+A\+L\+I\+Z\+ED is intended to help determine if another process has already instantiated a version of the A\+PI. \mbox{\Hypertarget{bestcomm__api_8h_a62dc500dc177e7beb3ea18bd488f08bd}\label{bestcomm__api_8h_a62dc500dc177e7beb3ea18bd488f08bd}} 
+\index{bestcomm\_api.h@{bestcomm\_api.h}!TasksLoadImage@{TasksLoadImage}}
+\index{TasksLoadImage@{TasksLoadImage}!bestcomm\_api.h@{bestcomm\_api.h}}
+\subsubsection{\texorpdfstring{TasksLoadImage()}{TasksLoadImage()}}
+{\footnotesize\ttfamily void Tasks\+Load\+Image (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structsdma__register__set}{sdma\+\_\+regs}} $\ast$}]{sdma }\end{DoxyParamCaption})}
+
+
+
+Load Best\+Comm tasks into S\+R\+AM. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sdma} & Base address of the Best\+Comm register set\\
+\hline
+\end{DoxyParams}
+The Best\+Comm tasks must be loaded before any task can be setup, enabled, etc. This might be called as part of a boot sequence before any Best\+Comm drivers are required. \mbox{\Hypertarget{bestcomm__api_8h_a2b48145c6c0418944c8226075ba97e7a}\label{bestcomm__api_8h_a2b48145c6c0418944c8226075ba97e7a}} 
+\index{bestcomm\_api.h@{bestcomm\_api.h}!TaskStart@{TaskStart}}
+\index{TaskStart@{TaskStart}!bestcomm\_api.h@{bestcomm\_api.h}}
+\subsubsection{\texorpdfstring{TaskStart()}{TaskStart()}}
+{\footnotesize\ttfamily int Task\+Start (\begin{DoxyParamCaption}\item[{Task\+Id}]{task\+Id,  }\item[{uint32}]{auto\+Start\+Enable,  }\item[{Task\+Id}]{auto\+Start\+Task,  }\item[{uint32}]{intr\+Enable }\end{DoxyParamCaption})}
+
+
+
+Start an initialized task running. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em task\+Id} & Task handle passed back from a successful Task\+Setup() \\
+\hline
+{\em auto\+Start\+Enable} & Boolean for whether autostart bit is enabled. If this is set then the parameter auto\+Start\+Task defines the task to auto start. \\
+\hline
+{\em auto\+Start\+Task} & Task\+Id for task to autostart. If auto\+Start\+Enable is not set then this parameter is a don\textquotesingle{}t care. \\
+\hline
+{\em intr\+Enable} & Boolean for interrupt enable for this task. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+T\+A\+S\+K\+\_\+\+E\+R\+R\+\_\+\+N\+O\+\_\+\+E\+RR on success or T\+A\+S\+K\+\_\+\+E\+R\+R\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+A\+RG if task\+Id is invalid. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{bestcomm__api_8h_a50a0e8468075caefc2c8594375e095fd}\label{bestcomm__api_8h_a50a0e8468075caefc2c8594375e095fd}} 
+\index{bestcomm\_api.h@{bestcomm\_api.h}!TaskStop@{TaskStop}}
+\index{TaskStop@{TaskStop}!bestcomm\_api.h@{bestcomm\_api.h}}
+\subsubsection{\texorpdfstring{TaskStop()}{TaskStop()}}
+{\footnotesize\ttfamily int Task\+Stop (\begin{DoxyParamCaption}\item[{Task\+Id}]{task\+Id }\end{DoxyParamCaption})}
+
+
+
+Stop a running task. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em task\+Id} & Task handle passed back from a successful Task\+Setup() \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+T\+A\+S\+K\+\_\+\+E\+R\+R\+\_\+\+N\+O\+\_\+\+E\+RR on success or T\+A\+S\+K\+\_\+\+E\+R\+R\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+A\+RG if task\+Id is invalid.
+\end{DoxyReturn}
+{\itshape Note\+:} Stopping a polling buffer descriptor task is a catastrophic operation. It does not merely pause execution. Context is not saved. The task\textquotesingle{}s pointer into the BD ring is reset back to the beginning.
+
+{\itshape Note\+:} This is not the case for the new \char`\"{}fall-\/through\char`\"{} BD tasks. They save the BD ring pointer across stop/start boundaries. The previous polling tasks are considered deprecated. \mbox{\Hypertarget{bestcomm__api_8h_a1fe2b4c534707dc2ffa76134dbdd18a6}\label{bestcomm__api_8h_a1fe2b4c534707dc2ffa76134dbdd18a6}} 
+\index{bestcomm\_api.h@{bestcomm\_api.h}!TaskVersion@{TaskVersion}}
+\index{TaskVersion@{TaskVersion}!bestcomm\_api.h@{bestcomm\_api.h}}
+\subsubsection{\texorpdfstring{TaskVersion()}{TaskVersion()}}
+{\footnotesize\ttfamily const char$\ast$ Task\+Version (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Get a string containing A\+PI version information. 
+
+\begin{DoxyReturn}{Returns}
+Pointer to the A\+PI version string 
+\end{DoxyReturn}

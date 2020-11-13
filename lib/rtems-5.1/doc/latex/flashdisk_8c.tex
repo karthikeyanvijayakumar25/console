@@ -1,0 +1,172 @@
+\hypertarget{flashdisk_8c}{}\section{cpukit/libblock/src/flashdisk.c File Reference}
+\label{flashdisk_8c}\index{cpukit/libblock/src/flashdisk.c@{cpukit/libblock/src/flashdisk.c}}
+
+
+Flash Disk Block Device Implementation.  
+
+
+{\ttfamily \#include $<$rtems.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/libio.\+h$>$}\newline
+{\ttfamily \#include $<$errno.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include $<$inttypes.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/blkdev.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/flashdisk.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/thread.\+h$>$}\newline
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structrtems__fdisk__page__desc}{rtems\+\_\+fdisk\+\_\+page\+\_\+desc}}
+\item 
+struct \mbox{\hyperlink{structrtems__fdisk__segment__ctl}{rtems\+\_\+fdisk\+\_\+segment\+\_\+ctl}}
+\item 
+struct \mbox{\hyperlink{structrtems__fdisk__segment__ctl__queue}{rtems\+\_\+fdisk\+\_\+segment\+\_\+ctl\+\_\+queue}}
+\item 
+struct \mbox{\hyperlink{structrtems__fdisk__device__ctl}{rtems\+\_\+fdisk\+\_\+device\+\_\+ctl}}
+\item 
+struct \mbox{\hyperlink{structrtems__fdisk__block__ctl}{rtems\+\_\+fdisk\+\_\+block\+\_\+ctl}}
+\item 
+struct \mbox{\hyperlink{structrtems__flashdisk}{rtems\+\_\+flashdisk}}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{flashdisk_8c_a190a37ed7542861775f2b48cb388db9c}{R\+T\+E\+M\+S\+\_\+\+F\+D\+I\+S\+K\+\_\+\+T\+R\+A\+CE}}~1
+\item 
+\#define \mbox{\hyperlink{flashdisk_8c_a59c966b7b2653ff3de26ffc29e62c9df}{R\+T\+E\+M\+S\+\_\+\+F\+D\+I\+S\+K\+\_\+\+P\+A\+G\+E\+\_\+\+A\+C\+T\+I\+VE}}~(1 $<$$<$ 0)
+\item 
+\#define \mbox{\hyperlink{flashdisk_8c_ac1a61276c1c67fb1962099c0fda0ffc6}{R\+T\+E\+M\+S\+\_\+\+F\+D\+I\+S\+K\+\_\+\+P\+A\+G\+E\+\_\+\+U\+S\+ED}}~(1 $<$$<$ 1)
+\item 
+\#define \mbox{\hyperlink{flashdisk_8c_a7c43fd177b9be6ac18b857f16ded0181}{rtems\+\_\+fdisk\+\_\+calc\+\_\+crc16}}(\+\_\+b,  \+\_\+c)~rtems\+\_\+fdisk\+\_\+crc16\+\_\+factor\mbox{[}((\+\_\+b) $^\wedge$ ((\+\_\+c) \& 0xff)) \& 0xff\mbox{]} $^\wedge$ (((\+\_\+c) $>$$>$ 8) \& 0xff)
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \mbox{\hyperlink{structrtems__fdisk__page__desc}{rtems\+\_\+fdisk\+\_\+page\+\_\+desc}} \mbox{\hyperlink{flashdisk_8c_ad5426c3ca9614ed541e80bca3d43366c}{rtems\+\_\+fdisk\+\_\+page\+\_\+desc}}
+\item 
+typedef struct \mbox{\hyperlink{structrtems__fdisk__segment__ctl}{rtems\+\_\+fdisk\+\_\+segment\+\_\+ctl}} \mbox{\hyperlink{flashdisk_8c_a517023ace16e10bb1253604a1995ad3d}{rtems\+\_\+fdisk\+\_\+segment\+\_\+ctl}}
+\item 
+typedef struct \mbox{\hyperlink{structrtems__fdisk__segment__ctl__queue}{rtems\+\_\+fdisk\+\_\+segment\+\_\+ctl\+\_\+queue}} \mbox{\hyperlink{flashdisk_8c_a4b1fbdb0044026964280c05d5c52d368}{rtems\+\_\+fdisk\+\_\+segment\+\_\+ctl\+\_\+queue}}
+\item 
+typedef struct \mbox{\hyperlink{structrtems__fdisk__device__ctl}{rtems\+\_\+fdisk\+\_\+device\+\_\+ctl}} \mbox{\hyperlink{flashdisk_8c_ae2ad4c235c19a40a91fc1d3cc1c3ec65}{rtems\+\_\+fdisk\+\_\+device\+\_\+ctl}}
+\item 
+typedef struct \mbox{\hyperlink{structrtems__fdisk__block__ctl}{rtems\+\_\+fdisk\+\_\+block\+\_\+ctl}} \mbox{\hyperlink{flashdisk_8c_a67e2703103de43d2899363842261f4b9}{rtems\+\_\+fdisk\+\_\+block\+\_\+ctl}}
+\item 
+typedef struct \mbox{\hyperlink{structrtems__flashdisk}{rtems\+\_\+flashdisk}} \mbox{\hyperlink{flashdisk_8c_a90ae529a5137fd3b84a01a8e150896cd}{rtems\+\_\+flashdisk}}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+device\+\_\+driver}} \mbox{\hyperlink{flashdisk_8c_a022ec64c159cca53eb0023002f06816b}{rtems\+\_\+fdisk\+\_\+initialize}} (rtems\+\_\+device\+\_\+major\+\_\+number major, rtems\+\_\+device\+\_\+minor\+\_\+number minor, void $\ast$arg \mbox{\hyperlink{group__RTEMSScoreBaseDefs_ga6794c0ff237a90e837e19f9bbcae4297}{R\+T\+E\+M\+S\+\_\+\+U\+N\+U\+S\+ED}})
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Flash Disk Block Device Implementation. 
+
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{flashdisk_8c_a7c43fd177b9be6ac18b857f16ded0181}\label{flashdisk_8c_a7c43fd177b9be6ac18b857f16ded0181}} 
+\index{flashdisk.c@{flashdisk.c}!rtems\_fdisk\_calc\_crc16@{rtems\_fdisk\_calc\_crc16}}
+\index{rtems\_fdisk\_calc\_crc16@{rtems\_fdisk\_calc\_crc16}!flashdisk.c@{flashdisk.c}}
+\subsubsection{\texorpdfstring{rtems\_fdisk\_calc\_crc16}{rtems\_fdisk\_calc\_crc16}}
+{\footnotesize\ttfamily \#define rtems\+\_\+fdisk\+\_\+calc\+\_\+crc16(\begin{DoxyParamCaption}\item[{}]{\+\_\+b,  }\item[{}]{\+\_\+c }\end{DoxyParamCaption})~rtems\+\_\+fdisk\+\_\+crc16\+\_\+factor\mbox{[}((\+\_\+b) $^\wedge$ ((\+\_\+c) \& 0xff)) \& 0xff\mbox{]} $^\wedge$ (((\+\_\+c) $>$$>$ 8) \& 0xff)}
+
+Calculate the C\+R\+C16 checksum.
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+b} & The byte to checksum. \\
+\hline
+{\em \+\_\+c} & The current checksum. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{flashdisk_8c_a59c966b7b2653ff3de26ffc29e62c9df}\label{flashdisk_8c_a59c966b7b2653ff3de26ffc29e62c9df}} 
+\index{flashdisk.c@{flashdisk.c}!RTEMS\_FDISK\_PAGE\_ACTIVE@{RTEMS\_FDISK\_PAGE\_ACTIVE}}
+\index{RTEMS\_FDISK\_PAGE\_ACTIVE@{RTEMS\_FDISK\_PAGE\_ACTIVE}!flashdisk.c@{flashdisk.c}}
+\subsubsection{\texorpdfstring{RTEMS\_FDISK\_PAGE\_ACTIVE}{RTEMS\_FDISK\_PAGE\_ACTIVE}}
+{\footnotesize\ttfamily \#define R\+T\+E\+M\+S\+\_\+\+F\+D\+I\+S\+K\+\_\+\+P\+A\+G\+E\+\_\+\+A\+C\+T\+I\+VE~(1 $<$$<$ 0)}
+
+Flag the page as active. \mbox{\Hypertarget{flashdisk_8c_ac1a61276c1c67fb1962099c0fda0ffc6}\label{flashdisk_8c_ac1a61276c1c67fb1962099c0fda0ffc6}} 
+\index{flashdisk.c@{flashdisk.c}!RTEMS\_FDISK\_PAGE\_USED@{RTEMS\_FDISK\_PAGE\_USED}}
+\index{RTEMS\_FDISK\_PAGE\_USED@{RTEMS\_FDISK\_PAGE\_USED}!flashdisk.c@{flashdisk.c}}
+\subsubsection{\texorpdfstring{RTEMS\_FDISK\_PAGE\_USED}{RTEMS\_FDISK\_PAGE\_USED}}
+{\footnotesize\ttfamily \#define R\+T\+E\+M\+S\+\_\+\+F\+D\+I\+S\+K\+\_\+\+P\+A\+G\+E\+\_\+\+U\+S\+ED~(1 $<$$<$ 1)}
+
+Flag the page as used. \mbox{\Hypertarget{flashdisk_8c_a190a37ed7542861775f2b48cb388db9c}\label{flashdisk_8c_a190a37ed7542861775f2b48cb388db9c}} 
+\index{flashdisk.c@{flashdisk.c}!RTEMS\_FDISK\_TRACE@{RTEMS\_FDISK\_TRACE}}
+\index{RTEMS\_FDISK\_TRACE@{RTEMS\_FDISK\_TRACE}!flashdisk.c@{flashdisk.c}}
+\subsubsection{\texorpdfstring{RTEMS\_FDISK\_TRACE}{RTEMS\_FDISK\_TRACE}}
+{\footnotesize\ttfamily \#define R\+T\+E\+M\+S\+\_\+\+F\+D\+I\+S\+K\+\_\+\+T\+R\+A\+CE~1}
+
+Control tracing. It can be compiled out of the code for small footprint targets. Leave in by default. 
+
+\subsection{Typedef Documentation}
+\mbox{\Hypertarget{flashdisk_8c_a67e2703103de43d2899363842261f4b9}\label{flashdisk_8c_a67e2703103de43d2899363842261f4b9}} 
+\index{flashdisk.c@{flashdisk.c}!rtems\_fdisk\_block\_ctl@{rtems\_fdisk\_block\_ctl}}
+\index{rtems\_fdisk\_block\_ctl@{rtems\_fdisk\_block\_ctl}!flashdisk.c@{flashdisk.c}}
+\subsubsection{\texorpdfstring{rtems\_fdisk\_block\_ctl}{rtems\_fdisk\_block\_ctl}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structrtems__fdisk__block__ctl}{rtems\+\_\+fdisk\+\_\+block\+\_\+ctl}}  \mbox{\hyperlink{structrtems__fdisk__block__ctl}{rtems\+\_\+fdisk\+\_\+block\+\_\+ctl}}}
+
+The Block control holds the segment and page with the data. \mbox{\Hypertarget{flashdisk_8c_ae2ad4c235c19a40a91fc1d3cc1c3ec65}\label{flashdisk_8c_ae2ad4c235c19a40a91fc1d3cc1c3ec65}} 
+\index{flashdisk.c@{flashdisk.c}!rtems\_fdisk\_device\_ctl@{rtems\_fdisk\_device\_ctl}}
+\index{rtems\_fdisk\_device\_ctl@{rtems\_fdisk\_device\_ctl}!flashdisk.c@{flashdisk.c}}
+\subsubsection{\texorpdfstring{rtems\_fdisk\_device\_ctl}{rtems\_fdisk\_device\_ctl}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structrtems__fdisk__device__ctl}{rtems\+\_\+fdisk\+\_\+device\+\_\+ctl}}  \mbox{\hyperlink{structrtems__fdisk__device__ctl}{rtems\+\_\+fdisk\+\_\+device\+\_\+ctl}}}
+
+Flash Device Control holds the segment controls \mbox{\Hypertarget{flashdisk_8c_ad5426c3ca9614ed541e80bca3d43366c}\label{flashdisk_8c_ad5426c3ca9614ed541e80bca3d43366c}} 
+\index{flashdisk.c@{flashdisk.c}!rtems\_fdisk\_page\_desc@{rtems\_fdisk\_page\_desc}}
+\index{rtems\_fdisk\_page\_desc@{rtems\_fdisk\_page\_desc}!flashdisk.c@{flashdisk.c}}
+\subsubsection{\texorpdfstring{rtems\_fdisk\_page\_desc}{rtems\_fdisk\_page\_desc}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structrtems__fdisk__page__desc}{rtems\+\_\+fdisk\+\_\+page\+\_\+desc}}  \mbox{\hyperlink{structrtems__fdisk__page__desc}{rtems\+\_\+fdisk\+\_\+page\+\_\+desc}}}
+
+The start of a segment has a segment control table. This hold the C\+RC and block number for the page.
+
+\begin{DoxyRefDesc}{Todo}
+\item[\mbox{\hyperlink{todo__todo000009}{Todo}}]A sequence number for the block could be added. This would mean a larger descriptor size. Need to make the sequence large like 20+ bits so a large file system would not have more blocks available than the sequence number. \end{DoxyRefDesc}
+\mbox{\Hypertarget{flashdisk_8c_a517023ace16e10bb1253604a1995ad3d}\label{flashdisk_8c_a517023ace16e10bb1253604a1995ad3d}} 
+\index{flashdisk.c@{flashdisk.c}!rtems\_fdisk\_segment\_ctl@{rtems\_fdisk\_segment\_ctl}}
+\index{rtems\_fdisk\_segment\_ctl@{rtems\_fdisk\_segment\_ctl}!flashdisk.c@{flashdisk.c}}
+\subsubsection{\texorpdfstring{rtems\_fdisk\_segment\_ctl}{rtems\_fdisk\_segment\_ctl}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structrtems__fdisk__segment__ctl}{rtems\+\_\+fdisk\+\_\+segment\+\_\+ctl}}  \mbox{\hyperlink{structrtems__fdisk__segment__ctl}{rtems\+\_\+fdisk\+\_\+segment\+\_\+ctl}}}
+
+Flash Segment Control holds the pointer to the segment, number of pages, various page stats and the memory copy of the page descriptors. \mbox{\Hypertarget{flashdisk_8c_a4b1fbdb0044026964280c05d5c52d368}\label{flashdisk_8c_a4b1fbdb0044026964280c05d5c52d368}} 
+\index{flashdisk.c@{flashdisk.c}!rtems\_fdisk\_segment\_ctl\_queue@{rtems\_fdisk\_segment\_ctl\_queue}}
+\index{rtems\_fdisk\_segment\_ctl\_queue@{rtems\_fdisk\_segment\_ctl\_queue}!flashdisk.c@{flashdisk.c}}
+\subsubsection{\texorpdfstring{rtems\_fdisk\_segment\_ctl\_queue}{rtems\_fdisk\_segment\_ctl\_queue}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structrtems__fdisk__segment__ctl__queue}{rtems\+\_\+fdisk\+\_\+segment\+\_\+ctl\+\_\+queue}}  \mbox{\hyperlink{structrtems__fdisk__segment__ctl__queue}{rtems\+\_\+fdisk\+\_\+segment\+\_\+ctl\+\_\+queue}}}
+
+Segment control table queue. \mbox{\Hypertarget{flashdisk_8c_a90ae529a5137fd3b84a01a8e150896cd}\label{flashdisk_8c_a90ae529a5137fd3b84a01a8e150896cd}} 
+\index{flashdisk.c@{flashdisk.c}!rtems\_flashdisk@{rtems\_flashdisk}}
+\index{rtems\_flashdisk@{rtems\_flashdisk}!flashdisk.c@{flashdisk.c}}
+\subsubsection{\texorpdfstring{rtems\_flashdisk}{rtems\_flashdisk}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structrtems__flashdisk}{rtems\+\_\+flashdisk}}  \mbox{\hyperlink{structrtems__flashdisk}{rtems\+\_\+flashdisk}}}
+
+The virtual block table holds the mapping for blocks as seen by the disk drivers to the device, segment and page numbers of the physical device. 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{flashdisk_8c_a022ec64c159cca53eb0023002f06816b}\label{flashdisk_8c_a022ec64c159cca53eb0023002f06816b}} 
+\index{flashdisk.c@{flashdisk.c}!rtems\_fdisk\_initialize@{rtems\_fdisk\_initialize}}
+\index{rtems\_fdisk\_initialize@{rtems\_fdisk\_initialize}!flashdisk.c@{flashdisk.c}}
+\subsubsection{\texorpdfstring{rtems\_fdisk\_initialize()}{rtems\_fdisk\_initialize()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+device\+\_\+driver}} rtems\+\_\+fdisk\+\_\+initialize (\begin{DoxyParamCaption}\item[{rtems\+\_\+device\+\_\+major\+\_\+number}]{major,  }\item[{rtems\+\_\+device\+\_\+minor\+\_\+number}]{minor,  }\item[{void $\ast$arg}]{R\+T\+E\+M\+S\+\_\+\+U\+N\+U\+S\+ED }\end{DoxyParamCaption})}
+
+Flash disk device driver initialization.
+
+\begin{DoxyRefDesc}{Todo}
+\item[\mbox{\hyperlink{todo__todo000012}{Todo}}]Memory clean up on error is really badly handled.\end{DoxyRefDesc}
+
+
+
+\begin{DoxyParams}{Parameters}
+{\em major} & Flash disk major device number. \\
+\hline
+{\em minor} & Minor device number, not applicable. \\
+\hline
+{\em arg} & Initialization argument, not applicable. \\
+\hline
+\end{DoxyParams}

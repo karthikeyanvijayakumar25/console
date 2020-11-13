@@ -1,0 +1,265 @@
+\hypertarget{arm_2include_2uart_8h}{}\section{bsps/arm/include/uart.h File Reference}
+\label{arm_2include_2uart_8h}\index{bsps/arm/include/uart.h@{bsps/arm/include/uart.h}}
+
+
+U\+A\+RT Support.  
+
+
+{\ttfamily \#include $<$rtems/bsp\+Io.\+h$>$}\newline
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{arm_2include_2uart_8h_a8142ba6d8f45432b262dcf99175cd6fa}\label{arm_2include_2uart_8h_a8142ba6d8f45432b262dcf99175cd6fa}} 
+\#define {\bfseries B\+S\+P\+\_\+\+U\+A\+R\+T\+\_\+\+I\+N\+T\+R\+\_\+\+C\+T\+R\+L\+\_\+\+D\+I\+S\+A\+B\+LE}~(0)
+\item 
+\mbox{\Hypertarget{arm_2include_2uart_8h_adb9bed084cf016296bd0fb2516aea4b0}\label{arm_2include_2uart_8h_adb9bed084cf016296bd0fb2516aea4b0}} 
+\#define {\bfseries B\+S\+P\+\_\+\+U\+A\+R\+T\+\_\+\+I\+N\+T\+R\+\_\+\+C\+T\+R\+L\+\_\+\+G\+DB}~(0xaa) /$\ast$ R\+X only $\ast$/
+\item 
+\mbox{\Hypertarget{arm_2include_2uart_8h_a110396dbcbd2e1a17bbf98bb8132a577}\label{arm_2include_2uart_8h_a110396dbcbd2e1a17bbf98bb8132a577}} 
+\#define {\bfseries B\+S\+P\+\_\+\+U\+A\+R\+T\+\_\+\+I\+N\+T\+R\+\_\+\+C\+T\+R\+L\+\_\+\+E\+N\+A\+B\+LE}~(0xbb) /$\ast$ Normal operations $\ast$/
+\item 
+\mbox{\Hypertarget{arm_2include_2uart_8h_a5bed54027da262e73f07daf1d850ec1e}\label{arm_2include_2uart_8h_a5bed54027da262e73f07daf1d850ec1e}} 
+\#define {\bfseries B\+S\+P\+\_\+\+U\+A\+R\+T\+\_\+\+I\+N\+T\+R\+\_\+\+C\+T\+R\+L\+\_\+\+T\+E\+R\+M\+I\+OS}~(0xcc) /$\ast$ R\+X \& line status $\ast$/
+\item 
+\mbox{\Hypertarget{arm_2include_2uart_8h_a57197a9e8404913bbbde4a23a78cbcff}\label{arm_2include_2uart_8h_a57197a9e8404913bbbde4a23a78cbcff}} 
+\#define {\bfseries B\+S\+P\+\_\+\+U\+A\+R\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+E\+R\+R\+OR}~(-\/1) /$\ast$ No character $\ast$/
+\item 
+\mbox{\Hypertarget{arm_2include_2uart_8h_aa5b911a12e47443cf6bf57469df1afc2}\label{arm_2include_2uart_8h_aa5b911a12e47443cf6bf57469df1afc2}} 
+\#define {\bfseries B\+S\+P\+\_\+\+U\+A\+R\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+N\+O\+C\+H\+AR}~(0)  /$\ast$ No character $\ast$/
+\item 
+\mbox{\Hypertarget{arm_2include_2uart_8h_a197291c1f4f6794281ff4faad267b2ea}\label{arm_2include_2uart_8h_a197291c1f4f6794281ff4faad267b2ea}} 
+\#define {\bfseries B\+S\+P\+\_\+\+U\+A\+R\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+H\+AR}~(1)  /$\ast$ Character present $\ast$/
+\item 
+\mbox{\Hypertarget{arm_2include_2uart_8h_a3091ac5c41f3ead06fedf39d5aae71d4}\label{arm_2include_2uart_8h_a3091ac5c41f3ead06fedf39d5aae71d4}} 
+\#define {\bfseries B\+S\+P\+\_\+\+U\+A\+R\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+B\+R\+E\+AK}~(2)  /$\ast$ Break point is detected $\ast$/
+\item 
+\mbox{\Hypertarget{arm_2include_2uart_8h_aa1561064cc8499388f7512347b434d25}\label{arm_2include_2uart_8h_aa1561064cc8499388f7512347b434d25}} 
+\#define {\bfseries B\+S\+P\+\_\+\+U\+A\+R\+T\+\_\+\+C\+O\+M1}~(0)
+\item 
+\mbox{\Hypertarget{arm_2include_2uart_8h_a11624236c7924ffdda07e5de85149b7f}\label{arm_2include_2uart_8h_a11624236c7924ffdda07e5de85149b7f}} 
+\#define {\bfseries B\+S\+P\+\_\+\+U\+A\+R\+T\+\_\+\+C\+O\+M2}~(1)
+\item 
+\mbox{\Hypertarget{arm_2include_2uart_8h_a91063596cfb46c8b8d7f6eb289dd448e}\label{arm_2include_2uart_8h_a91063596cfb46c8b8d7f6eb289dd448e}} 
+\#define {\bfseries C\+O\+M1\+\_\+\+B\+A\+S\+E\+\_\+\+IO}~0x3\+F8
+\item 
+\mbox{\Hypertarget{arm_2include_2uart_8h_a38105c391711071ff7e61fe54f1d83fd}\label{arm_2include_2uart_8h_a38105c391711071ff7e61fe54f1d83fd}} 
+\#define {\bfseries C\+O\+M2\+\_\+\+B\+A\+S\+E\+\_\+\+IO}~0x2\+F8
+\item 
+\mbox{\Hypertarget{arm_2include_2uart_8h_aa6f7e7a9f4551d6151f9d45362118a50}\label{arm_2include_2uart_8h_aa6f7e7a9f4551d6151f9d45362118a50}} 
+\#define {\bfseries R\+BR}~R\+S\+R\+BR   /$\ast$ Rx Buffer Register (\mbox{\hyperlink{libcsupport_2src_2read_8c_a26d4711c05afec4c7771c3d17b2db9e9}{read}}) $\ast$/
+\item 
+\mbox{\Hypertarget{arm_2include_2uart_8h_a5e9787adf3c9afcc4b781e85bb545b35}\label{arm_2include_2uart_8h_a5e9787adf3c9afcc4b781e85bb545b35}} 
+\#define {\bfseries T\+HR}~R\+S\+T\+HR   /$\ast$ Tx Buffer Register (\mbox{\hyperlink{libcsupport_2src_2write_8c_a448dd253ee4c0e3d3b1275df845e7146}{write}}) $\ast$/
+\item 
+\mbox{\Hypertarget{arm_2include_2uart_8h_a3e27fa35f9febccdc4a0c28a5c8cffbb}\label{arm_2include_2uart_8h_a3e27fa35f9febccdc4a0c28a5c8cffbb}} 
+\#define {\bfseries I\+ER}~R\+S\+I\+ER   /$\ast$ Interrupt Enable Register $\ast$/
+\item 
+\mbox{\Hypertarget{arm_2include_2uart_8h_a67004975983f9c99226d63db17ba74c4}\label{arm_2include_2uart_8h_a67004975983f9c99226d63db17ba74c4}} 
+\#define {\bfseries I\+IR}~R\+S\+I\+IR   /$\ast$ Interrupt Ident Register (\mbox{\hyperlink{libcsupport_2src_2read_8c_a26d4711c05afec4c7771c3d17b2db9e9}{read}}) $\ast$/
+\item 
+\mbox{\Hypertarget{arm_2include_2uart_8h_a264b36b13386e3f62fe69e04711bc006}\label{arm_2include_2uart_8h_a264b36b13386e3f62fe69e04711bc006}} 
+\#define {\bfseries F\+CR}~R\+S\+F\+CR   /$\ast$ \mbox{\hyperlink{group__gumstix__dp8390_gaf6bc2702f6a1a4bb063b0726d90999da}{F\+I\+FO}} Control Register (\mbox{\hyperlink{libcsupport_2src_2write_8c_a448dd253ee4c0e3d3b1275df845e7146}{write}}) $\ast$/
+\item 
+\mbox{\Hypertarget{arm_2include_2uart_8h_a851cb396b6eaa97346364a772b439f37}\label{arm_2include_2uart_8h_a851cb396b6eaa97346364a772b439f37}} 
+\#define {\bfseries L\+CR}~R\+S\+L\+CR   /$\ast$ Line Control Register $\ast$/
+\item 
+\mbox{\Hypertarget{arm_2include_2uart_8h_ad51d51aee21f6cc77d4955221aee3dcb}\label{arm_2include_2uart_8h_ad51d51aee21f6cc77d4955221aee3dcb}} 
+\#define {\bfseries L\+SR}~R\+S\+L\+SR   /$\ast$ Line Status Register $\ast$/
+\item 
+\mbox{\Hypertarget{arm_2include_2uart_8h_a4466639cd64ebf372a621168c5e25964}\label{arm_2include_2uart_8h_a4466639cd64ebf372a621168c5e25964}} 
+\#define {\bfseries D\+LL}~R\+S\+D\+LL   /$\ast$ Divisor Latch, L\+SB $\ast$/
+\item 
+\mbox{\Hypertarget{arm_2include_2uart_8h_a3b48b12dc65f62dd40ab1163fe7997fb}\label{arm_2include_2uart_8h_a3b48b12dc65f62dd40ab1163fe7997fb}} 
+\#define {\bfseries D\+LM}~R\+S\+D\+LH   /$\ast$ Divisor Latch, M\+SB $\ast$/
+\item 
+\mbox{\Hypertarget{arm_2include_2uart_8h_a6a4288add566c8d9c96f7cb0dc661c66}\label{arm_2include_2uart_8h_a6a4288add566c8d9c96f7cb0dc661c66}} 
+\#define {\bfseries C\+NT}~R\+S\+C\+NT   /$\ast$ General Control register $\ast$/
+\item 
+\mbox{\Hypertarget{arm_2include_2uart_8h_aaaf6c77e3b8fec12ad625225a08c4f28}\label{arm_2include_2uart_8h_aaaf6c77e3b8fec12ad625225a08c4f28}} 
+\#define {\bfseries U\+A\+R\+T\+\_\+\+E\+N\+A\+B\+LE}~1
+\item 
+\mbox{\Hypertarget{arm_2include_2uart_8h_adfdac1b04414710e93c3f3bd14785abd}\label{arm_2include_2uart_8h_adfdac1b04414710e93c3f3bd14785abd}} 
+\#define {\bfseries P\+A\+D\+\_\+\+E\+N\+A\+B\+LE}~2
+\item 
+\mbox{\Hypertarget{arm_2include_2uart_8h_a9907ccf60e27bd3974d68b86cdfae490}\label{arm_2include_2uart_8h_a9907ccf60e27bd3974d68b86cdfae490}} 
+\#define {\bfseries N\+O\+\_\+\+M\+O\+R\+E\+\_\+\+I\+N\+TR}~1
+\item 
+\mbox{\Hypertarget{arm_2include_2uart_8h_a9b83cbc1e17b98ad4b869f4d4c0bebe1}\label{arm_2include_2uart_8h_a9b83cbc1e17b98ad4b869f4d4c0bebe1}} 
+\#define {\bfseries T\+R\+A\+N\+S\+M\+I\+T\+T\+E\+R\+\_\+\+H\+O\+D\+I\+N\+G\+\_\+\+R\+E\+G\+I\+S\+T\+E\+R\+\_\+\+E\+M\+P\+TY}~2
+\item 
+\mbox{\Hypertarget{arm_2include_2uart_8h_ad942cfb782f8e704106272b5d24371ee}\label{arm_2include_2uart_8h_ad942cfb782f8e704106272b5d24371ee}} 
+\#define {\bfseries R\+E\+C\+E\+I\+V\+E\+R\+\_\+\+D\+A\+T\+A\+\_\+\+A\+V\+A\+IL}~4
+\item 
+\mbox{\Hypertarget{arm_2include_2uart_8h_a36580c4f4f6f9b989ba2f94d660f83f5}\label{arm_2include_2uart_8h_a36580c4f4f6f9b989ba2f94d660f83f5}} 
+\#define {\bfseries R\+E\+C\+E\+I\+V\+E\+R\+\_\+\+E\+R\+R\+OR}~6
+\item 
+\mbox{\Hypertarget{arm_2include_2uart_8h_a94569250a59ce73e6f6c64329c64aae5}\label{arm_2include_2uart_8h_a94569250a59ce73e6f6c64329c64aae5}} 
+\#define {\bfseries C\+H\+A\+R\+A\+C\+T\+E\+R\+\_\+\+T\+I\+M\+E\+O\+U\+T\+\_\+\+I\+N\+D\+I\+C\+A\+T\+I\+ON}~12
+\item 
+\mbox{\Hypertarget{arm_2include_2uart_8h_a66b1dc1805a0996158b7176e637c46ee}\label{arm_2include_2uart_8h_a66b1dc1805a0996158b7176e637c46ee}} 
+\#define {\bfseries R\+E\+C\+E\+I\+V\+E\+\_\+\+E\+N\+A\+B\+LE}~0x1
+\item 
+\mbox{\Hypertarget{arm_2include_2uart_8h_a1e87a828223641b158bfe69ad076cba4}\label{arm_2include_2uart_8h_a1e87a828223641b158bfe69ad076cba4}} 
+\#define {\bfseries T\+R\+A\+N\+S\+M\+I\+T\+\_\+\+E\+N\+A\+B\+LE}~0x2
+\item 
+\mbox{\Hypertarget{arm_2include_2uart_8h_a94ce03d0a2c32f7bf075578d490c0a23}\label{arm_2include_2uart_8h_a94ce03d0a2c32f7bf075578d490c0a23}} 
+\#define {\bfseries R\+E\+C\+E\+I\+V\+E\+R\+\_\+\+L\+I\+N\+E\+\_\+\+S\+T\+\_\+\+E\+N\+A\+B\+LE}~0x4
+\item 
+\mbox{\Hypertarget{arm_2include_2uart_8h_a658c3ad175b50000ac44b3b9ea836d1a}\label{arm_2include_2uart_8h_a658c3ad175b50000ac44b3b9ea836d1a}} 
+\#define {\bfseries I\+N\+T\+E\+R\+R\+U\+P\+T\+\_\+\+D\+I\+S\+A\+B\+LE}~0x0
+\item 
+\mbox{\Hypertarget{arm_2include_2uart_8h_a349dad5e520932e840e6f8fc806bd94d}\label{arm_2include_2uart_8h_a349dad5e520932e840e6f8fc806bd94d}} 
+\#define {\bfseries DR}~0x01	/$\ast$ Data Ready $\ast$/
+\item 
+\mbox{\Hypertarget{arm_2include_2uart_8h_a7122a6e5d75b5f8b7f00c7130df40407}\label{arm_2include_2uart_8h_a7122a6e5d75b5f8b7f00c7130df40407}} 
+\#define {\bfseries OE}~0x02	/$\ast$ Overrun Error $\ast$/
+\item 
+\mbox{\Hypertarget{arm_2include_2uart_8h_a211238ffe3627f42ca7b04bc96cc8fa6}\label{arm_2include_2uart_8h_a211238ffe3627f42ca7b04bc96cc8fa6}} 
+\#define {\bfseries PE}~0x04	/$\ast$ Parity Error $\ast$/
+\item 
+\mbox{\Hypertarget{arm_2include_2uart_8h_a6d5652ed4a74a5609858f0949a4c4565}\label{arm_2include_2uart_8h_a6d5652ed4a74a5609858f0949a4c4565}} 
+\#define {\bfseries FE}~0x08	/$\ast$ Framing Error $\ast$/
+\item 
+\mbox{\Hypertarget{arm_2include_2uart_8h_aa9ed1764c4b42e49f22c3a4f0f3b8244}\label{arm_2include_2uart_8h_aa9ed1764c4b42e49f22c3a4f0f3b8244}} 
+\#define {\bfseries BI}~0x10	/$\ast$ Break Interrupt $\ast$/
+\item 
+\mbox{\Hypertarget{arm_2include_2uart_8h_a4e33b18c49f007ef1310b71325a332a5}\label{arm_2include_2uart_8h_a4e33b18c49f007ef1310b71325a332a5}} 
+\#define {\bfseries T\+H\+RE}~0x20	/$\ast$ Transmitter Holding Register Empty $\ast$/
+\item 
+\mbox{\Hypertarget{arm_2include_2uart_8h_aeb9d7fbd5a3758e94acba22d266caa18}\label{arm_2include_2uart_8h_aeb9d7fbd5a3758e94acba22d266caa18}} 
+\#define {\bfseries T\+E\+MT}~0x40	/$\ast$ Transmitter Empty $\ast$/
+\item 
+\mbox{\Hypertarget{arm_2include_2uart_8h_adacaa053442e8b1808e4bd33be7d12db}\label{arm_2include_2uart_8h_adacaa053442e8b1808e4bd33be7d12db}} 
+\#define {\bfseries E\+R\+F\+I\+FO}~0x80	/$\ast$ Error receive Fifo $\ast$/
+\item 
+\mbox{\Hypertarget{arm_2include_2uart_8h_a72773676c87f5d641c40cae5f9671d83}\label{arm_2include_2uart_8h_a72773676c87f5d641c40cae5f9671d83}} 
+\#define {\bfseries C\+H\+R\+\_\+5\+\_\+\+B\+I\+TS}~0
+\item 
+\mbox{\Hypertarget{arm_2include_2uart_8h_acbaecb8312af3357da81e3a2e3577fd2}\label{arm_2include_2uart_8h_acbaecb8312af3357da81e3a2e3577fd2}} 
+\#define {\bfseries C\+H\+R\+\_\+6\+\_\+\+B\+I\+TS}~1
+\item 
+\mbox{\Hypertarget{arm_2include_2uart_8h_afce77e1ff111f684e3cf9a615e25fd18}\label{arm_2include_2uart_8h_afce77e1ff111f684e3cf9a615e25fd18}} 
+\#define {\bfseries C\+H\+R\+\_\+7\+\_\+\+B\+I\+TS}~2
+\item 
+\mbox{\Hypertarget{arm_2include_2uart_8h_a05303fbba275bb5f96b92ad939b765a7}\label{arm_2include_2uart_8h_a05303fbba275bb5f96b92ad939b765a7}} 
+\#define {\bfseries C\+H\+R\+\_\+8\+\_\+\+B\+I\+TS}~3
+\item 
+\mbox{\Hypertarget{arm_2include_2uart_8h_a5d0674318ee8a7200066fb4e969a585d}\label{arm_2include_2uart_8h_a5d0674318ee8a7200066fb4e969a585d}} 
+\#define {\bfseries WL}~0x03	/$\ast$ Word length mask $\ast$/
+\item 
+\mbox{\Hypertarget{arm_2include_2uart_8h_a7c5c7ce359dc4d95c31c074ebd6c28ac}\label{arm_2include_2uart_8h_a7c5c7ce359dc4d95c31c074ebd6c28ac}} 
+\#define {\bfseries S\+TB}~0x04	/$\ast$ 1 Stop Bit, otherwise 2 Stop Bits $\ast$/
+\item 
+\mbox{\Hypertarget{arm_2include_2uart_8h_aa858f2fbc6c6e9ddf6eabb0f22d1d136}\label{arm_2include_2uart_8h_aa858f2fbc6c6e9ddf6eabb0f22d1d136}} 
+\#define {\bfseries P\+EN}~0x08	/$\ast$ Parity Enabled $\ast$/
+\item 
+\mbox{\Hypertarget{arm_2include_2uart_8h_a6ebf6899d6c1c8b7b9d09be872c05aae}\label{arm_2include_2uart_8h_a6ebf6899d6c1c8b7b9d09be872c05aae}} 
+\#define {\bfseries E\+PS}~0x10	/$\ast$ Even Parity Select, otherwise Odd $\ast$/
+\item 
+\mbox{\Hypertarget{arm_2include_2uart_8h_aecd69d9a67487cc45c38eb184c50538a}\label{arm_2include_2uart_8h_aecd69d9a67487cc45c38eb184c50538a}} 
+\#define {\bfseries SP}~0x20	/$\ast$ Stick Parity $\ast$/
+\item 
+\mbox{\Hypertarget{arm_2include_2uart_8h_ad47b730af0447138fa95214f9a5d9f49}\label{arm_2include_2uart_8h_ad47b730af0447138fa95214f9a5d9f49}} 
+\#define {\bfseries B\+CB}~0x40	/$\ast$ Break Control Bit $\ast$/
+\item 
+\mbox{\Hypertarget{arm_2include_2uart_8h_aeacff95e17799eeacbff843e63ead9d3}\label{arm_2include_2uart_8h_aeacff95e17799eeacbff843e63ead9d3}} 
+\#define {\bfseries D\+L\+AB}~0x80	/$\ast$ Enable Divisor Latch Access $\ast$/
+\item 
+\mbox{\Hypertarget{arm_2include_2uart_8h_adcd8d113c8791a336768b8da70010ea7}\label{arm_2include_2uart_8h_adcd8d113c8791a336768b8da70010ea7}} 
+\#define {\bfseries F\+I\+F\+O\+\_\+\+C\+T\+RL}~0x01    /$\ast$ Set to 1 permit access to other bits $\ast$/
+\item 
+\mbox{\Hypertarget{arm_2include_2uart_8h_a53954ec7f9dc790f00548da08ccd5ed6}\label{arm_2include_2uart_8h_a53954ec7f9dc790f00548da08ccd5ed6}} 
+\#define {\bfseries F\+I\+F\+O\+\_\+\+EN}~0x01    /$\ast$ Enable the F\+I\+F\+O $\ast$/
+\item 
+\mbox{\Hypertarget{arm_2include_2uart_8h_ab93e15558dd278aa2bc7450f8f492e0c}\label{arm_2include_2uart_8h_ab93e15558dd278aa2bc7450f8f492e0c}} 
+\#define {\bfseries X\+M\+I\+T\+\_\+\+R\+E\+S\+ET}~0x04    /$\ast$ Transmit F\+I\+F\+O Reset $\ast$/
+\item 
+\mbox{\Hypertarget{arm_2include_2uart_8h_a398ff8d3e4cc01866ef5267209ee36c7}\label{arm_2include_2uart_8h_a398ff8d3e4cc01866ef5267209ee36c7}} 
+\#define {\bfseries R\+C\+V\+\_\+\+R\+E\+S\+ET}~0x02    /$\ast$ Receive F\+I\+F\+O Reset $\ast$/
+\item 
+\mbox{\Hypertarget{arm_2include_2uart_8h_a569aba7498da466d50e1f3d14c17b03b}\label{arm_2include_2uart_8h_a569aba7498da466d50e1f3d14c17b03b}} 
+\#define {\bfseries F\+C\+R3}~0x08    /$\ast$ do not understand manual! $\ast$/
+\item 
+\mbox{\Hypertarget{arm_2include_2uart_8h_a22aedff8d60e21c7a527445b7b92acad}\label{arm_2include_2uart_8h_a22aedff8d60e21c7a527445b7b92acad}} 
+\#define {\bfseries R\+E\+C\+E\+I\+V\+E\+\_\+\+F\+I\+F\+O\+\_\+\+T\+R\+I\+G\+G\+E\+R1}~0x0  /$\ast$ trigger recieve interrupt after 1 byte  $\ast$/
+\item 
+\mbox{\Hypertarget{arm_2include_2uart_8h_ac9303cdc2481259fb0db4152bfffb29a}\label{arm_2include_2uart_8h_ac9303cdc2481259fb0db4152bfffb29a}} 
+\#define {\bfseries R\+E\+C\+E\+I\+V\+E\+\_\+\+F\+I\+F\+O\+\_\+\+T\+R\+I\+G\+G\+E\+R4}~0x40 /$\ast$ trigger recieve interrupt after 4 byte  $\ast$/
+\item 
+\mbox{\Hypertarget{arm_2include_2uart_8h_a6d938e5d57b9d659a504904c92f869d2}\label{arm_2include_2uart_8h_a6d938e5d57b9d659a504904c92f869d2}} 
+\#define {\bfseries R\+E\+C\+E\+I\+V\+E\+\_\+\+F\+I\+F\+O\+\_\+\+T\+R\+I\+G\+G\+E\+R8}~0x80 /$\ast$ trigger recieve interrupt after 8 byte  $\ast$/
+\item 
+\mbox{\Hypertarget{arm_2include_2uart_8h_a7da7fc798cbd875af352818f33cefaf1}\label{arm_2include_2uart_8h_a7da7fc798cbd875af352818f33cefaf1}} 
+\#define {\bfseries R\+E\+C\+E\+I\+V\+E\+\_\+\+F\+I\+F\+O\+\_\+\+T\+R\+I\+G\+G\+E\+R12}~0xc0 /$\ast$ trigger recieve interrupt after 14 byte $\ast$/
+\item 
+\mbox{\Hypertarget{arm_2include_2uart_8h_a90a84f3ea9d75594c6cde52a179b5e88}\label{arm_2include_2uart_8h_a90a84f3ea9d75594c6cde52a179b5e88}} 
+\#define {\bfseries T\+R\+I\+G\+\_\+\+L\+E\+V\+EL}~0xc0 /$\ast$ Mask for the trigger level 		$\ast$/
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{arm_2include_2uart_8h_ad10c6e04323c2a4f31fe48909f193d25}\label{arm_2include_2uart_8h_ad10c6e04323c2a4f31fe48909f193d25}} 
+void {\bfseries B\+S\+P\+\_\+uart\+\_\+init} (int uart, int baud, int hw\+Flow)
+\item 
+\mbox{\Hypertarget{arm_2include_2uart_8h_a153d364108c00f3dee3c91cc5c87d60f}\label{arm_2include_2uart_8h_a153d364108c00f3dee3c91cc5c87d60f}} 
+void {\bfseries B\+S\+P\+\_\+uart\+\_\+set\+\_\+baud} (int aurt, int baud)
+\item 
+\mbox{\Hypertarget{arm_2include_2uart_8h_a5da5869dbc3558a9911b33f6545d1a9a}\label{arm_2include_2uart_8h_a5da5869dbc3558a9911b33f6545d1a9a}} 
+void {\bfseries B\+S\+P\+\_\+uart\+\_\+intr\+\_\+ctrl} (int uart, int cmd)
+\item 
+\mbox{\Hypertarget{arm_2include_2uart_8h_a3c901fc34c062d27275406e2ac9bc0ac}\label{arm_2include_2uart_8h_a3c901fc34c062d27275406e2ac9bc0ac}} 
+void {\bfseries B\+S\+P\+\_\+uart\+\_\+throttle} (int uart)
+\item 
+\mbox{\Hypertarget{arm_2include_2uart_8h_ad0f3c6a23d7298abd870cb5bf8651676}\label{arm_2include_2uart_8h_ad0f3c6a23d7298abd870cb5bf8651676}} 
+void {\bfseries B\+S\+P\+\_\+uart\+\_\+unthrottle} (int uart)
+\item 
+\mbox{\Hypertarget{arm_2include_2uart_8h_aac112e82834ec1067ec68e68aa5ef5cf}\label{arm_2include_2uart_8h_aac112e82834ec1067ec68e68aa5ef5cf}} 
+int {\bfseries B\+S\+P\+\_\+uart\+\_\+polled\+\_\+status} (int uart)
+\item 
+\mbox{\Hypertarget{arm_2include_2uart_8h_ad60edb62711f60bcddd520735bdb49c4}\label{arm_2include_2uart_8h_ad60edb62711f60bcddd520735bdb49c4}} 
+void {\bfseries B\+S\+P\+\_\+uart\+\_\+polled\+\_\+write} (int uart, int val)
+\item 
+\mbox{\Hypertarget{arm_2include_2uart_8h_a0264e692b5346a964317d4aedb648046}\label{arm_2include_2uart_8h_a0264e692b5346a964317d4aedb648046}} 
+int {\bfseries B\+S\+P\+\_\+uart\+\_\+polled\+\_\+read} (int uart)
+\item 
+\mbox{\Hypertarget{arm_2include_2uart_8h_a6162321a0c54b38ce3f76d2f00079aa0}\label{arm_2include_2uart_8h_a6162321a0c54b38ce3f76d2f00079aa0}} 
+void {\bfseries B\+S\+P\+\_\+uart\+\_\+termios\+\_\+set} (int uart, void $\ast$ttyp)
+\item 
+\mbox{\Hypertarget{arm_2include_2uart_8h_a29f43bd9e73359096cab39cd314ca18a}\label{arm_2include_2uart_8h_a29f43bd9e73359096cab39cd314ca18a}} 
+int {\bfseries B\+S\+P\+\_\+uart\+\_\+termios\+\_\+write\+\_\+com1} (int minor, const char $\ast$buf, int len)
+\item 
+\mbox{\Hypertarget{arm_2include_2uart_8h_ac5dcecd73c14380c17ade991f576607a}\label{arm_2include_2uart_8h_ac5dcecd73c14380c17ade991f576607a}} 
+int {\bfseries B\+S\+P\+\_\+uart\+\_\+termios\+\_\+write\+\_\+com2} (int minor, const char $\ast$buf, int len)
+\item 
+\mbox{\Hypertarget{arm_2include_2uart_8h_a9f40f757ee1da09fe6412dbde27ee2e9}\label{arm_2include_2uart_8h_a9f40f757ee1da09fe6412dbde27ee2e9}} 
+void {\bfseries B\+S\+P\+\_\+uart\+\_\+termios\+\_\+isr\+\_\+com1} (void)
+\item 
+\mbox{\Hypertarget{arm_2include_2uart_8h_a1064ec0adaa98892b5f0aa71c41b2320}\label{arm_2include_2uart_8h_a1064ec0adaa98892b5f0aa71c41b2320}} 
+void {\bfseries B\+S\+P\+\_\+uart\+\_\+termios\+\_\+isr\+\_\+com2} (void)
+\item 
+\mbox{\Hypertarget{arm_2include_2uart_8h_af100d2356499cf011c69880fd49833b6}\label{arm_2include_2uart_8h_af100d2356499cf011c69880fd49833b6}} 
+void {\bfseries B\+S\+P\+\_\+uart\+\_\+dbgisr\+\_\+com1} (void)
+\item 
+\mbox{\Hypertarget{arm_2include_2uart_8h_a652af0b81fe43a38d72ee2997f014467}\label{arm_2include_2uart_8h_a652af0b81fe43a38d72ee2997f014467}} 
+void {\bfseries B\+S\+P\+\_\+uart\+\_\+dbgisr\+\_\+com2} (void)
+\item 
+\mbox{\Hypertarget{arm_2include_2uart_8h_a06c2c9ef2cfc0058a96d8dae7da841c8}\label{arm_2include_2uart_8h_a06c2c9ef2cfc0058a96d8dae7da841c8}} 
+unsigned {\bfseries B\+S\+P\+\_\+poll\+\_\+char\+\_\+via\+\_\+serial} (void)
+\item 
+\mbox{\Hypertarget{arm_2include_2uart_8h_ac7923c77a296be4a2233e9a451c45689}\label{arm_2include_2uart_8h_ac7923c77a296be4a2233e9a451c45689}} 
+void {\bfseries B\+S\+P\+\_\+output\+\_\+char\+\_\+via\+\_\+serial} (int val)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{arm_2include_2uart_8h_ab10b7d0ac9fedd8be199f159d7ed4fb9}\label{arm_2include_2uart_8h_ab10b7d0ac9fedd8be199f159d7ed4fb9}} 
+int {\bfseries B\+S\+P\+Console\+Port}
+\item 
+\mbox{\Hypertarget{arm_2include_2uart_8h_a08d7d79d76b888b7f031e080f66bf06b}\label{arm_2include_2uart_8h_a08d7d79d76b888b7f031e080f66bf06b}} 
+int {\bfseries B\+S\+P\+Base\+Baud}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+U\+A\+RT Support. 
+

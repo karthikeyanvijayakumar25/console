@@ -1,0 +1,22 @@
+\hypertarget{timerserver_8c}{}\section{cpukit/rtems/src/timerserver.c File Reference}
+\label{timerserver_8c}\index{cpukit/rtems/src/timerserver.c@{cpukit/rtems/src/timerserver.c}}
+{\ttfamily \#include $<$rtems.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/rtems/timerimpl.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/rtems/tasksimpl.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/score/onceimpl.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/score/todimpl.\+h$>$}\newline
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void {\bfseries \+\_\+\+Timer\+\_\+server\+\_\+\+Routine\+\_\+adaptor} (\mbox{\hyperlink{structWatchdog__Control}{Watchdog\+\_\+\+Control}} $\ast$the\+\_\+watchdog)
+\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{group__ClassicTimer_ga9d68afa211264df8cff940b21f80ee31}{rtems\+\_\+timer\+\_\+initiate\+\_\+server}} (\mbox{\hyperlink{group__ClassicTasks_gaa80a0c0938307d1e99d0eb5fee765b47}{rtems\+\_\+task\+\_\+priority}} priority, size\+\_\+t stack\+\_\+size, \mbox{\hyperlink{group__ClassicAttributes_gaea40313cf78ed843e09c4315d0a10f79}{rtems\+\_\+attribute}} attribute\+\_\+set)
+\begin{DoxyCompactList}\small\item\em Initiates the timer server. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Timer Manager -\/ rtems\+\_\+timer\+\_\+initiate\+\_\+server directive along with the Timer Server Body and support routines
+
+\begin{DoxyNote}{Note}
+Data specific to the Timer Server is declared in this file as the Timer Server so it does not have to be in the minimum footprint. It is only really required when task-\/based timers are used. Since task-\/based timers can not be started until the server is initiated, this structure does not have to be initialized until then. 
+\end{DoxyNote}

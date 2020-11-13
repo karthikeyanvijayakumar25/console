@@ -1,0 +1,88 @@
+\hypertarget{aio__misc_8h}{}\section{cpukit/include/rtems/posix/aio\+\_\+misc.h File Reference}
+\label{aio__misc_8h}\index{cpukit/include/rtems/posix/aio\_misc.h@{cpukit/include/rtems/posix/aio\_misc.h}}
+
+
+P\+O\+S\+IX Asynchronous Input and Output Private Support.  
+
+
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$aio.\+h$>$}\newline
+{\ttfamily \#include $<$pthread.\+h$>$}\newline
+{\ttfamily \#include $<$rtems.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/chain.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/seterr.\+h$>$}\newline
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structrtems__aio__request}{rtems\+\_\+aio\+\_\+request}}
+\item 
+struct \mbox{\hyperlink{structrtems__aio__request__chain}{rtems\+\_\+aio\+\_\+request\+\_\+chain}}
+\item 
+struct \mbox{\hyperlink{structrtems__aio__queue}{rtems\+\_\+aio\+\_\+queue}}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{aio__misc_8h_aade54c8c401ab622efe2757e11171eaf}\label{aio__misc_8h_aade54c8c401ab622efe2757e11171eaf}} 
+\#define {\bfseries A\+I\+O\+\_\+\+Q\+U\+E\+U\+E\+\_\+\+I\+N\+I\+T\+I\+A\+L\+I\+Z\+ED}~0x\+B00B
+\item 
+\mbox{\Hypertarget{aio__misc_8h_a56a9db38d35d3bf899643a9d59924adc}\label{aio__misc_8h_a56a9db38d35d3bf899643a9d59924adc}} 
+\#define {\bfseries A\+I\+O\+\_\+\+M\+A\+X\+\_\+\+T\+H\+R\+E\+A\+DS}~5
+\item 
+\mbox{\Hypertarget{aio__misc_8h_a61365b576d16d186848fd3b1faf9359b}\label{aio__misc_8h_a61365b576d16d186848fd3b1faf9359b}} 
+\#define {\bfseries A\+I\+O\+\_\+\+M\+A\+X\+\_\+\+Q\+U\+E\+U\+E\+\_\+\+S\+I\+ZE}~30
+\item 
+\mbox{\Hypertarget{aio__misc_8h_ab122bfd7d89ee3f734c44badc579ba48}\label{aio__misc_8h_ab122bfd7d89ee3f734c44badc579ba48}} 
+\#define {\bfseries A\+I\+O\+\_\+assert}(\+\_\+x)
+\item 
+\mbox{\Hypertarget{aio__misc_8h_a2aa3878fd140267478daae99c709ae1e}\label{aio__misc_8h_a2aa3878fd140267478daae99c709ae1e}} 
+\#define {\bfseries A\+I\+O\+\_\+printf}(\+\_\+x)
+\item 
+\#define {\bfseries rtems\+\_\+aio\+\_\+set\+\_\+errno\+\_\+return\+\_\+minus\+\_\+one}(\+\_\+error,  \+\_\+aiocbp)
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{aio__misc_8h_a4cec4856f9476b78b6be23615f94a1b3}\label{aio__misc_8h_a4cec4856f9476b78b6be23615f94a1b3}} 
+int {\bfseries rtems\+\_\+aio\+\_\+init} (void)
+\item 
+\mbox{\Hypertarget{aio__misc_8h_a8477bc52bcf6620a6f253b06075d1554}\label{aio__misc_8h_a8477bc52bcf6620a6f253b06075d1554}} 
+int {\bfseries rtems\+\_\+aio\+\_\+enqueue} (\mbox{\hyperlink{structrtems__aio__request}{rtems\+\_\+aio\+\_\+request}} $\ast$req)
+\item 
+\mbox{\Hypertarget{aio__misc_8h_af4a6927e7d9b3b57ba8cc7c52a23f757}\label{aio__misc_8h_af4a6927e7d9b3b57ba8cc7c52a23f757}} 
+\mbox{\hyperlink{structrtems__aio__request__chain}{rtems\+\_\+aio\+\_\+request\+\_\+chain}} $\ast$ {\bfseries rtems\+\_\+aio\+\_\+search\+\_\+fd} (\mbox{\hyperlink{unionChain__Control}{rtems\+\_\+chain\+\_\+control}} $\ast$chain, int fildes, int create)
+\item 
+\mbox{\Hypertarget{aio__misc_8h_a0bab6945bcf2a7bae2da226e28f1bed6}\label{aio__misc_8h_a0bab6945bcf2a7bae2da226e28f1bed6}} 
+void {\bfseries rtems\+\_\+aio\+\_\+remove\+\_\+fd} (\mbox{\hyperlink{structrtems__aio__request__chain}{rtems\+\_\+aio\+\_\+request\+\_\+chain}} $\ast$r\+\_\+chain)
+\item 
+\mbox{\Hypertarget{aio__misc_8h_a73d9e03d65082a1c14ef35f92d2938b9}\label{aio__misc_8h_a73d9e03d65082a1c14ef35f92d2938b9}} 
+int {\bfseries rtems\+\_\+aio\+\_\+remove\+\_\+req} (\mbox{\hyperlink{unionChain__Control}{rtems\+\_\+chain\+\_\+control}} $\ast$chain, struct aiocb $\ast$aiocbp)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{aio__misc_8h_a1aac2f24e05996e798b3bf6ffcb805ab}\label{aio__misc_8h_a1aac2f24e05996e798b3bf6ffcb805ab}} 
+\mbox{\hyperlink{structrtems__aio__queue}{rtems\+\_\+aio\+\_\+queue}} {\bfseries aio\+\_\+request\+\_\+queue}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+P\+O\+S\+IX Asynchronous Input and Output Private Support. 
+
+This defines private information for the A\+IO implementation. 
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{aio__misc_8h_a6c0f9984c6d8ebdf7475bd1a16054e2f}\label{aio__misc_8h_a6c0f9984c6d8ebdf7475bd1a16054e2f}} 
+\index{aio\_misc.h@{aio\_misc.h}!rtems\_aio\_set\_errno\_return\_minus\_one@{rtems\_aio\_set\_errno\_return\_minus\_one}}
+\index{rtems\_aio\_set\_errno\_return\_minus\_one@{rtems\_aio\_set\_errno\_return\_minus\_one}!aio\_misc.h@{aio\_misc.h}}
+\subsubsection{\texorpdfstring{rtems\_aio\_set\_errno\_return\_minus\_one}{rtems\_aio\_set\_errno\_return\_minus\_one}}
+{\footnotesize\ttfamily \#define rtems\+\_\+aio\+\_\+set\+\_\+errno\+\_\+return\+\_\+minus\+\_\+one(\begin{DoxyParamCaption}\item[{}]{\+\_\+error,  }\item[{}]{\+\_\+aiocbp }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do} \{ (\_aiocbp)->error\_code = (\_error);          \(\backslash\)}
+\DoxyCodeLine{    (\_aiocbp)->return\_value = -1;               \(\backslash\)}
+\DoxyCodeLine{    rtems\_set\_errno\_and\_return\_minus\_one (\_error);\} \textcolor{keywordflow}{while}(0)}
+
+\end{DoxyCode}

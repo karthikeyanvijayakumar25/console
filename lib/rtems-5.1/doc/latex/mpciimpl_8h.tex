@@ -1,0 +1,77 @@
+\hypertarget{mpciimpl_8h}{}\section{cpukit/include/rtems/score/mpciimpl.h File Reference}
+\label{mpciimpl_8h}\index{cpukit/include/rtems/score/mpciimpl.h@{cpukit/include/rtems/score/mpciimpl.h}}
+
+
+M\+P\+CI Layer Implementation.  
+
+
+{\ttfamily \#include $<$rtems/score/mpci.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/score/status.\+h$>$}\newline
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structMPCI__Internal__packet}{M\+P\+C\+I\+\_\+\+Internal\+\_\+packet}}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__RTEMSScoreMPCI_ga0827bfc7e7f590734da1315634b3b8d2}{M\+P\+C\+I\+\_\+\+D\+E\+F\+A\+U\+L\+T\+\_\+\+T\+I\+M\+E\+O\+UT}}~0x\+F\+F\+F\+F\+F\+F\+FF
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef void($\ast$ \mbox{\hyperlink{group__RTEMSScoreMPCI_gafc97753e25c76740b182f3e8cdf74cc8}{M\+P\+C\+I\+\_\+\+Packet\+\_\+processor}}) (\mbox{\hyperlink{structMP__packet__Prefix}{M\+P\+\_\+packet\+\_\+\+Prefix}} $\ast$)
+\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{group__RTEMSScoreMPCI_ga04a2fa1c1617558e729e75700624cdb7}{M\+P\+C\+I\+\_\+\+Internal\+\_\+\+Remote\+\_\+operations}} \{ {\bfseries M\+P\+C\+I\+\_\+\+P\+A\+C\+K\+E\+T\+S\+\_\+\+S\+Y\+S\+T\+E\+M\+\_\+\+V\+E\+R\+I\+FY} = 0
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{group__RTEMSScoreMPCI_gac273d577d3696588f86f26b1910a2f9c}{\+\_\+\+M\+P\+C\+I\+\_\+\+Register\+\_\+packet\+\_\+processor}} (\mbox{\hyperlink{group__RTEMSScoreMPPacket_gafed9717210f8917e5acb8e63f2c6bac3}{M\+P\+\_\+packet\+\_\+\+Classes}} the\+\_\+class, \mbox{\hyperlink{group__RTEMSScoreMPCI_gafc97753e25c76740b182f3e8cdf74cc8}{M\+P\+C\+I\+\_\+\+Packet\+\_\+processor}} the\+\_\+packet\+\_\+processor)
+\begin{DoxyCompactList}\small\item\em Registers the M\+P\+CI packet processor for the designated object class. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structMP__packet__Prefix}{M\+P\+\_\+packet\+\_\+\+Prefix}} $\ast$ \mbox{\hyperlink{group__RTEMSScoreMPCI_ga66e87499b1e505e2e38411619c88adce}{\+\_\+\+M\+P\+C\+I\+\_\+\+Get\+\_\+packet}} (void)
+\begin{DoxyCompactList}\small\item\em Obtains a packet by invoking the user provided M\+P\+CI get packet callout. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__RTEMSScoreMPCI_ga4921eb7c6291474df410b099381b09d9}{\+\_\+\+M\+P\+C\+I\+\_\+\+Return\+\_\+packet}} (\mbox{\hyperlink{structMP__packet__Prefix}{M\+P\+\_\+packet\+\_\+\+Prefix}} $\ast$the\+\_\+packet)
+\begin{DoxyCompactList}\small\item\em Deallocates a packet. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__RTEMSScoreMPCI_ga02e1e38a1e6a9d3b6488058c89ac96a1}{\+\_\+\+M\+P\+C\+I\+\_\+\+Send\+\_\+process\+\_\+packet}} (uint32\+\_\+t destination, \mbox{\hyperlink{structMP__packet__Prefix}{M\+P\+\_\+packet\+\_\+\+Prefix}} $\ast$the\+\_\+packet)
+\begin{DoxyCompactList}\small\item\em Sends a process packet. \end{DoxyCompactList}\item 
+Status\+\_\+\+Control \mbox{\hyperlink{group__RTEMSScoreMPCI_gaa7cccdabe9e7db7495e1d8bd12e6bcb0}{\+\_\+\+M\+P\+C\+I\+\_\+\+Send\+\_\+request\+\_\+packet}} (uint32\+\_\+t destination, \mbox{\hyperlink{structMP__packet__Prefix}{M\+P\+\_\+packet\+\_\+\+Prefix}} $\ast$the\+\_\+packet, \mbox{\hyperlink{group__RTEMSScoreStates_gaeebbea0bfca162709b124fd519cf99d3}{States\+\_\+\+Control}} extra\+\_\+state)
+\begin{DoxyCompactList}\small\item\em Sends a request packet. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__RTEMSScoreMPCI_ga1623ab44f2cfb10c69b0f62674e53f1f}{\+\_\+\+M\+P\+C\+I\+\_\+\+Send\+\_\+response\+\_\+packet}} (uint32\+\_\+t destination, \mbox{\hyperlink{structMP__packet__Prefix}{M\+P\+\_\+packet\+\_\+\+Prefix}} $\ast$the\+\_\+packet)
+\begin{DoxyCompactList}\small\item\em Sends a response packet. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structMP__packet__Prefix}{M\+P\+\_\+packet\+\_\+\+Prefix}} $\ast$ \mbox{\hyperlink{group__RTEMSScoreMPCI_ga053f924dabe674cd71718615990e408c}{\+\_\+\+M\+P\+C\+I\+\_\+\+Receive\+\_\+packet}} (void)
+\begin{DoxyCompactList}\small\item\em Receives a packet. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$ \mbox{\hyperlink{group__RTEMSScoreMPCI_gae2df57913a498a0305315a2fb6cf12fb}{\+\_\+\+M\+P\+C\+I\+\_\+\+Process\+\_\+response}} (\mbox{\hyperlink{structMP__packet__Prefix}{M\+P\+\_\+packet\+\_\+\+Prefix}} $\ast$the\+\_\+packet)
+\begin{DoxyCompactList}\small\item\em Passes a packet to the thread. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__RTEMSScoreMPCI_gaf232dadc9160e4b1c733906d3a6d1f57}{\+\_\+\+M\+P\+C\+I\+\_\+\+Receive\+\_\+server}} (\mbox{\hyperlink{group__RTEMSScoreThread_gab56e437830bb9a4af5b27ac7ec503b6a}{Thread\+\_\+\+Entry\+\_\+numeric\+\_\+type}} ignored)
+\begin{DoxyCompactList}\small\item\em Receives and processes all packets. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__RTEMSScoreMPCI_gaafbd7ed1ef4bd2b8672df8da832f79f4}{\+\_\+\+M\+P\+C\+I\+\_\+\+Announce}} (void)
+\begin{DoxyCompactList}\small\item\em Announces the availability of a packet. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__RTEMSScoreMPCI_ga63356f90abac093ad7d8817cedf1da28}{\+\_\+\+M\+P\+C\+I\+\_\+\+Internal\+\_\+packets\+\_\+\+Send\+\_\+process\+\_\+packet}} (\mbox{\hyperlink{group__RTEMSScoreMPCI_ga04a2fa1c1617558e729e75700624cdb7}{M\+P\+C\+I\+\_\+\+Internal\+\_\+\+Remote\+\_\+operations}} operation)
+\begin{DoxyCompactList}\small\item\em Performs a process on another node. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__RTEMSScoreMPCI_gae202814c7151db9baf145786aa4ef068}{\+\_\+\+M\+P\+C\+I\+\_\+\+Internal\+\_\+packets\+\_\+\+Process\+\_\+packet}} (\mbox{\hyperlink{structMP__packet__Prefix}{M\+P\+\_\+packet\+\_\+\+Prefix}} $\ast$the\+\_\+packet\+\_\+prefix)
+\begin{DoxyCompactList}\small\item\em Performs requested action from another node. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structMPCI__Internal__packet}{M\+P\+C\+I\+\_\+\+Internal\+\_\+packet}} $\ast$ \mbox{\hyperlink{group__RTEMSScoreMPCI_gaa1dfe78c5adee4604729d791941634a6}{\+\_\+\+M\+P\+C\+I\+\_\+\+Internal\+\_\+packets\+\_\+\+Get\+\_\+packet}} (void)
+\begin{DoxyCompactList}\small\item\em Obtains an internal thread. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} bool \mbox{\hyperlink{group__RTEMSScoreMPCI_gacbb0099162582a23bc5a251b5a763612}{\+\_\+\+Mp\+\_\+packet\+\_\+\+Is\+\_\+valid\+\_\+packet\+\_\+class}} (\mbox{\hyperlink{group__RTEMSScoreMPPacket_gafed9717210f8917e5acb8e63f2c6bac3}{M\+P\+\_\+packet\+\_\+\+Classes}} the\+\_\+packet\+\_\+class)
+\begin{DoxyCompactList}\small\item\em Checks if the packet class is valid. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structThread__queue__Control}{Thread\+\_\+queue\+\_\+\+Control}} \mbox{\hyperlink{group__RTEMSScoreMPCI_gab1454472037213316f1ba2a85c29820b}{\+\_\+\+M\+P\+C\+I\+\_\+\+Remote\+\_\+blocked\+\_\+threads}}
+\item 
+\mbox{\hyperlink{structMPCI__Control}{M\+P\+C\+I\+\_\+\+Control}} $\ast$ \mbox{\hyperlink{group__RTEMSScoreMPCI_ga6b0a65f9ac68015c46d17f17f44a5bd9}{\+\_\+\+M\+P\+C\+I\+\_\+table}}
+\item 
+\mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$ \mbox{\hyperlink{group__RTEMSScoreMPCI_gac0894f96d2d7e99feb038917fdb3c9cb}{\+\_\+\+M\+P\+C\+I\+\_\+\+Receive\+\_\+server\+\_\+tcb}}
+\begin{DoxyCompactList}\small\item\em Pointer to MP thread control block. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreMPCI_gafc97753e25c76740b182f3e8cdf74cc8}{M\+P\+C\+I\+\_\+\+Packet\+\_\+processor}} \mbox{\hyperlink{group__RTEMSScoreMPCI_ga390b6f48eb63a6879d3c3c2fcb38a4e8}{\+\_\+\+M\+P\+C\+I\+\_\+\+Packet\+\_\+processors}} \mbox{[}\mbox{\hyperlink{group__RTEMSScoreMPPacket_ga968e1b3a70aac1692b70ff42f9525bc7}{M\+P\+\_\+\+P\+A\+C\+K\+E\+T\+\_\+\+C\+L\+A\+S\+S\+E\+S\+\_\+\+L\+A\+ST}}+1\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+M\+P\+CI Layer Implementation. 
+

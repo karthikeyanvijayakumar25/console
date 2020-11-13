@@ -1,0 +1,137 @@
+\hypertarget{group__RTEMSScoreThreadMP}{}\section{Thread Handler Multiprocessing Support}
+\label{group__RTEMSScoreThreadMP}\index{Thread Handler Multiprocessing Support@{Thread Handler Multiprocessing Support}}
+
+
+Thread Handler Multiprocessing Support.  
+
+
+\subsection*{Files}
+\begin{DoxyCompactItemize}
+\item 
+file \mbox{\hyperlink{threadmp_8h}{threadmp.\+h}}
+\begin{DoxyCompactList}\small\item\em Multiprocessing Portion of the Thread Package. \end{DoxyCompactList}\item 
+file \mbox{\hyperlink{threadmp_8c}{threadmp.\+c}}
+\begin{DoxyCompactList}\small\item\em Distributed MP Support. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__RTEMSScoreThreadMP_ga3e52b743b9616035b9c92ba4f0f37924}{\+\_\+\+Thread\+\_\+\+M\+P\+\_\+\+Is\+\_\+receive}}(\+\_\+the\+\_\+thread)~((\+\_\+the\+\_\+thread) == \mbox{\hyperlink{group__RTEMSScoreMPCI_gac0894f96d2d7e99feb038917fdb3c9cb}{\+\_\+\+M\+P\+C\+I\+\_\+\+Receive\+\_\+server\+\_\+tcb}})
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{group__RTEMSScoreThreadMP_ga96f0434ad7036721909abeedd0322bba}{\+\_\+\+Thread\+\_\+\+M\+P\+\_\+\+Handler\+\_\+initialization}} (uint32\+\_\+t maximum\+\_\+proxies)
+\begin{DoxyCompactList}\small\item\em Initialize MP thread handler. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$ \mbox{\hyperlink{group__RTEMSScoreThreadMP_gaa0f7e564ad228364fb5bf36163bdaefe}{\+\_\+\+Thread\+\_\+\+M\+P\+\_\+\+Allocate\+\_\+proxy}} (\mbox{\hyperlink{group__RTEMSScoreStates_gaeebbea0bfca162709b124fd519cf99d3}{States\+\_\+\+Control}} the\+\_\+state)
+\begin{DoxyCompactList}\small\item\em Allocates a MP proxy control block from the inactive chain of free proxy control blocks. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$ \mbox{\hyperlink{group__RTEMSScoreThreadMP_ga6dbcb30a4cb121951088a85af42227e2}{\+\_\+\+Thread\+\_\+\+M\+P\+\_\+\+Find\+\_\+proxy}} (\mbox{\hyperlink{group__RTEMSScoreObject_ga5821f52a51072941bdd603e542d0863e}{Objects\+\_\+\+Id}} the\+\_\+id)
+\begin{DoxyCompactList}\small\item\em Removes the MP proxy control block for the specified id from the active chain of proxy control blocks. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__RTEMSScoreThreadMP_gaf6fae1158c34ddc94d640819c4302516}\label{group__RTEMSScoreThreadMP_gaf6fae1158c34ddc94d640819c4302516}} 
+void \mbox{\hyperlink{group__RTEMSScoreThreadMP_gaf6fae1158c34ddc94d640819c4302516}{\+\_\+\+Thread\+\_\+\+M\+P\+\_\+\+Free\+\_\+proxy}} (\mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$the\+\_\+thread)
+\begin{DoxyCompactList}\small\item\em Trees a proxy control block to the inactive chain of free proxy control blocks. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} bool \mbox{\hyperlink{group__RTEMSScoreThreadMP_ga8c8c9e4dadd94632600e764d4e85ee89}{\+\_\+\+Thread\+\_\+\+M\+P\+\_\+\+Is\+\_\+remote}} (\mbox{\hyperlink{group__RTEMSScoreObject_ga5821f52a51072941bdd603e542d0863e}{Objects\+\_\+\+Id}} id)
+\begin{DoxyCompactList}\small\item\em Checks if the thread MP with this object id is remote. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Thread Handler Multiprocessing Support. 
+
+This handler encapsulates functionality which is related to managing threads in a multiprocessor system configuration. This handler must manage proxies which represent remote threads blocking on local operations. 
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{group__RTEMSScoreThreadMP_ga3e52b743b9616035b9c92ba4f0f37924}\label{group__RTEMSScoreThreadMP_ga3e52b743b9616035b9c92ba4f0f37924}} 
+\index{Thread Handler Multiprocessing Support@{Thread Handler Multiprocessing Support}!\_Thread\_MP\_Is\_receive@{\_Thread\_MP\_Is\_receive}}
+\index{\_Thread\_MP\_Is\_receive@{\_Thread\_MP\_Is\_receive}!Thread Handler Multiprocessing Support@{Thread Handler Multiprocessing Support}}
+\subsubsection{\texorpdfstring{\_Thread\_MP\_Is\_receive}{\_Thread\_MP\_Is\_receive}}
+{\footnotesize\ttfamily \#define \+\_\+\+Thread\+\_\+\+M\+P\+\_\+\+Is\+\_\+receive(\begin{DoxyParamCaption}\item[{}]{\+\_\+the\+\_\+thread }\end{DoxyParamCaption})~((\+\_\+the\+\_\+thread) == \mbox{\hyperlink{group__RTEMSScoreMPCI_gac0894f96d2d7e99feb038917fdb3c9cb}{\+\_\+\+M\+P\+C\+I\+\_\+\+Receive\+\_\+server\+\_\+tcb}})}
+
+This function returns true if the thread in question is the multiprocessing receive thread.
+
+\begin{DoxyNote}{Note}
+This is a macro to avoid needing a prototype for \+\_\+\+M\+P\+C\+I\+\_\+\+Receive\+\_\+server\+\_\+tcb until it is used. 
+\end{DoxyNote}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{group__RTEMSScoreThreadMP_gaa0f7e564ad228364fb5bf36163bdaefe}\label{group__RTEMSScoreThreadMP_gaa0f7e564ad228364fb5bf36163bdaefe}} 
+\index{Thread Handler Multiprocessing Support@{Thread Handler Multiprocessing Support}!\_Thread\_MP\_Allocate\_proxy@{\_Thread\_MP\_Allocate\_proxy}}
+\index{\_Thread\_MP\_Allocate\_proxy@{\_Thread\_MP\_Allocate\_proxy}!Thread Handler Multiprocessing Support@{Thread Handler Multiprocessing Support}}
+\subsubsection{\texorpdfstring{\_Thread\_MP\_Allocate\_proxy()}{\_Thread\_MP\_Allocate\_proxy()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}}$\ast$ \+\_\+\+Thread\+\_\+\+M\+P\+\_\+\+Allocate\+\_\+proxy (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__RTEMSScoreStates_gaeebbea0bfca162709b124fd519cf99d3}{States\+\_\+\+Control}}}]{the\+\_\+state }\end{DoxyParamCaption})}
+
+
+
+Allocates a MP proxy control block from the inactive chain of free proxy control blocks. 
+
+This allocates a proxy control block from the inactive chain of free proxy control blocks.
+
+\begin{DoxyNote}{Note}
+This function returns a thread control pointer because proxies are substitutes for remote threads.
+\end{DoxyNote}
+
+\begin{DoxyItemize}
+\item 
+\begin{DoxyParams}{Parameters}
+{\em the\+\_\+state} & The state for the allocated MP proxy control block. \\
+\hline
+\end{DoxyParams}
+
+\end{DoxyItemize}\mbox{\Hypertarget{group__RTEMSScoreThreadMP_ga6dbcb30a4cb121951088a85af42227e2}\label{group__RTEMSScoreThreadMP_ga6dbcb30a4cb121951088a85af42227e2}} 
+\index{Thread Handler Multiprocessing Support@{Thread Handler Multiprocessing Support}!\_Thread\_MP\_Find\_proxy@{\_Thread\_MP\_Find\_proxy}}
+\index{\_Thread\_MP\_Find\_proxy@{\_Thread\_MP\_Find\_proxy}!Thread Handler Multiprocessing Support@{Thread Handler Multiprocessing Support}}
+\subsubsection{\texorpdfstring{\_Thread\_MP\_Find\_proxy()}{\_Thread\_MP\_Find\_proxy()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}}$\ast$ \+\_\+\+Thread\+\_\+\+M\+P\+\_\+\+Find\+\_\+proxy (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__RTEMSScoreObject_ga5821f52a51072941bdd603e542d0863e}{Objects\+\_\+\+Id}}}]{the\+\_\+id }\end{DoxyParamCaption})}
+
+
+
+Removes the MP proxy control block for the specified id from the active chain of proxy control blocks. 
+
+This function removes the proxy control block for the specified id from the active red-\/black tree of proxy control blocks.
+
+
+\begin{DoxyParams}{Parameters}
+{\em the\+\_\+id} & The id of the proxy control block to remove.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The removed proxy control block. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{group__RTEMSScoreThreadMP_ga96f0434ad7036721909abeedd0322bba}\label{group__RTEMSScoreThreadMP_ga96f0434ad7036721909abeedd0322bba}} 
+\index{Thread Handler Multiprocessing Support@{Thread Handler Multiprocessing Support}!\_Thread\_MP\_Handler\_initialization@{\_Thread\_MP\_Handler\_initialization}}
+\index{\_Thread\_MP\_Handler\_initialization@{\_Thread\_MP\_Handler\_initialization}!Thread Handler Multiprocessing Support@{Thread Handler Multiprocessing Support}}
+\subsubsection{\texorpdfstring{\_Thread\_MP\_Handler\_initialization()}{\_Thread\_MP\_Handler\_initialization()}}
+{\footnotesize\ttfamily void \+\_\+\+Thread\+\_\+\+M\+P\+\_\+\+Handler\+\_\+initialization (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{maximum\+\_\+proxies }\end{DoxyParamCaption})}
+
+
+
+Initialize MP thread handler. 
+
+This routine initializes the multiprocessing portion of the Thread Handler.
+
+
+\begin{DoxyParams}{Parameters}
+{\em maximum\+\_\+proxies} & The maximum number of proxies for the MP thread handler. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__RTEMSScoreThreadMP_ga8c8c9e4dadd94632600e764d4e85ee89}\label{group__RTEMSScoreThreadMP_ga8c8c9e4dadd94632600e764d4e85ee89}} 
+\index{Thread Handler Multiprocessing Support@{Thread Handler Multiprocessing Support}!\_Thread\_MP\_Is\_remote@{\_Thread\_MP\_Is\_remote}}
+\index{\_Thread\_MP\_Is\_remote@{\_Thread\_MP\_Is\_remote}!Thread Handler Multiprocessing Support@{Thread Handler Multiprocessing Support}}
+\subsubsection{\texorpdfstring{\_Thread\_MP\_Is\_remote()}{\_Thread\_MP\_Is\_remote()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} bool \+\_\+\+Thread\+\_\+\+M\+P\+\_\+\+Is\+\_\+remote (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__RTEMSScoreObject_ga5821f52a51072941bdd603e542d0863e}{Objects\+\_\+\+Id}}}]{id }\end{DoxyParamCaption})}
+
+
+
+Checks if the thread MP with this object id is remote. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & The object id.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em true} & The object id is valid and the thread MP with this object id is remote. \\
+\hline
+{\em false} & The object if is not valid or the thread MP with this object id is not remote. \\
+\hline
+\end{DoxyRetVals}

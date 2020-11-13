@@ -1,0 +1,86 @@
+\hypertarget{legacy-console_8h}{}\section{bsps/shared/dev/serial/legacy-\/console.h File Reference}
+\label{legacy-console_8h}\index{bsps/shared/dev/serial/legacy-\/console.h@{bsps/shared/dev/serial/legacy-\/console.h}}
+
+
+Extension of the generic libchip console driver shell.  
+
+
+{\ttfamily \#include $<$rtems.\+h$>$}\newline
+{\ttfamily \#include $<$libchip/serial.\+h$>$}\newline
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{legacy-console_8h_a4532c63cb4236c50e2a5c3aeeb566d1c}{vt\+\_\+ioctl}} (unsigned int cmd, unsigned long arg)
+\begin{DoxyCompactList}\small\item\em This function is the ioctl() support for a V\+GA buffer driver. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct__console__tbl}{console\+\_\+tbl}} $\ast$ \mbox{\hyperlink{legacy-console_8h_a504c826507edc4631251f6e2ccbeac8b}{console\+\_\+find\+\_\+console\+\_\+entry}} (const char $\ast$match, size\+\_\+t length, rtems\+\_\+device\+\_\+minor\+\_\+number $\ast$match\+\_\+minor)
+\begin{DoxyCompactList}\small\item\em console\+\_\+find\+\_\+console\+\_\+entry \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{legacy-console_8h_a876e108a27082ad7b2a68f26dd37b673}{console\+\_\+initialize\+\_\+data}} (void)
+\begin{DoxyCompactList}\small\item\em console\+\_\+initialize\+\_\+data \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{legacy-console_8h_ab7b7632a5db0bff08d69845c22ec1d56}{console\+\_\+register\+\_\+devices}} (\mbox{\hyperlink{struct__console__tbl}{console\+\_\+tbl}} $\ast$new\+\_\+ports, size\+\_\+t number\+\_\+of\+\_\+ports)
+\begin{DoxyCompactList}\small\item\em console\+\_\+register\+\_\+devices \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{legacy-console_8h_a70125f66faffeac3295b05585611bcdf}\label{legacy-console_8h_a70125f66faffeac3295b05585611bcdf}} 
+rtems\+\_\+device\+\_\+minor\+\_\+number {\bfseries B\+S\+P\+Printk\+Port}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Extension of the generic libchip console driver shell. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{legacy-console_8h_a504c826507edc4631251f6e2ccbeac8b}\label{legacy-console_8h_a504c826507edc4631251f6e2ccbeac8b}} 
+\index{legacy-\/console.h@{legacy-\/console.h}!console\_find\_console\_entry@{console\_find\_console\_entry}}
+\index{console\_find\_console\_entry@{console\_find\_console\_entry}!legacy-\/console.h@{legacy-\/console.h}}
+\subsubsection{\texorpdfstring{console\_find\_console\_entry()}{console\_find\_console\_entry()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct__console__tbl}{console\+\_\+tbl}}$\ast$ console\+\_\+find\+\_\+console\+\_\+entry (\begin{DoxyParamCaption}\item[{const char $\ast$}]{match,  }\item[{size\+\_\+t}]{length,  }\item[{rtems\+\_\+device\+\_\+minor\+\_\+number $\ast$}]{match\+\_\+minor }\end{DoxyParamCaption})}
+
+
+
+console\+\_\+find\+\_\+console\+\_\+entry 
+
+This method is used to search the console entries for a specific device entry and return it. If match is N\+U\+LL the minor number provided is matched. \mbox{\Hypertarget{legacy-console_8h_a876e108a27082ad7b2a68f26dd37b673}\label{legacy-console_8h_a876e108a27082ad7b2a68f26dd37b673}} 
+\index{legacy-\/console.h@{legacy-\/console.h}!console\_initialize\_data@{console\_initialize\_data}}
+\index{console\_initialize\_data@{console\_initialize\_data}!legacy-\/console.h@{legacy-\/console.h}}
+\subsubsection{\texorpdfstring{console\_initialize\_data()}{console\_initialize\_data()}}
+{\footnotesize\ttfamily void console\+\_\+initialize\+\_\+data (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+console\+\_\+initialize\+\_\+data 
+
+This must be called before dynamic registration of devices can occur. It is normally called as a side-\/effect of {\itshape \mbox{\hyperlink{arm_2raspberrypi_2console_2console-config_8c_a4bdc321ef3ab62a261d77b5dbe075566}{console\+\_\+initialize()}}} but if a probe and dynamic registration occurs before that, then this method should be explicitly invoked. \mbox{\Hypertarget{legacy-console_8h_ab7b7632a5db0bff08d69845c22ec1d56}\label{legacy-console_8h_ab7b7632a5db0bff08d69845c22ec1d56}} 
+\index{legacy-\/console.h@{legacy-\/console.h}!console\_register\_devices@{console\_register\_devices}}
+\index{console\_register\_devices@{console\_register\_devices}!legacy-\/console.h@{legacy-\/console.h}}
+\subsubsection{\texorpdfstring{console\_register\_devices()}{console\_register\_devices()}}
+{\footnotesize\ttfamily void console\+\_\+register\+\_\+devices (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__console__tbl}{console\+\_\+tbl}} $\ast$}]{new\+\_\+ports,  }\item[{size\+\_\+t}]{number\+\_\+of\+\_\+ports }\end{DoxyParamCaption})}
+
+
+
+console\+\_\+register\+\_\+devices 
+
+This function expands the console table to include previous ports and the array of new ports specified.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em new\+\_\+ports} & specifies an array of new ports to register \\
+\hline
+\mbox{\texttt{ in}}  & {\em number\+\_\+of\+\_\+ports} & specifies the number of elements in the new\+\_\+ports array \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{legacy-console_8h_a4532c63cb4236c50e2a5c3aeeb566d1c}\label{legacy-console_8h_a4532c63cb4236c50e2a5c3aeeb566d1c}} 
+\index{legacy-\/console.h@{legacy-\/console.h}!vt\_ioctl@{vt\_ioctl}}
+\index{vt\_ioctl@{vt\_ioctl}!legacy-\/console.h@{legacy-\/console.h}}
+\subsubsection{\texorpdfstring{vt\_ioctl()}{vt\_ioctl()}}
+{\footnotesize\ttfamily int vt\+\_\+ioctl (\begin{DoxyParamCaption}\item[{unsigned int}]{cmd,  }\item[{unsigned long}]{arg }\end{DoxyParamCaption})}
+
+
+
+This function is the ioctl() support for a V\+GA buffer driver. 
+
+\begin{DoxyReturn}{Returns}
+This method returns 0 on success. 
+\end{DoxyReturn}

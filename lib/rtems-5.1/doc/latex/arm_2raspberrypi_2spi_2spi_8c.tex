@@ -1,0 +1,80 @@
+\hypertarget{arm_2raspberrypi_2spi_2spi_8c}{}\section{bsps/arm/raspberrypi/spi/spi.c File Reference}
+\label{arm_2raspberrypi_2spi_2spi_8c}\index{bsps/arm/raspberrypi/spi/spi.c@{bsps/arm/raspberrypi/spi/spi.c}}
+
+
+Support for the S\+PI bus on the Raspberry Pi G\+P\+IO P1 header (model A/B) and G\+P\+IO J8 header on model B+.  
+
+
+{\ttfamily \#include $<$bsp.\+h$>$}\newline
+{\ttfamily \#include $<$bsp/raspberrypi.\+h$>$}\newline
+{\ttfamily \#include $<$bsp/gpio.\+h$>$}\newline
+{\ttfamily \#include $<$bsp/rpi-\/gpio.\+h$>$}\newline
+{\ttfamily \#include $<$bsp/irq.\+h$>$}\newline
+{\ttfamily \#include $<$bsp/spi.\+h$>$}\newline
+{\ttfamily \#include $<$assert.\+h$>$}\newline
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structrpi__spi__softc__t}{rpi\+\_\+spi\+\_\+softc\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Object containing the S\+PI bus configuration settings. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structrpi__spi__desc__t}{rpi\+\_\+spi\+\_\+desc\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Object containing the S\+PI bus description. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bfseries S\+P\+I\+\_\+\+P\+O\+L\+L\+I\+NG}(condition)
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{arm_2raspberrypi_2spi_2spi_8c_abaa5b02fa144b553c3dd5241a4c712d9}{rpi\+\_\+spi\+\_\+init}} (bool bidirectional\+\_\+mode)
+\begin{DoxyCompactList}\small\item\em Setups the Raspberry Pi S\+PI bus (located on the G\+P\+IO header) on the \char`\"{}/dev/spi\char`\"{} device file, and registers the bus on the libi2c A\+PI. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Support for the S\+PI bus on the Raspberry Pi G\+P\+IO P1 header (model A/B) and G\+P\+IO J8 header on model B+. 
+
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{arm_2raspberrypi_2spi_2spi_8c_a5e471d311499a47f2ba41a346ace46da}\label{arm_2raspberrypi_2spi_2spi_8c_a5e471d311499a47f2ba41a346ace46da}} 
+\index{spi.c@{spi.c}!SPI\_POLLING@{SPI\_POLLING}}
+\index{SPI\_POLLING@{SPI\_POLLING}!spi.c@{spi.c}}
+\subsubsection{\texorpdfstring{SPI\_POLLING}{SPI\_POLLING}}
+{\footnotesize\ttfamily \#define S\+P\+I\+\_\+\+P\+O\+L\+L\+I\+NG(\begin{DoxyParamCaption}\item[{}]{condition }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{while} ( condition ) \{                         \(\backslash\)}
+\DoxyCodeLine{    ;                                           \(\backslash\)}
+\DoxyCodeLine{  \}}
+
+\end{DoxyCode}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{arm_2raspberrypi_2spi_2spi_8c_abaa5b02fa144b553c3dd5241a4c712d9}\label{arm_2raspberrypi_2spi_2spi_8c_abaa5b02fa144b553c3dd5241a4c712d9}} 
+\index{spi.c@{spi.c}!rpi\_spi\_init@{rpi\_spi\_init}}
+\index{rpi\_spi\_init@{rpi\_spi\_init}!spi.c@{spi.c}}
+\subsubsection{\texorpdfstring{rpi\_spi\_init()}{rpi\_spi\_init()}}
+{\footnotesize\ttfamily int rpi\+\_\+spi\+\_\+init (\begin{DoxyParamCaption}\item[{bool}]{bidirectional\+\_\+mode }\end{DoxyParamCaption})}
+
+
+
+Setups the Raspberry Pi S\+PI bus (located on the G\+P\+IO header) on the \char`\"{}/dev/spi\char`\"{} device file, and registers the bus on the libi2c A\+PI. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em bidirectional\+\_\+mode} & If T\+R\+UE sets the S\+PI bus to use 2-\/wire S\+PI, where the M\+O\+SI data line doubles as the slave out (SO) and slave in (SI) data lines. If F\+A\+L\+SE the bus defaults to the usual 3-\/wire S\+PI, with 2 separate data lines (M\+O\+SI and M\+I\+SO).\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em Returns} & libi2c bus number. \\
+\hline
+{\em $<$0} & Could not register the bus. See \\
+\hline
+\end{DoxyRetVals}
+\begin{DoxySeeAlso}{See also}
+rtems\+\_\+libi2c\+\_\+register\+\_\+bus(). 
+\end{DoxySeeAlso}

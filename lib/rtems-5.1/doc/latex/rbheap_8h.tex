@@ -1,0 +1,48 @@
+\hypertarget{rbheap_8h}{}\section{cpukit/include/rtems/rbheap.h File Reference}
+\label{rbheap_8h}\index{cpukit/include/rtems/rbheap.h@{cpukit/include/rtems/rbheap.h}}
+
+
+Red-\/\+Black Tree Heap A\+PI.  
+
+
+{\ttfamily \#include $<$rtems.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/chain.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/rbtree.\+h$>$}\newline
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structrtems__rbheap__chunk}{rtems\+\_\+rbheap\+\_\+chunk}}
+\begin{DoxyCompactList}\small\item\em Red-\/black heap chunk descriptor. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structrtems__rbheap__control}{rtems\+\_\+rbheap\+\_\+control}}
+\begin{DoxyCompactList}\small\item\em Red-\/black heap control. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{rbheap_8h_a975f4c70788b08815c5158c6c0e3323d}\label{rbheap_8h_a975f4c70788b08815c5158c6c0e3323d}} 
+\#define {\bfseries rtems\+\_\+rbheap\+\_\+chunk\+\_\+of\+\_\+node}(node)~\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gab2e7a0141fd898ae358fa9b134aa2610}{R\+T\+E\+M\+S\+\_\+\+C\+O\+N\+T\+A\+I\+N\+E\+R\+\_\+\+OF}}(node, \mbox{\hyperlink{structrtems__rbheap__chunk}{rtems\+\_\+rbheap\+\_\+chunk}}, tree\+\_\+node)
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \mbox{\hyperlink{structrtems__rbheap__control}{rtems\+\_\+rbheap\+\_\+control}} {\bfseries rtems\+\_\+rbheap\+\_\+control}
+\item 
+typedef void($\ast$ \mbox{\hyperlink{group__RBHeap_gaa15b8f5425b4d2aa188607bb9941fb20}{rtems\+\_\+rbheap\+\_\+extend\+\_\+descriptors}}) (\mbox{\hyperlink{structrtems__rbheap__control}{rtems\+\_\+rbheap\+\_\+control}} $\ast$\mbox{\hyperlink{structcontrol}{control}})
+\begin{DoxyCompactList}\small\item\em Handler to extend the available chunk descriptors. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{group__RBHeap_ga0274b53388fbaefe582c6c1752539b16}{rtems\+\_\+rbheap\+\_\+initialize}} (\mbox{\hyperlink{structrtems__rbheap__control}{rtems\+\_\+rbheap\+\_\+control}} $\ast$\mbox{\hyperlink{structcontrol}{control}}, void $\ast$area\+\_\+begin, uintptr\+\_\+t area\+\_\+size, uintptr\+\_\+t alignment, \mbox{\hyperlink{group__RBHeap_gaa15b8f5425b4d2aa188607bb9941fb20}{rtems\+\_\+rbheap\+\_\+extend\+\_\+descriptors}} extend\+\_\+descriptors, void $\ast$handler\+\_\+arg)
+\begin{DoxyCompactList}\small\item\em Initializes the red-\/black tree heap {\itshape control}. \end{DoxyCompactList}\item 
+void $\ast$ \mbox{\hyperlink{group__RBHeap_ga2eb3695546542f459cc424d1a36ea6f6}{rtems\+\_\+rbheap\+\_\+allocate}} (\mbox{\hyperlink{structrtems__rbheap__control}{rtems\+\_\+rbheap\+\_\+control}} $\ast$\mbox{\hyperlink{structcontrol}{control}}, size\+\_\+t \mbox{\hyperlink{sun4u_2tte_8h_a245260f6f74972558f61b85227df5aae}{size}})
+\begin{DoxyCompactList}\small\item\em Allocates a chunk of memory of at least {\itshape size} bytes from the red-\/black tree heap {\itshape control}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{group__RBHeap_ga1bd7fd933947dcdf26a49f4ce10418b4}{rtems\+\_\+rbheap\+\_\+free}} (\mbox{\hyperlink{structrtems__rbheap__control}{rtems\+\_\+rbheap\+\_\+control}} $\ast$\mbox{\hyperlink{structcontrol}{control}}, void $\ast$ptr)
+\begin{DoxyCompactList}\small\item\em Frees a chunk of memory {\itshape ptr} allocated from the red-\/black tree heap {\itshape control}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__RBHeap_ga9896930146188b96df52a73099cf8d10}{rtems\+\_\+rbheap\+\_\+extend\+\_\+descriptors\+\_\+never}} (\mbox{\hyperlink{structrtems__rbheap__control}{rtems\+\_\+rbheap\+\_\+control}} $\ast$\mbox{\hyperlink{structcontrol}{control}})
+\begin{DoxyCompactList}\small\item\em Chunk descriptor extend handler that does nothing. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__RBHeap_gaa1ea1346258fa0d79fc4ac9da02f761d}{rtems\+\_\+rbheap\+\_\+extend\+\_\+descriptors\+\_\+with\+\_\+malloc}} (\mbox{\hyperlink{structrtems__rbheap__control}{rtems\+\_\+rbheap\+\_\+control}} $\ast$\mbox{\hyperlink{structcontrol}{control}})
+\begin{DoxyCompactList}\small\item\em Chunk descriptor extend handler that uses malloc(). \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Red-\/\+Black Tree Heap A\+PI. 
+

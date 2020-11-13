@@ -1,0 +1,357 @@
+\hypertarget{group__RTEMSScoreISR}{}\section{I\+SR Handler}
+\label{group__RTEMSScoreISR}\index{ISR Handler@{ISR Handler}}
+
+
+I\+SR Handler.  
+
+
+\subsection*{Modules}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{group__RTEMSScoreISRLocks}{I\+S\+R Locks}}
+\begin{DoxyCompactList}\small\item\em Low-\/level lock to protect critical sections accessed by threads and interrupt service routines. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Files}
+\begin{DoxyCompactItemize}
+\item 
+file \mbox{\hyperlink{isr_8h}{isr.\+h}}
+\begin{DoxyCompactList}\small\item\em Data Related to the Management of Processor Interrupt Levels. \end{DoxyCompactList}\item 
+file \mbox{\hyperlink{isrlevel_8h}{isrlevel.\+h}}
+\begin{DoxyCompactList}\small\item\em I\+SR Level Type. \end{DoxyCompactList}\item 
+file \mbox{\hyperlink{isr_8c}{isr.\+c}}
+\begin{DoxyCompactList}\small\item\em Initialize the I\+SR handler. \end{DoxyCompactList}\item 
+file \mbox{\hyperlink{isrisinprogress_8c}{isrisinprogress.\+c}}
+\begin{DoxyCompactList}\small\item\em I\+SR Is In Progress Default Implementation. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__RTEMSScoreISR_gae4dc7eaa448c116a2ada205e276465c1}{\+\_\+\+I\+S\+R\+\_\+\+Install\+\_\+vector}}(\+\_\+vector,  \+\_\+new\+\_\+handler,  \+\_\+old\+\_\+handler)~\mbox{\hyperlink{group__RTEMSScoreCPUARM_gaa3480454768ad843ce97909111a48a1f}{\+\_\+\+C\+P\+U\+\_\+\+I\+S\+R\+\_\+install\+\_\+vector}}( \+\_\+vector, \+\_\+new\+\_\+handler, \+\_\+old\+\_\+handler )
+\begin{DoxyCompactList}\small\item\em Install interrupt handler vector. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTEMSScoreISR_ga2a829f51f98576aa596562985e1df2fc}{\+\_\+\+I\+S\+R\+\_\+\+Local\+\_\+disable}}(\+\_\+level)
+\begin{DoxyCompactList}\small\item\em Disables interrupts on this processor. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTEMSScoreISR_ga508f5a32655cb590906a477b5a8174f1}{\+\_\+\+I\+S\+R\+\_\+\+Local\+\_\+enable}}(\+\_\+level)
+\begin{DoxyCompactList}\small\item\em Enables interrupts on this processor. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTEMSScoreISR_ga2ac9dcbae9ca059453a2042e5854f73f}{\+\_\+\+I\+S\+R\+\_\+\+Local\+\_\+flash}}(\+\_\+level)
+\begin{DoxyCompactList}\small\item\em Temporarily enables interrupts on this processor. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTEMSScoreISR_ga263f1982878c676278a5a474d02a22b7}{\+\_\+\+I\+S\+R\+\_\+\+Is\+\_\+enabled}}(\+\_\+level)~\mbox{\hyperlink{group__RTEMSScoreCPUARM_ga5254669b54a06e96ebb585fd50a02c4d}{\+\_\+\+C\+P\+U\+\_\+\+I\+S\+R\+\_\+\+Is\+\_\+enabled}}( \+\_\+level )
+\begin{DoxyCompactList}\small\item\em Returns true if interrupts are enabled in the specified interrupt level, otherwise returns false. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTEMSScoreISR_gab54704104a6c83ee1e649af116d0419e}{\+\_\+\+I\+S\+R\+\_\+\+Get\+\_\+level}}()~\mbox{\hyperlink{group__RTEMSScoreCPUARM_ga1d9dcab9170d532b6634a5620385adbd}{\+\_\+\+C\+P\+U\+\_\+\+I\+S\+R\+\_\+\+Get\+\_\+level}}()
+\begin{DoxyCompactList}\small\item\em Return current interrupt level. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTEMSScoreISR_gad3209e74ff910d9870c298b8adf3fb32}{\+\_\+\+I\+S\+R\+\_\+\+Set\+\_\+level}}(\+\_\+new\+\_\+level)
+\begin{DoxyCompactList}\small\item\em Set current interrupt level. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef uint32\+\_\+t \mbox{\hyperlink{group__RTEMSScoreISR_gad594e7073b09d33d6b5d1dd2f313fb18}{I\+S\+R\+\_\+\+Vector\+\_\+number}}
+\item 
+typedef void \mbox{\hyperlink{group__RTEMSScoreISR_ga49c3b0ab3e84ccac78941b867bf34ccf}{I\+S\+R\+\_\+\+Handler}}
+\item 
+\mbox{\Hypertarget{group__RTEMSScoreISR_ga1776f7f71ed2844dc1f3ef0e7fae046a}\label{group__RTEMSScoreISR_ga1776f7f71ed2844dc1f3ef0e7fae046a}} 
+typedef void $\ast$ {\bfseries I\+S\+R\+\_\+\+Handler\+\_\+entry}
+\item 
+typedef uint32\+\_\+t \mbox{\hyperlink{group__RTEMSScoreISR_gad1af728587ebcefec5b5cf94fc7909b9}{I\+S\+R\+\_\+\+Level}}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{group__RTEMSScoreISR_gab90dca799ff51b1e1901a42d45e1f7cc}{R\+T\+E\+M\+S\+\_\+\+D\+E\+C\+L\+A\+R\+E\+\_\+\+G\+L\+O\+B\+A\+L\+\_\+\+S\+Y\+M\+B\+OL}} (\+\_\+\+I\+S\+R\+\_\+\+Stack\+\_\+size)
+\begin{DoxyCompactList}\small\item\em Global symbol with a value equal to the configure interrupt stack size. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__RTEMSScoreISR_ga8be8e02047ef8c71112a4abd6fa441b7}{\+\_\+\+I\+S\+R\+\_\+\+Handler\+\_\+initialization}} (void)
+\begin{DoxyCompactList}\small\item\em Initializes the I\+SR handler. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__RTEMSScoreISR_ga559fbd0c5a6dca57b0fe7a061fe96b3f}{\+\_\+\+I\+S\+R\+\_\+\+Handler}} (void)
+\begin{DoxyCompactList}\small\item\em I\+SR interrupt dispatcher. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__RTEMSScoreISR_ga3b125bb9faac2fa94bd0ba0583cf5f77}{\+\_\+\+I\+S\+R\+\_\+\+Is\+\_\+in\+\_\+progress}} (void)
+\begin{DoxyCompactList}\small\item\em Checks if an I\+SR in progress. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+char \mbox{\hyperlink{group__RTEMSScoreISR_gaa99477ab97d23ea19a5fe92203fc4cd5}{\+\_\+\+I\+S\+R\+\_\+\+Stack\+\_\+area\+\_\+begin}} \mbox{[}$\,$\mbox{]}
+\begin{DoxyCompactList}\small\item\em The interrupt stack area begin. \end{DoxyCompactList}\item 
+const char \mbox{\hyperlink{group__RTEMSScoreISR_ga86f97480eba58b44ee331ad49daa54e2}{\+\_\+\+I\+S\+R\+\_\+\+Stack\+\_\+area\+\_\+end}} \mbox{[}$\,$\mbox{]}
+\begin{DoxyCompactList}\small\item\em The interrupt stack area end. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+I\+SR Handler. 
+
+This handler encapsulates functionality which provides the foundation I\+SR services used in all of the A\+P\+Is supported by R\+T\+E\+MS.
+
+The I\+SR Nest level counter variable is maintained as part of the per cpu data structure. 
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{group__RTEMSScoreISR_gab54704104a6c83ee1e649af116d0419e}\label{group__RTEMSScoreISR_gab54704104a6c83ee1e649af116d0419e}} 
+\index{ISR Handler@{ISR Handler}!\_ISR\_Get\_level@{\_ISR\_Get\_level}}
+\index{\_ISR\_Get\_level@{\_ISR\_Get\_level}!ISR Handler@{ISR Handler}}
+\subsubsection{\texorpdfstring{\_ISR\_Get\_level}{\_ISR\_Get\_level}}
+{\footnotesize\ttfamily \#define \+\_\+\+I\+S\+R\+\_\+\+Get\+\_\+level(\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})~\mbox{\hyperlink{group__RTEMSScoreCPUARM_ga1d9dcab9170d532b6634a5620385adbd}{\+\_\+\+C\+P\+U\+\_\+\+I\+S\+R\+\_\+\+Get\+\_\+level}}()}
+
+
+
+Return current interrupt level. 
+
+This routine returns the current interrupt level.
+
+L\+M32 Specific Information\+: X\+XX document implementation including references if appropriate
+
+
+\begin{DoxyRetVals}{Return values}
+{\em This} & method returns the current level. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{group__RTEMSScoreISR_gae4dc7eaa448c116a2ada205e276465c1}\label{group__RTEMSScoreISR_gae4dc7eaa448c116a2ada205e276465c1}} 
+\index{ISR Handler@{ISR Handler}!\_ISR\_Install\_vector@{\_ISR\_Install\_vector}}
+\index{\_ISR\_Install\_vector@{\_ISR\_Install\_vector}!ISR Handler@{ISR Handler}}
+\subsubsection{\texorpdfstring{\_ISR\_Install\_vector}{\_ISR\_Install\_vector}}
+{\footnotesize\ttfamily \#define \+\_\+\+I\+S\+R\+\_\+\+Install\+\_\+vector(\begin{DoxyParamCaption}\item[{}]{\+\_\+vector,  }\item[{}]{\+\_\+new\+\_\+handler,  }\item[{}]{\+\_\+old\+\_\+handler }\end{DoxyParamCaption})~\mbox{\hyperlink{group__RTEMSScoreCPUARM_gaa3480454768ad843ce97909111a48a1f}{\+\_\+\+C\+P\+U\+\_\+\+I\+S\+R\+\_\+install\+\_\+vector}}( \+\_\+vector, \+\_\+new\+\_\+handler, \+\_\+old\+\_\+handler )}
+
+
+
+Install interrupt handler vector. 
+
+This routine installs new\+\_\+handler as the interrupt service routine for the specified vector. The previous interrupt service routine is returned as old\+\_\+handler.
+
+L\+M32 Specific Information\+: X\+XX document implementation including references if appropriate
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+vector} & is the vector number \\
+\hline
+\mbox{\texttt{ in}}  & {\em \+\_\+new\+\_\+handler} & is I\+SR handler to install \\
+\hline
+\mbox{\texttt{ in}}  & {\em \+\_\+old\+\_\+handler} & is a pointer to a variable which will be set to the old handler\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em $\ast$\+\_\+old\+\_\+handler} & will be set to the old I\+SR handler \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{group__RTEMSScoreISR_ga263f1982878c676278a5a474d02a22b7}\label{group__RTEMSScoreISR_ga263f1982878c676278a5a474d02a22b7}} 
+\index{ISR Handler@{ISR Handler}!\_ISR\_Is\_enabled@{\_ISR\_Is\_enabled}}
+\index{\_ISR\_Is\_enabled@{\_ISR\_Is\_enabled}!ISR Handler@{ISR Handler}}
+\subsubsection{\texorpdfstring{\_ISR\_Is\_enabled}{\_ISR\_Is\_enabled}}
+{\footnotesize\ttfamily \#define \+\_\+\+I\+S\+R\+\_\+\+Is\+\_\+enabled(\begin{DoxyParamCaption}\item[{}]{\+\_\+level }\end{DoxyParamCaption})~\mbox{\hyperlink{group__RTEMSScoreCPUARM_ga5254669b54a06e96ebb585fd50a02c4d}{\+\_\+\+C\+P\+U\+\_\+\+I\+S\+R\+\_\+\+Is\+\_\+enabled}}( \+\_\+level )}
+
+
+
+Returns true if interrupts are enabled in the specified interrupt level, otherwise returns false. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+level} & The I\+SR level.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em true} & Interrupts are enabled in the interrupt level. \\
+\hline
+{\em false} & Otherwise. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{group__RTEMSScoreISR_ga2a829f51f98576aa596562985e1df2fc}\label{group__RTEMSScoreISR_ga2a829f51f98576aa596562985e1df2fc}} 
+\index{ISR Handler@{ISR Handler}!\_ISR\_Local\_disable@{\_ISR\_Local\_disable}}
+\index{\_ISR\_Local\_disable@{\_ISR\_Local\_disable}!ISR Handler@{ISR Handler}}
+\subsubsection{\texorpdfstring{\_ISR\_Local\_disable}{\_ISR\_Local\_disable}}
+{\footnotesize\ttfamily \#define \+\_\+\+I\+S\+R\+\_\+\+Local\+\_\+disable(\begin{DoxyParamCaption}\item[{}]{\+\_\+level }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do} \{ \(\backslash\)}
+\DoxyCodeLine{    \_CPU\_ISR\_Disable( \_level ); \(\backslash\)}
+\DoxyCodeLine{    RTEMS\_COMPILER\_MEMORY\_BARRIER(); \(\backslash\)}
+\DoxyCodeLine{  \} \textcolor{keywordflow}{while} (0)}
+
+\end{DoxyCode}
+
+
+Disables interrupts on this processor. 
+
+This macro disables all interrupts on this processor so that a critical section of code is protected from concurrent access by interrupts of this processor. Disabling of interrupts disables thread dispatching on the processor as well.
+
+On S\+MP configurations other processors can enter such sections if not protected by other means.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em \+\_\+level} & The argument {\itshape \+\_\+level} will contain the previous interrupt mask level. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__RTEMSScoreISR_ga508f5a32655cb590906a477b5a8174f1}\label{group__RTEMSScoreISR_ga508f5a32655cb590906a477b5a8174f1}} 
+\index{ISR Handler@{ISR Handler}!\_ISR\_Local\_enable@{\_ISR\_Local\_enable}}
+\index{\_ISR\_Local\_enable@{\_ISR\_Local\_enable}!ISR Handler@{ISR Handler}}
+\subsubsection{\texorpdfstring{\_ISR\_Local\_enable}{\_ISR\_Local\_enable}}
+{\footnotesize\ttfamily \#define \+\_\+\+I\+S\+R\+\_\+\+Local\+\_\+enable(\begin{DoxyParamCaption}\item[{}]{\+\_\+level }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do} \{ \(\backslash\)}
+\DoxyCodeLine{    RTEMS\_COMPILER\_MEMORY\_BARRIER(); \(\backslash\)}
+\DoxyCodeLine{    \_CPU\_ISR\_Enable( \_level ); \(\backslash\)}
+\DoxyCodeLine{  \} \textcolor{keywordflow}{while} (0)}
+
+\end{DoxyCode}
+
+
+Enables interrupts on this processor. 
+
+This macro restores the interrupt status on the processor with the interrupt level value obtained by \mbox{\hyperlink{group__RTEMSScoreISR_ga2a829f51f98576aa596562985e1df2fc}{\+\_\+\+I\+S\+R\+\_\+\+Local\+\_\+disable()}}. It is used at the end of a critical section of code to enable interrupts so they can be processed again.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+level} & The interrupt level previously obtained by \mbox{\hyperlink{group__RTEMSScoreISR_ga2a829f51f98576aa596562985e1df2fc}{\+\_\+\+I\+S\+R\+\_\+\+Local\+\_\+disable()}}. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__RTEMSScoreISR_ga2ac9dcbae9ca059453a2042e5854f73f}\label{group__RTEMSScoreISR_ga2ac9dcbae9ca059453a2042e5854f73f}} 
+\index{ISR Handler@{ISR Handler}!\_ISR\_Local\_flash@{\_ISR\_Local\_flash}}
+\index{\_ISR\_Local\_flash@{\_ISR\_Local\_flash}!ISR Handler@{ISR Handler}}
+\subsubsection{\texorpdfstring{\_ISR\_Local\_flash}{\_ISR\_Local\_flash}}
+{\footnotesize\ttfamily \#define \+\_\+\+I\+S\+R\+\_\+\+Local\+\_\+flash(\begin{DoxyParamCaption}\item[{}]{\+\_\+level }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do} \{ \(\backslash\)}
+\DoxyCodeLine{    RTEMS\_COMPILER\_MEMORY\_BARRIER(); \(\backslash\)}
+\DoxyCodeLine{    \_CPU\_ISR\_Flash( \_level ); \(\backslash\)}
+\DoxyCodeLine{    RTEMS\_COMPILER\_MEMORY\_BARRIER(); \(\backslash\)}
+\DoxyCodeLine{  \} \textcolor{keywordflow}{while} (0)}
+
+\end{DoxyCode}
+
+
+Temporarily enables interrupts on this processor. 
+
+This macro temporarily enables interrupts to the previous interrupt mask level and then disables all interrupts so that the caller can continue into the second part of a critical section.
+
+This routine is used to temporarily enable interrupts during a long critical section. It is used in long sections of critical code when a point is reached at which interrupts can be temporarily enabled. Deciding where to flash interrupts in a long critical section is often difficult and the point must be selected with care to ensure that the critical section properly protects itself.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+level} & The interrupt level previously obtained by \mbox{\hyperlink{group__RTEMSScoreISR_ga2a829f51f98576aa596562985e1df2fc}{\+\_\+\+I\+S\+R\+\_\+\+Local\+\_\+disable()}}. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__RTEMSScoreISR_gad3209e74ff910d9870c298b8adf3fb32}\label{group__RTEMSScoreISR_gad3209e74ff910d9870c298b8adf3fb32}} 
+\index{ISR Handler@{ISR Handler}!\_ISR\_Set\_level@{\_ISR\_Set\_level}}
+\index{\_ISR\_Set\_level@{\_ISR\_Set\_level}!ISR Handler@{ISR Handler}}
+\subsubsection{\texorpdfstring{\_ISR\_Set\_level}{\_ISR\_Set\_level}}
+{\footnotesize\ttfamily \#define \+\_\+\+I\+S\+R\+\_\+\+Set\+\_\+level(\begin{DoxyParamCaption}\item[{}]{\+\_\+new\+\_\+level }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do} \{ \(\backslash\)}
+\DoxyCodeLine{    RTEMS\_COMPILER\_MEMORY\_BARRIER();  \(\backslash\)}
+\DoxyCodeLine{    \_CPU\_ISR\_Set\_level( \_new\_level ); \(\backslash\)}
+\DoxyCodeLine{    RTEMS\_COMPILER\_MEMORY\_BARRIER();  \(\backslash\)}
+\DoxyCodeLine{  \} \textcolor{keywordflow}{while} (0)}
+
+\end{DoxyCode}
+
+
+Set current interrupt level. 
+
+This routine sets the current interrupt level to that specified by {\itshape \+\_\+new\+\_\+level}. The new interrupt level is effective when the routine exits.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+new\+\_\+level} & contains the desired interrupt level. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Typedef Documentation}
+\mbox{\Hypertarget{group__RTEMSScoreISR_ga49c3b0ab3e84ccac78941b867bf34ccf}\label{group__RTEMSScoreISR_ga49c3b0ab3e84ccac78941b867bf34ccf}} 
+\index{ISR Handler@{ISR Handler}!ISR\_Handler@{ISR\_Handler}}
+\index{ISR\_Handler@{ISR\_Handler}!ISR Handler@{ISR Handler}}
+\subsubsection{\texorpdfstring{ISR\_Handler}{ISR\_Handler}}
+{\footnotesize\ttfamily typedef void \mbox{\hyperlink{group__RTEMSScoreISR_ga49c3b0ab3e84ccac78941b867bf34ccf}{I\+S\+R\+\_\+\+Handler}}}
+
+Return type for I\+SR Handler \mbox{\Hypertarget{group__RTEMSScoreISR_gad1af728587ebcefec5b5cf94fc7909b9}\label{group__RTEMSScoreISR_gad1af728587ebcefec5b5cf94fc7909b9}} 
+\index{ISR Handler@{ISR Handler}!ISR\_Level@{ISR\_Level}}
+\index{ISR\_Level@{ISR\_Level}!ISR Handler@{ISR Handler}}
+\subsubsection{\texorpdfstring{ISR\_Level}{ISR\_Level}}
+{\footnotesize\ttfamily typedef uint32\+\_\+t \mbox{\hyperlink{group__RTEMSScoreISR_gad1af728587ebcefec5b5cf94fc7909b9}{I\+S\+R\+\_\+\+Level}}}
+
+The following type defines the control block used to manage the interrupt level portion of the status register. \mbox{\Hypertarget{group__RTEMSScoreISR_gad594e7073b09d33d6b5d1dd2f313fb18}\label{group__RTEMSScoreISR_gad594e7073b09d33d6b5d1dd2f313fb18}} 
+\index{ISR Handler@{ISR Handler}!ISR\_Vector\_number@{ISR\_Vector\_number}}
+\index{ISR\_Vector\_number@{ISR\_Vector\_number}!ISR Handler@{ISR Handler}}
+\subsubsection{\texorpdfstring{ISR\_Vector\_number}{ISR\_Vector\_number}}
+{\footnotesize\ttfamily typedef uint32\+\_\+t \mbox{\hyperlink{group__RTEMSScoreISR_gad594e7073b09d33d6b5d1dd2f313fb18}{I\+S\+R\+\_\+\+Vector\+\_\+number}}}
+
+The following type defines the type used to manage the vectors. 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{group__RTEMSScoreISR_ga559fbd0c5a6dca57b0fe7a061fe96b3f}\label{group__RTEMSScoreISR_ga559fbd0c5a6dca57b0fe7a061fe96b3f}} 
+\index{ISR Handler@{ISR Handler}!\_ISR\_Handler@{\_ISR\_Handler}}
+\index{\_ISR\_Handler@{\_ISR\_Handler}!ISR Handler@{ISR Handler}}
+\subsubsection{\texorpdfstring{\_ISR\_Handler()}{\_ISR\_Handler()}}
+{\footnotesize\ttfamily void \+\_\+\+I\+S\+R\+\_\+\+Handler (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+I\+SR interrupt dispatcher. 
+
+This routine is the interrupt dispatcher. A\+LL interrupts are vectored to this routine so that minimal context can be saved and setup performed before the application\textquotesingle{}s high-\/level language interrupt service routine is invoked. After the application\textquotesingle{}s interrupt service routine returns control to this routine, it will determine if a thread dispatch is necessary. If so, it will ensure that the necessary thread scheduling operations are performed when the outermost interrupt service routine exits.
+
+\begin{DoxyNote}{Note}
+Typically implemented in assembly language. 
+\end{DoxyNote}
+\mbox{\Hypertarget{group__RTEMSScoreISR_ga8be8e02047ef8c71112a4abd6fa441b7}\label{group__RTEMSScoreISR_ga8be8e02047ef8c71112a4abd6fa441b7}} 
+\index{ISR Handler@{ISR Handler}!\_ISR\_Handler\_initialization@{\_ISR\_Handler\_initialization}}
+\index{\_ISR\_Handler\_initialization@{\_ISR\_Handler\_initialization}!ISR Handler@{ISR Handler}}
+\subsubsection{\texorpdfstring{\_ISR\_Handler\_initialization()}{\_ISR\_Handler\_initialization()}}
+{\footnotesize\ttfamily void \+\_\+\+I\+S\+R\+\_\+\+Handler\+\_\+initialization (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Initializes the I\+SR handler. 
+
+This routine performs the initialization necessary for the I\+SR handler. \mbox{\Hypertarget{group__RTEMSScoreISR_ga3b125bb9faac2fa94bd0ba0583cf5f77}\label{group__RTEMSScoreISR_ga3b125bb9faac2fa94bd0ba0583cf5f77}} 
+\index{ISR Handler@{ISR Handler}!\_ISR\_Is\_in\_progress@{\_ISR\_Is\_in\_progress}}
+\index{\_ISR\_Is\_in\_progress@{\_ISR\_Is\_in\_progress}!ISR Handler@{ISR Handler}}
+\subsubsection{\texorpdfstring{\_ISR\_Is\_in\_progress()}{\_ISR\_Is\_in\_progress()}}
+{\footnotesize\ttfamily bool \+\_\+\+I\+S\+R\+\_\+\+Is\+\_\+in\+\_\+progress (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Checks if an I\+SR in progress. 
+
+This function returns true if the processor is currently servicing and interrupt and false otherwise. A return value of true indicates that the caller is an interrupt service routine, N\+OT a thread.
+
+
+\begin{DoxyRetVals}{Return values}
+{\em true} & Returns true when called from an I\+SR. \\
+\hline
+{\em false} & Returns false when not called from an I\+SR. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{group__RTEMSScoreISR_gab90dca799ff51b1e1901a42d45e1f7cc}\label{group__RTEMSScoreISR_gab90dca799ff51b1e1901a42d45e1f7cc}} 
+\index{ISR Handler@{ISR Handler}!RTEMS\_DECLARE\_GLOBAL\_SYMBOL@{RTEMS\_DECLARE\_GLOBAL\_SYMBOL}}
+\index{RTEMS\_DECLARE\_GLOBAL\_SYMBOL@{RTEMS\_DECLARE\_GLOBAL\_SYMBOL}!ISR Handler@{ISR Handler}}
+\subsubsection{\texorpdfstring{RTEMS\_DECLARE\_GLOBAL\_SYMBOL()}{RTEMS\_DECLARE\_GLOBAL\_SYMBOL()}}
+{\footnotesize\ttfamily R\+T\+E\+M\+S\+\_\+\+D\+E\+C\+L\+A\+R\+E\+\_\+\+G\+L\+O\+B\+A\+L\+\_\+\+S\+Y\+M\+B\+OL (\begin{DoxyParamCaption}\item[{\+\_\+\+I\+S\+R\+\_\+\+Stack\+\_\+size}]{ }\end{DoxyParamCaption})}
+
+
+
+Global symbol with a value equal to the configure interrupt stack size. 
+
+This global symbol is defined by the application configuration option C\+O\+N\+F\+I\+G\+U\+R\+E\+\_\+\+I\+N\+I\+T\+\_\+\+T\+A\+S\+K\+\_\+\+S\+T\+A\+C\+K\+\_\+\+S\+I\+ZE via $<$\mbox{\hyperlink{confdefs_8h}{rtems/confdefs.\+h}}$>$. 
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{group__RTEMSScoreISR_gaa99477ab97d23ea19a5fe92203fc4cd5}\label{group__RTEMSScoreISR_gaa99477ab97d23ea19a5fe92203fc4cd5}} 
+\index{ISR Handler@{ISR Handler}!\_ISR\_Stack\_area\_begin@{\_ISR\_Stack\_area\_begin}}
+\index{\_ISR\_Stack\_area\_begin@{\_ISR\_Stack\_area\_begin}!ISR Handler@{ISR Handler}}
+\subsubsection{\texorpdfstring{\_ISR\_Stack\_area\_begin}{\_ISR\_Stack\_area\_begin}}
+{\footnotesize\ttfamily char \+\_\+\+I\+S\+R\+\_\+\+Stack\+\_\+area\+\_\+begin\mbox{[}$\,$\mbox{]}}
+
+
+
+The interrupt stack area begin. 
+
+The interrupt stack area is defined by the application configuration via $<$\mbox{\hyperlink{confdefs_8h}{rtems/confdefs.\+h}}$>$. The size of the area depends on C\+O\+N\+F\+I\+G\+U\+R\+E\+\_\+\+I\+N\+I\+T\+\_\+\+T\+A\+S\+K\+\_\+\+S\+T\+A\+C\+K\+\_\+\+S\+I\+ZE and C\+O\+N\+F\+I\+G\+U\+R\+E\+\_\+\+M\+A\+X\+I\+M\+U\+M\+\_\+\+P\+R\+O\+C\+E\+S\+S\+O\+RS. \mbox{\Hypertarget{group__RTEMSScoreISR_ga86f97480eba58b44ee331ad49daa54e2}\label{group__RTEMSScoreISR_ga86f97480eba58b44ee331ad49daa54e2}} 
+\index{ISR Handler@{ISR Handler}!\_ISR\_Stack\_area\_end@{\_ISR\_Stack\_area\_end}}
+\index{\_ISR\_Stack\_area\_end@{\_ISR\_Stack\_area\_end}!ISR Handler@{ISR Handler}}
+\subsubsection{\texorpdfstring{\_ISR\_Stack\_area\_end}{\_ISR\_Stack\_area\_end}}
+{\footnotesize\ttfamily const char \+\_\+\+I\+S\+R\+\_\+\+Stack\+\_\+area\+\_\+end\mbox{[}$\,$\mbox{]}}
+
+
+
+The interrupt stack area end. 
+
+The interrupt stack area is defined by the application configuration via $<$\mbox{\hyperlink{confdefs_8h}{rtems/confdefs.\+h}}$>$. The size of the area depends on C\+O\+N\+F\+I\+G\+U\+R\+E\+\_\+\+I\+N\+I\+T\+\_\+\+T\+A\+S\+K\+\_\+\+S\+T\+A\+C\+K\+\_\+\+S\+I\+ZE and C\+O\+N\+F\+I\+G\+U\+R\+E\+\_\+\+M\+A\+X\+I\+M\+U\+M\+\_\+\+P\+R\+O\+C\+E\+S\+S\+O\+RS. 

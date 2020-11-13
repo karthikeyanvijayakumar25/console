@@ -1,0 +1,249 @@
+\hypertarget{malloc_8h}{}\section{cpukit/include/rtems/malloc.h File Reference}
+\label{malloc_8h}\index{cpukit/include/rtems/malloc.h@{cpukit/include/rtems/malloc.h}}
+{\ttfamily \#include $<$rtems.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/bsp\+Io.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/libcsupport.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/score/memory.\+h$>$}\newline
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{malloc_8h_a4125d11b86f566f8f1a671fffc6a58e8}\label{malloc_8h_a4125d11b86f566f8f1a671fffc6a58e8}} 
+typedef void $\ast$($\ast$ {\bfseries rtems\+\_\+heap\+\_\+extend\+\_\+handler}) (\mbox{\hyperlink{structHeap__Control}{Heap\+\_\+\+Control}} $\ast$heap, size\+\_\+t alloc\+\_\+size)
+\item 
+\mbox{\Hypertarget{malloc_8h_a38d890590fd8a1c33433cac66b16d0d4}\label{malloc_8h_a38d890590fd8a1c33433cac66b16d0d4}} 
+typedef void($\ast$ {\bfseries rtems\+\_\+malloc\+\_\+dirtier\+\_\+t}) (void $\ast$, size\+\_\+t)
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{malloc_8h_a558026e3ed850bab36c6d68ee3727882}\label{malloc_8h_a558026e3ed850bab36c6d68ee3727882}} 
+void {\bfseries R\+T\+E\+M\+S\+\_\+\+Malloc\+\_\+\+Initialize} (const \mbox{\hyperlink{structMemory__Information}{Memory\+\_\+\+Information}} $\ast$mem, \mbox{\hyperlink{group__RTEMSScoreHeap_ga8953b692d39ca1c8a2780e9e8e2d9b1f}{Heap\+\_\+\+Initialization\+\_\+or\+\_\+extend\+\_\+handler}} extend)
+\item 
+\mbox{\Hypertarget{malloc_8h_aaab427c995cc0c8e362e991a7877b261}\label{malloc_8h_aaab427c995cc0c8e362e991a7877b261}} 
+void $\ast$ \mbox{\hyperlink{malloc_8h_aaab427c995cc0c8e362e991a7877b261}{rtems\+\_\+heap\+\_\+extend\+\_\+via\+\_\+sbrk}} (\mbox{\hyperlink{structHeap__Control}{Heap\+\_\+\+Control}} $\ast$heap, size\+\_\+t alloc\+\_\+size)
+\begin{DoxyCompactList}\small\item\em R\+T\+E\+MS Extend Heap via Sbrk. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{malloc_8h_a6a3270d808f93f8a5a2894f5f862ea78}\label{malloc_8h_a6a3270d808f93f8a5a2894f5f862ea78}} 
+void $\ast$ {\bfseries rtems\+\_\+heap\+\_\+null\+\_\+extend} (\mbox{\hyperlink{structHeap__Control}{Heap\+\_\+\+Control}} $\ast$heap, size\+\_\+t alloc\+\_\+size)
+\item 
+void \mbox{\hyperlink{malloc_8h_a2321d5a9197d3cfa63b7d60498222761}{rtems\+\_\+malloc\+\_\+dirty\+\_\+memory}} (void $\ast$start, size\+\_\+t \mbox{\hyperlink{sun4u_2tte_8h_a245260f6f74972558f61b85227df5aae}{size}})
+\begin{DoxyCompactList}\small\item\em Dirty Memory Function. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{malloc_8h_aa00f1bef8a663ce74ee289b46d9c7ced}{rtems\+\_\+memalign}} (void $\ast$$\ast$pointer, size\+\_\+t alignment, size\+\_\+t \mbox{\hyperlink{sun4u_2tte_8h_a245260f6f74972558f61b85227df5aae}{size}})
+\begin{DoxyCompactList}\small\item\em R\+T\+E\+MS Variation on Aligned Memory Allocation. \end{DoxyCompactList}\item 
+void $\ast$ \mbox{\hyperlink{malloc_8h_addefe365b83b02b5b035ffcfba2a9447}{rtems\+\_\+heap\+\_\+allocate\+\_\+aligned\+\_\+with\+\_\+boundary}} (size\+\_\+t \mbox{\hyperlink{sun4u_2tte_8h_a245260f6f74972558f61b85227df5aae}{size}}, uintptr\+\_\+t alignment, uintptr\+\_\+t boundary) \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gae7c9d466d27577cf40868ba00aaf701e}{R\+T\+E\+M\+S\+\_\+\+M\+A\+L\+L\+O\+C\+L\+I\+KE}} \mbox{\hyperlink{group__RTEMSScoreBaseDefs_ga482bcf1248a09afc679fc1d56c16343d}{R\+T\+E\+M\+S\+\_\+\+A\+L\+L\+O\+C\+\_\+\+S\+I\+ZE}}(1) \mbox{\hyperlink{group__RTEMSScoreBaseDefs_ga444c15811193d14238084ae4aecd2773}{R\+T\+E\+M\+S\+\_\+\+A\+L\+L\+O\+C\+\_\+\+A\+L\+I\+GN}}(2) \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gacd46c37056a29fdf53c3e8af6e8a4296}{R\+T\+E\+M\+S\+\_\+\+W\+A\+R\+N\+\_\+\+U\+N\+U\+S\+E\+D\+\_\+\+R\+E\+S\+U\+LT}}
+\begin{DoxyCompactList}\small\item\em Allocates a memory area of size {\itshape size} bytes from the heap. \end{DoxyCompactList}\item 
+void $\ast$ \mbox{\hyperlink{malloc_8h_ac020a8ae24e753d1da4c838d80c50e91}{rtems\+\_\+malloc}} (size\+\_\+t \mbox{\hyperlink{sun4u_2tte_8h_a245260f6f74972558f61b85227df5aae}{size}}) \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gae7c9d466d27577cf40868ba00aaf701e}{R\+T\+E\+M\+S\+\_\+\+M\+A\+L\+L\+O\+C\+L\+I\+KE}} \mbox{\hyperlink{group__RTEMSScoreBaseDefs_ga482bcf1248a09afc679fc1d56c16343d}{R\+T\+E\+M\+S\+\_\+\+A\+L\+L\+O\+C\+\_\+\+S\+I\+ZE}}(1) \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gacd46c37056a29fdf53c3e8af6e8a4296}{R\+T\+E\+M\+S\+\_\+\+W\+A\+R\+N\+\_\+\+U\+N\+U\+S\+E\+D\+\_\+\+R\+E\+S\+U\+LT}}
+\begin{DoxyCompactList}\small\item\em Allocates a memory area of the specified size from the heap. \end{DoxyCompactList}\item 
+void $\ast$ \mbox{\hyperlink{malloc_8h_a71425b0f0952315d27e06eb5e85e77e4}{rtems\+\_\+calloc}} (size\+\_\+t nelem, size\+\_\+t elsize) \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gae7c9d466d27577cf40868ba00aaf701e}{R\+T\+E\+M\+S\+\_\+\+M\+A\+L\+L\+O\+C\+L\+I\+KE}} \mbox{\hyperlink{group__RTEMSScoreBaseDefs_ga9988f4196c26c826ca5a715240a463b8}{R\+T\+E\+M\+S\+\_\+\+A\+L\+L\+O\+C\+\_\+\+S\+I\+Z\+E\+\_\+2}}(1
+\begin{DoxyCompactList}\small\item\em Allocates a memory area for the specified count of elements from the heap. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{malloc_8h_af136cb77bfa16962a04bf148db5fe2db}{rtems\+\_\+heap\+\_\+extend}} (void $\ast$area\+\_\+begin, uintptr\+\_\+t area\+\_\+size)
+\begin{DoxyCompactList}\small\item\em Extends the memory available for the heap using the memory area starting at {\itshape area\+\_\+begin} of size {\itshape area\+\_\+size} bytes. \end{DoxyCompactList}\item 
+void $\ast$ \mbox{\hyperlink{malloc_8h_a8ebc04cbb90e1ecc6ed7b7ba6780493b}{rtems\+\_\+heap\+\_\+greedy\+\_\+allocate}} (const uintptr\+\_\+t $\ast$block\+\_\+sizes, size\+\_\+t block\+\_\+count)
+\begin{DoxyCompactList}\small\item\em Greedy allocate that empties the heap. \end{DoxyCompactList}\item 
+void $\ast$ \mbox{\hyperlink{malloc_8h_aba5ba5020cadde776ad76aff68db5563}{rtems\+\_\+heap\+\_\+greedy\+\_\+allocate\+\_\+all\+\_\+except\+\_\+largest}} (uintptr\+\_\+t $\ast$allocatable\+\_\+size)
+\begin{DoxyCompactList}\small\item\em Greedy allocate all blocks except the largest free block. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{malloc_8h_abcd363b410e8f0c2f8fce2e220079f8a}{rtems\+\_\+heap\+\_\+greedy\+\_\+free}} (void $\ast$\mbox{\hyperlink{structopaque}{opaque}})
+\begin{DoxyCompactList}\small\item\em Frees space of a greedy allocation. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structHeap__Control}{Heap\+\_\+\+Control}} $\ast$ \mbox{\hyperlink{malloc_8h_aafa8e14e70015e219e785a6aacb7c58e}{R\+T\+E\+M\+S\+\_\+\+Malloc\+\_\+\+Heap}}
+\begin{DoxyCompactList}\small\item\em C program heap control. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{malloc_8h_ac37181f4472a8b4dc427a2b441068bf0}\label{malloc_8h_ac37181f4472a8b4dc427a2b441068bf0}} 
+ptrdiff\+\_\+t {\bfseries R\+T\+E\+M\+S\+\_\+\+Malloc\+\_\+\+Sbrk\+\_\+amount}
+\item 
+\mbox{\Hypertarget{malloc_8h_a8bdd9a4a2bd66f9a83b6dc4e5b4c78d7}\label{malloc_8h_a8bdd9a4a2bd66f9a83b6dc4e5b4c78d7}} 
+const rtems\+\_\+heap\+\_\+extend\+\_\+handler {\bfseries rtems\+\_\+malloc\+\_\+extend\+\_\+handler}
+\item 
+\mbox{\Hypertarget{malloc_8h_af6e26e0e471d26d38675aae69d6954d3}\label{malloc_8h_af6e26e0e471d26d38675aae69d6954d3}} 
+rtems\+\_\+malloc\+\_\+dirtier\+\_\+t {\bfseries rtems\+\_\+malloc\+\_\+dirty\+\_\+helper}
+\item 
+\mbox{\Hypertarget{malloc_8h_a6cfaad752ec7b4279cda178526dcd96d}\label{malloc_8h_a6cfaad752ec7b4279cda178526dcd96d}} 
+void {\bfseries R\+T\+E\+M\+S\+\_\+\+W\+A\+R\+N\+\_\+\+U\+N\+U\+S\+E\+D\+\_\+\+R\+E\+S\+U\+LT}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This file defines the interface to R\+T\+E\+MS extensions to the Malloc Family. 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{malloc_8h_a71425b0f0952315d27e06eb5e85e77e4}\label{malloc_8h_a71425b0f0952315d27e06eb5e85e77e4}} 
+\index{malloc.h@{malloc.h}!rtems\_calloc@{rtems\_calloc}}
+\index{rtems\_calloc@{rtems\_calloc}!malloc.h@{malloc.h}}
+\subsubsection{\texorpdfstring{rtems\_calloc()}{rtems\_calloc()}}
+{\footnotesize\ttfamily void$\ast$ rtems\+\_\+calloc (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{nelem,  }\item[{size\+\_\+t}]{elsize }\end{DoxyParamCaption})}
+
+
+
+Allocates a memory area for the specified count of elements from the heap. 
+
+The allocated memory area is fully filled with zero bits.
+
+This function is almost identical to calloc(). The only exception is that errno is not set in case of a memory allocation failure.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em nelem} & The count of elements. \\
+\hline
+\mbox{\texttt{ in}}  & {\em elsize} & The size of each elements.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em N\+U\+LL} & The memory allocation failed or {\itshape nelem} is zero or {\itshape elsize} is zero. \\
+\hline
+{\em otherwise} & The begin address of the allocated memory area. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{malloc_8h_addefe365b83b02b5b035ffcfba2a9447}\label{malloc_8h_addefe365b83b02b5b035ffcfba2a9447}} 
+\index{malloc.h@{malloc.h}!rtems\_heap\_allocate\_aligned\_with\_boundary@{rtems\_heap\_allocate\_aligned\_with\_boundary}}
+\index{rtems\_heap\_allocate\_aligned\_with\_boundary@{rtems\_heap\_allocate\_aligned\_with\_boundary}!malloc.h@{malloc.h}}
+\subsubsection{\texorpdfstring{rtems\_heap\_allocate\_aligned\_with\_boundary()}{rtems\_heap\_allocate\_aligned\_with\_boundary()}}
+{\footnotesize\ttfamily void$\ast$ rtems\+\_\+heap\+\_\+allocate\+\_\+aligned\+\_\+with\+\_\+boundary (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{size,  }\item[{uintptr\+\_\+t}]{alignment,  }\item[{uintptr\+\_\+t}]{boundary }\end{DoxyParamCaption})}
+
+
+
+Allocates a memory area of size {\itshape size} bytes from the heap. 
+
+If the alignment parameter {\itshape alignment} is not equal to zero, the allocated memory area will begin at an address aligned by this value.
+
+If the boundary parameter {\itshape boundary} is not equal to zero, the allocated memory area will comply with a boundary constraint. The boundary value specifies the set of addresses which are aligned by the boundary value. The interior of the allocated memory area will not contain an element of this set. The begin or end address of the area may be a member of the set.
+
+A size value of zero will return a unique address which may be freed with free().
+
+The memory allocated by this function can be released with a call to free().
+
+\begin{DoxyReturn}{Returns}
+A pointer to the begin of the allocated memory area, or {\ttfamily N\+U\+LL} if no memory is available or the parameters are inconsistent. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{malloc_8h_af136cb77bfa16962a04bf148db5fe2db}\label{malloc_8h_af136cb77bfa16962a04bf148db5fe2db}} 
+\index{malloc.h@{malloc.h}!rtems\_heap\_extend@{rtems\_heap\_extend}}
+\index{rtems\_heap\_extend@{rtems\_heap\_extend}!malloc.h@{malloc.h}}
+\subsubsection{\texorpdfstring{rtems\_heap\_extend()}{rtems\_heap\_extend()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} rtems\+\_\+heap\+\_\+extend (\begin{DoxyParamCaption}\item[{void $\ast$}]{area\+\_\+begin,  }\item[{uintptr\+\_\+t}]{area\+\_\+size }\end{DoxyParamCaption})}
+
+
+
+Extends the memory available for the heap using the memory area starting at {\itshape area\+\_\+begin} of size {\itshape area\+\_\+size} bytes. 
+
+There are no alignment requirements. The memory area must be big enough to contain some maintenance blocks. It must not overlap parts of the current heap areas. Disconnected subordinate heap areas will lead to used blocks which cover the gaps. Extending with an inappropriate memory area will corrupt the heap.
+
+
+\begin{DoxyRetVals}{Return values}
+{\em R\+T\+E\+M\+S\+\_\+\+S\+U\+C\+C\+E\+S\+S\+F\+UL} & Successful operation. \\
+\hline
+{\em R\+T\+E\+M\+S\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+A\+D\+D\+R\+E\+SS} & Invalid memory area. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{malloc_8h_a8ebc04cbb90e1ecc6ed7b7ba6780493b}\label{malloc_8h_a8ebc04cbb90e1ecc6ed7b7ba6780493b}} 
+\index{malloc.h@{malloc.h}!rtems\_heap\_greedy\_allocate@{rtems\_heap\_greedy\_allocate}}
+\index{rtems\_heap\_greedy\_allocate@{rtems\_heap\_greedy\_allocate}!malloc.h@{malloc.h}}
+\subsubsection{\texorpdfstring{rtems\_heap\_greedy\_allocate()}{rtems\_heap\_greedy\_allocate()}}
+{\footnotesize\ttfamily void$\ast$ rtems\+\_\+heap\+\_\+greedy\+\_\+allocate (\begin{DoxyParamCaption}\item[{const uintptr\+\_\+t $\ast$}]{block\+\_\+sizes,  }\item[{size\+\_\+t}]{block\+\_\+count }\end{DoxyParamCaption})}
+
+
+
+Greedy allocate that empties the heap. 
+
+Afterwards the heap has at most {\itshape block\+\_\+count} allocatable blocks of sizes specified by {\itshape block\+\_\+sizes}. The {\itshape block\+\_\+sizes} must point to an array with {\itshape block\+\_\+count} members. All other blocks are used.
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{malloc_8h_abcd363b410e8f0c2f8fce2e220079f8a}{rtems\+\_\+heap\+\_\+greedy\+\_\+free()}}. 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{malloc_8h_aba5ba5020cadde776ad76aff68db5563}\label{malloc_8h_aba5ba5020cadde776ad76aff68db5563}} 
+\index{malloc.h@{malloc.h}!rtems\_heap\_greedy\_allocate\_all\_except\_largest@{rtems\_heap\_greedy\_allocate\_all\_except\_largest}}
+\index{rtems\_heap\_greedy\_allocate\_all\_except\_largest@{rtems\_heap\_greedy\_allocate\_all\_except\_largest}!malloc.h@{malloc.h}}
+\subsubsection{\texorpdfstring{rtems\_heap\_greedy\_allocate\_all\_except\_largest()}{rtems\_heap\_greedy\_allocate\_all\_except\_largest()}}
+{\footnotesize\ttfamily void$\ast$ rtems\+\_\+heap\+\_\+greedy\+\_\+allocate\+\_\+all\+\_\+except\+\_\+largest (\begin{DoxyParamCaption}\item[{uintptr\+\_\+t $\ast$}]{allocatable\+\_\+size }\end{DoxyParamCaption})}
+
+
+
+Greedy allocate all blocks except the largest free block. 
+
+Afterwards the heap has at most one allocatable block. This block is the largest free block if it exists. The allocatable size of this block is stored in {\itshape allocatable\+\_\+size}. All other blocks are used.
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{malloc_8h_abcd363b410e8f0c2f8fce2e220079f8a}{rtems\+\_\+heap\+\_\+greedy\+\_\+free()}}. 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{malloc_8h_abcd363b410e8f0c2f8fce2e220079f8a}\label{malloc_8h_abcd363b410e8f0c2f8fce2e220079f8a}} 
+\index{malloc.h@{malloc.h}!rtems\_heap\_greedy\_free@{rtems\_heap\_greedy\_free}}
+\index{rtems\_heap\_greedy\_free@{rtems\_heap\_greedy\_free}!malloc.h@{malloc.h}}
+\subsubsection{\texorpdfstring{rtems\_heap\_greedy\_free()}{rtems\_heap\_greedy\_free()}}
+{\footnotesize\ttfamily void rtems\+\_\+heap\+\_\+greedy\+\_\+free (\begin{DoxyParamCaption}\item[{void $\ast$}]{opaque }\end{DoxyParamCaption})}
+
+
+
+Frees space of a greedy allocation. 
+
+The {\itshape opaque} argument must be the return value of \mbox{\hyperlink{malloc_8h_a8ebc04cbb90e1ecc6ed7b7ba6780493b}{rtems\+\_\+heap\+\_\+greedy\+\_\+allocate()}} or \mbox{\hyperlink{malloc_8h_aba5ba5020cadde776ad76aff68db5563}{rtems\+\_\+heap\+\_\+greedy\+\_\+allocate\+\_\+all\+\_\+except\+\_\+largest()}}. \mbox{\Hypertarget{malloc_8h_ac020a8ae24e753d1da4c838d80c50e91}\label{malloc_8h_ac020a8ae24e753d1da4c838d80c50e91}} 
+\index{malloc.h@{malloc.h}!rtems\_malloc@{rtems\_malloc}}
+\index{rtems\_malloc@{rtems\_malloc}!malloc.h@{malloc.h}}
+\subsubsection{\texorpdfstring{rtems\_malloc()}{rtems\_malloc()}}
+{\footnotesize\ttfamily void$\ast$ rtems\+\_\+malloc (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{size }\end{DoxyParamCaption})}
+
+
+
+Allocates a memory area of the specified size from the heap. 
+
+This function is almost identical to malloc(). The only exception is that errno is not set in case of a memory allocation failure.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em size} & The memory area size in bytes.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em N\+U\+LL} & The memory allocation failed or {\itshape size} is zero. \\
+\hline
+{\em otherwise} & The begin address of the allocated memory area. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{malloc_8h_a2321d5a9197d3cfa63b7d60498222761}\label{malloc_8h_a2321d5a9197d3cfa63b7d60498222761}} 
+\index{malloc.h@{malloc.h}!rtems\_malloc\_dirty\_memory@{rtems\_malloc\_dirty\_memory}}
+\index{rtems\_malloc\_dirty\_memory@{rtems\_malloc\_dirty\_memory}!malloc.h@{malloc.h}}
+\subsubsection{\texorpdfstring{rtems\_malloc\_dirty\_memory()}{rtems\_malloc\_dirty\_memory()}}
+{\footnotesize\ttfamily void rtems\+\_\+malloc\+\_\+dirty\+\_\+memory (\begin{DoxyParamCaption}\item[{void $\ast$}]{start,  }\item[{size\+\_\+t}]{size }\end{DoxyParamCaption})}
+
+
+
+Dirty Memory Function. 
+
+This method fills the specified area with a non-\/zero pattern to aid in debugging programs which do not initialize their memory allocated from the heap. \mbox{\Hypertarget{malloc_8h_aa00f1bef8a663ce74ee289b46d9c7ced}\label{malloc_8h_aa00f1bef8a663ce74ee289b46d9c7ced}} 
+\index{malloc.h@{malloc.h}!rtems\_memalign@{rtems\_memalign}}
+\index{rtems\_memalign@{rtems\_memalign}!malloc.h@{malloc.h}}
+\subsubsection{\texorpdfstring{rtems\_memalign()}{rtems\_memalign()}}
+{\footnotesize\ttfamily int rtems\+\_\+memalign (\begin{DoxyParamCaption}\item[{void $\ast$$\ast$}]{pointer,  }\item[{size\+\_\+t}]{alignment,  }\item[{size\+\_\+t}]{size }\end{DoxyParamCaption})}
+
+
+
+R\+T\+E\+MS Variation on Aligned Memory Allocation. 
+
+This method is a help memalign implementation which does all error checking done by posix\+\_\+memalign() E\+X\+C\+E\+PT it does N\+OT place numeric restrictions on the alignment value.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em pointer} & points to the user pointer \\
+\hline
+\mbox{\texttt{ in}}  & {\em alignment} & is the desired alignment \\
+\hline
+\mbox{\texttt{ in}}  & {\em size} & is the allocation request size in bytes\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+This methods returns zero on success and a P\+O\+S\+IX errno value to indicate the failure condition. On success $\ast$pointer will contain the address of the allocated memory. 
+\end{DoxyReturn}
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{malloc_8h_aafa8e14e70015e219e785a6aacb7c58e}\label{malloc_8h_aafa8e14e70015e219e785a6aacb7c58e}} 
+\index{malloc.h@{malloc.h}!RTEMS\_Malloc\_Heap@{RTEMS\_Malloc\_Heap}}
+\index{RTEMS\_Malloc\_Heap@{RTEMS\_Malloc\_Heap}!malloc.h@{malloc.h}}
+\subsubsection{\texorpdfstring{RTEMS\_Malloc\_Heap}{RTEMS\_Malloc\_Heap}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structHeap__Control}{Heap\+\_\+\+Control}}$\ast$ R\+T\+E\+M\+S\+\_\+\+Malloc\+\_\+\+Heap}
+
+
+
+C program heap control. 
+
+This is the pointer to the heap control structure used to manage the C program heap. 

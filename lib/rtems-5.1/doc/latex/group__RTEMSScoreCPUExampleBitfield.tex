@@ -1,0 +1,91 @@
+\hypertarget{group__RTEMSScoreCPUExampleBitfield}{}\section{Processor Dependent Bitfield Manipulation}
+\label{group__RTEMSScoreCPUExampleBitfield}\index{Processor Dependent Bitfield Manipulation@{Processor Dependent Bitfield Manipulation}}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__RTEMSScoreCPUExampleBitfield_gab0aff7a561b9c030a4d88eff201f4688}{C\+P\+U\+\_\+\+U\+S\+E\+\_\+\+G\+E\+N\+E\+R\+I\+C\+\_\+\+B\+I\+T\+F\+I\+E\+L\+D\+\_\+\+C\+O\+DE}}~\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gaa8cecfc5c5c054d2875c03e77b7be15d}{T\+R\+UE}}
+\item 
+\#define \mbox{\hyperlink{group__RTEMSScoreCPUExampleBitfield_gabbc6ee0d13009243d4088dfde2fe5da9}{\+\_\+\+C\+P\+U\+\_\+\+Bitfield\+\_\+\+Find\+\_\+first\+\_\+bit}}(\+\_\+value,  \+\_\+output)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This set of routines are used to implement fast searches for the most important ready task.
+
+This routine translates the bit numbers returned by \mbox{\hyperlink{group__RTEMSScoreCPUExampleBitfield_gabbc6ee0d13009243d4088dfde2fe5da9}{\+\_\+\+C\+P\+U\+\_\+\+Bitfield\+\_\+\+Find\+\_\+first\+\_\+bit}} into something suitable for use as a major or minor component of a priority. See the discussion for that routine.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+priority} & is the major or minor number to translate\\
+\hline
+\end{DoxyParams}
+Port Specific Information\+:
+
+X\+XX document implementation including references if appropriate 
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{group__RTEMSScoreCPUExampleBitfield_gabbc6ee0d13009243d4088dfde2fe5da9}\label{group__RTEMSScoreCPUExampleBitfield_gabbc6ee0d13009243d4088dfde2fe5da9}} 
+\index{Processor Dependent Bitfield Manipulation@{Processor Dependent Bitfield Manipulation}!\_CPU\_Bitfield\_Find\_first\_bit@{\_CPU\_Bitfield\_Find\_first\_bit}}
+\index{\_CPU\_Bitfield\_Find\_first\_bit@{\_CPU\_Bitfield\_Find\_first\_bit}!Processor Dependent Bitfield Manipulation@{Processor Dependent Bitfield Manipulation}}
+\subsubsection{\texorpdfstring{\_CPU\_Bitfield\_Find\_first\_bit}{\_CPU\_Bitfield\_Find\_first\_bit}}
+{\footnotesize\ttfamily \#define \+\_\+\+C\+P\+U\+\_\+\+Bitfield\+\_\+\+Find\+\_\+first\+\_\+bit(\begin{DoxyParamCaption}\item[{}]{\+\_\+value,  }\item[{}]{\+\_\+output }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{ \(\backslash\)}
+\DoxyCodeLine{    (\_output) = 0;   \textcolor{comment}{/* do something to prevent warnings */} \(\backslash\)}
+\DoxyCodeLine{  \}}
+
+\end{DoxyCode}
+This routine sets {\itshape \+\_\+output} to the bit number of the first bit set in {\itshape \+\_\+value}. {\itshape \+\_\+value} is of C\+PU dependent type {\itshape Priority\+\_\+bit\+\_\+map\+\_\+\+Word}. This type may be either 16 or 32 bits wide although only the 16 least significant bits will be used.
+
+There are a number of variables in using a \char`\"{}find first bit\char`\"{} type instruction.
+
+
+\begin{DoxyEnumerate}
+\item What happens when run on a value of zero?
+\item Bits may be numbered from M\+SB to L\+SB or vice-\/versa.
+\item The numbering may be zero or one based.
+\item The \char`\"{}find first bit\char`\"{} instruction may search from M\+SB or L\+SB.
+\end{DoxyEnumerate}
+
+R\+T\+E\+MS guarantees that (1) will never happen so it is not a concern. (2),(3), (4) are handled by the macros \mbox{\hyperlink{no__cpu_2include_2rtems_2score_2cpu_8h_ab2b14ff6bbccff7e0a99f55c4c8b8e87}{\+\_\+\+C\+P\+U\+\_\+\+Priority\+\_\+\+Mask}} and \+\_\+\+C\+P\+U\+\_\+\+Priority\+\_\+bits\+\_\+index. These three form a set of routines which must logically operate together. Bits in the \+\_\+value are set and cleared based on masks built by \mbox{\hyperlink{no__cpu_2include_2rtems_2score_2cpu_8h_ab2b14ff6bbccff7e0a99f55c4c8b8e87}{\+\_\+\+C\+P\+U\+\_\+\+Priority\+\_\+\+Mask}}. The basic major and minor values calculated by \mbox{\hyperlink{group__RTEMSScorePriority_ga1e9fd447bd6120ec504a82d5e4f4dc24}{\+\_\+\+Priority\+\_\+\+Major}} and \mbox{\hyperlink{group__RTEMSScorePriority_gaaf7dd3dde9aa776f2c16fee4c1e572ed}{\+\_\+\+Priority\+\_\+\+Minor}} are \char`\"{}massaged\char`\"{} by \+\_\+\+C\+P\+U\+\_\+\+Priority\+\_\+bits\+\_\+index to properly range between the values returned by the \char`\"{}find first bit\char`\"{} instruction. This makes it possible for \+\_\+\+Priority\+\_\+\+Get\+\_\+highest to calculate the major and directly index into the minor table. This mapping is necessary to ensure that 0 (a high priority major/minor) is the first bit found.
+
+This entire \char`\"{}find first bit\char`\"{} and mapping process depends heavily on the manner in which a priority is broken into a major and minor components with the major being the 4 M\+SB of a priority and minor the 4 L\+SB. Thus (0 $<$$<$ 4) + 0 corresponds to priority 0 -- the highest priority. And (15 $<$$<$ 4) + 14 corresponds to priority 254 -- the next to the lowest priority.
+
+If your C\+PU does not have a \char`\"{}find first bit\char`\"{} instruction, then there are ways to make do without it. Here are a handful of ways to implement this in software\+:
+
+\begin{DoxyVerb}      - a series of 16 bit test instructions
+      - a "binary search using if's"
+      - _number = 0
+        if _value > 0x00ff
+          _value >>=8
+          _number = 8;
+
+        if _value > 0x0000f
+          _value >=8
+          _number += 4
+
+        _number += bit_set_table[ _value ]
+\end{DoxyVerb}
+ \begin{DoxyVerb} where bit_set_table[ 16 ] has values which indicate the first
+   bit set
+\end{DoxyVerb}
+
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+value} & is the value to be scanned \\
+\hline
+\mbox{\texttt{ in}}  & {\em \+\_\+output} & is the first bit set\\
+\hline
+\end{DoxyParams}
+Port Specific Information\+:
+
+X\+XX document implementation including references if appropriate \mbox{\Hypertarget{group__RTEMSScoreCPUExampleBitfield_gab0aff7a561b9c030a4d88eff201f4688}\label{group__RTEMSScoreCPUExampleBitfield_gab0aff7a561b9c030a4d88eff201f4688}} 
+\index{Processor Dependent Bitfield Manipulation@{Processor Dependent Bitfield Manipulation}!CPU\_USE\_GENERIC\_BITFIELD\_CODE@{CPU\_USE\_GENERIC\_BITFIELD\_CODE}}
+\index{CPU\_USE\_GENERIC\_BITFIELD\_CODE@{CPU\_USE\_GENERIC\_BITFIELD\_CODE}!Processor Dependent Bitfield Manipulation@{Processor Dependent Bitfield Manipulation}}
+\subsubsection{\texorpdfstring{CPU\_USE\_GENERIC\_BITFIELD\_CODE}{CPU\_USE\_GENERIC\_BITFIELD\_CODE}}
+{\footnotesize\ttfamily \#define C\+P\+U\+\_\+\+U\+S\+E\+\_\+\+G\+E\+N\+E\+R\+I\+C\+\_\+\+B\+I\+T\+F\+I\+E\+L\+D\+\_\+\+C\+O\+DE~\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gaa8cecfc5c5c054d2875c03e77b7be15d}{T\+R\+UE}}}
+
+This definition is set to T\+R\+UE if the port uses the generic bitfield manipulation implementation. 

@@ -1,0 +1,142 @@
+\hypertarget{group__ClassicRateMonImpl}{}\section{Classic Rate Monotonic Scheduler Implementation}
+\label{group__ClassicRateMonImpl}\index{Classic Rate Monotonic Scheduler Implementation@{Classic Rate Monotonic Scheduler Implementation}}
+\subsection*{Files}
+\begin{DoxyCompactItemize}
+\item 
+file \mbox{\hyperlink{ratemondata_8h}{ratemondata.\+h}}
+\begin{DoxyCompactList}\small\item\em Classic Rate Monotonic Scheduler Data Structures. \end{DoxyCompactList}\item 
+file \mbox{\hyperlink{ratemonimpl_8h}{ratemonimpl.\+h}}
+\begin{DoxyCompactList}\small\item\em Classic Rate Monotonic Scheduler Implementation. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structRate__monotonic__Statistics}{Rate\+\_\+monotonic\+\_\+\+Statistics}}
+\item 
+struct \mbox{\hyperlink{structRate__monotonic__Control}{Rate\+\_\+monotonic\+\_\+\+Control}}
+\begin{DoxyCompactList}\small\item\em The following structure defines the control block used to manage each period. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__ClassicRateMonImpl_ga3dd4851012025d1535bd915e62316333}{R\+A\+T\+E\+\_\+\+M\+O\+N\+O\+T\+O\+N\+I\+C\+\_\+\+I\+N\+F\+O\+R\+M\+A\+T\+I\+O\+N\+\_\+\+D\+E\+F\+I\+NE}}(max)
+\begin{DoxyCompactList}\small\item\em Macro to define the objects information for the Classic Rate Monotonic objects. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__ClassicRateMonImpl_ga968d631ebb9ad4da75b05439ed2652b7}\label{group__ClassicRateMonImpl_ga968d631ebb9ad4da75b05439ed2652b7}} 
+\#define {\bfseries R\+A\+T\+E\+\_\+\+M\+O\+N\+O\+T\+O\+N\+I\+C\+\_\+\+I\+N\+T\+E\+N\+D\+\_\+\+T\+O\+\_\+\+B\+L\+O\+CK}~( \mbox{\hyperlink{group__RTEMSScoreThread_ga3c32beedd8bfee369f065b40a33a8af7}{T\+H\+R\+E\+A\+D\+\_\+\+W\+A\+I\+T\+\_\+\+C\+L\+A\+S\+S\+\_\+\+P\+E\+R\+I\+OD}} $\vert$ \mbox{\hyperlink{group__RTEMSScoreThread_ga82059fe7353c5129db4c812b7c82f6bf}{T\+H\+R\+E\+A\+D\+\_\+\+W\+A\+I\+T\+\_\+\+S\+T\+A\+T\+E\+\_\+\+I\+N\+T\+E\+N\+D\+\_\+\+T\+O\+\_\+\+B\+L\+O\+CK}} )
+\item 
+\mbox{\Hypertarget{group__ClassicRateMonImpl_gac7a9b56bb5100e4b111b1405d73dbb11}\label{group__ClassicRateMonImpl_gac7a9b56bb5100e4b111b1405d73dbb11}} 
+\#define {\bfseries R\+A\+T\+E\+\_\+\+M\+O\+N\+O\+T\+O\+N\+I\+C\+\_\+\+B\+L\+O\+C\+K\+ED}~( \mbox{\hyperlink{group__RTEMSScoreThread_ga3c32beedd8bfee369f065b40a33a8af7}{T\+H\+R\+E\+A\+D\+\_\+\+W\+A\+I\+T\+\_\+\+C\+L\+A\+S\+S\+\_\+\+P\+E\+R\+I\+OD}} $\vert$ \mbox{\hyperlink{group__RTEMSScoreThread_gaa9487eb8db998d29cb1f712155769583}{T\+H\+R\+E\+A\+D\+\_\+\+W\+A\+I\+T\+\_\+\+S\+T\+A\+T\+E\+\_\+\+B\+L\+O\+C\+K\+ED}} )
+\item 
+\mbox{\Hypertarget{group__ClassicRateMonImpl_gaa8b22011c290036368da565a7254858f}\label{group__ClassicRateMonImpl_gaa8b22011c290036368da565a7254858f}} 
+\#define {\bfseries R\+A\+T\+E\+\_\+\+M\+O\+N\+O\+T\+O\+N\+I\+C\+\_\+\+R\+E\+A\+D\+Y\+\_\+\+A\+G\+A\+IN}~( \mbox{\hyperlink{group__RTEMSScoreThread_ga3c32beedd8bfee369f065b40a33a8af7}{T\+H\+R\+E\+A\+D\+\_\+\+W\+A\+I\+T\+\_\+\+C\+L\+A\+S\+S\+\_\+\+P\+E\+R\+I\+OD}} $\vert$ \mbox{\hyperlink{group__RTEMSScoreThread_gac00cb9ccdda63a4731f4d80a89371ea0}{T\+H\+R\+E\+A\+D\+\_\+\+W\+A\+I\+T\+\_\+\+S\+T\+A\+T\+E\+\_\+\+R\+E\+A\+D\+Y\+\_\+\+A\+G\+A\+IN}} )
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} \mbox{\hyperlink{structRate__monotonic__Control}{Rate\+\_\+monotonic\+\_\+\+Control}} $\ast$ \mbox{\hyperlink{group__ClassicRateMonImpl_ga2a5ad9dc60929d941bd4d22c6ee69045}{\+\_\+\+Rate\+\_\+monotonic\+\_\+\+Allocate}} (void)
+\begin{DoxyCompactList}\small\item\em Allocates a period control block from the inactive chain of free period control blocks. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__ClassicRateMonImpl_gae49c0e00563f58a849944135d5c316cd}\label{group__ClassicRateMonImpl_gae49c0e00563f58a849944135d5c316cd}} 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void {\bfseries \+\_\+\+Rate\+\_\+monotonic\+\_\+\+Acquire\+\_\+critical} (\mbox{\hyperlink{structRate__monotonic__Control}{Rate\+\_\+monotonic\+\_\+\+Control}} $\ast$the\+\_\+period, \mbox{\hyperlink{structISR__lock__Context}{I\+S\+R\+\_\+lock\+\_\+\+Context}} $\ast$lock\+\_\+context)
+\item 
+\mbox{\Hypertarget{group__ClassicRateMonImpl_ga95cf6dc5dfb1e993a22066834528aaba}\label{group__ClassicRateMonImpl_ga95cf6dc5dfb1e993a22066834528aaba}} 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void {\bfseries \+\_\+\+Rate\+\_\+monotonic\+\_\+\+Release} (\mbox{\hyperlink{structRate__monotonic__Control}{Rate\+\_\+monotonic\+\_\+\+Control}} $\ast$the\+\_\+period, \mbox{\hyperlink{structISR__lock__Context}{I\+S\+R\+\_\+lock\+\_\+\+Context}} $\ast$lock\+\_\+context)
+\item 
+\mbox{\Hypertarget{group__ClassicRateMonImpl_gafca768d067ab935fdf8d53ebb425d72b}\label{group__ClassicRateMonImpl_gafca768d067ab935fdf8d53ebb425d72b}} 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} \mbox{\hyperlink{structRate__monotonic__Control}{Rate\+\_\+monotonic\+\_\+\+Control}} $\ast$ {\bfseries \+\_\+\+Rate\+\_\+monotonic\+\_\+\+Get} (\mbox{\hyperlink{group__RTEMSScoreObject_ga5821f52a51072941bdd603e542d0863e}{Objects\+\_\+\+Id}} id, \mbox{\hyperlink{structISR__lock__Context}{I\+S\+R\+\_\+lock\+\_\+\+Context}} $\ast$lock\+\_\+context)
+\item 
+\mbox{\Hypertarget{group__ClassicRateMonImpl_gaf57f665d68876281d6798e972a816665}\label{group__ClassicRateMonImpl_gaf57f665d68876281d6798e972a816665}} 
+void {\bfseries \+\_\+\+Rate\+\_\+monotonic\+\_\+\+Timeout} (\mbox{\hyperlink{structWatchdog__Control}{Watchdog\+\_\+\+Control}} $\ast$watchdog)
+\item 
+bool \mbox{\hyperlink{group__ClassicRateMonImpl_ga086aaf1f3544bd976426c77cb2880561}{\+\_\+\+Rate\+\_\+monotonic\+\_\+\+Get\+\_\+status}} (const \mbox{\hyperlink{structRate__monotonic__Control}{Rate\+\_\+monotonic\+\_\+\+Control}} $\ast$the\+\_\+period, \mbox{\hyperlink{group__SuperCoreTimeStamp_ga8508036506d5211c98844c88045e2410}{Timestamp\+\_\+\+Control}} $\ast$wall\+\_\+since\+\_\+last\+\_\+period, \mbox{\hyperlink{group__SuperCoreTimeStamp_ga8508036506d5211c98844c88045e2410}{Timestamp\+\_\+\+Control}} $\ast$cpu\+\_\+since\+\_\+last\+\_\+period)
+\begin{DoxyCompactList}\small\item\em \+\_\+\+Rate\+\_\+monotonic\+\_\+\+Get\+\_\+status( \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__ClassicRateMonImpl_gac149608e7b5c9c8400ed8460734351d1}\label{group__ClassicRateMonImpl_gac149608e7b5c9c8400ed8460734351d1}} 
+void {\bfseries \+\_\+\+Rate\+\_\+monotonic\+\_\+\+Restart} (\mbox{\hyperlink{structRate__monotonic__Control}{Rate\+\_\+monotonic\+\_\+\+Control}} $\ast$the\+\_\+period, \mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$owner, \mbox{\hyperlink{structISR__lock__Context}{I\+S\+R\+\_\+lock\+\_\+\+Context}} $\ast$lock\+\_\+context)
+\item 
+\mbox{\Hypertarget{group__ClassicRateMonImpl_gab174ae30d1440637fecb41e22258f54f}\label{group__ClassicRateMonImpl_gab174ae30d1440637fecb41e22258f54f}} 
+void {\bfseries \+\_\+\+Rate\+\_\+monotonic\+\_\+\+Cancel} (\mbox{\hyperlink{structRate__monotonic__Control}{Rate\+\_\+monotonic\+\_\+\+Control}} $\ast$the\+\_\+period, \mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$owner, \mbox{\hyperlink{structISR__lock__Context}{I\+S\+R\+\_\+lock\+\_\+\+Context}} $\ast$lock\+\_\+context)
+\item 
+\mbox{\Hypertarget{group__ClassicRateMonImpl_gad2ee630f4db943eacd1763ae84739b13}\label{group__ClassicRateMonImpl_gad2ee630f4db943eacd1763ae84739b13}} 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void {\bfseries \+\_\+\+Rate\+\_\+monotonic\+\_\+\+Reset\+\_\+min\+\_\+time} (\mbox{\hyperlink{group__SuperCoreTimeStamp_ga8508036506d5211c98844c88045e2410}{Timestamp\+\_\+\+Control}} $\ast$min\+\_\+time)
+\item 
+\mbox{\Hypertarget{group__ClassicRateMonImpl_gaca5bc85e1ebdb42e97eea716854143eb}\label{group__ClassicRateMonImpl_gaca5bc85e1ebdb42e97eea716854143eb}} 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void {\bfseries \+\_\+\+Rate\+\_\+monotonic\+\_\+\+Reset\+\_\+statistics} (\mbox{\hyperlink{structRate__monotonic__Control}{Rate\+\_\+monotonic\+\_\+\+Control}} $\ast$the\+\_\+period)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{group__ClassicRateMonImpl_gaed04cc20c3387a3a9123337f977120c6}\label{group__ClassicRateMonImpl_gaed04cc20c3387a3a9123337f977120c6}} 
+\mbox{\hyperlink{structObjects__Information}{Objects\+\_\+\+Information}} \mbox{\hyperlink{group__ClassicRateMonImpl_gaed04cc20c3387a3a9123337f977120c6}{\+\_\+\+Rate\+\_\+monotonic\+\_\+\+Information}}
+\begin{DoxyCompactList}\small\item\em The Classic Rate Monotonic objects information. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{group__ClassicRateMonImpl_ga3dd4851012025d1535bd915e62316333}\label{group__ClassicRateMonImpl_ga3dd4851012025d1535bd915e62316333}} 
+\index{Classic Rate Monotonic Scheduler Implementation@{Classic Rate Monotonic Scheduler Implementation}!RATE\_MONOTONIC\_INFORMATION\_DEFINE@{RATE\_MONOTONIC\_INFORMATION\_DEFINE}}
+\index{RATE\_MONOTONIC\_INFORMATION\_DEFINE@{RATE\_MONOTONIC\_INFORMATION\_DEFINE}!Classic Rate Monotonic Scheduler Implementation@{Classic Rate Monotonic Scheduler Implementation}}
+\subsubsection{\texorpdfstring{RATE\_MONOTONIC\_INFORMATION\_DEFINE}{RATE\_MONOTONIC\_INFORMATION\_DEFINE}}
+{\footnotesize\ttfamily \#define R\+A\+T\+E\+\_\+\+M\+O\+N\+O\+T\+O\+N\+I\+C\+\_\+\+I\+N\+F\+O\+R\+M\+A\+T\+I\+O\+N\+\_\+\+D\+E\+F\+I\+NE(\begin{DoxyParamCaption}\item[{}]{max }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{group__RTEMSScoreObject_gac485289406e4297a576a74f72a28f608}{OBJECTS\_INFORMATION\_DEFINE}}( \(\backslash\)}
+\DoxyCodeLine{    \_Rate\_monotonic, \(\backslash\)}
+\DoxyCodeLine{    OBJECTS\_CLASSIC\_API, \(\backslash\)}
+\DoxyCodeLine{    OBJECTS\_RTEMS\_PERIODS, \(\backslash\)}
+\DoxyCodeLine{    \mbox{\hyperlink{structRate__monotonic__Control}{Rate\_monotonic\_Control}}, \(\backslash\)}
+\DoxyCodeLine{    max, \(\backslash\)}
+\DoxyCodeLine{    \mbox{\hyperlink{group__RTEMSScoreObject_gab28c254ca8b651021dff18d181e053f2}{OBJECTS\_NO\_STRING\_NAME}}, \(\backslash\)}
+\DoxyCodeLine{    \mbox{\hyperlink{bestcomm__api_8h_a872bb74de61c3689ccd5b41873fce42c}{NULL}} \(\backslash\)}
+\DoxyCodeLine{  )}
+
+\end{DoxyCode}
+
+
+Macro to define the objects information for the Classic Rate Monotonic objects. 
+
+This macro should only be used by $<$\mbox{\hyperlink{confdefs_8h}{rtems/confdefs.\+h}}$>$.
+
+
+\begin{DoxyParams}{Parameters}
+{\em max} & The configured object maximum (the O\+B\+J\+E\+C\+T\+S\+\_\+\+U\+N\+L\+I\+M\+I\+T\+E\+D\+\_\+\+O\+B\+J\+E\+C\+TS flag may be set). \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{group__ClassicRateMonImpl_ga2a5ad9dc60929d941bd4d22c6ee69045}\label{group__ClassicRateMonImpl_ga2a5ad9dc60929d941bd4d22c6ee69045}} 
+\index{Classic Rate Monotonic Scheduler Implementation@{Classic Rate Monotonic Scheduler Implementation}!\_Rate\_monotonic\_Allocate@{\_Rate\_monotonic\_Allocate}}
+\index{\_Rate\_monotonic\_Allocate@{\_Rate\_monotonic\_Allocate}!Classic Rate Monotonic Scheduler Implementation@{Classic Rate Monotonic Scheduler Implementation}}
+\subsubsection{\texorpdfstring{\_Rate\_monotonic\_Allocate()}{\_Rate\_monotonic\_Allocate()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} \mbox{\hyperlink{structRate__monotonic__Control}{Rate\+\_\+monotonic\+\_\+\+Control}}$\ast$ \+\_\+\+Rate\+\_\+monotonic\+\_\+\+Allocate (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Allocates a period control block from the inactive chain of free period control blocks. 
+
+This function allocates a period control block from the inactive chain of free period control blocks. \mbox{\Hypertarget{group__ClassicRateMonImpl_ga086aaf1f3544bd976426c77cb2880561}\label{group__ClassicRateMonImpl_ga086aaf1f3544bd976426c77cb2880561}} 
+\index{Classic Rate Monotonic Scheduler Implementation@{Classic Rate Monotonic Scheduler Implementation}!\_Rate\_monotonic\_Get\_status@{\_Rate\_monotonic\_Get\_status}}
+\index{\_Rate\_monotonic\_Get\_status@{\_Rate\_monotonic\_Get\_status}!Classic Rate Monotonic Scheduler Implementation@{Classic Rate Monotonic Scheduler Implementation}}
+\subsubsection{\texorpdfstring{\_Rate\_monotonic\_Get\_status()}{\_Rate\_monotonic\_Get\_status()}}
+{\footnotesize\ttfamily bool \+\_\+\+Rate\+\_\+monotonic\+\_\+\+Get\+\_\+status (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structRate__monotonic__Control}{Rate\+\_\+monotonic\+\_\+\+Control}} $\ast$}]{the\+\_\+period,  }\item[{\mbox{\hyperlink{group__SuperCoreTimeStamp_ga8508036506d5211c98844c88045e2410}{Timestamp\+\_\+\+Control}} $\ast$}]{wall\+\_\+since\+\_\+last\+\_\+period,  }\item[{\mbox{\hyperlink{group__SuperCoreTimeStamp_ga8508036506d5211c98844c88045e2410}{Timestamp\+\_\+\+Control}} $\ast$}]{cpu\+\_\+since\+\_\+last\+\_\+period }\end{DoxyParamCaption})}
+
+
+
+\+\_\+\+Rate\+\_\+monotonic\+\_\+\+Get\+\_\+status( 
+
+This routine is invoked to compute the elapsed wall time and cpu time for a period.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em the\+\_\+period} & points to the period being operated upon. \\
+\hline
+\mbox{\texttt{ out}}  & {\em wall\+\_\+since\+\_\+last\+\_\+period} & is set to the wall time elapsed since the period was initiated. \\
+\hline
+\mbox{\texttt{ out}}  & {\em cpu\+\_\+since\+\_\+last\+\_\+period} & is set to the cpu time used by the owning thread since the period was initiated.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em This} & routine returns true if the status can be determined and false otherwise. \\
+\hline
+\end{DoxyRetVals}

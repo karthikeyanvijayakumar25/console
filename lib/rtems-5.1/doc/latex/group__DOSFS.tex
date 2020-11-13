@@ -1,0 +1,145 @@
+\hypertarget{group__DOSFS}{}\section{F\+AT Filesystem Support}
+\label{group__DOSFS}\index{FAT Filesystem Support@{FAT Filesystem Support}}
+
+
+F\+AT file system configuration support, format and mount options.  
+
+
+\subsection*{Files}
+\begin{DoxyCompactItemize}
+\item 
+file \mbox{\hyperlink{dosfs_8h}{dosfs.\+h}}
+\begin{DoxyCompactList}\small\item\em Application Interface to F\+AT Filesystem. \end{DoxyCompactList}\item 
+file \mbox{\hyperlink{msdos__conv__default_8c}{msdos\+\_\+conv\+\_\+default.\+c}}
+\begin{DoxyCompactList}\small\item\em Default Converter. \end{DoxyCompactList}\item 
+file \mbox{\hyperlink{msdos__conv__utf8_8c}{msdos\+\_\+conv\+\_\+utf8.\+c}}
+\begin{DoxyCompactList}\small\item\em U\+T\+F-\/8 Converter. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structrtems__dosfs__mount__options}{rtems\+\_\+dosfs\+\_\+mount\+\_\+options}}
+\begin{DoxyCompactList}\small\item\em F\+AT filesystem mount options. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structmsdos__format__request__param__t}{msdos\+\_\+format\+\_\+request\+\_\+param\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em F\+AT file system format request parameters. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__DOSFS_gaf5f22bc1798c9fd6a8f577ebd38aaa42}{R\+T\+E\+M\+S\+\_\+\+D\+O\+S\+F\+S\+\_\+\+S\+E\+M\+A\+P\+H\+O\+R\+E\+S\+\_\+\+P\+E\+R\+\_\+\+I\+N\+S\+T\+A\+N\+CE}}~1
+\begin{DoxyCompactList}\small\item\em Semaphore count per F\+AT filesystem instance. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__DOSFS_gadbca2d92c455a1d790c18c3438b94b53}\label{group__DOSFS_gadbca2d92c455a1d790c18c3438b94b53}} 
+\#define {\bfseries M\+S\+D\+O\+S\+\_\+\+F\+M\+T\+\_\+\+I\+N\+F\+O\+\_\+\+L\+E\+V\+E\+L\+\_\+\+N\+O\+NE}~(0)
+\item 
+\mbox{\Hypertarget{group__DOSFS_ga6934cdd3173752954ac8cc822190acf1}\label{group__DOSFS_ga6934cdd3173752954ac8cc822190acf1}} 
+\#define {\bfseries M\+S\+D\+O\+S\+\_\+\+F\+M\+T\+\_\+\+I\+N\+F\+O\+\_\+\+L\+E\+V\+E\+L\+\_\+\+I\+N\+FO}~(1)
+\item 
+\mbox{\Hypertarget{group__DOSFS_gad91890710b15a367a041f4d9e1efc9b2}\label{group__DOSFS_gad91890710b15a367a041f4d9e1efc9b2}} 
+\#define {\bfseries M\+S\+D\+O\+S\+\_\+\+F\+M\+T\+\_\+\+I\+N\+F\+O\+\_\+\+L\+E\+V\+E\+L\+\_\+\+D\+E\+T\+A\+IL}~(2)
+\item 
+\mbox{\Hypertarget{group__DOSFS_ga819bc56f5cd94de8ae14ae39eeb302e2}\label{group__DOSFS_ga819bc56f5cd94de8ae14ae39eeb302e2}} 
+\#define {\bfseries M\+S\+D\+O\+S\+\_\+\+F\+M\+T\+\_\+\+I\+N\+F\+O\+\_\+\+L\+E\+V\+E\+L\+\_\+\+D\+E\+B\+UG}~(3)
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structrtems__dosfs__convert__control}{rtems\+\_\+dosfs\+\_\+convert\+\_\+control}} $\ast$ \mbox{\hyperlink{group__DOSFS_ga9dc28ad698d4946c7bf691fa0b0a6c78}{rtems\+\_\+dosfs\+\_\+create\+\_\+default\+\_\+converter}} (void)
+\begin{DoxyCompactList}\small\item\em Allocates and initializes a default converter. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structrtems__dosfs__convert__control}{rtems\+\_\+dosfs\+\_\+convert\+\_\+control}} $\ast$ \mbox{\hyperlink{group__DOSFS_ga47cec61b81f7868a5b821709246a8509}{rtems\+\_\+dosfs\+\_\+create\+\_\+utf8\+\_\+converter}} (const char $\ast$codepage)
+\begin{DoxyCompactList}\small\item\em Allocates and initializes a U\+T\+F-\/8 converter. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__DOSFS_ga89cdc98023478833b6291f2e3cea56f2}{msdos\+\_\+format}} (const char $\ast$devname, const \mbox{\hyperlink{structmsdos__format__request__param__t}{msdos\+\_\+format\+\_\+request\+\_\+param\+\_\+t}} $\ast$rqdata)
+\begin{DoxyCompactList}\small\item\em Formats a block device with a F\+AT file system. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+F\+AT file system configuration support, format and mount options. 
+
+A block device can be formatted with a F\+AT file system with the \mbox{\hyperlink{group__DOSFS_ga89cdc98023478833b6291f2e3cea56f2}{msdos\+\_\+format()}} function.
+
+The F\+AT file system mount operation can be controlled with F\+AT file system specific mount options, see \mbox{\hyperlink{structrtems__dosfs__mount__options}{rtems\+\_\+dosfs\+\_\+mount\+\_\+options}}. 
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{group__DOSFS_gaf5f22bc1798c9fd6a8f577ebd38aaa42}\label{group__DOSFS_gaf5f22bc1798c9fd6a8f577ebd38aaa42}} 
+\index{FAT Filesystem Support@{FAT Filesystem Support}!RTEMS\_DOSFS\_SEMAPHORES\_PER\_INSTANCE@{RTEMS\_DOSFS\_SEMAPHORES\_PER\_INSTANCE}}
+\index{RTEMS\_DOSFS\_SEMAPHORES\_PER\_INSTANCE@{RTEMS\_DOSFS\_SEMAPHORES\_PER\_INSTANCE}!FAT Filesystem Support@{FAT Filesystem Support}}
+\subsubsection{\texorpdfstring{RTEMS\_DOSFS\_SEMAPHORES\_PER\_INSTANCE}{RTEMS\_DOSFS\_SEMAPHORES\_PER\_INSTANCE}}
+{\footnotesize\ttfamily \#define R\+T\+E\+M\+S\+\_\+\+D\+O\+S\+F\+S\+\_\+\+S\+E\+M\+A\+P\+H\+O\+R\+E\+S\+\_\+\+P\+E\+R\+\_\+\+I\+N\+S\+T\+A\+N\+CE~1}
+
+
+
+Semaphore count per F\+AT filesystem instance. 
+
+This can be used for system configuration via $<$\mbox{\hyperlink{confdefs_8h}{rtems/confdefs.\+h}}$>$. 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{group__DOSFS_ga89cdc98023478833b6291f2e3cea56f2}\label{group__DOSFS_ga89cdc98023478833b6291f2e3cea56f2}} 
+\index{FAT Filesystem Support@{FAT Filesystem Support}!msdos\_format@{msdos\_format}}
+\index{msdos\_format@{msdos\_format}!FAT Filesystem Support@{FAT Filesystem Support}}
+\subsubsection{\texorpdfstring{msdos\_format()}{msdos\_format()}}
+{\footnotesize\ttfamily int msdos\+\_\+format (\begin{DoxyParamCaption}\item[{const char $\ast$}]{devname,  }\item[{const \mbox{\hyperlink{structmsdos__format__request__param__t}{msdos\+\_\+format\+\_\+request\+\_\+param\+\_\+t}} $\ast$}]{rqdata }\end{DoxyParamCaption})}
+
+
+
+Formats a block device with a F\+AT file system. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em devname} & The block device path. \\
+\hline
+\mbox{\texttt{ in}}  & {\em rqdata} & The F\+AT file system format request data. Use N\+U\+LL for default parameters.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em 0} & Successful operation. \\
+\hline
+{\em -\/1} & An error occurred. The {\ttfamily errno} indicates the error. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{group__DOSFS_ga9dc28ad698d4946c7bf691fa0b0a6c78}\label{group__DOSFS_ga9dc28ad698d4946c7bf691fa0b0a6c78}} 
+\index{FAT Filesystem Support@{FAT Filesystem Support}!rtems\_dosfs\_create\_default\_converter@{rtems\_dosfs\_create\_default\_converter}}
+\index{rtems\_dosfs\_create\_default\_converter@{rtems\_dosfs\_create\_default\_converter}!FAT Filesystem Support@{FAT Filesystem Support}}
+\subsubsection{\texorpdfstring{rtems\_dosfs\_create\_default\_converter()}{rtems\_dosfs\_create\_default\_converter()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structrtems__dosfs__convert__control}{rtems\+\_\+dosfs\+\_\+convert\+\_\+control}}$\ast$ rtems\+\_\+dosfs\+\_\+create\+\_\+default\+\_\+converter (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Allocates and initializes a default converter. 
+
+This default converter will accept only P\+O\+S\+IX file names with pure A\+S\+C\+II characters. This largely corresponds to the file name handling before the optional U\+T\+F-\/8 support was added to the R\+T\+E\+MS implementation of the F\+AT file system. This handling is mostly backwards compatible to the previous R\+T\+E\+MS implementation of the F\+AT file system.
+
+For backwards compatibility and the previous R\+T\+E\+MS implementation of the F\+AT file system please see also \mbox{\hyperlink{structrtems__dosfs__mount__options}{rtems\+\_\+dosfs\+\_\+mount\+\_\+options}} and \mbox{\hyperlink{group__FileSystemTypesAndMount_gaf3c1bed49bb0f3dec88d330b4f88d48b}{mount()}}.
+
+
+\begin{DoxyRetVals}{Return values}
+{\em N\+U\+LL} & Something failed. \\
+\hline
+{\em other} & Pointer to initialized converter. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{group__DOSFS_ga47cec61b81f7868a5b821709246a8509}\label{group__DOSFS_ga47cec61b81f7868a5b821709246a8509}} 
+\index{FAT Filesystem Support@{FAT Filesystem Support}!rtems\_dosfs\_create\_utf8\_converter@{rtems\_dosfs\_create\_utf8\_converter}}
+\index{rtems\_dosfs\_create\_utf8\_converter@{rtems\_dosfs\_create\_utf8\_converter}!FAT Filesystem Support@{FAT Filesystem Support}}
+\subsubsection{\texorpdfstring{rtems\_dosfs\_create\_utf8\_converter()}{rtems\_dosfs\_create\_utf8\_converter()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structrtems__dosfs__convert__control}{rtems\+\_\+dosfs\+\_\+convert\+\_\+control}}$\ast$ rtems\+\_\+dosfs\+\_\+create\+\_\+utf8\+\_\+converter (\begin{DoxyParamCaption}\item[{const char $\ast$}]{codepage }\end{DoxyParamCaption})}
+
+
+
+Allocates and initializes a U\+T\+F-\/8 converter. 
+
+This converter will assume that all file names passed to P\+O\+S\+IX file handling methods are U\+T\+F-\/8 strings and will convert them to the selected code page for short file names and to U\+T\+F-\/16 for long file names. This conversion will be done during reading and writing. These conversions correspond to the specification of the F\+AT file system. This handling is mostly backwards compatible to the previous R\+T\+E\+MS implementation of the F\+AT file system.
+
+For backwards compatibility and the previous R\+T\+E\+MS implementation of the F\+AT file system please see also \mbox{\hyperlink{structrtems__dosfs__mount__options}{rtems\+\_\+dosfs\+\_\+mount\+\_\+options}} and \mbox{\hyperlink{group__FileSystemTypesAndMount_gaf3c1bed49bb0f3dec88d330b4f88d48b}{mount()}}.
+
+One possible issue with this converter is\+: When reading file names which have been created with other implementations of the F\+AT file system, it can happen that during the conversion to U\+T\+F-\/8 a long file name becomes longer and exceeds the 255 bytes limit. In such a case only the short file name will get read.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em codepage} & The iconv() identification string for the used code page.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em N\+U\+LL} & Something failed. \\
+\hline
+{\em other} & Pointer to initialized converter. \\
+\hline
+\end{DoxyRetVals}

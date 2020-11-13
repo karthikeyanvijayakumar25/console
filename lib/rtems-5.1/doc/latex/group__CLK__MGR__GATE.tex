@@ -1,0 +1,126 @@
+\hypertarget{group__CLK__MGR__GATE}{}\section{Clock Gating Control}
+\label{group__CLK__MGR__GATE}\index{Clock Gating Control@{Clock Gating Control}}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__CLK__MGR__GATE_ga41ffd219781dc6aaf1270f06e30ee65e}{alt\+\_\+clk\+\_\+clock\+\_\+disable}} (\mbox{\hyperlink{group__CLK__MGR_ga4cdb80e84284365fe3d47c2f8050b13d}{A\+L\+T\+\_\+\+C\+L\+K\+\_\+t}} clk)
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__CLK__MGR__GATE_ga96d0854135707b8435ecc699a6e2c2df}{alt\+\_\+clk\+\_\+clock\+\_\+enable}} (\mbox{\hyperlink{group__CLK__MGR_ga4cdb80e84284365fe3d47c2f8050b13d}{A\+L\+T\+\_\+\+C\+L\+K\+\_\+t}} clk)
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__CLK__MGR__GATE_gac6c309f425f24fc4021841c854e1dfc5}{alt\+\_\+clk\+\_\+is\+\_\+enabled}} (\mbox{\hyperlink{group__CLK__MGR_ga4cdb80e84284365fe3d47c2f8050b13d}{A\+L\+T\+\_\+\+C\+L\+K\+\_\+t}} clk)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This functional group provides gating control of selected clock signals.
+
+When a clock is enabled, then its clock signal propogates to its respective clocked IP block(s). When a clock is disabled, then its clock signal is prevented from propogating to its respective clocked IP block(s).
+
+The following clocks may be gated\+:
+
+
+\begin{DoxyItemize}
+\item Main P\+LL Group
+\begin{DoxyItemize}
+\item l4\+\_\+main\+\_\+clk
+\item l3\+\_\+mp\+\_\+clk
+\item l4\+\_\+mp\+\_\+clk
+\item l4\+\_\+sp\+\_\+clk
+\item dbg\+\_\+at\+\_\+clk
+\item dbg\+\_\+clk
+\item dbg\+\_\+trace\+\_\+clk
+\item dbg\+\_\+timer\+\_\+clk
+\item cfg\+\_\+clk
+\item s2f\+\_\+user0\+\_\+clk
+\end{DoxyItemize}
+\item S\+D\+R\+AM P\+LL Group
+\begin{DoxyItemize}
+\item ddr\+\_\+dqs\+\_\+clk
+\item ddr\+\_\+2x\+\_\+clk
+\item ddr\+\_\+dq\+\_\+clk
+\item s2f\+\_\+user2\+\_\+clk
+\end{DoxyItemize}
+\item Peripheral P\+LL Group
+\begin{DoxyItemize}
+\item emac0\+\_\+clk
+\item emac1\+\_\+clk
+\item usb\+\_\+mp\+\_\+clk
+\item spi\+\_\+m\+\_\+clk
+\item can0\+\_\+clk
+\item can1\+\_\+clk
+\item gpio\+\_\+db\+\_\+clk
+\item s2f\+\_\+user1\+\_\+clk
+\item sdmmc\+\_\+clk
+\item nand\+\_\+clk
+\item nand\+\_\+x\+\_\+clk
+\item qspi\+\_\+clk 
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{group__CLK__MGR__GATE_ga41ffd219781dc6aaf1270f06e30ee65e}\label{group__CLK__MGR__GATE_ga41ffd219781dc6aaf1270f06e30ee65e}} 
+\index{Clock Gating Control@{Clock Gating Control}!alt\_clk\_clock\_disable@{alt\_clk\_clock\_disable}}
+\index{alt\_clk\_clock\_disable@{alt\_clk\_clock\_disable}!Clock Gating Control@{Clock Gating Control}}
+\subsubsection{\texorpdfstring{alt\_clk\_clock\_disable()}{alt\_clk\_clock\_disable()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} alt\+\_\+clk\+\_\+clock\+\_\+disable (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__CLK__MGR_ga4cdb80e84284365fe3d47c2f8050b13d}{A\+L\+T\+\_\+\+C\+L\+K\+\_\+t}}}]{clk }\end{DoxyParamCaption})}
+
+Disable the specified clock. Once the clock is disabled, its clock signal does not propogate to its clocked elements.
+
+
+\begin{DoxyParams}{Parameters}
+{\em clk} & The clock to disable.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em A\+L\+T\+\_\+\+E\+\_\+\+S\+U\+C\+C\+E\+SS} & The operation was succesful. \\
+\hline
+{\em A\+L\+T\+\_\+\+E\+\_\+\+E\+R\+R\+OR} & The operation failed. \\
+\hline
+{\em A\+L\+T\+\_\+\+E\+\_\+\+B\+A\+D\+\_\+\+A\+RG} & The {\itshape clk} argument designates a non gated clock value. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{group__CLK__MGR__GATE_ga96d0854135707b8435ecc699a6e2c2df}\label{group__CLK__MGR__GATE_ga96d0854135707b8435ecc699a6e2c2df}} 
+\index{Clock Gating Control@{Clock Gating Control}!alt\_clk\_clock\_enable@{alt\_clk\_clock\_enable}}
+\index{alt\_clk\_clock\_enable@{alt\_clk\_clock\_enable}!Clock Gating Control@{Clock Gating Control}}
+\subsubsection{\texorpdfstring{alt\_clk\_clock\_enable()}{alt\_clk\_clock\_enable()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} alt\+\_\+clk\+\_\+clock\+\_\+enable (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__CLK__MGR_ga4cdb80e84284365fe3d47c2f8050b13d}{A\+L\+T\+\_\+\+C\+L\+K\+\_\+t}}}]{clk }\end{DoxyParamCaption})}
+
+Enable the specified clock. Once the clock is enabled, its clock signal propogates to its elements.
+
+
+\begin{DoxyParams}{Parameters}
+{\em clk} & The clock to enable.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em A\+L\+T\+\_\+\+E\+\_\+\+S\+U\+C\+C\+E\+SS} & The operation was succesful. \\
+\hline
+{\em A\+L\+T\+\_\+\+E\+\_\+\+E\+R\+R\+OR} & The operation failed. \\
+\hline
+{\em A\+L\+T\+\_\+\+E\+\_\+\+B\+A\+D\+\_\+\+A\+RG} & The {\itshape clk} argument designates a non gated clock value. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{group__CLK__MGR__GATE_gac6c309f425f24fc4021841c854e1dfc5}\label{group__CLK__MGR__GATE_gac6c309f425f24fc4021841c854e1dfc5}} 
+\index{Clock Gating Control@{Clock Gating Control}!alt\_clk\_is\_enabled@{alt\_clk\_is\_enabled}}
+\index{alt\_clk\_is\_enabled@{alt\_clk\_is\_enabled}!Clock Gating Control@{Clock Gating Control}}
+\subsubsection{\texorpdfstring{alt\_clk\_is\_enabled()}{alt\_clk\_is\_enabled()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} alt\+\_\+clk\+\_\+is\+\_\+enabled (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__CLK__MGR_ga4cdb80e84284365fe3d47c2f8050b13d}{A\+L\+T\+\_\+\+C\+L\+K\+\_\+t}}}]{clk }\end{DoxyParamCaption})}
+
+Return whether the specified clock is enabled or not.
+
+
+\begin{DoxyParams}{Parameters}
+{\em clk} & The clock to check whether enabled or not.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em A\+L\+T\+\_\+\+E\+\_\+\+T\+R\+UE} & The clock is enabled. \\
+\hline
+{\em A\+L\+T\+\_\+\+E\+\_\+\+F\+A\+L\+SE} & The clock is not enabled. \\
+\hline
+{\em A\+L\+T\+\_\+\+E\+\_\+\+B\+A\+D\+\_\+\+A\+RG} & The {\itshape clk} argument designates a non gated clock value. \\
+\hline
+\end{DoxyRetVals}

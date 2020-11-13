@@ -1,0 +1,542 @@
+\hypertarget{rtl_8c}{}\section{cpukit/libdl/rtl.c File Reference}
+\label{rtl_8c}\index{cpukit/libdl/rtl.c@{cpukit/libdl/rtl.c}}
+
+
+R\+T\+E\+MS Run-\/\+Time Link Editor.  
+
+
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/libio\+\_\+.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/rtl/rtl.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/rtl/rtl-\/allocator.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/rtl/rtl-\/trace.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}rtl-\/chain-\/iterator.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}rtl-\/error.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}rtl-\/string.\+h\char`\"{}}\newline
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structrtems__rtl__obj__flags__data}{rtems\+\_\+rtl\+\_\+obj\+\_\+flags\+\_\+data}}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{rtl_8c_a8cb5308742e24cb4af8ad7d41427473d}{R\+T\+E\+M\+S\+\_\+\+R\+T\+L\+\_\+\+E\+L\+F\+\_\+\+S\+Y\+M\+B\+O\+L\+\_\+\+C\+A\+C\+HE}}~(2048)
+\item 
+\#define \mbox{\hyperlink{rtl_8c_a16fee280bd7d64cb4ef2c0b983bc3cac}{R\+T\+E\+M\+S\+\_\+\+R\+T\+L\+\_\+\+E\+L\+F\+\_\+\+S\+T\+R\+I\+N\+G\+\_\+\+C\+A\+C\+HE}}~(2048)
+\item 
+\#define \mbox{\hyperlink{rtl_8c_ad1f2956c1d2b0d1881ff56b8c3cf327f}{R\+T\+E\+M\+S\+\_\+\+R\+T\+L\+\_\+\+E\+L\+F\+\_\+\+R\+E\+L\+O\+C\+\_\+\+C\+A\+C\+HE}}~(2048)
+\item 
+\#define \mbox{\hyperlink{rtl_8c_afe3cc9658c042e64a504685becc78042}{R\+T\+E\+M\+S\+\_\+\+R\+T\+L\+\_\+\+C\+O\+M\+P\+\_\+\+O\+U\+T\+P\+UT}}~(2048)
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{rtl_8c_acfa2dfa3b9241a2506fb9fecfeb84892}\label{rtl_8c_acfa2dfa3b9241a2506fb9fecfeb84892}} 
+typedef struct \mbox{\hyperlink{structrtems__rtl__obj__flags__data}{rtems\+\_\+rtl\+\_\+obj\+\_\+flags\+\_\+data}} {\bfseries rtems\+\_\+rtl\+\_\+obj\+\_\+flags\+\_\+data}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{rtl_8c_accb09d0d705ed31b7985c9e19975f237}{rtems\+\_\+rtl\+\_\+base\+\_\+global\+\_\+syms\+\_\+init}} (void)
+\item 
+\mbox{\hyperlink{structrtems__rtl__data}{rtems\+\_\+rtl\+\_\+data}} $\ast$ \mbox{\hyperlink{rtl_8c_a5b6f914747d59685829efa0ebb6b8373}{rtems\+\_\+rtl\+\_\+data\+\_\+unprotected}} (void)
+\item 
+\mbox{\hyperlink{structrtems__rtl__symbols}{rtems\+\_\+rtl\+\_\+symbols}} $\ast$ \mbox{\hyperlink{rtl_8c_a9f3b87a59390e017219a33574360a470}{rtems\+\_\+rtl\+\_\+global\+\_\+symbols}} (void)
+\item 
+const char $\ast$ \mbox{\hyperlink{rtl_8c_a709b835a119fda05f76110bc25f0091d}{rtems\+\_\+rtl\+\_\+last\+\_\+error\+\_\+unprotected}} (void)
+\item 
+\mbox{\hyperlink{unionChain__Control}{rtems\+\_\+chain\+\_\+control}} $\ast$ \mbox{\hyperlink{rtl_8c_a17659e82ce22a975cbee8eda97963df5}{rtems\+\_\+rtl\+\_\+objects\+\_\+unprotected}} (void)
+\item 
+\mbox{\hyperlink{unionChain__Control}{rtems\+\_\+chain\+\_\+control}} $\ast$ \mbox{\hyperlink{rtl_8c_aa3cc3accb097168047901e0202907f4d}{rtems\+\_\+rtl\+\_\+pending\+\_\+unprotected}} (void)
+\item 
+\mbox{\hyperlink{structrtems__rtl__unresolved}{rtems\+\_\+rtl\+\_\+unresolved}} $\ast$ \mbox{\hyperlink{rtl_8c_ad5a303e0398a70f343fe1e0c657d97fc}{rtems\+\_\+rtl\+\_\+unresolved\+\_\+unprotected}} (void)
+\item 
+\mbox{\hyperlink{structrtems__rtl__archives}{rtems\+\_\+rtl\+\_\+archives}} $\ast$ \mbox{\hyperlink{rtl_8c_a3ac0cf0e0aa98f0a29ed917731ab12eb}{rtems\+\_\+rtl\+\_\+archives\+\_\+unprotected}} (void)
+\item 
+void \mbox{\hyperlink{rtl_8c_ae61cde65068bffac2401cfbc192c4c10}{rtems\+\_\+rtl\+\_\+obj\+\_\+caches}} (\mbox{\hyperlink{structrtems__rtl__obj__cache}{rtems\+\_\+rtl\+\_\+obj\+\_\+cache}} $\ast$$\ast$symbols, \mbox{\hyperlink{structrtems__rtl__obj__cache}{rtems\+\_\+rtl\+\_\+obj\+\_\+cache}} $\ast$$\ast$strings, \mbox{\hyperlink{structrtems__rtl__obj__cache}{rtems\+\_\+rtl\+\_\+obj\+\_\+cache}} $\ast$$\ast$relocs)
+\item 
+void \mbox{\hyperlink{rtl_8c_af10e17781dbe1c1aaf85a8ba4f5d5501}{rtems\+\_\+rtl\+\_\+obj\+\_\+caches\+\_\+flush}} (void)
+\item 
+void \mbox{\hyperlink{rtl_8c_a14745f190217e30816db6b62f2919c2e}{rtems\+\_\+rtl\+\_\+obj\+\_\+decompress}} (\mbox{\hyperlink{rtl-obj-comp_8h_a5ac76d7cdc14a520157bd5c8a322f56c}{rtems\+\_\+rtl\+\_\+obj\+\_\+comp}} $\ast$$\ast$decomp, \mbox{\hyperlink{structrtems__rtl__obj__cache}{rtems\+\_\+rtl\+\_\+obj\+\_\+cache}} $\ast$cache, int fd, int compression, off\+\_\+t offset)
+\item 
+void \mbox{\hyperlink{rtl_8c_aea076bd78b8215099c80ffc0e1e94257}{rtems\+\_\+rtl\+\_\+obj\+\_\+update\+\_\+flags}} (uint32\+\_\+t clear, uint32\+\_\+t set)
+\item 
+\mbox{\hyperlink{structrtems__rtl__data}{rtems\+\_\+rtl\+\_\+data}} $\ast$ \mbox{\hyperlink{rtl_8c_ac3aff9dcb5d1e56642ea983294fac844}{rtems\+\_\+rtl\+\_\+lock}} (void)
+\item 
+void \mbox{\hyperlink{rtl_8c_aff9014c0a3fd851bc8ce302f143866d5}{rtems\+\_\+rtl\+\_\+unlock}} (void)
+\item 
+\mbox{\hyperlink{structrtems__rtl__obj}{rtems\+\_\+rtl\+\_\+obj}} $\ast$ \mbox{\hyperlink{rtl_8c_a50348930ad74d8fd57efceb9626ef6d9}{rtems\+\_\+rtl\+\_\+check\+\_\+handle}} (void $\ast$handle)
+\item 
+\mbox{\hyperlink{structrtems__rtl__obj}{rtems\+\_\+rtl\+\_\+obj}} $\ast$ \mbox{\hyperlink{rtl_8c_a6ec1130a32f0cb89a58b6269b4ba5e94}{rtems\+\_\+rtl\+\_\+find\+\_\+obj}} (const char $\ast$name)
+\item 
+\mbox{\hyperlink{structrtems__rtl__obj}{rtems\+\_\+rtl\+\_\+obj}} $\ast$ \mbox{\hyperlink{rtl_8c_a765a0a9485cdb4e40a7062aa84e85bde}{rtems\+\_\+rtl\+\_\+find\+\_\+obj\+\_\+with\+\_\+symbol}} (const \mbox{\hyperlink{structrtems__rtl__obj__sym}{rtems\+\_\+rtl\+\_\+obj\+\_\+sym}} $\ast$sym)
+\item 
+\mbox{\hyperlink{structrtems__rtl__obj}{rtems\+\_\+rtl\+\_\+obj}} $\ast$ \mbox{\hyperlink{rtl_8c_a8afe1665a7b74f493c4a82eab67cee77}{rtems\+\_\+rtl\+\_\+load\+\_\+object}} (const char $\ast$name, int mode)
+\item 
+\mbox{\hyperlink{structrtems__rtl__obj}{rtems\+\_\+rtl\+\_\+obj}} $\ast$ \mbox{\hyperlink{rtl_8c_a75062b23e4883872f579c4dc822d16db}{rtems\+\_\+rtl\+\_\+load}} (const char $\ast$name, int mode)
+\item 
+bool \mbox{\hyperlink{rtl_8c_a10da4f171a8832c61bda60d26ff9d1ac}{rtems\+\_\+rtl\+\_\+unload\+\_\+object}} (\mbox{\hyperlink{structrtems__rtl__obj}{rtems\+\_\+rtl\+\_\+obj}} $\ast$obj)
+\item 
+bool \mbox{\hyperlink{rtl_8c_a2e009b01462f532ee55ce9fd582588e1}{rtems\+\_\+rtl\+\_\+unload}} (\mbox{\hyperlink{structrtems__rtl__obj}{rtems\+\_\+rtl\+\_\+obj}} $\ast$obj)
+\item 
+bool \mbox{\hyperlink{rtl_8c_ab26a6b88137bee05e25f446e817b6ca3}{rtems\+\_\+rtl\+\_\+path\+\_\+append}} (const char $\ast$path)
+\item 
+bool \mbox{\hyperlink{rtl_8c_ac1a2a5fa2f0fec9f9eb4b656b144b60e}{rtems\+\_\+rtl\+\_\+path\+\_\+prepend}} (const char $\ast$path)
+\item 
+void \mbox{\hyperlink{rtl_8c_ad668a6de6f5312a1f71131d8ab2ba4c5}{rtems\+\_\+rtl\+\_\+base\+\_\+sym\+\_\+global\+\_\+add}} (const unsigned char $\ast$esyms, unsigned int \mbox{\hyperlink{sun4u_2tte_8h_a245260f6f74972558f61b85227df5aae}{size}})
+\item 
+\mbox{\hyperlink{structrtems__rtl__obj}{rtems\+\_\+rtl\+\_\+obj}} $\ast$ \mbox{\hyperlink{rtl_8c_a3f4b19b95e6a3e18b67c282c9d6f2a63}{rtems\+\_\+rtl\+\_\+baseimage}} (void)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+R\+T\+E\+MS Run-\/\+Time Link Editor. 
+
+This is the R\+TL implementation. 
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{rtl_8c_afe3cc9658c042e64a504685becc78042}\label{rtl_8c_afe3cc9658c042e64a504685becc78042}} 
+\index{rtl.c@{rtl.c}!RTEMS\_RTL\_COMP\_OUTPUT@{RTEMS\_RTL\_COMP\_OUTPUT}}
+\index{RTEMS\_RTL\_COMP\_OUTPUT@{RTEMS\_RTL\_COMP\_OUTPUT}!rtl.c@{rtl.c}}
+\subsubsection{\texorpdfstring{RTEMS\_RTL\_COMP\_OUTPUT}{RTEMS\_RTL\_COMP\_OUTPUT}}
+{\footnotesize\ttfamily \#define R\+T\+E\+M\+S\+\_\+\+R\+T\+L\+\_\+\+C\+O\+M\+P\+\_\+\+O\+U\+T\+P\+UT~(2048)}
+
+Decompression output buffer. \mbox{\Hypertarget{rtl_8c_ad1f2956c1d2b0d1881ff56b8c3cf327f}\label{rtl_8c_ad1f2956c1d2b0d1881ff56b8c3cf327f}} 
+\index{rtl.c@{rtl.c}!RTEMS\_RTL\_ELF\_RELOC\_CACHE@{RTEMS\_RTL\_ELF\_RELOC\_CACHE}}
+\index{RTEMS\_RTL\_ELF\_RELOC\_CACHE@{RTEMS\_RTL\_ELF\_RELOC\_CACHE}!rtl.c@{rtl.c}}
+\subsubsection{\texorpdfstring{RTEMS\_RTL\_ELF\_RELOC\_CACHE}{RTEMS\_RTL\_ELF\_RELOC\_CACHE}}
+{\footnotesize\ttfamily \#define R\+T\+E\+M\+S\+\_\+\+R\+T\+L\+\_\+\+E\+L\+F\+\_\+\+R\+E\+L\+O\+C\+\_\+\+C\+A\+C\+HE~(2048)}
+
+Relocations table cache size. \mbox{\Hypertarget{rtl_8c_a16fee280bd7d64cb4ef2c0b983bc3cac}\label{rtl_8c_a16fee280bd7d64cb4ef2c0b983bc3cac}} 
+\index{rtl.c@{rtl.c}!RTEMS\_RTL\_ELF\_STRING\_CACHE@{RTEMS\_RTL\_ELF\_STRING\_CACHE}}
+\index{RTEMS\_RTL\_ELF\_STRING\_CACHE@{RTEMS\_RTL\_ELF\_STRING\_CACHE}!rtl.c@{rtl.c}}
+\subsubsection{\texorpdfstring{RTEMS\_RTL\_ELF\_STRING\_CACHE}{RTEMS\_RTL\_ELF\_STRING\_CACHE}}
+{\footnotesize\ttfamily \#define R\+T\+E\+M\+S\+\_\+\+R\+T\+L\+\_\+\+E\+L\+F\+\_\+\+S\+T\+R\+I\+N\+G\+\_\+\+C\+A\+C\+HE~(2048)}
+
+String table cache size. \mbox{\Hypertarget{rtl_8c_a8cb5308742e24cb4af8ad7d41427473d}\label{rtl_8c_a8cb5308742e24cb4af8ad7d41427473d}} 
+\index{rtl.c@{rtl.c}!RTEMS\_RTL\_ELF\_SYMBOL\_CACHE@{RTEMS\_RTL\_ELF\_SYMBOL\_CACHE}}
+\index{RTEMS\_RTL\_ELF\_SYMBOL\_CACHE@{RTEMS\_RTL\_ELF\_SYMBOL\_CACHE}!rtl.c@{rtl.c}}
+\subsubsection{\texorpdfstring{RTEMS\_RTL\_ELF\_SYMBOL\_CACHE}{RTEMS\_RTL\_ELF\_SYMBOL\_CACHE}}
+{\footnotesize\ttfamily \#define R\+T\+E\+M\+S\+\_\+\+R\+T\+L\+\_\+\+E\+L\+F\+\_\+\+S\+Y\+M\+B\+O\+L\+\_\+\+C\+A\+C\+HE~(2048)}
+
+Symbol table cache size. They can be big so the cache needs space to work. 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{rtl_8c_a3ac0cf0e0aa98f0a29ed917731ab12eb}\label{rtl_8c_a3ac0cf0e0aa98f0a29ed917731ab12eb}} 
+\index{rtl.c@{rtl.c}!rtems\_rtl\_archives\_unprotected@{rtems\_rtl\_archives\_unprotected}}
+\index{rtems\_rtl\_archives\_unprotected@{rtems\_rtl\_archives\_unprotected}!rtl.c@{rtl.c}}
+\subsubsection{\texorpdfstring{rtems\_rtl\_archives\_unprotected()}{rtems\_rtl\_archives\_unprotected()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structrtems__rtl__archives}{rtems\+\_\+rtl\+\_\+archives}}$\ast$ rtems\+\_\+rtl\+\_\+archives\+\_\+unprotected (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+Get the R\+TL archives with out locking. This call assumes the R\+TL is locked.
+
+\begin{DoxyReturn}{Returns}
+rtems\+\_\+rtl\+\_\+archives$\ast$ The R\+TL acrhives. 
+\end{DoxyReturn}
+
+\begin{DoxyRetVals}{Return values}
+{\em N\+U\+LL} & The R\+TL data is not initialised. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{rtl_8c_accb09d0d705ed31b7985c9e19975f237}\label{rtl_8c_accb09d0d705ed31b7985c9e19975f237}} 
+\index{rtl.c@{rtl.c}!rtems\_rtl\_base\_global\_syms\_init@{rtems\_rtl\_base\_global\_syms\_init}}
+\index{rtems\_rtl\_base\_global\_syms\_init@{rtems\_rtl\_base\_global\_syms\_init}!rtl.c@{rtl.c}}
+\subsubsection{\texorpdfstring{rtems\_rtl\_base\_global\_syms\_init()}{rtems\_rtl\_base\_global\_syms\_init()}}
+{\footnotesize\ttfamily void rtems\+\_\+rtl\+\_\+base\+\_\+global\+\_\+syms\+\_\+init (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+Define a default base global symbol loader function that is weak so a real table can be linked in when the user wants one. \mbox{\Hypertarget{rtl_8c_ad668a6de6f5312a1f71131d8ab2ba4c5}\label{rtl_8c_ad668a6de6f5312a1f71131d8ab2ba4c5}} 
+\index{rtl.c@{rtl.c}!rtems\_rtl\_base\_sym\_global\_add@{rtems\_rtl\_base\_sym\_global\_add}}
+\index{rtems\_rtl\_base\_sym\_global\_add@{rtems\_rtl\_base\_sym\_global\_add}!rtl.c@{rtl.c}}
+\subsubsection{\texorpdfstring{rtems\_rtl\_base\_sym\_global\_add()}{rtems\_rtl\_base\_sym\_global\_add()}}
+{\footnotesize\ttfamily void rtems\+\_\+rtl\+\_\+base\+\_\+sym\+\_\+global\+\_\+add (\begin{DoxyParamCaption}\item[{const unsigned char $\ast$}]{esyms,  }\item[{unsigned int}]{count }\end{DoxyParamCaption})}
+
+Add an exported symbol table to the global symbol table. This call is normally used by an object file when loaded that contains a global symbol table.
+
+
+\begin{DoxyParams}{Parameters}
+{\em esyms} & The exported symbol table. \\
+\hline
+{\em count} & The size of the exported symbol table. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{rtl_8c_a3f4b19b95e6a3e18b67c282c9d6f2a63}\label{rtl_8c_a3f4b19b95e6a3e18b67c282c9d6f2a63}} 
+\index{rtl.c@{rtl.c}!rtems\_rtl\_baseimage@{rtems\_rtl\_baseimage}}
+\index{rtems\_rtl\_baseimage@{rtems\_rtl\_baseimage}!rtl.c@{rtl.c}}
+\subsubsection{\texorpdfstring{rtems\_rtl\_baseimage()}{rtems\_rtl\_baseimage()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structrtems__rtl__obj}{rtems\+\_\+rtl\+\_\+obj}}$\ast$ rtems\+\_\+rtl\+\_\+baseimage (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+Return the object file descriptor for the base image. The object file descriptor returned is created when the run time linker is initialised.
+
+Assumes the R\+TL has been locked.
+
+\begin{DoxyReturn}{Returns}
+rtl\+\_\+obj$\ast$ The object file descriptor for the base image. N\+U\+LL is returned if the load fails. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{rtl_8c_a50348930ad74d8fd57efceb9626ef6d9}\label{rtl_8c_a50348930ad74d8fd57efceb9626ef6d9}} 
+\index{rtl.c@{rtl.c}!rtems\_rtl\_check\_handle@{rtems\_rtl\_check\_handle}}
+\index{rtems\_rtl\_check\_handle@{rtems\_rtl\_check\_handle}!rtl.c@{rtl.c}}
+\subsubsection{\texorpdfstring{rtems\_rtl\_check\_handle()}{rtems\_rtl\_check\_handle()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structrtems__rtl__obj}{rtems\+\_\+rtl\+\_\+obj}}$\ast$ rtems\+\_\+rtl\+\_\+check\+\_\+handle (\begin{DoxyParamCaption}\item[{void $\ast$}]{handle }\end{DoxyParamCaption})}
+
+Check a pointer is a valid object file descriptor returning the pointer as that type.
+
+Assumes the R\+TL has been locked.
+
+
+\begin{DoxyParams}{Parameters}
+{\em handle} & Pointer to the object file to be validated. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+rtl\+\_\+obj$\ast$ The object file descriptor. N\+U\+LL is returned if invalid. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{rtl_8c_a5b6f914747d59685829efa0ebb6b8373}\label{rtl_8c_a5b6f914747d59685829efa0ebb6b8373}} 
+\index{rtl.c@{rtl.c}!rtems\_rtl\_data\_unprotected@{rtems\_rtl\_data\_unprotected}}
+\index{rtems\_rtl\_data\_unprotected@{rtems\_rtl\_data\_unprotected}!rtl.c@{rtl.c}}
+\subsubsection{\texorpdfstring{rtems\_rtl\_data\_unprotected()}{rtems\_rtl\_data\_unprotected()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structrtems__rtl__data}{rtems\+\_\+rtl\+\_\+data}}$\ast$ rtems\+\_\+rtl\+\_\+data\+\_\+unprotected (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+Get the R\+TL data with out locking. This call assumes the R\+TL is locked.
+
+\begin{DoxyReturn}{Returns}
+rtems\+\_\+rtl\+\_\+data$\ast$ The R\+TL data after being locked. 
+\end{DoxyReturn}
+
+\begin{DoxyRetVals}{Return values}
+{\em N\+U\+LL} & The R\+TL data is not initialised. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{rtl_8c_a6ec1130a32f0cb89a58b6269b4ba5e94}\label{rtl_8c_a6ec1130a32f0cb89a58b6269b4ba5e94}} 
+\index{rtl.c@{rtl.c}!rtems\_rtl\_find\_obj@{rtems\_rtl\_find\_obj}}
+\index{rtems\_rtl\_find\_obj@{rtems\_rtl\_find\_obj}!rtl.c@{rtl.c}}
+\subsubsection{\texorpdfstring{rtems\_rtl\_find\_obj()}{rtems\_rtl\_find\_obj()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structrtems__rtl__obj}{rtems\+\_\+rtl\+\_\+obj}}$\ast$ rtems\+\_\+rtl\+\_\+find\+\_\+obj (\begin{DoxyParamCaption}\item[{const char $\ast$}]{name }\end{DoxyParamCaption})}
+
+Find the object given a file name.
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & The name of the object file. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em N\+U\+LL} & No object file with that name found. \\
+\hline
+\end{DoxyRetVals}
+\begin{DoxyReturn}{Returns}
+rtems\+\_\+rtl\+\_\+obj$\ast$ The object file descriptor. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{rtl_8c_a765a0a9485cdb4e40a7062aa84e85bde}\label{rtl_8c_a765a0a9485cdb4e40a7062aa84e85bde}} 
+\index{rtl.c@{rtl.c}!rtems\_rtl\_find\_obj\_with\_symbol@{rtems\_rtl\_find\_obj\_with\_symbol}}
+\index{rtems\_rtl\_find\_obj\_with\_symbol@{rtems\_rtl\_find\_obj\_with\_symbol}!rtl.c@{rtl.c}}
+\subsubsection{\texorpdfstring{rtems\_rtl\_find\_obj\_with\_symbol()}{rtems\_rtl\_find\_obj\_with\_symbol()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structrtems__rtl__obj}{rtems\+\_\+rtl\+\_\+obj}}$\ast$ rtems\+\_\+rtl\+\_\+find\+\_\+obj\+\_\+with\+\_\+symbol (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structrtems__rtl__obj__sym}{rtems\+\_\+rtl\+\_\+obj\+\_\+sym}} $\ast$}]{sym }\end{DoxyParamCaption})}
+
+Find the object file a symbol is exported from.
+
+
+\begin{DoxyParams}{Parameters}
+{\em sym} & The symbol to search with. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em N\+U\+LL} & No object file found. \\
+\hline
+\end{DoxyRetVals}
+\begin{DoxyReturn}{Returns}
+rtems\+\_\+rtl\+\_\+obj$\ast$ Reference to the symbol. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{rtl_8c_a9f3b87a59390e017219a33574360a470}\label{rtl_8c_a9f3b87a59390e017219a33574360a470}} 
+\index{rtl.c@{rtl.c}!rtems\_rtl\_global\_symbols@{rtems\_rtl\_global\_symbols}}
+\index{rtems\_rtl\_global\_symbols@{rtems\_rtl\_global\_symbols}!rtl.c@{rtl.c}}
+\subsubsection{\texorpdfstring{rtems\_rtl\_global\_symbols()}{rtems\_rtl\_global\_symbols()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structrtems__rtl__symbols}{rtems\+\_\+rtl\+\_\+symbols}}$\ast$ rtems\+\_\+rtl\+\_\+global\+\_\+symbols (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+Get the R\+TL global symbol table with out locking. This call assumes the R\+TL is locked.
+
+\begin{DoxyReturn}{Returns}
+rtems\+\_\+rtl\+\_\+symbols$\ast$ The R\+TL global symbols after being locked. 
+\end{DoxyReturn}
+
+\begin{DoxyRetVals}{Return values}
+{\em N\+U\+LL} & The R\+TL data is not initialised. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{rtl_8c_a709b835a119fda05f76110bc25f0091d}\label{rtl_8c_a709b835a119fda05f76110bc25f0091d}} 
+\index{rtl.c@{rtl.c}!rtems\_rtl\_last\_error\_unprotected@{rtems\_rtl\_last\_error\_unprotected}}
+\index{rtems\_rtl\_last\_error\_unprotected@{rtems\_rtl\_last\_error\_unprotected}!rtl.c@{rtl.c}}
+\subsubsection{\texorpdfstring{rtems\_rtl\_last\_error\_unprotected()}{rtems\_rtl\_last\_error\_unprotected()}}
+{\footnotesize\ttfamily const char$\ast$ rtems\+\_\+rtl\+\_\+last\+\_\+error\+\_\+unprotected (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+Get the R\+TL last error string with out locking. This call assumes the R\+TL is locked.
+
+\begin{DoxyReturn}{Returns}
+const char$\ast$ The R\+TL\textquotesingle{}s laste error. 
+\end{DoxyReturn}
+
+\begin{DoxyRetVals}{Return values}
+{\em N\+U\+LL} & The R\+TL data is not initialised. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{rtl_8c_a75062b23e4883872f579c4dc822d16db}\label{rtl_8c_a75062b23e4883872f579c4dc822d16db}} 
+\index{rtl.c@{rtl.c}!rtems\_rtl\_load@{rtems\_rtl\_load}}
+\index{rtems\_rtl\_load@{rtems\_rtl\_load}!rtl.c@{rtl.c}}
+\subsubsection{\texorpdfstring{rtems\_rtl\_load()}{rtems\_rtl\_load()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structrtems__rtl__obj}{rtems\+\_\+rtl\+\_\+obj}}$\ast$ rtems\+\_\+rtl\+\_\+load (\begin{DoxyParamCaption}\item[{const char $\ast$}]{name,  }\item[{int}]{mode }\end{DoxyParamCaption})}
+
+Load an object file. This is the user accessable interface to unloading an object file. See @rtems\+\_\+rtl\+\_\+load\+\_\+object.
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & The name of the object file. \\
+\hline
+{\em mode} & The mode of the load as defined by the dlopen call. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+rtl\+\_\+obj$\ast$ The object file descriptor. N\+U\+LL is returned if the load fails. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{rtl_8c_a8afe1665a7b74f493c4a82eab67cee77}\label{rtl_8c_a8afe1665a7b74f493c4a82eab67cee77}} 
+\index{rtl.c@{rtl.c}!rtems\_rtl\_load\_object@{rtems\_rtl\_load\_object}}
+\index{rtems\_rtl\_load\_object@{rtems\_rtl\_load\_object}!rtl.c@{rtl.c}}
+\subsubsection{\texorpdfstring{rtems\_rtl\_load\_object()}{rtems\_rtl\_load\_object()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structrtems__rtl__obj}{rtems\+\_\+rtl\+\_\+obj}}$\ast$ rtems\+\_\+rtl\+\_\+load\+\_\+object (\begin{DoxyParamCaption}\item[{const char $\ast$}]{name,  }\item[{int}]{mode }\end{DoxyParamCaption})}
+
+Load an object file into memory relocating it. It will not be resolved against other symbols in other object files or the base image.
+
+The name can be a file name for an object file or it can be encoded to reference an archive of object modules (static library). This encoding is specific to R\+T\+E\+MS and allows dependences to specify an archive without the searching overhead normally incurred by linkers locating object files in an archive. The file name format rules are\+:
+
+
+\begin{DoxyEnumerate}
+\item Absolute file references a specific object file in the architecture specific location on the file system.
+\item Relative file references an object format file in the search path.
+\item Absolute archive and file reference to a specific location in the file system. The archive and file are encoded as \textquotesingle{}archive\+:file \mbox{[}@offset\mbox{]}\textquotesingle{} where \textquotesingle{}archive\textquotesingle{} is a valid file at the absolute path in the file system, and \textquotesingle{}file\textquotesingle{} is a contained in the archive, and optionally an offset to the \textquotesingle{}file\textquotesingle{} in the \textquotesingle{}archive\textquotesingle{}. If no offset is provided the archive is searched.
+\item Relative archive and file in the search path. The encoding is the same as described in item 3 of this list.
+\end{DoxyEnumerate}
+
+Assumes the R\+TL has been locked.
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & The name of the object file. \\
+\hline
+{\em mode} & The mode of the load as defined by the dlopen call. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+rtl\+\_\+obj$\ast$ The object file descriptor. N\+U\+LL is returned if the load fails. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{rtl_8c_ac3aff9dcb5d1e56642ea983294fac844}\label{rtl_8c_ac3aff9dcb5d1e56642ea983294fac844}} 
+\index{rtl.c@{rtl.c}!rtems\_rtl\_lock@{rtems\_rtl\_lock}}
+\index{rtems\_rtl\_lock@{rtems\_rtl\_lock}!rtl.c@{rtl.c}}
+\subsubsection{\texorpdfstring{rtems\_rtl\_lock()}{rtems\_rtl\_lock()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structrtems__rtl__data}{rtems\+\_\+rtl\+\_\+data}}$\ast$ rtems\+\_\+rtl\+\_\+lock (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+Lock the Run-\/time Linker.
+
+\begin{DoxyReturn}{Returns}
+rtems\+\_\+rtl\+\_\+data$\ast$ The R\+TL data after being locked. 
+\end{DoxyReturn}
+
+\begin{DoxyRetVals}{Return values}
+{\em N\+U\+LL} & The R\+TL data could not be initialised or locked. Typically this means the lock could not be created. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{rtl_8c_ae61cde65068bffac2401cfbc192c4c10}\label{rtl_8c_ae61cde65068bffac2401cfbc192c4c10}} 
+\index{rtl.c@{rtl.c}!rtems\_rtl\_obj\_caches@{rtems\_rtl\_obj\_caches}}
+\index{rtems\_rtl\_obj\_caches@{rtems\_rtl\_obj\_caches}!rtl.c@{rtl.c}}
+\subsubsection{\texorpdfstring{rtems\_rtl\_obj\_caches()}{rtems\_rtl\_obj\_caches()}}
+{\footnotesize\ttfamily void rtems\+\_\+rtl\+\_\+obj\+\_\+caches (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structrtems__rtl__obj__cache}{rtems\+\_\+rtl\+\_\+obj\+\_\+cache}} $\ast$$\ast$}]{symbols,  }\item[{\mbox{\hyperlink{structrtems__rtl__obj__cache}{rtems\+\_\+rtl\+\_\+obj\+\_\+cache}} $\ast$$\ast$}]{strings,  }\item[{\mbox{\hyperlink{structrtems__rtl__obj__cache}{rtems\+\_\+rtl\+\_\+obj\+\_\+cache}} $\ast$$\ast$}]{relocs }\end{DoxyParamCaption})}
+
+Get the R\+TL symbols, strings, or relocations object file caches. This call assmes the R\+TL is locked.
+
+
+\begin{DoxyParams}{Parameters}
+{\em symbols} & Pointer to the location to set the cache into. Returns N\+U\+LL is rtl is not initialised. If N\+U\+LL is passed in no value set. \\
+\hline
+{\em strings} & Pointer to the location to set the cache into. Returns N\+U\+LL is rtl is not initialised. If N\+U\+LL is passed in no value set. \\
+\hline
+{\em relocs} & Pointer to the location to set the cache into. Returns N\+U\+LL is rtl is not initialised. If N\+U\+LL is passed in no value set. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{rtl_8c_af10e17781dbe1c1aaf85a8ba4f5d5501}\label{rtl_8c_af10e17781dbe1c1aaf85a8ba4f5d5501}} 
+\index{rtl.c@{rtl.c}!rtems\_rtl\_obj\_caches\_flush@{rtems\_rtl\_obj\_caches\_flush}}
+\index{rtems\_rtl\_obj\_caches\_flush@{rtems\_rtl\_obj\_caches\_flush}!rtl.c@{rtl.c}}
+\subsubsection{\texorpdfstring{rtems\_rtl\_obj\_caches\_flush()}{rtems\_rtl\_obj\_caches\_flush()}}
+{\footnotesize\ttfamily void rtems\+\_\+rtl\+\_\+obj\+\_\+caches\+\_\+flush (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+Flush all the object file caches. \mbox{\Hypertarget{rtl_8c_a14745f190217e30816db6b62f2919c2e}\label{rtl_8c_a14745f190217e30816db6b62f2919c2e}} 
+\index{rtl.c@{rtl.c}!rtems\_rtl\_obj\_decompress@{rtems\_rtl\_obj\_decompress}}
+\index{rtems\_rtl\_obj\_decompress@{rtems\_rtl\_obj\_decompress}!rtl.c@{rtl.c}}
+\subsubsection{\texorpdfstring{rtems\_rtl\_obj\_decompress()}{rtems\_rtl\_obj\_decompress()}}
+{\footnotesize\ttfamily void rtems\+\_\+rtl\+\_\+obj\+\_\+decompress (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{rtl-obj-comp_8h_a5ac76d7cdc14a520157bd5c8a322f56c}{rtems\+\_\+rtl\+\_\+obj\+\_\+comp}} $\ast$$\ast$}]{decomp,  }\item[{\mbox{\hyperlink{structrtems__rtl__obj__cache}{rtems\+\_\+rtl\+\_\+obj\+\_\+cache}} $\ast$}]{cache,  }\item[{int}]{fd,  }\item[{int}]{compression,  }\item[{off\+\_\+t}]{offset }\end{DoxyParamCaption})}
+
+Get the R\+TL decompressor setting for the cache and the offset in the file the compressed stream starts. This call assumes the R\+TL is locked.
+
+
+\begin{DoxyParams}{Parameters}
+{\em decomp} & Pointer to the location to set the compressor into. Returns N\+U\+LL is rtl is not initialised. \\
+\hline
+{\em cache} & The cache to read the file with. Saves needing an extrs buffer. \\
+\hline
+{\em offset} & The offset in the file the compressed stream starts. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{rtl_8c_aea076bd78b8215099c80ffc0e1e94257}\label{rtl_8c_aea076bd78b8215099c80ffc0e1e94257}} 
+\index{rtl.c@{rtl.c}!rtems\_rtl\_obj\_update\_flags@{rtems\_rtl\_obj\_update\_flags}}
+\index{rtems\_rtl\_obj\_update\_flags@{rtems\_rtl\_obj\_update\_flags}!rtl.c@{rtl.c}}
+\subsubsection{\texorpdfstring{rtems\_rtl\_obj\_update\_flags()}{rtems\_rtl\_obj\_update\_flags()}}
+{\footnotesize\ttfamily void rtems\+\_\+rtl\+\_\+obj\+\_\+update\+\_\+flags (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{clear,  }\item[{uint32\+\_\+t}]{set }\end{DoxyParamCaption})}
+
+Update the mask in the object files. You can clear flags and then set flags. A zero (0) does not clear or set the flags. This is global to all object files that are laoded.
+
+
+\begin{DoxyParams}{Parameters}
+{\em clear} & The flag\textquotesingle{}s clear mask, a 0 does not clear any flags. \\
+\hline
+{\em set} & The flag\textquotesingle{}s set mask, a 0 does not set any flags. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{rtl_8c_a17659e82ce22a975cbee8eda97963df5}\label{rtl_8c_a17659e82ce22a975cbee8eda97963df5}} 
+\index{rtl.c@{rtl.c}!rtems\_rtl\_objects\_unprotected@{rtems\_rtl\_objects\_unprotected}}
+\index{rtems\_rtl\_objects\_unprotected@{rtems\_rtl\_objects\_unprotected}!rtl.c@{rtl.c}}
+\subsubsection{\texorpdfstring{rtems\_rtl\_objects\_unprotected()}{rtems\_rtl\_objects\_unprotected()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{unionChain__Control}{rtems\+\_\+chain\+\_\+control}}$\ast$ rtems\+\_\+rtl\+\_\+objects\+\_\+unprotected (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+Get the R\+TL objects table with out locking. This call assumes the R\+TL is locked.
+
+\begin{DoxyReturn}{Returns}
+rtems\+\_\+chain\+\_\+control$\ast$ The R\+TL objects chain. 
+\end{DoxyReturn}
+
+\begin{DoxyRetVals}{Return values}
+{\em N\+U\+LL} & The R\+TL data is not initialised. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{rtl_8c_ab26a6b88137bee05e25f446e817b6ca3}\label{rtl_8c_ab26a6b88137bee05e25f446e817b6ca3}} 
+\index{rtl.c@{rtl.c}!rtems\_rtl\_path\_append@{rtems\_rtl\_path\_append}}
+\index{rtems\_rtl\_path\_append@{rtems\_rtl\_path\_append}!rtl.c@{rtl.c}}
+\subsubsection{\texorpdfstring{rtems\_rtl\_path\_append()}{rtems\_rtl\_path\_append()}}
+{\footnotesize\ttfamily bool rtems\+\_\+rtl\+\_\+path\+\_\+append (\begin{DoxyParamCaption}\item[{const char $\ast$}]{path }\end{DoxyParamCaption})}
+
+Append the path to the search path.
+
+
+\begin{DoxyParams}{Parameters}
+{\em path} & The path to append. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em false} & The path could not be appended. \\
+\hline
+{\em true} & The path was appended. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{rtl_8c_ac1a2a5fa2f0fec9f9eb4b656b144b60e}\label{rtl_8c_ac1a2a5fa2f0fec9f9eb4b656b144b60e}} 
+\index{rtl.c@{rtl.c}!rtems\_rtl\_path\_prepend@{rtems\_rtl\_path\_prepend}}
+\index{rtems\_rtl\_path\_prepend@{rtems\_rtl\_path\_prepend}!rtl.c@{rtl.c}}
+\subsubsection{\texorpdfstring{rtems\_rtl\_path\_prepend()}{rtems\_rtl\_path\_prepend()}}
+{\footnotesize\ttfamily bool rtems\+\_\+rtl\+\_\+path\+\_\+prepend (\begin{DoxyParamCaption}\item[{const char $\ast$}]{path }\end{DoxyParamCaption})}
+
+Prepend the path to the search path.
+
+
+\begin{DoxyParams}{Parameters}
+{\em path} & The path to prepend. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em false} & The path could not be prepended. \\
+\hline
+{\em true} & The path was prepended. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{rtl_8c_aa3cc3accb097168047901e0202907f4d}\label{rtl_8c_aa3cc3accb097168047901e0202907f4d}} 
+\index{rtl.c@{rtl.c}!rtems\_rtl\_pending\_unprotected@{rtems\_rtl\_pending\_unprotected}}
+\index{rtems\_rtl\_pending\_unprotected@{rtems\_rtl\_pending\_unprotected}!rtl.c@{rtl.c}}
+\subsubsection{\texorpdfstring{rtems\_rtl\_pending\_unprotected()}{rtems\_rtl\_pending\_unprotected()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{unionChain__Control}{rtems\+\_\+chain\+\_\+control}}$\ast$ rtems\+\_\+rtl\+\_\+pending\+\_\+unprotected (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+Get the R\+TL pending with out locking. This call assumes the R\+TL is locked.
+
+\begin{DoxyReturn}{Returns}
+rtems\+\_\+chain\+\_\+control$\ast$ The R\+TL pending list control. 
+\end{DoxyReturn}
+
+\begin{DoxyRetVals}{Return values}
+{\em N\+U\+LL} & The R\+TL data is not initialised. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{rtl_8c_a2e009b01462f532ee55ce9fd582588e1}\label{rtl_8c_a2e009b01462f532ee55ce9fd582588e1}} 
+\index{rtl.c@{rtl.c}!rtems\_rtl\_unload@{rtems\_rtl\_unload}}
+\index{rtems\_rtl\_unload@{rtems\_rtl\_unload}!rtl.c@{rtl.c}}
+\subsubsection{\texorpdfstring{rtems\_rtl\_unload()}{rtems\_rtl\_unload()}}
+{\footnotesize\ttfamily bool rtems\+\_\+rtl\+\_\+unload (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structrtems__rtl__obj}{rtems\+\_\+rtl\+\_\+obj}} $\ast$}]{obj }\end{DoxyParamCaption})}
+
+Unload an object file. This is the user accessable interface to unloading an object file. See @rtems\+\_\+rtl\+\_\+unload\+\_\+object.
+
+Assumes the R\+TL has been locked.
+
+
+\begin{DoxyParams}{Parameters}
+{\em obj} & The object file descriptor. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em true} & The object file has been unloaded. \\
+\hline
+{\em false} & The object file could not be unloaded. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{rtl_8c_a10da4f171a8832c61bda60d26ff9d1ac}\label{rtl_8c_a10da4f171a8832c61bda60d26ff9d1ac}} 
+\index{rtl.c@{rtl.c}!rtems\_rtl\_unload\_object@{rtems\_rtl\_unload\_object}}
+\index{rtems\_rtl\_unload\_object@{rtems\_rtl\_unload\_object}!rtl.c@{rtl.c}}
+\subsubsection{\texorpdfstring{rtems\_rtl\_unload\_object()}{rtems\_rtl\_unload\_object()}}
+{\footnotesize\ttfamily bool rtems\+\_\+rtl\+\_\+unload\+\_\+object (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structrtems__rtl__obj}{rtems\+\_\+rtl\+\_\+obj}} $\ast$}]{obj }\end{DoxyParamCaption})}
+
+Unload an object file. This only happens when the user count is 0.
+
+Assumes the R\+TL has been locked.
+
+
+\begin{DoxyParams}{Parameters}
+{\em obj} & The object file descriptor. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em true} & The object file has been unloaded. \\
+\hline
+{\em false} & The object file could not be unloaded. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{rtl_8c_aff9014c0a3fd851bc8ce302f143866d5}\label{rtl_8c_aff9014c0a3fd851bc8ce302f143866d5}} 
+\index{rtl.c@{rtl.c}!rtems\_rtl\_unlock@{rtems\_rtl\_unlock}}
+\index{rtems\_rtl\_unlock@{rtems\_rtl\_unlock}!rtl.c@{rtl.c}}
+\subsubsection{\texorpdfstring{rtems\_rtl\_unlock()}{rtems\_rtl\_unlock()}}
+{\footnotesize\ttfamily void rtems\+\_\+rtl\+\_\+unlock (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+Unlock the Run-\/time Linker. \mbox{\Hypertarget{rtl_8c_ad5a303e0398a70f343fe1e0c657d97fc}\label{rtl_8c_ad5a303e0398a70f343fe1e0c657d97fc}} 
+\index{rtl.c@{rtl.c}!rtems\_rtl\_unresolved\_unprotected@{rtems\_rtl\_unresolved\_unprotected}}
+\index{rtems\_rtl\_unresolved\_unprotected@{rtems\_rtl\_unresolved\_unprotected}!rtl.c@{rtl.c}}
+\subsubsection{\texorpdfstring{rtems\_rtl\_unresolved\_unprotected()}{rtems\_rtl\_unresolved\_unprotected()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structrtems__rtl__unresolved}{rtems\+\_\+rtl\+\_\+unresolved}}$\ast$ rtems\+\_\+rtl\+\_\+unresolved\+\_\+unprotected (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+Get the R\+TL unresolved table with out locking. This call assumes the R\+TL is locked.
+
+\begin{DoxyReturn}{Returns}
+rtems\+\_\+rtl\+\_\+unresolv$\ast$ The R\+TL unresolved symbols and reloc records. 
+\end{DoxyReturn}
+
+\begin{DoxyRetVals}{Return values}
+{\em N\+U\+LL} & The R\+TL data is not initialised. \\
+\hline
+\end{DoxyRetVals}

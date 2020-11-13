@@ -1,0 +1,64 @@
+\hypertarget{threadq_8h}{}\section{cpukit/include/rtems/score/threadq.h File Reference}
+\label{threadq_8h}\index{cpukit/include/rtems/score/threadq.h@{cpukit/include/rtems/score/threadq.h}}
+
+
+Constants and Structures Needed to Declare a Thread Queue.  
+
+
+{\ttfamily \#include $<$rtems/score/chain.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/score/isrlock.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/score/object.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/score/priority.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/score/rbtree.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/score/states.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/score/watchdogticks.\+h$>$}\newline
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structThread__queue__Lock__context}{Thread\+\_\+queue\+\_\+\+Lock\+\_\+context}}
+\item 
+struct \mbox{\hyperlink{structThread__queue__Context}{Thread\+\_\+queue\+\_\+\+Context}}
+\begin{DoxyCompactList}\small\item\em Thread queue context for the thread queue methods. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structThread__queue__Priority__queue}{Thread\+\_\+queue\+\_\+\+Priority\+\_\+queue}}
+\begin{DoxyCompactList}\small\item\em Thread priority queue. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{struct__Thread__queue__Heads}{\+\_\+\+Thread\+\_\+queue\+\_\+\+Heads}}
+\begin{DoxyCompactList}\small\item\em Thread queue heads. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structThread__queue__Queue}{Thread\+\_\+queue\+\_\+\+Queue}}
+\item 
+struct \mbox{\hyperlink{structThread__queue__Operations}{Thread\+\_\+queue\+\_\+\+Operations}}
+\begin{DoxyCompactList}\small\item\em Thread queue operations. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structThread__queue__Control}{Thread\+\_\+queue\+\_\+\+Control}}
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \mbox{\hyperlink{struct__Thread__Control}{\+\_\+\+Thread\+\_\+\+Control}} {\bfseries Thread\+\_\+\+Control}
+\item 
+typedef struct \mbox{\hyperlink{structThread__queue__Context}{Thread\+\_\+queue\+\_\+\+Context}} {\bfseries Thread\+\_\+queue\+\_\+\+Context}
+\item 
+typedef struct \mbox{\hyperlink{structThread__queue__Queue}{Thread\+\_\+queue\+\_\+\+Queue}} {\bfseries Thread\+\_\+queue\+\_\+\+Queue}
+\item 
+typedef struct \mbox{\hyperlink{structThread__queue__Operations}{Thread\+\_\+queue\+\_\+\+Operations}} {\bfseries Thread\+\_\+queue\+\_\+\+Operations}
+\item 
+typedef void($\ast$ \mbox{\hyperlink{group__RTEMSScoreThreadQueue_ga3dd59055cd68c42978de9cd8e007ce1d}{Thread\+\_\+queue\+\_\+\+Enqueue\+\_\+callout}}) (\mbox{\hyperlink{structThread__queue__Queue}{Thread\+\_\+queue\+\_\+\+Queue}} $\ast$queue, \mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$the\+\_\+thread, struct \mbox{\hyperlink{structPer__CPU__Control}{Per\+\_\+\+C\+P\+U\+\_\+\+Control}} $\ast$cpu\+\_\+self, \mbox{\hyperlink{structThread__queue__Context}{Thread\+\_\+queue\+\_\+\+Context}} $\ast$queue\+\_\+context)
+\begin{DoxyCompactList}\small\item\em Thread queue enqueue callout. \end{DoxyCompactList}\item 
+typedef void($\ast$ \mbox{\hyperlink{group__RTEMSScoreThreadQueue_gab2878c08655ad0911fe6540a1adaf3a3}{Thread\+\_\+queue\+\_\+\+Deadlock\+\_\+callout}}) (\mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$the\+\_\+thread)
+\begin{DoxyCompactList}\small\item\em Thread queue deadlock callout. \end{DoxyCompactList}\item 
+typedef struct \mbox{\hyperlink{struct__Thread__queue__Heads}{\+\_\+\+Thread\+\_\+queue\+\_\+\+Heads}} \mbox{\hyperlink{group__RTEMSScoreThreadQueue_gaebac32033b009cc8f606a90bd389f8e9}{Thread\+\_\+queue\+\_\+\+Heads}}
+\begin{DoxyCompactList}\small\item\em Thread queue heads. \end{DoxyCompactList}\item 
+typedef void($\ast$ \mbox{\hyperlink{group__RTEMSScoreThreadQueue_gacdacb1750c6bbc43f99e9c60bd1beba9}{Thread\+\_\+queue\+\_\+\+Priority\+\_\+actions\+\_\+operation}}) (\mbox{\hyperlink{structThread__queue__Queue}{Thread\+\_\+queue\+\_\+\+Queue}} $\ast$queue, \mbox{\hyperlink{structPriority__Actions}{Priority\+\_\+\+Actions}} $\ast$priority\+\_\+actions)
+\begin{DoxyCompactList}\small\item\em Thread queue action operation. \end{DoxyCompactList}\item 
+typedef void($\ast$ \mbox{\hyperlink{group__RTEMSScoreThreadQueue_ga1d111ef0f5c9457f7e17a217fc7558cd}{Thread\+\_\+queue\+\_\+\+Enqueue\+\_\+operation}}) (\mbox{\hyperlink{structThread__queue__Queue}{Thread\+\_\+queue\+\_\+\+Queue}} $\ast$queue, \mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$the\+\_\+thread, \mbox{\hyperlink{structThread__queue__Context}{Thread\+\_\+queue\+\_\+\+Context}} $\ast$queue\+\_\+context)
+\begin{DoxyCompactList}\small\item\em Thread queue enqueue operation. \end{DoxyCompactList}\item 
+typedef void($\ast$ \mbox{\hyperlink{group__RTEMSScoreThreadQueue_ga7fdee2ebb4fe9f9dae612be0ecce85db}{Thread\+\_\+queue\+\_\+\+Extract\+\_\+operation}}) (\mbox{\hyperlink{structThread__queue__Queue}{Thread\+\_\+queue\+\_\+\+Queue}} $\ast$queue, \mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$the\+\_\+thread, \mbox{\hyperlink{structThread__queue__Context}{Thread\+\_\+queue\+\_\+\+Context}} $\ast$queue\+\_\+context)
+\begin{DoxyCompactList}\small\item\em Thread queue extract operation. \end{DoxyCompactList}\item 
+typedef \mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$($\ast$ \mbox{\hyperlink{group__RTEMSScoreThreadQueue_ga42e805a4c313faaddf8dc08592696574}{Thread\+\_\+queue\+\_\+\+Surrender\+\_\+operation}}) (\mbox{\hyperlink{structThread__queue__Queue}{Thread\+\_\+queue\+\_\+\+Queue}} $\ast$queue, \mbox{\hyperlink{group__RTEMSScoreThreadQueue_gaebac32033b009cc8f606a90bd389f8e9}{Thread\+\_\+queue\+\_\+\+Heads}} $\ast$heads, \mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$previous\+\_\+owner, \mbox{\hyperlink{structThread__queue__Context}{Thread\+\_\+queue\+\_\+\+Context}} $\ast$queue\+\_\+context)
+\begin{DoxyCompactList}\small\item\em Thread queue surrender operation. \end{DoxyCompactList}\item 
+typedef \mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$($\ast$ \mbox{\hyperlink{group__RTEMSScoreThreadQueue_gacd3bee122e35cf14e0ed8680256db439}{Thread\+\_\+queue\+\_\+\+First\+\_\+operation}}) (\mbox{\hyperlink{group__RTEMSScoreThreadQueue_gaebac32033b009cc8f606a90bd389f8e9}{Thread\+\_\+queue\+\_\+\+Heads}} $\ast$heads)
+\begin{DoxyCompactList}\small\item\em Thread queue first operation. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Constants and Structures Needed to Declare a Thread Queue. 
+
+This include file contains all the constants and structures needed to declare a thread queue. 

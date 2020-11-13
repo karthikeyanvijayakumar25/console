@@ -1,0 +1,174 @@
+\hypertarget{sun4u_2tlb_8h}{}\section{bsps/sparc64/include/arch/mm/sun4u/tlb.h File Reference}
+\label{sun4u_2tlb_8h}\index{bsps/sparc64/include/arch/mm/sun4u/tlb.h@{bsps/sparc64/include/arch/mm/sun4u/tlb.h}}
+{\ttfamily \#include $<$arch/mm/tte.\+h$>$}\newline
+{\ttfamily \#include $<$arch/mm/mmu.\+h$>$}\newline
+{\ttfamily \#include $<$arch/mm/page.\+h$>$}\newline
+{\ttfamily \#include $<$arch/asm.\+h$>$}\newline
+{\ttfamily \#include $<$arch/barrier.\+h$>$}\newline
+{\ttfamily \#include $<$arch/types.\+h$>$}\newline
+{\ttfamily \#include $<$arch/register.\+h$>$}\newline
+{\ttfamily \#include $<$arch/cpu.\+h$>$}\newline
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+union \mbox{\hyperlink{uniontlb__context__reg}{tlb\+\_\+context\+\_\+reg}}
+\item 
+union \mbox{\hyperlink{uniontlb__tag__read__reg}{tlb\+\_\+tag\+\_\+read\+\_\+reg}}
+\item 
+union \mbox{\hyperlink{uniontlb__demap__addr}{tlb\+\_\+demap\+\_\+addr}}
+\item 
+union \mbox{\hyperlink{uniontlb__sfsr__reg}{tlb\+\_\+sfsr\+\_\+reg}}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__RTEMSBSPsSPARC64mm_ga74b6cf399cbfdfb12e041bd61d1171f1}{M\+E\+M\+\_\+\+C\+O\+N\+T\+E\+X\+T\+\_\+\+K\+E\+R\+N\+EL}}~0
+\item 
+\#define {\bfseries M\+E\+M\+\_\+\+C\+O\+N\+T\+E\+X\+T\+\_\+\+T\+E\+MP}~1
+\item 
+\#define \mbox{\hyperlink{group__RTEMSBSPsSPARC64mm_ga5f64c88cc1a61badb5b746244deb0545}{P\+A\+G\+E\+S\+I\+Z\+E\+\_\+8K}}~0
+\item 
+\#define {\bfseries P\+A\+G\+E\+S\+I\+Z\+E\+\_\+64K}~1
+\item 
+\#define {\bfseries P\+A\+G\+E\+S\+I\+Z\+E\+\_\+512K}~2
+\item 
+\#define {\bfseries P\+A\+G\+E\+S\+I\+Z\+E\+\_\+4M}~3
+\item 
+\#define \mbox{\hyperlink{group__RTEMSBSPsSPARC64mm_ga92767b7a5f737997e75ce619743ef466}{K\+E\+R\+N\+E\+L\+\_\+\+P\+A\+G\+E\+\_\+\+W\+I\+D\+TH}}~22	/$\ast$ 4\+M $\ast$/
+\item 
+\#define {\bfseries T\+L\+B\+\_\+\+D\+E\+M\+A\+P\+\_\+\+P\+A\+GE}~0
+\item 
+\#define {\bfseries T\+L\+B\+\_\+\+D\+E\+M\+A\+P\+\_\+\+C\+O\+N\+T\+E\+XT}~1
+\item 
+\#define {\bfseries T\+L\+B\+\_\+\+D\+E\+M\+A\+P\+\_\+\+T\+Y\+P\+E\+\_\+\+S\+H\+I\+FT}~6
+\item 
+\#define {\bfseries T\+L\+B\+\_\+\+D\+E\+M\+A\+P\+\_\+\+P\+R\+I\+M\+A\+RY}~0
+\item 
+\#define {\bfseries T\+L\+B\+\_\+\+D\+E\+M\+A\+P\+\_\+\+S\+E\+C\+O\+N\+D\+A\+RY}~1
+\item 
+\#define {\bfseries T\+L\+B\+\_\+\+D\+E\+M\+A\+P\+\_\+\+N\+U\+C\+L\+E\+US}~2
+\item 
+\#define {\bfseries T\+L\+B\+\_\+\+D\+E\+M\+A\+P\+\_\+\+C\+O\+N\+T\+E\+X\+T\+\_\+\+S\+H\+I\+FT}~4
+\item 
+\#define {\bfseries T\+L\+B\+\_\+\+T\+A\+G\+\_\+\+A\+C\+C\+E\+S\+S\+\_\+\+C\+O\+N\+T\+E\+X\+T\+\_\+\+S\+H\+I\+FT}~0
+\item 
+\#define {\bfseries T\+L\+B\+\_\+\+T\+A\+G\+\_\+\+A\+C\+C\+E\+S\+S\+\_\+\+C\+O\+N\+T\+E\+X\+T\+\_\+\+M\+A\+SK}~((1 $<$$<$ 13) -\/ 1)
+\item 
+\#define {\bfseries T\+L\+B\+\_\+\+T\+A\+G\+\_\+\+A\+C\+C\+E\+S\+S\+\_\+\+V\+P\+N\+\_\+\+S\+H\+I\+FT}~13
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef union \mbox{\hyperlink{uniontlb__context__reg}{tlb\+\_\+context\+\_\+reg}} {\bfseries tlb\+\_\+context\+\_\+reg\+\_\+t}
+\item 
+typedef \mbox{\hyperlink{uniontte__data}{tte\+\_\+data\+\_\+t}} \mbox{\hyperlink{group__RTEMSBSPsSPARC64mm_ga9c71ce7b9e5efa24b9e891795f8a59e1}{tlb\+\_\+data\+\_\+t}}
+\item 
+typedef union \mbox{\hyperlink{uniontlb__tag__read__reg}{tlb\+\_\+tag\+\_\+read\+\_\+reg}} {\bfseries tlb\+\_\+tag\+\_\+read\+\_\+reg\+\_\+t}
+\item 
+typedef union \mbox{\hyperlink{uniontlb__tag__read__reg}{tlb\+\_\+tag\+\_\+read\+\_\+reg}} {\bfseries tlb\+\_\+tag\+\_\+access\+\_\+reg\+\_\+t}
+\item 
+typedef union \mbox{\hyperlink{uniontlb__demap__addr}{tlb\+\_\+demap\+\_\+addr}} {\bfseries tlb\+\_\+demap\+\_\+addr\+\_\+t}
+\item 
+typedef union \mbox{\hyperlink{uniontlb__sfsr__reg}{tlb\+\_\+sfsr\+\_\+reg}} {\bfseries tlb\+\_\+sfsr\+\_\+reg\+\_\+t}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void {\bfseries fast\+\_\+instruction\+\_\+access\+\_\+mmu\+\_\+miss} (unative\+\_\+t, istate\+\_\+t $\ast$)
+\item 
+void {\bfseries fast\+\_\+data\+\_\+access\+\_\+mmu\+\_\+miss} (\mbox{\hyperlink{uniontlb__tag__read__reg}{tlb\+\_\+tag\+\_\+access\+\_\+reg\+\_\+t}}, istate\+\_\+t $\ast$)
+\item 
+void {\bfseries fast\+\_\+data\+\_\+access\+\_\+protection} (\mbox{\hyperlink{uniontlb__tag__read__reg}{tlb\+\_\+tag\+\_\+access\+\_\+reg\+\_\+t}}, istate\+\_\+t $\ast$)
+\item 
+void {\bfseries dtlb\+\_\+insert\+\_\+mapping} (uintptr\+\_\+t, uintptr\+\_\+t, int, bool, bool)
+\item 
+void {\bfseries dump\+\_\+sfsr\+\_\+and\+\_\+sfar} (void)
+\item 
+void {\bfseries describe\+\_\+dmmu\+\_\+fault} (void)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{sun4u_2tlb_8h_a3aac4232b5cac370b21f998544aad3d6}\label{sun4u_2tlb_8h_a3aac4232b5cac370b21f998544aad3d6}} 
+unsigned {\bfseries long}
+\item 
+unsigned \mbox{\hyperlink{sun4u_2tlb_8h_a9b4a99475e2709333b8e5d70483173f1}{context}}
+\item 
+uint64\+\_\+t \mbox{\hyperlink{sun4u_2tlb_8h_acb4f5627e98b1c455dcfd6de84ceefb7}{vpn}}
+\item 
+unsigned \mbox{\hyperlink{sun4u_2tlb_8h_adf71f3d8410c1f1dbbc96680a92c49af}{\+\_\+\+\_\+pad0\+\_\+\+\_\+}}
+\item 
+unsigned \mbox{\hyperlink{sun4u_2tlb_8h_a8b0b9ed08e0e18920ec2682f48228c27}{e}}
+\item 
+unsigned \mbox{\hyperlink{sun4u_2tlb_8h_a751a2ca9746a05ee6a5878e508d30ea6}{ct}}
+\item 
+unsigned \mbox{\hyperlink{sun4u_2tlb_8h_a375ee3d99a3d4fb63e1d3ee3c5d44f7d}{pr}}
+\item 
+unsigned \mbox{\hyperlink{sun4u_2tlb_8h_aab2ee9ec393223c855b9595e52382ac0}{w}}
+\item 
+unsigned \mbox{\hyperlink{sun4u_2tlb_8h_aad2f40052fe4329183f7f830a3a34b1b}{ow}}
+\item 
+unsigned \mbox{\hyperlink{sun4u_2tlb_8h_aac14c6227dd8cab2d826c27f733c6ce0}{fv}}
+\end{DoxyCompactItemize}
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{sun4u_2tlb_8h_adf71f3d8410c1f1dbbc96680a92c49af}\label{sun4u_2tlb_8h_adf71f3d8410c1f1dbbc96680a92c49af}} 
+\index{tlb.h@{tlb.h}!\_\_pad0\_\_@{\_\_pad0\_\_}}
+\index{\_\_pad0\_\_@{\_\_pad0\_\_}!tlb.h@{tlb.h}}
+\subsubsection{\texorpdfstring{\_\_pad0\_\_}{\_\_pad0\_\_}}
+{\footnotesize\ttfamily unsigned \+\_\+\+\_\+pad0\+\_\+\+\_\+}
+
+Zero. \mbox{\Hypertarget{sun4u_2tlb_8h_a9b4a99475e2709333b8e5d70483173f1}\label{sun4u_2tlb_8h_a9b4a99475e2709333b8e5d70483173f1}} 
+\index{tlb.h@{tlb.h}!context@{context}}
+\index{context@{context}!tlb.h@{tlb.h}}
+\subsubsection{\texorpdfstring{context}{context}}
+{\footnotesize\ttfamily unsigned context}
+
+Context/\+A\+S\+ID.
+
+Context identifier.
+
+Context register selection. \mbox{\Hypertarget{sun4u_2tlb_8h_a751a2ca9746a05ee6a5878e508d30ea6}\label{sun4u_2tlb_8h_a751a2ca9746a05ee6a5878e508d30ea6}} 
+\index{tlb.h@{tlb.h}!ct@{ct}}
+\index{ct@{ct}!tlb.h@{tlb.h}}
+\subsubsection{\texorpdfstring{ct}{ct}}
+{\footnotesize\ttfamily unsigned ct}
+
+Context Register selection. \mbox{\Hypertarget{sun4u_2tlb_8h_a8b0b9ed08e0e18920ec2682f48228c27}\label{sun4u_2tlb_8h_a8b0b9ed08e0e18920ec2682f48228c27}} 
+\index{tlb.h@{tlb.h}!e@{e}}
+\index{e@{e}!tlb.h@{tlb.h}}
+\subsubsection{\texorpdfstring{e}{e}}
+{\footnotesize\ttfamily unsigned e}
+
+Side-\/effect bit. \mbox{\Hypertarget{sun4u_2tlb_8h_aac14c6227dd8cab2d826c27f733c6ce0}\label{sun4u_2tlb_8h_aac14c6227dd8cab2d826c27f733c6ce0}} 
+\index{tlb.h@{tlb.h}!fv@{fv}}
+\index{fv@{fv}!tlb.h@{tlb.h}}
+\subsubsection{\texorpdfstring{fv}{fv}}
+{\footnotesize\ttfamily unsigned fv}
+
+Fault Valid bit. \mbox{\Hypertarget{sun4u_2tlb_8h_aad2f40052fe4329183f7f830a3a34b1b}\label{sun4u_2tlb_8h_aad2f40052fe4329183f7f830a3a34b1b}} 
+\index{tlb.h@{tlb.h}!ow@{ow}}
+\index{ow@{ow}!tlb.h@{tlb.h}}
+\subsubsection{\texorpdfstring{ow}{ow}}
+{\footnotesize\ttfamily unsigned ow}
+
+Overwrite bit. \mbox{\Hypertarget{sun4u_2tlb_8h_a375ee3d99a3d4fb63e1d3ee3c5d44f7d}\label{sun4u_2tlb_8h_a375ee3d99a3d4fb63e1d3ee3c5d44f7d}} 
+\index{tlb.h@{tlb.h}!pr@{pr}}
+\index{pr@{pr}!tlb.h@{tlb.h}}
+\subsubsection{\texorpdfstring{pr}{pr}}
+{\footnotesize\ttfamily unsigned pr}
+
+Privilege bit. \mbox{\Hypertarget{sun4u_2tlb_8h_acb4f5627e98b1c455dcfd6de84ceefb7}\label{sun4u_2tlb_8h_acb4f5627e98b1c455dcfd6de84ceefb7}} 
+\index{tlb.h@{tlb.h}!vpn@{vpn}}
+\index{vpn@{vpn}!tlb.h@{tlb.h}}
+\subsubsection{\texorpdfstring{vpn}{vpn}}
+{\footnotesize\ttfamily uint64\+\_\+t vpn}
+
+Virtual Address bits 63\+:13. \mbox{\Hypertarget{sun4u_2tlb_8h_aab2ee9ec393223c855b9595e52382ac0}\label{sun4u_2tlb_8h_aab2ee9ec393223c855b9595e52382ac0}} 
+\index{tlb.h@{tlb.h}!w@{w}}
+\index{w@{w}!tlb.h@{tlb.h}}
+\subsubsection{\texorpdfstring{w}{w}}
+{\footnotesize\ttfamily unsigned w}
+
+Write bit. 

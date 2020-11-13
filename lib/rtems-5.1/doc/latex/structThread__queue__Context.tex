@@ -1,0 +1,113 @@
+\hypertarget{structThread__queue__Context}{}\section{Thread\+\_\+queue\+\_\+\+Context Struct Reference}
+\label{structThread__queue__Context}\index{Thread\_queue\_Context@{Thread\_queue\_Context}}
+
+
+Thread queue context for the thread queue methods.  
+
+
+
+
+{\ttfamily \#include $<$threadq.\+h$>$}
+
+\subsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structThread__queue__Context_a6fda2283b723f58b57e3e37f2a0e095b}\label{structThread__queue__Context_a6fda2283b723f58b57e3e37f2a0e095b}} 
+\mbox{\hyperlink{structThread__queue__Lock__context}{Thread\+\_\+queue\+\_\+\+Lock\+\_\+context}} \mbox{\hyperlink{structThread__queue__Context_a6fda2283b723f58b57e3e37f2a0e095b}{Lock\+\_\+context}}
+\begin{DoxyCompactList}\small\item\em The lock context for the thread queue acquire and release operations. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structThread__queue__Context_ab52d5818dcf0e8c9358a54f0b485a59c}\label{structThread__queue__Context_ab52d5818dcf0e8c9358a54f0b485a59c}} 
+\mbox{\hyperlink{group__RTEMSScoreStates_gaeebbea0bfca162709b124fd519cf99d3}{States\+\_\+\+Control}} \mbox{\hyperlink{structThread__queue__Context_ab52d5818dcf0e8c9358a54f0b485a59c}{thread\+\_\+state}}
+\begin{DoxyCompactList}\small\item\em The thread state for \mbox{\hyperlink{group__RTEMSScoreThreadQueue_ga4992b40810f6d287c832bdad240dbc90}{\+\_\+\+Thread\+\_\+queue\+\_\+\+Enqueue()}}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreThreadQueue_ga3dd59055cd68c42978de9cd8e007ce1d}{Thread\+\_\+queue\+\_\+\+Enqueue\+\_\+callout}} \mbox{\hyperlink{structThread__queue__Context_a055ed1eda48ec4c2f7705dc8da30a0f5}{enqueue\+\_\+callout}}
+\begin{DoxyCompactList}\small\item\em The enqueue callout for \mbox{\hyperlink{group__RTEMSScoreThreadQueue_ga4992b40810f6d287c832bdad240dbc90}{\+\_\+\+Thread\+\_\+queue\+\_\+\+Enqueue()}}. \end{DoxyCompactList}\item 
+\begin{tabbing}
+xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=\kill
+union \{\\
+\>\mbox{\hyperlink{group__RTEMSScoreWatchdog_gaa1834fd7531ca9bb5c4ca6fd990388d5}{Watchdog\_Interval}} \mbox{\hyperlink{structThread__queue__Context_aacf4479f1dea1dcc3cecb9edff893238}{ticks}}\\
+\>\>{\em The timeout in ticks. }\\
+\>const void $\ast$ \mbox{\hyperlink{structThread__queue__Context_a3cfa18676ea7dd7ece4c119e15c8146b}{arg}}\\
+\>\>{\em The timeout argument, e.g. pointer to struct timespec. }\\
+\} \mbox{\hyperlink{structThread__queue__Context_a36a6badeab2bd419fa9ac0ef34ce1abf}{Timeout}}\\
+
+\end{tabbing}\begin{DoxyCompactList}\small\item\em Interval to wait. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structThread__queue__Context_a8f351f38e8f9516c9e8aaa3a91e51587}\label{structThread__queue__Context_a8f351f38e8f9516c9e8aaa3a91e51587}} 
+\begin{tabbing}
+xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=\kill
+struct \{\\
+\>\mbox{\hyperlink{structPriority__Actions}{Priority\_Actions}} \mbox{\hyperlink{structThread__queue__Context_ab70f46080ecae5b24e3ef381bbd87a64}{Actions}}\\
+\>\>{\em A priority action list. }\\
+\>size\_t \mbox{\hyperlink{structThread__queue__Context_a5d1c52675e23105099b101e43384c599}{update\_count}}\\
+\>\>{\em Count of threads to update the priority via \mbox{\hyperlink{group__RTEMSScoreThread_ga424ec96c6cbed5a748565333d5fd7d59}{\_Thread\_Priority\_update()}}. }\\
+\>\mbox{\hyperlink{struct__Thread__Control}{Thread\_Control}} $\ast$ \mbox{\hyperlink{structThread__queue__Context_ad78901023e5929c8581e74dbcf3d77b9}{update}} \mbox{[}2\mbox{]}\\
+\>\>{\em Threads to update the priority via \mbox{\hyperlink{group__RTEMSScoreThread_ga424ec96c6cbed5a748565333d5fd7d59}{\_Thread\_Priority\_update()}}. }\\
+\} \mbox{\hyperlink{structThread__queue__Context_a8f351f38e8f9516c9e8aaa3a91e51587}{Priority}}\\
+
+\end{tabbing}\begin{DoxyCompactList}\small\item\em Block to manage thread priority changes due to a thread queue operation. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreThreadQueue_gab2878c08655ad0911fe6540a1adaf3a3}{Thread\+\_\+queue\+\_\+\+Deadlock\+\_\+callout}} \mbox{\hyperlink{structThread__queue__Context_a2bf1488ae2e5e0c116cebe5fef3f5f9a}{deadlock\+\_\+callout}}
+\begin{DoxyCompactList}\small\item\em Invoked in case of a detected deadlock. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Thread queue context for the thread queue methods. 
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{group__RTEMSScoreThreadQueue_gae18ee06777084a67d286d743355d47ac}{\+\_\+\+Thread\+\_\+queue\+\_\+\+Context\+\_\+initialize()}}. 
+\end{DoxySeeAlso}
+
+
+\subsection{Field Documentation}
+\mbox{\Hypertarget{structThread__queue__Context_a2bf1488ae2e5e0c116cebe5fef3f5f9a}\label{structThread__queue__Context_a2bf1488ae2e5e0c116cebe5fef3f5f9a}} 
+\index{Thread\_queue\_Context@{Thread\_queue\_Context}!deadlock\_callout@{deadlock\_callout}}
+\index{deadlock\_callout@{deadlock\_callout}!Thread\_queue\_Context@{Thread\_queue\_Context}}
+\subsubsection{\texorpdfstring{deadlock\_callout}{deadlock\_callout}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreThreadQueue_gab2878c08655ad0911fe6540a1adaf3a3}{Thread\+\_\+queue\+\_\+\+Deadlock\+\_\+callout}} Thread\+\_\+queue\+\_\+\+Context\+::deadlock\+\_\+callout}
+
+
+
+Invoked in case of a detected deadlock. 
+
+Must be initialized for \mbox{\hyperlink{group__RTEMSScoreThreadQueue_ga4992b40810f6d287c832bdad240dbc90}{\+\_\+\+Thread\+\_\+queue\+\_\+\+Enqueue()}} in case the thread queue may have an owner, e.\+g. for mutex objects.
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{group__RTEMSScoreThreadQueue_gab024e7369bc091e53e7bb04ed8ebfb61}{\+\_\+\+Thread\+\_\+queue\+\_\+\+Context\+\_\+set\+\_\+deadlock\+\_\+callout()}}. 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{structThread__queue__Context_a055ed1eda48ec4c2f7705dc8da30a0f5}\label{structThread__queue__Context_a055ed1eda48ec4c2f7705dc8da30a0f5}} 
+\index{Thread\_queue\_Context@{Thread\_queue\_Context}!enqueue\_callout@{enqueue\_callout}}
+\index{enqueue\_callout@{enqueue\_callout}!Thread\_queue\_Context@{Thread\_queue\_Context}}
+\subsubsection{\texorpdfstring{enqueue\_callout}{enqueue\_callout}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreThreadQueue_ga3dd59055cd68c42978de9cd8e007ce1d}{Thread\+\_\+queue\+\_\+\+Enqueue\+\_\+callout}} Thread\+\_\+queue\+\_\+\+Context\+::enqueue\+\_\+callout}
+
+
+
+The enqueue callout for \mbox{\hyperlink{group__RTEMSScoreThreadQueue_ga4992b40810f6d287c832bdad240dbc90}{\+\_\+\+Thread\+\_\+queue\+\_\+\+Enqueue()}}. 
+
+The callout is invoked after the release of the thread queue lock with thread dispatching disabled. Afterwards the thread is blocked. This callout must be used to install the thread watchdog for timeout handling.
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{group__RTEMSScoreThreadQueue_ga6a087492df4bba9c56d8e8018339a84e}{\+\_\+\+Thread\+\_\+queue\+\_\+\+Enqueue\+\_\+do\+\_\+nothing\+\_\+extra()}}. \mbox{\hyperlink{group__RTEMSScoreThreadQueue_gae6191fb5cd1e33990f9b505f12c39734}{\+\_\+\+Thread\+\_\+queue\+\_\+\+Add\+\_\+timeout\+\_\+ticks()}}, and \mbox{\hyperlink{group__RTEMSScoreThreadQueue_ga14552dcef85b4627e1b2d150f7245f81}{\+\_\+\+Thread\+\_\+queue\+\_\+\+Add\+\_\+timeout\+\_\+realtime\+\_\+timespec()}}. 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{structThread__queue__Context_a36a6badeab2bd419fa9ac0ef34ce1abf}\label{structThread__queue__Context_a36a6badeab2bd419fa9ac0ef34ce1abf}} 
+\index{Thread\_queue\_Context@{Thread\_queue\_Context}!Timeout@{Timeout}}
+\index{Timeout@{Timeout}!Thread\_queue\_Context@{Thread\_queue\_Context}}
+\subsubsection{\texorpdfstring{Timeout}{Timeout}}
+{\footnotesize\ttfamily union \{ ... \}   Thread\+\_\+queue\+\_\+\+Context\+::\+Timeout}
+
+
+
+Interval to wait. 
+
+May be used by the enqueue callout to register a timeout handler. \mbox{\Hypertarget{structThread__queue__Context_ad78901023e5929c8581e74dbcf3d77b9}\label{structThread__queue__Context_ad78901023e5929c8581e74dbcf3d77b9}} 
+\index{Thread\_queue\_Context@{Thread\_queue\_Context}!update@{update}}
+\index{update@{update}!Thread\_queue\_Context@{Thread\_queue\_Context}}
+\subsubsection{\texorpdfstring{update}{update}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}}$\ast$ Thread\+\_\+queue\+\_\+\+Context\+::update\mbox{[}2\mbox{]}}
+
+
+
+Threads to update the priority via \mbox{\hyperlink{group__RTEMSScoreThread_ga424ec96c6cbed5a748565333d5fd7d59}{\+\_\+\+Thread\+\_\+\+Priority\+\_\+update()}}. 
+
+Currently, a maximum of two threads need an update in one rush, for example the thread of the thread queue operation and the owner of the thread queue. 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+cpukit/include/rtems/score/\mbox{\hyperlink{threadq_8h}{threadq.\+h}}\end{DoxyCompactItemize}

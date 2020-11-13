@@ -1,0 +1,2516 @@
+\hypertarget{usbhs_8h}{}\section{bsps/arm/atsam/include/libchip/include/usbhs.h File Reference}
+\label{usbhs_8h}\index{bsps/arm/atsam/include/libchip/include/usbhs.h@{bsps/arm/atsam/include/libchip/include/usbhs.h}}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{usbhs_8h_a11838ca412e5e6a51e9a3769bfa989f5}\label{usbhs_8h_a11838ca412e5e6a51e9a3769bfa989f5}} 
+\#define \mbox{\hyperlink{usbhs_8h_a11838ca412e5e6a51e9a3769bfa989f5}{U\+H\+D\+\_\+\+P\+I\+P\+E\+\_\+\+M\+A\+X\+\_\+\+T\+R\+A\+NS}}~0x8000
+\begin{DoxyCompactList}\small\item\em Maximum transfer size on U\+SB D\+MA. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{usbhs_8h_a8f0b960f10c286e7cd0e0b736aa1e4db}{C\+H\+I\+P\+\_\+\+U\+S\+B\+\_\+\+N\+U\+M\+P\+I\+PE}}~10
+\item 
+\#define \mbox{\hyperlink{usbhs_8h_a1e17be7a8b9f3a7fa532293e5a776fed}{C\+H\+I\+P\+\_\+\+U\+S\+B\+\_\+\+D\+M\+A\+\_\+\+N\+U\+M\+P\+I\+PE}}~7
+\item 
+\#define \mbox{\hyperlink{usbhs_8h_a7d5ac656db4059a4b765bf4e239d8fe5}{C\+H\+I\+P\+\_\+\+U\+S\+B\+\_\+\+P\+I\+P\+E\+\_\+\+M\+A\+X\+P\+A\+C\+K\+E\+T\+S\+I\+ZE}}(ep)~((ep == 0) ? 64 \+: 1024)
+\item 
+\#define \mbox{\hyperlink{usbhs_8h_a0dd7d33f558f878925c4aa8f2f6dc96d}{C\+H\+I\+P\+\_\+\+U\+S\+B\+\_\+\+P\+I\+P\+E\+\_\+\+B\+A\+N\+KS}}(ep)~((ep==0)?1\+:((ep$<$=2)?3\+:2))
+\item 
+\mbox{\Hypertarget{usbhs_8h_a4c5810023965f423d4f2870a8d5c42d8}\label{usbhs_8h_a4c5810023965f423d4f2870a8d5c42d8}} 
+\#define {\bfseries C\+H\+I\+P\+\_\+\+U\+S\+B\+\_\+\+P\+I\+P\+E\+\_\+\+H\+BW}(ep)~((((ep)$>$=1) \&\&((ep)$<$=2))?true\+:false)
+\item 
+\#define \mbox{\hyperlink{usbhs_8h_a375cc1a475941bb356f59c53aae6c951}{C\+H\+I\+P\+\_\+\+U\+S\+B\+\_\+\+P\+I\+P\+E\+\_\+\+D\+MA}}(ep)~((((ep)$>$=1)\&\&((ep)$<$=7))?true\+:false)
+\end{DoxyCompactItemize}
+\textbf{ }\par
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{usbhs_8h_a6173ff7dcc4e8e590311c774d7214e9b}{U\+S\+B\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+H\+S\+\_\+\+S\+U\+P\+P\+O\+RT}}
+\item 
+\mbox{\Hypertarget{usbhs_8h_a67d99007f1886e516e6705e19c38b541}\label{usbhs_8h_a67d99007f1886e516e6705e19c38b541}} 
+\#define \mbox{\hyperlink{usbhs_8h_a67d99007f1886e516e6705e19c38b541}{U\+S\+B\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+E\+P\+\_\+\+C\+T\+R\+L\+\_\+\+S\+I\+ZE}}~64
+\begin{DoxyCompactList}\small\item\em Control endpoint size. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{usbhs_8h_a0d5301f4b6b7c4dc59bdd76d725c9517}{C\+H\+I\+P\+\_\+\+U\+S\+B\+\_\+\+U\+DP}}
+\item 
+\#define \mbox{\hyperlink{usbhs_8h_a4bcc957f1288dac54003f5a0045b2cd7}{C\+H\+I\+P\+\_\+\+U\+S\+B\+\_\+\+P\+U\+L\+L\+U\+P\+\_\+\+I\+N\+T\+E\+R\+N\+AL}}
+\item 
+\#define \mbox{\hyperlink{usbhs_8h_ab1098bd73746d6f0b0ab28975d2a5043}{C\+H\+I\+P\+\_\+\+U\+S\+B\+\_\+\+N\+U\+M\+E\+N\+D\+P\+O\+I\+N\+TS}}~10
+\item 
+\#define \mbox{\hyperlink{usbhs_8h_a5865e5e766958f78b10bee61f42abd44}{C\+H\+I\+P\+\_\+\+U\+S\+B\+\_\+\+E\+N\+D\+P\+O\+I\+N\+T\+S\+\_\+\+M\+A\+X\+P\+A\+C\+K\+E\+T\+S\+I\+ZE}}(ep)~((ep == 0) ? 64 \+: 1024)
+\item 
+\#define \mbox{\hyperlink{usbhs_8h_ab66857dec68cedaa0b3d3008296ffd97}{C\+H\+I\+P\+\_\+\+U\+S\+B\+\_\+\+E\+N\+D\+P\+O\+I\+N\+T\+S\+\_\+\+B\+A\+N\+KS}}(ep)~((ep==0)?1\+:((ep$<$=2)?3\+:2))
+\item 
+\mbox{\Hypertarget{usbhs_8h_a7e2e1c55a12f4f9bbe7752da20a2fd96}\label{usbhs_8h_a7e2e1c55a12f4f9bbe7752da20a2fd96}} 
+\#define {\bfseries C\+H\+I\+P\+\_\+\+U\+S\+B\+\_\+\+E\+N\+D\+P\+O\+I\+N\+T\+S\+\_\+\+H\+BW}(ep)~((((ep)$>$=1) \&\&((ep)$<$=2))?true\+:false)
+\item 
+\#define \mbox{\hyperlink{usbhs_8h_a3d3e0780955f1f3796b59c297a9ce778}{C\+H\+I\+P\+\_\+\+U\+S\+B\+\_\+\+E\+N\+D\+P\+O\+I\+N\+T\+S\+\_\+\+D\+MA}}(ep)~((((ep)$>$=1)\&\&((ep)$<$=7))?true\+:false)
+\item 
+\#define \mbox{\hyperlink{usbhs_8h_a74fb9f0009ae61530ac99e19744fc7f1}{D\+M\+A\+\_\+\+M\+A\+X\+\_\+\+F\+I\+F\+O\+\_\+\+S\+I\+ZE}}~(65536/1)
+\item 
+\#define \mbox{\hyperlink{usbhs_8h_a19e18c1683b682fc01056cbf2b2b92f6}{E\+P\+T\+\_\+\+V\+I\+R\+T\+U\+A\+L\+\_\+\+S\+I\+ZE}}~8192
+\end{DoxyCompactItemize}
+
+\begin{Indent}\textbf{ U\+S\+B\+HS Host IP properties}\par
+{\em Get maximal number of endpoints }\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{usbhs_8h_aa5f5ca88197f685002326eec705dbbc5}\label{usbhs_8h_aa5f5ca88197f685002326eec705dbbc5}} 
+\#define {\bfseries uhd\+\_\+get\+\_\+pipe\+\_\+max\+\_\+nbr}()~(9)
+\item 
+\mbox{\Hypertarget{usbhs_8h_a6095628336ad1cdd9336b4c1f5baef35}\label{usbhs_8h_a6095628336ad1cdd9336b4c1f5baef35}} 
+\#define {\bfseries U\+S\+B\+H\+S\+\_\+\+E\+P\+T\+\_\+\+N\+UM}~(uhd\+\_\+get\+\_\+pipe\+\_\+max\+\_\+nbr()+1)
+\item 
+\mbox{\Hypertarget{usbhs_8h_a8e9a4982629968460f6472cf7813788c}\label{usbhs_8h_a8e9a4982629968460f6472cf7813788c}} 
+\#define \mbox{\hyperlink{usbhs_8h_a8e9a4982629968460f6472cf7813788c}{uhd\+\_\+get\+\_\+pipe\+\_\+bank\+\_\+max\+\_\+nbr}}(ep)~((ep == 0) ? 1 \+: ((ep $<$= 2) ? 3 \+: 2))
+\begin{DoxyCompactList}\small\item\em Get maximal number of banks of endpoints. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{usbhs_8h_a5775674eb9ca9bb966daf595adc66c76}\label{usbhs_8h_a5775674eb9ca9bb966daf595adc66c76}} 
+\#define \mbox{\hyperlink{usbhs_8h_a5775674eb9ca9bb966daf595adc66c76}{uhd\+\_\+get\+\_\+pipe\+\_\+size\+\_\+max}}(ep)~(((ep) == 0) ? 64 \+: 1024)
+\begin{DoxyCompactList}\small\item\em Get maximal size of endpoint (3X, 1024/64) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{usbhs_8h_adaafe4bea8556d5c5450ea0ccd9c3a5a}\label{usbhs_8h_adaafe4bea8556d5c5450ea0ccd9c3a5a}} 
+\#define \mbox{\hyperlink{usbhs_8h_adaafe4bea8556d5c5450ea0ccd9c3a5a}{Is\+\_\+uhd\+\_\+pipe\+\_\+dma\+\_\+supported}}(ep)~((((ep) $>$= 1) \&\& ((ep) $<$= 7)) ? true \+: false)
+\begin{DoxyCompactList}\small\item\em Get D\+MA support of endpoints. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{usbhs_8h_a76e49fb3750180b6ccea5ac32d116750}\label{usbhs_8h_a76e49fb3750180b6ccea5ac32d116750}} 
+\#define \mbox{\hyperlink{usbhs_8h_a76e49fb3750180b6ccea5ac32d116750}{Is\+\_\+uhd\+\_\+pipe\+\_\+high\+\_\+bw\+\_\+supported}}(ep)~(((ep) $>$= 2) ? true \+: false)
+\begin{DoxyCompactList}\small\item\em Get High Band Width support of endpoints. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{usbhs_8h_ac7b897ea707bd670c7b3898ac266a5f8}\label{usbhs_8h_ac7b897ea707bd670c7b3898ac266a5f8}} 
+enum {\bfseries U\+S\+B\+\_\+\+Mode\+\_\+t} \{ {\bfseries H\+O\+S\+T\+\_\+\+M\+O\+DE} = 0, 
+{\bfseries D\+E\+V\+I\+C\+E\+\_\+\+M\+O\+DE} = 1
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void \mbox{\hyperlink{usbhs_8h_a07183fee11fbf4c00401b455bdfed9dd}{U\+S\+B\+H\+S\+\_\+\+Freeze\+Clock}} (\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$p\+Usbhs)
+\begin{DoxyCompactList}\small\item\em Freeze or unfreeze U\+SB clock. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void \mbox{\hyperlink{usbhs_8h_a78d27724945f587c54cba1d9617979c8}{U\+S\+B\+H\+S\+\_\+\+Un\+Freeze\+Clock}} (\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$p\+Usbhs)
+\begin{DoxyCompactList}\small\item\em Freeze or unfreeze U\+SB clock. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void \mbox{\hyperlink{usbhs_8h_a737215891d431406a22e7627cb15f337}{U\+S\+B\+H\+S\+\_\+\+V\+Bus\+H\+WC}} (\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$p\+Usbhs, uint8\+\_\+t Enable)
+\begin{DoxyCompactList}\small\item\em Freeze or unfreeze U\+SB clock. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void \mbox{\hyperlink{usbhs_8h_a271a9d7a4f68db5bfab4401f8e67d347}{U\+S\+B\+H\+S\+\_\+\+Usb\+Enable}} (\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$p\+Usbhs, uint8\+\_\+t Enable)
+\begin{DoxyCompactList}\small\item\em Enables or disables U\+SB. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void \mbox{\hyperlink{usbhs_8h_a636f49939838c8348470310e71e1cd70}{U\+S\+B\+H\+S\+\_\+\+Usb\+Mode}} (\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$p\+Usbhs, U\+S\+B\+\_\+\+Mode\+\_\+t Mode)
+\begin{DoxyCompactList}\small\item\em Device or Host Mode. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE uint8\+\_\+t \mbox{\hyperlink{usbhs_8h_af53df9330077448ac0d721dbef847c9f}{U\+S\+B\+H\+S\+\_\+\+I\+S\+Usable\+Clock}} (\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$p\+Usbhs)
+\begin{DoxyCompactList}\small\item\em Check if clock is usable or not. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE uint32\+\_\+t \mbox{\hyperlink{usbhs_8h_a231788fb630937b8e77227018e29b3aa}{U\+S\+B\+H\+S\+\_\+\+Read\+Status}} (\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$p\+Usbhs)
+\begin{DoxyCompactList}\small\item\em Raise interrupt for endpoint. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE uint32\+\_\+t \mbox{\hyperlink{usbhs_8h_a23bc7c30ae1779f56b28b82cf5153866}{U\+S\+B\+H\+S\+\_\+\+Get\+Usb\+Speed}} (\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$p\+Usbhs)
+\begin{DoxyCompactList}\small\item\em Enable or disable U\+SB address. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE bool \mbox{\hyperlink{usbhs_8h_a8f09972d45a5f4b21841f41f490d2a2b}{U\+S\+B\+H\+S\+\_\+\+Is\+Usb\+Full\+Speed}} (\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$p\+Usbhs)
+\begin{DoxyCompactList}\small\item\em Enable or disable U\+SB address. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE bool \mbox{\hyperlink{usbhs_8h_a3a003f0bc5f5ed08ba3253028bd04923}{U\+S\+B\+H\+S\+\_\+\+Is\+Usb\+High\+Speed}} (\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$p\+Usbhs)
+\begin{DoxyCompactList}\small\item\em Enable or disable U\+SB address. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE bool \mbox{\hyperlink{usbhs_8h_a017b00c66ba92abe86f341381e3795ee}{U\+S\+B\+H\+S\+\_\+\+Is\+Usb\+Low\+Speed}} (\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$p\+Usbhs)
+\begin{DoxyCompactList}\small\item\em Enable or disable U\+SB address. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void \mbox{\hyperlink{usbhs_8h_abb9881c68cce5603acf01ad61966bf07}{U\+S\+B\+H\+S\+\_\+\+Ack}} (\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$p\+Usbhs, uint32\+\_\+t Ack\+Type)
+\begin{DoxyCompactList}\small\item\em Raise interrupt for endpoint. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void \mbox{\hyperlink{usbhs_8h_ace6971cff0c4aeb589dd3caf663a2756}{U\+S\+B\+H\+S\+\_\+\+Set}} (\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$p\+Usbhs, uint32\+\_\+t Set\+Status)
+\begin{DoxyCompactList}\small\item\em Raise interrupt for endpoint. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void \mbox{\hyperlink{usbhs_8h_ae12eb708d1efa8847725bfbef153b21f}{U\+S\+B\+H\+S\+\_\+\+Enable\+Address}} (\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$p\+Usbhs, uint8\+\_\+t Enable)
+\begin{DoxyCompactList}\small\item\em Enable or disable U\+SB address. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void \mbox{\hyperlink{usbhs_8h_af28587f66d68df1900ea52afc944f74c}{U\+S\+B\+H\+S\+\_\+\+Set\+Address}} (\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$p\+Usbhs, uint8\+\_\+t Addr)
+\begin{DoxyCompactList}\small\item\em Configure U\+SB address and enable or disable it. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE uint8\+\_\+t \mbox{\hyperlink{usbhs_8h_aa3cab362870739aaf4e5fe4dfc224710}{U\+S\+B\+H\+S\+\_\+\+Get\+Address}} (\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$p\+Usbhs)
+\begin{DoxyCompactList}\small\item\em Get U\+SB address. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void \mbox{\hyperlink{usbhs_8h_ad50e0487f36c3b575f0a509be89a103c}{U\+S\+B\+H\+S\+\_\+\+Detach\+Usb}} (\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$p\+Usbhs, uint8\+\_\+t Enable)
+\begin{DoxyCompactList}\small\item\em Attach or detach U\+SB. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void \mbox{\hyperlink{usbhs_8h_a01683824f83ab460ca383457ca156051}{U\+S\+B\+H\+S\+\_\+\+Force\+Low\+Speed}} (\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$p\+Usbhs, uint8\+\_\+t Enable)
+\begin{DoxyCompactList}\small\item\em Force Low Speed mode. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void \mbox{\hyperlink{usbhs_8h_a46ba14559a5a635598a47d24943769ba}{U\+S\+B\+H\+S\+\_\+\+Enable\+High\+Speed}} (\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$p\+Usbhs, uint8\+\_\+t Enable)
+\begin{DoxyCompactList}\small\item\em Disable/\+Enables High Speed mode. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void \mbox{\hyperlink{usbhs_8h_a93317007fdfef8aaa76672033a5293ba}{U\+S\+B\+H\+S\+\_\+\+Set\+Remote\+Wake\+Up}} (\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$p\+Usbhs)
+\begin{DoxyCompactList}\small\item\em Set Remote Wake\+Up mode. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void \mbox{\hyperlink{usbhs_8h_a526a6421c946527e98a5cd7a426f5254}{U\+S\+B\+H\+S\+\_\+\+Enable\+Test\+Mode}} (\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$p\+Usbhs, uint32\+\_\+t mode)
+\begin{DoxyCompactList}\small\item\em Disable/\+Enables Test mode. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void \mbox{\hyperlink{usbhs_8h_a0a77c8c380dc3c3bf46b533682d02602}{U\+S\+B\+H\+S\+\_\+\+Enable\+H\+S\+Test\+Mode}} (\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$p\+Usbhs)
+\begin{DoxyCompactList}\small\item\em Disable/\+Enables HS Test mode. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE uint32\+\_\+t \mbox{\hyperlink{usbhs_8h_a40bc8caea176293a06352e8341572c5e}{U\+S\+B\+H\+S\+\_\+\+Read\+Int\+Status}} (\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$p\+Usbhs, uint32\+\_\+t Int\+Type)
+\begin{DoxyCompactList}\small\item\em Read status for an interrupt. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE uint32\+\_\+t \mbox{\hyperlink{usbhs_8h_aa4ce4550510a58d657322a4648e495f3}{U\+S\+B\+H\+S\+\_\+\+Read\+Ep\+Int\+Status}} (\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$p\+Usbhs, uint8\+\_\+t Ep\+Num)
+\begin{DoxyCompactList}\small\item\em Read status for an Endpoint. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE uint32\+\_\+t \mbox{\hyperlink{usbhs_8h_a52b1ff1fa6a7c80b1a19465351cc9a3d}{U\+S\+B\+H\+S\+\_\+\+Read\+Dma\+Int\+Status}} (\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$p\+Usbhs, uint8\+\_\+t Dma\+Num)
+\begin{DoxyCompactList}\small\item\em Read status for a D\+MA Endpoint. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void \mbox{\hyperlink{usbhs_8h_abe473ec759ec7837e7105d001df93c88}{U\+S\+B\+H\+S\+\_\+\+Ack\+Int}} (\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$p\+Usbhs, uint32\+\_\+t Int\+Type)
+\begin{DoxyCompactList}\small\item\em Acknowledge interrupt for endpoint. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void \mbox{\hyperlink{usbhs_8h_a6d60c6a4b9400dfc62fd64fad75543c2}{U\+S\+B\+H\+S\+\_\+\+Raise\+Int}} (\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$p\+Usbhs, uint32\+\_\+t Int\+Type)
+\begin{DoxyCompactList}\small\item\em Raise interrupt for endpoint. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void \mbox{\hyperlink{usbhs_8h_a832191e7aa7941e54317cf567167d2fb}{U\+S\+B\+H\+S\+\_\+\+Raise\+Dma\+Int}} (\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$p\+Usbhs, uint8\+\_\+t Dma)
+\begin{DoxyCompactList}\small\item\em Raise D\+MA interrupt for endpoint. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE uint32\+\_\+t \mbox{\hyperlink{usbhs_8h_a9a36f3ee5b1c36992ecd002f2b0ddb5c}{U\+S\+B\+H\+S\+\_\+\+Is\+Int\+Enable}} (\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$p\+Usbhs, uint32\+\_\+t Int\+Type)
+\begin{DoxyCompactList}\small\item\em check for interrupt of endpoint. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE uint32\+\_\+t \mbox{\hyperlink{usbhs_8h_a21efaafe4db8b7a40ecfb3b226c20c8d}{U\+S\+B\+H\+S\+\_\+\+Is\+Int\+Enable\+EP}} (\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$p\+Usbhs, uint8\+\_\+t Ep\+Num)
+\begin{DoxyCompactList}\small\item\em Check if endpoint\textquotesingle{}s interrupt is enabled for a given endpoint number. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE uint32\+\_\+t \mbox{\hyperlink{usbhs_8h_a66c5b24b3bb969945eb34f5603539374}{U\+S\+B\+H\+S\+\_\+\+Is\+Dma\+Int\+Enable}} (\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$p\+Usbhs, uint8\+\_\+t Dma\+Num)
+\begin{DoxyCompactList}\small\item\em Check if endpoint\textquotesingle{}s D\+MA interrupt is enabled for a given endpoint D\+MA number. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void \mbox{\hyperlink{usbhs_8h_a792065de6dd29d4153426526555d4d07}{U\+S\+B\+H\+S\+\_\+\+Enable\+Int}} (\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$p\+Usbhs, uint32\+\_\+t Int\+Type)
+\begin{DoxyCompactList}\small\item\em Enables Interrupt. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void \mbox{\hyperlink{usbhs_8h_aaefdcd5f8be021f6ebffcbb4e7630079}{U\+S\+B\+H\+S\+\_\+\+Enable\+Int\+EP}} (\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$p\+Usbhs, uint8\+\_\+t Ep\+Num)
+\begin{DoxyCompactList}\small\item\em Enables interrupt for a given endpoint. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void \mbox{\hyperlink{usbhs_8h_ad1cea33281f84fba93b0b4ecd554ce3a}{U\+S\+B\+H\+S\+\_\+\+Enable\+D\+M\+A\+Int\+EP}} (\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$p\+Usbhs, uint32\+\_\+t Dma\+Ep)
+\begin{DoxyCompactList}\small\item\em Enables D\+MA interrupt for a given endpoint. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void \mbox{\hyperlink{usbhs_8h_a1e6f755e0017750683a52c6d2640ce9b}{U\+S\+B\+H\+S\+\_\+\+Disable\+Int}} (\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$p\+Usbhs, uint32\+\_\+t Int\+Type)
+\begin{DoxyCompactList}\small\item\em Disables interrupt for endpoint. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void \mbox{\hyperlink{usbhs_8h_a6b0323c3e931a4c757ca8cbb2987869f}{U\+S\+B\+H\+S\+\_\+\+Disable\+Int\+EP}} (\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$p\+Usbhs, uint8\+\_\+t Ep)
+\begin{DoxyCompactList}\small\item\em Disables interrupt for endpoint. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void \mbox{\hyperlink{usbhs_8h_aa0d4d68174be285f39499774b2edb1d8}{U\+S\+B\+H\+S\+\_\+\+Disable\+D\+M\+A\+Int\+EP}} (\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$p\+Usbhs, uint8\+\_\+t Dma\+Ep)
+\begin{DoxyCompactList}\small\item\em Disables D\+MA interrupt for endpoint. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void \mbox{\hyperlink{usbhs_8h_aafe79c1addd8c03522a0228ae4b6dae3}{U\+S\+B\+H\+S\+\_\+\+Enable\+EP}} (\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$p\+Usbhs, uint8\+\_\+t Ep, uint8\+\_\+t Enable)
+\begin{DoxyCompactList}\small\item\em Enables or disables endpoint. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void \mbox{\hyperlink{usbhs_8h_a8bb9811e54a0d8cab3a62b62d6dd536d}{U\+S\+B\+H\+S\+\_\+\+Reset\+EP}} (\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$p\+Usbhs, uint8\+\_\+t Ep)
+\begin{DoxyCompactList}\small\item\em Rests Endpoint. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE uint32\+\_\+t \mbox{\hyperlink{usbhs_8h_a8af24a65ae5dca2e299082d592ca445c}{U\+S\+B\+H\+S\+\_\+\+Is\+E\+P\+Enabled}} (\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$p\+Usbhs, uint8\+\_\+t Ep)
+\begin{DoxyCompactList}\small\item\em Checks if Endpoint is enable. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE uint8\+\_\+t \mbox{\hyperlink{usbhs_8h_ae10710fce7d4eadf4434669daa7f2620}{U\+S\+B\+H\+S\+\_\+\+Get\+Micro\+Frame\+Num}} (\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$p\+Usbhs)
+\begin{DoxyCompactList}\small\item\em Get Micr\+Frame number. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE uint8\+\_\+t \mbox{\hyperlink{usbhs_8h_ab049b9cefa0454da5a5cadaa30e7ca03}{U\+S\+B\+H\+S\+\_\+\+Get\+Frame\+Num}} (\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$p\+Usbhs)
+\begin{DoxyCompactList}\small\item\em Get Frame number. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE uint8\+\_\+t \mbox{\hyperlink{usbhs_8h_a6e5d575fa1cbd5197c3877e4905353c7}{U\+S\+B\+H\+S\+\_\+\+Get\+Frame\+Num\+Crc\+Err}} (\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$p\+Usbhs)
+\begin{DoxyCompactList}\small\item\em Get Frame number C\+RC error. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void \mbox{\hyperlink{usbhs_8h_a23400301b1f5ce8e97834db2a2a2cc1b}{U\+S\+B\+H\+S\+\_\+\+Configure\+E\+Ps}} (\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$p\+Usbhs, const uint8\+\_\+t Ep, const uint8\+\_\+t Type, const uint8\+\_\+t Dir, const uint8\+\_\+t Size, const uint8\+\_\+t Bank)
+\item 
+\+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void \mbox{\hyperlink{usbhs_8h_af318fefb03c995978a740a8b1733aaa0}{U\+S\+B\+H\+S\+\_\+\+Auto\+Switch\+Bank\+Enable}} (\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$p\+Usbhs, uint8\+\_\+t Ep, uint8\+\_\+t Enable)
+\item 
+\+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void \mbox{\hyperlink{usbhs_8h_a95e89705c54999e79a3a53b6505e95e6}{U\+S\+B\+H\+S\+\_\+\+Allocate\+Memory}} (\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$p\+Usbhs, uint8\+\_\+t Ep)
+\item 
+\+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void \mbox{\hyperlink{usbhs_8h_a3f0c342daf3fd2154c551af251aeac9b}{U\+S\+B\+H\+S\+\_\+\+Free\+Memory}} (\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$p\+Usbhs, uint8\+\_\+t Ep)
+\item 
+\+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE uint32\+\_\+t \mbox{\hyperlink{usbhs_8h_a4e3485ec2d4cc77a04795d2047ccb7d5}{U\+S\+B\+H\+S\+\_\+\+Get\+Configure\+E\+Ps}} (\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$p\+Usbhs, uint8\+\_\+t Ep, uint32\+\_\+t Int\+Type)
+\item 
+\+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE uint8\+\_\+t \mbox{\hyperlink{usbhs_8h_a2d57f0978079a4c218c3c4642bd4faa0}{U\+S\+B\+H\+S\+\_\+\+Get\+Ep\+Type}} (\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$p\+Usbhs, uint8\+\_\+t Ep)
+\item 
+\+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE uint32\+\_\+t \mbox{\hyperlink{usbhs_8h_af11bea4c155867153ce6a0ae7700d671}{U\+S\+B\+H\+S\+\_\+\+Get\+Ep\+Size}} (\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$p\+Usbhs, uint8\+\_\+t Ep)
+\item 
+\+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void \mbox{\hyperlink{usbhs_8h_a3b1095cf2511e7d84ba5e9f47f017c0e}{U\+S\+B\+H\+S\+\_\+\+Set\+Iso\+Trans}} (\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$p\+Usbhs, uint8\+\_\+t Ep, uint8\+\_\+t nb\+Trans)
+\item 
+\+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE uint32\+\_\+t \mbox{\hyperlink{usbhs_8h_a53c55fa48fbb95b2e0f67b58ca4cde49}{U\+S\+B\+H\+S\+\_\+\+Is\+Ep\+Int\+Enable}} (\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$p\+Usbhs, uint8\+\_\+t Ep, uint32\+\_\+t Ep\+Int\+Type)
+\item 
+\+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void \mbox{\hyperlink{usbhs_8h_a6e9251af935e4867afa52cd306e8c699}{U\+S\+B\+H\+S\+\_\+\+Enable\+E\+P\+Int\+Type}} (\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$p\+Usbhs, uint8\+\_\+t Ep, uint32\+\_\+t Ep\+Int)
+\item 
+\+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE uint32\+\_\+t \mbox{\hyperlink{usbhs_8h_a5e6709db254f3275a10b9725847c95a3}{U\+S\+B\+H\+S\+\_\+\+Is\+Bank\+Killed}} (\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$p\+Usbhs, uint8\+\_\+t Ep)
+\item 
+\+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void \mbox{\hyperlink{usbhs_8h_ae9bf1bccb73956ec13630d2e60a8c5ad}{U\+S\+B\+H\+S\+\_\+\+Kill\+Bank}} (\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$p\+Usbhs, uint8\+\_\+t Ep)
+\item 
+\+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void \mbox{\hyperlink{usbhs_8h_aed77f2f7b0383514691381d53de5605f}{U\+S\+B\+H\+S\+\_\+\+Disable\+E\+P\+Int\+Type}} (\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$p\+Usbhs, uint8\+\_\+t Ep, uint32\+\_\+t Ep\+Int)
+\item 
+\+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void \mbox{\hyperlink{usbhs_8h_a6af2b5fe38366a2ff6922c00f8f4252e}{U\+S\+B\+H\+S\+\_\+\+Ack\+Ep\+Interrupt}} (\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$p\+Usbhs, uint8\+\_\+t Ep, uint32\+\_\+t Ep\+Int)
+\item 
+\+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void \mbox{\hyperlink{usbhs_8h_a7e969e0c7fb49b1d25dd4e97afe3b0f7}{U\+S\+B\+H\+S\+\_\+\+Raise\+E\+P\+Int}} (\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$p\+Usbhs, uint8\+\_\+t Ep, uint32\+\_\+t Ep\+Int)
+\item 
+\+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE uint32\+\_\+t \mbox{\hyperlink{usbhs_8h_abc21e0a5d2ce477178c31b3a3049bd33}{U\+S\+B\+H\+S\+\_\+\+Read\+E\+P\+Status}} (\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$p\+Usbhs, uint8\+\_\+t Ep, uint32\+\_\+t Ep\+Int)
+\item 
+\+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE uint8\+\_\+t \mbox{\hyperlink{usbhs_8h_aa8d5c4b9a4a142b1c587fcfaa7532596}{U\+S\+B\+H\+S\+\_\+\+Is\+Bank\+Free}} (\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$p\+Usbhs, uint8\+\_\+t Ep)
+\item 
+\+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE uint8\+\_\+t \mbox{\hyperlink{usbhs_8h_a9d81aab8cc8040ea0ff66544608efc50}{U\+S\+B\+H\+S\+\_\+\+Num\+Of\+Banks\+In\+Use}} (\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$p\+Usbhs, uint8\+\_\+t Ep)
+\item 
+\+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE uint16\+\_\+t \mbox{\hyperlink{usbhs_8h_a707dc91ebe546e554ca6e64223ef426f}{U\+S\+B\+H\+S\+\_\+\+Byte\+Count}} (\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$p\+Usbhs, uint8\+\_\+t Ep)
+\item 
+\+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void \mbox{\hyperlink{usbhs_8h_afa20d88900497b237fa89404ae14b140}{U\+S\+B\+H\+S\+\_\+\+Set\+Dma\+N\+DA}} (\mbox{\hyperlink{structUsbhsDevdma}{Usbhs\+Devdma}} $\ast$p\+Usb\+Dma, uint32\+\_\+t Desc)
+\begin{DoxyCompactList}\small\item\em Sets D\+MA next descriptor address. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE uint32\+\_\+t \mbox{\hyperlink{usbhs_8h_a92c0c433bddc911ac0b42dc1a6aa9be7}{U\+S\+B\+H\+S\+\_\+\+Get\+Dma\+N\+DA}} (\mbox{\hyperlink{structUsbhsDevdma}{Usbhs\+Devdma}} $\ast$p\+Usb\+Dma)
+\begin{DoxyCompactList}\small\item\em Gets D\+MA next descriptor address. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void \mbox{\hyperlink{usbhs_8h_ad9705f77c87a304d55e72f6fd13dd77d}{U\+S\+B\+H\+S\+\_\+\+Set\+Dma\+Buff\+Add}} (\mbox{\hyperlink{structUsbhsDevdma}{Usbhs\+Devdma}} $\ast$p\+Usb\+Dma, uint32\+\_\+t Addr)
+\begin{DoxyCompactList}\small\item\em Sets U\+S\+B\+HS\textquotesingle{}s D\+MA Buffer addresse. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE uint32\+\_\+t \mbox{\hyperlink{usbhs_8h_a71498936e654a68761986daf5ba0f425}{U\+S\+B\+H\+S\+\_\+\+Get\+Dma\+Buff\+Add}} (\mbox{\hyperlink{structUsbhsDevdma}{Usbhs\+Devdma}} $\ast$p\+Usb\+Dma)
+\begin{DoxyCompactList}\small\item\em Gets U\+S\+B\+HS\textquotesingle{}s D\+MA Buffer addresse. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void \mbox{\hyperlink{usbhs_8h_a3609af8e5813e7837a44ad8de0946fc5}{U\+S\+B\+H\+S\+\_\+\+Configure\+Dma}} (\mbox{\hyperlink{structUsbhsDevdma}{Usbhs\+Devdma}} $\ast$p\+Usb\+Dma, uint32\+\_\+t Cfg)
+\begin{DoxyCompactList}\small\item\em Setup the U\+S\+B\+HS D\+MA. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE uint32\+\_\+t \mbox{\hyperlink{usbhs_8h_a6fe3ee05a1f5c5deb68b6c98b35bde96}{U\+S\+B\+H\+S\+\_\+\+Get\+Dma\+Configuration}} (\mbox{\hyperlink{structUsbhsDevdma}{Usbhs\+Devdma}} $\ast$p\+Usb\+Dma)
+\begin{DoxyCompactList}\small\item\em Get D\+MA configuration. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void \mbox{\hyperlink{usbhs_8h_a1d65b0e58e932f41022db1020418d779}{U\+S\+B\+H\+S\+\_\+\+Set\+Dma\+Status}} (\mbox{\hyperlink{structUsbhsDevdma}{Usbhs\+Devdma}} $\ast$p\+Usb\+Dma, uint32\+\_\+t Status)
+\begin{DoxyCompactList}\small\item\em Set D\+MA status. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE uint32\+\_\+t \mbox{\hyperlink{usbhs_8h_abf7bc46296d9353fa33a82ee8a1a2ace}{U\+S\+B\+H\+S\+\_\+\+Get\+Dma\+Status}} (\mbox{\hyperlink{structUsbhsDevdma}{Usbhs\+Devdma}} $\ast$p\+Usb\+Dma)
+\begin{DoxyCompactList}\small\item\em Get Dma Status. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE uint16\+\_\+t \mbox{\hyperlink{usbhs_8h_ae864a5b84b9053ceeb6c63bf344a9e98}{U\+S\+B\+H\+S\+\_\+\+Get\+Dma\+Buff\+Count}} (\mbox{\hyperlink{structUsbhsDevdma}{Usbhs\+Devdma}} $\ast$p\+Usb\+Dma)
+\begin{DoxyCompactList}\small\item\em Get D\+MA buffer\textquotesingle{}s count. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void \mbox{\hyperlink{usbhs_8h_af5209f422709bb346dd8906a84594481}{U\+S\+B\+H\+S\+\_\+\+Set\+Host\+High\+Speed}} (\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$p\+Usbhs)
+\begin{DoxyCompactList}\small\item\em Sets U\+SB host\textquotesingle{}s speed to Normal , it sets to HS from FS. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void \mbox{\hyperlink{usbhs_8h_a0a0f50a2b2c067387aea7776a4adb520}{U\+S\+B\+H\+S\+\_\+\+Set\+Host\+Low\+Speed}} (\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$p\+Usbhs)
+\begin{DoxyCompactList}\small\item\em Sets U\+SB host\textquotesingle{}s speed to Low speed. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void \mbox{\hyperlink{usbhs_8h_a78e6e590ea87684b5db71615ba87caec}{U\+S\+B\+H\+S\+\_\+\+Set\+Host\+Forced\+Full\+Speed}} (\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$p\+Usbhs)
+\begin{DoxyCompactList}\small\item\em Sets U\+SB host\textquotesingle{}s speed to forced Full speed. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void \mbox{\hyperlink{usbhs_8h_a165ebc9ef9f9199f9c4c7163e8b3872f}{U\+S\+B\+H\+S\+\_\+\+Reset}} (void)
+\begin{DoxyCompactList}\small\item\em Sets U\+SB host sends reste signal on U\+SB Bus. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void \mbox{\hyperlink{usbhs_8h_aac479594b09aba35a095529855449a42}{U\+S\+B\+H\+S\+\_\+\+Stop\+Reset}} (void)
+\begin{DoxyCompactList}\small\item\em Sets U\+SB host sends reste signal on U\+SB Bus. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void \mbox{\hyperlink{usbhs_8h_abe1074ea76550225e959d5628d6b38a4}{U\+S\+B\+H\+S\+\_\+\+Resume}} (void)
+\begin{DoxyCompactList}\small\item\em Sets U\+SB host send Resume on U\+SB bus. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void \mbox{\hyperlink{usbhs_8h_ac783c1af3755deab237694ce7b4579bf}{U\+S\+B\+H\+S\+\_\+\+Enable\+S\+OF}} (\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$p\+Usbhs)
+\begin{DoxyCompactList}\small\item\em Sets U\+SB host Enable the Generation of Start of Frame. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE uint8\+\_\+t \mbox{\hyperlink{usbhs_8h_a00c26cb8e5bbda68e2ab8a379a7bd001}{U\+S\+B\+H\+S\+\_\+\+Is\+Enable\+S\+OF}} (\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$p\+Usbhs)
+\begin{DoxyCompactList}\small\item\em Sets U\+SB host Enable the Generation of Start of Frame. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void \mbox{\hyperlink{usbhs_8h_a8b5061d7281a8104020962d8b6291da1}{U\+S\+B\+H\+S\+\_\+\+Disable\+S\+OF}} (void)
+\begin{DoxyCompactList}\small\item\em Sets U\+SB host disable the Generation of Start of Frame. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE uint32\+\_\+t \mbox{\hyperlink{usbhs_8h_a40267eb93445cc78fe9b243d25622f9c}{U\+S\+B\+H\+S\+\_\+\+Get\+Host\+Status}} (\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$p\+Usbhs, uint8\+\_\+t Int\+Type)
+\begin{DoxyCompactList}\small\item\em Gets U\+SB host interrupt status. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE uint32\+\_\+t \mbox{\hyperlink{usbhs_8h_a49d4f490d00f476a36e2d0c073dc0af8}{U\+S\+B\+H\+S\+\_\+\+Get\+Host\+Pipe\+Status}} (\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$p\+Usbhs, uint8\+\_\+t Pipe\+Int)
+\begin{DoxyCompactList}\small\item\em Gets U\+SB host interrupt status. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE uint32\+\_\+t \mbox{\hyperlink{usbhs_8h_a09970f012dc42f48d361f4a40e36b1bc}{U\+S\+B\+H\+S\+\_\+\+Get\+Host\+Dma\+Pipe\+Status}} (\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$p\+Usbhs, uint8\+\_\+t Pipe\+Int)
+\begin{DoxyCompactList}\small\item\em Gets U\+SB host interrupt status. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void \mbox{\hyperlink{usbhs_8h_aab0688b661054b73b5c9fe45e59ea015}{U\+S\+B\+H\+S\+\_\+\+Clear\+Host\+Status}} (\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$p\+Usbhs, uint32\+\_\+t Int\+Type)
+\begin{DoxyCompactList}\small\item\em Gets U\+SB host interrupt status. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void \mbox{\hyperlink{usbhs_8h_a72a8f0387d4cb85e1a3d247e99b1da06}{U\+S\+B\+H\+S\+\_\+\+Set\+Host\+Status}} (\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$p\+Usbhs, uint32\+\_\+t Int\+Type)
+\begin{DoxyCompactList}\small\item\em Gets U\+SB host interrupt status. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void \mbox{\hyperlink{usbhs_8h_a6712bba37861acf3c7503ef6c8eed409}{U\+S\+B\+H\+S\+\_\+\+Set\+Host\+Dma\+Status}} (\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$p\+Usbhs, uint8\+\_\+t Pipe\+Int)
+\begin{DoxyCompactList}\small\item\em Gets U\+SB host interrupt status. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE uint8\+\_\+t \mbox{\hyperlink{usbhs_8h_a6e707992fde3a408663eae6e34b00deb}{U\+S\+B\+H\+S\+\_\+\+Is\+Host\+Int\+Enable}} (\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$p\+Usbhs, uint8\+\_\+t Int\+Type)
+\begin{DoxyCompactList}\small\item\em Gets U\+SB host interrupt status. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE uint32\+\_\+t \mbox{\hyperlink{usbhs_8h_ad4bc5d3706ce41b5db3a3135b19d24d6}{U\+S\+B\+H\+S\+\_\+\+Is\+Host\+Pipe\+Int\+Enable}} (\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$p\+Usbhs, uint8\+\_\+t Pipe\+Int)
+\begin{DoxyCompactList}\small\item\em Gets U\+SB host interrupt status. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE uint32\+\_\+t \mbox{\hyperlink{usbhs_8h_a52553a3b2b96df8b5c9f55789aeb15ad}{U\+S\+B\+H\+S\+\_\+\+Is\+Host\+Dma\+Int\+Enable}} (\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$p\+Usbhs, uint8\+\_\+t Pipe\+Int)
+\begin{DoxyCompactList}\small\item\em Gets U\+SB host interrupt status. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void \mbox{\hyperlink{usbhs_8h_aa9a5b060519f982e8cd29dc32754b5a9}{U\+S\+B\+H\+S\+\_\+\+Host\+Int\+Disable}} (\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$p\+Usbhs, uint32\+\_\+t Int\+Type)
+\begin{DoxyCompactList}\small\item\em Gets U\+SB host interrupt status. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void \mbox{\hyperlink{usbhs_8h_a4706c65710ae219aab80c2645d24fa81}{U\+S\+B\+H\+S\+\_\+\+Host\+Pipe\+Int\+Disable}} (\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$p\+Usbhs, uint8\+\_\+t Pipe\+Int)
+\begin{DoxyCompactList}\small\item\em Gets U\+SB host interrupt status. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void \mbox{\hyperlink{usbhs_8h_a51f04ec0f693b7abf7a10e33faacac04}{U\+S\+B\+H\+S\+\_\+\+Host\+Dma\+Int\+Disable}} (\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$p\+Usbhs, uint8\+\_\+t Pipe\+Int)
+\begin{DoxyCompactList}\small\item\em Gets U\+SB host interrupt status. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void \mbox{\hyperlink{usbhs_8h_a7ac646519dfb6c319d8a60f08b5e4c29}{U\+S\+B\+H\+S\+\_\+\+Host\+Int\+Enable}} (\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$p\+Usbhs, uint32\+\_\+t Int\+Type)
+\begin{DoxyCompactList}\small\item\em Gets U\+SB host interrupt status. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void \mbox{\hyperlink{usbhs_8h_abe033170285572938d1ed3fbb01e9c3e}{U\+S\+B\+H\+S\+\_\+\+Host\+Pipe\+Int\+Enable}} (\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$p\+Usbhs, uint8\+\_\+t Pipe\+Int)
+\begin{DoxyCompactList}\small\item\em Gets U\+SB host interrupt status. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void \mbox{\hyperlink{usbhs_8h_abca7229dc06a00a9e8cced6870f4a827}{U\+S\+B\+H\+S\+\_\+\+Host\+Dma\+Int\+Enable}} (\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$p\+Usbhs, uint8\+\_\+t Pipe\+Int)
+\begin{DoxyCompactList}\small\item\em Gets U\+SB host interrupt status. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE uint16\+\_\+t \mbox{\hyperlink{usbhs_8h_ac2d5100e84f17f3afd652b4813f7a5b7}{U\+S\+B\+H\+S\+\_\+\+Host\+Get\+S\+OF}} (void)
+\begin{DoxyCompactList}\small\item\em Gets U\+SB host interrupt status. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE uint16\+\_\+t \mbox{\hyperlink{usbhs_8h_ace4d57215e8268e1e934fa376da56c83}{U\+S\+B\+H\+S\+\_\+\+Host\+Get\+Frame\+Pos}} (void)
+\begin{DoxyCompactList}\small\item\em Gets U\+SB host interrupt status. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE uint16\+\_\+t \mbox{\hyperlink{usbhs_8h_abbd31f8ac6a853c865dbab561cd93683}{U\+S\+B\+H\+S\+\_\+\+Host\+Get\+M\+S\+OF}} (void)
+\begin{DoxyCompactList}\small\item\em Gets U\+SB host interrupt status. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{usbhs_8h_a2d1339dc3607194872a33cffce18e305}\label{usbhs_8h_a2d1339dc3607194872a33cffce18e305}} 
+\+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void {\bfseries U\+S\+B\+H\+S\+\_\+\+Host\+Set\+Addr} (\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$p\+Usbhs, uint8\+\_\+t Pipe, uint8\+\_\+t Addr)
+\item 
+\mbox{\Hypertarget{usbhs_8h_a963fd2f0eab05393ff85e14bfd909021}\label{usbhs_8h_a963fd2f0eab05393ff85e14bfd909021}} 
+\+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE uint8\+\_\+t {\bfseries U\+S\+B\+H\+S\+\_\+\+Host\+Get\+Addr} (\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$p\+Usbhs, uint8\+\_\+t Pipe)
+\item 
+\+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void \mbox{\hyperlink{usbhs_8h_a10f00de072a1cbb4c14e9d125368f3ff}{U\+S\+B\+H\+S\+\_\+\+Host\+Pipe\+Enable}} (\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$p\+Usbhs, uint8\+\_\+t Pipe)
+\begin{DoxyCompactList}\small\item\em Gets U\+SB host interrupt status. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void \mbox{\hyperlink{usbhs_8h_a4aabd40a9718b4bab7036aa5439a266f}{U\+S\+B\+H\+S\+\_\+\+Host\+Pipe\+Disable}} (\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$p\+Usbhs, uint8\+\_\+t Pipe)
+\begin{DoxyCompactList}\small\item\em Gets U\+SB host interrupt status. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE uint32\+\_\+t \mbox{\hyperlink{usbhs_8h_aca1a73918c77f0aaa82395b55d760ae8}{U\+S\+B\+H\+S\+\_\+\+Is\+Host\+Pipe\+Enable}} (\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$p\+Usbhs, uint8\+\_\+t Pipe)
+\begin{DoxyCompactList}\small\item\em Gets U\+SB host interrupt status. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void \mbox{\hyperlink{usbhs_8h_af0f50fcf9d7a16354a3a3a1b22140a4c}{U\+S\+B\+H\+S\+\_\+\+Host\+Pipe\+Reset}} (\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$p\+Usbhs, uint8\+\_\+t Pipe)
+\begin{DoxyCompactList}\small\item\em Gets U\+SB host interrupt status. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void \mbox{\hyperlink{usbhs_8h_ad7321df66563d27e92e3eee190f5f328}{U\+S\+B\+H\+S\+\_\+\+Host\+Configure}} (\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$p\+Usbhs, uint8\+\_\+t Pipe, uint32\+\_\+t pipe\+Bank, uint8\+\_\+t pipe\+Size, uint32\+\_\+t pipe\+Type, uint32\+\_\+t pipe\+Token, uint8\+\_\+t pipe\+Ep\+Num, uint8\+\_\+t Pipe\+Int\+Freq)
+\begin{DoxyCompactList}\small\item\em Gets U\+SB host interrupt status. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void \mbox{\hyperlink{usbhs_8h_aedf0c19282a4ab894880c582f9cc4706}{U\+S\+B\+H\+S\+\_\+\+Host\+Alloc\+Mem}} (\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$p\+Usbhs, uint8\+\_\+t Pipe)
+\begin{DoxyCompactList}\small\item\em Gets U\+SB host interrupt status. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void \mbox{\hyperlink{usbhs_8h_a5af3c325c4029dd2830a88dcf6d8d360}{U\+S\+B\+H\+S\+\_\+\+Host\+Free\+Mem}} (\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$p\+Usbhs, uint8\+\_\+t Pipe)
+\begin{DoxyCompactList}\small\item\em Gets U\+SB host interrupt status. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE uint16\+\_\+t \mbox{\hyperlink{usbhs_8h_ac13debb9eb4e51de70e9086d6264ee88}{U\+S\+B\+H\+S\+\_\+\+Host\+Get\+Size}} (\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$p\+Usbhs, uint8\+\_\+t Pipe)
+\begin{DoxyCompactList}\small\item\em Gets U\+SB host interrupt status. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void \mbox{\hyperlink{usbhs_8h_a48f3b4774877abb73ad633b904e4caee}{U\+S\+B\+H\+S\+\_\+\+Host\+Set\+Token}} (\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$p\+Usbhs, uint8\+\_\+t Pipe, uint32\+\_\+t Token)
+\begin{DoxyCompactList}\small\item\em Gets U\+SB host interrupt status. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE uint32\+\_\+t \mbox{\hyperlink{usbhs_8h_a7e40c3d1763e18ec62b55c48edadedde}{U\+S\+B\+H\+S\+\_\+\+Host\+Get\+Token}} (\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$p\+Usbhs, uint8\+\_\+t Pipe)
+\begin{DoxyCompactList}\small\item\em Gets U\+SB host interrupt status. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void \mbox{\hyperlink{usbhs_8h_a5f6439f7e23f6a6641ffe8e3881efe24}{U\+S\+B\+H\+S\+\_\+\+Host\+Set\+Pipe\+Type}} (\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$p\+Usbhs, uint8\+\_\+t Pipe, uint8\+\_\+t Pipe\+Type)
+\begin{DoxyCompactList}\small\item\em Gets U\+SB host interrupt status. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE uint32\+\_\+t \mbox{\hyperlink{usbhs_8h_a568fb6f40affb306e060461fe065a516}{U\+S\+B\+H\+S\+\_\+\+Host\+Get\+Pipe\+Type}} (\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$p\+Usbhs, uint8\+\_\+t Pipe)
+\begin{DoxyCompactList}\small\item\em Gets U\+SB host interrupt status. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{usbhs_8h_afc5b9450b58a00b6b0080285a6296595}\label{usbhs_8h_afc5b9450b58a00b6b0080285a6296595}} 
+\+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE uint8\+\_\+t {\bfseries U\+S\+B\+H\+S\+\_\+\+Get\+Pipe\+Ep\+Addr} (\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$p\+Usbhs, uint8\+\_\+t Pipe)
+\item 
+\+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void \mbox{\hyperlink{usbhs_8h_aa347527d17e6ee48869cabe3344f0b8e}{U\+S\+B\+H\+S\+\_\+\+Host\+Enable\+Auto\+Sw}} (\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$p\+Usbhs, uint8\+\_\+t Pipe)
+\begin{DoxyCompactList}\small\item\em Gets U\+SB host interrupt status. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void \mbox{\hyperlink{usbhs_8h_af33de4a77714a4669ec1d6c52847ce36}{U\+S\+B\+H\+S\+\_\+\+Host\+Disable\+Auto\+Sw}} (\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$p\+Usbhs, uint8\+\_\+t Pipe)
+\begin{DoxyCompactList}\small\item\em Gets U\+SB host interrupt status. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void \mbox{\hyperlink{usbhs_8h_a5bed8c57a0a14635f4c4f33ed5a07e3f}{U\+S\+B\+H\+S\+\_\+\+Host\+Set\+Int\+Freq}} (\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$p\+Usbhs, uint8\+\_\+t Pipe, uint8\+\_\+t Freq)
+\begin{DoxyCompactList}\small\item\em Gets U\+SB host interrupt status. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void \mbox{\hyperlink{usbhs_8h_a5a732c50b940ba29ef94820ecbce731e}{U\+S\+B\+H\+S\+\_\+\+Host\+Enable\+Ping}} (\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$p\+Usbhs, uint8\+\_\+t Pipe)
+\begin{DoxyCompactList}\small\item\em Gets U\+SB host interrupt status. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE uint8\+\_\+t \mbox{\hyperlink{usbhs_8h_ab5730218930063afe0ce2cc2b9988eff}{U\+S\+B\+H\+S\+\_\+\+Host\+Get\+Data\+Tog\+Seq}} (\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$p\+Usbhs, uint8\+\_\+t Pipe)
+\begin{DoxyCompactList}\small\item\em Gets U\+SB host interrupt status. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE uint8\+\_\+t \mbox{\hyperlink{usbhs_8h_a556066e182615fc6072e5b6ad6a915c0}{U\+S\+B\+H\+S\+\_\+\+Host\+Get\+Num\+Of\+Busy\+Bank}} (\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$p\+Usbhs, uint8\+\_\+t Pipe)
+\begin{DoxyCompactList}\small\item\em Gets U\+SB host interrupt status. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE uint8\+\_\+t \mbox{\hyperlink{usbhs_8h_a41abdf2ba203409795e11992182c9e22}{U\+S\+B\+H\+S\+\_\+\+Host\+Get\+Current\+Bank}} (\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$p\+Usbhs, uint8\+\_\+t Pipe)
+\begin{DoxyCompactList}\small\item\em Gets U\+SB host interrupt status. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE uint8\+\_\+t \mbox{\hyperlink{usbhs_8h_a917ce318855654bd4d1ff18a24248899}{U\+S\+B\+H\+S\+\_\+\+Host\+Get\+Pipe\+Byte\+Count}} (\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$p\+Usbhs, uint8\+\_\+t Pipe)
+\begin{DoxyCompactList}\small\item\em Gets U\+SB host interrupt status. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE uint32\+\_\+t \mbox{\hyperlink{usbhs_8h_a80888f7cf448edbebfc2cb99264e0642}{U\+S\+B\+H\+S\+\_\+\+Is\+Host\+Config\+Ok}} (\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$p\+Usbhs, uint8\+\_\+t Pipe)
+\begin{DoxyCompactList}\small\item\em Gets U\+SB host interrupt status. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE uint32\+\_\+t \mbox{\hyperlink{usbhs_8h_ae752afec4dfecc9565eaa4242ce9233f}{U\+S\+B\+H\+S\+\_\+\+Host\+Get\+Int\+Type\+Status}} (\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$p\+Usbhs, uint8\+\_\+t Pipe, uint32\+\_\+t int\+Type)
+\begin{DoxyCompactList}\small\item\em Gets U\+SB host interrupt status. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void \mbox{\hyperlink{usbhs_8h_a97e601451758556ee0591fae627974d8}{U\+S\+B\+H\+S\+\_\+\+Host\+Ack\+Pipe\+Int\+Type}} (\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$p\+Usbhs, uint8\+\_\+t Pipe, uint32\+\_\+t int\+Type)
+\begin{DoxyCompactList}\small\item\em Gets U\+SB host interrupt status. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void \mbox{\hyperlink{usbhs_8h_aadbfa6cd7ed91815f4a40b2a92c6d9eb}{U\+S\+B\+H\+S\+\_\+\+Host\+Set\+Pipe\+Int\+Type}} (\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$p\+Usbhs, uint8\+\_\+t Pipe, uint32\+\_\+t int\+Type)
+\begin{DoxyCompactList}\small\item\em Gets U\+SB host interrupt status. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE uint32\+\_\+t \mbox{\hyperlink{usbhs_8h_a0a8e28b882f4abf73c473980d36c7e06}{U\+S\+B\+H\+S\+\_\+\+Is\+Host\+Pipe\+Int\+Type\+Enable}} (\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$p\+Usbhs, uint8\+\_\+t Pipe, uint32\+\_\+t int\+Type)
+\begin{DoxyCompactList}\small\item\em Gets U\+SB host interrupt status. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void \mbox{\hyperlink{usbhs_8h_a32c56acaace52b440a308d9bce8cafff}{U\+S\+B\+H\+S\+\_\+\+Host\+Disable\+Pipe\+Int\+Type}} (\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$p\+Usbhs, uint8\+\_\+t Pipe, uint32\+\_\+t int\+Type)
+\begin{DoxyCompactList}\small\item\em Gets U\+SB host interrupt status. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void \mbox{\hyperlink{usbhs_8h_acd60bcdb7e5420ac4cfb8b457838f9ba}{U\+S\+B\+H\+S\+\_\+\+Host\+Enable\+Pipe\+Int\+Type}} (\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$p\+Usbhs, uint8\+\_\+t Pipe, uint32\+\_\+t int\+Type)
+\begin{DoxyCompactList}\small\item\em Gets U\+SB host interrupt status. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void \mbox{\hyperlink{usbhs_8h_a25b8f588492bd5dfd9f527e3cf50d68e}{U\+S\+B\+H\+S\+\_\+\+Host\+Enable\+In\+Req}} (\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$p\+Usbhs, uint8\+\_\+t Pipe)
+\begin{DoxyCompactList}\small\item\em Gets U\+SB host interrupt status. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void \mbox{\hyperlink{usbhs_8h_ac0d1007b23379af5c4d286a243b4f5e1}{U\+S\+B\+H\+S\+\_\+\+Host\+Disable\+In\+Req}} (\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$p\+Usbhs, uint8\+\_\+t Pipe)
+\begin{DoxyCompactList}\small\item\em Gets U\+SB host interrupt status. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE uint8\+\_\+t \mbox{\hyperlink{usbhs_8h_a23e0d01e4f85fa4b0af1e81b3d7efc6e}{U\+S\+B\+H\+S\+\_\+\+Is\+Host\+In\+Req\+Enable}} (\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$p\+Usbhs, uint8\+\_\+t Pipe)
+\begin{DoxyCompactList}\small\item\em Gets U\+SB host interrupt status. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void \mbox{\hyperlink{usbhs_8h_aedba0b8562b6d4aa35096f3db61f18c6}{U\+S\+B\+H\+S\+\_\+\+Host\+In\+Req}} (\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$p\+Usbhs, uint8\+\_\+t Pipe, uint8\+\_\+t In\+Req)
+\begin{DoxyCompactList}\small\item\em Gets U\+SB host interrupt status. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void \mbox{\hyperlink{usbhs_8h_ac0cec1cec3e5e547d74d24f5df8105ac}{U\+S\+B\+H\+S\+\_\+\+Host\+Set\+Err}} (\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$p\+Usbhs, uint8\+\_\+t Pipe, uint8\+\_\+t Err)
+\begin{DoxyCompactList}\small\item\em Gets U\+SB host interrupt status. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE uint8\+\_\+t \mbox{\hyperlink{usbhs_8h_ac3696a9240e22b2d40ee76d19633bed5}{U\+S\+B\+H\+S\+\_\+\+Host\+Get\+Err}} (\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$p\+Usbhs, uint8\+\_\+t Pipe, uint8\+\_\+t Err)
+\begin{DoxyCompactList}\small\item\em Gets U\+SB host interrupt status. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void \mbox{\hyperlink{usbhs_8h_a5d2c49f1194cc78dea81c614f36a06e8}{U\+S\+B\+H\+S\+\_\+\+Host\+Clear\+Err}} (\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$p\+Usbhs, uint8\+\_\+t Pipe, uint8\+\_\+t Err)
+\begin{DoxyCompactList}\small\item\em Gets U\+SB host interrupt status. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{usbhs_8h_a925f2d3fbc5551f3dc3968600ae6512c}\label{usbhs_8h_a925f2d3fbc5551f3dc3968600ae6512c}} 
+\+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE uint8\+\_\+t {\bfseries U\+S\+B\+H\+S\+\_\+\+Get\+Interrupt\+Pipe\+Num} (void)
+\item 
+\+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void \mbox{\hyperlink{usbhs_8h_a4828debdb88457e95b11228e17e3272e}{U\+S\+B\+H\+S\+\_\+\+Set\+Host\+Dma\+N\+DA}} (\mbox{\hyperlink{structUsbhsHstdma}{Usbhs\+Hstdma}} $\ast$p\+Usb\+Dma, uint32\+\_\+t Desc)
+\begin{DoxyCompactList}\small\item\em Sets D\+MA next descriptor address. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE uint32\+\_\+t \mbox{\hyperlink{usbhs_8h_a1550cd9ab1fca40ec953dcab04ae6321}{U\+S\+B\+H\+S\+\_\+\+Get\+Host\+Dma\+N\+DA}} (\mbox{\hyperlink{structUsbhsHstdma}{Usbhs\+Hstdma}} $\ast$p\+Usb\+Dma)
+\begin{DoxyCompactList}\small\item\em Gets D\+MA next descriptor address. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void \mbox{\hyperlink{usbhs_8h_a7b7dcd419b41dc75bdf1ed56fea79075}{U\+S\+B\+H\+S\+\_\+\+Set\+Host\+Dma\+Buff\+Add}} (\mbox{\hyperlink{structUsbhsHstdma}{Usbhs\+Hstdma}} $\ast$p\+Usb\+Dma, uint32\+\_\+t Addr)
+\begin{DoxyCompactList}\small\item\em Sets U\+S\+B\+HS\textquotesingle{}s D\+MA Buffer addresse. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE uint32\+\_\+t \mbox{\hyperlink{usbhs_8h_ae8f0f173c0eba29fbde8f0db687c9937}{U\+S\+B\+H\+S\+\_\+\+Get\+Host\+Dma\+Buff\+Add}} (\mbox{\hyperlink{structUsbhsHstdma}{Usbhs\+Hstdma}} $\ast$p\+Usb\+Dma)
+\begin{DoxyCompactList}\small\item\em Gets U\+S\+B\+HS\textquotesingle{}s D\+MA Buffer addresse. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void \mbox{\hyperlink{usbhs_8h_ad212cc35348ff023533b9a47aba79345}{U\+S\+B\+H\+S\+\_\+\+Host\+Configure\+Dma}} (\mbox{\hyperlink{structUsbhsHstdma}{Usbhs\+Hstdma}} $\ast$p\+Usb\+Dma, uint32\+\_\+t Cfg)
+\begin{DoxyCompactList}\small\item\em Setup the U\+S\+B\+HS D\+MA. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE uint32\+\_\+t \mbox{\hyperlink{usbhs_8h_ad5c1c8dce25698d0d219825643f2ab16}{U\+S\+B\+H\+S\+\_\+\+Get\+Host\+Dma\+Configuration}} (\mbox{\hyperlink{structUsbhsHstdma}{Usbhs\+Hstdma}} $\ast$p\+Usb\+Dma)
+\begin{DoxyCompactList}\small\item\em Get D\+MA configuration. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void \mbox{\hyperlink{usbhs_8h_ae0a251b709650e942fdd7d55c8eff5d8}{U\+S\+B\+H\+S\+\_\+\+Set\+Host\+Pipe\+Dma\+Status}} (\mbox{\hyperlink{structUsbhsHstdma}{Usbhs\+Hstdma}} $\ast$p\+Usb\+Dma, uint32\+\_\+t Status)
+\begin{DoxyCompactList}\small\item\em Set D\+MA status. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE uint32\+\_\+t \mbox{\hyperlink{usbhs_8h_a867c067ec59082580389661c677469ea}{U\+S\+B\+H\+S\+\_\+\+Get\+Host\+Pipe\+Dma\+Status}} (\mbox{\hyperlink{structUsbhsHstdma}{Usbhs\+Hstdma}} $\ast$p\+Usb\+Dma)
+\begin{DoxyCompactList}\small\item\em Get Dma Status. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{usbhs_8h_a1e17be7a8b9f3a7fa532293e5a776fed}\label{usbhs_8h_a1e17be7a8b9f3a7fa532293e5a776fed}} 
+\index{usbhs.h@{usbhs.h}!CHIP\_USB\_DMA\_NUMPIPE@{CHIP\_USB\_DMA\_NUMPIPE}}
+\index{CHIP\_USB\_DMA\_NUMPIPE@{CHIP\_USB\_DMA\_NUMPIPE}!usbhs.h@{usbhs.h}}
+\subsubsection{\texorpdfstring{CHIP\_USB\_DMA\_NUMPIPE}{CHIP\_USB\_DMA\_NUMPIPE}}
+{\footnotesize\ttfamily \#define C\+H\+I\+P\+\_\+\+U\+S\+B\+\_\+\+D\+M\+A\+\_\+\+N\+U\+M\+P\+I\+PE~7}
+
+Number of U\+SB endpoints \mbox{\Hypertarget{usbhs_8h_ab66857dec68cedaa0b3d3008296ffd97}\label{usbhs_8h_ab66857dec68cedaa0b3d3008296ffd97}} 
+\index{usbhs.h@{usbhs.h}!CHIP\_USB\_ENDPOINTS\_BANKS@{CHIP\_USB\_ENDPOINTS\_BANKS}}
+\index{CHIP\_USB\_ENDPOINTS\_BANKS@{CHIP\_USB\_ENDPOINTS\_BANKS}!usbhs.h@{usbhs.h}}
+\subsubsection{\texorpdfstring{CHIP\_USB\_ENDPOINTS\_BANKS}{CHIP\_USB\_ENDPOINTS\_BANKS}}
+{\footnotesize\ttfamily \#define C\+H\+I\+P\+\_\+\+U\+S\+B\+\_\+\+E\+N\+D\+P\+O\+I\+N\+T\+S\+\_\+\+B\+A\+N\+KS(\begin{DoxyParamCaption}\item[{}]{ep }\end{DoxyParamCaption})~((ep==0)?1\+:((ep$<$=2)?3\+:2))}
+
+Endpoints Number of Bank \mbox{\Hypertarget{usbhs_8h_a3d3e0780955f1f3796b59c297a9ce778}\label{usbhs_8h_a3d3e0780955f1f3796b59c297a9ce778}} 
+\index{usbhs.h@{usbhs.h}!CHIP\_USB\_ENDPOINTS\_DMA@{CHIP\_USB\_ENDPOINTS\_DMA}}
+\index{CHIP\_USB\_ENDPOINTS\_DMA@{CHIP\_USB\_ENDPOINTS\_DMA}!usbhs.h@{usbhs.h}}
+\subsubsection{\texorpdfstring{CHIP\_USB\_ENDPOINTS\_DMA}{CHIP\_USB\_ENDPOINTS\_DMA}}
+{\footnotesize\ttfamily \#define C\+H\+I\+P\+\_\+\+U\+S\+B\+\_\+\+E\+N\+D\+P\+O\+I\+N\+T\+S\+\_\+\+D\+MA(\begin{DoxyParamCaption}\item[{}]{ep }\end{DoxyParamCaption})~((((ep)$>$=1)\&\&((ep)$<$=7))?true\+:false)}
+
+Endpoints D\+MA support \mbox{\Hypertarget{usbhs_8h_a5865e5e766958f78b10bee61f42abd44}\label{usbhs_8h_a5865e5e766958f78b10bee61f42abd44}} 
+\index{usbhs.h@{usbhs.h}!CHIP\_USB\_ENDPOINTS\_MAXPACKETSIZE@{CHIP\_USB\_ENDPOINTS\_MAXPACKETSIZE}}
+\index{CHIP\_USB\_ENDPOINTS\_MAXPACKETSIZE@{CHIP\_USB\_ENDPOINTS\_MAXPACKETSIZE}!usbhs.h@{usbhs.h}}
+\subsubsection{\texorpdfstring{CHIP\_USB\_ENDPOINTS\_MAXPACKETSIZE}{CHIP\_USB\_ENDPOINTS\_MAXPACKETSIZE}}
+{\footnotesize\ttfamily \#define C\+H\+I\+P\+\_\+\+U\+S\+B\+\_\+\+E\+N\+D\+P\+O\+I\+N\+T\+S\+\_\+\+M\+A\+X\+P\+A\+C\+K\+E\+T\+S\+I\+ZE(\begin{DoxyParamCaption}\item[{}]{ep }\end{DoxyParamCaption})~((ep == 0) ? 64 \+: 1024)}
+
+Endpoints max packet size \mbox{\Hypertarget{usbhs_8h_ab1098bd73746d6f0b0ab28975d2a5043}\label{usbhs_8h_ab1098bd73746d6f0b0ab28975d2a5043}} 
+\index{usbhs.h@{usbhs.h}!CHIP\_USB\_NUMENDPOINTS@{CHIP\_USB\_NUMENDPOINTS}}
+\index{CHIP\_USB\_NUMENDPOINTS@{CHIP\_USB\_NUMENDPOINTS}!usbhs.h@{usbhs.h}}
+\subsubsection{\texorpdfstring{CHIP\_USB\_NUMENDPOINTS}{CHIP\_USB\_NUMENDPOINTS}}
+{\footnotesize\ttfamily \#define C\+H\+I\+P\+\_\+\+U\+S\+B\+\_\+\+N\+U\+M\+E\+N\+D\+P\+O\+I\+N\+TS~10}
+
+Number of U\+SB endpoints \mbox{\Hypertarget{usbhs_8h_a8f0b960f10c286e7cd0e0b736aa1e4db}\label{usbhs_8h_a8f0b960f10c286e7cd0e0b736aa1e4db}} 
+\index{usbhs.h@{usbhs.h}!CHIP\_USB\_NUMPIPE@{CHIP\_USB\_NUMPIPE}}
+\index{CHIP\_USB\_NUMPIPE@{CHIP\_USB\_NUMPIPE}!usbhs.h@{usbhs.h}}
+\subsubsection{\texorpdfstring{CHIP\_USB\_NUMPIPE}{CHIP\_USB\_NUMPIPE}}
+{\footnotesize\ttfamily \#define C\+H\+I\+P\+\_\+\+U\+S\+B\+\_\+\+N\+U\+M\+P\+I\+PE~10}
+
+Number of U\+SB endpoints \mbox{\Hypertarget{usbhs_8h_a0dd7d33f558f878925c4aa8f2f6dc96d}\label{usbhs_8h_a0dd7d33f558f878925c4aa8f2f6dc96d}} 
+\index{usbhs.h@{usbhs.h}!CHIP\_USB\_PIPE\_BANKS@{CHIP\_USB\_PIPE\_BANKS}}
+\index{CHIP\_USB\_PIPE\_BANKS@{CHIP\_USB\_PIPE\_BANKS}!usbhs.h@{usbhs.h}}
+\subsubsection{\texorpdfstring{CHIP\_USB\_PIPE\_BANKS}{CHIP\_USB\_PIPE\_BANKS}}
+{\footnotesize\ttfamily \#define C\+H\+I\+P\+\_\+\+U\+S\+B\+\_\+\+P\+I\+P\+E\+\_\+\+B\+A\+N\+KS(\begin{DoxyParamCaption}\item[{}]{ep }\end{DoxyParamCaption})~((ep==0)?1\+:((ep$<$=2)?3\+:2))}
+
+Endpoints Number of Bank \mbox{\Hypertarget{usbhs_8h_a375cc1a475941bb356f59c53aae6c951}\label{usbhs_8h_a375cc1a475941bb356f59c53aae6c951}} 
+\index{usbhs.h@{usbhs.h}!CHIP\_USB\_PIPE\_DMA@{CHIP\_USB\_PIPE\_DMA}}
+\index{CHIP\_USB\_PIPE\_DMA@{CHIP\_USB\_PIPE\_DMA}!usbhs.h@{usbhs.h}}
+\subsubsection{\texorpdfstring{CHIP\_USB\_PIPE\_DMA}{CHIP\_USB\_PIPE\_DMA}}
+{\footnotesize\ttfamily \#define C\+H\+I\+P\+\_\+\+U\+S\+B\+\_\+\+P\+I\+P\+E\+\_\+\+D\+MA(\begin{DoxyParamCaption}\item[{}]{ep }\end{DoxyParamCaption})~((((ep)$>$=1)\&\&((ep)$<$=7))?true\+:false)}
+
+Endpoints D\+MA support \mbox{\Hypertarget{usbhs_8h_a7d5ac656db4059a4b765bf4e239d8fe5}\label{usbhs_8h_a7d5ac656db4059a4b765bf4e239d8fe5}} 
+\index{usbhs.h@{usbhs.h}!CHIP\_USB\_PIPE\_MAXPACKETSIZE@{CHIP\_USB\_PIPE\_MAXPACKETSIZE}}
+\index{CHIP\_USB\_PIPE\_MAXPACKETSIZE@{CHIP\_USB\_PIPE\_MAXPACKETSIZE}!usbhs.h@{usbhs.h}}
+\subsubsection{\texorpdfstring{CHIP\_USB\_PIPE\_MAXPACKETSIZE}{CHIP\_USB\_PIPE\_MAXPACKETSIZE}}
+{\footnotesize\ttfamily \#define C\+H\+I\+P\+\_\+\+U\+S\+B\+\_\+\+P\+I\+P\+E\+\_\+\+M\+A\+X\+P\+A\+C\+K\+E\+T\+S\+I\+ZE(\begin{DoxyParamCaption}\item[{}]{ep }\end{DoxyParamCaption})~((ep == 0) ? 64 \+: 1024)}
+
+Endpoints max paxcket size \mbox{\Hypertarget{usbhs_8h_a4bcc957f1288dac54003f5a0045b2cd7}\label{usbhs_8h_a4bcc957f1288dac54003f5a0045b2cd7}} 
+\index{usbhs.h@{usbhs.h}!CHIP\_USB\_PULLUP\_INTERNAL@{CHIP\_USB\_PULLUP\_INTERNAL}}
+\index{CHIP\_USB\_PULLUP\_INTERNAL@{CHIP\_USB\_PULLUP\_INTERNAL}!usbhs.h@{usbhs.h}}
+\subsubsection{\texorpdfstring{CHIP\_USB\_PULLUP\_INTERNAL}{CHIP\_USB\_PULLUP\_INTERNAL}}
+{\footnotesize\ttfamily \#define C\+H\+I\+P\+\_\+\+U\+S\+B\+\_\+\+P\+U\+L\+L\+U\+P\+\_\+\+I\+N\+T\+E\+R\+N\+AL}
+
+Indicates chip has an internal pull-\/up. \mbox{\Hypertarget{usbhs_8h_a0d5301f4b6b7c4dc59bdd76d725c9517}\label{usbhs_8h_a0d5301f4b6b7c4dc59bdd76d725c9517}} 
+\index{usbhs.h@{usbhs.h}!CHIP\_USB\_UDP@{CHIP\_USB\_UDP}}
+\index{CHIP\_USB\_UDP@{CHIP\_USB\_UDP}!usbhs.h@{usbhs.h}}
+\subsubsection{\texorpdfstring{CHIP\_USB\_UDP}{CHIP\_USB\_UDP}}
+{\footnotesize\ttfamily \#define C\+H\+I\+P\+\_\+\+U\+S\+B\+\_\+\+U\+DP}
+
+Indicates chip has an U\+DP High Speed. \mbox{\Hypertarget{usbhs_8h_a74fb9f0009ae61530ac99e19744fc7f1}\label{usbhs_8h_a74fb9f0009ae61530ac99e19744fc7f1}} 
+\index{usbhs.h@{usbhs.h}!DMA\_MAX\_FIFO\_SIZE@{DMA\_MAX\_FIFO\_SIZE}}
+\index{DMA\_MAX\_FIFO\_SIZE@{DMA\_MAX\_FIFO\_SIZE}!usbhs.h@{usbhs.h}}
+\subsubsection{\texorpdfstring{DMA\_MAX\_FIFO\_SIZE}{DMA\_MAX\_FIFO\_SIZE}}
+{\footnotesize\ttfamily \#define D\+M\+A\+\_\+\+M\+A\+X\+\_\+\+F\+I\+F\+O\+\_\+\+S\+I\+ZE~(65536/1)}
+
+Max size of the F\+MA F\+I\+FO \mbox{\Hypertarget{usbhs_8h_a19e18c1683b682fc01056cbf2b2b92f6}\label{usbhs_8h_a19e18c1683b682fc01056cbf2b2b92f6}} 
+\index{usbhs.h@{usbhs.h}!EPT\_VIRTUAL\_SIZE@{EPT\_VIRTUAL\_SIZE}}
+\index{EPT\_VIRTUAL\_SIZE@{EPT\_VIRTUAL\_SIZE}!usbhs.h@{usbhs.h}}
+\subsubsection{\texorpdfstring{EPT\_VIRTUAL\_SIZE}{EPT\_VIRTUAL\_SIZE}}
+{\footnotesize\ttfamily \#define E\+P\+T\+\_\+\+V\+I\+R\+T\+U\+A\+L\+\_\+\+S\+I\+ZE~8192}
+
+fifo space size in DW \mbox{\Hypertarget{usbhs_8h_a6173ff7dcc4e8e590311c774d7214e9b}\label{usbhs_8h_a6173ff7dcc4e8e590311c774d7214e9b}} 
+\index{usbhs.h@{usbhs.h}!USB\_DEVICE\_HS\_SUPPORT@{USB\_DEVICE\_HS\_SUPPORT}}
+\index{USB\_DEVICE\_HS\_SUPPORT@{USB\_DEVICE\_HS\_SUPPORT}!usbhs.h@{usbhs.h}}
+\subsubsection{\texorpdfstring{USB\_DEVICE\_HS\_SUPPORT}{USB\_DEVICE\_HS\_SUPPORT}}
+{\footnotesize\ttfamily \#define U\+S\+B\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+H\+S\+\_\+\+S\+U\+P\+P\+O\+RT}
+
+addtogroup usbd\+\_\+hal 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{usbhs_8h_abb9881c68cce5603acf01ad61966bf07}\label{usbhs_8h_abb9881c68cce5603acf01ad61966bf07}} 
+\index{usbhs.h@{usbhs.h}!USBHS\_Ack@{USBHS\_Ack}}
+\index{USBHS\_Ack@{USBHS\_Ack}!usbhs.h@{usbhs.h}}
+\subsubsection{\texorpdfstring{USBHS\_Ack()}{USBHS\_Ack()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void U\+S\+B\+H\+S\+\_\+\+Ack (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$}]{p\+Usbhs,  }\item[{uint32\+\_\+t}]{Ack\+Type }\end{DoxyParamCaption})}
+
+
+
+Raise interrupt for endpoint. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Usbhs} & Pointer to an U\+S\+B\+HS instance. \\
+\hline
+{\em Ack\+Type} & Interrupt Acknowledge type \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{usbhs_8h_a6af2b5fe38366a2ff6922c00f8f4252e}\label{usbhs_8h_a6af2b5fe38366a2ff6922c00f8f4252e}} 
+\index{usbhs.h@{usbhs.h}!USBHS\_AckEpInterrupt@{USBHS\_AckEpInterrupt}}
+\index{USBHS\_AckEpInterrupt@{USBHS\_AckEpInterrupt}!usbhs.h@{usbhs.h}}
+\subsubsection{\texorpdfstring{USBHS\_AckEpInterrupt()}{USBHS\_AckEpInterrupt()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void U\+S\+B\+H\+S\+\_\+\+Ack\+Ep\+Interrupt (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$}]{p\+Usbhs,  }\item[{uint8\+\_\+t}]{Ep,  }\item[{uint32\+\_\+t}]{Ep\+Int }\end{DoxyParamCaption})}
+
+Clears register/acknowledge for a given endpoint \mbox{\Hypertarget{usbhs_8h_abe473ec759ec7837e7105d001df93c88}\label{usbhs_8h_abe473ec759ec7837e7105d001df93c88}} 
+\index{usbhs.h@{usbhs.h}!USBHS\_AckInt@{USBHS\_AckInt}}
+\index{USBHS\_AckInt@{USBHS\_AckInt}!usbhs.h@{usbhs.h}}
+\subsubsection{\texorpdfstring{USBHS\_AckInt()}{USBHS\_AckInt()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void U\+S\+B\+H\+S\+\_\+\+Ack\+Int (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$}]{p\+Usbhs,  }\item[{uint32\+\_\+t}]{Int\+Type }\end{DoxyParamCaption})}
+
+
+
+Acknowledge interrupt for endpoint. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Usbhs} & Pointer to an U\+S\+B\+HS instance. \\
+\hline
+{\em Int\+Type} & Interrupt Type \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{usbhs_8h_a95e89705c54999e79a3a53b6505e95e6}\label{usbhs_8h_a95e89705c54999e79a3a53b6505e95e6}} 
+\index{usbhs.h@{usbhs.h}!USBHS\_AllocateMemory@{USBHS\_AllocateMemory}}
+\index{USBHS\_AllocateMemory@{USBHS\_AllocateMemory}!usbhs.h@{usbhs.h}}
+\subsubsection{\texorpdfstring{USBHS\_AllocateMemory()}{USBHS\_AllocateMemory()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void U\+S\+B\+H\+S\+\_\+\+Allocate\+Memory (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$}]{p\+Usbhs,  }\item[{uint8\+\_\+t}]{Ep }\end{DoxyParamCaption})}
+
+Allocate Endpoint memory \mbox{\Hypertarget{usbhs_8h_af318fefb03c995978a740a8b1733aaa0}\label{usbhs_8h_af318fefb03c995978a740a8b1733aaa0}} 
+\index{usbhs.h@{usbhs.h}!USBHS\_AutoSwitchBankEnable@{USBHS\_AutoSwitchBankEnable}}
+\index{USBHS\_AutoSwitchBankEnable@{USBHS\_AutoSwitchBankEnable}!usbhs.h@{usbhs.h}}
+\subsubsection{\texorpdfstring{USBHS\_AutoSwitchBankEnable()}{USBHS\_AutoSwitchBankEnable()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void U\+S\+B\+H\+S\+\_\+\+Auto\+Switch\+Bank\+Enable (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$}]{p\+Usbhs,  }\item[{uint8\+\_\+t}]{Ep,  }\item[{uint8\+\_\+t}]{Enable }\end{DoxyParamCaption})}
+
+Enable or disable Auto switch of banks \mbox{\Hypertarget{usbhs_8h_a707dc91ebe546e554ca6e64223ef426f}\label{usbhs_8h_a707dc91ebe546e554ca6e64223ef426f}} 
+\index{usbhs.h@{usbhs.h}!USBHS\_ByteCount@{USBHS\_ByteCount}}
+\index{USBHS\_ByteCount@{USBHS\_ByteCount}!usbhs.h@{usbhs.h}}
+\subsubsection{\texorpdfstring{USBHS\_ByteCount()}{USBHS\_ByteCount()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE uint16\+\_\+t U\+S\+B\+H\+S\+\_\+\+Byte\+Count (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$}]{p\+Usbhs,  }\item[{uint8\+\_\+t}]{Ep }\end{DoxyParamCaption})}
+
+Read endpoint\textquotesingle{}s byte count of the F\+I\+FO \mbox{\Hypertarget{usbhs_8h_aab0688b661054b73b5c9fe45e59ea015}\label{usbhs_8h_aab0688b661054b73b5c9fe45e59ea015}} 
+\index{usbhs.h@{usbhs.h}!USBHS\_ClearHostStatus@{USBHS\_ClearHostStatus}}
+\index{USBHS\_ClearHostStatus@{USBHS\_ClearHostStatus}!usbhs.h@{usbhs.h}}
+\subsubsection{\texorpdfstring{USBHS\_ClearHostStatus()}{USBHS\_ClearHostStatus()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void U\+S\+B\+H\+S\+\_\+\+Clear\+Host\+Status (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$}]{p\+Usbhs,  }\item[{uint32\+\_\+t}]{Int\+Type }\end{DoxyParamCaption})}
+
+
+
+Gets U\+SB host interrupt status. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Usbhs} & U\+S\+B\+HS host instance \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{usbhs_8h_a3609af8e5813e7837a44ad8de0946fc5}\label{usbhs_8h_a3609af8e5813e7837a44ad8de0946fc5}} 
+\index{usbhs.h@{usbhs.h}!USBHS\_ConfigureDma@{USBHS\_ConfigureDma}}
+\index{USBHS\_ConfigureDma@{USBHS\_ConfigureDma}!usbhs.h@{usbhs.h}}
+\subsubsection{\texorpdfstring{USBHS\_ConfigureDma()}{USBHS\_ConfigureDma()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void U\+S\+B\+H\+S\+\_\+\+Configure\+Dma (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structUsbhsDevdma}{Usbhs\+Devdma}} $\ast$}]{p\+Usb\+Dma,  }\item[{uint32\+\_\+t}]{Cfg }\end{DoxyParamCaption})}
+
+
+
+Setup the U\+S\+B\+HS D\+MA. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Usb\+Dma} & U\+S\+B\+HS device D\+MA instance \\
+\hline
+{\em Cfg} & D\+MA\textquotesingle{}s configuration \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{usbhs_8h_a23400301b1f5ce8e97834db2a2a2cc1b}\label{usbhs_8h_a23400301b1f5ce8e97834db2a2a2cc1b}} 
+\index{usbhs.h@{usbhs.h}!USBHS\_ConfigureEPs@{USBHS\_ConfigureEPs}}
+\index{USBHS\_ConfigureEPs@{USBHS\_ConfigureEPs}!usbhs.h@{usbhs.h}}
+\subsubsection{\texorpdfstring{USBHS\_ConfigureEPs()}{USBHS\_ConfigureEPs()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void U\+S\+B\+H\+S\+\_\+\+Configure\+E\+Ps (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$}]{p\+Usbhs,  }\item[{const uint8\+\_\+t}]{Ep,  }\item[{const uint8\+\_\+t}]{Type,  }\item[{const uint8\+\_\+t}]{Dir,  }\item[{const uint8\+\_\+t}]{Size,  }\item[{const uint8\+\_\+t}]{Bank }\end{DoxyParamCaption})}
+
+Set Endpoints configuration Bank size, type and direction \mbox{\Hypertarget{usbhs_8h_ad50e0487f36c3b575f0a509be89a103c}\label{usbhs_8h_ad50e0487f36c3b575f0a509be89a103c}} 
+\index{usbhs.h@{usbhs.h}!USBHS\_DetachUsb@{USBHS\_DetachUsb}}
+\index{USBHS\_DetachUsb@{USBHS\_DetachUsb}!usbhs.h@{usbhs.h}}
+\subsubsection{\texorpdfstring{USBHS\_DetachUsb()}{USBHS\_DetachUsb()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void U\+S\+B\+H\+S\+\_\+\+Detach\+Usb (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$}]{p\+Usbhs,  }\item[{uint8\+\_\+t}]{Enable }\end{DoxyParamCaption})}
+
+
+
+Attach or detach U\+SB. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Usbhs} & Pointer to an U\+S\+B\+HS instance. \\
+\hline
+{\em Enable} & Attachs or detach U\+SB device \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{usbhs_8h_aa0d4d68174be285f39499774b2edb1d8}\label{usbhs_8h_aa0d4d68174be285f39499774b2edb1d8}} 
+\index{usbhs.h@{usbhs.h}!USBHS\_DisableDMAIntEP@{USBHS\_DisableDMAIntEP}}
+\index{USBHS\_DisableDMAIntEP@{USBHS\_DisableDMAIntEP}!usbhs.h@{usbhs.h}}
+\subsubsection{\texorpdfstring{USBHS\_DisableDMAIntEP()}{USBHS\_DisableDMAIntEP()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void U\+S\+B\+H\+S\+\_\+\+Disable\+D\+M\+A\+Int\+EP (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$}]{p\+Usbhs,  }\item[{uint8\+\_\+t}]{Dma\+Ep }\end{DoxyParamCaption})}
+
+
+
+Disables D\+MA interrupt for endpoint. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Usbhs} & Pointer to an U\+S\+B\+HS instance. \\
+\hline
+{\em Dma\+Ep} & Endpoint\textquotesingle{}s D\+MA number \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{usbhs_8h_aed77f2f7b0383514691381d53de5605f}\label{usbhs_8h_aed77f2f7b0383514691381d53de5605f}} 
+\index{usbhs.h@{usbhs.h}!USBHS\_DisableEPIntType@{USBHS\_DisableEPIntType}}
+\index{USBHS\_DisableEPIntType@{USBHS\_DisableEPIntType}!usbhs.h@{usbhs.h}}
+\subsubsection{\texorpdfstring{USBHS\_DisableEPIntType()}{USBHS\_DisableEPIntType()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void U\+S\+B\+H\+S\+\_\+\+Disable\+E\+P\+Int\+Type (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$}]{p\+Usbhs,  }\item[{uint8\+\_\+t}]{Ep,  }\item[{uint32\+\_\+t}]{Ep\+Int }\end{DoxyParamCaption})}
+
+Disables an interrupt type for a given endpoint \mbox{\Hypertarget{usbhs_8h_a1e6f755e0017750683a52c6d2640ce9b}\label{usbhs_8h_a1e6f755e0017750683a52c6d2640ce9b}} 
+\index{usbhs.h@{usbhs.h}!USBHS\_DisableInt@{USBHS\_DisableInt}}
+\index{USBHS\_DisableInt@{USBHS\_DisableInt}!usbhs.h@{usbhs.h}}
+\subsubsection{\texorpdfstring{USBHS\_DisableInt()}{USBHS\_DisableInt()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void U\+S\+B\+H\+S\+\_\+\+Disable\+Int (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$}]{p\+Usbhs,  }\item[{uint32\+\_\+t}]{Int\+Type }\end{DoxyParamCaption})}
+
+
+
+Disables interrupt for endpoint. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Usbhs} & Pointer to an U\+S\+B\+HS instance. \\
+\hline
+{\em Int\+Type} & Int type \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{usbhs_8h_a6b0323c3e931a4c757ca8cbb2987869f}\label{usbhs_8h_a6b0323c3e931a4c757ca8cbb2987869f}} 
+\index{usbhs.h@{usbhs.h}!USBHS\_DisableIntEP@{USBHS\_DisableIntEP}}
+\index{USBHS\_DisableIntEP@{USBHS\_DisableIntEP}!usbhs.h@{usbhs.h}}
+\subsubsection{\texorpdfstring{USBHS\_DisableIntEP()}{USBHS\_DisableIntEP()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void U\+S\+B\+H\+S\+\_\+\+Disable\+Int\+EP (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$}]{p\+Usbhs,  }\item[{uint8\+\_\+t}]{Ep }\end{DoxyParamCaption})}
+
+
+
+Disables interrupt for endpoint. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Usbhs} & Pointer to an U\+S\+B\+HS instance. \\
+\hline
+{\em Ep} & Endpoint number \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{usbhs_8h_a8b5061d7281a8104020962d8b6291da1}\label{usbhs_8h_a8b5061d7281a8104020962d8b6291da1}} 
+\index{usbhs.h@{usbhs.h}!USBHS\_DisableSOF@{USBHS\_DisableSOF}}
+\index{USBHS\_DisableSOF@{USBHS\_DisableSOF}!usbhs.h@{usbhs.h}}
+\subsubsection{\texorpdfstring{USBHS\_DisableSOF()}{USBHS\_DisableSOF()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void U\+S\+B\+H\+S\+\_\+\+Disable\+S\+OF (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Sets U\+SB host disable the Generation of Start of Frame. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Usbhs} & U\+S\+B\+HS host instance \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{usbhs_8h_ae12eb708d1efa8847725bfbef153b21f}\label{usbhs_8h_ae12eb708d1efa8847725bfbef153b21f}} 
+\index{usbhs.h@{usbhs.h}!USBHS\_EnableAddress@{USBHS\_EnableAddress}}
+\index{USBHS\_EnableAddress@{USBHS\_EnableAddress}!usbhs.h@{usbhs.h}}
+\subsubsection{\texorpdfstring{USBHS\_EnableAddress()}{USBHS\_EnableAddress()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void U\+S\+B\+H\+S\+\_\+\+Enable\+Address (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$}]{p\+Usbhs,  }\item[{uint8\+\_\+t}]{Enable }\end{DoxyParamCaption})}
+
+
+
+Enable or disable U\+SB address. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Usbhs} & Pointer to an U\+S\+B\+HS instance. \\
+\hline
+{\em Set\+Status} & Set U\+SB status \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{usbhs_8h_ad1cea33281f84fba93b0b4ecd554ce3a}\label{usbhs_8h_ad1cea33281f84fba93b0b4ecd554ce3a}} 
+\index{usbhs.h@{usbhs.h}!USBHS\_EnableDMAIntEP@{USBHS\_EnableDMAIntEP}}
+\index{USBHS\_EnableDMAIntEP@{USBHS\_EnableDMAIntEP}!usbhs.h@{usbhs.h}}
+\subsubsection{\texorpdfstring{USBHS\_EnableDMAIntEP()}{USBHS\_EnableDMAIntEP()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void U\+S\+B\+H\+S\+\_\+\+Enable\+D\+M\+A\+Int\+EP (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$}]{p\+Usbhs,  }\item[{uint32\+\_\+t}]{Dma\+Ep }\end{DoxyParamCaption})}
+
+
+
+Enables D\+MA interrupt for a given endpoint. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Usbhs} & Pointer to an U\+S\+B\+HS instance. \\
+\hline
+{\em Dma\+Ep} & Endpoint\textquotesingle{}s D\+MA interrupt number \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{usbhs_8h_aafe79c1addd8c03522a0228ae4b6dae3}\label{usbhs_8h_aafe79c1addd8c03522a0228ae4b6dae3}} 
+\index{usbhs.h@{usbhs.h}!USBHS\_EnableEP@{USBHS\_EnableEP}}
+\index{USBHS\_EnableEP@{USBHS\_EnableEP}!usbhs.h@{usbhs.h}}
+\subsubsection{\texorpdfstring{USBHS\_EnableEP()}{USBHS\_EnableEP()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void U\+S\+B\+H\+S\+\_\+\+Enable\+EP (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$}]{p\+Usbhs,  }\item[{uint8\+\_\+t}]{Ep,  }\item[{uint8\+\_\+t}]{Enable }\end{DoxyParamCaption})}
+
+
+
+Enables or disables endpoint. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Usbhs} & Pointer to an U\+S\+B\+HS instance. \\
+\hline
+{\em Enable} & Enable/disable endpoint \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{usbhs_8h_a6e9251af935e4867afa52cd306e8c699}\label{usbhs_8h_a6e9251af935e4867afa52cd306e8c699}} 
+\index{usbhs.h@{usbhs.h}!USBHS\_EnableEPIntType@{USBHS\_EnableEPIntType}}
+\index{USBHS\_EnableEPIntType@{USBHS\_EnableEPIntType}!usbhs.h@{usbhs.h}}
+\subsubsection{\texorpdfstring{USBHS\_EnableEPIntType()}{USBHS\_EnableEPIntType()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void U\+S\+B\+H\+S\+\_\+\+Enable\+E\+P\+Int\+Type (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$}]{p\+Usbhs,  }\item[{uint8\+\_\+t}]{Ep,  }\item[{uint32\+\_\+t}]{Ep\+Int }\end{DoxyParamCaption})}
+
+Enables an interrupt type for a given endpoint \mbox{\Hypertarget{usbhs_8h_a46ba14559a5a635598a47d24943769ba}\label{usbhs_8h_a46ba14559a5a635598a47d24943769ba}} 
+\index{usbhs.h@{usbhs.h}!USBHS\_EnableHighSpeed@{USBHS\_EnableHighSpeed}}
+\index{USBHS\_EnableHighSpeed@{USBHS\_EnableHighSpeed}!usbhs.h@{usbhs.h}}
+\subsubsection{\texorpdfstring{USBHS\_EnableHighSpeed()}{USBHS\_EnableHighSpeed()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void U\+S\+B\+H\+S\+\_\+\+Enable\+High\+Speed (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$}]{p\+Usbhs,  }\item[{uint8\+\_\+t}]{Enable }\end{DoxyParamCaption})}
+
+
+
+Disable/\+Enables High Speed mode. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Usbhs} & Pointer to an U\+S\+B\+HS instance. \\
+\hline
+{\em Enable} & Enables/disable option \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{usbhs_8h_a0a77c8c380dc3c3bf46b533682d02602}\label{usbhs_8h_a0a77c8c380dc3c3bf46b533682d02602}} 
+\index{usbhs.h@{usbhs.h}!USBHS\_EnableHSTestMode@{USBHS\_EnableHSTestMode}}
+\index{USBHS\_EnableHSTestMode@{USBHS\_EnableHSTestMode}!usbhs.h@{usbhs.h}}
+\subsubsection{\texorpdfstring{USBHS\_EnableHSTestMode()}{USBHS\_EnableHSTestMode()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void U\+S\+B\+H\+S\+\_\+\+Enable\+H\+S\+Test\+Mode (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$}]{p\+Usbhs }\end{DoxyParamCaption})}
+
+
+
+Disable/\+Enables HS Test mode. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Usbhs} & Pointer to an U\+S\+B\+HS instance. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{usbhs_8h_a792065de6dd29d4153426526555d4d07}\label{usbhs_8h_a792065de6dd29d4153426526555d4d07}} 
+\index{usbhs.h@{usbhs.h}!USBHS\_EnableInt@{USBHS\_EnableInt}}
+\index{USBHS\_EnableInt@{USBHS\_EnableInt}!usbhs.h@{usbhs.h}}
+\subsubsection{\texorpdfstring{USBHS\_EnableInt()}{USBHS\_EnableInt()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void U\+S\+B\+H\+S\+\_\+\+Enable\+Int (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$}]{p\+Usbhs,  }\item[{uint32\+\_\+t}]{Int\+Type }\end{DoxyParamCaption})}
+
+
+
+Enables Interrupt. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Usbhs} & Pointer to an U\+S\+B\+HS instance. \\
+\hline
+{\em Int\+Type} & Interrupt Type \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{usbhs_8h_aaefdcd5f8be021f6ebffcbb4e7630079}\label{usbhs_8h_aaefdcd5f8be021f6ebffcbb4e7630079}} 
+\index{usbhs.h@{usbhs.h}!USBHS\_EnableIntEP@{USBHS\_EnableIntEP}}
+\index{USBHS\_EnableIntEP@{USBHS\_EnableIntEP}!usbhs.h@{usbhs.h}}
+\subsubsection{\texorpdfstring{USBHS\_EnableIntEP()}{USBHS\_EnableIntEP()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void U\+S\+B\+H\+S\+\_\+\+Enable\+Int\+EP (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$}]{p\+Usbhs,  }\item[{uint8\+\_\+t}]{Ep\+Num }\end{DoxyParamCaption})}
+
+
+
+Enables interrupt for a given endpoint. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Usbhs} & Pointer to an U\+S\+B\+HS instance. \\
+\hline
+{\em Dma\+Num} & Endpoint\textquotesingle{}s D\+MA number \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{usbhs_8h_ac783c1af3755deab237694ce7b4579bf}\label{usbhs_8h_ac783c1af3755deab237694ce7b4579bf}} 
+\index{usbhs.h@{usbhs.h}!USBHS\_EnableSOF@{USBHS\_EnableSOF}}
+\index{USBHS\_EnableSOF@{USBHS\_EnableSOF}!usbhs.h@{usbhs.h}}
+\subsubsection{\texorpdfstring{USBHS\_EnableSOF()}{USBHS\_EnableSOF()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void U\+S\+B\+H\+S\+\_\+\+Enable\+S\+OF (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$}]{p\+Usbhs }\end{DoxyParamCaption})}
+
+
+
+Sets U\+SB host Enable the Generation of Start of Frame. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Usbhs} & U\+S\+B\+HS host instance \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{usbhs_8h_a526a6421c946527e98a5cd7a426f5254}\label{usbhs_8h_a526a6421c946527e98a5cd7a426f5254}} 
+\index{usbhs.h@{usbhs.h}!USBHS\_EnableTestMode@{USBHS\_EnableTestMode}}
+\index{USBHS\_EnableTestMode@{USBHS\_EnableTestMode}!usbhs.h@{usbhs.h}}
+\subsubsection{\texorpdfstring{USBHS\_EnableTestMode()}{USBHS\_EnableTestMode()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void U\+S\+B\+H\+S\+\_\+\+Enable\+Test\+Mode (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$}]{p\+Usbhs,  }\item[{uint32\+\_\+t}]{mode }\end{DoxyParamCaption})}
+
+
+
+Disable/\+Enables Test mode. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Usbhs} & Pointer to an U\+S\+B\+HS instance. \\
+\hline
+{\em mode} & Enables/disable option \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{usbhs_8h_a01683824f83ab460ca383457ca156051}\label{usbhs_8h_a01683824f83ab460ca383457ca156051}} 
+\index{usbhs.h@{usbhs.h}!USBHS\_ForceLowSpeed@{USBHS\_ForceLowSpeed}}
+\index{USBHS\_ForceLowSpeed@{USBHS\_ForceLowSpeed}!usbhs.h@{usbhs.h}}
+\subsubsection{\texorpdfstring{USBHS\_ForceLowSpeed()}{USBHS\_ForceLowSpeed()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void U\+S\+B\+H\+S\+\_\+\+Force\+Low\+Speed (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$}]{p\+Usbhs,  }\item[{uint8\+\_\+t}]{Enable }\end{DoxyParamCaption})}
+
+
+
+Force Low Speed mode. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Usbhs} & Pointer to an U\+S\+B\+HS instance. \\
+\hline
+{\em Enable} & Enables the Full speed \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{usbhs_8h_a3f0c342daf3fd2154c551af251aeac9b}\label{usbhs_8h_a3f0c342daf3fd2154c551af251aeac9b}} 
+\index{usbhs.h@{usbhs.h}!USBHS\_FreeMemory@{USBHS\_FreeMemory}}
+\index{USBHS\_FreeMemory@{USBHS\_FreeMemory}!usbhs.h@{usbhs.h}}
+\subsubsection{\texorpdfstring{USBHS\_FreeMemory()}{USBHS\_FreeMemory()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void U\+S\+B\+H\+S\+\_\+\+Free\+Memory (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$}]{p\+Usbhs,  }\item[{uint8\+\_\+t}]{Ep }\end{DoxyParamCaption})}
+
+Free allocated Endpoint memory \mbox{\Hypertarget{usbhs_8h_a07183fee11fbf4c00401b455bdfed9dd}\label{usbhs_8h_a07183fee11fbf4c00401b455bdfed9dd}} 
+\index{usbhs.h@{usbhs.h}!USBHS\_FreezeClock@{USBHS\_FreezeClock}}
+\index{USBHS\_FreezeClock@{USBHS\_FreezeClock}!usbhs.h@{usbhs.h}}
+\subsubsection{\texorpdfstring{USBHS\_FreezeClock()}{USBHS\_FreezeClock()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void U\+S\+B\+H\+S\+\_\+\+Freeze\+Clock (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$}]{p\+Usbhs }\end{DoxyParamCaption})}
+
+
+
+Freeze or unfreeze U\+SB clock. 
+
+
+
+ \subsection*{U\+S\+B\+H\+S\+\_\+\+C\+T\+RL }
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Usbhs} & Pointer to an U\+S\+B\+HS instance. \\
+\hline
+{\em Enable} & Enable or disable \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{usbhs_8h_aa3cab362870739aaf4e5fe4dfc224710}\label{usbhs_8h_aa3cab362870739aaf4e5fe4dfc224710}} 
+\index{usbhs.h@{usbhs.h}!USBHS\_GetAddress@{USBHS\_GetAddress}}
+\index{USBHS\_GetAddress@{USBHS\_GetAddress}!usbhs.h@{usbhs.h}}
+\subsubsection{\texorpdfstring{USBHS\_GetAddress()}{USBHS\_GetAddress()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE uint8\+\_\+t U\+S\+B\+H\+S\+\_\+\+Get\+Address (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$}]{p\+Usbhs }\end{DoxyParamCaption})}
+
+
+
+Get U\+SB address. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Usbhs} & Pointer to an U\+S\+B\+HS instance. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{usbhs_8h_a4e3485ec2d4cc77a04795d2047ccb7d5}\label{usbhs_8h_a4e3485ec2d4cc77a04795d2047ccb7d5}} 
+\index{usbhs.h@{usbhs.h}!USBHS\_GetConfigureEPs@{USBHS\_GetConfigureEPs}}
+\index{USBHS\_GetConfigureEPs@{USBHS\_GetConfigureEPs}!usbhs.h@{usbhs.h}}
+\subsubsection{\texorpdfstring{USBHS\_GetConfigureEPs()}{USBHS\_GetConfigureEPs()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE uint32\+\_\+t U\+S\+B\+H\+S\+\_\+\+Get\+Configure\+E\+Ps (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$}]{p\+Usbhs,  }\item[{uint8\+\_\+t}]{Ep,  }\item[{uint32\+\_\+t}]{Int\+Type }\end{DoxyParamCaption})}
+
+Get Endpoint configuration \mbox{\Hypertarget{usbhs_8h_a71498936e654a68761986daf5ba0f425}\label{usbhs_8h_a71498936e654a68761986daf5ba0f425}} 
+\index{usbhs.h@{usbhs.h}!USBHS\_GetDmaBuffAdd@{USBHS\_GetDmaBuffAdd}}
+\index{USBHS\_GetDmaBuffAdd@{USBHS\_GetDmaBuffAdd}!usbhs.h@{usbhs.h}}
+\subsubsection{\texorpdfstring{USBHS\_GetDmaBuffAdd()}{USBHS\_GetDmaBuffAdd()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE uint32\+\_\+t U\+S\+B\+H\+S\+\_\+\+Get\+Dma\+Buff\+Add (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structUsbhsDevdma}{Usbhs\+Devdma}} $\ast$}]{p\+Usb\+Dma }\end{DoxyParamCaption})}
+
+
+
+Gets U\+S\+B\+HS\textquotesingle{}s D\+MA Buffer addresse. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Usb\+Dma} & U\+S\+B\+HS device D\+MA instance \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+D\+MA addrs 
+\end{DoxyReturn}
+\mbox{\Hypertarget{usbhs_8h_ae864a5b84b9053ceeb6c63bf344a9e98}\label{usbhs_8h_ae864a5b84b9053ceeb6c63bf344a9e98}} 
+\index{usbhs.h@{usbhs.h}!USBHS\_GetDmaBuffCount@{USBHS\_GetDmaBuffCount}}
+\index{USBHS\_GetDmaBuffCount@{USBHS\_GetDmaBuffCount}!usbhs.h@{usbhs.h}}
+\subsubsection{\texorpdfstring{USBHS\_GetDmaBuffCount()}{USBHS\_GetDmaBuffCount()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE uint16\+\_\+t U\+S\+B\+H\+S\+\_\+\+Get\+Dma\+Buff\+Count (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structUsbhsDevdma}{Usbhs\+Devdma}} $\ast$}]{p\+Usb\+Dma }\end{DoxyParamCaption})}
+
+
+
+Get D\+MA buffer\textquotesingle{}s count. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Usb\+Dma} & U\+S\+B\+HS device D\+MA instance \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Buffer count 
+\end{DoxyReturn}
+\mbox{\Hypertarget{usbhs_8h_a6fe3ee05a1f5c5deb68b6c98b35bde96}\label{usbhs_8h_a6fe3ee05a1f5c5deb68b6c98b35bde96}} 
+\index{usbhs.h@{usbhs.h}!USBHS\_GetDmaConfiguration@{USBHS\_GetDmaConfiguration}}
+\index{USBHS\_GetDmaConfiguration@{USBHS\_GetDmaConfiguration}!usbhs.h@{usbhs.h}}
+\subsubsection{\texorpdfstring{USBHS\_GetDmaConfiguration()}{USBHS\_GetDmaConfiguration()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE uint32\+\_\+t U\+S\+B\+H\+S\+\_\+\+Get\+Dma\+Configuration (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structUsbhsDevdma}{Usbhs\+Devdma}} $\ast$}]{p\+Usb\+Dma }\end{DoxyParamCaption})}
+
+
+
+Get D\+MA configuration. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Usb\+Dma} & U\+S\+B\+HS device D\+MA instance \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+D\+MA control setup 
+\end{DoxyReturn}
+\mbox{\Hypertarget{usbhs_8h_a92c0c433bddc911ac0b42dc1a6aa9be7}\label{usbhs_8h_a92c0c433bddc911ac0b42dc1a6aa9be7}} 
+\index{usbhs.h@{usbhs.h}!USBHS\_GetDmaNDA@{USBHS\_GetDmaNDA}}
+\index{USBHS\_GetDmaNDA@{USBHS\_GetDmaNDA}!usbhs.h@{usbhs.h}}
+\subsubsection{\texorpdfstring{USBHS\_GetDmaNDA()}{USBHS\_GetDmaNDA()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE uint32\+\_\+t U\+S\+B\+H\+S\+\_\+\+Get\+Dma\+N\+DA (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structUsbhsDevdma}{Usbhs\+Devdma}} $\ast$}]{p\+Usb\+Dma }\end{DoxyParamCaption})}
+
+
+
+Gets D\+MA next descriptor address. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Usb\+Dma} & U\+S\+B\+HS device D\+MA instance \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Next D\+MA descriptor 
+\end{DoxyReturn}
+\mbox{\Hypertarget{usbhs_8h_abf7bc46296d9353fa33a82ee8a1a2ace}\label{usbhs_8h_abf7bc46296d9353fa33a82ee8a1a2ace}} 
+\index{usbhs.h@{usbhs.h}!USBHS\_GetDmaStatus@{USBHS\_GetDmaStatus}}
+\index{USBHS\_GetDmaStatus@{USBHS\_GetDmaStatus}!usbhs.h@{usbhs.h}}
+\subsubsection{\texorpdfstring{USBHS\_GetDmaStatus()}{USBHS\_GetDmaStatus()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE uint32\+\_\+t U\+S\+B\+H\+S\+\_\+\+Get\+Dma\+Status (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structUsbhsDevdma}{Usbhs\+Devdma}} $\ast$}]{p\+Usb\+Dma }\end{DoxyParamCaption})}
+
+
+
+Get Dma Status. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Usb\+Dma} & U\+S\+B\+HS device D\+MA instance \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Dma status 
+\end{DoxyReturn}
+\mbox{\Hypertarget{usbhs_8h_af11bea4c155867153ce6a0ae7700d671}\label{usbhs_8h_af11bea4c155867153ce6a0ae7700d671}} 
+\index{usbhs.h@{usbhs.h}!USBHS\_GetEpSize@{USBHS\_GetEpSize}}
+\index{USBHS\_GetEpSize@{USBHS\_GetEpSize}!usbhs.h@{usbhs.h}}
+\subsubsection{\texorpdfstring{USBHS\_GetEpSize()}{USBHS\_GetEpSize()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE uint32\+\_\+t U\+S\+B\+H\+S\+\_\+\+Get\+Ep\+Size (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$}]{p\+Usbhs,  }\item[{uint8\+\_\+t}]{Ep }\end{DoxyParamCaption})}
+
+Get Endpoint Size \mbox{\Hypertarget{usbhs_8h_a2d57f0978079a4c218c3c4642bd4faa0}\label{usbhs_8h_a2d57f0978079a4c218c3c4642bd4faa0}} 
+\index{usbhs.h@{usbhs.h}!USBHS\_GetEpType@{USBHS\_GetEpType}}
+\index{USBHS\_GetEpType@{USBHS\_GetEpType}!usbhs.h@{usbhs.h}}
+\subsubsection{\texorpdfstring{USBHS\_GetEpType()}{USBHS\_GetEpType()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE uint8\+\_\+t U\+S\+B\+H\+S\+\_\+\+Get\+Ep\+Type (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$}]{p\+Usbhs,  }\item[{uint8\+\_\+t}]{Ep }\end{DoxyParamCaption})}
+
+Get Endpoint Type \mbox{\Hypertarget{usbhs_8h_ab049b9cefa0454da5a5cadaa30e7ca03}\label{usbhs_8h_ab049b9cefa0454da5a5cadaa30e7ca03}} 
+\index{usbhs.h@{usbhs.h}!USBHS\_GetFrameNum@{USBHS\_GetFrameNum}}
+\index{USBHS\_GetFrameNum@{USBHS\_GetFrameNum}!usbhs.h@{usbhs.h}}
+\subsubsection{\texorpdfstring{USBHS\_GetFrameNum()}{USBHS\_GetFrameNum()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE uint8\+\_\+t U\+S\+B\+H\+S\+\_\+\+Get\+Frame\+Num (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$}]{p\+Usbhs }\end{DoxyParamCaption})}
+
+
+
+Get Frame number. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Usbhs} & Pointer to an U\+S\+B\+HS instance. \textbackslash{}retruns frame number \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{usbhs_8h_a6e5d575fa1cbd5197c3877e4905353c7}\label{usbhs_8h_a6e5d575fa1cbd5197c3877e4905353c7}} 
+\index{usbhs.h@{usbhs.h}!USBHS\_GetFrameNumCrcErr@{USBHS\_GetFrameNumCrcErr}}
+\index{USBHS\_GetFrameNumCrcErr@{USBHS\_GetFrameNumCrcErr}!usbhs.h@{usbhs.h}}
+\subsubsection{\texorpdfstring{USBHS\_GetFrameNumCrcErr()}{USBHS\_GetFrameNumCrcErr()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE uint8\+\_\+t U\+S\+B\+H\+S\+\_\+\+Get\+Frame\+Num\+Crc\+Err (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$}]{p\+Usbhs }\end{DoxyParamCaption})}
+
+
+
+Get Frame number C\+RC error. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Usbhs} & Pointer to an U\+S\+B\+HS instance. \textbackslash{}retruns Frame number error status \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{usbhs_8h_ae8f0f173c0eba29fbde8f0db687c9937}\label{usbhs_8h_ae8f0f173c0eba29fbde8f0db687c9937}} 
+\index{usbhs.h@{usbhs.h}!USBHS\_GetHostDmaBuffAdd@{USBHS\_GetHostDmaBuffAdd}}
+\index{USBHS\_GetHostDmaBuffAdd@{USBHS\_GetHostDmaBuffAdd}!usbhs.h@{usbhs.h}}
+\subsubsection{\texorpdfstring{USBHS\_GetHostDmaBuffAdd()}{USBHS\_GetHostDmaBuffAdd()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE uint32\+\_\+t U\+S\+B\+H\+S\+\_\+\+Get\+Host\+Dma\+Buff\+Add (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structUsbhsHstdma}{Usbhs\+Hstdma}} $\ast$}]{p\+Usb\+Dma }\end{DoxyParamCaption})}
+
+
+
+Gets U\+S\+B\+HS\textquotesingle{}s D\+MA Buffer addresse. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Usb\+Dma} & U\+S\+B\+HS device D\+MA instance \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+D\+MA addrs 
+\end{DoxyReturn}
+\mbox{\Hypertarget{usbhs_8h_ad5c1c8dce25698d0d219825643f2ab16}\label{usbhs_8h_ad5c1c8dce25698d0d219825643f2ab16}} 
+\index{usbhs.h@{usbhs.h}!USBHS\_GetHostDmaConfiguration@{USBHS\_GetHostDmaConfiguration}}
+\index{USBHS\_GetHostDmaConfiguration@{USBHS\_GetHostDmaConfiguration}!usbhs.h@{usbhs.h}}
+\subsubsection{\texorpdfstring{USBHS\_GetHostDmaConfiguration()}{USBHS\_GetHostDmaConfiguration()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE uint32\+\_\+t U\+S\+B\+H\+S\+\_\+\+Get\+Host\+Dma\+Configuration (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structUsbhsHstdma}{Usbhs\+Hstdma}} $\ast$}]{p\+Usb\+Dma }\end{DoxyParamCaption})}
+
+
+
+Get D\+MA configuration. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Usb\+Dma} & U\+S\+B\+HS device D\+MA instance \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+D\+MA control setup 
+\end{DoxyReturn}
+\mbox{\Hypertarget{usbhs_8h_a1550cd9ab1fca40ec953dcab04ae6321}\label{usbhs_8h_a1550cd9ab1fca40ec953dcab04ae6321}} 
+\index{usbhs.h@{usbhs.h}!USBHS\_GetHostDmaNDA@{USBHS\_GetHostDmaNDA}}
+\index{USBHS\_GetHostDmaNDA@{USBHS\_GetHostDmaNDA}!usbhs.h@{usbhs.h}}
+\subsubsection{\texorpdfstring{USBHS\_GetHostDmaNDA()}{USBHS\_GetHostDmaNDA()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE uint32\+\_\+t U\+S\+B\+H\+S\+\_\+\+Get\+Host\+Dma\+N\+DA (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structUsbhsHstdma}{Usbhs\+Hstdma}} $\ast$}]{p\+Usb\+Dma }\end{DoxyParamCaption})}
+
+
+
+Gets D\+MA next descriptor address. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Usb\+Dma} & U\+S\+B\+HS device D\+MA instance \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Next D\+MA descriptor 
+\end{DoxyReturn}
+\mbox{\Hypertarget{usbhs_8h_a09970f012dc42f48d361f4a40e36b1bc}\label{usbhs_8h_a09970f012dc42f48d361f4a40e36b1bc}} 
+\index{usbhs.h@{usbhs.h}!USBHS\_GetHostDmaPipeStatus@{USBHS\_GetHostDmaPipeStatus}}
+\index{USBHS\_GetHostDmaPipeStatus@{USBHS\_GetHostDmaPipeStatus}!usbhs.h@{usbhs.h}}
+\subsubsection{\texorpdfstring{USBHS\_GetHostDmaPipeStatus()}{USBHS\_GetHostDmaPipeStatus()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE uint32\+\_\+t U\+S\+B\+H\+S\+\_\+\+Get\+Host\+Dma\+Pipe\+Status (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$}]{p\+Usbhs,  }\item[{uint8\+\_\+t}]{Pipe\+Int }\end{DoxyParamCaption})}
+
+
+
+Gets U\+SB host interrupt status. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Usbhs} & U\+S\+B\+HS host instance \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{usbhs_8h_a867c067ec59082580389661c677469ea}\label{usbhs_8h_a867c067ec59082580389661c677469ea}} 
+\index{usbhs.h@{usbhs.h}!USBHS\_GetHostPipeDmaStatus@{USBHS\_GetHostPipeDmaStatus}}
+\index{USBHS\_GetHostPipeDmaStatus@{USBHS\_GetHostPipeDmaStatus}!usbhs.h@{usbhs.h}}
+\subsubsection{\texorpdfstring{USBHS\_GetHostPipeDmaStatus()}{USBHS\_GetHostPipeDmaStatus()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE uint32\+\_\+t U\+S\+B\+H\+S\+\_\+\+Get\+Host\+Pipe\+Dma\+Status (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structUsbhsHstdma}{Usbhs\+Hstdma}} $\ast$}]{p\+Usb\+Dma }\end{DoxyParamCaption})}
+
+
+
+Get Dma Status. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Usb\+Dma} & U\+S\+B\+HS device D\+MA instance \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Dma status 
+\end{DoxyReturn}
+\mbox{\Hypertarget{usbhs_8h_a49d4f490d00f476a36e2d0c073dc0af8}\label{usbhs_8h_a49d4f490d00f476a36e2d0c073dc0af8}} 
+\index{usbhs.h@{usbhs.h}!USBHS\_GetHostPipeStatus@{USBHS\_GetHostPipeStatus}}
+\index{USBHS\_GetHostPipeStatus@{USBHS\_GetHostPipeStatus}!usbhs.h@{usbhs.h}}
+\subsubsection{\texorpdfstring{USBHS\_GetHostPipeStatus()}{USBHS\_GetHostPipeStatus()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE uint32\+\_\+t U\+S\+B\+H\+S\+\_\+\+Get\+Host\+Pipe\+Status (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$}]{p\+Usbhs,  }\item[{uint8\+\_\+t}]{Pipe\+Int }\end{DoxyParamCaption})}
+
+
+
+Gets U\+SB host interrupt status. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Usbhs} & U\+S\+B\+HS host instance \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{usbhs_8h_a40267eb93445cc78fe9b243d25622f9c}\label{usbhs_8h_a40267eb93445cc78fe9b243d25622f9c}} 
+\index{usbhs.h@{usbhs.h}!USBHS\_GetHostStatus@{USBHS\_GetHostStatus}}
+\index{USBHS\_GetHostStatus@{USBHS\_GetHostStatus}!usbhs.h@{usbhs.h}}
+\subsubsection{\texorpdfstring{USBHS\_GetHostStatus()}{USBHS\_GetHostStatus()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE uint32\+\_\+t U\+S\+B\+H\+S\+\_\+\+Get\+Host\+Status (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$}]{p\+Usbhs,  }\item[{uint8\+\_\+t}]{Int\+Type }\end{DoxyParamCaption})}
+
+
+
+Gets U\+SB host interrupt status. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Usbhs} & U\+S\+B\+HS host instance \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{usbhs_8h_ae10710fce7d4eadf4434669daa7f2620}\label{usbhs_8h_ae10710fce7d4eadf4434669daa7f2620}} 
+\index{usbhs.h@{usbhs.h}!USBHS\_GetMicroFrameNum@{USBHS\_GetMicroFrameNum}}
+\index{USBHS\_GetMicroFrameNum@{USBHS\_GetMicroFrameNum}!usbhs.h@{usbhs.h}}
+\subsubsection{\texorpdfstring{USBHS\_GetMicroFrameNum()}{USBHS\_GetMicroFrameNum()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE uint8\+\_\+t U\+S\+B\+H\+S\+\_\+\+Get\+Micro\+Frame\+Num (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$}]{p\+Usbhs }\end{DoxyParamCaption})}
+
+
+
+Get Micr\+Frame number. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Usbhs} & Pointer to an U\+S\+B\+HS instance. \textbackslash{}retruns Micro frame number \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{usbhs_8h_a23bc7c30ae1779f56b28b82cf5153866}\label{usbhs_8h_a23bc7c30ae1779f56b28b82cf5153866}} 
+\index{usbhs.h@{usbhs.h}!USBHS\_GetUsbSpeed@{USBHS\_GetUsbSpeed}}
+\index{USBHS\_GetUsbSpeed@{USBHS\_GetUsbSpeed}!usbhs.h@{usbhs.h}}
+\subsubsection{\texorpdfstring{USBHS\_GetUsbSpeed()}{USBHS\_GetUsbSpeed()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE uint32\+\_\+t U\+S\+B\+H\+S\+\_\+\+Get\+Usb\+Speed (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$}]{p\+Usbhs }\end{DoxyParamCaption})}
+
+
+
+Enable or disable U\+SB address. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Usbhs} & Pointer to an U\+S\+B\+HS instance. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+U\+SB speed status 
+\end{DoxyReturn}
+\mbox{\Hypertarget{usbhs_8h_a97e601451758556ee0591fae627974d8}\label{usbhs_8h_a97e601451758556ee0591fae627974d8}} 
+\index{usbhs.h@{usbhs.h}!USBHS\_HostAckPipeIntType@{USBHS\_HostAckPipeIntType}}
+\index{USBHS\_HostAckPipeIntType@{USBHS\_HostAckPipeIntType}!usbhs.h@{usbhs.h}}
+\subsubsection{\texorpdfstring{USBHS\_HostAckPipeIntType()}{USBHS\_HostAckPipeIntType()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void U\+S\+B\+H\+S\+\_\+\+Host\+Ack\+Pipe\+Int\+Type (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$}]{p\+Usbhs,  }\item[{uint8\+\_\+t}]{Pipe,  }\item[{uint32\+\_\+t}]{int\+Type }\end{DoxyParamCaption})}
+
+
+
+Gets U\+SB host interrupt status. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Usbhs} & U\+S\+B\+HS host instance \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{usbhs_8h_aedf0c19282a4ab894880c582f9cc4706}\label{usbhs_8h_aedf0c19282a4ab894880c582f9cc4706}} 
+\index{usbhs.h@{usbhs.h}!USBHS\_HostAllocMem@{USBHS\_HostAllocMem}}
+\index{USBHS\_HostAllocMem@{USBHS\_HostAllocMem}!usbhs.h@{usbhs.h}}
+\subsubsection{\texorpdfstring{USBHS\_HostAllocMem()}{USBHS\_HostAllocMem()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void U\+S\+B\+H\+S\+\_\+\+Host\+Alloc\+Mem (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$}]{p\+Usbhs,  }\item[{uint8\+\_\+t}]{Pipe }\end{DoxyParamCaption})}
+
+
+
+Gets U\+SB host interrupt status. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Usbhs} & U\+S\+B\+HS host instance \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{usbhs_8h_a5d2c49f1194cc78dea81c614f36a06e8}\label{usbhs_8h_a5d2c49f1194cc78dea81c614f36a06e8}} 
+\index{usbhs.h@{usbhs.h}!USBHS\_HostClearErr@{USBHS\_HostClearErr}}
+\index{USBHS\_HostClearErr@{USBHS\_HostClearErr}!usbhs.h@{usbhs.h}}
+\subsubsection{\texorpdfstring{USBHS\_HostClearErr()}{USBHS\_HostClearErr()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void U\+S\+B\+H\+S\+\_\+\+Host\+Clear\+Err (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$}]{p\+Usbhs,  }\item[{uint8\+\_\+t}]{Pipe,  }\item[{uint8\+\_\+t}]{Err }\end{DoxyParamCaption})}
+
+
+
+Gets U\+SB host interrupt status. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Usbhs} & U\+S\+B\+HS host instance \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{usbhs_8h_ad7321df66563d27e92e3eee190f5f328}\label{usbhs_8h_ad7321df66563d27e92e3eee190f5f328}} 
+\index{usbhs.h@{usbhs.h}!USBHS\_HostConfigure@{USBHS\_HostConfigure}}
+\index{USBHS\_HostConfigure@{USBHS\_HostConfigure}!usbhs.h@{usbhs.h}}
+\subsubsection{\texorpdfstring{USBHS\_HostConfigure()}{USBHS\_HostConfigure()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void U\+S\+B\+H\+S\+\_\+\+Host\+Configure (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$}]{p\+Usbhs,  }\item[{uint8\+\_\+t}]{Pipe,  }\item[{uint32\+\_\+t}]{pipe\+Bank,  }\item[{uint8\+\_\+t}]{pipe\+Size,  }\item[{uint32\+\_\+t}]{pipe\+Type,  }\item[{uint32\+\_\+t}]{pipe\+Token,  }\item[{uint8\+\_\+t}]{pipe\+Ep\+Num,  }\item[{uint8\+\_\+t}]{Pipe\+Int\+Freq }\end{DoxyParamCaption})}
+
+
+
+Gets U\+SB host interrupt status. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Usbhs} & U\+S\+B\+HS host instance \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{usbhs_8h_ad212cc35348ff023533b9a47aba79345}\label{usbhs_8h_ad212cc35348ff023533b9a47aba79345}} 
+\index{usbhs.h@{usbhs.h}!USBHS\_HostConfigureDma@{USBHS\_HostConfigureDma}}
+\index{USBHS\_HostConfigureDma@{USBHS\_HostConfigureDma}!usbhs.h@{usbhs.h}}
+\subsubsection{\texorpdfstring{USBHS\_HostConfigureDma()}{USBHS\_HostConfigureDma()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void U\+S\+B\+H\+S\+\_\+\+Host\+Configure\+Dma (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structUsbhsHstdma}{Usbhs\+Hstdma}} $\ast$}]{p\+Usb\+Dma,  }\item[{uint32\+\_\+t}]{Cfg }\end{DoxyParamCaption})}
+
+
+
+Setup the U\+S\+B\+HS D\+MA. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Usb\+Dma} & U\+S\+B\+HS device D\+MA instance \\
+\hline
+{\em Cfg} & D\+MA\textquotesingle{}s configuration \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{usbhs_8h_af33de4a77714a4669ec1d6c52847ce36}\label{usbhs_8h_af33de4a77714a4669ec1d6c52847ce36}} 
+\index{usbhs.h@{usbhs.h}!USBHS\_HostDisableAutoSw@{USBHS\_HostDisableAutoSw}}
+\index{USBHS\_HostDisableAutoSw@{USBHS\_HostDisableAutoSw}!usbhs.h@{usbhs.h}}
+\subsubsection{\texorpdfstring{USBHS\_HostDisableAutoSw()}{USBHS\_HostDisableAutoSw()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void U\+S\+B\+H\+S\+\_\+\+Host\+Disable\+Auto\+Sw (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$}]{p\+Usbhs,  }\item[{uint8\+\_\+t}]{Pipe }\end{DoxyParamCaption})}
+
+
+
+Gets U\+SB host interrupt status. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Usbhs} & U\+S\+B\+HS host instance \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{usbhs_8h_ac0d1007b23379af5c4d286a243b4f5e1}\label{usbhs_8h_ac0d1007b23379af5c4d286a243b4f5e1}} 
+\index{usbhs.h@{usbhs.h}!USBHS\_HostDisableInReq@{USBHS\_HostDisableInReq}}
+\index{USBHS\_HostDisableInReq@{USBHS\_HostDisableInReq}!usbhs.h@{usbhs.h}}
+\subsubsection{\texorpdfstring{USBHS\_HostDisableInReq()}{USBHS\_HostDisableInReq()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void U\+S\+B\+H\+S\+\_\+\+Host\+Disable\+In\+Req (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$}]{p\+Usbhs,  }\item[{uint8\+\_\+t}]{Pipe }\end{DoxyParamCaption})}
+
+
+
+Gets U\+SB host interrupt status. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Usbhs} & U\+S\+B\+HS host instance \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{usbhs_8h_a32c56acaace52b440a308d9bce8cafff}\label{usbhs_8h_a32c56acaace52b440a308d9bce8cafff}} 
+\index{usbhs.h@{usbhs.h}!USBHS\_HostDisablePipeIntType@{USBHS\_HostDisablePipeIntType}}
+\index{USBHS\_HostDisablePipeIntType@{USBHS\_HostDisablePipeIntType}!usbhs.h@{usbhs.h}}
+\subsubsection{\texorpdfstring{USBHS\_HostDisablePipeIntType()}{USBHS\_HostDisablePipeIntType()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void U\+S\+B\+H\+S\+\_\+\+Host\+Disable\+Pipe\+Int\+Type (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$}]{p\+Usbhs,  }\item[{uint8\+\_\+t}]{Pipe,  }\item[{uint32\+\_\+t}]{int\+Type }\end{DoxyParamCaption})}
+
+
+
+Gets U\+SB host interrupt status. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Usbhs} & U\+S\+B\+HS host instance \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{usbhs_8h_a51f04ec0f693b7abf7a10e33faacac04}\label{usbhs_8h_a51f04ec0f693b7abf7a10e33faacac04}} 
+\index{usbhs.h@{usbhs.h}!USBHS\_HostDmaIntDisable@{USBHS\_HostDmaIntDisable}}
+\index{USBHS\_HostDmaIntDisable@{USBHS\_HostDmaIntDisable}!usbhs.h@{usbhs.h}}
+\subsubsection{\texorpdfstring{USBHS\_HostDmaIntDisable()}{USBHS\_HostDmaIntDisable()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void U\+S\+B\+H\+S\+\_\+\+Host\+Dma\+Int\+Disable (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$}]{p\+Usbhs,  }\item[{uint8\+\_\+t}]{Pipe\+Int }\end{DoxyParamCaption})}
+
+
+
+Gets U\+SB host interrupt status. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Usbhs} & U\+S\+B\+HS host instance \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{usbhs_8h_abca7229dc06a00a9e8cced6870f4a827}\label{usbhs_8h_abca7229dc06a00a9e8cced6870f4a827}} 
+\index{usbhs.h@{usbhs.h}!USBHS\_HostDmaIntEnable@{USBHS\_HostDmaIntEnable}}
+\index{USBHS\_HostDmaIntEnable@{USBHS\_HostDmaIntEnable}!usbhs.h@{usbhs.h}}
+\subsubsection{\texorpdfstring{USBHS\_HostDmaIntEnable()}{USBHS\_HostDmaIntEnable()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void U\+S\+B\+H\+S\+\_\+\+Host\+Dma\+Int\+Enable (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$}]{p\+Usbhs,  }\item[{uint8\+\_\+t}]{Pipe\+Int }\end{DoxyParamCaption})}
+
+
+
+Gets U\+SB host interrupt status. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Usbhs} & U\+S\+B\+HS host instance \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{usbhs_8h_aa347527d17e6ee48869cabe3344f0b8e}\label{usbhs_8h_aa347527d17e6ee48869cabe3344f0b8e}} 
+\index{usbhs.h@{usbhs.h}!USBHS\_HostEnableAutoSw@{USBHS\_HostEnableAutoSw}}
+\index{USBHS\_HostEnableAutoSw@{USBHS\_HostEnableAutoSw}!usbhs.h@{usbhs.h}}
+\subsubsection{\texorpdfstring{USBHS\_HostEnableAutoSw()}{USBHS\_HostEnableAutoSw()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void U\+S\+B\+H\+S\+\_\+\+Host\+Enable\+Auto\+Sw (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$}]{p\+Usbhs,  }\item[{uint8\+\_\+t}]{Pipe }\end{DoxyParamCaption})}
+
+
+
+Gets U\+SB host interrupt status. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Usbhs} & U\+S\+B\+HS host instance \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{usbhs_8h_a25b8f588492bd5dfd9f527e3cf50d68e}\label{usbhs_8h_a25b8f588492bd5dfd9f527e3cf50d68e}} 
+\index{usbhs.h@{usbhs.h}!USBHS\_HostEnableInReq@{USBHS\_HostEnableInReq}}
+\index{USBHS\_HostEnableInReq@{USBHS\_HostEnableInReq}!usbhs.h@{usbhs.h}}
+\subsubsection{\texorpdfstring{USBHS\_HostEnableInReq()}{USBHS\_HostEnableInReq()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void U\+S\+B\+H\+S\+\_\+\+Host\+Enable\+In\+Req (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$}]{p\+Usbhs,  }\item[{uint8\+\_\+t}]{Pipe }\end{DoxyParamCaption})}
+
+
+
+Gets U\+SB host interrupt status. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Usbhs} & U\+S\+B\+HS host instance \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{usbhs_8h_a5a732c50b940ba29ef94820ecbce731e}\label{usbhs_8h_a5a732c50b940ba29ef94820ecbce731e}} 
+\index{usbhs.h@{usbhs.h}!USBHS\_HostEnablePing@{USBHS\_HostEnablePing}}
+\index{USBHS\_HostEnablePing@{USBHS\_HostEnablePing}!usbhs.h@{usbhs.h}}
+\subsubsection{\texorpdfstring{USBHS\_HostEnablePing()}{USBHS\_HostEnablePing()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void U\+S\+B\+H\+S\+\_\+\+Host\+Enable\+Ping (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$}]{p\+Usbhs,  }\item[{uint8\+\_\+t}]{Pipe }\end{DoxyParamCaption})}
+
+
+
+Gets U\+SB host interrupt status. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Usbhs} & U\+S\+B\+HS host instance \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{usbhs_8h_acd60bcdb7e5420ac4cfb8b457838f9ba}\label{usbhs_8h_acd60bcdb7e5420ac4cfb8b457838f9ba}} 
+\index{usbhs.h@{usbhs.h}!USBHS\_HostEnablePipeIntType@{USBHS\_HostEnablePipeIntType}}
+\index{USBHS\_HostEnablePipeIntType@{USBHS\_HostEnablePipeIntType}!usbhs.h@{usbhs.h}}
+\subsubsection{\texorpdfstring{USBHS\_HostEnablePipeIntType()}{USBHS\_HostEnablePipeIntType()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void U\+S\+B\+H\+S\+\_\+\+Host\+Enable\+Pipe\+Int\+Type (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$}]{p\+Usbhs,  }\item[{uint8\+\_\+t}]{Pipe,  }\item[{uint32\+\_\+t}]{int\+Type }\end{DoxyParamCaption})}
+
+
+
+Gets U\+SB host interrupt status. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Usbhs} & U\+S\+B\+HS host instance \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{usbhs_8h_a5af3c325c4029dd2830a88dcf6d8d360}\label{usbhs_8h_a5af3c325c4029dd2830a88dcf6d8d360}} 
+\index{usbhs.h@{usbhs.h}!USBHS\_HostFreeMem@{USBHS\_HostFreeMem}}
+\index{USBHS\_HostFreeMem@{USBHS\_HostFreeMem}!usbhs.h@{usbhs.h}}
+\subsubsection{\texorpdfstring{USBHS\_HostFreeMem()}{USBHS\_HostFreeMem()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void U\+S\+B\+H\+S\+\_\+\+Host\+Free\+Mem (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$}]{p\+Usbhs,  }\item[{uint8\+\_\+t}]{Pipe }\end{DoxyParamCaption})}
+
+
+
+Gets U\+SB host interrupt status. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Usbhs} & U\+S\+B\+HS host instance \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{usbhs_8h_a41abdf2ba203409795e11992182c9e22}\label{usbhs_8h_a41abdf2ba203409795e11992182c9e22}} 
+\index{usbhs.h@{usbhs.h}!USBHS\_HostGetCurrentBank@{USBHS\_HostGetCurrentBank}}
+\index{USBHS\_HostGetCurrentBank@{USBHS\_HostGetCurrentBank}!usbhs.h@{usbhs.h}}
+\subsubsection{\texorpdfstring{USBHS\_HostGetCurrentBank()}{USBHS\_HostGetCurrentBank()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE uint8\+\_\+t U\+S\+B\+H\+S\+\_\+\+Host\+Get\+Current\+Bank (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$}]{p\+Usbhs,  }\item[{uint8\+\_\+t}]{Pipe }\end{DoxyParamCaption})}
+
+
+
+Gets U\+SB host interrupt status. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Usbhs} & U\+S\+B\+HS host instance \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{usbhs_8h_ab5730218930063afe0ce2cc2b9988eff}\label{usbhs_8h_ab5730218930063afe0ce2cc2b9988eff}} 
+\index{usbhs.h@{usbhs.h}!USBHS\_HostGetDataTogSeq@{USBHS\_HostGetDataTogSeq}}
+\index{USBHS\_HostGetDataTogSeq@{USBHS\_HostGetDataTogSeq}!usbhs.h@{usbhs.h}}
+\subsubsection{\texorpdfstring{USBHS\_HostGetDataTogSeq()}{USBHS\_HostGetDataTogSeq()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE uint8\+\_\+t U\+S\+B\+H\+S\+\_\+\+Host\+Get\+Data\+Tog\+Seq (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$}]{p\+Usbhs,  }\item[{uint8\+\_\+t}]{Pipe }\end{DoxyParamCaption})}
+
+
+
+Gets U\+SB host interrupt status. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Usbhs} & U\+S\+B\+HS host instance \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{usbhs_8h_ac3696a9240e22b2d40ee76d19633bed5}\label{usbhs_8h_ac3696a9240e22b2d40ee76d19633bed5}} 
+\index{usbhs.h@{usbhs.h}!USBHS\_HostGetErr@{USBHS\_HostGetErr}}
+\index{USBHS\_HostGetErr@{USBHS\_HostGetErr}!usbhs.h@{usbhs.h}}
+\subsubsection{\texorpdfstring{USBHS\_HostGetErr()}{USBHS\_HostGetErr()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE uint8\+\_\+t U\+S\+B\+H\+S\+\_\+\+Host\+Get\+Err (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$}]{p\+Usbhs,  }\item[{uint8\+\_\+t}]{Pipe,  }\item[{uint8\+\_\+t}]{Err }\end{DoxyParamCaption})}
+
+
+
+Gets U\+SB host interrupt status. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Usbhs} & U\+S\+B\+HS host instance \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{usbhs_8h_ace4d57215e8268e1e934fa376da56c83}\label{usbhs_8h_ace4d57215e8268e1e934fa376da56c83}} 
+\index{usbhs.h@{usbhs.h}!USBHS\_HostGetFramePos@{USBHS\_HostGetFramePos}}
+\index{USBHS\_HostGetFramePos@{USBHS\_HostGetFramePos}!usbhs.h@{usbhs.h}}
+\subsubsection{\texorpdfstring{USBHS\_HostGetFramePos()}{USBHS\_HostGetFramePos()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE uint16\+\_\+t U\+S\+B\+H\+S\+\_\+\+Host\+Get\+Frame\+Pos (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Gets U\+SB host interrupt status. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Usbhs} & U\+S\+B\+HS host instance \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{usbhs_8h_ae752afec4dfecc9565eaa4242ce9233f}\label{usbhs_8h_ae752afec4dfecc9565eaa4242ce9233f}} 
+\index{usbhs.h@{usbhs.h}!USBHS\_HostGetIntTypeStatus@{USBHS\_HostGetIntTypeStatus}}
+\index{USBHS\_HostGetIntTypeStatus@{USBHS\_HostGetIntTypeStatus}!usbhs.h@{usbhs.h}}
+\subsubsection{\texorpdfstring{USBHS\_HostGetIntTypeStatus()}{USBHS\_HostGetIntTypeStatus()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE uint32\+\_\+t U\+S\+B\+H\+S\+\_\+\+Host\+Get\+Int\+Type\+Status (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$}]{p\+Usbhs,  }\item[{uint8\+\_\+t}]{Pipe,  }\item[{uint32\+\_\+t}]{int\+Type }\end{DoxyParamCaption})}
+
+
+
+Gets U\+SB host interrupt status. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Usbhs} & U\+S\+B\+HS host instance \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{usbhs_8h_abbd31f8ac6a853c865dbab561cd93683}\label{usbhs_8h_abbd31f8ac6a853c865dbab561cd93683}} 
+\index{usbhs.h@{usbhs.h}!USBHS\_HostGetMSOF@{USBHS\_HostGetMSOF}}
+\index{USBHS\_HostGetMSOF@{USBHS\_HostGetMSOF}!usbhs.h@{usbhs.h}}
+\subsubsection{\texorpdfstring{USBHS\_HostGetMSOF()}{USBHS\_HostGetMSOF()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE uint16\+\_\+t U\+S\+B\+H\+S\+\_\+\+Host\+Get\+M\+S\+OF (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Gets U\+SB host interrupt status. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Usbhs} & U\+S\+B\+HS host instance \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{usbhs_8h_a556066e182615fc6072e5b6ad6a915c0}\label{usbhs_8h_a556066e182615fc6072e5b6ad6a915c0}} 
+\index{usbhs.h@{usbhs.h}!USBHS\_HostGetNumOfBusyBank@{USBHS\_HostGetNumOfBusyBank}}
+\index{USBHS\_HostGetNumOfBusyBank@{USBHS\_HostGetNumOfBusyBank}!usbhs.h@{usbhs.h}}
+\subsubsection{\texorpdfstring{USBHS\_HostGetNumOfBusyBank()}{USBHS\_HostGetNumOfBusyBank()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE uint8\+\_\+t U\+S\+B\+H\+S\+\_\+\+Host\+Get\+Num\+Of\+Busy\+Bank (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$}]{p\+Usbhs,  }\item[{uint8\+\_\+t}]{Pipe }\end{DoxyParamCaption})}
+
+
+
+Gets U\+SB host interrupt status. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Usbhs} & U\+S\+B\+HS host instance \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{usbhs_8h_a917ce318855654bd4d1ff18a24248899}\label{usbhs_8h_a917ce318855654bd4d1ff18a24248899}} 
+\index{usbhs.h@{usbhs.h}!USBHS\_HostGetPipeByteCount@{USBHS\_HostGetPipeByteCount}}
+\index{USBHS\_HostGetPipeByteCount@{USBHS\_HostGetPipeByteCount}!usbhs.h@{usbhs.h}}
+\subsubsection{\texorpdfstring{USBHS\_HostGetPipeByteCount()}{USBHS\_HostGetPipeByteCount()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE uint8\+\_\+t U\+S\+B\+H\+S\+\_\+\+Host\+Get\+Pipe\+Byte\+Count (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$}]{p\+Usbhs,  }\item[{uint8\+\_\+t}]{Pipe }\end{DoxyParamCaption})}
+
+
+
+Gets U\+SB host interrupt status. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Usbhs} & U\+S\+B\+HS host instance \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{usbhs_8h_a568fb6f40affb306e060461fe065a516}\label{usbhs_8h_a568fb6f40affb306e060461fe065a516}} 
+\index{usbhs.h@{usbhs.h}!USBHS\_HostGetPipeType@{USBHS\_HostGetPipeType}}
+\index{USBHS\_HostGetPipeType@{USBHS\_HostGetPipeType}!usbhs.h@{usbhs.h}}
+\subsubsection{\texorpdfstring{USBHS\_HostGetPipeType()}{USBHS\_HostGetPipeType()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE uint32\+\_\+t U\+S\+B\+H\+S\+\_\+\+Host\+Get\+Pipe\+Type (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$}]{p\+Usbhs,  }\item[{uint8\+\_\+t}]{Pipe }\end{DoxyParamCaption})}
+
+
+
+Gets U\+SB host interrupt status. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Usbhs} & U\+S\+B\+HS host instance \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{usbhs_8h_ac13debb9eb4e51de70e9086d6264ee88}\label{usbhs_8h_ac13debb9eb4e51de70e9086d6264ee88}} 
+\index{usbhs.h@{usbhs.h}!USBHS\_HostGetSize@{USBHS\_HostGetSize}}
+\index{USBHS\_HostGetSize@{USBHS\_HostGetSize}!usbhs.h@{usbhs.h}}
+\subsubsection{\texorpdfstring{USBHS\_HostGetSize()}{USBHS\_HostGetSize()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE uint16\+\_\+t U\+S\+B\+H\+S\+\_\+\+Host\+Get\+Size (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$}]{p\+Usbhs,  }\item[{uint8\+\_\+t}]{Pipe }\end{DoxyParamCaption})}
+
+
+
+Gets U\+SB host interrupt status. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Usbhs} & U\+S\+B\+HS host instance \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{usbhs_8h_ac2d5100e84f17f3afd652b4813f7a5b7}\label{usbhs_8h_ac2d5100e84f17f3afd652b4813f7a5b7}} 
+\index{usbhs.h@{usbhs.h}!USBHS\_HostGetSOF@{USBHS\_HostGetSOF}}
+\index{USBHS\_HostGetSOF@{USBHS\_HostGetSOF}!usbhs.h@{usbhs.h}}
+\subsubsection{\texorpdfstring{USBHS\_HostGetSOF()}{USBHS\_HostGetSOF()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE uint16\+\_\+t U\+S\+B\+H\+S\+\_\+\+Host\+Get\+S\+OF (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Gets U\+SB host interrupt status. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Usbhs} & U\+S\+B\+HS host instance \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{usbhs_8h_a7e40c3d1763e18ec62b55c48edadedde}\label{usbhs_8h_a7e40c3d1763e18ec62b55c48edadedde}} 
+\index{usbhs.h@{usbhs.h}!USBHS\_HostGetToken@{USBHS\_HostGetToken}}
+\index{USBHS\_HostGetToken@{USBHS\_HostGetToken}!usbhs.h@{usbhs.h}}
+\subsubsection{\texorpdfstring{USBHS\_HostGetToken()}{USBHS\_HostGetToken()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE uint32\+\_\+t U\+S\+B\+H\+S\+\_\+\+Host\+Get\+Token (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$}]{p\+Usbhs,  }\item[{uint8\+\_\+t}]{Pipe }\end{DoxyParamCaption})}
+
+
+
+Gets U\+SB host interrupt status. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Usbhs} & U\+S\+B\+HS host instance \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{usbhs_8h_aedba0b8562b6d4aa35096f3db61f18c6}\label{usbhs_8h_aedba0b8562b6d4aa35096f3db61f18c6}} 
+\index{usbhs.h@{usbhs.h}!USBHS\_HostInReq@{USBHS\_HostInReq}}
+\index{USBHS\_HostInReq@{USBHS\_HostInReq}!usbhs.h@{usbhs.h}}
+\subsubsection{\texorpdfstring{USBHS\_HostInReq()}{USBHS\_HostInReq()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void U\+S\+B\+H\+S\+\_\+\+Host\+In\+Req (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$}]{p\+Usbhs,  }\item[{uint8\+\_\+t}]{Pipe,  }\item[{uint8\+\_\+t}]{In\+Req }\end{DoxyParamCaption})}
+
+
+
+Gets U\+SB host interrupt status. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Usbhs} & U\+S\+B\+HS host instance \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{usbhs_8h_aa9a5b060519f982e8cd29dc32754b5a9}\label{usbhs_8h_aa9a5b060519f982e8cd29dc32754b5a9}} 
+\index{usbhs.h@{usbhs.h}!USBHS\_HostIntDisable@{USBHS\_HostIntDisable}}
+\index{USBHS\_HostIntDisable@{USBHS\_HostIntDisable}!usbhs.h@{usbhs.h}}
+\subsubsection{\texorpdfstring{USBHS\_HostIntDisable()}{USBHS\_HostIntDisable()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void U\+S\+B\+H\+S\+\_\+\+Host\+Int\+Disable (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$}]{p\+Usbhs,  }\item[{uint32\+\_\+t}]{Int\+Type }\end{DoxyParamCaption})}
+
+
+
+Gets U\+SB host interrupt status. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Usbhs} & U\+S\+B\+HS host instance \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{usbhs_8h_a7ac646519dfb6c319d8a60f08b5e4c29}\label{usbhs_8h_a7ac646519dfb6c319d8a60f08b5e4c29}} 
+\index{usbhs.h@{usbhs.h}!USBHS\_HostIntEnable@{USBHS\_HostIntEnable}}
+\index{USBHS\_HostIntEnable@{USBHS\_HostIntEnable}!usbhs.h@{usbhs.h}}
+\subsubsection{\texorpdfstring{USBHS\_HostIntEnable()}{USBHS\_HostIntEnable()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void U\+S\+B\+H\+S\+\_\+\+Host\+Int\+Enable (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$}]{p\+Usbhs,  }\item[{uint32\+\_\+t}]{Int\+Type }\end{DoxyParamCaption})}
+
+
+
+Gets U\+SB host interrupt status. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Usbhs} & U\+S\+B\+HS host instance \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{usbhs_8h_a4aabd40a9718b4bab7036aa5439a266f}\label{usbhs_8h_a4aabd40a9718b4bab7036aa5439a266f}} 
+\index{usbhs.h@{usbhs.h}!USBHS\_HostPipeDisable@{USBHS\_HostPipeDisable}}
+\index{USBHS\_HostPipeDisable@{USBHS\_HostPipeDisable}!usbhs.h@{usbhs.h}}
+\subsubsection{\texorpdfstring{USBHS\_HostPipeDisable()}{USBHS\_HostPipeDisable()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void U\+S\+B\+H\+S\+\_\+\+Host\+Pipe\+Disable (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$}]{p\+Usbhs,  }\item[{uint8\+\_\+t}]{Pipe }\end{DoxyParamCaption})}
+
+
+
+Gets U\+SB host interrupt status. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Usbhs} & U\+S\+B\+HS host instance \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{usbhs_8h_a10f00de072a1cbb4c14e9d125368f3ff}\label{usbhs_8h_a10f00de072a1cbb4c14e9d125368f3ff}} 
+\index{usbhs.h@{usbhs.h}!USBHS\_HostPipeEnable@{USBHS\_HostPipeEnable}}
+\index{USBHS\_HostPipeEnable@{USBHS\_HostPipeEnable}!usbhs.h@{usbhs.h}}
+\subsubsection{\texorpdfstring{USBHS\_HostPipeEnable()}{USBHS\_HostPipeEnable()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void U\+S\+B\+H\+S\+\_\+\+Host\+Pipe\+Enable (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$}]{p\+Usbhs,  }\item[{uint8\+\_\+t}]{Pipe }\end{DoxyParamCaption})}
+
+
+
+Gets U\+SB host interrupt status. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Usbhs} & U\+S\+B\+HS host instance \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{usbhs_8h_a4706c65710ae219aab80c2645d24fa81}\label{usbhs_8h_a4706c65710ae219aab80c2645d24fa81}} 
+\index{usbhs.h@{usbhs.h}!USBHS\_HostPipeIntDisable@{USBHS\_HostPipeIntDisable}}
+\index{USBHS\_HostPipeIntDisable@{USBHS\_HostPipeIntDisable}!usbhs.h@{usbhs.h}}
+\subsubsection{\texorpdfstring{USBHS\_HostPipeIntDisable()}{USBHS\_HostPipeIntDisable()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void U\+S\+B\+H\+S\+\_\+\+Host\+Pipe\+Int\+Disable (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$}]{p\+Usbhs,  }\item[{uint8\+\_\+t}]{Pipe\+Int }\end{DoxyParamCaption})}
+
+
+
+Gets U\+SB host interrupt status. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Usbhs} & U\+S\+B\+HS host instance \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{usbhs_8h_abe033170285572938d1ed3fbb01e9c3e}\label{usbhs_8h_abe033170285572938d1ed3fbb01e9c3e}} 
+\index{usbhs.h@{usbhs.h}!USBHS\_HostPipeIntEnable@{USBHS\_HostPipeIntEnable}}
+\index{USBHS\_HostPipeIntEnable@{USBHS\_HostPipeIntEnable}!usbhs.h@{usbhs.h}}
+\subsubsection{\texorpdfstring{USBHS\_HostPipeIntEnable()}{USBHS\_HostPipeIntEnable()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void U\+S\+B\+H\+S\+\_\+\+Host\+Pipe\+Int\+Enable (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$}]{p\+Usbhs,  }\item[{uint8\+\_\+t}]{Pipe\+Int }\end{DoxyParamCaption})}
+
+
+
+Gets U\+SB host interrupt status. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Usbhs} & U\+S\+B\+HS host instance \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{usbhs_8h_af0f50fcf9d7a16354a3a3a1b22140a4c}\label{usbhs_8h_af0f50fcf9d7a16354a3a3a1b22140a4c}} 
+\index{usbhs.h@{usbhs.h}!USBHS\_HostPipeReset@{USBHS\_HostPipeReset}}
+\index{USBHS\_HostPipeReset@{USBHS\_HostPipeReset}!usbhs.h@{usbhs.h}}
+\subsubsection{\texorpdfstring{USBHS\_HostPipeReset()}{USBHS\_HostPipeReset()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void U\+S\+B\+H\+S\+\_\+\+Host\+Pipe\+Reset (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$}]{p\+Usbhs,  }\item[{uint8\+\_\+t}]{Pipe }\end{DoxyParamCaption})}
+
+
+
+Gets U\+SB host interrupt status. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Usbhs} & U\+S\+B\+HS host instance \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{usbhs_8h_ac0cec1cec3e5e547d74d24f5df8105ac}\label{usbhs_8h_ac0cec1cec3e5e547d74d24f5df8105ac}} 
+\index{usbhs.h@{usbhs.h}!USBHS\_HostSetErr@{USBHS\_HostSetErr}}
+\index{USBHS\_HostSetErr@{USBHS\_HostSetErr}!usbhs.h@{usbhs.h}}
+\subsubsection{\texorpdfstring{USBHS\_HostSetErr()}{USBHS\_HostSetErr()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void U\+S\+B\+H\+S\+\_\+\+Host\+Set\+Err (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$}]{p\+Usbhs,  }\item[{uint8\+\_\+t}]{Pipe,  }\item[{uint8\+\_\+t}]{Err }\end{DoxyParamCaption})}
+
+
+
+Gets U\+SB host interrupt status. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Usbhs} & U\+S\+B\+HS host instance \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{usbhs_8h_a5bed8c57a0a14635f4c4f33ed5a07e3f}\label{usbhs_8h_a5bed8c57a0a14635f4c4f33ed5a07e3f}} 
+\index{usbhs.h@{usbhs.h}!USBHS\_HostSetIntFreq@{USBHS\_HostSetIntFreq}}
+\index{USBHS\_HostSetIntFreq@{USBHS\_HostSetIntFreq}!usbhs.h@{usbhs.h}}
+\subsubsection{\texorpdfstring{USBHS\_HostSetIntFreq()}{USBHS\_HostSetIntFreq()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void U\+S\+B\+H\+S\+\_\+\+Host\+Set\+Int\+Freq (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$}]{p\+Usbhs,  }\item[{uint8\+\_\+t}]{Pipe,  }\item[{uint8\+\_\+t}]{Freq }\end{DoxyParamCaption})}
+
+
+
+Gets U\+SB host interrupt status. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Usbhs} & U\+S\+B\+HS host instance \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{usbhs_8h_aadbfa6cd7ed91815f4a40b2a92c6d9eb}\label{usbhs_8h_aadbfa6cd7ed91815f4a40b2a92c6d9eb}} 
+\index{usbhs.h@{usbhs.h}!USBHS\_HostSetPipeIntType@{USBHS\_HostSetPipeIntType}}
+\index{USBHS\_HostSetPipeIntType@{USBHS\_HostSetPipeIntType}!usbhs.h@{usbhs.h}}
+\subsubsection{\texorpdfstring{USBHS\_HostSetPipeIntType()}{USBHS\_HostSetPipeIntType()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void U\+S\+B\+H\+S\+\_\+\+Host\+Set\+Pipe\+Int\+Type (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$}]{p\+Usbhs,  }\item[{uint8\+\_\+t}]{Pipe,  }\item[{uint32\+\_\+t}]{int\+Type }\end{DoxyParamCaption})}
+
+
+
+Gets U\+SB host interrupt status. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Usbhs} & U\+S\+B\+HS host instance \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{usbhs_8h_a5f6439f7e23f6a6641ffe8e3881efe24}\label{usbhs_8h_a5f6439f7e23f6a6641ffe8e3881efe24}} 
+\index{usbhs.h@{usbhs.h}!USBHS\_HostSetPipeType@{USBHS\_HostSetPipeType}}
+\index{USBHS\_HostSetPipeType@{USBHS\_HostSetPipeType}!usbhs.h@{usbhs.h}}
+\subsubsection{\texorpdfstring{USBHS\_HostSetPipeType()}{USBHS\_HostSetPipeType()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void U\+S\+B\+H\+S\+\_\+\+Host\+Set\+Pipe\+Type (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$}]{p\+Usbhs,  }\item[{uint8\+\_\+t}]{Pipe,  }\item[{uint8\+\_\+t}]{Pipe\+Type }\end{DoxyParamCaption})}
+
+
+
+Gets U\+SB host interrupt status. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Usbhs} & U\+S\+B\+HS host instance \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{usbhs_8h_a48f3b4774877abb73ad633b904e4caee}\label{usbhs_8h_a48f3b4774877abb73ad633b904e4caee}} 
+\index{usbhs.h@{usbhs.h}!USBHS\_HostSetToken@{USBHS\_HostSetToken}}
+\index{USBHS\_HostSetToken@{USBHS\_HostSetToken}!usbhs.h@{usbhs.h}}
+\subsubsection{\texorpdfstring{USBHS\_HostSetToken()}{USBHS\_HostSetToken()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void U\+S\+B\+H\+S\+\_\+\+Host\+Set\+Token (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$}]{p\+Usbhs,  }\item[{uint8\+\_\+t}]{Pipe,  }\item[{uint32\+\_\+t}]{Token }\end{DoxyParamCaption})}
+
+
+
+Gets U\+SB host interrupt status. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Usbhs} & U\+S\+B\+HS host instance \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{usbhs_8h_aa8d5c4b9a4a142b1c587fcfaa7532596}\label{usbhs_8h_aa8d5c4b9a4a142b1c587fcfaa7532596}} 
+\index{usbhs.h@{usbhs.h}!USBHS\_IsBankFree@{USBHS\_IsBankFree}}
+\index{USBHS\_IsBankFree@{USBHS\_IsBankFree}!usbhs.h@{usbhs.h}}
+\subsubsection{\texorpdfstring{USBHS\_IsBankFree()}{USBHS\_IsBankFree()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE uint8\+\_\+t U\+S\+B\+H\+S\+\_\+\+Is\+Bank\+Free (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$}]{p\+Usbhs,  }\item[{uint8\+\_\+t}]{Ep }\end{DoxyParamCaption})}
+
+Check if given endpoint\textquotesingle{}s bank is free \mbox{\Hypertarget{usbhs_8h_a5e6709db254f3275a10b9725847c95a3}\label{usbhs_8h_a5e6709db254f3275a10b9725847c95a3}} 
+\index{usbhs.h@{usbhs.h}!USBHS\_IsBankKilled@{USBHS\_IsBankKilled}}
+\index{USBHS\_IsBankKilled@{USBHS\_IsBankKilled}!usbhs.h@{usbhs.h}}
+\subsubsection{\texorpdfstring{USBHS\_IsBankKilled()}{USBHS\_IsBankKilled()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE uint32\+\_\+t U\+S\+B\+H\+S\+\_\+\+Is\+Bank\+Killed (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$}]{p\+Usbhs,  }\item[{uint8\+\_\+t}]{Ep }\end{DoxyParamCaption})}
+
+Enables an interrupt type for a given endpoint \mbox{\Hypertarget{usbhs_8h_a66c5b24b3bb969945eb34f5603539374}\label{usbhs_8h_a66c5b24b3bb969945eb34f5603539374}} 
+\index{usbhs.h@{usbhs.h}!USBHS\_IsDmaIntEnable@{USBHS\_IsDmaIntEnable}}
+\index{USBHS\_IsDmaIntEnable@{USBHS\_IsDmaIntEnable}!usbhs.h@{usbhs.h}}
+\subsubsection{\texorpdfstring{USBHS\_IsDmaIntEnable()}{USBHS\_IsDmaIntEnable()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE uint32\+\_\+t U\+S\+B\+H\+S\+\_\+\+Is\+Dma\+Int\+Enable (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$}]{p\+Usbhs,  }\item[{uint8\+\_\+t}]{Dma\+Num }\end{DoxyParamCaption})}
+
+
+
+Check if endpoint\textquotesingle{}s D\+MA interrupt is enabled for a given endpoint D\+MA number. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Usbhs} & Pointer to an U\+S\+B\+HS instance. \\
+\hline
+{\em Dma\+Num} & Endpoint\textquotesingle{}s D\+MA number \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{usbhs_8h_a00c26cb8e5bbda68e2ab8a379a7bd001}\label{usbhs_8h_a00c26cb8e5bbda68e2ab8a379a7bd001}} 
+\index{usbhs.h@{usbhs.h}!USBHS\_IsEnableSOF@{USBHS\_IsEnableSOF}}
+\index{USBHS\_IsEnableSOF@{USBHS\_IsEnableSOF}!usbhs.h@{usbhs.h}}
+\subsubsection{\texorpdfstring{USBHS\_IsEnableSOF()}{USBHS\_IsEnableSOF()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE uint8\+\_\+t U\+S\+B\+H\+S\+\_\+\+Is\+Enable\+S\+OF (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$}]{p\+Usbhs }\end{DoxyParamCaption})}
+
+
+
+Sets U\+SB host Enable the Generation of Start of Frame. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Usbhs} & U\+S\+B\+HS host instance \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{usbhs_8h_a8af24a65ae5dca2e299082d592ca445c}\label{usbhs_8h_a8af24a65ae5dca2e299082d592ca445c}} 
+\index{usbhs.h@{usbhs.h}!USBHS\_IsEPEnabled@{USBHS\_IsEPEnabled}}
+\index{USBHS\_IsEPEnabled@{USBHS\_IsEPEnabled}!usbhs.h@{usbhs.h}}
+\subsubsection{\texorpdfstring{USBHS\_IsEPEnabled()}{USBHS\_IsEPEnabled()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE uint32\+\_\+t U\+S\+B\+H\+S\+\_\+\+Is\+E\+P\+Enabled (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$}]{p\+Usbhs,  }\item[{uint8\+\_\+t}]{Ep }\end{DoxyParamCaption})}
+
+
+
+Checks if Endpoint is enable. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Usbhs} & Pointer to an U\+S\+B\+HS instance. \\
+\hline
+{\em Ep} & Endpoint Number \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{usbhs_8h_a53c55fa48fbb95b2e0f67b58ca4cde49}\label{usbhs_8h_a53c55fa48fbb95b2e0f67b58ca4cde49}} 
+\index{usbhs.h@{usbhs.h}!USBHS\_IsEpIntEnable@{USBHS\_IsEpIntEnable}}
+\index{USBHS\_IsEpIntEnable@{USBHS\_IsEpIntEnable}!usbhs.h@{usbhs.h}}
+\subsubsection{\texorpdfstring{USBHS\_IsEpIntEnable()}{USBHS\_IsEpIntEnable()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE uint32\+\_\+t U\+S\+B\+H\+S\+\_\+\+Is\+Ep\+Int\+Enable (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$}]{p\+Usbhs,  }\item[{uint8\+\_\+t}]{Ep,  }\item[{uint32\+\_\+t}]{Ep\+Int\+Type }\end{DoxyParamCaption})}
+
+Check for interrupt types enabled for a given endpoint \mbox{\Hypertarget{usbhs_8h_a80888f7cf448edbebfc2cb99264e0642}\label{usbhs_8h_a80888f7cf448edbebfc2cb99264e0642}} 
+\index{usbhs.h@{usbhs.h}!USBHS\_IsHostConfigOk@{USBHS\_IsHostConfigOk}}
+\index{USBHS\_IsHostConfigOk@{USBHS\_IsHostConfigOk}!usbhs.h@{usbhs.h}}
+\subsubsection{\texorpdfstring{USBHS\_IsHostConfigOk()}{USBHS\_IsHostConfigOk()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE uint32\+\_\+t U\+S\+B\+H\+S\+\_\+\+Is\+Host\+Config\+Ok (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$}]{p\+Usbhs,  }\item[{uint8\+\_\+t}]{Pipe }\end{DoxyParamCaption})}
+
+
+
+Gets U\+SB host interrupt status. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Usbhs} & U\+S\+B\+HS host instance \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{usbhs_8h_a52553a3b2b96df8b5c9f55789aeb15ad}\label{usbhs_8h_a52553a3b2b96df8b5c9f55789aeb15ad}} 
+\index{usbhs.h@{usbhs.h}!USBHS\_IsHostDmaIntEnable@{USBHS\_IsHostDmaIntEnable}}
+\index{USBHS\_IsHostDmaIntEnable@{USBHS\_IsHostDmaIntEnable}!usbhs.h@{usbhs.h}}
+\subsubsection{\texorpdfstring{USBHS\_IsHostDmaIntEnable()}{USBHS\_IsHostDmaIntEnable()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE uint32\+\_\+t U\+S\+B\+H\+S\+\_\+\+Is\+Host\+Dma\+Int\+Enable (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$}]{p\+Usbhs,  }\item[{uint8\+\_\+t}]{Pipe\+Int }\end{DoxyParamCaption})}
+
+
+
+Gets U\+SB host interrupt status. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Usbhs} & U\+S\+B\+HS host instance \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{usbhs_8h_a23e0d01e4f85fa4b0af1e81b3d7efc6e}\label{usbhs_8h_a23e0d01e4f85fa4b0af1e81b3d7efc6e}} 
+\index{usbhs.h@{usbhs.h}!USBHS\_IsHostInReqEnable@{USBHS\_IsHostInReqEnable}}
+\index{USBHS\_IsHostInReqEnable@{USBHS\_IsHostInReqEnable}!usbhs.h@{usbhs.h}}
+\subsubsection{\texorpdfstring{USBHS\_IsHostInReqEnable()}{USBHS\_IsHostInReqEnable()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE uint8\+\_\+t U\+S\+B\+H\+S\+\_\+\+Is\+Host\+In\+Req\+Enable (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$}]{p\+Usbhs,  }\item[{uint8\+\_\+t}]{Pipe }\end{DoxyParamCaption})}
+
+
+
+Gets U\+SB host interrupt status. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Usbhs} & U\+S\+B\+HS host instance \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{usbhs_8h_a6e707992fde3a408663eae6e34b00deb}\label{usbhs_8h_a6e707992fde3a408663eae6e34b00deb}} 
+\index{usbhs.h@{usbhs.h}!USBHS\_IsHostIntEnable@{USBHS\_IsHostIntEnable}}
+\index{USBHS\_IsHostIntEnable@{USBHS\_IsHostIntEnable}!usbhs.h@{usbhs.h}}
+\subsubsection{\texorpdfstring{USBHS\_IsHostIntEnable()}{USBHS\_IsHostIntEnable()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE uint8\+\_\+t U\+S\+B\+H\+S\+\_\+\+Is\+Host\+Int\+Enable (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$}]{p\+Usbhs,  }\item[{uint8\+\_\+t}]{Int\+Type }\end{DoxyParamCaption})}
+
+
+
+Gets U\+SB host interrupt status. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Usbhs} & U\+S\+B\+HS host instance \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{usbhs_8h_aca1a73918c77f0aaa82395b55d760ae8}\label{usbhs_8h_aca1a73918c77f0aaa82395b55d760ae8}} 
+\index{usbhs.h@{usbhs.h}!USBHS\_IsHostPipeEnable@{USBHS\_IsHostPipeEnable}}
+\index{USBHS\_IsHostPipeEnable@{USBHS\_IsHostPipeEnable}!usbhs.h@{usbhs.h}}
+\subsubsection{\texorpdfstring{USBHS\_IsHostPipeEnable()}{USBHS\_IsHostPipeEnable()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE uint32\+\_\+t U\+S\+B\+H\+S\+\_\+\+Is\+Host\+Pipe\+Enable (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$}]{p\+Usbhs,  }\item[{uint8\+\_\+t}]{Pipe }\end{DoxyParamCaption})}
+
+
+
+Gets U\+SB host interrupt status. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Usbhs} & U\+S\+B\+HS host instance \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{usbhs_8h_ad4bc5d3706ce41b5db3a3135b19d24d6}\label{usbhs_8h_ad4bc5d3706ce41b5db3a3135b19d24d6}} 
+\index{usbhs.h@{usbhs.h}!USBHS\_IsHostPipeIntEnable@{USBHS\_IsHostPipeIntEnable}}
+\index{USBHS\_IsHostPipeIntEnable@{USBHS\_IsHostPipeIntEnable}!usbhs.h@{usbhs.h}}
+\subsubsection{\texorpdfstring{USBHS\_IsHostPipeIntEnable()}{USBHS\_IsHostPipeIntEnable()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE uint32\+\_\+t U\+S\+B\+H\+S\+\_\+\+Is\+Host\+Pipe\+Int\+Enable (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$}]{p\+Usbhs,  }\item[{uint8\+\_\+t}]{Pipe\+Int }\end{DoxyParamCaption})}
+
+
+
+Gets U\+SB host interrupt status. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Usbhs} & U\+S\+B\+HS host instance \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{usbhs_8h_a0a8e28b882f4abf73c473980d36c7e06}\label{usbhs_8h_a0a8e28b882f4abf73c473980d36c7e06}} 
+\index{usbhs.h@{usbhs.h}!USBHS\_IsHostPipeIntTypeEnable@{USBHS\_IsHostPipeIntTypeEnable}}
+\index{USBHS\_IsHostPipeIntTypeEnable@{USBHS\_IsHostPipeIntTypeEnable}!usbhs.h@{usbhs.h}}
+\subsubsection{\texorpdfstring{USBHS\_IsHostPipeIntTypeEnable()}{USBHS\_IsHostPipeIntTypeEnable()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE uint32\+\_\+t U\+S\+B\+H\+S\+\_\+\+Is\+Host\+Pipe\+Int\+Type\+Enable (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$}]{p\+Usbhs,  }\item[{uint8\+\_\+t}]{Pipe,  }\item[{uint32\+\_\+t}]{int\+Type }\end{DoxyParamCaption})}
+
+
+
+Gets U\+SB host interrupt status. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Usbhs} & U\+S\+B\+HS host instance \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{usbhs_8h_a9a36f3ee5b1c36992ecd002f2b0ddb5c}\label{usbhs_8h_a9a36f3ee5b1c36992ecd002f2b0ddb5c}} 
+\index{usbhs.h@{usbhs.h}!USBHS\_IsIntEnable@{USBHS\_IsIntEnable}}
+\index{USBHS\_IsIntEnable@{USBHS\_IsIntEnable}!usbhs.h@{usbhs.h}}
+\subsubsection{\texorpdfstring{USBHS\_IsIntEnable()}{USBHS\_IsIntEnable()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE uint32\+\_\+t U\+S\+B\+H\+S\+\_\+\+Is\+Int\+Enable (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$}]{p\+Usbhs,  }\item[{uint32\+\_\+t}]{Int\+Type }\end{DoxyParamCaption})}
+
+
+
+check for interrupt of endpoint. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Usbhs} & Pointer to an U\+S\+B\+HS instance. \\
+\hline
+{\em Int\+Type} & Interrupt Type \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{usbhs_8h_a21efaafe4db8b7a40ecfb3b226c20c8d}\label{usbhs_8h_a21efaafe4db8b7a40ecfb3b226c20c8d}} 
+\index{usbhs.h@{usbhs.h}!USBHS\_IsIntEnableEP@{USBHS\_IsIntEnableEP}}
+\index{USBHS\_IsIntEnableEP@{USBHS\_IsIntEnableEP}!usbhs.h@{usbhs.h}}
+\subsubsection{\texorpdfstring{USBHS\_IsIntEnableEP()}{USBHS\_IsIntEnableEP()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE uint32\+\_\+t U\+S\+B\+H\+S\+\_\+\+Is\+Int\+Enable\+EP (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$}]{p\+Usbhs,  }\item[{uint8\+\_\+t}]{Ep\+Num }\end{DoxyParamCaption})}
+
+
+
+Check if endpoint\textquotesingle{}s interrupt is enabled for a given endpoint number. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Usbhs} & Pointer to an U\+S\+B\+HS instance. \\
+\hline
+{\em Ep\+Num} & Endpoint number \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{usbhs_8h_af53df9330077448ac0d721dbef847c9f}\label{usbhs_8h_af53df9330077448ac0d721dbef847c9f}} 
+\index{usbhs.h@{usbhs.h}!USBHS\_ISUsableClock@{USBHS\_ISUsableClock}}
+\index{USBHS\_ISUsableClock@{USBHS\_ISUsableClock}!usbhs.h@{usbhs.h}}
+\subsubsection{\texorpdfstring{USBHS\_ISUsableClock()}{USBHS\_ISUsableClock()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE uint8\+\_\+t U\+S\+B\+H\+S\+\_\+\+I\+S\+Usable\+Clock (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$}]{p\+Usbhs }\end{DoxyParamCaption})}
+
+
+
+Check if clock is usable or not. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Usbhs} & Pointer to an U\+S\+B\+HS instance. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if U\+SB clock is usable 
+\end{DoxyReturn}
+\mbox{\Hypertarget{usbhs_8h_a8f09972d45a5f4b21841f41f490d2a2b}\label{usbhs_8h_a8f09972d45a5f4b21841f41f490d2a2b}} 
+\index{usbhs.h@{usbhs.h}!USBHS\_IsUsbFullSpeed@{USBHS\_IsUsbFullSpeed}}
+\index{USBHS\_IsUsbFullSpeed@{USBHS\_IsUsbFullSpeed}!usbhs.h@{usbhs.h}}
+\subsubsection{\texorpdfstring{USBHS\_IsUsbFullSpeed()}{USBHS\_IsUsbFullSpeed()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE bool U\+S\+B\+H\+S\+\_\+\+Is\+Usb\+Full\+Speed (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$}]{p\+Usbhs }\end{DoxyParamCaption})}
+
+
+
+Enable or disable U\+SB address. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Usbhs} & Pointer to an U\+S\+B\+HS instance. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+U\+SB speed status 
+\end{DoxyReturn}
+\mbox{\Hypertarget{usbhs_8h_a3a003f0bc5f5ed08ba3253028bd04923}\label{usbhs_8h_a3a003f0bc5f5ed08ba3253028bd04923}} 
+\index{usbhs.h@{usbhs.h}!USBHS\_IsUsbHighSpeed@{USBHS\_IsUsbHighSpeed}}
+\index{USBHS\_IsUsbHighSpeed@{USBHS\_IsUsbHighSpeed}!usbhs.h@{usbhs.h}}
+\subsubsection{\texorpdfstring{USBHS\_IsUsbHighSpeed()}{USBHS\_IsUsbHighSpeed()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE bool U\+S\+B\+H\+S\+\_\+\+Is\+Usb\+High\+Speed (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$}]{p\+Usbhs }\end{DoxyParamCaption})}
+
+
+
+Enable or disable U\+SB address. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Usbhs} & Pointer to an U\+S\+B\+HS instance. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+U\+SB speed status 
+\end{DoxyReturn}
+\mbox{\Hypertarget{usbhs_8h_a017b00c66ba92abe86f341381e3795ee}\label{usbhs_8h_a017b00c66ba92abe86f341381e3795ee}} 
+\index{usbhs.h@{usbhs.h}!USBHS\_IsUsbLowSpeed@{USBHS\_IsUsbLowSpeed}}
+\index{USBHS\_IsUsbLowSpeed@{USBHS\_IsUsbLowSpeed}!usbhs.h@{usbhs.h}}
+\subsubsection{\texorpdfstring{USBHS\_IsUsbLowSpeed()}{USBHS\_IsUsbLowSpeed()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE bool U\+S\+B\+H\+S\+\_\+\+Is\+Usb\+Low\+Speed (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$}]{p\+Usbhs }\end{DoxyParamCaption})}
+
+
+
+Enable or disable U\+SB address. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Usbhs} & Pointer to an U\+S\+B\+HS instance. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+U\+SB speed status 
+\end{DoxyReturn}
+\mbox{\Hypertarget{usbhs_8h_ae9bf1bccb73956ec13630d2e60a8c5ad}\label{usbhs_8h_ae9bf1bccb73956ec13630d2e60a8c5ad}} 
+\index{usbhs.h@{usbhs.h}!USBHS\_KillBank@{USBHS\_KillBank}}
+\index{USBHS\_KillBank@{USBHS\_KillBank}!usbhs.h@{usbhs.h}}
+\subsubsection{\texorpdfstring{USBHS\_KillBank()}{USBHS\_KillBank()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void U\+S\+B\+H\+S\+\_\+\+Kill\+Bank (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$}]{p\+Usbhs,  }\item[{uint8\+\_\+t}]{Ep }\end{DoxyParamCaption})}
+
+Enables an interrupt type for a given endpoint \mbox{\Hypertarget{usbhs_8h_a9d81aab8cc8040ea0ff66544608efc50}\label{usbhs_8h_a9d81aab8cc8040ea0ff66544608efc50}} 
+\index{usbhs.h@{usbhs.h}!USBHS\_NumOfBanksInUse@{USBHS\_NumOfBanksInUse}}
+\index{USBHS\_NumOfBanksInUse@{USBHS\_NumOfBanksInUse}!usbhs.h@{usbhs.h}}
+\subsubsection{\texorpdfstring{USBHS\_NumOfBanksInUse()}{USBHS\_NumOfBanksInUse()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE uint8\+\_\+t U\+S\+B\+H\+S\+\_\+\+Num\+Of\+Banks\+In\+Use (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$}]{p\+Usbhs,  }\item[{uint8\+\_\+t}]{Ep }\end{DoxyParamCaption})}
+
+Read endpoint\textquotesingle{}s bank number in use \mbox{\Hypertarget{usbhs_8h_a832191e7aa7941e54317cf567167d2fb}\label{usbhs_8h_a832191e7aa7941e54317cf567167d2fb}} 
+\index{usbhs.h@{usbhs.h}!USBHS\_RaiseDmaInt@{USBHS\_RaiseDmaInt}}
+\index{USBHS\_RaiseDmaInt@{USBHS\_RaiseDmaInt}!usbhs.h@{usbhs.h}}
+\subsubsection{\texorpdfstring{USBHS\_RaiseDmaInt()}{USBHS\_RaiseDmaInt()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void U\+S\+B\+H\+S\+\_\+\+Raise\+Dma\+Int (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$}]{p\+Usbhs,  }\item[{uint8\+\_\+t}]{Dma }\end{DoxyParamCaption})}
+
+
+
+Raise D\+MA interrupt for endpoint. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Usbhs} & Pointer to an U\+S\+B\+HS instance. \\
+\hline
+{\em Int\+Type} & Interrupt Type \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{usbhs_8h_a7e969e0c7fb49b1d25dd4e97afe3b0f7}\label{usbhs_8h_a7e969e0c7fb49b1d25dd4e97afe3b0f7}} 
+\index{usbhs.h@{usbhs.h}!USBHS\_RaiseEPInt@{USBHS\_RaiseEPInt}}
+\index{USBHS\_RaiseEPInt@{USBHS\_RaiseEPInt}!usbhs.h@{usbhs.h}}
+\subsubsection{\texorpdfstring{USBHS\_RaiseEPInt()}{USBHS\_RaiseEPInt()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void U\+S\+B\+H\+S\+\_\+\+Raise\+E\+P\+Int (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$}]{p\+Usbhs,  }\item[{uint8\+\_\+t}]{Ep,  }\item[{uint32\+\_\+t}]{Ep\+Int }\end{DoxyParamCaption})}
+
+Sets/\+Raise register for a given endpoint \mbox{\Hypertarget{usbhs_8h_a6d60c6a4b9400dfc62fd64fad75543c2}\label{usbhs_8h_a6d60c6a4b9400dfc62fd64fad75543c2}} 
+\index{usbhs.h@{usbhs.h}!USBHS\_RaiseInt@{USBHS\_RaiseInt}}
+\index{USBHS\_RaiseInt@{USBHS\_RaiseInt}!usbhs.h@{usbhs.h}}
+\subsubsection{\texorpdfstring{USBHS\_RaiseInt()}{USBHS\_RaiseInt()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void U\+S\+B\+H\+S\+\_\+\+Raise\+Int (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$}]{p\+Usbhs,  }\item[{uint32\+\_\+t}]{Int\+Type }\end{DoxyParamCaption})}
+
+
+
+Raise interrupt for endpoint. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Usbhs} & Pointer to an U\+S\+B\+HS instance. \\
+\hline
+{\em Int\+Type} & Interrupt Type \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{usbhs_8h_a52b1ff1fa6a7c80b1a19465351cc9a3d}\label{usbhs_8h_a52b1ff1fa6a7c80b1a19465351cc9a3d}} 
+\index{usbhs.h@{usbhs.h}!USBHS\_ReadDmaIntStatus@{USBHS\_ReadDmaIntStatus}}
+\index{USBHS\_ReadDmaIntStatus@{USBHS\_ReadDmaIntStatus}!usbhs.h@{usbhs.h}}
+\subsubsection{\texorpdfstring{USBHS\_ReadDmaIntStatus()}{USBHS\_ReadDmaIntStatus()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE uint32\+\_\+t U\+S\+B\+H\+S\+\_\+\+Read\+Dma\+Int\+Status (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$}]{p\+Usbhs,  }\item[{uint8\+\_\+t}]{Dma\+Num }\end{DoxyParamCaption})}
+
+
+
+Read status for a D\+MA Endpoint. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Usbhs} & Pointer to an U\+S\+B\+HS instance. \\
+\hline
+{\em Dma\+Num} & D\+MA Endpoint \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{usbhs_8h_aa4ce4550510a58d657322a4648e495f3}\label{usbhs_8h_aa4ce4550510a58d657322a4648e495f3}} 
+\index{usbhs.h@{usbhs.h}!USBHS\_ReadEpIntStatus@{USBHS\_ReadEpIntStatus}}
+\index{USBHS\_ReadEpIntStatus@{USBHS\_ReadEpIntStatus}!usbhs.h@{usbhs.h}}
+\subsubsection{\texorpdfstring{USBHS\_ReadEpIntStatus()}{USBHS\_ReadEpIntStatus()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE uint32\+\_\+t U\+S\+B\+H\+S\+\_\+\+Read\+Ep\+Int\+Status (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$}]{p\+Usbhs,  }\item[{uint8\+\_\+t}]{Ep\+Num }\end{DoxyParamCaption})}
+
+
+
+Read status for an Endpoint. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Usbhs} & Pointer to an U\+S\+B\+HS instance. \\
+\hline
+{\em Ep\+Num} & Endpoint \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{usbhs_8h_abc21e0a5d2ce477178c31b3a3049bd33}\label{usbhs_8h_abc21e0a5d2ce477178c31b3a3049bd33}} 
+\index{usbhs.h@{usbhs.h}!USBHS\_ReadEPStatus@{USBHS\_ReadEPStatus}}
+\index{USBHS\_ReadEPStatus@{USBHS\_ReadEPStatus}!usbhs.h@{usbhs.h}}
+\subsubsection{\texorpdfstring{USBHS\_ReadEPStatus()}{USBHS\_ReadEPStatus()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE uint32\+\_\+t U\+S\+B\+H\+S\+\_\+\+Read\+E\+P\+Status (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$}]{p\+Usbhs,  }\item[{uint8\+\_\+t}]{Ep,  }\item[{uint32\+\_\+t}]{Ep\+Int }\end{DoxyParamCaption})}
+
+Gets interrupt status for a given EP \mbox{\Hypertarget{usbhs_8h_a40bc8caea176293a06352e8341572c5e}\label{usbhs_8h_a40bc8caea176293a06352e8341572c5e}} 
+\index{usbhs.h@{usbhs.h}!USBHS\_ReadIntStatus@{USBHS\_ReadIntStatus}}
+\index{USBHS\_ReadIntStatus@{USBHS\_ReadIntStatus}!usbhs.h@{usbhs.h}}
+\subsubsection{\texorpdfstring{USBHS\_ReadIntStatus()}{USBHS\_ReadIntStatus()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE uint32\+\_\+t U\+S\+B\+H\+S\+\_\+\+Read\+Int\+Status (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$}]{p\+Usbhs,  }\item[{uint32\+\_\+t}]{Int\+Type }\end{DoxyParamCaption})}
+
+
+
+Read status for an interrupt. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Usbhs} & Pointer to an U\+S\+B\+HS instance. \\
+\hline
+{\em Int\+Type} & Interrupt type \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{usbhs_8h_a231788fb630937b8e77227018e29b3aa}\label{usbhs_8h_a231788fb630937b8e77227018e29b3aa}} 
+\index{usbhs.h@{usbhs.h}!USBHS\_ReadStatus@{USBHS\_ReadStatus}}
+\index{USBHS\_ReadStatus@{USBHS\_ReadStatus}!usbhs.h@{usbhs.h}}
+\subsubsection{\texorpdfstring{USBHS\_ReadStatus()}{USBHS\_ReadStatus()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE uint32\+\_\+t U\+S\+B\+H\+S\+\_\+\+Read\+Status (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$}]{p\+Usbhs }\end{DoxyParamCaption})}
+
+
+
+Raise interrupt for endpoint. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Usbhs} & Pointer to an U\+S\+B\+HS instance. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+U\+SB status 
+\end{DoxyReturn}
+\mbox{\Hypertarget{usbhs_8h_a165ebc9ef9f9199f9c4c7163e8b3872f}\label{usbhs_8h_a165ebc9ef9f9199f9c4c7163e8b3872f}} 
+\index{usbhs.h@{usbhs.h}!USBHS\_Reset@{USBHS\_Reset}}
+\index{USBHS\_Reset@{USBHS\_Reset}!usbhs.h@{usbhs.h}}
+\subsubsection{\texorpdfstring{USBHS\_Reset()}{USBHS\_Reset()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void U\+S\+B\+H\+S\+\_\+\+Reset (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Sets U\+SB host sends reste signal on U\+SB Bus. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Usbhs} & U\+S\+B\+HS host instance \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{usbhs_8h_a8bb9811e54a0d8cab3a62b62d6dd536d}\label{usbhs_8h_a8bb9811e54a0d8cab3a62b62d6dd536d}} 
+\index{usbhs.h@{usbhs.h}!USBHS\_ResetEP@{USBHS\_ResetEP}}
+\index{USBHS\_ResetEP@{USBHS\_ResetEP}!usbhs.h@{usbhs.h}}
+\subsubsection{\texorpdfstring{USBHS\_ResetEP()}{USBHS\_ResetEP()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void U\+S\+B\+H\+S\+\_\+\+Reset\+EP (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$}]{p\+Usbhs,  }\item[{uint8\+\_\+t}]{Ep }\end{DoxyParamCaption})}
+
+
+
+Rests Endpoint. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Usbhs} & Pointer to an U\+S\+B\+HS instance. \\
+\hline
+{\em Ep} & Endpoint Number \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{usbhs_8h_abe1074ea76550225e959d5628d6b38a4}\label{usbhs_8h_abe1074ea76550225e959d5628d6b38a4}} 
+\index{usbhs.h@{usbhs.h}!USBHS\_Resume@{USBHS\_Resume}}
+\index{USBHS\_Resume@{USBHS\_Resume}!usbhs.h@{usbhs.h}}
+\subsubsection{\texorpdfstring{USBHS\_Resume()}{USBHS\_Resume()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void U\+S\+B\+H\+S\+\_\+\+Resume (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Sets U\+SB host send Resume on U\+SB bus. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Usbhs} & U\+S\+B\+HS host instance \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{usbhs_8h_ace6971cff0c4aeb589dd3caf663a2756}\label{usbhs_8h_ace6971cff0c4aeb589dd3caf663a2756}} 
+\index{usbhs.h@{usbhs.h}!USBHS\_Set@{USBHS\_Set}}
+\index{USBHS\_Set@{USBHS\_Set}!usbhs.h@{usbhs.h}}
+\subsubsection{\texorpdfstring{USBHS\_Set()}{USBHS\_Set()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void U\+S\+B\+H\+S\+\_\+\+Set (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$}]{p\+Usbhs,  }\item[{uint32\+\_\+t}]{Set\+Status }\end{DoxyParamCaption})}
+
+
+
+Raise interrupt for endpoint. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Usbhs} & Pointer to an U\+S\+B\+HS instance. \\
+\hline
+{\em Set\+Status} & Set U\+SB status \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{usbhs_8h_af28587f66d68df1900ea52afc944f74c}\label{usbhs_8h_af28587f66d68df1900ea52afc944f74c}} 
+\index{usbhs.h@{usbhs.h}!USBHS\_SetAddress@{USBHS\_SetAddress}}
+\index{USBHS\_SetAddress@{USBHS\_SetAddress}!usbhs.h@{usbhs.h}}
+\subsubsection{\texorpdfstring{USBHS\_SetAddress()}{USBHS\_SetAddress()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void U\+S\+B\+H\+S\+\_\+\+Set\+Address (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$}]{p\+Usbhs,  }\item[{uint8\+\_\+t}]{Addr }\end{DoxyParamCaption})}
+
+
+
+Configure U\+SB address and enable or disable it. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Usbhs} & Pointer to an U\+S\+B\+HS instance. \\
+\hline
+{\em Addr} & U\+SB device status \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{usbhs_8h_ad9705f77c87a304d55e72f6fd13dd77d}\label{usbhs_8h_ad9705f77c87a304d55e72f6fd13dd77d}} 
+\index{usbhs.h@{usbhs.h}!USBHS\_SetDmaBuffAdd@{USBHS\_SetDmaBuffAdd}}
+\index{USBHS\_SetDmaBuffAdd@{USBHS\_SetDmaBuffAdd}!usbhs.h@{usbhs.h}}
+\subsubsection{\texorpdfstring{USBHS\_SetDmaBuffAdd()}{USBHS\_SetDmaBuffAdd()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void U\+S\+B\+H\+S\+\_\+\+Set\+Dma\+Buff\+Add (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structUsbhsDevdma}{Usbhs\+Devdma}} $\ast$}]{p\+Usb\+Dma,  }\item[{uint32\+\_\+t}]{Addr }\end{DoxyParamCaption})}
+
+
+
+Sets U\+S\+B\+HS\textquotesingle{}s D\+MA Buffer addresse. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Usb\+Dma} & U\+S\+B\+HS device D\+MA instance \\
+\hline
+{\em Addr} & D\+MA\textquotesingle{}s buffer Addrs \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{usbhs_8h_afa20d88900497b237fa89404ae14b140}\label{usbhs_8h_afa20d88900497b237fa89404ae14b140}} 
+\index{usbhs.h@{usbhs.h}!USBHS\_SetDmaNDA@{USBHS\_SetDmaNDA}}
+\index{USBHS\_SetDmaNDA@{USBHS\_SetDmaNDA}!usbhs.h@{usbhs.h}}
+\subsubsection{\texorpdfstring{USBHS\_SetDmaNDA()}{USBHS\_SetDmaNDA()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void U\+S\+B\+H\+S\+\_\+\+Set\+Dma\+N\+DA (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structUsbhsDevdma}{Usbhs\+Devdma}} $\ast$}]{p\+Usb\+Dma,  }\item[{uint32\+\_\+t}]{Desc }\end{DoxyParamCaption})}
+
+
+
+Sets D\+MA next descriptor address. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Usb\+Dma} & U\+S\+B\+HS device D\+MA instance \\
+\hline
+{\em Desc} & N\+DA address \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{usbhs_8h_a1d65b0e58e932f41022db1020418d779}\label{usbhs_8h_a1d65b0e58e932f41022db1020418d779}} 
+\index{usbhs.h@{usbhs.h}!USBHS\_SetDmaStatus@{USBHS\_SetDmaStatus}}
+\index{USBHS\_SetDmaStatus@{USBHS\_SetDmaStatus}!usbhs.h@{usbhs.h}}
+\subsubsection{\texorpdfstring{USBHS\_SetDmaStatus()}{USBHS\_SetDmaStatus()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void U\+S\+B\+H\+S\+\_\+\+Set\+Dma\+Status (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structUsbhsDevdma}{Usbhs\+Devdma}} $\ast$}]{p\+Usb\+Dma,  }\item[{uint32\+\_\+t}]{Status }\end{DoxyParamCaption})}
+
+
+
+Set D\+MA status. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Usb\+Dma} & U\+S\+B\+HS device D\+MA instance \textbackslash{}\+Status Set D\+MA status \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{usbhs_8h_a7b7dcd419b41dc75bdf1ed56fea79075}\label{usbhs_8h_a7b7dcd419b41dc75bdf1ed56fea79075}} 
+\index{usbhs.h@{usbhs.h}!USBHS\_SetHostDmaBuffAdd@{USBHS\_SetHostDmaBuffAdd}}
+\index{USBHS\_SetHostDmaBuffAdd@{USBHS\_SetHostDmaBuffAdd}!usbhs.h@{usbhs.h}}
+\subsubsection{\texorpdfstring{USBHS\_SetHostDmaBuffAdd()}{USBHS\_SetHostDmaBuffAdd()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void U\+S\+B\+H\+S\+\_\+\+Set\+Host\+Dma\+Buff\+Add (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structUsbhsHstdma}{Usbhs\+Hstdma}} $\ast$}]{p\+Usb\+Dma,  }\item[{uint32\+\_\+t}]{Addr }\end{DoxyParamCaption})}
+
+
+
+Sets U\+S\+B\+HS\textquotesingle{}s D\+MA Buffer addresse. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Usb\+Dma} & U\+S\+B\+HS device D\+MA instance \\
+\hline
+{\em Addr} & D\+MA\textquotesingle{}s buffer Addrs \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{usbhs_8h_a4828debdb88457e95b11228e17e3272e}\label{usbhs_8h_a4828debdb88457e95b11228e17e3272e}} 
+\index{usbhs.h@{usbhs.h}!USBHS\_SetHostDmaNDA@{USBHS\_SetHostDmaNDA}}
+\index{USBHS\_SetHostDmaNDA@{USBHS\_SetHostDmaNDA}!usbhs.h@{usbhs.h}}
+\subsubsection{\texorpdfstring{USBHS\_SetHostDmaNDA()}{USBHS\_SetHostDmaNDA()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void U\+S\+B\+H\+S\+\_\+\+Set\+Host\+Dma\+N\+DA (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structUsbhsHstdma}{Usbhs\+Hstdma}} $\ast$}]{p\+Usb\+Dma,  }\item[{uint32\+\_\+t}]{Desc }\end{DoxyParamCaption})}
+
+
+
+Sets D\+MA next descriptor address. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Usb\+Dma} & U\+S\+B\+HS device D\+MA instance \\
+\hline
+{\em Desc} & N\+DA addrs \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{usbhs_8h_a6712bba37861acf3c7503ef6c8eed409}\label{usbhs_8h_a6712bba37861acf3c7503ef6c8eed409}} 
+\index{usbhs.h@{usbhs.h}!USBHS\_SetHostDmaStatus@{USBHS\_SetHostDmaStatus}}
+\index{USBHS\_SetHostDmaStatus@{USBHS\_SetHostDmaStatus}!usbhs.h@{usbhs.h}}
+\subsubsection{\texorpdfstring{USBHS\_SetHostDmaStatus()}{USBHS\_SetHostDmaStatus()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void U\+S\+B\+H\+S\+\_\+\+Set\+Host\+Dma\+Status (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$}]{p\+Usbhs,  }\item[{uint8\+\_\+t}]{Pipe\+Int }\end{DoxyParamCaption})}
+
+
+
+Gets U\+SB host interrupt status. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Usbhs} & U\+S\+B\+HS host instance \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{usbhs_8h_a78e6e590ea87684b5db71615ba87caec}\label{usbhs_8h_a78e6e590ea87684b5db71615ba87caec}} 
+\index{usbhs.h@{usbhs.h}!USBHS\_SetHostForcedFullSpeed@{USBHS\_SetHostForcedFullSpeed}}
+\index{USBHS\_SetHostForcedFullSpeed@{USBHS\_SetHostForcedFullSpeed}!usbhs.h@{usbhs.h}}
+\subsubsection{\texorpdfstring{USBHS\_SetHostForcedFullSpeed()}{USBHS\_SetHostForcedFullSpeed()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void U\+S\+B\+H\+S\+\_\+\+Set\+Host\+Forced\+Full\+Speed (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$}]{p\+Usbhs }\end{DoxyParamCaption})}
+
+
+
+Sets U\+SB host\textquotesingle{}s speed to forced Full speed. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Usbhs} & U\+S\+B\+HS host instance \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{usbhs_8h_af5209f422709bb346dd8906a84594481}\label{usbhs_8h_af5209f422709bb346dd8906a84594481}} 
+\index{usbhs.h@{usbhs.h}!USBHS\_SetHostHighSpeed@{USBHS\_SetHostHighSpeed}}
+\index{USBHS\_SetHostHighSpeed@{USBHS\_SetHostHighSpeed}!usbhs.h@{usbhs.h}}
+\subsubsection{\texorpdfstring{USBHS\_SetHostHighSpeed()}{USBHS\_SetHostHighSpeed()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void U\+S\+B\+H\+S\+\_\+\+Set\+Host\+High\+Speed (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$}]{p\+Usbhs }\end{DoxyParamCaption})}
+
+
+
+Sets U\+SB host\textquotesingle{}s speed to Normal , it sets to HS from FS. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Usbhs} & U\+S\+B\+HS host instance \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{usbhs_8h_a0a0f50a2b2c067387aea7776a4adb520}\label{usbhs_8h_a0a0f50a2b2c067387aea7776a4adb520}} 
+\index{usbhs.h@{usbhs.h}!USBHS\_SetHostLowSpeed@{USBHS\_SetHostLowSpeed}}
+\index{USBHS\_SetHostLowSpeed@{USBHS\_SetHostLowSpeed}!usbhs.h@{usbhs.h}}
+\subsubsection{\texorpdfstring{USBHS\_SetHostLowSpeed()}{USBHS\_SetHostLowSpeed()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void U\+S\+B\+H\+S\+\_\+\+Set\+Host\+Low\+Speed (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$}]{p\+Usbhs }\end{DoxyParamCaption})}
+
+
+
+Sets U\+SB host\textquotesingle{}s speed to Low speed. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Usbhs} & U\+S\+B\+HS host instance \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{usbhs_8h_ae0a251b709650e942fdd7d55c8eff5d8}\label{usbhs_8h_ae0a251b709650e942fdd7d55c8eff5d8}} 
+\index{usbhs.h@{usbhs.h}!USBHS\_SetHostPipeDmaStatus@{USBHS\_SetHostPipeDmaStatus}}
+\index{USBHS\_SetHostPipeDmaStatus@{USBHS\_SetHostPipeDmaStatus}!usbhs.h@{usbhs.h}}
+\subsubsection{\texorpdfstring{USBHS\_SetHostPipeDmaStatus()}{USBHS\_SetHostPipeDmaStatus()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void U\+S\+B\+H\+S\+\_\+\+Set\+Host\+Pipe\+Dma\+Status (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structUsbhsHstdma}{Usbhs\+Hstdma}} $\ast$}]{p\+Usb\+Dma,  }\item[{uint32\+\_\+t}]{Status }\end{DoxyParamCaption})}
+
+
+
+Set D\+MA status. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Usb\+Dma} & U\+S\+B\+HS device D\+MA instance \textbackslash{}\+Status Set D\+MA status \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{usbhs_8h_a72a8f0387d4cb85e1a3d247e99b1da06}\label{usbhs_8h_a72a8f0387d4cb85e1a3d247e99b1da06}} 
+\index{usbhs.h@{usbhs.h}!USBHS\_SetHostStatus@{USBHS\_SetHostStatus}}
+\index{USBHS\_SetHostStatus@{USBHS\_SetHostStatus}!usbhs.h@{usbhs.h}}
+\subsubsection{\texorpdfstring{USBHS\_SetHostStatus()}{USBHS\_SetHostStatus()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void U\+S\+B\+H\+S\+\_\+\+Set\+Host\+Status (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$}]{p\+Usbhs,  }\item[{uint32\+\_\+t}]{Int\+Type }\end{DoxyParamCaption})}
+
+
+
+Gets U\+SB host interrupt status. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Usbhs} & U\+S\+B\+HS host instance \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{usbhs_8h_a3b1095cf2511e7d84ba5e9f47f017c0e}\label{usbhs_8h_a3b1095cf2511e7d84ba5e9f47f017c0e}} 
+\index{usbhs.h@{usbhs.h}!USBHS\_SetIsoTrans@{USBHS\_SetIsoTrans}}
+\index{USBHS\_SetIsoTrans@{USBHS\_SetIsoTrans}!usbhs.h@{usbhs.h}}
+\subsubsection{\texorpdfstring{USBHS\_SetIsoTrans()}{USBHS\_SetIsoTrans()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void U\+S\+B\+H\+S\+\_\+\+Set\+Iso\+Trans (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$}]{p\+Usbhs,  }\item[{uint8\+\_\+t}]{Ep,  }\item[{uint8\+\_\+t}]{nb\+Trans }\end{DoxyParamCaption})}
+
+Sets I\+SO endpoint\textquotesingle{}s Number of Transfer for High Speed \mbox{\Hypertarget{usbhs_8h_a93317007fdfef8aaa76672033a5293ba}\label{usbhs_8h_a93317007fdfef8aaa76672033a5293ba}} 
+\index{usbhs.h@{usbhs.h}!USBHS\_SetRemoteWakeUp@{USBHS\_SetRemoteWakeUp}}
+\index{USBHS\_SetRemoteWakeUp@{USBHS\_SetRemoteWakeUp}!usbhs.h@{usbhs.h}}
+\subsubsection{\texorpdfstring{USBHS\_SetRemoteWakeUp()}{USBHS\_SetRemoteWakeUp()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void U\+S\+B\+H\+S\+\_\+\+Set\+Remote\+Wake\+Up (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$}]{p\+Usbhs }\end{DoxyParamCaption})}
+
+
+
+Set Remote Wake\+Up mode. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Usbhs} & Pointer to an U\+S\+B\+HS instance. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{usbhs_8h_aac479594b09aba35a095529855449a42}\label{usbhs_8h_aac479594b09aba35a095529855449a42}} 
+\index{usbhs.h@{usbhs.h}!USBHS\_StopReset@{USBHS\_StopReset}}
+\index{USBHS\_StopReset@{USBHS\_StopReset}!usbhs.h@{usbhs.h}}
+\subsubsection{\texorpdfstring{USBHS\_StopReset()}{USBHS\_StopReset()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void U\+S\+B\+H\+S\+\_\+\+Stop\+Reset (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Sets U\+SB host sends reste signal on U\+SB Bus. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Usbhs} & U\+S\+B\+HS host instance \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{usbhs_8h_a78d27724945f587c54cba1d9617979c8}\label{usbhs_8h_a78d27724945f587c54cba1d9617979c8}} 
+\index{usbhs.h@{usbhs.h}!USBHS\_UnFreezeClock@{USBHS\_UnFreezeClock}}
+\index{USBHS\_UnFreezeClock@{USBHS\_UnFreezeClock}!usbhs.h@{usbhs.h}}
+\subsubsection{\texorpdfstring{USBHS\_UnFreezeClock()}{USBHS\_UnFreezeClock()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void U\+S\+B\+H\+S\+\_\+\+Un\+Freeze\+Clock (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$}]{p\+Usbhs }\end{DoxyParamCaption})}
+
+
+
+Freeze or unfreeze U\+SB clock. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Usbhs} & Pointer to an U\+S\+B\+HS instance. \\
+\hline
+{\em Enable} & Enable or disable \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{usbhs_8h_a271a9d7a4f68db5bfab4401f8e67d347}\label{usbhs_8h_a271a9d7a4f68db5bfab4401f8e67d347}} 
+\index{usbhs.h@{usbhs.h}!USBHS\_UsbEnable@{USBHS\_UsbEnable}}
+\index{USBHS\_UsbEnable@{USBHS\_UsbEnable}!usbhs.h@{usbhs.h}}
+\subsubsection{\texorpdfstring{USBHS\_UsbEnable()}{USBHS\_UsbEnable()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void U\+S\+B\+H\+S\+\_\+\+Usb\+Enable (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$}]{p\+Usbhs,  }\item[{uint8\+\_\+t}]{Enable }\end{DoxyParamCaption})}
+
+
+
+Enables or disables U\+SB. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Usbhs} & Pointer to an U\+S\+B\+HS instance. \\
+\hline
+{\em Enable} & Enable or disable \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{usbhs_8h_a636f49939838c8348470310e71e1cd70}\label{usbhs_8h_a636f49939838c8348470310e71e1cd70}} 
+\index{usbhs.h@{usbhs.h}!USBHS\_UsbMode@{USBHS\_UsbMode}}
+\index{USBHS\_UsbMode@{USBHS\_UsbMode}!usbhs.h@{usbhs.h}}
+\subsubsection{\texorpdfstring{USBHS\_UsbMode()}{USBHS\_UsbMode()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void U\+S\+B\+H\+S\+\_\+\+Usb\+Mode (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$}]{p\+Usbhs,  }\item[{U\+S\+B\+\_\+\+Mode\+\_\+t}]{Mode }\end{DoxyParamCaption})}
+
+
+
+Device or Host Mode. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Usbhs} & Pointer to an U\+S\+B\+HS instance. \\
+\hline
+{\em Mode} & Device or Host Mode \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{usbhs_8h_a737215891d431406a22e7627cb15f337}\label{usbhs_8h_a737215891d431406a22e7627cb15f337}} 
+\index{usbhs.h@{usbhs.h}!USBHS\_VBusHWC@{USBHS\_VBusHWC}}
+\index{USBHS\_VBusHWC@{USBHS\_VBusHWC}!usbhs.h@{usbhs.h}}
+\subsubsection{\texorpdfstring{USBHS\_VBusHWC()}{USBHS\_VBusHWC()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void U\+S\+B\+H\+S\+\_\+\+V\+Bus\+H\+WC (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structUsbhs}{Usbhs}} $\ast$}]{p\+Usbhs,  }\item[{uint8\+\_\+t}]{Enable }\end{DoxyParamCaption})}
+
+
+
+Freeze or unfreeze U\+SB clock. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Usbhs} & Pointer to an U\+S\+B\+HS instance. \\
+\hline
+{\em Enable} & Enable or disable \\
+\hline
+\end{DoxyParams}

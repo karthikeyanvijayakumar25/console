@@ -1,0 +1,500 @@
+\hypertarget{rtems-rfs-rtems_8h}{}\section{cpukit/libfs/src/rfs/rtems-\/rfs-\/rtems.h File Reference}
+\label{rtems-rfs-rtems_8h}\index{cpukit/libfs/src/rfs/rtems-\/rfs-\/rtems.h@{cpukit/libfs/src/rfs/rtems-\/rfs-\/rtems.h}}
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include $<$errno.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/rfs/rtems-\/rfs-\/file-\/system.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/rfs/rtems-\/rfs-\/inode.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/rfs/rtems-\/rfs-\/mutex.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/libio\+\_\+.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/fs.\+h$>$}\newline
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structrtems__rfs__rtems__private}{rtems\+\_\+rfs\+\_\+rtems\+\_\+private}}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{rtems-rfs-rtems_8h_ac345c1150343a66565512a0d8640f33a}{R\+T\+E\+M\+S\+\_\+\+R\+F\+S\+\_\+\+R\+T\+E\+M\+S\+\_\+\+E\+R\+R\+OR}}~0
+\item 
+\#define \mbox{\hyperlink{rtems-rfs-rtems_8h_a1c9e9114088dc1cc10966acc099d45e0}{R\+T\+E\+M\+S\+\_\+\+R\+F\+S\+\_\+\+R\+T\+E\+M\+S\+\_\+\+T\+R\+A\+CE}}~0
+\item 
+\#define \mbox{\hyperlink{rtems-rfs-rtems_8h_a83f026a393cb9e796b40109e1431a2e1}{rtems\+\_\+rfs\+\_\+rtems\+\_\+error}}(\+\_\+m,  \+\_\+e)~(((errno = (\+\_\+e)) == 0) ? 0 \+: -\/1)
+\item 
+\#define \mbox{\hyperlink{rtems-rfs-rtems_8h_a25a16fbddd85208062d7ddbce2731101}{R\+T\+E\+M\+S\+\_\+\+R\+F\+S\+\_\+\+R\+T\+E\+M\+S\+\_\+\+D\+E\+B\+U\+G\+\_\+\+A\+LL}}~(0xffffffff)
+\item 
+\mbox{\Hypertarget{rtems-rfs-rtems_8h_afdd4b4d6cd6b83634340bf6dcd472961}\label{rtems-rfs-rtems_8h_afdd4b4d6cd6b83634340bf6dcd472961}} 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+R\+F\+S\+\_\+\+R\+T\+E\+M\+S\+\_\+\+D\+E\+B\+U\+G\+\_\+\+E\+R\+R\+O\+R\+\_\+\+M\+S\+GS}~(1 $<$$<$ 0)
+\item 
+\mbox{\Hypertarget{rtems-rfs-rtems_8h_ab2790a1416953908ceff2c95db419abc}\label{rtems-rfs-rtems_8h_ab2790a1416953908ceff2c95db419abc}} 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+R\+F\+S\+\_\+\+R\+T\+E\+M\+S\+\_\+\+D\+E\+B\+U\+G\+\_\+\+E\+V\+A\+L\+\_\+\+P\+A\+TH}~(1 $<$$<$ 1)
+\item 
+\mbox{\Hypertarget{rtems-rfs-rtems_8h_aaa8ae0c4f69d1bd4449a5e7d68f7f451}\label{rtems-rfs-rtems_8h_aaa8ae0c4f69d1bd4449a5e7d68f7f451}} 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+R\+F\+S\+\_\+\+R\+T\+E\+M\+S\+\_\+\+D\+E\+B\+U\+G\+\_\+\+E\+V\+A\+L\+\_\+\+F\+O\+R\+\_\+\+M\+A\+KE}~(1 $<$$<$ 2)
+\item 
+\mbox{\Hypertarget{rtems-rfs-rtems_8h_a9a7836fe340c74dda32e278ee2ae8806}\label{rtems-rfs-rtems_8h_a9a7836fe340c74dda32e278ee2ae8806}} 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+R\+F\+S\+\_\+\+R\+T\+E\+M\+S\+\_\+\+D\+E\+B\+U\+G\+\_\+\+E\+V\+A\+L\+\_\+\+P\+E\+R\+MS}~(1 $<$$<$ 3)
+\item 
+\mbox{\Hypertarget{rtems-rfs-rtems_8h_a5c4316c51265eddf0b98f006b2476433}\label{rtems-rfs-rtems_8h_a5c4316c51265eddf0b98f006b2476433}} 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+R\+F\+S\+\_\+\+R\+T\+E\+M\+S\+\_\+\+D\+E\+B\+U\+G\+\_\+\+M\+K\+N\+OD}~(1 $<$$<$ 4)
+\item 
+\mbox{\Hypertarget{rtems-rfs-rtems_8h_a1550a3e46d0f3075a416ca36a7d57f3d}\label{rtems-rfs-rtems_8h_a1550a3e46d0f3075a416ca36a7d57f3d}} 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+R\+F\+S\+\_\+\+R\+T\+E\+M\+S\+\_\+\+D\+E\+B\+U\+G\+\_\+\+R\+M\+N\+OD}~(1 $<$$<$ 5)
+\item 
+\mbox{\Hypertarget{rtems-rfs-rtems_8h_a9684a5f0e74c1878ecdab43b39c846b9}\label{rtems-rfs-rtems_8h_a9684a5f0e74c1878ecdab43b39c846b9}} 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+R\+F\+S\+\_\+\+R\+T\+E\+M\+S\+\_\+\+D\+E\+B\+U\+G\+\_\+\+L\+I\+NK}~(1 $<$$<$ 6)
+\item 
+\mbox{\Hypertarget{rtems-rfs-rtems_8h_ae9075f83f1c0b15ef2950fb7e3776554}\label{rtems-rfs-rtems_8h_ae9075f83f1c0b15ef2950fb7e3776554}} 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+R\+F\+S\+\_\+\+R\+T\+E\+M\+S\+\_\+\+D\+E\+B\+U\+G\+\_\+\+U\+N\+L\+I\+NK}~(1 $<$$<$ 7)
+\item 
+\mbox{\Hypertarget{rtems-rfs-rtems_8h_a039240393c947adba3ff7e799e4389bc}\label{rtems-rfs-rtems_8h_a039240393c947adba3ff7e799e4389bc}} 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+R\+F\+S\+\_\+\+R\+T\+E\+M\+S\+\_\+\+D\+E\+B\+U\+G\+\_\+\+C\+H\+O\+WN}~(1 $<$$<$ 8)
+\item 
+\mbox{\Hypertarget{rtems-rfs-rtems_8h_a3d89a14965289335dbdea364591b5520}\label{rtems-rfs-rtems_8h_a3d89a14965289335dbdea364591b5520}} 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+R\+F\+S\+\_\+\+R\+T\+E\+M\+S\+\_\+\+D\+E\+B\+U\+G\+\_\+\+R\+E\+A\+D\+L\+I\+NK}~(1 $<$$<$ 9)
+\item 
+\mbox{\Hypertarget{rtems-rfs-rtems_8h_adf54c30a8257df493fa89f8f13e03275}\label{rtems-rfs-rtems_8h_adf54c30a8257df493fa89f8f13e03275}} 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+R\+F\+S\+\_\+\+R\+T\+E\+M\+S\+\_\+\+D\+E\+B\+U\+G\+\_\+\+F\+C\+H\+M\+OD}~(1 $<$$<$ 10)
+\item 
+\mbox{\Hypertarget{rtems-rfs-rtems_8h_afc6f0178b16c81b8fb77f1606c4fd0dd}\label{rtems-rfs-rtems_8h_afc6f0178b16c81b8fb77f1606c4fd0dd}} 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+R\+F\+S\+\_\+\+R\+T\+E\+M\+S\+\_\+\+D\+E\+B\+U\+G\+\_\+\+S\+T\+AT}~(1 $<$$<$ 11)
+\item 
+\mbox{\Hypertarget{rtems-rfs-rtems_8h_a83d70b7215ef163fe6b06fc7d1b98da4}\label{rtems-rfs-rtems_8h_a83d70b7215ef163fe6b06fc7d1b98da4}} 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+R\+F\+S\+\_\+\+R\+T\+E\+M\+S\+\_\+\+D\+E\+B\+U\+G\+\_\+\+R\+E\+N\+A\+ME}~(1 $<$$<$ 12)
+\item 
+\mbox{\Hypertarget{rtems-rfs-rtems_8h_a29da46cea8be989daf20dcb37d32a6ed}\label{rtems-rfs-rtems_8h_a29da46cea8be989daf20dcb37d32a6ed}} 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+R\+F\+S\+\_\+\+R\+T\+E\+M\+S\+\_\+\+D\+E\+B\+U\+G\+\_\+\+D\+I\+R\+\_\+\+R\+M\+N\+OD}~(1 $<$$<$ 13)
+\item 
+\mbox{\Hypertarget{rtems-rfs-rtems_8h_acd9e01617c281e801115ee19686c1650}\label{rtems-rfs-rtems_8h_acd9e01617c281e801115ee19686c1650}} 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+R\+F\+S\+\_\+\+R\+T\+E\+M\+S\+\_\+\+D\+E\+B\+U\+G\+\_\+\+F\+I\+L\+E\+\_\+\+O\+P\+EN}~(1 $<$$<$ 14)
+\item 
+\mbox{\Hypertarget{rtems-rfs-rtems_8h_a91de4f1e45c162daae1ea2e4ea9b45ee}\label{rtems-rfs-rtems_8h_a91de4f1e45c162daae1ea2e4ea9b45ee}} 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+R\+F\+S\+\_\+\+R\+T\+E\+M\+S\+\_\+\+D\+E\+B\+U\+G\+\_\+\+F\+I\+L\+E\+\_\+\+C\+L\+O\+SE}~(1 $<$$<$ 15)
+\item 
+\mbox{\Hypertarget{rtems-rfs-rtems_8h_a8e621c95950f413b47bb781e09d4cdf8}\label{rtems-rfs-rtems_8h_a8e621c95950f413b47bb781e09d4cdf8}} 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+R\+F\+S\+\_\+\+R\+T\+E\+M\+S\+\_\+\+D\+E\+B\+U\+G\+\_\+\+F\+I\+L\+E\+\_\+\+R\+E\+AD}~(1 $<$$<$ 16)
+\item 
+\mbox{\Hypertarget{rtems-rfs-rtems_8h_a5a8778b60143451db81348bd8953305e}\label{rtems-rfs-rtems_8h_a5a8778b60143451db81348bd8953305e}} 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+R\+F\+S\+\_\+\+R\+T\+E\+M\+S\+\_\+\+D\+E\+B\+U\+G\+\_\+\+F\+I\+L\+E\+\_\+\+W\+R\+I\+TE}~(1 $<$$<$ 17)
+\item 
+\mbox{\Hypertarget{rtems-rfs-rtems_8h_aad5515f207d2b0b8a2097bdcc1c088d5}\label{rtems-rfs-rtems_8h_aad5515f207d2b0b8a2097bdcc1c088d5}} 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+R\+F\+S\+\_\+\+R\+T\+E\+M\+S\+\_\+\+D\+E\+B\+U\+G\+\_\+\+F\+I\+L\+E\+\_\+\+L\+S\+E\+EK}~(1 $<$$<$ 18)
+\item 
+\mbox{\Hypertarget{rtems-rfs-rtems_8h_aaaccf714818442f3e5a2a0e3046676cc}\label{rtems-rfs-rtems_8h_aaaccf714818442f3e5a2a0e3046676cc}} 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+R\+F\+S\+\_\+\+R\+T\+E\+M\+S\+\_\+\+D\+E\+B\+U\+G\+\_\+\+F\+I\+L\+E\+\_\+\+F\+T\+R\+U\+NC}~(1 $<$$<$ 19)
+\item 
+\#define \mbox{\hyperlink{rtems-rfs-rtems_8h_afc0def7dadd15c7a23e1efa46894f478}{rtems\+\_\+rfs\+\_\+rtems\+\_\+trace}}(\+\_\+m)~(0)
+\item 
+\#define \mbox{\hyperlink{rtems-rfs-rtems_8h_aaf75bffc2592610c5d28b15e8103b66f}{rtems\+\_\+rfs\+\_\+rtems\+\_\+trace\+\_\+set\+\_\+mask}}(\+\_\+m)
+\item 
+\#define \mbox{\hyperlink{rtems-rfs-rtems_8h_a32d4b857292b6e7cc5cdb9be1446e9ac}{rtems\+\_\+rfs\+\_\+rtems\+\_\+trace\+\_\+clear\+\_\+mask}}(\+\_\+m)
+\item 
+\#define \mbox{\hyperlink{rtems-rfs-rtems_8h_a7effab77b709f297e12efd60f43c94f1}{rtems\+\_\+rfs\+\_\+rtems\+\_\+pathloc\+\_\+dev}}(\+\_\+loc)~((\mbox{\hyperlink{struct__rtems__rfs__file__system}{rtems\+\_\+rfs\+\_\+file\+\_\+system}}$\ast$)((\+\_\+loc)-\/$>$mt\+\_\+entry-\/$>$fs\+\_\+info))
+\item 
+\#define \mbox{\hyperlink{rtems-rfs-rtems_8h_a435c55de00fa916c0c7229daaa410353}{rtems\+\_\+rfs\+\_\+rtems\+\_\+set\+\_\+pathloc\+\_\+ino}}(\+\_\+loc,  \+\_\+ino)~(\+\_\+loc)-\/$>$node\+\_\+access = (void$\ast$)((intptr\+\_\+t)(\+\_\+ino))
+\item 
+\#define \mbox{\hyperlink{rtems-rfs-rtems_8h_a1a189ed32eb8a8b93d75218f184e8815}{rtems\+\_\+rfs\+\_\+rtems\+\_\+get\+\_\+pathloc\+\_\+ino}}(\+\_\+loc)~((\mbox{\hyperlink{rtems-rfs-inode_8h_ae658325c3ff9941f2e68315d20e3c723}{rtems\+\_\+rfs\+\_\+ino}}) (intptr\+\_\+t)((\+\_\+loc)-\/$>$node\+\_\+access))
+\item 
+\#define \mbox{\hyperlink{rtems-rfs-rtems_8h_a060abfe719448a334892a602832f18ec}{rtems\+\_\+rfs\+\_\+rtems\+\_\+set\+\_\+pathloc\+\_\+doff}}(\+\_\+loc,  \+\_\+doff)~(\+\_\+loc)-\/$>$node\+\_\+access\+\_\+2 = (void$\ast$)((intptr\+\_\+t)(\+\_\+doff))
+\item 
+\#define \mbox{\hyperlink{rtems-rfs-rtems_8h_a578137ab6e4164a0ded6d24cd6ab9646}{rtems\+\_\+rfs\+\_\+rtems\+\_\+get\+\_\+pathloc\+\_\+doff}}(\+\_\+loc)~((uint32\+\_\+t) (intptr\+\_\+t)((\+\_\+loc)-\/$>$node\+\_\+access\+\_\+2))
+\item 
+\#define \mbox{\hyperlink{rtems-rfs-rtems_8h_a456d40a3292d116678781f8efa96e632}{rtems\+\_\+rfs\+\_\+rtems\+\_\+get\+\_\+iop\+\_\+ino}}(\+\_\+iop)~((intptr\+\_\+t)(\+\_\+iop)-\/$>$pathinfo.\+node\+\_\+access)
+\item 
+\#define \mbox{\hyperlink{rtems-rfs-rtems_8h_a5b1625eff387c2e67b182f3ec3c1e757}{rtems\+\_\+rfs\+\_\+rtems\+\_\+get\+\_\+iop\+\_\+file\+\_\+handle}}(\+\_\+iop)~((\mbox{\hyperlink{rtems-rfs-file_8h_a35a0f4ad45bd35ea0af7df0aa0ad893b}{rtems\+\_\+rfs\+\_\+file\+\_\+handle}}$\ast$)(\+\_\+iop)-\/$>$pathinfo.\+node\+\_\+access\+\_\+2)
+\item 
+\#define \mbox{\hyperlink{rtems-rfs-rtems_8h_ae25991a18d906d3ba04fe91336c93070}{rtems\+\_\+rfs\+\_\+rtems\+\_\+set\+\_\+iop\+\_\+file\+\_\+handle}}(\+\_\+iop,  \+\_\+fh)~(\+\_\+iop)-\/$>$pathinfo.\+node\+\_\+access\+\_\+2 = (\+\_\+fh)
+\item 
+\#define \mbox{\hyperlink{rtems-rfs-rtems_8h_af2fd1c5f777c0554c38daa3dfce108a6}{rtems\+\_\+rfs\+\_\+rtems\+\_\+handlers}}(\+\_\+h)~\&rtems\+\_\+rfs\+\_\+rtems\+\_\+ \#\# \+\_\+h \#\# \+\_\+handlers
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \mbox{\hyperlink{structrtems__rfs__rtems__private}{rtems\+\_\+rfs\+\_\+rtems\+\_\+private}} \mbox{\hyperlink{rtems-rfs-rtems_8h_aceaad4b4b8bccb8901ad1562f83835c8}{rtems\+\_\+rfs\+\_\+rtems\+\_\+private}}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{rtems-rfs-rtems_8h_a476a19330258f7b28ef99a4b709681cf}{rtems\+\_\+rfs\+\_\+rtems\+\_\+set\+\_\+handlers}} (\mbox{\hyperlink{group__LibIO_ga3252b3d31ee3c49ffff0b7604a676864}{rtems\+\_\+filesystem\+\_\+location\+\_\+info\+\_\+t}} $\ast$pathloc, \mbox{\hyperlink{rtems-rfs-inode_8h_a91f02dac5a2d91e072d676f3266ab8d2}{rtems\+\_\+rfs\+\_\+inode\+\_\+handle}} $\ast$inode)
+\item 
+uint16\+\_\+t \mbox{\hyperlink{rtems-rfs-rtems_8h_a1ed03f3bced418219d0c658d8dce5e7a}{rtems\+\_\+rfs\+\_\+rtems\+\_\+imode}} (mode\+\_\+t mode)
+\item 
+mode\+\_\+t \mbox{\hyperlink{rtems-rfs-rtems_8h_aff5423998d0f78a1caecd4acff199690}{rtems\+\_\+rfs\+\_\+rtems\+\_\+mode}} (int imode)
+\item 
+int \mbox{\hyperlink{rtems-rfs-rtems_8h_a0ceaa395fe3f5ea0c01383618faa3b5c}{rtems\+\_\+rfs\+\_\+rtems\+\_\+fstat}} (const \mbox{\hyperlink{group__LibIO_ga3252b3d31ee3c49ffff0b7604a676864}{rtems\+\_\+filesystem\+\_\+location\+\_\+info\+\_\+t}} $\ast$pathloc, struct stat $\ast$buf)
+\item 
+int \mbox{\hyperlink{rtems-rfs-rtems_8h_acb8e7e6615d937f61862719b00445978}{rtems\+\_\+rfs\+\_\+rtems\+\_\+rmnod}} (const \mbox{\hyperlink{group__LibIO_ga3252b3d31ee3c49ffff0b7604a676864}{rtems\+\_\+filesystem\+\_\+location\+\_\+info\+\_\+t}} $\ast$parent\+\_\+pathloc, const \mbox{\hyperlink{group__LibIO_ga3252b3d31ee3c49ffff0b7604a676864}{rtems\+\_\+filesystem\+\_\+location\+\_\+info\+\_\+t}} $\ast$pathloc)
+\item 
+int \mbox{\hyperlink{rtems-rfs-rtems_8h_afea85d020da25d7bba8b14906c58a74a}{rtems\+\_\+rfs\+\_\+rtems\+\_\+fdatasync}} (\mbox{\hyperlink{structrtems__libio__tt}{rtems\+\_\+libio\+\_\+t}} $\ast$iop)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const \mbox{\hyperlink{struct__rtems__filesystem__file__handlers__r}{rtems\+\_\+filesystem\+\_\+file\+\_\+handlers\+\_\+r}} \mbox{\hyperlink{rtems-rfs-rtems_8h_add62aab33d39c83e13c93bac9f74a6d2}{rtems\+\_\+rfs\+\_\+rtems\+\_\+dir\+\_\+handlers}}
+\item 
+\mbox{\Hypertarget{rtems-rfs-rtems_8h_adc54e78fa9286c187f9389068eb230e0}\label{rtems-rfs-rtems_8h_adc54e78fa9286c187f9389068eb230e0}} 
+const \mbox{\hyperlink{struct__rtems__filesystem__file__handlers__r}{rtems\+\_\+filesystem\+\_\+file\+\_\+handlers\+\_\+r}} {\bfseries rtems\+\_\+rfs\+\_\+rtems\+\_\+device\+\_\+handlers}
+\item 
+const \mbox{\hyperlink{struct__rtems__filesystem__file__handlers__r}{rtems\+\_\+filesystem\+\_\+file\+\_\+handlers\+\_\+r}} \mbox{\hyperlink{rtems-rfs-rtems_8h_a1b1aa463d7b6bd01b968b2d557dd33dd}{rtems\+\_\+rfs\+\_\+rtems\+\_\+link\+\_\+handlers}}
+\item 
+\mbox{\Hypertarget{rtems-rfs-rtems_8h_ac411402e0058199f17bf290e6acc2118}\label{rtems-rfs-rtems_8h_ac411402e0058199f17bf290e6acc2118}} 
+const \mbox{\hyperlink{struct__rtems__filesystem__file__handlers__r}{rtems\+\_\+filesystem\+\_\+file\+\_\+handlers\+\_\+r}} {\bfseries rtems\+\_\+rfs\+\_\+rtems\+\_\+file\+\_\+handlers}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+R\+T\+E\+MS File System R\+T\+E\+MS Header file.
+
+This file is not to be installed. It binds the R\+FS file system to R\+T\+E\+MS. 
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{rtems-rfs-rtems_8h_a25a16fbddd85208062d7ddbce2731101}\label{rtems-rfs-rtems_8h_a25a16fbddd85208062d7ddbce2731101}} 
+\index{rtems-\/rfs-\/rtems.h@{rtems-\/rfs-\/rtems.h}!RTEMS\_RFS\_RTEMS\_DEBUG\_ALL@{RTEMS\_RFS\_RTEMS\_DEBUG\_ALL}}
+\index{RTEMS\_RFS\_RTEMS\_DEBUG\_ALL@{RTEMS\_RFS\_RTEMS\_DEBUG\_ALL}!rtems-\/rfs-\/rtems.h@{rtems-\/rfs-\/rtems.h}}
+\subsubsection{\texorpdfstring{RTEMS\_RFS\_RTEMS\_DEBUG\_ALL}{RTEMS\_RFS\_RTEMS\_DEBUG\_ALL}}
+{\footnotesize\ttfamily \#define R\+T\+E\+M\+S\+\_\+\+R\+F\+S\+\_\+\+R\+T\+E\+M\+S\+\_\+\+D\+E\+B\+U\+G\+\_\+\+A\+LL~(0xffffffff)}
+
+Trace message defines the R\+T\+E\+MS bindings of the R\+T\+E\+MS R\+FS. This is a development tool where can edit the values below to control the various trace output. \mbox{\Hypertarget{rtems-rfs-rtems_8h_ac345c1150343a66565512a0d8640f33a}\label{rtems-rfs-rtems_8h_ac345c1150343a66565512a0d8640f33a}} 
+\index{rtems-\/rfs-\/rtems.h@{rtems-\/rfs-\/rtems.h}!RTEMS\_RFS\_RTEMS\_ERROR@{RTEMS\_RFS\_RTEMS\_ERROR}}
+\index{RTEMS\_RFS\_RTEMS\_ERROR@{RTEMS\_RFS\_RTEMS\_ERROR}!rtems-\/rfs-\/rtems.h@{rtems-\/rfs-\/rtems.h}}
+\subsubsection{\texorpdfstring{RTEMS\_RFS\_RTEMS\_ERROR}{RTEMS\_RFS\_RTEMS\_ERROR}}
+{\footnotesize\ttfamily \#define R\+T\+E\+M\+S\+\_\+\+R\+F\+S\+\_\+\+R\+T\+E\+M\+S\+\_\+\+E\+R\+R\+OR~0}
+
+R\+T\+E\+MS R\+FS R\+T\+E\+MS Error Enable. Set to 1 for printing of errors. Default is off. \mbox{\Hypertarget{rtems-rfs-rtems_8h_a83f026a393cb9e796b40109e1431a2e1}\label{rtems-rfs-rtems_8h_a83f026a393cb9e796b40109e1431a2e1}} 
+\index{rtems-\/rfs-\/rtems.h@{rtems-\/rfs-\/rtems.h}!rtems\_rfs\_rtems\_error@{rtems\_rfs\_rtems\_error}}
+\index{rtems\_rfs\_rtems\_error@{rtems\_rfs\_rtems\_error}!rtems-\/rfs-\/rtems.h@{rtems-\/rfs-\/rtems.h}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_rtems\_error}{rtems\_rfs\_rtems\_error}}
+{\footnotesize\ttfamily \#define rtems\+\_\+rfs\+\_\+rtems\+\_\+error(\begin{DoxyParamCaption}\item[{}]{\+\_\+m,  }\item[{}]{\+\_\+e }\end{DoxyParamCaption})~(((errno = (\+\_\+e)) == 0) ? 0 \+: -\/1)}
+
+If we are not handling errors provide a define that removes the strings from the code. \mbox{\Hypertarget{rtems-rfs-rtems_8h_a5b1625eff387c2e67b182f3ec3c1e757}\label{rtems-rfs-rtems_8h_a5b1625eff387c2e67b182f3ec3c1e757}} 
+\index{rtems-\/rfs-\/rtems.h@{rtems-\/rfs-\/rtems.h}!rtems\_rfs\_rtems\_get\_iop\_file\_handle@{rtems\_rfs\_rtems\_get\_iop\_file\_handle}}
+\index{rtems\_rfs\_rtems\_get\_iop\_file\_handle@{rtems\_rfs\_rtems\_get\_iop\_file\_handle}!rtems-\/rfs-\/rtems.h@{rtems-\/rfs-\/rtems.h}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_rtems\_get\_iop\_file\_handle}{rtems\_rfs\_rtems\_get\_iop\_file\_handle}}
+{\footnotesize\ttfamily \#define rtems\+\_\+rfs\+\_\+rtems\+\_\+get\+\_\+iop\+\_\+file\+\_\+handle(\begin{DoxyParamCaption}\item[{}]{\+\_\+iop }\end{DoxyParamCaption})~((\mbox{\hyperlink{rtems-rfs-file_8h_a35a0f4ad45bd35ea0af7df0aa0ad893b}{rtems\+\_\+rfs\+\_\+file\+\_\+handle}}$\ast$)(\+\_\+iop)-\/$>$pathinfo.\+node\+\_\+access\+\_\+2)}
+
+Get the file handle from the I/O pointer.
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+iop} & The I/O pointer. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+filehandle The file handle 
+\end{DoxyReturn}
+\mbox{\Hypertarget{rtems-rfs-rtems_8h_a456d40a3292d116678781f8efa96e632}\label{rtems-rfs-rtems_8h_a456d40a3292d116678781f8efa96e632}} 
+\index{rtems-\/rfs-\/rtems.h@{rtems-\/rfs-\/rtems.h}!rtems\_rfs\_rtems\_get\_iop\_ino@{rtems\_rfs\_rtems\_get\_iop\_ino}}
+\index{rtems\_rfs\_rtems\_get\_iop\_ino@{rtems\_rfs\_rtems\_get\_iop\_ino}!rtems-\/rfs-\/rtems.h@{rtems-\/rfs-\/rtems.h}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_rtems\_get\_iop\_ino}{rtems\_rfs\_rtems\_get\_iop\_ino}}
+{\footnotesize\ttfamily \#define rtems\+\_\+rfs\+\_\+rtems\+\_\+get\+\_\+iop\+\_\+ino(\begin{DoxyParamCaption}\item[{}]{\+\_\+iop }\end{DoxyParamCaption})~((intptr\+\_\+t)(\+\_\+iop)-\/$>$pathinfo.\+node\+\_\+access)}
+
+Get the ino from the I/O pointer.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+iop} & is the I/O pointer. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+ino 
+\end{DoxyReturn}
+\mbox{\Hypertarget{rtems-rfs-rtems_8h_a578137ab6e4164a0ded6d24cd6ab9646}\label{rtems-rfs-rtems_8h_a578137ab6e4164a0ded6d24cd6ab9646}} 
+\index{rtems-\/rfs-\/rtems.h@{rtems-\/rfs-\/rtems.h}!rtems\_rfs\_rtems\_get\_pathloc\_doff@{rtems\_rfs\_rtems\_get\_pathloc\_doff}}
+\index{rtems\_rfs\_rtems\_get\_pathloc\_doff@{rtems\_rfs\_rtems\_get\_pathloc\_doff}!rtems-\/rfs-\/rtems.h@{rtems-\/rfs-\/rtems.h}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_rtems\_get\_pathloc\_doff}{rtems\_rfs\_rtems\_get\_pathloc\_doff}}
+{\footnotesize\ttfamily \#define rtems\+\_\+rfs\+\_\+rtems\+\_\+get\+\_\+pathloc\+\_\+doff(\begin{DoxyParamCaption}\item[{}]{\+\_\+loc }\end{DoxyParamCaption})~((uint32\+\_\+t) (intptr\+\_\+t)((\+\_\+loc)-\/$>$node\+\_\+access\+\_\+2))}
+
+Get the directory offset (doff) given a path location.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+loc} & is a pointer to the path location. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+uin32\+\_\+t The doff in the path location. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{rtems-rfs-rtems_8h_a1a189ed32eb8a8b93d75218f184e8815}\label{rtems-rfs-rtems_8h_a1a189ed32eb8a8b93d75218f184e8815}} 
+\index{rtems-\/rfs-\/rtems.h@{rtems-\/rfs-\/rtems.h}!rtems\_rfs\_rtems\_get\_pathloc\_ino@{rtems\_rfs\_rtems\_get\_pathloc\_ino}}
+\index{rtems\_rfs\_rtems\_get\_pathloc\_ino@{rtems\_rfs\_rtems\_get\_pathloc\_ino}!rtems-\/rfs-\/rtems.h@{rtems-\/rfs-\/rtems.h}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_rtems\_get\_pathloc\_ino}{rtems\_rfs\_rtems\_get\_pathloc\_ino}}
+{\footnotesize\ttfamily \#define rtems\+\_\+rfs\+\_\+rtems\+\_\+get\+\_\+pathloc\+\_\+ino(\begin{DoxyParamCaption}\item[{}]{\+\_\+loc }\end{DoxyParamCaption})~((\mbox{\hyperlink{rtems-rfs-inode_8h_ae658325c3ff9941f2e68315d20e3c723}{rtems\+\_\+rfs\+\_\+ino}}) (intptr\+\_\+t)((\+\_\+loc)-\/$>$node\+\_\+access))}
+
+Get the inode number (ino) given a path location.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+loc} & is a pointer to the path location. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+rtems\+\_\+rfs\+\_\+ino The inode number in the path location. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{rtems-rfs-rtems_8h_af2fd1c5f777c0554c38daa3dfce108a6}\label{rtems-rfs-rtems_8h_af2fd1c5f777c0554c38daa3dfce108a6}} 
+\index{rtems-\/rfs-\/rtems.h@{rtems-\/rfs-\/rtems.h}!rtems\_rfs\_rtems\_handlers@{rtems\_rfs\_rtems\_handlers}}
+\index{rtems\_rfs\_rtems\_handlers@{rtems\_rfs\_rtems\_handlers}!rtems-\/rfs-\/rtems.h@{rtems-\/rfs-\/rtems.h}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_rtems\_handlers}{rtems\_rfs\_rtems\_handlers}}
+{\footnotesize\ttfamily \#define rtems\+\_\+rfs\+\_\+rtems\+\_\+handlers(\begin{DoxyParamCaption}\item[{}]{\+\_\+h }\end{DoxyParamCaption})~\&rtems\+\_\+rfs\+\_\+rtems\+\_\+ \#\# \+\_\+h \#\# \+\_\+handlers}
+
+Create the name of the handler\textquotesingle{}s table given the type of handlers.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+h} & is the name of the handlers. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+label The name of the handler\textquotesingle{}s table. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{rtems-rfs-rtems_8h_a7effab77b709f297e12efd60f43c94f1}\label{rtems-rfs-rtems_8h_a7effab77b709f297e12efd60f43c94f1}} 
+\index{rtems-\/rfs-\/rtems.h@{rtems-\/rfs-\/rtems.h}!rtems\_rfs\_rtems\_pathloc\_dev@{rtems\_rfs\_rtems\_pathloc\_dev}}
+\index{rtems\_rfs\_rtems\_pathloc\_dev@{rtems\_rfs\_rtems\_pathloc\_dev}!rtems-\/rfs-\/rtems.h@{rtems-\/rfs-\/rtems.h}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_rtems\_pathloc\_dev}{rtems\_rfs\_rtems\_pathloc\_dev}}
+{\footnotesize\ttfamily \#define rtems\+\_\+rfs\+\_\+rtems\+\_\+pathloc\+\_\+dev(\begin{DoxyParamCaption}\item[{}]{\+\_\+loc }\end{DoxyParamCaption})~((\mbox{\hyperlink{struct__rtems__rfs__file__system}{rtems\+\_\+rfs\+\_\+file\+\_\+system}}$\ast$)((\+\_\+loc)-\/$>$mt\+\_\+entry-\/$>$fs\+\_\+info))}
+
+Return the file system structure given a path location.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+loc} & is a pointer to the path location. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+rtems\+\_\+rfs\+\_\+file\+\_\+system$\ast$ 
+\end{DoxyReturn}
+\mbox{\Hypertarget{rtems-rfs-rtems_8h_ae25991a18d906d3ba04fe91336c93070}\label{rtems-rfs-rtems_8h_ae25991a18d906d3ba04fe91336c93070}} 
+\index{rtems-\/rfs-\/rtems.h@{rtems-\/rfs-\/rtems.h}!rtems\_rfs\_rtems\_set\_iop\_file\_handle@{rtems\_rfs\_rtems\_set\_iop\_file\_handle}}
+\index{rtems\_rfs\_rtems\_set\_iop\_file\_handle@{rtems\_rfs\_rtems\_set\_iop\_file\_handle}!rtems-\/rfs-\/rtems.h@{rtems-\/rfs-\/rtems.h}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_rtems\_set\_iop\_file\_handle}{rtems\_rfs\_rtems\_set\_iop\_file\_handle}}
+{\footnotesize\ttfamily \#define rtems\+\_\+rfs\+\_\+rtems\+\_\+set\+\_\+iop\+\_\+file\+\_\+handle(\begin{DoxyParamCaption}\item[{}]{\+\_\+iop,  }\item[{}]{\+\_\+fh }\end{DoxyParamCaption})~(\+\_\+iop)-\/$>$pathinfo.\+node\+\_\+access\+\_\+2 = (\+\_\+fh)}
+
+Set the file handle in the I/O pointer.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+iop} & is the I/O pointer. \\
+\hline
+\mbox{\texttt{ in}}  & {\em \+\_\+fh} & is the file handle. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{rtems-rfs-rtems_8h_a060abfe719448a334892a602832f18ec}\label{rtems-rfs-rtems_8h_a060abfe719448a334892a602832f18ec}} 
+\index{rtems-\/rfs-\/rtems.h@{rtems-\/rfs-\/rtems.h}!rtems\_rfs\_rtems\_set\_pathloc\_doff@{rtems\_rfs\_rtems\_set\_pathloc\_doff}}
+\index{rtems\_rfs\_rtems\_set\_pathloc\_doff@{rtems\_rfs\_rtems\_set\_pathloc\_doff}!rtems-\/rfs-\/rtems.h@{rtems-\/rfs-\/rtems.h}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_rtems\_set\_pathloc\_doff}{rtems\_rfs\_rtems\_set\_pathloc\_doff}}
+{\footnotesize\ttfamily \#define rtems\+\_\+rfs\+\_\+rtems\+\_\+set\+\_\+pathloc\+\_\+doff(\begin{DoxyParamCaption}\item[{}]{\+\_\+loc,  }\item[{}]{\+\_\+doff }\end{DoxyParamCaption})~(\+\_\+loc)-\/$>$node\+\_\+access\+\_\+2 = (void$\ast$)((intptr\+\_\+t)(\+\_\+doff))}
+
+Set the directory offset (doff) into the path location.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+loc} & is a pointer to the path location. \\
+\hline
+\mbox{\texttt{ in}}  & {\em \+\_\+doff} & is the doff to set in the path location. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{rtems-rfs-rtems_8h_a435c55de00fa916c0c7229daaa410353}\label{rtems-rfs-rtems_8h_a435c55de00fa916c0c7229daaa410353}} 
+\index{rtems-\/rfs-\/rtems.h@{rtems-\/rfs-\/rtems.h}!rtems\_rfs\_rtems\_set\_pathloc\_ino@{rtems\_rfs\_rtems\_set\_pathloc\_ino}}
+\index{rtems\_rfs\_rtems\_set\_pathloc\_ino@{rtems\_rfs\_rtems\_set\_pathloc\_ino}!rtems-\/rfs-\/rtems.h@{rtems-\/rfs-\/rtems.h}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_rtems\_set\_pathloc\_ino}{rtems\_rfs\_rtems\_set\_pathloc\_ino}}
+{\footnotesize\ttfamily \#define rtems\+\_\+rfs\+\_\+rtems\+\_\+set\+\_\+pathloc\+\_\+ino(\begin{DoxyParamCaption}\item[{}]{\+\_\+loc,  }\item[{}]{\+\_\+ino }\end{DoxyParamCaption})~(\+\_\+loc)-\/$>$node\+\_\+access = (void$\ast$)((intptr\+\_\+t)(\+\_\+ino))}
+
+Set the inode number (ino) into the path location.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+loc} & is a pointer to the path location. \\
+\hline
+\mbox{\texttt{ in}}  & {\em \+\_\+ino} & is the ino to set in the path location. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{rtems-rfs-rtems_8h_a1c9e9114088dc1cc10966acc099d45e0}\label{rtems-rfs-rtems_8h_a1c9e9114088dc1cc10966acc099d45e0}} 
+\index{rtems-\/rfs-\/rtems.h@{rtems-\/rfs-\/rtems.h}!RTEMS\_RFS\_RTEMS\_TRACE@{RTEMS\_RFS\_RTEMS\_TRACE}}
+\index{RTEMS\_RFS\_RTEMS\_TRACE@{RTEMS\_RFS\_RTEMS\_TRACE}!rtems-\/rfs-\/rtems.h@{rtems-\/rfs-\/rtems.h}}
+\subsubsection{\texorpdfstring{RTEMS\_RFS\_RTEMS\_TRACE}{RTEMS\_RFS\_RTEMS\_TRACE}}
+{\footnotesize\ttfamily \#define R\+T\+E\+M\+S\+\_\+\+R\+F\+S\+\_\+\+R\+T\+E\+M\+S\+\_\+\+T\+R\+A\+CE~0}
+
+R\+T\+E\+MS R\+FS R\+T\+E\+MS Trace Enable. Set to 1 for printing of errors. Default is off. \mbox{\Hypertarget{rtems-rfs-rtems_8h_afc0def7dadd15c7a23e1efa46894f478}\label{rtems-rfs-rtems_8h_afc0def7dadd15c7a23e1efa46894f478}} 
+\index{rtems-\/rfs-\/rtems.h@{rtems-\/rfs-\/rtems.h}!rtems\_rfs\_rtems\_trace@{rtems\_rfs\_rtems\_trace}}
+\index{rtems\_rfs\_rtems\_trace@{rtems\_rfs\_rtems\_trace}!rtems-\/rfs-\/rtems.h@{rtems-\/rfs-\/rtems.h}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_rtems\_trace}{rtems\_rfs\_rtems\_trace}}
+{\footnotesize\ttfamily \#define rtems\+\_\+rfs\+\_\+rtems\+\_\+trace(\begin{DoxyParamCaption}\item[{}]{\+\_\+m }\end{DoxyParamCaption})~(0)}
+
+Call to check if this part is bring traced. If R\+T\+E\+M\+S\+\_\+\+R\+F\+S\+\_\+\+R\+T\+E\+M\+S\+\_\+\+T\+R\+A\+CE is defined to 0 the code is dead code elminiated when built with -\/Os, -\/O2, or higher.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em mask} & is the part of the A\+PI to trace.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em true} & Tracing is active for the mask. \\
+\hline
+{\em false} & Do not trace. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{rtems-rfs-rtems_8h_a32d4b857292b6e7cc5cdb9be1446e9ac}\label{rtems-rfs-rtems_8h_a32d4b857292b6e7cc5cdb9be1446e9ac}} 
+\index{rtems-\/rfs-\/rtems.h@{rtems-\/rfs-\/rtems.h}!rtems\_rfs\_rtems\_trace\_clear\_mask@{rtems\_rfs\_rtems\_trace\_clear\_mask}}
+\index{rtems\_rfs\_rtems\_trace\_clear\_mask@{rtems\_rfs\_rtems\_trace\_clear\_mask}!rtems-\/rfs-\/rtems.h@{rtems-\/rfs-\/rtems.h}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_rtems\_trace\_clear\_mask}{rtems\_rfs\_rtems\_trace\_clear\_mask}}
+{\footnotesize\ttfamily \#define rtems\+\_\+rfs\+\_\+rtems\+\_\+trace\+\_\+clear\+\_\+mask(\begin{DoxyParamCaption}\item[{}]{\+\_\+m }\end{DoxyParamCaption})}
+
+Clear the mask.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em mask} & is the mask bits to clear.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em mask} & The previous mask. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{rtems-rfs-rtems_8h_aaf75bffc2592610c5d28b15e8103b66f}\label{rtems-rfs-rtems_8h_aaf75bffc2592610c5d28b15e8103b66f}} 
+\index{rtems-\/rfs-\/rtems.h@{rtems-\/rfs-\/rtems.h}!rtems\_rfs\_rtems\_trace\_set\_mask@{rtems\_rfs\_rtems\_trace\_set\_mask}}
+\index{rtems\_rfs\_rtems\_trace\_set\_mask@{rtems\_rfs\_rtems\_trace\_set\_mask}!rtems-\/rfs-\/rtems.h@{rtems-\/rfs-\/rtems.h}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_rtems\_trace\_set\_mask}{rtems\_rfs\_rtems\_trace\_set\_mask}}
+{\footnotesize\ttfamily \#define rtems\+\_\+rfs\+\_\+rtems\+\_\+trace\+\_\+set\+\_\+mask(\begin{DoxyParamCaption}\item[{}]{\+\_\+m }\end{DoxyParamCaption})}
+
+Set the mask.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em mask} & is the mask bits to set.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em mask} & The previous mask. \\
+\hline
+\end{DoxyRetVals}
+
+
+\subsection{Typedef Documentation}
+\mbox{\Hypertarget{rtems-rfs-rtems_8h_aceaad4b4b8bccb8901ad1562f83835c8}\label{rtems-rfs-rtems_8h_aceaad4b4b8bccb8901ad1562f83835c8}} 
+\index{rtems-\/rfs-\/rtems.h@{rtems-\/rfs-\/rtems.h}!rtems\_rfs\_rtems\_private@{rtems\_rfs\_rtems\_private}}
+\index{rtems\_rfs\_rtems\_private@{rtems\_rfs\_rtems\_private}!rtems-\/rfs-\/rtems.h@{rtems-\/rfs-\/rtems.h}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_rtems\_private}{rtems\_rfs\_rtems\_private}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structrtems__rfs__rtems__private}{rtems\+\_\+rfs\+\_\+rtems\+\_\+private}}  \mbox{\hyperlink{structrtems__rfs__rtems__private}{rtems\+\_\+rfs\+\_\+rtems\+\_\+private}}}
+
+Add shell trace shell command.\+Private R\+FS R\+T\+E\+MS Port data. 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{rtems-rfs-rtems_8h_afea85d020da25d7bba8b14906c58a74a}\label{rtems-rfs-rtems_8h_afea85d020da25d7bba8b14906c58a74a}} 
+\index{rtems-\/rfs-\/rtems.h@{rtems-\/rfs-\/rtems.h}!rtems\_rfs\_rtems\_fdatasync@{rtems\_rfs\_rtems\_fdatasync}}
+\index{rtems\_rfs\_rtems\_fdatasync@{rtems\_rfs\_rtems\_fdatasync}!rtems-\/rfs-\/rtems.h@{rtems-\/rfs-\/rtems.h}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_rtems\_fdatasync()}{rtems\_rfs\_rtems\_fdatasync()}}
+{\footnotesize\ttfamily int rtems\+\_\+rfs\+\_\+rtems\+\_\+fdatasync (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structrtems__libio__tt}{rtems\+\_\+libio\+\_\+t}} $\ast$}]{iop }\end{DoxyParamCaption})}
+
+The following routine does a sync on an inode node. Currently it flushes everything related to this device.
+
+
+\begin{DoxyParams}{Parameters}
+{\em iop} & The following routine does a sync on an inode node. Currently it flushes everything related to this device.\\
+\hline
+{\em iop} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 
+\end{DoxyReturn}
+\mbox{\Hypertarget{rtems-rfs-rtems_8h_a0ceaa395fe3f5ea0c01383618faa3b5c}\label{rtems-rfs-rtems_8h_a0ceaa395fe3f5ea0c01383618faa3b5c}} 
+\index{rtems-\/rfs-\/rtems.h@{rtems-\/rfs-\/rtems.h}!rtems\_rfs\_rtems\_fstat@{rtems\_rfs\_rtems\_fstat}}
+\index{rtems\_rfs\_rtems\_fstat@{rtems\_rfs\_rtems\_fstat}!rtems-\/rfs-\/rtems.h@{rtems-\/rfs-\/rtems.h}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_rtems\_fstat()}{rtems\_rfs\_rtems\_fstat()}}
+{\footnotesize\ttfamily int rtems\+\_\+rfs\+\_\+rtems\+\_\+fstat (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{group__LibIO_ga3252b3d31ee3c49ffff0b7604a676864}{rtems\+\_\+filesystem\+\_\+location\+\_\+info\+\_\+t}} $\ast$}]{pathloc,  }\item[{struct stat $\ast$}]{buf }\end{DoxyParamCaption})}
+
+The following routine does a stat on a node. \mbox{\Hypertarget{rtems-rfs-rtems_8h_a1ed03f3bced418219d0c658d8dce5e7a}\label{rtems-rfs-rtems_8h_a1ed03f3bced418219d0c658d8dce5e7a}} 
+\index{rtems-\/rfs-\/rtems.h@{rtems-\/rfs-\/rtems.h}!rtems\_rfs\_rtems\_imode@{rtems\_rfs\_rtems\_imode}}
+\index{rtems\_rfs\_rtems\_imode@{rtems\_rfs\_rtems\_imode}!rtems-\/rfs-\/rtems.h@{rtems-\/rfs-\/rtems.h}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_rtems\_imode()}{rtems\_rfs\_rtems\_imode()}}
+{\footnotesize\ttfamily uint16\+\_\+t rtems\+\_\+rfs\+\_\+rtems\+\_\+imode (\begin{DoxyParamCaption}\item[{mode\+\_\+t}]{mode }\end{DoxyParamCaption})}
+
+Convert the system mode flags to inode mode flags.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em mode} & is the system mode flags. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+uint16\+\_\+t The inode mode flags. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{rtems-rfs-rtems_8h_aff5423998d0f78a1caecd4acff199690}\label{rtems-rfs-rtems_8h_aff5423998d0f78a1caecd4acff199690}} 
+\index{rtems-\/rfs-\/rtems.h@{rtems-\/rfs-\/rtems.h}!rtems\_rfs\_rtems\_mode@{rtems\_rfs\_rtems\_mode}}
+\index{rtems\_rfs\_rtems\_mode@{rtems\_rfs\_rtems\_mode}!rtems-\/rfs-\/rtems.h@{rtems-\/rfs-\/rtems.h}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_rtems\_mode()}{rtems\_rfs\_rtems\_mode()}}
+{\footnotesize\ttfamily mode\+\_\+t rtems\+\_\+rfs\+\_\+rtems\+\_\+mode (\begin{DoxyParamCaption}\item[{int}]{imode }\end{DoxyParamCaption})}
+
+Convert the inode mode flags to system mode flags.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em imode} & is the inode mode flags \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+mode\+\_\+t The system mode flags. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{rtems-rfs-rtems_8h_acb8e7e6615d937f61862719b00445978}\label{rtems-rfs-rtems_8h_acb8e7e6615d937f61862719b00445978}} 
+\index{rtems-\/rfs-\/rtems.h@{rtems-\/rfs-\/rtems.h}!rtems\_rfs\_rtems\_rmnod@{rtems\_rfs\_rtems\_rmnod}}
+\index{rtems\_rfs\_rtems\_rmnod@{rtems\_rfs\_rtems\_rmnod}!rtems-\/rfs-\/rtems.h@{rtems-\/rfs-\/rtems.h}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_rtems\_rmnod()}{rtems\_rfs\_rtems\_rmnod()}}
+{\footnotesize\ttfamily int rtems\+\_\+rfs\+\_\+rtems\+\_\+rmnod (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{group__LibIO_ga3252b3d31ee3c49ffff0b7604a676864}{rtems\+\_\+filesystem\+\_\+location\+\_\+info\+\_\+t}} $\ast$}]{parent\+\_\+pathloc,  }\item[{const \mbox{\hyperlink{group__LibIO_ga3252b3d31ee3c49ffff0b7604a676864}{rtems\+\_\+filesystem\+\_\+location\+\_\+info\+\_\+t}} $\ast$}]{pathloc }\end{DoxyParamCaption})}
+
+Routine to remove a node from the R\+FS file system.
+
+
+\begin{DoxyParams}{Parameters}
+{\em parent\+\_\+pathloc} & \\
+\hline
+{\em pathloc} & Routine to remove a node from the R\+FS file system.\\
+\hline
+{\em parent\+\_\+pathloc} & \\
+\hline
+{\em pathloc} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 
+\end{DoxyReturn}
+\mbox{\Hypertarget{rtems-rfs-rtems_8h_a476a19330258f7b28ef99a4b709681cf}\label{rtems-rfs-rtems_8h_a476a19330258f7b28ef99a4b709681cf}} 
+\index{rtems-\/rfs-\/rtems.h@{rtems-\/rfs-\/rtems.h}!rtems\_rfs\_rtems\_set\_handlers@{rtems\_rfs\_rtems\_set\_handlers}}
+\index{rtems\_rfs\_rtems\_set\_handlers@{rtems\_rfs\_rtems\_set\_handlers}!rtems-\/rfs-\/rtems.h@{rtems-\/rfs-\/rtems.h}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_rtems\_set\_handlers()}{rtems\_rfs\_rtems\_set\_handlers()}}
+{\footnotesize\ttfamily bool rtems\+\_\+rfs\+\_\+rtems\+\_\+set\+\_\+handlers (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__LibIO_ga3252b3d31ee3c49ffff0b7604a676864}{rtems\+\_\+filesystem\+\_\+location\+\_\+info\+\_\+t}} $\ast$}]{pathloc,  }\item[{\mbox{\hyperlink{rtems-rfs-inode_8h_a91f02dac5a2d91e072d676f3266ab8d2}{rtems\+\_\+rfs\+\_\+inode\+\_\+handle}} $\ast$}]{inode }\end{DoxyParamCaption})}
+
+Set the handlers in the path location based on the mode of the inode.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em loc} & is a pointer to the path location to set the handlers in. \\
+\hline
+\mbox{\texttt{ in}}  & {\em inode} & is the inode handle to check the mode of for the type of handlers.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em true} & The handlers have been set. \\
+\hline
+{\em false} & There are no handlers for the mode. \\
+\hline
+\end{DoxyRetVals}
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{rtems-rfs-rtems_8h_add62aab33d39c83e13c93bac9f74a6d2}\label{rtems-rfs-rtems_8h_add62aab33d39c83e13c93bac9f74a6d2}} 
+\index{rtems-\/rfs-\/rtems.h@{rtems-\/rfs-\/rtems.h}!rtems\_rfs\_rtems\_dir\_handlers@{rtems\_rfs\_rtems\_dir\_handlers}}
+\index{rtems\_rfs\_rtems\_dir\_handlers@{rtems\_rfs\_rtems\_dir\_handlers}!rtems-\/rfs-\/rtems.h@{rtems-\/rfs-\/rtems.h}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_rtems\_dir\_handlers}{rtems\_rfs\_rtems\_dir\_handlers}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{struct__rtems__filesystem__file__handlers__r}{rtems\+\_\+filesystem\+\_\+file\+\_\+handlers\+\_\+r}} rtems\+\_\+rfs\+\_\+rtems\+\_\+dir\+\_\+handlers}
+
+The handlers. \mbox{\Hypertarget{rtems-rfs-rtems_8h_a1b1aa463d7b6bd01b968b2d557dd33dd}\label{rtems-rfs-rtems_8h_a1b1aa463d7b6bd01b968b2d557dd33dd}} 
+\index{rtems-\/rfs-\/rtems.h@{rtems-\/rfs-\/rtems.h}!rtems\_rfs\_rtems\_link\_handlers@{rtems\_rfs\_rtems\_link\_handlers}}
+\index{rtems\_rfs\_rtems\_link\_handlers@{rtems\_rfs\_rtems\_link\_handlers}!rtems-\/rfs-\/rtems.h@{rtems-\/rfs-\/rtems.h}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_rtems\_link\_handlers}{rtems\_rfs\_rtems\_link\_handlers}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{struct__rtems__filesystem__file__handlers__r}{rtems\+\_\+filesystem\+\_\+file\+\_\+handlers\+\_\+r}} rtems\+\_\+rfs\+\_\+rtems\+\_\+link\+\_\+handlers}
+
+Handler table for R\+FS link nodes 

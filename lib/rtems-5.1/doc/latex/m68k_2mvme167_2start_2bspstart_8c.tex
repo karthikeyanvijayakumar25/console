@@ -1,0 +1,23 @@
+\hypertarget{m68k_2mvme167_2start_2bspstart_8c}{}\section{bsps/m68k/mvme167/start/bspstart.c File Reference}
+\label{m68k_2mvme167_2start_2bspstart_8c}\index{bsps/m68k/mvme167/start/bspstart.c@{bsps/m68k/mvme167/start/bspstart.c}}
+{\ttfamily \#include $<$bsp.\+h$>$}\newline
+{\ttfamily \#include $<$bsp/bootcard.\+h$>$}\newline
+{\ttfamily \#include $<$page\+\_\+table.\+h$>$}\newline
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{m68k_2mvme167_2start_2bspstart_8c_a3f9aa9179d6bbaf1e3eb828664541dbe}\label{m68k_2mvme167_2start_2bspstart_8c_a3f9aa9179d6bbaf1e3eb828664541dbe}} 
+void {\bfseries M68\+K\+F\+P\+S\+P\+Install\+Exception\+Handlers} (void)
+\item 
+void {\bfseries bsp\+\_\+start} (void)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Board-\/specific initialization code. Called from the generic \mbox{\hyperlink{group__RTEMSBSPsSharedStartup_gad8a18766fa4f3cf67d8f8ff8938008e0}{boot\+\_\+card()}} function defined in rtems/c/src/lib/libbsp/shared/main.\+c. That function does some of the board independent initialization. It is called from the generic M\+C680x0 entry point \mbox{\hyperlink{group__arm__start_ga8b67a6ff3f33fae9b3f1b142005c0bc2}{\+\_\+start()}} defined in rtems/c/src/lib/start/m68k/start.\+s
+
+\mbox{\hyperlink{group__arm__start_ga8b67a6ff3f33fae9b3f1b142005c0bc2}{\+\_\+start()}} has set up a stack, has zeroed the .bss section, has turned off interrupts, and placed the processor in the supervisor mode. \mbox{\hyperlink{group__RTEMSBSPsSharedStartup_gad8a18766fa4f3cf67d8f8ff8938008e0}{boot\+\_\+card()}} has left the processor in that state when bsp\+\_\+start() was called.
+
+R\+U\+NS W\+I\+TH A\+D\+D\+R\+E\+SS T\+R\+A\+N\+S\+L\+A\+T\+I\+ON A\+ND C\+A\+C\+H\+I\+NG T\+U\+R\+N\+ED O\+F\+F! A\+S\+S\+U\+M\+ES T\+H\+AT T\+HE V\+I\+R\+T\+U\+AL A\+D\+D\+R\+E\+S\+S\+ES W\+I\+LL BE I\+D\+E\+N\+T\+I\+C\+AL TO T\+HE P\+H\+Y\+S\+I\+C\+AL A\+D\+D\+R\+E\+S\+S\+ES. Software-\/controlled address translation would be required otherwise.
+
+A\+S\+S\+U\+M\+ES T\+H\+AT 167B\+UG IS P\+R\+E\+S\+E\+NT TO C\+A\+T\+CH A\+NY E\+X\+C\+E\+P\+T\+I\+O\+NS D\+U\+R\+I\+NG I\+N\+I\+T\+I\+A\+L\+I\+Z\+A\+T\+I\+ON. 

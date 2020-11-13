@@ -1,0 +1,239 @@
+\hypertarget{ps2__mouse_8h}{}\section{bsps/i386/pc386/console/ps2\+\_\+mouse.h File Reference}
+\label{ps2__mouse_8h}\index{bsps/i386/pc386/console/ps2\_mouse.h@{bsps/i386/pc386/console/ps2\_mouse.h}}
+
+
+Keyboard and mouse definitions.  
+
+
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structaux__queue}{aux\+\_\+queue}}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{ps2__mouse_8h_a85f7a47350c1b5f839030bc8077079d1}\label{ps2__mouse_8h_a85f7a47350c1b5f839030bc8077079d1}} 
+\#define {\bfseries K\+B\+D\+\_\+\+R\+E\+P\+O\+R\+T\+\_\+\+U\+N\+KN}~/$\ast$ Report unknown scan codes $\ast$/
+\item 
+\mbox{\Hypertarget{ps2__mouse_8h_a8dca28a8a08413ffd95a24e5c0bb2ab1}\label{ps2__mouse_8h_a8dca28a8a08413ffd95a24e5c0bb2ab1}} 
+\#define {\bfseries K\+B\+D\+\_\+\+R\+E\+P\+O\+R\+T\+\_\+\+T\+I\+M\+E\+O\+U\+TS}~/$\ast$ Report keyboard timeouts $\ast$/
+\item 
+\mbox{\Hypertarget{ps2__mouse_8h_a8b2dadd20c6b23b6c086f795b2ddc028}\label{ps2__mouse_8h_a8b2dadd20c6b23b6c086f795b2ddc028}} 
+\#define {\bfseries K\+B\+D\+\_\+\+I\+N\+I\+T\+\_\+\+T\+I\+M\+E\+O\+UT}~1000		/$\ast$ Timeout in ms for initializing the keyboard $\ast$/
+\item 
+\mbox{\Hypertarget{ps2__mouse_8h_a34599ca5c55cb9be3b235d7422aff45c}\label{ps2__mouse_8h_a34599ca5c55cb9be3b235d7422aff45c}} 
+\#define {\bfseries K\+B\+C\+\_\+\+T\+I\+M\+E\+O\+UT}~250			/$\ast$ Timeout in ms for sending to keyboard controller $\ast$/
+\item 
+\mbox{\Hypertarget{ps2__mouse_8h_aa7c582602ad136cb58bcf5cba15b1320}\label{ps2__mouse_8h_aa7c582602ad136cb58bcf5cba15b1320}} 
+\#define {\bfseries K\+B\+D\+\_\+\+T\+I\+M\+E\+O\+UT}~1000		/$\ast$ Timeout in ms for keyboard command acknowledge $\ast$/
+\item 
+\mbox{\Hypertarget{ps2__mouse_8h_a6972f5bf9a2559a97fa282b542df5e42}\label{ps2__mouse_8h_a6972f5bf9a2559a97fa282b542df5e42}} 
+\#define {\bfseries K\+B\+D\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+R\+EG}~0x64	/$\ast$ Status register (\+R) $\ast$/
+\item 
+\mbox{\Hypertarget{ps2__mouse_8h_a37fca7427de41e024967348c0009304b}\label{ps2__mouse_8h_a37fca7427de41e024967348c0009304b}} 
+\#define {\bfseries K\+B\+D\+\_\+\+C\+N\+T\+L\+\_\+\+R\+EG}~0x64	/$\ast$ Controller command register (\+W) $\ast$/
+\item 
+\mbox{\Hypertarget{ps2__mouse_8h_a9046af98e8ac3c2c258c8ae1b142a827}\label{ps2__mouse_8h_a9046af98e8ac3c2c258c8ae1b142a827}} 
+\#define {\bfseries K\+B\+D\+\_\+\+D\+A\+T\+A\+\_\+\+R\+EG}~0x60	/$\ast$ Keyboard data register (\+R/\+W) $\ast$/
+\item 
+\mbox{\Hypertarget{ps2__mouse_8h_a793a7a2c148e95cc4e1fd3ae5fca666f}\label{ps2__mouse_8h_a793a7a2c148e95cc4e1fd3ae5fca666f}} 
+\#define {\bfseries K\+B\+D\+\_\+\+C\+C\+M\+D\+\_\+\+R\+E\+A\+D\+\_\+\+M\+O\+DE}~0x20	/$\ast$ Read mode bits $\ast$/
+\item 
+\mbox{\Hypertarget{ps2__mouse_8h_a10746260e3fd84ea18a08376fa7489da}\label{ps2__mouse_8h_a10746260e3fd84ea18a08376fa7489da}} 
+\#define {\bfseries K\+B\+D\+\_\+\+C\+C\+M\+D\+\_\+\+W\+R\+I\+T\+E\+\_\+\+M\+O\+DE}~0x60	/$\ast$ Write mode bits $\ast$/
+\item 
+\mbox{\Hypertarget{ps2__mouse_8h_aa309f4b072cd70d8edafe503eab59fe9}\label{ps2__mouse_8h_aa309f4b072cd70d8edafe503eab59fe9}} 
+\#define {\bfseries K\+B\+D\+\_\+\+C\+C\+M\+D\+\_\+\+G\+E\+T\+\_\+\+V\+E\+R\+S\+I\+ON}~0x\+A1	/$\ast$ Get controller version $\ast$/
+\item 
+\mbox{\Hypertarget{ps2__mouse_8h_a69cb159ee218ffb59fd6192a56511196}\label{ps2__mouse_8h_a69cb159ee218ffb59fd6192a56511196}} 
+\#define {\bfseries K\+B\+D\+\_\+\+C\+C\+M\+D\+\_\+\+M\+O\+U\+S\+E\+\_\+\+D\+I\+S\+A\+B\+LE}~0x\+A7	/$\ast$ Disable mouse interface $\ast$/
+\item 
+\mbox{\Hypertarget{ps2__mouse_8h_af577149544c23207eb3feda7197b8eff}\label{ps2__mouse_8h_af577149544c23207eb3feda7197b8eff}} 
+\#define {\bfseries K\+B\+D\+\_\+\+C\+C\+M\+D\+\_\+\+M\+O\+U\+S\+E\+\_\+\+E\+N\+A\+B\+LE}~0x\+A8	/$\ast$ Enable mouse interface $\ast$/
+\item 
+\mbox{\Hypertarget{ps2__mouse_8h_add9ce27eef9586a239d5442c0205aaa8}\label{ps2__mouse_8h_add9ce27eef9586a239d5442c0205aaa8}} 
+\#define {\bfseries K\+B\+D\+\_\+\+C\+C\+M\+D\+\_\+\+T\+E\+S\+T\+\_\+\+M\+O\+U\+SE}~0x\+A9	/$\ast$ Mouse interface test $\ast$/
+\item 
+\mbox{\Hypertarget{ps2__mouse_8h_aa4a916a5aedd6953b288fe3bf99cc455}\label{ps2__mouse_8h_aa4a916a5aedd6953b288fe3bf99cc455}} 
+\#define {\bfseries K\+B\+D\+\_\+\+C\+C\+M\+D\+\_\+\+S\+E\+L\+F\+\_\+\+T\+E\+ST}~0x\+A\+A	/$\ast$ Controller self test $\ast$/
+\item 
+\mbox{\Hypertarget{ps2__mouse_8h_a6d32838a37be944358ca3179c71641c5}\label{ps2__mouse_8h_a6d32838a37be944358ca3179c71641c5}} 
+\#define {\bfseries K\+B\+D\+\_\+\+C\+C\+M\+D\+\_\+\+K\+B\+D\+\_\+\+T\+E\+ST}~0x\+A\+B	/$\ast$ Keyboard interface test $\ast$/
+\item 
+\mbox{\Hypertarget{ps2__mouse_8h_ae13c0ee7fedf9efd4ccf3d2a8e702055}\label{ps2__mouse_8h_ae13c0ee7fedf9efd4ccf3d2a8e702055}} 
+\#define {\bfseries K\+B\+D\+\_\+\+C\+C\+M\+D\+\_\+\+K\+B\+D\+\_\+\+D\+I\+S\+A\+B\+LE}~0x\+A\+D	/$\ast$ Keyboard interface disable $\ast$/
+\item 
+\mbox{\Hypertarget{ps2__mouse_8h_a7fce428f40081e9ac0118a94f7f4a09f}\label{ps2__mouse_8h_a7fce428f40081e9ac0118a94f7f4a09f}} 
+\#define {\bfseries K\+B\+D\+\_\+\+C\+C\+M\+D\+\_\+\+K\+B\+D\+\_\+\+E\+N\+A\+B\+LE}~0x\+A\+E	/$\ast$ Keyboard interface enable $\ast$/
+\item 
+\#define {\bfseries K\+B\+D\+\_\+\+C\+C\+M\+D\+\_\+\+W\+R\+I\+T\+E\+\_\+\+A\+U\+X\+\_\+\+O\+B\+UF}
+\item 
+\mbox{\Hypertarget{ps2__mouse_8h_abf34f99b4eed4eb9ec02235812708708}\label{ps2__mouse_8h_abf34f99b4eed4eb9ec02235812708708}} 
+\#define {\bfseries K\+B\+D\+\_\+\+C\+C\+M\+D\+\_\+\+W\+R\+I\+T\+E\+\_\+\+M\+O\+U\+SE}~0x\+D4	/$\ast$ Write the following byte to the mouse $\ast$/
+\item 
+\mbox{\Hypertarget{ps2__mouse_8h_a210e2b581b2727776880e118cd9dde0d}\label{ps2__mouse_8h_a210e2b581b2727776880e118cd9dde0d}} 
+\#define {\bfseries K\+B\+D\+\_\+\+C\+M\+D\+\_\+\+S\+E\+T\+\_\+\+L\+E\+DS}~0x\+E\+D	/$\ast$ Set keyboard leds $\ast$/
+\item 
+\mbox{\Hypertarget{ps2__mouse_8h_a8f13cb954529133756d2fecff2be49e9}\label{ps2__mouse_8h_a8f13cb954529133756d2fecff2be49e9}} 
+\#define {\bfseries K\+B\+D\+\_\+\+C\+M\+D\+\_\+\+S\+E\+T\+\_\+\+R\+A\+TE}~0x\+F3	/$\ast$ Set typematic rate $\ast$/
+\item 
+\mbox{\Hypertarget{ps2__mouse_8h_a4b0457388a00177494b36e9adcb01201}\label{ps2__mouse_8h_a4b0457388a00177494b36e9adcb01201}} 
+\#define {\bfseries K\+B\+D\+\_\+\+C\+M\+D\+\_\+\+E\+N\+A\+B\+LE}~0x\+F4	/$\ast$ Enable scanning $\ast$/
+\item 
+\mbox{\Hypertarget{ps2__mouse_8h_a18106ad47cc37dc8aaaca8db661c6134}\label{ps2__mouse_8h_a18106ad47cc37dc8aaaca8db661c6134}} 
+\#define {\bfseries K\+B\+D\+\_\+\+C\+M\+D\+\_\+\+D\+I\+S\+A\+B\+LE}~0x\+F5	/$\ast$ Disable scanning $\ast$/
+\item 
+\mbox{\Hypertarget{ps2__mouse_8h_a6bc8adceb7a3ea6816c5530bf5e33a8f}\label{ps2__mouse_8h_a6bc8adceb7a3ea6816c5530bf5e33a8f}} 
+\#define {\bfseries K\+B\+D\+\_\+\+C\+M\+D\+\_\+\+R\+E\+S\+ET}~0x\+F\+F	/$\ast$ Reset $\ast$/
+\item 
+\mbox{\Hypertarget{ps2__mouse_8h_ad4fe725e6564314b4a9466c4e41965b3}\label{ps2__mouse_8h_ad4fe725e6564314b4a9466c4e41965b3}} 
+\#define {\bfseries K\+B\+D\+\_\+\+R\+E\+P\+L\+Y\+\_\+\+P\+OR}~0x\+A\+A	/$\ast$ Power on reset $\ast$/
+\item 
+\mbox{\Hypertarget{ps2__mouse_8h_a1d80ae5f69258892e790b3ddd45b8df4}\label{ps2__mouse_8h_a1d80ae5f69258892e790b3ddd45b8df4}} 
+\#define {\bfseries K\+B\+D\+\_\+\+R\+E\+P\+L\+Y\+\_\+\+A\+CK}~0x\+F\+A	/$\ast$ Command A\+C\+K $\ast$/
+\item 
+\mbox{\Hypertarget{ps2__mouse_8h_a1e73bce34c147ae4b4ea61ef63772606}\label{ps2__mouse_8h_a1e73bce34c147ae4b4ea61ef63772606}} 
+\#define {\bfseries K\+B\+D\+\_\+\+R\+E\+P\+L\+Y\+\_\+\+R\+E\+S\+E\+ND}~0x\+F\+E	/$\ast$ Command N\+A\+C\+K, send the cmd again $\ast$/
+\item 
+\mbox{\Hypertarget{ps2__mouse_8h_a0a78fced24521fb7623ccb1ee0163582}\label{ps2__mouse_8h_a0a78fced24521fb7623ccb1ee0163582}} 
+\#define {\bfseries K\+B\+D\+\_\+\+S\+T\+A\+T\+\_\+\+O\+BF}~0x01	/$\ast$ Keyboard output buffer full $\ast$/
+\item 
+\mbox{\Hypertarget{ps2__mouse_8h_a50c6ba57a75b34932e98499c021a502c}\label{ps2__mouse_8h_a50c6ba57a75b34932e98499c021a502c}} 
+\#define {\bfseries K\+B\+D\+\_\+\+S\+T\+A\+T\+\_\+\+I\+BF}~0x02	/$\ast$ Keyboard input buffer full $\ast$/
+\item 
+\mbox{\Hypertarget{ps2__mouse_8h_ae875c5274d3e1cd6649ec0ec1eaf7586}\label{ps2__mouse_8h_ae875c5274d3e1cd6649ec0ec1eaf7586}} 
+\#define {\bfseries K\+B\+D\+\_\+\+S\+T\+A\+T\+\_\+\+S\+E\+L\+F\+T\+E\+ST}~0x04	/$\ast$ Self test successful $\ast$/
+\item 
+\mbox{\Hypertarget{ps2__mouse_8h_a417333ca1b1266fba75431a233405274}\label{ps2__mouse_8h_a417333ca1b1266fba75431a233405274}} 
+\#define {\bfseries K\+B\+D\+\_\+\+S\+T\+A\+T\+\_\+\+C\+MD}~0x08	/$\ast$ Last write was a command write (0=data) $\ast$/
+\item 
+\mbox{\Hypertarget{ps2__mouse_8h_aa4341462ed45dce6bd78e4bb8ac3d380}\label{ps2__mouse_8h_aa4341462ed45dce6bd78e4bb8ac3d380}} 
+\#define {\bfseries K\+B\+D\+\_\+\+S\+T\+A\+T\+\_\+\+U\+N\+L\+O\+C\+K\+ED}~0x10	/$\ast$ Zero if keyboard locked $\ast$/
+\item 
+\mbox{\Hypertarget{ps2__mouse_8h_a62604416fdf18a23926cc7a7a1bcb4ec}\label{ps2__mouse_8h_a62604416fdf18a23926cc7a7a1bcb4ec}} 
+\#define {\bfseries K\+B\+D\+\_\+\+S\+T\+A\+T\+\_\+\+M\+O\+U\+S\+E\+\_\+\+O\+BF}~0x20	/$\ast$ Mouse output buffer full $\ast$/
+\item 
+\mbox{\Hypertarget{ps2__mouse_8h_aa92773683b9f6cfb85721c77043240d6}\label{ps2__mouse_8h_aa92773683b9f6cfb85721c77043240d6}} 
+\#define {\bfseries K\+B\+D\+\_\+\+S\+T\+A\+T\+\_\+\+G\+TO}~0x40	/$\ast$ General receive/xmit timeout $\ast$/
+\item 
+\mbox{\Hypertarget{ps2__mouse_8h_a307ccc950cec853e67ed0cb0279ea121}\label{ps2__mouse_8h_a307ccc950cec853e67ed0cb0279ea121}} 
+\#define {\bfseries K\+B\+D\+\_\+\+S\+T\+A\+T\+\_\+\+P\+E\+RR}~0x80	/$\ast$ Parity error $\ast$/
+\item 
+\mbox{\Hypertarget{ps2__mouse_8h_a61321f24b29dd1d4d95e570e4de9e80b}\label{ps2__mouse_8h_a61321f24b29dd1d4d95e570e4de9e80b}} 
+\#define {\bfseries A\+U\+X\+\_\+\+S\+T\+A\+T\+\_\+\+O\+BF}~(K\+B\+D\+\_\+\+S\+T\+A\+T\+\_\+\+O\+BF $\vert$ K\+B\+D\+\_\+\+S\+T\+A\+T\+\_\+\+M\+O\+U\+S\+E\+\_\+\+O\+BF)
+\item 
+\mbox{\Hypertarget{ps2__mouse_8h_ab4cda69bd836a6f68052a7927af6a395}\label{ps2__mouse_8h_ab4cda69bd836a6f68052a7927af6a395}} 
+\#define {\bfseries K\+B\+D\+\_\+\+M\+O\+D\+E\+\_\+\+K\+B\+D\+\_\+\+I\+NT}~0x01	/$\ast$ Keyboard data generate I\+R\+Q1 $\ast$/
+\item 
+\mbox{\Hypertarget{ps2__mouse_8h_a10a6d5b7505aa665166d1697491c4022}\label{ps2__mouse_8h_a10a6d5b7505aa665166d1697491c4022}} 
+\#define {\bfseries K\+B\+D\+\_\+\+M\+O\+D\+E\+\_\+\+M\+O\+U\+S\+E\+\_\+\+I\+NT}~0x02	/$\ast$ Mouse data generate I\+R\+Q12 $\ast$/
+\item 
+\mbox{\Hypertarget{ps2__mouse_8h_a4eb5cba32445459ef352be1c4c7a0bc2}\label{ps2__mouse_8h_a4eb5cba32445459ef352be1c4c7a0bc2}} 
+\#define {\bfseries K\+B\+D\+\_\+\+M\+O\+D\+E\+\_\+\+S\+YS}~0x04	/$\ast$ The system flag (?) $\ast$/
+\item 
+\mbox{\Hypertarget{ps2__mouse_8h_a74fc1b6d78a8a75ba75cc822a83e666a}\label{ps2__mouse_8h_a74fc1b6d78a8a75ba75cc822a83e666a}} 
+\#define {\bfseries K\+B\+D\+\_\+\+M\+O\+D\+E\+\_\+\+N\+O\+\_\+\+K\+E\+Y\+L\+O\+CK}~0x08	/$\ast$ The keylock doesn\textquotesingle{}t affect the keyboard if set $\ast$/
+\item 
+\mbox{\Hypertarget{ps2__mouse_8h_aae8dce38f271862d7b489633e422eee2}\label{ps2__mouse_8h_aae8dce38f271862d7b489633e422eee2}} 
+\#define {\bfseries K\+B\+D\+\_\+\+M\+O\+D\+E\+\_\+\+D\+I\+S\+A\+B\+L\+E\+\_\+\+K\+BD}~0x10	/$\ast$ Disable keyboard interface $\ast$/
+\item 
+\mbox{\Hypertarget{ps2__mouse_8h_ad383b635f45f3ad924101b2704b4f928}\label{ps2__mouse_8h_ad383b635f45f3ad924101b2704b4f928}} 
+\#define {\bfseries K\+B\+D\+\_\+\+M\+O\+D\+E\+\_\+\+D\+I\+S\+A\+B\+L\+E\+\_\+\+M\+O\+U\+SE}~0x20	/$\ast$ Disable mouse interface $\ast$/
+\item 
+\mbox{\Hypertarget{ps2__mouse_8h_a77de1019adca0124675c17f316d339e3}\label{ps2__mouse_8h_a77de1019adca0124675c17f316d339e3}} 
+\#define {\bfseries K\+B\+D\+\_\+\+M\+O\+D\+E\+\_\+\+K\+CC}~0x40	/$\ast$ Scan code conversion to P\+C format $\ast$/
+\item 
+\mbox{\Hypertarget{ps2__mouse_8h_af668ef73b353c7d64486bab432197c17}\label{ps2__mouse_8h_af668ef73b353c7d64486bab432197c17}} 
+\#define {\bfseries K\+B\+D\+\_\+\+M\+O\+D\+E\+\_\+\+R\+FU}~0x80
+\item 
+\mbox{\Hypertarget{ps2__mouse_8h_a2d6bec00ac101a54f5202f355f780582}\label{ps2__mouse_8h_a2d6bec00ac101a54f5202f355f780582}} 
+\#define {\bfseries A\+U\+X\+\_\+\+S\+E\+T\+\_\+\+R\+ES}~0x\+E8	/$\ast$ Set resolution $\ast$/
+\item 
+\mbox{\Hypertarget{ps2__mouse_8h_a1370f0a1bfc654b973ba2ee9b1c42fc8}\label{ps2__mouse_8h_a1370f0a1bfc654b973ba2ee9b1c42fc8}} 
+\#define {\bfseries A\+U\+X\+\_\+\+S\+E\+T\+\_\+\+S\+C\+A\+L\+E11}~0x\+E6	/$\ast$ Set 1\+:1 scaling $\ast$/
+\item 
+\mbox{\Hypertarget{ps2__mouse_8h_a54c2658b0b3292a75ca5d4a104abdfd4}\label{ps2__mouse_8h_a54c2658b0b3292a75ca5d4a104abdfd4}} 
+\#define {\bfseries A\+U\+X\+\_\+\+S\+E\+T\+\_\+\+S\+C\+A\+L\+E21}~0x\+E7	/$\ast$ Set 2\+:1 scaling $\ast$/
+\item 
+\mbox{\Hypertarget{ps2__mouse_8h_ae2b66b9f4e10683623f2ef1a7973b992}\label{ps2__mouse_8h_ae2b66b9f4e10683623f2ef1a7973b992}} 
+\#define {\bfseries A\+U\+X\+\_\+\+G\+E\+T\+\_\+\+S\+C\+A\+LE}~0x\+E9	/$\ast$ Get scaling factor $\ast$/
+\item 
+\mbox{\Hypertarget{ps2__mouse_8h_a2af50be9e719adfae455ed9a96279657}\label{ps2__mouse_8h_a2af50be9e719adfae455ed9a96279657}} 
+\#define {\bfseries A\+U\+X\+\_\+\+S\+E\+T\+\_\+\+S\+T\+R\+E\+AM}~0x\+E\+A	/$\ast$ Set stream mode $\ast$/
+\item 
+\mbox{\Hypertarget{ps2__mouse_8h_a7d2ea7294aeafd6ca791b4557072ed85}\label{ps2__mouse_8h_a7d2ea7294aeafd6ca791b4557072ed85}} 
+\#define {\bfseries A\+U\+X\+\_\+\+S\+E\+T\+\_\+\+S\+A\+M\+P\+LE}~0x\+F3	/$\ast$ Set sample rate $\ast$/
+\item 
+\mbox{\Hypertarget{ps2__mouse_8h_a3649e1a0f6621b52ea0957d3e1ed6681}\label{ps2__mouse_8h_a3649e1a0f6621b52ea0957d3e1ed6681}} 
+\#define {\bfseries A\+U\+X\+\_\+\+E\+N\+A\+B\+L\+E\+\_\+\+D\+EV}~0x\+F4	/$\ast$ Enable aux device $\ast$/
+\item 
+\mbox{\Hypertarget{ps2__mouse_8h_ac11c531ce909a000b51541a9aaa64944}\label{ps2__mouse_8h_ac11c531ce909a000b51541a9aaa64944}} 
+\#define {\bfseries A\+U\+X\+\_\+\+D\+I\+S\+A\+B\+L\+E\+\_\+\+D\+EV}~0x\+F5	/$\ast$ Disable aux device $\ast$/
+\item 
+\mbox{\Hypertarget{ps2__mouse_8h_a6642fc212912b4122e6f59b4e1737f8e}\label{ps2__mouse_8h_a6642fc212912b4122e6f59b4e1737f8e}} 
+\#define {\bfseries A\+U\+X\+\_\+\+R\+E\+S\+ET}~0x\+F\+F	/$\ast$ Reset aux device $\ast$/
+\item 
+\mbox{\Hypertarget{ps2__mouse_8h_a1eef46fe2c684b49df541e775ea01232}\label{ps2__mouse_8h_a1eef46fe2c684b49df541e775ea01232}} 
+\#define {\bfseries A\+U\+X\+\_\+\+A\+CK}~0x\+F\+A	/$\ast$ Command byte A\+C\+K. $\ast$/
+\item 
+\#define {\bfseries A\+U\+X\+\_\+\+B\+U\+F\+\_\+\+S\+I\+ZE}
+\item 
+\mbox{\Hypertarget{ps2__mouse_8h_af3dabf79f797dfa1d600c9b8bd4b277d}\label{ps2__mouse_8h_af3dabf79f797dfa1d600c9b8bd4b277d}} 
+\#define {\bfseries kbd\+\_\+read\+\_\+input}()~inb(K\+B\+D\+\_\+\+D\+A\+T\+A\+\_\+\+R\+EG)
+\item 
+\mbox{\Hypertarget{ps2__mouse_8h_a3e16a09b0ea546ecb22763f76f082586}\label{ps2__mouse_8h_a3e16a09b0ea546ecb22763f76f082586}} 
+\#define {\bfseries kbd\+\_\+read\+\_\+status}()~inb(K\+B\+D\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+R\+EG)
+\item 
+\mbox{\Hypertarget{ps2__mouse_8h_a68ddff5c8a1ae041d7946164b8c7888c}\label{ps2__mouse_8h_a68ddff5c8a1ae041d7946164b8c7888c}} 
+\#define {\bfseries kbd\+\_\+write\+\_\+output}(val)~outb(val, K\+B\+D\+\_\+\+D\+A\+T\+A\+\_\+\+R\+EG)
+\item 
+\mbox{\Hypertarget{ps2__mouse_8h_a7623b740cf3cec3866ef0a0d3f1afd2a}\label{ps2__mouse_8h_a7623b740cf3cec3866ef0a0d3f1afd2a}} 
+\#define {\bfseries kbd\+\_\+write\+\_\+command}(val)~outb(val, K\+B\+D\+\_\+\+C\+N\+T\+L\+\_\+\+R\+EG)
+\item 
+\mbox{\Hypertarget{ps2__mouse_8h_a937c7e17b3bae37fef160a3a651eb883}\label{ps2__mouse_8h_a937c7e17b3bae37fef160a3a651eb883}} 
+\#define {\bfseries A\+U\+X\+\_\+\+I\+RQ}~12
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{ps2__mouse_8h_aa185d8a5fd7eb9578554a6d6edb8df1f}\label{ps2__mouse_8h_aa185d8a5fd7eb9578554a6d6edb8df1f}} 
+unsigned char {\bfseries pckbd\+\_\+read\+\_\+mask}
+\item 
+\mbox{\Hypertarget{ps2__mouse_8h_a4364d41c0d8d9d4c7701d6dca3587d77}\label{ps2__mouse_8h_a4364d41c0d8d9d4c7701d6dca3587d77}} 
+unsigned char {\bfseries aux\+\_\+device\+\_\+present}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Keyboard and mouse definitions. 
+
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{ps2__mouse_8h_ac4bdb59b215b306f4c6c89af16170791}\label{ps2__mouse_8h_ac4bdb59b215b306f4c6c89af16170791}} 
+\index{ps2\_mouse.h@{ps2\_mouse.h}!AUX\_BUF\_SIZE@{AUX\_BUF\_SIZE}}
+\index{AUX\_BUF\_SIZE@{AUX\_BUF\_SIZE}!ps2\_mouse.h@{ps2\_mouse.h}}
+\subsubsection{\texorpdfstring{AUX\_BUF\_SIZE}{AUX\_BUF\_SIZE}}
+{\footnotesize\ttfamily \#define A\+U\+X\+\_\+\+B\+U\+F\+\_\+\+S\+I\+ZE}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{512 \textcolor{comment}{/* This might be better divisible by}}
+\DoxyCodeLine{\textcolor{comment}{                       three to make overruns stay in sync}}
+\DoxyCodeLine{\textcolor{comment}{                       but then the read function would need}}
+\DoxyCodeLine{\textcolor{comment}{                       a lock etc - ick */}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{ps2__mouse_8h_a1c0c52d26566ddcaf11883692aa60933}\label{ps2__mouse_8h_a1c0c52d26566ddcaf11883692aa60933}} 
+\index{ps2\_mouse.h@{ps2\_mouse.h}!KBD\_CCMD\_WRITE\_AUX\_OBUF@{KBD\_CCMD\_WRITE\_AUX\_OBUF}}
+\index{KBD\_CCMD\_WRITE\_AUX\_OBUF@{KBD\_CCMD\_WRITE\_AUX\_OBUF}!ps2\_mouse.h@{ps2\_mouse.h}}
+\subsubsection{\texorpdfstring{KBD\_CCMD\_WRITE\_AUX\_OBUF}{KBD\_CCMD\_WRITE\_AUX\_OBUF}}
+{\footnotesize\ttfamily \#define K\+B\+D\+\_\+\+C\+C\+M\+D\+\_\+\+W\+R\+I\+T\+E\+\_\+\+A\+U\+X\+\_\+\+O\+B\+UF}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{0xD3    \textcolor{comment}{/* Write to output buffer as if}}
+\DoxyCodeLine{\textcolor{comment}{                       initiated by the auxiliary device */}}
+
+\end{DoxyCode}

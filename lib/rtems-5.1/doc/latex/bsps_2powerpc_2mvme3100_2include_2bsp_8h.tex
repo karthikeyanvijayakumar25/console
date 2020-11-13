@@ -1,0 +1,198 @@
+\hypertarget{bsps_2powerpc_2mvme3100_2include_2bsp_8h}{}\section{bsps/powerpc/mvme3100/include/bsp.h File Reference}
+\label{bsps_2powerpc_2mvme3100_2include_2bsp_8h}\index{bsps/powerpc/mvme3100/include/bsp.h@{bsps/powerpc/mvme3100/include/bsp.h}}
+
+
+Global B\+SP definitions.  
+
+
+{\ttfamily \#include $<$bspopts.\+h$>$}\newline
+{\ttfamily \#include $<$bsp/default-\/initial-\/extension.\+h$>$}\newline
+{\ttfamily \#include $<$rtems.\+h$>$}\newline
+{\ttfamily \#include $<$libcpu/io.\+h$>$}\newline
+{\ttfamily \#include $<$bsp/vectors.\+h$>$}\newline
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bfseries B\+S\+P\+\_\+\+I\+N\+T\+E\+R\+R\+U\+P\+T\+\_\+\+S\+T\+A\+C\+K\+\_\+\+S\+I\+ZE}~(16 $\ast$ 1024)
+\item 
+\#define {\bfseries \+\_\+\+I\+O\+\_\+\+B\+A\+SE}~0xe0000000 /$\ast$ Motload\textquotesingle{}s P\+C\+I I\+O base $\ast$/
+\item 
+\#define {\bfseries \+\_\+\+I\+S\+A\+\_\+\+M\+E\+M\+\_\+\+B\+A\+SE}~C\+H\+R\+P\+\_\+\+I\+S\+A\+\_\+\+M\+E\+M\+\_\+\+B\+A\+SE
+\item 
+\#define {\bfseries P\+C\+I\+\_\+\+D\+R\+A\+M\+\_\+\+O\+F\+F\+S\+ET}~C\+H\+R\+P\+\_\+\+P\+C\+I\+\_\+\+D\+R\+A\+M\+\_\+\+O\+F\+F\+S\+ET
+\item 
+\#define {\bfseries P\+C\+I\+\_\+\+M\+E\+M\+\_\+\+B\+A\+SE}~0
+\item 
+\#define {\bfseries P\+C\+I\+\_\+\+M\+E\+M\+\_\+\+W\+I\+N0}~0x80000000
+\item 
+\#define {\bfseries B\+S\+P\+\_\+\+O\+P\+E\+N\+\_\+\+P\+I\+C\+\_\+\+B\+A\+S\+E\+\_\+\+O\+F\+F\+S\+ET}~0x40000
+\item 
+\#define {\bfseries B\+S\+P\+\_\+\+O\+P\+E\+N\+\_\+\+P\+I\+C\+\_\+\+B\+I\+G\+\_\+\+E\+N\+D\+I\+AN}
+\item 
+\#define {\bfseries B\+S\+P\+\_\+8540\+\_\+\+C\+C\+S\+R\+\_\+\+B\+A\+SE}~(0xe1000000)
+\item 
+\#define {\bfseries B\+S\+P\+\_\+\+U\+A\+R\+T\+\_\+\+I\+O\+B\+A\+S\+E\+\_\+\+C\+O\+M1}~(B\+S\+P\+\_\+8540\+\_\+\+C\+C\+S\+R\+\_\+\+B\+A\+SE+0x4500)
+\item 
+\#define {\bfseries B\+S\+P\+\_\+\+U\+A\+R\+T\+\_\+\+I\+O\+B\+A\+S\+E\+\_\+\+C\+O\+M2}~(B\+S\+P\+\_\+8540\+\_\+\+C\+C\+S\+R\+\_\+\+B\+A\+SE+0x4600)
+\item 
+\#define {\bfseries P\+C\+I\+\_\+\+C\+O\+N\+F\+I\+G\+\_\+\+A\+D\+DR}~(B\+S\+P\+\_\+8540\+\_\+\+C\+C\+S\+R\+\_\+\+B\+A\+SE+0x8000)
+\item 
+\#define {\bfseries P\+C\+I\+\_\+\+C\+O\+N\+F\+I\+G\+\_\+\+D\+A\+TA}~(B\+S\+P\+\_\+8540\+\_\+\+C\+C\+S\+R\+\_\+\+B\+A\+SE+0x8004)
+\item 
+\#define {\bfseries P\+C\+I\+\_\+\+C\+O\+N\+F\+I\+G\+\_\+\+W\+R\+\_\+\+A\+D\+DR}(addr,  val)~out\+\_\+be32((uint32\+\_\+t$\ast$)(addr), (val))
+\item 
+\#define {\bfseries B\+S\+P\+\_\+\+C\+O\+N\+S\+O\+L\+E\+\_\+\+P\+O\+RT}~\mbox{\hyperlink{group__i386__uart_gaa1561064cc8499388f7512347b434d25}{B\+S\+P\+\_\+\+U\+A\+R\+T\+\_\+\+C\+O\+M1}}
+\item 
+\#define {\bfseries B\+S\+P\+\_\+\+U\+A\+R\+T\+\_\+\+B\+A\+U\+D\+\_\+\+B\+A\+SE}~(-\/9600) /$\ast$ use existing divisor to determine clock rate $\ast$/
+\item 
+\#define {\bfseries B\+S\+P\+\_\+\+U\+A\+R\+T\+\_\+\+U\+S\+E\+\_\+\+S\+H\+A\+R\+E\+D\+\_\+\+I\+R\+QS}
+\item 
+\#define {\bfseries B\+S\+P\+\_\+\+M\+V\+M\+E3100\+\_\+\+I\+R\+Q\+\_\+\+D\+E\+T\+E\+C\+T\+\_\+\+R\+EG}~((volatile uint8\+\_\+t $\ast$)0xe2000007)
+\item 
+\#define {\bfseries B\+S\+P\+\_\+\+V\+P\+D\+\_\+\+I2\+C\+\_\+\+A\+D\+DR}~(0x\+A8$>$$>$1)		/$\ast$ the V\+P\+D E\+E\+P\+R\+O\+M  $\ast$/
+\item 
+\#define {\bfseries B\+S\+P\+\_\+\+U\+S\+R0\+\_\+\+I2\+C\+\_\+\+A\+D\+DR}~(0x\+A4$>$$>$1)		/$\ast$ the 1st user E\+E\+P\+R\+O\+M $\ast$/
+\item 
+\#define {\bfseries B\+S\+P\+\_\+\+U\+S\+R1\+\_\+\+I2\+C\+\_\+\+A\+D\+DR}~(0x\+A6$>$$>$1)		/$\ast$ the 2nd user E\+E\+P\+R\+O\+M $\ast$/
+\item 
+\#define {\bfseries B\+S\+P\+\_\+\+T\+H\+M\+\_\+\+I2\+C\+\_\+\+A\+D\+DR}~(0x90$>$$>$1)		/$\ast$ the D\+S1621 temperature sensor \& thermostat $\ast$/
+\item 
+\#define {\bfseries B\+S\+P\+\_\+\+R\+T\+C\+\_\+\+I2\+C\+\_\+\+A\+D\+DR}~(0x\+D0$>$$>$1)		/$\ast$ the D\+S1375 wall-\/clock $\ast$/
+\item 
+\#define {\bfseries B\+S\+P\+\_\+\+I2\+C\+\_\+\+B\+U\+S\+\_\+\+D\+E\+S\+C\+R\+I\+P\+T\+OR}~mpc8540\+\_\+i2c\+\_\+bus\+\_\+descriptor
+\item 
+\#define {\bfseries B\+S\+P\+\_\+\+I2\+C\+\_\+\+B\+U\+S0\+\_\+\+N\+A\+ME}~\char`\"{}/dev/i2c0\char`\"{}
+\item 
+\#define {\bfseries B\+S\+P\+\_\+\+I2\+C\+\_\+\+V\+P\+D\+\_\+\+E\+E\+P\+R\+O\+M\+\_\+\+N\+A\+ME}~\char`\"{}vpd-\/\mbox{\hyperlink{structeeprom}{eeprom}}\char`\"{}
+\item 
+\#define {\bfseries B\+S\+P\+\_\+\+I2\+C\+\_\+\+U\+S\+R\+\_\+\+E\+E\+P\+R\+O\+M\+\_\+\+N\+A\+ME}~\char`\"{}usr-\/\mbox{\hyperlink{structeeprom}{eeprom}}\char`\"{}
+\item 
+\#define {\bfseries B\+S\+P\+\_\+\+I2\+C\+\_\+\+U\+S\+R1\+\_\+\+E\+E\+P\+R\+O\+M\+\_\+\+N\+A\+ME}~\char`\"{}usr1-\/\mbox{\hyperlink{structeeprom}{eeprom}}\char`\"{}
+\item 
+\#define {\bfseries B\+S\+P\+\_\+\+I2\+C\+\_\+\+D\+S1621\+\_\+\+N\+A\+ME}~\char`\"{}ds1621\char`\"{}
+\item 
+\#define {\bfseries B\+S\+P\+\_\+\+I2\+C\+\_\+\+T\+H\+M\+\_\+\+N\+A\+ME}~B\+S\+P\+\_\+\+I2\+C\+\_\+\+D\+S1621\+\_\+\+N\+A\+ME
+\item 
+\#define {\bfseries B\+S\+P\+\_\+\+I2\+C\+\_\+\+D\+S1621\+\_\+\+R\+A\+W\+\_\+\+N\+A\+ME}~\char`\"{}ds1621-\/raw\char`\"{}
+\item 
+\#define {\bfseries B\+S\+P\+\_\+\+I2\+C\+\_\+\+D\+S1375\+\_\+\+R\+A\+W\+\_\+\+N\+A\+ME}~\char`\"{}ds1375-\/raw\char`\"{}
+\item 
+\#define {\bfseries B\+S\+P\+\_\+\+I2\+C\+\_\+\+R\+T\+C\+\_\+\+R\+A\+W\+\_\+\+N\+A\+ME}~B\+S\+P\+\_\+\+I2\+C\+\_\+\+D\+S1375\+\_\+\+R\+A\+W\+\_\+\+N\+A\+ME
+\item 
+\#define {\bfseries B\+S\+P\+\_\+\+I2\+C\+\_\+\+V\+P\+D\+\_\+\+E\+E\+P\+R\+O\+M\+\_\+\+D\+E\+V\+\_\+\+N\+A\+ME}~(B\+S\+P\+\_\+\+I2\+C\+\_\+\+B\+U\+S0\+\_\+\+N\+A\+ME \char`\"{}.\char`\"{} B\+S\+P\+\_\+\+I2\+C\+\_\+\+V\+P\+D\+\_\+\+E\+E\+P\+R\+O\+M\+\_\+\+N\+A\+ME)
+\item 
+\#define {\bfseries B\+S\+P\+\_\+\+I2\+C\+\_\+\+U\+S\+R\+\_\+\+E\+E\+P\+R\+O\+M\+\_\+\+D\+E\+V\+\_\+\+N\+A\+ME}~(B\+S\+P\+\_\+\+I2\+C\+\_\+\+B\+U\+S0\+\_\+\+N\+A\+ME \char`\"{}.\char`\"{} B\+S\+P\+\_\+\+I2\+C\+\_\+\+U\+S\+R\+\_\+\+E\+E\+P\+R\+O\+M\+\_\+\+N\+A\+ME)
+\item 
+\#define {\bfseries B\+S\+P\+\_\+\+I2\+C\+\_\+\+U\+S\+R1\+\_\+\+E\+E\+P\+R\+O\+M\+\_\+\+D\+E\+V\+\_\+\+N\+A\+ME}~(B\+S\+P\+\_\+\+I2\+C\+\_\+\+B\+U\+S0\+\_\+\+N\+A\+ME \char`\"{}.\char`\"{} B\+S\+P\+\_\+\+I2\+C\+\_\+\+U\+S\+R1\+\_\+\+E\+E\+P\+R\+O\+M\+\_\+\+N\+A\+ME)
+\item 
+\#define {\bfseries B\+S\+P\+\_\+\+I2\+C\+\_\+\+D\+S1621\+\_\+\+D\+E\+V\+\_\+\+N\+A\+ME}~(B\+S\+P\+\_\+\+I2\+C\+\_\+\+B\+U\+S0\+\_\+\+N\+A\+ME \char`\"{}.\char`\"{} B\+S\+P\+\_\+\+I2\+C\+\_\+\+D\+S1621\+\_\+\+N\+A\+ME)
+\item 
+\#define {\bfseries B\+S\+P\+\_\+\+I2\+C\+\_\+\+T\+H\+M\+\_\+\+D\+E\+V\+\_\+\+N\+A\+ME}~B\+S\+P\+\_\+\+I2\+C\+\_\+\+D\+S1621\+\_\+\+D\+E\+V\+\_\+\+N\+A\+ME
+\item 
+\#define {\bfseries B\+S\+P\+\_\+\+I2\+C\+\_\+\+D\+S1621\+\_\+\+R\+A\+W\+\_\+\+D\+E\+V\+\_\+\+N\+A\+ME}~(B\+S\+P\+\_\+\+I2\+C\+\_\+\+B\+U\+S0\+\_\+\+N\+A\+ME \char`\"{}.\char`\"{} B\+S\+P\+\_\+\+I2\+C\+\_\+\+D\+S1621\+\_\+\+R\+A\+W\+\_\+\+N\+A\+ME)
+\item 
+\#define {\bfseries B\+S\+P\+\_\+\+I2\+C\+\_\+\+D\+S1375\+\_\+\+R\+A\+W\+\_\+\+D\+E\+V\+\_\+\+N\+A\+ME}~(B\+S\+P\+\_\+\+I2\+C\+\_\+\+B\+U\+S0\+\_\+\+N\+A\+ME \char`\"{}.\char`\"{} B\+S\+P\+\_\+\+I2\+C\+\_\+\+D\+S1375\+\_\+\+R\+A\+W\+\_\+\+N\+A\+ME)
+\item 
+\#define {\bfseries B\+S\+P\+\_\+\+E\+E\+P\+R\+O\+M\+\_\+\+B\+O\+O\+T\+P\+A\+R\+M\+S\+\_\+\+N\+A\+ME}~B\+S\+P\+\_\+\+I2\+C\+\_\+\+U\+S\+R1\+\_\+\+E\+E\+P\+R\+O\+M\+\_\+\+D\+E\+V\+\_\+\+N\+A\+ME
+\item 
+\#define {\bfseries B\+S\+P\+\_\+\+E\+E\+P\+R\+O\+M\+\_\+\+B\+O\+O\+T\+P\+A\+R\+M\+S\+\_\+\+S\+I\+ZE}~1024
+\item 
+\#define {\bfseries B\+S\+P\+\_\+\+E\+E\+P\+R\+O\+M\+\_\+\+B\+O\+O\+T\+P\+A\+R\+M\+S\+\_\+\+O\+F\+F\+S\+ET}~0
+\item 
+\#define {\bfseries B\+S\+P\+\_\+\+B\+O\+O\+T\+P\+A\+R\+M\+S\+\_\+\+W\+R\+I\+T\+E\+\_\+\+E\+N\+A\+B\+LE}()~do \{ B\+S\+P\+\_\+eeprom\+\_\+write\+\_\+enable(); \} while (0)
+\item 
+\#define {\bfseries B\+S\+P\+\_\+\+B\+O\+O\+T\+P\+A\+R\+M\+S\+\_\+\+W\+R\+I\+T\+E\+\_\+\+D\+I\+S\+A\+B\+LE}()~do \{ B\+S\+P\+\_\+eeprom\+\_\+write\+\_\+protect();\} while (0)
+\item 
+\#define {\bfseries B\+S\+P\+\_\+\+M\+V\+M\+E3100\+\_\+\+S\+Y\+S\+\_\+\+CR}~((volatile uint8\+\_\+t $\ast$)0xe2000001)
+\item 
+\#define {\bfseries B\+S\+P\+\_\+\+M\+V\+M\+E3100\+\_\+\+S\+Y\+S\+\_\+\+C\+R\+\_\+\+R\+E\+S\+E\+T\+\_\+\+M\+SK}~(7$<$$<$5)
+\item 
+\#define {\bfseries B\+S\+P\+\_\+\+M\+V\+M\+E3100\+\_\+\+S\+Y\+S\+\_\+\+C\+R\+\_\+\+R\+E\+S\+ET}~(5$<$$<$5)
+\item 
+\#define {\bfseries B\+S\+P\+\_\+\+M\+V\+M\+E3100\+\_\+\+S\+Y\+S\+\_\+\+C\+R\+\_\+\+E\+E\+P\+R\+O\+M\+\_\+\+WP}~(1$<$$<$1)
+\item 
+\#define {\bfseries B\+S\+P\+\_\+\+M\+V\+M\+E3100\+\_\+\+S\+Y\+S\+\_\+\+C\+R\+\_\+\+T\+S\+T\+A\+T\+\_\+\+M\+SK}~(1$<$$<$0)
+\item 
+\#define {\bfseries B\+S\+P\+\_\+\+M\+V\+M\+E3100\+\_\+\+S\+Y\+S\+\_\+\+I\+N\+D\+\_\+\+R\+EG}~((volatile uint8\+\_\+t $\ast$)0xe2000002)
+\item 
+\#define {\bfseries B\+S\+P\+\_\+\+L\+E\+D\+\_\+\+B\+R\+D\+\_\+\+F\+A\+IL}~(1$<$$<$0)
+\item 
+\#define {\bfseries B\+S\+P\+\_\+\+L\+E\+D\+\_\+\+U\+S\+R1}~(1$<$$<$1)
+\item 
+\#define {\bfseries B\+S\+P\+\_\+\+L\+E\+D\+\_\+\+U\+S\+R2}~(1$<$$<$2)
+\item 
+\#define {\bfseries B\+S\+P\+\_\+\+L\+E\+D\+\_\+\+U\+S\+R3}~(1$<$$<$3)
+\item 
+\#define {\bfseries B\+S\+P\+\_\+\+M\+V\+M\+E3100\+\_\+\+F\+L\+A\+S\+H\+\_\+\+C\+SR}~((volatile uint8\+\_\+t $\ast$)0xe2000003)
+\item 
+\#define {\bfseries B\+S\+P\+\_\+\+M\+V\+M\+E3100\+\_\+\+F\+L\+A\+S\+H\+\_\+\+C\+S\+R\+\_\+\+F\+L\+A\+S\+H\+\_\+\+R\+DY}~(1$<$$<$0)
+\item 
+\#define {\bfseries B\+S\+P\+\_\+\+M\+V\+M\+E3100\+\_\+\+F\+L\+A\+S\+H\+\_\+\+C\+S\+R\+\_\+\+F\+B\+T\+\_\+\+B\+L\+K\+\_\+\+S\+EL}~(1$<$$<$1)
+\item 
+\#define {\bfseries B\+S\+P\+\_\+\+M\+V\+M\+E3100\+\_\+\+F\+L\+A\+S\+H\+\_\+\+C\+S\+R\+\_\+\+F\+\_\+\+W\+P\+\_\+\+HW}~(1$<$$<$2)
+\item 
+\#define {\bfseries B\+S\+P\+\_\+\+M\+V\+M\+E3100\+\_\+\+F\+L\+A\+S\+H\+\_\+\+C\+S\+R\+\_\+\+F\+\_\+\+W\+P\+\_\+\+SW}~(1$<$$<$3)
+\item 
+\#define {\bfseries B\+S\+P\+\_\+\+M\+V\+M\+E3100\+\_\+\+F\+L\+A\+S\+H\+\_\+\+C\+S\+R\+\_\+\+M\+A\+P\+\_\+\+S\+EL}~(1$<$$<$4)
+\item 
+\#define {\bfseries B\+S\+P\+\_\+\+M\+V\+M\+E3100\+\_\+\+I\+R\+Q\+\_\+\+D\+E\+T\+E\+C\+T\+\_\+\+R\+EG}~((volatile uint8\+\_\+t $\ast$)0xe2000007)
+\item 
+\#define {\bfseries B\+S\+P\+\_\+\+Convert\+\_\+decrementer}(\+\_\+value)~((unsigned long long) ((((unsigned long long)B\+S\+P\+\_\+time\+\_\+base\+\_\+divisor) $\ast$ 1000000\+U\+L\+L) /((unsigned long long) B\+S\+P\+\_\+bus\+\_\+frequency)) $\ast$ ((unsigned long long) (\+\_\+value)))
+\item 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+B\+S\+P\+\_\+\+N\+E\+T\+W\+O\+R\+K\+\_\+\+D\+R\+I\+V\+E\+R\+\_\+\+N\+A\+ME}~\char`\"{}tse1\char`\"{}
+\item 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+B\+S\+P\+\_\+\+N\+E\+T\+W\+O\+R\+K\+\_\+\+D\+R\+I\+V\+E\+R\+\_\+\+A\+T\+T\+A\+CH}~rtems\+\_\+tsec\+\_\+attach
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int {\bfseries B\+S\+P\+\_\+i2c\+\_\+initialize} (void)
+\item 
+uint8\+\_\+t {\bfseries B\+S\+P\+\_\+set\+Sys\+Reg} (volatile uint8\+\_\+t $\ast$r, uint8\+\_\+t mask)
+\item 
+uint8\+\_\+t {\bfseries B\+S\+P\+\_\+clr\+Sys\+Reg} (volatile uint8\+\_\+t $\ast$r, uint8\+\_\+t mask)
+\item 
+uint8\+\_\+t {\bfseries B\+S\+P\+\_\+eeprom\+\_\+write\+\_\+protect} (void)
+\item 
+uint8\+\_\+t {\bfseries B\+S\+P\+\_\+eeprom\+\_\+write\+\_\+enable} (void)
+\item 
+uint8\+\_\+t {\bfseries B\+S\+P\+\_\+set\+L\+E\+Ds} (uint8\+\_\+t mask)
+\item 
+uint8\+\_\+t {\bfseries B\+S\+P\+\_\+clr\+L\+E\+Ds} (uint8\+\_\+t mask)
+\item 
+int {\bfseries B\+S\+P\+\_\+disconnect\+\_\+clock\+\_\+handler} (void)
+\item 
+int {\bfseries B\+S\+P\+\_\+connect\+\_\+clock\+\_\+handler} (void)
+\item 
+unsigned long {\bfseries \+\_\+\+B\+S\+P\+\_\+clear\+\_\+hostbridge\+\_\+errors} (int enable\+M\+CP, int quiet)
+\item 
+void {\bfseries B\+S\+P\+\_\+motload\+\_\+pci\+\_\+fixup} (void)
+\item 
+int {\bfseries rtems\+\_\+tsec\+\_\+attach} (struct rtems\+\_\+bsdnet\+\_\+ifconfig $\ast$ifcfg, int attaching)
+\item 
+char $\ast$ {\bfseries save\+\_\+boot\+\_\+params} (void $\ast$r3, void $\ast$r4, void $\ast$r5, char $\ast$cmdline\+\_\+start, char $\ast$cmdline\+\_\+end)
+\item 
+void {\bfseries zero\+\_\+bss} (void)
+\item 
+void {\bfseries B\+S\+P\+\_\+vme\+\_\+config} (void)
+\item 
+void {\bfseries B\+S\+P\+\_\+pci\+Config\+Dump\+\_\+early} (void)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+unsigned int {\bfseries B\+S\+P\+\_\+mem\+\_\+size}
+\item 
+unsigned int {\bfseries B\+S\+P\+\_\+bus\+\_\+frequency}
+\item 
+unsigned int {\bfseries B\+S\+P\+\_\+processor\+\_\+frequency}
+\item 
+unsigned int {\bfseries B\+S\+P\+\_\+time\+\_\+base\+\_\+divisor}
+\item 
+char $\ast$ {\bfseries B\+S\+P\+\_\+commandline\+\_\+string}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Global B\+SP definitions. 
+

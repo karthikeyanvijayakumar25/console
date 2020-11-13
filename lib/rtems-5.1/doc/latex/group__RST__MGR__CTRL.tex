@@ -1,0 +1,66 @@
+\hypertarget{group__RST__MGR__CTRL}{}\section{Reset Control}
+\label{group__RST__MGR__CTRL}\index{Reset Control@{Reset Control}}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__RST__MGR__CTRL_gad5cff5af2df89bdebe7eaba8b6d98bb8}{alt\+\_\+reset\+\_\+cold\+\_\+reset}} (void)
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__RST__MGR__CTRL_gadc95a7b3024a7bed53740cb45d6b0d69}{alt\+\_\+reset\+\_\+warm\+\_\+reset}} (uint32\+\_\+t warm\+\_\+reset\+\_\+delay, uint32\+\_\+t n\+R\+S\+T\+\_\+pin\+\_\+clk\+\_\+assertion, bool sdram\+\_\+refresh, bool fpga\+\_\+mgr\+\_\+handshake, bool scan\+\_\+mgr\+\_\+handshake, bool fpga\+\_\+handshake, bool etr\+\_\+stall)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This functional group provides global and selective reset control for the SoC and its constituent modules. 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{group__RST__MGR__CTRL_gad5cff5af2df89bdebe7eaba8b6d98bb8}\label{group__RST__MGR__CTRL_gad5cff5af2df89bdebe7eaba8b6d98bb8}} 
+\index{Reset Control@{Reset Control}!alt\_reset\_cold\_reset@{alt\_reset\_cold\_reset}}
+\index{alt\_reset\_cold\_reset@{alt\_reset\_cold\_reset}!Reset Control@{Reset Control}}
+\subsubsection{\texorpdfstring{alt\_reset\_cold\_reset()}{alt\_reset\_cold\_reset()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} alt\+\_\+reset\+\_\+cold\+\_\+reset (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+Initiate a cold reset of the SoC.
+
+If this function is successful, then it should never return.
+
+
+\begin{DoxyRetVals}{Return values}
+{\em A\+L\+T\+\_\+\+E\+\_\+\+S\+U\+C\+C\+E\+SS} & The operation was succesful. \\
+\hline
+{\em A\+L\+T\+\_\+\+E\+\_\+\+E\+R\+R\+OR} & The operation failed. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{group__RST__MGR__CTRL_gadc95a7b3024a7bed53740cb45d6b0d69}\label{group__RST__MGR__CTRL_gadc95a7b3024a7bed53740cb45d6b0d69}} 
+\index{Reset Control@{Reset Control}!alt\_reset\_warm\_reset@{alt\_reset\_warm\_reset}}
+\index{alt\_reset\_warm\_reset@{alt\_reset\_warm\_reset}!Reset Control@{Reset Control}}
+\subsubsection{\texorpdfstring{alt\_reset\_warm\_reset()}{alt\_reset\_warm\_reset()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} alt\+\_\+reset\+\_\+warm\+\_\+reset (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{warm\+\_\+reset\+\_\+delay,  }\item[{uint32\+\_\+t}]{n\+R\+S\+T\+\_\+pin\+\_\+clk\+\_\+assertion,  }\item[{bool}]{sdram\+\_\+refresh,  }\item[{bool}]{fpga\+\_\+mgr\+\_\+handshake,  }\item[{bool}]{scan\+\_\+mgr\+\_\+handshake,  }\item[{bool}]{fpga\+\_\+handshake,  }\item[{bool}]{etr\+\_\+stall }\end{DoxyParamCaption})}
+
+Initiate a warm reset of the SoC.
+
+Perform a hardware sequenced warm reset of the SoC. A hardware sequenced reset handshake with certain modules can optionally be requested in an attempt to ensure an orderly reset transition.
+
+
+\begin{DoxyParams}{Parameters}
+{\em warm\+\_\+reset\+\_\+delay} & Specifies the number of cycles after the Reset Manager releases the Clock Manager reset before releasing any other hardware controlled resets. Value must be greater than 16 and less than 256.\\
+\hline
+{\em n\+R\+S\+T\+\_\+pin\+\_\+clk\+\_\+assertion} & Specifies that number of clock cycles (osc1\+\_\+clk?) to externally assert the warm reset pin (n\+R\+ST). 0 $<$= {\itshape n\+R\+S\+T\+\_\+pin\+\_\+clk\+\_\+assertion} $<$= (2$\ast$$\ast$20 -\/ 1). A value of 0 prevents any assertion of n\+R\+ST.\\
+\hline
+{\em sdram\+\_\+refresh} & Controls whether the contents of S\+D\+R\+AM survive a hardware sequenced warm reset. The reset manager requests the S\+D\+R\+AM controller to put S\+D\+R\+AM devices into self-\/refresh mode before asserting warm reset signals. An argument value of {\bfseries{true}} enables the option, {\bfseries{false}} disables the option.\\
+\hline
+{\em fpga\+\_\+mgr\+\_\+handshake} & Controls whether a handshake between the reset manager and F\+P\+GA manager occurs before a warm reset. The handshake is used to warn the F\+P\+GA manager that a warm reset is imminent so it can prepare for it by driving its output clock to a quiescent state to avoid glitches. An argument value of {\bfseries{true}} enables the option, {\bfseries{false}} disables the option.\\
+\hline
+{\em scan\+\_\+mgr\+\_\+handshake} & Controls whether a handshake between the reset manager and scan manager occurs before a warm reset. The handshake is used to warn the scan manager that a warm reset is imminent so it can prepare for it by driving its output clock to a quiescent state to avoid glitches. An argument value of {\bfseries{true}} enables the option, {\bfseries{false}} disables the option.\\
+\hline
+{\em fpga\+\_\+handshake} & Controls whether a handshake between the reset manager and the F\+P\+GA occurs before a warm reset. The handshake is used to warn the F\+P\+GA that a warm reset is imminent so that the F\+P\+GA prepare for the reset event in soft IP. An argument value of {\bfseries{true}} enables the option, {\bfseries{false}} disables the option.\\
+\hline
+{\em etr\+\_\+stall} & Controls whether the E\+TR is requested to idle its A\+XI master interface (i.\+e. finish outstanding transactions and not initiate any more) to the L3 Interconnect before a warm reset. An argument value of {\bfseries{true}} enables the option, {\bfseries{false}} disables the option.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em A\+L\+T\+\_\+\+E\+\_\+\+S\+U\+C\+C\+E\+SS} & The operation was succesful. \\
+\hline
+{\em A\+L\+T\+\_\+\+E\+\_\+\+E\+R\+R\+OR} & The operation failed. \\
+\hline
+\end{DoxyRetVals}

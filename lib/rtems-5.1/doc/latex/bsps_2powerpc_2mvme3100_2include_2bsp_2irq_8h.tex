@@ -1,0 +1,119 @@
+\hypertarget{bsps_2powerpc_2mvme3100_2include_2bsp_2irq_8h}{}\section{bsps/powerpc/mvme3100/include/bsp/irq.h File Reference}
+\label{bsps_2powerpc_2mvme3100_2include_2bsp_2irq_8h}\index{bsps/powerpc/mvme3100/include/bsp/irq.h@{bsps/powerpc/mvme3100/include/bsp/irq.h}}
+
+
+This include file describe the data structure and the functions implemented by R\+T\+E\+MS to write interrupt handlers.  
+
+
+{\ttfamily \#include $<$rtems/irq.\+h$>$}\newline
+{\ttfamily \#include $<$bsp/irq-\/default.\+h$>$}\newline
+{\ttfamily \#include $<$bsp/irq\+\_\+supp.\+h$>$}\newline
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{bsps_2powerpc_2mvme3100_2include_2bsp_2irq_8h_a2fe5e739729e5756a04cc73da64cc8ee}\label{bsps_2powerpc_2mvme3100_2include_2bsp_2irq_8h_a2fe5e739729e5756a04cc73da64cc8ee}} 
+\#define {\bfseries B\+S\+P\+\_\+\+S\+H\+A\+R\+E\+D\+\_\+\+H\+A\+N\+D\+L\+E\+R\+\_\+\+S\+U\+P\+P\+O\+RT}~1
+\item 
+\mbox{\Hypertarget{bsps_2powerpc_2mvme3100_2include_2bsp_2irq_8h_a50ed5416bf823e3d1206955f28ae758b}\label{bsps_2powerpc_2mvme3100_2include_2bsp_2irq_8h_a50ed5416bf823e3d1206955f28ae758b}} 
+\#define {\bfseries B\+S\+P\+\_\+\+E\+X\+T\+\_\+\+I\+R\+Q\+\_\+\+N\+U\+M\+B\+ER}~(16)
+\item 
+\mbox{\Hypertarget{bsps_2powerpc_2mvme3100_2include_2bsp_2irq_8h_a062a29f2a8f99279bdbc167d5d63fa8f}\label{bsps_2powerpc_2mvme3100_2include_2bsp_2irq_8h_a062a29f2a8f99279bdbc167d5d63fa8f}} 
+\#define {\bfseries B\+S\+P\+\_\+\+C\+O\+R\+E\+\_\+\+I\+R\+Q\+\_\+\+N\+U\+M\+B\+ER}~(32)
+\item 
+\mbox{\Hypertarget{bsps_2powerpc_2mvme3100_2include_2bsp_2irq_8h_a039be84924a4f746cb14789039e31be5}\label{bsps_2powerpc_2mvme3100_2include_2bsp_2irq_8h_a039be84924a4f746cb14789039e31be5}} 
+\#define {\bfseries B\+S\+P\+\_\+\+P\+C\+I\+\_\+\+I\+R\+Q\+\_\+\+N\+U\+M\+B\+ER}~(B\+S\+P\+\_\+\+E\+X\+T\+\_\+\+I\+R\+Q\+\_\+\+N\+U\+M\+B\+ER + B\+S\+P\+\_\+\+C\+O\+R\+E\+\_\+\+I\+R\+Q\+\_\+\+N\+U\+M\+B\+ER)
+\item 
+\mbox{\Hypertarget{bsps_2powerpc_2mvme3100_2include_2bsp_2irq_8h_a53e8d37ad9171d1761a4b9efe5e311c6}\label{bsps_2powerpc_2mvme3100_2include_2bsp_2irq_8h_a53e8d37ad9171d1761a4b9efe5e311c6}} 
+\#define {\bfseries B\+S\+P\+\_\+\+P\+C\+I\+\_\+\+I\+R\+Q\+\_\+\+L\+O\+W\+E\+S\+T\+\_\+\+O\+F\+F\+S\+ET}~(0)
+\item 
+\mbox{\Hypertarget{bsps_2powerpc_2mvme3100_2include_2bsp_2irq_8h_a9586907efb80106ec653c7b63a1fd550}\label{bsps_2powerpc_2mvme3100_2include_2bsp_2irq_8h_a9586907efb80106ec653c7b63a1fd550}} 
+\#define {\bfseries B\+S\+P\+\_\+\+P\+C\+I\+\_\+\+I\+R\+Q\+\_\+\+M\+A\+X\+\_\+\+O\+F\+F\+S\+ET}~(B\+S\+P\+\_\+\+P\+C\+I\+\_\+\+I\+R\+Q\+\_\+\+L\+O\+W\+E\+S\+T\+\_\+\+O\+F\+F\+S\+ET + B\+S\+P\+\_\+\+P\+C\+I\+\_\+\+I\+R\+Q\+\_\+\+N\+U\+M\+B\+ER -\/ 1)
+\item 
+\mbox{\Hypertarget{bsps_2powerpc_2mvme3100_2include_2bsp_2irq_8h_a1962ea49e1b684ae2281886f7c24c422}\label{bsps_2powerpc_2mvme3100_2include_2bsp_2irq_8h_a1962ea49e1b684ae2281886f7c24c422}} 
+\#define {\bfseries B\+S\+P\+\_\+\+C\+O\+R\+E\+\_\+\+I\+R\+Q\+\_\+\+L\+O\+W\+E\+S\+T\+\_\+\+O\+F\+F\+S\+ET}~(B\+S\+P\+\_\+\+P\+C\+I\+\_\+\+I\+R\+Q\+\_\+\+L\+O\+W\+E\+S\+T\+\_\+\+O\+F\+F\+S\+ET + B\+S\+P\+\_\+\+E\+X\+T\+\_\+\+I\+R\+Q\+\_\+\+N\+U\+M\+B\+ER)
+\item 
+\mbox{\Hypertarget{bsps_2powerpc_2mvme3100_2include_2bsp_2irq_8h_ab01d0ff1bfdc5c5007944435cca45852}\label{bsps_2powerpc_2mvme3100_2include_2bsp_2irq_8h_ab01d0ff1bfdc5c5007944435cca45852}} 
+\#define {\bfseries B\+S\+P\+\_\+\+C\+O\+R\+E\+\_\+\+I\+R\+Q\+\_\+\+M\+A\+X\+\_\+\+O\+F\+F\+S\+ET}~(B\+S\+P\+\_\+\+C\+O\+R\+E\+\_\+\+I\+R\+Q\+\_\+\+L\+O\+W\+E\+S\+T\+\_\+\+O\+F\+F\+S\+ET + B\+S\+P\+\_\+\+C\+O\+R\+E\+\_\+\+I\+R\+Q\+\_\+\+N\+U\+M\+B\+ER -\/ 1)
+\item 
+\mbox{\Hypertarget{bsps_2powerpc_2mvme3100_2include_2bsp_2irq_8h_a4eed34e120000fa59f4ee80e1c0931e2}\label{bsps_2powerpc_2mvme3100_2include_2bsp_2irq_8h_a4eed34e120000fa59f4ee80e1c0931e2}} 
+\#define {\bfseries B\+S\+P\+\_\+\+P\+R\+O\+C\+E\+S\+S\+O\+R\+\_\+\+I\+R\+Q\+\_\+\+N\+U\+M\+B\+ER}~(1)
+\item 
+\mbox{\Hypertarget{bsps_2powerpc_2mvme3100_2include_2bsp_2irq_8h_a46f6fa77bbdb8fa49047904c836b584d}\label{bsps_2powerpc_2mvme3100_2include_2bsp_2irq_8h_a46f6fa77bbdb8fa49047904c836b584d}} 
+\#define {\bfseries B\+S\+P\+\_\+\+P\+R\+O\+C\+E\+S\+S\+O\+R\+\_\+\+I\+R\+Q\+\_\+\+L\+O\+W\+E\+S\+T\+\_\+\+O\+F\+F\+S\+ET}~(B\+S\+P\+\_\+\+C\+O\+R\+E\+\_\+\+I\+R\+Q\+\_\+\+M\+A\+X\+\_\+\+O\+F\+F\+S\+ET + 1)
+\item 
+\mbox{\Hypertarget{bsps_2powerpc_2mvme3100_2include_2bsp_2irq_8h_a7676464087186666255163ebeb163071}\label{bsps_2powerpc_2mvme3100_2include_2bsp_2irq_8h_a7676464087186666255163ebeb163071}} 
+\#define {\bfseries B\+S\+P\+\_\+\+P\+R\+O\+C\+E\+S\+S\+O\+R\+\_\+\+I\+R\+Q\+\_\+\+M\+A\+X\+\_\+\+O\+F\+F\+S\+ET}~(B\+S\+P\+\_\+\+P\+R\+O\+C\+E\+S\+S\+O\+R\+\_\+\+I\+R\+Q\+\_\+\+L\+O\+W\+E\+S\+T\+\_\+\+O\+F\+F\+S\+ET + B\+S\+P\+\_\+\+P\+R\+O\+C\+E\+S\+S\+O\+R\+\_\+\+I\+R\+Q\+\_\+\+N\+U\+M\+B\+ER -\/ 1)
+\item 
+\mbox{\Hypertarget{bsps_2powerpc_2mvme3100_2include_2bsp_2irq_8h_aa27b77928c46f872128e355b24886149}\label{bsps_2powerpc_2mvme3100_2include_2bsp_2irq_8h_aa27b77928c46f872128e355b24886149}} 
+\#define {\bfseries B\+S\+P\+\_\+\+M\+I\+S\+C\+\_\+\+I\+R\+Q\+\_\+\+N\+U\+M\+B\+ER}~(8)
+\item 
+\mbox{\Hypertarget{bsps_2powerpc_2mvme3100_2include_2bsp_2irq_8h_a0d824c170e8f4309a3094b2146b0287c}\label{bsps_2powerpc_2mvme3100_2include_2bsp_2irq_8h_a0d824c170e8f4309a3094b2146b0287c}} 
+\#define {\bfseries B\+S\+P\+\_\+\+M\+I\+S\+C\+\_\+\+I\+R\+Q\+\_\+\+L\+O\+W\+E\+S\+T\+\_\+\+O\+F\+F\+S\+ET}~(B\+S\+P\+\_\+\+P\+R\+O\+C\+E\+S\+S\+O\+R\+\_\+\+I\+R\+Q\+\_\+\+M\+A\+X\+\_\+\+O\+F\+F\+S\+ET + 1)
+\item 
+\mbox{\Hypertarget{bsps_2powerpc_2mvme3100_2include_2bsp_2irq_8h_a7760067248a8f441af03cbc92aa63a64}\label{bsps_2powerpc_2mvme3100_2include_2bsp_2irq_8h_a7760067248a8f441af03cbc92aa63a64}} 
+\#define {\bfseries B\+S\+P\+\_\+\+M\+I\+S\+C\+\_\+\+I\+R\+Q\+\_\+\+M\+A\+X\+\_\+\+O\+F\+F\+S\+ET}~(B\+S\+P\+\_\+\+M\+I\+S\+C\+\_\+\+I\+R\+Q\+\_\+\+L\+O\+W\+E\+S\+T\+\_\+\+O\+F\+F\+S\+ET + B\+S\+P\+\_\+\+M\+I\+S\+C\+\_\+\+I\+R\+Q\+\_\+\+N\+U\+M\+B\+ER -\/ 1)
+\item 
+\mbox{\Hypertarget{bsps_2powerpc_2mvme3100_2include_2bsp_2irq_8h_a6d2b0e5bd70a09adfd3786af9e09757f}\label{bsps_2powerpc_2mvme3100_2include_2bsp_2irq_8h_a6d2b0e5bd70a09adfd3786af9e09757f}} 
+\#define {\bfseries B\+S\+P\+\_\+\+I\+R\+Q\+\_\+\+N\+U\+M\+B\+ER}~(B\+S\+P\+\_\+\+M\+I\+S\+C\+\_\+\+I\+R\+Q\+\_\+\+M\+A\+X\+\_\+\+O\+F\+F\+S\+ET + 1)
+\item 
+\mbox{\Hypertarget{bsps_2powerpc_2mvme3100_2include_2bsp_2irq_8h_a87ec2f1bfdc42f583ae0f9751dfef261}\label{bsps_2powerpc_2mvme3100_2include_2bsp_2irq_8h_a87ec2f1bfdc42f583ae0f9751dfef261}} 
+\#define {\bfseries B\+S\+P\+\_\+\+L\+O\+W\+E\+S\+T\+\_\+\+O\+F\+F\+S\+ET}~(B\+S\+P\+\_\+\+P\+C\+I\+\_\+\+I\+R\+Q\+\_\+\+L\+O\+W\+E\+S\+T\+\_\+\+O\+F\+F\+S\+ET)
+\item 
+\mbox{\Hypertarget{bsps_2powerpc_2mvme3100_2include_2bsp_2irq_8h_a234304ba16b39902271afd9f81731f78}\label{bsps_2powerpc_2mvme3100_2include_2bsp_2irq_8h_a234304ba16b39902271afd9f81731f78}} 
+\#define {\bfseries B\+S\+P\+\_\+\+M\+A\+X\+\_\+\+O\+F\+F\+S\+ET}~(B\+S\+P\+\_\+\+M\+I\+S\+C\+\_\+\+I\+R\+Q\+\_\+\+M\+A\+X\+\_\+\+O\+F\+F\+S\+ET)
+\item 
+\mbox{\Hypertarget{bsps_2powerpc_2mvme3100_2include_2bsp_2irq_8h_ad8266cc4bcc376e849b07d8e2d05b5a1}\label{bsps_2powerpc_2mvme3100_2include_2bsp_2irq_8h_ad8266cc4bcc376e849b07d8e2d05b5a1}} 
+\#define {\bfseries B\+S\+P\+\_\+\+P\+C\+I\+\_\+\+I\+R\+Q0}~(B\+S\+P\+\_\+\+P\+C\+I\+\_\+\+I\+R\+Q\+\_\+\+L\+O\+W\+E\+S\+T\+\_\+\+O\+F\+F\+S\+ET)
+\item 
+\mbox{\Hypertarget{bsps_2powerpc_2mvme3100_2include_2bsp_2irq_8h_ab4867a0b808c2480f06e9560b402f3eb}\label{bsps_2powerpc_2mvme3100_2include_2bsp_2irq_8h_ab4867a0b808c2480f06e9560b402f3eb}} 
+\#define {\bfseries B\+S\+P\+\_\+\+V\+M\+E0\+\_\+\+I\+RQ}~(B\+S\+P\+\_\+\+P\+C\+I\+\_\+\+I\+R\+Q\+\_\+\+L\+O\+W\+E\+S\+T\+\_\+\+O\+F\+F\+S\+ET  +  0)
+\item 
+\mbox{\Hypertarget{bsps_2powerpc_2mvme3100_2include_2bsp_2irq_8h_a876708adfbff6131f6774d54db373249}\label{bsps_2powerpc_2mvme3100_2include_2bsp_2irq_8h_a876708adfbff6131f6774d54db373249}} 
+\#define {\bfseries B\+S\+P\+\_\+\+V\+M\+E1\+\_\+\+I\+RQ}~(B\+S\+P\+\_\+\+P\+C\+I\+\_\+\+I\+R\+Q\+\_\+\+L\+O\+W\+E\+S\+T\+\_\+\+O\+F\+F\+S\+ET  +  1)
+\item 
+\mbox{\Hypertarget{bsps_2powerpc_2mvme3100_2include_2bsp_2irq_8h_af3b3c67605ace6917b4854a73a122e8b}\label{bsps_2powerpc_2mvme3100_2include_2bsp_2irq_8h_af3b3c67605ace6917b4854a73a122e8b}} 
+\#define {\bfseries B\+S\+P\+\_\+\+V\+M\+E2\+\_\+\+I\+RQ}~(B\+S\+P\+\_\+\+P\+C\+I\+\_\+\+I\+R\+Q\+\_\+\+L\+O\+W\+E\+S\+T\+\_\+\+O\+F\+F\+S\+ET  +  2)
+\item 
+\mbox{\Hypertarget{bsps_2powerpc_2mvme3100_2include_2bsp_2irq_8h_a49861ebc739b56bd4eea67741d3fa501}\label{bsps_2powerpc_2mvme3100_2include_2bsp_2irq_8h_a49861ebc739b56bd4eea67741d3fa501}} 
+\#define {\bfseries B\+S\+P\+\_\+\+V\+M\+E3\+\_\+\+I\+RQ}~(B\+S\+P\+\_\+\+P\+C\+I\+\_\+\+I\+R\+Q\+\_\+\+L\+O\+W\+E\+S\+T\+\_\+\+O\+F\+F\+S\+ET  +  3)
+\item 
+\mbox{\Hypertarget{bsps_2powerpc_2mvme3100_2include_2bsp_2irq_8h_a167daa5ccfcbbf6e39c0f1cfe1ab5417}\label{bsps_2powerpc_2mvme3100_2include_2bsp_2irq_8h_a167daa5ccfcbbf6e39c0f1cfe1ab5417}} 
+\#define {\bfseries B\+S\+P\+\_\+\+A\+B\+O\+R\+T\+\_\+\+I\+RQ}~(B\+S\+P\+\_\+\+P\+C\+I\+\_\+\+I\+R\+Q\+\_\+\+L\+O\+W\+E\+S\+T\+\_\+\+O\+F\+F\+S\+ET  +  8)
+\item 
+\mbox{\Hypertarget{bsps_2powerpc_2mvme3100_2include_2bsp_2irq_8h_a19639d856d0b84c252da92d8b873e733}\label{bsps_2powerpc_2mvme3100_2include_2bsp_2irq_8h_a19639d856d0b84c252da92d8b873e733}} 
+\#define {\bfseries B\+S\+P\+\_\+\+T\+E\+M\+P\+\_\+\+I\+RQ}~(B\+S\+P\+\_\+\+P\+C\+I\+\_\+\+I\+R\+Q\+\_\+\+L\+O\+W\+E\+S\+T\+\_\+\+O\+F\+F\+S\+ET  +  9)
+\item 
+\mbox{\Hypertarget{bsps_2powerpc_2mvme3100_2include_2bsp_2irq_8h_a222993fa324ea2277463c288a3d0cd80}\label{bsps_2powerpc_2mvme3100_2include_2bsp_2irq_8h_a222993fa324ea2277463c288a3d0cd80}} 
+\#define {\bfseries B\+S\+P\+\_\+\+P\+H\+Y\+\_\+\+I\+RQ}~(B\+S\+P\+\_\+\+P\+C\+I\+\_\+\+I\+R\+Q\+\_\+\+L\+O\+W\+E\+S\+T\+\_\+\+O\+F\+F\+S\+ET  + 10)
+\item 
+\mbox{\Hypertarget{bsps_2powerpc_2mvme3100_2include_2bsp_2irq_8h_acff7455f76778a8196e9556c505fda81}\label{bsps_2powerpc_2mvme3100_2include_2bsp_2irq_8h_acff7455f76778a8196e9556c505fda81}} 
+\#define {\bfseries B\+S\+P\+\_\+\+R\+T\+C\+\_\+\+I\+RQ}~(B\+S\+P\+\_\+\+P\+C\+I\+\_\+\+I\+R\+Q\+\_\+\+L\+O\+W\+E\+S\+T\+\_\+\+O\+F\+F\+S\+ET  + 11)
+\item 
+\mbox{\Hypertarget{bsps_2powerpc_2mvme3100_2include_2bsp_2irq_8h_a6931bf5865dd42b38a83e29eb782db60}\label{bsps_2powerpc_2mvme3100_2include_2bsp_2irq_8h_a6931bf5865dd42b38a83e29eb782db60}} 
+\#define {\bfseries B\+S\+P\+\_\+\+U\+A\+R\+T\+\_\+\+C\+O\+M1\+\_\+\+I\+RQ}~(B\+S\+P\+\_\+\+C\+O\+R\+E\+\_\+\+I\+R\+Q\+\_\+\+L\+O\+W\+E\+S\+T\+\_\+\+O\+F\+F\+S\+ET + 26)
+\item 
+\mbox{\Hypertarget{bsps_2powerpc_2mvme3100_2include_2bsp_2irq_8h_a70bc7d5e6fe1e9788d8cb8403ad054d0}\label{bsps_2powerpc_2mvme3100_2include_2bsp_2irq_8h_a70bc7d5e6fe1e9788d8cb8403ad054d0}} 
+\#define {\bfseries B\+S\+P\+\_\+\+U\+A\+R\+T\+\_\+\+C\+O\+M2\+\_\+\+I\+RQ}~(B\+S\+P\+\_\+\+C\+O\+R\+E\+\_\+\+I\+R\+Q\+\_\+\+L\+O\+W\+E\+S\+T\+\_\+\+O\+F\+F\+S\+ET + 26)
+\item 
+\mbox{\Hypertarget{bsps_2powerpc_2mvme3100_2include_2bsp_2irq_8h_a7493399cf52f419c79e80b6626638e01}\label{bsps_2powerpc_2mvme3100_2include_2bsp_2irq_8h_a7493399cf52f419c79e80b6626638e01}} 
+\#define {\bfseries B\+S\+P\+\_\+\+I2\+C\+\_\+\+I\+RQ}~(B\+S\+P\+\_\+\+C\+O\+R\+E\+\_\+\+I\+R\+Q\+\_\+\+L\+O\+W\+E\+S\+T\+\_\+\+O\+F\+F\+S\+ET + 27)
+\item 
+\mbox{\Hypertarget{bsps_2powerpc_2mvme3100_2include_2bsp_2irq_8h_a1c99f0ed1f1ba136350a2629a590f0d8}\label{bsps_2powerpc_2mvme3100_2include_2bsp_2irq_8h_a1c99f0ed1f1ba136350a2629a590f0d8}} 
+\#define {\bfseries B\+S\+P\+\_\+\+C\+O\+R\+E\+\_\+\+I\+R\+Q\+\_\+\+F\+EC}~(B\+S\+P\+\_\+\+C\+O\+R\+E\+\_\+\+I\+R\+Q\+\_\+\+L\+O\+W\+E\+S\+T\+\_\+\+O\+F\+F\+S\+ET + 25)
+\item 
+\mbox{\Hypertarget{bsps_2powerpc_2mvme3100_2include_2bsp_2irq_8h_a6cd15515c5c65ea0cd7c353341032e61}\label{bsps_2powerpc_2mvme3100_2include_2bsp_2irq_8h_a6cd15515c5c65ea0cd7c353341032e61}} 
+\#define {\bfseries B\+S\+P\+\_\+\+C\+O\+R\+E\+\_\+\+I\+R\+Q\+\_\+\+I2C}~(B\+S\+P\+\_\+\+C\+O\+R\+E\+\_\+\+I\+R\+Q\+\_\+\+L\+O\+W\+E\+S\+T\+\_\+\+O\+F\+F\+S\+ET + 27)
+\item 
+\mbox{\Hypertarget{bsps_2powerpc_2mvme3100_2include_2bsp_2irq_8h_a9de7840cd6122c1cb94f87bfcc390352}\label{bsps_2powerpc_2mvme3100_2include_2bsp_2irq_8h_a9de7840cd6122c1cb94f87bfcc390352}} 
+\#define {\bfseries B\+S\+P\+\_\+\+D\+E\+C\+R\+E\+M\+E\+N\+T\+ER}~(B\+S\+P\+\_\+\+P\+R\+O\+C\+E\+S\+S\+O\+R\+\_\+\+I\+R\+Q\+\_\+\+L\+O\+W\+E\+S\+T\+\_\+\+O\+F\+F\+S\+ET)
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void {\bfseries B\+S\+P\+\_\+rtems\+\_\+irq\+\_\+mng\+\_\+init} (unsigned cpu\+Id)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This include file describe the data structure and the functions implemented by R\+T\+E\+MS to write interrupt handlers. 
+

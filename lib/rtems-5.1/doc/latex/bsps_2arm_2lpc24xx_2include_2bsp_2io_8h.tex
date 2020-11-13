@@ -1,0 +1,793 @@
+\hypertarget{bsps_2arm_2lpc24xx_2include_2bsp_2io_8h}{}\section{bsps/arm/lpc24xx/include/bsp/io.h File Reference}
+\label{bsps_2arm_2lpc24xx_2include_2bsp_2io_8h}\index{bsps/arm/lpc24xx/include/bsp/io.h@{bsps/arm/lpc24xx/include/bsp/io.h}}
+
+
+Input and output module.  
+
+
+{\ttfamily \#include $<$rtems.\+h$>$}\newline
+{\ttfamily \#include $<$bsp/lpc24xx.\+h$>$}\newline
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+union \mbox{\hyperlink{unionlpc24xx__pin__range}{lpc24xx\+\_\+pin\+\_\+range}}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+I\+O\+\_\+\+P\+O\+R\+T\+\_\+\+C\+O\+U\+NT}~5U
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+I\+O\+\_\+\+I\+N\+D\+E\+X\+\_\+\+M\+AX}~(L\+P\+C24\+X\+X\+\_\+\+I\+O\+\_\+\+P\+O\+R\+T\+\_\+\+C\+O\+U\+NT $\ast$ 32\+U)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+I\+O\+\_\+\+I\+N\+D\+E\+X\+\_\+\+B\+Y\+\_\+\+P\+O\+RT}(port,  bit)~(((port) $<$$<$ 5\+U) + (bit))
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+I\+O\+\_\+\+P\+O\+RT}(index)~((index) $>$$>$ 5\+U)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+I\+O\+\_\+\+P\+O\+R\+T\+\_\+\+B\+IT}(index)~((index) \& 0x1f\+U)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+M\+O\+D\+U\+L\+E\+\_\+\+C\+O\+U\+NT}~(L\+P\+C24\+X\+X\+\_\+\+M\+O\+D\+U\+L\+E\+\_\+\+U\+SB + 1)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+M\+O\+D\+U\+L\+E\+\_\+\+C\+L\+O\+C\+K\+\_\+\+M\+A\+SK}~0x3U
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+IN}(\mbox{\hyperlink{sun4u_2tte_8h_a27952ffc298d15b4fc0e7ee6b2a044ac}{p}},  i,  f0,  f1)~\{ \{ \mbox{\hyperlink{sun4u_2tte_8h_a27952ffc298d15b4fc0e7ee6b2a044ac}{p}}, i, f1, 0, 0 \} \}
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+W\+I\+T\+H\+\_\+\+T\+Y\+PE}(\mbox{\hyperlink{sun4u_2tte_8h_a27952ffc298d15b4fc0e7ee6b2a044ac}{p}},  i,  f0,  f1,  t)~\{ \{ \mbox{\hyperlink{sun4u_2tte_8h_a27952ffc298d15b4fc0e7ee6b2a044ac}{p}}, i, f1, t, 0 \} \}
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+R\+A\+N\+GE}(\mbox{\hyperlink{sun4u_2tte_8h_a27952ffc298d15b4fc0e7ee6b2a044ac}{p}},  i,  j,  f0,  f1)~\{ \{ \mbox{\hyperlink{sun4u_2tte_8h_a27952ffc298d15b4fc0e7ee6b2a044ac}{p}}, i, f1, 0, 0 \} \}, \{ \{ \mbox{\hyperlink{sun4u_2tte_8h_a27952ffc298d15b4fc0e7ee6b2a044ac}{p}}, j, f1, 0, 1 \} \}
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+R\+A\+N\+G\+E\+\_\+\+W\+I\+T\+H\+\_\+\+T\+Y\+PE}(\mbox{\hyperlink{sun4u_2tte_8h_a27952ffc298d15b4fc0e7ee6b2a044ac}{p}},  i,  j,  f0,  f1,  t)~\{ \{ \mbox{\hyperlink{sun4u_2tte_8h_a27952ffc298d15b4fc0e7ee6b2a044ac}{p}}, i, f1, t, 0 \} \}, \{ \{ \mbox{\hyperlink{sun4u_2tte_8h_a27952ffc298d15b4fc0e7ee6b2a044ac}{p}}, j, f1, t, 1 \} \}
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+T\+E\+R\+M\+I\+N\+AL}~\{ \{ 0x7, 0x1f, 0x7, 0xf, 0x1 \} \}
+\end{DoxyCompactItemize}
+\begin{Indent}\textbf{ A\+DC Pins}\par
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+A\+D\+C\+\_\+\+C\+H\+A\+N\+N\+E\+L\+\_\+0}~L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+W\+I\+T\+H\+\_\+\+T\+Y\+PE(0, 23, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+01, 1, L\+P\+C17\+X\+X\+\_\+\+P\+I\+N\+\_\+\+T\+Y\+P\+E\+\_\+\+A\+DC)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+A\+D\+C\+\_\+\+C\+H\+A\+N\+N\+E\+L\+\_\+1}~L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+W\+I\+T\+H\+\_\+\+T\+Y\+PE(0, 24, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+01, 1, L\+P\+C17\+X\+X\+\_\+\+P\+I\+N\+\_\+\+T\+Y\+P\+E\+\_\+\+A\+DC)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+A\+D\+C\+\_\+\+C\+H\+A\+N\+N\+E\+L\+\_\+2}~L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+W\+I\+T\+H\+\_\+\+T\+Y\+PE(0, 25, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+01, 1, L\+P\+C17\+X\+X\+\_\+\+P\+I\+N\+\_\+\+T\+Y\+P\+E\+\_\+\+A\+DC)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+A\+D\+C\+\_\+\+C\+H\+A\+N\+N\+E\+L\+\_\+3}~L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+W\+I\+T\+H\+\_\+\+T\+Y\+PE(0, 26, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+01, 1, L\+P\+C17\+X\+X\+\_\+\+P\+I\+N\+\_\+\+T\+Y\+P\+E\+\_\+\+A\+DC)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+A\+D\+C\+\_\+\+C\+H\+A\+N\+N\+E\+L\+\_\+4}~L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+W\+I\+T\+H\+\_\+\+T\+Y\+PE(1, 30, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+11, 3, L\+P\+C17\+X\+X\+\_\+\+P\+I\+N\+\_\+\+T\+Y\+P\+E\+\_\+\+A\+DC)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+A\+D\+C\+\_\+\+C\+H\+A\+N\+N\+E\+L\+\_\+5}~L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+W\+I\+T\+H\+\_\+\+T\+Y\+PE(1, 31, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+11, 3, L\+P\+C17\+X\+X\+\_\+\+P\+I\+N\+\_\+\+T\+Y\+P\+E\+\_\+\+A\+DC)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+A\+D\+C\+\_\+\+C\+H\+A\+N\+N\+E\+L\+\_\+6}~L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+W\+I\+T\+H\+\_\+\+T\+Y\+PE(0, 12, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+11, 3, L\+P\+C17\+X\+X\+\_\+\+P\+I\+N\+\_\+\+T\+Y\+P\+E\+\_\+\+A\+DC)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+A\+D\+C\+\_\+\+C\+H\+A\+N\+N\+E\+L\+\_\+7}~L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+W\+I\+T\+H\+\_\+\+T\+Y\+PE(0, 13, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+11, 3, L\+P\+C17\+X\+X\+\_\+\+P\+I\+N\+\_\+\+T\+Y\+P\+E\+\_\+\+A\+DC)
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ C\+AN 0 Pins}\par
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+C\+A\+N\+\_\+0\+\_\+\+R\+D\+\_\+\+P0\+\_\+0}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(0, 0, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+01, 1)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+C\+A\+N\+\_\+0\+\_\+\+R\+D\+\_\+\+P0\+\_\+21}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(0, 21, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+11, 4)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+C\+A\+N\+\_\+0\+\_\+\+T\+D\+\_\+\+P0\+\_\+1}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(0, 1, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+01, 1)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+C\+A\+N\+\_\+0\+\_\+\+T\+D\+\_\+\+P0\+\_\+22}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(0, 22, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+11, 4)
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ C\+AN 1 Pins}\par
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+C\+A\+N\+\_\+1\+\_\+\+R\+D\+\_\+\+P0\+\_\+4}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(0, 4, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+10, 2)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+C\+A\+N\+\_\+1\+\_\+\+R\+D\+\_\+\+P2\+\_\+7}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(2, 7, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+01, 1)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+C\+A\+N\+\_\+1\+\_\+\+T\+D\+\_\+\+P0\+\_\+5}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(0, 5, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+10, 2)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+C\+A\+N\+\_\+1\+\_\+\+T\+D\+\_\+\+P2\+\_\+8}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(2, 8, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+01, 1)
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ D\+AC Pins}\par
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+D\+AC}~L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+W\+I\+T\+H\+\_\+\+T\+Y\+PE(0, 26, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+10, 2, L\+P\+C17\+X\+X\+\_\+\+P\+I\+N\+\_\+\+T\+Y\+P\+E\+\_\+\+D\+AC)
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Ethernet Pins}\par
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+E\+T\+H\+E\+R\+N\+E\+T\+\_\+\+M\+II}~L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+R\+A\+N\+GE(1, 0, 17, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+01, 1)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+E\+T\+H\+E\+R\+N\+E\+T\+\_\+\+R\+M\+I\+I\+\_\+0}~L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+R\+A\+N\+GE(1, 0, 1, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+01, 1)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+E\+T\+H\+E\+R\+N\+E\+T\+\_\+\+R\+M\+I\+I\+\_\+1}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(1, 4, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+01, 1)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+E\+T\+H\+E\+R\+N\+E\+T\+\_\+\+R\+M\+I\+I\+\_\+2}~L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+R\+A\+N\+GE(1, 8, 10, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+01, 1)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+E\+T\+H\+E\+R\+N\+E\+T\+\_\+\+R\+M\+I\+I\+\_\+3}~L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+R\+A\+N\+GE(1, 14, 17, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+01, 1)
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ External Interrupt Pins}\par
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+E\+I\+N\+T\+\_\+0}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(2, 10, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+01, 1)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+E\+I\+N\+T\+\_\+1}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(2, 11, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+01, 1)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+E\+I\+N\+T\+\_\+2}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(2, 12, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+01, 1)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+E\+I\+N\+T\+\_\+3}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(2, 13, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+01, 1)
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ External Memory Controller (E\+MC) Pins}\par
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+E\+MC}(\mbox{\hyperlink{sun4u_2tte_8h_a27952ffc298d15b4fc0e7ee6b2a044ac}{p}},  i)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+E\+M\+C\+\_\+\+R\+A\+N\+GE}(\mbox{\hyperlink{sun4u_2tte_8h_a27952ffc298d15b4fc0e7ee6b2a044ac}{p}},  i,  j)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+E\+M\+C\+\_\+\+C\+S\+\_\+0}~L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+E\+MC(4, 30)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+E\+M\+C\+\_\+\+C\+S\+\_\+1}~L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+E\+MC(4, 31)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+E\+M\+C\+\_\+\+C\+S\+\_\+2}~L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+E\+MC(2, 14)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+E\+M\+C\+\_\+\+C\+S\+\_\+3}~L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+E\+MC(2, 15)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+E\+M\+C\+\_\+\+D\+Y\+C\+S\+\_\+0}~L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+E\+MC(2, 20)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+E\+M\+C\+\_\+\+D\+Y\+C\+S\+\_\+1}~L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+E\+MC(2, 21)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+E\+M\+C\+\_\+\+D\+Y\+C\+S\+\_\+2}~L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+E\+MC(2, 22)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+E\+M\+C\+\_\+\+D\+Y\+C\+S\+\_\+3}~L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+E\+MC(2, 23)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+E\+M\+C\+\_\+\+OE}~L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+E\+MC(4, 24)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+E\+M\+C\+\_\+\+WE}~L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+E\+MC(4, 25)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+E\+M\+C\+\_\+\+C\+AS}~L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+E\+MC(2, 16)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+E\+M\+C\+\_\+\+R\+AS}~L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+E\+MC(2, 17)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+E\+M\+C\+\_\+\+C\+L\+K\+\_\+0}~L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+E\+MC(2, 18)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+E\+M\+C\+\_\+\+C\+L\+K\+\_\+1}~L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+E\+MC(2, 19)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+E\+M\+C\+\_\+\+C\+K\+E\+\_\+0}~L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+E\+MC(2, 24)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+E\+M\+C\+\_\+\+C\+K\+E\+\_\+1}~L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+E\+MC(2, 25)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+E\+M\+C\+\_\+\+C\+K\+E\+\_\+2}~L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+E\+MC(2, 26)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+E\+M\+C\+\_\+\+C\+K\+E\+\_\+3}~L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+E\+MC(2, 27)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+E\+M\+C\+\_\+\+D\+Q\+M\+\_\+0}~L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+E\+MC(2, 28)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+E\+M\+C\+\_\+\+D\+Q\+M\+\_\+1}~L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+E\+MC(2, 29)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+E\+M\+C\+\_\+\+D\+Q\+M\+\_\+2}~L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+E\+MC(2, 30)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+E\+M\+C\+\_\+\+D\+Q\+M\+\_\+3}~L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+E\+MC(2, 31)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+E\+M\+C\+\_\+\+B\+L\+S0}~L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+E\+MC(4, 26)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+E\+M\+C\+\_\+\+B\+L\+S1}~L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+E\+MC(4, 27)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+E\+M\+C\+\_\+\+B\+L\+S2}~L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+E\+MC(4, 28)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+E\+M\+C\+\_\+\+B\+L\+S3}~L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+E\+MC(4, 29)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+E\+M\+C\+\_\+\+D\+\_\+0\+\_\+15}~L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+E\+M\+C\+\_\+\+R\+A\+N\+GE(3, 0, 15)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+E\+M\+C\+\_\+\+D\+\_\+15\+\_\+31}~L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+E\+M\+C\+\_\+\+R\+A\+N\+GE(3, 15, 31)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+E\+M\+C\+\_\+\+D\+\_\+0\+\_\+31}~L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+E\+M\+C\+\_\+\+R\+A\+N\+GE(3, 0, 31)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+E\+M\+C\+\_\+\+A\+\_\+0\+\_\+12}~L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+E\+M\+C\+\_\+\+R\+A\+N\+GE(4, 0, 12)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+E\+M\+C\+\_\+\+A\+\_\+0\+\_\+13}~L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+E\+M\+C\+\_\+\+R\+A\+N\+GE(4, 0, 13)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+E\+M\+C\+\_\+\+A\+\_\+0\+\_\+14}~L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+E\+M\+C\+\_\+\+R\+A\+N\+GE(4, 0, 14)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+E\+M\+C\+\_\+\+A\+\_\+0\+\_\+15}~L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+E\+M\+C\+\_\+\+R\+A\+N\+GE(4, 0, 15)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+E\+M\+C\+\_\+\+A\+\_\+0\+\_\+16}
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+E\+M\+C\+\_\+\+A\+\_\+0\+\_\+17}
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+E\+M\+C\+\_\+\+A\+\_\+0\+\_\+18}
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+E\+M\+C\+\_\+\+A\+\_\+0\+\_\+19}
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+E\+M\+C\+\_\+\+A\+\_\+0\+\_\+20}
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+E\+M\+C\+\_\+\+A\+\_\+0\+\_\+21}
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+E\+M\+C\+\_\+\+A\+\_\+0\+\_\+22}
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+E\+M\+C\+\_\+\+A\+\_\+0\+\_\+23}
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+E\+M\+C\+\_\+\+A\+\_\+0\+\_\+24}
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+E\+M\+C\+\_\+\+A\+\_\+0\+\_\+25}
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ I2C 0 Pins}\par
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+I2\+C\+\_\+0\+\_\+\+S\+DA}~L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+W\+I\+T\+H\+\_\+\+T\+Y\+PE(0, 27, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+01, 1, L\+P\+C17\+X\+X\+\_\+\+P\+I\+N\+\_\+\+T\+Y\+P\+E\+\_\+\+I2C)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+I2\+C\+\_\+0\+\_\+\+S\+CL}~L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+W\+I\+T\+H\+\_\+\+T\+Y\+PE(0, 28, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+01, 1, L\+P\+C17\+X\+X\+\_\+\+P\+I\+N\+\_\+\+T\+Y\+P\+E\+\_\+\+I2C)
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ I2C 1 Pins}\par
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+I2\+C\+\_\+1\+\_\+\+S\+D\+A\+\_\+\+P0\+\_\+0}~L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+W\+I\+T\+H\+\_\+\+T\+Y\+PE(0, 0, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+11, 3, L\+P\+C17\+X\+X\+\_\+\+P\+I\+N\+\_\+\+T\+Y\+P\+E\+\_\+\+I2C)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+I2\+C\+\_\+1\+\_\+\+S\+D\+A\+\_\+\+P0\+\_\+19}~L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+W\+I\+T\+H\+\_\+\+T\+Y\+PE(0, 19, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+11, 3, L\+P\+C17\+X\+X\+\_\+\+P\+I\+N\+\_\+\+T\+Y\+P\+E\+\_\+\+I2C)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+I2\+C\+\_\+1\+\_\+\+S\+D\+A\+\_\+\+P2\+\_\+14}~L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+W\+I\+T\+H\+\_\+\+T\+Y\+PE(2, 14, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+11, 2, L\+P\+C17\+X\+X\+\_\+\+P\+I\+N\+\_\+\+T\+Y\+P\+E\+\_\+\+I2C)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+I2\+C\+\_\+1\+\_\+\+S\+C\+L\+\_\+\+P0\+\_\+1}~L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+W\+I\+T\+H\+\_\+\+T\+Y\+PE(0, 1, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+11, 3, L\+P\+C17\+X\+X\+\_\+\+P\+I\+N\+\_\+\+T\+Y\+P\+E\+\_\+\+I2C)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+I2\+C\+\_\+1\+\_\+\+S\+C\+L\+\_\+\+P0\+\_\+20}~L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+W\+I\+T\+H\+\_\+\+T\+Y\+PE(0, 20, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+11, 3, L\+P\+C17\+X\+X\+\_\+\+P\+I\+N\+\_\+\+T\+Y\+P\+E\+\_\+\+I2C)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+I2\+C\+\_\+1\+\_\+\+S\+C\+L\+\_\+\+P2\+\_\+15}~L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+W\+I\+T\+H\+\_\+\+T\+Y\+PE(2, 15, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+11, 2, L\+P\+C17\+X\+X\+\_\+\+P\+I\+N\+\_\+\+T\+Y\+P\+E\+\_\+\+I2C)
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ I2C 2 Pins}\par
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+I2\+C\+\_\+2\+\_\+\+S\+D\+A\+\_\+\+P0\+\_\+10}~L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+W\+I\+T\+H\+\_\+\+T\+Y\+PE(0, 10, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+10, 2, L\+P\+C17\+X\+X\+\_\+\+P\+I\+N\+\_\+\+T\+Y\+P\+E\+\_\+\+I2C)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+I2\+C\+\_\+2\+\_\+\+S\+D\+A\+\_\+\+P2\+\_\+30}~L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+W\+I\+T\+H\+\_\+\+T\+Y\+PE(2, 30, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+11, 2, L\+P\+C17\+X\+X\+\_\+\+P\+I\+N\+\_\+\+T\+Y\+P\+E\+\_\+\+I2C)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+I2\+C\+\_\+2\+\_\+\+S\+D\+A\+\_\+\+P4\+\_\+20}~L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+W\+I\+T\+H\+\_\+\+T\+Y\+PE(4, 20, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+10, 2, L\+P\+C17\+X\+X\+\_\+\+P\+I\+N\+\_\+\+T\+Y\+P\+E\+\_\+\+I2C)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+I2\+C\+\_\+2\+\_\+\+S\+C\+L\+\_\+\+P0\+\_\+11}~L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+W\+I\+T\+H\+\_\+\+T\+Y\+PE(0, 11, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+10, 2, L\+P\+C17\+X\+X\+\_\+\+P\+I\+N\+\_\+\+T\+Y\+P\+E\+\_\+\+I2C)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+I2\+C\+\_\+2\+\_\+\+S\+C\+L\+\_\+\+P2\+\_\+31}~L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+W\+I\+T\+H\+\_\+\+T\+Y\+PE(2, 31, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+11, 2, L\+P\+C17\+X\+X\+\_\+\+P\+I\+N\+\_\+\+T\+Y\+P\+E\+\_\+\+I2C)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+I2\+C\+\_\+2\+\_\+\+S\+C\+L\+\_\+\+P4\+\_\+21}~L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+W\+I\+T\+H\+\_\+\+T\+Y\+PE(4, 21, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+10, 2, L\+P\+C17\+X\+X\+\_\+\+P\+I\+N\+\_\+\+T\+Y\+P\+E\+\_\+\+I2C)
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ I2S Pins}\par
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+I2\+S\+\_\+\+R\+X\+\_\+\+C\+L\+K\+\_\+\+P0\+\_\+4}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(0, 4, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+01, 1)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+I2\+S\+\_\+\+R\+X\+\_\+\+C\+L\+K\+\_\+\+P0\+\_\+23}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(0, 23, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+10, 2)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+I2\+S\+\_\+\+R\+X\+\_\+\+W\+S\+\_\+\+P0\+\_\+5}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(0, 5, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+01, 1)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+I2\+S\+\_\+\+R\+X\+\_\+\+W\+S\+\_\+\+P0\+\_\+24}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(0, 24, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+10, 2)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+I2\+S\+\_\+\+R\+X\+\_\+\+S\+D\+A\+\_\+\+P0\+\_\+6}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(0, 6, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+01, 1)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+I2\+S\+\_\+\+R\+X\+\_\+\+S\+D\+A\+\_\+\+P0\+\_\+25}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(0, 25, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+10, 2)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+I2\+S\+\_\+\+T\+X\+\_\+\+C\+L\+K\+\_\+\+P0\+\_\+7}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(0, 7, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+01, 1)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+I2\+S\+\_\+\+T\+X\+\_\+\+C\+L\+K\+\_\+\+P2\+\_\+11}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(2, 11, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+11, 3)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+I2\+S\+\_\+\+T\+X\+\_\+\+W\+S\+\_\+\+P0\+\_\+8}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(0, 8, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+01, 1)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+I2\+S\+\_\+\+T\+X\+\_\+\+W\+S\+\_\+\+P2\+\_\+12}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(2, 12, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+11, 3)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+I2\+S\+\_\+\+T\+X\+\_\+\+S\+D\+A\+\_\+\+P0\+\_\+9}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(0, 9, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+01, 1)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+I2\+S\+\_\+\+T\+X\+\_\+\+S\+D\+A\+\_\+\+P2\+\_\+13}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(2, 13, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+11, 3)
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ L\+CD Pins}\par
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+L\+C\+D\+\_\+\+P\+WR}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(2, 0, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+11, 7)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+L\+C\+D\+\_\+\+LE}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(2, 1, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+11, 7)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+L\+C\+D\+\_\+\+D\+C\+LK}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(2, 2, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+11, 7)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+L\+C\+D\+\_\+\+FP}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(2, 3, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+11, 7)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+L\+C\+D\+\_\+\+E\+N\+A\+B\+\_\+M}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(2, 4, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+11, 7)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+L\+C\+D\+\_\+\+LP}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(2, 5, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+11, 7)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+L\+C\+D\+\_\+\+C\+L\+K\+IN}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(2, 11, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+01, 7)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+L\+C\+D\+\_\+\+V\+D\+\_\+0\+\_\+\+P0\+\_\+4}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(0, 4, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+01, 7)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+L\+C\+D\+\_\+\+V\+D\+\_\+0\+\_\+\+P2\+\_\+6}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(2, 6, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+11, 6)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+L\+C\+D\+\_\+\+V\+D\+\_\+1\+\_\+\+P0\+\_\+5}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(0, 5, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+01, 7)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+L\+C\+D\+\_\+\+V\+D\+\_\+1\+\_\+\+P2\+\_\+7}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(2, 7, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+11, 6)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+L\+C\+D\+\_\+\+V\+D\+\_\+2\+\_\+\+P2\+\_\+8}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(2, 8, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+11, 6)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+L\+C\+D\+\_\+\+V\+D\+\_\+2\+\_\+\+P4\+\_\+28}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(4, 28, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+10, 7)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+L\+C\+D\+\_\+\+V\+D\+\_\+3\+\_\+\+P2\+\_\+9}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(2, 9, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+11, 6)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+L\+C\+D\+\_\+\+V\+D\+\_\+3\+\_\+\+P2\+\_\+12}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(2, 12, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+01, 5)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+L\+C\+D\+\_\+\+V\+D\+\_\+3\+\_\+\+P4\+\_\+29}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(4, 29, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+10, 7)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+L\+C\+D\+\_\+\+V\+D\+\_\+4\+\_\+\+P2\+\_\+6}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(2, 6, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+11, 7)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+L\+C\+D\+\_\+\+V\+D\+\_\+4\+\_\+\+P2\+\_\+12}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(2, 12, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+01, 4)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+L\+C\+D\+\_\+\+V\+D\+\_\+5\+\_\+\+P2\+\_\+7}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(2, 7, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+11, 7)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+L\+C\+D\+\_\+\+V\+D\+\_\+5\+\_\+\+P2\+\_\+13}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(2, 13, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+01, 5)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+L\+C\+D\+\_\+\+V\+D\+\_\+6\+\_\+\+P1\+\_\+20}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(1, 20, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+01, 6)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+L\+C\+D\+\_\+\+V\+D\+\_\+6\+\_\+\+P2\+\_\+8}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(2, 8, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+11, 7)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+L\+C\+D\+\_\+\+V\+D\+\_\+6\+\_\+\+P4\+\_\+28}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(4, 28, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+10, 5)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+L\+C\+D\+\_\+\+V\+D\+\_\+7\+\_\+\+P1\+\_\+21}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(1, 21, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+01, 6)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+L\+C\+D\+\_\+\+V\+D\+\_\+7\+\_\+\+P2\+\_\+9}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(2, 9, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+11, 7)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+L\+C\+D\+\_\+\+V\+D\+\_\+7\+\_\+\+P4\+\_\+29}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(4, 29, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+10, 5)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+L\+C\+D\+\_\+\+V\+D\+\_\+8\+\_\+\+P0\+\_\+6}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(0, 6, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+01, 7)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+L\+C\+D\+\_\+\+V\+D\+\_\+8\+\_\+\+P1\+\_\+22}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(1, 22, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+01, 6)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+L\+C\+D\+\_\+\+V\+D\+\_\+8\+\_\+\+P2\+\_\+12}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(2, 12, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+01, 6)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+L\+C\+D\+\_\+\+V\+D\+\_\+9\+\_\+\+P0\+\_\+7}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(0, 7, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+01, 7)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+L\+C\+D\+\_\+\+V\+D\+\_\+9\+\_\+\+P1\+\_\+23}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(1, 23, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+01, 6)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+L\+C\+D\+\_\+\+V\+D\+\_\+9\+\_\+\+P2\+\_\+13}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(2, 13, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+01, 6)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+L\+C\+D\+\_\+\+V\+D\+\_\+10\+\_\+\+P1\+\_\+20}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(1, 20, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+01, 7)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+L\+C\+D\+\_\+\+V\+D\+\_\+10\+\_\+\+P1\+\_\+24}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(1, 24, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+01, 6)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+L\+C\+D\+\_\+\+V\+D\+\_\+10\+\_\+\+P4\+\_\+28}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(4, 28, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+10, 6)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+L\+C\+D\+\_\+\+V\+D\+\_\+11\+\_\+\+P1\+\_\+21}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(1, 21, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+01, 7)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+L\+C\+D\+\_\+\+V\+D\+\_\+11\+\_\+\+P1\+\_\+25}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(1, 25, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+01, 6)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+L\+C\+D\+\_\+\+V\+D\+\_\+11\+\_\+\+P4\+\_\+29}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(4, 29, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+10, 6)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+L\+C\+D\+\_\+\+V\+D\+\_\+12\+\_\+\+P1\+\_\+22}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(1, 22, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+01, 7)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+L\+C\+D\+\_\+\+V\+D\+\_\+12\+\_\+\+P1\+\_\+26}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(1, 26, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+01, 6)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+L\+C\+D\+\_\+\+V\+D\+\_\+13\+\_\+\+P1\+\_\+23}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(1, 23, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+01, 7)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+L\+C\+D\+\_\+\+V\+D\+\_\+13\+\_\+\+P1\+\_\+27}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(1, 27, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+01, 6)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+L\+C\+D\+\_\+\+V\+D\+\_\+14\+\_\+\+P1\+\_\+24}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(1, 24, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+01, 7)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+L\+C\+D\+\_\+\+V\+D\+\_\+14\+\_\+\+P1\+\_\+28}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(1, 28, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+01, 6)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+L\+C\+D\+\_\+\+V\+D\+\_\+15\+\_\+\+P1\+\_\+25}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(1, 25, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+01, 7)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+L\+C\+D\+\_\+\+V\+D\+\_\+15\+\_\+\+P1\+\_\+29}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(1, 29, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+01, 6)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+L\+C\+D\+\_\+\+V\+D\+\_\+16\+\_\+\+P0\+\_\+8}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(0, 8, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+01, 7)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+L\+C\+D\+\_\+\+V\+D\+\_\+17\+\_\+\+P0\+\_\+9}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(0, 9, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+01, 7)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+L\+C\+D\+\_\+\+V\+D\+\_\+18\+\_\+\+P2\+\_\+12}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(2, 12, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+01, 7)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+L\+C\+D\+\_\+\+V\+D\+\_\+19\+\_\+\+P2\+\_\+13}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(2, 13, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+01, 7)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+L\+C\+D\+\_\+\+V\+D\+\_\+20\+\_\+\+P1\+\_\+26}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(1, 26, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+01, 7)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+L\+C\+D\+\_\+\+V\+D\+\_\+21\+\_\+\+P1\+\_\+27}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(1, 27, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+01, 7)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+L\+C\+D\+\_\+\+V\+D\+\_\+22\+\_\+\+P1\+\_\+28}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(1, 28, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+01, 7)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+L\+C\+D\+\_\+\+V\+D\+\_\+23\+\_\+\+P1\+\_\+29}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(1, 29, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+01, 7)
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ P\+WM 0 Pins}\par
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+P\+W\+M\+\_\+0\+\_\+\+C\+H\+A\+N\+N\+E\+L\+\_\+1\+\_\+\+P1\+\_\+2}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(1, 2, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+11, 3)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+P\+W\+M\+\_\+0\+\_\+\+C\+H\+A\+N\+N\+E\+L\+\_\+1\+\_\+\+P3\+\_\+16}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(3, 16, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+10, 2)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+P\+W\+M\+\_\+0\+\_\+\+C\+H\+A\+N\+N\+E\+L\+\_\+2\+\_\+\+P1\+\_\+3}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(1, 3, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+11, 3)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+P\+W\+M\+\_\+0\+\_\+\+C\+H\+A\+N\+N\+E\+L\+\_\+2\+\_\+\+P3\+\_\+17}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(3, 17, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+10, 2)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+P\+W\+M\+\_\+0\+\_\+\+C\+H\+A\+N\+N\+E\+L\+\_\+3\+\_\+\+P1\+\_\+5}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(1, 5, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+11, 3)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+P\+W\+M\+\_\+0\+\_\+\+C\+H\+A\+N\+N\+E\+L\+\_\+3\+\_\+\+P3\+\_\+18}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(3, 18, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+10, 2)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+P\+W\+M\+\_\+0\+\_\+\+C\+H\+A\+N\+N\+E\+L\+\_\+4\+\_\+\+P1\+\_\+6}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(1, 6, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+11, 3)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+P\+W\+M\+\_\+0\+\_\+\+C\+H\+A\+N\+N\+E\+L\+\_\+4\+\_\+\+P3\+\_\+19}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(3, 19, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+10, 2)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+P\+W\+M\+\_\+0\+\_\+\+C\+H\+A\+N\+N\+E\+L\+\_\+5\+\_\+\+P1\+\_\+7}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(1, 7, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+11, 3)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+P\+W\+M\+\_\+0\+\_\+\+C\+H\+A\+N\+N\+E\+L\+\_\+5\+\_\+\+P3\+\_\+20}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(3, 20, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+10, 2)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+P\+W\+M\+\_\+0\+\_\+\+C\+H\+A\+N\+N\+E\+L\+\_\+6\+\_\+\+P1\+\_\+11}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(1, 11, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+11, 3)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+P\+W\+M\+\_\+0\+\_\+\+C\+H\+A\+N\+N\+E\+L\+\_\+6\+\_\+\+P3\+\_\+21}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(3, 21, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+10, 2)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+P\+W\+M\+\_\+0\+\_\+\+C\+A\+P\+T\+U\+R\+E\+\_\+0\+\_\+\+P1\+\_\+12}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(1, 12, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+11, 3)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+P\+W\+M\+\_\+0\+\_\+\+C\+A\+P\+T\+U\+R\+E\+\_\+0\+\_\+\+P3\+\_\+22}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(3, 22, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+10, 2)
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ P\+WM 1 Pins}\par
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+P\+W\+M\+\_\+1\+\_\+\+C\+H\+A\+N\+N\+E\+L\+\_\+1\+\_\+\+P1\+\_\+18}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(1, 18, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+10, 2)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+P\+W\+M\+\_\+1\+\_\+\+C\+H\+A\+N\+N\+E\+L\+\_\+1\+\_\+\+P2\+\_\+0}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(2, 0, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+01, 1)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+P\+W\+M\+\_\+1\+\_\+\+C\+H\+A\+N\+N\+E\+L\+\_\+1\+\_\+\+P3\+\_\+24}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(3, 24, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+11, 2)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+P\+W\+M\+\_\+1\+\_\+\+C\+H\+A\+N\+N\+E\+L\+\_\+2\+\_\+\+P1\+\_\+20}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(1, 20, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+10, 2)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+P\+W\+M\+\_\+1\+\_\+\+C\+H\+A\+N\+N\+E\+L\+\_\+2\+\_\+\+P2\+\_\+1}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(2, 1, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+01, 1)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+P\+W\+M\+\_\+1\+\_\+\+C\+H\+A\+N\+N\+E\+L\+\_\+2\+\_\+\+P3\+\_\+25}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(3, 25, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+11, 2)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+P\+W\+M\+\_\+1\+\_\+\+C\+H\+A\+N\+N\+E\+L\+\_\+3\+\_\+\+P1\+\_\+21}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(1, 21, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+10, 2)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+P\+W\+M\+\_\+1\+\_\+\+C\+H\+A\+N\+N\+E\+L\+\_\+3\+\_\+\+P2\+\_\+2}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(2, 2, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+01, 1)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+P\+W\+M\+\_\+1\+\_\+\+C\+H\+A\+N\+N\+E\+L\+\_\+3\+\_\+\+P3\+\_\+26}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(3, 26, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+11, 2)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+P\+W\+M\+\_\+1\+\_\+\+C\+H\+A\+N\+N\+E\+L\+\_\+4\+\_\+\+P1\+\_\+23}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(1, 23, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+10, 2)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+P\+W\+M\+\_\+1\+\_\+\+C\+H\+A\+N\+N\+E\+L\+\_\+4\+\_\+\+P2\+\_\+3}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(2, 3, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+01, 1)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+P\+W\+M\+\_\+1\+\_\+\+C\+H\+A\+N\+N\+E\+L\+\_\+4\+\_\+\+P3\+\_\+27}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(3, 27, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+11, 2)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+P\+W\+M\+\_\+1\+\_\+\+C\+H\+A\+N\+N\+E\+L\+\_\+5\+\_\+\+P1\+\_\+24}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(1, 24, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+10, 2)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+P\+W\+M\+\_\+1\+\_\+\+C\+H\+A\+N\+N\+E\+L\+\_\+5\+\_\+\+P2\+\_\+4}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(2, 4, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+01, 1)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+P\+W\+M\+\_\+1\+\_\+\+C\+H\+A\+N\+N\+E\+L\+\_\+5\+\_\+\+P3\+\_\+28}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(3, 28, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+11, 2)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+P\+W\+M\+\_\+1\+\_\+\+C\+H\+A\+N\+N\+E\+L\+\_\+6\+\_\+\+P1\+\_\+26}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(1, 26, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+10, 2)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+P\+W\+M\+\_\+1\+\_\+\+C\+H\+A\+N\+N\+E\+L\+\_\+6\+\_\+\+P2\+\_\+5}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(2, 5, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+01, 1)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+P\+W\+M\+\_\+1\+\_\+\+C\+H\+A\+N\+N\+E\+L\+\_\+6\+\_\+\+P3\+\_\+29}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(3, 29, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O9\+\_\+11, 2)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+P\+W\+M\+\_\+1\+\_\+\+C\+A\+P\+T\+U\+R\+E\+\_\+0\+\_\+\+P1\+\_\+28}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(1, 28, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+10, 2)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+P\+W\+M\+\_\+1\+\_\+\+C\+A\+P\+T\+U\+R\+E\+\_\+0\+\_\+\+P2\+\_\+7}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(2, 6, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+01, 1)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+P\+W\+M\+\_\+1\+\_\+\+C\+A\+P\+T\+U\+R\+E\+\_\+0\+\_\+\+P3\+\_\+23}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(3, 23, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+11, 2)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+P\+W\+M\+\_\+1\+\_\+\+C\+A\+P\+T\+U\+R\+E\+\_\+1\+\_\+\+P1\+\_\+29}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(1, 29, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+10, 2)
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ S\+SP 0 Pins}\par
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+S\+S\+P\+\_\+0\+\_\+\+S\+C\+K\+\_\+\+P0\+\_\+15}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(0, 15, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+10, 2)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+S\+S\+P\+\_\+0\+\_\+\+S\+C\+K\+\_\+\+P1\+\_\+20}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(1, 20, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+11, 5)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+S\+S\+P\+\_\+0\+\_\+\+S\+C\+K\+\_\+\+P2\+\_\+22}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(2, 22, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+11, 2)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+S\+S\+P\+\_\+0\+\_\+\+S\+S\+E\+L\+\_\+\+P0\+\_\+16}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(0, 16, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+10, 2)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+S\+S\+P\+\_\+0\+\_\+\+S\+S\+E\+L\+\_\+\+P1\+\_\+21}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(1, 21, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+11, 3)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+S\+S\+P\+\_\+0\+\_\+\+S\+S\+E\+L\+\_\+\+P2\+\_\+23}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(2, 23, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+11, 2)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+S\+S\+P\+\_\+0\+\_\+\+M\+I\+S\+O\+\_\+\+P0\+\_\+17}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(0, 17, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+10, 2)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+S\+S\+P\+\_\+0\+\_\+\+M\+I\+S\+O\+\_\+\+P1\+\_\+23}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(1, 23, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+11, 5)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+S\+S\+P\+\_\+0\+\_\+\+M\+I\+S\+O\+\_\+\+P2\+\_\+26}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(2, 26, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+11, 2)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+S\+S\+P\+\_\+0\+\_\+\+M\+O\+S\+I\+\_\+\+P0\+\_\+18}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(0, 18, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+10, 2)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+S\+S\+P\+\_\+0\+\_\+\+M\+O\+S\+I\+\_\+\+P1\+\_\+24}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(1, 24, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+11, 5)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+S\+S\+P\+\_\+0\+\_\+\+M\+O\+S\+I\+\_\+\+P2\+\_\+27}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(2, 27, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+11, 2)
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ S\+SP 1 Pins}\par
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+S\+S\+P\+\_\+1\+\_\+\+S\+C\+K\+\_\+\+P0\+\_\+6}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(0, 7, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+10, 2)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+S\+S\+P\+\_\+1\+\_\+\+S\+C\+K\+\_\+\+P0\+\_\+12}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(1, 31, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+10, 2)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+S\+S\+P\+\_\+1\+\_\+\+S\+C\+K\+\_\+\+P4\+\_\+20}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(4, 20, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+11, 3)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+S\+S\+P\+\_\+1\+\_\+\+S\+S\+E\+L\+\_\+\+P0\+\_\+7}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(0, 6, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+10, 2)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+S\+S\+P\+\_\+1\+\_\+\+S\+S\+E\+L\+\_\+\+P0\+\_\+13}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(0, 14, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+11, 2)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+S\+S\+P\+\_\+1\+\_\+\+S\+S\+E\+L\+\_\+\+P4\+\_\+21}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(4, 21, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+11, 3)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+S\+S\+P\+\_\+1\+\_\+\+M\+I\+S\+O\+\_\+\+P0\+\_\+8}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(0, 8, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+10, 2)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+S\+S\+P\+\_\+1\+\_\+\+M\+I\+S\+O\+\_\+\+P0\+\_\+14}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(0, 12, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+10, 2)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+S\+S\+P\+\_\+1\+\_\+\+M\+I\+S\+O\+\_\+\+P4\+\_\+22}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(4, 22, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+11, 3)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+S\+S\+P\+\_\+1\+\_\+\+M\+O\+S\+I\+\_\+\+P0\+\_\+9}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(0, 9, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+10, 2)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+S\+S\+P\+\_\+1\+\_\+\+M\+O\+S\+I\+\_\+\+P1\+\_\+31}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(0, 13, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+10, 2)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+S\+S\+P\+\_\+1\+\_\+\+M\+O\+S\+I\+\_\+\+P4\+\_\+23}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(4, 23, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+11, 3)
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ U\+A\+RT 0 Pins}\par
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+U\+A\+R\+T\+\_\+0\+\_\+\+T\+XD}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(0, 2, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+01, 1)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+U\+A\+R\+T\+\_\+0\+\_\+\+R\+XD}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(0, 3, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+01, 1)
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ U\+A\+RT 1 Pins}\par
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+U\+A\+R\+T\+\_\+1\+\_\+\+T\+X\+D\+\_\+\+P0\+\_\+15}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(0, 15, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+01, 1)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+U\+A\+R\+T\+\_\+1\+\_\+\+T\+X\+D\+\_\+\+P2\+\_\+0}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(2, 0, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+10, 2)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+U\+A\+R\+T\+\_\+1\+\_\+\+T\+X\+D\+\_\+\+P3\+\_\+16}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(3, 16, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+11, 3)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+U\+A\+R\+T\+\_\+1\+\_\+\+R\+X\+D\+\_\+\+P0\+\_\+16}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(0, 16, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+01, 1)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+U\+A\+R\+T\+\_\+1\+\_\+\+R\+X\+D\+\_\+\+P2\+\_\+1}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(2, 1, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+10, 2)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+U\+A\+R\+T\+\_\+1\+\_\+\+R\+X\+D\+\_\+\+P3\+\_\+17}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(3, 17, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+11, 3)
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ U\+A\+RT 2 Pins}\par
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+U\+A\+R\+T\+\_\+2\+\_\+\+T\+X\+D\+\_\+\+P0\+\_\+10}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(0, 10, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+01, 1)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+U\+A\+R\+T\+\_\+2\+\_\+\+T\+X\+D\+\_\+\+P2\+\_\+8}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(2, 8, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+10, 2)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+U\+A\+R\+T\+\_\+2\+\_\+\+T\+X\+D\+\_\+\+P4\+\_\+22}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(4, 22, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+10, 2)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+U\+A\+R\+T\+\_\+2\+\_\+\+R\+X\+D\+\_\+\+P0\+\_\+11}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(0, 11, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+01, 1)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+U\+A\+R\+T\+\_\+2\+\_\+\+R\+X\+D\+\_\+\+P2\+\_\+9}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(2, 9, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+10, 2)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+U\+A\+R\+T\+\_\+2\+\_\+\+R\+X\+D\+\_\+\+P4\+\_\+23}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(4, 23, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+10, 2)
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ U\+A\+RT 3 Pins}\par
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+U\+A\+R\+T\+\_\+3\+\_\+\+T\+X\+D\+\_\+\+P0\+\_\+0}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(0, 0, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+10, 2)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+U\+A\+R\+T\+\_\+3\+\_\+\+T\+X\+D\+\_\+\+P0\+\_\+25}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(0, 25, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+11, 3)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+U\+A\+R\+T\+\_\+3\+\_\+\+T\+X\+D\+\_\+\+P4\+\_\+28}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(4, 28, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+11, 2)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+U\+A\+R\+T\+\_\+3\+\_\+\+R\+X\+D\+\_\+\+P0\+\_\+1}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(0, 1, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+10, 2)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+U\+A\+R\+T\+\_\+3\+\_\+\+R\+X\+D\+\_\+\+P0\+\_\+26}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(0, 26, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+11, 3)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+U\+A\+R\+T\+\_\+3\+\_\+\+R\+X\+D\+\_\+\+P4\+\_\+29}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(4, 29, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+11, 2)
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ U\+SB Port 1 Pins}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{bsps_2arm_2lpc24xx_2include_2bsp_2io_8h_af2d74280df3af067f9b77afa86751434}\label{bsps_2arm_2lpc24xx_2include_2bsp_2io_8h_af2d74280df3af067f9b77afa86751434}} 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+U\+S\+B\+\_\+\+D\+\_\+\+P\+L\+U\+S\+\_\+1}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(0, 29, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+01, 1)
+\item 
+\mbox{\Hypertarget{bsps_2arm_2lpc24xx_2include_2bsp_2io_8h_a6cbae5e50ee6b1a52d6ef0d4d00da750}\label{bsps_2arm_2lpc24xx_2include_2bsp_2io_8h_a6cbae5e50ee6b1a52d6ef0d4d00da750}} 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+U\+S\+B\+\_\+\+D\+\_\+\+M\+I\+N\+U\+S\+\_\+1}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(0, 30, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+01, 1)
+\item 
+\mbox{\Hypertarget{bsps_2arm_2lpc24xx_2include_2bsp_2io_8h_a507b9d68a70ce24f12f183abf9242e6f}\label{bsps_2arm_2lpc24xx_2include_2bsp_2io_8h_a507b9d68a70ce24f12f183abf9242e6f}} 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+U\+S\+B\+\_\+\+U\+P\+\_\+\+L\+E\+D\+\_\+1}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(1, 18, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+01, 1)
+\item 
+\mbox{\Hypertarget{bsps_2arm_2lpc24xx_2include_2bsp_2io_8h_a0979cf0d548a793b4071f3ccde5c28bc}\label{bsps_2arm_2lpc24xx_2include_2bsp_2io_8h_a0979cf0d548a793b4071f3ccde5c28bc}} 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+U\+S\+B\+\_\+\+T\+X\+\_\+\+E\+\_\+1}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(1, 19, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+01, 1)
+\item 
+\mbox{\Hypertarget{bsps_2arm_2lpc24xx_2include_2bsp_2io_8h_af8c097d112393ddc9bdcc457f8c3c72f}\label{bsps_2arm_2lpc24xx_2include_2bsp_2io_8h_af8c097d112393ddc9bdcc457f8c3c72f}} 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+U\+S\+B\+\_\+\+P\+P\+W\+R\+\_\+1}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(1, 19, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+10, 2)
+\item 
+\mbox{\Hypertarget{bsps_2arm_2lpc24xx_2include_2bsp_2io_8h_a6d8dd625e62b100b42069b8690ca0437}\label{bsps_2arm_2lpc24xx_2include_2bsp_2io_8h_a6d8dd625e62b100b42069b8690ca0437}} 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+U\+S\+B\+\_\+\+T\+X\+\_\+\+D\+P\+\_\+1}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(1, 20, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+01, 1)
+\item 
+\mbox{\Hypertarget{bsps_2arm_2lpc24xx_2include_2bsp_2io_8h_add4f954353934963d88648e13c555694}\label{bsps_2arm_2lpc24xx_2include_2bsp_2io_8h_add4f954353934963d88648e13c555694}} 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+U\+S\+B\+\_\+\+T\+X\+\_\+\+D\+M\+\_\+1}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(1, 21, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+01, 1)
+\item 
+\mbox{\Hypertarget{bsps_2arm_2lpc24xx_2include_2bsp_2io_8h_a7af7a4f3c0727b995e0a974632877760}\label{bsps_2arm_2lpc24xx_2include_2bsp_2io_8h_a7af7a4f3c0727b995e0a974632877760}} 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+U\+S\+B\+\_\+\+R\+C\+V\+\_\+1}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(1, 22, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+01, 1)
+\item 
+\mbox{\Hypertarget{bsps_2arm_2lpc24xx_2include_2bsp_2io_8h_ab5bafe7038ca905546fd9d0128882cde}\label{bsps_2arm_2lpc24xx_2include_2bsp_2io_8h_ab5bafe7038ca905546fd9d0128882cde}} 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+U\+S\+B\+\_\+\+P\+W\+R\+D\+\_\+1}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(1, 22, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+10, 2)
+\item 
+\mbox{\Hypertarget{bsps_2arm_2lpc24xx_2include_2bsp_2io_8h_acdf7553cd1c15ab01e7f22c26e0afae9}\label{bsps_2arm_2lpc24xx_2include_2bsp_2io_8h_acdf7553cd1c15ab01e7f22c26e0afae9}} 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+U\+S\+B\+\_\+\+R\+X\+\_\+\+D\+P\+\_\+1}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(1, 23, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+01, 1)
+\item 
+\mbox{\Hypertarget{bsps_2arm_2lpc24xx_2include_2bsp_2io_8h_a0a4fceabc90bef12e1a6eca9a6109968}\label{bsps_2arm_2lpc24xx_2include_2bsp_2io_8h_a0a4fceabc90bef12e1a6eca9a6109968}} 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+U\+S\+B\+\_\+\+R\+X\+\_\+\+D\+M\+\_\+1}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(1, 24, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+01, 1)
+\item 
+\mbox{\Hypertarget{bsps_2arm_2lpc24xx_2include_2bsp_2io_8h_ac300f277b8464948220b10a28e2f3830}\label{bsps_2arm_2lpc24xx_2include_2bsp_2io_8h_ac300f277b8464948220b10a28e2f3830}} 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+U\+S\+B\+\_\+\+L\+S\+\_\+1}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(1, 25, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+01, 1)
+\item 
+\mbox{\Hypertarget{bsps_2arm_2lpc24xx_2include_2bsp_2io_8h_a89fbad8432c93d89d89329a074a5e1a3}\label{bsps_2arm_2lpc24xx_2include_2bsp_2io_8h_a89fbad8432c93d89d89329a074a5e1a3}} 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+U\+S\+B\+\_\+\+H\+S\+T\+E\+N\+\_\+1}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(1, 25, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+10, 2)
+\item 
+\mbox{\Hypertarget{bsps_2arm_2lpc24xx_2include_2bsp_2io_8h_a727e6d10be6409ddce34ed015c8d7a5b}\label{bsps_2arm_2lpc24xx_2include_2bsp_2io_8h_a727e6d10be6409ddce34ed015c8d7a5b}} 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+U\+S\+B\+\_\+\+S\+S\+P\+N\+D\+\_\+1}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(1, 26, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+01, 1)
+\item 
+\mbox{\Hypertarget{bsps_2arm_2lpc24xx_2include_2bsp_2io_8h_a4bf7ecc156ad098190d4180695775667}\label{bsps_2arm_2lpc24xx_2include_2bsp_2io_8h_a4bf7ecc156ad098190d4180695775667}} 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+U\+S\+B\+\_\+\+I\+N\+T\+\_\+1}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(1, 27, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+01, 1)
+\item 
+\mbox{\Hypertarget{bsps_2arm_2lpc24xx_2include_2bsp_2io_8h_a3c19cb57b81a93c232f7c00bee276b66}\label{bsps_2arm_2lpc24xx_2include_2bsp_2io_8h_a3c19cb57b81a93c232f7c00bee276b66}} 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+U\+S\+B\+\_\+\+O\+V\+R\+C\+R\+\_\+1}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(1, 27, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+10, 2)
+\item 
+\mbox{\Hypertarget{bsps_2arm_2lpc24xx_2include_2bsp_2io_8h_a24ea5cb91908dc7014fda39cc2c83311}\label{bsps_2arm_2lpc24xx_2include_2bsp_2io_8h_a24ea5cb91908dc7014fda39cc2c83311}} 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+U\+S\+B\+\_\+\+S\+C\+L\+\_\+1}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(1, 28, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+01, 1)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+U\+S\+B\+\_\+\+S\+D\+A\+\_\+1}
+\item 
+\mbox{\Hypertarget{bsps_2arm_2lpc24xx_2include_2bsp_2io_8h_ad79c7fae6166d516d3842240650a9b77}\label{bsps_2arm_2lpc24xx_2include_2bsp_2io_8h_ad79c7fae6166d516d3842240650a9b77}} 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+U\+S\+B\+\_\+\+C\+O\+N\+N\+E\+C\+T\+\_\+1}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(2, 9, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+01, 1)
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ U\+SB Port 2 Pins}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{bsps_2arm_2lpc24xx_2include_2bsp_2io_8h_a2fa4c1438ddddad6e8ce70907896ca1e}\label{bsps_2arm_2lpc24xx_2include_2bsp_2io_8h_a2fa4c1438ddddad6e8ce70907896ca1e}} 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+U\+S\+B\+\_\+\+P\+P\+W\+R\+\_\+2}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(0, 12, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+01, 1)
+\item 
+\mbox{\Hypertarget{bsps_2arm_2lpc24xx_2include_2bsp_2io_8h_ad76eb26a422ab8352e0d2ab215ff603e}\label{bsps_2arm_2lpc24xx_2include_2bsp_2io_8h_ad76eb26a422ab8352e0d2ab215ff603e}} 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+U\+S\+B\+\_\+\+U\+P\+\_\+\+L\+E\+D\+\_\+2}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(0, 13, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+01, 1)
+\item 
+\mbox{\Hypertarget{bsps_2arm_2lpc24xx_2include_2bsp_2io_8h_a9cab9aec1d679e66a2ed7175f8ce2fc5}\label{bsps_2arm_2lpc24xx_2include_2bsp_2io_8h_a9cab9aec1d679e66a2ed7175f8ce2fc5}} 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+U\+S\+B\+\_\+\+H\+S\+T\+E\+N\+\_\+2}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(0, 14, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+01, 1)
+\item 
+\mbox{\Hypertarget{bsps_2arm_2lpc24xx_2include_2bsp_2io_8h_a94f071cfe4f65666b356b78128475cf1}\label{bsps_2arm_2lpc24xx_2include_2bsp_2io_8h_a94f071cfe4f65666b356b78128475cf1}} 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+U\+S\+B\+\_\+\+C\+O\+N\+N\+E\+C\+T\+\_\+2}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(0, 14, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+01, 3)
+\item 
+\mbox{\Hypertarget{bsps_2arm_2lpc24xx_2include_2bsp_2io_8h_aaecc13cb100c9c4fdb3af5ee60b1dd6b}\label{bsps_2arm_2lpc24xx_2include_2bsp_2io_8h_aaecc13cb100c9c4fdb3af5ee60b1dd6b}} 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+U\+S\+B\+\_\+\+D\+\_\+\+P\+L\+U\+S\+\_\+2}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(0, 31, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+01, 1)
+\item 
+\mbox{\Hypertarget{bsps_2arm_2lpc24xx_2include_2bsp_2io_8h_abac84903b0704cdd85c6bd4421e55ab6}\label{bsps_2arm_2lpc24xx_2include_2bsp_2io_8h_abac84903b0704cdd85c6bd4421e55ab6}} 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+U\+S\+B\+\_\+\+P\+W\+R\+D\+\_\+2}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(1, 30, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+01, 1)
+\item 
+\mbox{\Hypertarget{bsps_2arm_2lpc24xx_2include_2bsp_2io_8h_aff73d182bd0b4697ee9f96442af00c5d}\label{bsps_2arm_2lpc24xx_2include_2bsp_2io_8h_aff73d182bd0b4697ee9f96442af00c5d}} 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+U\+S\+B\+\_\+\+O\+V\+R\+C\+R\+\_\+2}~L\+P\+C24\+X\+X\+\_\+\+P\+IN(1, 31, L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+01, 1)
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{group__lpc24xx__io_ga3008c6fbedfd96cd85083a1b8eb28f62}\label{group__lpc24xx__io_ga3008c6fbedfd96cd85083a1b8eb28f62}} 
+enum {\bfseries lpc24xx\+\_\+module} \{ \newline
+{\bfseries L\+P\+C24\+X\+X\+\_\+\+M\+O\+D\+U\+L\+E\+\_\+\+A\+DC}, 
+{\bfseries L\+P\+C24\+X\+X\+\_\+\+M\+O\+D\+U\+L\+E\+\_\+\+C\+A\+N\+\_\+0}, 
+{\bfseries L\+P\+C24\+X\+X\+\_\+\+M\+O\+D\+U\+L\+E\+\_\+\+C\+A\+N\+\_\+1}, 
+{\bfseries L\+P\+C24\+X\+X\+\_\+\+M\+O\+D\+U\+L\+E\+\_\+\+D\+AC}, 
+\newline
+{\bfseries L\+P\+C24\+X\+X\+\_\+\+M\+O\+D\+U\+L\+E\+\_\+\+E\+MC}, 
+{\bfseries L\+P\+C24\+X\+X\+\_\+\+M\+O\+D\+U\+L\+E\+\_\+\+E\+T\+H\+E\+R\+N\+ET}, 
+{\bfseries L\+P\+C24\+X\+X\+\_\+\+M\+O\+D\+U\+L\+E\+\_\+\+G\+P\+D\+MA}, 
+{\bfseries L\+P\+C24\+X\+X\+\_\+\+M\+O\+D\+U\+L\+E\+\_\+\+G\+P\+IO}, 
+\newline
+{\bfseries L\+P\+C24\+X\+X\+\_\+\+M\+O\+D\+U\+L\+E\+\_\+\+I2\+C\+\_\+0}, 
+{\bfseries L\+P\+C24\+X\+X\+\_\+\+M\+O\+D\+U\+L\+E\+\_\+\+I2\+C\+\_\+1}, 
+{\bfseries L\+P\+C24\+X\+X\+\_\+\+M\+O\+D\+U\+L\+E\+\_\+\+I2\+C\+\_\+2}, 
+{\bfseries L\+P\+C24\+X\+X\+\_\+\+M\+O\+D\+U\+L\+E\+\_\+\+I2S}, 
+\newline
+{\bfseries L\+P\+C24\+X\+X\+\_\+\+M\+O\+D\+U\+L\+E\+\_\+\+L\+CD}, 
+{\bfseries L\+P\+C24\+X\+X\+\_\+\+M\+O\+D\+U\+L\+E\+\_\+\+M\+CI}, 
+{\bfseries L\+P\+C24\+X\+X\+\_\+\+M\+O\+D\+U\+L\+E\+\_\+\+P\+CB}, 
+{\bfseries L\+P\+C24\+X\+X\+\_\+\+M\+O\+D\+U\+L\+E\+\_\+\+P\+W\+M\+\_\+0}, 
+\newline
+{\bfseries L\+P\+C24\+X\+X\+\_\+\+M\+O\+D\+U\+L\+E\+\_\+\+P\+W\+M\+\_\+1}, 
+{\bfseries L\+P\+C24\+X\+X\+\_\+\+M\+O\+D\+U\+L\+E\+\_\+\+R\+TC}, 
+{\bfseries L\+P\+C24\+X\+X\+\_\+\+M\+O\+D\+U\+L\+E\+\_\+\+S\+S\+P\+\_\+0}, 
+{\bfseries L\+P\+C24\+X\+X\+\_\+\+M\+O\+D\+U\+L\+E\+\_\+\+S\+S\+P\+\_\+1}, 
+\newline
+{\bfseries L\+P\+C24\+X\+X\+\_\+\+M\+O\+D\+U\+L\+E\+\_\+\+S\+Y\+S\+C\+ON}, 
+{\bfseries L\+P\+C24\+X\+X\+\_\+\+M\+O\+D\+U\+L\+E\+\_\+\+T\+I\+M\+E\+R\+\_\+0}, 
+{\bfseries L\+P\+C24\+X\+X\+\_\+\+M\+O\+D\+U\+L\+E\+\_\+\+T\+I\+M\+E\+R\+\_\+1}, 
+{\bfseries L\+P\+C24\+X\+X\+\_\+\+M\+O\+D\+U\+L\+E\+\_\+\+T\+I\+M\+E\+R\+\_\+2}, 
+\newline
+{\bfseries L\+P\+C24\+X\+X\+\_\+\+M\+O\+D\+U\+L\+E\+\_\+\+T\+I\+M\+E\+R\+\_\+3}, 
+{\bfseries L\+P\+C24\+X\+X\+\_\+\+M\+O\+D\+U\+L\+E\+\_\+\+U\+A\+R\+T\+\_\+0}, 
+{\bfseries L\+P\+C24\+X\+X\+\_\+\+M\+O\+D\+U\+L\+E\+\_\+\+U\+A\+R\+T\+\_\+1}, 
+{\bfseries L\+P\+C24\+X\+X\+\_\+\+M\+O\+D\+U\+L\+E\+\_\+\+U\+A\+R\+T\+\_\+2}, 
+\newline
+{\bfseries L\+P\+C24\+X\+X\+\_\+\+M\+O\+D\+U\+L\+E\+\_\+\+U\+A\+R\+T\+\_\+3}, 
+{\bfseries L\+P\+C24\+X\+X\+\_\+\+M\+O\+D\+U\+L\+E\+\_\+\+U\+SB}
+ \}
+\item 
+\mbox{\Hypertarget{group__lpc24xx__io_gadac3c8787ce026e5996808d7efb3c546}\label{group__lpc24xx__io_gadac3c8787ce026e5996808d7efb3c546}} 
+enum {\bfseries lpc24xx\+\_\+module\+\_\+clock} \{ \newline
+{\bfseries L\+P\+C24\+X\+X\+\_\+\+M\+O\+D\+U\+L\+E\+\_\+\+P\+C\+L\+K\+\_\+\+D\+E\+F\+A\+U\+LT} = 0x4U, 
+{\bfseries L\+P\+C24\+X\+X\+\_\+\+M\+O\+D\+U\+L\+E\+\_\+\+C\+C\+LK} = 0x1U, 
+{\bfseries L\+P\+C24\+X\+X\+\_\+\+M\+O\+D\+U\+L\+E\+\_\+\+C\+C\+L\+K\+\_\+2} = 0x2U, 
+{\bfseries L\+P\+C24\+X\+X\+\_\+\+M\+O\+D\+U\+L\+E\+\_\+\+C\+C\+L\+K\+\_\+4} = 0x0U, 
+\newline
+{\bfseries L\+P\+C24\+X\+X\+\_\+\+M\+O\+D\+U\+L\+E\+\_\+\+C\+C\+L\+K\+\_\+6} = 0x3U, 
+{\bfseries L\+P\+C24\+X\+X\+\_\+\+M\+O\+D\+U\+L\+E\+\_\+\+C\+C\+L\+K\+\_\+8} = 0x3U
+ \}
+\item 
+\mbox{\Hypertarget{group__lpc24xx__io_ga0f0e1497847902b3f6fce2720a286971}\label{group__lpc24xx__io_ga0f0e1497847902b3f6fce2720a286971}} 
+enum {\bfseries lpc24xx\+\_\+gpio\+\_\+settings} \{ \newline
+{\bfseries L\+P\+C24\+X\+X\+\_\+\+G\+P\+I\+O\+\_\+\+D\+E\+F\+A\+U\+LT} = 0x0U, 
+{\bfseries L\+P\+C24\+X\+X\+\_\+\+G\+P\+I\+O\+\_\+\+R\+E\+S\+I\+S\+T\+O\+R\+\_\+\+P\+U\+L\+L\+\_\+\+UP} = 0x0U, 
+{\bfseries L\+P\+C24\+X\+X\+\_\+\+G\+P\+I\+O\+\_\+\+R\+E\+S\+I\+S\+T\+O\+R\+\_\+\+N\+O\+NE} = 0x1U, 
+{\bfseries L\+P\+C24\+X\+X\+\_\+\+G\+P\+I\+O\+\_\+\+R\+E\+S\+I\+S\+T\+O\+R\+\_\+\+P\+U\+L\+L\+\_\+\+D\+O\+WN} = 0x2U, 
+\newline
+{\bfseries L\+P\+C24\+X\+X\+\_\+\+G\+P\+I\+O\+\_\+\+I\+N\+P\+UT} = 0x0U, 
+{\bfseries L\+P\+C24\+X\+X\+\_\+\+G\+P\+I\+O\+\_\+\+O\+U\+T\+P\+UT} = 0x8000U
+ \}
+\item 
+enum \mbox{\hyperlink{group__lpc24xx__io_ga5fb61bf67da6335979ce02d1d7f3630e}{lpc24xx\+\_\+pin\+\_\+action}} \{ \mbox{\hyperlink{group__lpc24xx__io_gga5fb61bf67da6335979ce02d1d7f3630ea7a7fa1e2dc8488faeeab3d902252a9fd}{L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+S\+E\+T\+\_\+\+F\+U\+N\+C\+T\+I\+ON}}, 
+\mbox{\hyperlink{group__lpc24xx__io_gga5fb61bf67da6335979ce02d1d7f3630eabc0dce42787429aa06a7a9abcd8f4b28}{L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+C\+H\+E\+C\+K\+\_\+\+F\+U\+N\+C\+T\+I\+ON}}, 
+\mbox{\hyperlink{group__lpc24xx__io_gga5fb61bf67da6335979ce02d1d7f3630ea3f273fb75885708510ffce367ba01386}{L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+S\+E\+T\+\_\+\+I\+N\+P\+UT}}, 
+\mbox{\hyperlink{group__lpc24xx__io_gga5fb61bf67da6335979ce02d1d7f3630ea47a7ba57aa92996773a62c82cc45d340}{L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+C\+H\+E\+C\+K\+\_\+\+I\+N\+P\+UT}}
+ \}
+\item 
+\mbox{\Hypertarget{group__lpc24xx__io_gaf767b156545180b5516650c5e495f74d}\label{group__lpc24xx__io_gaf767b156545180b5516650c5e495f74d}} 
+enum {\bfseries lpc24xx\+\_\+pin\+\_\+function} \{ {\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+00}, 
+{\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+01}, 
+{\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+10}, 
+{\bfseries L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+11}
+ \}
+\item 
+\mbox{\Hypertarget{group__lpc24xx__io_ga3b6881852e3efb0377829b578f392aab}\label{group__lpc24xx__io_ga3b6881852e3efb0377829b578f392aab}} 
+enum {\bfseries lpc17xx\+\_\+pin\+\_\+type} \{ \newline
+{\bfseries L\+P\+C17\+X\+X\+\_\+\+P\+I\+N\+\_\+\+T\+Y\+P\+E\+\_\+\+D\+E\+F\+A\+U\+LT}, 
+{\bfseries L\+P\+C17\+X\+X\+\_\+\+P\+I\+N\+\_\+\+T\+Y\+P\+E\+\_\+\+A\+DC}, 
+{\bfseries L\+P\+C17\+X\+X\+\_\+\+P\+I\+N\+\_\+\+T\+Y\+P\+E\+\_\+\+D\+AC}, 
+{\bfseries L\+P\+C17\+X\+X\+\_\+\+P\+I\+N\+\_\+\+T\+Y\+P\+E\+\_\+\+I2C}, 
+\newline
+{\bfseries L\+P\+C17\+X\+X\+\_\+\+P\+I\+N\+\_\+\+T\+Y\+P\+E\+\_\+\+I2\+C\+\_\+\+F\+A\+S\+T\+\_\+\+P\+L\+US}, 
+{\bfseries L\+P\+C17\+X\+X\+\_\+\+P\+I\+N\+\_\+\+T\+Y\+P\+E\+\_\+\+O\+P\+E\+N\+\_\+\+D\+R\+A\+IN}, 
+{\bfseries L\+P\+C17\+X\+X\+\_\+\+P\+I\+N\+\_\+\+T\+Y\+P\+E\+\_\+\+F\+A\+S\+T\+\_\+\+S\+L\+E\+W\+\_\+\+R\+A\+TE}
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} {\bfseries lpc24xx\+\_\+module\+\_\+enable} (lpc24xx\+\_\+module module, lpc24xx\+\_\+module\+\_\+clock clock)
+\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} {\bfseries lpc24xx\+\_\+module\+\_\+disable} (lpc24xx\+\_\+module module)
+\item 
+bool {\bfseries lpc24xx\+\_\+module\+\_\+is\+\_\+enabled} (lpc24xx\+\_\+module module)
+\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} {\bfseries lpc24xx\+\_\+gpio\+\_\+config} (unsigned index, lpc24xx\+\_\+gpio\+\_\+settings settings)
+\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{group__lpc24xx__io_gaaa704e4a54e338c74eebce54e23547cd}{lpc24xx\+\_\+pin\+\_\+config}} (const \mbox{\hyperlink{unionlpc24xx__pin__range}{lpc24xx\+\_\+pin\+\_\+range}} $\ast$pins, \mbox{\hyperlink{group__lpc24xx__io_ga5fb61bf67da6335979ce02d1d7f3630e}{lpc24xx\+\_\+pin\+\_\+action}} action)
+\begin{DoxyCompactList}\small\item\em Performs the {\itshape action} with the {\itshape pins}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Input and output module. 
+
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{bsps_2arm_2lpc24xx_2include_2bsp_2io_8h_ae38cbe71f90221030c7ba9811b131038}\label{bsps_2arm_2lpc24xx_2include_2bsp_2io_8h_ae38cbe71f90221030c7ba9811b131038}} 
+\index{io.h@{io.h}!LPC24XX\_PIN\_USB\_SDA\_1@{LPC24XX\_PIN\_USB\_SDA\_1}}
+\index{LPC24XX\_PIN\_USB\_SDA\_1@{LPC24XX\_PIN\_USB\_SDA\_1}!io.h@{io.h}}
+\subsubsection{\texorpdfstring{LPC24XX\_PIN\_USB\_SDA\_1}{LPC24XX\_PIN\_USB\_SDA\_1}}
+{\footnotesize\ttfamily \#define L\+P\+C24\+X\+X\+\_\+\+P\+I\+N\+\_\+\+U\+S\+B\+\_\+\+S\+D\+A\+\_\+1}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{LPC24XX\_PIN\_WITH\_TYPE( \(\backslash\)}
+\DoxyCodeLine{    1, 29, LPC24XX\_PIN\_FUNCTION\_01, 1, LPC17XX\_PIN\_TYPE\_OPEN\_DRAIN \(\backslash\)}
+\DoxyCodeLine{  )}
+
+\end{DoxyCode}

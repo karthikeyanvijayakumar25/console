@@ -1,0 +1,166 @@
+\hypertarget{group__I2CDevice}{}\section{I2C Device Driver}
+\label{group__I2CDevice}\index{I2C Device Driver@{I2C Device Driver}}
+\subsection*{Modules}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{group__I2CEEPROM}{E\+E\+P\+R\+O\+M Driver}}
+\begin{DoxyCompactList}\small\item\em Driver for E\+E\+P\+R\+OM device. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__I2CGPIONXPPCA9535}{G\+P\+I\+O N\+X\+P P\+C\+A9535 Driver}}
+\begin{DoxyCompactList}\small\item\em Driver for N\+XP P\+C\+A9535 16-\/bit G\+P\+IO device. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__I2CSWITCHNXPPCA9548A}{Switch N\+X\+P P\+C\+A9535 Driver}}
+\begin{DoxyCompactList}\small\item\em Driver for N\+XP P\+C\+A9548A 8-\/channel switch device. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__I2CSensorLM75A}{Temperature Sensor L\+M75\+A Driver}}
+\begin{DoxyCompactList}\small\item\em Driver for N\+XP or Texas Instruments L\+M75A temperature sensor. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Files}
+\begin{DoxyCompactItemize}
+\item 
+file \mbox{\hyperlink{i2c-dev_8c}{i2c-\/dev.\+c}}
+\begin{DoxyCompactList}\small\item\em Inter-\/\+Integrated Circuit (I2C) Bus Implementation. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structi2c__dev}{i2c\+\_\+dev}}
+\begin{DoxyCompactList}\small\item\em I2C slave device control. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{group__I2CDevice_gae8b74d1b5fc16a9c31e4da115b0ab004}\label{group__I2CDevice_gae8b74d1b5fc16a9c31e4da115b0ab004}} 
+\#define \mbox{\hyperlink{group__I2CDevice_gae8b74d1b5fc16a9c31e4da115b0ab004}{I2\+C\+\_\+\+D\+E\+V\+\_\+\+I\+O\+\_\+\+C\+O\+N\+T\+R\+OL}}~0x900
+\begin{DoxyCompactList}\small\item\em Base number for device \mbox{\hyperlink{structIO}{IO}} control commands. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{group__I2CDevice_ga240da9c0f736698756528ac98b790ca8}{i2c\+\_\+dev\+\_\+init}} (\mbox{\hyperlink{structi2c__dev}{i2c\+\_\+dev}} $\ast$dev, const char $\ast$bus\+\_\+path, uint16\+\_\+t address)
+\begin{DoxyCompactList}\small\item\em Initializes a device control. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structi2c__dev}{i2c\+\_\+dev}} $\ast$ \mbox{\hyperlink{group__I2CDevice_gaaa52883fe2313442f1172eb5f4de1215}{i2c\+\_\+dev\+\_\+alloc\+\_\+and\+\_\+init}} (size\+\_\+t \mbox{\hyperlink{sun4u_2tte_8h_a245260f6f74972558f61b85227df5aae}{size}}, const char $\ast$bus\+\_\+path, uint16\+\_\+t address)
+\begin{DoxyCompactList}\small\item\em Allocates a device control from the heap and initializes it. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__I2CDevice_ga2ed20633d6ded213b3f06ca56db211c6}{i2c\+\_\+dev\+\_\+destroy}} (\mbox{\hyperlink{structi2c__dev}{i2c\+\_\+dev}} $\ast$dev)
+\begin{DoxyCompactList}\small\item\em Destroys a device control. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__I2CDevice_gabb0478e95d721b85cc8e06bd2be89559}{i2c\+\_\+dev\+\_\+destroy\+\_\+and\+\_\+free}} (\mbox{\hyperlink{structi2c__dev}{i2c\+\_\+dev}} $\ast$dev)
+\begin{DoxyCompactList}\small\item\em Destroys a device control and frees its memory. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__I2CDevice_ga917604be9f6cfaa0e4d7a9302e873d16}{i2c\+\_\+dev\+\_\+register}} (\mbox{\hyperlink{structi2c__dev}{i2c\+\_\+dev}} $\ast$dev, const char $\ast$dev\+\_\+path)
+\begin{DoxyCompactList}\small\item\em Registers a device control. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{group__I2CDevice_gaaa52883fe2313442f1172eb5f4de1215}\label{group__I2CDevice_gaaa52883fe2313442f1172eb5f4de1215}} 
+\index{I2C Device Driver@{I2C Device Driver}!i2c\_dev\_alloc\_and\_init@{i2c\_dev\_alloc\_and\_init}}
+\index{i2c\_dev\_alloc\_and\_init@{i2c\_dev\_alloc\_and\_init}!I2C Device Driver@{I2C Device Driver}}
+\subsubsection{\texorpdfstring{i2c\_dev\_alloc\_and\_init()}{i2c\_dev\_alloc\_and\_init()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structi2c__dev}{i2c\+\_\+dev}}$\ast$ i2c\+\_\+dev\+\_\+alloc\+\_\+and\+\_\+init (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{size,  }\item[{const char $\ast$}]{bus\+\_\+path,  }\item[{uint16\+\_\+t}]{address }\end{DoxyParamCaption})}
+
+
+
+Allocates a device control from the heap and initializes it. 
+
+After a sucessful allocation and initialization the device control must be destroyed via \mbox{\hyperlink{group__I2CDevice_gabb0478e95d721b85cc8e06bd2be89559}{i2c\+\_\+dev\+\_\+destroy\+\_\+and\+\_\+free()}}. A registered device control will be automatically destroyed in case the device file is unlinked. Make sure to call \mbox{\hyperlink{group__I2CDevice_gabb0478e95d721b85cc8e06bd2be89559}{i2c\+\_\+dev\+\_\+destroy\+\_\+and\+\_\+free()}} in a custom destruction handler.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em size} & The size of the device control. This enables the addition of device specific data to the base device control. The device control is zero initialized. \\
+\hline
+\mbox{\texttt{ in}}  & {\em bus\+\_\+path} & The path to the bus device file. \\
+\hline
+\mbox{\texttt{ in}}  & {\em address} & The address of the device.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em non-\/\+N\+U\+LL} & The new device control. \\
+\hline
+{\em N\+U\+LL} & An error occurred. The errno is set to indicate the error.\\
+\hline
+\end{DoxyRetVals}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{group__I2CDevice_ga917604be9f6cfaa0e4d7a9302e873d16}{i2c\+\_\+dev\+\_\+register()}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{group__I2CDevice_ga2ed20633d6ded213b3f06ca56db211c6}\label{group__I2CDevice_ga2ed20633d6ded213b3f06ca56db211c6}} 
+\index{I2C Device Driver@{I2C Device Driver}!i2c\_dev\_destroy@{i2c\_dev\_destroy}}
+\index{i2c\_dev\_destroy@{i2c\_dev\_destroy}!I2C Device Driver@{I2C Device Driver}}
+\subsubsection{\texorpdfstring{i2c\_dev\_destroy()}{i2c\_dev\_destroy()}}
+{\footnotesize\ttfamily void i2c\+\_\+dev\+\_\+destroy (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structi2c__dev}{i2c\+\_\+dev}} $\ast$}]{dev }\end{DoxyParamCaption})}
+
+
+
+Destroys a device control. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em dev} & The device control. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__I2CDevice_gabb0478e95d721b85cc8e06bd2be89559}\label{group__I2CDevice_gabb0478e95d721b85cc8e06bd2be89559}} 
+\index{I2C Device Driver@{I2C Device Driver}!i2c\_dev\_destroy\_and\_free@{i2c\_dev\_destroy\_and\_free}}
+\index{i2c\_dev\_destroy\_and\_free@{i2c\_dev\_destroy\_and\_free}!I2C Device Driver@{I2C Device Driver}}
+\subsubsection{\texorpdfstring{i2c\_dev\_destroy\_and\_free()}{i2c\_dev\_destroy\_and\_free()}}
+{\footnotesize\ttfamily void i2c\+\_\+dev\+\_\+destroy\+\_\+and\+\_\+free (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structi2c__dev}{i2c\+\_\+dev}} $\ast$}]{dev }\end{DoxyParamCaption})}
+
+
+
+Destroys a device control and frees its memory. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em dev} & The device control. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__I2CDevice_ga240da9c0f736698756528ac98b790ca8}\label{group__I2CDevice_ga240da9c0f736698756528ac98b790ca8}} 
+\index{I2C Device Driver@{I2C Device Driver}!i2c\_dev\_init@{i2c\_dev\_init}}
+\index{i2c\_dev\_init@{i2c\_dev\_init}!I2C Device Driver@{I2C Device Driver}}
+\subsubsection{\texorpdfstring{i2c\_dev\_init()}{i2c\_dev\_init()}}
+{\footnotesize\ttfamily int i2c\+\_\+dev\+\_\+init (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structi2c__dev}{i2c\+\_\+dev}} $\ast$}]{dev,  }\item[{const char $\ast$}]{bus\+\_\+path,  }\item[{uint16\+\_\+t}]{address }\end{DoxyParamCaption})}
+
+
+
+Initializes a device control. 
+
+After a sucessful initialization the device control must be destroyed via \mbox{\hyperlink{group__I2CDevice_ga2ed20633d6ded213b3f06ca56db211c6}{i2c\+\_\+dev\+\_\+destroy()}}. A registered device control will be automatically destroyed in case the device file is unlinked. Make sure to call \mbox{\hyperlink{group__I2CDevice_gabb0478e95d721b85cc8e06bd2be89559}{i2c\+\_\+dev\+\_\+destroy\+\_\+and\+\_\+free()}} in a custom destruction handler.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em device} & The device control. \\
+\hline
+\mbox{\texttt{ in}}  & {\em bus\+\_\+path} & The path to the bus device file. \\
+\hline
+\mbox{\texttt{ in}}  & {\em address} & The address of the device.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em 0} & Successful operation. \\
+\hline
+{\em -\/1} & An error occurred. The errno is set to indicate the error.\\
+\hline
+\end{DoxyRetVals}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{group__I2CDevice_ga917604be9f6cfaa0e4d7a9302e873d16}{i2c\+\_\+dev\+\_\+register()}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{group__I2CDevice_ga917604be9f6cfaa0e4d7a9302e873d16}\label{group__I2CDevice_ga917604be9f6cfaa0e4d7a9302e873d16}} 
+\index{I2C Device Driver@{I2C Device Driver}!i2c\_dev\_register@{i2c\_dev\_register}}
+\index{i2c\_dev\_register@{i2c\_dev\_register}!I2C Device Driver@{I2C Device Driver}}
+\subsubsection{\texorpdfstring{i2c\_dev\_register()}{i2c\_dev\_register()}}
+{\footnotesize\ttfamily int i2c\+\_\+dev\+\_\+register (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structi2c__dev}{i2c\+\_\+dev}} $\ast$}]{dev,  }\item[{const char $\ast$}]{dev\+\_\+path }\end{DoxyParamCaption})}
+
+
+
+Registers a device control. 
+
+This function claims ownership of the device control regardless if the registration is successful or not.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em dev} & The dev control. \\
+\hline
+\mbox{\texttt{ in}}  & {\em dev\+\_\+path} & The path to the device file of the device.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em 0} & Successful operation. \\
+\hline
+{\em -\/1} & An error occurred. The errno is set to indicate the error. \\
+\hline
+\end{DoxyRetVals}

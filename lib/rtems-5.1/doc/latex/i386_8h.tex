@@ -1,0 +1,507 @@
+\hypertarget{i386_8h}{}\section{cpukit/score/cpu/i386/include/rtems/score/i386.h File Reference}
+\label{i386_8h}\index{cpukit/score/cpu/i386/include/rtems/score/i386.h@{cpukit/score/cpu/i386/include/rtems/score/i386.h}}
+
+
+Intel I386 C\+PU Dependent Source.  
+
+
+{\ttfamily \#include $<$rtems/score/interrupts.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/score/registers.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/score/idtr.\+h$>$}\newline
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct____rtems__raw__irq__connect__data____}{\+\_\+\+\_\+rtems\+\_\+raw\+\_\+irq\+\_\+connect\+\_\+data\+\_\+\+\_\+}}
+\item 
+struct \mbox{\hyperlink{structrtems__raw__irq__global__settings}{rtems\+\_\+raw\+\_\+irq\+\_\+global\+\_\+settings}}
+\item 
+struct \mbox{\hyperlink{structRTEMS__PACKED}{R\+T\+E\+M\+S\+\_\+\+P\+A\+C\+K\+ED}}
+\begin{DoxyCompactList}\small\item\em Used for passing and retrieving registers content to/from real mode interrupt call. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structla__bits}{la\+\_\+bits}}
+\item 
+union \mbox{\hyperlink{unionlinear__address}{linear\+\_\+address}}
+\item 
+struct \mbox{\hyperlink{structpage__dir__bits}{page\+\_\+dir\+\_\+bits}}
+\item 
+union \mbox{\hyperlink{unionpage__dir__entry}{page\+\_\+dir\+\_\+entry}}
+\item 
+struct \mbox{\hyperlink{structpage__table__bits}{page\+\_\+table\+\_\+bits}}
+\item 
+union \mbox{\hyperlink{unionpage__table__entry}{page\+\_\+table\+\_\+entry}}
+\item 
+struct \mbox{\hyperlink{structpage__directory}{page\+\_\+directory}}
+\item 
+struct \mbox{\hyperlink{structpage__table}{page\+\_\+table}}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{i386_8h_a6ff9b5996ae9716913631a19697151ba}\label{i386_8h_a6ff9b5996ae9716913631a19697151ba}} 
+\#define {\bfseries I386\+\_\+\+H\+A\+S\+\_\+\+F\+PU}~1
+\item 
+\mbox{\Hypertarget{i386_8h_aa9f9dcf9c5e08e3c70fb03f9502c2c2d}\label{i386_8h_aa9f9dcf9c5e08e3c70fb03f9502c2c2d}} 
+\#define {\bfseries I386\+\_\+\+H\+A\+S\+\_\+\+B\+S\+W\+AP}~1
+\item 
+\mbox{\Hypertarget{i386_8h_a65a2f3e765349445fd8ad6a44d7e498a}\label{i386_8h_a65a2f3e765349445fd8ad6a44d7e498a}} 
+\#define {\bfseries C\+P\+U\+\_\+\+N\+A\+ME}~\char`\"{}Intel i386\char`\"{}
+\item 
+\mbox{\Hypertarget{i386_8h_a1ac1d23aa9919e01e23bd57c0ac43fc5}\label{i386_8h_a1ac1d23aa9919e01e23bd57c0ac43fc5}} 
+\#define {\bfseries C\+P\+U\+\_\+swap\+\_\+u32}(\+\_\+value)~i386\+\_\+swap\+\_\+u32( \+\_\+value )
+\item 
+\mbox{\Hypertarget{i386_8h_ad18addb65423e901ee8940774d16b47f}\label{i386_8h_ad18addb65423e901ee8940774d16b47f}} 
+\#define {\bfseries C\+P\+U\+\_\+swap\+\_\+u16}(\+\_\+value)~i386\+\_\+swap\+\_\+u16( \+\_\+value )
+\item 
+\#define {\bfseries i386\+\_\+outport\+\_\+byte}(\+\_\+port,  \+\_\+value)
+\item 
+\#define {\bfseries i386\+\_\+outport\+\_\+word}(\+\_\+port,  \+\_\+value)
+\item 
+\#define {\bfseries i386\+\_\+outport\+\_\+long}(\+\_\+port,  \+\_\+value)
+\item 
+\#define {\bfseries i386\+\_\+inport\+\_\+byte}(\+\_\+port,  \+\_\+value)
+\item 
+\#define {\bfseries i386\+\_\+inport\+\_\+word}(\+\_\+port,  \+\_\+value)
+\item 
+\#define {\bfseries i386\+\_\+inport\+\_\+long}(\+\_\+port,  \+\_\+value)
+\item 
+\mbox{\Hypertarget{i386_8h_a2d1454c8651380ed95b20741771fd4db}\label{i386_8h_a2d1454c8651380ed95b20741771fd4db}} 
+\#define {\bfseries P\+G\+\_\+\+S\+I\+ZE}~0x1000
+\item 
+\mbox{\Hypertarget{i386_8h_ac3747f28ca1fe992e97b4352de57bebd}\label{i386_8h_ac3747f28ca1fe992e97b4352de57bebd}} 
+\#define {\bfseries M\+A\+S\+K\+\_\+\+O\+F\+F\+S\+ET}~0x\+F\+FF
+\item 
+\mbox{\Hypertarget{i386_8h_a5b1d89d3b032a967e0b63fb12d1121ed}\label{i386_8h_a5b1d89d3b032a967e0b63fb12d1121ed}} 
+\#define {\bfseries M\+A\+X\+\_\+\+E\+N\+T\+RY}~(P\+G\+\_\+\+S\+I\+ZE/sizeof(\mbox{\hyperlink{unionpage__dir__entry}{page\+\_\+dir\+\_\+entry}}))
+\item 
+\mbox{\Hypertarget{i386_8h_ad5b6dddc204f1dfb5a196afaeb6423ed}\label{i386_8h_ad5b6dddc204f1dfb5a196afaeb6423ed}} 
+\#define {\bfseries F\+O\+U\+R\+\_\+\+MB}~0x400000
+\item 
+\mbox{\Hypertarget{i386_8h_ab005c82a56ecab5617d2696a4a6c0839}\label{i386_8h_ab005c82a56ecab5617d2696a4a6c0839}} 
+\#define {\bfseries M\+A\+S\+K\+\_\+\+F\+L\+A\+GS}~0x1A
+\item 
+\mbox{\Hypertarget{i386_8h_af9af740187fb7e39f96c435ff17269e4}\label{i386_8h_af9af740187fb7e39f96c435ff17269e4}} 
+\#define {\bfseries P\+T\+E\+\_\+\+P\+R\+E\+S\+E\+NT}~0x01
+\item 
+\mbox{\Hypertarget{i386_8h_a333bdddcf2da08d311953d68861d23a1}\label{i386_8h_a333bdddcf2da08d311953d68861d23a1}} 
+\#define {\bfseries P\+T\+E\+\_\+\+W\+R\+I\+T\+A\+B\+LE}~0x02
+\item 
+\mbox{\Hypertarget{i386_8h_a35cf32d035efb2f4b272b6e2959302b9}\label{i386_8h_a35cf32d035efb2f4b272b6e2959302b9}} 
+\#define {\bfseries P\+T\+E\+\_\+\+U\+S\+ER}~0x04
+\item 
+\mbox{\Hypertarget{i386_8h_a8ca58845765d0d094ca19eddeb197bc4}\label{i386_8h_a8ca58845765d0d094ca19eddeb197bc4}} 
+\#define {\bfseries P\+T\+E\+\_\+\+W\+R\+I\+T\+E\+\_\+\+T\+H\+R\+O\+U\+GH}~0x08
+\item 
+\mbox{\Hypertarget{i386_8h_ac22b45ce8df2b8d981552b7e6d7d3b86}\label{i386_8h_ac22b45ce8df2b8d981552b7e6d7d3b86}} 
+\#define {\bfseries P\+T\+E\+\_\+\+C\+A\+C\+H\+E\+\_\+\+D\+I\+S\+A\+B\+LE}~0x10
+\item 
+\mbox{\Hypertarget{i386_8h_a89272648f8fc02e456310f14df4641de}\label{i386_8h_a89272648f8fc02e456310f14df4641de}} 
+\#define {\bfseries outport\+\_\+byte}(\+\_\+port,  \+\_\+value)~i386\+\_\+outport\+\_\+byte( \+\_\+port, \+\_\+value )
+\item 
+\mbox{\Hypertarget{i386_8h_a44633c19bb63b71021bc36650876ee23}\label{i386_8h_a44633c19bb63b71021bc36650876ee23}} 
+\#define {\bfseries outport\+\_\+word}(\+\_\+port,  \+\_\+value)~i386\+\_\+outport\+\_\+word( \+\_\+port, \+\_\+value )
+\item 
+\mbox{\Hypertarget{i386_8h_a88a36e769dafcb4e26e8fa950f6d9701}\label{i386_8h_a88a36e769dafcb4e26e8fa950f6d9701}} 
+\#define {\bfseries outport\+\_\+long}(\+\_\+port,  \+\_\+value)~i386\+\_\+outport\+\_\+long( \+\_\+port, \+\_\+value )
+\item 
+\mbox{\Hypertarget{i386_8h_a9c1fb6764f96867d9367334e2a858718}\label{i386_8h_a9c1fb6764f96867d9367334e2a858718}} 
+\#define {\bfseries inport\+\_\+byte}(\+\_\+port,  \+\_\+value)~i386\+\_\+inport\+\_\+byte( \+\_\+port, \+\_\+value )
+\item 
+\mbox{\Hypertarget{i386_8h_af4a547c96a5d3c7abde3b8b56da8cdf0}\label{i386_8h_af4a547c96a5d3c7abde3b8b56da8cdf0}} 
+\#define {\bfseries inport\+\_\+word}(\+\_\+port,  \+\_\+value)~i386\+\_\+inport\+\_\+word( \+\_\+port, \+\_\+value )
+\item 
+\mbox{\Hypertarget{i386_8h_a5396232603a9f13bd06bba3562a856ac}\label{i386_8h_a5396232603a9f13bd06bba3562a856ac}} 
+\#define {\bfseries inport\+\_\+long}(\+\_\+port,  \+\_\+value)~i386\+\_\+inport\+\_\+long( \+\_\+port, \+\_\+value )
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{i386_8h_ad6d129c090c197f3492041f33304ea77}\label{i386_8h_ad6d129c090c197f3492041f33304ea77}} 
+typedef unsigned char {\bfseries rtems\+\_\+vector\+\_\+offset}
+\item 
+\mbox{\Hypertarget{i386_8h_ad3aa443e2c03fcc1ecaa498379734067}\label{i386_8h_ad3aa443e2c03fcc1ecaa498379734067}} 
+typedef struct \mbox{\hyperlink{struct____rtems__raw__irq__connect__data____}{\+\_\+\+\_\+rtems\+\_\+raw\+\_\+irq\+\_\+connect\+\_\+data\+\_\+\+\_\+}} {\bfseries rtems\+\_\+raw\+\_\+irq\+\_\+connect\+\_\+data}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{i386_8h_afd72b83d08452c1c77e9c5898e750966}\label{i386_8h_afd72b83d08452c1c77e9c5898e750966}} 
+void $\ast$ {\bfseries i386\+\_\+\+Logical\+\_\+to\+\_\+physical} (unsigned short segment, void $\ast$address)
+\item 
+\mbox{\Hypertarget{i386_8h_af76ee8ce6d24e423680488d7de4db31f}\label{i386_8h_af76ee8ce6d24e423680488d7de4db31f}} 
+void $\ast$ {\bfseries i386\+\_\+\+Physical\+\_\+to\+\_\+logical} (unsigned short segment, void $\ast$address)
+\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void $\ast$ \mbox{\hyperlink{i386_8h_a1087b0e0ec3b8b8551fc0c4fb6018e25}{i386\+\_\+\+Real\+\_\+to\+\_\+physical}} (uint16\+\_\+t segment, uint16\+\_\+t offset)
+\begin{DoxyCompactList}\small\item\em Converts real mode pointer \{segment, offset\} to physical address. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{i386_8h_a3ff23e272c8ca1bc3683f88550f96e07}{i386\+\_\+\+Physical\+\_\+to\+\_\+real}} (void $\ast$address, uint16\+\_\+t $\ast$segment, uint16\+\_\+t $\ast$offset)
+\begin{DoxyCompactList}\small\item\em Retrieves real mode pointer elements \{segmnet, offset\} from physical address. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{i386_8h_aa6b848759bca7e193008e409b323e42b}\label{i386_8h_aa6b848759bca7e193008e409b323e42b}} 
+rtems\+\_\+raw\+\_\+irq\+\_\+hdl {\bfseries get\+\_\+hdl\+\_\+from\+\_\+vector} (rtems\+\_\+vector\+\_\+offset)
+\item 
+\mbox{\Hypertarget{i386_8h_a5a3f52fac206eae0557debba0eae74c6}\label{i386_8h_a5a3f52fac206eae0557debba0eae74c6}} 
+int {\bfseries i386\+\_\+set\+\_\+idt\+\_\+entry} (const \mbox{\hyperlink{struct____rtems__raw__irq__connect__data____}{rtems\+\_\+raw\+\_\+irq\+\_\+connect\+\_\+data}} $\ast$)
+\item 
+\mbox{\Hypertarget{i386_8h_a87e568cea79b853e260a50452049548d}\label{i386_8h_a87e568cea79b853e260a50452049548d}} 
+int {\bfseries i386\+\_\+get\+\_\+current\+\_\+idt\+\_\+entry} (\mbox{\hyperlink{struct____rtems__raw__irq__connect__data____}{rtems\+\_\+raw\+\_\+irq\+\_\+connect\+\_\+data}} $\ast$)
+\item 
+\mbox{\Hypertarget{i386_8h_a436df8932795e11d28c1cacca217f38e}\label{i386_8h_a436df8932795e11d28c1cacca217f38e}} 
+int {\bfseries i386\+\_\+delete\+\_\+idt\+\_\+entry} (const \mbox{\hyperlink{struct____rtems__raw__irq__connect__data____}{rtems\+\_\+raw\+\_\+irq\+\_\+connect\+\_\+data}} $\ast$)
+\item 
+\mbox{\Hypertarget{i386_8h_aa8ae4fde630fe14e00b493ecf007b194}\label{i386_8h_aa8ae4fde630fe14e00b493ecf007b194}} 
+int {\bfseries i386\+\_\+init\+\_\+idt} (\mbox{\hyperlink{structrtems__raw__irq__global__settings}{rtems\+\_\+raw\+\_\+irq\+\_\+global\+\_\+settings}} $\ast$\mbox{\hyperlink{structconfig__s}{config}})
+\item 
+\mbox{\Hypertarget{i386_8h_a65ec41b9c2e90dc65403249412559ac3}\label{i386_8h_a65ec41b9c2e90dc65403249412559ac3}} 
+int {\bfseries i386\+\_\+get\+\_\+idt\+\_\+config} (\mbox{\hyperlink{structrtems__raw__irq__global__settings}{rtems\+\_\+raw\+\_\+irq\+\_\+global\+\_\+settings}} $\ast$$\ast$\mbox{\hyperlink{structconfig__s}{config}})
+\item 
+\mbox{\Hypertarget{i386_8h_a14c3c7f946ab2b80e0a138ec049c53a9}\label{i386_8h_a14c3c7f946ab2b80e0a138ec049c53a9}} 
+void {\bfseries i386\+\_\+get\+\_\+info\+\_\+from\+\_\+\+G\+D\+TR} (segment\+\_\+descriptors $\ast$$\ast$table, uint16\+\_\+t $\ast$limit)
+\item 
+\mbox{\Hypertarget{i386_8h_a62d835abe375386712af4051a3196c39}\label{i386_8h_a62d835abe375386712af4051a3196c39}} 
+void {\bfseries i386\+\_\+set\+\_\+\+G\+D\+TR} (segment\+\_\+descriptors $\ast$, uint16\+\_\+t limit)
+\item 
+uint32\+\_\+t \mbox{\hyperlink{i386_8h_aa540fed4ea64b62a7f6242338b3d4dc8}{i386\+\_\+raw\+\_\+gdt\+\_\+entry}} (uint16\+\_\+t segment\+\_\+selector\+\_\+index, segment\+\_\+descriptors $\ast$sd)
+\begin{DoxyCompactList}\small\item\em Allows to set a G\+DT entry. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{i386_8h_a3aeb4133bb8d3f1fffc87bba937d8d4c}{i386\+\_\+fill\+\_\+segment\+\_\+desc\+\_\+base}} (uint32\+\_\+t base, segment\+\_\+descriptors $\ast$sd)
+\begin{DoxyCompactList}\small\item\em fills {\ttfamily sd} with provided {\ttfamily base} in appropriate fields of {\ttfamily sd} \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{i386_8h_a16cc89c5d0872d0235854466fc32c89e}{i386\+\_\+fill\+\_\+segment\+\_\+desc\+\_\+limit}} (uint32\+\_\+t limit, segment\+\_\+descriptors $\ast$sd)
+\begin{DoxyCompactList}\small\item\em fills {\ttfamily sd} with provided {\ttfamily limit} in appropriate fields of {\ttfamily sd} \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{i386_8h_a24ae2b79f74284f1c07a368b59bfe0f1}\label{i386_8h_a24ae2b79f74284f1c07a368b59bfe0f1}} 
+uint32\+\_\+t {\bfseries i386\+\_\+set\+\_\+gdt\+\_\+entry} (uint16\+\_\+t segment\+\_\+selector, uint32\+\_\+t base, uint32\+\_\+t limit)
+\item 
+uint16\+\_\+t \mbox{\hyperlink{i386_8h_a9b0f4d3c7601bdd89b3405ddc0350f92}{i386\+\_\+next\+\_\+empty\+\_\+gdt\+\_\+entry}} (void)
+\begin{DoxyCompactList}\small\item\em Returns next empty descriptor in G\+DT. \end{DoxyCompactList}\item 
+uint16\+\_\+t \mbox{\hyperlink{i386_8h_aac1a2fb788bcb2eff63e97ac33849704}{i386\+\_\+cpy\+\_\+gdt\+\_\+entry}} (uint16\+\_\+t segment\+\_\+selector, segment\+\_\+descriptors $\ast$struct\+\_\+to\+\_\+fill)
+\begin{DoxyCompactList}\small\item\em Copies G\+DT entry at index {\ttfamily segment\+\_\+selector} to structure pointed to by {\ttfamily struct\+\_\+to\+\_\+fill}. \end{DoxyCompactList}\item 
+segment\+\_\+descriptors $\ast$ \mbox{\hyperlink{i386_8h_a1cb826a0497a7c86d327bc2424c077d7}{i386\+\_\+get\+\_\+gdt\+\_\+entry}} (uint16\+\_\+t sgmnt\+\_\+selector)
+\begin{DoxyCompactList}\small\item\em Returns pointer to G\+DT table at index given by {\ttfamily segment\+\_\+selector}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void $\ast$ \mbox{\hyperlink{i386_8h_acac45a9bb6b81f9a1bd2f1f3ed4683ef}{i386\+\_\+base\+\_\+gdt\+\_\+entry}} (segment\+\_\+descriptors $\ast$gdt\+\_\+entry)
+\begin{DoxyCompactList}\small\item\em Extracts base address from G\+DT entry pointed to by {\ttfamily gdt\+\_\+entry}. \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{i386_8h_a57550f80a11297cd5af741cb38434808}{i386\+\_\+limit\+\_\+gdt\+\_\+entry}} (segment\+\_\+descriptors $\ast$gdt\+\_\+entry)
+\begin{DoxyCompactList}\small\item\em Extracts limit in bytes from G\+DT entry pointed to by {\ttfamily gdt\+\_\+entry}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Intel I386 C\+PU Dependent Source. 
+
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{i386_8h_a8ec3df0bf8840465e90fc737bf800959}\label{i386_8h_a8ec3df0bf8840465e90fc737bf800959}} 
+\index{i386.h@{i386.h}!i386\_inport\_byte@{i386\_inport\_byte}}
+\index{i386\_inport\_byte@{i386\_inport\_byte}!i386.h@{i386.h}}
+\subsubsection{\texorpdfstring{i386\_inport\_byte}{i386\_inport\_byte}}
+{\footnotesize\ttfamily \#define i386\+\_\+inport\+\_\+byte(\begin{DoxyParamCaption}\item[{}]{\+\_\+port,  }\item[{}]{\+\_\+value }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do} \{ \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{short} \_\_port  = \_port; \(\backslash\)}
+\DoxyCodeLine{     unsigned \textcolor{keywordtype}{char}  \_\_value = 0; \(\backslash\)}
+\DoxyCodeLine{     \(\backslash\)}
+\DoxyCodeLine{     \_\_asm\_\_ \textcolor{keyword}{volatile} ( \textcolor{stringliteral}{"inb \%1,\%0"} : \textcolor{stringliteral}{"=a"} (\_\_value) \(\backslash\)}
+\DoxyCodeLine{                                : \textcolor{stringliteral}{"d"}  (\_\_port) \(\backslash\)}
+\DoxyCodeLine{                  ); \(\backslash\)}
+\DoxyCodeLine{     \_value = \_\_value; \(\backslash\)}
+\DoxyCodeLine{   \} \textcolor{keywordflow}{while} (0)}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{i386_8h_aa9082cbd5f34c25faa980985f14c5254}\label{i386_8h_aa9082cbd5f34c25faa980985f14c5254}} 
+\index{i386.h@{i386.h}!i386\_inport\_long@{i386\_inport\_long}}
+\index{i386\_inport\_long@{i386\_inport\_long}!i386.h@{i386.h}}
+\subsubsection{\texorpdfstring{i386\_inport\_long}{i386\_inport\_long}}
+{\footnotesize\ttfamily \#define i386\+\_\+inport\+\_\+long(\begin{DoxyParamCaption}\item[{}]{\+\_\+port,  }\item[{}]{\+\_\+value }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do} \{ \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{short} \_\_port  = \_port; \(\backslash\)}
+\DoxyCodeLine{     unsigned \textcolor{keywordtype}{int}  \_\_value = 0; \(\backslash\)}
+\DoxyCodeLine{     \(\backslash\)}
+\DoxyCodeLine{     \_\_asm\_\_ \textcolor{keyword}{volatile} ( \textcolor{stringliteral}{"inl \%1,\%0"} : \textcolor{stringliteral}{"=a"} (\_\_value) \(\backslash\)}
+\DoxyCodeLine{                                : \textcolor{stringliteral}{"d"}  (\_\_port) \(\backslash\)}
+\DoxyCodeLine{                  ); \(\backslash\)}
+\DoxyCodeLine{     \_value = \_\_value; \(\backslash\)}
+\DoxyCodeLine{   \} \textcolor{keywordflow}{while} (0)}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{i386_8h_ae18ac120945a8a8e5ad79ce6b07a3799}\label{i386_8h_ae18ac120945a8a8e5ad79ce6b07a3799}} 
+\index{i386.h@{i386.h}!i386\_inport\_word@{i386\_inport\_word}}
+\index{i386\_inport\_word@{i386\_inport\_word}!i386.h@{i386.h}}
+\subsubsection{\texorpdfstring{i386\_inport\_word}{i386\_inport\_word}}
+{\footnotesize\ttfamily \#define i386\+\_\+inport\+\_\+word(\begin{DoxyParamCaption}\item[{}]{\+\_\+port,  }\item[{}]{\+\_\+value }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do} \{ \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{short} \_\_port  = \_port; \(\backslash\)}
+\DoxyCodeLine{     unsigned \textcolor{keywordtype}{short} \_\_value = 0; \(\backslash\)}
+\DoxyCodeLine{     \(\backslash\)}
+\DoxyCodeLine{     \_\_asm\_\_ \textcolor{keyword}{volatile} ( \textcolor{stringliteral}{"inw \%1,\%0"} : \textcolor{stringliteral}{"=a"} (\_\_value) \(\backslash\)}
+\DoxyCodeLine{                                : \textcolor{stringliteral}{"d"}  (\_\_port) \(\backslash\)}
+\DoxyCodeLine{                  ); \(\backslash\)}
+\DoxyCodeLine{     \_value = \_\_value; \(\backslash\)}
+\DoxyCodeLine{   \} \textcolor{keywordflow}{while} (0)}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{i386_8h_a27b37847994446fb8153ddf49a455f97}\label{i386_8h_a27b37847994446fb8153ddf49a455f97}} 
+\index{i386.h@{i386.h}!i386\_outport\_byte@{i386\_outport\_byte}}
+\index{i386\_outport\_byte@{i386\_outport\_byte}!i386.h@{i386.h}}
+\subsubsection{\texorpdfstring{i386\_outport\_byte}{i386\_outport\_byte}}
+{\footnotesize\ttfamily \#define i386\+\_\+outport\+\_\+byte(\begin{DoxyParamCaption}\item[{}]{\+\_\+port,  }\item[{}]{\+\_\+value }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do} \{ \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{short} \_\_port  = \_port; \(\backslash\)}
+\DoxyCodeLine{     unsigned \textcolor{keywordtype}{char}  \_\_value = \_value; \(\backslash\)}
+\DoxyCodeLine{     \(\backslash\)}
+\DoxyCodeLine{     \_\_asm\_\_ \textcolor{keyword}{volatile} ( \textcolor{stringliteral}{"outb \%0,\%1"} : : \textcolor{stringliteral}{"a"} (\_\_value), \textcolor{stringliteral}{"d"} (\_\_port) ); \(\backslash\)}
+\DoxyCodeLine{   \} \textcolor{keywordflow}{while} (0)}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{i386_8h_a4b37cca2908d68957058ed098956e24f}\label{i386_8h_a4b37cca2908d68957058ed098956e24f}} 
+\index{i386.h@{i386.h}!i386\_outport\_long@{i386\_outport\_long}}
+\index{i386\_outport\_long@{i386\_outport\_long}!i386.h@{i386.h}}
+\subsubsection{\texorpdfstring{i386\_outport\_long}{i386\_outport\_long}}
+{\footnotesize\ttfamily \#define i386\+\_\+outport\+\_\+long(\begin{DoxyParamCaption}\item[{}]{\+\_\+port,  }\item[{}]{\+\_\+value }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do} \{ \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{short} \_\_port  = \_port; \(\backslash\)}
+\DoxyCodeLine{     unsigned \textcolor{keywordtype}{int}  \_\_value = \_value; \(\backslash\)}
+\DoxyCodeLine{     \(\backslash\)}
+\DoxyCodeLine{     \_\_asm\_\_ \textcolor{keyword}{volatile} ( \textcolor{stringliteral}{"outl \%0,\%1"} : : \textcolor{stringliteral}{"a"} (\_\_value), \textcolor{stringliteral}{"d"} (\_\_port) ); \(\backslash\)}
+\DoxyCodeLine{   \} \textcolor{keywordflow}{while} (0)}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{i386_8h_ad10a04370f8fc84a47a051f0dbb721fe}\label{i386_8h_ad10a04370f8fc84a47a051f0dbb721fe}} 
+\index{i386.h@{i386.h}!i386\_outport\_word@{i386\_outport\_word}}
+\index{i386\_outport\_word@{i386\_outport\_word}!i386.h@{i386.h}}
+\subsubsection{\texorpdfstring{i386\_outport\_word}{i386\_outport\_word}}
+{\footnotesize\ttfamily \#define i386\+\_\+outport\+\_\+word(\begin{DoxyParamCaption}\item[{}]{\+\_\+port,  }\item[{}]{\+\_\+value }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do} \{ \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{short} \_\_port  = \_port; \(\backslash\)}
+\DoxyCodeLine{     unsigned \textcolor{keywordtype}{short} \_\_value = \_value; \(\backslash\)}
+\DoxyCodeLine{     \(\backslash\)}
+\DoxyCodeLine{     \_\_asm\_\_ \textcolor{keyword}{volatile} ( \textcolor{stringliteral}{"outw \%0,\%1"} : : \textcolor{stringliteral}{"a"} (\_\_value), \textcolor{stringliteral}{"d"} (\_\_port) ); \(\backslash\)}
+\DoxyCodeLine{   \} \textcolor{keywordflow}{while} (0)}
+
+\end{DoxyCode}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{i386_8h_acac45a9bb6b81f9a1bd2f1f3ed4683ef}\label{i386_8h_acac45a9bb6b81f9a1bd2f1f3ed4683ef}} 
+\index{i386.h@{i386.h}!i386\_base\_gdt\_entry@{i386\_base\_gdt\_entry}}
+\index{i386\_base\_gdt\_entry@{i386\_base\_gdt\_entry}!i386.h@{i386.h}}
+\subsubsection{\texorpdfstring{i386\_base\_gdt\_entry()}{i386\_base\_gdt\_entry()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void$\ast$ i386\+\_\+base\+\_\+gdt\+\_\+entry (\begin{DoxyParamCaption}\item[{segment\+\_\+descriptors $\ast$}]{gdt\+\_\+entry }\end{DoxyParamCaption})}
+
+
+
+Extracts base address from G\+DT entry pointed to by {\ttfamily gdt\+\_\+entry}. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em gdt\+\_\+entry} & pointer to entry from which base should be retrieved \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em base} & address from G\+DT entry \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{i386_8h_aac1a2fb788bcb2eff63e97ac33849704}\label{i386_8h_aac1a2fb788bcb2eff63e97ac33849704}} 
+\index{i386.h@{i386.h}!i386\_cpy\_gdt\_entry@{i386\_cpy\_gdt\_entry}}
+\index{i386\_cpy\_gdt\_entry@{i386\_cpy\_gdt\_entry}!i386.h@{i386.h}}
+\subsubsection{\texorpdfstring{i386\_cpy\_gdt\_entry()}{i386\_cpy\_gdt\_entry()}}
+{\footnotesize\ttfamily uint16\+\_\+t i386\+\_\+cpy\+\_\+gdt\+\_\+entry (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{segment\+\_\+selector,  }\item[{segment\+\_\+descriptors $\ast$}]{struct\+\_\+to\+\_\+fill }\end{DoxyParamCaption})}
+
+
+
+Copies G\+DT entry at index {\ttfamily segment\+\_\+selector} to structure pointed to by {\ttfamily struct\+\_\+to\+\_\+fill}. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em segment\+\_\+selector} & index to G\+DT table specifying descriptor to copy \\
+\hline
+\mbox{\texttt{ out}}  & {\em struct\+\_\+to\+\_\+fill} & pointer to memory where will be descriptor coppied \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em 0} & F\+A\+I\+L\+ED segment\+\_\+selector out of G\+DT range \\
+\hline
+{\em $<$1;65535$>$} & retrieved segment\+\_\+selector \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{i386_8h_a3aeb4133bb8d3f1fffc87bba937d8d4c}\label{i386_8h_a3aeb4133bb8d3f1fffc87bba937d8d4c}} 
+\index{i386.h@{i386.h}!i386\_fill\_segment\_desc\_base@{i386\_fill\_segment\_desc\_base}}
+\index{i386\_fill\_segment\_desc\_base@{i386\_fill\_segment\_desc\_base}!i386.h@{i386.h}}
+\subsubsection{\texorpdfstring{i386\_fill\_segment\_desc\_base()}{i386\_fill\_segment\_desc\_base()}}
+{\footnotesize\ttfamily void i386\+\_\+fill\+\_\+segment\+\_\+desc\+\_\+base (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{base,  }\item[{segment\+\_\+descriptors $\ast$}]{sd }\end{DoxyParamCaption})}
+
+
+
+fills {\ttfamily sd} with provided {\ttfamily base} in appropriate fields of {\ttfamily sd} 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em base} & 32-\/bit address to be set as descriptor\textquotesingle{}s base \\
+\hline
+\mbox{\texttt{ out}}  & {\em sd} & descriptor being filled with {\ttfamily base} \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{i386_8h_a16cc89c5d0872d0235854466fc32c89e}\label{i386_8h_a16cc89c5d0872d0235854466fc32c89e}} 
+\index{i386.h@{i386.h}!i386\_fill\_segment\_desc\_limit@{i386\_fill\_segment\_desc\_limit}}
+\index{i386\_fill\_segment\_desc\_limit@{i386\_fill\_segment\_desc\_limit}!i386.h@{i386.h}}
+\subsubsection{\texorpdfstring{i386\_fill\_segment\_desc\_limit()}{i386\_fill\_segment\_desc\_limit()}}
+{\footnotesize\ttfamily void i386\+\_\+fill\+\_\+segment\+\_\+desc\+\_\+limit (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{limit,  }\item[{segment\+\_\+descriptors $\ast$}]{sd }\end{DoxyParamCaption})}
+
+
+
+fills {\ttfamily sd} with provided {\ttfamily limit} in appropriate fields of {\ttfamily sd} 
+
+sets granularity bit if necessary
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em limit} & 32-\/bit value representing number of limit bytes \\
+\hline
+\mbox{\texttt{ out}}  & {\em sd} & descriptor being filled with {\ttfamily limit} \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{i386_8h_a1cb826a0497a7c86d327bc2424c077d7}\label{i386_8h_a1cb826a0497a7c86d327bc2424c077d7}} 
+\index{i386.h@{i386.h}!i386\_get\_gdt\_entry@{i386\_get\_gdt\_entry}}
+\index{i386\_get\_gdt\_entry@{i386\_get\_gdt\_entry}!i386.h@{i386.h}}
+\subsubsection{\texorpdfstring{i386\_get\_gdt\_entry()}{i386\_get\_gdt\_entry()}}
+{\footnotesize\ttfamily segment\+\_\+descriptors$\ast$ i386\+\_\+get\+\_\+gdt\+\_\+entry (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{sgmnt\+\_\+selector }\end{DoxyParamCaption})}
+
+
+
+Returns pointer to G\+DT table at index given by {\ttfamily segment\+\_\+selector}. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em sgmnt\+\_\+selector} & index to G\+DT table for specifying descriptor to get \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em N\+U\+LL} & F\+A\+I\+L\+ED segment\+\_\+selector out of G\+DT range \\
+\hline
+{\em pointer} & to G\+DT table at {\ttfamily segment\+\_\+selector} \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{i386_8h_a57550f80a11297cd5af741cb38434808}\label{i386_8h_a57550f80a11297cd5af741cb38434808}} 
+\index{i386.h@{i386.h}!i386\_limit\_gdt\_entry@{i386\_limit\_gdt\_entry}}
+\index{i386\_limit\_gdt\_entry@{i386\_limit\_gdt\_entry}!i386.h@{i386.h}}
+\subsubsection{\texorpdfstring{i386\_limit\_gdt\_entry()}{i386\_limit\_gdt\_entry()}}
+{\footnotesize\ttfamily uint32\+\_\+t i386\+\_\+limit\+\_\+gdt\+\_\+entry (\begin{DoxyParamCaption}\item[{segment\+\_\+descriptors $\ast$}]{gdt\+\_\+entry }\end{DoxyParamCaption})}
+
+
+
+Extracts limit in bytes from G\+DT entry pointed to by {\ttfamily gdt\+\_\+entry}. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em gdt\+\_\+entry} & pointer to entry from which limit should be retrieved \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em limit} & value in bytes from G\+DT entry \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{i386_8h_a9b0f4d3c7601bdd89b3405ddc0350f92}\label{i386_8h_a9b0f4d3c7601bdd89b3405ddc0350f92}} 
+\index{i386.h@{i386.h}!i386\_next\_empty\_gdt\_entry@{i386\_next\_empty\_gdt\_entry}}
+\index{i386\_next\_empty\_gdt\_entry@{i386\_next\_empty\_gdt\_entry}!i386.h@{i386.h}}
+\subsubsection{\texorpdfstring{i386\_next\_empty\_gdt\_entry()}{i386\_next\_empty\_gdt\_entry()}}
+{\footnotesize\ttfamily uint16\+\_\+t i386\+\_\+next\+\_\+empty\+\_\+gdt\+\_\+entry (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Returns next empty descriptor in G\+DT. 
+
+Number of descriptors that can be returned depends on {\itshape G\+D\+T\+\_\+\+S\+I\+ZE} 
+
+
+\begin{DoxyRetVals}{Return values}
+{\em 0} & F\+A\+I\+L\+ED G\+DT is full \\
+\hline
+{\em $<$1;65535$>$} & segment\+\_\+selector number as index to G\+DT \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{i386_8h_a3ff23e272c8ca1bc3683f88550f96e07}\label{i386_8h_a3ff23e272c8ca1bc3683f88550f96e07}} 
+\index{i386.h@{i386.h}!i386\_Physical\_to\_real@{i386\_Physical\_to\_real}}
+\index{i386\_Physical\_to\_real@{i386\_Physical\_to\_real}!i386.h@{i386.h}}
+\subsubsection{\texorpdfstring{i386\_Physical\_to\_real()}{i386\_Physical\_to\_real()}}
+{\footnotesize\ttfamily int i386\+\_\+\+Physical\+\_\+to\+\_\+real (\begin{DoxyParamCaption}\item[{void $\ast$}]{address,  }\item[{uint16\+\_\+t $\ast$}]{segment,  }\item[{uint16\+\_\+t $\ast$}]{offset }\end{DoxyParamCaption})}
+
+
+
+Retrieves real mode pointer elements \{segmnet, offset\} from physical address. 
+
+i386\+\_\+\+Physical\+\_\+to\+\_\+real Function returns the highest segment (base) address possible. Example\+: input address -\/ 0x4\+B3\+A2 output segment -\/ 0x4\+B3A offset -\/ 0x2 input address -\/ 0x10\+F12E output segment -\/ 0x\+F\+F\+FF offset -\/ 0x\+F13E
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em address} & address to be converted, must be less than 0x10\+F\+F\+EF \\
+\hline
+\mbox{\texttt{ out}}  & {\em segment} & segment computed from {\ttfamily address} \\
+\hline
+\mbox{\texttt{ out}}  & {\em offset} & offset computed from {\ttfamily address} \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em 0} & address not convertible \\
+\hline
+{\em 1} & segment and offset extracted \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{i386_8h_aa540fed4ea64b62a7f6242338b3d4dc8}\label{i386_8h_aa540fed4ea64b62a7f6242338b3d4dc8}} 
+\index{i386.h@{i386.h}!i386\_raw\_gdt\_entry@{i386\_raw\_gdt\_entry}}
+\index{i386\_raw\_gdt\_entry@{i386\_raw\_gdt\_entry}!i386.h@{i386.h}}
+\subsubsection{\texorpdfstring{i386\_raw\_gdt\_entry()}{i386\_raw\_gdt\_entry()}}
+{\footnotesize\ttfamily uint32\+\_\+t i386\+\_\+raw\+\_\+gdt\+\_\+entry (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{segment\+\_\+selector\+\_\+index,  }\item[{segment\+\_\+descriptors $\ast$}]{sd }\end{DoxyParamCaption})}
+
+
+
+Allows to set a G\+DT entry. 
+
+Puts global descriptor {\ttfamily sd} to the global descriptor table on index {\ttfamily segment\+\_\+selector\+\_\+index} 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em segment\+\_\+selector\+\_\+index} & index to G\+DT entry \\
+\hline
+\mbox{\texttt{ in}}  & {\em sd} & structure to be coppied to given {\ttfamily segment\+\_\+selector} in G\+DT \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em 0} & F\+A\+I\+L\+ED out of G\+DT range or index is 0, which is not valid index in G\+DT \\
+\hline
+{\em 1} & S\+U\+C\+C\+E\+SS \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{i386_8h_a1087b0e0ec3b8b8551fc0c4fb6018e25}\label{i386_8h_a1087b0e0ec3b8b8551fc0c4fb6018e25}} 
+\index{i386.h@{i386.h}!i386\_Real\_to\_physical@{i386\_Real\_to\_physical}}
+\index{i386\_Real\_to\_physical@{i386\_Real\_to\_physical}!i386.h@{i386.h}}
+\subsubsection{\texorpdfstring{i386\_Real\_to\_physical()}{i386\_Real\_to\_physical()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void$\ast$ i386\+\_\+\+Real\+\_\+to\+\_\+physical (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{segment,  }\item[{uint16\+\_\+t}]{offset }\end{DoxyParamCaption})}
+
+
+
+Converts real mode pointer \{segment, offset\} to physical address. 
+
+i386\+\_\+\+Real\+\_\+to\+\_\+physical
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em segment} & used with {\ttfamily offset} to compute physical address \\
+\hline
+\mbox{\texttt{ in}}  & {\em offset} & used with {\ttfamily segment} to compute physical address \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em physical} & address \\
+\hline
+\end{DoxyRetVals}

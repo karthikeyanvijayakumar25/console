@@ -1,0 +1,61 @@
+\hypertarget{printk-support_8c}{}\section{bsps/arm/tms570/console/printk-\/support.c File Reference}
+\label{printk-support_8c}\index{bsps/arm/tms570/console/printk-\/support.c@{bsps/arm/tms570/console/printk-\/support.c}}
+
+
+definitions of serial line for debugging.  
+
+
+{\ttfamily \#include $<$rtems/bsp\+Io.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/sysinit.\+h$>$}\newline
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$bsp/tms570-\/sci.\+h$>$}\newline
+{\ttfamily \#include $<$bsp/tms570-\/sci-\/driver.\+h$>$}\newline
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{printk-support_8c_a1badb5d144118f326d6c8724fc7cd4ac}\label{printk-support_8c_a1badb5d144118f326d6c8724fc7cd4ac}} 
+\#define {\bfseries T\+M\+S570\+\_\+\+C\+O\+N\+S\+O\+LE}~(\&\mbox{\hyperlink{tms570-sci-driver_8h_a6162f56b8d4e448ce7f72275b7bdc039}{driver\+\_\+context\+\_\+table}}\mbox{[}0\mbox{]})
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{printk-support_8c_a075acbe07ac40a370eb556c3ea1825a7}\label{printk-support_8c_a075acbe07ac40a370eb556c3ea1825a7}} 
+{\bfseries R\+T\+E\+M\+S\+\_\+\+S\+Y\+S\+I\+N\+I\+T\+\_\+\+I\+T\+EM} (tms570\+\_\+debug\+\_\+console\+\_\+init, R\+T\+E\+M\+S\+\_\+\+S\+Y\+S\+I\+N\+I\+T\+\_\+\+B\+S\+P\+\_\+\+S\+T\+A\+RT, R\+T\+E\+M\+S\+\_\+\+S\+Y\+S\+I\+N\+I\+T\+\_\+\+O\+R\+D\+E\+R\+\_\+\+L\+A\+S\+T\+\_\+\+B\+U\+T\+\_\+5)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{bspIo_8h_a0b0dff1c3d35110ae303b4098c60dc14}{B\+S\+P\+\_\+output\+\_\+char\+\_\+function\+\_\+type}} \mbox{\hyperlink{printk-support_8c_a5fb8c9c4f076f0340b4a17ed432ced5c}{B\+S\+P\+\_\+output\+\_\+char}}
+\item 
+\mbox{\hyperlink{bspIo_8h_a132b9ceff428a634ece5dfaac7ef1006}{B\+S\+P\+\_\+polling\+\_\+getchar\+\_\+function\+\_\+type}} \mbox{\hyperlink{printk-support_8c_ae5846eecdfa8f2813504371bf01c29b0}{B\+S\+P\+\_\+poll\+\_\+char}} = tms570\+\_\+debug\+\_\+console\+\_\+in
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+definitions of serial line for debugging. 
+
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{printk-support_8c_a5fb8c9c4f076f0340b4a17ed432ced5c}\label{printk-support_8c_a5fb8c9c4f076f0340b4a17ed432ced5c}} 
+\index{printk-\/support.c@{printk-\/support.c}!BSP\_output\_char@{BSP\_output\_char}}
+\index{BSP\_output\_char@{BSP\_output\_char}!printk-\/support.c@{printk-\/support.c}}
+\subsubsection{\texorpdfstring{BSP\_output\_char}{BSP\_output\_char}}
+{\footnotesize\ttfamily \mbox{\hyperlink{bspIo_8h_a0b0dff1c3d35110ae303b4098c60dc14}{B\+S\+P\+\_\+output\+\_\+char\+\_\+function\+\_\+type}} B\+S\+P\+\_\+output\+\_\+char}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=}
+\DoxyCodeLine{  tms570\_debug\_console\_early\_init}
+
+\end{DoxyCode}
+This variable points to the B\+SP provided method to output a character for the purposes of debug output.
+
+It must output only the specific character. It must not perform character translations, e.\+g. \char`\"{}\textbackslash{}n\char`\"{} to \char`\"{}\textbackslash{}r\textbackslash{}n\char`\"{}. \mbox{\Hypertarget{printk-support_8c_ae5846eecdfa8f2813504371bf01c29b0}\label{printk-support_8c_ae5846eecdfa8f2813504371bf01c29b0}} 
+\index{printk-\/support.c@{printk-\/support.c}!BSP\_poll\_char@{BSP\_poll\_char}}
+\index{BSP\_poll\_char@{BSP\_poll\_char}!printk-\/support.c@{printk-\/support.c}}
+\subsubsection{\texorpdfstring{BSP\_poll\_char}{BSP\_poll\_char}}
+{\footnotesize\ttfamily \mbox{\hyperlink{bspIo_8h_a132b9ceff428a634ece5dfaac7ef1006}{B\+S\+P\+\_\+polling\+\_\+getchar\+\_\+function\+\_\+type}} B\+S\+P\+\_\+poll\+\_\+char = tms570\+\_\+debug\+\_\+console\+\_\+in}
+
+This variable points to the B\+SP provided method to input a character for the purposes of debug input. 

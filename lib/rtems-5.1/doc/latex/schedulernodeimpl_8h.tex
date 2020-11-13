@@ -1,0 +1,46 @@
+\hypertarget{schedulernodeimpl_8h}{}\section{cpukit/include/rtems/score/schedulernodeimpl.h File Reference}
+\label{schedulernodeimpl_8h}\index{cpukit/include/rtems/score/schedulernodeimpl.h@{cpukit/include/rtems/score/schedulernodeimpl.h}}
+
+
+Scheduler Node Implementation.  
+
+
+{\ttfamily \#include $<$rtems/score/schedulernode.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/score/priorityimpl.\+h$>$}\newline
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bfseries S\+C\+H\+E\+D\+U\+L\+E\+R\+\_\+\+N\+O\+D\+E\+\_\+\+O\+F\+\_\+\+W\+A\+I\+T\+\_\+\+P\+R\+I\+O\+R\+I\+T\+Y\+\_\+\+N\+O\+DE}(node)~\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gab2e7a0141fd898ae358fa9b134aa2610}{R\+T\+E\+M\+S\+\_\+\+C\+O\+N\+T\+A\+I\+N\+E\+R\+\_\+\+OF}}( node, \mbox{\hyperlink{structScheduler__Node}{Scheduler\+\_\+\+Node}}, Wait.\+Priority.\+Node.\+Node.\+Chain )
+\item 
+\#define {\bfseries S\+C\+H\+E\+D\+U\+L\+E\+R\+\_\+\+N\+O\+D\+E\+\_\+\+O\+F\+\_\+\+W\+A\+I\+T\+\_\+\+P\+R\+I\+O\+R\+I\+TY}(node)~\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gab2e7a0141fd898ae358fa9b134aa2610}{R\+T\+E\+M\+S\+\_\+\+C\+O\+N\+T\+A\+I\+N\+E\+R\+\_\+\+OF}}( node, \mbox{\hyperlink{structScheduler__Node}{Scheduler\+\_\+\+Node}}, Wait.\+Priority )
+\item 
+\#define \mbox{\hyperlink{group__RTEMSScoreScheduler_ga4f92274867a1bb479fd308b47235c202}{S\+C\+H\+E\+D\+U\+L\+E\+R\+\_\+\+P\+R\+I\+O\+R\+I\+T\+Y\+\_\+\+A\+P\+P\+E\+N\+D\+\_\+\+F\+L\+AG}}~1
+\begin{DoxyCompactList}\small\item\em Priority append indicator for the priority control used for the scheduler node priority. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTEMSScoreScheduler_gabfbb467344bb96c6bbc1b5afe3442655}{S\+C\+H\+E\+D\+U\+L\+E\+R\+\_\+\+P\+R\+I\+O\+R\+I\+T\+Y\+\_\+\+M\+AP}}(priority)~( ( priority ) $<$$<$ 1 )
+\begin{DoxyCompactList}\small\item\em Maps a priority value to support the append indicator. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTEMSScoreScheduler_gaa878c63b883116f813b814c90f8af849}{S\+C\+H\+E\+D\+U\+L\+E\+R\+\_\+\+P\+R\+I\+O\+R\+I\+T\+Y\+\_\+\+U\+N\+M\+AP}}(priority)~( ( priority ) $>$$>$ 1 )
+\begin{DoxyCompactList}\small\item\em Returns the plain priority value. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTEMSScoreScheduler_ga8e11bd14b7c5a2f713b9864aea7bd786}{S\+C\+H\+E\+D\+U\+L\+E\+R\+\_\+\+P\+R\+I\+O\+R\+I\+T\+Y\+\_\+\+P\+U\+R\+I\+FY}}(priority)~( ( priority ) \& $\sim$( (\mbox{\hyperlink{group__RTEMSScorePriority_ga59d02b58072d31a9a1cfe644557aefe2}{Priority\+\_\+\+Control}}) \mbox{\hyperlink{group__RTEMSScoreScheduler_ga4f92274867a1bb479fd308b47235c202}{S\+C\+H\+E\+D\+U\+L\+E\+R\+\_\+\+P\+R\+I\+O\+R\+I\+T\+Y\+\_\+\+A\+P\+P\+E\+N\+D\+\_\+\+F\+L\+AG}} ) )
+\begin{DoxyCompactList}\small\item\em Clears the priority append indicator bit. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTEMSScoreScheduler_ga2bc5f17fd4204768543893a50c09bd26}{S\+C\+H\+E\+D\+U\+L\+E\+R\+\_\+\+P\+R\+I\+O\+R\+I\+T\+Y\+\_\+\+A\+P\+P\+E\+ND}}(priority)~( ( priority ) $\vert$ \mbox{\hyperlink{group__RTEMSScoreScheduler_ga4f92274867a1bb479fd308b47235c202}{S\+C\+H\+E\+D\+U\+L\+E\+R\+\_\+\+P\+R\+I\+O\+R\+I\+T\+Y\+\_\+\+A\+P\+P\+E\+N\+D\+\_\+\+F\+L\+AG}} )
+\begin{DoxyCompactList}\small\item\em Returns the priority control with the append indicator bit set. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTEMSScoreScheduler_gab2dd406724cf98352ff1a7218feb06c0}{S\+C\+H\+E\+D\+U\+L\+E\+R\+\_\+\+P\+R\+I\+O\+R\+I\+T\+Y\+\_\+\+I\+S\+\_\+\+A\+P\+P\+E\+ND}}(priority)~( ( ( priority ) \& \mbox{\hyperlink{group__RTEMSScoreScheduler_ga4f92274867a1bb479fd308b47235c202}{S\+C\+H\+E\+D\+U\+L\+E\+R\+\_\+\+P\+R\+I\+O\+R\+I\+T\+Y\+\_\+\+A\+P\+P\+E\+N\+D\+\_\+\+F\+L\+AG}} ) != 0 )
+\begin{DoxyCompactList}\small\item\em Returns true, if the item should be appended to its priority group, otherwise returns false and the item should be prepended to its priority group. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \mbox{\hyperlink{group__RTEMSScoreScheduler_ga04a65b42652ef556df7f53940d4c1a11}{\+\_\+\+Scheduler\+\_\+\+Node\+\_\+do\+\_\+initialize}} (const struct \mbox{\hyperlink{struct__Scheduler__Control}{\+\_\+\+Scheduler\+\_\+\+Control}} $\ast$scheduler, \mbox{\hyperlink{structScheduler__Node}{Scheduler\+\_\+\+Node}} $\ast$node, \mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$the\+\_\+thread, \mbox{\hyperlink{group__RTEMSScorePriority_ga59d02b58072d31a9a1cfe644557aefe2}{Priority\+\_\+\+Control}} priority)
+\begin{DoxyCompactList}\small\item\em Initializes a node. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} const \mbox{\hyperlink{struct__Scheduler__Control}{Scheduler\+\_\+\+Control}} $\ast$ \mbox{\hyperlink{group__RTEMSScoreScheduler_ga5098a62702f588f64b5944aef720017d}{\+\_\+\+Scheduler\+\_\+\+Node\+\_\+get\+\_\+scheduler}} (const \mbox{\hyperlink{structScheduler__Node}{Scheduler\+\_\+\+Node}} $\ast$node)
+\begin{DoxyCompactList}\small\item\em Gets the scheduler of the node. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} \mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$ \mbox{\hyperlink{group__RTEMSScoreScheduler_ga5fb2bcc35c4d8b4ef50ecc9c41c8d6f4}{\+\_\+\+Scheduler\+\_\+\+Node\+\_\+get\+\_\+owner}} (const \mbox{\hyperlink{structScheduler__Node}{Scheduler\+\_\+\+Node}} $\ast$node)
+\begin{DoxyCompactList}\small\item\em Gets the owner of the node. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} \mbox{\hyperlink{group__RTEMSScorePriority_ga59d02b58072d31a9a1cfe644557aefe2}{Priority\+\_\+\+Control}} \mbox{\hyperlink{group__RTEMSScoreScheduler_gaefec9c3ea8b8a7a2090d982af594f414}{\+\_\+\+Scheduler\+\_\+\+Node\+\_\+get\+\_\+priority}} (\mbox{\hyperlink{structScheduler__Node}{Scheduler\+\_\+\+Node}} $\ast$node)
+\begin{DoxyCompactList}\small\item\em Gets the priority of the node. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \mbox{\hyperlink{group__RTEMSScoreScheduler_gafd0127a6831b0078ad0328740102c89d}{\+\_\+\+Scheduler\+\_\+\+Node\+\_\+set\+\_\+priority}} (\mbox{\hyperlink{structScheduler__Node}{Scheduler\+\_\+\+Node}} $\ast$node, \mbox{\hyperlink{group__RTEMSScorePriority_ga59d02b58072d31a9a1cfe644557aefe2}{Priority\+\_\+\+Control}} new\+\_\+priority, bool prepend\+\_\+it)
+\begin{DoxyCompactList}\small\item\em Sets the priority of the node. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Scheduler Node Implementation. 
+

@@ -1,0 +1,58 @@
+\hypertarget{init_8h}{}\section{cpukit/include/rtems/init.h File Reference}
+\label{init_8h}\index{cpukit/include/rtems/init.h@{cpukit/include/rtems/init.h}}
+
+
+Constants and Structures Associated with the Initialization Manager.  
+
+
+{\ttfamily \#include $<$rtems/rtems/types.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/config.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/rtems/intr.\+h$>$}\newline
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{init_8h_aa3339bbf56128f27eba237e6ca846e24}{rtems\+\_\+initialize\+\_\+executive}} (void) \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gaa2f0ed67aa174f684bb31b7e8bdb386f}{R\+T\+E\+M\+S\+\_\+\+N\+O\+\_\+\+R\+E\+T\+U\+RN}}
+\begin{DoxyCompactList}\small\item\em Initializes the system and starts multitasking. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{init_8h_a8de899baa865322fcb2d71ecbb5d89c8}{rtems\+\_\+shutdown\+\_\+executive}} (uint32\+\_\+t result) \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gaa2f0ed67aa174f684bb31b7e8bdb386f}{R\+T\+E\+M\+S\+\_\+\+N\+O\+\_\+\+R\+E\+T\+U\+RN}}
+\begin{DoxyCompactList}\small\item\em Shutdown the R\+T\+E\+MS environment. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Constants and Structures Associated with the Initialization Manager. 
+
+This include file contains all the constants and structures associated with the Initialization Manager. This manager is responsible for initializing R\+T\+E\+MS, creating and starting all configured initialization tasks, invoking the initialization routine for each user-\/supplied device driver, and initializing the optional multiprocessor layer.
+
+This manager provides directives to\+:
+
+
+\begin{DoxyItemize}
+\item initialize the R\+T\+E\+MS executive
+\item shutdown the R\+T\+E\+MS executive 
+\end{DoxyItemize}
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{init_8h_aa3339bbf56128f27eba237e6ca846e24}\label{init_8h_aa3339bbf56128f27eba237e6ca846e24}} 
+\index{init.h@{init.h}!rtems\_initialize\_executive@{rtems\_initialize\_executive}}
+\index{rtems\_initialize\_executive@{rtems\_initialize\_executive}!init.h@{init.h}}
+\subsubsection{\texorpdfstring{rtems\_initialize\_executive()}{rtems\_initialize\_executive()}}
+{\footnotesize\ttfamily void rtems\+\_\+initialize\+\_\+executive (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Initializes the system and starts multitasking. 
+
+Iterates through the system initialization linker set and invokes the registered handlers. The final step is to start multitasking.
+
+This directive should be called by \mbox{\hyperlink{group__RTEMSBSPsSharedStartup_gad8a18766fa4f3cf67d8f8ff8938008e0}{boot\+\_\+card()}} only.
+
+This directive does not return. \mbox{\Hypertarget{init_8h_a8de899baa865322fcb2d71ecbb5d89c8}\label{init_8h_a8de899baa865322fcb2d71ecbb5d89c8}} 
+\index{init.h@{init.h}!rtems\_shutdown\_executive@{rtems\_shutdown\_executive}}
+\index{rtems\_shutdown\_executive@{rtems\_shutdown\_executive}!init.h@{init.h}}
+\subsubsection{\texorpdfstring{rtems\_shutdown\_executive()}{rtems\_shutdown\_executive()}}
+{\footnotesize\ttfamily void rtems\+\_\+shutdown\+\_\+executive (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{result }\end{DoxyParamCaption})}
+
+
+
+Shutdown the R\+T\+E\+MS environment. 
+
+This routine implements the rtems\+\_\+shutdown\+\_\+executive directive. The invocation of this directive results in the R\+T\+E\+MS environment being shutdown and multitasking halted. The system is terminated with a fatal source of R\+T\+E\+M\+S\+\_\+\+F\+A\+T\+A\+L\+\_\+\+S\+O\+U\+R\+C\+E\+\_\+\+E\+X\+IT and the specified result code. 

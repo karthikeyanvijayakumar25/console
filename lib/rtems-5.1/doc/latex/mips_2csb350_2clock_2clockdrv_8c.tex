@@ -1,0 +1,99 @@
+\hypertarget{mips_2csb350_2clock_2clockdrv_8c}{}\section{bsps/mips/csb350/clock/clockdrv.c File Reference}
+\label{mips_2csb350_2clock_2clockdrv_8c}\index{bsps/mips/csb350/clock/clockdrv.c@{bsps/mips/csb350/clock/clockdrv.c}}
+{\ttfamily \#include $<$rtems.\+h$>$}\newline
+{\ttfamily \#include $<$bsp.\+h$>$}\newline
+{\ttfamily \#include $<$bsp/irq.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/bsp\+Io.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}../../../shared/dev/clock/clockimpl.\+h\char`\"{}}\newline
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{mips_2csb350_2clock_2clockdrv_8c_a4edae1f7872fdace9eb64c197b3f952d}\label{mips_2csb350_2clock_2clockdrv_8c_a4edae1f7872fdace9eb64c197b3f952d}} 
+\#define {\bfseries C\+L\+O\+C\+K\+\_\+\+V\+E\+C\+T\+OR}~A\+U1\+X00\+\_\+\+I\+R\+Q\+\_\+\+T\+O\+Y\+\_\+\+M\+A\+T\+C\+H2
+\item 
+\#define {\bfseries Clock\+\_\+driver\+\_\+support\+\_\+at\+\_\+tick}()
+\item 
+\#define {\bfseries Clock\+\_\+driver\+\_\+support\+\_\+install\+\_\+isr}(\+\_\+new)
+\item 
+\#define {\bfseries Clock\+\_\+driver\+\_\+support\+\_\+initialize\+\_\+hardware}()
+\item 
+\mbox{\Hypertarget{mips_2csb350_2clock_2clockdrv_8c_ab733c59b870d1dbad7a80319644fb5d4}\label{mips_2csb350_2clock_2clockdrv_8c_ab733c59b870d1dbad7a80319644fb5d4}} 
+\#define {\bfseries C\+L\+O\+C\+K\+\_\+\+D\+R\+I\+V\+E\+R\+\_\+\+U\+S\+E\+\_\+\+D\+U\+M\+M\+Y\+\_\+\+T\+I\+M\+E\+C\+O\+U\+N\+T\+ER}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{mips_2csb350_2clock_2clockdrv_8c_a4c602815fce762431174ce9e8972b329}\label{mips_2csb350_2clock_2clockdrv_8c_a4c602815fce762431174ce9e8972b329}} 
+void {\bfseries au1x00\+\_\+clock\+\_\+init} (void)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{mips_2csb350_2clock_2clockdrv_8c_ad926f686c223899e1be090fd2f209f29}\label{mips_2csb350_2clock_2clockdrv_8c_ad926f686c223899e1be090fd2f209f29}} 
+uint32\+\_\+t {\bfseries tick\+\_\+interval}
+\item 
+\mbox{\Hypertarget{mips_2csb350_2clock_2clockdrv_8c_a25813903426e7b8e5f97e76bd381cb84}\label{mips_2csb350_2clock_2clockdrv_8c_a25813903426e7b8e5f97e76bd381cb84}} 
+uint32\+\_\+t {\bfseries last\+\_\+match}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Instantiate the clock driver shell.
+
+This uses the T\+OY (Time of Year) timer to implement the clock. 
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{mips_2csb350_2clock_2clockdrv_8c_ad0860321c2b7838ffea30059aebd26fa}\label{mips_2csb350_2clock_2clockdrv_8c_ad0860321c2b7838ffea30059aebd26fa}} 
+\index{clockdrv.c@{clockdrv.c}!Clock\_driver\_support\_at\_tick@{Clock\_driver\_support\_at\_tick}}
+\index{Clock\_driver\_support\_at\_tick@{Clock\_driver\_support\_at\_tick}!clockdrv.c@{clockdrv.c}}
+\subsubsection{\texorpdfstring{Clock\_driver\_support\_at\_tick}{Clock\_driver\_support\_at\_tick}}
+{\footnotesize\ttfamily \#define Clock\+\_\+driver\+\_\+support\+\_\+at\+\_\+tick(\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do} \{                                                        \(\backslash\)}
+\DoxyCodeLine{    while (AU1X00\_SYS\_CNTCTRL(AU1X00\_SYS\_ADDR) \& AU1X00\_SYS\_CNTCTRL\_TM0); \(\backslash\)}
+\DoxyCodeLine{    last\_match = AU1X00\_SYS\_TOYREAD(AU1X00\_SYS\_ADDR); \(\backslash\)}
+\DoxyCodeLine{    AU1X00\_SYS\_TOYMATCH2(AU1X00\_SYS\_ADDR) = last\_match + tick\_interval; \(\backslash\)}
+\DoxyCodeLine{    au\_sync(); \(\backslash\)}
+\DoxyCodeLine{  \} \textcolor{keywordflow}{while}(0)}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{mips_2csb350_2clock_2clockdrv_8c_a37475981ff0420ed43474fb3bdde8cbf}\label{mips_2csb350_2clock_2clockdrv_8c_a37475981ff0420ed43474fb3bdde8cbf}} 
+\index{clockdrv.c@{clockdrv.c}!Clock\_driver\_support\_initialize\_hardware@{Clock\_driver\_support\_initialize\_hardware}}
+\index{Clock\_driver\_support\_initialize\_hardware@{Clock\_driver\_support\_initialize\_hardware}!clockdrv.c@{clockdrv.c}}
+\subsubsection{\texorpdfstring{Clock\_driver\_support\_initialize\_hardware}{Clock\_driver\_support\_initialize\_hardware}}
+{\footnotesize\ttfamily \#define Clock\+\_\+driver\+\_\+support\+\_\+initialize\+\_\+hardware(\begin{DoxyParamCaption}\item[{}]{void }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do} \{                                                  \(\backslash\)}
+\DoxyCodeLine{     au1x00\_clock\_init(); \(\backslash\)}
+\DoxyCodeLine{  \} \textcolor{keywordflow}{while}(0)}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{mips_2csb350_2clock_2clockdrv_8c_a98b2c75f88d730742ba1e0b5b4950a4d}\label{mips_2csb350_2clock_2clockdrv_8c_a98b2c75f88d730742ba1e0b5b4950a4d}} 
+\index{clockdrv.c@{clockdrv.c}!Clock\_driver\_support\_install\_isr@{Clock\_driver\_support\_install\_isr}}
+\index{Clock\_driver\_support\_install\_isr@{Clock\_driver\_support\_install\_isr}!clockdrv.c@{clockdrv.c}}
+\subsubsection{\texorpdfstring{Clock\_driver\_support\_install\_isr}{Clock\_driver\_support\_install\_isr}}
+{\footnotesize\ttfamily \#define Clock\+\_\+driver\+\_\+support\+\_\+install\+\_\+isr(\begin{DoxyParamCaption}\item[{}]{\+\_\+new }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do} \{ \(\backslash\)}
+\DoxyCodeLine{    rtems\_interrupt\_handler\_install( \(\backslash\)}
+\DoxyCodeLine{      CLOCK\_VECTOR, \(\backslash\)}
+\DoxyCodeLine{      \textcolor{stringliteral}{"clock"}, \(\backslash\)}
+\DoxyCodeLine{      0, \(\backslash\)}
+\DoxyCodeLine{      \_new, \(\backslash\)}
+\DoxyCodeLine{      \mbox{\hyperlink{bestcomm__api_8h_a872bb74de61c3689ccd5b41873fce42c}{NULL}} \(\backslash\)}
+\DoxyCodeLine{    ); \(\backslash\)}
+\DoxyCodeLine{    AU1X00\_IC\_MASKCLR(AU1X00\_IC0\_ADDR) = AU1X00\_IC\_IRQ\_TOY\_MATCH2; \(\backslash\)}
+\DoxyCodeLine{    AU1X00\_IC\_SRCSET(AU1X00\_IC0\_ADDR) = AU1X00\_IC\_IRQ\_TOY\_MATCH2; \(\backslash\)}
+\DoxyCodeLine{    AU1X00\_IC\_CFG0SET(AU1X00\_IC0\_ADDR) = AU1X00\_IC\_IRQ\_TOY\_MATCH2; \(\backslash\)}
+\DoxyCodeLine{    AU1X00\_IC\_CFG1CLR(AU1X00\_IC0\_ADDR) = AU1X00\_IC\_IRQ\_TOY\_MATCH2; \(\backslash\)}
+\DoxyCodeLine{    AU1X00\_IC\_CFG2CLR(AU1X00\_IC0\_ADDR) = AU1X00\_IC\_IRQ\_TOY\_MATCH2; \(\backslash\)}
+\DoxyCodeLine{    AU1X00\_IC\_ASSIGNSET(AU1X00\_IC0\_ADDR) = AU1X00\_IC\_IRQ\_TOY\_MATCH2; \(\backslash\)}
+\DoxyCodeLine{  \} \textcolor{keywordflow}{while}(0)}
+
+\end{DoxyCode}

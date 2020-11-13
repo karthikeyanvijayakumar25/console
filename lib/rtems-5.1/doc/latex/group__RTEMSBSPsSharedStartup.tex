@@ -1,0 +1,66 @@
+\hypertarget{group__RTEMSBSPsSharedStartup}{}\section{Bootcard}
+\label{group__RTEMSBSPsSharedStartup}\index{Bootcard@{Bootcard}}
+
+
+Standard system startup.  
+
+
+\subsection*{Files}
+\begin{DoxyCompactItemize}
+\item 
+file \mbox{\hyperlink{bootcard_8h}{bootcard.\+h}}
+\item 
+file \mbox{\hyperlink{bootcard_8c}{bootcard.\+c}}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{group__RTEMSBSPsSharedStartup_ga424dcf8c1e22bf623eb1210a0aa2a3e9}\label{group__RTEMSBSPsSharedStartup_ga424dcf8c1e22bf623eb1210a0aa2a3e9}} 
+void {\bfseries bsp\+\_\+start} (void)
+\item 
+\mbox{\Hypertarget{group__RTEMSBSPsSharedStartup_gaee99733067120706ee7d3395ea225dfb}\label{group__RTEMSBSPsSharedStartup_gaee99733067120706ee7d3395ea225dfb}} 
+void {\bfseries bsp\+\_\+reset} (void)
+\item 
+void \mbox{\hyperlink{group__RTEMSBSPsSharedStartup_gad8a18766fa4f3cf67d8f8ff8938008e0}{boot\+\_\+card}} (const char $\ast$cmdline) \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gaa2f0ed67aa174f684bb31b7e8bdb386f}{R\+T\+E\+M\+S\+\_\+\+N\+O\+\_\+\+R\+E\+T\+U\+RN}}
+\begin{DoxyCompactList}\small\item\em Standard system initialization procedure. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__RTEMSBSPsSharedStartup_gae847768d4b83b8e3e4bc7313095ef7dd}{bsp\+\_\+start\+\_\+on\+\_\+secondary\+\_\+processor}} (struct \mbox{\hyperlink{structPer__CPU__Control}{Per\+\_\+\+C\+P\+U\+\_\+\+Control}} $\ast$cpu\+\_\+self)
+\begin{DoxyCompactList}\small\item\em Standard start routine for secondary processors. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{group__RTEMSBSPsSharedStartup_ga448d99a4be2aee9a0b591a1e039661b9}\label{group__RTEMSBSPsSharedStartup_ga448d99a4be2aee9a0b591a1e039661b9}} 
+const char $\ast$ \mbox{\hyperlink{group__RTEMSBSPsSharedStartup_ga448d99a4be2aee9a0b591a1e039661b9}{bsp\+\_\+boot\+\_\+cmdline}}
+\begin{DoxyCompactList}\small\item\em Global pointer to the command line of \mbox{\hyperlink{group__RTEMSBSPsSharedStartup_gad8a18766fa4f3cf67d8f8ff8938008e0}{boot\+\_\+card()}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Standard system startup. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{group__RTEMSBSPsSharedStartup_gad8a18766fa4f3cf67d8f8ff8938008e0}\label{group__RTEMSBSPsSharedStartup_gad8a18766fa4f3cf67d8f8ff8938008e0}} 
+\index{Bootcard@{Bootcard}!boot\_card@{boot\_card}}
+\index{boot\_card@{boot\_card}!Bootcard@{Bootcard}}
+\subsubsection{\texorpdfstring{boot\_card()}{boot\_card()}}
+{\footnotesize\ttfamily void boot\+\_\+card (\begin{DoxyParamCaption}\item[{const char $\ast$}]{cmdline }\end{DoxyParamCaption})}
+
+
+
+Standard system initialization procedure. 
+
+You may pass a command line in {\itshape cmdline}. It is later available via the global \mbox{\hyperlink{group__RTEMSBSPsSharedStartup_ga448d99a4be2aee9a0b591a1e039661b9}{bsp\+\_\+boot\+\_\+cmdline}} variable.
+
+This is the C entry point for A\+LL R\+T\+E\+MS B\+S\+Ps. It is invoked from the assembly language initialization file usually called {\ttfamily start.\+S} which does the basic C\+PU setup (stack, C runtime environment, zero B\+SS, load other sections) and calls afterwards \mbox{\hyperlink{group__RTEMSBSPsSharedStartup_gad8a18766fa4f3cf67d8f8ff8938008e0}{boot\+\_\+card()}}. The boot card function provides the framework for the B\+SP initialization sequence. For the basic flow of initialization see R\+T\+E\+MS C User\textquotesingle{}s Guide, Initialization Manager.
+
+This style of initialization ensures that the C++ global constructors are executed after R\+T\+E\+MS is initialized. \mbox{\Hypertarget{group__RTEMSBSPsSharedStartup_gae847768d4b83b8e3e4bc7313095ef7dd}\label{group__RTEMSBSPsSharedStartup_gae847768d4b83b8e3e4bc7313095ef7dd}} 
+\index{Bootcard@{Bootcard}!bsp\_start\_on\_secondary\_processor@{bsp\_start\_on\_secondary\_processor}}
+\index{bsp\_start\_on\_secondary\_processor@{bsp\_start\_on\_secondary\_processor}!Bootcard@{Bootcard}}
+\subsubsection{\texorpdfstring{bsp\_start\_on\_secondary\_processor()}{bsp\_start\_on\_secondary\_processor()}}
+{\footnotesize\ttfamily void bsp\+\_\+start\+\_\+on\+\_\+secondary\+\_\+processor (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structPer__CPU__Control}{Per\+\_\+\+C\+P\+U\+\_\+\+Control}} $\ast$}]{cpu\+\_\+self }\end{DoxyParamCaption})}
+
+
+
+Standard start routine for secondary processors. 
+
+This function is usually called by low-\/level startup code of secondary processors or boot loaders starting a secondary processor. The final step of this function is a call to \+\_\+\+S\+M\+P\+\_\+\+Start\+\_\+multitasking\+\_\+on\+\_\+secondary\+\_\+processor(). 

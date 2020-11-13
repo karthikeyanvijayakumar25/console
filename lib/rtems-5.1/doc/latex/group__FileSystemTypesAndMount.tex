@@ -1,0 +1,373 @@
+\hypertarget{group__FileSystemTypesAndMount}{}\section{File System Types and Mount}
+\label{group__FileSystemTypesAndMount}\index{File System Types and Mount@{File System Types and Mount}}
+
+
+File system types and mount.  
+
+
+\subsection*{Modules}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{group__DOSFS}{F\+A\+T Filesystem Support}}
+\begin{DoxyCompactList}\small\item\em F\+AT file system configuration support, format and mount options. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__FIFO__PIPE}{F\+I\+F\+O/\+Pipe File System Support}}
+\begin{DoxyCompactList}\small\item\em Interface to the P\+O\+S\+IX F\+I\+F\+O/\+Pipe File System. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__rtems__fstab}{File System Mount Support}}
+\begin{DoxyCompactList}\small\item\em File System Mount Functions. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__rtems__ftpfs}{File Transfer Protocol File System}}
+\begin{DoxyCompactList}\small\item\em The F\+TP file system (F\+TP client) can be used to transfer files from or to remote hosts. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__IMFS}{In-\/\+Memory File System Support}}
+\begin{DoxyCompactList}\small\item\em In-\/\+Memory File System Support. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__JFFS2}{Journalling Flash File System Version 2 (\+J\+F\+F\+S2) Support}}
+\begin{DoxyCompactList}\small\item\em Mount options for the Journalling Flash File System, Version 2 (J\+F\+F\+S2). \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__rtems__rfs}{R\+T\+E\+M\+S File System Group Management}}
+\item 
+\mbox{\hyperlink{group__libfs}{libfs}}
+\begin{DoxyCompactList}\small\item\em libfs \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__nfsclient}{nfs Client}}
+\begin{DoxyCompactList}\small\item\em nfs Client \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Files}
+\begin{DoxyCompactItemize}
+\item 
+file \mbox{\hyperlink{mount_8c}{mount.\+c}}
+\begin{DoxyCompactList}\small\item\em Mounts a File System. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structrtems__filesystem__mount__table__entry__tt}{rtems\+\_\+filesystem\+\_\+mount\+\_\+table\+\_\+entry\+\_\+tt}}
+\begin{DoxyCompactList}\small\item\em Mount table entry. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structrtems__filesystem__table__t}{rtems\+\_\+filesystem\+\_\+table\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em File system table entry. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structrtems__filesystem__mount__configuration}{rtems\+\_\+filesystem\+\_\+mount\+\_\+configuration}}
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{group__FileSystemTypesAndMount_ga7a76c11a7070c975aba1d545f6b7df07}\label{group__FileSystemTypesAndMount_ga7a76c11a7070c975aba1d545f6b7df07}} 
+typedef struct \mbox{\hyperlink{structrtems__filesystem__table__t}{rtems\+\_\+filesystem\+\_\+table\+\_\+t}} \mbox{\hyperlink{group__FileSystemTypesAndMount_ga7a76c11a7070c975aba1d545f6b7df07}{rtems\+\_\+filesystem\+\_\+table\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em File system table entry. \end{DoxyCompactList}\item 
+typedef bool($\ast$ \mbox{\hyperlink{group__FileSystemTypesAndMount_gaa40c0b8e4e5abe60a08bead5b3c72241}{rtems\+\_\+per\+\_\+filesystem\+\_\+routine}}) (const \mbox{\hyperlink{structrtems__filesystem__table__t}{rtems\+\_\+filesystem\+\_\+table\+\_\+t}} $\ast$fs\+\_\+entry, void $\ast$arg)
+\begin{DoxyCompactList}\small\item\em Per file system type routine. \end{DoxyCompactList}\item 
+typedef bool($\ast$ \mbox{\hyperlink{group__FileSystemTypesAndMount_ga84a7a5cd36614b906e1c485224beb686}{rtems\+\_\+filesystem\+\_\+mt\+\_\+entry\+\_\+visitor}}) (const \mbox{\hyperlink{structrtems__filesystem__mount__table__entry__tt}{rtems\+\_\+filesystem\+\_\+mount\+\_\+table\+\_\+entry\+\_\+t}} $\ast$mt\+\_\+entry, void $\ast$arg)
+\begin{DoxyCompactList}\small\item\em Mount table entry visitor. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{group__FileSystemTypesAndMount_gabb3a23ee6b6e7aacb719a1a81716af7a}\label{group__FileSystemTypesAndMount_gabb3a23ee6b6e7aacb719a1a81716af7a}} 
+enum \mbox{\hyperlink{group__FileSystemTypesAndMount_gabb3a23ee6b6e7aacb719a1a81716af7a}{rtems\+\_\+filesystem\+\_\+options\+\_\+t}} \{ {\bfseries R\+T\+E\+M\+S\+\_\+\+F\+I\+L\+E\+S\+Y\+S\+T\+E\+M\+\_\+\+R\+E\+A\+D\+\_\+\+O\+N\+LY}, 
+{\bfseries R\+T\+E\+M\+S\+\_\+\+F\+I\+L\+E\+S\+Y\+S\+T\+E\+M\+\_\+\+R\+E\+A\+D\+\_\+\+W\+R\+I\+TE}, 
+{\bfseries R\+T\+E\+M\+S\+\_\+\+F\+I\+L\+E\+S\+Y\+S\+T\+E\+M\+\_\+\+B\+A\+D\+\_\+\+O\+P\+T\+I\+O\+NS}
+ \}
+\begin{DoxyCompactList}\small\item\em File system options. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{group__FileSystemTypesAndMount_gaac7f1c7fe78f3acc145272809cef62a2}{rtems\+\_\+filesystem\+\_\+register}} (const char $\ast$type, \mbox{\hyperlink{group__LibIOFSOps_gab86f790d75005100fc4d847f7cdc8aef}{rtems\+\_\+filesystem\+\_\+fsmount\+\_\+me\+\_\+t}} mount\+\_\+h)
+\begin{DoxyCompactList}\small\item\em Registers a file system {\itshape type}. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__FileSystemTypesAndMount_ga4e658123f1059ea0684904df0ddb8d67}{rtems\+\_\+filesystem\+\_\+unregister}} (const char $\ast$type)
+\begin{DoxyCompactList}\small\item\em Unregisters a file system {\itshape type}. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__FileSystemTypesAndMount_ga4c8f87fc991f94992e0da1f87243f9e0}{unmount}} (const char $\ast$mount\+\_\+path)
+\begin{DoxyCompactList}\small\item\em Unmounts the file system instance at the specified mount path. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__FileSystemTypesAndMount_gaf3c1bed49bb0f3dec88d330b4f88d48b}{mount}} (const char $\ast$source, const char $\ast$target, const char $\ast$filesystemtype, \mbox{\hyperlink{group__FileSystemTypesAndMount_gabb3a23ee6b6e7aacb719a1a81716af7a}{rtems\+\_\+filesystem\+\_\+options\+\_\+t}} options, const void $\ast$data)
+\begin{DoxyCompactList}\small\item\em Mounts a file system instance at the specified target path. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__FileSystemTypesAndMount_ga27af6440b4ef795576c94e870c5d997f}{mount\+\_\+and\+\_\+make\+\_\+target\+\_\+path}} (const char $\ast$source, const char $\ast$target, const char $\ast$filesystemtype, \mbox{\hyperlink{group__FileSystemTypesAndMount_gabb3a23ee6b6e7aacb719a1a81716af7a}{rtems\+\_\+filesystem\+\_\+options\+\_\+t}} options, const void $\ast$data)
+\begin{DoxyCompactList}\small\item\em Mounts a file system and makes the {\itshape target} path. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__FileSystemTypesAndMount_ga27b530006418803c3888d8bfd1c3949a}{rtems\+\_\+filesystem\+\_\+iterate}} (\mbox{\hyperlink{group__FileSystemTypesAndMount_gaa40c0b8e4e5abe60a08bead5b3c72241}{rtems\+\_\+per\+\_\+filesystem\+\_\+routine}} routine, void $\ast$\mbox{\hyperlink{structroutine__arg}{routine\+\_\+arg}})
+\begin{DoxyCompactList}\small\item\em Iterates over all file system types. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__FileSystemTypesAndMount_ga0b6051a3ebc57b6b7c37bcfa2132b66f}{rtems\+\_\+filesystem\+\_\+mount\+\_\+iterate}} (\mbox{\hyperlink{group__FileSystemTypesAndMount_ga84a7a5cd36614b906e1c485224beb686}{rtems\+\_\+filesystem\+\_\+mt\+\_\+entry\+\_\+visitor}} visitor, void $\ast$visitor\+\_\+arg)
+\begin{DoxyCompactList}\small\item\em Iterates over all file system mount entries. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const \mbox{\hyperlink{structrtems__filesystem__table__t}{rtems\+\_\+filesystem\+\_\+table\+\_\+t}} \mbox{\hyperlink{group__FileSystemTypesAndMount_ga752ec6b29e7d936b663d74eff727f0ca}{rtems\+\_\+filesystem\+\_\+table}} \mbox{[}$\,$\mbox{]}
+\begin{DoxyCompactList}\small\item\em Static table of file systems. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__FileSystemTypesAndMount_ga9297e0ca02f513014e2f71c5d919a0a2}\label{group__FileSystemTypesAndMount_ga9297e0ca02f513014e2f71c5d919a0a2}} 
+\mbox{\hyperlink{unionChain__Control}{rtems\+\_\+chain\+\_\+control}} {\bfseries rtems\+\_\+filesystem\+\_\+mount\+\_\+table}
+\item 
+\mbox{\Hypertarget{group__FileSystemTypesAndMount_ga37d0fc1653797a1c833bb0f2f3615acd}\label{group__FileSystemTypesAndMount_ga37d0fc1653797a1c833bb0f2f3615acd}} 
+const \mbox{\hyperlink{structrtems__filesystem__mount__configuration}{rtems\+\_\+filesystem\+\_\+mount\+\_\+configuration}} {\bfseries rtems\+\_\+filesystem\+\_\+root\+\_\+configuration}
+\end{DoxyCompactItemize}
+\subsection*{File System Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{group__FileSystemTypesAndMount_ga2d3e51f948d15fca2149a164ced80c82}\label{group__FileSystemTypesAndMount_ga2d3e51f948d15fca2149a164ced80c82}} 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+F\+I\+L\+E\+S\+Y\+S\+T\+E\+M\+\_\+\+T\+Y\+P\+E\+\_\+\+I\+M\+FS}~\char`\"{}imfs\char`\"{}
+\item 
+\mbox{\Hypertarget{group__FileSystemTypesAndMount_gad37d5c10b7269c04afd547110fd8eba2}\label{group__FileSystemTypesAndMount_gad37d5c10b7269c04afd547110fd8eba2}} 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+F\+I\+L\+E\+S\+Y\+S\+T\+E\+M\+\_\+\+T\+Y\+P\+E\+\_\+\+F\+T\+P\+FS}~\char`\"{}ftpfs\char`\"{}
+\item 
+\mbox{\Hypertarget{group__FileSystemTypesAndMount_gabec56985b669ea652cbe5930188073bf}\label{group__FileSystemTypesAndMount_gabec56985b669ea652cbe5930188073bf}} 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+F\+I\+L\+E\+S\+Y\+S\+T\+E\+M\+\_\+\+T\+Y\+P\+E\+\_\+\+T\+F\+T\+P\+FS}~\char`\"{}tftpfs\char`\"{}
+\item 
+\mbox{\Hypertarget{group__FileSystemTypesAndMount_gab8c15c488fb84b23c34d3353e13af1c7}\label{group__FileSystemTypesAndMount_gab8c15c488fb84b23c34d3353e13af1c7}} 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+F\+I\+L\+E\+S\+Y\+S\+T\+E\+M\+\_\+\+T\+Y\+P\+E\+\_\+\+N\+FS}~\char`\"{}nfs\char`\"{}
+\item 
+\mbox{\Hypertarget{group__FileSystemTypesAndMount_ga9ae53861e6e6636d6e5781fa56e54403}\label{group__FileSystemTypesAndMount_ga9ae53861e6e6636d6e5781fa56e54403}} 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+F\+I\+L\+E\+S\+Y\+S\+T\+E\+M\+\_\+\+T\+Y\+P\+E\+\_\+\+D\+O\+S\+FS}~\char`\"{}dosfs\char`\"{}
+\item 
+\mbox{\Hypertarget{group__FileSystemTypesAndMount_gaebc2a1717f0c19c906e781c57882e587}\label{group__FileSystemTypesAndMount_gaebc2a1717f0c19c906e781c57882e587}} 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+F\+I\+L\+E\+S\+Y\+S\+T\+E\+M\+\_\+\+T\+Y\+P\+E\+\_\+\+R\+FS}~\char`\"{}rfs\char`\"{}
+\item 
+\mbox{\Hypertarget{group__FileSystemTypesAndMount_ga1af8f3b805f43646a212f62c1bdd43be}\label{group__FileSystemTypesAndMount_ga1af8f3b805f43646a212f62c1bdd43be}} 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+F\+I\+L\+E\+S\+Y\+S\+T\+E\+M\+\_\+\+T\+Y\+P\+E\+\_\+\+J\+F\+F\+S2}~\char`\"{}jffs2\char`\"{}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+File system types and mount. 
+
+
+
+\subsection{Typedef Documentation}
+\mbox{\Hypertarget{group__FileSystemTypesAndMount_ga84a7a5cd36614b906e1c485224beb686}\label{group__FileSystemTypesAndMount_ga84a7a5cd36614b906e1c485224beb686}} 
+\index{File System Types and Mount@{File System Types and Mount}!rtems\_filesystem\_mt\_entry\_visitor@{rtems\_filesystem\_mt\_entry\_visitor}}
+\index{rtems\_filesystem\_mt\_entry\_visitor@{rtems\_filesystem\_mt\_entry\_visitor}!File System Types and Mount@{File System Types and Mount}}
+\subsubsection{\texorpdfstring{rtems\_filesystem\_mt\_entry\_visitor}{rtems\_filesystem\_mt\_entry\_visitor}}
+{\footnotesize\ttfamily typedef bool($\ast$ rtems\+\_\+filesystem\+\_\+mt\+\_\+entry\+\_\+visitor) (const \mbox{\hyperlink{structrtems__filesystem__mount__table__entry__tt}{rtems\+\_\+filesystem\+\_\+mount\+\_\+table\+\_\+entry\+\_\+t}} $\ast$mt\+\_\+entry, void $\ast$arg)}
+
+
+
+Mount table entry visitor. 
+
+
+\begin{DoxyRetVals}{Return values}
+{\em true} & Stop the iteration. \\
+\hline
+{\em false} & Continue the iteration.\\
+\hline
+\end{DoxyRetVals}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{group__FileSystemTypesAndMount_ga0b6051a3ebc57b6b7c37bcfa2132b66f}{rtems\+\_\+filesystem\+\_\+mount\+\_\+iterate()}}. 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{group__FileSystemTypesAndMount_gaa40c0b8e4e5abe60a08bead5b3c72241}\label{group__FileSystemTypesAndMount_gaa40c0b8e4e5abe60a08bead5b3c72241}} 
+\index{File System Types and Mount@{File System Types and Mount}!rtems\_per\_filesystem\_routine@{rtems\_per\_filesystem\_routine}}
+\index{rtems\_per\_filesystem\_routine@{rtems\_per\_filesystem\_routine}!File System Types and Mount@{File System Types and Mount}}
+\subsubsection{\texorpdfstring{rtems\_per\_filesystem\_routine}{rtems\_per\_filesystem\_routine}}
+{\footnotesize\ttfamily typedef bool($\ast$ rtems\+\_\+per\+\_\+filesystem\+\_\+routine) (const \mbox{\hyperlink{structrtems__filesystem__table__t}{rtems\+\_\+filesystem\+\_\+table\+\_\+t}} $\ast$fs\+\_\+entry, void $\ast$arg)}
+
+
+
+Per file system type routine. 
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{group__FileSystemTypesAndMount_ga27b530006418803c3888d8bfd1c3949a}{rtems\+\_\+filesystem\+\_\+iterate()}}.
+\end{DoxySeeAlso}
+
+\begin{DoxyRetVals}{Return values}
+{\em true} & Stop the iteration. \\
+\hline
+{\em false} & Continue the iteration. \\
+\hline
+\end{DoxyRetVals}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{group__FileSystemTypesAndMount_gaf3c1bed49bb0f3dec88d330b4f88d48b}\label{group__FileSystemTypesAndMount_gaf3c1bed49bb0f3dec88d330b4f88d48b}} 
+\index{File System Types and Mount@{File System Types and Mount}!mount@{mount}}
+\index{mount@{mount}!File System Types and Mount@{File System Types and Mount}}
+\subsubsection{\texorpdfstring{mount()}{mount()}}
+{\footnotesize\ttfamily int mount (\begin{DoxyParamCaption}\item[{const char $\ast$}]{source,  }\item[{const char $\ast$}]{target,  }\item[{const char $\ast$}]{filesystemtype,  }\item[{\mbox{\hyperlink{group__FileSystemTypesAndMount_gabb3a23ee6b6e7aacb719a1a81716af7a}{rtems\+\_\+filesystem\+\_\+options\+\_\+t}}}]{options,  }\item[{const void $\ast$}]{data }\end{DoxyParamCaption})}
+
+
+
+Mounts a file system instance at the specified target path. 
+
+To mount a standard file system instance one of the following defines should be used to select the file system type
+\begin{DoxyItemize}
+\item R\+T\+E\+M\+S\+\_\+\+F\+I\+L\+E\+S\+Y\+S\+T\+E\+M\+\_\+\+T\+Y\+P\+E\+\_\+\+D\+O\+S\+FS,
+\item R\+T\+E\+M\+S\+\_\+\+F\+I\+L\+E\+S\+Y\+S\+T\+E\+M\+\_\+\+T\+Y\+P\+E\+\_\+\+F\+T\+P\+FS,
+\item R\+T\+E\+M\+S\+\_\+\+F\+I\+L\+E\+S\+Y\+S\+T\+E\+M\+\_\+\+T\+Y\+P\+E\+\_\+\+I\+M\+FS,
+\item R\+T\+E\+M\+S\+\_\+\+F\+I\+L\+E\+S\+Y\+S\+T\+E\+M\+\_\+\+T\+Y\+P\+E\+\_\+\+J\+F\+F\+S2,
+\item R\+T\+E\+M\+S\+\_\+\+F\+I\+L\+E\+S\+Y\+S\+T\+E\+M\+\_\+\+T\+Y\+P\+E\+\_\+\+N\+FS,
+\item R\+T\+E\+M\+S\+\_\+\+F\+I\+L\+E\+S\+Y\+S\+T\+E\+M\+\_\+\+T\+Y\+P\+E\+\_\+\+R\+FS, or
+\item R\+T\+E\+M\+S\+\_\+\+F\+I\+L\+E\+S\+Y\+S\+T\+E\+M\+\_\+\+T\+Y\+P\+E\+\_\+\+T\+F\+T\+P\+FS.
+\end{DoxyItemize}
+
+Only configured or registered file system types are available. You can add file system types to your application configuration with the following configuration options
+\begin{DoxyItemize}
+\item C\+O\+N\+F\+I\+G\+U\+R\+E\+\_\+\+F\+I\+L\+E\+S\+Y\+S\+T\+E\+M\+\_\+\+D\+O\+S\+FS,
+\item C\+O\+N\+F\+I\+G\+U\+R\+E\+\_\+\+F\+I\+L\+E\+S\+Y\+S\+T\+E\+M\+\_\+\+F\+T\+P\+FS,
+\item C\+O\+N\+F\+I\+G\+U\+R\+E\+\_\+\+F\+I\+L\+E\+S\+Y\+S\+T\+E\+M\+\_\+\+I\+M\+FS,
+\item C\+O\+N\+F\+I\+G\+U\+R\+E\+\_\+\+F\+I\+L\+E\+S\+Y\+S\+T\+E\+M\+\_\+\+J\+F\+F\+S2,
+\item C\+O\+N\+F\+I\+G\+U\+R\+E\+\_\+\+F\+I\+L\+E\+S\+Y\+S\+T\+E\+M\+\_\+\+N\+FS,
+\item C\+O\+N\+F\+I\+G\+U\+R\+E\+\_\+\+F\+I\+L\+E\+S\+Y\+S\+T\+E\+M\+\_\+\+R\+FS, and
+\item C\+O\+N\+F\+I\+G\+U\+R\+E\+\_\+\+F\+I\+L\+E\+S\+Y\+S\+T\+E\+M\+\_\+\+T\+F\+T\+P\+FS.
+\end{DoxyItemize}
+
+In addition to these configuration options file system types can be registered with \mbox{\hyperlink{group__FileSystemTypesAndMount_gaac7f1c7fe78f3acc145272809cef62a2}{rtems\+\_\+filesystem\+\_\+register()}}.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em source} & The source parameter will be forwarded to the file system initialization handler. Usually the source is a path to the corresponding device file, or {\ttfamily N\+U\+LL} in case the file system does not use a device file. \\
+\hline
+\mbox{\texttt{ in}}  & {\em target} & The target path must lead to an existing directory, or must be {\ttfamily N\+U\+LL}. In case the target is {\ttfamily N\+U\+LL}, the root file system will be mounted. \\
+\hline
+\mbox{\texttt{ in}}  & {\em filesystemtype} & This string selects the file system type. \\
+\hline
+\mbox{\texttt{ in}}  & {\em options} & The options specify if the file system instance allows read-\/write or read-\/only access. \\
+\hline
+\mbox{\texttt{ in}}  & {\em data} & The data parameter will be forwarded to the file system initialization handler. It can be used to pass file system specific mount options. The data structure for mount options is file system specific. See also in the corresponding file system documentation.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em 0} & Successful operation. \\
+\hline
+{\em -\/1} & An error occurred. The {\ttfamily errno} indicates the error.\\
+\hline
+\end{DoxyRetVals}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{group__FileSystemTypesAndMount_gaac7f1c7fe78f3acc145272809cef62a2}{rtems\+\_\+filesystem\+\_\+register()}}, \mbox{\hyperlink{group__FileSystemTypesAndMount_ga27af6440b4ef795576c94e870c5d997f}{mount\+\_\+and\+\_\+make\+\_\+target\+\_\+path()}}, \mbox{\hyperlink{group__DOSFS}{F\+AT Filesystem Support}} and \mbox{\hyperlink{group__JFFS2}{Journalling Flash File System Version 2 (J\+F\+F\+S2) Support}}. 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{group__FileSystemTypesAndMount_ga27af6440b4ef795576c94e870c5d997f}\label{group__FileSystemTypesAndMount_ga27af6440b4ef795576c94e870c5d997f}} 
+\index{File System Types and Mount@{File System Types and Mount}!mount\_and\_make\_target\_path@{mount\_and\_make\_target\_path}}
+\index{mount\_and\_make\_target\_path@{mount\_and\_make\_target\_path}!File System Types and Mount@{File System Types and Mount}}
+\subsubsection{\texorpdfstring{mount\_and\_make\_target\_path()}{mount\_and\_make\_target\_path()}}
+{\footnotesize\ttfamily int mount\+\_\+and\+\_\+make\+\_\+target\+\_\+path (\begin{DoxyParamCaption}\item[{const char $\ast$}]{source,  }\item[{const char $\ast$}]{target,  }\item[{const char $\ast$}]{filesystemtype,  }\item[{\mbox{\hyperlink{group__FileSystemTypesAndMount_gabb3a23ee6b6e7aacb719a1a81716af7a}{rtems\+\_\+filesystem\+\_\+options\+\_\+t}}}]{options,  }\item[{const void $\ast$}]{data }\end{DoxyParamCaption})}
+
+
+
+Mounts a file system and makes the {\itshape target} path. 
+
+The {\itshape target} path will be created with \mbox{\hyperlink{group__LibIO_gad15bb6c81ba9ed35ec75103d13bde734}{rtems\+\_\+mkdir()}} and must not be {\ttfamily N\+U\+LL}.
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{group__FileSystemTypesAndMount_gaf3c1bed49bb0f3dec88d330b4f88d48b}{mount()}}.
+\end{DoxySeeAlso}
+
+\begin{DoxyRetVals}{Return values}
+{\em 0} & Successful operation. \\
+\hline
+{\em -\/1} & An error occurred. The {\ttfamily errno} indicates the error. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{group__FileSystemTypesAndMount_ga27b530006418803c3888d8bfd1c3949a}\label{group__FileSystemTypesAndMount_ga27b530006418803c3888d8bfd1c3949a}} 
+\index{File System Types and Mount@{File System Types and Mount}!rtems\_filesystem\_iterate@{rtems\_filesystem\_iterate}}
+\index{rtems\_filesystem\_iterate@{rtems\_filesystem\_iterate}!File System Types and Mount@{File System Types and Mount}}
+\subsubsection{\texorpdfstring{rtems\_filesystem\_iterate()}{rtems\_filesystem\_iterate()}}
+{\footnotesize\ttfamily bool rtems\+\_\+filesystem\+\_\+iterate (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__FileSystemTypesAndMount_gaa40c0b8e4e5abe60a08bead5b3c72241}{rtems\+\_\+per\+\_\+filesystem\+\_\+routine}}}]{routine,  }\item[{void $\ast$}]{routine\+\_\+arg }\end{DoxyParamCaption})}
+
+
+
+Iterates over all file system types. 
+
+For each file system type the {\itshape routine} will be called with the entry and the {\itshape \mbox{\hyperlink{structroutine__arg}{routine\+\_\+arg}}} parameter.
+
+Do not register or unregister file system types in {\itshape routine}.
+
+The iteration is protected by the \mbox{\hyperlink{structIO}{IO}} library mutex.
+
+
+\begin{DoxyRetVals}{Return values}
+{\em true} & Iteration stopped due to {\itshape routine} return status. \\
+\hline
+{\em false} & Iteration through all entries. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{group__FileSystemTypesAndMount_ga0b6051a3ebc57b6b7c37bcfa2132b66f}\label{group__FileSystemTypesAndMount_ga0b6051a3ebc57b6b7c37bcfa2132b66f}} 
+\index{File System Types and Mount@{File System Types and Mount}!rtems\_filesystem\_mount\_iterate@{rtems\_filesystem\_mount\_iterate}}
+\index{rtems\_filesystem\_mount\_iterate@{rtems\_filesystem\_mount\_iterate}!File System Types and Mount@{File System Types and Mount}}
+\subsubsection{\texorpdfstring{rtems\_filesystem\_mount\_iterate()}{rtems\_filesystem\_mount\_iterate()}}
+{\footnotesize\ttfamily bool rtems\+\_\+filesystem\+\_\+mount\+\_\+iterate (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__FileSystemTypesAndMount_ga84a7a5cd36614b906e1c485224beb686}{rtems\+\_\+filesystem\+\_\+mt\+\_\+entry\+\_\+visitor}}}]{visitor,  }\item[{void $\ast$}]{visitor\+\_\+arg }\end{DoxyParamCaption})}
+
+
+
+Iterates over all file system mount entries. 
+
+The iteration is protected by the \mbox{\hyperlink{structIO}{IO}} library mutex. Do not mount or unmount file systems in the visitor function.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em visitor} & For each file system mount entry the visitor function will be called with the entry and the visitor argument as parameters. \\
+\hline
+\mbox{\texttt{ in}}  & {\em visitor\+\_\+arg} & The second parameter for the visitor function.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em true} & Iteration stopped due to visitor function return status. \\
+\hline
+{\em false} & Iteration through all entries. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{group__FileSystemTypesAndMount_gaac7f1c7fe78f3acc145272809cef62a2}\label{group__FileSystemTypesAndMount_gaac7f1c7fe78f3acc145272809cef62a2}} 
+\index{File System Types and Mount@{File System Types and Mount}!rtems\_filesystem\_register@{rtems\_filesystem\_register}}
+\index{rtems\_filesystem\_register@{rtems\_filesystem\_register}!File System Types and Mount@{File System Types and Mount}}
+\subsubsection{\texorpdfstring{rtems\_filesystem\_register()}{rtems\_filesystem\_register()}}
+{\footnotesize\ttfamily int rtems\+\_\+filesystem\+\_\+register (\begin{DoxyParamCaption}\item[{const char $\ast$}]{type,  }\item[{\mbox{\hyperlink{group__LibIOFSOps_gab86f790d75005100fc4d847f7cdc8aef}{rtems\+\_\+filesystem\+\_\+fsmount\+\_\+me\+\_\+t}}}]{mount\+\_\+h }\end{DoxyParamCaption})}
+
+
+
+Registers a file system {\itshape type}. 
+
+The {\itshape mount\+\_\+h} handler will be used to mount a file system of this {\itshape type}.
+
+
+\begin{DoxyRetVals}{Return values}
+{\em 0} & Successful operation. \\
+\hline
+{\em -\/1} & An error occurred. The {\ttfamily errno} indicates the error. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{group__FileSystemTypesAndMount_ga4e658123f1059ea0684904df0ddb8d67}\label{group__FileSystemTypesAndMount_ga4e658123f1059ea0684904df0ddb8d67}} 
+\index{File System Types and Mount@{File System Types and Mount}!rtems\_filesystem\_unregister@{rtems\_filesystem\_unregister}}
+\index{rtems\_filesystem\_unregister@{rtems\_filesystem\_unregister}!File System Types and Mount@{File System Types and Mount}}
+\subsubsection{\texorpdfstring{rtems\_filesystem\_unregister()}{rtems\_filesystem\_unregister()}}
+{\footnotesize\ttfamily int rtems\+\_\+filesystem\+\_\+unregister (\begin{DoxyParamCaption}\item[{const char $\ast$}]{type }\end{DoxyParamCaption})}
+
+
+
+Unregisters a file system {\itshape type}. 
+
+
+\begin{DoxyRetVals}{Return values}
+{\em 0} & Successful operation. \\
+\hline
+{\em -\/1} & An error occurred. The {\ttfamily errno} indicates the error. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{group__FileSystemTypesAndMount_ga4c8f87fc991f94992e0da1f87243f9e0}\label{group__FileSystemTypesAndMount_ga4c8f87fc991f94992e0da1f87243f9e0}} 
+\index{File System Types and Mount@{File System Types and Mount}!unmount@{unmount}}
+\index{unmount@{unmount}!File System Types and Mount@{File System Types and Mount}}
+\subsubsection{\texorpdfstring{unmount()}{unmount()}}
+{\footnotesize\ttfamily int unmount (\begin{DoxyParamCaption}\item[{const char $\ast$}]{path }\end{DoxyParamCaption})}
+
+
+
+Unmounts the file system instance at the specified mount path. 
+
+The function waits for the unmount process completion. In case the calling thread uses resources of the unmounted file system the function may never return. In case the calling thread has its root or current directory in the unmounted file system the function returns with an error status and errno is set to E\+B\+U\+SY.
+
+The unmount process completion notification uses the transient event. It is a fatal error to terminate the calling thread while waiting for this event.
+
+A concurrent unmount request for the same file system instance has unpredictable effects.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em mount\+\_\+path} & The path to the file system instance mount point.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em 0} & Successful operation. \\
+\hline
+{\em -\/1} & An error occurred. The {\ttfamily errno} indicates the error.\\
+\hline
+\end{DoxyRetVals}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{group__ClassicEventTransient}{Transient Event}}.
+\end{DoxySeeAlso}
+This routine is not defined in the P\+O\+S\+IX 1003.\+1b standard but in some form is supported on most U\+N\+IX and P\+O\+S\+IX systems. This routine is necessary to mount instantiations of a file system into the file system name space. 
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{group__FileSystemTypesAndMount_ga752ec6b29e7d936b663d74eff727f0ca}\label{group__FileSystemTypesAndMount_ga752ec6b29e7d936b663d74eff727f0ca}} 
+\index{File System Types and Mount@{File System Types and Mount}!rtems\_filesystem\_table@{rtems\_filesystem\_table}}
+\index{rtems\_filesystem\_table@{rtems\_filesystem\_table}!File System Types and Mount@{File System Types and Mount}}
+\subsubsection{\texorpdfstring{rtems\_filesystem\_table}{rtems\_filesystem\_table}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{structrtems__filesystem__table__t}{rtems\+\_\+filesystem\+\_\+table\+\_\+t}} rtems\+\_\+filesystem\+\_\+table\mbox{[}$\,$\mbox{]}}
+
+
+
+Static table of file systems. 
+
+Externally defined by \mbox{\hyperlink{confdefs_8h}{confdefs.\+h}} or the user. 

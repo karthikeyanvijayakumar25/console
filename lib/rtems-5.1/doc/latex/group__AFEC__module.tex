@@ -1,0 +1,25 @@
+\hypertarget{group__AFEC__module}{}\section{Working with A\+FE}
+\label{group__AFEC__module}\index{Working with AFE@{Working with AFE}}
+The A\+FE driver provides the interface to configure and use the A\+FE peripheral. ~\newline
+ It converts the analog input to digital format. The converted result could be 12bit or 10bit. The A\+FE supports up to 16 analog lines.
+
+To Enable a A\+FE conversion,the user has to follow these few steps\+: 
+\begin{DoxyItemize}
+\item Select an appropriate reference voltage on A\+D\+V\+R\+EF  
+\item Configure the A\+FE according to its requirements and special needs,which could be broken down into several parts\+:
+\begin{DoxyEnumerate}
+\item Select the resolution by setting or clearing A\+F\+E\+C\+\_\+\+M\+R\+\_\+\+L\+O\+W\+R\+ES bit in A\+F\+E\+C\+\_\+\+MR (Mode Register)
+\item Set A\+FE clock by setting A\+F\+E\+C\+\_\+\+M\+R\+\_\+\+P\+R\+E\+S\+C\+AL bits in A\+F\+E\+C\+\_\+\+MR, the clock is calculated with A\+F\+E\+Clock = M\+CK / ((P\+R\+E\+S\+C\+A\+L+1) $\ast$ 2)
+\item Set Startup Time,Tracking Clock cycles and Transfer Clock respectively in A\+F\+E\+C\+\_\+\+MR.  
+\end{DoxyEnumerate}
+\item Start conversion by setting A\+F\+E\+C\+\_\+\+C\+R\+\_\+\+S\+T\+A\+RT in A\+F\+E\+C\+\_\+\+CR.  
+\end{DoxyItemize}
+
+For more accurate information, please look at the A\+FE section of the Datasheet.
+
+Related files \+:~\newline
+ afec.\+c~\newline
+ afec.\+h~\newline
+ afe\+\_\+dma.\+c~\newline
+ afe\+\_\+dma.\+h~\newline
+ 

@@ -1,0 +1,79 @@
+\hypertarget{structHeap__Block}{}\section{Heap\+\_\+\+Block Struct Reference}
+\label{structHeap__Block}\index{Heap\_Block@{Heap\_Block}}
+
+
+Description for free or used blocks.  
+
+
+
+
+{\ttfamily \#include $<$heap.\+h$>$}
+
+\subsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+uintptr\+\_\+t \mbox{\hyperlink{structHeap__Block_ac19e44024599b1042cc628ccfd3abf53}{prev\+\_\+size}}
+\begin{DoxyCompactList}\small\item\em Size of the previous block or part of the allocated area of the previous block. \end{DoxyCompactList}\item 
+uintptr\+\_\+t \mbox{\hyperlink{structHeap__Block_ae6f771ed25f18d98146417d7cf38d69c}{size\+\_\+and\+\_\+flag}}
+\begin{DoxyCompactList}\small\item\em Contains the size of the current block and a flag which indicates if the previous block is free or used. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structHeap__Block}{Heap\+\_\+\+Block}} $\ast$ \mbox{\hyperlink{structHeap__Block_aec0a85358dfd11d8b7a3878d30977d6d}{next}}
+\begin{DoxyCompactList}\small\item\em Pointer to the next free block or part of the allocated area. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structHeap__Block}{Heap\+\_\+\+Block}} $\ast$ \mbox{\hyperlink{structHeap__Block_a76e15fe01db6f3e3e7f206a744280828}{prev}}
+\begin{DoxyCompactList}\small\item\em Pointer to the previous free block or part of the allocated area. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Description for free or used blocks. 
+
+\subsection{Field Documentation}
+\mbox{\Hypertarget{structHeap__Block_aec0a85358dfd11d8b7a3878d30977d6d}\label{structHeap__Block_aec0a85358dfd11d8b7a3878d30977d6d}} 
+\index{Heap\_Block@{Heap\_Block}!next@{next}}
+\index{next@{next}!Heap\_Block@{Heap\_Block}}
+\subsubsection{\texorpdfstring{next}{next}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structHeap__Block}{Heap\+\_\+\+Block}}$\ast$ Heap\+\_\+\+Block\+::next}
+
+
+
+Pointer to the next free block or part of the allocated area. 
+
+This field is page size aligned and begins of the allocated area in case the block is used.
+
+This field is only valid if the block is free and thus part of the free block list. \mbox{\Hypertarget{structHeap__Block_a76e15fe01db6f3e3e7f206a744280828}\label{structHeap__Block_a76e15fe01db6f3e3e7f206a744280828}} 
+\index{Heap\_Block@{Heap\_Block}!prev@{prev}}
+\index{prev@{prev}!Heap\_Block@{Heap\_Block}}
+\subsubsection{\texorpdfstring{prev}{prev}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structHeap__Block}{Heap\+\_\+\+Block}}$\ast$ Heap\+\_\+\+Block\+::prev}
+
+
+
+Pointer to the previous free block or part of the allocated area. 
+
+This field is only valid if the block is free and thus part of the free block list. \mbox{\Hypertarget{structHeap__Block_ac19e44024599b1042cc628ccfd3abf53}\label{structHeap__Block_ac19e44024599b1042cc628ccfd3abf53}} 
+\index{Heap\_Block@{Heap\_Block}!prev\_size@{prev\_size}}
+\index{prev\_size@{prev\_size}!Heap\_Block@{Heap\_Block}}
+\subsubsection{\texorpdfstring{prev\_size}{prev\_size}}
+{\footnotesize\ttfamily uintptr\+\_\+t Heap\+\_\+\+Block\+::prev\+\_\+size}
+
+
+
+Size of the previous block or part of the allocated area of the previous block. 
+
+This field is only valid if the previous block is free. This case is indicated by a cleared {\ttfamily H\+E\+A\+P\+\_\+\+P\+R\+E\+V\+\_\+\+B\+L\+O\+C\+K\+\_\+\+U\+S\+ED} flag in the {\itshape size\+\_\+and\+\_\+flag} field of the current block.
+
+In a used block only the {\itshape size\+\_\+and\+\_\+flag} field needs to be valid. The {\itshape prev\+\_\+size} field of the current block is maintained by the previous block. The current block can use the {\itshape prev\+\_\+size} field in the next block for allocation. \mbox{\Hypertarget{structHeap__Block_ae6f771ed25f18d98146417d7cf38d69c}\label{structHeap__Block_ae6f771ed25f18d98146417d7cf38d69c}} 
+\index{Heap\_Block@{Heap\_Block}!size\_and\_flag@{size\_and\_flag}}
+\index{size\_and\_flag@{size\_and\_flag}!Heap\_Block@{Heap\_Block}}
+\subsubsection{\texorpdfstring{size\_and\_flag}{size\_and\_flag}}
+{\footnotesize\ttfamily uintptr\+\_\+t Heap\+\_\+\+Block\+::size\+\_\+and\+\_\+flag}
+
+
+
+Contains the size of the current block and a flag which indicates if the previous block is free or used. 
+
+If the flag {\ttfamily H\+E\+A\+P\+\_\+\+P\+R\+E\+V\+\_\+\+B\+L\+O\+C\+K\+\_\+\+U\+S\+ED} is set, then the previous block is used, otherwise the previous block is free. A used previous block may claim the {\itshape prev\+\_\+size} field for allocation. This trick allows to decrease the overhead in the used blocks by the size of the {\itshape prev\+\_\+size} field. As sizes are required to be multiples of two, the least significant bits would be always zero. We use this bit to store the flag.
+
+This field is always valid. 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+cpukit/include/rtems/score/\mbox{\hyperlink{heap_8h}{heap.\+h}}\end{DoxyCompactItemize}

@@ -1,0 +1,101 @@
+\hypertarget{afe__dma_8h}{}\section{bsps/arm/atsam/include/libchip/include/afe\+\_\+dma.h File Reference}
+\label{afe__dma_8h}\index{bsps/arm/atsam/include/libchip/include/afe\_dma.h@{bsps/arm/atsam/include/libchip/include/afe\_dma.h}}
+{\ttfamily \#include \char`\"{}chip.\+h\char`\"{}}\newline
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structAfeCmd}{Afe\+Cmd}}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{structSpi}{Spi}} Transfer Request prepared by the application upper layer. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structAfeDma}{Afe\+Dma}}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{afe__dma_8h_aadcafe8f55101bcea5e49767f70e876d}\label{afe__dma_8h_aadcafe8f55101bcea5e49767f70e876d}} 
+\#define {\bfseries A\+F\+E\+\_\+\+OK}~0
+\item 
+\mbox{\Hypertarget{afe__dma_8h_afaf537a52b148e81dba315fdb2f5f689}\label{afe__dma_8h_afaf537a52b148e81dba315fdb2f5f689}} 
+\#define {\bfseries A\+F\+E\+\_\+\+E\+R\+R\+OR}~1
+\item 
+\mbox{\Hypertarget{afe__dma_8h_a87131226f80e95f9ada2e7c4659b85a6}\label{afe__dma_8h_a87131226f80e95f9ada2e7c4659b85a6}} 
+\#define {\bfseries A\+F\+E\+\_\+\+E\+R\+R\+O\+R\+\_\+\+L\+O\+CK}~2
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef void($\ast$ \mbox{\hyperlink{afe__dma_8h_a8ff91157e395d9c195d32871d42f01e8}{Afe\+Callback}}) (uint8\+\_\+t, void $\ast$)
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{afe__dma_8h_a30193c88f762157145fc43e13dcde338}{Afe\+\_\+\+Configure\+Dma}} (\mbox{\hyperlink{structAfeDma}{Afe\+Dma}} $\ast$p\+Afed, \mbox{\hyperlink{structAfec}{Afec}} $\ast$p\+Afe\+Hw, uint8\+\_\+t Afe\+Id, \mbox{\hyperlink{group__dmad__structs_gaf2c13151514615a6beb35c0d868a5053}{s\+Xdmad}} $\ast$p\+Xdmad)
+\begin{DoxyCompactList}\small\item\em Initializes the \mbox{\hyperlink{structAfeDma}{Afe\+Dma}} structure and the corresponding A\+FE \& D\+MA . hardware select value. The driver will uses D\+MA channel 0 for RX . The D\+MA channels are freed automatically when no D\+MA command processing. \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{afe__dma_8h_a7fc901cb910a6298837d57892790161c}{Afe\+\_\+\+Send\+Data}} (\mbox{\hyperlink{structAfeDma}{Afe\+Dma}} $\ast$p\+Afed, \mbox{\hyperlink{structAfeCmd}{Afe\+Cmd}} $\ast$p\+Command)
+\begin{DoxyCompactList}\small\item\em Starts a A\+FE transfer. This is a non blocking function. It will return as soon as the transfer is started. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\hypertarget{group__RTEMSBSPsARM_Purpose}{}\subsection{Purpose}\label{group__RTEMSBSPsARM_Purpose}
+Interface for configuration the Analog-\/to-\/\+Digital Converter (A\+F\+EC) peripheral.\hypertarget{group__RTEMSBSPsARM_Usage}{}\subsection{Usage}\label{group__RTEMSBSPsARM_Usage}
+
+\begin{DoxyEnumerate}
+\item Configurate the pins for A\+F\+EC.
+\item Initialize the A\+F\+EC with \mbox{\hyperlink{afec_8c_a950774d7e0aa6c4b616f9147fd048573}{A\+F\+E\+C\+\_\+\+Initialize()}}.
+\item Set A\+F\+EC clock and timing with \mbox{\hyperlink{afec_8c_a10a2c58fdd4b07a92f5ab1cd81618b94}{A\+F\+E\+C\+\_\+\+Set\+Clock()}} and \mbox{\hyperlink{afec_8c_aae7be16befa0767998beeda7a4be3a3a}{A\+F\+E\+C\+\_\+\+Set\+Timing()}}.
+\item Select the active channel using A\+F\+E\+C\+\_\+\+Enable\+Channel().
+\item Start the conversion with A\+F\+E\+C\+\_\+\+Start\+Conversion().
+\item Wait the end of the conversion by polling status with A\+F\+E\+C\+\_\+\+Get\+Status().
+\item Finally, get the converted data using \mbox{\hyperlink{afec_8c_a33c1496f945d6d89975f7d92a1529dc7}{A\+F\+E\+C\+\_\+\+Get\+Converted\+Data()}} or A\+F\+E\+C\+\_\+\+Get\+Last\+Converted\+Data(). 
+\end{DoxyEnumerate}
+
+\subsection{Typedef Documentation}
+\mbox{\Hypertarget{afe__dma_8h_a8ff91157e395d9c195d32871d42f01e8}\label{afe__dma_8h_a8ff91157e395d9c195d32871d42f01e8}} 
+\index{afe\_dma.h@{afe\_dma.h}!AfeCallback@{AfeCallback}}
+\index{AfeCallback@{AfeCallback}!afe\_dma.h@{afe\_dma.h}}
+\subsubsection{\texorpdfstring{AfeCallback}{AfeCallback}}
+{\footnotesize\ttfamily typedef void($\ast$ Afe\+Callback) (uint8\+\_\+t, void $\ast$)}
+
+A\+FE transfer complete callback. 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{afe__dma_8h_a30193c88f762157145fc43e13dcde338}\label{afe__dma_8h_a30193c88f762157145fc43e13dcde338}} 
+\index{afe\_dma.h@{afe\_dma.h}!Afe\_ConfigureDma@{Afe\_ConfigureDma}}
+\index{Afe\_ConfigureDma@{Afe\_ConfigureDma}!afe\_dma.h@{afe\_dma.h}}
+\subsubsection{\texorpdfstring{Afe\_ConfigureDma()}{Afe\_ConfigureDma()}}
+{\footnotesize\ttfamily uint32\+\_\+t Afe\+\_\+\+Configure\+Dma (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structAfeDma}{Afe\+Dma}} $\ast$}]{p\+Afed,  }\item[{\mbox{\hyperlink{structAfec}{Afec}} $\ast$}]{p\+Afe\+Hw,  }\item[{uint8\+\_\+t}]{Afe\+Id,  }\item[{\mbox{\hyperlink{group__dmad__structs_gaf2c13151514615a6beb35c0d868a5053}{s\+Xdmad}} $\ast$}]{p\+Xdmad }\end{DoxyParamCaption})}
+
+
+
+Initializes the \mbox{\hyperlink{structAfeDma}{Afe\+Dma}} structure and the corresponding A\+FE \& D\+MA . hardware select value. The driver will uses D\+MA channel 0 for RX . The D\+MA channels are freed automatically when no D\+MA command processing. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Afed} & Pointer to a \mbox{\hyperlink{structAfeDma}{Afe\+Dma}} instance. \\
+\hline
+{\em p\+Afe\+Hw} & Associated Afe peripheral. \\
+\hline
+{\em Afe\+Id} & Afe peripheral identifier. \\
+\hline
+{\em p\+Dmad} & Pointer to a Dmad instance. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{afe__dma_8h_a7fc901cb910a6298837d57892790161c}\label{afe__dma_8h_a7fc901cb910a6298837d57892790161c}} 
+\index{afe\_dma.h@{afe\_dma.h}!Afe\_SendData@{Afe\_SendData}}
+\index{Afe\_SendData@{Afe\_SendData}!afe\_dma.h@{afe\_dma.h}}
+\subsubsection{\texorpdfstring{Afe\_SendData()}{Afe\_SendData()}}
+{\footnotesize\ttfamily uint32\+\_\+t Afe\+\_\+\+Send\+Data (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structAfeDma}{Afe\+Dma}} $\ast$}]{p\+Afed,  }\item[{\mbox{\hyperlink{structAfeCmd}{Afe\+Cmd}} $\ast$}]{p\+Command }\end{DoxyParamCaption})}
+
+
+
+Starts a A\+FE transfer. This is a non blocking function. It will return as soon as the transfer is started. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Afed} & Pointer to a \mbox{\hyperlink{structAfeDma}{Afe\+Dma}} instance. \\
+\hline
+{\em p\+Command} & Pointer to the Afe command to execute. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if the transfer has been started successfully; otherwise returns A\+F\+E\+\_\+\+E\+R\+R\+O\+R\+\_\+\+L\+O\+CK is the driver is in use, or A\+F\+E\+\_\+\+E\+R\+R\+OR if the command is not valid. 
+\end{DoxyReturn}

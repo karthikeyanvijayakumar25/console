@@ -1,0 +1,60 @@
+\hypertarget{rwlockimpl_8h}{}\section{cpukit/include/rtems/posix/rwlockimpl.h File Reference}
+\label{rwlockimpl_8h}\index{cpukit/include/rtems/posix/rwlockimpl.h@{cpukit/include/rtems/posix/rwlockimpl.h}}
+
+
+Inlined Routines from the P\+O\+S\+IX R\+W\+Lock Manager.  
+
+
+{\ttfamily \#include $<$rtems/score/corerwlockimpl.\+h$>$}\newline
+{\ttfamily \#include $<$errno.\+h$>$}\newline
+{\ttfamily \#include $<$pthread.\+h$>$}\newline
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structPOSIX__RWLock__Control}{P\+O\+S\+I\+X\+\_\+\+R\+W\+Lock\+\_\+\+Control}}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{rwlockimpl_8h_ab9693ae14484e93b37e3217a46b2ce6c}\label{rwlockimpl_8h_ab9693ae14484e93b37e3217a46b2ce6c}} 
+\#define {\bfseries P\+O\+S\+I\+X\+\_\+\+R\+W\+L\+O\+C\+K\+\_\+\+M\+A\+G\+IC}~0x9621dabd\+UL
+\item 
+\#define {\bfseries P\+O\+S\+I\+X\+\_\+\+R\+W\+L\+O\+C\+K\+\_\+\+V\+A\+L\+I\+D\+A\+T\+E\+\_\+\+O\+B\+J\+E\+CT}(rw)
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{rwlockimpl_8h_a34a2ae0951ff22962eace9a2a0d8aa21}\label{rwlockimpl_8h_a34a2ae0951ff22962eace9a2a0d8aa21}} 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} \mbox{\hyperlink{structPOSIX__RWLock__Control}{P\+O\+S\+I\+X\+\_\+\+R\+W\+Lock\+\_\+\+Control}} $\ast$ {\bfseries \+\_\+\+P\+O\+S\+I\+X\+\_\+\+R\+W\+Lock\+\_\+\+Get} (pthread\+\_\+rwlock\+\_\+t $\ast$rwlock)
+\item 
+\mbox{\Hypertarget{rwlockimpl_8h_ab96441be2b09345d3151925c1170e455}\label{rwlockimpl_8h_ab96441be2b09345d3151925c1170e455}} 
+bool {\bfseries \+\_\+\+P\+O\+S\+I\+X\+\_\+\+R\+W\+Lock\+\_\+\+Auto\+\_\+initialization} (\mbox{\hyperlink{structPOSIX__RWLock__Control}{P\+O\+S\+I\+X\+\_\+\+R\+W\+Lock\+\_\+\+Control}} $\ast$the\+\_\+rwlock)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Inlined Routines from the P\+O\+S\+IX R\+W\+Lock Manager. 
+
+This file contains the static inlin implementation of the inlined routines from the P\+O\+S\+IX R\+W\+Lock Manager. 
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{rwlockimpl_8h_a7b666f8d3a01927e780d613e7cdd188a}\label{rwlockimpl_8h_a7b666f8d3a01927e780d613e7cdd188a}} 
+\index{rwlockimpl.h@{rwlockimpl.h}!POSIX\_RWLOCK\_VALIDATE\_OBJECT@{POSIX\_RWLOCK\_VALIDATE\_OBJECT}}
+\index{POSIX\_RWLOCK\_VALIDATE\_OBJECT@{POSIX\_RWLOCK\_VALIDATE\_OBJECT}!rwlockimpl.h@{rwlockimpl.h}}
+\subsubsection{\texorpdfstring{POSIX\_RWLOCK\_VALIDATE\_OBJECT}{POSIX\_RWLOCK\_VALIDATE\_OBJECT}}
+{\footnotesize\ttfamily \#define P\+O\+S\+I\+X\+\_\+\+R\+W\+L\+O\+C\+K\+\_\+\+V\+A\+L\+I\+D\+A\+T\+E\+\_\+\+O\+B\+J\+E\+CT(\begin{DoxyParamCaption}\item[{}]{rw }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do} \{ \(\backslash\)}
+\DoxyCodeLine{    if ( ( rw ) == \mbox{\hyperlink{bestcomm__api_8h_a872bb74de61c3689ccd5b41873fce42c}{NULL}} ) \{ \(\backslash\)}
+\DoxyCodeLine{      return EINVAL; \(\backslash\)}
+\DoxyCodeLine{    \} \(\backslash\)}
+\DoxyCodeLine{    if ( ( (uintptr\_t) ( rw ) \string^ POSIX\_RWLOCK\_MAGIC ) != ( rw )->flags ) \{ \(\backslash\)}
+\DoxyCodeLine{      if ( !\_POSIX\_RWLock\_Auto\_initialization( rw ) ) \{ \(\backslash\)}
+\DoxyCodeLine{        return EINVAL; \(\backslash\)}
+\DoxyCodeLine{      \} \(\backslash\)}
+\DoxyCodeLine{    \} \(\backslash\)}
+\DoxyCodeLine{  \} \textcolor{keywordflow}{while} ( 0 )}
+
+\end{DoxyCode}

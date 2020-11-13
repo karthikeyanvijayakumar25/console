@@ -1,0 +1,119 @@
+\hypertarget{tc_8h}{}\section{bsps/arm/atsam/include/libchip/include/tc.h File Reference}
+\label{tc_8h}\index{bsps/arm/atsam/include/libchip/include/tc.h@{bsps/arm/atsam/include/libchip/include/tc.h}}
+{\ttfamily \#include \char`\"{}chip.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{tc_8h_a4f65db5c58b90e03f0b358cb0385db43}{T\+C\+\_\+\+Configure}} (\mbox{\hyperlink{structTc}{Tc}} $\ast$p\+Tc, uint32\+\_\+t dw\+Channel, uint32\+\_\+t dw\+Mode)
+\begin{DoxyCompactList}\small\item\em Configures a Timer Counter Channel. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{tc_8h_af895f2ccec86be21d6126d5d55a54db2}{T\+C\+\_\+\+Start}} (\mbox{\hyperlink{structTc}{Tc}} $\ast$p\+Tc, uint32\+\_\+t dw\+Channel)
+\begin{DoxyCompactList}\small\item\em Reset and Start the TC Channel. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{tc_8h_a2e06b3996c83626aa426b09ba647e65d}{T\+C\+\_\+\+Stop}} (\mbox{\hyperlink{structTc}{Tc}} $\ast$p\+Tc, uint32\+\_\+t dw\+Channel)
+\begin{DoxyCompactList}\small\item\em Stop TC Channel. \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{tc_8h_ab49a1357d43f97cfc7846ddef6c1b470}{T\+C\+\_\+\+Find\+Mck\+Divisor}} (uint32\+\_\+t dw\+Freq, uint32\+\_\+t dw\+M\+Ck, uint32\+\_\+t $\ast$dw\+Div, uint32\+\_\+t $\ast$dw\+Tc\+Clks, uint32\+\_\+t dw\+Board\+M\+CK)
+\begin{DoxyCompactList}\small\item\em Find best M\+CK divisor. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\hypertarget{group__RTEMSBSPsARM_Purpose}{}\subsection{Purpose}\label{group__RTEMSBSPsARM_Purpose}
+Interface for configuring and using Timer Counter (TC) peripherals.\hypertarget{group__RTEMSBSPsARM_Usage}{}\subsection{Usage}\label{group__RTEMSBSPsARM_Usage}
+
+\begin{DoxyEnumerate}
+\item Optionally, use \mbox{\hyperlink{tc_8h_ab49a1357d43f97cfc7846ddef6c1b470}{T\+C\+\_\+\+Find\+Mck\+Divisor()}} to let the program find the best T\+C\+C\+L\+KS field value automatically.
+\item Configure a Timer Counter in the desired mode using \mbox{\hyperlink{tc_8h_a4f65db5c58b90e03f0b358cb0385db43}{T\+C\+\_\+\+Configure()}}.
+\item Start or stop the timer clock using \mbox{\hyperlink{tc_8h_af895f2ccec86be21d6126d5d55a54db2}{T\+C\+\_\+\+Start()}} and \mbox{\hyperlink{tc_8h_a2e06b3996c83626aa426b09ba647e65d}{T\+C\+\_\+\+Stop()}}. 
+\end{DoxyEnumerate}
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{tc_8h_a4f65db5c58b90e03f0b358cb0385db43}\label{tc_8h_a4f65db5c58b90e03f0b358cb0385db43}} 
+\index{tc.h@{tc.h}!TC\_Configure@{TC\_Configure}}
+\index{TC\_Configure@{TC\_Configure}!tc.h@{tc.h}}
+\subsubsection{\texorpdfstring{TC\_Configure()}{TC\_Configure()}}
+{\footnotesize\ttfamily void T\+C\+\_\+\+Configure (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structTc}{Tc}} $\ast$}]{p\+Tc,  }\item[{uint32\+\_\+t}]{dw\+Channel,  }\item[{uint32\+\_\+t}]{dw\+Mode }\end{DoxyParamCaption})}
+
+
+
+Configures a Timer Counter Channel. 
+
+Configures a Timer Counter to operate in the given mode. Timer is stopped after configuration and must be restarted with \mbox{\hyperlink{tc_8c_af895f2ccec86be21d6126d5d55a54db2}{T\+C\+\_\+\+Start()}}. All the interrupts of the timer are also disabled.
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Tc} & Pointer to a \mbox{\hyperlink{structTc}{Tc}} instance. \\
+\hline
+{\em channel} & Channel number. \\
+\hline
+{\em mode} & Operating mode (T\+C\+\_\+\+C\+MR value). \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{tc_8h_ab49a1357d43f97cfc7846ddef6c1b470}\label{tc_8h_ab49a1357d43f97cfc7846ddef6c1b470}} 
+\index{tc.h@{tc.h}!TC\_FindMckDivisor@{TC\_FindMckDivisor}}
+\index{TC\_FindMckDivisor@{TC\_FindMckDivisor}!tc.h@{tc.h}}
+\subsubsection{\texorpdfstring{TC\_FindMckDivisor()}{TC\_FindMckDivisor()}}
+{\footnotesize\ttfamily uint32\+\_\+t T\+C\+\_\+\+Find\+Mck\+Divisor (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{dw\+Freq,  }\item[{uint32\+\_\+t}]{dw\+M\+Ck,  }\item[{uint32\+\_\+t $\ast$}]{dw\+Div,  }\item[{uint32\+\_\+t $\ast$}]{dw\+Tc\+Clks,  }\item[{uint32\+\_\+t}]{dw\+Board\+M\+CK }\end{DoxyParamCaption})}
+
+
+
+Find best M\+CK divisor. 
+
+Finds the best M\+CK divisor given the timer frequency and M\+CK. The result is guaranteed to satisfy the following equation\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(MCK / (DIV * 65536)) <= freq <= (MCK / DIV)}
+\end{DoxyCode}
+ with D\+IV being the highest possible value.
+
+
+\begin{DoxyParams}{Parameters}
+{\em dw\+Freq} & Desired timer frequency. \\
+\hline
+{\em dw\+M\+Ck} & Master clock frequency. \\
+\hline
+{\em dw\+Div} & Divisor value. \\
+\hline
+{\em dw\+Tc\+Clks} & T\+C\+C\+L\+KS field value for divisor. \\
+\hline
+{\em dw\+Board\+M\+CK} & Board clock frequency.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if a proper divisor has been found, otherwise 0. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{tc_8h_af895f2ccec86be21d6126d5d55a54db2}\label{tc_8h_af895f2ccec86be21d6126d5d55a54db2}} 
+\index{tc.h@{tc.h}!TC\_Start@{TC\_Start}}
+\index{TC\_Start@{TC\_Start}!tc.h@{tc.h}}
+\subsubsection{\texorpdfstring{TC\_Start()}{TC\_Start()}}
+{\footnotesize\ttfamily void T\+C\+\_\+\+Start (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structTc}{Tc}} $\ast$}]{p\+Tc,  }\item[{uint32\+\_\+t}]{dw\+Channel }\end{DoxyParamCaption})}
+
+
+
+Reset and Start the TC Channel. 
+
+Enables the timer clock and performs a software reset to start the counting.
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Tc} & Pointer to a \mbox{\hyperlink{structTc}{Tc}} instance. \\
+\hline
+{\em dw\+Channel} & Channel number. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{tc_8h_a2e06b3996c83626aa426b09ba647e65d}\label{tc_8h_a2e06b3996c83626aa426b09ba647e65d}} 
+\index{tc.h@{tc.h}!TC\_Stop@{TC\_Stop}}
+\index{TC\_Stop@{TC\_Stop}!tc.h@{tc.h}}
+\subsubsection{\texorpdfstring{TC\_Stop()}{TC\_Stop()}}
+{\footnotesize\ttfamily void T\+C\+\_\+\+Stop (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structTc}{Tc}} $\ast$}]{p\+Tc,  }\item[{uint32\+\_\+t}]{dw\+Channel }\end{DoxyParamCaption})}
+
+
+
+Stop TC Channel. 
+
+Disables the timer clock, stopping the counting.
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Tc} & Pointer to a \mbox{\hyperlink{structTc}{Tc}} instance. \\
+\hline
+{\em dw\+Channel} & Channel number. \\
+\hline
+\end{DoxyParams}

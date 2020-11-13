@@ -1,0 +1,66 @@
+\hypertarget{rtems__heap__greedy_8c}{}\section{cpukit/libcsupport/src/rtems\+\_\+heap\+\_\+greedy.c File Reference}
+\label{rtems__heap__greedy_8c}\index{cpukit/libcsupport/src/rtems\_heap\_greedy.c@{cpukit/libcsupport/src/rtems\_heap\_greedy.c}}
+
+
+Greedy Allocate that Empties the Heap.  
+
+
+{\ttfamily \#include \char`\"{}malloc\+\_\+p.\+h\char`\"{}}\newline
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void $\ast$ \mbox{\hyperlink{rtems__heap__greedy_8c_a8ebc04cbb90e1ecc6ed7b7ba6780493b}{rtems\+\_\+heap\+\_\+greedy\+\_\+allocate}} (const uintptr\+\_\+t $\ast$block\+\_\+sizes, size\+\_\+t block\+\_\+count)
+\begin{DoxyCompactList}\small\item\em Greedy allocate that empties the heap. \end{DoxyCompactList}\item 
+void $\ast$ \mbox{\hyperlink{rtems__heap__greedy_8c_aba5ba5020cadde776ad76aff68db5563}{rtems\+\_\+heap\+\_\+greedy\+\_\+allocate\+\_\+all\+\_\+except\+\_\+largest}} (uintptr\+\_\+t $\ast$allocatable\+\_\+size)
+\begin{DoxyCompactList}\small\item\em Greedy allocate all blocks except the largest free block. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{rtems__heap__greedy_8c_abcd363b410e8f0c2f8fce2e220079f8a}{rtems\+\_\+heap\+\_\+greedy\+\_\+free}} (void $\ast$\mbox{\hyperlink{structopaque}{opaque}})
+\begin{DoxyCompactList}\small\item\em Frees space of a greedy allocation. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Greedy Allocate that Empties the Heap. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{rtems__heap__greedy_8c_a8ebc04cbb90e1ecc6ed7b7ba6780493b}\label{rtems__heap__greedy_8c_a8ebc04cbb90e1ecc6ed7b7ba6780493b}} 
+\index{rtems\_heap\_greedy.c@{rtems\_heap\_greedy.c}!rtems\_heap\_greedy\_allocate@{rtems\_heap\_greedy\_allocate}}
+\index{rtems\_heap\_greedy\_allocate@{rtems\_heap\_greedy\_allocate}!rtems\_heap\_greedy.c@{rtems\_heap\_greedy.c}}
+\subsubsection{\texorpdfstring{rtems\_heap\_greedy\_allocate()}{rtems\_heap\_greedy\_allocate()}}
+{\footnotesize\ttfamily void$\ast$ rtems\+\_\+heap\+\_\+greedy\+\_\+allocate (\begin{DoxyParamCaption}\item[{const uintptr\+\_\+t $\ast$}]{block\+\_\+sizes,  }\item[{size\+\_\+t}]{block\+\_\+count }\end{DoxyParamCaption})}
+
+
+
+Greedy allocate that empties the heap. 
+
+Afterwards the heap has at most {\itshape block\+\_\+count} allocatable blocks of sizes specified by {\itshape block\+\_\+sizes}. The {\itshape block\+\_\+sizes} must point to an array with {\itshape block\+\_\+count} members. All other blocks are used.
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{malloc_8h_abcd363b410e8f0c2f8fce2e220079f8a}{rtems\+\_\+heap\+\_\+greedy\+\_\+free()}}. 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{rtems__heap__greedy_8c_aba5ba5020cadde776ad76aff68db5563}\label{rtems__heap__greedy_8c_aba5ba5020cadde776ad76aff68db5563}} 
+\index{rtems\_heap\_greedy.c@{rtems\_heap\_greedy.c}!rtems\_heap\_greedy\_allocate\_all\_except\_largest@{rtems\_heap\_greedy\_allocate\_all\_except\_largest}}
+\index{rtems\_heap\_greedy\_allocate\_all\_except\_largest@{rtems\_heap\_greedy\_allocate\_all\_except\_largest}!rtems\_heap\_greedy.c@{rtems\_heap\_greedy.c}}
+\subsubsection{\texorpdfstring{rtems\_heap\_greedy\_allocate\_all\_except\_largest()}{rtems\_heap\_greedy\_allocate\_all\_except\_largest()}}
+{\footnotesize\ttfamily void$\ast$ rtems\+\_\+heap\+\_\+greedy\+\_\+allocate\+\_\+all\+\_\+except\+\_\+largest (\begin{DoxyParamCaption}\item[{uintptr\+\_\+t $\ast$}]{allocatable\+\_\+size }\end{DoxyParamCaption})}
+
+
+
+Greedy allocate all blocks except the largest free block. 
+
+Afterwards the heap has at most one allocatable block. This block is the largest free block if it exists. The allocatable size of this block is stored in {\itshape allocatable\+\_\+size}. All other blocks are used.
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{malloc_8h_abcd363b410e8f0c2f8fce2e220079f8a}{rtems\+\_\+heap\+\_\+greedy\+\_\+free()}}. 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{rtems__heap__greedy_8c_abcd363b410e8f0c2f8fce2e220079f8a}\label{rtems__heap__greedy_8c_abcd363b410e8f0c2f8fce2e220079f8a}} 
+\index{rtems\_heap\_greedy.c@{rtems\_heap\_greedy.c}!rtems\_heap\_greedy\_free@{rtems\_heap\_greedy\_free}}
+\index{rtems\_heap\_greedy\_free@{rtems\_heap\_greedy\_free}!rtems\_heap\_greedy.c@{rtems\_heap\_greedy.c}}
+\subsubsection{\texorpdfstring{rtems\_heap\_greedy\_free()}{rtems\_heap\_greedy\_free()}}
+{\footnotesize\ttfamily void rtems\+\_\+heap\+\_\+greedy\+\_\+free (\begin{DoxyParamCaption}\item[{void $\ast$}]{opaque }\end{DoxyParamCaption})}
+
+
+
+Frees space of a greedy allocation. 
+
+The {\itshape opaque} argument must be the return value of \mbox{\hyperlink{malloc_8h_a8ebc04cbb90e1ecc6ed7b7ba6780493b}{rtems\+\_\+heap\+\_\+greedy\+\_\+allocate()}} or \mbox{\hyperlink{malloc_8h_aba5ba5020cadde776ad76aff68db5563}{rtems\+\_\+heap\+\_\+greedy\+\_\+allocate\+\_\+all\+\_\+except\+\_\+largest()}}. 

@@ -1,0 +1,40 @@
+\hypertarget{serial__mouse_8h}{}\section{cpukit/include/rtems/serial\+\_\+mouse.h File Reference}
+\label{serial__mouse_8h}\index{cpukit/include/rtems/serial\_mouse.h@{cpukit/include/rtems/serial\_mouse.h}}
+
+
+Serial Mouse Driver.  
+
+
+{\ttfamily \#include $<$rtems/io.\+h$>$}\newline
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__libmisc__serialmouse_gaa1a6cf0cf2006b633b07466459f07e0b}{S\+E\+R\+I\+A\+L\+\_\+\+M\+O\+U\+S\+E\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+P\+S2}}~\char`\"{}/dev/psaux\char`\"{}
+\begin{DoxyCompactList}\small\item\em Standard device file path for a P\+S2 mouse device. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__libmisc__serialmouse_ga8b4f360283d45558bb392ba1c78fd2fe}{S\+E\+R\+I\+A\+L\+\_\+\+M\+O\+U\+S\+E\+\_\+\+D\+R\+I\+V\+E\+R\+\_\+\+T\+A\+B\+L\+E\+\_\+\+E\+N\+T\+RY}}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+device\+\_\+driver}} \mbox{\hyperlink{group__libmisc__serialmouse_gab65973e690c31999099201a59b7f3503}{serial\+\_\+mouse\+\_\+initialize}} (rtems\+\_\+device\+\_\+major\+\_\+number major, rtems\+\_\+device\+\_\+minor\+\_\+number minor, void $\ast$arg)
+\begin{DoxyCompactList}\small\item\em The initialization of the serial mouse driver. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+device\+\_\+driver}} \mbox{\hyperlink{group__libmisc__serialmouse_gada12a309a70a5b0b33b6976d874852ee}{serial\+\_\+mouse\+\_\+open}} (rtems\+\_\+device\+\_\+major\+\_\+number major, rtems\+\_\+device\+\_\+minor\+\_\+number minor, void $\ast$arg)
+\begin{DoxyCompactList}\small\item\em Open device driver entry point for the serial mouse driver. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+device\+\_\+driver}} \mbox{\hyperlink{group__libmisc__serialmouse_ga272053b614819188d5f8ca1065942f3d}{serial\+\_\+mouse\+\_\+close}} (rtems\+\_\+device\+\_\+major\+\_\+number major, rtems\+\_\+device\+\_\+minor\+\_\+number minor, void $\ast$arg)
+\begin{DoxyCompactList}\small\item\em Close device driver entry point for the serial mouse driver. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+device\+\_\+driver}} \mbox{\hyperlink{group__libmisc__serialmouse_gab3f97e6962dc3337d13a8ccbdbed8e6d}{serial\+\_\+mouse\+\_\+read}} (rtems\+\_\+device\+\_\+major\+\_\+number major, rtems\+\_\+device\+\_\+minor\+\_\+number minor, void $\ast$arg)
+\begin{DoxyCompactList}\small\item\em Read device driver entry point for the serial mouse driver. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+device\+\_\+driver}} \mbox{\hyperlink{group__libmisc__serialmouse_ga28db6ac474fc2a38cd1ea76b297e508f}{serial\+\_\+mouse\+\_\+write}} (rtems\+\_\+device\+\_\+major\+\_\+number major, rtems\+\_\+device\+\_\+minor\+\_\+number minor, void $\ast$arg)
+\begin{DoxyCompactList}\small\item\em Write device driver entry point for the serial mouse driver. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+device\+\_\+driver}} \mbox{\hyperlink{group__libmisc__serialmouse_ga67f047809baa7776b6510d65707c4ac5}{serial\+\_\+mouse\+\_\+control}} (rtems\+\_\+device\+\_\+major\+\_\+number major, rtems\+\_\+device\+\_\+minor\+\_\+number minor, void $\ast$arg)
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{structIO}{IO}} Control device driver entry point for the serial mouse driver. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__libmisc__serialmouse_ga7103f15e10a857e48f4f026a58968288}{bsp\+\_\+get\+\_\+serial\+\_\+mouse\+\_\+device}} (const char $\ast$$\ast$name, const char $\ast$$\ast$type)
+\begin{DoxyCompactList}\small\item\em Obtain serial mouse configuration information. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Serial Mouse Driver. 
+
+This file describes the Serial Mouse Driver for all boards. This driver assumes that the B\+SP or application will provide an implementation of the method \mbox{\hyperlink{group__libmisc__serialmouse_ga7103f15e10a857e48f4f026a58968288}{bsp\+\_\+get\+\_\+serial\+\_\+mouse\+\_\+device()}} which tells the driver what serial port device to \mbox{\hyperlink{open_8c_a62e93eb794fed24c0f46c6acda6ea510}{open()}} and what type of mouse is connected.
+
+This driver relies on the Mouse Parser Engine. 

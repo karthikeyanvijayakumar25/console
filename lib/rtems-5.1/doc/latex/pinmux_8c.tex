@@ -1,0 +1,134 @@
+\hypertarget{pinmux_8c}{}\section{bsps/arm/tms570/start/pinmux.c File Reference}
+\label{pinmux_8c}\index{bsps/arm/tms570/start/pinmux.c@{bsps/arm/tms570/start/pinmux.c}}
+
+
+I/O Multiplexing Module (I\+O\+MM) basic support.  
+
+
+{\ttfamily \#include $<$bsp/tms570.\+h$>$}\newline
+{\ttfamily \#include $<$bsp/tms570-\/pinmux.\+h$>$}\newline
+{\ttfamily \#include $<$bsp/irq.\+h$>$}\newline
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{pinmux_8c_a096924e434015941cae44dce897ea5ef}{tms570\+\_\+bsp\+\_\+pin\+\_\+set\+\_\+function}} (int pin\+\_\+num, int pin\+\_\+fnc)
+\begin{DoxyCompactList}\small\item\em select desired function of pin/ball \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{pinmux_8c_ac225c1f6113c3a39dfe69324b07fa625}{tms570\+\_\+bsp\+\_\+pin\+\_\+clear\+\_\+function}} (int pin\+\_\+num, int pin\+\_\+fnc)
+\begin{DoxyCompactList}\small\item\em clear connection between pin and specified peripherals/function \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{pinmux_8c_a3f1fcae6177e90127dd1af7e9c93efe4}{tms570\+\_\+bsp\+\_\+pin\+\_\+config\+\_\+one}} (uint32\+\_\+t pin\+\_\+num\+\_\+and\+\_\+fnc)
+\begin{DoxyCompactList}\small\item\em configure one pin according to its function specification \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{pinmux_8c_a061d7b53280d6fc349a4157613712aef}{tms570\+\_\+bsp\+\_\+pinmmr\+\_\+config}} (const uint32\+\_\+t $\ast$pinmmr\+\_\+values, int reg\+\_\+start, int reg\+\_\+count)
+\begin{DoxyCompactList}\small\item\em configure block or whole pin multiplexer \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{pinmux_8c_ac00f43f4e0e3c5a5050ec9db4db2678f}\label{pinmux_8c_ac00f43f4e0e3c5a5050ec9db4db2678f}} 
+uint32\+\_\+t {\bfseries tms570\+\_\+bsp\+\_\+pinmmr\+\_\+kick\+\_\+key0} = 0x83\+E70\+B13U
+\item 
+\mbox{\Hypertarget{pinmux_8c_a58e92a5cf6aef58b38a31b21174501b2}\label{pinmux_8c_a58e92a5cf6aef58b38a31b21174501b2}} 
+uint32\+\_\+t {\bfseries tms570\+\_\+bsp\+\_\+pinmmr\+\_\+kick\+\_\+key1} = 0x95\+A4\+F1\+E0U
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+I/O Multiplexing Module (I\+O\+MM) basic support. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{pinmux_8c_ac225c1f6113c3a39dfe69324b07fa625}\label{pinmux_8c_ac225c1f6113c3a39dfe69324b07fa625}} 
+\index{pinmux.c@{pinmux.c}!tms570\_bsp\_pin\_clear\_function@{tms570\_bsp\_pin\_clear\_function}}
+\index{tms570\_bsp\_pin\_clear\_function@{tms570\_bsp\_pin\_clear\_function}!pinmux.c@{pinmux.c}}
+\subsubsection{\texorpdfstring{tms570\_bsp\_pin\_clear\_function()}{tms570\_bsp\_pin\_clear\_function()}}
+{\footnotesize\ttfamily void tms570\+\_\+bsp\+\_\+pin\+\_\+clear\+\_\+function (\begin{DoxyParamCaption}\item[{int}]{pin\+\_\+num,  }\item[{int}]{pin\+\_\+fnc }\end{DoxyParamCaption})}
+
+
+
+clear connection between pin and specified peripherals/function 
+
+This function switches off given connection and leaves rest of multiplexer setup intact.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em pin\+\_\+num} & pin/ball identifier (index into pinmux array) \\
+\hline
+\mbox{\texttt{ in}}  & {\em pin\+\_\+fnc} & function number 0 .. 7, if value {\ttfamily T\+M\+S570\+\_\+\+P\+I\+N\+\_\+\+F\+N\+C\+\_\+\+A\+U\+TO} is specified then pin function is extracted from pin\+\_\+num argument \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em Void} & \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{pinmux_8c_a3f1fcae6177e90127dd1af7e9c93efe4}\label{pinmux_8c_a3f1fcae6177e90127dd1af7e9c93efe4}} 
+\index{pinmux.c@{pinmux.c}!tms570\_bsp\_pin\_config\_one@{tms570\_bsp\_pin\_config\_one}}
+\index{tms570\_bsp\_pin\_config\_one@{tms570\_bsp\_pin\_config\_one}!pinmux.c@{pinmux.c}}
+\subsubsection{\texorpdfstring{tms570\_bsp\_pin\_config\_one()}{tms570\_bsp\_pin\_config\_one()}}
+{\footnotesize\ttfamily void tms570\+\_\+bsp\+\_\+pin\+\_\+config\+\_\+one (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{pin\+\_\+num\+\_\+and\+\_\+fnc }\end{DoxyParamCaption})}
+
+
+
+configure one pin according to its function specification 
+
+The function setups multiplexer to interconnect pin with specified function/peripheral. Predefined values for pins combined with function are in a format T\+M\+S570\+\_\+\+B\+A\+L\+L\+\_\+ {\ttfamily column} {\ttfamily row} {\ttfamily function} (for example {\ttfamily T\+M\+S570\+\_\+\+B\+A\+L\+L\+\_\+\+W3\+\_\+\+S\+C\+I\+RX}). If the function can be connected to more pins then specification includes infomation which allows to disconnect alternative pin to peripheral input connection or switch input multiplexer to right pin.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em pin\+\_\+num\+\_\+and\+\_\+fnc} & pin function descriptor is build by macro {\ttfamily T\+M\+S570\+\_\+\+P\+I\+N\+\_\+\+A\+N\+D\+\_\+\+F\+NC} which takes pin/pinmmr specification build by {\ttfamily T\+M\+S570\+\_\+\+B\+A\+L\+L\+\_\+\+W\+I\+T\+H\+\_\+\+M\+MR} and function index in output multiplexer. If the peripheral can be connected to other input alternative then actual pin description and alternative to disconnected/reconnect are combined together by {\ttfamily T\+M\+S570\+\_\+\+P\+I\+N\+\_\+\+W\+I\+T\+H\+\_\+\+I\+N\+\_\+\+A\+LT} macro. If clear of alternative connection is required then flag {\ttfamily T\+M\+S570\+\_\+\+P\+I\+N\+\_\+\+C\+L\+E\+A\+R\+\_\+\+R\+Q\+\_\+\+M\+A\+SK} is ored to alternative description.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em Void} & \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{pinmux_8c_a096924e434015941cae44dce897ea5ef}\label{pinmux_8c_a096924e434015941cae44dce897ea5ef}} 
+\index{pinmux.c@{pinmux.c}!tms570\_bsp\_pin\_set\_function@{tms570\_bsp\_pin\_set\_function}}
+\index{tms570\_bsp\_pin\_set\_function@{tms570\_bsp\_pin\_set\_function}!pinmux.c@{pinmux.c}}
+\subsubsection{\texorpdfstring{tms570\_bsp\_pin\_set\_function()}{tms570\_bsp\_pin\_set\_function()}}
+{\footnotesize\ttfamily void tms570\+\_\+bsp\+\_\+pin\+\_\+set\+\_\+function (\begin{DoxyParamCaption}\item[{int}]{pin\+\_\+num,  }\item[{int}]{pin\+\_\+fnc }\end{DoxyParamCaption})}
+
+
+
+select desired function of pin/ball 
+
+The function setups multiplexer to interconnect pin with specified function/peripheral. Pin number is index into pinmux entries array. Predefined values for pins are in a format T\+M\+S570\+\_\+\+B\+A\+L\+L\+\_\+ {\ttfamily column} {\ttfamily row} (for example {\ttfamily T\+M\+S570\+\_\+\+B\+A\+L\+L\+\_\+\+N19}). The multiplexer allows to interconnect one pin to multiple signal sources/sinks in the theory but it is usually bad choice. The function sets only specified function and clears all other connections.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em pin\+\_\+num} & pin/ball identifier (index into pinmux array), \\
+\hline
+\mbox{\texttt{ in}}  & {\em pin\+\_\+fnc} & function number 0 .. 7, if value {\ttfamily T\+M\+S570\+\_\+\+P\+I\+N\+\_\+\+F\+N\+C\+\_\+\+A\+U\+TO} is specified then pin function is extracted from pin\+\_\+num argument \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em Void} & \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{pinmux_8c_a061d7b53280d6fc349a4157613712aef}\label{pinmux_8c_a061d7b53280d6fc349a4157613712aef}} 
+\index{pinmux.c@{pinmux.c}!tms570\_bsp\_pinmmr\_config@{tms570\_bsp\_pinmmr\_config}}
+\index{tms570\_bsp\_pinmmr\_config@{tms570\_bsp\_pinmmr\_config}!pinmux.c@{pinmux.c}}
+\subsubsection{\texorpdfstring{tms570\_bsp\_pinmmr\_config()}{tms570\_bsp\_pinmmr\_config()}}
+{\footnotesize\ttfamily void tms570\+\_\+bsp\+\_\+pinmmr\+\_\+config (\begin{DoxyParamCaption}\item[{const uint32\+\_\+t $\ast$}]{pinmmr\+\_\+values,  }\item[{int}]{reg\+\_\+start,  }\item[{int}]{reg\+\_\+count }\end{DoxyParamCaption})}
+
+
+
+configure block or whole pin multiplexer 
+
+Function change multiplexer content. It is intended for initial chip setup and does not use locking. If complete reconfiguration is required at runtime then it is application responsibility to protect and serialize change with peripherals drivers and parallel calls
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em pinmmr\+\_\+values} & pointer to array with required multiplexer setup \\
+\hline
+\mbox{\texttt{ in}}  & {\em reg\+\_\+start} & starting register, this allows to configure non-\/consecutive registers groups found on some M\+CU family members \\
+\hline
+\mbox{\texttt{ in}}  & {\em reg\+\_\+count} & number of words in initialization array to set to corresponding registers\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em Void} & \\
+\hline
+\end{DoxyRetVals}

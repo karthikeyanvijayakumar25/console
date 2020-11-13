@@ -1,0 +1,171 @@
+\hypertarget{ide__part__table_8h}{}\section{cpukit/include/rtems/ide\+\_\+part\+\_\+table.h File Reference}
+\label{ide__part__table_8h}\index{cpukit/include/rtems/ide\_part\_table.h@{cpukit/include/rtems/ide\_part\_table.h}}
+
+
+\char`\"{}\+M\+S-\/\+D\+O\+S-\/style\char`\"{} Partition Tables Support  
+
+
+{\ttfamily \#include $<$rtems/chain.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$errno.\+h$>$}\newline
+{\ttfamily \#include $<$sys/ioctl.\+h$>$}\newline
+{\ttfamily \#include $<$sys/types.\+h$>$}\newline
+{\ttfamily \#include $<$sys/endian.\+h$>$}\newline
+{\ttfamily \#include $<$sys/stat.\+h$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include $<$fcntl.\+h$>$}\newline
+{\ttfamily \#include $<$rtems.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/blkdev.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/libio.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/libio\+\_\+.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/bdbuf.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/seterr.\+h$>$}\newline
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structrtems__sector__data__s}{rtems\+\_\+sector\+\_\+data\+\_\+s}}
+\item 
+struct \mbox{\hyperlink{structrtems__part__desc__s}{rtems\+\_\+part\+\_\+desc\+\_\+s}}
+\item 
+struct \mbox{\hyperlink{structrtems__disk__desc__s}{rtems\+\_\+disk\+\_\+desc\+\_\+s}}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{ide__part__table_8h_a844106a72f97f4bc935beb5bf44871dd}\label{ide__part__table_8h_a844106a72f97f4bc935beb5bf44871dd}} 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+I\+D\+E\+\_\+\+S\+E\+C\+T\+O\+R\+\_\+\+B\+I\+TS}~9
+\item 
+\mbox{\Hypertarget{ide__part__table_8h_a43191579180fddaec1755c86e9db38e0}\label{ide__part__table_8h_a43191579180fddaec1755c86e9db38e0}} 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+I\+D\+E\+\_\+\+S\+E\+C\+T\+O\+R\+\_\+\+S\+I\+ZE}~512
+\item 
+\mbox{\Hypertarget{ide__part__table_8h_a5fc8e720eeca9d052c7d320246df7156}\label{ide__part__table_8h_a5fc8e720eeca9d052c7d320246df7156}} 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+I\+D\+E\+\_\+\+P\+A\+R\+T\+I\+T\+I\+O\+N\+\_\+\+D\+E\+S\+C\+R\+I\+P\+T\+O\+R\+\_\+\+S\+I\+ZE}~16
+\item 
+\mbox{\Hypertarget{ide__part__table_8h_a108f91d81c3778da0ac90b079d6d5cb2}\label{ide__part__table_8h_a108f91d81c3778da0ac90b079d6d5cb2}} 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+I\+D\+E\+\_\+\+P\+A\+R\+T\+I\+T\+I\+O\+N\+\_\+\+M\+A\+X\+\_\+\+P\+A\+R\+T\+I\+T\+I\+O\+N\+\_\+\+N\+U\+M\+B\+ER}~63
+\item 
+\mbox{\Hypertarget{ide__part__table_8h_a4174ced08d04c44f5295d8a4cb4defbf}\label{ide__part__table_8h_a4174ced08d04c44f5295d8a4cb4defbf}} 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+I\+D\+E\+\_\+\+P\+A\+R\+T\+I\+T\+I\+O\+N\+\_\+\+M\+A\+X\+\_\+\+S\+U\+B\+\_\+\+P\+A\+R\+T\+I\+T\+I\+O\+N\+\_\+\+N\+U\+M\+B\+ER}~4
+\item 
+\mbox{\Hypertarget{ide__part__table_8h_a36906c7a36b461de599b2583b303a3b2}\label{ide__part__table_8h_a36906c7a36b461de599b2583b303a3b2}} 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+I\+D\+E\+\_\+\+P\+A\+R\+T\+I\+T\+I\+O\+N\+\_\+\+D\+E\+V\+\_\+\+N\+A\+M\+E\+\_\+\+L\+E\+N\+G\+T\+H\+\_\+\+M\+AX}~16
+\item 
+\mbox{\Hypertarget{ide__part__table_8h_acf895c3e281e5780003e8aafa07e1fe7}\label{ide__part__table_8h_acf895c3e281e5780003e8aafa07e1fe7}} 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+I\+D\+E\+\_\+\+P\+A\+R\+T\+I\+T\+I\+O\+N\+\_\+\+M\+S\+D\+O\+S\+\_\+\+S\+I\+G\+N\+A\+T\+U\+R\+E\+\_\+\+D\+A\+T\+A1}~0x55
+\item 
+\mbox{\Hypertarget{ide__part__table_8h_a81d4c1bfd4b63ef2cf41d01612848244}\label{ide__part__table_8h_a81d4c1bfd4b63ef2cf41d01612848244}} 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+I\+D\+E\+\_\+\+P\+A\+R\+T\+I\+T\+I\+O\+N\+\_\+\+M\+S\+D\+O\+S\+\_\+\+S\+I\+G\+N\+A\+T\+U\+R\+E\+\_\+\+D\+A\+T\+A2}~0xaa
+\item 
+\mbox{\Hypertarget{ide__part__table_8h_a2f5dce8a6512de3db69e5231ea18f520}\label{ide__part__table_8h_a2f5dce8a6512de3db69e5231ea18f520}} 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+I\+D\+E\+\_\+\+P\+A\+R\+T\+I\+T\+I\+O\+N\+\_\+\+M\+S\+D\+O\+S\+\_\+\+S\+I\+G\+N\+A\+T\+U\+R\+E\+\_\+\+O\+F\+F\+S\+ET}~0x1fe
+\item 
+\mbox{\Hypertarget{ide__part__table_8h_a81b77f3080df6b72a04c5c551511aa47}\label{ide__part__table_8h_a81b77f3080df6b72a04c5c551511aa47}} 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+I\+D\+E\+\_\+\+P\+A\+R\+T\+I\+T\+I\+O\+N\+\_\+\+T\+A\+B\+L\+E\+\_\+\+O\+F\+F\+S\+ET}~0x1be
+\item 
+\mbox{\Hypertarget{ide__part__table_8h_aaf87123648131d08f9089b08a74a08b5}\label{ide__part__table_8h_aaf87123648131d08f9089b08a74a08b5}} 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+I\+D\+E\+\_\+\+P\+A\+R\+T\+I\+T\+I\+O\+N\+\_\+\+T\+A\+B\+L\+E\+\_\+\+S\+I\+ZE}~(4 $\ast$ 16)
+\item 
+\mbox{\Hypertarget{ide__part__table_8h_a5c4f4632d6241f38935d381bb3a1cb58}\label{ide__part__table_8h_a5c4f4632d6241f38935d381bb3a1cb58}} 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+I\+D\+E\+\_\+\+P\+A\+R\+T\+I\+T\+I\+O\+N\+\_\+\+B\+O\+O\+T\+A\+B\+L\+E\+\_\+\+O\+F\+F\+S\+ET}~0
+\item 
+\mbox{\Hypertarget{ide__part__table_8h_ae6ece56c4918671df315f814ebdc3238}\label{ide__part__table_8h_ae6ece56c4918671df315f814ebdc3238}} 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+I\+D\+E\+\_\+\+P\+A\+R\+T\+I\+T\+I\+O\+N\+\_\+\+S\+Y\+S\+\_\+\+T\+Y\+P\+E\+\_\+\+O\+F\+F\+S\+ET}~4
+\item 
+\mbox{\Hypertarget{ide__part__table_8h_a57e29cd97aa20d35298cfd2a92981461}\label{ide__part__table_8h_a57e29cd97aa20d35298cfd2a92981461}} 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+I\+D\+E\+\_\+\+P\+A\+R\+T\+I\+T\+I\+O\+N\+\_\+\+S\+T\+A\+R\+T\+\_\+\+O\+F\+F\+S\+ET}~8
+\item 
+\mbox{\Hypertarget{ide__part__table_8h_aa37ee0c644b57f351658d3bd9979a275}\label{ide__part__table_8h_aa37ee0c644b57f351658d3bd9979a275}} 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+I\+D\+E\+\_\+\+P\+A\+R\+T\+I\+T\+I\+O\+N\+\_\+\+S\+I\+Z\+E\+\_\+\+O\+F\+F\+S\+ET}~12
+\item 
+\mbox{\Hypertarget{ide__part__table_8h_add903f73fd082c37192196788a893a04}\label{ide__part__table_8h_add903f73fd082c37192196788a893a04}} 
+\#define {\bfseries L\+E\+\_\+\+T\+O\+\_\+\+C\+P\+U\+\_\+\+U16}(\mbox{\hyperlink{sun4u_2tte_8h_a0b943bd7a9fc74d6635879a38dc16894}{v}})~le16toh(\mbox{\hyperlink{sun4u_2tte_8h_a0b943bd7a9fc74d6635879a38dc16894}{v}})
+\item 
+\mbox{\Hypertarget{ide__part__table_8h_abdf581253b7b7590acddae5104264851}\label{ide__part__table_8h_abdf581253b7b7590acddae5104264851}} 
+\#define {\bfseries L\+E\+\_\+\+T\+O\+\_\+\+C\+P\+U\+\_\+\+U32}(\mbox{\hyperlink{sun4u_2tte_8h_a0b943bd7a9fc74d6635879a38dc16894}{v}})~le32toh(\mbox{\hyperlink{sun4u_2tte_8h_a0b943bd7a9fc74d6635879a38dc16894}{v}})
+\item 
+\mbox{\Hypertarget{ide__part__table_8h_a49fbf8e476b8f5d8c4e887e46e31bcde}\label{ide__part__table_8h_a49fbf8e476b8f5d8c4e887e46e31bcde}} 
+\#define {\bfseries C\+P\+U\+\_\+\+T\+O\+\_\+\+L\+E\+\_\+\+U16}(\mbox{\hyperlink{sun4u_2tte_8h_a0b943bd7a9fc74d6635879a38dc16894}{v}})~htole16(\mbox{\hyperlink{sun4u_2tte_8h_a0b943bd7a9fc74d6635879a38dc16894}{v}})
+\item 
+\mbox{\Hypertarget{ide__part__table_8h_a209f2f7ec55243d3ac940316ebc1f861}\label{ide__part__table_8h_a209f2f7ec55243d3ac940316ebc1f861}} 
+\#define {\bfseries C\+P\+U\+\_\+\+T\+O\+\_\+\+L\+E\+\_\+\+U32}(\mbox{\hyperlink{sun4u_2tte_8h_a0b943bd7a9fc74d6635879a38dc16894}{v}})~htole32(\mbox{\hyperlink{sun4u_2tte_8h_a0b943bd7a9fc74d6635879a38dc16894}{v}})
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{ide__part__table_8h_a5f8d5b21dde32246e53c659a283f377f}\label{ide__part__table_8h_a5f8d5b21dde32246e53c659a283f377f}} 
+typedef struct \mbox{\hyperlink{structrtems__sector__data__s}{rtems\+\_\+sector\+\_\+data\+\_\+s}} {\bfseries rtems\+\_\+sector\+\_\+data\+\_\+t}
+\item 
+\mbox{\Hypertarget{ide__part__table_8h_a41aa0026993cecf645c06a61e92478a0}\label{ide__part__table_8h_a41aa0026993cecf645c06a61e92478a0}} 
+typedef struct \mbox{\hyperlink{structrtems__part__desc__s}{rtems\+\_\+part\+\_\+desc\+\_\+s}} {\bfseries rtems\+\_\+part\+\_\+desc\+\_\+t}
+\item 
+\mbox{\Hypertarget{ide__part__table_8h_a00b338ed30ffebaa4eb7da2928f3ddc8}\label{ide__part__table_8h_a00b338ed30ffebaa4eb7da2928f3ddc8}} 
+typedef struct \mbox{\hyperlink{structrtems__disk__desc__s}{rtems\+\_\+disk\+\_\+desc\+\_\+s}} {\bfseries rtems\+\_\+disk\+\_\+desc\+\_\+t}
+\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{ide__part__table_8h_a152179dcdbee6ad3a4f83b54a7f5735a}\label{ide__part__table_8h_a152179dcdbee6ad3a4f83b54a7f5735a}} 
+enum \{ \newline
+{\bfseries E\+M\+P\+T\+Y\+\_\+\+P\+A\+R\+T\+I\+T\+I\+ON} = 0x00, 
+{\bfseries D\+O\+S\+\_\+\+F\+A\+T12\+\_\+\+P\+A\+R\+T\+I\+T\+I\+ON} = 0x01, 
+{\bfseries D\+O\+S\+\_\+\+F\+A\+T16\+\_\+\+P\+A\+R\+T\+I\+T\+I\+ON} = 0x04, 
+{\bfseries E\+X\+T\+E\+N\+D\+E\+D\+\_\+\+P\+A\+R\+T\+I\+T\+I\+ON} = 0x05, 
+\newline
+{\bfseries D\+O\+S\+\_\+\+P32\+M\+B\+\_\+\+P\+A\+R\+T\+I\+T\+I\+ON} = 0x06, 
+{\bfseries F\+A\+T32\+\_\+\+P\+A\+R\+T\+I\+T\+I\+ON} = 0x0B, 
+{\bfseries F\+A\+T32\+\_\+\+L\+B\+A\+\_\+\+P\+A\+R\+T\+I\+T\+I\+ON} = 0x0C, 
+{\bfseries F\+A\+T16\+\_\+\+L\+B\+A\+\_\+\+P\+A\+R\+T\+I\+T\+I\+ON} = 0x0E, 
+\newline
+{\bfseries D\+M6\+\_\+\+P\+A\+R\+T\+I\+T\+I\+ON} = 0x54, 
+{\bfseries E\+Z\+D\+\_\+\+P\+A\+R\+T\+I\+T\+I\+ON} = 0x55, 
+{\bfseries D\+M6\+\_\+\+A\+U\+X1\+P\+A\+R\+T\+I\+T\+I\+ON} = 0x51, 
+{\bfseries D\+M6\+\_\+\+A\+U\+X3\+P\+A\+R\+T\+I\+T\+I\+ON} = 0x53, 
+\newline
+{\bfseries L\+I\+N\+U\+X\+\_\+\+S\+W\+AP} = 0x82, 
+{\bfseries L\+I\+N\+U\+X\+\_\+\+N\+A\+T\+I\+VE} = 0x83, 
+{\bfseries L\+I\+N\+U\+X\+\_\+\+E\+X\+T\+E\+N\+D\+ED} = 0x85
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{ide__part__table_8h_a1c269a2649d93e51edce34a057756451}{rtems\+\_\+ide\+\_\+part\+\_\+table\+\_\+free}} (\mbox{\hyperlink{structrtems__disk__desc__s}{rtems\+\_\+disk\+\_\+desc\+\_\+t}} $\ast$disk\+\_\+desc) \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gab651a076d4d51d50221e7ef7ac99d4e7}{R\+T\+E\+M\+S\+\_\+\+D\+E\+P\+R\+E\+C\+A\+T\+ED}}
+\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{ide__part__table_8h_aaf25ab0152166aecefedb674013f8f0b}{rtems\+\_\+ide\+\_\+part\+\_\+table\+\_\+get}} (const char $\ast$dev\+\_\+name, \mbox{\hyperlink{structrtems__disk__desc__s}{rtems\+\_\+disk\+\_\+desc\+\_\+t}} $\ast$disk\+\_\+desc) \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gab651a076d4d51d50221e7ef7ac99d4e7}{R\+T\+E\+M\+S\+\_\+\+D\+E\+P\+R\+E\+C\+A\+T\+ED}}
+\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{ide__part__table_8h_af49f7c24b2c55d5a5a81cd5f105cdadb}{rtems\+\_\+ide\+\_\+part\+\_\+table\+\_\+initialize}} (const char $\ast$dev\+\_\+name) \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gab651a076d4d51d50221e7ef7ac99d4e7}{R\+T\+E\+M\+S\+\_\+\+D\+E\+P\+R\+E\+C\+A\+T\+ED}}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\char`\"{}\+M\+S-\/\+D\+O\+S-\/style\char`\"{} Partition Tables Support 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{ide__part__table_8h_a1c269a2649d93e51edce34a057756451}\label{ide__part__table_8h_a1c269a2649d93e51edce34a057756451}} 
+\index{ide\_part\_table.h@{ide\_part\_table.h}!rtems\_ide\_part\_table\_free@{rtems\_ide\_part\_table\_free}}
+\index{rtems\_ide\_part\_table\_free@{rtems\_ide\_part\_table\_free}!ide\_part\_table.h@{ide\_part\_table.h}}
+\subsubsection{\texorpdfstring{rtems\_ide\_part\_table\_free()}{rtems\_ide\_part\_table\_free()}}
+{\footnotesize\ttfamily void rtems\+\_\+ide\+\_\+part\+\_\+table\+\_\+free (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structrtems__disk__desc__s}{rtems\+\_\+disk\+\_\+desc\+\_\+t}} $\ast$}]{disk\+\_\+desc }\end{DoxyParamCaption})}
+
+\begin{DoxyRefDesc}{Deprecated}
+\item[\mbox{\hyperlink{deprecated__deprecated000007}{Deprecated}}]Use the \mbox{\hyperlink{group__rtems__bdpart}{block device partition module}} instead. \end{DoxyRefDesc}
+\mbox{\Hypertarget{ide__part__table_8h_aaf25ab0152166aecefedb674013f8f0b}\label{ide__part__table_8h_aaf25ab0152166aecefedb674013f8f0b}} 
+\index{ide\_part\_table.h@{ide\_part\_table.h}!rtems\_ide\_part\_table\_get@{rtems\_ide\_part\_table\_get}}
+\index{rtems\_ide\_part\_table\_get@{rtems\_ide\_part\_table\_get}!ide\_part\_table.h@{ide\_part\_table.h}}
+\subsubsection{\texorpdfstring{rtems\_ide\_part\_table\_get()}{rtems\_ide\_part\_table\_get()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} rtems\+\_\+ide\+\_\+part\+\_\+table\+\_\+get (\begin{DoxyParamCaption}\item[{const char $\ast$}]{dev\+\_\+name,  }\item[{\mbox{\hyperlink{structrtems__disk__desc__s}{rtems\+\_\+disk\+\_\+desc\+\_\+t}} $\ast$}]{disk\+\_\+desc }\end{DoxyParamCaption})}
+
+\begin{DoxyRefDesc}{Deprecated}
+\item[\mbox{\hyperlink{deprecated__deprecated000008}{Deprecated}}]Use the \mbox{\hyperlink{group__rtems__bdpart}{block device partition module}} instead. \end{DoxyRefDesc}
+\mbox{\Hypertarget{ide__part__table_8h_af49f7c24b2c55d5a5a81cd5f105cdadb}\label{ide__part__table_8h_af49f7c24b2c55d5a5a81cd5f105cdadb}} 
+\index{ide\_part\_table.h@{ide\_part\_table.h}!rtems\_ide\_part\_table\_initialize@{rtems\_ide\_part\_table\_initialize}}
+\index{rtems\_ide\_part\_table\_initialize@{rtems\_ide\_part\_table\_initialize}!ide\_part\_table.h@{ide\_part\_table.h}}
+\subsubsection{\texorpdfstring{rtems\_ide\_part\_table\_initialize()}{rtems\_ide\_part\_table\_initialize()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} rtems\+\_\+ide\+\_\+part\+\_\+table\+\_\+initialize (\begin{DoxyParamCaption}\item[{const char $\ast$}]{dev\+\_\+name }\end{DoxyParamCaption})}
+
+\begin{DoxyRefDesc}{Deprecated}
+\item[\mbox{\hyperlink{deprecated__deprecated000009}{Deprecated}}]Use the \mbox{\hyperlink{group__rtems__bdpart}{block device partition module}} instead. \end{DoxyRefDesc}

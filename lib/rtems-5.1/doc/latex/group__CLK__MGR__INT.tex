@@ -1,0 +1,87 @@
+\hypertarget{group__CLK__MGR__INT}{}\section{Clock Manager Interrupt Management}
+\label{group__CLK__MGR__INT}\index{Clock Manager Interrupt Management@{Clock Manager Interrupt Management}}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__CLK__MGR__INT_gaa37c8af166f14f2dc8c6712d9a4a4085}{alt\+\_\+clk\+\_\+irq\+\_\+disable}} (\mbox{\hyperlink{group__CLK__MGR__STATUS_ga62fbfc277685cad341f57ee0a252092c}{A\+L\+T\+\_\+\+C\+L\+K\+\_\+\+P\+L\+L\+\_\+\+L\+O\+C\+K\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+t}} lock\+\_\+stat\+\_\+mask)
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__CLK__MGR__INT_ga8dac52ec4e5a203a697ce86a8a893fdd}{alt\+\_\+clk\+\_\+irq\+\_\+enable}} (\mbox{\hyperlink{group__CLK__MGR__STATUS_ga62fbfc277685cad341f57ee0a252092c}{A\+L\+T\+\_\+\+C\+L\+K\+\_\+\+P\+L\+L\+\_\+\+L\+O\+C\+K\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+t}} lock\+\_\+stat\+\_\+mask)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+The functions in this group provide management of interrupts originating from the Clock Manager.
+
+The following interrupt request (I\+RQ) signals are sourced from the Clock Manager\+:
+
+
+\begin{DoxyItemize}
+\item {\bfseries{clkmgr\+\_\+\+I\+RQ}} -\/ Clock Manager lock status interrupt output. The P\+LL lock status interrupt is the logical {\itshape OR} of six interrupt sources defining the loss or achievement of lock status for each P\+LL. The six P\+LL lock status conditions are\+:
+\begin{DoxyItemize}
+\item Main P\+LL Achieved Lock
+\item Main P\+LL Lost Lock
+\item Peripheral P\+LL Achieved Lock
+\item Peripheral P\+LL Lost Lock
+\item S\+D\+R\+AM P\+LL Achieved Lock
+\item S\+D\+R\+AM P\+LL Lost Lock
+\end{DoxyItemize}
+
+They are enumeratated by the type \mbox{\hyperlink{group__CLK__MGR__STATUS_ga62fbfc277685cad341f57ee0a252092c}{A\+L\+T\+\_\+\+C\+L\+K\+\_\+\+P\+L\+L\+\_\+\+L\+O\+C\+K\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+t}}.
+
+Each P\+LL lock condition may be individually disabled/enabled as a contributor to the determination of the {\bfseries{clkmgr\+\_\+\+I\+RQ}} assertion status.
+
+The \mbox{\hyperlink{group__CLK__MGR__STATUS_ga8418718b0efdf2b2c69242265ff1581a}{alt\+\_\+clk\+\_\+lock\+\_\+status\+\_\+clear()}} function is used to clear the P\+LL lock conditions causing the {\bfseries{clkmgr\+\_\+\+I\+RQ}} assertion.
+\item {\bfseries{mpuwakeup\+\_\+\+I\+RQ}} -\/ M\+PU wakeup interrupt output. This interrupt notifies the M\+PU to \char`\"{}wake up\char`\"{} after a transition of the Main P\+LL into or out of bypass mode has been safely achieved. The need for the \char`\"{}wake up\char`\"{} notification is because the P\+LL clocks pause for a short number of clock cycles during bypass state transition. A\+RM recommeds that the C\+P\+Us are placed in standby if the clocks are ever paused.
+\end{DoxyItemize}
+
+N\+O\+TE\+: {\bfseries{mpuwakeup\+\_\+\+I\+RQ}} appears to be an Altera private interrupt and may not be part of the public A\+PI although clearly it has important utility in implementing safe changes to P\+LL settings and transitions into and out of bypass mode. 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{group__CLK__MGR__INT_gaa37c8af166f14f2dc8c6712d9a4a4085}\label{group__CLK__MGR__INT_gaa37c8af166f14f2dc8c6712d9a4a4085}} 
+\index{Clock Manager Interrupt Management@{Clock Manager Interrupt Management}!alt\_clk\_irq\_disable@{alt\_clk\_irq\_disable}}
+\index{alt\_clk\_irq\_disable@{alt\_clk\_irq\_disable}!Clock Manager Interrupt Management@{Clock Manager Interrupt Management}}
+\subsubsection{\texorpdfstring{alt\_clk\_irq\_disable()}{alt\_clk\_irq\_disable()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} alt\+\_\+clk\+\_\+irq\+\_\+disable (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__CLK__MGR__STATUS_ga62fbfc277685cad341f57ee0a252092c}{A\+L\+T\+\_\+\+C\+L\+K\+\_\+\+P\+L\+L\+\_\+\+L\+O\+C\+K\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+t}}}]{lock\+\_\+stat\+\_\+mask }\end{DoxyParamCaption})}
+
+Disable the {\bfseries{clkmgr\+\_\+\+I\+RQ}} interrupt signal source lock status condition(s).
+
+This function disables one or more of the lock status conditions as contributors to the {\bfseries{clkmgr\+\_\+\+I\+RQ}} interrupt signal state.
+
+N\+O\+TE\+: A set bit for a P\+LL lock status condition in the mask value does not have the effect of enabling it as a contributor to the {\bfseries{clkmgr\+\_\+\+I\+RQ}} interrupt signal state. The function alt\+\_\+clk\+\_\+irq\+\_\+enable is used to enable P\+LL lock status source condition(s).
+
+
+\begin{DoxyParams}{Parameters}
+{\em lock\+\_\+stat\+\_\+mask} & Specifies the P\+LL lock status conditions to disable as interrupt source contributors. {\itshape lock\+\_\+stat\+\_\+mask} is a mask of logically OR\textquotesingle{}ed A\+L\+T\+\_\+\+C\+L\+K\+\_\+\+P\+L\+L\+\_\+\+L\+O\+C\+K\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+t values that designate the P\+LL lock conditions to disable.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em A\+L\+T\+\_\+\+E\+\_\+\+S\+U\+C\+C\+E\+SS} & Successful status. \\
+\hline
+{\em A\+L\+T\+\_\+\+E\+\_\+\+B\+A\+D\+\_\+\+A\+RG} & The {\itshape lock\+\_\+stat\+\_\+mask} argument contains an unknown condition value. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{group__CLK__MGR__INT_ga8dac52ec4e5a203a697ce86a8a893fdd}\label{group__CLK__MGR__INT_ga8dac52ec4e5a203a697ce86a8a893fdd}} 
+\index{Clock Manager Interrupt Management@{Clock Manager Interrupt Management}!alt\_clk\_irq\_enable@{alt\_clk\_irq\_enable}}
+\index{alt\_clk\_irq\_enable@{alt\_clk\_irq\_enable}!Clock Manager Interrupt Management@{Clock Manager Interrupt Management}}
+\subsubsection{\texorpdfstring{alt\_clk\_irq\_enable()}{alt\_clk\_irq\_enable()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} alt\+\_\+clk\+\_\+irq\+\_\+enable (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__CLK__MGR__STATUS_ga62fbfc277685cad341f57ee0a252092c}{A\+L\+T\+\_\+\+C\+L\+K\+\_\+\+P\+L\+L\+\_\+\+L\+O\+C\+K\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+t}}}]{lock\+\_\+stat\+\_\+mask }\end{DoxyParamCaption})}
+
+Enable the {\bfseries{clkmgr\+\_\+\+I\+RQ}} interrupt signal source lock status condition(s).
+
+This function enables one or more of the lock status conditions as contributors to the {\bfseries{clkmgr\+\_\+\+I\+RQ}} interrupt signal state.
+
+N\+O\+TE\+: A cleared bit for any P\+LL lock status condition in the mask value does not have the effect of disabling it as a contributor to the {\bfseries{clkmgr\+\_\+\+I\+RQ}} interrupt signal state. The function alt\+\_\+clk\+\_\+irq\+\_\+disable is used to disable P\+LL lock status source condition(s).
+
+
+\begin{DoxyParams}{Parameters}
+{\em lock\+\_\+stat\+\_\+mask} & Specifies the P\+LL lock status conditions to enable as interrupt source contributors. {\itshape lock\+\_\+stat\+\_\+mask} is a mask of logically OR\textquotesingle{}ed A\+L\+T\+\_\+\+C\+L\+K\+\_\+\+P\+L\+L\+\_\+\+L\+O\+C\+K\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+t values that designate the P\+LL lock conditions to enable.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em A\+L\+T\+\_\+\+E\+\_\+\+S\+U\+C\+C\+E\+SS} & Successful status. \\
+\hline
+{\em A\+L\+T\+\_\+\+E\+\_\+\+B\+A\+D\+\_\+\+A\+RG} & The {\itshape lock\+\_\+stat\+\_\+mask} argument contains an unknown condition value. \\
+\hline
+\end{DoxyRetVals}

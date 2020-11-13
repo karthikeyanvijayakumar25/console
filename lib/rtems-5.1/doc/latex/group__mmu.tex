@@ -1,0 +1,17 @@
+\hypertarget{group__mmu}{}\section{M\+MU Initialization}
+\label{group__mmu}\index{MMU Initialization@{MMU Initialization}}
+\hypertarget{group__RTEMSBSPsARM_Usage}{}\subsection{Usage}\label{group__RTEMSBSPsARM_Usage}
+Translation Look-\/aside Buffers (T\+L\+Bs) are an implementation technique that caches translations or translation table entries. T\+L\+Bs avoid the requirement for every memory access to perform a translation table lookup. The A\+RM architecture does not specify the exact form of the T\+LB structures for any design. In a similar way to the requirements for caches, the architecture only defines certain principles for T\+L\+Bs\+:
+
+The M\+MU supports memory accesses based on memory sections or pages\+: Super-\/sections Consist of 16MB blocks of memory. Support for Super sections is optional.
+\begin{DoxyEnumerate}
+\item Sections Consist of 1MB blocks of memory.
+\item Large pages Consist of 64KB blocks of memory.
+\item Small pages Consist of 4KB blocks of memory.
+\end{DoxyEnumerate}
+
+Access to a memory region is controlled by the access permission bits and the domain field in the T\+LB entry. Memory region attributes Each T\+LB entry has an associated set of memory region attributes. These control accesses to the caches, how the write buffer is used, and if the memory region is Shareable and therefore must be kept coherent.
+
+Related files\+:~\newline
+mmu.\+c~\newline
+ \mbox{\hyperlink{sparc64_2include_2arch_2mm_2sun4u_2mmu_8h}{mmu.\+h}} ~\newline

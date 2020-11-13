@@ -1,0 +1,219 @@
+\hypertarget{edma_8h}{}\section{bsps/powerpc/mpc55xxevb/include/mpc55xx/edma.h File Reference}
+\label{edma_8h}\index{bsps/powerpc/mpc55xxevb/include/mpc55xx/edma.h@{bsps/powerpc/mpc55xxevb/include/mpc55xx/edma.h}}
+
+
+Enhanced Direct Memory Access (e\+D\+MA).  
+
+
+{\ttfamily \#include $<$mpc55xx/regs.\+h$>$}\newline
+{\ttfamily \#include $<$rtems.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/chain.\+h$>$}\newline
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structedma__channel__context}{edma\+\_\+channel\+\_\+context}}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{edma_8h_a0c0d86c9a686811ca49ff9a1ac612d8b}\label{edma_8h_a0c0d86c9a686811ca49ff9a1ac612d8b}} 
+\#define {\bfseries E\+D\+M\+A\+\_\+\+C\+H\+A\+N\+N\+E\+L\+\_\+\+C\+O\+U\+NT}~64U
+\item 
+\mbox{\Hypertarget{edma_8h_a4a7625201a3e6a92927e75943c445cad}\label{edma_8h_a4a7625201a3e6a92927e75943c445cad}} 
+\#define {\bfseries E\+D\+M\+A\+\_\+\+M\+O\+D\+U\+L\+E\+\_\+\+C\+O\+U\+NT}~((E\+D\+M\+A\+\_\+\+C\+H\+A\+N\+N\+E\+L\+\_\+\+C\+O\+U\+NT + 63\+U) / 64\+U)
+\item 
+\mbox{\Hypertarget{edma_8h_a76c1d53341cf31b20c39cc143aa25ae5}\label{edma_8h_a76c1d53341cf31b20c39cc143aa25ae5}} 
+\#define {\bfseries E\+D\+M\+A\+\_\+\+C\+H\+A\+N\+N\+E\+L\+S\+\_\+\+P\+E\+R\+\_\+\+M\+O\+D\+U\+LE}~64U
+\item 
+\mbox{\Hypertarget{edma_8h_a725dbb2180918baa7ce55066ff8a1981}\label{edma_8h_a725dbb2180918baa7ce55066ff8a1981}} 
+\#define {\bfseries E\+D\+M\+A\+\_\+\+T\+C\+D\+\_\+\+B\+Y\+\_\+\+C\+H\+A\+N\+N\+E\+L\+\_\+\+I\+N\+D\+EX}(channel\+\_\+index)~(\&E\+D\+M\+A.\+T\+CD\mbox{[}(channel\+\_\+index)\mbox{]})
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{edma_8h_ab8dd06cfbbedecadc0a1e5572eb22ef9}\label{edma_8h_ab8dd06cfbbedecadc0a1e5572eb22ef9}} 
+typedef struct \mbox{\hyperlink{structedma__channel__context}{edma\+\_\+channel\+\_\+context}} {\bfseries edma\+\_\+channel\+\_\+context}
+\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{edma_8h_a0be65abdb8a420f9fa77fab784155dee}\label{edma_8h_a0be65abdb8a420f9fa77fab784155dee}} 
+enum {\bfseries edma\+\_\+channel} \{ \newline
+{\bfseries E\+D\+M\+A\+\_\+\+E\+Q\+A\+D\+C\+\_\+\+A\+\_\+\+F\+I\+S\+R0\+\_\+\+C\+F\+F\+F0} = 0, 
+{\bfseries E\+D\+M\+A\+\_\+\+E\+Q\+A\+D\+C\+\_\+\+A\+\_\+\+F\+I\+S\+R0\+\_\+\+R\+F\+D\+F0} = 1, 
+{\bfseries E\+D\+M\+A\+\_\+\+E\+Q\+A\+D\+C\+\_\+\+A\+\_\+\+F\+I\+S\+R1\+\_\+\+C\+F\+F\+F1} = 2, 
+{\bfseries E\+D\+M\+A\+\_\+\+E\+Q\+A\+D\+C\+\_\+\+A\+\_\+\+F\+I\+S\+R1\+\_\+\+R\+F\+D\+F1} = 3, 
+\newline
+{\bfseries E\+D\+M\+A\+\_\+\+E\+Q\+A\+D\+C\+\_\+\+A\+\_\+\+F\+I\+S\+R2\+\_\+\+C\+F\+F\+F2} = 4, 
+{\bfseries E\+D\+M\+A\+\_\+\+E\+Q\+A\+D\+C\+\_\+\+A\+\_\+\+F\+I\+S\+R2\+\_\+\+R\+F\+D\+F2} = 5, 
+{\bfseries E\+D\+M\+A\+\_\+\+E\+Q\+A\+D\+C\+\_\+\+A\+\_\+\+F\+I\+S\+R3\+\_\+\+C\+F\+F\+F3} = 6, 
+{\bfseries E\+D\+M\+A\+\_\+\+E\+Q\+A\+D\+C\+\_\+\+A\+\_\+\+F\+I\+S\+R3\+\_\+\+R\+F\+D\+F3} = 7, 
+\newline
+{\bfseries E\+D\+M\+A\+\_\+\+E\+Q\+A\+D\+C\+\_\+\+A\+\_\+\+F\+I\+S\+R4\+\_\+\+C\+F\+F\+F4} = 8, 
+{\bfseries E\+D\+M\+A\+\_\+\+E\+Q\+A\+D\+C\+\_\+\+A\+\_\+\+F\+I\+S\+R4\+\_\+\+R\+F\+D\+F4} = 9, 
+{\bfseries E\+D\+M\+A\+\_\+\+E\+Q\+A\+D\+C\+\_\+\+A\+\_\+\+F\+I\+S\+R5\+\_\+\+C\+F\+F\+F5} = 10, 
+{\bfseries E\+D\+M\+A\+\_\+\+E\+Q\+A\+D\+C\+\_\+\+A\+\_\+\+F\+I\+S\+R5\+\_\+\+R\+F\+D\+F5} = 11, 
+\newline
+{\bfseries E\+D\+M\+A\+\_\+\+D\+S\+P\+I\+\_\+\+B\+\_\+\+S\+R\+\_\+\+T\+F\+FF} = 12, 
+{\bfseries E\+D\+M\+A\+\_\+\+D\+S\+P\+I\+\_\+\+B\+\_\+\+S\+R\+\_\+\+R\+F\+DF} = 13, 
+{\bfseries E\+D\+M\+A\+\_\+\+D\+S\+P\+I\+\_\+\+C\+\_\+\+S\+R\+\_\+\+T\+F\+FF} = 14, 
+{\bfseries E\+D\+M\+A\+\_\+\+D\+S\+P\+I\+\_\+\+C\+\_\+\+S\+R\+\_\+\+R\+F\+DF} = 15, 
+\newline
+{\bfseries E\+D\+M\+A\+\_\+\+D\+S\+P\+I\+\_\+\+D\+\_\+\+S\+R\+\_\+\+T\+F\+FF} = 16, 
+{\bfseries E\+D\+M\+A\+\_\+\+D\+S\+P\+I\+\_\+\+D\+\_\+\+S\+R\+\_\+\+R\+F\+DF} = 17, 
+{\bfseries E\+D\+M\+A\+\_\+\+E\+S\+C\+I\+\_\+\+A\+\_\+\+C\+O\+M\+B\+TX} = 18, 
+{\bfseries E\+D\+M\+A\+\_\+\+E\+S\+C\+I\+\_\+\+A\+\_\+\+C\+O\+M\+B\+RX} = 19, 
+\newline
+{\bfseries E\+D\+M\+A\+\_\+\+E\+M\+I\+O\+S\+\_\+\+G\+F\+R\+\_\+\+F0} = 20, 
+{\bfseries E\+D\+M\+A\+\_\+\+E\+M\+I\+O\+S\+\_\+\+G\+F\+R\+\_\+\+F1} = 21, 
+{\bfseries E\+D\+M\+A\+\_\+\+E\+M\+I\+O\+S\+\_\+\+G\+F\+R\+\_\+\+F2} = 22, 
+{\bfseries E\+D\+M\+A\+\_\+\+E\+M\+I\+O\+S\+\_\+\+G\+F\+R\+\_\+\+F3} = 23, 
+\newline
+{\bfseries E\+D\+M\+A\+\_\+\+E\+M\+I\+O\+S\+\_\+\+G\+F\+R\+\_\+\+F4} = 24, 
+{\bfseries E\+D\+M\+A\+\_\+\+E\+M\+I\+O\+S\+\_\+\+G\+F\+R\+\_\+\+F8} = 25, 
+{\bfseries E\+D\+M\+A\+\_\+\+E\+M\+I\+O\+S\+\_\+\+G\+F\+R\+\_\+\+F9} = 26, 
+{\bfseries E\+D\+M\+A\+\_\+\+E\+T\+P\+U\+\_\+\+C\+D\+T\+R\+S\+R\+\_\+\+A\+\_\+\+D\+T\+R\+S0} = 27, 
+\newline
+{\bfseries E\+D\+M\+A\+\_\+\+E\+T\+P\+U\+\_\+\+C\+D\+T\+R\+S\+R\+\_\+\+A\+\_\+\+D\+T\+R\+S1} = 28, 
+{\bfseries E\+D\+M\+A\+\_\+\+E\+T\+P\+U\+\_\+\+C\+D\+T\+R\+S\+R\+\_\+\+A\+\_\+\+D\+T\+R\+S2} = 29, 
+{\bfseries E\+D\+M\+A\+\_\+\+E\+T\+P\+U\+\_\+\+C\+D\+T\+R\+S\+R\+\_\+\+A\+\_\+\+D\+T\+R\+S14} = 30, 
+{\bfseries E\+D\+M\+A\+\_\+\+E\+T\+P\+U\+\_\+\+C\+D\+T\+R\+S\+R\+\_\+\+A\+\_\+\+D\+T\+R\+S15} = 31, 
+\newline
+{\bfseries E\+D\+M\+A\+\_\+\+D\+S\+P\+I\+\_\+\+A\+\_\+\+S\+R\+\_\+\+T\+F\+FF} = 32, 
+{\bfseries E\+D\+M\+A\+\_\+\+D\+S\+P\+I\+\_\+\+A\+\_\+\+S\+R\+\_\+\+R\+F\+DF} = 33, 
+{\bfseries E\+D\+M\+A\+\_\+\+E\+S\+C\+I\+\_\+\+B\+\_\+\+C\+O\+M\+B\+TX} = 34, 
+{\bfseries E\+D\+M\+A\+\_\+\+E\+S\+C\+I\+\_\+\+B\+\_\+\+C\+O\+M\+B\+RX} = 35, 
+\newline
+{\bfseries E\+D\+M\+A\+\_\+\+E\+M\+I\+O\+S\+\_\+\+G\+F\+R\+\_\+\+F6} = 36, 
+{\bfseries E\+D\+M\+A\+\_\+\+E\+M\+I\+O\+S\+\_\+\+G\+F\+R\+\_\+\+F7} = 37, 
+{\bfseries E\+D\+M\+A\+\_\+\+E\+M\+I\+O\+S\+\_\+\+G\+F\+R\+\_\+\+F10} = 38, 
+{\bfseries E\+D\+M\+A\+\_\+\+E\+M\+I\+O\+S\+\_\+\+G\+F\+R\+\_\+\+F11} = 39, 
+\newline
+{\bfseries E\+D\+M\+A\+\_\+\+E\+M\+I\+O\+S\+\_\+\+G\+F\+R\+\_\+\+F16} = 40, 
+{\bfseries E\+D\+M\+A\+\_\+\+E\+M\+I\+O\+S\+\_\+\+G\+F\+R\+\_\+\+F17} = 41, 
+{\bfseries E\+D\+M\+A\+\_\+\+E\+M\+I\+O\+S\+\_\+\+G\+F\+R\+\_\+\+F18} = 42, 
+{\bfseries E\+D\+M\+A\+\_\+\+E\+M\+I\+O\+S\+\_\+\+G\+F\+R\+\_\+\+F19} = 43, 
+\newline
+{\bfseries E\+D\+M\+A\+\_\+\+E\+T\+P\+U\+\_\+\+C\+D\+T\+R\+S\+R\+\_\+\+A\+\_\+\+D\+T\+R\+S12} = 44, 
+{\bfseries E\+D\+M\+A\+\_\+\+E\+T\+P\+U\+\_\+\+C\+D\+T\+R\+S\+R\+\_\+\+A\+\_\+\+D\+T\+R\+S13} = 45, 
+{\bfseries E\+D\+M\+A\+\_\+\+E\+T\+P\+U\+\_\+\+C\+D\+T\+R\+S\+R\+\_\+\+A\+\_\+\+D\+T\+R\+S28} = 46, 
+{\bfseries E\+D\+M\+A\+\_\+\+E\+T\+P\+U\+\_\+\+C\+D\+T\+R\+S\+R\+\_\+\+A\+\_\+\+D\+T\+R\+S29} = 47, 
+\newline
+{\bfseries E\+D\+M\+A\+\_\+\+S\+I\+U\+\_\+\+E\+I\+S\+R\+\_\+\+E\+I\+F0} = 48, 
+{\bfseries E\+D\+M\+A\+\_\+\+S\+I\+U\+\_\+\+E\+I\+S\+R\+\_\+\+E\+I\+F1} = 49, 
+{\bfseries E\+D\+M\+A\+\_\+\+S\+I\+U\+\_\+\+E\+I\+S\+R\+\_\+\+E\+I\+F2} = 50, 
+{\bfseries E\+D\+M\+A\+\_\+\+S\+I\+U\+\_\+\+E\+I\+S\+R\+\_\+\+E\+I\+F3} = 51, 
+\newline
+{\bfseries E\+D\+M\+A\+\_\+\+E\+T\+P\+U\+\_\+\+C\+D\+T\+R\+S\+R\+\_\+\+B\+\_\+\+D\+T\+R\+S0} = 52, 
+{\bfseries E\+D\+M\+A\+\_\+\+E\+T\+P\+U\+\_\+\+C\+D\+T\+R\+S\+R\+\_\+\+B\+\_\+\+D\+T\+R\+S1} = 53, 
+{\bfseries E\+D\+M\+A\+\_\+\+E\+T\+P\+U\+\_\+\+C\+D\+T\+R\+S\+R\+\_\+\+B\+\_\+\+D\+T\+R\+S2} = 54, 
+{\bfseries E\+D\+M\+A\+\_\+\+E\+T\+P\+U\+\_\+\+C\+D\+T\+R\+S\+R\+\_\+\+B\+\_\+\+D\+T\+R\+S3} = 55, 
+\newline
+{\bfseries E\+D\+M\+A\+\_\+\+E\+T\+P\+U\+\_\+\+C\+D\+T\+R\+S\+R\+\_\+\+B\+\_\+\+D\+T\+R\+S12} = 56, 
+{\bfseries E\+D\+M\+A\+\_\+\+E\+T\+P\+U\+\_\+\+C\+D\+T\+R\+S\+R\+\_\+\+B\+\_\+\+D\+T\+R\+S13} = 57, 
+{\bfseries E\+D\+M\+A\+\_\+\+E\+T\+P\+U\+\_\+\+C\+D\+T\+R\+S\+R\+\_\+\+B\+\_\+\+D\+T\+R\+S14} = 58, 
+{\bfseries E\+D\+M\+A\+\_\+\+E\+T\+P\+U\+\_\+\+C\+D\+T\+R\+S\+R\+\_\+\+B\+\_\+\+D\+T\+R\+S15} = 59, 
+\newline
+{\bfseries E\+D\+M\+A\+\_\+\+E\+T\+P\+U\+\_\+\+C\+D\+T\+R\+S\+R\+\_\+\+B\+\_\+\+D\+T\+R\+S28} = 60, 
+{\bfseries E\+D\+M\+A\+\_\+\+E\+T\+P\+U\+\_\+\+C\+D\+T\+R\+S\+R\+\_\+\+B\+\_\+\+D\+T\+R\+S29} = 61, 
+{\bfseries E\+D\+M\+A\+\_\+\+E\+T\+P\+U\+\_\+\+C\+D\+T\+R\+S\+R\+\_\+\+B\+\_\+\+D\+T\+R\+S30} = 62, 
+{\bfseries E\+D\+M\+A\+\_\+\+E\+T\+P\+U\+\_\+\+C\+D\+T\+R\+S\+R\+\_\+\+B\+\_\+\+D\+T\+R\+S31} = 63
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{edma_8h_ae26d478737a05a449c7f34f74ccbab94}\label{edma_8h_ae26d478737a05a449c7f34f74ccbab94}} 
+void {\bfseries mpc55xx\+\_\+edma\+\_\+init} (void)
+\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{edma_8h_aac9f90a9eca3e9ef2769f244cbfba4a0}{mpc55xx\+\_\+edma\+\_\+obtain\+\_\+channel\+\_\+by\+\_\+tcd}} (volatile struct tcd\+\_\+t $\ast$edma\+\_\+tcd)
+\begin{DoxyCompactList}\small\item\em Obtains an e\+D\+MA channel. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{edma_8h_a001fb6ed5bfd043b72bd5771abce38f2}\label{edma_8h_a001fb6ed5bfd043b72bd5771abce38f2}} 
+void {\bfseries mpc55xx\+\_\+edma\+\_\+release\+\_\+channel\+\_\+by\+\_\+tcd} (volatile struct tcd\+\_\+t $\ast$edma\+\_\+tcd)
+\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{edma_8h_adcedbb3a0c1c4dae8f0153e492c76a9f}{mpc55xx\+\_\+edma\+\_\+obtain\+\_\+channel}} (\mbox{\hyperlink{structedma__channel__context}{edma\+\_\+channel\+\_\+context}} $\ast$ctx, unsigned irq\+\_\+priority)
+\begin{DoxyCompactList}\small\item\em Obtains an e\+D\+MA channel and registers the channel context. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{edma_8h_adaf3c9b8f2e08a883a997e7cf643d621}\label{edma_8h_adaf3c9b8f2e08a883a997e7cf643d621}} 
+void {\bfseries mpc55xx\+\_\+edma\+\_\+release\+\_\+channel} (\mbox{\hyperlink{structedma__channel__context}{edma\+\_\+channel\+\_\+context}} $\ast$ctx)
+\item 
+void \mbox{\hyperlink{edma_8h_a7c6ab43d2bf9f8f0c66ff6e4441a9e81}{mpc55xx\+\_\+edma\+\_\+copy}} (volatile struct tcd\+\_\+t $\ast$edma\+\_\+tcd, const struct tcd\+\_\+t $\ast$source\+\_\+tcd)
+\begin{DoxyCompactList}\small\item\em Copies a source T\+CD to an e\+D\+MA T\+CD. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{edma_8h_ab9eeb49b67d1472989c580a9716528df}{mpc55xx\+\_\+edma\+\_\+copy\+\_\+and\+\_\+enable\+\_\+hardware\+\_\+requests}} (volatile struct tcd\+\_\+t $\ast$edma\+\_\+tcd, const struct tcd\+\_\+t $\ast$source\+\_\+tcd)
+\begin{DoxyCompactList}\small\item\em Copies a source T\+CD to an e\+D\+MA T\+CD and enables hardware requests. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{edma_8h_a5e8f86e284989fabaa22a9957e9f985a}\label{edma_8h_a5e8f86e284989fabaa22a9957e9f985a}} 
+void {\bfseries mpc55xx\+\_\+edma\+\_\+sg\+\_\+link} (volatile struct tcd\+\_\+t $\ast$edma\+\_\+tcd, const struct tcd\+\_\+t $\ast$source\+\_\+tcd)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Enhanced Direct Memory Access (e\+D\+MA). 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{edma_8h_a7c6ab43d2bf9f8f0c66ff6e4441a9e81}\label{edma_8h_a7c6ab43d2bf9f8f0c66ff6e4441a9e81}} 
+\index{edma.h@{edma.h}!mpc55xx\_edma\_copy@{mpc55xx\_edma\_copy}}
+\index{mpc55xx\_edma\_copy@{mpc55xx\_edma\_copy}!edma.h@{edma.h}}
+\subsubsection{\texorpdfstring{mpc55xx\_edma\_copy()}{mpc55xx\_edma\_copy()}}
+{\footnotesize\ttfamily void mpc55xx\+\_\+edma\+\_\+copy (\begin{DoxyParamCaption}\item[{volatile struct tcd\+\_\+t $\ast$}]{edma\+\_\+tcd,  }\item[{const struct tcd\+\_\+t $\ast$}]{source\+\_\+tcd }\end{DoxyParamCaption})}
+
+
+
+Copies a source T\+CD to an e\+D\+MA T\+CD. 
+
+The D\+O\+NE flag of the e\+D\+MA T\+CD is cleared before the actual copy operation. This enables the setting of channel link or scatter/gather options.
+
+This function can be used to start the channel if the S\+T\+A\+RT flags is set in the source T\+CD. \mbox{\Hypertarget{edma_8h_ab9eeb49b67d1472989c580a9716528df}\label{edma_8h_ab9eeb49b67d1472989c580a9716528df}} 
+\index{edma.h@{edma.h}!mpc55xx\_edma\_copy\_and\_enable\_hardware\_requests@{mpc55xx\_edma\_copy\_and\_enable\_hardware\_requests}}
+\index{mpc55xx\_edma\_copy\_and\_enable\_hardware\_requests@{mpc55xx\_edma\_copy\_and\_enable\_hardware\_requests}!edma.h@{edma.h}}
+\subsubsection{\texorpdfstring{mpc55xx\_edma\_copy\_and\_enable\_hardware\_requests()}{mpc55xx\_edma\_copy\_and\_enable\_hardware\_requests()}}
+{\footnotesize\ttfamily void mpc55xx\+\_\+edma\+\_\+copy\+\_\+and\+\_\+enable\+\_\+hardware\+\_\+requests (\begin{DoxyParamCaption}\item[{volatile struct tcd\+\_\+t $\ast$}]{edma\+\_\+tcd,  }\item[{const struct tcd\+\_\+t $\ast$}]{source\+\_\+tcd }\end{DoxyParamCaption})}
+
+
+
+Copies a source T\+CD to an e\+D\+MA T\+CD and enables hardware requests. 
+
+The D\+O\+NE flag of the e\+D\+MA T\+CD is cleared before the actual copy operation. This enables the setting of channel link or scatter/gather options. \mbox{\Hypertarget{edma_8h_adcedbb3a0c1c4dae8f0153e492c76a9f}\label{edma_8h_adcedbb3a0c1c4dae8f0153e492c76a9f}} 
+\index{edma.h@{edma.h}!mpc55xx\_edma\_obtain\_channel@{mpc55xx\_edma\_obtain\_channel}}
+\index{mpc55xx\_edma\_obtain\_channel@{mpc55xx\_edma\_obtain\_channel}!edma.h@{edma.h}}
+\subsubsection{\texorpdfstring{mpc55xx\_edma\_obtain\_channel()}{mpc55xx\_edma\_obtain\_channel()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} mpc55xx\+\_\+edma\+\_\+obtain\+\_\+channel (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structedma__channel__context}{edma\+\_\+channel\+\_\+context}} $\ast$}]{ctx,  }\item[{unsigned}]{irq\+\_\+priority }\end{DoxyParamCaption})}
+
+
+
+Obtains an e\+D\+MA channel and registers the channel context. 
+
+The done handler of the channel context will be called
+\begin{DoxyItemize}
+\item during minor or major loop completions if interrupts are enabled in the corresponding T\+CD, or
+\item in case a channel error occurs.
+\end{DoxyItemize}
+
+An error status value not equal to zero indicates an error.
+
+
+\begin{DoxyRetVals}{Return values}
+{\em R\+T\+E\+M\+S\+\_\+\+S\+U\+C\+C\+E\+S\+S\+F\+UL} & Successful operation. \\
+\hline
+{\em R\+T\+E\+M\+S\+\_\+\+R\+E\+S\+O\+U\+R\+C\+E\+\_\+\+I\+N\+\_\+\+U\+SE} & The channel is already in use. \\
+\hline
+{\em R\+T\+E\+M\+S\+\_\+\+I\+O\+\_\+\+E\+R\+R\+OR} & Unable to install interrupt handler for this channel. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{edma_8h_aac9f90a9eca3e9ef2769f244cbfba4a0}\label{edma_8h_aac9f90a9eca3e9ef2769f244cbfba4a0}} 
+\index{edma.h@{edma.h}!mpc55xx\_edma\_obtain\_channel\_by\_tcd@{mpc55xx\_edma\_obtain\_channel\_by\_tcd}}
+\index{mpc55xx\_edma\_obtain\_channel\_by\_tcd@{mpc55xx\_edma\_obtain\_channel\_by\_tcd}!edma.h@{edma.h}}
+\subsubsection{\texorpdfstring{mpc55xx\_edma\_obtain\_channel\_by\_tcd()}{mpc55xx\_edma\_obtain\_channel\_by\_tcd()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} mpc55xx\+\_\+edma\+\_\+obtain\+\_\+channel\+\_\+by\+\_\+tcd (\begin{DoxyParamCaption}\item[{volatile struct tcd\+\_\+t $\ast$}]{edma\+\_\+tcd }\end{DoxyParamCaption})}
+
+
+
+Obtains an e\+D\+MA channel. 
+
+
+\begin{DoxyRetVals}{Return values}
+{\em R\+T\+E\+M\+S\+\_\+\+S\+U\+C\+C\+E\+S\+S\+F\+UL} & Successful operation. \\
+\hline
+{\em R\+T\+E\+M\+S\+\_\+\+R\+E\+S\+O\+U\+R\+C\+E\+\_\+\+I\+N\+\_\+\+U\+SE} & The channel is already in use. \\
+\hline
+\end{DoxyRetVals}

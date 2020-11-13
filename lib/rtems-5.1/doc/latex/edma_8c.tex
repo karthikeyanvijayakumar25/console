@@ -1,0 +1,128 @@
+\hypertarget{edma_8c}{}\section{bsps/powerpc/mpc55xxevb/start/edma.c File Reference}
+\label{edma_8c}\index{bsps/powerpc/mpc55xxevb/start/edma.c@{bsps/powerpc/mpc55xxevb/start/edma.c}}
+
+
+Enhanced Direct Memory Access (e\+D\+MA).  
+
+
+{\ttfamily \#include $<$mpc55xx/edma.\+h$>$}\newline
+{\ttfamily \#include $<$mpc55xx/mpc55xx.\+h$>$}\newline
+{\ttfamily \#include $<$assert.\+h$>$}\newline
+{\ttfamily \#include $<$bsp.\+h$>$}\newline
+{\ttfamily \#include $<$bsp/fatal.\+h$>$}\newline
+{\ttfamily \#include $<$bsp/irq.\+h$>$}\newline
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{edma_8c_aad1d00b8d2dbfcffd55c1f7531b07c22}\label{edma_8c_aad1d00b8d2dbfcffd55c1f7531b07c22}} 
+\#define {\bfseries E\+D\+M\+A\+\_\+\+C\+H\+A\+N\+N\+E\+L\+S\+\_\+\+P\+E\+R\+\_\+\+G\+R\+O\+UP}~32U
+\item 
+\mbox{\Hypertarget{edma_8c_a14c92622ec3b786af999e94662fadda9}\label{edma_8c_a14c92622ec3b786af999e94662fadda9}} 
+\#define {\bfseries E\+D\+M\+A\+\_\+\+G\+R\+O\+U\+P\+\_\+\+C\+O\+U\+NT}~((E\+D\+M\+A\+\_\+\+C\+H\+A\+N\+N\+E\+L\+\_\+\+C\+O\+U\+NT + 31\+U) / 32\+U)
+\item 
+\mbox{\Hypertarget{edma_8c_afab44411e8516d7d8c58d89aa33534d2}\label{edma_8c_afab44411e8516d7d8c58d89aa33534d2}} 
+\#define {\bfseries E\+D\+M\+A\+\_\+\+G\+R\+O\+U\+P\+\_\+\+I\+N\+D\+EX}(channel)~((channel) / E\+D\+M\+A\+\_\+\+C\+H\+A\+N\+N\+E\+L\+S\+\_\+\+P\+E\+R\+\_\+\+G\+R\+O\+UP)
+\item 
+\mbox{\Hypertarget{edma_8c_a539b90b7dd9ea46a89f91adfa405be1c}\label{edma_8c_a539b90b7dd9ea46a89f91adfa405be1c}} 
+\#define {\bfseries E\+D\+M\+A\+\_\+\+G\+R\+O\+U\+P\+\_\+\+B\+IT}(channel)~(1\+U $<$$<$ ((channel) \% E\+D\+M\+A\+\_\+\+C\+H\+A\+N\+N\+E\+L\+S\+\_\+\+P\+E\+R\+\_\+\+G\+R\+O\+U\+P))
+\item 
+\mbox{\Hypertarget{edma_8c_a13987c106203233549761e86e9e7322d}\label{edma_8c_a13987c106203233549761e86e9e7322d}} 
+\#define {\bfseries E\+D\+M\+A\+\_\+\+M\+O\+D\+U\+L\+E\+\_\+\+I\+N\+D\+EX}(channel)~((channel) / E\+D\+M\+A\+\_\+\+C\+H\+A\+N\+N\+E\+L\+S\+\_\+\+P\+E\+R\+\_\+\+M\+O\+D\+U\+LE)
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{edma_8c_ae26d478737a05a449c7f34f74ccbab94}\label{edma_8c_ae26d478737a05a449c7f34f74ccbab94}} 
+void {\bfseries mpc55xx\+\_\+edma\+\_\+init} (void)
+\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{edma_8c_aac9f90a9eca3e9ef2769f244cbfba4a0}{mpc55xx\+\_\+edma\+\_\+obtain\+\_\+channel\+\_\+by\+\_\+tcd}} (volatile struct tcd\+\_\+t $\ast$edma\+\_\+tcd)
+\begin{DoxyCompactList}\small\item\em Obtains an e\+D\+MA channel. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{edma_8c_a001fb6ed5bfd043b72bd5771abce38f2}\label{edma_8c_a001fb6ed5bfd043b72bd5771abce38f2}} 
+void {\bfseries mpc55xx\+\_\+edma\+\_\+release\+\_\+channel\+\_\+by\+\_\+tcd} (volatile struct tcd\+\_\+t $\ast$edma\+\_\+tcd)
+\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{edma_8c_adcedbb3a0c1c4dae8f0153e492c76a9f}{mpc55xx\+\_\+edma\+\_\+obtain\+\_\+channel}} (\mbox{\hyperlink{structedma__channel__context}{edma\+\_\+channel\+\_\+context}} $\ast$ctx, unsigned irq\+\_\+priority)
+\begin{DoxyCompactList}\small\item\em Obtains an e\+D\+MA channel and registers the channel context. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{edma_8c_adaf3c9b8f2e08a883a997e7cf643d621}\label{edma_8c_adaf3c9b8f2e08a883a997e7cf643d621}} 
+void {\bfseries mpc55xx\+\_\+edma\+\_\+release\+\_\+channel} (\mbox{\hyperlink{structedma__channel__context}{edma\+\_\+channel\+\_\+context}} $\ast$ctx)
+\item 
+void \mbox{\hyperlink{edma_8c_a7c6ab43d2bf9f8f0c66ff6e4441a9e81}{mpc55xx\+\_\+edma\+\_\+copy}} (volatile struct tcd\+\_\+t $\ast$edma\+\_\+tcd, const struct tcd\+\_\+t $\ast$source\+\_\+tcd)
+\begin{DoxyCompactList}\small\item\em Copies a source T\+CD to an e\+D\+MA T\+CD. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{edma_8c_ab9eeb49b67d1472989c580a9716528df}{mpc55xx\+\_\+edma\+\_\+copy\+\_\+and\+\_\+enable\+\_\+hardware\+\_\+requests}} (volatile struct tcd\+\_\+t $\ast$edma\+\_\+tcd, const struct tcd\+\_\+t $\ast$source\+\_\+tcd)
+\begin{DoxyCompactList}\small\item\em Copies a source T\+CD to an e\+D\+MA T\+CD and enables hardware requests. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{edma_8c_a5e8f86e284989fabaa22a9957e9f985a}\label{edma_8c_a5e8f86e284989fabaa22a9957e9f985a}} 
+void {\bfseries mpc55xx\+\_\+edma\+\_\+sg\+\_\+link} (volatile struct tcd\+\_\+t $\ast$edma\+\_\+tcd, const struct tcd\+\_\+t $\ast$source\+\_\+tcd)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Enhanced Direct Memory Access (e\+D\+MA). 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{edma_8c_a7c6ab43d2bf9f8f0c66ff6e4441a9e81}\label{edma_8c_a7c6ab43d2bf9f8f0c66ff6e4441a9e81}} 
+\index{edma.c@{edma.c}!mpc55xx\_edma\_copy@{mpc55xx\_edma\_copy}}
+\index{mpc55xx\_edma\_copy@{mpc55xx\_edma\_copy}!edma.c@{edma.c}}
+\subsubsection{\texorpdfstring{mpc55xx\_edma\_copy()}{mpc55xx\_edma\_copy()}}
+{\footnotesize\ttfamily void mpc55xx\+\_\+edma\+\_\+copy (\begin{DoxyParamCaption}\item[{volatile struct tcd\+\_\+t $\ast$}]{edma\+\_\+tcd,  }\item[{const struct tcd\+\_\+t $\ast$}]{source\+\_\+tcd }\end{DoxyParamCaption})}
+
+
+
+Copies a source T\+CD to an e\+D\+MA T\+CD. 
+
+The D\+O\+NE flag of the e\+D\+MA T\+CD is cleared before the actual copy operation. This enables the setting of channel link or scatter/gather options.
+
+This function can be used to start the channel if the S\+T\+A\+RT flags is set in the source T\+CD. \mbox{\Hypertarget{edma_8c_ab9eeb49b67d1472989c580a9716528df}\label{edma_8c_ab9eeb49b67d1472989c580a9716528df}} 
+\index{edma.c@{edma.c}!mpc55xx\_edma\_copy\_and\_enable\_hardware\_requests@{mpc55xx\_edma\_copy\_and\_enable\_hardware\_requests}}
+\index{mpc55xx\_edma\_copy\_and\_enable\_hardware\_requests@{mpc55xx\_edma\_copy\_and\_enable\_hardware\_requests}!edma.c@{edma.c}}
+\subsubsection{\texorpdfstring{mpc55xx\_edma\_copy\_and\_enable\_hardware\_requests()}{mpc55xx\_edma\_copy\_and\_enable\_hardware\_requests()}}
+{\footnotesize\ttfamily void mpc55xx\+\_\+edma\+\_\+copy\+\_\+and\+\_\+enable\+\_\+hardware\+\_\+requests (\begin{DoxyParamCaption}\item[{volatile struct tcd\+\_\+t $\ast$}]{edma\+\_\+tcd,  }\item[{const struct tcd\+\_\+t $\ast$}]{source\+\_\+tcd }\end{DoxyParamCaption})}
+
+
+
+Copies a source T\+CD to an e\+D\+MA T\+CD and enables hardware requests. 
+
+The D\+O\+NE flag of the e\+D\+MA T\+CD is cleared before the actual copy operation. This enables the setting of channel link or scatter/gather options. \mbox{\Hypertarget{edma_8c_adcedbb3a0c1c4dae8f0153e492c76a9f}\label{edma_8c_adcedbb3a0c1c4dae8f0153e492c76a9f}} 
+\index{edma.c@{edma.c}!mpc55xx\_edma\_obtain\_channel@{mpc55xx\_edma\_obtain\_channel}}
+\index{mpc55xx\_edma\_obtain\_channel@{mpc55xx\_edma\_obtain\_channel}!edma.c@{edma.c}}
+\subsubsection{\texorpdfstring{mpc55xx\_edma\_obtain\_channel()}{mpc55xx\_edma\_obtain\_channel()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} mpc55xx\+\_\+edma\+\_\+obtain\+\_\+channel (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structedma__channel__context}{edma\+\_\+channel\+\_\+context}} $\ast$}]{ctx,  }\item[{unsigned}]{irq\+\_\+priority }\end{DoxyParamCaption})}
+
+
+
+Obtains an e\+D\+MA channel and registers the channel context. 
+
+The done handler of the channel context will be called
+\begin{DoxyItemize}
+\item during minor or major loop completions if interrupts are enabled in the corresponding T\+CD, or
+\item in case a channel error occurs.
+\end{DoxyItemize}
+
+An error status value not equal to zero indicates an error.
+
+
+\begin{DoxyRetVals}{Return values}
+{\em R\+T\+E\+M\+S\+\_\+\+S\+U\+C\+C\+E\+S\+S\+F\+UL} & Successful operation. \\
+\hline
+{\em R\+T\+E\+M\+S\+\_\+\+R\+E\+S\+O\+U\+R\+C\+E\+\_\+\+I\+N\+\_\+\+U\+SE} & The channel is already in use. \\
+\hline
+{\em R\+T\+E\+M\+S\+\_\+\+I\+O\+\_\+\+E\+R\+R\+OR} & Unable to install interrupt handler for this channel. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{edma_8c_aac9f90a9eca3e9ef2769f244cbfba4a0}\label{edma_8c_aac9f90a9eca3e9ef2769f244cbfba4a0}} 
+\index{edma.c@{edma.c}!mpc55xx\_edma\_obtain\_channel\_by\_tcd@{mpc55xx\_edma\_obtain\_channel\_by\_tcd}}
+\index{mpc55xx\_edma\_obtain\_channel\_by\_tcd@{mpc55xx\_edma\_obtain\_channel\_by\_tcd}!edma.c@{edma.c}}
+\subsubsection{\texorpdfstring{mpc55xx\_edma\_obtain\_channel\_by\_tcd()}{mpc55xx\_edma\_obtain\_channel\_by\_tcd()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} mpc55xx\+\_\+edma\+\_\+obtain\+\_\+channel\+\_\+by\+\_\+tcd (\begin{DoxyParamCaption}\item[{volatile struct tcd\+\_\+t $\ast$}]{edma\+\_\+tcd }\end{DoxyParamCaption})}
+
+
+
+Obtains an e\+D\+MA channel. 
+
+
+\begin{DoxyRetVals}{Return values}
+{\em R\+T\+E\+M\+S\+\_\+\+S\+U\+C\+C\+E\+S\+S\+F\+UL} & Successful operation. \\
+\hline
+{\em R\+T\+E\+M\+S\+\_\+\+R\+E\+S\+O\+U\+R\+C\+E\+\_\+\+I\+N\+\_\+\+U\+SE} & The channel is already in use. \\
+\hline
+\end{DoxyRetVals}

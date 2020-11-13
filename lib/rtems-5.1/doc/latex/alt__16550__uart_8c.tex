@@ -1,0 +1,140 @@
+\hypertarget{alt__16550__uart_8c}{}\section{bsps/arm/altera-\/cyclone-\/v/contrib/hwlib/src/hwmgr/alt\+\_\+16550\+\_\+uart.c File Reference}
+\label{alt__16550__uart_8c}\index{bsps/arm/altera-\/cyclone-\/v/contrib/hwlib/src/hwmgr/alt\_16550\_uart.c@{bsps/arm/altera-\/cyclone-\/v/contrib/hwlib/src/hwmgr/alt\_16550\_uart.c}}
+{\ttfamily \#include $<$bsp/alt\+\_\+16550\+\_\+uart.\+h$>$}\newline
+{\ttfamily \#include $<$bsp/alt\+\_\+clock\+\_\+manager.\+h$>$}\newline
+{\ttfamily \#include $<$bsp/socal/alt\+\_\+rstmgr.\+h$>$}\newline
+{\ttfamily \#include $<$bsp/socal/alt\+\_\+uart.\+h$>$}\newline
+{\ttfamily \#include $<$bsp/socal/hps.\+h$>$}\newline
+{\ttfamily \#include $<$bsp/socal/socal.\+h$>$}\newline
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{alt__16550__uart_8c_a3bcf0065d2589106e38bdf262c4b33bc}\label{alt__16550__uart_8c_a3bcf0065d2589106e38bdf262c4b33bc}} 
+\#define {\bfseries A\+L\+T\+\_\+16550\+\_\+\+H\+A\+N\+D\+L\+E\+\_\+\+D\+A\+T\+A\+\_\+\+U\+A\+R\+T\+\_\+\+E\+N\+A\+B\+L\+E\+D\+\_\+\+M\+SK}~(1\+U\+L $<$$<$ 31)
+\item 
+\mbox{\Hypertarget{alt__16550__uart_8c_a2cfe92c5d30b30fcbc25b273f811aabc}\label{alt__16550__uart_8c_a2cfe92c5d30b30fcbc25b273f811aabc}} 
+\#define {\bfseries A\+L\+T\+\_\+16550\+\_\+\+H\+A\+N\+D\+L\+E\+\_\+\+D\+A\+T\+A\+\_\+\+D\+I\+V\+I\+S\+O\+R\+\_\+\+V\+A\+L\+U\+E\+\_\+\+G\+ET}(value)~(value \& 0xffff)
+\item 
+\mbox{\Hypertarget{alt__16550__uart_8c_a35ae9b0030d1f80308ddbf3cca82ff02}\label{alt__16550__uart_8c_a35ae9b0030d1f80308ddbf3cca82ff02}} 
+\#define {\bfseries A\+L\+T\+\_\+\+A\+L\+T\+E\+R\+A\+\_\+16550\+\_\+\+C\+P\+R\+\_\+\+O\+F\+ST}~(0x\+F4)
+\item 
+\mbox{\Hypertarget{alt__16550__uart_8c_a3ace7a2bd297d162e9a55619470a5cbb}\label{alt__16550__uart_8c_a3ace7a2bd297d162e9a55619470a5cbb}} 
+\#define {\bfseries A\+L\+T\+\_\+\+A\+L\+T\+E\+R\+A\+\_\+16550\+\_\+\+C\+P\+R\+\_\+\+A\+D\+DR}(base)~\mbox{\hyperlink{group__ALT__SOCAL__UTIL_ga0c0d803769fc22ce2c319fc475febbde}{A\+L\+T\+\_\+\+C\+A\+ST}}(void $\ast$, (\mbox{\hyperlink{group__ALT__SOCAL__UTIL_ga0c0d803769fc22ce2c319fc475febbde}{A\+L\+T\+\_\+\+C\+A\+ST}}(char $\ast$, (base)) + A\+L\+T\+\_\+\+A\+L\+T\+E\+R\+A\+\_\+16550\+\_\+\+C\+P\+R\+\_\+\+O\+F\+ST))
+\item 
+\mbox{\Hypertarget{alt__16550__uart_8c_afda61b156dfa6ea247fa0ece881f0807}\label{alt__16550__uart_8c_afda61b156dfa6ea247fa0ece881f0807}} 
+\#define {\bfseries A\+L\+T\+\_\+\+A\+L\+T\+E\+R\+A\+\_\+16550\+\_\+\+C\+P\+R\+\_\+\+F\+I\+F\+O\+\_\+\+M\+O\+D\+E\+\_\+\+G\+ET}(value)~(((value) $>$$>$ 16) \& 0xff)
+\item 
+\mbox{\Hypertarget{alt__16550__uart_8c_a608cd32a6d76ce46dca66ab3f90b5ea8}\label{alt__16550__uart_8c_a608cd32a6d76ce46dca66ab3f90b5ea8}} 
+\#define {\bfseries A\+L\+T\+\_\+\+A\+L\+T\+E\+R\+A\+\_\+16550\+\_\+\+C\+P\+R\+\_\+\+A\+F\+C\+E\+\_\+\+M\+O\+D\+E\+\_\+\+S\+E\+T\+\_\+\+M\+SK}~(1 $<$$<$ 4)
+\item 
+\mbox{\Hypertarget{alt__16550__uart_8c_ad3906fb4637022d1b7493310302d7f11}\label{alt__16550__uart_8c_ad3906fb4637022d1b7493310302d7f11}} 
+\#define {\bfseries A\+L\+T\+\_\+\+U\+A\+R\+T\+\_\+\+I\+E\+R\+\_\+\+D\+L\+H\+\_\+\+V\+A\+L\+U\+E\+\_\+\+S\+ET}(value)~((value) \& 0xff)
+\item 
+\mbox{\Hypertarget{alt__16550__uart_8c_a0f834e22478f2bb2ca759f5eced91fbe}\label{alt__16550__uart_8c_a0f834e22478f2bb2ca759f5eced91fbe}} 
+\#define {\bfseries A\+L\+T\+\_\+\+U\+A\+R\+T\+\_\+\+I\+E\+R\+\_\+\+D\+L\+H\+\_\+\+E\+T\+B\+E\+I\+\_\+\+D\+L\+H1\+\_\+\+S\+E\+T\+\_\+\+M\+SK}~A\+L\+T\+\_\+\+U\+A\+R\+T\+\_\+\+I\+E\+R\+\_\+\+D\+L\+H\+\_\+\+E\+T\+B\+E\+I\+\_\+\+D\+L\+H\+L\+\_\+\+S\+E\+T\+\_\+\+M\+SK
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__UART__BASIC_gaabd5c547f257e38f90ee210febd4348b}{alt\+\_\+16550\+\_\+init}} (\mbox{\hyperlink{group__UART__BASIC_ga292038e1b11e0a1f05df98abd20c819b}{A\+L\+T\+\_\+16550\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+t}} \mbox{\hyperlink{structdevice}{device}}, void $\ast$location, \mbox{\hyperlink{group__CLK__MGR_gaa32fe6dfaa6def16098e0039eb336383}{alt\+\_\+freq\+\_\+t}} clock\+\_\+freq, \mbox{\hyperlink{group__UART__BASIC_ga4173f362f19fc04032c3859b78d78119}{A\+L\+T\+\_\+16550\+\_\+\+H\+A\+N\+D\+L\+E\+\_\+t}} $\ast$handle)
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__UART__BASIC_ga58b1878dbb4dbf38bba4da52ab4d9480}{alt\+\_\+16550\+\_\+uninit}} (\mbox{\hyperlink{group__UART__BASIC_ga4173f362f19fc04032c3859b78d78119}{A\+L\+T\+\_\+16550\+\_\+\+H\+A\+N\+D\+L\+E\+\_\+t}} $\ast$handle)
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__UART__BASIC_gad94c73d9f525761b4fcc3129fe08680b}{alt\+\_\+16550\+\_\+reset}} (\mbox{\hyperlink{group__UART__BASIC_ga4173f362f19fc04032c3859b78d78119}{A\+L\+T\+\_\+16550\+\_\+\+H\+A\+N\+D\+L\+E\+\_\+t}} $\ast$handle)
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__UART__BASIC_gab7d4f69d1a4d5862955a77a4032013f7}{alt\+\_\+16550\+\_\+enable}} (\mbox{\hyperlink{group__UART__BASIC_ga4173f362f19fc04032c3859b78d78119}{A\+L\+T\+\_\+16550\+\_\+\+H\+A\+N\+D\+L\+E\+\_\+t}} $\ast$handle)
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__UART__BASIC_ga35a81e69ac72ace9a1dd61901774b904}{alt\+\_\+16550\+\_\+disable}} (\mbox{\hyperlink{group__UART__BASIC_ga4173f362f19fc04032c3859b78d78119}{A\+L\+T\+\_\+16550\+\_\+\+H\+A\+N\+D\+L\+E\+\_\+t}} $\ast$handle)
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__UART__BASIC_ga0124c84775e913daec8eec21ffcef4df}{alt\+\_\+16550\+\_\+read}} (\mbox{\hyperlink{group__UART__BASIC_ga4173f362f19fc04032c3859b78d78119}{A\+L\+T\+\_\+16550\+\_\+\+H\+A\+N\+D\+L\+E\+\_\+t}} $\ast$handle, char $\ast$item)
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__UART__BASIC_gac16e07d06c432803c734854ab9789dcd}{alt\+\_\+16550\+\_\+write}} (\mbox{\hyperlink{group__UART__BASIC_ga4173f362f19fc04032c3859b78d78119}{A\+L\+T\+\_\+16550\+\_\+\+H\+A\+N\+D\+L\+E\+\_\+t}} $\ast$handle, char item)
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__UART__FIFO_ga66e1f9e3c9e6f721699a780b763d2740}{alt\+\_\+16550\+\_\+fifo\+\_\+enable}} (\mbox{\hyperlink{group__UART__BASIC_ga4173f362f19fc04032c3859b78d78119}{A\+L\+T\+\_\+16550\+\_\+\+H\+A\+N\+D\+L\+E\+\_\+t}} $\ast$handle)
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__UART__FIFO_gad7fb867e11640ff283b08dac626f0a3c}{alt\+\_\+16550\+\_\+fifo\+\_\+disable}} (\mbox{\hyperlink{group__UART__BASIC_ga4173f362f19fc04032c3859b78d78119}{A\+L\+T\+\_\+16550\+\_\+\+H\+A\+N\+D\+L\+E\+\_\+t}} $\ast$handle)
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__UART__FIFO_ga0ce2f31d207024b0f240b2020ab6fd94}{alt\+\_\+16550\+\_\+fifo\+\_\+read}} (\mbox{\hyperlink{group__UART__BASIC_ga4173f362f19fc04032c3859b78d78119}{A\+L\+T\+\_\+16550\+\_\+\+H\+A\+N\+D\+L\+E\+\_\+t}} $\ast$handle, char $\ast$buffer, size\+\_\+t count)
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__UART__FIFO_ga8d30fc6d9735e51d61c10a5ff86c416e}{alt\+\_\+16550\+\_\+fifo\+\_\+write}} (\mbox{\hyperlink{group__UART__BASIC_ga4173f362f19fc04032c3859b78d78119}{A\+L\+T\+\_\+16550\+\_\+\+H\+A\+N\+D\+L\+E\+\_\+t}} $\ast$handle, const char $\ast$buffer, size\+\_\+t count)
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__UART__FIFO_ga13c485cb04682ee2e0cf1f4211caa02f}{alt\+\_\+16550\+\_\+fifo\+\_\+clear\+\_\+rx}} (\mbox{\hyperlink{group__UART__BASIC_ga4173f362f19fc04032c3859b78d78119}{A\+L\+T\+\_\+16550\+\_\+\+H\+A\+N\+D\+L\+E\+\_\+t}} $\ast$handle)
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__UART__FIFO_ga434291ab9cc63426ae1d2966ddbc3be8}{alt\+\_\+16550\+\_\+fifo\+\_\+clear\+\_\+tx}} (\mbox{\hyperlink{group__UART__BASIC_ga4173f362f19fc04032c3859b78d78119}{A\+L\+T\+\_\+16550\+\_\+\+H\+A\+N\+D\+L\+E\+\_\+t}} $\ast$handle)
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__UART__FIFO_gaec47f311df9de1dc2ce0a94dc88962ac}{alt\+\_\+16550\+\_\+fifo\+\_\+clear\+\_\+all}} (\mbox{\hyperlink{group__UART__BASIC_ga4173f362f19fc04032c3859b78d78119}{A\+L\+T\+\_\+16550\+\_\+\+H\+A\+N\+D\+L\+E\+\_\+t}} $\ast$handle)
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__UART__FIFO_ga6d581b8e4af0aa3c1f4d760b93aa76c6}{alt\+\_\+16550\+\_\+fifo\+\_\+size\+\_\+get\+\_\+rx}} (\mbox{\hyperlink{group__UART__BASIC_ga4173f362f19fc04032c3859b78d78119}{A\+L\+T\+\_\+16550\+\_\+\+H\+A\+N\+D\+L\+E\+\_\+t}} $\ast$handle, uint32\+\_\+t $\ast$\mbox{\hyperlink{sun4u_2tte_8h_a245260f6f74972558f61b85227df5aae}{size}})
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__UART__FIFO_ga0949ae7ab1231dcd627313844c012847}{alt\+\_\+16550\+\_\+fifo\+\_\+size\+\_\+get\+\_\+tx}} (\mbox{\hyperlink{group__UART__BASIC_ga4173f362f19fc04032c3859b78d78119}{A\+L\+T\+\_\+16550\+\_\+\+H\+A\+N\+D\+L\+E\+\_\+t}} $\ast$handle, uint32\+\_\+t $\ast$\mbox{\hyperlink{sun4u_2tte_8h_a245260f6f74972558f61b85227df5aae}{size}})
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__UART__FIFO_ga7aa39683a2cf11152084c2b513d9867d}{alt\+\_\+16550\+\_\+fifo\+\_\+level\+\_\+get\+\_\+rx}} (\mbox{\hyperlink{group__UART__BASIC_ga4173f362f19fc04032c3859b78d78119}{A\+L\+T\+\_\+16550\+\_\+\+H\+A\+N\+D\+L\+E\+\_\+t}} $\ast$handle, uint32\+\_\+t $\ast$level)
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__UART__FIFO_ga6bdd9a289734c973112756c420936ac8}{alt\+\_\+16550\+\_\+fifo\+\_\+level\+\_\+get\+\_\+tx}} (\mbox{\hyperlink{group__UART__BASIC_ga4173f362f19fc04032c3859b78d78119}{A\+L\+T\+\_\+16550\+\_\+\+H\+A\+N\+D\+L\+E\+\_\+t}} $\ast$handle, uint32\+\_\+t $\ast$level)
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__UART__FIFO_ga2edadfb8154ec759d6f64332cb358799}{alt\+\_\+16550\+\_\+fifo\+\_\+trigger\+\_\+set\+\_\+rx}} (\mbox{\hyperlink{group__UART__BASIC_ga4173f362f19fc04032c3859b78d78119}{A\+L\+T\+\_\+16550\+\_\+\+H\+A\+N\+D\+L\+E\+\_\+t}} $\ast$handle, \mbox{\hyperlink{group__UART__FIFO_ga6f6aa621e8111510517b92f57eb0987a}{A\+L\+T\+\_\+16550\+\_\+\+F\+I\+F\+O\+\_\+\+T\+R\+I\+G\+G\+E\+R\+\_\+\+R\+X\+\_\+t}} trigger)
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__UART__FIFO_ga04495be392cdd03da90dc3480bb50927}{alt\+\_\+16550\+\_\+fifo\+\_\+trigger\+\_\+set\+\_\+tx}} (\mbox{\hyperlink{group__UART__BASIC_ga4173f362f19fc04032c3859b78d78119}{A\+L\+T\+\_\+16550\+\_\+\+H\+A\+N\+D\+L\+E\+\_\+t}} $\ast$handle, \mbox{\hyperlink{group__UART__FIFO_gac427c853fffa7be41f636f723b48a2e7}{A\+L\+T\+\_\+16550\+\_\+\+F\+I\+F\+O\+\_\+\+T\+R\+I\+G\+G\+E\+R\+\_\+\+T\+X\+\_\+t}} trigger)
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__UART__BAUD_gaf4798296ba16e4f61ec5c1eadcc486cf}{alt\+\_\+16550\+\_\+baudrate\+\_\+get}} (\mbox{\hyperlink{group__UART__BASIC_ga4173f362f19fc04032c3859b78d78119}{A\+L\+T\+\_\+16550\+\_\+\+H\+A\+N\+D\+L\+E\+\_\+t}} $\ast$handle, uint32\+\_\+t $\ast$baudrate)
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__UART__BAUD_gaf474e6f132a8e9f57d3d3e279e1115bd}{alt\+\_\+16550\+\_\+baudrate\+\_\+set}} (\mbox{\hyperlink{group__UART__BASIC_ga4173f362f19fc04032c3859b78d78119}{A\+L\+T\+\_\+16550\+\_\+\+H\+A\+N\+D\+L\+E\+\_\+t}} $\ast$handle, uint32\+\_\+t baudrate)
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__UART__BAUD_ga76cab18489cdfb3004f67ba27037aa2e}{alt\+\_\+16550\+\_\+divisor\+\_\+get}} (\mbox{\hyperlink{group__UART__BASIC_ga4173f362f19fc04032c3859b78d78119}{A\+L\+T\+\_\+16550\+\_\+\+H\+A\+N\+D\+L\+E\+\_\+t}} $\ast$handle, uint32\+\_\+t $\ast$divisor)
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__UART__BAUD_gaed60736b0e13f244e730703f0fa55e24}{alt\+\_\+16550\+\_\+divisor\+\_\+set}} (\mbox{\hyperlink{group__UART__BASIC_ga4173f362f19fc04032c3859b78d78119}{A\+L\+T\+\_\+16550\+\_\+\+H\+A\+N\+D\+L\+E\+\_\+t}} $\ast$handle, uint32\+\_\+t divisor)
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__UART__INT_gadc2427a611d18ffd5428e21d9b1f686b}{alt\+\_\+16550\+\_\+int\+\_\+enable\+\_\+rx}} (\mbox{\hyperlink{group__UART__BASIC_ga4173f362f19fc04032c3859b78d78119}{A\+L\+T\+\_\+16550\+\_\+\+H\+A\+N\+D\+L\+E\+\_\+t}} $\ast$handle)
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__UART__INT_ga943c30127cde7b6810b5f16c5b2ff621}{alt\+\_\+16550\+\_\+int\+\_\+disable\+\_\+rx}} (\mbox{\hyperlink{group__UART__BASIC_ga4173f362f19fc04032c3859b78d78119}{A\+L\+T\+\_\+16550\+\_\+\+H\+A\+N\+D\+L\+E\+\_\+t}} $\ast$handle)
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__UART__INT_gacf7996755a663902dc9c5bd345056d9b}{alt\+\_\+16550\+\_\+int\+\_\+enable\+\_\+tx}} (\mbox{\hyperlink{group__UART__BASIC_ga4173f362f19fc04032c3859b78d78119}{A\+L\+T\+\_\+16550\+\_\+\+H\+A\+N\+D\+L\+E\+\_\+t}} $\ast$handle)
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__UART__INT_ga99c55935e7fd74bb8b9723a60de4e843}{alt\+\_\+16550\+\_\+int\+\_\+disable\+\_\+tx}} (\mbox{\hyperlink{group__UART__BASIC_ga4173f362f19fc04032c3859b78d78119}{A\+L\+T\+\_\+16550\+\_\+\+H\+A\+N\+D\+L\+E\+\_\+t}} $\ast$handle)
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__UART__INT_gaf8abf58f6417f82f0035b6bdef71728a}{alt\+\_\+16550\+\_\+int\+\_\+enable\+\_\+line}} (\mbox{\hyperlink{group__UART__BASIC_ga4173f362f19fc04032c3859b78d78119}{A\+L\+T\+\_\+16550\+\_\+\+H\+A\+N\+D\+L\+E\+\_\+t}} $\ast$handle)
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__UART__INT_ga652e3e68bb153de588b222bb2b783770}{alt\+\_\+16550\+\_\+int\+\_\+disable\+\_\+line}} (\mbox{\hyperlink{group__UART__BASIC_ga4173f362f19fc04032c3859b78d78119}{A\+L\+T\+\_\+16550\+\_\+\+H\+A\+N\+D\+L\+E\+\_\+t}} $\ast$handle)
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__UART__INT_ga5bd95b37d6c139f73c7644dc2c37f1a8}{alt\+\_\+16550\+\_\+int\+\_\+enable\+\_\+modem}} (\mbox{\hyperlink{group__UART__BASIC_ga4173f362f19fc04032c3859b78d78119}{A\+L\+T\+\_\+16550\+\_\+\+H\+A\+N\+D\+L\+E\+\_\+t}} $\ast$handle)
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__UART__INT_ga81cdcdc1193bb885af2b35f3c6917b60}{alt\+\_\+16550\+\_\+int\+\_\+disable\+\_\+modem}} (\mbox{\hyperlink{group__UART__BASIC_ga4173f362f19fc04032c3859b78d78119}{A\+L\+T\+\_\+16550\+\_\+\+H\+A\+N\+D\+L\+E\+\_\+t}} $\ast$handle)
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__UART__INT_ga436e9baa222073e5d8ba56922dfe2847}{alt\+\_\+16550\+\_\+int\+\_\+disable\+\_\+all}} (\mbox{\hyperlink{group__UART__BASIC_ga4173f362f19fc04032c3859b78d78119}{A\+L\+T\+\_\+16550\+\_\+\+H\+A\+N\+D\+L\+E\+\_\+t}} $\ast$handle)
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__UART__INT_gaa99e22c630fced1c320e4b53b763fdf0}{alt\+\_\+16550\+\_\+int\+\_\+status\+\_\+get}} (\mbox{\hyperlink{group__UART__BASIC_ga4173f362f19fc04032c3859b78d78119}{A\+L\+T\+\_\+16550\+\_\+\+H\+A\+N\+D\+L\+E\+\_\+t}} $\ast$handle, \mbox{\hyperlink{group__UART__INT_ga3112f458546736bbc043e8b00662855e}{A\+L\+T\+\_\+16550\+\_\+\+I\+N\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+t}} $\ast$status)
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__UART__LINE_ga2f0389c496161763a16d13842d9ea0ab}{alt\+\_\+16550\+\_\+line\+\_\+config\+\_\+set}} (\mbox{\hyperlink{group__UART__BASIC_ga4173f362f19fc04032c3859b78d78119}{A\+L\+T\+\_\+16550\+\_\+\+H\+A\+N\+D\+L\+E\+\_\+t}} $\ast$handle, \mbox{\hyperlink{group__UART__LINE_ga1e6b5e04034d586d0a66297b152a43c4}{A\+L\+T\+\_\+16550\+\_\+\+D\+A\+T\+A\+B\+I\+T\+S\+\_\+t}} databits, \mbox{\hyperlink{group__UART__LINE_ga40ed81a89ceaf6e4ef0ec49c16415bf3}{A\+L\+T\+\_\+16550\+\_\+\+P\+A\+R\+I\+T\+Y\+\_\+t}} parity, \mbox{\hyperlink{group__UART__LINE_gaf2b594c54a5c750b62111afe25088c81}{A\+L\+T\+\_\+16550\+\_\+\+S\+T\+O\+P\+B\+I\+T\+S\+\_\+t}} stopbits)
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__UART__LINE_gaf5d846b85f79c13c8c673552080be841}{alt\+\_\+16550\+\_\+line\+\_\+break\+\_\+enable}} (\mbox{\hyperlink{group__UART__BASIC_ga4173f362f19fc04032c3859b78d78119}{A\+L\+T\+\_\+16550\+\_\+\+H\+A\+N\+D\+L\+E\+\_\+t}} $\ast$handle)
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__UART__LINE_ga448e8d9d2c31756d7ce766b2aa5e2f91}{alt\+\_\+16550\+\_\+line\+\_\+break\+\_\+disable}} (\mbox{\hyperlink{group__UART__BASIC_ga4173f362f19fc04032c3859b78d78119}{A\+L\+T\+\_\+16550\+\_\+\+H\+A\+N\+D\+L\+E\+\_\+t}} $\ast$handle)
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__UART__LINE_gae108dc72c29861f56514d4204d52c0ed}{alt\+\_\+16550\+\_\+line\+\_\+status\+\_\+get}} (\mbox{\hyperlink{group__UART__BASIC_ga4173f362f19fc04032c3859b78d78119}{A\+L\+T\+\_\+16550\+\_\+\+H\+A\+N\+D\+L\+E\+\_\+t}} $\ast$handle, uint32\+\_\+t $\ast$status)
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__UART__MODEM_ga7a5333a00d5320027a8f91e36c1ae474}{alt\+\_\+16550\+\_\+flowcontrol\+\_\+enable}} (\mbox{\hyperlink{group__UART__BASIC_ga4173f362f19fc04032c3859b78d78119}{A\+L\+T\+\_\+16550\+\_\+\+H\+A\+N\+D\+L\+E\+\_\+t}} $\ast$handle)
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__UART__MODEM_ga338ac1d67e33dc4fb16d2b9ffd95f3e9}{alt\+\_\+16550\+\_\+flowcontrol\+\_\+disable}} (\mbox{\hyperlink{group__UART__BASIC_ga4173f362f19fc04032c3859b78d78119}{A\+L\+T\+\_\+16550\+\_\+\+H\+A\+N\+D\+L\+E\+\_\+t}} $\ast$handle)
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__UART__MODEM_gad4be88a6bd9ba8fd7e6b88e5fa492c50}{alt\+\_\+16550\+\_\+loopback\+\_\+enable}} (\mbox{\hyperlink{group__UART__BASIC_ga4173f362f19fc04032c3859b78d78119}{A\+L\+T\+\_\+16550\+\_\+\+H\+A\+N\+D\+L\+E\+\_\+t}} $\ast$handle)
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__UART__MODEM_ga2b4397bd5cf7d7b45537cb1c1609863c}{alt\+\_\+16550\+\_\+loopback\+\_\+disable}} (\mbox{\hyperlink{group__UART__BASIC_ga4173f362f19fc04032c3859b78d78119}{A\+L\+T\+\_\+16550\+\_\+\+H\+A\+N\+D\+L\+E\+\_\+t}} $\ast$handle)
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__UART__MODEM_ga3f5b29c0a1a86d78ab7cee4311ace623}{alt\+\_\+16550\+\_\+modem\+\_\+enable\+\_\+out1}} (\mbox{\hyperlink{group__UART__BASIC_ga4173f362f19fc04032c3859b78d78119}{A\+L\+T\+\_\+16550\+\_\+\+H\+A\+N\+D\+L\+E\+\_\+t}} $\ast$handle)
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__UART__MODEM_gaea6d905c2b046b300a45a8df51c73d02}{alt\+\_\+16550\+\_\+modem\+\_\+disable\+\_\+out1}} (\mbox{\hyperlink{group__UART__BASIC_ga4173f362f19fc04032c3859b78d78119}{A\+L\+T\+\_\+16550\+\_\+\+H\+A\+N\+D\+L\+E\+\_\+t}} $\ast$handle)
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__UART__MODEM_gaa526f06ccac0ca4f272ead0b8affaaa5}{alt\+\_\+16550\+\_\+modem\+\_\+enable\+\_\+out2}} (\mbox{\hyperlink{group__UART__BASIC_ga4173f362f19fc04032c3859b78d78119}{A\+L\+T\+\_\+16550\+\_\+\+H\+A\+N\+D\+L\+E\+\_\+t}} $\ast$handle)
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__UART__MODEM_ga407ab9e7eb979eedaf74d09c76602ca4}{alt\+\_\+16550\+\_\+modem\+\_\+disable\+\_\+out2}} (\mbox{\hyperlink{group__UART__BASIC_ga4173f362f19fc04032c3859b78d78119}{A\+L\+T\+\_\+16550\+\_\+\+H\+A\+N\+D\+L\+E\+\_\+t}} $\ast$handle)
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__UART__MODEM_gaf0526c0f515477dfa32e34f4e712ab61}{alt\+\_\+16550\+\_\+modem\+\_\+enable\+\_\+rts}} (\mbox{\hyperlink{group__UART__BASIC_ga4173f362f19fc04032c3859b78d78119}{A\+L\+T\+\_\+16550\+\_\+\+H\+A\+N\+D\+L\+E\+\_\+t}} $\ast$handle)
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__UART__MODEM_gaee57e9c1fd3a950e0ee38ed8e6a43306}{alt\+\_\+16550\+\_\+modem\+\_\+disable\+\_\+rts}} (\mbox{\hyperlink{group__UART__BASIC_ga4173f362f19fc04032c3859b78d78119}{A\+L\+T\+\_\+16550\+\_\+\+H\+A\+N\+D\+L\+E\+\_\+t}} $\ast$handle)
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__UART__MODEM_gaad66f3bac9da6aaa132f80870446f792}{alt\+\_\+16550\+\_\+modem\+\_\+enable\+\_\+dtr}} (\mbox{\hyperlink{group__UART__BASIC_ga4173f362f19fc04032c3859b78d78119}{A\+L\+T\+\_\+16550\+\_\+\+H\+A\+N\+D\+L\+E\+\_\+t}} $\ast$handle)
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__UART__MODEM_gadc0d324ab6b1f91e11338c7b6367ac4d}{alt\+\_\+16550\+\_\+modem\+\_\+disable\+\_\+dtr}} (\mbox{\hyperlink{group__UART__BASIC_ga4173f362f19fc04032c3859b78d78119}{A\+L\+T\+\_\+16550\+\_\+\+H\+A\+N\+D\+L\+E\+\_\+t}} $\ast$handle)
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__UART__MODEM_gaf74723b502d6c286c04f948ef002d5cd}{alt\+\_\+16550\+\_\+modem\+\_\+status\+\_\+get}} (\mbox{\hyperlink{group__UART__BASIC_ga4173f362f19fc04032c3859b78d78119}{A\+L\+T\+\_\+16550\+\_\+\+H\+A\+N\+D\+L\+E\+\_\+t}} $\ast$handle, uint32\+\_\+t $\ast$status)
+\end{DoxyCompactItemize}

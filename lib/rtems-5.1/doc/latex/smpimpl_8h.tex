@@ -1,0 +1,54 @@
+\hypertarget{smpimpl_8h}{}\section{cpukit/include/rtems/score/smpimpl.h File Reference}
+\label{smpimpl_8h}\index{cpukit/include/rtems/score/smpimpl.h@{cpukit/include/rtems/score/smpimpl.h}}
+
+
+Super\+Core S\+MP Implementation.  
+
+
+{\ttfamily \#include $<$rtems/score/smp.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/score/percpu.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/score/processormask.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/fatal.\+h$>$}\newline
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__RTEMSScoreSMP_gac58e85513a34442e60a845f78ae436cc}{S\+M\+P\+\_\+\+M\+E\+S\+S\+A\+G\+E\+\_\+\+S\+H\+U\+T\+D\+O\+WN}}~0x1\+UL
+\begin{DoxyCompactList}\small\item\em S\+MP message to request a processor shutdown. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTEMSScoreSMP_gac0625ecf5b4d6c951b76f2a5fe6612d1}{S\+M\+P\+\_\+\+M\+E\+S\+S\+A\+G\+E\+\_\+\+P\+E\+R\+F\+O\+R\+M\+\_\+\+J\+O\+BS}}~0x2\+UL
+\begin{DoxyCompactList}\small\item\em S\+MP message to perform per-\/processor jobs. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTEMSScoreSMP_ga4a125e6d06b0908b094ff7d67bea5f8e}{\+\_\+\+S\+M\+P\+\_\+\+Handler\+\_\+initialize}}()~do \{ \} while ( 0 )
+\begin{DoxyCompactList}\small\item\em Initializes S\+MP Handler. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTEMSScoreSMP_gaa0a1136be260412ba8b58ba390688d8a}{\+\_\+\+S\+M\+P\+\_\+\+Request\+\_\+start\+\_\+multitasking}}()~do \{ \} while ( 0 )
+\begin{DoxyCompactList}\small\item\em Requests a multitasking start on all configured and available processors. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTEMSScoreSMP_ga93fec43bed07a0173284fef946e4c271}{\+\_\+\+S\+M\+P\+\_\+\+Request\+\_\+shutdown}}()~do \{ \} while ( 0 )
+\begin{DoxyCompactList}\small\item\em Requests a shutdown of all processors. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{group__RTEMSScoreSMP_ga8449132ae9cc9fe7112f978540e0e635}\label{group__RTEMSScoreSMP_ga8449132ae9cc9fe7112f978540e0e635}} 
+enum \mbox{\hyperlink{group__RTEMSScoreSMP_ga8449132ae9cc9fe7112f978540e0e635}{S\+M\+P\+\_\+\+Fatal\+\_\+code}} \{ \newline
+{\bfseries S\+M\+P\+\_\+\+F\+A\+T\+A\+L\+\_\+\+B\+O\+O\+T\+\_\+\+P\+R\+O\+C\+E\+S\+S\+O\+R\+\_\+\+N\+O\+T\+\_\+\+A\+S\+S\+I\+G\+N\+E\+D\+\_\+\+T\+O\+\_\+\+S\+C\+H\+E\+D\+U\+L\+ER}, 
+{\bfseries S\+M\+P\+\_\+\+F\+A\+T\+A\+L\+\_\+\+M\+A\+N\+D\+A\+T\+O\+R\+Y\+\_\+\+P\+R\+O\+C\+E\+S\+S\+O\+R\+\_\+\+N\+O\+T\+\_\+\+P\+R\+E\+S\+E\+NT}, 
+{\bfseries S\+M\+P\+\_\+\+F\+A\+T\+A\+L\+\_\+\+M\+U\+L\+T\+I\+T\+A\+S\+K\+I\+N\+G\+\_\+\+S\+T\+A\+R\+T\+\_\+\+O\+N\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+P\+R\+O\+C\+E\+S\+S\+OR}, 
+{\bfseries S\+M\+P\+\_\+\+F\+A\+T\+A\+L\+\_\+\+M\+U\+L\+T\+I\+T\+A\+S\+K\+I\+N\+G\+\_\+\+S\+T\+A\+R\+T\+\_\+\+O\+N\+\_\+\+U\+N\+A\+S\+S\+I\+G\+N\+E\+D\+\_\+\+P\+R\+O\+C\+E\+S\+S\+OR}, 
+\newline
+{\bfseries S\+M\+P\+\_\+\+F\+A\+T\+A\+L\+\_\+\+S\+H\+U\+T\+D\+O\+WN}, 
+{\bfseries S\+M\+P\+\_\+\+F\+A\+T\+A\+L\+\_\+\+S\+H\+U\+T\+D\+O\+W\+N\+\_\+\+R\+E\+S\+P\+O\+N\+SE}, 
+{\bfseries S\+M\+P\+\_\+\+F\+A\+T\+A\+L\+\_\+\+S\+T\+A\+R\+T\+\_\+\+O\+F\+\_\+\+M\+A\+N\+D\+A\+T\+O\+R\+Y\+\_\+\+P\+R\+O\+C\+E\+S\+S\+O\+R\+\_\+\+F\+A\+I\+L\+ED}, 
+{\bfseries S\+M\+P\+\_\+\+F\+A\+T\+A\+L\+\_\+\+S\+C\+H\+E\+D\+U\+L\+E\+R\+\_\+\+P\+I\+N\+\_\+\+O\+R\+\_\+\+U\+N\+P\+I\+N\+\_\+\+N\+O\+T\+\_\+\+S\+U\+P\+P\+O\+R\+T\+ED}, 
+\newline
+{\bfseries S\+M\+P\+\_\+\+F\+A\+T\+A\+L\+\_\+\+W\+R\+O\+N\+G\+\_\+\+C\+P\+U\+\_\+\+S\+T\+A\+T\+E\+\_\+\+T\+O\+\_\+\+P\+E\+R\+F\+O\+R\+M\+\_\+\+J\+O\+BS}
+ \}
+\begin{DoxyCompactList}\small\item\em S\+MP fatal codes. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} const Processor\+\_\+mask $\ast$ \mbox{\hyperlink{group__RTEMSScoreSMP_ga4646a775301c0cebd6c865245bae60a2}{\+\_\+\+S\+M\+P\+\_\+\+Get\+\_\+online\+\_\+processors}} (void)
+\begin{DoxyCompactList}\small\item\em Gets all online processors. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} const bool \mbox{\hyperlink{group__RTEMSScoreSMP_ga7a29d1349621da5955a51cbfcc6450f1}{\+\_\+\+S\+M\+P\+\_\+\+Need\+\_\+inter\+\_\+processor\+\_\+interrupts}} (void)
+\begin{DoxyCompactList}\small\item\em Indicate if inter-\/processor interrupts are needed. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Super\+Core S\+MP Implementation. 
+

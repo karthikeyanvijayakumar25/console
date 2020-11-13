@@ -1,0 +1,502 @@
+\hypertarget{rpi-gpio_8c}{}\section{bsps/arm/raspberrypi/gpio/rpi-\/gpio.c File Reference}
+\label{rpi-gpio_8c}\index{bsps/arm/raspberrypi/gpio/rpi-\/gpio.c@{bsps/arm/raspberrypi/gpio/rpi-\/gpio.c}}
+
+
+Support for the Raspberry PI G\+P\+IO.  
+
+
+{\ttfamily \#include $<$bsp.\+h$>$}\newline
+{\ttfamily \#include $<$bsp/raspberrypi.\+h$>$}\newline
+{\ttfamily \#include $<$bsp/irq-\/generic.\+h$>$}\newline
+{\ttfamily \#include $<$bsp/gpio.\+h$>$}\newline
+{\ttfamily \#include $<$bsp/rpi-\/gpio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}gpio-\/interfaces-\/pi1-\/rev2.\+c\char`\"{}}\newline
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{rpi-gpio_8c_a7f281e0e3c670edd450377b96e5133ae}\label{rpi-gpio_8c_a7f281e0e3c670edd450377b96e5133ae}} 
+\#define {\bfseries S\+E\+L\+E\+C\+T\+\_\+\+P\+I\+N\+\_\+\+F\+U\+N\+C\+T\+I\+ON}(fn,  pn)~(fn $<$$<$ ((pn \% 10) $\ast$ 3))
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{rpi-gpio_8c_a8cc4adc10f9d16b85b524f1ad1151929}\label{rpi-gpio_8c_a8cc4adc10f9d16b85b524f1ad1151929}} 
+{\bfseries R\+T\+E\+M\+S\+\_\+\+I\+N\+T\+E\+R\+R\+U\+P\+T\+\_\+\+L\+O\+C\+K\+\_\+\+D\+E\+F\+I\+NE} (static, rtems\+\_\+gpio\+\_\+bsp\+\_\+lock, \char`\"{}rtems\+\_\+gpio\+\_\+bsp\+\_\+lock\char`\"{})
+\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{rpi-gpio_8c_a871540588ae2d984d118671860bb2cc1}{rtems\+\_\+gpio\+\_\+bsp\+\_\+multi\+\_\+set}} (uint32\+\_\+t bank, uint32\+\_\+t bitmask)
+\begin{DoxyCompactList}\small\item\em Sets multiple output G\+P\+IO pins with the logical high. This must be implemented by each B\+SP. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{rpi-gpio_8c_afa7c04d98a3c71b972a41697e1842863}{rtems\+\_\+gpio\+\_\+bsp\+\_\+multi\+\_\+clear}} (uint32\+\_\+t bank, uint32\+\_\+t bitmask)
+\begin{DoxyCompactList}\small\item\em Sets multiple output G\+P\+IO pins with the logical low. This must be implemented by each B\+SP. \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{rpi-gpio_8c_aafc08989c3820b4453f9dc1e9a28d165}{rtems\+\_\+gpio\+\_\+bsp\+\_\+multi\+\_\+read}} (uint32\+\_\+t bank, uint32\+\_\+t bitmask)
+\begin{DoxyCompactList}\small\item\em Returns the value (level) of multiple G\+P\+IO input pins. This must be implemented by each B\+SP. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{rpi-gpio_8c_ad9278a36680d984394c55f09283fc630}{rtems\+\_\+gpio\+\_\+bsp\+\_\+set}} (uint32\+\_\+t bank, uint32\+\_\+t pin)
+\begin{DoxyCompactList}\small\item\em Sets an output G\+P\+IO pin with the logical high. This must be implemented by each B\+SP. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{rpi-gpio_8c_a592adea1ce8d2b73d8d0b02a6d4e0115}{rtems\+\_\+gpio\+\_\+bsp\+\_\+clear}} (uint32\+\_\+t bank, uint32\+\_\+t pin)
+\begin{DoxyCompactList}\small\item\em Sets an output G\+P\+IO pin with the logical low. This must be implemented by each B\+SP. \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{rpi-gpio_8c_a70dfe1594f46a5cacefdc2827b2a0c4a}{rtems\+\_\+gpio\+\_\+bsp\+\_\+get\+\_\+value}} (uint32\+\_\+t bank, uint32\+\_\+t pin)
+\begin{DoxyCompactList}\small\item\em Returns the value (level) of a G\+P\+IO input pin. This must be implemented by each B\+SP. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{rpi-gpio_8c_a26775851150867b6ef5cd262cb6a5c9b}{rtems\+\_\+gpio\+\_\+bsp\+\_\+select\+\_\+input}} (uint32\+\_\+t bank, uint32\+\_\+t pin, void $\ast$bsp\+\_\+specific)
+\begin{DoxyCompactList}\small\item\em Assigns the digital input function to the given pin. This must be implemented by each B\+SP. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{rpi-gpio_8c_a98e85a6f967075ccafb25834bc23d1d5}{rtems\+\_\+gpio\+\_\+bsp\+\_\+select\+\_\+output}} (uint32\+\_\+t bank, uint32\+\_\+t pin, void $\ast$bsp\+\_\+specific)
+\begin{DoxyCompactList}\small\item\em Assigns the digital output function to the given pin. This must be implemented by each B\+SP. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{rpi-gpio_8c_a1fd3a252f28ba7786d85bb2e87dd41cd}{rtems\+\_\+gpio\+\_\+bsp\+\_\+select\+\_\+specific\+\_\+io}} (uint32\+\_\+t bank, uint32\+\_\+t pin, uint32\+\_\+t function, void $\ast$pin\+\_\+data)
+\begin{DoxyCompactList}\small\item\em Assigns a B\+SP specific function to the given pin. This must be implemented by each B\+SP. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{rpi-gpio_8c_a8a25b03ab6aa4456d19717824579cb73}{rtems\+\_\+gpio\+\_\+bsp\+\_\+set\+\_\+resistor\+\_\+mode}} (uint32\+\_\+t bank, uint32\+\_\+t pin, \mbox{\hyperlink{gpio_8h_add28697559b41893e0754f35509bf835}{rtems\+\_\+gpio\+\_\+pull\+\_\+mode}} mode)
+\begin{DoxyCompactList}\small\item\em Configures a single G\+P\+IO pin pull resistor. This must be implemented by each B\+SP. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicINTR_ga3e434c197d99f128e78cae4d9358bd8b}{rtems\+\_\+vector\+\_\+number}} \mbox{\hyperlink{rpi-gpio_8c_afd37aeabdf0cc490a9940f0998f7d668}{rtems\+\_\+gpio\+\_\+bsp\+\_\+get\+\_\+vector}} (uint32\+\_\+t bank)
+\begin{DoxyCompactList}\small\item\em Calculates a vector number for a given G\+P\+IO bank. This must be implemented by each B\+SP. \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{rpi-gpio_8c_ab709f5c3dfd804da18fbb9a9a40182a0}{rtems\+\_\+gpio\+\_\+bsp\+\_\+interrupt\+\_\+line}} (\mbox{\hyperlink{group__ClassicINTR_ga3e434c197d99f128e78cae4d9358bd8b}{rtems\+\_\+vector\+\_\+number}} vector)
+\begin{DoxyCompactList}\small\item\em Reads and returns a vector/bank interrupt event line. The bitmask should indicate with a 1 if the corresponding pin as a pending interrupt, or 0 if otherwise. The function should clear the interrupt event line before returning. This must be implemented by each B\+SP. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{rpi-gpio_8c_a5600f7ffdca5e11b5a607136f00a80ad}{rtems\+\_\+gpio\+\_\+bsp\+\_\+enable\+\_\+interrupt}} (uint32\+\_\+t bank, uint32\+\_\+t pin, \mbox{\hyperlink{gpio_8h_a941c7497a28a335b0b05e1ebfd471ddc}{rtems\+\_\+gpio\+\_\+interrupt}} interrupt)
+\begin{DoxyCompactList}\small\item\em Enables interrupts to be generated on a given G\+P\+IO pin. This must be implemented by each B\+SP. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{rpi-gpio_8c_a922ef6b0b9a1bc76d2a3cdf2eaef670d}{rtems\+\_\+gpio\+\_\+bsp\+\_\+disable\+\_\+interrupt}} (uint32\+\_\+t bank, uint32\+\_\+t pin, \mbox{\hyperlink{gpio_8h_a941c7497a28a335b0b05e1ebfd471ddc}{rtems\+\_\+gpio\+\_\+interrupt}} interrupt)
+\begin{DoxyCompactList}\small\item\em Stops interrupts from being generated on a given G\+P\+IO pin. This must be implemented by each B\+SP. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{rpi-gpio_8c_ab31aee23a17b307e47076c1877f5736e}{rpi\+\_\+gpio\+\_\+select\+\_\+jtag}} (void)
+\begin{DoxyCompactList}\small\item\em Setups a J\+T\+AG interface. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{rpi-gpio_8c_a2546c0dc5eb7c840fe712e9ac748e6a9}{rpi\+\_\+gpio\+\_\+select\+\_\+spi}} (void)
+\begin{DoxyCompactList}\small\item\em Setups a S\+PI interface. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{rpi-gpio_8c_adf19e397f4bfdb38d6d75a604e7373d1}{rpi\+\_\+gpio\+\_\+select\+\_\+i2c}} (void)
+\begin{DoxyCompactList}\small\item\em Setups a I2C interface. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{rpi-gpio_8c_ae31ba07e917746a29e7cd061e941f834}\label{rpi-gpio_8c_ae31ba07e917746a29e7cd061e941f834}} 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} {\bfseries rtems\+\_\+gpio\+\_\+bsp\+\_\+multi\+\_\+select} (\mbox{\hyperlink{structrtems__gpio__multiple__pin__select}{rtems\+\_\+gpio\+\_\+multiple\+\_\+pin\+\_\+select}} $\ast$pins, uint32\+\_\+t pin\+\_\+count, uint32\+\_\+t select\+\_\+bank)
+\item 
+\mbox{\Hypertarget{rpi-gpio_8c_af9faec34c779e654ecca12d548e22fe4}\label{rpi-gpio_8c_af9faec34c779e654ecca12d548e22fe4}} 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} {\bfseries rtems\+\_\+gpio\+\_\+bsp\+\_\+specific\+\_\+group\+\_\+operation} (uint32\+\_\+t bank, uint32\+\_\+t $\ast$pins, uint32\+\_\+t pin\+\_\+count, void $\ast$arg)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structrtems__gpio__specific__data}{rtems\+\_\+gpio\+\_\+specific\+\_\+data}} {\bfseries alt\+\_\+func\+\_\+def} \mbox{[}$\,$\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Support for the Raspberry PI G\+P\+IO. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{rpi-gpio_8c_adf19e397f4bfdb38d6d75a604e7373d1}\label{rpi-gpio_8c_adf19e397f4bfdb38d6d75a604e7373d1}} 
+\index{rpi-\/gpio.c@{rpi-\/gpio.c}!rpi\_gpio\_select\_i2c@{rpi\_gpio\_select\_i2c}}
+\index{rpi\_gpio\_select\_i2c@{rpi\_gpio\_select\_i2c}!rpi-\/gpio.c@{rpi-\/gpio.c}}
+\subsubsection{\texorpdfstring{rpi\_gpio\_select\_i2c()}{rpi\_gpio\_select\_i2c()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} rpi\+\_\+gpio\+\_\+select\+\_\+i2c (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Setups a I2C interface. 
+
+
+\begin{DoxyRetVals}{Return values}
+{\em R\+T\+E\+M\+S\+\_\+\+S\+U\+C\+C\+E\+S\+S\+F\+UL} & I2C interface successfully configured. \\
+\hline
+{\em $\ast$} & At least one of the required pins is currently occupied, \\
+\hline
+\end{DoxyRetVals}
+\begin{DoxySeeAlso}{See also}
+rtems\+\_\+gpio\+\_\+request\+\_\+pin\+\_\+group(). 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{rpi-gpio_8c_ab31aee23a17b307e47076c1877f5736e}\label{rpi-gpio_8c_ab31aee23a17b307e47076c1877f5736e}} 
+\index{rpi-\/gpio.c@{rpi-\/gpio.c}!rpi\_gpio\_select\_jtag@{rpi\_gpio\_select\_jtag}}
+\index{rpi\_gpio\_select\_jtag@{rpi\_gpio\_select\_jtag}!rpi-\/gpio.c@{rpi-\/gpio.c}}
+\subsubsection{\texorpdfstring{rpi\_gpio\_select\_jtag()}{rpi\_gpio\_select\_jtag()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} rpi\+\_\+gpio\+\_\+select\+\_\+jtag (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Setups a J\+T\+AG interface. 
+
+
+\begin{DoxyRetVals}{Return values}
+{\em R\+T\+E\+M\+S\+\_\+\+S\+U\+C\+C\+E\+S\+S\+F\+UL} & J\+T\+AG interface successfully configured. \\
+\hline
+{\em $\ast$} & At least one of the required pins is currently occupied, \\
+\hline
+\end{DoxyRetVals}
+\begin{DoxySeeAlso}{See also}
+rtems\+\_\+gpio\+\_\+request\+\_\+pin\+\_\+group(). 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{rpi-gpio_8c_a2546c0dc5eb7c840fe712e9ac748e6a9}\label{rpi-gpio_8c_a2546c0dc5eb7c840fe712e9ac748e6a9}} 
+\index{rpi-\/gpio.c@{rpi-\/gpio.c}!rpi\_gpio\_select\_spi@{rpi\_gpio\_select\_spi}}
+\index{rpi\_gpio\_select\_spi@{rpi\_gpio\_select\_spi}!rpi-\/gpio.c@{rpi-\/gpio.c}}
+\subsubsection{\texorpdfstring{rpi\_gpio\_select\_spi()}{rpi\_gpio\_select\_spi()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} rpi\+\_\+gpio\+\_\+select\+\_\+spi (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Setups a S\+PI interface. 
+
+
+\begin{DoxyRetVals}{Return values}
+{\em R\+T\+E\+M\+S\+\_\+\+S\+U\+C\+C\+E\+S\+S\+F\+UL} & S\+PI interface successfully configured. \\
+\hline
+{\em $\ast$} & At least one of the required pins is currently occupied, \\
+\hline
+\end{DoxyRetVals}
+\begin{DoxySeeAlso}{See also}
+rtems\+\_\+gpio\+\_\+request\+\_\+pin\+\_\+group(). 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{rpi-gpio_8c_a592adea1ce8d2b73d8d0b02a6d4e0115}\label{rpi-gpio_8c_a592adea1ce8d2b73d8d0b02a6d4e0115}} 
+\index{rpi-\/gpio.c@{rpi-\/gpio.c}!rtems\_gpio\_bsp\_clear@{rtems\_gpio\_bsp\_clear}}
+\index{rtems\_gpio\_bsp\_clear@{rtems\_gpio\_bsp\_clear}!rpi-\/gpio.c@{rpi-\/gpio.c}}
+\subsubsection{\texorpdfstring{rtems\_gpio\_bsp\_clear()}{rtems\_gpio\_bsp\_clear()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} rtems\+\_\+gpio\+\_\+bsp\+\_\+clear (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{bank,  }\item[{uint32\+\_\+t}]{pin }\end{DoxyParamCaption})}
+
+
+
+Sets an output G\+P\+IO pin with the logical low. This must be implemented by each B\+SP. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em bank} & G\+P\+IO bank number. \\
+\hline
+\mbox{\texttt{ in}}  & {\em pin} & G\+P\+IO pin number within the given bank.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em R\+T\+E\+M\+S\+\_\+\+S\+U\+C\+C\+E\+S\+S\+F\+UL} & Pin was cleared successfully. \\
+\hline
+{\em R\+T\+E\+M\+S\+\_\+\+U\+N\+S\+A\+T\+I\+S\+F\+I\+ED} & Could not clear the given pin. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{rpi-gpio_8c_a922ef6b0b9a1bc76d2a3cdf2eaef670d}\label{rpi-gpio_8c_a922ef6b0b9a1bc76d2a3cdf2eaef670d}} 
+\index{rpi-\/gpio.c@{rpi-\/gpio.c}!rtems\_gpio\_bsp\_disable\_interrupt@{rtems\_gpio\_bsp\_disable\_interrupt}}
+\index{rtems\_gpio\_bsp\_disable\_interrupt@{rtems\_gpio\_bsp\_disable\_interrupt}!rpi-\/gpio.c@{rpi-\/gpio.c}}
+\subsubsection{\texorpdfstring{rtems\_gpio\_bsp\_disable\_interrupt()}{rtems\_gpio\_bsp\_disable\_interrupt()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} rtems\+\_\+gpio\+\_\+bsp\+\_\+disable\+\_\+interrupt (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{bank,  }\item[{uint32\+\_\+t}]{pin,  }\item[{\mbox{\hyperlink{gpio_8h_a941c7497a28a335b0b05e1ebfd471ddc}{rtems\+\_\+gpio\+\_\+interrupt}}}]{interrupt }\end{DoxyParamCaption})}
+
+
+
+Stops interrupts from being generated on a given G\+P\+IO pin. This must be implemented by each B\+SP. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em bank} & G\+P\+IO bank number. \\
+\hline
+\mbox{\texttt{ in}}  & {\em pin} & G\+P\+IO pin number within the given bank. \\
+\hline
+\mbox{\texttt{ in}}  & {\em active\+\_\+interrupt} & Interrupt type currently active on this pin.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em R\+T\+E\+M\+S\+\_\+\+S\+U\+C\+C\+E\+S\+S\+F\+UL} & Interrupt successfully disabled for this pin. \\
+\hline
+{\em R\+T\+E\+M\+S\+\_\+\+U\+N\+S\+A\+T\+I\+S\+F\+I\+ED} & Could not disable interrupts on this pin. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{rpi-gpio_8c_a5600f7ffdca5e11b5a607136f00a80ad}\label{rpi-gpio_8c_a5600f7ffdca5e11b5a607136f00a80ad}} 
+\index{rpi-\/gpio.c@{rpi-\/gpio.c}!rtems\_gpio\_bsp\_enable\_interrupt@{rtems\_gpio\_bsp\_enable\_interrupt}}
+\index{rtems\_gpio\_bsp\_enable\_interrupt@{rtems\_gpio\_bsp\_enable\_interrupt}!rpi-\/gpio.c@{rpi-\/gpio.c}}
+\subsubsection{\texorpdfstring{rtems\_gpio\_bsp\_enable\_interrupt()}{rtems\_gpio\_bsp\_enable\_interrupt()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} rtems\+\_\+gpio\+\_\+bsp\+\_\+enable\+\_\+interrupt (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{bank,  }\item[{uint32\+\_\+t}]{pin,  }\item[{\mbox{\hyperlink{gpio_8h_a941c7497a28a335b0b05e1ebfd471ddc}{rtems\+\_\+gpio\+\_\+interrupt}}}]{interrupt }\end{DoxyParamCaption})}
+
+
+
+Enables interrupts to be generated on a given G\+P\+IO pin. This must be implemented by each B\+SP. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em bank} & G\+P\+IO bank number. \\
+\hline
+\mbox{\texttt{ in}}  & {\em pin} & G\+P\+IO pin number within the given bank. \\
+\hline
+\mbox{\texttt{ in}}  & {\em interrupt} & Type of interrupt to enable for the pin.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em R\+T\+E\+M\+S\+\_\+\+S\+U\+C\+C\+E\+S\+S\+F\+UL} & Interrupt successfully enabled for this pin. \\
+\hline
+{\em R\+T\+E\+M\+S\+\_\+\+U\+N\+S\+A\+T\+I\+S\+F\+I\+ED} & Could not enable the interrupt on the pin. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{rpi-gpio_8c_a70dfe1594f46a5cacefdc2827b2a0c4a}\label{rpi-gpio_8c_a70dfe1594f46a5cacefdc2827b2a0c4a}} 
+\index{rpi-\/gpio.c@{rpi-\/gpio.c}!rtems\_gpio\_bsp\_get\_value@{rtems\_gpio\_bsp\_get\_value}}
+\index{rtems\_gpio\_bsp\_get\_value@{rtems\_gpio\_bsp\_get\_value}!rpi-\/gpio.c@{rpi-\/gpio.c}}
+\subsubsection{\texorpdfstring{rtems\_gpio\_bsp\_get\_value()}{rtems\_gpio\_bsp\_get\_value()}}
+{\footnotesize\ttfamily uint32\+\_\+t rtems\+\_\+gpio\+\_\+bsp\+\_\+get\+\_\+value (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{bank,  }\item[{uint32\+\_\+t}]{pin }\end{DoxyParamCaption})}
+
+
+
+Returns the value (level) of a G\+P\+IO input pin. This must be implemented by each B\+SP. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em bank} & G\+P\+IO bank number. \\
+\hline
+\mbox{\texttt{ in}}  & {\em pin} & G\+P\+IO pin number within the given bank.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em The} & function must return 0 if the pin level is a logical low, or non zero if it has a logical high. \\
+\hline
+{\em G\+P\+I\+O\+\_\+\+I\+N\+P\+U\+T\+\_\+\+E\+R\+R\+OR} & Could not read the pin level. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{rpi-gpio_8c_afd37aeabdf0cc490a9940f0998f7d668}\label{rpi-gpio_8c_afd37aeabdf0cc490a9940f0998f7d668}} 
+\index{rpi-\/gpio.c@{rpi-\/gpio.c}!rtems\_gpio\_bsp\_get\_vector@{rtems\_gpio\_bsp\_get\_vector}}
+\index{rtems\_gpio\_bsp\_get\_vector@{rtems\_gpio\_bsp\_get\_vector}!rpi-\/gpio.c@{rpi-\/gpio.c}}
+\subsubsection{\texorpdfstring{rtems\_gpio\_bsp\_get\_vector()}{rtems\_gpio\_bsp\_get\_vector()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__ClassicINTR_ga3e434c197d99f128e78cae4d9358bd8b}{rtems\+\_\+vector\+\_\+number}} rtems\+\_\+gpio\+\_\+bsp\+\_\+get\+\_\+vector (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{bank }\end{DoxyParamCaption})}
+
+
+
+Calculates a vector number for a given G\+P\+IO bank. This must be implemented by each B\+SP. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em bank} & G\+P\+IO bank number.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em The} & corresponding rtems\+\_\+vector\+\_\+number. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{rpi-gpio_8c_ab709f5c3dfd804da18fbb9a9a40182a0}\label{rpi-gpio_8c_ab709f5c3dfd804da18fbb9a9a40182a0}} 
+\index{rpi-\/gpio.c@{rpi-\/gpio.c}!rtems\_gpio\_bsp\_interrupt\_line@{rtems\_gpio\_bsp\_interrupt\_line}}
+\index{rtems\_gpio\_bsp\_interrupt\_line@{rtems\_gpio\_bsp\_interrupt\_line}!rpi-\/gpio.c@{rpi-\/gpio.c}}
+\subsubsection{\texorpdfstring{rtems\_gpio\_bsp\_interrupt\_line()}{rtems\_gpio\_bsp\_interrupt\_line()}}
+{\footnotesize\ttfamily uint32\+\_\+t rtems\+\_\+gpio\+\_\+bsp\+\_\+interrupt\+\_\+line (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__ClassicINTR_ga3e434c197d99f128e78cae4d9358bd8b}{rtems\+\_\+vector\+\_\+number}}}]{vector }\end{DoxyParamCaption})}
+
+
+
+Reads and returns a vector/bank interrupt event line. The bitmask should indicate with a 1 if the corresponding pin as a pending interrupt, or 0 if otherwise. The function should clear the interrupt event line before returning. This must be implemented by each B\+SP. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em vector} & G\+P\+IO vector/bank.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em Bitmask} & (max 32-\/bit) representing a G\+P\+IO bank, where a bit set indicates an active interrupt on that pin. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{rpi-gpio_8c_afa7c04d98a3c71b972a41697e1842863}\label{rpi-gpio_8c_afa7c04d98a3c71b972a41697e1842863}} 
+\index{rpi-\/gpio.c@{rpi-\/gpio.c}!rtems\_gpio\_bsp\_multi\_clear@{rtems\_gpio\_bsp\_multi\_clear}}
+\index{rtems\_gpio\_bsp\_multi\_clear@{rtems\_gpio\_bsp\_multi\_clear}!rpi-\/gpio.c@{rpi-\/gpio.c}}
+\subsubsection{\texorpdfstring{rtems\_gpio\_bsp\_multi\_clear()}{rtems\_gpio\_bsp\_multi\_clear()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} rtems\+\_\+gpio\+\_\+bsp\+\_\+multi\+\_\+clear (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{bank,  }\item[{uint32\+\_\+t}]{bitmask }\end{DoxyParamCaption})}
+
+
+
+Sets multiple output G\+P\+IO pins with the logical low. This must be implemented by each B\+SP. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em bank} & G\+P\+IO bank number. \\
+\hline
+\mbox{\texttt{ in}}  & {\em bitmask} & Bitmask of G\+P\+IO pins to clear in the given bank.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em R\+T\+E\+M\+S\+\_\+\+S\+U\+C\+C\+E\+S\+S\+F\+UL} & All pins were cleared successfully. \\
+\hline
+{\em R\+T\+E\+M\+S\+\_\+\+U\+N\+S\+A\+T\+I\+S\+F\+I\+ED} & Could not clear at least one of the pins. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{rpi-gpio_8c_aafc08989c3820b4453f9dc1e9a28d165}\label{rpi-gpio_8c_aafc08989c3820b4453f9dc1e9a28d165}} 
+\index{rpi-\/gpio.c@{rpi-\/gpio.c}!rtems\_gpio\_bsp\_multi\_read@{rtems\_gpio\_bsp\_multi\_read}}
+\index{rtems\_gpio\_bsp\_multi\_read@{rtems\_gpio\_bsp\_multi\_read}!rpi-\/gpio.c@{rpi-\/gpio.c}}
+\subsubsection{\texorpdfstring{rtems\_gpio\_bsp\_multi\_read()}{rtems\_gpio\_bsp\_multi\_read()}}
+{\footnotesize\ttfamily uint32\+\_\+t rtems\+\_\+gpio\+\_\+bsp\+\_\+multi\+\_\+read (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{bank,  }\item[{uint32\+\_\+t}]{bitmask }\end{DoxyParamCaption})}
+
+
+
+Returns the value (level) of multiple G\+P\+IO input pins. This must be implemented by each B\+SP. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em bank} & G\+P\+IO bank number. \\
+\hline
+\mbox{\texttt{ in}}  & {\em bitmask} & Bitmask of G\+P\+IO pins to read in the given bank.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em The} & function must return a bitmask with the values of the corresponding pins. 0 for logical low and 1 for logical high. \\
+\hline
+{\em G\+P\+I\+O\+\_\+\+I\+N\+P\+U\+T\+\_\+\+E\+R\+R\+OR} & Could not read at least one pin level. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{rpi-gpio_8c_a871540588ae2d984d118671860bb2cc1}\label{rpi-gpio_8c_a871540588ae2d984d118671860bb2cc1}} 
+\index{rpi-\/gpio.c@{rpi-\/gpio.c}!rtems\_gpio\_bsp\_multi\_set@{rtems\_gpio\_bsp\_multi\_set}}
+\index{rtems\_gpio\_bsp\_multi\_set@{rtems\_gpio\_bsp\_multi\_set}!rpi-\/gpio.c@{rpi-\/gpio.c}}
+\subsubsection{\texorpdfstring{rtems\_gpio\_bsp\_multi\_set()}{rtems\_gpio\_bsp\_multi\_set()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} rtems\+\_\+gpio\+\_\+bsp\+\_\+multi\+\_\+set (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{bank,  }\item[{uint32\+\_\+t}]{bitmask }\end{DoxyParamCaption})}
+
+
+
+Sets multiple output G\+P\+IO pins with the logical high. This must be implemented by each B\+SP. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em bank} & G\+P\+IO bank number. \\
+\hline
+\mbox{\texttt{ in}}  & {\em bitmask} & Bitmask of G\+P\+IO pins to set in the given bank.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em R\+T\+E\+M\+S\+\_\+\+S\+U\+C\+C\+E\+S\+S\+F\+UL} & All pins were set successfully. \\
+\hline
+{\em R\+T\+E\+M\+S\+\_\+\+U\+N\+S\+A\+T\+I\+S\+F\+I\+ED} & Could not set at least one of the pins. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{rpi-gpio_8c_a26775851150867b6ef5cd262cb6a5c9b}\label{rpi-gpio_8c_a26775851150867b6ef5cd262cb6a5c9b}} 
+\index{rpi-\/gpio.c@{rpi-\/gpio.c}!rtems\_gpio\_bsp\_select\_input@{rtems\_gpio\_bsp\_select\_input}}
+\index{rtems\_gpio\_bsp\_select\_input@{rtems\_gpio\_bsp\_select\_input}!rpi-\/gpio.c@{rpi-\/gpio.c}}
+\subsubsection{\texorpdfstring{rtems\_gpio\_bsp\_select\_input()}{rtems\_gpio\_bsp\_select\_input()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} rtems\+\_\+gpio\+\_\+bsp\+\_\+select\+\_\+input (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{bank,  }\item[{uint32\+\_\+t}]{pin,  }\item[{void $\ast$}]{bsp\+\_\+specific }\end{DoxyParamCaption})}
+
+
+
+Assigns the digital input function to the given pin. This must be implemented by each B\+SP. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em bank} & G\+P\+IO bank number. \\
+\hline
+\mbox{\texttt{ in}}  & {\em pin} & G\+P\+IO pin number within the given bank. \\
+\hline
+\mbox{\texttt{ in}}  & {\em bsp\+\_\+specific} & Pointer to a B\+SP defined structure with B\+S\+P-\/specific data.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em R\+T\+E\+M\+S\+\_\+\+S\+U\+C\+C\+E\+S\+S\+F\+UL} & Function was assigned successfully. \\
+\hline
+{\em R\+T\+E\+M\+S\+\_\+\+U\+N\+S\+A\+T\+I\+S\+F\+I\+ED} & Could not assign the function to the pin. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{rpi-gpio_8c_a98e85a6f967075ccafb25834bc23d1d5}\label{rpi-gpio_8c_a98e85a6f967075ccafb25834bc23d1d5}} 
+\index{rpi-\/gpio.c@{rpi-\/gpio.c}!rtems\_gpio\_bsp\_select\_output@{rtems\_gpio\_bsp\_select\_output}}
+\index{rtems\_gpio\_bsp\_select\_output@{rtems\_gpio\_bsp\_select\_output}!rpi-\/gpio.c@{rpi-\/gpio.c}}
+\subsubsection{\texorpdfstring{rtems\_gpio\_bsp\_select\_output()}{rtems\_gpio\_bsp\_select\_output()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} rtems\+\_\+gpio\+\_\+bsp\+\_\+select\+\_\+output (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{bank,  }\item[{uint32\+\_\+t}]{pin,  }\item[{void $\ast$}]{bsp\+\_\+specific }\end{DoxyParamCaption})}
+
+
+
+Assigns the digital output function to the given pin. This must be implemented by each B\+SP. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em bank} & G\+P\+IO bank number. \\
+\hline
+\mbox{\texttt{ in}}  & {\em pin} & G\+P\+IO pin number within the given bank. \\
+\hline
+\mbox{\texttt{ in}}  & {\em bsp\+\_\+specific} & Pointer to a B\+SP defined structure with B\+S\+P-\/specific data.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em R\+T\+E\+M\+S\+\_\+\+S\+U\+C\+C\+E\+S\+S\+F\+UL} & Function was assigned successfully. \\
+\hline
+{\em R\+T\+E\+M\+S\+\_\+\+U\+N\+S\+A\+T\+I\+S\+F\+I\+ED} & Could not assign the function to the pin. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{rpi-gpio_8c_a1fd3a252f28ba7786d85bb2e87dd41cd}\label{rpi-gpio_8c_a1fd3a252f28ba7786d85bb2e87dd41cd}} 
+\index{rpi-\/gpio.c@{rpi-\/gpio.c}!rtems\_gpio\_bsp\_select\_specific\_io@{rtems\_gpio\_bsp\_select\_specific\_io}}
+\index{rtems\_gpio\_bsp\_select\_specific\_io@{rtems\_gpio\_bsp\_select\_specific\_io}!rpi-\/gpio.c@{rpi-\/gpio.c}}
+\subsubsection{\texorpdfstring{rtems\_gpio\_bsp\_select\_specific\_io()}{rtems\_gpio\_bsp\_select\_specific\_io()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} rtems\+\_\+gpio\+\_\+bsp\+\_\+select\+\_\+specific\+\_\+io (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{bank,  }\item[{uint32\+\_\+t}]{pin,  }\item[{uint32\+\_\+t}]{function,  }\item[{void $\ast$}]{pin\+\_\+data }\end{DoxyParamCaption})}
+
+
+
+Assigns a B\+SP specific function to the given pin. This must be implemented by each B\+SP. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em bank} & G\+P\+IO bank number. \\
+\hline
+\mbox{\texttt{ in}}  & {\em pin} & G\+P\+IO pin number within the given bank. \\
+\hline
+\mbox{\texttt{ in}}  & {\em function} & B\+SP defined G\+P\+IO function. \\
+\hline
+\mbox{\texttt{ in}}  & {\em pin\+\_\+data} & Pointer to a B\+SP defined structure with B\+S\+P-\/specific data.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em R\+T\+E\+M\+S\+\_\+\+S\+U\+C\+C\+E\+S\+S\+F\+UL} & Function was assigned successfully. \\
+\hline
+{\em R\+T\+E\+M\+S\+\_\+\+U\+N\+S\+A\+T\+I\+S\+F\+I\+ED} & Could not assign the function to the pin. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{rpi-gpio_8c_ad9278a36680d984394c55f09283fc630}\label{rpi-gpio_8c_ad9278a36680d984394c55f09283fc630}} 
+\index{rpi-\/gpio.c@{rpi-\/gpio.c}!rtems\_gpio\_bsp\_set@{rtems\_gpio\_bsp\_set}}
+\index{rtems\_gpio\_bsp\_set@{rtems\_gpio\_bsp\_set}!rpi-\/gpio.c@{rpi-\/gpio.c}}
+\subsubsection{\texorpdfstring{rtems\_gpio\_bsp\_set()}{rtems\_gpio\_bsp\_set()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} rtems\+\_\+gpio\+\_\+bsp\+\_\+set (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{bank,  }\item[{uint32\+\_\+t}]{pin }\end{DoxyParamCaption})}
+
+
+
+Sets an output G\+P\+IO pin with the logical high. This must be implemented by each B\+SP. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em bank} & G\+P\+IO bank number. \\
+\hline
+\mbox{\texttt{ in}}  & {\em pin} & G\+P\+IO pin number within the given bank.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em R\+T\+E\+M\+S\+\_\+\+S\+U\+C\+C\+E\+S\+S\+F\+UL} & Pin was set successfully. \\
+\hline
+{\em R\+T\+E\+M\+S\+\_\+\+U\+N\+S\+A\+T\+I\+S\+F\+I\+ED} & Could not set the given pin. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{rpi-gpio_8c_a8a25b03ab6aa4456d19717824579cb73}\label{rpi-gpio_8c_a8a25b03ab6aa4456d19717824579cb73}} 
+\index{rpi-\/gpio.c@{rpi-\/gpio.c}!rtems\_gpio\_bsp\_set\_resistor\_mode@{rtems\_gpio\_bsp\_set\_resistor\_mode}}
+\index{rtems\_gpio\_bsp\_set\_resistor\_mode@{rtems\_gpio\_bsp\_set\_resistor\_mode}!rpi-\/gpio.c@{rpi-\/gpio.c}}
+\subsubsection{\texorpdfstring{rtems\_gpio\_bsp\_set\_resistor\_mode()}{rtems\_gpio\_bsp\_set\_resistor\_mode()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} rtems\+\_\+gpio\+\_\+bsp\+\_\+set\+\_\+resistor\+\_\+mode (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{bank,  }\item[{uint32\+\_\+t}]{pin,  }\item[{\mbox{\hyperlink{gpio_8h_add28697559b41893e0754f35509bf835}{rtems\+\_\+gpio\+\_\+pull\+\_\+mode}}}]{mode }\end{DoxyParamCaption})}
+
+
+
+Configures a single G\+P\+IO pin pull resistor. This must be implemented by each B\+SP. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em bank} & G\+P\+IO bank number. \\
+\hline
+\mbox{\texttt{ in}}  & {\em pin} & G\+P\+IO pin number within the given bank. \\
+\hline
+\mbox{\texttt{ in}}  & {\em mode} & The pull resistor mode.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em R\+T\+E\+M\+S\+\_\+\+S\+U\+C\+C\+E\+S\+S\+F\+UL} & Pull resistor successfully configured. \\
+\hline
+{\em R\+T\+E\+M\+S\+\_\+\+U\+N\+S\+A\+T\+I\+S\+F\+I\+ED} & Could not set the pull mode. \\
+\hline
+\end{DoxyRetVals}
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{rpi-gpio_8c_ae400f29d9e75a93c4a2487244e53af31}\label{rpi-gpio_8c_ae400f29d9e75a93c4a2487244e53af31}} 
+\index{rpi-\/gpio.c@{rpi-\/gpio.c}!alt\_func\_def@{alt\_func\_def}}
+\index{alt\_func\_def@{alt\_func\_def}!rpi-\/gpio.c@{rpi-\/gpio.c}}
+\subsubsection{\texorpdfstring{alt\_func\_def}{alt\_func\_def}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structrtems__gpio__specific__data}{rtems\+\_\+gpio\+\_\+specific\+\_\+data}} alt\+\_\+func\+\_\+def\mbox{[}$\,$\mbox{]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{  \{.io\_function = RPI\_ALT\_FUNC\_0, .pin\_data = \mbox{\hyperlink{bestcomm__api_8h_a872bb74de61c3689ccd5b41873fce42c}{NULL}}\},}
+\DoxyCodeLine{  \{.io\_function = RPI\_ALT\_FUNC\_1, .pin\_data = \mbox{\hyperlink{bestcomm__api_8h_a872bb74de61c3689ccd5b41873fce42c}{NULL}}\},}
+\DoxyCodeLine{  \{.io\_function = RPI\_ALT\_FUNC\_2, .pin\_data = \mbox{\hyperlink{bestcomm__api_8h_a872bb74de61c3689ccd5b41873fce42c}{NULL}}\},}
+\DoxyCodeLine{  \{.io\_function = RPI\_ALT\_FUNC\_3, .pin\_data = \mbox{\hyperlink{bestcomm__api_8h_a872bb74de61c3689ccd5b41873fce42c}{NULL}}\},}
+\DoxyCodeLine{  \{.io\_function = RPI\_ALT\_FUNC\_4, .pin\_data = \mbox{\hyperlink{bestcomm__api_8h_a872bb74de61c3689ccd5b41873fce42c}{NULL}}\},}
+\DoxyCodeLine{  \{.io\_function = RPI\_ALT\_FUNC\_5, .pin\_data = \mbox{\hyperlink{bestcomm__api_8h_a872bb74de61c3689ccd5b41873fce42c}{NULL}}\}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}

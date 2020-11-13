@@ -1,0 +1,1276 @@
+\hypertarget{rtl-obj_8h}{}\section{cpukit/include/rtems/rtl/rtl-\/obj.h File Reference}
+\label{rtl-obj_8h}\index{cpukit/include/rtems/rtl/rtl-\/obj.h@{cpukit/include/rtems/rtl/rtl-\/obj.h}}
+
+
+R\+T\+E\+MS Run-\/\+Time Linker Object Support.  
+
+
+{\ttfamily \#include $<$rtems.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/chain.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/rtl/rtl-\/sym.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/rtl/rtl-\/unresolved.\+h$>$}\newline
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structrtems__rtl__loader__format}{rtems\+\_\+rtl\+\_\+loader\+\_\+format}}
+\item 
+struct \mbox{\hyperlink{structrtems__rtl__loader__table}{rtems\+\_\+rtl\+\_\+loader\+\_\+table}}
+\item 
+struct \mbox{\hyperlink{structrtems__rtl__obj__sect}{rtems\+\_\+rtl\+\_\+obj\+\_\+sect}}
+\item 
+struct \mbox{\hyperlink{structrtems__rtl__obj__depends}{rtems\+\_\+rtl\+\_\+obj\+\_\+depends}}
+\item 
+struct \mbox{\hyperlink{structrtems__rtl__obj}{rtems\+\_\+rtl\+\_\+obj}}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{rtl-obj_8h_a6953d174aa285c36ca012a802cb849e5}{R\+T\+E\+M\+S\+\_\+\+R\+T\+L\+\_\+\+F\+M\+T\+\_\+\+E\+LF}}~(1 $<$$<$ 0)
+\item 
+\mbox{\Hypertarget{rtl-obj_8h_a016008ad369ab440dde1e105994eb85b}\label{rtl-obj_8h_a016008ad369ab440dde1e105994eb85b}} 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+R\+T\+L\+\_\+\+F\+M\+T\+\_\+\+C\+O\+MP}~(1 $<$$<$ 1)
+\item 
+\mbox{\Hypertarget{rtl-obj_8h_abd4f890b51ad353ba8f65d3386d91c56}\label{rtl-obj_8h_abd4f890b51ad353ba8f65d3386d91c56}} 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+R\+T\+L\+\_\+\+F\+M\+T\+\_\+\+P\+R\+I\+V\+A\+TE}~(1 $<$$<$ 16)
+\item 
+\#define \mbox{\hyperlink{rtl-obj_8h_a8c7ce3fe6f7ab4227f3965e47971bb6b}{R\+T\+E\+M\+S\+\_\+\+R\+T\+L\+\_\+\+O\+B\+J\+\_\+\+S\+E\+C\+T\+\_\+\+T\+E\+XT}}~(1 $<$$<$ 0)
+\item 
+\#define \mbox{\hyperlink{rtl-obj_8h_a842e2f3300a5c2b0333a7ad042750b07}{R\+T\+E\+M\+S\+\_\+\+R\+T\+L\+\_\+\+O\+B\+J\+\_\+\+S\+E\+C\+T\+\_\+\+C\+O\+N\+ST}}~(1 $<$$<$ 1)
+\item 
+\#define \mbox{\hyperlink{rtl-obj_8h_abb0d292466963269546551a2fd4bba31}{R\+T\+E\+M\+S\+\_\+\+R\+T\+L\+\_\+\+O\+B\+J\+\_\+\+S\+E\+C\+T\+\_\+\+D\+A\+TA}}~(1 $<$$<$ 2)
+\item 
+\#define \mbox{\hyperlink{rtl-obj_8h_af1483165c89bdbba44cfe0d93bf4b4f9}{R\+T\+E\+M\+S\+\_\+\+R\+T\+L\+\_\+\+O\+B\+J\+\_\+\+S\+E\+C\+T\+\_\+\+B\+SS}}~(1 $<$$<$ 3)
+\item 
+\#define \mbox{\hyperlink{rtl-obj_8h_a481dc5a8ba6a539f86d0e7577d6554a1}{R\+T\+E\+M\+S\+\_\+\+R\+T\+L\+\_\+\+O\+B\+J\+\_\+\+S\+E\+C\+T\+\_\+\+EH}}~(1 $<$$<$ 4)
+\item 
+\#define \mbox{\hyperlink{rtl-obj_8h_a5b5ed964c3abe1fe49d8e4a54e626e55}{R\+T\+E\+M\+S\+\_\+\+R\+T\+L\+\_\+\+O\+B\+J\+\_\+\+S\+E\+C\+T\+\_\+\+T\+LS}}~(1 $<$$<$ 5)
+\item 
+\#define \mbox{\hyperlink{rtl-obj_8h_a972b33963579cd03ea4891b8fc271f38}{R\+T\+E\+M\+S\+\_\+\+R\+T\+L\+\_\+\+O\+B\+J\+\_\+\+S\+E\+C\+T\+\_\+\+R\+EL}}~(1 $<$$<$ 6)
+\item 
+\#define \mbox{\hyperlink{rtl-obj_8h_a6cdb7527bfb9efe6fcc30593c57b99d7}{R\+T\+E\+M\+S\+\_\+\+R\+T\+L\+\_\+\+O\+B\+J\+\_\+\+S\+E\+C\+T\+\_\+\+R\+E\+LA}}~(1 $<$$<$ 7)
+\item 
+\#define \mbox{\hyperlink{rtl-obj_8h_ae0bb3da404366ee2d27410dc77979bc6}{R\+T\+E\+M\+S\+\_\+\+R\+T\+L\+\_\+\+O\+B\+J\+\_\+\+S\+E\+C\+T\+\_\+\+S\+YM}}~(1 $<$$<$ 8)
+\item 
+\#define \mbox{\hyperlink{rtl-obj_8h_a156c3d34f5733005fb08b2b4f7d865f3}{R\+T\+E\+M\+S\+\_\+\+R\+T\+L\+\_\+\+O\+B\+J\+\_\+\+S\+E\+C\+T\+\_\+\+S\+TR}}~(1 $<$$<$ 9)
+\item 
+\#define \mbox{\hyperlink{rtl-obj_8h_ab3dbccb148f1dc0e98ba9ee0890b7eb8}{R\+T\+E\+M\+S\+\_\+\+R\+T\+L\+\_\+\+O\+B\+J\+\_\+\+S\+E\+C\+T\+\_\+\+A\+L\+L\+OC}}~(1 $<$$<$ 10
+\item 
+\#define \mbox{\hyperlink{rtl-obj_8h_a5b156f24582b635a13262e362d7bbb7f}{R\+T\+E\+M\+S\+\_\+\+R\+T\+L\+\_\+\+O\+B\+J\+\_\+\+S\+E\+C\+T\+\_\+\+L\+O\+AD}}~(1 $<$$<$ 11)
+\item 
+\#define \mbox{\hyperlink{rtl-obj_8h_a7b7172e4733981ca06d60f8da071a735}{R\+T\+E\+M\+S\+\_\+\+R\+T\+L\+\_\+\+O\+B\+J\+\_\+\+S\+E\+C\+T\+\_\+\+W\+R\+I\+TE}}~(1 $<$$<$ 12)
+\item 
+\#define \mbox{\hyperlink{rtl-obj_8h_a00b57ceef30f4366d8084d0dede19deb}{R\+T\+E\+M\+S\+\_\+\+R\+T\+L\+\_\+\+O\+B\+J\+\_\+\+S\+E\+C\+T\+\_\+\+E\+X\+EC}}~(1 $<$$<$ 13)
+\item 
+\#define \mbox{\hyperlink{rtl-obj_8h_a408fa5451af8d541ef3e96d5e65d0301}{R\+T\+E\+M\+S\+\_\+\+R\+T\+L\+\_\+\+O\+B\+J\+\_\+\+S\+E\+C\+T\+\_\+\+Z\+E\+RO}}~(1 $<$$<$ 14)
+\item 
+\#define \mbox{\hyperlink{rtl-obj_8h_a820f74a2b9fe45f66867bfa48fe224fb}{R\+T\+E\+M\+S\+\_\+\+R\+T\+L\+\_\+\+O\+B\+J\+\_\+\+S\+E\+C\+T\+\_\+\+L\+I\+NK}}~(1 $<$$<$ 15)
+\item 
+\#define \mbox{\hyperlink{rtl-obj_8h_a5f327dfe8be674a2eb0c68436d8001a8}{R\+T\+E\+M\+S\+\_\+\+R\+T\+L\+\_\+\+O\+B\+J\+\_\+\+S\+E\+C\+T\+\_\+\+C\+T\+OR}}~(1 $<$$<$ 16)
+\item 
+\#define \mbox{\hyperlink{rtl-obj_8h_a2f5c9f46a28fc5ba3e98c09702cfedf3}{R\+T\+E\+M\+S\+\_\+\+R\+T\+L\+\_\+\+O\+B\+J\+\_\+\+S\+E\+C\+T\+\_\+\+D\+T\+OR}}~(1 $<$$<$ 17)
+\item 
+\#define \mbox{\hyperlink{rtl-obj_8h_afdb145489cd678e5ca918b9c86faab01}{R\+T\+E\+M\+S\+\_\+\+R\+T\+L\+\_\+\+O\+B\+J\+\_\+\+S\+E\+C\+T\+\_\+\+L\+O\+CD}}~(1 $<$$<$ 18)
+\item 
+\#define \mbox{\hyperlink{rtl-obj_8h_a3f3fe6ac48985c92ae45ca8ef471c89c}{R\+T\+E\+M\+S\+\_\+\+R\+T\+L\+\_\+\+O\+B\+J\+\_\+\+S\+E\+C\+T\+\_\+\+A\+R\+C\+H\+\_\+\+A\+L\+L\+OC}}~(1 $<$$<$ 19)
+\item 
+\#define \mbox{\hyperlink{rtl-obj_8h_a90c655dbfb45a6472853652380f52acf}{R\+T\+E\+M\+S\+\_\+\+R\+T\+L\+\_\+\+O\+B\+J\+\_\+\+S\+E\+C\+T\+\_\+\+T\+Y\+P\+ES}}
+\item 
+\#define \mbox{\hyperlink{rtl-obj_8h_ad10939f0eab9f0e746e849a6a86ace12}{R\+T\+E\+M\+S\+\_\+\+R\+T\+L\+\_\+\+O\+B\+J\+\_\+\+L\+O\+C\+K\+ED}}~(1 $<$$<$ 0)
+\item 
+\#define \mbox{\hyperlink{rtl-obj_8h_a61ce363bdf3bd1f62111446f67320517}{R\+T\+E\+M\+S\+\_\+\+R\+T\+L\+\_\+\+O\+B\+J\+\_\+\+U\+N\+R\+E\+S\+O\+L\+V\+ED}}~(1 $<$$<$ 1)
+\item 
+\#define \mbox{\hyperlink{rtl-obj_8h_ae5e385c02d029c716c5f2cb9855c4aff}{R\+T\+E\+M\+S\+\_\+\+R\+T\+L\+\_\+\+O\+B\+J\+\_\+\+B\+A\+SE}}~(1 $<$$<$ 2)
+\item 
+\#define \mbox{\hyperlink{rtl-obj_8h_aebee1ef0c360855346b95c898afeb515}{R\+T\+E\+M\+S\+\_\+\+R\+T\+L\+\_\+\+O\+B\+J\+\_\+\+R\+E\+L\+O\+C\+\_\+\+T\+AG}}~(1 $<$$<$ 3)
+\item 
+\#define \mbox{\hyperlink{rtl-obj_8h_a06334ada7072bc8b407810f462c9e82c}{R\+T\+E\+M\+S\+\_\+\+R\+T\+L\+\_\+\+O\+B\+J\+\_\+\+D\+E\+P\+\_\+\+V\+I\+S\+I\+T\+ED}}~(1 $<$$<$ 4)
+\item 
+\#define \mbox{\hyperlink{rtl-obj_8h_af2202fa8beaaf783cdb9812a5ef85b26}{R\+T\+E\+M\+S\+\_\+\+R\+T\+L\+\_\+\+O\+B\+J\+\_\+\+C\+T\+O\+R\+\_\+\+R\+UN}}~(1 $<$$<$ 5)
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \mbox{\hyperlink{structrtems__rtl__loader__format}{rtems\+\_\+rtl\+\_\+loader\+\_\+format}} \mbox{\hyperlink{rtl-obj_8h_a3742762af1639e494d0867c4344335a9}{rtems\+\_\+rtl\+\_\+loader\+\_\+format}}
+\item 
+typedef bool($\ast$ \mbox{\hyperlink{rtl-obj_8h_ae65589434f7dfc4ab547022bef414e04}{rtems\+\_\+rtl\+\_\+loader\+\_\+check}}) (\mbox{\hyperlink{structrtems__rtl__obj}{rtems\+\_\+rtl\+\_\+obj}} $\ast$obj, int fd)
+\item 
+typedef bool($\ast$ \mbox{\hyperlink{rtl-obj_8h_a6d119678fa2e324376060e8b09ea56cf}{rtems\+\_\+rtl\+\_\+loader\+\_\+load}}) (\mbox{\hyperlink{structrtems__rtl__obj}{rtems\+\_\+rtl\+\_\+obj}} $\ast$obj, int fd)
+\item 
+typedef bool($\ast$ \mbox{\hyperlink{rtl-obj_8h_afacdc84b4af0a65a15b4ef38ebef6ab0}{rtems\+\_\+rtl\+\_\+loader\+\_\+unload}}) (\mbox{\hyperlink{structrtems__rtl__obj}{rtems\+\_\+rtl\+\_\+obj}} $\ast$obj)
+\item 
+typedef \mbox{\hyperlink{structrtems__rtl__loader__format}{rtems\+\_\+rtl\+\_\+loader\+\_\+format}} $\ast$($\ast$ \mbox{\hyperlink{rtl-obj_8h_a31673e6af5ca5b1e8ccb074cfac376ba}{rtems\+\_\+rtl\+\_\+loader\+\_\+sig}}) (void)
+\item 
+typedef struct \mbox{\hyperlink{structrtems__rtl__loader__table}{rtems\+\_\+rtl\+\_\+loader\+\_\+table}} \mbox{\hyperlink{rtl-obj_8h_ab0b37adc773babd5318fdc28636b2eb2}{rtems\+\_\+rtl\+\_\+loader\+\_\+table}}
+\item 
+typedef bool($\ast$ \mbox{\hyperlink{rtl-obj_8h_a1465c9202902dfd2416e1d1432dab052}{rtems\+\_\+rtl\+\_\+obj\+\_\+depends\+\_\+iterator}}) (\mbox{\hyperlink{structrtems__rtl__obj}{rtems\+\_\+rtl\+\_\+obj}} $\ast$obj, \mbox{\hyperlink{structrtems__rtl__obj}{rtems\+\_\+rtl\+\_\+obj}} $\ast$dependent, void $\ast$data)
+\item 
+typedef bool($\ast$ \mbox{\hyperlink{rtl-obj_8h_a7af5827cf336da33eef4564a6e00ba11}{rtems\+\_\+rtl\+\_\+obj\+\_\+sect\+\_\+handler}}) (\mbox{\hyperlink{structrtems__rtl__obj}{rtems\+\_\+rtl\+\_\+obj}} $\ast$obj, int fd, \mbox{\hyperlink{structrtems__rtl__obj__sect}{rtems\+\_\+rtl\+\_\+obj\+\_\+sect}} $\ast$sect, void $\ast$data)
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structrtems__rtl__obj}{rtems\+\_\+rtl\+\_\+obj}} $\ast$ \mbox{\hyperlink{rtl-obj_8h_a680decdef583cdfa336e9adc86c71e87}{rtems\+\_\+rtl\+\_\+obj\+\_\+alloc}} (void)
+\item 
+bool \mbox{\hyperlink{rtl-obj_8h_a7385d2d95fc68a554aac41f11fb2248d}{rtems\+\_\+rtl\+\_\+obj\+\_\+free}} (\mbox{\hyperlink{structrtems__rtl__obj}{rtems\+\_\+rtl\+\_\+obj}} $\ast$obj)
+\item 
+bool \mbox{\hyperlink{rtl-obj_8h_a63170089dcc2fbe5453fe01659c99616}{rtems\+\_\+rtl\+\_\+obj\+\_\+unresolved}} (\mbox{\hyperlink{structrtems__rtl__obj}{rtems\+\_\+rtl\+\_\+obj}} $\ast$obj)
+\item 
+bool \mbox{\hyperlink{rtl-obj_8h_a783aed59695cd068d8cb244655fdca76}{rtems\+\_\+rtl\+\_\+parse\+\_\+name}} (const char $\ast$name, const char $\ast$$\ast$aname, const char $\ast$$\ast$oname, off\+\_\+t $\ast$ooffset)
+\item 
+bool \mbox{\hyperlink{rtl-obj_8h_a01178159b33ae5e8a94b77f5f2fd6aa9}{rtems\+\_\+rtl\+\_\+obj\+\_\+find\+\_\+file}} (\mbox{\hyperlink{structrtems__rtl__obj}{rtems\+\_\+rtl\+\_\+obj}} $\ast$obj, const char $\ast$name)
+\item 
+bool \mbox{\hyperlink{rtl-obj_8h_a08fe8380ba12aee966bd18675becf6cd}{rtems\+\_\+rtl\+\_\+obj\+\_\+add\+\_\+section}} (\mbox{\hyperlink{structrtems__rtl__obj}{rtems\+\_\+rtl\+\_\+obj}} $\ast$obj, int section, const char $\ast$name, size\+\_\+t \mbox{\hyperlink{sun4u_2tte_8h_a245260f6f74972558f61b85227df5aae}{size}}, off\+\_\+t offset, uint32\+\_\+t alignment, int \mbox{\hyperlink{link_8c_a8c94afd0b7e5bb4ce95fefd964241f7f}{link}}, int info, uint32\+\_\+t flags)
+\item 
+void \mbox{\hyperlink{rtl-obj_8h_a35b64d2ab1e6c8fa1a82dfa0a14ea1e0}{rtems\+\_\+rtl\+\_\+obj\+\_\+erase\+\_\+sections}} (\mbox{\hyperlink{structrtems__rtl__obj}{rtems\+\_\+rtl\+\_\+obj}} $\ast$obj)
+\item 
+\mbox{\hyperlink{structrtems__rtl__obj__sect}{rtems\+\_\+rtl\+\_\+obj\+\_\+sect}} $\ast$ \mbox{\hyperlink{rtl-obj_8h_ace58c2df49449c7973236afeb1365c9c}{rtems\+\_\+rtl\+\_\+obj\+\_\+find\+\_\+section}} (const \mbox{\hyperlink{structrtems__rtl__obj}{rtems\+\_\+rtl\+\_\+obj}} $\ast$obj, const char $\ast$name)
+\item 
+\mbox{\hyperlink{structrtems__rtl__obj__sect}{rtems\+\_\+rtl\+\_\+obj\+\_\+sect}} $\ast$ \mbox{\hyperlink{rtl-obj_8h_ae3fee966abdcf542db13dfd3c75f8f1d}{rtems\+\_\+rtl\+\_\+obj\+\_\+find\+\_\+section\+\_\+by\+\_\+index}} (const \mbox{\hyperlink{structrtems__rtl__obj}{rtems\+\_\+rtl\+\_\+obj}} $\ast$obj, int index)
+\item 
+\mbox{\hyperlink{structrtems__rtl__obj__sect}{rtems\+\_\+rtl\+\_\+obj\+\_\+sect}} $\ast$ \mbox{\hyperlink{rtl-obj_8h_a99bc60fea183744d2e3553f517bc6d22}{rtems\+\_\+rtl\+\_\+obj\+\_\+find\+\_\+section\+\_\+by\+\_\+mask}} (const \mbox{\hyperlink{structrtems__rtl__obj}{rtems\+\_\+rtl\+\_\+obj}} $\ast$obj, int index, uint32\+\_\+t mask)
+\item 
+bool \mbox{\hyperlink{rtl-obj_8h_a825479a6a942b5b742d4e05d5e08ee81}{rtems\+\_\+rtl\+\_\+obj\+\_\+alloc\+\_\+trampoline}} (\mbox{\hyperlink{structrtems__rtl__obj}{rtems\+\_\+rtl\+\_\+obj}} $\ast$obj)
+\item 
+void \mbox{\hyperlink{rtl-obj_8h_a59b26b41ab6dacfe609d8c98c36e535a}{rtems\+\_\+rtl\+\_\+obj\+\_\+erase\+\_\+trampoline}} (\mbox{\hyperlink{structrtems__rtl__obj}{rtems\+\_\+rtl\+\_\+obj}} $\ast$obj)
+\item 
+bool \mbox{\hyperlink{rtl-obj_8h_a9877304c222a5c80f68936f814cb42b3}{rtems\+\_\+rtl\+\_\+obj\+\_\+alloc\+\_\+dependents}} (\mbox{\hyperlink{structrtems__rtl__obj}{rtems\+\_\+rtl\+\_\+obj}} $\ast$obj, size\+\_\+t dependents)
+\item 
+void \mbox{\hyperlink{rtl-obj_8h_aea8861e811c36196e95b439e33707484}{rtems\+\_\+rtl\+\_\+obj\+\_\+erase\+\_\+dependents}} (\mbox{\hyperlink{structrtems__rtl__obj}{rtems\+\_\+rtl\+\_\+obj}} $\ast$obj)
+\item 
+bool \mbox{\hyperlink{rtl-obj_8h_a4c2f2836262a4606efecf94f95ac0cd8}{rtems\+\_\+rtl\+\_\+obj\+\_\+add\+\_\+dependent}} (\mbox{\hyperlink{structrtems__rtl__obj}{rtems\+\_\+rtl\+\_\+obj}} $\ast$obj, \mbox{\hyperlink{structrtems__rtl__obj}{rtems\+\_\+rtl\+\_\+obj}} $\ast$dependent)
+\item 
+bool \mbox{\hyperlink{rtl-obj_8h_a6191736c9a9c8e4a585f2208838ba277}{rtems\+\_\+rtl\+\_\+obj\+\_\+remove\+\_\+dependencies}} (\mbox{\hyperlink{structrtems__rtl__obj}{rtems\+\_\+rtl\+\_\+obj}} $\ast$obj)
+\item 
+bool \mbox{\hyperlink{rtl-obj_8h_afeed317d7aadd6e3fcb4b86cf31dc270}{rtems\+\_\+rtl\+\_\+obj\+\_\+iterate\+\_\+dependents}} (\mbox{\hyperlink{structrtems__rtl__obj}{rtems\+\_\+rtl\+\_\+obj}} $\ast$obj, \mbox{\hyperlink{rtl-obj_8h_a1465c9202902dfd2416e1d1432dab052}{rtems\+\_\+rtl\+\_\+obj\+\_\+depends\+\_\+iterator}} iterator, void $\ast$data)
+\item 
+size\+\_\+t \mbox{\hyperlink{rtl-obj_8h_a4df3f868b6e5b13ec7e326028683e87a}{rtems\+\_\+rtl\+\_\+obj\+\_\+text\+\_\+size}} (const \mbox{\hyperlink{structrtems__rtl__obj}{rtems\+\_\+rtl\+\_\+obj}} $\ast$obj)
+\item 
+uint32\+\_\+t \mbox{\hyperlink{rtl-obj_8h_a21f97e47f7caa7bb88f685f2b5b7d18b}{rtems\+\_\+rtl\+\_\+obj\+\_\+text\+\_\+alignment}} (const \mbox{\hyperlink{structrtems__rtl__obj}{rtems\+\_\+rtl\+\_\+obj}} $\ast$obj)
+\item 
+size\+\_\+t \mbox{\hyperlink{rtl-obj_8h_a2ce7672560ab13914b32a683650c03cf}{rtems\+\_\+rtl\+\_\+obj\+\_\+const\+\_\+size}} (const \mbox{\hyperlink{structrtems__rtl__obj}{rtems\+\_\+rtl\+\_\+obj}} $\ast$obj)
+\item 
+uint32\+\_\+t \mbox{\hyperlink{rtl-obj_8h_aee3ea1f29f12981579b1d1939bb9907f}{rtems\+\_\+rtl\+\_\+obj\+\_\+const\+\_\+alignment}} (const \mbox{\hyperlink{structrtems__rtl__obj}{rtems\+\_\+rtl\+\_\+obj}} $\ast$obj)
+\item 
+size\+\_\+t \mbox{\hyperlink{rtl-obj_8h_a4dbc1988e76114f9d94e56f01b034901}{rtems\+\_\+rtl\+\_\+obj\+\_\+eh\+\_\+size}} (const \mbox{\hyperlink{structrtems__rtl__obj}{rtems\+\_\+rtl\+\_\+obj}} $\ast$obj)
+\item 
+uint32\+\_\+t \mbox{\hyperlink{rtl-obj_8h_aa093ee073ed78505eab0edc5eefee8b7}{rtems\+\_\+rtl\+\_\+obj\+\_\+eh\+\_\+alignment}} (const \mbox{\hyperlink{structrtems__rtl__obj}{rtems\+\_\+rtl\+\_\+obj}} $\ast$obj)
+\item 
+size\+\_\+t \mbox{\hyperlink{rtl-obj_8h_a603ec80c7cf7d1a2f01f400b3e5c93d8}{rtems\+\_\+rtl\+\_\+obj\+\_\+data\+\_\+size}} (const \mbox{\hyperlink{structrtems__rtl__obj}{rtems\+\_\+rtl\+\_\+obj}} $\ast$obj)
+\item 
+uint32\+\_\+t \mbox{\hyperlink{rtl-obj_8h_a9a3dae296e05206c99846c099789becc}{rtems\+\_\+rtl\+\_\+obj\+\_\+data\+\_\+alignment}} (const \mbox{\hyperlink{structrtems__rtl__obj}{rtems\+\_\+rtl\+\_\+obj}} $\ast$obj)
+\item 
+size\+\_\+t \mbox{\hyperlink{rtl-obj_8h_a6125a7787e7b842bc39aa69370b7db2b}{rtems\+\_\+rtl\+\_\+obj\+\_\+bss\+\_\+size}} (const \mbox{\hyperlink{structrtems__rtl__obj}{rtems\+\_\+rtl\+\_\+obj}} $\ast$obj)
+\item 
+uint32\+\_\+t \mbox{\hyperlink{rtl-obj_8h_a02b040b6c3f07084733c2cb226e98fb8}{rtems\+\_\+rtl\+\_\+obj\+\_\+bss\+\_\+alignment}} (const \mbox{\hyperlink{structrtems__rtl__obj}{rtems\+\_\+rtl\+\_\+obj}} $\ast$obj)
+\item 
+bool \mbox{\hyperlink{rtl-obj_8h_a39ef15efbb0f5eddd01c677d77d9c33e}{rtems\+\_\+rtl\+\_\+obj\+\_\+relocate}} (\mbox{\hyperlink{structrtems__rtl__obj}{rtems\+\_\+rtl\+\_\+obj}} $\ast$obj, int fd, \mbox{\hyperlink{rtl-obj_8h_a7af5827cf336da33eef4564a6e00ba11}{rtems\+\_\+rtl\+\_\+obj\+\_\+sect\+\_\+handler}} handler, void $\ast$data)
+\item 
+void \mbox{\hyperlink{rtl-obj_8h_a98c2a1b1a67add778c0b4017976f91c3}{rtems\+\_\+rtl\+\_\+obj\+\_\+synchronize\+\_\+cache}} (\mbox{\hyperlink{structrtems__rtl__obj}{rtems\+\_\+rtl\+\_\+obj}} $\ast$obj)
+\item 
+bool \mbox{\hyperlink{rtl-obj_8h_ad6bfd56d63e3cf2562d48a39b7fffc24}{rtems\+\_\+rtl\+\_\+obj\+\_\+relocate\+\_\+unresolved}} (\mbox{\hyperlink{structrtems__rtl__unresolv__reloc}{rtems\+\_\+rtl\+\_\+unresolv\+\_\+reloc}} $\ast$reloc, \mbox{\hyperlink{structrtems__rtl__obj__sym}{rtems\+\_\+rtl\+\_\+obj\+\_\+sym}} $\ast$sym)
+\item 
+bool \mbox{\hyperlink{rtl-obj_8h_acdf565c078750f3114d8fd5ead341cdf}{rtems\+\_\+rtl\+\_\+obj\+\_\+load\+\_\+symbols}} (\mbox{\hyperlink{structrtems__rtl__obj}{rtems\+\_\+rtl\+\_\+obj}} $\ast$obj, int fd, \mbox{\hyperlink{rtl-obj_8h_a7af5827cf336da33eef4564a6e00ba11}{rtems\+\_\+rtl\+\_\+obj\+\_\+sect\+\_\+handler}} handler, void $\ast$data)
+\item 
+bool \mbox{\hyperlink{rtl-obj_8h_abfecc46708adb154ec1a87f1fcc97662}{rtems\+\_\+rtl\+\_\+obj\+\_\+alloc\+\_\+sections}} (\mbox{\hyperlink{structrtems__rtl__obj}{rtems\+\_\+rtl\+\_\+obj}} $\ast$obj, int fd, \mbox{\hyperlink{rtl-obj_8h_a7af5827cf336da33eef4564a6e00ba11}{rtems\+\_\+rtl\+\_\+obj\+\_\+sect\+\_\+handler}} handler, void $\ast$data)
+\item 
+bool \mbox{\hyperlink{rtl-obj_8h_aac7c6817d06d317f301538bcf30ffa9f}{rtems\+\_\+rtl\+\_\+obj\+\_\+load\+\_\+sections}} (\mbox{\hyperlink{structrtems__rtl__obj}{rtems\+\_\+rtl\+\_\+obj}} $\ast$obj, int fd, \mbox{\hyperlink{rtl-obj_8h_a7af5827cf336da33eef4564a6e00ba11}{rtems\+\_\+rtl\+\_\+obj\+\_\+sect\+\_\+handler}} handler, void $\ast$data)
+\item 
+bool \mbox{\hyperlink{rtl-obj_8h_a1d4c73beba22bae24a66704baa5a8e5a}{rtems\+\_\+rtl\+\_\+obj\+\_\+ctors\+\_\+to\+\_\+run}} (\mbox{\hyperlink{structrtems__rtl__obj}{rtems\+\_\+rtl\+\_\+obj}} $\ast$obj)
+\item 
+void \mbox{\hyperlink{rtl-obj_8h_ab61d5e574b2e115b9fa004bdd2619f23}{rtems\+\_\+rtl\+\_\+obj\+\_\+run\+\_\+ctors}} (\mbox{\hyperlink{structrtems__rtl__obj}{rtems\+\_\+rtl\+\_\+obj}} $\ast$obj)
+\item 
+bool \mbox{\hyperlink{rtl-obj_8h_ae2f95f4733d04acbb018f431340be2db}{rtems\+\_\+rtl\+\_\+obj\+\_\+dtors\+\_\+to\+\_\+run}} (\mbox{\hyperlink{structrtems__rtl__obj}{rtems\+\_\+rtl\+\_\+obj}} $\ast$obj)
+\item 
+void \mbox{\hyperlink{rtl-obj_8h_a4c2ee2202085fecf74954e175a0fb7e3}{rtems\+\_\+rtl\+\_\+obj\+\_\+run\+\_\+dtors}} (\mbox{\hyperlink{structrtems__rtl__obj}{rtems\+\_\+rtl\+\_\+obj}} $\ast$obj)
+\item 
+size\+\_\+t \mbox{\hyperlink{rtl-obj_8h_a1e3d355bd13971d7bc629cb890b261bf}{rtems\+\_\+rtl\+\_\+obj\+\_\+get\+\_\+reference}} (\mbox{\hyperlink{structrtems__rtl__obj}{rtems\+\_\+rtl\+\_\+obj}} $\ast$obj)
+\item 
+void \mbox{\hyperlink{rtl-obj_8h_a86116ffbe87cb58f2428e6c66e4db58e}{rtems\+\_\+rtl\+\_\+obj\+\_\+inc\+\_\+reference}} (\mbox{\hyperlink{structrtems__rtl__obj}{rtems\+\_\+rtl\+\_\+obj}} $\ast$obj)
+\item 
+void \mbox{\hyperlink{rtl-obj_8h_a77c0042ad0312c5043e9d8259171e6f5}{rtems\+\_\+rtl\+\_\+obj\+\_\+dec\+\_\+reference}} (\mbox{\hyperlink{structrtems__rtl__obj}{rtems\+\_\+rtl\+\_\+obj}} $\ast$obj)
+\item 
+bool \mbox{\hyperlink{rtl-obj_8h_af86dc76c1597801ece0edbe4d91a0ee8}{rtems\+\_\+rtl\+\_\+obj\+\_\+orphaned}} (\mbox{\hyperlink{structrtems__rtl__obj}{rtems\+\_\+rtl\+\_\+obj}} $\ast$obj)
+\item 
+bool \mbox{\hyperlink{rtl-obj_8h_a35de063bbe9cf53cc23ee71a3069e641}{rtems\+\_\+rtl\+\_\+obj\+\_\+load}} (\mbox{\hyperlink{structrtems__rtl__obj}{rtems\+\_\+rtl\+\_\+obj}} $\ast$obj)
+\item 
+bool \mbox{\hyperlink{rtl-obj_8h_a8c0debf8dbf88e9eac3f24357473b1bc}{rtems\+\_\+rtl\+\_\+obj\+\_\+unload}} (\mbox{\hyperlink{structrtems__rtl__obj}{rtems\+\_\+rtl\+\_\+obj}} $\ast$obj)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+R\+T\+E\+MS Run-\/\+Time Linker Object Support. 
+
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{rtl-obj_8h_a6953d174aa285c36ca012a802cb849e5}\label{rtl-obj_8h_a6953d174aa285c36ca012a802cb849e5}} 
+\index{rtl-\/obj.h@{rtl-\/obj.h}!RTEMS\_RTL\_FMT\_ELF@{RTEMS\_RTL\_FMT\_ELF}}
+\index{RTEMS\_RTL\_FMT\_ELF@{RTEMS\_RTL\_FMT\_ELF}!rtl-\/obj.h@{rtl-\/obj.h}}
+\subsubsection{\texorpdfstring{RTEMS\_RTL\_FMT\_ELF}{RTEMS\_RTL\_FMT\_ELF}}
+{\footnotesize\ttfamily \#define R\+T\+E\+M\+S\+\_\+\+R\+T\+L\+\_\+\+F\+M\+T\+\_\+\+E\+LF~(1 $<$$<$ 0)}
+
+Loader format flags. \mbox{\Hypertarget{rtl-obj_8h_ae5e385c02d029c716c5f2cb9855c4aff}\label{rtl-obj_8h_ae5e385c02d029c716c5f2cb9855c4aff}} 
+\index{rtl-\/obj.h@{rtl-\/obj.h}!RTEMS\_RTL\_OBJ\_BASE@{RTEMS\_RTL\_OBJ\_BASE}}
+\index{RTEMS\_RTL\_OBJ\_BASE@{RTEMS\_RTL\_OBJ\_BASE}!rtl-\/obj.h@{rtl-\/obj.h}}
+\subsubsection{\texorpdfstring{RTEMS\_RTL\_OBJ\_BASE}{RTEMS\_RTL\_OBJ\_BASE}}
+{\footnotesize\ttfamily \#define R\+T\+E\+M\+S\+\_\+\+R\+T\+L\+\_\+\+O\+B\+J\+\_\+\+B\+A\+SE~(1 $<$$<$ 2)}
+
+The base image. \mbox{\Hypertarget{rtl-obj_8h_af2202fa8beaaf783cdb9812a5ef85b26}\label{rtl-obj_8h_af2202fa8beaaf783cdb9812a5ef85b26}} 
+\index{rtl-\/obj.h@{rtl-\/obj.h}!RTEMS\_RTL\_OBJ\_CTOR\_RUN@{RTEMS\_RTL\_OBJ\_CTOR\_RUN}}
+\index{RTEMS\_RTL\_OBJ\_CTOR\_RUN@{RTEMS\_RTL\_OBJ\_CTOR\_RUN}!rtl-\/obj.h@{rtl-\/obj.h}}
+\subsubsection{\texorpdfstring{RTEMS\_RTL\_OBJ\_CTOR\_RUN}{RTEMS\_RTL\_OBJ\_CTOR\_RUN}}
+{\footnotesize\ttfamily \#define R\+T\+E\+M\+S\+\_\+\+R\+T\+L\+\_\+\+O\+B\+J\+\_\+\+C\+T\+O\+R\+\_\+\+R\+UN~(1 $<$$<$ 5)}
+
+Constructors have been called. \mbox{\Hypertarget{rtl-obj_8h_a06334ada7072bc8b407810f462c9e82c}\label{rtl-obj_8h_a06334ada7072bc8b407810f462c9e82c}} 
+\index{rtl-\/obj.h@{rtl-\/obj.h}!RTEMS\_RTL\_OBJ\_DEP\_VISITED@{RTEMS\_RTL\_OBJ\_DEP\_VISITED}}
+\index{RTEMS\_RTL\_OBJ\_DEP\_VISITED@{RTEMS\_RTL\_OBJ\_DEP\_VISITED}!rtl-\/obj.h@{rtl-\/obj.h}}
+\subsubsection{\texorpdfstring{RTEMS\_RTL\_OBJ\_DEP\_VISITED}{RTEMS\_RTL\_OBJ\_DEP\_VISITED}}
+{\footnotesize\ttfamily \#define R\+T\+E\+M\+S\+\_\+\+R\+T\+L\+\_\+\+O\+B\+J\+\_\+\+D\+E\+P\+\_\+\+V\+I\+S\+I\+T\+ED~(1 $<$$<$ 4)}
+
+Dependency loop detection. \mbox{\Hypertarget{rtl-obj_8h_ad10939f0eab9f0e746e849a6a86ace12}\label{rtl-obj_8h_ad10939f0eab9f0e746e849a6a86ace12}} 
+\index{rtl-\/obj.h@{rtl-\/obj.h}!RTEMS\_RTL\_OBJ\_LOCKED@{RTEMS\_RTL\_OBJ\_LOCKED}}
+\index{RTEMS\_RTL\_OBJ\_LOCKED@{RTEMS\_RTL\_OBJ\_LOCKED}!rtl-\/obj.h@{rtl-\/obj.h}}
+\subsubsection{\texorpdfstring{RTEMS\_RTL\_OBJ\_LOCKED}{RTEMS\_RTL\_OBJ\_LOCKED}}
+{\footnotesize\ttfamily \#define R\+T\+E\+M\+S\+\_\+\+R\+T\+L\+\_\+\+O\+B\+J\+\_\+\+L\+O\+C\+K\+ED~(1 $<$$<$ 0)}
+
+Object file descriptor flags.\+Lock the object file so it cannot be unloaded. \mbox{\Hypertarget{rtl-obj_8h_aebee1ef0c360855346b95c898afeb515}\label{rtl-obj_8h_aebee1ef0c360855346b95c898afeb515}} 
+\index{rtl-\/obj.h@{rtl-\/obj.h}!RTEMS\_RTL\_OBJ\_RELOC\_TAG@{RTEMS\_RTL\_OBJ\_RELOC\_TAG}}
+\index{RTEMS\_RTL\_OBJ\_RELOC\_TAG@{RTEMS\_RTL\_OBJ\_RELOC\_TAG}!rtl-\/obj.h@{rtl-\/obj.h}}
+\subsubsection{\texorpdfstring{RTEMS\_RTL\_OBJ\_RELOC\_TAG}{RTEMS\_RTL\_OBJ\_RELOC\_TAG}}
+{\footnotesize\ttfamily \#define R\+T\+E\+M\+S\+\_\+\+R\+T\+L\+\_\+\+O\+B\+J\+\_\+\+R\+E\+L\+O\+C\+\_\+\+T\+AG~(1 $<$$<$ 3)}
+
+Tag the object as visited when reloc parsing. \mbox{\Hypertarget{rtl-obj_8h_ab3dbccb148f1dc0e98ba9ee0890b7eb8}\label{rtl-obj_8h_ab3dbccb148f1dc0e98ba9ee0890b7eb8}} 
+\index{rtl-\/obj.h@{rtl-\/obj.h}!RTEMS\_RTL\_OBJ\_SECT\_ALLOC@{RTEMS\_RTL\_OBJ\_SECT\_ALLOC}}
+\index{RTEMS\_RTL\_OBJ\_SECT\_ALLOC@{RTEMS\_RTL\_OBJ\_SECT\_ALLOC}!rtl-\/obj.h@{rtl-\/obj.h}}
+\subsubsection{\texorpdfstring{RTEMS\_RTL\_OBJ\_SECT\_ALLOC}{RTEMS\_RTL\_OBJ\_SECT\_ALLOC}}
+{\footnotesize\ttfamily \#define R\+T\+E\+M\+S\+\_\+\+R\+T\+L\+\_\+\+O\+B\+J\+\_\+\+S\+E\+C\+T\+\_\+\+A\+L\+L\+OC~(1 $<$$<$ 10}
+
+Section allocates runtime memory. \mbox{\Hypertarget{rtl-obj_8h_a3f3fe6ac48985c92ae45ca8ef471c89c}\label{rtl-obj_8h_a3f3fe6ac48985c92ae45ca8ef471c89c}} 
+\index{rtl-\/obj.h@{rtl-\/obj.h}!RTEMS\_RTL\_OBJ\_SECT\_ARCH\_ALLOC@{RTEMS\_RTL\_OBJ\_SECT\_ARCH\_ALLOC}}
+\index{RTEMS\_RTL\_OBJ\_SECT\_ARCH\_ALLOC@{RTEMS\_RTL\_OBJ\_SECT\_ARCH\_ALLOC}!rtl-\/obj.h@{rtl-\/obj.h}}
+\subsubsection{\texorpdfstring{RTEMS\_RTL\_OBJ\_SECT\_ARCH\_ALLOC}{RTEMS\_RTL\_OBJ\_SECT\_ARCH\_ALLOC}}
+{\footnotesize\ttfamily \#define R\+T\+E\+M\+S\+\_\+\+R\+T\+L\+\_\+\+O\+B\+J\+\_\+\+S\+E\+C\+T\+\_\+\+A\+R\+C\+H\+\_\+\+A\+L\+L\+OC~(1 $<$$<$ 19)}
+
+Section use arch allocator. \mbox{\Hypertarget{rtl-obj_8h_af1483165c89bdbba44cfe0d93bf4b4f9}\label{rtl-obj_8h_af1483165c89bdbba44cfe0d93bf4b4f9}} 
+\index{rtl-\/obj.h@{rtl-\/obj.h}!RTEMS\_RTL\_OBJ\_SECT\_BSS@{RTEMS\_RTL\_OBJ\_SECT\_BSS}}
+\index{RTEMS\_RTL\_OBJ\_SECT\_BSS@{RTEMS\_RTL\_OBJ\_SECT\_BSS}!rtl-\/obj.h@{rtl-\/obj.h}}
+\subsubsection{\texorpdfstring{RTEMS\_RTL\_OBJ\_SECT\_BSS}{RTEMS\_RTL\_OBJ\_SECT\_BSS}}
+{\footnotesize\ttfamily \#define R\+T\+E\+M\+S\+\_\+\+R\+T\+L\+\_\+\+O\+B\+J\+\_\+\+S\+E\+C\+T\+\_\+\+B\+SS~(1 $<$$<$ 3)}
+
+Section holds program bss. \mbox{\Hypertarget{rtl-obj_8h_a842e2f3300a5c2b0333a7ad042750b07}\label{rtl-obj_8h_a842e2f3300a5c2b0333a7ad042750b07}} 
+\index{rtl-\/obj.h@{rtl-\/obj.h}!RTEMS\_RTL\_OBJ\_SECT\_CONST@{RTEMS\_RTL\_OBJ\_SECT\_CONST}}
+\index{RTEMS\_RTL\_OBJ\_SECT\_CONST@{RTEMS\_RTL\_OBJ\_SECT\_CONST}!rtl-\/obj.h@{rtl-\/obj.h}}
+\subsubsection{\texorpdfstring{RTEMS\_RTL\_OBJ\_SECT\_CONST}{RTEMS\_RTL\_OBJ\_SECT\_CONST}}
+{\footnotesize\ttfamily \#define R\+T\+E\+M\+S\+\_\+\+R\+T\+L\+\_\+\+O\+B\+J\+\_\+\+S\+E\+C\+T\+\_\+\+C\+O\+N\+ST~(1 $<$$<$ 1)}
+
+Section holds program text. \mbox{\Hypertarget{rtl-obj_8h_a5f327dfe8be674a2eb0c68436d8001a8}\label{rtl-obj_8h_a5f327dfe8be674a2eb0c68436d8001a8}} 
+\index{rtl-\/obj.h@{rtl-\/obj.h}!RTEMS\_RTL\_OBJ\_SECT\_CTOR@{RTEMS\_RTL\_OBJ\_SECT\_CTOR}}
+\index{RTEMS\_RTL\_OBJ\_SECT\_CTOR@{RTEMS\_RTL\_OBJ\_SECT\_CTOR}!rtl-\/obj.h@{rtl-\/obj.h}}
+\subsubsection{\texorpdfstring{RTEMS\_RTL\_OBJ\_SECT\_CTOR}{RTEMS\_RTL\_OBJ\_SECT\_CTOR}}
+{\footnotesize\ttfamily \#define R\+T\+E\+M\+S\+\_\+\+R\+T\+L\+\_\+\+O\+B\+J\+\_\+\+S\+E\+C\+T\+\_\+\+C\+T\+OR~(1 $<$$<$ 16)}
+
+Section contains constructors. \mbox{\Hypertarget{rtl-obj_8h_abb0d292466963269546551a2fd4bba31}\label{rtl-obj_8h_abb0d292466963269546551a2fd4bba31}} 
+\index{rtl-\/obj.h@{rtl-\/obj.h}!RTEMS\_RTL\_OBJ\_SECT\_DATA@{RTEMS\_RTL\_OBJ\_SECT\_DATA}}
+\index{RTEMS\_RTL\_OBJ\_SECT\_DATA@{RTEMS\_RTL\_OBJ\_SECT\_DATA}!rtl-\/obj.h@{rtl-\/obj.h}}
+\subsubsection{\texorpdfstring{RTEMS\_RTL\_OBJ\_SECT\_DATA}{RTEMS\_RTL\_OBJ\_SECT\_DATA}}
+{\footnotesize\ttfamily \#define R\+T\+E\+M\+S\+\_\+\+R\+T\+L\+\_\+\+O\+B\+J\+\_\+\+S\+E\+C\+T\+\_\+\+D\+A\+TA~(1 $<$$<$ 2)}
+
+Section holds program data. \mbox{\Hypertarget{rtl-obj_8h_a2f5c9f46a28fc5ba3e98c09702cfedf3}\label{rtl-obj_8h_a2f5c9f46a28fc5ba3e98c09702cfedf3}} 
+\index{rtl-\/obj.h@{rtl-\/obj.h}!RTEMS\_RTL\_OBJ\_SECT\_DTOR@{RTEMS\_RTL\_OBJ\_SECT\_DTOR}}
+\index{RTEMS\_RTL\_OBJ\_SECT\_DTOR@{RTEMS\_RTL\_OBJ\_SECT\_DTOR}!rtl-\/obj.h@{rtl-\/obj.h}}
+\subsubsection{\texorpdfstring{RTEMS\_RTL\_OBJ\_SECT\_DTOR}{RTEMS\_RTL\_OBJ\_SECT\_DTOR}}
+{\footnotesize\ttfamily \#define R\+T\+E\+M\+S\+\_\+\+R\+T\+L\+\_\+\+O\+B\+J\+\_\+\+S\+E\+C\+T\+\_\+\+D\+T\+OR~(1 $<$$<$ 17)}
+
+Section contains destructors. \mbox{\Hypertarget{rtl-obj_8h_a481dc5a8ba6a539f86d0e7577d6554a1}\label{rtl-obj_8h_a481dc5a8ba6a539f86d0e7577d6554a1}} 
+\index{rtl-\/obj.h@{rtl-\/obj.h}!RTEMS\_RTL\_OBJ\_SECT\_EH@{RTEMS\_RTL\_OBJ\_SECT\_EH}}
+\index{RTEMS\_RTL\_OBJ\_SECT\_EH@{RTEMS\_RTL\_OBJ\_SECT\_EH}!rtl-\/obj.h@{rtl-\/obj.h}}
+\subsubsection{\texorpdfstring{RTEMS\_RTL\_OBJ\_SECT\_EH}{RTEMS\_RTL\_OBJ\_SECT\_EH}}
+{\footnotesize\ttfamily \#define R\+T\+E\+M\+S\+\_\+\+R\+T\+L\+\_\+\+O\+B\+J\+\_\+\+S\+E\+C\+T\+\_\+\+EH~(1 $<$$<$ 4)}
+
+Section holds exception data. \mbox{\Hypertarget{rtl-obj_8h_a00b57ceef30f4366d8084d0dede19deb}\label{rtl-obj_8h_a00b57ceef30f4366d8084d0dede19deb}} 
+\index{rtl-\/obj.h@{rtl-\/obj.h}!RTEMS\_RTL\_OBJ\_SECT\_EXEC@{RTEMS\_RTL\_OBJ\_SECT\_EXEC}}
+\index{RTEMS\_RTL\_OBJ\_SECT\_EXEC@{RTEMS\_RTL\_OBJ\_SECT\_EXEC}!rtl-\/obj.h@{rtl-\/obj.h}}
+\subsubsection{\texorpdfstring{RTEMS\_RTL\_OBJ\_SECT\_EXEC}{RTEMS\_RTL\_OBJ\_SECT\_EXEC}}
+{\footnotesize\ttfamily \#define R\+T\+E\+M\+S\+\_\+\+R\+T\+L\+\_\+\+O\+B\+J\+\_\+\+S\+E\+C\+T\+\_\+\+E\+X\+EC~(1 $<$$<$ 13)}
+
+Section is executable. \mbox{\Hypertarget{rtl-obj_8h_a820f74a2b9fe45f66867bfa48fe224fb}\label{rtl-obj_8h_a820f74a2b9fe45f66867bfa48fe224fb}} 
+\index{rtl-\/obj.h@{rtl-\/obj.h}!RTEMS\_RTL\_OBJ\_SECT\_LINK@{RTEMS\_RTL\_OBJ\_SECT\_LINK}}
+\index{RTEMS\_RTL\_OBJ\_SECT\_LINK@{RTEMS\_RTL\_OBJ\_SECT\_LINK}!rtl-\/obj.h@{rtl-\/obj.h}}
+\subsubsection{\texorpdfstring{RTEMS\_RTL\_OBJ\_SECT\_LINK}{RTEMS\_RTL\_OBJ\_SECT\_LINK}}
+{\footnotesize\ttfamily \#define R\+T\+E\+M\+S\+\_\+\+R\+T\+L\+\_\+\+O\+B\+J\+\_\+\+S\+E\+C\+T\+\_\+\+L\+I\+NK~(1 $<$$<$ 15)}
+
+Section is link-\/ordered. \mbox{\Hypertarget{rtl-obj_8h_a5b156f24582b635a13262e362d7bbb7f}\label{rtl-obj_8h_a5b156f24582b635a13262e362d7bbb7f}} 
+\index{rtl-\/obj.h@{rtl-\/obj.h}!RTEMS\_RTL\_OBJ\_SECT\_LOAD@{RTEMS\_RTL\_OBJ\_SECT\_LOAD}}
+\index{RTEMS\_RTL\_OBJ\_SECT\_LOAD@{RTEMS\_RTL\_OBJ\_SECT\_LOAD}!rtl-\/obj.h@{rtl-\/obj.h}}
+\subsubsection{\texorpdfstring{RTEMS\_RTL\_OBJ\_SECT\_LOAD}{RTEMS\_RTL\_OBJ\_SECT\_LOAD}}
+{\footnotesize\ttfamily \#define R\+T\+E\+M\+S\+\_\+\+R\+T\+L\+\_\+\+O\+B\+J\+\_\+\+S\+E\+C\+T\+\_\+\+L\+O\+AD~(1 $<$$<$ 11)}
+
+Section is loaded from object file. \mbox{\Hypertarget{rtl-obj_8h_afdb145489cd678e5ca918b9c86faab01}\label{rtl-obj_8h_afdb145489cd678e5ca918b9c86faab01}} 
+\index{rtl-\/obj.h@{rtl-\/obj.h}!RTEMS\_RTL\_OBJ\_SECT\_LOCD@{RTEMS\_RTL\_OBJ\_SECT\_LOCD}}
+\index{RTEMS\_RTL\_OBJ\_SECT\_LOCD@{RTEMS\_RTL\_OBJ\_SECT\_LOCD}!rtl-\/obj.h@{rtl-\/obj.h}}
+\subsubsection{\texorpdfstring{RTEMS\_RTL\_OBJ\_SECT\_LOCD}{RTEMS\_RTL\_OBJ\_SECT\_LOCD}}
+{\footnotesize\ttfamily \#define R\+T\+E\+M\+S\+\_\+\+R\+T\+L\+\_\+\+O\+B\+J\+\_\+\+S\+E\+C\+T\+\_\+\+L\+O\+CD~(1 $<$$<$ 18)}
+
+Section has been located. \mbox{\Hypertarget{rtl-obj_8h_a972b33963579cd03ea4891b8fc271f38}\label{rtl-obj_8h_a972b33963579cd03ea4891b8fc271f38}} 
+\index{rtl-\/obj.h@{rtl-\/obj.h}!RTEMS\_RTL\_OBJ\_SECT\_REL@{RTEMS\_RTL\_OBJ\_SECT\_REL}}
+\index{RTEMS\_RTL\_OBJ\_SECT\_REL@{RTEMS\_RTL\_OBJ\_SECT\_REL}!rtl-\/obj.h@{rtl-\/obj.h}}
+\subsubsection{\texorpdfstring{RTEMS\_RTL\_OBJ\_SECT\_REL}{RTEMS\_RTL\_OBJ\_SECT\_REL}}
+{\footnotesize\ttfamily \#define R\+T\+E\+M\+S\+\_\+\+R\+T\+L\+\_\+\+O\+B\+J\+\_\+\+S\+E\+C\+T\+\_\+\+R\+EL~(1 $<$$<$ 6)}
+
+Section holds relocation recs. \mbox{\Hypertarget{rtl-obj_8h_a6cdb7527bfb9efe6fcc30593c57b99d7}\label{rtl-obj_8h_a6cdb7527bfb9efe6fcc30593c57b99d7}} 
+\index{rtl-\/obj.h@{rtl-\/obj.h}!RTEMS\_RTL\_OBJ\_SECT\_RELA@{RTEMS\_RTL\_OBJ\_SECT\_RELA}}
+\index{RTEMS\_RTL\_OBJ\_SECT\_RELA@{RTEMS\_RTL\_OBJ\_SECT\_RELA}!rtl-\/obj.h@{rtl-\/obj.h}}
+\subsubsection{\texorpdfstring{RTEMS\_RTL\_OBJ\_SECT\_RELA}{RTEMS\_RTL\_OBJ\_SECT\_RELA}}
+{\footnotesize\ttfamily \#define R\+T\+E\+M\+S\+\_\+\+R\+T\+L\+\_\+\+O\+B\+J\+\_\+\+S\+E\+C\+T\+\_\+\+R\+E\+LA~(1 $<$$<$ 7)}
+
+Section holds reloc addend recs. \mbox{\Hypertarget{rtl-obj_8h_a156c3d34f5733005fb08b2b4f7d865f3}\label{rtl-obj_8h_a156c3d34f5733005fb08b2b4f7d865f3}} 
+\index{rtl-\/obj.h@{rtl-\/obj.h}!RTEMS\_RTL\_OBJ\_SECT\_STR@{RTEMS\_RTL\_OBJ\_SECT\_STR}}
+\index{RTEMS\_RTL\_OBJ\_SECT\_STR@{RTEMS\_RTL\_OBJ\_SECT\_STR}!rtl-\/obj.h@{rtl-\/obj.h}}
+\subsubsection{\texorpdfstring{RTEMS\_RTL\_OBJ\_SECT\_STR}{RTEMS\_RTL\_OBJ\_SECT\_STR}}
+{\footnotesize\ttfamily \#define R\+T\+E\+M\+S\+\_\+\+R\+T\+L\+\_\+\+O\+B\+J\+\_\+\+S\+E\+C\+T\+\_\+\+S\+TR~(1 $<$$<$ 9)}
+
+Section holds strings. \mbox{\Hypertarget{rtl-obj_8h_ae0bb3da404366ee2d27410dc77979bc6}\label{rtl-obj_8h_ae0bb3da404366ee2d27410dc77979bc6}} 
+\index{rtl-\/obj.h@{rtl-\/obj.h}!RTEMS\_RTL\_OBJ\_SECT\_SYM@{RTEMS\_RTL\_OBJ\_SECT\_SYM}}
+\index{RTEMS\_RTL\_OBJ\_SECT\_SYM@{RTEMS\_RTL\_OBJ\_SECT\_SYM}!rtl-\/obj.h@{rtl-\/obj.h}}
+\subsubsection{\texorpdfstring{RTEMS\_RTL\_OBJ\_SECT\_SYM}{RTEMS\_RTL\_OBJ\_SECT\_SYM}}
+{\footnotesize\ttfamily \#define R\+T\+E\+M\+S\+\_\+\+R\+T\+L\+\_\+\+O\+B\+J\+\_\+\+S\+E\+C\+T\+\_\+\+S\+YM~(1 $<$$<$ 8)}
+
+Section holds symbols. \mbox{\Hypertarget{rtl-obj_8h_a8c7ce3fe6f7ab4227f3965e47971bb6b}\label{rtl-obj_8h_a8c7ce3fe6f7ab4227f3965e47971bb6b}} 
+\index{rtl-\/obj.h@{rtl-\/obj.h}!RTEMS\_RTL\_OBJ\_SECT\_TEXT@{RTEMS\_RTL\_OBJ\_SECT\_TEXT}}
+\index{RTEMS\_RTL\_OBJ\_SECT\_TEXT@{RTEMS\_RTL\_OBJ\_SECT\_TEXT}!rtl-\/obj.h@{rtl-\/obj.h}}
+\subsubsection{\texorpdfstring{RTEMS\_RTL\_OBJ\_SECT\_TEXT}{RTEMS\_RTL\_OBJ\_SECT\_TEXT}}
+{\footnotesize\ttfamily \#define R\+T\+E\+M\+S\+\_\+\+R\+T\+L\+\_\+\+O\+B\+J\+\_\+\+S\+E\+C\+T\+\_\+\+T\+E\+XT~(1 $<$$<$ 0)}
+
+Flags for the various section types.\+Section holds program text. \mbox{\Hypertarget{rtl-obj_8h_a5b5ed964c3abe1fe49d8e4a54e626e55}\label{rtl-obj_8h_a5b5ed964c3abe1fe49d8e4a54e626e55}} 
+\index{rtl-\/obj.h@{rtl-\/obj.h}!RTEMS\_RTL\_OBJ\_SECT\_TLS@{RTEMS\_RTL\_OBJ\_SECT\_TLS}}
+\index{RTEMS\_RTL\_OBJ\_SECT\_TLS@{RTEMS\_RTL\_OBJ\_SECT\_TLS}!rtl-\/obj.h@{rtl-\/obj.h}}
+\subsubsection{\texorpdfstring{RTEMS\_RTL\_OBJ\_SECT\_TLS}{RTEMS\_RTL\_OBJ\_SECT\_TLS}}
+{\footnotesize\ttfamily \#define R\+T\+E\+M\+S\+\_\+\+R\+T\+L\+\_\+\+O\+B\+J\+\_\+\+S\+E\+C\+T\+\_\+\+T\+LS~(1 $<$$<$ 5)}
+
+Section holds T\+LS data. \mbox{\Hypertarget{rtl-obj_8h_a90c655dbfb45a6472853652380f52acf}\label{rtl-obj_8h_a90c655dbfb45a6472853652380f52acf}} 
+\index{rtl-\/obj.h@{rtl-\/obj.h}!RTEMS\_RTL\_OBJ\_SECT\_TYPES@{RTEMS\_RTL\_OBJ\_SECT\_TYPES}}
+\index{RTEMS\_RTL\_OBJ\_SECT\_TYPES@{RTEMS\_RTL\_OBJ\_SECT\_TYPES}!rtl-\/obj.h@{rtl-\/obj.h}}
+\subsubsection{\texorpdfstring{RTEMS\_RTL\_OBJ\_SECT\_TYPES}{RTEMS\_RTL\_OBJ\_SECT\_TYPES}}
+{\footnotesize\ttfamily \#define R\+T\+E\+M\+S\+\_\+\+R\+T\+L\+\_\+\+O\+B\+J\+\_\+\+S\+E\+C\+T\+\_\+\+T\+Y\+P\+ES}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(\mbox{\hyperlink{rtl-obj_8h_a8c7ce3fe6f7ab4227f3965e47971bb6b}{RTEMS\_RTL\_OBJ\_SECT\_TEXT}} | \(\backslash\)}
+\DoxyCodeLine{                                  RTEMS\_RTL\_OBJ\_SECT\_CONST | \(\backslash\)}
+\DoxyCodeLine{                                  RTEMS\_RTL\_OBJ\_SECT\_DATA | \(\backslash\)}
+\DoxyCodeLine{                                  RTEMS\_RTL\_OBJ\_SECT\_BSS | \(\backslash\)}
+\DoxyCodeLine{                                  RTEMS\_RTL\_OBJ\_SECT\_TLS | \(\backslash\)}
+\DoxyCodeLine{                                  RTEMS\_RTL\_OBJ\_SECT\_EH)}
+
+\end{DoxyCode}
+Section types mask. \mbox{\Hypertarget{rtl-obj_8h_a7b7172e4733981ca06d60f8da071a735}\label{rtl-obj_8h_a7b7172e4733981ca06d60f8da071a735}} 
+\index{rtl-\/obj.h@{rtl-\/obj.h}!RTEMS\_RTL\_OBJ\_SECT\_WRITE@{RTEMS\_RTL\_OBJ\_SECT\_WRITE}}
+\index{RTEMS\_RTL\_OBJ\_SECT\_WRITE@{RTEMS\_RTL\_OBJ\_SECT\_WRITE}!rtl-\/obj.h@{rtl-\/obj.h}}
+\subsubsection{\texorpdfstring{RTEMS\_RTL\_OBJ\_SECT\_WRITE}{RTEMS\_RTL\_OBJ\_SECT\_WRITE}}
+{\footnotesize\ttfamily \#define R\+T\+E\+M\+S\+\_\+\+R\+T\+L\+\_\+\+O\+B\+J\+\_\+\+S\+E\+C\+T\+\_\+\+W\+R\+I\+TE~(1 $<$$<$ 12)}
+
+Section is writable, ie data. \mbox{\Hypertarget{rtl-obj_8h_a408fa5451af8d541ef3e96d5e65d0301}\label{rtl-obj_8h_a408fa5451af8d541ef3e96d5e65d0301}} 
+\index{rtl-\/obj.h@{rtl-\/obj.h}!RTEMS\_RTL\_OBJ\_SECT\_ZERO@{RTEMS\_RTL\_OBJ\_SECT\_ZERO}}
+\index{RTEMS\_RTL\_OBJ\_SECT\_ZERO@{RTEMS\_RTL\_OBJ\_SECT\_ZERO}!rtl-\/obj.h@{rtl-\/obj.h}}
+\subsubsection{\texorpdfstring{RTEMS\_RTL\_OBJ\_SECT\_ZERO}{RTEMS\_RTL\_OBJ\_SECT\_ZERO}}
+{\footnotesize\ttfamily \#define R\+T\+E\+M\+S\+\_\+\+R\+T\+L\+\_\+\+O\+B\+J\+\_\+\+S\+E\+C\+T\+\_\+\+Z\+E\+RO~(1 $<$$<$ 14)}
+
+Section is preset to zero. \mbox{\Hypertarget{rtl-obj_8h_a61ce363bdf3bd1f62111446f67320517}\label{rtl-obj_8h_a61ce363bdf3bd1f62111446f67320517}} 
+\index{rtl-\/obj.h@{rtl-\/obj.h}!RTEMS\_RTL\_OBJ\_UNRESOLVED@{RTEMS\_RTL\_OBJ\_UNRESOLVED}}
+\index{RTEMS\_RTL\_OBJ\_UNRESOLVED@{RTEMS\_RTL\_OBJ\_UNRESOLVED}!rtl-\/obj.h@{rtl-\/obj.h}}
+\subsubsection{\texorpdfstring{RTEMS\_RTL\_OBJ\_UNRESOLVED}{RTEMS\_RTL\_OBJ\_UNRESOLVED}}
+{\footnotesize\ttfamily \#define R\+T\+E\+M\+S\+\_\+\+R\+T\+L\+\_\+\+O\+B\+J\+\_\+\+U\+N\+R\+E\+S\+O\+L\+V\+ED~(1 $<$$<$ 1)}
+
+The object file has unresolved external symbols. 
+
+\subsection{Typedef Documentation}
+\mbox{\Hypertarget{rtl-obj_8h_ae65589434f7dfc4ab547022bef414e04}\label{rtl-obj_8h_ae65589434f7dfc4ab547022bef414e04}} 
+\index{rtl-\/obj.h@{rtl-\/obj.h}!rtems\_rtl\_loader\_check@{rtems\_rtl\_loader\_check}}
+\index{rtems\_rtl\_loader\_check@{rtems\_rtl\_loader\_check}!rtl-\/obj.h@{rtl-\/obj.h}}
+\subsubsection{\texorpdfstring{rtems\_rtl\_loader\_check}{rtems\_rtl\_loader\_check}}
+{\footnotesize\ttfamily typedef bool($\ast$ rtems\+\_\+rtl\+\_\+loader\+\_\+check) (\mbox{\hyperlink{structrtems__rtl__obj}{rtems\+\_\+rtl\+\_\+obj}} $\ast$obj, int fd)}
+
+The type of the format loader check handler. This handler checks the format and if it is detected as suitable it returns true. \mbox{\Hypertarget{rtl-obj_8h_a3742762af1639e494d0867c4344335a9}\label{rtl-obj_8h_a3742762af1639e494d0867c4344335a9}} 
+\index{rtl-\/obj.h@{rtl-\/obj.h}!rtems\_rtl\_loader\_format@{rtems\_rtl\_loader\_format}}
+\index{rtems\_rtl\_loader\_format@{rtems\_rtl\_loader\_format}!rtl-\/obj.h@{rtl-\/obj.h}}
+\subsubsection{\texorpdfstring{rtems\_rtl\_loader\_format}{rtems\_rtl\_loader\_format}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structrtems__rtl__loader__format}{rtems\+\_\+rtl\+\_\+loader\+\_\+format}}  \mbox{\hyperlink{structrtems__rtl__loader__format}{rtems\+\_\+rtl\+\_\+loader\+\_\+format}}}
+
+Loader format definition. \mbox{\Hypertarget{rtl-obj_8h_a6d119678fa2e324376060e8b09ea56cf}\label{rtl-obj_8h_a6d119678fa2e324376060e8b09ea56cf}} 
+\index{rtl-\/obj.h@{rtl-\/obj.h}!rtems\_rtl\_loader\_load@{rtems\_rtl\_loader\_load}}
+\index{rtems\_rtl\_loader\_load@{rtems\_rtl\_loader\_load}!rtl-\/obj.h@{rtl-\/obj.h}}
+\subsubsection{\texorpdfstring{rtems\_rtl\_loader\_load}{rtems\_rtl\_loader\_load}}
+{\footnotesize\ttfamily typedef bool($\ast$ rtems\+\_\+rtl\+\_\+loader\+\_\+load) (\mbox{\hyperlink{structrtems__rtl__obj}{rtems\+\_\+rtl\+\_\+obj}} $\ast$obj, int fd)}
+
+The type of the format loader load handler. This handler loads the specific format. \mbox{\Hypertarget{rtl-obj_8h_a31673e6af5ca5b1e8ccb074cfac376ba}\label{rtl-obj_8h_a31673e6af5ca5b1e8ccb074cfac376ba}} 
+\index{rtl-\/obj.h@{rtl-\/obj.h}!rtems\_rtl\_loader\_sig@{rtems\_rtl\_loader\_sig}}
+\index{rtems\_rtl\_loader\_sig@{rtems\_rtl\_loader\_sig}!rtl-\/obj.h@{rtl-\/obj.h}}
+\subsubsection{\texorpdfstring{rtems\_rtl\_loader\_sig}{rtems\_rtl\_loader\_sig}}
+{\footnotesize\ttfamily typedef \mbox{\hyperlink{structrtems__rtl__loader__format}{rtems\+\_\+rtl\+\_\+loader\+\_\+format}}$\ast$($\ast$ rtems\+\_\+rtl\+\_\+loader\+\_\+sig) (void)}
+
+The type of the format loader signature handler. This handler checks the format signature. \mbox{\Hypertarget{rtl-obj_8h_ab0b37adc773babd5318fdc28636b2eb2}\label{rtl-obj_8h_ab0b37adc773babd5318fdc28636b2eb2}} 
+\index{rtl-\/obj.h@{rtl-\/obj.h}!rtems\_rtl\_loader\_table@{rtems\_rtl\_loader\_table}}
+\index{rtems\_rtl\_loader\_table@{rtems\_rtl\_loader\_table}!rtl-\/obj.h@{rtl-\/obj.h}}
+\subsubsection{\texorpdfstring{rtems\_rtl\_loader\_table}{rtems\_rtl\_loader\_table}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structrtems__rtl__loader__table}{rtems\+\_\+rtl\+\_\+loader\+\_\+table}}  \mbox{\hyperlink{structrtems__rtl__loader__table}{rtems\+\_\+rtl\+\_\+loader\+\_\+table}}}
+
+Table for supported loadable formats. \mbox{\Hypertarget{rtl-obj_8h_afacdc84b4af0a65a15b4ef38ebef6ab0}\label{rtl-obj_8h_afacdc84b4af0a65a15b4ef38ebef6ab0}} 
+\index{rtl-\/obj.h@{rtl-\/obj.h}!rtems\_rtl\_loader\_unload@{rtems\_rtl\_loader\_unload}}
+\index{rtems\_rtl\_loader\_unload@{rtems\_rtl\_loader\_unload}!rtl-\/obj.h@{rtl-\/obj.h}}
+\subsubsection{\texorpdfstring{rtems\_rtl\_loader\_unload}{rtems\_rtl\_loader\_unload}}
+{\footnotesize\ttfamily typedef bool($\ast$ rtems\+\_\+rtl\+\_\+loader\+\_\+unload) (\mbox{\hyperlink{structrtems__rtl__obj}{rtems\+\_\+rtl\+\_\+obj}} $\ast$obj)}
+
+The type of the format loader unload handler. This handler unloads the specific format. \mbox{\Hypertarget{rtl-obj_8h_a1465c9202902dfd2416e1d1432dab052}\label{rtl-obj_8h_a1465c9202902dfd2416e1d1432dab052}} 
+\index{rtl-\/obj.h@{rtl-\/obj.h}!rtems\_rtl\_obj\_depends\_iterator@{rtems\_rtl\_obj\_depends\_iterator}}
+\index{rtems\_rtl\_obj\_depends\_iterator@{rtems\_rtl\_obj\_depends\_iterator}!rtl-\/obj.h@{rtl-\/obj.h}}
+\subsubsection{\texorpdfstring{rtems\_rtl\_obj\_depends\_iterator}{rtems\_rtl\_obj\_depends\_iterator}}
+{\footnotesize\ttfamily typedef bool($\ast$ rtems\+\_\+rtl\+\_\+obj\+\_\+depends\+\_\+iterator) (\mbox{\hyperlink{structrtems__rtl__obj}{rtems\+\_\+rtl\+\_\+obj}} $\ast$obj, \mbox{\hyperlink{structrtems__rtl__obj}{rtems\+\_\+rtl\+\_\+obj}} $\ast$dependent, void $\ast$data)}
+
+Dependency iterator. \mbox{\Hypertarget{rtl-obj_8h_a7af5827cf336da33eef4564a6e00ba11}\label{rtl-obj_8h_a7af5827cf336da33eef4564a6e00ba11}} 
+\index{rtl-\/obj.h@{rtl-\/obj.h}!rtems\_rtl\_obj\_sect\_handler@{rtems\_rtl\_obj\_sect\_handler}}
+\index{rtems\_rtl\_obj\_sect\_handler@{rtems\_rtl\_obj\_sect\_handler}!rtl-\/obj.h@{rtl-\/obj.h}}
+\subsubsection{\texorpdfstring{rtems\_rtl\_obj\_sect\_handler}{rtems\_rtl\_obj\_sect\_handler}}
+{\footnotesize\ttfamily typedef bool($\ast$ rtems\+\_\+rtl\+\_\+obj\+\_\+sect\+\_\+handler) (\mbox{\hyperlink{structrtems__rtl__obj}{rtems\+\_\+rtl\+\_\+obj}} $\ast$obj, int fd, \mbox{\hyperlink{structrtems__rtl__obj__sect}{rtems\+\_\+rtl\+\_\+obj\+\_\+sect}} $\ast$sect, void $\ast$data)}
+
+A section handler is called once for each section that needs to be processed by this handler. The handler is specific to a task.
+
+
+\begin{DoxyParams}{Parameters}
+{\em obj} & The object file\textquotesingle{}s descriptor the section belongs too. \\
+\hline
+{\em fd} & The file descriptor of the object file beling loaded. \\
+\hline
+{\em sect} & The section the handler is being invoked to handle. \\
+\hline
+{\em data} & A user supplied data variable. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em true} & The operation was successful. \\
+\hline
+{\em false} & The operation failed and the R\+TL has been set. \\
+\hline
+\end{DoxyRetVals}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{rtl-obj_8h_a4c2f2836262a4606efecf94f95ac0cd8}\label{rtl-obj_8h_a4c2f2836262a4606efecf94f95ac0cd8}} 
+\index{rtl-\/obj.h@{rtl-\/obj.h}!rtems\_rtl\_obj\_add\_dependent@{rtems\_rtl\_obj\_add\_dependent}}
+\index{rtems\_rtl\_obj\_add\_dependent@{rtems\_rtl\_obj\_add\_dependent}!rtl-\/obj.h@{rtl-\/obj.h}}
+\subsubsection{\texorpdfstring{rtems\_rtl\_obj\_add\_dependent()}{rtems\_rtl\_obj\_add\_dependent()}}
+{\footnotesize\ttfamily bool rtems\+\_\+rtl\+\_\+obj\+\_\+add\+\_\+dependent (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structrtems__rtl__obj}{rtems\+\_\+rtl\+\_\+obj}} $\ast$}]{obj,  }\item[{\mbox{\hyperlink{structrtems__rtl__obj}{rtems\+\_\+rtl\+\_\+obj}} $\ast$}]{dependent }\end{DoxyParamCaption})}
+
+Add an object file to the dependents table.
+
+
+\begin{DoxyParams}{Parameters}
+{\em obj} & The object file\textquotesingle{}s descriptor. \\
+\hline
+{\em dependent} & The dependent object file to add. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em true} & The dependent has been added to the table. \\
+\hline
+{\em false} & There is no space in the table. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{rtl-obj_8h_a08fe8380ba12aee966bd18675becf6cd}\label{rtl-obj_8h_a08fe8380ba12aee966bd18675becf6cd}} 
+\index{rtl-\/obj.h@{rtl-\/obj.h}!rtems\_rtl\_obj\_add\_section@{rtems\_rtl\_obj\_add\_section}}
+\index{rtems\_rtl\_obj\_add\_section@{rtems\_rtl\_obj\_add\_section}!rtl-\/obj.h@{rtl-\/obj.h}}
+\subsubsection{\texorpdfstring{rtems\_rtl\_obj\_add\_section()}{rtems\_rtl\_obj\_add\_section()}}
+{\footnotesize\ttfamily bool rtems\+\_\+rtl\+\_\+obj\+\_\+add\+\_\+section (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structrtems__rtl__obj}{rtems\+\_\+rtl\+\_\+obj}} $\ast$}]{obj,  }\item[{int}]{section,  }\item[{const char $\ast$}]{name,  }\item[{size\+\_\+t}]{size,  }\item[{off\+\_\+t}]{offset,  }\item[{uint32\+\_\+t}]{alignment,  }\item[{int}]{link,  }\item[{int}]{info,  }\item[{uint32\+\_\+t}]{flags }\end{DoxyParamCaption})}
+
+Add a section to the object descriptor.
+
+
+\begin{DoxyParams}{Parameters}
+{\em obj} & The object file\textquotesingle{}s descriptor. \\
+\hline
+{\em section} & The section\textquotesingle{}s index number. \\
+\hline
+{\em name} & The name of the section. \\
+\hline
+{\em size} & The size of the section in memory. \\
+\hline
+{\em offset} & The offset of the section in the object file. \\
+\hline
+{\em alignment} & The alignment of the section in memory. \\
+\hline
+{\em link} & The section\textquotesingle{}s link field (from the E\+LF format). \\
+\hline
+{\em info} & The section\textquotesingle{}s info field (from the E\+LF format). \\
+\hline
+{\em flags} & The section\textquotesingle{}s flags. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em true} & The section has been added. \\
+\hline
+{\em false} & The section has not been added. See the R\+TL error. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{rtl-obj_8h_a680decdef583cdfa336e9adc86c71e87}\label{rtl-obj_8h_a680decdef583cdfa336e9adc86c71e87}} 
+\index{rtl-\/obj.h@{rtl-\/obj.h}!rtems\_rtl\_obj\_alloc@{rtems\_rtl\_obj\_alloc}}
+\index{rtems\_rtl\_obj\_alloc@{rtems\_rtl\_obj\_alloc}!rtl-\/obj.h@{rtl-\/obj.h}}
+\subsubsection{\texorpdfstring{rtems\_rtl\_obj\_alloc()}{rtems\_rtl\_obj\_alloc()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structrtems__rtl__obj}{rtems\+\_\+rtl\+\_\+obj}}$\ast$ rtems\+\_\+rtl\+\_\+obj\+\_\+alloc (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+Allocate an object structure on the heap.
+
+
+\begin{DoxyRetVals}{Return values}
+{\em N\+U\+LL} & No memory for the object. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{rtl-obj_8h_a9877304c222a5c80f68936f814cb42b3}\label{rtl-obj_8h_a9877304c222a5c80f68936f814cb42b3}} 
+\index{rtl-\/obj.h@{rtl-\/obj.h}!rtems\_rtl\_obj\_alloc\_dependents@{rtems\_rtl\_obj\_alloc\_dependents}}
+\index{rtems\_rtl\_obj\_alloc\_dependents@{rtems\_rtl\_obj\_alloc\_dependents}!rtl-\/obj.h@{rtl-\/obj.h}}
+\subsubsection{\texorpdfstring{rtems\_rtl\_obj\_alloc\_dependents()}{rtems\_rtl\_obj\_alloc\_dependents()}}
+{\footnotesize\ttfamily bool rtems\+\_\+rtl\+\_\+obj\+\_\+alloc\+\_\+dependents (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structrtems__rtl__obj}{rtems\+\_\+rtl\+\_\+obj}} $\ast$}]{obj,  }\item[{size\+\_\+t}]{dependents }\end{DoxyParamCaption})}
+
+Allocate a table for dependent objects.
+
+
+\begin{DoxyParams}{Parameters}
+{\em obj} & The object file\textquotesingle{}s descriptor. \\
+\hline
+{\em dependents} & The size of the table. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em true} & The table was allocated. \\
+\hline
+{\em false} & The alloction failed. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{rtl-obj_8h_abfecc46708adb154ec1a87f1fcc97662}\label{rtl-obj_8h_abfecc46708adb154ec1a87f1fcc97662}} 
+\index{rtl-\/obj.h@{rtl-\/obj.h}!rtems\_rtl\_obj\_alloc\_sections@{rtems\_rtl\_obj\_alloc\_sections}}
+\index{rtems\_rtl\_obj\_alloc\_sections@{rtems\_rtl\_obj\_alloc\_sections}!rtl-\/obj.h@{rtl-\/obj.h}}
+\subsubsection{\texorpdfstring{rtems\_rtl\_obj\_alloc\_sections()}{rtems\_rtl\_obj\_alloc\_sections()}}
+{\footnotesize\ttfamily bool rtems\+\_\+rtl\+\_\+obj\+\_\+alloc\+\_\+sections (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structrtems__rtl__obj}{rtems\+\_\+rtl\+\_\+obj}} $\ast$}]{obj,  }\item[{int}]{fd,  }\item[{\mbox{\hyperlink{rtl-obj_8h_a7af5827cf336da33eef4564a6e00ba11}{rtems\+\_\+rtl\+\_\+obj\+\_\+sect\+\_\+handler}}}]{handler,  }\item[{void $\ast$}]{data }\end{DoxyParamCaption})}
+
+Allocate the sections. If a handler is provided (not N\+U\+LL) it is called for all section.
+
+
+\begin{DoxyParams}{Parameters}
+{\em obj} & The object file\textquotesingle{}s descriptor. \\
+\hline
+{\em fd} & The object file\textquotesingle{}s file descriptor. \\
+\hline
+{\em handler} & The object file\textquotesingle{}s format specific allocation handler. \\
+\hline
+{\em data} & User specific data handle. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em true} & The object has been sucessfully loaded. \\
+\hline
+{\em false} & The load failed. The R\+TL error has been set. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{rtl-obj_8h_a825479a6a942b5b742d4e05d5e08ee81}\label{rtl-obj_8h_a825479a6a942b5b742d4e05d5e08ee81}} 
+\index{rtl-\/obj.h@{rtl-\/obj.h}!rtems\_rtl\_obj\_alloc\_trampoline@{rtems\_rtl\_obj\_alloc\_trampoline}}
+\index{rtems\_rtl\_obj\_alloc\_trampoline@{rtems\_rtl\_obj\_alloc\_trampoline}!rtl-\/obj.h@{rtl-\/obj.h}}
+\subsubsection{\texorpdfstring{rtems\_rtl\_obj\_alloc\_trampoline()}{rtems\_rtl\_obj\_alloc\_trampoline()}}
+{\footnotesize\ttfamily bool rtems\+\_\+rtl\+\_\+obj\+\_\+alloc\+\_\+trampoline (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structrtems__rtl__obj}{rtems\+\_\+rtl\+\_\+obj}} $\ast$}]{obj }\end{DoxyParamCaption})}
+
+Allocate a table for trampoline fixup calls.
+
+
+\begin{DoxyParams}{Parameters}
+{\em obj} & The object file\textquotesingle{}s descriptor. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em true} & The table was allocated. \\
+\hline
+{\em false} & The alloction failed. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{rtl-obj_8h_a02b040b6c3f07084733c2cb226e98fb8}\label{rtl-obj_8h_a02b040b6c3f07084733c2cb226e98fb8}} 
+\index{rtl-\/obj.h@{rtl-\/obj.h}!rtems\_rtl\_obj\_bss\_alignment@{rtems\_rtl\_obj\_bss\_alignment}}
+\index{rtems\_rtl\_obj\_bss\_alignment@{rtems\_rtl\_obj\_bss\_alignment}!rtl-\/obj.h@{rtl-\/obj.h}}
+\subsubsection{\texorpdfstring{rtems\_rtl\_obj\_bss\_alignment()}{rtems\_rtl\_obj\_bss\_alignment()}}
+{\footnotesize\ttfamily uint32\+\_\+t rtems\+\_\+rtl\+\_\+obj\+\_\+bss\+\_\+alignment (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structrtems__rtl__obj}{rtems\+\_\+rtl\+\_\+obj}} $\ast$}]{obj }\end{DoxyParamCaption})}
+
+The bss section alignment for the object file. Only use once all the sections has been added. The section alignment is the alignment of the first bss type section loaded the bss section.
+
+You can assume the alignment is a positive integral power of 2 if not 0 or
+\begin{DoxyEnumerate}
+\item If 0 or 1 then there is no alignment.
+\end{DoxyEnumerate}
+
+
+\begin{DoxyParams}{Parameters}
+{\em obj} & The object file\textquotesingle{}s descriptor. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+uint32\+\_\+t The alignment. Can be 0 or 1 for not aligned or the alignment. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{rtl-obj_8h_a6125a7787e7b842bc39aa69370b7db2b}\label{rtl-obj_8h_a6125a7787e7b842bc39aa69370b7db2b}} 
+\index{rtl-\/obj.h@{rtl-\/obj.h}!rtems\_rtl\_obj\_bss\_size@{rtems\_rtl\_obj\_bss\_size}}
+\index{rtems\_rtl\_obj\_bss\_size@{rtems\_rtl\_obj\_bss\_size}!rtl-\/obj.h@{rtl-\/obj.h}}
+\subsubsection{\texorpdfstring{rtems\_rtl\_obj\_bss\_size()}{rtems\_rtl\_obj\_bss\_size()}}
+{\footnotesize\ttfamily size\+\_\+t rtems\+\_\+rtl\+\_\+obj\+\_\+bss\+\_\+size (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structrtems__rtl__obj}{rtems\+\_\+rtl\+\_\+obj}} $\ast$}]{obj }\end{DoxyParamCaption})}
+
+The bss section size. Only use once all the sections has been added. It includes alignments between sections that are part of the object\textquotesingle{}s bss area.
+
+
+\begin{DoxyParams}{Parameters}
+{\em obj} & The object file\textquotesingle{}s descriptor. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+size\+\_\+t The size of the bss area of the object file. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{rtl-obj_8h_aee3ea1f29f12981579b1d1939bb9907f}\label{rtl-obj_8h_aee3ea1f29f12981579b1d1939bb9907f}} 
+\index{rtl-\/obj.h@{rtl-\/obj.h}!rtems\_rtl\_obj\_const\_alignment@{rtems\_rtl\_obj\_const\_alignment}}
+\index{rtems\_rtl\_obj\_const\_alignment@{rtems\_rtl\_obj\_const\_alignment}!rtl-\/obj.h@{rtl-\/obj.h}}
+\subsubsection{\texorpdfstring{rtems\_rtl\_obj\_const\_alignment()}{rtems\_rtl\_obj\_const\_alignment()}}
+{\footnotesize\ttfamily uint32\+\_\+t rtems\+\_\+rtl\+\_\+obj\+\_\+const\+\_\+alignment (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structrtems__rtl__obj}{rtems\+\_\+rtl\+\_\+obj}} $\ast$}]{obj }\end{DoxyParamCaption})}
+
+The const section alignment for the object file. Only use once all the sections has been added. The section alignment is the alignment of the first const type section loaded the const section.
+
+You can assume the alignment is a positive integral power of 2 if not 0 or
+\begin{DoxyEnumerate}
+\item If 0 or 1 then there is no alignment.
+\end{DoxyEnumerate}
+
+
+\begin{DoxyParams}{Parameters}
+{\em obj} & The object file\textquotesingle{}s descriptor. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+uint32\+\_\+t The alignment. Can be 0 or 1 for not aligned or the alignment. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{rtl-obj_8h_a2ce7672560ab13914b32a683650c03cf}\label{rtl-obj_8h_a2ce7672560ab13914b32a683650c03cf}} 
+\index{rtl-\/obj.h@{rtl-\/obj.h}!rtems\_rtl\_obj\_const\_size@{rtems\_rtl\_obj\_const\_size}}
+\index{rtems\_rtl\_obj\_const\_size@{rtems\_rtl\_obj\_const\_size}!rtl-\/obj.h@{rtl-\/obj.h}}
+\subsubsection{\texorpdfstring{rtems\_rtl\_obj\_const\_size()}{rtems\_rtl\_obj\_const\_size()}}
+{\footnotesize\ttfamily size\+\_\+t rtems\+\_\+rtl\+\_\+obj\+\_\+const\+\_\+size (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structrtems__rtl__obj}{rtems\+\_\+rtl\+\_\+obj}} $\ast$}]{obj }\end{DoxyParamCaption})}
+
+The const section size. Only use once all the sections has been added. It includes alignments between sections that are part of the object\textquotesingle{}s const area. The consts sections are included in this section.
+
+
+\begin{DoxyParams}{Parameters}
+{\em obj} & The object file\textquotesingle{}s descriptor. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+size\+\_\+t The size of the const area of the object file. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{rtl-obj_8h_a1d4c73beba22bae24a66704baa5a8e5a}\label{rtl-obj_8h_a1d4c73beba22bae24a66704baa5a8e5a}} 
+\index{rtl-\/obj.h@{rtl-\/obj.h}!rtems\_rtl\_obj\_ctors\_to\_run@{rtems\_rtl\_obj\_ctors\_to\_run}}
+\index{rtems\_rtl\_obj\_ctors\_to\_run@{rtems\_rtl\_obj\_ctors\_to\_run}!rtl-\/obj.h@{rtl-\/obj.h}}
+\subsubsection{\texorpdfstring{rtems\_rtl\_obj\_ctors\_to\_run()}{rtems\_rtl\_obj\_ctors\_to\_run()}}
+{\footnotesize\ttfamily bool rtems\+\_\+rtl\+\_\+obj\+\_\+ctors\+\_\+to\+\_\+run (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structrtems__rtl__obj}{rtems\+\_\+rtl\+\_\+obj}} $\ast$}]{obj }\end{DoxyParamCaption})}
+
+Does the object have constructors to run?
+
+\begin{DoxyReturn}{Returns}
+bool True if there are constructors to run. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{rtl-obj_8h_a9a3dae296e05206c99846c099789becc}\label{rtl-obj_8h_a9a3dae296e05206c99846c099789becc}} 
+\index{rtl-\/obj.h@{rtl-\/obj.h}!rtems\_rtl\_obj\_data\_alignment@{rtems\_rtl\_obj\_data\_alignment}}
+\index{rtems\_rtl\_obj\_data\_alignment@{rtems\_rtl\_obj\_data\_alignment}!rtl-\/obj.h@{rtl-\/obj.h}}
+\subsubsection{\texorpdfstring{rtems\_rtl\_obj\_data\_alignment()}{rtems\_rtl\_obj\_data\_alignment()}}
+{\footnotesize\ttfamily uint32\+\_\+t rtems\+\_\+rtl\+\_\+obj\+\_\+data\+\_\+alignment (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structrtems__rtl__obj}{rtems\+\_\+rtl\+\_\+obj}} $\ast$}]{obj }\end{DoxyParamCaption})}
+
+The data section alignment for the object file. Only use once all the sections has been added. The section alignment is the alignment of the first data type section loaded the data section.
+
+You can assume the alignment is a positive integral power of 2 if not 0 or
+\begin{DoxyEnumerate}
+\item If 0 or 1 then there is no alignment.
+\end{DoxyEnumerate}
+
+
+\begin{DoxyParams}{Parameters}
+{\em obj} & The object file\textquotesingle{}s descriptor. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+uint32\+\_\+t The alignment. Can be 0 or 1 for not aligned or the alignment. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{rtl-obj_8h_a603ec80c7cf7d1a2f01f400b3e5c93d8}\label{rtl-obj_8h_a603ec80c7cf7d1a2f01f400b3e5c93d8}} 
+\index{rtl-\/obj.h@{rtl-\/obj.h}!rtems\_rtl\_obj\_data\_size@{rtems\_rtl\_obj\_data\_size}}
+\index{rtems\_rtl\_obj\_data\_size@{rtems\_rtl\_obj\_data\_size}!rtl-\/obj.h@{rtl-\/obj.h}}
+\subsubsection{\texorpdfstring{rtems\_rtl\_obj\_data\_size()}{rtems\_rtl\_obj\_data\_size()}}
+{\footnotesize\ttfamily size\+\_\+t rtems\+\_\+rtl\+\_\+obj\+\_\+data\+\_\+size (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structrtems__rtl__obj}{rtems\+\_\+rtl\+\_\+obj}} $\ast$}]{obj }\end{DoxyParamCaption})}
+
+The data section size. Only use once all the sections has been added. It includes alignments between sections that are part of the object\textquotesingle{}s data area.
+
+
+\begin{DoxyParams}{Parameters}
+{\em obj} & The object file\textquotesingle{}s descriptor. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+size\+\_\+t The size of the data area of the object file. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{rtl-obj_8h_a77c0042ad0312c5043e9d8259171e6f5}\label{rtl-obj_8h_a77c0042ad0312c5043e9d8259171e6f5}} 
+\index{rtl-\/obj.h@{rtl-\/obj.h}!rtems\_rtl\_obj\_dec\_reference@{rtems\_rtl\_obj\_dec\_reference}}
+\index{rtems\_rtl\_obj\_dec\_reference@{rtems\_rtl\_obj\_dec\_reference}!rtl-\/obj.h@{rtl-\/obj.h}}
+\subsubsection{\texorpdfstring{rtems\_rtl\_obj\_dec\_reference()}{rtems\_rtl\_obj\_dec\_reference()}}
+{\footnotesize\ttfamily void rtems\+\_\+rtl\+\_\+obj\+\_\+dec\+\_\+reference (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structrtems__rtl__obj}{rtems\+\_\+rtl\+\_\+obj}} $\ast$}]{obj }\end{DoxyParamCaption})}
+
+Decrement the object file reference count.
+
+
+\begin{DoxyParams}{Parameters}
+{\em obj} & The object file\textquotesingle{}s descriptor. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{rtl-obj_8h_ae2f95f4733d04acbb018f431340be2db}\label{rtl-obj_8h_ae2f95f4733d04acbb018f431340be2db}} 
+\index{rtl-\/obj.h@{rtl-\/obj.h}!rtems\_rtl\_obj\_dtors\_to\_run@{rtems\_rtl\_obj\_dtors\_to\_run}}
+\index{rtems\_rtl\_obj\_dtors\_to\_run@{rtems\_rtl\_obj\_dtors\_to\_run}!rtl-\/obj.h@{rtl-\/obj.h}}
+\subsubsection{\texorpdfstring{rtems\_rtl\_obj\_dtors\_to\_run()}{rtems\_rtl\_obj\_dtors\_to\_run()}}
+{\footnotesize\ttfamily bool rtems\+\_\+rtl\+\_\+obj\+\_\+dtors\+\_\+to\+\_\+run (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structrtems__rtl__obj}{rtems\+\_\+rtl\+\_\+obj}} $\ast$}]{obj }\end{DoxyParamCaption})}
+
+Does the object have destructors to run?
+
+\begin{DoxyReturn}{Returns}
+bool True if there are destructors to run. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{rtl-obj_8h_aa093ee073ed78505eab0edc5eefee8b7}\label{rtl-obj_8h_aa093ee073ed78505eab0edc5eefee8b7}} 
+\index{rtl-\/obj.h@{rtl-\/obj.h}!rtems\_rtl\_obj\_eh\_alignment@{rtems\_rtl\_obj\_eh\_alignment}}
+\index{rtems\_rtl\_obj\_eh\_alignment@{rtems\_rtl\_obj\_eh\_alignment}!rtl-\/obj.h@{rtl-\/obj.h}}
+\subsubsection{\texorpdfstring{rtems\_rtl\_obj\_eh\_alignment()}{rtems\_rtl\_obj\_eh\_alignment()}}
+{\footnotesize\ttfamily uint32\+\_\+t rtems\+\_\+rtl\+\_\+obj\+\_\+eh\+\_\+alignment (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structrtems__rtl__obj}{rtems\+\_\+rtl\+\_\+obj}} $\ast$}]{obj }\end{DoxyParamCaption})}
+
+The eh section alignment for the object file. Only use once all the sections has been added. The section alignment is the alignment of the first bss type section loaded the bss section.
+
+You can assume the alignment is a positive integral power of 2 if not 0 or
+\begin{DoxyEnumerate}
+\item If 0 or 1 then there is no alignment.
+\end{DoxyEnumerate}
+
+
+\begin{DoxyParams}{Parameters}
+{\em obj} & The object file\textquotesingle{}s descriptor. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+uint32\+\_\+t The alignment. Can be 0 or 1 for not aligned or the alignment. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{rtl-obj_8h_a4dbc1988e76114f9d94e56f01b034901}\label{rtl-obj_8h_a4dbc1988e76114f9d94e56f01b034901}} 
+\index{rtl-\/obj.h@{rtl-\/obj.h}!rtems\_rtl\_obj\_eh\_size@{rtems\_rtl\_obj\_eh\_size}}
+\index{rtems\_rtl\_obj\_eh\_size@{rtems\_rtl\_obj\_eh\_size}!rtl-\/obj.h@{rtl-\/obj.h}}
+\subsubsection{\texorpdfstring{rtems\_rtl\_obj\_eh\_size()}{rtems\_rtl\_obj\_eh\_size()}}
+{\footnotesize\ttfamily size\+\_\+t rtems\+\_\+rtl\+\_\+obj\+\_\+eh\+\_\+size (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structrtems__rtl__obj}{rtems\+\_\+rtl\+\_\+obj}} $\ast$}]{obj }\end{DoxyParamCaption})}
+
+The eh section size. Only use once all the sections has been added. It includes alignments between sections that are part of the object\textquotesingle{}s bss area.
+
+
+\begin{DoxyParams}{Parameters}
+{\em obj} & The object file\textquotesingle{}s descriptor. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+size\+\_\+t The size of the bss area of the object file. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{rtl-obj_8h_aea8861e811c36196e95b439e33707484}\label{rtl-obj_8h_aea8861e811c36196e95b439e33707484}} 
+\index{rtl-\/obj.h@{rtl-\/obj.h}!rtems\_rtl\_obj\_erase\_dependents@{rtems\_rtl\_obj\_erase\_dependents}}
+\index{rtems\_rtl\_obj\_erase\_dependents@{rtems\_rtl\_obj\_erase\_dependents}!rtl-\/obj.h@{rtl-\/obj.h}}
+\subsubsection{\texorpdfstring{rtems\_rtl\_obj\_erase\_dependents()}{rtems\_rtl\_obj\_erase\_dependents()}}
+{\footnotesize\ttfamily void rtems\+\_\+rtl\+\_\+obj\+\_\+erase\+\_\+dependents (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structrtems__rtl__obj}{rtems\+\_\+rtl\+\_\+obj}} $\ast$}]{obj }\end{DoxyParamCaption})}
+
+Erase the object file descriptor\textquotesingle{}s dependents.
+
+
+\begin{DoxyParams}{Parameters}
+{\em obj} & The object file\textquotesingle{}s descriptor. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{rtl-obj_8h_a35b64d2ab1e6c8fa1a82dfa0a14ea1e0}\label{rtl-obj_8h_a35b64d2ab1e6c8fa1a82dfa0a14ea1e0}} 
+\index{rtl-\/obj.h@{rtl-\/obj.h}!rtems\_rtl\_obj\_erase\_sections@{rtems\_rtl\_obj\_erase\_sections}}
+\index{rtems\_rtl\_obj\_erase\_sections@{rtems\_rtl\_obj\_erase\_sections}!rtl-\/obj.h@{rtl-\/obj.h}}
+\subsubsection{\texorpdfstring{rtems\_rtl\_obj\_erase\_sections()}{rtems\_rtl\_obj\_erase\_sections()}}
+{\footnotesize\ttfamily void rtems\+\_\+rtl\+\_\+obj\+\_\+erase\+\_\+sections (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structrtems__rtl__obj}{rtems\+\_\+rtl\+\_\+obj}} $\ast$}]{obj }\end{DoxyParamCaption})}
+
+Erase the object file descriptor\textquotesingle{}s sections.
+
+
+\begin{DoxyParams}{Parameters}
+{\em obj} & The object file\textquotesingle{}s descriptor. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{rtl-obj_8h_a59b26b41ab6dacfe609d8c98c36e535a}\label{rtl-obj_8h_a59b26b41ab6dacfe609d8c98c36e535a}} 
+\index{rtl-\/obj.h@{rtl-\/obj.h}!rtems\_rtl\_obj\_erase\_trampoline@{rtems\_rtl\_obj\_erase\_trampoline}}
+\index{rtems\_rtl\_obj\_erase\_trampoline@{rtems\_rtl\_obj\_erase\_trampoline}!rtl-\/obj.h@{rtl-\/obj.h}}
+\subsubsection{\texorpdfstring{rtems\_rtl\_obj\_erase\_trampoline()}{rtems\_rtl\_obj\_erase\_trampoline()}}
+{\footnotesize\ttfamily void rtems\+\_\+rtl\+\_\+obj\+\_\+erase\+\_\+trampoline (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structrtems__rtl__obj}{rtems\+\_\+rtl\+\_\+obj}} $\ast$}]{obj }\end{DoxyParamCaption})}
+
+Erase the object file descriptor\textquotesingle{}s trampoline table..
+
+
+\begin{DoxyParams}{Parameters}
+{\em obj} & The object file\textquotesingle{}s descriptor. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{rtl-obj_8h_a01178159b33ae5e8a94b77f5f2fd6aa9}\label{rtl-obj_8h_a01178159b33ae5e8a94b77f5f2fd6aa9}} 
+\index{rtl-\/obj.h@{rtl-\/obj.h}!rtems\_rtl\_obj\_find\_file@{rtems\_rtl\_obj\_find\_file}}
+\index{rtems\_rtl\_obj\_find\_file@{rtems\_rtl\_obj\_find\_file}!rtl-\/obj.h@{rtl-\/obj.h}}
+\subsubsection{\texorpdfstring{rtems\_rtl\_obj\_find\_file()}{rtems\_rtl\_obj\_find\_file()}}
+{\footnotesize\ttfamily bool rtems\+\_\+rtl\+\_\+obj\+\_\+find\+\_\+file (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structrtems__rtl__obj}{rtems\+\_\+rtl\+\_\+obj}} $\ast$}]{obj,  }\item[{const char $\ast$}]{name }\end{DoxyParamCaption})}
+
+Find an object file on disk that matches the name. The object descriptor is fill in with the various parts of a name. A name can have archive, object file and offset components. The search path in the R\+TL is searched.
+
+
+\begin{DoxyParams}{Parameters}
+{\em obj} & The object file\textquotesingle{}s descriptor. \\
+\hline
+{\em name} & The name to locate on disk. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em true} & The file has been found. \\
+\hline
+{\em false} & The file could not be located. The R\+TL error has been set. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{rtl-obj_8h_ace58c2df49449c7973236afeb1365c9c}\label{rtl-obj_8h_ace58c2df49449c7973236afeb1365c9c}} 
+\index{rtl-\/obj.h@{rtl-\/obj.h}!rtems\_rtl\_obj\_find\_section@{rtems\_rtl\_obj\_find\_section}}
+\index{rtems\_rtl\_obj\_find\_section@{rtems\_rtl\_obj\_find\_section}!rtl-\/obj.h@{rtl-\/obj.h}}
+\subsubsection{\texorpdfstring{rtems\_rtl\_obj\_find\_section()}{rtems\_rtl\_obj\_find\_section()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structrtems__rtl__obj__sect}{rtems\+\_\+rtl\+\_\+obj\+\_\+sect}}$\ast$ rtems\+\_\+rtl\+\_\+obj\+\_\+find\+\_\+section (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structrtems__rtl__obj}{rtems\+\_\+rtl\+\_\+obj}} $\ast$}]{obj,  }\item[{const char $\ast$}]{name }\end{DoxyParamCaption})}
+
+Find the section given a name.
+
+
+\begin{DoxyParams}{Parameters}
+{\em obj} & The object file\textquotesingle{}s descriptor. \\
+\hline
+{\em name} & The name of the section to find. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em N\+U\+LL} & The section was not found. \\
+\hline
+\end{DoxyRetVals}
+\begin{DoxyReturn}{Returns}
+rtems\+\_\+rtl\+\_\+obj\+\_\+sect\+\_\+t$\ast$ The named section. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{rtl-obj_8h_ae3fee966abdcf542db13dfd3c75f8f1d}\label{rtl-obj_8h_ae3fee966abdcf542db13dfd3c75f8f1d}} 
+\index{rtl-\/obj.h@{rtl-\/obj.h}!rtems\_rtl\_obj\_find\_section\_by\_index@{rtems\_rtl\_obj\_find\_section\_by\_index}}
+\index{rtems\_rtl\_obj\_find\_section\_by\_index@{rtems\_rtl\_obj\_find\_section\_by\_index}!rtl-\/obj.h@{rtl-\/obj.h}}
+\subsubsection{\texorpdfstring{rtems\_rtl\_obj\_find\_section\_by\_index()}{rtems\_rtl\_obj\_find\_section\_by\_index()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structrtems__rtl__obj__sect}{rtems\+\_\+rtl\+\_\+obj\+\_\+sect}}$\ast$ rtems\+\_\+rtl\+\_\+obj\+\_\+find\+\_\+section\+\_\+by\+\_\+index (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structrtems__rtl__obj}{rtems\+\_\+rtl\+\_\+obj}} $\ast$}]{obj,  }\item[{int}]{index }\end{DoxyParamCaption})}
+
+Find a section given a section\textquotesingle{}s index number.
+
+
+\begin{DoxyParams}{Parameters}
+{\em obj} & The object file\textquotesingle{}s descriptor. \\
+\hline
+{\em index} & The section\textquotesingle{}s index to find. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em N\+U\+LL} & The section was not found. \\
+\hline
+\end{DoxyRetVals}
+\begin{DoxyReturn}{Returns}
+rtems\+\_\+rtl\+\_\+obj\+\_\+sect\+\_\+t$\ast$ The found section. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{rtl-obj_8h_a99bc60fea183744d2e3553f517bc6d22}\label{rtl-obj_8h_a99bc60fea183744d2e3553f517bc6d22}} 
+\index{rtl-\/obj.h@{rtl-\/obj.h}!rtems\_rtl\_obj\_find\_section\_by\_mask@{rtems\_rtl\_obj\_find\_section\_by\_mask}}
+\index{rtems\_rtl\_obj\_find\_section\_by\_mask@{rtems\_rtl\_obj\_find\_section\_by\_mask}!rtl-\/obj.h@{rtl-\/obj.h}}
+\subsubsection{\texorpdfstring{rtems\_rtl\_obj\_find\_section\_by\_mask()}{rtems\_rtl\_obj\_find\_section\_by\_mask()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structrtems__rtl__obj__sect}{rtems\+\_\+rtl\+\_\+obj\+\_\+sect}}$\ast$ rtems\+\_\+rtl\+\_\+obj\+\_\+find\+\_\+section\+\_\+by\+\_\+mask (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structrtems__rtl__obj}{rtems\+\_\+rtl\+\_\+obj}} $\ast$}]{obj,  }\item[{int}]{index,  }\item[{uint32\+\_\+t}]{mask }\end{DoxyParamCaption})}
+
+Find a section given a section\textquotesingle{}s mask. The index is the section after which the mask is matched. An index of -\/1 starts the search from the beginning of the section list. You can find multiple matches for a mask by passing the index of the last section that matched the mask on a subsequent call.
+
+
+\begin{DoxyParams}{Parameters}
+{\em obj} & The object file\textquotesingle{}s descriptor. \\
+\hline
+{\em index} & The section\textquotesingle{}s index to start searching from, -\/1 for the start. \\
+\hline
+{\em mask} & The section\textquotesingle{}s mask to match against the section\textquotesingle{}s flags. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em N\+U\+LL} & The section was not found. \\
+\hline
+\end{DoxyRetVals}
+\begin{DoxyReturn}{Returns}
+rtems\+\_\+rtl\+\_\+obj\+\_\+sect\+\_\+t$\ast$ The found section. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{rtl-obj_8h_a7385d2d95fc68a554aac41f11fb2248d}\label{rtl-obj_8h_a7385d2d95fc68a554aac41f11fb2248d}} 
+\index{rtl-\/obj.h@{rtl-\/obj.h}!rtems\_rtl\_obj\_free@{rtems\_rtl\_obj\_free}}
+\index{rtems\_rtl\_obj\_free@{rtems\_rtl\_obj\_free}!rtl-\/obj.h@{rtl-\/obj.h}}
+\subsubsection{\texorpdfstring{rtems\_rtl\_obj\_free()}{rtems\_rtl\_obj\_free()}}
+{\footnotesize\ttfamily bool rtems\+\_\+rtl\+\_\+obj\+\_\+free (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structrtems__rtl__obj}{rtems\+\_\+rtl\+\_\+obj}} $\ast$}]{obj }\end{DoxyParamCaption})}
+
+Free the object structure and related resources.
+
+
+\begin{DoxyParams}{Parameters}
+{\em obj} & The object file\textquotesingle{}s descriptor to free. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em false} & The object has dependences. \\
+\hline
+{\em true} & The object has been freed. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{rtl-obj_8h_a1e3d355bd13971d7bc629cb890b261bf}\label{rtl-obj_8h_a1e3d355bd13971d7bc629cb890b261bf}} 
+\index{rtl-\/obj.h@{rtl-\/obj.h}!rtems\_rtl\_obj\_get\_reference@{rtems\_rtl\_obj\_get\_reference}}
+\index{rtems\_rtl\_obj\_get\_reference@{rtems\_rtl\_obj\_get\_reference}!rtl-\/obj.h@{rtl-\/obj.h}}
+\subsubsection{\texorpdfstring{rtems\_rtl\_obj\_get\_reference()}{rtems\_rtl\_obj\_get\_reference()}}
+{\footnotesize\ttfamily size\+\_\+t rtems\+\_\+rtl\+\_\+obj\+\_\+get\+\_\+reference (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structrtems__rtl__obj}{rtems\+\_\+rtl\+\_\+obj}} $\ast$}]{obj }\end{DoxyParamCaption})}
+
+Get the object file reference count.
+
+
+\begin{DoxyRetVals}{Return values}
+{\em int} & The object file\textquotesingle{}s reference count. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{rtl-obj_8h_a86116ffbe87cb58f2428e6c66e4db58e}\label{rtl-obj_8h_a86116ffbe87cb58f2428e6c66e4db58e}} 
+\index{rtl-\/obj.h@{rtl-\/obj.h}!rtems\_rtl\_obj\_inc\_reference@{rtems\_rtl\_obj\_inc\_reference}}
+\index{rtems\_rtl\_obj\_inc\_reference@{rtems\_rtl\_obj\_inc\_reference}!rtl-\/obj.h@{rtl-\/obj.h}}
+\subsubsection{\texorpdfstring{rtems\_rtl\_obj\_inc\_reference()}{rtems\_rtl\_obj\_inc\_reference()}}
+{\footnotesize\ttfamily void rtems\+\_\+rtl\+\_\+obj\+\_\+inc\+\_\+reference (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structrtems__rtl__obj}{rtems\+\_\+rtl\+\_\+obj}} $\ast$}]{obj }\end{DoxyParamCaption})}
+
+Increment the object file reference count.
+
+
+\begin{DoxyParams}{Parameters}
+{\em obj} & The object file\textquotesingle{}s descriptor. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{rtl-obj_8h_afeed317d7aadd6e3fcb4b86cf31dc270}\label{rtl-obj_8h_afeed317d7aadd6e3fcb4b86cf31dc270}} 
+\index{rtl-\/obj.h@{rtl-\/obj.h}!rtems\_rtl\_obj\_iterate\_dependents@{rtems\_rtl\_obj\_iterate\_dependents}}
+\index{rtems\_rtl\_obj\_iterate\_dependents@{rtems\_rtl\_obj\_iterate\_dependents}!rtl-\/obj.h@{rtl-\/obj.h}}
+\subsubsection{\texorpdfstring{rtems\_rtl\_obj\_iterate\_dependents()}{rtems\_rtl\_obj\_iterate\_dependents()}}
+{\footnotesize\ttfamily bool rtems\+\_\+rtl\+\_\+obj\+\_\+iterate\+\_\+dependents (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structrtems__rtl__obj}{rtems\+\_\+rtl\+\_\+obj}} $\ast$}]{obj,  }\item[{\mbox{\hyperlink{rtl-obj_8h_a1465c9202902dfd2416e1d1432dab052}{rtems\+\_\+rtl\+\_\+obj\+\_\+depends\+\_\+iterator}}}]{iterator,  }\item[{void $\ast$}]{data }\end{DoxyParamCaption})}
+
+Iterate over the module dependenices.
+
+
+\begin{DoxyParams}{Parameters}
+{\em obj} & The object file\textquotesingle{}s descriptor. \\
+\hline
+{\em handler} & The iterator handler. Returns true to end. \\
+\hline
+{\em data} & User data passed to the iterator. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em true} & The iterator handler returned true. \\
+\hline
+{\em false} & The iterator handler returned false. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{rtl-obj_8h_a35de063bbe9cf53cc23ee71a3069e641}\label{rtl-obj_8h_a35de063bbe9cf53cc23ee71a3069e641}} 
+\index{rtl-\/obj.h@{rtl-\/obj.h}!rtems\_rtl\_obj\_load@{rtems\_rtl\_obj\_load}}
+\index{rtems\_rtl\_obj\_load@{rtems\_rtl\_obj\_load}!rtl-\/obj.h@{rtl-\/obj.h}}
+\subsubsection{\texorpdfstring{rtems\_rtl\_obj\_load()}{rtems\_rtl\_obj\_load()}}
+{\footnotesize\ttfamily bool rtems\+\_\+rtl\+\_\+obj\+\_\+load (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structrtems__rtl__obj}{rtems\+\_\+rtl\+\_\+obj}} $\ast$}]{obj }\end{DoxyParamCaption})}
+
+Load the object file, reading all sections into memory, symbols and performing any relocation fixups.
+
+
+\begin{DoxyParams}{Parameters}
+{\em obj} & The object file\textquotesingle{}s descriptor. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em true} & The object file has been loaded. \\
+\hline
+{\em false} & The load failed. The R\+TL error has been set. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{rtl-obj_8h_aac7c6817d06d317f301538bcf30ffa9f}\label{rtl-obj_8h_aac7c6817d06d317f301538bcf30ffa9f}} 
+\index{rtl-\/obj.h@{rtl-\/obj.h}!rtems\_rtl\_obj\_load\_sections@{rtems\_rtl\_obj\_load\_sections}}
+\index{rtems\_rtl\_obj\_load\_sections@{rtems\_rtl\_obj\_load\_sections}!rtl-\/obj.h@{rtl-\/obj.h}}
+\subsubsection{\texorpdfstring{rtems\_rtl\_obj\_load\_sections()}{rtems\_rtl\_obj\_load\_sections()}}
+{\footnotesize\ttfamily bool rtems\+\_\+rtl\+\_\+obj\+\_\+load\+\_\+sections (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structrtems__rtl__obj}{rtems\+\_\+rtl\+\_\+obj}} $\ast$}]{obj,  }\item[{int}]{fd,  }\item[{\mbox{\hyperlink{rtl-obj_8h_a7af5827cf336da33eef4564a6e00ba11}{rtems\+\_\+rtl\+\_\+obj\+\_\+sect\+\_\+handler}}}]{handler,  }\item[{void $\ast$}]{data }\end{DoxyParamCaption})}
+
+Load the sections that have been allocated memory in the target. The bss type section does not load any data, it is set to 0. The text and data sections read the detault data from the object file into the target memory.
+
+
+\begin{DoxyParams}{Parameters}
+{\em obj} & The object file\textquotesingle{}s descriptor. \\
+\hline
+{\em fd} & The object file\textquotesingle{}s file descriptor. \\
+\hline
+{\em handler} & The object file\textquotesingle{}s format specific load handler. \\
+\hline
+{\em data} & User specific data handle. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em true} & The object has been sucessfully loaded. \\
+\hline
+{\em false} & The load failed. The R\+TL error has been set. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{rtl-obj_8h_acdf565c078750f3114d8fd5ead341cdf}\label{rtl-obj_8h_acdf565c078750f3114d8fd5ead341cdf}} 
+\index{rtl-\/obj.h@{rtl-\/obj.h}!rtems\_rtl\_obj\_load\_symbols@{rtems\_rtl\_obj\_load\_symbols}}
+\index{rtems\_rtl\_obj\_load\_symbols@{rtems\_rtl\_obj\_load\_symbols}!rtl-\/obj.h@{rtl-\/obj.h}}
+\subsubsection{\texorpdfstring{rtems\_rtl\_obj\_load\_symbols()}{rtems\_rtl\_obj\_load\_symbols()}}
+{\footnotesize\ttfamily bool rtems\+\_\+rtl\+\_\+obj\+\_\+load\+\_\+symbols (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structrtems__rtl__obj}{rtems\+\_\+rtl\+\_\+obj}} $\ast$}]{obj,  }\item[{int}]{fd,  }\item[{\mbox{\hyperlink{rtl-obj_8h_a7af5827cf336da33eef4564a6e00ba11}{rtems\+\_\+rtl\+\_\+obj\+\_\+sect\+\_\+handler}}}]{handler,  }\item[{void $\ast$}]{data }\end{DoxyParamCaption})}
+
+Load the symbols from the object file. Only the exported or public symbols are read into memory and held in the global symbol table.
+
+
+\begin{DoxyParams}{Parameters}
+{\em obj} & The object file\textquotesingle{}s descriptor. \\
+\hline
+{\em fd} & The object file\textquotesingle{}s file descriptor. \\
+\hline
+{\em handler} & The object file\textquotesingle{}s format specific symbol handler. \\
+\hline
+{\em data} & User specific data handle. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em true} & The object file\textquotesingle{}s symbol where loaded. \\
+\hline
+{\em false} & The symbol loading failed. The R\+TL error is set. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{rtl-obj_8h_af86dc76c1597801ece0edbe4d91a0ee8}\label{rtl-obj_8h_af86dc76c1597801ece0edbe4d91a0ee8}} 
+\index{rtl-\/obj.h@{rtl-\/obj.h}!rtems\_rtl\_obj\_orphaned@{rtems\_rtl\_obj\_orphaned}}
+\index{rtems\_rtl\_obj\_orphaned@{rtems\_rtl\_obj\_orphaned}!rtl-\/obj.h@{rtl-\/obj.h}}
+\subsubsection{\texorpdfstring{rtems\_rtl\_obj\_orphaned()}{rtems\_rtl\_obj\_orphaned()}}
+{\footnotesize\ttfamily bool rtems\+\_\+rtl\+\_\+obj\+\_\+orphaned (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structrtems__rtl__obj}{rtems\+\_\+rtl\+\_\+obj}} $\ast$}]{obj }\end{DoxyParamCaption})}
+
+Is the object file orphaned? An orphaned object file is not locked, has no users and it not being referenced.
+
+
+\begin{DoxyParams}{Parameters}
+{\em obj} & The object file\textquotesingle{}s descriptor. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{rtl-obj_8h_a39ef15efbb0f5eddd01c677d77d9c33e}\label{rtl-obj_8h_a39ef15efbb0f5eddd01c677d77d9c33e}} 
+\index{rtl-\/obj.h@{rtl-\/obj.h}!rtems\_rtl\_obj\_relocate@{rtems\_rtl\_obj\_relocate}}
+\index{rtems\_rtl\_obj\_relocate@{rtems\_rtl\_obj\_relocate}!rtl-\/obj.h@{rtl-\/obj.h}}
+\subsubsection{\texorpdfstring{rtems\_rtl\_obj\_relocate()}{rtems\_rtl\_obj\_relocate()}}
+{\footnotesize\ttfamily bool rtems\+\_\+rtl\+\_\+obj\+\_\+relocate (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structrtems__rtl__obj}{rtems\+\_\+rtl\+\_\+obj}} $\ast$}]{obj,  }\item[{int}]{fd,  }\item[{\mbox{\hyperlink{rtl-obj_8h_a7af5827cf336da33eef4564a6e00ba11}{rtems\+\_\+rtl\+\_\+obj\+\_\+sect\+\_\+handler}}}]{handler,  }\item[{void $\ast$}]{data }\end{DoxyParamCaption})}
+
+Relocate the object file. The object file\textquotesingle{}s section are parsed for any relocation type sections.
+
+
+\begin{DoxyParams}{Parameters}
+{\em obj} & The object file\textquotesingle{}s descriptor. \\
+\hline
+{\em fd} & The object file\textquotesingle{}s file descriptor. \\
+\hline
+{\em handler} & The object file\textquotesingle{}s format specific relocation handler. \\
+\hline
+{\em data} & User specific data handle. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em true} & The object file was relocated. \\
+\hline
+{\em false} & The relocation failed. The R\+TL error is set. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{rtl-obj_8h_ad6bfd56d63e3cf2562d48a39b7fffc24}\label{rtl-obj_8h_ad6bfd56d63e3cf2562d48a39b7fffc24}} 
+\index{rtl-\/obj.h@{rtl-\/obj.h}!rtems\_rtl\_obj\_relocate\_unresolved@{rtems\_rtl\_obj\_relocate\_unresolved}}
+\index{rtems\_rtl\_obj\_relocate\_unresolved@{rtems\_rtl\_obj\_relocate\_unresolved}!rtl-\/obj.h@{rtl-\/obj.h}}
+\subsubsection{\texorpdfstring{rtems\_rtl\_obj\_relocate\_unresolved()}{rtems\_rtl\_obj\_relocate\_unresolved()}}
+{\footnotesize\ttfamily bool rtems\+\_\+rtl\+\_\+obj\+\_\+relocate\+\_\+unresolved (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structrtems__rtl__unresolv__reloc}{rtems\+\_\+rtl\+\_\+unresolv\+\_\+reloc}} $\ast$}]{reloc,  }\item[{\mbox{\hyperlink{structrtems__rtl__obj__sym}{rtems\+\_\+rtl\+\_\+obj\+\_\+sym}} $\ast$}]{sym }\end{DoxyParamCaption})}
+
+Relocate an object file\textquotesingle{}s unresolved reference.
+
+
+\begin{DoxyParams}{Parameters}
+{\em rec} & The unresolved relocation record. \\
+\hline
+{\em sym} & The unresolved relocation\textquotesingle{}s referenced symbol. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em true} & The object file record was relocated. \\
+\hline
+{\em false} & The relocation failed. The R\+TL error is set. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{rtl-obj_8h_a6191736c9a9c8e4a585f2208838ba277}\label{rtl-obj_8h_a6191736c9a9c8e4a585f2208838ba277}} 
+\index{rtl-\/obj.h@{rtl-\/obj.h}!rtems\_rtl\_obj\_remove\_dependencies@{rtems\_rtl\_obj\_remove\_dependencies}}
+\index{rtems\_rtl\_obj\_remove\_dependencies@{rtems\_rtl\_obj\_remove\_dependencies}!rtl-\/obj.h@{rtl-\/obj.h}}
+\subsubsection{\texorpdfstring{rtems\_rtl\_obj\_remove\_dependencies()}{rtems\_rtl\_obj\_remove\_dependencies()}}
+{\footnotesize\ttfamily bool rtems\+\_\+rtl\+\_\+obj\+\_\+remove\+\_\+dependencies (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structrtems__rtl__obj}{rtems\+\_\+rtl\+\_\+obj}} $\ast$}]{obj }\end{DoxyParamCaption})}
+
+Remove dependencies. This decrements the dependent object file references.
+
+
+\begin{DoxyParams}{Parameters}
+{\em obj} & The object file\textquotesingle{}s descriptor. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em true} & The dependencies have been removed. \\
+\hline
+{\em false} & There is no space in the table. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{rtl-obj_8h_ab61d5e574b2e115b9fa004bdd2619f23}\label{rtl-obj_8h_ab61d5e574b2e115b9fa004bdd2619f23}} 
+\index{rtl-\/obj.h@{rtl-\/obj.h}!rtems\_rtl\_obj\_run\_ctors@{rtems\_rtl\_obj\_run\_ctors}}
+\index{rtems\_rtl\_obj\_run\_ctors@{rtems\_rtl\_obj\_run\_ctors}!rtl-\/obj.h@{rtl-\/obj.h}}
+\subsubsection{\texorpdfstring{rtems\_rtl\_obj\_run\_ctors()}{rtems\_rtl\_obj\_run\_ctors()}}
+{\footnotesize\ttfamily void rtems\+\_\+rtl\+\_\+obj\+\_\+run\+\_\+ctors (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structrtems__rtl__obj}{rtems\+\_\+rtl\+\_\+obj}} $\ast$}]{obj }\end{DoxyParamCaption})}
+
+Invoke the constructors the object has. Constructors are a table of pointers to \char`\"{}void ($\ast$)(void);\char`\"{} where N\+U\+LL pointers are skipped. The table\textquotesingle{}s size is taken from the section\textquotesingle{}s size. The objet E\+LF specific code is responisble for flagging which sections contain constructors.
+
+
+\begin{DoxyParams}{Parameters}
+{\em obj} & The object file\textquotesingle{}s descriptor. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{rtl-obj_8h_a4c2ee2202085fecf74954e175a0fb7e3}\label{rtl-obj_8h_a4c2ee2202085fecf74954e175a0fb7e3}} 
+\index{rtl-\/obj.h@{rtl-\/obj.h}!rtems\_rtl\_obj\_run\_dtors@{rtems\_rtl\_obj\_run\_dtors}}
+\index{rtems\_rtl\_obj\_run\_dtors@{rtems\_rtl\_obj\_run\_dtors}!rtl-\/obj.h@{rtl-\/obj.h}}
+\subsubsection{\texorpdfstring{rtems\_rtl\_obj\_run\_dtors()}{rtems\_rtl\_obj\_run\_dtors()}}
+{\footnotesize\ttfamily void rtems\+\_\+rtl\+\_\+obj\+\_\+run\+\_\+dtors (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structrtems__rtl__obj}{rtems\+\_\+rtl\+\_\+obj}} $\ast$}]{obj }\end{DoxyParamCaption})}
+
+Invoke the destructors the object has. Destructors are a table of pointers to \char`\"{}void ($\ast$)(void);\char`\"{} where N\+U\+LL pointers are skipped. The table\textquotesingle{}s size is taken from the section\textquotesingle{}s size. The objet E\+LF specific code is responisble for flagging which sections contain destructors.
+
+
+\begin{DoxyParams}{Parameters}
+{\em obj} & The object file\textquotesingle{}s descriptor. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{rtl-obj_8h_a98c2a1b1a67add778c0b4017976f91c3}\label{rtl-obj_8h_a98c2a1b1a67add778c0b4017976f91c3}} 
+\index{rtl-\/obj.h@{rtl-\/obj.h}!rtems\_rtl\_obj\_synchronize\_cache@{rtems\_rtl\_obj\_synchronize\_cache}}
+\index{rtems\_rtl\_obj\_synchronize\_cache@{rtems\_rtl\_obj\_synchronize\_cache}!rtl-\/obj.h@{rtl-\/obj.h}}
+\subsubsection{\texorpdfstring{rtems\_rtl\_obj\_synchronize\_cache()}{rtems\_rtl\_obj\_synchronize\_cache()}}
+{\footnotesize\ttfamily void rtems\+\_\+rtl\+\_\+obj\+\_\+synchronize\+\_\+cache (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structrtems__rtl__obj}{rtems\+\_\+rtl\+\_\+obj}} $\ast$}]{obj }\end{DoxyParamCaption})}
+
+Synchronize caches to make code visible to C\+P\+U(s)
+
+
+\begin{DoxyParams}{Parameters}
+{\em obj} & The object file\textquotesingle{}s descriptor. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{rtl-obj_8h_a21f97e47f7caa7bb88f685f2b5b7d18b}\label{rtl-obj_8h_a21f97e47f7caa7bb88f685f2b5b7d18b}} 
+\index{rtl-\/obj.h@{rtl-\/obj.h}!rtems\_rtl\_obj\_text\_alignment@{rtems\_rtl\_obj\_text\_alignment}}
+\index{rtems\_rtl\_obj\_text\_alignment@{rtems\_rtl\_obj\_text\_alignment}!rtl-\/obj.h@{rtl-\/obj.h}}
+\subsubsection{\texorpdfstring{rtems\_rtl\_obj\_text\_alignment()}{rtems\_rtl\_obj\_text\_alignment()}}
+{\footnotesize\ttfamily uint32\+\_\+t rtems\+\_\+rtl\+\_\+obj\+\_\+text\+\_\+alignment (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structrtems__rtl__obj}{rtems\+\_\+rtl\+\_\+obj}} $\ast$}]{obj }\end{DoxyParamCaption})}
+
+The text section alignment for the object file. Only use once all the sections has been added. The section alignment is the alignment of the first text type section loaded the text section.
+
+You can assume the alignment is a positive integral power of 2 if not 0 or
+\begin{DoxyEnumerate}
+\item If 0 or 1 then there is no alignment.
+\end{DoxyEnumerate}
+
+
+\begin{DoxyParams}{Parameters}
+{\em obj} & The object file\textquotesingle{}s descriptor. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+uint32\+\_\+t The alignment. Can be 0 or 1 for not aligned or the alignment. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{rtl-obj_8h_a4df3f868b6e5b13ec7e326028683e87a}\label{rtl-obj_8h_a4df3f868b6e5b13ec7e326028683e87a}} 
+\index{rtl-\/obj.h@{rtl-\/obj.h}!rtems\_rtl\_obj\_text\_size@{rtems\_rtl\_obj\_text\_size}}
+\index{rtems\_rtl\_obj\_text\_size@{rtems\_rtl\_obj\_text\_size}!rtl-\/obj.h@{rtl-\/obj.h}}
+\subsubsection{\texorpdfstring{rtems\_rtl\_obj\_text\_size()}{rtems\_rtl\_obj\_text\_size()}}
+{\footnotesize\ttfamily size\+\_\+t rtems\+\_\+rtl\+\_\+obj\+\_\+text\+\_\+size (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structrtems__rtl__obj}{rtems\+\_\+rtl\+\_\+obj}} $\ast$}]{obj }\end{DoxyParamCaption})}
+
+The text section size. Only use once all the sections has been added. It includes alignments between sections that are part of the object\textquotesingle{}s text area. The consts sections are included in this section.
+
+
+\begin{DoxyParams}{Parameters}
+{\em obj} & The object file\textquotesingle{}s descriptor. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+size\+\_\+t The size of the text area of the object file. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{rtl-obj_8h_a8c0debf8dbf88e9eac3f24357473b1bc}\label{rtl-obj_8h_a8c0debf8dbf88e9eac3f24357473b1bc}} 
+\index{rtl-\/obj.h@{rtl-\/obj.h}!rtems\_rtl\_obj\_unload@{rtems\_rtl\_obj\_unload}}
+\index{rtems\_rtl\_obj\_unload@{rtems\_rtl\_obj\_unload}!rtl-\/obj.h@{rtl-\/obj.h}}
+\subsubsection{\texorpdfstring{rtems\_rtl\_obj\_unload()}{rtems\_rtl\_obj\_unload()}}
+{\footnotesize\ttfamily bool rtems\+\_\+rtl\+\_\+obj\+\_\+unload (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structrtems__rtl__obj}{rtems\+\_\+rtl\+\_\+obj}} $\ast$}]{obj }\end{DoxyParamCaption})}
+
+Unload the object file, erasing all symbols and releasing all memory.
+
+
+\begin{DoxyParams}{Parameters}
+{\em obj} & The object file\textquotesingle{}s descriptor. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em true} & The object file has been unloaded. \\
+\hline
+{\em false} & The unload failed. The R\+TL error has been set. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{rtl-obj_8h_a63170089dcc2fbe5453fe01659c99616}\label{rtl-obj_8h_a63170089dcc2fbe5453fe01659c99616}} 
+\index{rtl-\/obj.h@{rtl-\/obj.h}!rtems\_rtl\_obj\_unresolved@{rtems\_rtl\_obj\_unresolved}}
+\index{rtems\_rtl\_obj\_unresolved@{rtems\_rtl\_obj\_unresolved}!rtl-\/obj.h@{rtl-\/obj.h}}
+\subsubsection{\texorpdfstring{rtems\_rtl\_obj\_unresolved()}{rtems\_rtl\_obj\_unresolved()}}
+{\footnotesize\ttfamily bool rtems\+\_\+rtl\+\_\+obj\+\_\+unresolved (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structrtems__rtl__obj}{rtems\+\_\+rtl\+\_\+obj}} $\ast$}]{obj }\end{DoxyParamCaption})}
+
+Does the object file have unresolved external references ? If it does the results of executing code is unpredictable.
+
+
+\begin{DoxyParams}{Parameters}
+{\em obj} & The object file\textquotesingle{}s descriptor. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em true} & The object file has unresolved externals. \\
+\hline
+{\em false} & The object file has all external references resolved. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{rtl-obj_8h_a783aed59695cd068d8cb244655fdca76}\label{rtl-obj_8h_a783aed59695cd068d8cb244655fdca76}} 
+\index{rtl-\/obj.h@{rtl-\/obj.h}!rtems\_rtl\_parse\_name@{rtems\_rtl\_parse\_name}}
+\index{rtems\_rtl\_parse\_name@{rtems\_rtl\_parse\_name}!rtl-\/obj.h@{rtl-\/obj.h}}
+\subsubsection{\texorpdfstring{rtems\_rtl\_parse\_name()}{rtems\_rtl\_parse\_name()}}
+{\footnotesize\ttfamily bool rtems\+\_\+rtl\+\_\+parse\+\_\+name (\begin{DoxyParamCaption}\item[{const char $\ast$}]{name,  }\item[{const char $\ast$$\ast$}]{aname,  }\item[{const char $\ast$$\ast$}]{oname,  }\item[{off\+\_\+t $\ast$}]{ooffset }\end{DoxyParamCaption})}
+
+Parses a filename and returns newly allocated strings with the archive name, object name, and the object\textquotesingle{}s offset
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & The filename of the object \\
+\hline
+{\em aname} & Address of a string pointer that holds the archive name \\
+\hline
+{\em oname} & Address of a string pointer that holds the object name \\
+\hline
+{\em ooffset} & Address of an int that holds the object offset \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em true} & The parsing was successful \\
+\hline
+{\em false} & The parsing was unsuccessful \\
+\hline
+\end{DoxyRetVals}

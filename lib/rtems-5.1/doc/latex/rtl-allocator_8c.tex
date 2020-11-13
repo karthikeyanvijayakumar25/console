@@ -1,0 +1,323 @@
+\hypertarget{rtl-allocator_8c}{}\section{cpukit/libdl/rtl-\/allocator.c File Reference}
+\label{rtl-allocator_8c}\index{cpukit/libdl/rtl-\/allocator.c@{cpukit/libdl/rtl-\/allocator.c}}
+
+
+R\+T\+E\+MS Run-\/\+Time Linker Allocator.  
+
+
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/rtl/rtl.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}rtl-\/alloc-\/heap.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$rtems/rtl/rtl-\/trace.\+h$>$}\newline
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{rtl-allocator_8c_a9a79b40c47354c55f8eb12ace1ce7ab5}{rtems\+\_\+rtl\+\_\+trace\+\_\+tag\+\_\+label}}(\+\_\+l)~\char`\"{}\char`\"{}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{rtl-allocator_8c_a2d9522999ddb398520073cf010f6effe}{rtems\+\_\+rtl\+\_\+alloc\+\_\+initialise}} (\mbox{\hyperlink{structrtems__rtl__alloc__data}{rtems\+\_\+rtl\+\_\+alloc\+\_\+data}} $\ast$data)
+\item 
+void $\ast$ \mbox{\hyperlink{rtl-allocator_8c_afddd36f9f551ae6646028bcc78f3a6dd}{rtems\+\_\+rtl\+\_\+alloc\+\_\+new}} (\mbox{\hyperlink{rtl-allocator_8h_a445a8615118b7fc14005ab20583153fd}{rtems\+\_\+rtl\+\_\+alloc\+\_\+tag}} tag, size\+\_\+t \mbox{\hyperlink{sun4u_2tte_8h_a245260f6f74972558f61b85227df5aae}{size}}, bool zero)
+\item 
+void \mbox{\hyperlink{rtl-allocator_8c_a53995705cd080120f3755af859d7cc50}{rtems\+\_\+rtl\+\_\+alloc\+\_\+del}} (\mbox{\hyperlink{rtl-allocator_8h_a445a8615118b7fc14005ab20583153fd}{rtems\+\_\+rtl\+\_\+alloc\+\_\+tag}} tag, void $\ast$address)
+\item 
+void \mbox{\hyperlink{rtl-allocator_8c_a4453db077482ecf6647ce38e2381c45c}{rtems\+\_\+rtl\+\_\+alloc\+\_\+wr\+\_\+enable}} (\mbox{\hyperlink{rtl-allocator_8h_a445a8615118b7fc14005ab20583153fd}{rtems\+\_\+rtl\+\_\+alloc\+\_\+tag}} tag, void $\ast$address)
+\item 
+void \mbox{\hyperlink{rtl-allocator_8c_aca4dbc8b7c392bb60b9aa241f23773e5}{rtems\+\_\+rtl\+\_\+alloc\+\_\+lock}} (void)
+\item 
+void \mbox{\hyperlink{rtl-allocator_8c_a172d5d28306660657ae5cd4e1b39ecfc}{rtems\+\_\+rtl\+\_\+alloc\+\_\+unlock}} (void)
+\item 
+void \mbox{\hyperlink{rtl-allocator_8c_a97d8fccb913b102e6d102cc86431ad64}{rtems\+\_\+rtl\+\_\+alloc\+\_\+wr\+\_\+disable}} (\mbox{\hyperlink{rtl-allocator_8h_a445a8615118b7fc14005ab20583153fd}{rtems\+\_\+rtl\+\_\+alloc\+\_\+tag}} tag, void $\ast$address)
+\item 
+\mbox{\hyperlink{rtl-allocator_8h_aa8af44a7337cfbfe72b669c82a604bb7}{rtems\+\_\+rtl\+\_\+allocator}} \mbox{\hyperlink{rtl-allocator_8c_a33521c77270f8bcfc8b5bfd61cd8ab0c}{rtems\+\_\+rtl\+\_\+alloc\+\_\+hook}} (\mbox{\hyperlink{rtl-allocator_8h_aa8af44a7337cfbfe72b669c82a604bb7}{rtems\+\_\+rtl\+\_\+allocator}} handler)
+\item 
+void \mbox{\hyperlink{rtl-allocator_8c_a0c6d91e7ac73cef0b5c4d91230766fb9}{rtems\+\_\+rtl\+\_\+alloc\+\_\+indirect\+\_\+new}} (\mbox{\hyperlink{rtl-allocator_8h_a445a8615118b7fc14005ab20583153fd}{rtems\+\_\+rtl\+\_\+alloc\+\_\+tag}} tag, \mbox{\hyperlink{structrtems__rtl__ptr}{rtems\+\_\+rtl\+\_\+ptr}} $\ast$handle, size\+\_\+t \mbox{\hyperlink{sun4u_2tte_8h_a245260f6f74972558f61b85227df5aae}{size}})
+\item 
+void \mbox{\hyperlink{rtl-allocator_8c_ad8518f137454a1a316fc21d335af10c9}{rtems\+\_\+rtl\+\_\+alloc\+\_\+indirect\+\_\+del}} (\mbox{\hyperlink{rtl-allocator_8h_a445a8615118b7fc14005ab20583153fd}{rtems\+\_\+rtl\+\_\+alloc\+\_\+tag}} tag, \mbox{\hyperlink{structrtems__rtl__ptr}{rtems\+\_\+rtl\+\_\+ptr}} $\ast$handle)
+\item 
+\mbox{\hyperlink{rtl-allocator_8h_a445a8615118b7fc14005ab20583153fd}{rtems\+\_\+rtl\+\_\+alloc\+\_\+tag}} \mbox{\hyperlink{rtl-allocator_8c_a10334f8df36a4017c69daf53e59baa79}{rtems\+\_\+rtl\+\_\+alloc\+\_\+text\+\_\+tag}} (void)
+\item 
+\mbox{\hyperlink{rtl-allocator_8h_a445a8615118b7fc14005ab20583153fd}{rtems\+\_\+rtl\+\_\+alloc\+\_\+tag}} \mbox{\hyperlink{rtl-allocator_8c_ac94530ff626eb651e97d142b635e161e}{rtems\+\_\+rtl\+\_\+alloc\+\_\+const\+\_\+tag}} (void)
+\item 
+\mbox{\hyperlink{rtl-allocator_8h_a445a8615118b7fc14005ab20583153fd}{rtems\+\_\+rtl\+\_\+alloc\+\_\+tag}} \mbox{\hyperlink{rtl-allocator_8c_ac03f273707eb55ed34a1ebcee8fd4a10}{rtems\+\_\+rtl\+\_\+alloc\+\_\+eh\+\_\+tag}} (void)
+\item 
+\mbox{\hyperlink{rtl-allocator_8h_a445a8615118b7fc14005ab20583153fd}{rtems\+\_\+rtl\+\_\+alloc\+\_\+tag}} \mbox{\hyperlink{rtl-allocator_8c_aac71a304eb90c1c400a3c5113506219a}{rtems\+\_\+rtl\+\_\+alloc\+\_\+data\+\_\+tag}} (void)
+\item 
+\mbox{\hyperlink{rtl-allocator_8h_a445a8615118b7fc14005ab20583153fd}{rtems\+\_\+rtl\+\_\+alloc\+\_\+tag}} \mbox{\hyperlink{rtl-allocator_8c_a031e1d00b848c1d533d292c60fabd10d}{rtems\+\_\+rtl\+\_\+alloc\+\_\+bss\+\_\+tag}} (void)
+\item 
+bool \mbox{\hyperlink{rtl-allocator_8c_acb2d42b308fc906eadc8adabfda71b70}{rtems\+\_\+rtl\+\_\+alloc\+\_\+module\+\_\+new}} (void $\ast$$\ast$text\+\_\+base, size\+\_\+t text\+\_\+size, void $\ast$$\ast$const\+\_\+base, size\+\_\+t const\+\_\+size, void $\ast$$\ast$eh\+\_\+base, size\+\_\+t eh\+\_\+size, void $\ast$$\ast$data\+\_\+base, size\+\_\+t data\+\_\+size, void $\ast$$\ast$bss\+\_\+base, size\+\_\+t bss\+\_\+size)
+\item 
+void \mbox{\hyperlink{rtl-allocator_8c_a718eab4a84e05b311c40633cd0f793e5}{rtems\+\_\+rtl\+\_\+alloc\+\_\+module\+\_\+del}} (void $\ast$$\ast$text\+\_\+base, void $\ast$$\ast$const\+\_\+base, void $\ast$$\ast$eh\+\_\+base, void $\ast$$\ast$data\+\_\+base, void $\ast$$\ast$bss\+\_\+base)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+R\+T\+E\+MS Run-\/\+Time Linker Allocator. 
+
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{rtl-allocator_8c_a9a79b40c47354c55f8eb12ace1ce7ab5}\label{rtl-allocator_8c_a9a79b40c47354c55f8eb12ace1ce7ab5}} 
+\index{rtl-\/allocator.c@{rtl-\/allocator.c}!rtems\_rtl\_trace\_tag\_label@{rtems\_rtl\_trace\_tag\_label}}
+\index{rtems\_rtl\_trace\_tag\_label@{rtems\_rtl\_trace\_tag\_label}!rtl-\/allocator.c@{rtl-\/allocator.c}}
+\subsubsection{\texorpdfstring{rtems\_rtl\_trace\_tag\_label}{rtems\_rtl\_trace\_tag\_label}}
+{\footnotesize\ttfamily \#define rtems\+\_\+rtl\+\_\+trace\+\_\+tag\+\_\+label(\begin{DoxyParamCaption}\item[{}]{\+\_\+l }\end{DoxyParamCaption})~\char`\"{}\char`\"{}}
+
+Tags as symbols for tracing. 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{rtl-allocator_8c_a031e1d00b848c1d533d292c60fabd10d}\label{rtl-allocator_8c_a031e1d00b848c1d533d292c60fabd10d}} 
+\index{rtl-\/allocator.c@{rtl-\/allocator.c}!rtems\_rtl\_alloc\_bss\_tag@{rtems\_rtl\_alloc\_bss\_tag}}
+\index{rtems\_rtl\_alloc\_bss\_tag@{rtems\_rtl\_alloc\_bss\_tag}!rtl-\/allocator.c@{rtl-\/allocator.c}}
+\subsubsection{\texorpdfstring{rtems\_rtl\_alloc\_bss\_tag()}{rtems\_rtl\_alloc\_bss\_tag()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{rtl-allocator_8h_a445a8615118b7fc14005ab20583153fd}{rtems\+\_\+rtl\+\_\+alloc\+\_\+tag}} rtems\+\_\+rtl\+\_\+alloc\+\_\+bss\+\_\+tag (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+Return the default tag for bss sections.
+
+\begin{DoxyReturn}{Returns}
+The bss tag. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{rtl-allocator_8c_ac94530ff626eb651e97d142b635e161e}\label{rtl-allocator_8c_ac94530ff626eb651e97d142b635e161e}} 
+\index{rtl-\/allocator.c@{rtl-\/allocator.c}!rtems\_rtl\_alloc\_const\_tag@{rtems\_rtl\_alloc\_const\_tag}}
+\index{rtems\_rtl\_alloc\_const\_tag@{rtems\_rtl\_alloc\_const\_tag}!rtl-\/allocator.c@{rtl-\/allocator.c}}
+\subsubsection{\texorpdfstring{rtems\_rtl\_alloc\_const\_tag()}{rtems\_rtl\_alloc\_const\_tag()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{rtl-allocator_8h_a445a8615118b7fc14005ab20583153fd}{rtems\+\_\+rtl\+\_\+alloc\+\_\+tag}} rtems\+\_\+rtl\+\_\+alloc\+\_\+const\+\_\+tag (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+Return the default tag for const sections.
+
+\begin{DoxyReturn}{Returns}
+The const tag. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{rtl-allocator_8c_aac71a304eb90c1c400a3c5113506219a}\label{rtl-allocator_8c_aac71a304eb90c1c400a3c5113506219a}} 
+\index{rtl-\/allocator.c@{rtl-\/allocator.c}!rtems\_rtl\_alloc\_data\_tag@{rtems\_rtl\_alloc\_data\_tag}}
+\index{rtems\_rtl\_alloc\_data\_tag@{rtems\_rtl\_alloc\_data\_tag}!rtl-\/allocator.c@{rtl-\/allocator.c}}
+\subsubsection{\texorpdfstring{rtems\_rtl\_alloc\_data\_tag()}{rtems\_rtl\_alloc\_data\_tag()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{rtl-allocator_8h_a445a8615118b7fc14005ab20583153fd}{rtems\+\_\+rtl\+\_\+alloc\+\_\+tag}} rtems\+\_\+rtl\+\_\+alloc\+\_\+data\+\_\+tag (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+Return the default tag for data sections.
+
+\begin{DoxyReturn}{Returns}
+The data tag. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{rtl-allocator_8c_a53995705cd080120f3755af859d7cc50}\label{rtl-allocator_8c_a53995705cd080120f3755af859d7cc50}} 
+\index{rtl-\/allocator.c@{rtl-\/allocator.c}!rtems\_rtl\_alloc\_del@{rtems\_rtl\_alloc\_del}}
+\index{rtems\_rtl\_alloc\_del@{rtems\_rtl\_alloc\_del}!rtl-\/allocator.c@{rtl-\/allocator.c}}
+\subsubsection{\texorpdfstring{rtems\_rtl\_alloc\_del()}{rtems\_rtl\_alloc\_del()}}
+{\footnotesize\ttfamily void rtems\+\_\+rtl\+\_\+alloc\+\_\+del (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{rtl-allocator_8h_a445a8615118b7fc14005ab20583153fd}{rtems\+\_\+rtl\+\_\+alloc\+\_\+tag}}}]{tag,  }\item[{void $\ast$}]{address }\end{DoxyParamCaption})}
+
+The Runtime Loader allocator delete deletes allocated memory.
+
+
+\begin{DoxyParams}{Parameters}
+{\em tag} & The type of allocation request. \\
+\hline
+{\em address} & The memory address to delete. A N\+U\+LL is ignored. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{rtl-allocator_8c_ac03f273707eb55ed34a1ebcee8fd4a10}\label{rtl-allocator_8c_ac03f273707eb55ed34a1ebcee8fd4a10}} 
+\index{rtl-\/allocator.c@{rtl-\/allocator.c}!rtems\_rtl\_alloc\_eh\_tag@{rtems\_rtl\_alloc\_eh\_tag}}
+\index{rtems\_rtl\_alloc\_eh\_tag@{rtems\_rtl\_alloc\_eh\_tag}!rtl-\/allocator.c@{rtl-\/allocator.c}}
+\subsubsection{\texorpdfstring{rtems\_rtl\_alloc\_eh\_tag()}{rtems\_rtl\_alloc\_eh\_tag()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{rtl-allocator_8h_a445a8615118b7fc14005ab20583153fd}{rtems\+\_\+rtl\+\_\+alloc\+\_\+tag}} rtems\+\_\+rtl\+\_\+alloc\+\_\+eh\+\_\+tag (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+Return the default tag for exception sections.
+
+\begin{DoxyReturn}{Returns}
+The eh tag. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{rtl-allocator_8c_a33521c77270f8bcfc8b5bfd61cd8ab0c}\label{rtl-allocator_8c_a33521c77270f8bcfc8b5bfd61cd8ab0c}} 
+\index{rtl-\/allocator.c@{rtl-\/allocator.c}!rtems\_rtl\_alloc\_hook@{rtems\_rtl\_alloc\_hook}}
+\index{rtems\_rtl\_alloc\_hook@{rtems\_rtl\_alloc\_hook}!rtl-\/allocator.c@{rtl-\/allocator.c}}
+\subsubsection{\texorpdfstring{rtems\_rtl\_alloc\_hook()}{rtems\_rtl\_alloc\_hook()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{rtl-allocator_8h_aa8af44a7337cfbfe72b669c82a604bb7}{rtems\+\_\+rtl\+\_\+allocator}} rtems\+\_\+rtl\+\_\+alloc\+\_\+hook (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{rtl-allocator_8h_aa8af44a7337cfbfe72b669c82a604bb7}{rtems\+\_\+rtl\+\_\+allocator}}}]{handler }\end{DoxyParamCaption})}
+
+Hook the Runtime Loader allocatior. A handler can call the previous handler in the chain to use it for specific tags. The default handler uses the system heap. Do not unhook your handler if memory it allocates has not been returned.
+
+
+\begin{DoxyParams}{Parameters}
+{\em handler} & The handler to use as the allocator. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+rtems\+\_\+rtl\+\_\+alloc\+\_\+handler The previous handler. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{rtl-allocator_8c_ad8518f137454a1a316fc21d335af10c9}\label{rtl-allocator_8c_ad8518f137454a1a316fc21d335af10c9}} 
+\index{rtl-\/allocator.c@{rtl-\/allocator.c}!rtems\_rtl\_alloc\_indirect\_del@{rtems\_rtl\_alloc\_indirect\_del}}
+\index{rtems\_rtl\_alloc\_indirect\_del@{rtems\_rtl\_alloc\_indirect\_del}!rtl-\/allocator.c@{rtl-\/allocator.c}}
+\subsubsection{\texorpdfstring{rtems\_rtl\_alloc\_indirect\_del()}{rtems\_rtl\_alloc\_indirect\_del()}}
+{\footnotesize\ttfamily void rtems\+\_\+rtl\+\_\+alloc\+\_\+indirect\+\_\+del (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{rtl-allocator_8h_a445a8615118b7fc14005ab20583153fd}{rtems\+\_\+rtl\+\_\+alloc\+\_\+tag}}}]{tag,  }\item[{\mbox{\hyperlink{structrtems__rtl__ptr}{rtems\+\_\+rtl\+\_\+ptr}} $\ast$}]{handle }\end{DoxyParamCaption})}
+
+Free memory from an indirect handle.
+
+
+\begin{DoxyParams}{Parameters}
+{\em tag} & The type of allocation request. \\
+\hline
+{\em handle} & The handle to free the memory from. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{rtl-allocator_8c_a0c6d91e7ac73cef0b5c4d91230766fb9}\label{rtl-allocator_8c_a0c6d91e7ac73cef0b5c4d91230766fb9}} 
+\index{rtl-\/allocator.c@{rtl-\/allocator.c}!rtems\_rtl\_alloc\_indirect\_new@{rtems\_rtl\_alloc\_indirect\_new}}
+\index{rtems\_rtl\_alloc\_indirect\_new@{rtems\_rtl\_alloc\_indirect\_new}!rtl-\/allocator.c@{rtl-\/allocator.c}}
+\subsubsection{\texorpdfstring{rtems\_rtl\_alloc\_indirect\_new()}{rtems\_rtl\_alloc\_indirect\_new()}}
+{\footnotesize\ttfamily void rtems\+\_\+rtl\+\_\+alloc\+\_\+indirect\+\_\+new (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{rtl-allocator_8h_a445a8615118b7fc14005ab20583153fd}{rtems\+\_\+rtl\+\_\+alloc\+\_\+tag}}}]{tag,  }\item[{\mbox{\hyperlink{structrtems__rtl__ptr}{rtems\+\_\+rtl\+\_\+ptr}} $\ast$}]{handle,  }\item[{size\+\_\+t}]{size }\end{DoxyParamCaption})}
+
+Allocate memory to an indirect handle.
+
+
+\begin{DoxyParams}{Parameters}
+{\em tag} & The type of allocation request. \\
+\hline
+{\em handle} & The handle to allocate the memory to. \\
+\hline
+{\em size} & The size of the allocation. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{rtl-allocator_8c_a2d9522999ddb398520073cf010f6effe}\label{rtl-allocator_8c_a2d9522999ddb398520073cf010f6effe}} 
+\index{rtl-\/allocator.c@{rtl-\/allocator.c}!rtems\_rtl\_alloc\_initialise@{rtems\_rtl\_alloc\_initialise}}
+\index{rtems\_rtl\_alloc\_initialise@{rtems\_rtl\_alloc\_initialise}!rtl-\/allocator.c@{rtl-\/allocator.c}}
+\subsubsection{\texorpdfstring{rtems\_rtl\_alloc\_initialise()}{rtems\_rtl\_alloc\_initialise()}}
+{\footnotesize\ttfamily void rtems\+\_\+rtl\+\_\+alloc\+\_\+initialise (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structrtems__rtl__alloc__data}{rtems\+\_\+rtl\+\_\+alloc\+\_\+data}} $\ast$}]{data }\end{DoxyParamCaption})}
+
+Initialise the allocate data.
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & The data to initialise. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{rtl-allocator_8c_aca4dbc8b7c392bb60b9aa241f23773e5}\label{rtl-allocator_8c_aca4dbc8b7c392bb60b9aa241f23773e5}} 
+\index{rtl-\/allocator.c@{rtl-\/allocator.c}!rtems\_rtl\_alloc\_lock@{rtems\_rtl\_alloc\_lock}}
+\index{rtems\_rtl\_alloc\_lock@{rtems\_rtl\_alloc\_lock}!rtl-\/allocator.c@{rtl-\/allocator.c}}
+\subsubsection{\texorpdfstring{rtems\_rtl\_alloc\_lock()}{rtems\_rtl\_alloc\_lock()}}
+{\footnotesize\ttfamily void rtems\+\_\+rtl\+\_\+alloc\+\_\+lock (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+The Runtime Loader allocator lock. An allocator that depends on a separate allocation process, for example the heap, may need to be locked during loading of an object file to make sure the locality of the memory. This call be used to lock such an allocator. Allocator calls in this interface are protected by the R\+TL lock. \mbox{\Hypertarget{rtl-allocator_8c_a718eab4a84e05b311c40633cd0f793e5}\label{rtl-allocator_8c_a718eab4a84e05b311c40633cd0f793e5}} 
+\index{rtl-\/allocator.c@{rtl-\/allocator.c}!rtems\_rtl\_alloc\_module\_del@{rtems\_rtl\_alloc\_module\_del}}
+\index{rtems\_rtl\_alloc\_module\_del@{rtems\_rtl\_alloc\_module\_del}!rtl-\/allocator.c@{rtl-\/allocator.c}}
+\subsubsection{\texorpdfstring{rtems\_rtl\_alloc\_module\_del()}{rtems\_rtl\_alloc\_module\_del()}}
+{\footnotesize\ttfamily void rtems\+\_\+rtl\+\_\+alloc\+\_\+module\+\_\+del (\begin{DoxyParamCaption}\item[{void $\ast$$\ast$}]{text\+\_\+base,  }\item[{void $\ast$$\ast$}]{const\+\_\+base,  }\item[{void $\ast$$\ast$}]{eh\+\_\+base,  }\item[{void $\ast$$\ast$}]{data\+\_\+base,  }\item[{void $\ast$$\ast$}]{bss\+\_\+base }\end{DoxyParamCaption})}
+
+Free the memory allocated to a module.
+
+
+\begin{DoxyParams}{Parameters}
+{\em text\+\_\+base} & Pointer to the text base pointer. \\
+\hline
+{\em const\+\_\+base} & Pointer to the const base pointer. \\
+\hline
+{\em eh\+\_\+base} & Pointer to the eh base pointer. \\
+\hline
+{\em data\+\_\+base} & Pointer to the data base pointer. \\
+\hline
+{\em bss\+\_\+base} & Pointer to the bss base pointer. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{rtl-allocator_8c_acb2d42b308fc906eadc8adabfda71b70}\label{rtl-allocator_8c_acb2d42b308fc906eadc8adabfda71b70}} 
+\index{rtl-\/allocator.c@{rtl-\/allocator.c}!rtems\_rtl\_alloc\_module\_new@{rtems\_rtl\_alloc\_module\_new}}
+\index{rtems\_rtl\_alloc\_module\_new@{rtems\_rtl\_alloc\_module\_new}!rtl-\/allocator.c@{rtl-\/allocator.c}}
+\subsubsection{\texorpdfstring{rtems\_rtl\_alloc\_module\_new()}{rtems\_rtl\_alloc\_module\_new()}}
+{\footnotesize\ttfamily bool rtems\+\_\+rtl\+\_\+alloc\+\_\+module\+\_\+new (\begin{DoxyParamCaption}\item[{void $\ast$$\ast$}]{text\+\_\+base,  }\item[{size\+\_\+t}]{text\+\_\+size,  }\item[{void $\ast$$\ast$}]{const\+\_\+base,  }\item[{size\+\_\+t}]{const\+\_\+size,  }\item[{void $\ast$$\ast$}]{eh\+\_\+base,  }\item[{size\+\_\+t}]{eh\+\_\+size,  }\item[{void $\ast$$\ast$}]{data\+\_\+base,  }\item[{size\+\_\+t}]{data\+\_\+size,  }\item[{void $\ast$$\ast$}]{bss\+\_\+base,  }\item[{size\+\_\+t}]{bss\+\_\+size }\end{DoxyParamCaption})}
+
+Allocate the memory for a module given the size of the text, const, data and bss sections. If any part of the allocation fails the no memory is allocated.
+
+
+\begin{DoxyParams}{Parameters}
+{\em text\+\_\+base} & Pointer to the text base pointer. \\
+\hline
+{\em text\+\_\+size} & The size of the read/exec section. \\
+\hline
+{\em const\+\_\+base} & Pointer to the const base pointer. \\
+\hline
+{\em const\+\_\+size} & The size of the read only section. \\
+\hline
+{\em eh\+\_\+base} & Pointer to the eh base pointer. \\
+\hline
+{\em eh\+\_\+size} & The size of the eh section. \\
+\hline
+{\em data\+\_\+base} & Pointer to the data base pointer. \\
+\hline
+{\em data\+\_\+size} & The size of the read/write secton. \\
+\hline
+{\em bss\+\_\+base} & Pointer to the bss base pointer. \\
+\hline
+{\em bss\+\_\+size} & The size of the read/write. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em true} & The memory has been allocated. \\
+\hline
+{\em false} & The allocation of memory has failed. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{rtl-allocator_8c_afddd36f9f551ae6646028bcc78f3a6dd}\label{rtl-allocator_8c_afddd36f9f551ae6646028bcc78f3a6dd}} 
+\index{rtl-\/allocator.c@{rtl-\/allocator.c}!rtems\_rtl\_alloc\_new@{rtems\_rtl\_alloc\_new}}
+\index{rtems\_rtl\_alloc\_new@{rtems\_rtl\_alloc\_new}!rtl-\/allocator.c@{rtl-\/allocator.c}}
+\subsubsection{\texorpdfstring{rtems\_rtl\_alloc\_new()}{rtems\_rtl\_alloc\_new()}}
+{\footnotesize\ttfamily void$\ast$ rtems\+\_\+rtl\+\_\+alloc\+\_\+new (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{rtl-allocator_8h_a445a8615118b7fc14005ab20583153fd}{rtems\+\_\+rtl\+\_\+alloc\+\_\+tag}}}]{tag,  }\item[{size\+\_\+t}]{size,  }\item[{bool}]{zero }\end{DoxyParamCaption})}
+
+The Runtime Loader allocator new allocates new memory and optionally clear the memory if requested.
+
+
+\begin{DoxyParams}{Parameters}
+{\em tag} & The type of allocation request. \\
+\hline
+{\em size} & The size of the allocation. \\
+\hline
+{\em zero} & If true the memory is cleared. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void$\ast$ The memory address or N\+U\+LL is not memory available. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{rtl-allocator_8c_a10334f8df36a4017c69daf53e59baa79}\label{rtl-allocator_8c_a10334f8df36a4017c69daf53e59baa79}} 
+\index{rtl-\/allocator.c@{rtl-\/allocator.c}!rtems\_rtl\_alloc\_text\_tag@{rtems\_rtl\_alloc\_text\_tag}}
+\index{rtems\_rtl\_alloc\_text\_tag@{rtems\_rtl\_alloc\_text\_tag}!rtl-\/allocator.c@{rtl-\/allocator.c}}
+\subsubsection{\texorpdfstring{rtems\_rtl\_alloc\_text\_tag()}{rtems\_rtl\_alloc\_text\_tag()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{rtl-allocator_8h_a445a8615118b7fc14005ab20583153fd}{rtems\+\_\+rtl\+\_\+alloc\+\_\+tag}} rtems\+\_\+rtl\+\_\+alloc\+\_\+text\+\_\+tag (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+Return the default tag for text sections.
+
+\begin{DoxyReturn}{Returns}
+The text tag. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{rtl-allocator_8c_a172d5d28306660657ae5cd4e1b39ecfc}\label{rtl-allocator_8c_a172d5d28306660657ae5cd4e1b39ecfc}} 
+\index{rtl-\/allocator.c@{rtl-\/allocator.c}!rtems\_rtl\_alloc\_unlock@{rtems\_rtl\_alloc\_unlock}}
+\index{rtems\_rtl\_alloc\_unlock@{rtems\_rtl\_alloc\_unlock}!rtl-\/allocator.c@{rtl-\/allocator.c}}
+\subsubsection{\texorpdfstring{rtems\_rtl\_alloc\_unlock()}{rtems\_rtl\_alloc\_unlock()}}
+{\footnotesize\ttfamily void rtems\+\_\+rtl\+\_\+alloc\+\_\+unlock (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+The Runtime Loader allocator unlock. An allocator that depends on a separate allocation process, for example the heap, may need to be locked during loading of an object file to make sure the locality of the memory. This call can be used to unlock such an allocator. Allocator calls in this interface are protected by the R\+TL lock. \mbox{\Hypertarget{rtl-allocator_8c_a97d8fccb913b102e6d102cc86431ad64}\label{rtl-allocator_8c_a97d8fccb913b102e6d102cc86431ad64}} 
+\index{rtl-\/allocator.c@{rtl-\/allocator.c}!rtems\_rtl\_alloc\_wr\_disable@{rtems\_rtl\_alloc\_wr\_disable}}
+\index{rtems\_rtl\_alloc\_wr\_disable@{rtems\_rtl\_alloc\_wr\_disable}!rtl-\/allocator.c@{rtl-\/allocator.c}}
+\subsubsection{\texorpdfstring{rtems\_rtl\_alloc\_wr\_disable()}{rtems\_rtl\_alloc\_wr\_disable()}}
+{\footnotesize\ttfamily void rtems\+\_\+rtl\+\_\+alloc\+\_\+wr\+\_\+disable (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{rtl-allocator_8h_a445a8615118b7fc14005ab20583153fd}{rtems\+\_\+rtl\+\_\+alloc\+\_\+tag}}}]{tag,  }\item[{void $\ast$}]{address }\end{DoxyParamCaption})}
+
+The Runtime Loader allocator disable write on a bloc of allocated memory.
+
+
+\begin{DoxyParams}{Parameters}
+{\em tag} & The type of allocation request. Must match the address. \\
+\hline
+{\em address} & The memory address to write disable. A N\+U\+LL is ignored. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{rtl-allocator_8c_a4453db077482ecf6647ce38e2381c45c}\label{rtl-allocator_8c_a4453db077482ecf6647ce38e2381c45c}} 
+\index{rtl-\/allocator.c@{rtl-\/allocator.c}!rtems\_rtl\_alloc\_wr\_enable@{rtems\_rtl\_alloc\_wr\_enable}}
+\index{rtems\_rtl\_alloc\_wr\_enable@{rtems\_rtl\_alloc\_wr\_enable}!rtl-\/allocator.c@{rtl-\/allocator.c}}
+\subsubsection{\texorpdfstring{rtems\_rtl\_alloc\_wr\_enable()}{rtems\_rtl\_alloc\_wr\_enable()}}
+{\footnotesize\ttfamily void rtems\+\_\+rtl\+\_\+alloc\+\_\+wr\+\_\+enable (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{rtl-allocator_8h_a445a8615118b7fc14005ab20583153fd}{rtems\+\_\+rtl\+\_\+alloc\+\_\+tag}}}]{tag,  }\item[{void $\ast$}]{address }\end{DoxyParamCaption})}
+
+The Runtime Loader allocator enable write on a bloc of allocated memory.
+
+
+\begin{DoxyParams}{Parameters}
+{\em tag} & The type of allocation request. Must match the address. \\
+\hline
+{\em address} & The memory address to write enable. A N\+U\+LL is ignored. \\
+\hline
+\end{DoxyParams}

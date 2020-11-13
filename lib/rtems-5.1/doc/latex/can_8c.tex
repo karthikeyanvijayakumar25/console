@@ -1,0 +1,191 @@
+\hypertarget{can_8c}{}\section{bsps/arm/lpc176x/can/can.c File Reference}
+\label{can_8c}\index{bsps/arm/lpc176x/can/can.c@{bsps/arm/lpc176x/can/can.c}}
+
+
+C\+AN controller for the mbed lpc1768 board.  
+
+
+{\ttfamily \#include $<$rtems/status-\/checks.\+h$>$}\newline
+{\ttfamily \#include $<$bsp/irq.\+h$>$}\newline
+{\ttfamily \#include $<$bsp/can.\+h$>$}\newline
+{\ttfamily \#include $<$bsp/can-\/defs.\+h$>$}\newline
+{\ttfamily \#include $<$bsp/mbed-\/pinmap.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{can_8c_a3775587b69a61b922fe80ef0b9584d04}{can\+\_\+close}} (const \mbox{\hyperlink{can_8h_af1d9312b540cae529df65f275750a4e8}{lpc176x\+\_\+can\+\_\+number}} minor)
+\begin{DoxyCompactList}\small\item\em Closes the passed C\+AN device and shut it down. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{can_8c_a5bbf0abd818d9eae8baffc4b35237168}{can\+\_\+open}} (const \mbox{\hyperlink{can_8h_af1d9312b540cae529df65f275750a4e8}{lpc176x\+\_\+can\+\_\+number}} minor, \mbox{\hyperlink{can_8h_afe231f2a3868e61128e83fb3da79906a}{can\+\_\+freq}} freq)
+\begin{DoxyCompactList}\small\item\em Opens C\+AN device. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{can_8c_a50075b069fbfcb0ce72ef3b50e535b84}{can\+\_\+read}} (const \mbox{\hyperlink{can_8h_af1d9312b540cae529df65f275750a4e8}{lpc176x\+\_\+can\+\_\+number}} minor, \mbox{\hyperlink{unioncan__message}{can\+\_\+message}} $\ast$\mbox{\hyperlink{structmessage}{message}})
+\begin{DoxyCompactList}\small\item\em Reads the C\+AN device. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{can_8c_a92d9588bdebf059779da0a9c0bb0f636}{can\+\_\+write}} (const \mbox{\hyperlink{can_8h_af1d9312b540cae529df65f275750a4e8}{lpc176x\+\_\+can\+\_\+number}} minor, const \mbox{\hyperlink{unioncan__message}{can\+\_\+message}} $\ast$const \mbox{\hyperlink{structmessage}{message}})
+\begin{DoxyCompactList}\small\item\em Writes the passed C\+AN message into the selected C\+AN device. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{can_8c_aabdd9f78ce7049a501396c952e17e750}{can\+\_\+register\+\_\+isr}} (const \mbox{\hyperlink{can_8h_af1d9312b540cae529df65f275750a4e8}{lpc176x\+\_\+can\+\_\+number}} number, const \mbox{\hyperlink{can_8h_a48f6392916516610c57cf75f9d047479}{can\+\_\+irq\+\_\+type}} type, const \mbox{\hyperlink{can_8h_aa87a69bb1a8f612d67c7f50ddd466f79}{lpc176x\+\_\+can\+\_\+isr}} isr)
+\begin{DoxyCompactList}\small\item\em Registers an isr in the driver vector, and enables the interrupt in the device. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{can_8c_ad498ae858ce30c297bc242b388cf937c}{create\+\_\+can\+\_\+message}} (\mbox{\hyperlink{unioncan__message}{can\+\_\+message}} $\ast$const \mbox{\hyperlink{structmsg}{msg}}, const int \+\_\+id, const char $\ast$const \+\_\+data, const char \+\_\+len)
+\begin{DoxyCompactList}\small\item\em Creates a C\+AN message. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{can_8c_ae786b6c6e4c7c48cbd3117ebff83060d}\label{can_8c_ae786b6c6e4c7c48cbd3117ebff83060d}} 
+\mbox{\hyperlink{can-defs_8h_a6e2fd9a66aef933e66829de79bda2b4d}{lpc176x\+\_\+can\+\_\+isr\+\_\+vector}} \mbox{\hyperlink{can_8c_ae786b6c6e4c7c48cbd3117ebff83060d}{isr\+\_\+vector}}
+\begin{DoxyCompactList}\small\item\em Vector of isr for the can\+\_\+driver . \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structcan__acceptance__filter}{can\+\_\+acceptance\+\_\+filter}} $\ast$const \mbox{\hyperlink{can_8c_a6a59bd0e8e6957886f1516a5e6cecc86}{acceptance\+\_\+filter\+\_\+device}}
+\begin{DoxyCompactList}\small\item\em The C\+AN acceptance filter. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+C\+AN controller for the mbed lpc1768 board. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{can_8c_a3775587b69a61b922fe80ef0b9584d04}\label{can_8c_a3775587b69a61b922fe80ef0b9584d04}} 
+\index{can.c@{can.c}!can\_close@{can\_close}}
+\index{can\_close@{can\_close}!can.c@{can.c}}
+\subsubsection{\texorpdfstring{can\_close()}{can\_close()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} can\+\_\+close (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{can_8h_af1d9312b540cae529df65f275750a4e8}{lpc176x\+\_\+can\+\_\+number}}}]{minor }\end{DoxyParamCaption})}
+
+
+
+Closes the passed C\+AN device and shut it down. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em minor} & The device to close. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+R\+T\+E\+M\+S\+\_\+\+S\+U\+C\+C\+E\+S\+S\+F\+UL if ok, R\+T\+E\+M\+S\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+N\+U\+M\+B\+ER for a bad parameter. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{can_8c_a5bbf0abd818d9eae8baffc4b35237168}\label{can_8c_a5bbf0abd818d9eae8baffc4b35237168}} 
+\index{can.c@{can.c}!can\_open@{can\_open}}
+\index{can\_open@{can\_open}!can.c@{can.c}}
+\subsubsection{\texorpdfstring{can\_open()}{can\_open()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} can\+\_\+open (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{can_8h_af1d9312b540cae529df65f275750a4e8}{lpc176x\+\_\+can\+\_\+number}}}]{minor,  }\item[{\mbox{\hyperlink{can_8h_afe231f2a3868e61128e83fb3da79906a}{can\+\_\+freq}}}]{freq }\end{DoxyParamCaption})}
+
+
+
+Opens C\+AN device. 
+
+It enables the module and gives it a clock, sets the pins, disables the interrupts, sets the frequency and bypasses the acceptance filter.
+
+
+\begin{DoxyParams}{Parameters}
+{\em minor} & The device to open. \\
+\hline
+{\em freq} & The desired frequency. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+R\+T\+E\+M\+S\+\_\+\+S\+U\+C\+C\+E\+S\+F\+UL on success. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{can_8c_a50075b069fbfcb0ce72ef3b50e535b84}\label{can_8c_a50075b069fbfcb0ce72ef3b50e535b84}} 
+\index{can.c@{can.c}!can\_read@{can\_read}}
+\index{can\_read@{can\_read}!can.c@{can.c}}
+\subsubsection{\texorpdfstring{can\_read()}{can\_read()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} can\+\_\+read (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{can_8h_af1d9312b540cae529df65f275750a4e8}{lpc176x\+\_\+can\+\_\+number}}}]{minor,  }\item[{\mbox{\hyperlink{unioncan__message}{can\+\_\+message}} $\ast$}]{message }\end{DoxyParamCaption})}
+
+
+
+Reads the C\+AN device. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em minor} & The C\+AN device to read. \\
+\hline
+{\em message} & The read message. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+R\+T\+E\+M\+S\+\_\+\+S\+U\+C\+C\+E\+S\+S\+F\+UL if read ok, R\+T\+E\+M\+S\+\_\+\+I\+O\+\_\+\+E\+R\+R\+OR otherwise. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{can_8c_aabdd9f78ce7049a501396c952e17e750}\label{can_8c_aabdd9f78ce7049a501396c952e17e750}} 
+\index{can.c@{can.c}!can\_register\_isr@{can\_register\_isr}}
+\index{can\_register\_isr@{can\_register\_isr}!can.c@{can.c}}
+\subsubsection{\texorpdfstring{can\_register\_isr()}{can\_register\_isr()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} can\+\_\+register\+\_\+isr (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{can_8h_af1d9312b540cae529df65f275750a4e8}{lpc176x\+\_\+can\+\_\+number}}}]{number,  }\item[{const \mbox{\hyperlink{can_8h_a48f6392916516610c57cf75f9d047479}{can\+\_\+irq\+\_\+type}}}]{type,  }\item[{const \mbox{\hyperlink{can_8h_aa87a69bb1a8f612d67c7f50ddd466f79}{lpc176x\+\_\+can\+\_\+isr}}}]{isr }\end{DoxyParamCaption})}
+
+
+
+Registers an isr in the driver vector, and enables the interrupt in the device. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em number} & The C\+AN device to set \\
+\hline
+{\em type} & The interrupt type. \\
+\hline
+{\em isr} & The isr to register. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+R\+T\+E\+M\+S\+\_\+\+S\+U\+C\+C\+E\+S\+S\+F\+UL if ok R\+T\+E\+M\+S\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+N\+U\+M\+B\+ER otherwise. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{can_8c_a92d9588bdebf059779da0a9c0bb0f636}\label{can_8c_a92d9588bdebf059779da0a9c0bb0f636}} 
+\index{can.c@{can.c}!can\_write@{can\_write}}
+\index{can\_write@{can\_write}!can.c@{can.c}}
+\subsubsection{\texorpdfstring{can\_write()}{can\_write()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} can\+\_\+write (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{can_8h_af1d9312b540cae529df65f275750a4e8}{lpc176x\+\_\+can\+\_\+number}}}]{minor,  }\item[{const \mbox{\hyperlink{unioncan__message}{can\+\_\+message}} $\ast$const}]{message }\end{DoxyParamCaption})}
+
+
+
+Writes the passed C\+AN message into the selected C\+AN device. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em minor} & The device to write. \\
+\hline
+{\em message} & The message to write. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+R\+T\+E\+M\+S\+\_\+\+S\+U\+C\+C\+E\+S\+F\+UL if write ok. R\+T\+E\+M\+S\+\_\+\+I\+O\+\_\+\+E\+R\+R\+OR otherwise. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{can_8c_ad498ae858ce30c297bc242b388cf937c}\label{can_8c_ad498ae858ce30c297bc242b388cf937c}} 
+\index{can.c@{can.c}!create\_can\_message@{create\_can\_message}}
+\index{create\_can\_message@{create\_can\_message}!can.c@{can.c}}
+\subsubsection{\texorpdfstring{create\_can\_message()}{create\_can\_message()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} create\+\_\+can\+\_\+message (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{unioncan__message}{can\+\_\+message}} $\ast$const}]{msg,  }\item[{const int}]{\+\_\+id,  }\item[{const char $\ast$const}]{\+\_\+data,  }\item[{const char}]{\+\_\+len }\end{DoxyParamCaption})}
+
+
+
+Creates a C\+AN message. 
+
+\mbox{[}long description\mbox{]}
+
+
+\begin{DoxyParams}{Parameters}
+{\em msg} & The created message. \\
+\hline
+{\em \+\_\+id} & The can id for the message. \\
+\hline
+{\em \+\_\+data} & The data of the message. \\
+\hline
+{\em \+\_\+len} & The length of the message. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+R\+T\+E\+M\+S\+\_\+\+S\+U\+C\+C\+E\+S\+F\+UL if created, R\+T\+E\+M\+S\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+N\+U\+M\+B\+ER otherwise. 
+\end{DoxyReturn}
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{can_8c_a6a59bd0e8e6957886f1516a5e6cecc86}\label{can_8c_a6a59bd0e8e6957886f1516a5e6cecc86}} 
+\index{can.c@{can.c}!acceptance\_filter\_device@{acceptance\_filter\_device}}
+\index{acceptance\_filter\_device@{acceptance\_filter\_device}!can.c@{can.c}}
+\subsubsection{\texorpdfstring{acceptance\_filter\_device}{acceptance\_filter\_device}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structcan__acceptance__filter}{can\+\_\+acceptance\+\_\+filter}}$\ast$ const acceptance\+\_\+filter\+\_\+device}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=}
+\DoxyCodeLine{  (\mbox{\hyperlink{structcan__acceptance__filter}{can\_acceptance\_filter}} *) CAN\_ACCEPT\_BASE\_ADDR}
+
+\end{DoxyCode}
+
+
+The C\+AN acceptance filter. 
+

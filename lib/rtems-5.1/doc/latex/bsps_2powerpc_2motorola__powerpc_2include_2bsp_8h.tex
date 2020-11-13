@@ -1,0 +1,89 @@
+\hypertarget{bsps_2powerpc_2motorola__powerpc_2include_2bsp_8h}{}\section{bsps/powerpc/motorola\+\_\+powerpc/include/bsp.h File Reference}
+\label{bsps_2powerpc_2motorola__powerpc_2include_2bsp_8h}\index{bsps/powerpc/motorola\_powerpc/include/bsp.h@{bsps/powerpc/motorola\_powerpc/include/bsp.h}}
+
+
+Global B\+SP definitions.  
+
+
+{\ttfamily \#include $<$bspopts.\+h$>$}\newline
+{\ttfamily \#include $<$bsp/default-\/initial-\/extension.\+h$>$}\newline
+{\ttfamily \#include $<$rtems.\+h$>$}\newline
+{\ttfamily \#include $<$libcpu/io.\+h$>$}\newline
+{\ttfamily \#include $<$bsp/vectors.\+h$>$}\newline
+{\ttfamily \#include $<$bsp/openpic.\+h$>$}\newline
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bfseries \+\_\+\+I\+O\+\_\+\+B\+A\+SE}~P\+R\+E\+P\+\_\+\+I\+S\+A\+\_\+\+I\+O\+\_\+\+B\+A\+SE
+\item 
+\#define {\bfseries \+\_\+\+I\+S\+A\+\_\+\+M\+E\+M\+\_\+\+B\+A\+SE}~P\+R\+E\+P\+\_\+\+I\+S\+A\+\_\+\+M\+E\+M\+\_\+\+B\+A\+SE
+\item 
+\#define {\bfseries P\+C\+I\+\_\+\+D\+R\+A\+M\+\_\+\+O\+F\+F\+S\+ET}~P\+R\+E\+P\+\_\+\+P\+C\+I\+\_\+\+D\+R\+A\+M\+\_\+\+O\+F\+F\+S\+ET
+\item 
+\#define {\bfseries P\+C\+I\+\_\+\+M\+E\+M\+\_\+\+B\+A\+SE}~P\+R\+E\+P\+\_\+\+I\+S\+A\+\_\+\+M\+E\+M\+\_\+\+B\+A\+SE
+\item 
+\#define {\bfseries P\+C\+I\+\_\+\+M\+E\+M\+\_\+\+W\+I\+N0}~0
+\item 
+\#define {\bfseries B\+S\+P\+\_\+\+U\+A\+R\+T\+\_\+\+I\+O\+B\+A\+S\+E\+\_\+\+C\+O\+M1}~((\+\_\+\+I\+O\+\_\+\+B\+A\+SE)+0x3f8)
+\item 
+\#define {\bfseries B\+S\+P\+\_\+\+U\+A\+R\+T\+\_\+\+I\+O\+B\+A\+S\+E\+\_\+\+C\+O\+M2}~((\+\_\+\+I\+O\+\_\+\+B\+A\+SE)+0x2f8)
+\item 
+\#define {\bfseries B\+S\+P\+\_\+\+K\+B\+D\+\_\+\+I\+O\+B\+A\+SE}~((\+\_\+\+I\+O\+\_\+\+B\+A\+SE)+0x60)
+\item 
+\#define {\bfseries B\+S\+P\+\_\+\+V\+G\+A\+\_\+\+I\+O\+B\+A\+SE}~((\+\_\+\+I\+O\+\_\+\+B\+A\+SE)+0x3c0)
+\item 
+\#define {\bfseries B\+S\+P\+\_\+\+C\+O\+N\+S\+O\+L\+E\+\_\+\+P\+O\+RT}~\mbox{\hyperlink{group__i386__uart_gaa1561064cc8499388f7512347b434d25}{B\+S\+P\+\_\+\+U\+A\+R\+T\+\_\+\+C\+O\+M1}}
+\item 
+\#define {\bfseries B\+S\+P\+\_\+\+U\+A\+R\+T\+\_\+\+B\+A\+U\+D\+\_\+\+B\+A\+SE}~115200
+\item 
+\#define {\bfseries B\+S\+P\+\_\+\+P\+I\+C\+\_\+\+D\+O\+\_\+\+E\+OI}~openpic\+\_\+eoi(0)
+\item 
+\#define {\bfseries outport\+\_\+byte}(port,  value)~outb(value,port)
+\item 
+\#define {\bfseries outport\+\_\+word}(port,  value)~outw(value,port)
+\item 
+\#define {\bfseries outport\+\_\+long}(port,  value)~outl(value,port)
+\item 
+\#define {\bfseries inport\+\_\+byte}(port,  value)~(value = inb(port))
+\item 
+\#define {\bfseries inport\+\_\+word}(port,  value)~(value = inw(port))
+\item 
+\#define {\bfseries inport\+\_\+long}(port,  value)~(value = inl(port))
+\item 
+\#define {\bfseries B\+S\+P\+\_\+\+Convert\+\_\+decrementer}(\+\_\+value)~((unsigned long long) ((((unsigned long long)B\+S\+P\+\_\+time\+\_\+base\+\_\+divisor) $\ast$ 1000000\+U\+L\+L) /((unsigned long long) B\+S\+P\+\_\+bus\+\_\+frequency)) $\ast$ ((unsigned long long) (\+\_\+value)))
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int {\bfseries B\+S\+P\+\_\+disconnect\+\_\+clock\+\_\+handler} (void)
+\item 
+int {\bfseries B\+S\+P\+\_\+connect\+\_\+clock\+\_\+handler} (void)
+\item 
+unsigned long {\bfseries \+\_\+\+B\+S\+P\+\_\+clear\+\_\+hostbridge\+\_\+errors} (int enable\+M\+CP, int quiet)
+\item 
+char $\ast$ {\bfseries save\+\_\+boot\+\_\+params} (void $\ast$r3, void $\ast$r4, void $\ast$r5, char $\ast$cmdline\+\_\+start, char $\ast$cmdline\+\_\+end)
+\item 
+void {\bfseries zero\+\_\+bss} (void)
+\item 
+void {\bfseries V\+I\+A\+\_\+isa\+\_\+bridge\+\_\+interrupts\+\_\+setup} (void)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+unsigned int {\bfseries B\+S\+P\+\_\+mem\+\_\+size}
+\item 
+unsigned int {\bfseries B\+S\+P\+\_\+heap\+\_\+start}
+\item 
+unsigned int {\bfseries B\+S\+P\+\_\+bus\+\_\+frequency}
+\item 
+unsigned int {\bfseries B\+S\+P\+\_\+processor\+\_\+frequency}
+\item 
+unsigned int {\bfseries B\+S\+P\+\_\+time\+\_\+base\+\_\+divisor}
+\item 
+char $\ast$ {\bfseries B\+S\+P\+\_\+commandline\+\_\+string}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Global B\+SP definitions. 
+

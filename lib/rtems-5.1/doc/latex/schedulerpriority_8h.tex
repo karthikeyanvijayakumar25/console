@@ -1,0 +1,47 @@
+\hypertarget{schedulerpriority_8h}{}\section{cpukit/include/rtems/score/schedulerpriority.h File Reference}
+\label{schedulerpriority_8h}\index{cpukit/include/rtems/score/schedulerpriority.h@{cpukit/include/rtems/score/schedulerpriority.h}}
+
+
+Thread Manipulation with the Priority-\/\+Based Scheduler.  
+
+
+{\ttfamily \#include $<$rtems/score/chain.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/score/prioritybitmap.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/score/scheduler.\+h$>$}\newline
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structScheduler__priority__Context}{Scheduler\+\_\+priority\+\_\+\+Context}}
+\item 
+struct \mbox{\hyperlink{structScheduler__priority__Ready__queue}{Scheduler\+\_\+priority\+\_\+\+Ready\+\_\+queue}}
+\begin{DoxyCompactList}\small\item\em Data for ready queue operations. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structScheduler__priority__Node}{Scheduler\+\_\+priority\+\_\+\+Node}}
+\begin{DoxyCompactList}\small\item\em Scheduler node specialization for Deterministic Priority schedulers. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__RTEMSScoreSchedulerDPS_ga146e87fdcedc2532678dee635f2421ba}{S\+C\+H\+E\+D\+U\+L\+E\+R\+\_\+\+P\+R\+I\+O\+R\+I\+T\+Y\+\_\+\+E\+N\+T\+R\+Y\+\_\+\+P\+O\+I\+N\+TS}}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{group__RTEMSScoreSchedulerDPS_ga623c461e2ff127d4c9619410d89dc31d}{\+\_\+\+Scheduler\+\_\+priority\+\_\+\+Initialize}} (const \mbox{\hyperlink{struct__Scheduler__Control}{Scheduler\+\_\+\+Control}} $\ast$scheduler)
+\begin{DoxyCompactList}\small\item\em Initializes the priority scheduler. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__RTEMSScoreSchedulerDPS_ga0ef8d30efe3b8106036c277fb1e6967e}{\+\_\+\+Scheduler\+\_\+priority\+\_\+\+Block}} (const \mbox{\hyperlink{struct__Scheduler__Control}{Scheduler\+\_\+\+Control}} $\ast$scheduler, \mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$the\+\_\+thread, \mbox{\hyperlink{structScheduler__Node}{Scheduler\+\_\+\+Node}} $\ast$node)
+\begin{DoxyCompactList}\small\item\em Blocks the thread. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__RTEMSScoreSchedulerDPS_ga5f88549e443f989b9058f08f46eb4e8f}{\+\_\+\+Scheduler\+\_\+priority\+\_\+\+Schedule}} (const \mbox{\hyperlink{struct__Scheduler__Control}{Scheduler\+\_\+\+Control}} $\ast$scheduler, \mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$the\+\_\+thread)
+\begin{DoxyCompactList}\small\item\em Sets the heir thread to be the next ready thread. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__RTEMSScoreSchedulerDPS_ga2a24da77012650161d32bed57eb5c128}{\+\_\+\+Scheduler\+\_\+priority\+\_\+\+Unblock}} (const \mbox{\hyperlink{struct__Scheduler__Control}{Scheduler\+\_\+\+Control}} $\ast$scheduler, \mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$the\+\_\+thread, \mbox{\hyperlink{structScheduler__Node}{Scheduler\+\_\+\+Node}} $\ast$node)
+\begin{DoxyCompactList}\small\item\em Unblocks the thread. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__RTEMSScoreSchedulerDPS_gaa9250624cb136b5fd42bdfe060a2eb5e}{\+\_\+\+Scheduler\+\_\+priority\+\_\+\+Update\+\_\+priority}} (const \mbox{\hyperlink{struct__Scheduler__Control}{Scheduler\+\_\+\+Control}} $\ast$scheduler, \mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$the\+\_\+thread, \mbox{\hyperlink{structScheduler__Node}{Scheduler\+\_\+\+Node}} $\ast$base\+\_\+node)
+\begin{DoxyCompactList}\small\item\em Updates the priority of the node. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__RTEMSScoreSchedulerDPS_ga068b274fb5ddb43859266d6bcfadb060}{\+\_\+\+Scheduler\+\_\+priority\+\_\+\+Node\+\_\+initialize}} (const \mbox{\hyperlink{struct__Scheduler__Control}{Scheduler\+\_\+\+Control}} $\ast$scheduler, \mbox{\hyperlink{structScheduler__Node}{Scheduler\+\_\+\+Node}} $\ast$node, \mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$the\+\_\+thread, \mbox{\hyperlink{group__RTEMSScorePriority_ga59d02b58072d31a9a1cfe644557aefe2}{Priority\+\_\+\+Control}} priority)
+\begin{DoxyCompactList}\small\item\em Initializes the node with the given priority. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__RTEMSScoreSchedulerDPS_ga5a3959d17cc9aa59b20ef5622e5de88f}{\+\_\+\+Scheduler\+\_\+priority\+\_\+\+Yield}} (const \mbox{\hyperlink{struct__Scheduler__Control}{Scheduler\+\_\+\+Control}} $\ast$scheduler, \mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$the\+\_\+thread, \mbox{\hyperlink{structScheduler__Node}{Scheduler\+\_\+\+Node}} $\ast$node)
+\begin{DoxyCompactList}\small\item\em Performs the yield of a thread. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Thread Manipulation with the Priority-\/\+Based Scheduler. 
+
+This include file contains all the constants and structures associated with the manipulation of threads for the priority-\/based scheduler. 

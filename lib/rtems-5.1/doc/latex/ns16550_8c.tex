@@ -1,0 +1,177 @@
+\hypertarget{ns16550_8c}{}\section{bsps/shared/dev/serial/ns16550.c File Reference}
+\label{ns16550_8c}\index{bsps/shared/dev/serial/ns16550.c@{bsps/shared/dev/serial/ns16550.c}}
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$rtems.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/libio.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/ringbuf.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/bsp\+Io.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/termiostypes.\+h$>$}\newline
+{\ttfamily \#include $<$libchip/serial.\+h$>$}\newline
+{\ttfamily \#include $<$libchip/sersupp.\+h$>$}\newline
+{\ttfamily \#include $<$bsp.\+h$>$}\newline
+{\ttfamily \#include $<$libchip/ns16550\+\_\+p.\+h$>$}\newline
+{\ttfamily \#include $<$libchip/ns16550.\+h$>$}\newline
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structNS16550Context}{N\+S16550\+Context}}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{ns16550_8c_aef1853592fbc04663b030e1fd810c0d8}\label{ns16550_8c_aef1853592fbc04663b030e1fd810c0d8}} 
+N\+S16550\+\_\+\+S\+T\+A\+T\+IC void {\bfseries ns16550\+\_\+init} (int minor)
+\item 
+\mbox{\Hypertarget{ns16550_8c_acd22c284572031e387e54c61136f57c3}\label{ns16550_8c_acd22c284572031e387e54c61136f57c3}} 
+N\+S16550\+\_\+\+S\+T\+A\+T\+IC int {\bfseries ns16550\+\_\+open} (int major, int minor, void $\ast$arg)
+\item 
+\mbox{\Hypertarget{ns16550_8c_a8420b5b67271bdeebb1d2221e586d0b1}\label{ns16550_8c_a8420b5b67271bdeebb1d2221e586d0b1}} 
+N\+S16550\+\_\+\+S\+T\+A\+T\+IC int {\bfseries ns16550\+\_\+close} (int major, int minor, void $\ast$arg)
+\item 
+\mbox{\Hypertarget{ns16550_8c_acd7f103cb0419366895706b76491c13d}\label{ns16550_8c_acd7f103cb0419366895706b76491c13d}} 
+N\+S16550\+\_\+\+S\+T\+A\+T\+IC void {\bfseries ns16550\+\_\+write\+\_\+polled} (int minor, char c\+Char)
+\item 
+\mbox{\Hypertarget{ns16550_8c_a3131bbd7f08d70b5ca8da175a447d811}\label{ns16550_8c_a3131bbd7f08d70b5ca8da175a447d811}} 
+N\+S16550\+\_\+\+S\+T\+A\+T\+IC int {\bfseries ns16550\+\_\+assert\+\_\+\+R\+TS} (int minor)
+\item 
+\mbox{\Hypertarget{ns16550_8c_a78f1ac71759f23f4883d245af7816faf}\label{ns16550_8c_a78f1ac71759f23f4883d245af7816faf}} 
+N\+S16550\+\_\+\+S\+T\+A\+T\+IC int {\bfseries ns16550\+\_\+negate\+\_\+\+R\+TS} (int minor)
+\item 
+\mbox{\Hypertarget{ns16550_8c_a2381e794a20863952cd50b4ae8d8a941}\label{ns16550_8c_a2381e794a20863952cd50b4ae8d8a941}} 
+N\+S16550\+\_\+\+S\+T\+A\+T\+IC int {\bfseries ns16550\+\_\+assert\+\_\+\+D\+TR} (int minor)
+\item 
+\mbox{\Hypertarget{ns16550_8c_a648a5da8705d32a6b295a252b3ba3e13}\label{ns16550_8c_a648a5da8705d32a6b295a252b3ba3e13}} 
+N\+S16550\+\_\+\+S\+T\+A\+T\+IC int {\bfseries ns16550\+\_\+negate\+\_\+\+D\+TR} (int minor)
+\item 
+\mbox{\Hypertarget{ns16550_8c_a742b76b2d89641599d9e89bf2aa88182}\label{ns16550_8c_a742b76b2d89641599d9e89bf2aa88182}} 
+N\+S16550\+\_\+\+S\+T\+A\+T\+IC void {\bfseries ns16550\+\_\+initialize\+\_\+interrupts} (int minor)
+\item 
+\mbox{\Hypertarget{ns16550_8c_a758a6a048c27fae75e003f03e6bb0388}\label{ns16550_8c_a758a6a048c27fae75e003f03e6bb0388}} 
+N\+S16550\+\_\+\+S\+T\+A\+T\+IC void {\bfseries ns16550\+\_\+cleanup\+\_\+interrupts} (int minor)
+\item 
+N\+S16550\+\_\+\+S\+T\+A\+T\+IC ssize\+\_\+t \mbox{\hyperlink{ns16550_8c_a65b538bd6105f1257bf250d34f245b73}{ns16550\+\_\+write\+\_\+support\+\_\+int}} (int minor, const char $\ast$buf, size\+\_\+t len)
+\begin{DoxyCompactList}\small\item\em Transmits up to {\itshape len} characters from {\itshape buf}. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{ns16550_8c_a8cf451ee95b7826521138d0fb579e51b}\label{ns16550_8c_a8cf451ee95b7826521138d0fb579e51b}} 
+N\+S16550\+\_\+\+S\+T\+A\+T\+IC ssize\+\_\+t {\bfseries ns16550\+\_\+write\+\_\+support\+\_\+polled} (int minor, const char $\ast$buf, size\+\_\+t len)
+\item 
+\mbox{\Hypertarget{ns16550_8c_a3f7fbfb7e4600e8e0fba8c0e1de5938a}\label{ns16550_8c_a3f7fbfb7e4600e8e0fba8c0e1de5938a}} 
+int {\bfseries ns16550\+\_\+inbyte\+\_\+nonblocking\+\_\+polled} (int minor)
+\item 
+\mbox{\Hypertarget{ns16550_8c_ac25510ef61e7c8ba6ef08fafd9eac4e6}\label{ns16550_8c_ac25510ef61e7c8ba6ef08fafd9eac4e6}} 
+N\+S16550\+\_\+\+S\+T\+A\+T\+IC void {\bfseries ns16550\+\_\+enable\+\_\+interrupts} (\mbox{\hyperlink{struct__console__tbl}{console\+\_\+tbl}} $\ast$c, int mask)
+\item 
+\mbox{\Hypertarget{ns16550_8c_a6f36f50f38e058b71eb8957890e8d4dc}\label{ns16550_8c_a6f36f50f38e058b71eb8957890e8d4dc}} 
+N\+S16550\+\_\+\+S\+T\+A\+T\+IC int {\bfseries ns16550\+\_\+set\+\_\+attributes} (int minor, const struct termios $\ast$t)
+\item 
+\mbox{\Hypertarget{ns16550_8c_a52d716924ba2367c884bac1bb229e7c4}\label{ns16550_8c_a52d716924ba2367c884bac1bb229e7c4}} 
+void \mbox{\hyperlink{ns16550_8c_a52d716924ba2367c884bac1bb229e7c4}{ns16550\+\_\+outch\+\_\+polled}} (\mbox{\hyperlink{struct__console__tbl}{console\+\_\+tbl}} $\ast$c, char out)
+\begin{DoxyCompactList}\small\item\em Polled write for N\+S16550. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{ns16550_8c_a897780ba62e6ecb1f25b5872039fbace}\label{ns16550_8c_a897780ba62e6ecb1f25b5872039fbace}} 
+int {\bfseries ns16550\+\_\+inch\+\_\+polled} (\mbox{\hyperlink{struct__console__tbl}{console\+\_\+tbl}} $\ast$c)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const \mbox{\hyperlink{struct__console__flow}{console\+\_\+flow}} {\bfseries ns16550\+\_\+flow\+\_\+\+R\+T\+S\+C\+TS}
+\item 
+const \mbox{\hyperlink{struct__console__flow}{console\+\_\+flow}} {\bfseries ns16550\+\_\+flow\+\_\+\+D\+T\+R\+C\+TS}
+\item 
+const \mbox{\hyperlink{struct__console__fns}{console\+\_\+fns}} {\bfseries ns16550\+\_\+fns}
+\item 
+const \mbox{\hyperlink{struct__console__fns}{console\+\_\+fns}} {\bfseries ns16550\+\_\+fns\+\_\+polled}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This file contains the T\+TY driver for the National Semiconductor N\+S16550.
+
+This part is widely cloned and second sourced. It is found in a number of \char`\"{}\+Super I\+O\char`\"{} controllers.
+
+This driver uses the termios pseudo driver. 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{ns16550_8c_a65b538bd6105f1257bf250d34f245b73}\label{ns16550_8c_a65b538bd6105f1257bf250d34f245b73}} 
+\index{ns16550.c@{ns16550.c}!ns16550\_write\_support\_int@{ns16550\_write\_support\_int}}
+\index{ns16550\_write\_support\_int@{ns16550\_write\_support\_int}!ns16550.c@{ns16550.c}}
+\subsubsection{\texorpdfstring{ns16550\_write\_support\_int()}{ns16550\_write\_support\_int()}}
+{\footnotesize\ttfamily ssize\+\_\+t ns16550\+\_\+write\+\_\+support\+\_\+int (\begin{DoxyParamCaption}\item[{int}]{minor,  }\item[{const char $\ast$}]{buf,  }\item[{size\+\_\+t}]{len }\end{DoxyParamCaption})}
+
+
+
+Transmits up to {\itshape len} characters from {\itshape buf}. 
+
+This routine is invoked either from task context with disabled interrupts to start a new transmission process with exactly one character in case of an idle output state or from the interrupt handler to refill the transmitter.
+
+Returns always zero. 
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{ns16550_8c_a8ccfac0534c0e10e8473c5cddf74a363}\label{ns16550_8c_a8ccfac0534c0e10e8473c5cddf74a363}} 
+\index{ns16550.c@{ns16550.c}!ns16550\_flow\_DTRCTS@{ns16550\_flow\_DTRCTS}}
+\index{ns16550\_flow\_DTRCTS@{ns16550\_flow\_DTRCTS}!ns16550.c@{ns16550.c}}
+\subsubsection{\texorpdfstring{ns16550\_flow\_DTRCTS}{ns16550\_flow\_DTRCTS}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{struct__console__flow}{console\+\_\+flow}} ns16550\+\_\+flow\+\_\+\+D\+T\+R\+C\+TS}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{  ns16550\_negate\_DTR,             }
+\DoxyCodeLine{  ns16550\_assert\_DTR              }
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{ns16550_8c_a470d779e5ea0da722234edef2761cfce}\label{ns16550_8c_a470d779e5ea0da722234edef2761cfce}} 
+\index{ns16550.c@{ns16550.c}!ns16550\_flow\_RTSCTS@{ns16550\_flow\_RTSCTS}}
+\index{ns16550\_flow\_RTSCTS@{ns16550\_flow\_RTSCTS}!ns16550.c@{ns16550.c}}
+\subsubsection{\texorpdfstring{ns16550\_flow\_RTSCTS}{ns16550\_flow\_RTSCTS}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{struct__console__flow}{console\+\_\+flow}} ns16550\+\_\+flow\+\_\+\+R\+T\+S\+C\+TS}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{  ns16550\_negate\_RTS,             }
+\DoxyCodeLine{  ns16550\_assert\_RTS              }
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{ns16550_8c_ae0baa3c397cd9fc0df937f391cba02dc}\label{ns16550_8c_ae0baa3c397cd9fc0df937f391cba02dc}} 
+\index{ns16550.c@{ns16550.c}!ns16550\_fns@{ns16550\_fns}}
+\index{ns16550\_fns@{ns16550\_fns}!ns16550.c@{ns16550.c}}
+\subsubsection{\texorpdfstring{ns16550\_fns}{ns16550\_fns}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{struct__console__fns}{console\+\_\+fns}} ns16550\+\_\+fns}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{  libchip\_serial\_default\_probe,   }
+\DoxyCodeLine{  ns16550\_open,                   }
+\DoxyCodeLine{  ns16550\_close,                  }
+\DoxyCodeLine{  \mbox{\hyperlink{bestcomm__api_8h_a872bb74de61c3689ccd5b41873fce42c}{NULL}},                           }
+\DoxyCodeLine{  \mbox{\hyperlink{ns16550_8c_a65b538bd6105f1257bf250d34f245b73}{ns16550\_write\_support\_int}},      }
+\DoxyCodeLine{  ns16550\_init,                   }
+\DoxyCodeLine{  ns16550\_write\_polled,           }
+\DoxyCodeLine{  ns16550\_set\_attributes,         }
+\DoxyCodeLine{  \textcolor{keyword}{true}                            }
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{ns16550_8c_a020b1de2681f646a2749ebfa907c0afb}\label{ns16550_8c_a020b1de2681f646a2749ebfa907c0afb}} 
+\index{ns16550.c@{ns16550.c}!ns16550\_fns\_polled@{ns16550\_fns\_polled}}
+\index{ns16550\_fns\_polled@{ns16550\_fns\_polled}!ns16550.c@{ns16550.c}}
+\subsubsection{\texorpdfstring{ns16550\_fns\_polled}{ns16550\_fns\_polled}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{struct__console__fns}{console\+\_\+fns}} ns16550\+\_\+fns\+\_\+polled}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{  libchip\_serial\_default\_probe,        }
+\DoxyCodeLine{  ns16550\_open,                        }
+\DoxyCodeLine{  ns16550\_close,                       }
+\DoxyCodeLine{  ns16550\_inbyte\_nonblocking\_polled,   }
+\DoxyCodeLine{  ns16550\_write\_support\_polled,        }
+\DoxyCodeLine{  ns16550\_init,                        }
+\DoxyCodeLine{  ns16550\_write\_polled,                }
+\DoxyCodeLine{  ns16550\_set\_attributes,              }
+\DoxyCodeLine{  \textcolor{keyword}{false}                                }
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}

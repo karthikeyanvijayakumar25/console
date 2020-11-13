@@ -1,0 +1,64 @@
+\hypertarget{signalmp_8c}{}\section{cpukit/rtems/src/signalmp.c File Reference}
+\label{signalmp_8c}\index{cpukit/rtems/src/signalmp.c@{cpukit/rtems/src/signalmp.c}}
+
+
+Signal MP Support.  
+
+
+{\ttfamily \#include $<$rtems/rtems/signalimpl.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/rtems/optionsimpl.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/rtems/statusimpl.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/score/statesimpl.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/score/threadimpl.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/score/threadqimpl.\+h$>$}\newline
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structSignal__MP__Packet}{Signal\+\_\+\+M\+P\+\_\+\+Packet}}
+\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{signalmp_8c_a458f2730ec08ce3a1607ce24d28b45c9}{Signal\+\_\+\+M\+P\+\_\+\+Remote\+\_\+operations}} \{ {\bfseries S\+I\+G\+N\+A\+L\+\_\+\+M\+P\+\_\+\+S\+E\+N\+D\+\_\+\+R\+E\+Q\+U\+E\+ST} = 0, 
+{\bfseries S\+I\+G\+N\+A\+L\+\_\+\+M\+P\+\_\+\+S\+E\+N\+D\+\_\+\+R\+E\+S\+P\+O\+N\+SE} = 1
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{signalmp_8c_a1cba77d9de67d980db116d1b23a9874a}\label{signalmp_8c_a1cba77d9de67d980db116d1b23a9874a}} 
+{\bfseries R\+T\+E\+M\+S\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+A\+S\+S\+E\+RT} (sizeof(\mbox{\hyperlink{structSignal__MP__Packet}{Signal\+\_\+\+M\+P\+\_\+\+Packet}})$<$=\mbox{\hyperlink{group__RTEMSScoreMPPacket_gadb26ef7629e08a46b4d1caa3a61a6788}{M\+P\+\_\+\+P\+A\+C\+K\+E\+T\+\_\+\+M\+I\+N\+I\+M\+U\+M\+\_\+\+P\+A\+C\+K\+E\+T\+\_\+\+S\+I\+ZE}}, \mbox{\hyperlink{structSignal__MP__Packet}{Signal\+\_\+\+M\+P\+\_\+\+Packet}})
+\item 
+\mbox{\Hypertarget{signalmp_8c_a3e33c7c7a26c39e95263fc32f5d95d0e}\label{signalmp_8c_a3e33c7c7a26c39e95263fc32f5d95d0e}} 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{signalmp_8c_a3e33c7c7a26c39e95263fc32f5d95d0e}{\+\_\+\+Signal\+\_\+\+M\+P\+\_\+\+Send}} (\mbox{\hyperlink{group__ClassicTasks_gab20892b814dced7dd4e5b9bf42becd57}{rtems\+\_\+id}} id, \mbox{\hyperlink{group__ClassicASR_gae494c868e6d04d19b2f403bb51de98eb}{rtems\+\_\+signal\+\_\+set}} signal\+\_\+set)
+\begin{DoxyCompactList}\small\item\em Issues a remote \mbox{\hyperlink{group__ClassicSignal_ga9b10bae66f1a80b2bc7151eb1ce90e23}{rtems\+\_\+signal\+\_\+send()}} request. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{signalmp_8c_a1259b6d2d57c4768c74ce209c6b16e75}{\+\_\+\+Signal\+\_\+\+M\+P\+\_\+\+Process\+\_\+packet}} (rtems\+\_\+packet\+\_\+prefix $\ast$the\+\_\+packet\+\_\+prefix)
+\begin{DoxyCompactList}\small\item\em Signal MP Process Packet. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Signal MP Support. 
+
+
+
+\subsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{signalmp_8c_a458f2730ec08ce3a1607ce24d28b45c9}\label{signalmp_8c_a458f2730ec08ce3a1607ce24d28b45c9}} 
+\index{signalmp.c@{signalmp.c}!Signal\_MP\_Remote\_operations@{Signal\_MP\_Remote\_operations}}
+\index{Signal\_MP\_Remote\_operations@{Signal\_MP\_Remote\_operations}!signalmp.c@{signalmp.c}}
+\subsubsection{\texorpdfstring{Signal\_MP\_Remote\_operations}{Signal\_MP\_Remote\_operations}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{signalmp_8c_a458f2730ec08ce3a1607ce24d28b45c9}{Signal\+\_\+\+M\+P\+\_\+\+Remote\+\_\+operations}}}
+
+The following enumerated type defines the list of remote signal operations. 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{signalmp_8c_a1259b6d2d57c4768c74ce209c6b16e75}\label{signalmp_8c_a1259b6d2d57c4768c74ce209c6b16e75}} 
+\index{signalmp.c@{signalmp.c}!\_Signal\_MP\_Process\_packet@{\_Signal\_MP\_Process\_packet}}
+\index{\_Signal\_MP\_Process\_packet@{\_Signal\_MP\_Process\_packet}!signalmp.c@{signalmp.c}}
+\subsubsection{\texorpdfstring{\_Signal\_MP\_Process\_packet()}{\_Signal\_MP\_Process\_packet()}}
+{\footnotesize\ttfamily void \+\_\+\+Signal\+\_\+\+M\+P\+\_\+\+Process\+\_\+packet (\begin{DoxyParamCaption}\item[{rtems\+\_\+packet\+\_\+prefix $\ast$}]{the\+\_\+packet\+\_\+prefix }\end{DoxyParamCaption})}
+
+
+
+Signal MP Process Packet. 
+
+This routine performs the actions specific to this package for the request from another node. 

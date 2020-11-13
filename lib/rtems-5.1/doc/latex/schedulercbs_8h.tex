@@ -1,0 +1,116 @@
+\hypertarget{schedulercbs_8h}{}\section{cpukit/include/rtems/score/schedulercbs.h File Reference}
+\label{schedulercbs_8h}\index{cpukit/include/rtems/score/schedulercbs.h@{cpukit/include/rtems/score/schedulercbs.h}}
+
+
+Thread manipulation for the C\+BS scheduler.  
+
+
+{\ttfamily \#include $<$rtems/score/chain.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/score/priority.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/score/scheduler.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/score/rbtree.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/score/scheduleredf.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/rtems/signal.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/rtems/timer.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/score/thread.\+h$>$}\newline
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structScheduler__CBS__Parameters}{Scheduler\+\_\+\+C\+B\+S\+\_\+\+Parameters}}
+\item 
+struct \mbox{\hyperlink{structScheduler__CBS__Server}{Scheduler\+\_\+\+C\+B\+S\+\_\+\+Server}}
+\item 
+struct \mbox{\hyperlink{structScheduler__CBS__Node}{Scheduler\+\_\+\+C\+B\+S\+\_\+\+Node}}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bfseries S\+C\+H\+E\+D\+U\+L\+E\+R\+\_\+\+C\+B\+S\+\_\+\+M\+A\+X\+I\+M\+U\+M\+\_\+\+P\+R\+I\+O\+R\+I\+TY}~S\+C\+H\+E\+D\+U\+L\+E\+R\+\_\+\+E\+D\+F\+\_\+\+M\+A\+X\+I\+M\+U\+M\+\_\+\+P\+R\+I\+O\+R\+I\+TY
+\item 
+\#define \mbox{\hyperlink{group__RTEMSScoreSchedulerCBS_gacc7efa225c425f676bafa3e5af3c6117}{S\+C\+H\+E\+D\+U\+L\+E\+R\+\_\+\+C\+B\+S\+\_\+\+E\+N\+T\+R\+Y\+\_\+\+P\+O\+I\+N\+TS}}
+\item 
+\#define {\bfseries S\+C\+H\+E\+D\+U\+L\+E\+R\+\_\+\+C\+B\+S\+\_\+\+OK}~0
+\item 
+\#define {\bfseries S\+C\+H\+E\+D\+U\+L\+E\+R\+\_\+\+C\+B\+S\+\_\+\+E\+R\+R\+O\+R\+\_\+\+G\+E\+N\+E\+R\+IC}~-\/16
+\item 
+\#define {\bfseries S\+C\+H\+E\+D\+U\+L\+E\+R\+\_\+\+C\+B\+S\+\_\+\+E\+R\+R\+O\+R\+\_\+\+N\+O\+\_\+\+M\+E\+M\+O\+RY}~-\/17
+\item 
+\#define {\bfseries S\+C\+H\+E\+D\+U\+L\+E\+R\+\_\+\+C\+B\+S\+\_\+\+E\+R\+R\+O\+R\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+P\+A\+R\+A\+M\+E\+T\+ER}~-\/18
+\item 
+\#define {\bfseries S\+C\+H\+E\+D\+U\+L\+E\+R\+\_\+\+C\+B\+S\+\_\+\+E\+R\+R\+O\+R\+\_\+\+U\+N\+A\+U\+T\+H\+O\+R\+I\+Z\+ED}~-\/19
+\item 
+\#define {\bfseries S\+C\+H\+E\+D\+U\+L\+E\+R\+\_\+\+C\+B\+S\+\_\+\+E\+R\+R\+O\+R\+\_\+\+U\+N\+I\+M\+P\+L\+E\+M\+E\+N\+T\+ED}~-\/20
+\item 
+\#define {\bfseries S\+C\+H\+E\+D\+U\+L\+E\+R\+\_\+\+C\+B\+S\+\_\+\+E\+R\+R\+O\+R\+\_\+\+M\+I\+S\+S\+I\+N\+G\+\_\+\+C\+O\+M\+P\+O\+N\+E\+NT}~-\/21
+\item 
+\#define {\bfseries S\+C\+H\+E\+D\+U\+L\+E\+R\+\_\+\+C\+B\+S\+\_\+\+E\+R\+R\+O\+R\+\_\+\+I\+N\+C\+O\+N\+S\+I\+S\+T\+E\+N\+T\+\_\+\+S\+T\+A\+TE}~-\/22
+\item 
+\#define {\bfseries S\+C\+H\+E\+D\+U\+L\+E\+R\+\_\+\+C\+B\+S\+\_\+\+E\+R\+R\+O\+R\+\_\+\+S\+Y\+S\+T\+E\+M\+\_\+\+O\+V\+E\+R\+L\+O\+AD}~-\/23
+\item 
+\#define {\bfseries S\+C\+H\+E\+D\+U\+L\+E\+R\+\_\+\+C\+B\+S\+\_\+\+E\+R\+R\+O\+R\+\_\+\+I\+N\+T\+E\+R\+N\+A\+L\+\_\+\+E\+R\+R\+OR}~-\/24
+\item 
+\#define {\bfseries S\+C\+H\+E\+D\+U\+L\+E\+R\+\_\+\+C\+B\+S\+\_\+\+E\+R\+R\+O\+R\+\_\+\+N\+O\+T\+\_\+\+F\+O\+U\+ND}~-\/25
+\item 
+\#define {\bfseries S\+C\+H\+E\+D\+U\+L\+E\+R\+\_\+\+C\+B\+S\+\_\+\+E\+R\+R\+O\+R\+\_\+\+F\+U\+LL}~-\/26
+\item 
+\#define {\bfseries S\+C\+H\+E\+D\+U\+L\+E\+R\+\_\+\+C\+B\+S\+\_\+\+E\+R\+R\+O\+R\+\_\+\+E\+M\+P\+TY}~-\/27
+\item 
+\#define {\bfseries S\+C\+H\+E\+D\+U\+L\+E\+R\+\_\+\+C\+B\+S\+\_\+\+E\+R\+R\+O\+R\+\_\+\+N\+O\+S\+E\+R\+V\+ER}~S\+C\+H\+E\+D\+U\+L\+E\+R\+\_\+\+C\+B\+S\+\_\+\+E\+R\+R\+O\+R\+\_\+\+N\+O\+T\+\_\+\+F\+O\+U\+ND
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef uint32\+\_\+t \mbox{\hyperlink{group__RTEMSScoreSchedulerCBS_gaec8b0a87aaeee5befd176ed946ad60a7}{Scheduler\+\_\+\+C\+B\+S\+\_\+\+Server\+\_\+id}}
+\item 
+typedef void($\ast$ \mbox{\hyperlink{group__RTEMSScoreSchedulerCBS_ga71e1a7a66ea3c1fcb7e25e900f773858}{Scheduler\+\_\+\+C\+B\+S\+\_\+\+Budget\+\_\+overrun}}) (\mbox{\hyperlink{group__RTEMSScoreSchedulerCBS_gaec8b0a87aaeee5befd176ed946ad60a7}{Scheduler\+\_\+\+C\+B\+S\+\_\+\+Server\+\_\+id}} server\+\_\+id)
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{group__RTEMSScoreSchedulerCBS_gae0d9c2720ee46efdfe87ebf87cd45cae}{\+\_\+\+Scheduler\+\_\+\+C\+B\+S\+\_\+\+Unblock}} (const \mbox{\hyperlink{struct__Scheduler__Control}{Scheduler\+\_\+\+Control}} $\ast$scheduler, \mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$the\+\_\+thread, \mbox{\hyperlink{structScheduler__Node}{Scheduler\+\_\+\+Node}} $\ast$node)
+\begin{DoxyCompactList}\small\item\em Unblocks a thread. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__RTEMSScoreSchedulerCBS_ga26f13ab87c29b1b9abf5e8defae50d47}{\+\_\+\+Scheduler\+\_\+\+C\+B\+S\+\_\+\+Release\+\_\+job}} (const \mbox{\hyperlink{struct__Scheduler__Control}{Scheduler\+\_\+\+Control}} $\ast$scheduler, \mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$the\+\_\+thread, \mbox{\hyperlink{structPriority__Node}{Priority\+\_\+\+Node}} $\ast$priority\+\_\+node, uint64\+\_\+t deadline, \mbox{\hyperlink{structThread__queue__Context}{Thread\+\_\+queue\+\_\+\+Context}} $\ast$queue\+\_\+context)
+\begin{DoxyCompactList}\small\item\em Releases a job. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__RTEMSScoreSchedulerCBS_gaa7df4531e6a166ebebde6355dba251a6}{\+\_\+\+Scheduler\+\_\+\+C\+B\+S\+\_\+\+Cancel\+\_\+job}} (const \mbox{\hyperlink{struct__Scheduler__Control}{Scheduler\+\_\+\+Control}} $\ast$scheduler, \mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$the\+\_\+thread, \mbox{\hyperlink{structPriority__Node}{Priority\+\_\+\+Node}} $\ast$priority\+\_\+node, \mbox{\hyperlink{structThread__queue__Context}{Thread\+\_\+queue\+\_\+\+Context}} $\ast$queue\+\_\+context)
+\begin{DoxyCompactList}\small\item\em Cancels a job. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__RTEMSScoreSchedulerCBS_gad7d02d4d314db30e554b22d2f3c0054d}{\+\_\+\+Scheduler\+\_\+\+C\+B\+S\+\_\+\+Initialize}} (void)
+\begin{DoxyCompactList}\small\item\em \+\_\+\+Scheduler\+\_\+\+C\+B\+S\+\_\+\+Initialize \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__RTEMSScoreSchedulerCBS_gad50adf7e8daf5e926a241e81c5468023}{\+\_\+\+Scheduler\+\_\+\+C\+B\+S\+\_\+\+Attach\+\_\+thread}} (\mbox{\hyperlink{group__RTEMSScoreSchedulerCBS_gaec8b0a87aaeee5befd176ed946ad60a7}{Scheduler\+\_\+\+C\+B\+S\+\_\+\+Server\+\_\+id}} server\+\_\+id, \mbox{\hyperlink{group__ClassicTasks_gab20892b814dced7dd4e5b9bf42becd57}{rtems\+\_\+id}} task\+\_\+id)
+\begin{DoxyCompactList}\small\item\em Attaches a task to an already existing server. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__RTEMSScoreSchedulerCBS_ga9f70f5f54408811d14c4fec717348443}{\+\_\+\+Scheduler\+\_\+\+C\+B\+S\+\_\+\+Detach\+\_\+thread}} (\mbox{\hyperlink{group__RTEMSScoreSchedulerCBS_gaec8b0a87aaeee5befd176ed946ad60a7}{Scheduler\+\_\+\+C\+B\+S\+\_\+\+Server\+\_\+id}} server\+\_\+id, \mbox{\hyperlink{group__ClassicTasks_gab20892b814dced7dd4e5b9bf42becd57}{rtems\+\_\+id}} task\+\_\+id)
+\begin{DoxyCompactList}\small\item\em Detaches from the C\+BS Server. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__RTEMSScoreSchedulerCBS_ga3229f13147960346f284d67dcb30feee}{\+\_\+\+Scheduler\+\_\+\+C\+B\+S\+\_\+\+Cleanup}} (void)
+\begin{DoxyCompactList}\small\item\em Cleans up resources associated to the C\+BS Library. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__RTEMSScoreSchedulerCBS_ga321aafe13a9f4b7815c5250789419dcd}{\+\_\+\+Scheduler\+\_\+\+C\+B\+S\+\_\+\+Create\+\_\+server}} (\mbox{\hyperlink{structScheduler__CBS__Parameters}{Scheduler\+\_\+\+C\+B\+S\+\_\+\+Parameters}} $\ast$params, \mbox{\hyperlink{group__RTEMSScoreSchedulerCBS_ga71e1a7a66ea3c1fcb7e25e900f773858}{Scheduler\+\_\+\+C\+B\+S\+\_\+\+Budget\+\_\+overrun}} budget\+\_\+overrun\+\_\+callback, \mbox{\hyperlink{group__ClassicTasks_gab20892b814dced7dd4e5b9bf42becd57}{rtems\+\_\+id}} $\ast$server\+\_\+id)
+\begin{DoxyCompactList}\small\item\em Creates a new server with specified parameters. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__RTEMSScoreSchedulerCBS_gaa0492d484f48089e4418faa2ed3a83f9}{\+\_\+\+Scheduler\+\_\+\+C\+B\+S\+\_\+\+Destroy\+\_\+server}} (\mbox{\hyperlink{group__RTEMSScoreSchedulerCBS_gaec8b0a87aaeee5befd176ed946ad60a7}{Scheduler\+\_\+\+C\+B\+S\+\_\+\+Server\+\_\+id}} server\+\_\+id)
+\begin{DoxyCompactList}\small\item\em Detaches all tasks from a server and destroys it. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__RTEMSScoreSchedulerCBS_ga9e02096eb010c0141c4c66c27f338aba}{\+\_\+\+Scheduler\+\_\+\+C\+B\+S\+\_\+\+Get\+\_\+approved\+\_\+budget}} (\mbox{\hyperlink{group__RTEMSScoreSchedulerCBS_gaec8b0a87aaeee5befd176ed946ad60a7}{Scheduler\+\_\+\+C\+B\+S\+\_\+\+Server\+\_\+id}} server\+\_\+id, time\+\_\+t $\ast$approved\+\_\+budget)
+\begin{DoxyCompactList}\small\item\em Retrieves the approved budget. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__RTEMSScoreSchedulerCBS_ga881bfce00d607ef1ec895fa5e73043af}{\+\_\+\+Scheduler\+\_\+\+C\+B\+S\+\_\+\+Get\+\_\+remaining\+\_\+budget}} (\mbox{\hyperlink{group__RTEMSScoreSchedulerCBS_gaec8b0a87aaeee5befd176ed946ad60a7}{Scheduler\+\_\+\+C\+B\+S\+\_\+\+Server\+\_\+id}} server\+\_\+id, time\+\_\+t $\ast$remaining\+\_\+budget)
+\begin{DoxyCompactList}\small\item\em Retrieves remaining budget for the current server instance. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__RTEMSScoreSchedulerCBS_gaab8e7331d587e5fbae175acd70fe962e}{\+\_\+\+Scheduler\+\_\+\+C\+B\+S\+\_\+\+Get\+\_\+execution\+\_\+time}} (\mbox{\hyperlink{group__RTEMSScoreSchedulerCBS_gaec8b0a87aaeee5befd176ed946ad60a7}{Scheduler\+\_\+\+C\+B\+S\+\_\+\+Server\+\_\+id}} server\+\_\+id, time\+\_\+t $\ast$exec\+\_\+time, time\+\_\+t $\ast$abs\+\_\+time)
+\begin{DoxyCompactList}\small\item\em Gets relative time info. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__RTEMSScoreSchedulerCBS_gae4acd9e160c2a357b9256ee604de0d6f}{\+\_\+\+Scheduler\+\_\+\+C\+B\+S\+\_\+\+Get\+\_\+parameters}} (\mbox{\hyperlink{group__RTEMSScoreSchedulerCBS_gaec8b0a87aaeee5befd176ed946ad60a7}{Scheduler\+\_\+\+C\+B\+S\+\_\+\+Server\+\_\+id}} server\+\_\+id, \mbox{\hyperlink{structScheduler__CBS__Parameters}{Scheduler\+\_\+\+C\+B\+S\+\_\+\+Parameters}} $\ast$params)
+\begin{DoxyCompactList}\small\item\em Retrieves C\+BS scheduling parameters. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__RTEMSScoreSchedulerCBS_ga00f5de4bbf2dd36138965f58675a1673}{\+\_\+\+Scheduler\+\_\+\+C\+B\+S\+\_\+\+Get\+\_\+server\+\_\+id}} (\mbox{\hyperlink{group__ClassicTasks_gab20892b814dced7dd4e5b9bf42becd57}{rtems\+\_\+id}} task\+\_\+id, \mbox{\hyperlink{group__RTEMSScoreSchedulerCBS_gaec8b0a87aaeee5befd176ed946ad60a7}{Scheduler\+\_\+\+C\+B\+S\+\_\+\+Server\+\_\+id}} $\ast$server\+\_\+id)
+\begin{DoxyCompactList}\small\item\em Gets a thread server id. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__RTEMSScoreSchedulerCBS_gaf899d82926e2d6d83ac1fb6d1072b932}{\+\_\+\+Scheduler\+\_\+\+C\+B\+S\+\_\+\+Set\+\_\+parameters}} (\mbox{\hyperlink{group__RTEMSScoreSchedulerCBS_gaec8b0a87aaeee5befd176ed946ad60a7}{Scheduler\+\_\+\+C\+B\+S\+\_\+\+Server\+\_\+id}} server\+\_\+id, \mbox{\hyperlink{structScheduler__CBS__Parameters}{Scheduler\+\_\+\+C\+B\+S\+\_\+\+Parameters}} $\ast$parameters)
+\begin{DoxyCompactList}\small\item\em Sets parameters for C\+BS scheduling. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__RTEMSScoreSchedulerCBS_ga4dfdf34a4a2601925b2d5cdbf67d07a9}{\+\_\+\+Scheduler\+\_\+\+C\+B\+S\+\_\+\+Budget\+\_\+callout}} (\mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$the\+\_\+thread)
+\begin{DoxyCompactList}\small\item\em Invoked when a limited time quantum is exceeded. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__RTEMSScoreSchedulerCBS_gabb8137112e3b30c70daa4dc3221093cb}{\+\_\+\+Scheduler\+\_\+\+C\+B\+S\+\_\+\+Node\+\_\+initialize}} (const \mbox{\hyperlink{struct__Scheduler__Control}{Scheduler\+\_\+\+Control}} $\ast$scheduler, \mbox{\hyperlink{structScheduler__Node}{Scheduler\+\_\+\+Node}} $\ast$node, \mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$the\+\_\+thread, \mbox{\hyperlink{group__RTEMSScorePriority_ga59d02b58072d31a9a1cfe644557aefe2}{Priority\+\_\+\+Control}} priority)
+\begin{DoxyCompactList}\small\item\em Initializes a C\+BS specific scheduler node of {\itshape the\+\_\+thread}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const uint32\+\_\+t \mbox{\hyperlink{group__RTEMSScoreSchedulerCBS_gad7073b55d1b96892798bbc516978f0ee}{\+\_\+\+Scheduler\+\_\+\+C\+B\+S\+\_\+\+Maximum\+\_\+servers}}
+\item 
+\mbox{\hyperlink{structScheduler__CBS__Server}{Scheduler\+\_\+\+C\+B\+S\+\_\+\+Server}} \mbox{\hyperlink{group__RTEMSScoreSchedulerCBS_ga12ae8c17a62c8837b43a6a6e7a1844f4}{\+\_\+\+Scheduler\+\_\+\+C\+B\+S\+\_\+\+Server\+\_\+list}} \mbox{[}$\,$\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Thread manipulation for the C\+BS scheduler. 
+
+This include file contains all the constants and structures associated with the manipulation of threads for the C\+BS scheduler. 

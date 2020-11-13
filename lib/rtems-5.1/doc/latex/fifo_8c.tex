@@ -1,0 +1,72 @@
+\hypertarget{fifo_8c}{}\section{cpukit/libfs/src/pipe/fifo.c File Reference}
+\label{fifo_8c}\index{cpukit/libfs/src/pipe/fifo.c@{cpukit/libfs/src/pipe/fifo.c}}
+
+
+F\+I\+F\+O/\+Pipe Support.  
+
+
+{\ttfamily \#include $<$sys/param.\+h$>$}\newline
+{\ttfamily \#include $<$sys/filio.\+h$>$}\newline
+{\ttfamily \#include $<$errno.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$rtems.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/libio\+\_\+.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/pipe.\+h$>$}\newline
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{fifo_8c_ab308790cfdc45010e488fa9472d36c61}\label{fifo_8c_ab308790cfdc45010e488fa9472d36c61}} 
+\#define {\bfseries L\+I\+B\+I\+O\+\_\+\+A\+C\+C\+M\+O\+DE}(\+\_\+iop)~(rtems\+\_\+libio\+\_\+iop\+\_\+flags(\+\_\+iop) \& L\+I\+B\+I\+O\+\_\+\+F\+L\+A\+G\+S\+\_\+\+R\+E\+A\+D\+\_\+\+W\+R\+I\+TE)
+\item 
+\mbox{\Hypertarget{fifo_8c_ac49a9eae6347452054d719ee16ce626f}\label{fifo_8c_ac49a9eae6347452054d719ee16ce626f}} 
+\#define {\bfseries L\+I\+B\+I\+O\+\_\+\+N\+O\+D\+E\+L\+AY}(\+\_\+iop)~rtems\+\_\+libio\+\_\+iop\+\_\+is\+\_\+no\+\_\+delay(\+\_\+iop)
+\item 
+\mbox{\Hypertarget{fifo_8c_a8a9ec2550c3635c937c0104844650fd8}\label{fifo_8c_a8a9ec2550c3635c937c0104844650fd8}} 
+\#define {\bfseries P\+I\+P\+E\+\_\+\+E\+M\+P\+TY}(\+\_\+pipe)~(\+\_\+pipe-\/$>$Length == 0)
+\item 
+\mbox{\Hypertarget{fifo_8c_aefd6c7e1ae610fb5913405db50f98bc7}\label{fifo_8c_aefd6c7e1ae610fb5913405db50f98bc7}} 
+\#define {\bfseries P\+I\+P\+E\+\_\+\+F\+U\+LL}(\+\_\+pipe)~(\+\_\+pipe-\/$>$Length == \+\_\+pipe-\/$>$Size)
+\item 
+\mbox{\Hypertarget{fifo_8c_a7dc5ab7bb79bab374b442f5b7fe6b1c2}\label{fifo_8c_a7dc5ab7bb79bab374b442f5b7fe6b1c2}} 
+\#define {\bfseries P\+I\+P\+E\+\_\+\+S\+P\+A\+CE}(\+\_\+pipe)~(\+\_\+pipe-\/$>$Size -\/ \+\_\+pipe-\/$>$Length)
+\item 
+\mbox{\Hypertarget{fifo_8c_a22e2d2213b3abf2b6e172f1e859131af}\label{fifo_8c_a22e2d2213b3abf2b6e172f1e859131af}} 
+\#define {\bfseries P\+I\+P\+E\+\_\+\+W\+S\+T\+A\+RT}(\+\_\+pipe)~((\+\_\+pipe-\/$>$Start + \+\_\+pipe-\/$>$Length) \% \+\_\+pipe-\/$>$Size)
+\item 
+\mbox{\Hypertarget{fifo_8c_a206f3226f418a8b53db73f7b36e02cb6}\label{fifo_8c_a206f3226f418a8b53db73f7b36e02cb6}} 
+\#define {\bfseries P\+I\+P\+E\+\_\+\+L\+O\+CK}(\+\_\+pipe)~rtems\+\_\+mutex\+\_\+lock(\&(\+\_\+pipe)-\/$>$Mutex)
+\item 
+\mbox{\Hypertarget{fifo_8c_a0789d163cf098c448933e5469ce57cb5}\label{fifo_8c_a0789d163cf098c448933e5469ce57cb5}} 
+\#define {\bfseries P\+I\+P\+E\+\_\+\+U\+N\+L\+O\+CK}(\+\_\+pipe)~rtems\+\_\+mutex\+\_\+unlock(\&(\+\_\+pipe)-\/$>$Mutex)
+\item 
+\mbox{\Hypertarget{fifo_8c_a9f95a51fe5c178e318885585d156c749}\label{fifo_8c_a9f95a51fe5c178e318885585d156c749}} 
+\#define {\bfseries P\+I\+P\+E\+\_\+\+R\+E\+A\+D\+W\+A\+IT}(\+\_\+pipe)~rtems\+\_\+condition\+\_\+variable\+\_\+wait(\&(\+\_\+pipe)-\/$>$read\+Barrier, \&(\+\_\+pipe)-\/$>$Mutex)
+\item 
+\mbox{\Hypertarget{fifo_8c_a559d1ae18f22d78b6de1fbaa9513eed2}\label{fifo_8c_a559d1ae18f22d78b6de1fbaa9513eed2}} 
+\#define {\bfseries P\+I\+P\+E\+\_\+\+W\+R\+I\+T\+E\+W\+A\+IT}(\+\_\+pipe)~rtems\+\_\+condition\+\_\+variable\+\_\+wait(\&(\+\_\+pipe)-\/$>$write\+Barrier, \&(\+\_\+pipe)-\/$>$Mutex)
+\item 
+\mbox{\Hypertarget{fifo_8c_a7f80256a7e0506dcf9c5b5e88d5dd686}\label{fifo_8c_a7f80256a7e0506dcf9c5b5e88d5dd686}} 
+\#define {\bfseries P\+I\+P\+E\+\_\+\+W\+A\+K\+E\+U\+P\+R\+E\+A\+D\+E\+RS}(\+\_\+pipe)~rtems\+\_\+condition\+\_\+variable\+\_\+broadcast(\&(\+\_\+pipe)-\/$>$read\+Barrier)
+\item 
+\mbox{\Hypertarget{fifo_8c_a214fefe969920f0e93d6c9281c67c14e}\label{fifo_8c_a214fefe969920f0e93d6c9281c67c14e}} 
+\#define {\bfseries P\+I\+P\+E\+\_\+\+W\+A\+K\+E\+U\+P\+W\+R\+I\+T\+E\+RS}(\+\_\+pipe)~rtems\+\_\+condition\+\_\+variable\+\_\+broadcast(\&(\+\_\+pipe)-\/$>$write\+Barrier)
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{group__FIFO__PIPE_gaeaf913514f36620744271f4c5581d29b}{pipe\+\_\+release}} (\mbox{\hyperlink{structpipe__control}{pipe\+\_\+control\+\_\+t}} $\ast$$\ast$pipep, \mbox{\hyperlink{structrtems__libio__tt}{rtems\+\_\+libio\+\_\+t}} $\ast$iop)
+\begin{DoxyCompactList}\small\item\em Release a pipe. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__FIFO__PIPE_ga15eb64a7cda614759d385c8f38296ea6}{fifo\+\_\+open}} (\mbox{\hyperlink{structpipe__control}{pipe\+\_\+control\+\_\+t}} $\ast$$\ast$pipep, \mbox{\hyperlink{structrtems__libio__tt}{rtems\+\_\+libio\+\_\+t}} $\ast$iop)
+\begin{DoxyCompactList}\small\item\em File system open. Interface to file system open. \end{DoxyCompactList}\item 
+ssize\+\_\+t \mbox{\hyperlink{group__FIFO__PIPE_gafac00fefe4986e2357ffdd01a20b6f2e}{pipe\+\_\+read}} (\mbox{\hyperlink{structpipe__control}{pipe\+\_\+control\+\_\+t}} $\ast$pipe, void $\ast$buffer, size\+\_\+t count, \mbox{\hyperlink{structrtems__libio__tt}{rtems\+\_\+libio\+\_\+t}} $\ast$iop)
+\begin{DoxyCompactList}\small\item\em File system read. \end{DoxyCompactList}\item 
+ssize\+\_\+t \mbox{\hyperlink{group__FIFO__PIPE_gaa3c5b709d15ee5abdfff8552a8052a67}{pipe\+\_\+write}} (\mbox{\hyperlink{structpipe__control}{pipe\+\_\+control\+\_\+t}} $\ast$pipe, const void $\ast$buffer, size\+\_\+t count, \mbox{\hyperlink{structrtems__libio__tt}{rtems\+\_\+libio\+\_\+t}} $\ast$iop)
+\begin{DoxyCompactList}\small\item\em File system write. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__FIFO__PIPE_ga9b1bcd47d18b2adaeb414e2936a86f70}{pipe\+\_\+ioctl}} (\mbox{\hyperlink{structpipe__control}{pipe\+\_\+control\+\_\+t}} $\ast$pipe, ioctl\+\_\+command\+\_\+t cmd, void $\ast$buffer, \mbox{\hyperlink{structrtems__libio__tt}{rtems\+\_\+libio\+\_\+t}} $\ast$iop)
+\begin{DoxyCompactList}\small\item\em File system Input/\+Output control. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+F\+I\+F\+O/\+Pipe Support. 
+

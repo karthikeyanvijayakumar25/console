@@ -1,0 +1,58 @@
+\hypertarget{threadrestart_8c}{}\section{cpukit/score/src/threadrestart.c File Reference}
+\label{threadrestart_8c}\index{cpukit/score/src/threadrestart.c@{cpukit/score/src/threadrestart.c}}
+
+
+Restart Thread.  
+
+
+{\ttfamily \#include $<$rtems/score/threadimpl.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/score/apimutex.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/score/assert.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/score/chainimpl.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/score/isrlock.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/score/schedulerimpl.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/score/stackimpl.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/score/sysstate.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/score/threadqimpl.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/score/userextimpl.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/score/watchdogimpl.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/score/wkspace.\+h$>$}\newline
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structThread__Zombie__control}{Thread\+\_\+\+Zombie\+\_\+control}}
+\item 
+struct \mbox{\hyperlink{structThread__Join__context}{Thread\+\_\+\+Join\+\_\+context}}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{threadrestart_8c_a06e5444a857edd31e42fbb9063d511d1}\label{threadrestart_8c_a06e5444a857edd31e42fbb9063d511d1}} 
+\#define {\bfseries T\+H\+R\+E\+A\+D\+\_\+\+J\+O\+I\+N\+\_\+\+T\+Q\+\_\+\+O\+P\+E\+R\+A\+T\+I\+O\+NS}~\&\+\_\+\+Thread\+\_\+queue\+\_\+\+Operations\+\_\+priority
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{group__RTEMSScoreThread_ga986b5354464f933956a6ea28ba9b74a2}{\+\_\+\+Thread\+\_\+\+Kill\+\_\+zombies}} (void)
+\begin{DoxyCompactList}\small\item\em Kills all zombie threads in the system. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__RTEMSScoreThread_ga659bc82bc257e001d0b94f10436fbab2}{\+\_\+\+Thread\+\_\+\+Join}} (\mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$the\+\_\+thread, \mbox{\hyperlink{group__RTEMSScoreStates_gaeebbea0bfca162709b124fd519cf99d3}{States\+\_\+\+Control}} waiting\+\_\+for\+\_\+join, \mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$executing, \mbox{\hyperlink{structThread__queue__Context}{Thread\+\_\+queue\+\_\+\+Context}} $\ast$queue\+\_\+context)
+\begin{DoxyCompactList}\small\item\em Joins the currently executing thread with the given thread to wait for. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__RTEMSScoreThread_gab1fb3719c77dc89881e4686fad81eeee}{\+\_\+\+Thread\+\_\+\+Cancel}} (\mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$the\+\_\+thread, \mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$executing, void $\ast$exit\+\_\+value)
+\begin{DoxyCompactList}\small\item\em Cancels the thread. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__RTEMSScoreThread_gaf42a844061758d4a5bda639ffc21b8f5}{\+\_\+\+Thread\+\_\+\+Close}} (\mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$the\+\_\+thread, \mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$executing, \mbox{\hyperlink{structThread__Close__context}{Thread\+\_\+\+Close\+\_\+context}} $\ast$\mbox{\hyperlink{sun4u_2tte_8h_a9b4a99475e2709333b8e5d70483173f1}{context}})
+\begin{DoxyCompactList}\small\item\em Closes the thread. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__RTEMSScoreThread_ga99bebb00c256fb08bd5c1bdf546c5e1f}{\+\_\+\+Thread\+\_\+\+Exit}} (\mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$executing, \mbox{\hyperlink{group__RTEMSScoreThread_ga0b4c61e432a0c21855e3122bb394583d}{Thread\+\_\+\+Life\+\_\+state}} set, void $\ast$exit\+\_\+value)
+\begin{DoxyCompactList}\small\item\em Exits the currently executing thread. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__RTEMSScoreThread_ga509001fb716aaf996d70507d74b769ea}{\+\_\+\+Thread\+\_\+\+Restart\+\_\+other}} (\mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$the\+\_\+thread, const \mbox{\hyperlink{structThread__Entry__information}{Thread\+\_\+\+Entry\+\_\+information}} $\ast$\mbox{\hyperlink{structentry}{entry}}, \mbox{\hyperlink{structISR__lock__Context}{I\+S\+R\+\_\+lock\+\_\+\+Context}} $\ast$lock\+\_\+context)
+\begin{DoxyCompactList}\small\item\em Restarts the thread. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__RTEMSScoreThread_gaecbbb447ef2795643c4055ecd2b0f714}{\+\_\+\+Thread\+\_\+\+Restart\+\_\+self}} (\mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$executing, const \mbox{\hyperlink{structThread__Entry__information}{Thread\+\_\+\+Entry\+\_\+information}} $\ast$\mbox{\hyperlink{structentry}{entry}}, \mbox{\hyperlink{structISR__lock__Context}{I\+S\+R\+\_\+lock\+\_\+\+Context}} $\ast$lock\+\_\+context)
+\begin{DoxyCompactList}\small\item\em Restarts the currently executing thread. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreThread_ga0b4c61e432a0c21855e3122bb394583d}{Thread\+\_\+\+Life\+\_\+state}} \mbox{\hyperlink{group__RTEMSScoreThread_ga7e2c11aa0d3c505d0d3e264fbb6bbe7e}{\+\_\+\+Thread\+\_\+\+Change\+\_\+life}} (\mbox{\hyperlink{group__RTEMSScoreThread_ga0b4c61e432a0c21855e3122bb394583d}{Thread\+\_\+\+Life\+\_\+state}} clear, \mbox{\hyperlink{group__RTEMSScoreThread_ga0b4c61e432a0c21855e3122bb394583d}{Thread\+\_\+\+Life\+\_\+state}} set, \mbox{\hyperlink{group__RTEMSScoreThread_ga0b4c61e432a0c21855e3122bb394583d}{Thread\+\_\+\+Life\+\_\+state}} ignore)
+\begin{DoxyCompactList}\small\item\em Changes the currently executing thread to a new state with the sets. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreThread_ga0b4c61e432a0c21855e3122bb394583d}{Thread\+\_\+\+Life\+\_\+state}} \mbox{\hyperlink{group__RTEMSScoreThread_gad5aaea7af4482aebd880403fb9c238af}{\+\_\+\+Thread\+\_\+\+Set\+\_\+life\+\_\+protection}} (\mbox{\hyperlink{group__RTEMSScoreThread_ga0b4c61e432a0c21855e3122bb394583d}{Thread\+\_\+\+Life\+\_\+state}} state)
+\begin{DoxyCompactList}\small\item\em Set the thread to life protected. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Restart Thread. 
+

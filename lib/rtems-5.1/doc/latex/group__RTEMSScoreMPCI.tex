@@ -1,0 +1,498 @@
+\hypertarget{group__RTEMSScoreMPCI}{}\section{M\+P\+CI Handler}
+\label{group__RTEMSScoreMPCI}\index{MPCI Handler@{MPCI Handler}}
+
+
+M\+P\+CI Handler.  
+
+
+\subsection*{Files}
+\begin{DoxyCompactItemize}
+\item 
+file \mbox{\hyperlink{cpukit_2include_2rtems_2score_2mpci_8h}{mpci.\+h}}
+\begin{DoxyCompactList}\small\item\em M\+P\+CI Layer A\+PI. \end{DoxyCompactList}\item 
+file \mbox{\hyperlink{mpciimpl_8h}{mpciimpl.\+h}}
+\begin{DoxyCompactList}\small\item\em M\+P\+CI Layer Implementation. \end{DoxyCompactList}\item 
+file \mbox{\hyperlink{mpci_8c}{mpci.\+c}}
+\begin{DoxyCompactList}\small\item\em Multiprocessing Communications Interface (M\+P\+CI) Handler. \end{DoxyCompactList}\item 
+file \mbox{\hyperlink{mpcidefault_8c}{mpcidefault.\+c}}
+\begin{DoxyCompactList}\small\item\em Multiprocessing Communications Interface (M\+P\+CI) Default Configuration. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structMPCI__Control}{M\+P\+C\+I\+\_\+\+Control}}
+\item 
+struct \mbox{\hyperlink{structMPCI__Configuration}{M\+P\+C\+I\+\_\+\+Configuration}}
+\item 
+struct \mbox{\hyperlink{structMPCI__Internal__packet}{M\+P\+C\+I\+\_\+\+Internal\+\_\+packet}}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__RTEMSScoreMPCI_ga4dc053d46dbd83064840e1166276ece9}{M\+P\+C\+I\+\_\+\+A\+L\+L\+\_\+\+N\+O\+D\+ES}}~0
+\item 
+\#define \mbox{\hyperlink{group__RTEMSScoreMPCI_ga0827bfc7e7f590734da1315634b3b8d2}{M\+P\+C\+I\+\_\+\+D\+E\+F\+A\+U\+L\+T\+\_\+\+T\+I\+M\+E\+O\+UT}}~0x\+F\+F\+F\+F\+F\+F\+FF
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef void \mbox{\hyperlink{group__RTEMSScoreMPCI_ga110fdd671fbc411706e2b281c1685816}{M\+P\+C\+I\+\_\+\+Entry}}
+\item 
+typedef \mbox{\hyperlink{group__RTEMSScoreMPCI_ga110fdd671fbc411706e2b281c1685816}{M\+P\+C\+I\+\_\+\+Entry}}($\ast$ \mbox{\hyperlink{group__RTEMSScoreMPCI_ga40ecc89f5ace847ed93f57e06ef0f27c}{M\+P\+C\+I\+\_\+initialization\+\_\+entry}}) (void)
+\item 
+typedef \mbox{\hyperlink{group__RTEMSScoreMPCI_ga110fdd671fbc411706e2b281c1685816}{M\+P\+C\+I\+\_\+\+Entry}}($\ast$ \mbox{\hyperlink{group__RTEMSScoreMPCI_gaff830d8b635714b2f669bfe612744244}{M\+P\+C\+I\+\_\+get\+\_\+packet\+\_\+entry}}) (\mbox{\hyperlink{structMP__packet__Prefix}{M\+P\+\_\+packet\+\_\+\+Prefix}} $\ast$$\ast$)
+\item 
+typedef \mbox{\hyperlink{group__RTEMSScoreMPCI_ga110fdd671fbc411706e2b281c1685816}{M\+P\+C\+I\+\_\+\+Entry}}($\ast$ \mbox{\hyperlink{group__RTEMSScoreMPCI_gaa1869d09a5e31b0810c9efda6171ffa4}{M\+P\+C\+I\+\_\+return\+\_\+packet\+\_\+entry}}) (\mbox{\hyperlink{structMP__packet__Prefix}{M\+P\+\_\+packet\+\_\+\+Prefix}} $\ast$)
+\item 
+typedef \mbox{\hyperlink{group__RTEMSScoreMPCI_ga110fdd671fbc411706e2b281c1685816}{M\+P\+C\+I\+\_\+\+Entry}}($\ast$ \mbox{\hyperlink{group__RTEMSScoreMPCI_gaeacb0c0d07a93283f07abcc5727a23a8}{M\+P\+C\+I\+\_\+send\+\_\+entry}}) (uint32\+\_\+t, \mbox{\hyperlink{structMP__packet__Prefix}{M\+P\+\_\+packet\+\_\+\+Prefix}} $\ast$)
+\item 
+typedef \mbox{\hyperlink{group__RTEMSScoreMPCI_ga110fdd671fbc411706e2b281c1685816}{M\+P\+C\+I\+\_\+\+Entry}}($\ast$ \mbox{\hyperlink{group__RTEMSScoreMPCI_ga87bfcaa7cd058fd748d6f4b7f530448b}{M\+P\+C\+I\+\_\+receive\+\_\+entry}}) (\mbox{\hyperlink{structMP__packet__Prefix}{M\+P\+\_\+packet\+\_\+\+Prefix}} $\ast$$\ast$)
+\item 
+typedef void($\ast$ \mbox{\hyperlink{group__RTEMSScoreMPCI_gafc97753e25c76740b182f3e8cdf74cc8}{M\+P\+C\+I\+\_\+\+Packet\+\_\+processor}}) (\mbox{\hyperlink{structMP__packet__Prefix}{M\+P\+\_\+packet\+\_\+\+Prefix}} $\ast$)
+\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{group__RTEMSScoreMPCI_ga04a2fa1c1617558e729e75700624cdb7}{M\+P\+C\+I\+\_\+\+Internal\+\_\+\+Remote\+\_\+operations}} \{ {\bfseries M\+P\+C\+I\+\_\+\+P\+A\+C\+K\+E\+T\+S\+\_\+\+S\+Y\+S\+T\+E\+M\+\_\+\+V\+E\+R\+I\+FY} = 0
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{group__RTEMSScoreMPCI_gac273d577d3696588f86f26b1910a2f9c}{\+\_\+\+M\+P\+C\+I\+\_\+\+Register\+\_\+packet\+\_\+processor}} (\mbox{\hyperlink{group__RTEMSScoreMPPacket_gafed9717210f8917e5acb8e63f2c6bac3}{M\+P\+\_\+packet\+\_\+\+Classes}} the\+\_\+class, \mbox{\hyperlink{group__RTEMSScoreMPCI_gafc97753e25c76740b182f3e8cdf74cc8}{M\+P\+C\+I\+\_\+\+Packet\+\_\+processor}} the\+\_\+packet\+\_\+processor)
+\begin{DoxyCompactList}\small\item\em Registers the M\+P\+CI packet processor for the designated object class. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structMP__packet__Prefix}{M\+P\+\_\+packet\+\_\+\+Prefix}} $\ast$ \mbox{\hyperlink{group__RTEMSScoreMPCI_ga66e87499b1e505e2e38411619c88adce}{\+\_\+\+M\+P\+C\+I\+\_\+\+Get\+\_\+packet}} (void)
+\begin{DoxyCompactList}\small\item\em Obtains a packet by invoking the user provided M\+P\+CI get packet callout. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__RTEMSScoreMPCI_ga4921eb7c6291474df410b099381b09d9}{\+\_\+\+M\+P\+C\+I\+\_\+\+Return\+\_\+packet}} (\mbox{\hyperlink{structMP__packet__Prefix}{M\+P\+\_\+packet\+\_\+\+Prefix}} $\ast$the\+\_\+packet)
+\begin{DoxyCompactList}\small\item\em Deallocates a packet. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__RTEMSScoreMPCI_ga02e1e38a1e6a9d3b6488058c89ac96a1}{\+\_\+\+M\+P\+C\+I\+\_\+\+Send\+\_\+process\+\_\+packet}} (uint32\+\_\+t destination, \mbox{\hyperlink{structMP__packet__Prefix}{M\+P\+\_\+packet\+\_\+\+Prefix}} $\ast$the\+\_\+packet)
+\begin{DoxyCompactList}\small\item\em Sends a process packet. \end{DoxyCompactList}\item 
+Status\+\_\+\+Control \mbox{\hyperlink{group__RTEMSScoreMPCI_gaa7cccdabe9e7db7495e1d8bd12e6bcb0}{\+\_\+\+M\+P\+C\+I\+\_\+\+Send\+\_\+request\+\_\+packet}} (uint32\+\_\+t destination, \mbox{\hyperlink{structMP__packet__Prefix}{M\+P\+\_\+packet\+\_\+\+Prefix}} $\ast$the\+\_\+packet, \mbox{\hyperlink{group__RTEMSScoreStates_gaeebbea0bfca162709b124fd519cf99d3}{States\+\_\+\+Control}} extra\+\_\+state)
+\begin{DoxyCompactList}\small\item\em Sends a request packet. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__RTEMSScoreMPCI_ga1623ab44f2cfb10c69b0f62674e53f1f}{\+\_\+\+M\+P\+C\+I\+\_\+\+Send\+\_\+response\+\_\+packet}} (uint32\+\_\+t destination, \mbox{\hyperlink{structMP__packet__Prefix}{M\+P\+\_\+packet\+\_\+\+Prefix}} $\ast$the\+\_\+packet)
+\begin{DoxyCompactList}\small\item\em Sends a response packet. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structMP__packet__Prefix}{M\+P\+\_\+packet\+\_\+\+Prefix}} $\ast$ \mbox{\hyperlink{group__RTEMSScoreMPCI_ga053f924dabe674cd71718615990e408c}{\+\_\+\+M\+P\+C\+I\+\_\+\+Receive\+\_\+packet}} (void)
+\begin{DoxyCompactList}\small\item\em Receives a packet. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$ \mbox{\hyperlink{group__RTEMSScoreMPCI_gae2df57913a498a0305315a2fb6cf12fb}{\+\_\+\+M\+P\+C\+I\+\_\+\+Process\+\_\+response}} (\mbox{\hyperlink{structMP__packet__Prefix}{M\+P\+\_\+packet\+\_\+\+Prefix}} $\ast$the\+\_\+packet)
+\begin{DoxyCompactList}\small\item\em Passes a packet to the thread. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__RTEMSScoreMPCI_gaf232dadc9160e4b1c733906d3a6d1f57}{\+\_\+\+M\+P\+C\+I\+\_\+\+Receive\+\_\+server}} (\mbox{\hyperlink{group__RTEMSScoreThread_gab56e437830bb9a4af5b27ac7ec503b6a}{Thread\+\_\+\+Entry\+\_\+numeric\+\_\+type}} ignored)
+\begin{DoxyCompactList}\small\item\em Receives and processes all packets. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__RTEMSScoreMPCI_gaafbd7ed1ef4bd2b8672df8da832f79f4}{\+\_\+\+M\+P\+C\+I\+\_\+\+Announce}} (void)
+\begin{DoxyCompactList}\small\item\em Announces the availability of a packet. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__RTEMSScoreMPCI_ga63356f90abac093ad7d8817cedf1da28}{\+\_\+\+M\+P\+C\+I\+\_\+\+Internal\+\_\+packets\+\_\+\+Send\+\_\+process\+\_\+packet}} (\mbox{\hyperlink{group__RTEMSScoreMPCI_ga04a2fa1c1617558e729e75700624cdb7}{M\+P\+C\+I\+\_\+\+Internal\+\_\+\+Remote\+\_\+operations}} operation)
+\begin{DoxyCompactList}\small\item\em Performs a process on another node. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__RTEMSScoreMPCI_gae202814c7151db9baf145786aa4ef068}{\+\_\+\+M\+P\+C\+I\+\_\+\+Internal\+\_\+packets\+\_\+\+Process\+\_\+packet}} (\mbox{\hyperlink{structMP__packet__Prefix}{M\+P\+\_\+packet\+\_\+\+Prefix}} $\ast$the\+\_\+packet\+\_\+prefix)
+\begin{DoxyCompactList}\small\item\em Performs requested action from another node. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structMPCI__Internal__packet}{M\+P\+C\+I\+\_\+\+Internal\+\_\+packet}} $\ast$ \mbox{\hyperlink{group__RTEMSScoreMPCI_gaa1dfe78c5adee4604729d791941634a6}{\+\_\+\+M\+P\+C\+I\+\_\+\+Internal\+\_\+packets\+\_\+\+Get\+\_\+packet}} (void)
+\begin{DoxyCompactList}\small\item\em Obtains an internal thread. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} bool \mbox{\hyperlink{group__RTEMSScoreMPCI_gacbb0099162582a23bc5a251b5a763612}{\+\_\+\+Mp\+\_\+packet\+\_\+\+Is\+\_\+valid\+\_\+packet\+\_\+class}} (\mbox{\hyperlink{group__RTEMSScoreMPPacket_gafed9717210f8917e5acb8e63f2c6bac3}{M\+P\+\_\+packet\+\_\+\+Classes}} the\+\_\+packet\+\_\+class)
+\begin{DoxyCompactList}\small\item\em Checks if the packet class is valid. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const \mbox{\hyperlink{structMPCI__Configuration}{M\+P\+C\+I\+\_\+\+Configuration}} \mbox{\hyperlink{group__RTEMSScoreMPCI_ga311175ff94c266c77baead3ec1c55b01}{\+\_\+\+M\+P\+C\+I\+\_\+\+Configuration}}
+\begin{DoxyCompactList}\small\item\em The M\+P\+CI configuration. \end{DoxyCompactList}\item 
+char \mbox{\hyperlink{group__RTEMSScoreMPCI_ga1f31c9829798b2fa17bfae6891c93e9f}{\+\_\+\+M\+P\+C\+I\+\_\+\+Receive\+\_\+server\+\_\+stack}} \mbox{[}$\,$\mbox{]}
+\begin{DoxyCompactList}\small\item\em The M\+P\+CI receive server stack. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structThread__queue__Control}{Thread\+\_\+queue\+\_\+\+Control}} \mbox{\hyperlink{group__RTEMSScoreMPCI_gab1454472037213316f1ba2a85c29820b}{\+\_\+\+M\+P\+C\+I\+\_\+\+Remote\+\_\+blocked\+\_\+threads}}
+\item 
+\mbox{\hyperlink{structMPCI__Control}{M\+P\+C\+I\+\_\+\+Control}} $\ast$ \mbox{\hyperlink{group__RTEMSScoreMPCI_ga6b0a65f9ac68015c46d17f17f44a5bd9}{\+\_\+\+M\+P\+C\+I\+\_\+table}}
+\item 
+\mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$ \mbox{\hyperlink{group__RTEMSScoreMPCI_gac0894f96d2d7e99feb038917fdb3c9cb}{\+\_\+\+M\+P\+C\+I\+\_\+\+Receive\+\_\+server\+\_\+tcb}}
+\begin{DoxyCompactList}\small\item\em Pointer to MP thread control block. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreMPCI_gafc97753e25c76740b182f3e8cdf74cc8}{M\+P\+C\+I\+\_\+\+Packet\+\_\+processor}} \mbox{\hyperlink{group__RTEMSScoreMPCI_ga390b6f48eb63a6879d3c3c2fcb38a4e8}{\+\_\+\+M\+P\+C\+I\+\_\+\+Packet\+\_\+processors}} \mbox{[}\mbox{\hyperlink{group__RTEMSScoreMPPacket_ga968e1b3a70aac1692b70ff42f9525bc7}{M\+P\+\_\+\+P\+A\+C\+K\+E\+T\+\_\+\+C\+L\+A\+S\+S\+E\+S\+\_\+\+L\+A\+ST}}+1\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+M\+P\+CI Handler. 
+
+The M\+P\+CI Handler encapsulates functionality which is related to the generation, receipt, and processing of remote operations in a multiprocessor system. This handler contains the message passing support for making remote service calls as well as the server thread which processes requests from remote nodes. 
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{group__RTEMSScoreMPCI_ga4dc053d46dbd83064840e1166276ece9}\label{group__RTEMSScoreMPCI_ga4dc053d46dbd83064840e1166276ece9}} 
+\index{MPCI Handler@{MPCI Handler}!MPCI\_ALL\_NODES@{MPCI\_ALL\_NODES}}
+\index{MPCI\_ALL\_NODES@{MPCI\_ALL\_NODES}!MPCI Handler@{MPCI Handler}}
+\subsubsection{\texorpdfstring{MPCI\_ALL\_NODES}{MPCI\_ALL\_NODES}}
+{\footnotesize\ttfamily \#define M\+P\+C\+I\+\_\+\+A\+L\+L\+\_\+\+N\+O\+D\+ES~0}
+
+The following defines the node number used when a broadcast is desired. \mbox{\Hypertarget{group__RTEMSScoreMPCI_ga0827bfc7e7f590734da1315634b3b8d2}\label{group__RTEMSScoreMPCI_ga0827bfc7e7f590734da1315634b3b8d2}} 
+\index{MPCI Handler@{MPCI Handler}!MPCI\_DEFAULT\_TIMEOUT@{MPCI\_DEFAULT\_TIMEOUT}}
+\index{MPCI\_DEFAULT\_TIMEOUT@{MPCI\_DEFAULT\_TIMEOUT}!MPCI Handler@{MPCI Handler}}
+\subsubsection{\texorpdfstring{MPCI\_DEFAULT\_TIMEOUT}{MPCI\_DEFAULT\_TIMEOUT}}
+{\footnotesize\ttfamily \#define M\+P\+C\+I\+\_\+\+D\+E\+F\+A\+U\+L\+T\+\_\+\+T\+I\+M\+E\+O\+UT~0x\+F\+F\+F\+F\+F\+F\+FF}
+
+For packets associated with requests that don\textquotesingle{}t already have a timeout, use the one specified by this M\+P\+CI driver. The value specified by the M\+P\+CI driver sets an upper limit on how long a remote request should take to complete. 
+
+\subsection{Typedef Documentation}
+\mbox{\Hypertarget{group__RTEMSScoreMPCI_ga110fdd671fbc411706e2b281c1685816}\label{group__RTEMSScoreMPCI_ga110fdd671fbc411706e2b281c1685816}} 
+\index{MPCI Handler@{MPCI Handler}!MPCI\_Entry@{MPCI\_Entry}}
+\index{MPCI\_Entry@{MPCI\_Entry}!MPCI Handler@{MPCI Handler}}
+\subsubsection{\texorpdfstring{MPCI\_Entry}{MPCI\_Entry}}
+{\footnotesize\ttfamily typedef void \mbox{\hyperlink{group__RTEMSScoreMPCI_ga110fdd671fbc411706e2b281c1685816}{M\+P\+C\+I\+\_\+\+Entry}}}
+
+This type is returned by all user provided M\+P\+CI routines. \mbox{\Hypertarget{group__RTEMSScoreMPCI_gaff830d8b635714b2f669bfe612744244}\label{group__RTEMSScoreMPCI_gaff830d8b635714b2f669bfe612744244}} 
+\index{MPCI Handler@{MPCI Handler}!MPCI\_get\_packet\_entry@{MPCI\_get\_packet\_entry}}
+\index{MPCI\_get\_packet\_entry@{MPCI\_get\_packet\_entry}!MPCI Handler@{MPCI Handler}}
+\subsubsection{\texorpdfstring{MPCI\_get\_packet\_entry}{MPCI\_get\_packet\_entry}}
+{\footnotesize\ttfamily typedef \mbox{\hyperlink{group__RTEMSScoreMPCI_ga110fdd671fbc411706e2b281c1685816}{M\+P\+C\+I\+\_\+\+Entry}}( $\ast$ M\+P\+C\+I\+\_\+get\+\_\+packet\+\_\+entry) (\mbox{\hyperlink{structMP__packet__Prefix}{M\+P\+\_\+packet\+\_\+\+Prefix}} $\ast$$\ast$)}
+
+This type defines the prototype for the get packet entry point in an Multiprocessor Communications Interface. The single parameter will point to the packet allocated. \mbox{\Hypertarget{group__RTEMSScoreMPCI_ga40ecc89f5ace847ed93f57e06ef0f27c}\label{group__RTEMSScoreMPCI_ga40ecc89f5ace847ed93f57e06ef0f27c}} 
+\index{MPCI Handler@{MPCI Handler}!MPCI\_initialization\_entry@{MPCI\_initialization\_entry}}
+\index{MPCI\_initialization\_entry@{MPCI\_initialization\_entry}!MPCI Handler@{MPCI Handler}}
+\subsubsection{\texorpdfstring{MPCI\_initialization\_entry}{MPCI\_initialization\_entry}}
+{\footnotesize\ttfamily typedef \mbox{\hyperlink{group__RTEMSScoreMPCI_ga110fdd671fbc411706e2b281c1685816}{M\+P\+C\+I\+\_\+\+Entry}}( $\ast$ M\+P\+C\+I\+\_\+initialization\+\_\+entry) (void)}
+
+This type defines the prototype for the initization entry point in an Multiprocessor Communications Interface. \mbox{\Hypertarget{group__RTEMSScoreMPCI_gafc97753e25c76740b182f3e8cdf74cc8}\label{group__RTEMSScoreMPCI_gafc97753e25c76740b182f3e8cdf74cc8}} 
+\index{MPCI Handler@{MPCI Handler}!MPCI\_Packet\_processor@{MPCI\_Packet\_processor}}
+\index{MPCI\_Packet\_processor@{MPCI\_Packet\_processor}!MPCI Handler@{MPCI Handler}}
+\subsubsection{\texorpdfstring{MPCI\_Packet\_processor}{MPCI\_Packet\_processor}}
+{\footnotesize\ttfamily typedef void($\ast$ M\+P\+C\+I\+\_\+\+Packet\+\_\+processor) (\mbox{\hyperlink{structMP__packet__Prefix}{M\+P\+\_\+packet\+\_\+\+Prefix}} $\ast$)}
+
+The following defines the type for packet processing routines invoked by the M\+P\+CI Receive server. \mbox{\Hypertarget{group__RTEMSScoreMPCI_ga87bfcaa7cd058fd748d6f4b7f530448b}\label{group__RTEMSScoreMPCI_ga87bfcaa7cd058fd748d6f4b7f530448b}} 
+\index{MPCI Handler@{MPCI Handler}!MPCI\_receive\_entry@{MPCI\_receive\_entry}}
+\index{MPCI\_receive\_entry@{MPCI\_receive\_entry}!MPCI Handler@{MPCI Handler}}
+\subsubsection{\texorpdfstring{MPCI\_receive\_entry}{MPCI\_receive\_entry}}
+{\footnotesize\ttfamily typedef \mbox{\hyperlink{group__RTEMSScoreMPCI_ga110fdd671fbc411706e2b281c1685816}{M\+P\+C\+I\+\_\+\+Entry}}( $\ast$ M\+P\+C\+I\+\_\+receive\+\_\+entry) (\mbox{\hyperlink{structMP__packet__Prefix}{M\+P\+\_\+packet\+\_\+\+Prefix}} $\ast$$\ast$)}
+
+This type defines the prototype for the receive packet entry point in an Multiprocessor Communications Interface. The single parameter will point to a packet allocated and filled in by the receive packet handler. The caller will block until a packet is received. \mbox{\Hypertarget{group__RTEMSScoreMPCI_gaa1869d09a5e31b0810c9efda6171ffa4}\label{group__RTEMSScoreMPCI_gaa1869d09a5e31b0810c9efda6171ffa4}} 
+\index{MPCI Handler@{MPCI Handler}!MPCI\_return\_packet\_entry@{MPCI\_return\_packet\_entry}}
+\index{MPCI\_return\_packet\_entry@{MPCI\_return\_packet\_entry}!MPCI Handler@{MPCI Handler}}
+\subsubsection{\texorpdfstring{MPCI\_return\_packet\_entry}{MPCI\_return\_packet\_entry}}
+{\footnotesize\ttfamily typedef \mbox{\hyperlink{group__RTEMSScoreMPCI_ga110fdd671fbc411706e2b281c1685816}{M\+P\+C\+I\+\_\+\+Entry}}( $\ast$ M\+P\+C\+I\+\_\+return\+\_\+packet\+\_\+entry) (\mbox{\hyperlink{structMP__packet__Prefix}{M\+P\+\_\+packet\+\_\+\+Prefix}} $\ast$)}
+
+This type defines the prototype for the return packet entry point in an Multiprocessor Communications Interface. The single parameter will point to a packet previously allocated by the get packet M\+P\+CI entry. \mbox{\Hypertarget{group__RTEMSScoreMPCI_gaeacb0c0d07a93283f07abcc5727a23a8}\label{group__RTEMSScoreMPCI_gaeacb0c0d07a93283f07abcc5727a23a8}} 
+\index{MPCI Handler@{MPCI Handler}!MPCI\_send\_entry@{MPCI\_send\_entry}}
+\index{MPCI\_send\_entry@{MPCI\_send\_entry}!MPCI Handler@{MPCI Handler}}
+\subsubsection{\texorpdfstring{MPCI\_send\_entry}{MPCI\_send\_entry}}
+{\footnotesize\ttfamily typedef \mbox{\hyperlink{group__RTEMSScoreMPCI_ga110fdd671fbc411706e2b281c1685816}{M\+P\+C\+I\+\_\+\+Entry}}( $\ast$ M\+P\+C\+I\+\_\+send\+\_\+entry) (uint32\+\_\+t, \mbox{\hyperlink{structMP__packet__Prefix}{M\+P\+\_\+packet\+\_\+\+Prefix}} $\ast$)}
+
+This type defines the prototype for send get packet entry point in an Multiprocessor Communications Interface. The single parameter will point to a packet previously allocated by the get packet entry point that has been filled in by the caller. 
+
+\subsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{group__RTEMSScoreMPCI_ga04a2fa1c1617558e729e75700624cdb7}\label{group__RTEMSScoreMPCI_ga04a2fa1c1617558e729e75700624cdb7}} 
+\index{MPCI Handler@{MPCI Handler}!MPCI\_Internal\_Remote\_operations@{MPCI\_Internal\_Remote\_operations}}
+\index{MPCI\_Internal\_Remote\_operations@{MPCI\_Internal\_Remote\_operations}!MPCI Handler@{MPCI Handler}}
+\subsubsection{\texorpdfstring{MPCI\_Internal\_Remote\_operations}{MPCI\_Internal\_Remote\_operations}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{group__RTEMSScoreMPCI_ga04a2fa1c1617558e729e75700624cdb7}{M\+P\+C\+I\+\_\+\+Internal\+\_\+\+Remote\+\_\+operations}}}
+
+The following enumerated type defines the list of internal MP operations. 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{group__RTEMSScoreMPCI_gacbb0099162582a23bc5a251b5a763612}\label{group__RTEMSScoreMPCI_gacbb0099162582a23bc5a251b5a763612}} 
+\index{MPCI Handler@{MPCI Handler}!\_Mp\_packet\_Is\_valid\_packet\_class@{\_Mp\_packet\_Is\_valid\_packet\_class}}
+\index{\_Mp\_packet\_Is\_valid\_packet\_class@{\_Mp\_packet\_Is\_valid\_packet\_class}!MPCI Handler@{MPCI Handler}}
+\subsubsection{\texorpdfstring{\_Mp\_packet\_Is\_valid\_packet\_class()}{\_Mp\_packet\_Is\_valid\_packet\_class()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} bool \+\_\+\+Mp\+\_\+packet\+\_\+\+Is\+\_\+valid\+\_\+packet\+\_\+class (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__RTEMSScoreMPPacket_gafed9717210f8917e5acb8e63f2c6bac3}{M\+P\+\_\+packet\+\_\+\+Classes}}}]{the\+\_\+packet\+\_\+class }\end{DoxyParamCaption})}
+
+
+
+Checks if the packet class is valid. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em the\+\_\+packet\+\_\+class} & The packet class to perform the validation on.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em true} & {\itshape the\+\_\+packet\+\_\+class} is valid. \\
+\hline
+{\em false} & {\itshape the\+\_\+packet\+\_\+class} is not valid.\\
+\hline
+\end{DoxyRetVals}
+\begin{DoxyNote}{Note}
+Check for lower bounds (M\+P\+\_\+\+P\+A\+C\+K\+E\+T\+\_\+\+C\+L\+A\+S\+S\+E\+S\+\_\+\+F\+I\+R\+ST ) is unnecessary because this enum starts at lower bound of zero. 
+\end{DoxyNote}
+\mbox{\Hypertarget{group__RTEMSScoreMPCI_gaafbd7ed1ef4bd2b8672df8da832f79f4}\label{group__RTEMSScoreMPCI_gaafbd7ed1ef4bd2b8672df8da832f79f4}} 
+\index{MPCI Handler@{MPCI Handler}!\_MPCI\_Announce@{\_MPCI\_Announce}}
+\index{\_MPCI\_Announce@{\_MPCI\_Announce}!MPCI Handler@{MPCI Handler}}
+\subsubsection{\texorpdfstring{\_MPCI\_Announce()}{\_MPCI\_Announce()}}
+{\footnotesize\ttfamily void \+\_\+\+M\+P\+C\+I\+\_\+\+Announce (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Announces the availability of a packet. 
+
+This routine informs R\+T\+E\+MS of the availability of an M\+P\+CI packet. \mbox{\Hypertarget{group__RTEMSScoreMPCI_ga66e87499b1e505e2e38411619c88adce}\label{group__RTEMSScoreMPCI_ga66e87499b1e505e2e38411619c88adce}} 
+\index{MPCI Handler@{MPCI Handler}!\_MPCI\_Get\_packet@{\_MPCI\_Get\_packet}}
+\index{\_MPCI\_Get\_packet@{\_MPCI\_Get\_packet}!MPCI Handler@{MPCI Handler}}
+\subsubsection{\texorpdfstring{\_MPCI\_Get\_packet()}{\_MPCI\_Get\_packet()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structMP__packet__Prefix}{M\+P\+\_\+packet\+\_\+\+Prefix}}$\ast$ \+\_\+\+M\+P\+C\+I\+\_\+\+Get\+\_\+packet (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Obtains a packet by invoking the user provided M\+P\+CI get packet callout. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to a M\+P\+CI packet which can be filled in by the caller and used to perform a subsequent remote operation. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{group__RTEMSScoreMPCI_gaa1dfe78c5adee4604729d791941634a6}\label{group__RTEMSScoreMPCI_gaa1dfe78c5adee4604729d791941634a6}} 
+\index{MPCI Handler@{MPCI Handler}!\_MPCI\_Internal\_packets\_Get\_packet@{\_MPCI\_Internal\_packets\_Get\_packet}}
+\index{\_MPCI\_Internal\_packets\_Get\_packet@{\_MPCI\_Internal\_packets\_Get\_packet}!MPCI Handler@{MPCI Handler}}
+\subsubsection{\texorpdfstring{\_MPCI\_Internal\_packets\_Get\_packet()}{\_MPCI\_Internal\_packets\_Get\_packet()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structMPCI__Internal__packet}{M\+P\+C\+I\+\_\+\+Internal\+\_\+packet}}$\ast$ \+\_\+\+M\+P\+C\+I\+\_\+\+Internal\+\_\+packets\+\_\+\+Get\+\_\+packet (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Obtains an internal thread. 
+
+\+\_\+\+M\+P\+C\+I\+\_\+\+Internal\+\_\+packets\+\_\+\+Send\+\_\+object\+\_\+was\+\_\+deleted
+
+This routine is invoked indirectly by the thread queue when a proxy has been removed from the thread queue and the remote node must be informed of this.
+
+This routine is not needed since there are no objects deleted by this manager.\+\_\+\+M\+P\+C\+I\+\_\+\+Internal\+\_\+packets\+\_\+\+Send\+\_\+extract\+\_\+proxy
+
+This routine is invoked when a task is deleted and it has a proxy which must be removed from a thread queue and the remote node must be informed of this.
+
+This routine is not needed since there are no objects deleted by this manager.\+This routine is used to obtain an internal threads MP packet.
+
+
+\begin{DoxyRetVals}{Return values}
+{\em pointer} & The pointer to the obtained packet. \\
+\hline
+{\em N\+U\+LL} & Something went wrong. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{group__RTEMSScoreMPCI_gae202814c7151db9baf145786aa4ef068}\label{group__RTEMSScoreMPCI_gae202814c7151db9baf145786aa4ef068}} 
+\index{MPCI Handler@{MPCI Handler}!\_MPCI\_Internal\_packets\_Process\_packet@{\_MPCI\_Internal\_packets\_Process\_packet}}
+\index{\_MPCI\_Internal\_packets\_Process\_packet@{\_MPCI\_Internal\_packets\_Process\_packet}!MPCI Handler@{MPCI Handler}}
+\subsubsection{\texorpdfstring{\_MPCI\_Internal\_packets\_Process\_packet()}{\_MPCI\_Internal\_packets\_Process\_packet()}}
+{\footnotesize\ttfamily void \+\_\+\+M\+P\+C\+I\+\_\+\+Internal\+\_\+packets\+\_\+\+Process\+\_\+packet (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structMP__packet__Prefix}{M\+P\+\_\+packet\+\_\+\+Prefix}} $\ast$}]{the\+\_\+packet\+\_\+prefix }\end{DoxyParamCaption})}
+
+
+
+Performs requested action from another node. 
+
+\+\_\+\+M\+P\+C\+I\+\_\+\+Internal\+\_\+packets\+\_\+\+Send\+\_\+request\+\_\+packet
+
+This routine performs a remote procedure call so that a directive operation can be initiated on another node.
+
+This routine is not needed since there are no request packets to be sent by this manager.\+\_\+\+M\+P\+C\+I\+\_\+\+Internal\+\_\+packets\+\_\+\+Send\+\_\+response\+\_\+packet
+
+This routine performs a remote procedure call so that a directive can be performed on another node.
+
+This routine is not needed since there are no response packets to be sent by this manager.\+This routine performs the actions specific to this package for the request from another node.
+
+
+\begin{DoxyParams}{Parameters}
+{\em the\+\_\+packet\+\_\+prefix} & The packet prefix for this method. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__RTEMSScoreMPCI_ga63356f90abac093ad7d8817cedf1da28}\label{group__RTEMSScoreMPCI_ga63356f90abac093ad7d8817cedf1da28}} 
+\index{MPCI Handler@{MPCI Handler}!\_MPCI\_Internal\_packets\_Send\_process\_packet@{\_MPCI\_Internal\_packets\_Send\_process\_packet}}
+\index{\_MPCI\_Internal\_packets\_Send\_process\_packet@{\_MPCI\_Internal\_packets\_Send\_process\_packet}!MPCI Handler@{MPCI Handler}}
+\subsubsection{\texorpdfstring{\_MPCI\_Internal\_packets\_Send\_process\_packet()}{\_MPCI\_Internal\_packets\_Send\_process\_packet()}}
+{\footnotesize\ttfamily void \+\_\+\+M\+P\+C\+I\+\_\+\+Internal\+\_\+packets\+\_\+\+Send\+\_\+process\+\_\+packet (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__RTEMSScoreMPCI_ga04a2fa1c1617558e729e75700624cdb7}{M\+P\+C\+I\+\_\+\+Internal\+\_\+\+Remote\+\_\+operations}}}]{operation }\end{DoxyParamCaption})}
+
+
+
+Performs a process on another node. 
+
+This routine performs a remote procedure call so that a process operation can be performed on another node.
+
+
+\begin{DoxyParams}{Parameters}
+{\em operation} & The remote operation to perform. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__RTEMSScoreMPCI_gae2df57913a498a0305315a2fb6cf12fb}\label{group__RTEMSScoreMPCI_gae2df57913a498a0305315a2fb6cf12fb}} 
+\index{MPCI Handler@{MPCI Handler}!\_MPCI\_Process\_response@{\_MPCI\_Process\_response}}
+\index{\_MPCI\_Process\_response@{\_MPCI\_Process\_response}!MPCI Handler@{MPCI Handler}}
+\subsubsection{\texorpdfstring{\_MPCI\_Process\_response()}{\_MPCI\_Process\_response()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}}$\ast$ \+\_\+\+M\+P\+C\+I\+\_\+\+Process\+\_\+response (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structMP__packet__Prefix}{M\+P\+\_\+packet\+\_\+\+Prefix}} $\ast$}]{the\+\_\+packet }\end{DoxyParamCaption})}
+
+
+
+Passes a packet to the thread. 
+
+This routine is responsible for passing {\itshape the\+\_\+packet} to the thread waiting on the remote operation to complete. The unblocked thread is responsible for eventually freeing {\itshape the\+\_\+packet}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em the\+\_\+packet} & is the response packet to be processed.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em pointer} & This method returns a pointer to the thread which was unblocked \\
+\hline
+{\em N\+U\+LL} & The waiting thread no longer exists. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{group__RTEMSScoreMPCI_ga053f924dabe674cd71718615990e408c}\label{group__RTEMSScoreMPCI_ga053f924dabe674cd71718615990e408c}} 
+\index{MPCI Handler@{MPCI Handler}!\_MPCI\_Receive\_packet@{\_MPCI\_Receive\_packet}}
+\index{\_MPCI\_Receive\_packet@{\_MPCI\_Receive\_packet}!MPCI Handler@{MPCI Handler}}
+\subsubsection{\texorpdfstring{\_MPCI\_Receive\_packet()}{\_MPCI\_Receive\_packet()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structMP__packet__Prefix}{M\+P\+\_\+packet\+\_\+\+Prefix}}$\ast$ \+\_\+\+M\+P\+C\+I\+\_\+\+Receive\+\_\+packet (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Receives a packet. 
+
+This routine receives a packet by invoking the user provided M\+P\+CI receive callout.
+
+\begin{DoxyReturn}{Returns}
+This method returns the packet received. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{group__RTEMSScoreMPCI_gaf232dadc9160e4b1c733906d3a6d1f57}\label{group__RTEMSScoreMPCI_gaf232dadc9160e4b1c733906d3a6d1f57}} 
+\index{MPCI Handler@{MPCI Handler}!\_MPCI\_Receive\_server@{\_MPCI\_Receive\_server}}
+\index{\_MPCI\_Receive\_server@{\_MPCI\_Receive\_server}!MPCI Handler@{MPCI Handler}}
+\subsubsection{\texorpdfstring{\_MPCI\_Receive\_server()}{\_MPCI\_Receive\_server()}}
+{\footnotesize\ttfamily void \+\_\+\+M\+P\+C\+I\+\_\+\+Receive\+\_\+server (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__RTEMSScoreThread_gab56e437830bb9a4af5b27ac7ec503b6a}{Thread\+\_\+\+Entry\+\_\+numeric\+\_\+type}}}]{ignored }\end{DoxyParamCaption})}
+
+
+
+Receives and processes all packets. 
+
+This is the server thread which receives and processes all M\+C\+PI packets.
+
+
+\begin{DoxyParams}{Parameters}
+{\em ignored} & The thread argument. It is not used. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__RTEMSScoreMPCI_gac273d577d3696588f86f26b1910a2f9c}\label{group__RTEMSScoreMPCI_gac273d577d3696588f86f26b1910a2f9c}} 
+\index{MPCI Handler@{MPCI Handler}!\_MPCI\_Register\_packet\_processor@{\_MPCI\_Register\_packet\_processor}}
+\index{\_MPCI\_Register\_packet\_processor@{\_MPCI\_Register\_packet\_processor}!MPCI Handler@{MPCI Handler}}
+\subsubsection{\texorpdfstring{\_MPCI\_Register\_packet\_processor()}{\_MPCI\_Register\_packet\_processor()}}
+{\footnotesize\ttfamily void \+\_\+\+M\+P\+C\+I\+\_\+\+Register\+\_\+packet\+\_\+processor (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__RTEMSScoreMPPacket_gafed9717210f8917e5acb8e63f2c6bac3}{M\+P\+\_\+packet\+\_\+\+Classes}}}]{the\+\_\+class,  }\item[{\mbox{\hyperlink{group__RTEMSScoreMPCI_gafc97753e25c76740b182f3e8cdf74cc8}{M\+P\+C\+I\+\_\+\+Packet\+\_\+processor}}}]{the\+\_\+packet\+\_\+processor }\end{DoxyParamCaption})}
+
+
+
+Registers the M\+P\+CI packet processor for the designated object class. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em the\+\_\+class} & The class indicator for packets which will be processed by {\itshape the\+\_\+packet\+\_\+processor} method. \\
+\hline
+{\em the\+\_\+packet\+\_\+processor} & Pointer to a method which is invoked when packets with {\itshape the\+\_\+class} are received. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__RTEMSScoreMPCI_ga4921eb7c6291474df410b099381b09d9}\label{group__RTEMSScoreMPCI_ga4921eb7c6291474df410b099381b09d9}} 
+\index{MPCI Handler@{MPCI Handler}!\_MPCI\_Return\_packet@{\_MPCI\_Return\_packet}}
+\index{\_MPCI\_Return\_packet@{\_MPCI\_Return\_packet}!MPCI Handler@{MPCI Handler}}
+\subsubsection{\texorpdfstring{\_MPCI\_Return\_packet()}{\_MPCI\_Return\_packet()}}
+{\footnotesize\ttfamily void \+\_\+\+M\+P\+C\+I\+\_\+\+Return\+\_\+packet (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structMP__packet__Prefix}{M\+P\+\_\+packet\+\_\+\+Prefix}} $\ast$}]{the\+\_\+packet }\end{DoxyParamCaption})}
+
+
+
+Deallocates a packet. 
+
+This routine deallocates a packet by invoking the user provided M\+P\+CI return packet callout.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em the\+\_\+packet} & The MP packet to deallocate. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__RTEMSScoreMPCI_ga02e1e38a1e6a9d3b6488058c89ac96a1}\label{group__RTEMSScoreMPCI_ga02e1e38a1e6a9d3b6488058c89ac96a1}} 
+\index{MPCI Handler@{MPCI Handler}!\_MPCI\_Send\_process\_packet@{\_MPCI\_Send\_process\_packet}}
+\index{\_MPCI\_Send\_process\_packet@{\_MPCI\_Send\_process\_packet}!MPCI Handler@{MPCI Handler}}
+\subsubsection{\texorpdfstring{\_MPCI\_Send\_process\_packet()}{\_MPCI\_Send\_process\_packet()}}
+{\footnotesize\ttfamily void \+\_\+\+M\+P\+C\+I\+\_\+\+Send\+\_\+process\+\_\+packet (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{destination,  }\item[{\mbox{\hyperlink{structMP__packet__Prefix}{M\+P\+\_\+packet\+\_\+\+Prefix}} $\ast$}]{the\+\_\+packet }\end{DoxyParamCaption})}
+
+
+
+Sends a process packet. 
+
+This routine sends a process packet by invoking the user provided M\+P\+CI send callout.
+
+
+\begin{DoxyParams}{Parameters}
+{\em destination} & The node which should receive this packet. \\
+\hline
+{\em the\+\_\+packet} & The packet to be sent. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__RTEMSScoreMPCI_gaa7cccdabe9e7db7495e1d8bd12e6bcb0}\label{group__RTEMSScoreMPCI_gaa7cccdabe9e7db7495e1d8bd12e6bcb0}} 
+\index{MPCI Handler@{MPCI Handler}!\_MPCI\_Send\_request\_packet@{\_MPCI\_Send\_request\_packet}}
+\index{\_MPCI\_Send\_request\_packet@{\_MPCI\_Send\_request\_packet}!MPCI Handler@{MPCI Handler}}
+\subsubsection{\texorpdfstring{\_MPCI\_Send\_request\_packet()}{\_MPCI\_Send\_request\_packet()}}
+{\footnotesize\ttfamily Status\+\_\+\+Control \+\_\+\+M\+P\+C\+I\+\_\+\+Send\+\_\+request\+\_\+packet (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{destination,  }\item[{\mbox{\hyperlink{structMP__packet__Prefix}{M\+P\+\_\+packet\+\_\+\+Prefix}} $\ast$}]{the\+\_\+packet,  }\item[{\mbox{\hyperlink{group__RTEMSScoreStates_gaeebbea0bfca162709b124fd519cf99d3}{States\+\_\+\+Control}}}]{extra\+\_\+state }\end{DoxyParamCaption})}
+
+
+
+Sends a request packet. 
+
+This routine sends a request packet by invoking the user provided M\+P\+CI send callout.
+
+
+\begin{DoxyParams}{Parameters}
+{\em destination} & The node which should receive this packet. \\
+\hline
+{\em the\+\_\+packet} & The packet to be sent. \\
+\hline
+{\em extra\+\_\+state} & The extra thread state bits which should be set in addition to the remote operation pending state. It may indicate the caller is blocking on a message queue operation.\\
+\hline
+\end{DoxyParams}
+@ret This method returns the operation status from the remote node. \mbox{\Hypertarget{group__RTEMSScoreMPCI_ga1623ab44f2cfb10c69b0f62674e53f1f}\label{group__RTEMSScoreMPCI_ga1623ab44f2cfb10c69b0f62674e53f1f}} 
+\index{MPCI Handler@{MPCI Handler}!\_MPCI\_Send\_response\_packet@{\_MPCI\_Send\_response\_packet}}
+\index{\_MPCI\_Send\_response\_packet@{\_MPCI\_Send\_response\_packet}!MPCI Handler@{MPCI Handler}}
+\subsubsection{\texorpdfstring{\_MPCI\_Send\_response\_packet()}{\_MPCI\_Send\_response\_packet()}}
+{\footnotesize\ttfamily void \+\_\+\+M\+P\+C\+I\+\_\+\+Send\+\_\+response\+\_\+packet (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{destination,  }\item[{\mbox{\hyperlink{structMP__packet__Prefix}{M\+P\+\_\+packet\+\_\+\+Prefix}} $\ast$}]{the\+\_\+packet }\end{DoxyParamCaption})}
+
+
+
+Sends a response packet. 
+
+This routine sends a response packet by invoking the user provided M\+P\+CI send callout.
+
+
+\begin{DoxyParams}{Parameters}
+{\em destination} & The node which should receive this packet. \\
+\hline
+{\em the\+\_\+packet} & The packet to be sent. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{group__RTEMSScoreMPCI_ga311175ff94c266c77baead3ec1c55b01}\label{group__RTEMSScoreMPCI_ga311175ff94c266c77baead3ec1c55b01}} 
+\index{MPCI Handler@{MPCI Handler}!\_MPCI\_Configuration@{\_MPCI\_Configuration}}
+\index{\_MPCI\_Configuration@{\_MPCI\_Configuration}!MPCI Handler@{MPCI Handler}}
+\subsubsection{\texorpdfstring{\_MPCI\_Configuration}{\_MPCI\_Configuration}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{structMPCI__Configuration}{M\+P\+C\+I\+\_\+\+Configuration}} \+\_\+\+M\+P\+C\+I\+\_\+\+Configuration}
+
+
+
+The M\+P\+CI configuration. 
+
+Provided by the application via $<$\mbox{\hyperlink{confdefs_8h}{rtems/confdefs.\+h}}$>$. \mbox{\Hypertarget{group__RTEMSScoreMPCI_ga390b6f48eb63a6879d3c3c2fcb38a4e8}\label{group__RTEMSScoreMPCI_ga390b6f48eb63a6879d3c3c2fcb38a4e8}} 
+\index{MPCI Handler@{MPCI Handler}!\_MPCI\_Packet\_processors@{\_MPCI\_Packet\_processors}}
+\index{\_MPCI\_Packet\_processors@{\_MPCI\_Packet\_processors}!MPCI Handler@{MPCI Handler}}
+\subsubsection{\texorpdfstring{\_MPCI\_Packet\_processors}{\_MPCI\_Packet\_processors}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreMPCI_gafc97753e25c76740b182f3e8cdf74cc8}{M\+P\+C\+I\+\_\+\+Packet\+\_\+processor}} \+\_\+\+M\+P\+C\+I\+\_\+\+Packet\+\_\+processors\mbox{[}\mbox{\hyperlink{group__RTEMSScoreMPPacket_ga968e1b3a70aac1692b70ff42f9525bc7}{M\+P\+\_\+\+P\+A\+C\+K\+E\+T\+\_\+\+C\+L\+A\+S\+S\+E\+S\+\_\+\+L\+A\+ST}}+1\mbox{]}}
+
+The following table contains the process packet routines provided by each object that supports MP operations. \mbox{\Hypertarget{group__RTEMSScoreMPCI_ga1f31c9829798b2fa17bfae6891c93e9f}\label{group__RTEMSScoreMPCI_ga1f31c9829798b2fa17bfae6891c93e9f}} 
+\index{MPCI Handler@{MPCI Handler}!\_MPCI\_Receive\_server\_stack@{\_MPCI\_Receive\_server\_stack}}
+\index{\_MPCI\_Receive\_server\_stack@{\_MPCI\_Receive\_server\_stack}!MPCI Handler@{MPCI Handler}}
+\subsubsection{\texorpdfstring{\_MPCI\_Receive\_server\_stack}{\_MPCI\_Receive\_server\_stack}}
+{\footnotesize\ttfamily char \+\_\+\+M\+P\+C\+I\+\_\+\+Receive\+\_\+server\+\_\+stack\mbox{[}$\,$\mbox{]}}
+
+
+
+The M\+P\+CI receive server stack. 
+
+Provided by the application via $<$\mbox{\hyperlink{confdefs_8h}{rtems/confdefs.\+h}}$>$ \mbox{\Hypertarget{group__RTEMSScoreMPCI_gac0894f96d2d7e99feb038917fdb3c9cb}\label{group__RTEMSScoreMPCI_gac0894f96d2d7e99feb038917fdb3c9cb}} 
+\index{MPCI Handler@{MPCI Handler}!\_MPCI\_Receive\_server\_tcb@{\_MPCI\_Receive\_server\_tcb}}
+\index{\_MPCI\_Receive\_server\_tcb@{\_MPCI\_Receive\_server\_tcb}!MPCI Handler@{MPCI Handler}}
+\subsubsection{\texorpdfstring{\_MPCI\_Receive\_server\_tcb}{\_MPCI\_Receive\_server\_tcb}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}}$\ast$ \+\_\+\+M\+P\+C\+I\+\_\+\+Receive\+\_\+server\+\_\+tcb}
+
+
+
+Pointer to MP thread control block. 
+
+The following is used to determine when the multiprocessing receive thread is executing so that a proxy can be allocated instead of blocking the multiprocessing receive thread. \mbox{\Hypertarget{group__RTEMSScoreMPCI_gab1454472037213316f1ba2a85c29820b}\label{group__RTEMSScoreMPCI_gab1454472037213316f1ba2a85c29820b}} 
+\index{MPCI Handler@{MPCI Handler}!\_MPCI\_Remote\_blocked\_threads@{\_MPCI\_Remote\_blocked\_threads}}
+\index{\_MPCI\_Remote\_blocked\_threads@{\_MPCI\_Remote\_blocked\_threads}!MPCI Handler@{MPCI Handler}}
+\subsubsection{\texorpdfstring{\_MPCI\_Remote\_blocked\_threads}{\_MPCI\_Remote\_blocked\_threads}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structThread__queue__Control}{Thread\+\_\+queue\+\_\+\+Control}} \+\_\+\+M\+P\+C\+I\+\_\+\+Remote\+\_\+blocked\+\_\+threads}
+
+The following thread queue is used to maintain a list of tasks which currently have outstanding remote requests. \mbox{\Hypertarget{group__RTEMSScoreMPCI_ga6b0a65f9ac68015c46d17f17f44a5bd9}\label{group__RTEMSScoreMPCI_ga6b0a65f9ac68015c46d17f17f44a5bd9}} 
+\index{MPCI Handler@{MPCI Handler}!\_MPCI\_table@{\_MPCI\_table}}
+\index{\_MPCI\_table@{\_MPCI\_table}!MPCI Handler@{MPCI Handler}}
+\subsubsection{\texorpdfstring{\_MPCI\_table}{\_MPCI\_table}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structMPCI__Control}{M\+P\+C\+I\+\_\+\+Control}}$\ast$ \+\_\+\+M\+P\+C\+I\+\_\+table}
+
+The following define the internal pointers to the user\textquotesingle{}s configuration information. 

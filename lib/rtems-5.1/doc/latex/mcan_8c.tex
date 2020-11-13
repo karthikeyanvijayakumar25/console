@@ -1,0 +1,231 @@
+\hypertarget{mcan_8c}{}\section{bsps/arm/atsam/contrib/libraries/libchip/source/mcan.c File Reference}
+\label{mcan_8c}\index{bsps/arm/atsam/contrib/libraries/libchip/source/mcan.c@{bsps/arm/atsam/contrib/libraries/libchip/source/mcan.c}}
+{\ttfamily \#include \char`\"{}board.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}chip.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}mcan\+\_\+config.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$assert.\+h$>$}\newline
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bfseries M\+A\+I\+L\+B\+O\+X\+\_\+\+A\+D\+D\+R\+E\+SS}(address)~(0x\+F\+F\+F\+C \& (address))
+\item 
+\#define {\bfseries C\+A\+N\+\_\+\+C\+L\+K\+\_\+\+F\+R\+E\+Q\+\_\+\+HZ}~M\+C\+A\+N\+\_\+\+P\+R\+O\+G\+\_\+\+C\+L\+K\+\_\+\+F\+R\+E\+Q\+\_\+\+HZ
+\item 
+\#define {\bfseries M\+C\+A\+N0\+\_\+\+T\+S\+E\+G1}~(M\+C\+A\+N0\+\_\+\+P\+R\+O\+P\+\_\+\+S\+EG + M\+C\+A\+N0\+\_\+\+P\+H\+A\+S\+E\+\_\+\+S\+E\+G1)
+\item 
+\#define {\bfseries M\+C\+A\+N0\+\_\+\+T\+S\+E\+G2}~(M\+C\+A\+N0\+\_\+\+P\+H\+A\+S\+E\+\_\+\+S\+E\+G2)
+\item 
+\#define {\bfseries M\+C\+A\+N0\+\_\+\+B\+RP}
+\item 
+\#define {\bfseries M\+C\+A\+N0\+\_\+\+S\+JW}~(M\+C\+A\+N0\+\_\+\+S\+Y\+N\+C\+\_\+\+J\+U\+MP -\/ 1)
+\item 
+\#define {\bfseries M\+C\+A\+N0\+\_\+\+F\+T\+S\+E\+G1}~(M\+C\+A\+N0\+\_\+\+F\+A\+S\+T\+\_\+\+P\+R\+O\+P\+\_\+\+S\+EG + M\+C\+A\+N0\+\_\+\+F\+A\+S\+T\+\_\+\+P\+H\+A\+S\+E\+\_\+\+S\+E\+G1)
+\item 
+\#define {\bfseries M\+C\+A\+N0\+\_\+\+F\+T\+S\+E\+G2}~(M\+C\+A\+N0\+\_\+\+F\+A\+S\+T\+\_\+\+P\+H\+A\+S\+E\+\_\+\+S\+E\+G2)
+\item 
+\#define {\bfseries M\+C\+A\+N0\+\_\+\+F\+B\+RP}
+\item 
+\#define {\bfseries M\+C\+A\+N0\+\_\+\+F\+S\+JW}~(M\+C\+A\+N0\+\_\+\+F\+A\+S\+T\+\_\+\+S\+Y\+N\+C\+\_\+\+J\+U\+MP -\/ 1)
+\item 
+\#define {\bfseries M\+C\+A\+N0\+\_\+\+S\+T\+D\+\_\+\+F\+L\+T\+S\+\_\+\+W\+R\+DS}~(M\+C\+A\+N0\+\_\+\+N\+M\+B\+R\+\_\+\+S\+T\+D\+\_\+\+F\+L\+TS)
+\item 
+\#define {\bfseries M\+C\+A\+N0\+\_\+\+E\+X\+T\+\_\+\+F\+L\+T\+S\+\_\+\+W\+R\+DS}~(M\+C\+A\+N0\+\_\+\+N\+M\+B\+R\+\_\+\+E\+X\+T\+\_\+\+F\+L\+TS $\ast$ 2)
+\item 
+\#define {\bfseries M\+C\+A\+N0\+\_\+\+R\+X\+\_\+\+F\+I\+F\+O0\+\_\+\+W\+R\+DS}
+\item 
+\#define {\bfseries M\+C\+A\+N0\+\_\+\+R\+X\+\_\+\+F\+I\+F\+O1\+\_\+\+W\+R\+DS}
+\item 
+\#define {\bfseries M\+C\+A\+N0\+\_\+\+R\+X\+\_\+\+D\+E\+D\+\_\+\+B\+U\+F\+S\+\_\+\+W\+R\+DS}
+\item 
+\#define {\bfseries M\+C\+A\+N0\+\_\+\+T\+X\+\_\+\+E\+V\+T\+\_\+\+F\+I\+F\+O\+\_\+\+W\+R\+DS}~(M\+C\+A\+N0\+\_\+\+N\+M\+B\+R\+\_\+\+T\+X\+\_\+\+E\+V\+T\+\_\+\+F\+I\+F\+O\+\_\+\+E\+L\+M\+TS $\ast$ 2)
+\item 
+\#define {\bfseries M\+C\+A\+N0\+\_\+\+T\+X\+\_\+\+D\+E\+D\+\_\+\+B\+U\+F\+\_\+\+W\+R\+DS}
+\item 
+\#define {\bfseries M\+C\+A\+N0\+\_\+\+T\+X\+\_\+\+F\+I\+F\+O\+\_\+\+Q\+\_\+\+W\+R\+DS}
+\item 
+\#define {\bfseries M\+C\+A\+N1\+\_\+\+T\+S\+E\+G1}~(M\+C\+A\+N1\+\_\+\+P\+R\+O\+P\+\_\+\+S\+EG + M\+C\+A\+N1\+\_\+\+P\+H\+A\+S\+E\+\_\+\+S\+E\+G1)
+\item 
+\#define {\bfseries M\+C\+A\+N1\+\_\+\+T\+S\+E\+G2}~(M\+C\+A\+N1\+\_\+\+P\+H\+A\+S\+E\+\_\+\+S\+E\+G2)
+\item 
+\#define {\bfseries M\+C\+A\+N1\+\_\+\+B\+RP}
+\item 
+\#define {\bfseries M\+C\+A\+N1\+\_\+\+S\+JW}~(M\+C\+A\+N1\+\_\+\+S\+Y\+N\+C\+\_\+\+J\+U\+MP -\/ 1)
+\item 
+\#define {\bfseries M\+C\+A\+N1\+\_\+\+F\+T\+S\+E\+G1}~(M\+C\+A\+N1\+\_\+\+F\+A\+S\+T\+\_\+\+P\+R\+O\+P\+\_\+\+S\+EG + M\+C\+A\+N1\+\_\+\+F\+A\+S\+T\+\_\+\+P\+H\+A\+S\+E\+\_\+\+S\+E\+G1)
+\item 
+\#define {\bfseries M\+C\+A\+N1\+\_\+\+F\+T\+S\+E\+G2}~(M\+C\+A\+N1\+\_\+\+F\+A\+S\+T\+\_\+\+P\+H\+A\+S\+E\+\_\+\+S\+E\+G2)
+\item 
+\#define {\bfseries M\+C\+A\+N1\+\_\+\+F\+B\+RP}
+\item 
+\#define {\bfseries M\+C\+A\+N1\+\_\+\+F\+S\+JW}~(M\+C\+A\+N1\+\_\+\+F\+A\+S\+T\+\_\+\+S\+Y\+N\+C\+\_\+\+J\+U\+MP -\/ 1)
+\item 
+\#define {\bfseries M\+C\+A\+N1\+\_\+\+S\+T\+D\+\_\+\+F\+L\+T\+S\+\_\+\+W\+R\+DS}~(M\+C\+A\+N1\+\_\+\+N\+M\+B\+R\+\_\+\+S\+T\+D\+\_\+\+F\+L\+TS)
+\item 
+\#define {\bfseries M\+C\+A\+N1\+\_\+\+E\+X\+T\+\_\+\+F\+L\+T\+S\+\_\+\+W\+R\+DS}~(M\+C\+A\+N1\+\_\+\+N\+M\+B\+R\+\_\+\+E\+X\+T\+\_\+\+F\+L\+TS $\ast$ 2)
+\item 
+\#define {\bfseries M\+C\+A\+N1\+\_\+\+R\+X\+\_\+\+F\+I\+F\+O0\+\_\+\+W\+R\+DS}
+\item 
+\#define {\bfseries M\+C\+A\+N1\+\_\+\+R\+X\+\_\+\+F\+I\+F\+O1\+\_\+\+W\+R\+DS}
+\item 
+\#define {\bfseries M\+C\+A\+N1\+\_\+\+R\+X\+\_\+\+D\+E\+D\+\_\+\+B\+U\+F\+S\+\_\+\+W\+R\+DS}
+\item 
+\#define {\bfseries M\+C\+A\+N1\+\_\+\+T\+X\+\_\+\+E\+V\+T\+\_\+\+F\+I\+F\+O\+\_\+\+W\+R\+DS}~(M\+C\+A\+N1\+\_\+\+N\+M\+B\+R\+\_\+\+T\+X\+\_\+\+E\+V\+T\+\_\+\+F\+I\+F\+O\+\_\+\+E\+L\+M\+TS $\ast$ 2)
+\item 
+\#define {\bfseries M\+C\+A\+N1\+\_\+\+T\+X\+\_\+\+D\+E\+D\+\_\+\+B\+U\+F\+\_\+\+W\+R\+DS}
+\item 
+\#define {\bfseries M\+C\+A\+N1\+\_\+\+T\+X\+\_\+\+F\+I\+F\+O\+\_\+\+Q\+\_\+\+W\+R\+DS}
+\item 
+\#define {\bfseries C\+A\+N\+\_\+11\+\_\+\+B\+I\+T\+\_\+\+I\+D\+\_\+\+M\+A\+SK}~(0x7\+F\+F)
+\item 
+\#define {\bfseries C\+A\+N\+\_\+29\+\_\+\+B\+I\+T\+\_\+\+I\+D\+\_\+\+M\+A\+SK}~(0x1\+F\+F\+F\+F\+F\+F\+F)
+\item 
+\#define {\bfseries E\+L\+M\+T\+\_\+\+S\+I\+Z\+E\+\_\+\+M\+A\+SK}~(0x1\+F)
+\item 
+\#define {\bfseries B\+U\+F\+F\+E\+R\+\_\+\+X\+T\+D\+\_\+\+M\+A\+SK}~(0x40000000)
+\item 
+\#define {\bfseries B\+U\+F\+F\+E\+R\+\_\+\+E\+X\+T\+\_\+\+I\+D\+\_\+\+M\+A\+SK}~(0x1\+F\+F\+F\+F\+F\+F\+F)
+\item 
+\#define {\bfseries B\+U\+F\+F\+E\+R\+\_\+\+S\+T\+D\+\_\+\+I\+D\+\_\+\+M\+A\+SK}~(0x1\+F\+F\+C0000)
+\item 
+\#define {\bfseries B\+U\+F\+F\+E\+R\+\_\+\+D\+L\+C\+\_\+\+M\+A\+SK}~(0x000\+F0000)
+\item 
+\#define {\bfseries B\+U\+F\+F\+E\+R\+\_\+\+R\+X\+T\+S\+\_\+\+M\+A\+SK}~(0x0000\+F\+F\+F\+F)
+\item 
+\#define {\bfseries S\+T\+D\+\_\+\+F\+I\+L\+T\+\_\+\+S\+F\+T\+\_\+\+M\+A\+SK}~(3\+U $<$$<$ 30)
+\item 
+\#define {\bfseries S\+T\+D\+\_\+\+F\+I\+L\+T\+\_\+\+S\+F\+T\+\_\+\+R\+A\+N\+GE}~(0\+U $<$$<$ 30)
+\item 
+\#define {\bfseries S\+T\+D\+\_\+\+F\+I\+L\+T\+\_\+\+S\+F\+T\+\_\+\+D\+U\+AL}~(1\+U $<$$<$ 30)
+\item 
+\#define {\bfseries S\+T\+D\+\_\+\+F\+I\+L\+T\+\_\+\+S\+F\+T\+\_\+\+C\+L\+A\+S\+S\+IC}~(2\+U $<$$<$ 30)
+\item 
+\#define {\bfseries S\+T\+D\+\_\+\+F\+I\+L\+T\+\_\+\+S\+F\+E\+C\+\_\+\+M\+A\+SK}~(7\+U $<$$<$ 27)
+\item 
+\#define {\bfseries S\+T\+D\+\_\+\+F\+I\+L\+T\+\_\+\+S\+F\+E\+C\+\_\+\+D\+I\+S\+A\+B\+LE}~(0\+U $<$$<$ 27)
+\item 
+\#define {\bfseries S\+T\+D\+\_\+\+F\+I\+L\+T\+\_\+\+S\+F\+E\+C\+\_\+\+F\+I\+F\+O0}~(1\+U $<$$<$ 27)
+\item 
+\#define {\bfseries S\+T\+D\+\_\+\+F\+I\+L\+T\+\_\+\+S\+F\+E\+C\+\_\+\+F\+I\+F\+O1}~(2\+U $<$$<$ 27)
+\item 
+\#define {\bfseries S\+T\+D\+\_\+\+F\+I\+L\+T\+\_\+\+S\+F\+E\+C\+\_\+\+R\+E\+J\+E\+CT}~(3\+U $<$$<$ 27)
+\item 
+\#define {\bfseries S\+T\+D\+\_\+\+F\+I\+L\+T\+\_\+\+S\+F\+E\+C\+\_\+\+P\+R\+I\+O\+R\+I\+TY}~(4\+U $<$$<$ 27)
+\item 
+\#define {\bfseries S\+T\+D\+\_\+\+F\+I\+L\+T\+\_\+\+S\+F\+E\+C\+\_\+\+P\+R\+I\+O\+R\+I\+T\+Y\+\_\+\+F\+I\+F\+O0}~(5\+U $<$$<$ 27)
+\item 
+\#define {\bfseries S\+T\+D\+\_\+\+F\+I\+L\+T\+\_\+\+S\+F\+E\+C\+\_\+\+P\+R\+I\+O\+R\+I\+T\+Y\+\_\+\+F\+I\+F\+O1}~(6\+U $<$$<$ 27)
+\item 
+\#define {\bfseries S\+T\+D\+\_\+\+F\+I\+L\+T\+\_\+\+S\+F\+E\+C\+\_\+\+B\+U\+F\+F\+ER}~(7\+U $<$$<$ 27)
+\item 
+\#define {\bfseries S\+T\+D\+\_\+\+F\+I\+L\+T\+\_\+\+S\+F\+I\+D1\+\_\+\+M\+A\+SK}~(0x03\+F\+F\+U $<$$<$ 16)
+\item 
+\#define {\bfseries S\+T\+D\+\_\+\+F\+I\+L\+T\+\_\+\+S\+F\+I\+D2\+\_\+\+M\+A\+SK}~(0x3\+F\+F\+U $<$$<$ 0)
+\item 
+\#define {\bfseries S\+T\+D\+\_\+\+F\+I\+L\+T\+\_\+\+S\+F\+I\+D2\+\_\+\+R\+X\+\_\+\+B\+U\+F\+F\+ER}~(0\+U $<$$<$ 9)
+\item 
+\#define {\bfseries S\+T\+D\+\_\+\+F\+I\+L\+T\+\_\+\+S\+F\+I\+D2\+\_\+\+D\+E\+B\+U\+G\+\_\+A}~(1\+U $<$$<$ 9)
+\item 
+\#define {\bfseries S\+T\+D\+\_\+\+F\+I\+L\+T\+\_\+\+S\+F\+I\+D2\+\_\+\+D\+E\+B\+U\+G\+\_\+B}~(2\+U $<$$<$ 9)
+\item 
+\#define {\bfseries S\+T\+D\+\_\+\+F\+I\+L\+T\+\_\+\+S\+F\+I\+D2\+\_\+\+D\+E\+B\+U\+G\+\_\+C}~(3\+U $<$$<$ 9)
+\item 
+\#define {\bfseries S\+T\+D\+\_\+\+F\+I\+L\+T\+\_\+\+S\+F\+I\+D2\+\_\+\+B\+U\+F\+F\+ER}(nmbr)~(nmbr \& 0x3\+F)
+\item 
+\#define {\bfseries E\+X\+T\+\_\+\+F\+I\+L\+T\+\_\+\+E\+F\+E\+C\+\_\+\+M\+A\+SK}~(7\+U $<$$<$ 29)
+\item 
+\#define {\bfseries E\+X\+T\+\_\+\+F\+I\+L\+T\+\_\+\+E\+F\+E\+C\+\_\+\+D\+I\+S\+A\+B\+LE}~(0\+U $<$$<$ 29)
+\item 
+\#define {\bfseries E\+X\+T\+\_\+\+F\+I\+L\+T\+\_\+\+E\+F\+E\+C\+\_\+\+F\+I\+F\+O0}~(1\+U $<$$<$ 29)
+\item 
+\#define {\bfseries E\+X\+T\+\_\+\+F\+I\+L\+T\+\_\+\+E\+F\+E\+C\+\_\+\+F\+I\+F\+O1}~(2\+U $<$$<$ 29)
+\item 
+\#define {\bfseries E\+X\+T\+\_\+\+F\+I\+L\+T\+\_\+\+E\+F\+E\+C\+\_\+\+R\+E\+J\+E\+CT}~(3\+U $<$$<$ 29)
+\item 
+\#define {\bfseries E\+X\+T\+\_\+\+F\+I\+L\+T\+\_\+\+E\+F\+E\+C\+\_\+\+P\+R\+I\+O\+R\+I\+TY}~(4\+U $<$$<$ 29)
+\item 
+\#define {\bfseries E\+X\+T\+\_\+\+F\+I\+L\+T\+\_\+\+E\+F\+E\+C\+\_\+\+P\+R\+I\+O\+R\+I\+T\+Y\+\_\+\+F\+I\+F\+O0}~(5\+U $<$$<$ 29)
+\item 
+\#define {\bfseries E\+X\+T\+\_\+\+F\+I\+L\+T\+\_\+\+E\+F\+E\+C\+\_\+\+P\+R\+I\+O\+R\+I\+T\+Y\+\_\+\+F\+I\+F\+O1}~(6\+U $<$$<$ 29)
+\item 
+\#define {\bfseries E\+X\+T\+\_\+\+F\+I\+L\+T\+\_\+\+E\+F\+E\+C\+\_\+\+B\+U\+F\+F\+ER}~(7\+U $<$$<$ 29)
+\item 
+\#define {\bfseries E\+X\+T\+\_\+\+F\+I\+L\+T\+\_\+\+E\+F\+I\+D1\+\_\+\+M\+A\+SK}~(0x1\+F\+F\+F\+F\+F\+F\+F)
+\item 
+\#define {\bfseries E\+X\+T\+\_\+\+F\+I\+L\+T\+\_\+\+E\+F\+T\+\_\+\+M\+A\+SK}~(3\+U $<$$<$ 30)
+\item 
+\#define {\bfseries E\+X\+T\+\_\+\+F\+I\+L\+T\+\_\+\+E\+F\+T\+\_\+\+R\+A\+N\+GE}~(0\+U $<$$<$ 30)
+\item 
+\#define {\bfseries E\+X\+T\+\_\+\+F\+I\+L\+T\+\_\+\+E\+F\+T\+\_\+\+D\+U\+AL}~(1\+U $<$$<$ 30)
+\item 
+\#define {\bfseries E\+X\+T\+\_\+\+F\+I\+L\+T\+\_\+\+E\+F\+T\+\_\+\+C\+L\+A\+S\+S\+IC}~(2\+U $<$$<$ 30)
+\item 
+\#define {\bfseries E\+X\+T\+\_\+\+F\+I\+L\+T\+\_\+\+E\+F\+T\+\_\+\+R\+A\+N\+G\+E\+\_\+\+N\+O\+\_\+\+X\+I\+D\+AM}~(3\+U $<$$<$ 30)
+\item 
+\#define {\bfseries E\+X\+T\+\_\+\+F\+I\+L\+T\+\_\+\+E\+F\+I\+D2\+\_\+\+M\+A\+SK}~(0x1\+F\+F\+F\+F\+F\+F\+F)
+\item 
+\#define {\bfseries E\+X\+T\+\_\+\+F\+I\+L\+T\+\_\+\+E\+F\+I\+D2\+\_\+\+R\+X\+\_\+\+B\+U\+F\+F\+ER}~(0\+U $<$$<$ 9)
+\item 
+\#define {\bfseries E\+X\+T\+\_\+\+F\+I\+L\+T\+\_\+\+E\+F\+I\+D2\+\_\+\+D\+E\+B\+U\+G\+\_\+A}~(1\+U $<$$<$ 9)
+\item 
+\#define {\bfseries E\+X\+T\+\_\+\+F\+I\+L\+T\+\_\+\+E\+F\+I\+D2\+\_\+\+D\+E\+B\+U\+G\+\_\+B}~(2\+U $<$$<$ 9)
+\item 
+\#define {\bfseries E\+X\+T\+\_\+\+F\+I\+L\+T\+\_\+\+E\+F\+I\+D2\+\_\+\+D\+E\+B\+U\+G\+\_\+C}~(3\+U $<$$<$ 9)
+\item 
+\#define {\bfseries E\+X\+T\+\_\+\+F\+I\+L\+T\+\_\+\+E\+F\+I\+D2\+\_\+\+B\+U\+F\+F\+ER}(nmbr)~(nmbr \& 0x3\+F)
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{group__can__module_ga9b35cd79fb5eeec8cf1ba7247b25a646}{M\+C\+A\+N\+\_\+\+Init}} (const \mbox{\hyperlink{structMCan__ConfigTag}{M\+Can\+\_\+\+Config\+Type}} $\ast$mcan\+Config)
+\begin{DoxyCompactList}\small\item\em Initializes the M\+C\+AN hardware for giving peripheral. Default\+: Mixed mode TX Buffer + F\+I\+FO. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__can__module_gac443cf440414e78292b1db93763baaf2}{M\+C\+A\+N\+\_\+\+Init\+Fd\+Enable}} (const \mbox{\hyperlink{structMCan__ConfigTag}{M\+Can\+\_\+\+Config\+Type}} $\ast$mcan\+Config)
+\begin{DoxyCompactList}\small\item\em Enables a F\+U\+T\+U\+RE switch to FD mode (tx \& rx payloads up to 64 bytes) but transmits W\+I\+T\+H\+O\+UT bit rate switching I\+N\+IT must be set -\/ so this should be called between \mbox{\hyperlink{group__can__module_ga9b35cd79fb5eeec8cf1ba7247b25a646}{M\+C\+A\+N\+\_\+\+Init()}} and \mbox{\hyperlink{group__can__module_ga712fa4d48e3fd1365a08a91cd3932104}{M\+C\+A\+N\+\_\+\+Enable()}} \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__can__module_ga70121d88d13dc887de45ec346a080efb}{M\+C\+A\+N\+\_\+\+Init\+Fd\+Bit\+Rate\+Switch\+Enable}} (const \mbox{\hyperlink{structMCan__ConfigTag}{M\+Can\+\_\+\+Config\+Type}} $\ast$mcan\+Config)
+\begin{DoxyCompactList}\small\item\em Enables a F\+U\+T\+U\+RE switch to FD mode (tx \& rx payloads up to 64 bytes) and transmits W\+I\+TH bit rate switching I\+N\+IT must be set -\/ so this should be called between \mbox{\hyperlink{group__can__module_ga9b35cd79fb5eeec8cf1ba7247b25a646}{M\+C\+A\+N\+\_\+\+Init()}} and \mbox{\hyperlink{group__can__module_ga712fa4d48e3fd1365a08a91cd3932104}{M\+C\+A\+N\+\_\+\+Enable()}} \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__can__module_ga97adc21dfdf714818018ae78b51bf02e}{M\+C\+A\+N\+\_\+\+Init\+Loopback}} (const \mbox{\hyperlink{structMCan__ConfigTag}{M\+Can\+\_\+\+Config\+Type}} $\ast$mcan\+Config)
+\begin{DoxyCompactList}\small\item\em Initializes the M\+C\+AN in loop back mode. I\+N\+IT must be set -\/ so this should be called between \mbox{\hyperlink{group__can__module_ga9b35cd79fb5eeec8cf1ba7247b25a646}{M\+C\+A\+N\+\_\+\+Init()}} and \mbox{\hyperlink{group__can__module_ga712fa4d48e3fd1365a08a91cd3932104}{M\+C\+A\+N\+\_\+\+Enable()}} \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__can__module_gaf7258e6de240c101aa46f33a26c87615}{M\+C\+A\+N\+\_\+\+Init\+Tx\+Queue}} (const \mbox{\hyperlink{structMCan__ConfigTag}{M\+Can\+\_\+\+Config\+Type}} $\ast$mcan\+Config)
+\begin{DoxyCompactList}\small\item\em Initializes M\+C\+AN queue for TX I\+N\+IT must be set -\/ so this should be called between \mbox{\hyperlink{group__can__module_ga9b35cd79fb5eeec8cf1ba7247b25a646}{M\+C\+A\+N\+\_\+\+Init()}} and \mbox{\hyperlink{group__can__module_ga712fa4d48e3fd1365a08a91cd3932104}{M\+C\+A\+N\+\_\+\+Enable()}} \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__can__module_ga712fa4d48e3fd1365a08a91cd3932104}{M\+C\+A\+N\+\_\+\+Enable}} (const \mbox{\hyperlink{structMCan__ConfigTag}{M\+Can\+\_\+\+Config\+Type}} $\ast$mcan\+Config)
+\begin{DoxyCompactList}\small\item\em Enable M\+C\+AN peripheral. I\+N\+IT must be set -\/ so this should be called between \mbox{\hyperlink{group__can__module_ga9b35cd79fb5eeec8cf1ba7247b25a646}{M\+C\+A\+N\+\_\+\+Init()}} \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__can__module_gac2744eec323b9b5ba844c433362d0501}{M\+C\+A\+N\+\_\+\+Request\+Iso11898\+\_\+1}} (const \mbox{\hyperlink{structMCan__ConfigTag}{M\+Can\+\_\+\+Config\+Type}} $\ast$mcan\+Config)
+\begin{DoxyCompactList}\small\item\em Requests switch to Iso11898-\/1 (standard / classic) mode (tx \& rx payloads up to 8 bytes). \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__can__module_ga3cab9ee5985894d07f48d0d5edee6ab4}{M\+C\+A\+N\+\_\+\+Request\+Fd}} (const \mbox{\hyperlink{structMCan__ConfigTag}{M\+Can\+\_\+\+Config\+Type}} $\ast$mcan\+Config)
+\begin{DoxyCompactList}\small\item\em Requests switch to FD mode (tx \& rx payloads up to 64 bytes) but transmits W\+I\+T\+H\+O\+UT bit rate switching. requested mode should have been enabled at initialization. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__can__module_gaa1d5fa926fb534c0dea67923865fb356}{M\+C\+A\+N\+\_\+\+Request\+Fd\+Bit\+Rate\+Switch}} (const \mbox{\hyperlink{structMCan__ConfigTag}{M\+Can\+\_\+\+Config\+Type}} $\ast$mcan\+Config)
+\begin{DoxyCompactList}\small\item\em Request switch to FD mode (tx \& rx payloads up to 64 bytes) and transmits W\+I\+TH bit rate switching. requested mode should have been enabled at initialization. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__can__module_gac00448534ba8dbcf25329259d2312c10}{M\+C\+A\+N\+\_\+\+Loopback\+On}} (const \mbox{\hyperlink{structMCan__ConfigTag}{M\+Can\+\_\+\+Config\+Type}} $\ast$mcan\+Config)
+\begin{DoxyCompactList}\small\item\em Switch on loop back mode. T\+E\+ST must be set in M\+C\+A\+N\+\_\+\+C\+C\+CR -\/ e.\+g. by a prior call to \mbox{\hyperlink{group__can__module_ga97adc21dfdf714818018ae78b51bf02e}{M\+C\+A\+N\+\_\+\+Init\+Loopback()}} \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__can__module_ga7e36eef54b4e8a426a10c540de9457be}{M\+C\+A\+N\+\_\+\+Loopback\+Off}} (const \mbox{\hyperlink{structMCan__ConfigTag}{M\+Can\+\_\+\+Config\+Type}} $\ast$mcan\+Config)
+\begin{DoxyCompactList}\small\item\em Switch off loop back mode. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__can__module_ga51d74c9a24d0321d3a0846422f95c70a}{M\+C\+A\+N\+\_\+\+I\+Enable\+Message\+Stored\+To\+Rx\+Ded\+Buffer}} (const \mbox{\hyperlink{structMCan__ConfigTag}{M\+Can\+\_\+\+Config\+Type}} $\ast$mcan\+Config, M\+Can\+\_\+\+Intr\+Line\+Type line)
+\begin{DoxyCompactList}\small\item\em Enable message line and message stored to Dedicated Receive Buffer Interrupt Line. \end{DoxyCompactList}\item 
+uint8\+\_\+t $\ast$ \mbox{\hyperlink{group__can__module_ga7188d34f789a5ba22b48cb650320c12e}{M\+C\+A\+N\+\_\+\+Config\+Tx\+Ded\+Buffer}} (const \mbox{\hyperlink{structMCan__ConfigTag}{M\+Can\+\_\+\+Config\+Type}} $\ast$mcan\+Config, uint8\+\_\+t buffer, uint32\+\_\+t id, M\+Can\+\_\+\+Id\+Type id\+Type, M\+Can\+\_\+\+Dlc\+Type dlc)
+\begin{DoxyCompactList}\small\item\em Configures a Dedicated TX Buffer. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__can__module_gab682df72e52163a4bbd6f89fe25a2459}{M\+C\+A\+N\+\_\+\+Send\+Tx\+Ded\+Buffer}} (const \mbox{\hyperlink{structMCan__ConfigTag}{M\+Can\+\_\+\+Config\+Type}} $\ast$mcan\+Config, uint8\+\_\+t buffer)
+\begin{DoxyCompactList}\small\item\em Send Tx buffer. \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{group__can__module_gace77a1a2cb9ad1ae872ce9d6a163f732}{M\+C\+A\+N\+\_\+\+Add\+To\+Tx\+FifoQ}} (const \mbox{\hyperlink{structMCan__ConfigTag}{M\+Can\+\_\+\+Config\+Type}} $\ast$mcan\+Config, uint32\+\_\+t id, M\+Can\+\_\+\+Id\+Type id\+Type, M\+Can\+\_\+\+Dlc\+Type dlc, uint8\+\_\+t $\ast$data)
+\begin{DoxyCompactList}\small\item\em Adds Message to TX Fifo / Queue. \end{DoxyCompactList}\item 
+uint8\+\_\+t \mbox{\hyperlink{group__can__module_gaee6e3a1e95ef603e33da5421167ad776}{M\+C\+A\+N\+\_\+\+Is\+Buffer\+Txd}} (const \mbox{\hyperlink{structMCan__ConfigTag}{M\+Can\+\_\+\+Config\+Type}} $\ast$mcan\+Config, uint8\+\_\+t buffer)
+\begin{DoxyCompactList}\small\item\em Check if data transmitted from buffer/fifo/queue. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__can__module_ga6e83faedb469981e30a552ab125ad181}{M\+C\+A\+N\+\_\+\+Config\+Rx\+Buffer\+Filter}} (const \mbox{\hyperlink{structMCan__ConfigTag}{M\+Can\+\_\+\+Config\+Type}} $\ast$mcan\+Config, uint32\+\_\+t buffer, uint32\+\_\+t filter, uint32\+\_\+t id, M\+Can\+\_\+\+Id\+Type id\+Type)
+\begin{DoxyCompactList}\small\item\em Configure RX Buffer Filter ID must match exactly for a RX Buffer Filter. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__can__module_ga1c6df6cc059e7246465ae919dc6dd995}{M\+C\+A\+N\+\_\+\+Config\+Rx\+Classic\+Filter}} (const \mbox{\hyperlink{structMCan__ConfigTag}{M\+Can\+\_\+\+Config\+Type}} $\ast$mcan\+Config, M\+Can\+\_\+\+Fifo\+Type fifo, uint8\+\_\+t filter, uint32\+\_\+t id, M\+Can\+\_\+\+Id\+Type id\+Type, uint32\+\_\+t mask)
+\begin{DoxyCompactList}\small\item\em Configure Classic Filter Classic Filters direct accepted messages to a F\+I\+FO \& include both a ID and a ID mask. \end{DoxyCompactList}\item 
+uint8\+\_\+t \mbox{\hyperlink{group__can__module_ga6d84b91cbb497467aedb98b53af1db45}{M\+C\+A\+N\+\_\+\+Is\+New\+Data\+In\+Rx\+Ded\+Buffer}} (const \mbox{\hyperlink{structMCan__ConfigTag}{M\+Can\+\_\+\+Config\+Type}} $\ast$mcan\+Config, uint8\+\_\+t buffer)
+\begin{DoxyCompactList}\small\item\em check if data received into buffer \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__can__module_gaa6911926348cdcfd85d9931096fafecc}{M\+C\+A\+N\+\_\+\+Get\+Rx\+Ded\+Buffer}} (const \mbox{\hyperlink{structMCan__ConfigTag}{M\+Can\+\_\+\+Config\+Type}} $\ast$mcan\+Config, uint8\+\_\+t buffer, \mbox{\hyperlink{structMailBox64Tag}{Mailbox64\+Type}} $\ast$p\+Rx\+Mailbox)
+\begin{DoxyCompactList}\small\item\em Get Rx buffer. \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{group__can__module_ga3c0b98bcf7b3c0520d70431cc72788cc}{M\+C\+A\+N\+\_\+\+Get\+Rx\+Fifo\+Buffer}} (const \mbox{\hyperlink{structMCan__ConfigTag}{M\+Can\+\_\+\+Config\+Type}} $\ast$mcan\+Config, M\+Can\+\_\+\+Fifo\+Type fifo, \mbox{\hyperlink{structMailBox64Tag}{Mailbox64\+Type}} $\ast$p\+Rx\+Mailbox)
+\begin{DoxyCompactList}\small\item\em Get from the receive F\+I\+FO and place in a application mailbox. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const \mbox{\hyperlink{structMCan__ConfigTag}{M\+Can\+\_\+\+Config\+Type}} {\bfseries mcan0\+Config}
+\item 
+const \mbox{\hyperlink{structMCan__ConfigTag}{M\+Can\+\_\+\+Config\+Type}} {\bfseries mcan1\+Config}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Implements functions for Controller Area Network (C\+AN) peripheral operations. 

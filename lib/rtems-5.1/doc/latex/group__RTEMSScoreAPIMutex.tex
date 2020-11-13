@@ -1,0 +1,102 @@
+\hypertarget{group__RTEMSScoreAPIMutex}{}\section{A\+PI Mutex Handler}
+\label{group__RTEMSScoreAPIMutex}\index{API Mutex Handler@{API Mutex Handler}}
+
+
+Provides routines to ensure mutual exclusion on A\+PI level.  
+
+
+\subsection*{Modules}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{group__RTEMSScoreAllocatorMutex}{R\+T\+E\+M\+S Allocator Mutex}}
+\begin{DoxyCompactList}\small\item\em Protection for all memory allocations and deallocations in R\+T\+E\+MS. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Files}
+\begin{DoxyCompactItemize}
+\item 
+file \mbox{\hyperlink{apimutex_8h}{apimutex.\+h}}
+\begin{DoxyCompactList}\small\item\em A\+PI Mutex Handler A\+PI. \end{DoxyCompactList}\item 
+file \mbox{\hyperlink{score_2muteximpl_8h}{muteximpl.\+h}}
+\begin{DoxyCompactList}\small\item\em Structures for the implementation of mutexes. \end{DoxyCompactList}\item 
+file \mbox{\hyperlink{apimutexisowner_8c}{apimutexisowner.\+c}}
+\item 
+file \mbox{\hyperlink{apimutexlock_8c}{apimutexlock.\+c}}
+\begin{DoxyCompactList}\small\item\em Acquires the specified A\+PI mutex. \end{DoxyCompactList}\item 
+file \mbox{\hyperlink{apimutexunlock_8c}{apimutexunlock.\+c}}
+\begin{DoxyCompactList}\small\item\em Releases the Specified A\+PI Mutex. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structAPI__Mutex__Control}{A\+P\+I\+\_\+\+Mutex\+\_\+\+Control}}
+\begin{DoxyCompactList}\small\item\em Control block used to manage each A\+PI mutex. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structMutex__Control}{Mutex\+\_\+\+Control}}
+\item 
+struct \mbox{\hyperlink{structMutex__recursive__Control}{Mutex\+\_\+recursive\+\_\+\+Control}}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{group__RTEMSScoreAPIMutex_ga910dd97f4dc9e1aebaef691d64b81be4}\label{group__RTEMSScoreAPIMutex_ga910dd97f4dc9e1aebaef691d64b81be4}} 
+\#define \mbox{\hyperlink{group__RTEMSScoreAPIMutex_ga910dd97f4dc9e1aebaef691d64b81be4}{A\+P\+I\+\_\+\+M\+U\+T\+E\+X\+\_\+\+I\+N\+I\+T\+I\+A\+L\+I\+Z\+ER}}(name)~\{ \+\_\+\+M\+U\+T\+E\+X\+\_\+\+R\+E\+C\+U\+R\+S\+I\+V\+E\+\_\+\+N\+A\+M\+E\+D\+\_\+\+I\+N\+I\+T\+I\+A\+L\+I\+Z\+ER( name ), 0 \}
+\begin{DoxyCompactList}\small\item\em Statically initialize an A\+PI mutex. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{group__RTEMSScoreAPIMutex_ga57829ca494f1d866219c499eadb0ffc9}{\+\_\+\+A\+P\+I\+\_\+\+Mutex\+\_\+\+Lock}} (\mbox{\hyperlink{structAPI__Mutex__Control}{A\+P\+I\+\_\+\+Mutex\+\_\+\+Control}} $\ast$\mbox{\hyperlink{structmutex}{mutex}})
+\begin{DoxyCompactList}\small\item\em Acquires the specified A\+PI mutex. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__RTEMSScoreAPIMutex_ga64a430ae861d0ce7f63413e651fbe36d}{\+\_\+\+A\+P\+I\+\_\+\+Mutex\+\_\+\+Unlock}} (\mbox{\hyperlink{structAPI__Mutex__Control}{A\+P\+I\+\_\+\+Mutex\+\_\+\+Control}} $\ast$\mbox{\hyperlink{structmutex}{mutex}})
+\begin{DoxyCompactList}\small\item\em Releases the specified A\+PI mutex. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__RTEMSScoreAPIMutex_ga0a01be1d7b28416e738a2b97ca3f611d}{\+\_\+\+A\+P\+I\+\_\+\+Mutex\+\_\+\+Is\+\_\+owner}} (const \mbox{\hyperlink{structAPI__Mutex__Control}{A\+P\+I\+\_\+\+Mutex\+\_\+\+Control}} $\ast$\mbox{\hyperlink{structmutex}{mutex}})
+\begin{DoxyCompactList}\small\item\em Checks if the specified A\+PI mutex is owned by the executing thread. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Provides routines to ensure mutual exclusion on A\+PI level. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{group__RTEMSScoreAPIMutex_ga0a01be1d7b28416e738a2b97ca3f611d}\label{group__RTEMSScoreAPIMutex_ga0a01be1d7b28416e738a2b97ca3f611d}} 
+\index{API Mutex Handler@{API Mutex Handler}!\_API\_Mutex\_Is\_owner@{\_API\_Mutex\_Is\_owner}}
+\index{\_API\_Mutex\_Is\_owner@{\_API\_Mutex\_Is\_owner}!API Mutex Handler@{API Mutex Handler}}
+\subsubsection{\texorpdfstring{\_API\_Mutex\_Is\_owner()}{\_API\_Mutex\_Is\_owner()}}
+{\footnotesize\ttfamily bool \+\_\+\+A\+P\+I\+\_\+\+Mutex\+\_\+\+Is\+\_\+owner (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structAPI__Mutex__Control}{A\+P\+I\+\_\+\+Mutex\+\_\+\+Control}} $\ast$}]{mutex }\end{DoxyParamCaption})}
+
+
+
+Checks if the specified A\+PI mutex is owned by the executing thread. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em mutex} & The A\+PI mutex to check the owner from. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__RTEMSScoreAPIMutex_ga57829ca494f1d866219c499eadb0ffc9}\label{group__RTEMSScoreAPIMutex_ga57829ca494f1d866219c499eadb0ffc9}} 
+\index{API Mutex Handler@{API Mutex Handler}!\_API\_Mutex\_Lock@{\_API\_Mutex\_Lock}}
+\index{\_API\_Mutex\_Lock@{\_API\_Mutex\_Lock}!API Mutex Handler@{API Mutex Handler}}
+\subsubsection{\texorpdfstring{\_API\_Mutex\_Lock()}{\_API\_Mutex\_Lock()}}
+{\footnotesize\ttfamily void \+\_\+\+A\+P\+I\+\_\+\+Mutex\+\_\+\+Lock (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structAPI__Mutex__Control}{A\+P\+I\+\_\+\+Mutex\+\_\+\+Control}} $\ast$}]{mutex }\end{DoxyParamCaption})}
+
+
+
+Acquires the specified A\+PI mutex. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em mutex} & The A\+PI mutex to acquire. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__RTEMSScoreAPIMutex_ga64a430ae861d0ce7f63413e651fbe36d}\label{group__RTEMSScoreAPIMutex_ga64a430ae861d0ce7f63413e651fbe36d}} 
+\index{API Mutex Handler@{API Mutex Handler}!\_API\_Mutex\_Unlock@{\_API\_Mutex\_Unlock}}
+\index{\_API\_Mutex\_Unlock@{\_API\_Mutex\_Unlock}!API Mutex Handler@{API Mutex Handler}}
+\subsubsection{\texorpdfstring{\_API\_Mutex\_Unlock()}{\_API\_Mutex\_Unlock()}}
+{\footnotesize\ttfamily void \+\_\+\+A\+P\+I\+\_\+\+Mutex\+\_\+\+Unlock (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structAPI__Mutex__Control}{A\+P\+I\+\_\+\+Mutex\+\_\+\+Control}} $\ast$}]{mutex }\end{DoxyParamCaption})}
+
+
+
+Releases the specified A\+PI mutex. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em mutex} & The A\+PI mutex to release. \\
+\hline
+\end{DoxyParams}

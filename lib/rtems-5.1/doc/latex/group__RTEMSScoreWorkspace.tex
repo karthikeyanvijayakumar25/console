@@ -1,0 +1,158 @@
+\hypertarget{group__RTEMSScoreWorkspace}{}\section{Workspace Handler}
+\label{group__RTEMSScoreWorkspace}\index{Workspace Handler@{Workspace Handler}}
+\subsection*{Files}
+\begin{DoxyCompactItemize}
+\item 
+file \mbox{\hyperlink{score_2wkspace_8h}{wkspace.\+h}}
+\begin{DoxyCompactList}\small\item\em Information Related to the R\+AM Workspace. \end{DoxyCompactList}\item 
+file \mbox{\hyperlink{wkspacedata_8h}{wkspacedata.\+h}}
+\begin{DoxyCompactList}\small\item\em Constants defined by the application configuration for the idle threads. \end{DoxyCompactList}\item 
+file \mbox{\hyperlink{wkspace_8c}{wkspace.\+c}}
+\begin{DoxyCompactList}\small\item\em Workspace Handler Support. \end{DoxyCompactList}\item 
+file \mbox{\hyperlink{wkstringduplicate_8c}{wkstringduplicate.\+c}}
+\begin{DoxyCompactList}\small\item\em Duplicates String with Memory from the Workspace. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{group__RTEMSScoreWorkspace_gac10ac71b406698cb4441aff69a80c847}{\+\_\+\+Workspace\+\_\+\+Handler\+\_\+initialization}} (const \mbox{\hyperlink{structMemory__Information}{Memory\+\_\+\+Information}} $\ast$mem, \mbox{\hyperlink{group__RTEMSScoreHeap_ga8953b692d39ca1c8a2780e9e8e2d9b1f}{Heap\+\_\+\+Initialization\+\_\+or\+\_\+extend\+\_\+handler}} extend)
+\begin{DoxyCompactList}\small\item\em Initilizes the workspace handler. \end{DoxyCompactList}\item 
+void $\ast$ \mbox{\hyperlink{group__RTEMSScoreWorkspace_ga8b19b310c0e6194a2750c505367d8539}{\+\_\+\+Workspace\+\_\+\+Allocate}} (size\+\_\+t \mbox{\hyperlink{sun4u_2tte_8h_a245260f6f74972558f61b85227df5aae}{size}})
+\begin{DoxyCompactList}\small\item\em Allocates a memory block of the specified size from the workspace. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__RTEMSScoreWorkspace_gaa33a3d5dcc07a91d0a6ea948eef2f053}{\+\_\+\+Workspace\+\_\+\+Free}} (void $\ast$block)
+\begin{DoxyCompactList}\small\item\em Frees memory to the workspace. \end{DoxyCompactList}\item 
+char $\ast$ \mbox{\hyperlink{group__RTEMSScoreWorkspace_ga8bc0640d72182fd63475e74dd58c298d}{\+\_\+\+Workspace\+\_\+\+String\+\_\+duplicate}} (const char $\ast$string, size\+\_\+t len)
+\begin{DoxyCompactList}\small\item\em Duplicates string with memory from the workspace. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structHeap__Control}{Heap\+\_\+\+Control}} \mbox{\hyperlink{group__RTEMSScoreWorkspace_gafe1ea31ce9287b6d4aff796ea3e4072d}{\+\_\+\+Workspace\+\_\+\+Area}}
+\begin{DoxyCompactList}\small\item\em Executive workspace control. \end{DoxyCompactList}\item 
+const uintptr\+\_\+t \mbox{\hyperlink{group__RTEMSScoreWorkspace_gae5131dff6dba6c4bd266d2da11aacf93}{\+\_\+\+Workspace\+\_\+\+Size}}
+\begin{DoxyCompactList}\small\item\em The workspace size in bytes. \end{DoxyCompactList}\item 
+const bool \mbox{\hyperlink{group__RTEMSScoreWorkspace_ga84b72a03c4cdbd5239ff69fef4731406}{\+\_\+\+Workspace\+\_\+\+Is\+\_\+unified}}
+\begin{DoxyCompactList}\small\item\em Indicates if the workspace and C program heap are unified. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This handler encapsulates functionality related to the management of the R\+T\+E\+MS Executive Workspace. 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{group__RTEMSScoreWorkspace_ga8b19b310c0e6194a2750c505367d8539}\label{group__RTEMSScoreWorkspace_ga8b19b310c0e6194a2750c505367d8539}} 
+\index{Workspace Handler@{Workspace Handler}!\_Workspace\_Allocate@{\_Workspace\_Allocate}}
+\index{\_Workspace\_Allocate@{\_Workspace\_Allocate}!Workspace Handler@{Workspace Handler}}
+\subsubsection{\texorpdfstring{\_Workspace\_Allocate()}{\_Workspace\_Allocate()}}
+{\footnotesize\ttfamily void$\ast$ \+\_\+\+Workspace\+\_\+\+Allocate (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{size }\end{DoxyParamCaption})}
+
+
+
+Allocates a memory block of the specified size from the workspace. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em size} & The size of the memory block.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em pointer} & The pointer to the memory block. The pointer is at least aligned by C\+P\+U\+\_\+\+H\+E\+A\+P\+\_\+\+A\+L\+I\+G\+N\+M\+E\+NT. \\
+\hline
+{\em N\+U\+LL} & No memory block with the requested size is available in the workspace. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{group__RTEMSScoreWorkspace_gaa33a3d5dcc07a91d0a6ea948eef2f053}\label{group__RTEMSScoreWorkspace_gaa33a3d5dcc07a91d0a6ea948eef2f053}} 
+\index{Workspace Handler@{Workspace Handler}!\_Workspace\_Free@{\_Workspace\_Free}}
+\index{\_Workspace\_Free@{\_Workspace\_Free}!Workspace Handler@{Workspace Handler}}
+\subsubsection{\texorpdfstring{\_Workspace\_Free()}{\_Workspace\_Free()}}
+{\footnotesize\ttfamily void \+\_\+\+Workspace\+\_\+\+Free (\begin{DoxyParamCaption}\item[{void $\ast$}]{block }\end{DoxyParamCaption})}
+
+
+
+Frees memory to the workspace. 
+
+This function frees the specified block of memory.
+
+
+\begin{DoxyParams}{Parameters}
+{\em block} & The memory to free.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+If {\itshape block} is equal to N\+U\+LL, then the request is ignored. This allows the caller to not worry about whether or not a pointer is N\+U\+LL. 
+\end{DoxyNote}
+\mbox{\Hypertarget{group__RTEMSScoreWorkspace_gac10ac71b406698cb4441aff69a80c847}\label{group__RTEMSScoreWorkspace_gac10ac71b406698cb4441aff69a80c847}} 
+\index{Workspace Handler@{Workspace Handler}!\_Workspace\_Handler\_initialization@{\_Workspace\_Handler\_initialization}}
+\index{\_Workspace\_Handler\_initialization@{\_Workspace\_Handler\_initialization}!Workspace Handler@{Workspace Handler}}
+\subsubsection{\texorpdfstring{\_Workspace\_Handler\_initialization()}{\_Workspace\_Handler\_initialization()}}
+{\footnotesize\ttfamily void \+\_\+\+Workspace\+\_\+\+Handler\+\_\+initialization (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structMemory__Information}{Memory\+\_\+\+Information}} $\ast$}]{mem,  }\item[{\mbox{\hyperlink{group__RTEMSScoreHeap_ga8953b692d39ca1c8a2780e9e8e2d9b1f}{Heap\+\_\+\+Initialization\+\_\+or\+\_\+extend\+\_\+handler}}}]{extend }\end{DoxyParamCaption})}
+
+
+
+Initilizes the workspace handler. 
+
+This routine performs the initialization necessary for this handler.
+
+
+\begin{DoxyParams}{Parameters}
+{\em mem} & The memory information \\
+\hline
+{\em extend} & The extension handler for the new workspace. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__RTEMSScoreWorkspace_ga8bc0640d72182fd63475e74dd58c298d}\label{group__RTEMSScoreWorkspace_ga8bc0640d72182fd63475e74dd58c298d}} 
+\index{Workspace Handler@{Workspace Handler}!\_Workspace\_String\_duplicate@{\_Workspace\_String\_duplicate}}
+\index{\_Workspace\_String\_duplicate@{\_Workspace\_String\_duplicate}!Workspace Handler@{Workspace Handler}}
+\subsubsection{\texorpdfstring{\_Workspace\_String\_duplicate()}{\_Workspace\_String\_duplicate()}}
+{\footnotesize\ttfamily char$\ast$ \+\_\+\+Workspace\+\_\+\+String\+\_\+duplicate (\begin{DoxyParamCaption}\item[{const char $\ast$}]{string,  }\item[{size\+\_\+t}]{len }\end{DoxyParamCaption})}
+
+
+
+Duplicates string with memory from the workspace. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em string} & The pointer to a zero terminated string. \\
+\hline
+{\em len} & The length of the string (equal to strlen(string)).\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em other} & Duplicated string. \\
+\hline
+{\em N\+U\+LL} & Not enough memory. \\
+\hline
+\end{DoxyRetVals}
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{group__RTEMSScoreWorkspace_gafe1ea31ce9287b6d4aff796ea3e4072d}\label{group__RTEMSScoreWorkspace_gafe1ea31ce9287b6d4aff796ea3e4072d}} 
+\index{Workspace Handler@{Workspace Handler}!\_Workspace\_Area@{\_Workspace\_Area}}
+\index{\_Workspace\_Area@{\_Workspace\_Area}!Workspace Handler@{Workspace Handler}}
+\subsubsection{\texorpdfstring{\_Workspace\_Area}{\_Workspace\_Area}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structHeap__Control}{Heap\+\_\+\+Control}} \+\_\+\+Workspace\+\_\+\+Area}
+
+
+
+Executive workspace control. 
+
+This is the heap control structure used to manage the R\+T\+E\+MS Executive Workspace. \mbox{\Hypertarget{group__RTEMSScoreWorkspace_ga84b72a03c4cdbd5239ff69fef4731406}\label{group__RTEMSScoreWorkspace_ga84b72a03c4cdbd5239ff69fef4731406}} 
+\index{Workspace Handler@{Workspace Handler}!\_Workspace\_Is\_unified@{\_Workspace\_Is\_unified}}
+\index{\_Workspace\_Is\_unified@{\_Workspace\_Is\_unified}!Workspace Handler@{Workspace Handler}}
+\subsubsection{\texorpdfstring{\_Workspace\_Is\_unified}{\_Workspace\_Is\_unified}}
+{\footnotesize\ttfamily const bool \+\_\+\+Workspace\+\_\+\+Is\+\_\+unified}
+
+
+
+Indicates if the workspace and C program heap are unified. 
+
+This constant is defined by the application configuration via $<$\mbox{\hyperlink{confdefs_8h}{rtems/confdefs.\+h}}$>$. \mbox{\Hypertarget{group__RTEMSScoreWorkspace_gae5131dff6dba6c4bd266d2da11aacf93}\label{group__RTEMSScoreWorkspace_gae5131dff6dba6c4bd266d2da11aacf93}} 
+\index{Workspace Handler@{Workspace Handler}!\_Workspace\_Size@{\_Workspace\_Size}}
+\index{\_Workspace\_Size@{\_Workspace\_Size}!Workspace Handler@{Workspace Handler}}
+\subsubsection{\texorpdfstring{\_Workspace\_Size}{\_Workspace\_Size}}
+{\footnotesize\ttfamily const uintptr\+\_\+t \+\_\+\+Workspace\+\_\+\+Size}
+
+
+
+The workspace size in bytes. 
+
+This constant is defined by the application configuration via $<$\mbox{\hyperlink{confdefs_8h}{rtems/confdefs.\+h}}$>$. 

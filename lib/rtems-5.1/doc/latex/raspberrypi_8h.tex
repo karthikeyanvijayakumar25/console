@@ -1,0 +1,747 @@
+\hypertarget{raspberrypi_8h}{}\section{bsps/arm/raspberrypi/include/bsp/raspberrypi.h File Reference}
+\label{raspberrypi_8h}\index{bsps/arm/raspberrypi/include/bsp/raspberrypi.h@{bsps/arm/raspberrypi/include/bsp/raspberrypi.h}}
+
+
+Register definitions.  
+
+
+{\ttfamily \#include $<$bspopts.\+h$>$}\newline
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include $<$bsp/utility.\+h$>$}\newline
+\subsection*{Macros}
+\begin{Indent}\textbf{ Register Macros}\par
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bfseries B\+C\+M2835\+\_\+\+R\+EG}(x)~($\ast$(volatile uint32\+\_\+t $\ast$)(x))
+\item 
+\#define {\bfseries B\+C\+M2835\+\_\+\+B\+IT}(n)~(1 $<$$<$ (n))
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Peripheral Base Register Address}\par
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bfseries R\+P\+I\+\_\+\+P\+E\+R\+I\+P\+H\+E\+R\+A\+L\+\_\+\+B\+A\+SE}~0x20000000
+\item 
+\#define {\bfseries B\+A\+S\+E\+\_\+\+O\+F\+F\+S\+ET}~0\+X5\+E000000
+\item 
+\#define {\bfseries R\+P\+I\+\_\+\+P\+E\+R\+I\+P\+H\+E\+R\+A\+L\+\_\+\+S\+I\+ZE}~0x01000000
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Bus to Physical address translation}\par
+{\em Macro. }\begin{DoxyCompactItemize}
+\item 
+\#define {\bfseries B\+U\+S\+\_\+\+T\+O\+\_\+\+P\+HY}(x)~((x) -\/ B\+A\+S\+E\+\_\+\+O\+F\+F\+S\+ET)
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Internal A\+RM Timer Registers}\par
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bfseries B\+C\+M2835\+\_\+\+C\+L\+O\+C\+K\+\_\+\+F\+R\+EQ}~250000000
+\item 
+\#define {\bfseries B\+C\+M2835\+\_\+\+T\+I\+M\+E\+R\+\_\+\+B\+A\+SE}~(R\+P\+I\+\_\+\+P\+E\+R\+I\+P\+H\+E\+R\+A\+L\+\_\+\+B\+A\+SE + 0x\+B400)
+\item 
+\#define {\bfseries B\+C\+M2835\+\_\+\+T\+I\+M\+E\+R\+\_\+\+L\+OD}~(B\+C\+M2835\+\_\+\+T\+I\+M\+E\+R\+\_\+\+B\+A\+SE + 0x00)
+\item 
+\#define {\bfseries B\+C\+M2835\+\_\+\+T\+I\+M\+E\+R\+\_\+\+V\+AL}~(B\+C\+M2835\+\_\+\+T\+I\+M\+E\+R\+\_\+\+B\+A\+SE + 0x04)
+\item 
+\#define {\bfseries B\+C\+M2835\+\_\+\+T\+I\+M\+E\+R\+\_\+\+C\+TL}~(B\+C\+M2835\+\_\+\+T\+I\+M\+E\+R\+\_\+\+B\+A\+SE + 0x08)
+\item 
+\#define {\bfseries B\+C\+M2835\+\_\+\+T\+I\+M\+E\+R\+\_\+\+C\+LI}~(B\+C\+M2835\+\_\+\+T\+I\+M\+E\+R\+\_\+\+B\+A\+SE + 0x0\+C)
+\item 
+\#define {\bfseries B\+C\+M2835\+\_\+\+T\+I\+M\+E\+R\+\_\+\+R\+IS}~(B\+C\+M2835\+\_\+\+T\+I\+M\+E\+R\+\_\+\+B\+A\+SE + 0x10)
+\item 
+\#define {\bfseries B\+C\+M2835\+\_\+\+T\+I\+M\+E\+R\+\_\+\+M\+IS}~(B\+C\+M2835\+\_\+\+T\+I\+M\+E\+R\+\_\+\+B\+A\+SE + 0x14)
+\item 
+\#define {\bfseries B\+C\+M2835\+\_\+\+T\+I\+M\+E\+R\+\_\+\+R\+LD}~(B\+C\+M2835\+\_\+\+T\+I\+M\+E\+R\+\_\+\+B\+A\+SE + 0x18)
+\item 
+\#define {\bfseries B\+C\+M2835\+\_\+\+T\+I\+M\+E\+R\+\_\+\+D\+IV}~(B\+C\+M2835\+\_\+\+T\+I\+M\+E\+R\+\_\+\+B\+A\+SE + 0x1\+C)
+\item 
+\#define {\bfseries B\+C\+M2835\+\_\+\+T\+I\+M\+E\+R\+\_\+\+C\+NT}~(B\+C\+M2835\+\_\+\+T\+I\+M\+E\+R\+\_\+\+B\+A\+SE + 0x20)
+\item 
+\#define {\bfseries B\+C\+M2835\+\_\+\+T\+I\+M\+E\+R\+\_\+\+P\+R\+E\+S\+C\+A\+LE}~0x\+F9
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Power Management and Watchdog Registers}\par
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bfseries B\+C\+M2835\+\_\+\+P\+M\+\_\+\+P\+A\+S\+S\+W\+D\+\_\+\+M\+A\+G\+IC}~0x5a000000
+\item 
+\#define {\bfseries B\+C\+M2835\+\_\+\+P\+M\+\_\+\+B\+A\+SE}~(R\+P\+I\+\_\+\+P\+E\+R\+I\+P\+H\+E\+R\+A\+L\+\_\+\+B\+A\+SE + 0x100000)
+\item 
+\#define {\bfseries B\+C\+M2835\+\_\+\+P\+M\+\_\+\+G\+N\+R\+IC}~(B\+C\+M2835\+\_\+\+P\+M\+\_\+\+B\+A\+SE + 0x00)
+\item 
+\#define {\bfseries B\+C\+M2835\+\_\+\+P\+M\+\_\+\+G\+N\+R\+I\+C\+\_\+\+P\+O\+W\+UP}~0x00000001
+\item 
+\#define {\bfseries B\+C\+M2835\+\_\+\+P\+M\+\_\+\+G\+N\+R\+I\+C\+\_\+\+P\+O\+W\+OK}~0x00000002
+\item 
+\#define {\bfseries B\+C\+M2835\+\_\+\+P\+M\+\_\+\+G\+N\+R\+I\+C\+\_\+\+I\+S\+P\+OW}~0x00000004
+\item 
+\#define {\bfseries B\+C\+M2835\+\_\+\+P\+M\+\_\+\+G\+N\+R\+I\+C\+\_\+\+M\+E\+M\+R\+EP}~0x00000008
+\item 
+\#define {\bfseries B\+C\+M2835\+\_\+\+P\+M\+\_\+\+G\+N\+R\+I\+C\+\_\+\+M\+R\+D\+O\+NE}~0x00000010
+\item 
+\#define {\bfseries B\+C\+M2835\+\_\+\+P\+M\+\_\+\+G\+N\+R\+I\+C\+\_\+\+I\+S\+F\+U\+NC}~0x00000020
+\item 
+\#define {\bfseries B\+C\+M2835\+\_\+\+P\+M\+\_\+\+G\+N\+R\+I\+C\+\_\+\+R\+S\+TN}~0x00000fc0
+\item 
+\#define {\bfseries B\+C\+M2835\+\_\+\+P\+M\+\_\+\+G\+N\+R\+I\+C\+\_\+\+E\+N\+AB}~0x00001000
+\item 
+\#define {\bfseries B\+C\+M2835\+\_\+\+P\+M\+\_\+\+G\+N\+R\+I\+C\+\_\+\+C\+FG}~0x007f0000
+\item 
+\#define {\bfseries B\+C\+M2835\+\_\+\+P\+M\+\_\+\+A\+U\+D\+IO}~(B\+C\+M2835\+\_\+\+P\+M\+\_\+\+B\+A\+SE + 0x04)
+\item 
+\#define {\bfseries B\+C\+M2835\+\_\+\+P\+M\+\_\+\+A\+U\+D\+I\+O\+\_\+\+A\+P\+SM}~0x000fffff
+\item 
+\#define {\bfseries B\+C\+M2835\+\_\+\+P\+M\+\_\+\+A\+U\+D\+I\+O\+\_\+\+C\+T\+R\+L\+EN}~0x00100000
+\item 
+\#define {\bfseries B\+C\+M2835\+\_\+\+P\+M\+\_\+\+A\+U\+D\+I\+O\+\_\+\+R\+S\+TN}~0x00200000
+\item 
+\#define {\bfseries B\+C\+M2835\+\_\+\+P\+M\+\_\+\+S\+T\+A\+T\+US}~(B\+C\+M2835\+\_\+\+P\+M\+\_\+\+B\+A\+SE + 0x18)
+\item 
+\#define {\bfseries B\+C\+M2835\+\_\+\+P\+M\+\_\+\+R\+S\+TC}~(B\+C\+M2835\+\_\+\+P\+M\+\_\+\+B\+A\+SE + 0x1c)
+\item 
+\#define {\bfseries B\+C\+M2835\+\_\+\+P\+M\+\_\+\+R\+S\+T\+C\+\_\+\+D\+R\+C\+FG}~0x00000003
+\item 
+\#define {\bfseries B\+C\+M2835\+\_\+\+P\+M\+\_\+\+R\+S\+T\+C\+\_\+\+W\+R\+C\+FG}~0x00000030
+\item 
+\#define {\bfseries B\+C\+M2835\+\_\+\+P\+M\+\_\+\+R\+S\+T\+C\+\_\+\+W\+R\+C\+F\+G\+\_\+\+F\+U\+LL}~0x00000020
+\item 
+\#define {\bfseries B\+C\+M2835\+\_\+\+P\+M\+\_\+\+R\+S\+T\+C\+\_\+\+S\+R\+C\+FG}~0x00000300
+\item 
+\#define {\bfseries B\+C\+M2835\+\_\+\+P\+M\+\_\+\+R\+S\+T\+C\+\_\+\+Q\+R\+C\+FG}~0x00003000
+\item 
+\#define {\bfseries B\+C\+M2835\+\_\+\+P\+M\+\_\+\+R\+S\+T\+C\+\_\+\+F\+R\+C\+FG}~0x00030000
+\item 
+\#define {\bfseries B\+C\+M2835\+\_\+\+P\+M\+\_\+\+R\+S\+T\+C\+\_\+\+H\+R\+C\+FG}~0x00300000
+\item 
+\#define {\bfseries B\+C\+M2835\+\_\+\+P\+M\+\_\+\+R\+S\+TS}~(B\+C\+M2835\+\_\+\+P\+M\+\_\+\+B\+A\+SE + 0x20)
+\item 
+\#define {\bfseries B\+C\+M2835\+\_\+\+P\+M\+\_\+\+R\+S\+T\+S\+\_\+\+H\+A\+D\+D\+RQ}~0x00000001
+\item 
+\#define {\bfseries B\+C\+M2835\+\_\+\+P\+M\+\_\+\+R\+S\+T\+S\+\_\+\+H\+A\+D\+D\+RF}~0x00000002
+\item 
+\#define {\bfseries B\+C\+M2835\+\_\+\+P\+M\+\_\+\+R\+S\+T\+S\+\_\+\+H\+A\+D\+D\+RH}~0x00000004
+\item 
+\#define {\bfseries B\+C\+M2835\+\_\+\+P\+M\+\_\+\+R\+S\+T\+S\+\_\+\+H\+A\+D\+W\+RQ}~0x00000010
+\item 
+\#define {\bfseries B\+C\+M2835\+\_\+\+P\+M\+\_\+\+R\+S\+T\+S\+\_\+\+H\+A\+D\+W\+RF}~0x00000020
+\item 
+\#define {\bfseries B\+C\+M2835\+\_\+\+P\+M\+\_\+\+R\+S\+T\+S\+\_\+\+H\+A\+D\+W\+RH}~0x00000040
+\item 
+\#define {\bfseries B\+C\+M2835\+\_\+\+P\+M\+\_\+\+R\+S\+T\+S\+\_\+\+H\+A\+D\+S\+RQ}~0x00000100
+\item 
+\#define {\bfseries B\+C\+M2835\+\_\+\+P\+M\+\_\+\+R\+S\+T\+S\+\_\+\+H\+A\+D\+S\+RF}~0x00000200
+\item 
+\#define {\bfseries B\+C\+M2835\+\_\+\+P\+M\+\_\+\+R\+S\+T\+S\+\_\+\+H\+A\+D\+S\+RH}~0x00000400
+\item 
+\#define {\bfseries B\+C\+M2835\+\_\+\+P\+M\+\_\+\+R\+S\+T\+S\+\_\+\+H\+A\+D\+P\+OR}~0x00001000
+\item 
+\#define {\bfseries B\+C\+M2835\+\_\+\+P\+M\+\_\+\+W\+D\+OG}~(B\+C\+M2835\+\_\+\+P\+M\+\_\+\+B\+A\+SE + 0x24)
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ G\+P\+IO Registers}\par
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bfseries B\+C\+M2835\+\_\+\+G\+P\+I\+O\+\_\+\+R\+E\+G\+S\+\_\+\+B\+A\+SE}~(R\+P\+I\+\_\+\+P\+E\+R\+I\+P\+H\+E\+R\+A\+L\+\_\+\+B\+A\+SE + 0x200000)
+\item 
+\#define {\bfseries B\+C\+M2835\+\_\+\+G\+P\+I\+O\+\_\+\+G\+P\+F\+S\+E\+L1}~(B\+C\+M2835\+\_\+\+G\+P\+I\+O\+\_\+\+R\+E\+G\+S\+\_\+\+B\+A\+SE + 0x04)
+\item 
+\#define {\bfseries B\+C\+M2835\+\_\+\+G\+P\+I\+O\+\_\+\+G\+P\+S\+E\+T0}~(B\+C\+M2835\+\_\+\+G\+P\+I\+O\+\_\+\+R\+E\+G\+S\+\_\+\+B\+A\+SE + 0x1\+C)
+\item 
+\#define {\bfseries B\+C\+M2835\+\_\+\+G\+P\+I\+O\+\_\+\+G\+P\+C\+L\+R0}~(B\+C\+M2835\+\_\+\+G\+P\+I\+O\+\_\+\+R\+E\+G\+S\+\_\+\+B\+A\+SE + 0x28)
+\item 
+\#define {\bfseries B\+C\+M2835\+\_\+\+G\+P\+I\+O\+\_\+\+G\+P\+L\+E\+V0}~(B\+C\+M2835\+\_\+\+G\+P\+I\+O\+\_\+\+R\+E\+G\+S\+\_\+\+B\+A\+SE + 0x34)
+\item 
+\#define {\bfseries B\+C\+M2835\+\_\+\+G\+P\+I\+O\+\_\+\+G\+P\+E\+D\+S0}~(B\+C\+M2835\+\_\+\+G\+P\+I\+O\+\_\+\+R\+E\+G\+S\+\_\+\+B\+A\+SE + 0x40)
+\item 
+\#define {\bfseries B\+C\+M2835\+\_\+\+G\+P\+I\+O\+\_\+\+G\+P\+R\+E\+N0}~(B\+C\+M2835\+\_\+\+G\+P\+I\+O\+\_\+\+R\+E\+G\+S\+\_\+\+B\+A\+SE + 0x4\+C)
+\item 
+\#define {\bfseries B\+C\+M2835\+\_\+\+G\+P\+I\+O\+\_\+\+G\+P\+F\+E\+N0}~(B\+C\+M2835\+\_\+\+G\+P\+I\+O\+\_\+\+R\+E\+G\+S\+\_\+\+B\+A\+SE + 0x58)
+\item 
+\#define {\bfseries B\+C\+M2835\+\_\+\+G\+P\+I\+O\+\_\+\+G\+P\+H\+E\+N0}~(B\+C\+M2835\+\_\+\+G\+P\+I\+O\+\_\+\+R\+E\+G\+S\+\_\+\+B\+A\+SE + 0x64)
+\item 
+\#define {\bfseries B\+C\+M2835\+\_\+\+G\+P\+I\+O\+\_\+\+G\+P\+L\+E\+N0}~(B\+C\+M2835\+\_\+\+G\+P\+I\+O\+\_\+\+R\+E\+G\+S\+\_\+\+B\+A\+SE + 0x70)
+\item 
+\#define {\bfseries B\+C\+M2835\+\_\+\+G\+P\+I\+O\+\_\+\+G\+P\+A\+R\+E\+N0}~(B\+C\+M2835\+\_\+\+G\+P\+I\+O\+\_\+\+R\+E\+G\+S\+\_\+\+B\+A\+SE + 0x7\+C)
+\item 
+\#define {\bfseries B\+C\+M2835\+\_\+\+G\+P\+I\+O\+\_\+\+G\+P\+A\+F\+E\+N0}~(B\+C\+M2835\+\_\+\+G\+P\+I\+O\+\_\+\+R\+E\+G\+S\+\_\+\+B\+A\+SE + 0x88)
+\item 
+\#define {\bfseries B\+C\+M2835\+\_\+\+G\+P\+I\+O\+\_\+\+G\+P\+P\+UD}~(B\+C\+M2835\+\_\+\+G\+P\+I\+O\+\_\+\+R\+E\+G\+S\+\_\+\+B\+A\+SE + 0x94)
+\item 
+\#define {\bfseries B\+C\+M2835\+\_\+\+G\+P\+I\+O\+\_\+\+G\+P\+P\+U\+D\+C\+L\+K0}~(B\+C\+M2835\+\_\+\+G\+P\+I\+O\+\_\+\+R\+E\+G\+S\+\_\+\+B\+A\+SE + 0x98)
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ A\+UX Registers}\par
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bfseries B\+C\+M2835\+\_\+\+A\+U\+X\+\_\+\+B\+A\+SE}~(R\+P\+I\+\_\+\+P\+E\+R\+I\+P\+H\+E\+R\+A\+L\+\_\+\+B\+A\+SE + 0x215000)
+\item 
+\#define {\bfseries A\+U\+X\+\_\+\+E\+N\+A\+B\+L\+ES}~(B\+C\+M2835\+\_\+\+A\+U\+X\+\_\+\+B\+A\+SE + 0x04)
+\item 
+\#define {\bfseries A\+U\+X\+\_\+\+M\+U\+\_\+\+I\+O\+\_\+\+R\+EG}~(B\+C\+M2835\+\_\+\+A\+U\+X\+\_\+\+B\+A\+SE + 0x40)
+\item 
+\#define {\bfseries A\+U\+X\+\_\+\+M\+U\+\_\+\+I\+E\+R\+\_\+\+R\+EG}~(B\+C\+M2835\+\_\+\+A\+U\+X\+\_\+\+B\+A\+SE + 0x44)
+\item 
+\#define {\bfseries A\+U\+X\+\_\+\+M\+U\+\_\+\+I\+I\+R\+\_\+\+R\+EG}~(B\+C\+M2835\+\_\+\+A\+U\+X\+\_\+\+B\+A\+SE + 0x48)
+\item 
+\#define {\bfseries A\+U\+X\+\_\+\+M\+U\+\_\+\+L\+C\+R\+\_\+\+R\+EG}~(B\+C\+M2835\+\_\+\+A\+U\+X\+\_\+\+B\+A\+SE + 0x4\+C)
+\item 
+\#define {\bfseries A\+U\+X\+\_\+\+M\+U\+\_\+\+M\+C\+R\+\_\+\+R\+EG}~(B\+C\+M2835\+\_\+\+A\+U\+X\+\_\+\+B\+A\+SE + 0x50)
+\item 
+\#define {\bfseries A\+U\+X\+\_\+\+M\+U\+\_\+\+L\+S\+R\+\_\+\+R\+EG}~(B\+C\+M2835\+\_\+\+A\+U\+X\+\_\+\+B\+A\+SE + 0x54)
+\item 
+\#define {\bfseries A\+U\+X\+\_\+\+M\+U\+\_\+\+M\+S\+R\+\_\+\+R\+EG}~(B\+C\+M2835\+\_\+\+A\+U\+X\+\_\+\+B\+A\+SE + 0x58)
+\item 
+\#define {\bfseries A\+U\+X\+\_\+\+M\+U\+\_\+\+S\+C\+R\+A\+T\+CH}~(B\+C\+M2835\+\_\+\+A\+U\+X\+\_\+\+B\+A\+SE + 0x5\+C)
+\item 
+\#define {\bfseries A\+U\+X\+\_\+\+M\+U\+\_\+\+C\+N\+T\+L\+\_\+\+R\+EG}~(B\+C\+M2835\+\_\+\+A\+U\+X\+\_\+\+B\+A\+SE + 0x60)
+\item 
+\#define {\bfseries A\+U\+X\+\_\+\+M\+U\+\_\+\+S\+T\+A\+T\+\_\+\+R\+EG}~(B\+C\+M2835\+\_\+\+A\+U\+X\+\_\+\+B\+A\+SE + 0x64)
+\item 
+\#define {\bfseries A\+U\+X\+\_\+\+M\+U\+\_\+\+B\+A\+U\+D\+\_\+\+R\+EG}~(B\+C\+M2835\+\_\+\+A\+U\+X\+\_\+\+B\+A\+SE + 0x68)
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ I2C (B\+SC) Registers}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{raspberrypi_8h_a54f1426b477bef589a14bf87f2659e16}\label{raspberrypi_8h_a54f1426b477bef589a14bf87f2659e16}} 
+\#define {\bfseries B\+C\+M2835\+\_\+\+I2\+C\+\_\+\+B\+A\+SE}~(R\+P\+I\+\_\+\+P\+E\+R\+I\+P\+H\+E\+R\+A\+L\+\_\+\+B\+A\+SE + 0x804000)
+\item 
+\mbox{\Hypertarget{raspberrypi_8h_ab459af396bbb8c07aceb5b6dbff8f141}\label{raspberrypi_8h_ab459af396bbb8c07aceb5b6dbff8f141}} 
+\#define {\bfseries B\+C\+M2835\+\_\+\+I2\+C\+\_\+C}~(B\+C\+M2835\+\_\+\+I2\+C\+\_\+\+B\+A\+SE + 0x00)
+\item 
+\mbox{\Hypertarget{raspberrypi_8h_a99c7c47d9a0c4b1f91b410e46aad6d23}\label{raspberrypi_8h_a99c7c47d9a0c4b1f91b410e46aad6d23}} 
+\#define {\bfseries B\+C\+M2835\+\_\+\+I2\+C\+\_\+S}~(B\+C\+M2835\+\_\+\+I2\+C\+\_\+\+B\+A\+SE + 0x04)
+\item 
+\mbox{\Hypertarget{raspberrypi_8h_aa4978ac1fac5545d47ac2c3496e6a857}\label{raspberrypi_8h_aa4978ac1fac5545d47ac2c3496e6a857}} 
+\#define {\bfseries B\+C\+M2835\+\_\+\+I2\+C\+\_\+\+D\+L\+EN}~(B\+C\+M2835\+\_\+\+I2\+C\+\_\+\+B\+A\+SE + 0x08)
+\item 
+\mbox{\Hypertarget{raspberrypi_8h_a84cf5457f88857099b88ffab35f20629}\label{raspberrypi_8h_a84cf5457f88857099b88ffab35f20629}} 
+\#define {\bfseries B\+C\+M2835\+\_\+\+I2\+C\+\_\+A}~(B\+C\+M2835\+\_\+\+I2\+C\+\_\+\+B\+A\+SE + 0x0\+C)
+\item 
+\mbox{\Hypertarget{raspberrypi_8h_af3359cd2d19e8e21060f33f577e4e387}\label{raspberrypi_8h_af3359cd2d19e8e21060f33f577e4e387}} 
+\#define {\bfseries B\+C\+M2835\+\_\+\+I2\+C\+\_\+\+F\+I\+FO}~(B\+C\+M2835\+\_\+\+I2\+C\+\_\+\+B\+A\+SE + 0x10)
+\item 
+\mbox{\Hypertarget{raspberrypi_8h_a6553baa6c8faff9aded5a7710b594b66}\label{raspberrypi_8h_a6553baa6c8faff9aded5a7710b594b66}} 
+\#define {\bfseries B\+C\+M2835\+\_\+\+I2\+C\+\_\+\+D\+IV}~(B\+C\+M2835\+\_\+\+I2\+C\+\_\+\+B\+A\+SE + 0x14)
+\item 
+\mbox{\Hypertarget{raspberrypi_8h_a9cbde078ed6e77a507f8fc9df17ac68a}\label{raspberrypi_8h_a9cbde078ed6e77a507f8fc9df17ac68a}} 
+\#define {\bfseries B\+C\+M2835\+\_\+\+I2\+C\+\_\+\+D\+EL}~(B\+C\+M2835\+\_\+\+I2\+C\+\_\+\+B\+A\+SE + 0x18)
+\item 
+\mbox{\Hypertarget{raspberrypi_8h_a061a5e2dac47b15d2546eb9d222bf421}\label{raspberrypi_8h_a061a5e2dac47b15d2546eb9d222bf421}} 
+\#define {\bfseries B\+C\+M2835\+\_\+\+I2\+C\+\_\+\+C\+L\+KT}~(B\+C\+M2835\+\_\+\+I2\+C\+\_\+\+B\+A\+SE + 0x1\+C)
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ S\+PI Registers}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{raspberrypi_8h_a28c651fd4e308c2f333b1262108b7a56}\label{raspberrypi_8h_a28c651fd4e308c2f333b1262108b7a56}} 
+\#define {\bfseries B\+C\+M2835\+\_\+\+S\+P\+I\+\_\+\+B\+A\+SE}~(R\+P\+I\+\_\+\+P\+E\+R\+I\+P\+H\+E\+R\+A\+L\+\_\+\+B\+A\+SE + 0x204000)
+\item 
+\mbox{\Hypertarget{raspberrypi_8h_aac4e1624f1a6109418fa03fa8b24e1b2}\label{raspberrypi_8h_aac4e1624f1a6109418fa03fa8b24e1b2}} 
+\#define {\bfseries B\+C\+M2835\+\_\+\+S\+P\+I\+\_\+\+CS}~(B\+C\+M2835\+\_\+\+S\+P\+I\+\_\+\+B\+A\+SE + 0x00)
+\item 
+\mbox{\Hypertarget{raspberrypi_8h_a61f020896ebd11e78589653f7d97fc8b}\label{raspberrypi_8h_a61f020896ebd11e78589653f7d97fc8b}} 
+\#define {\bfseries B\+C\+M2835\+\_\+\+S\+P\+I\+\_\+\+F\+I\+FO}~(B\+C\+M2835\+\_\+\+S\+P\+I\+\_\+\+B\+A\+SE + 0x04)
+\item 
+\mbox{\Hypertarget{raspberrypi_8h_a79fbcb170e952687fcc0cf1582ff6958}\label{raspberrypi_8h_a79fbcb170e952687fcc0cf1582ff6958}} 
+\#define {\bfseries B\+C\+M2835\+\_\+\+S\+P\+I\+\_\+\+C\+LK}~(B\+C\+M2835\+\_\+\+S\+P\+I\+\_\+\+B\+A\+SE + 0x08)
+\item 
+\mbox{\Hypertarget{raspberrypi_8h_ac6bfcac0835b6f5f50aed86c0f0d8dd9}\label{raspberrypi_8h_ac6bfcac0835b6f5f50aed86c0f0d8dd9}} 
+\#define {\bfseries B\+C\+M2835\+\_\+\+S\+P\+I\+\_\+\+D\+L\+EN}~(B\+C\+M2835\+\_\+\+S\+P\+I\+\_\+\+B\+A\+SE + 0x0\+C)
+\item 
+\mbox{\Hypertarget{raspberrypi_8h_a28f07144a318e1fbbc4b67c0ad4cf037}\label{raspberrypi_8h_a28f07144a318e1fbbc4b67c0ad4cf037}} 
+\#define {\bfseries B\+C\+M2835\+\_\+\+S\+P\+I\+\_\+\+L\+T\+OH}~(B\+C\+M2835\+\_\+\+S\+P\+I\+\_\+\+B\+A\+SE + 0x10)
+\item 
+\mbox{\Hypertarget{raspberrypi_8h_af194cd380769fe3d5399858ca6414aa2}\label{raspberrypi_8h_af194cd380769fe3d5399858ca6414aa2}} 
+\#define {\bfseries B\+C\+M2835\+\_\+\+S\+P\+I\+\_\+\+DC}~(B\+C\+M2835\+\_\+\+S\+P\+I\+\_\+\+B\+A\+SE + 0x14)
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ I2\+C/\+S\+PI slave B\+SC Registers}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{raspberrypi_8h_af18838fd0f957a0c60e01a97ffb0d363}\label{raspberrypi_8h_af18838fd0f957a0c60e01a97ffb0d363}} 
+\#define {\bfseries B\+C\+M2835\+\_\+\+I2\+C\+\_\+\+S\+P\+I\+\_\+\+B\+A\+SE}~(R\+P\+I\+\_\+\+P\+E\+R\+I\+P\+H\+E\+R\+A\+L\+\_\+\+B\+A\+SE + 0x214000)
+\item 
+\mbox{\Hypertarget{raspberrypi_8h_a919a0cefd5d591a91fc19d2c6db85cce}\label{raspberrypi_8h_a919a0cefd5d591a91fc19d2c6db85cce}} 
+\#define {\bfseries B\+C\+M2835\+\_\+\+I2\+C\+\_\+\+S\+P\+I\+\_\+\+DR}~(B\+C\+M2835\+\_\+\+I2\+C\+\_\+\+S\+P\+I\+\_\+\+B\+A\+SE + 0x00)
+\item 
+\mbox{\Hypertarget{raspberrypi_8h_a0cdac32abd4d26af87e4674b73e31989}\label{raspberrypi_8h_a0cdac32abd4d26af87e4674b73e31989}} 
+\#define {\bfseries B\+C\+M2835\+\_\+\+I2\+C\+\_\+\+S\+P\+I\+\_\+\+R\+SR}~(B\+C\+M2835\+\_\+\+I2\+C\+\_\+\+S\+P\+I\+\_\+\+B\+A\+SE + 0x04)
+\item 
+\mbox{\Hypertarget{raspberrypi_8h_aab3af6f04d6e2b502fe294ed66c78cbb}\label{raspberrypi_8h_aab3af6f04d6e2b502fe294ed66c78cbb}} 
+\#define {\bfseries B\+C\+M2835\+\_\+\+I2\+C\+\_\+\+S\+P\+I\+\_\+\+S\+LV}~(B\+C\+M2835\+\_\+\+I2\+C\+\_\+\+S\+P\+I\+\_\+\+B\+A\+SE + 0x08)
+\item 
+\mbox{\Hypertarget{raspberrypi_8h_a698bb54d592b011cb037732be623f175}\label{raspberrypi_8h_a698bb54d592b011cb037732be623f175}} 
+\#define {\bfseries B\+C\+M2835\+\_\+\+I2\+C\+\_\+\+S\+P\+I\+\_\+\+CR}~(B\+C\+M2835\+\_\+\+I2\+C\+\_\+\+S\+P\+I\+\_\+\+B\+A\+SE + 0x0\+C)
+\item 
+\mbox{\Hypertarget{raspberrypi_8h_a338ae37c31a9d434b275b3be4de47f89}\label{raspberrypi_8h_a338ae37c31a9d434b275b3be4de47f89}} 
+\#define {\bfseries B\+C\+M2835\+\_\+\+I2\+C\+\_\+\+S\+P\+I\+\_\+\+FR}~(B\+C\+M2835\+\_\+\+I2\+C\+\_\+\+S\+P\+I\+\_\+\+B\+A\+SE + 0x10)
+\item 
+\mbox{\Hypertarget{raspberrypi_8h_a3af4bd64cd800037a014b102f4024d39}\label{raspberrypi_8h_a3af4bd64cd800037a014b102f4024d39}} 
+\#define {\bfseries B\+C\+M2835\+\_\+\+I2\+C\+\_\+\+S\+P\+I\+\_\+\+I\+F\+LS}~(B\+C\+M2835\+\_\+\+I2\+C\+\_\+\+S\+P\+I\+\_\+\+B\+A\+SE + 0x14)
+\item 
+\mbox{\Hypertarget{raspberrypi_8h_a793162fede0016475b8a1e5b9ef1fff0}\label{raspberrypi_8h_a793162fede0016475b8a1e5b9ef1fff0}} 
+\#define {\bfseries B\+C\+M2835\+\_\+\+I2\+C\+\_\+\+S\+P\+I\+\_\+\+I\+M\+SC}~(B\+C\+M2835\+\_\+\+I2\+C\+\_\+\+S\+P\+I\+\_\+\+B\+A\+SE + 0x18)
+\item 
+\mbox{\Hypertarget{raspberrypi_8h_a2b3446139882d560a0fa3ffc5545228e}\label{raspberrypi_8h_a2b3446139882d560a0fa3ffc5545228e}} 
+\#define {\bfseries B\+C\+M2835\+\_\+\+I2\+C\+\_\+\+S\+P\+I\+\_\+\+R\+IS}~(B\+C\+M2835\+\_\+\+I2\+C\+\_\+\+S\+P\+I\+\_\+\+B\+A\+SE + 0x1\+C)
+\item 
+\mbox{\Hypertarget{raspberrypi_8h_a7be84d51d559a287a49272f0ea9db614}\label{raspberrypi_8h_a7be84d51d559a287a49272f0ea9db614}} 
+\#define {\bfseries B\+C\+M2835\+\_\+\+I2\+C\+\_\+\+S\+P\+I\+\_\+\+M\+IS}~(B\+C\+M2835\+\_\+\+I2\+C\+\_\+\+S\+P\+I\+\_\+\+B\+A\+SE + 0x20)
+\item 
+\mbox{\Hypertarget{raspberrypi_8h_a43cb08105ceae09b6de39963e98ff835}\label{raspberrypi_8h_a43cb08105ceae09b6de39963e98ff835}} 
+\#define {\bfseries B\+C\+M2835\+\_\+\+I2\+C\+\_\+\+S\+P\+I\+\_\+\+I\+CR}~(B\+C\+M2835\+\_\+\+I2\+C\+\_\+\+S\+P\+I\+\_\+\+B\+A\+SE + 0x24)
+\item 
+\mbox{\Hypertarget{raspberrypi_8h_a0a37b5c9539bdfdfebb92ac5e1a72a47}\label{raspberrypi_8h_a0a37b5c9539bdfdfebb92ac5e1a72a47}} 
+\#define {\bfseries B\+C\+M2835\+\_\+\+I2\+C\+\_\+\+S\+P\+I\+\_\+\+D\+M\+A\+CR}~(B\+C\+M2835\+\_\+\+I2\+C\+\_\+\+S\+P\+I\+\_\+\+B\+A\+SE + 0x28)
+\item 
+\mbox{\Hypertarget{raspberrypi_8h_a9924ad8a171bda495f94d0354126bf39}\label{raspberrypi_8h_a9924ad8a171bda495f94d0354126bf39}} 
+\#define {\bfseries B\+C\+M2835\+\_\+\+I2\+C\+\_\+\+S\+P\+I\+\_\+\+T\+DR}~(B\+C\+M2835\+\_\+\+I2\+C\+\_\+\+S\+P\+I\+\_\+\+B\+A\+SE + 0x2\+C)
+\item 
+\mbox{\Hypertarget{raspberrypi_8h_aa2c98a76f9201bc33378887902a32a45}\label{raspberrypi_8h_aa2c98a76f9201bc33378887902a32a45}} 
+\#define {\bfseries B\+C\+M2835\+\_\+\+I2\+C\+\_\+\+S\+P\+I\+\_\+\+G\+P\+U\+S\+T\+AT}~(B\+C\+M2835\+\_\+\+I2\+C\+\_\+\+S\+P\+I\+\_\+\+B\+A\+SE + 0x30)
+\item 
+\mbox{\Hypertarget{raspberrypi_8h_aa5f6ed815ce20272a2420f53c7354146}\label{raspberrypi_8h_aa5f6ed815ce20272a2420f53c7354146}} 
+\#define {\bfseries B\+C\+M2835\+\_\+\+I2\+C\+\_\+\+S\+P\+I\+\_\+\+H\+C\+T\+RL}~(B\+C\+M2835\+\_\+\+I2\+C\+\_\+\+S\+P\+I\+\_\+\+B\+A\+SE + 0x34)
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ I\+RQ Registers}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{raspberrypi_8h_a2652a20655bcb84159d7d93db064c37c}\label{raspberrypi_8h_a2652a20655bcb84159d7d93db064c37c}} 
+\#define {\bfseries B\+C\+M2835\+\_\+\+B\+A\+S\+E\+\_\+\+I\+N\+TC}~(R\+P\+I\+\_\+\+P\+E\+R\+I\+P\+H\+E\+R\+A\+L\+\_\+\+B\+A\+SE + 0x\+B200)
+\item 
+\mbox{\Hypertarget{raspberrypi_8h_a2e1b6da8c37955c1a62f38b52aa591c3}\label{raspberrypi_8h_a2e1b6da8c37955c1a62f38b52aa591c3}} 
+\#define {\bfseries B\+C\+M2835\+\_\+\+I\+R\+Q\+\_\+\+B\+A\+S\+IC}~(B\+C\+M2835\+\_\+\+B\+A\+S\+E\+\_\+\+I\+N\+TC + 0x00)
+\item 
+\mbox{\Hypertarget{raspberrypi_8h_adf1c6176c29d3a7a635d0ffbed50be39}\label{raspberrypi_8h_adf1c6176c29d3a7a635d0ffbed50be39}} 
+\#define {\bfseries B\+C\+M2835\+\_\+\+I\+R\+Q\+\_\+\+P\+E\+N\+D\+I\+N\+G1}~(B\+C\+M2835\+\_\+\+B\+A\+S\+E\+\_\+\+I\+N\+TC + 0x04)
+\item 
+\mbox{\Hypertarget{raspberrypi_8h_aa0bcb04c7ac3b4a417ca1a04eebe29f4}\label{raspberrypi_8h_aa0bcb04c7ac3b4a417ca1a04eebe29f4}} 
+\#define {\bfseries B\+C\+M2835\+\_\+\+I\+R\+Q\+\_\+\+P\+E\+N\+D\+I\+N\+G2}~(B\+C\+M2835\+\_\+\+B\+A\+S\+E\+\_\+\+I\+N\+TC + 0x08)
+\item 
+\mbox{\Hypertarget{raspberrypi_8h_a943f46516ea2258afed61bbd65ee2d30}\label{raspberrypi_8h_a943f46516ea2258afed61bbd65ee2d30}} 
+\#define {\bfseries B\+C\+M2835\+\_\+\+I\+R\+Q\+\_\+\+F\+I\+Q\+\_\+\+C\+T\+RL}~(B\+C\+M2835\+\_\+\+B\+A\+S\+E\+\_\+\+I\+N\+TC + 0x0\+C)
+\item 
+\mbox{\Hypertarget{raspberrypi_8h_a936cc823cf4b37562bd2566bc70e44a9}\label{raspberrypi_8h_a936cc823cf4b37562bd2566bc70e44a9}} 
+\#define {\bfseries B\+C\+M2835\+\_\+\+I\+R\+Q\+\_\+\+E\+N\+A\+B\+L\+E1}~(B\+C\+M2835\+\_\+\+B\+A\+S\+E\+\_\+\+I\+N\+TC + 0x10)
+\item 
+\mbox{\Hypertarget{raspberrypi_8h_a4b3c7cc57854c706ee75d717fc136aa1}\label{raspberrypi_8h_a4b3c7cc57854c706ee75d717fc136aa1}} 
+\#define {\bfseries B\+C\+M2835\+\_\+\+I\+R\+Q\+\_\+\+E\+N\+A\+B\+L\+E2}~(B\+C\+M2835\+\_\+\+B\+A\+S\+E\+\_\+\+I\+N\+TC + 0x14)
+\item 
+\mbox{\Hypertarget{raspberrypi_8h_a6d117a29825e24f11a0621661eefce89}\label{raspberrypi_8h_a6d117a29825e24f11a0621661eefce89}} 
+\#define {\bfseries B\+C\+M2835\+\_\+\+I\+R\+Q\+\_\+\+E\+N\+A\+B\+L\+E\+\_\+\+B\+A\+S\+IC}~(B\+C\+M2835\+\_\+\+B\+A\+S\+E\+\_\+\+I\+N\+TC + 0x18)
+\item 
+\mbox{\Hypertarget{raspberrypi_8h_af753db8ebd031bb6f928b7fe410cb557}\label{raspberrypi_8h_af753db8ebd031bb6f928b7fe410cb557}} 
+\#define {\bfseries B\+C\+M2835\+\_\+\+I\+R\+Q\+\_\+\+D\+I\+S\+A\+B\+L\+E1}~(B\+C\+M2835\+\_\+\+B\+A\+S\+E\+\_\+\+I\+N\+TC + 0x1\+C)
+\item 
+\mbox{\Hypertarget{raspberrypi_8h_ad35befaa353aee33d7caa172626f4cbd}\label{raspberrypi_8h_ad35befaa353aee33d7caa172626f4cbd}} 
+\#define {\bfseries B\+C\+M2835\+\_\+\+I\+R\+Q\+\_\+\+D\+I\+S\+A\+B\+L\+E2}~(B\+C\+M2835\+\_\+\+B\+A\+S\+E\+\_\+\+I\+N\+TC + 0x20)
+\item 
+\mbox{\Hypertarget{raspberrypi_8h_af0cd326c575abb445afea22f4c4187ec}\label{raspberrypi_8h_af0cd326c575abb445afea22f4c4187ec}} 
+\#define {\bfseries B\+C\+M2835\+\_\+\+I\+R\+Q\+\_\+\+D\+I\+S\+A\+B\+L\+E\+\_\+\+B\+A\+S\+IC}~(B\+C\+M2835\+\_\+\+B\+A\+S\+E\+\_\+\+I\+N\+TC + 0x24)
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ G\+PU Timer Registers}\par
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{raspberrypi_8h_a1850c253e740c856ddc2aeb9f50d7efc}{B\+C\+M2835\+\_\+\+G\+P\+U\+\_\+\+T\+I\+M\+E\+R\+\_\+\+B\+A\+SE}}~(R\+P\+I\+\_\+\+P\+E\+R\+I\+P\+H\+E\+R\+A\+L\+\_\+\+B\+A\+SE + 0x3000)
+\item 
+\mbox{\Hypertarget{raspberrypi_8h_a2c1396f4c0287cd5f4eac5dbcc75c787}\label{raspberrypi_8h_a2c1396f4c0287cd5f4eac5dbcc75c787}} 
+\#define {\bfseries B\+C\+M2835\+\_\+\+G\+P\+U\+\_\+\+T\+I\+M\+E\+R\+\_\+\+CS}~(\mbox{\hyperlink{raspberrypi_8h_a1850c253e740c856ddc2aeb9f50d7efc}{B\+C\+M2835\+\_\+\+G\+P\+U\+\_\+\+T\+I\+M\+E\+R\+\_\+\+B\+A\+SE}} + 0x00)
+\item 
+\mbox{\Hypertarget{raspberrypi_8h_a98deb30541950eadbe8110733e0a95f1}\label{raspberrypi_8h_a98deb30541950eadbe8110733e0a95f1}} 
+\#define {\bfseries B\+C\+M2835\+\_\+\+G\+P\+U\+\_\+\+T\+I\+M\+E\+R\+\_\+\+C\+S\+\_\+\+M0}~0x00000001
+\item 
+\mbox{\Hypertarget{raspberrypi_8h_ae7d3df60b04917901738031ceb041f11}\label{raspberrypi_8h_ae7d3df60b04917901738031ceb041f11}} 
+\#define {\bfseries B\+C\+M2835\+\_\+\+G\+P\+U\+\_\+\+T\+I\+M\+E\+R\+\_\+\+C\+S\+\_\+\+M1}~0x00000002
+\item 
+\mbox{\Hypertarget{raspberrypi_8h_aa6f218c215f713bb1238ca57e2bcd39f}\label{raspberrypi_8h_aa6f218c215f713bb1238ca57e2bcd39f}} 
+\#define {\bfseries B\+C\+M2835\+\_\+\+G\+P\+U\+\_\+\+T\+I\+M\+E\+R\+\_\+\+C\+S\+\_\+\+M2}~0x00000004
+\item 
+\mbox{\Hypertarget{raspberrypi_8h_a94cf2037aef8299346711d4a7b631391}\label{raspberrypi_8h_a94cf2037aef8299346711d4a7b631391}} 
+\#define {\bfseries B\+C\+M2835\+\_\+\+G\+P\+U\+\_\+\+T\+I\+M\+E\+R\+\_\+\+C\+S\+\_\+\+M3}~0x00000008
+\item 
+\mbox{\Hypertarget{raspberrypi_8h_ab3beeec84ecb1faeb645b19266b3457d}\label{raspberrypi_8h_ab3beeec84ecb1faeb645b19266b3457d}} 
+\#define {\bfseries B\+C\+M2835\+\_\+\+G\+P\+U\+\_\+\+T\+I\+M\+E\+R\+\_\+\+C\+LO}~(\mbox{\hyperlink{raspberrypi_8h_a1850c253e740c856ddc2aeb9f50d7efc}{B\+C\+M2835\+\_\+\+G\+P\+U\+\_\+\+T\+I\+M\+E\+R\+\_\+\+B\+A\+SE}} + 0x04)
+\item 
+\mbox{\Hypertarget{raspberrypi_8h_a686c1f98b9ce292b99d2e6688f796bbc}\label{raspberrypi_8h_a686c1f98b9ce292b99d2e6688f796bbc}} 
+\#define {\bfseries B\+C\+M2835\+\_\+\+G\+P\+U\+\_\+\+T\+I\+M\+E\+R\+\_\+\+C\+HI}~(\mbox{\hyperlink{raspberrypi_8h_a1850c253e740c856ddc2aeb9f50d7efc}{B\+C\+M2835\+\_\+\+G\+P\+U\+\_\+\+T\+I\+M\+E\+R\+\_\+\+B\+A\+SE}} + 0x08)
+\item 
+\mbox{\Hypertarget{raspberrypi_8h_a5d357827962fc41edd575565c700517f}\label{raspberrypi_8h_a5d357827962fc41edd575565c700517f}} 
+\#define {\bfseries B\+C\+M2835\+\_\+\+G\+P\+U\+\_\+\+T\+I\+M\+E\+R\+\_\+\+C0}~(\mbox{\hyperlink{raspberrypi_8h_a1850c253e740c856ddc2aeb9f50d7efc}{B\+C\+M2835\+\_\+\+G\+P\+U\+\_\+\+T\+I\+M\+E\+R\+\_\+\+B\+A\+SE}} + 0x0\+C)
+\item 
+\mbox{\Hypertarget{raspberrypi_8h_a0baea90267b527ef64b29b0bf798a174}\label{raspberrypi_8h_a0baea90267b527ef64b29b0bf798a174}} 
+\#define {\bfseries B\+C\+M2835\+\_\+\+G\+P\+U\+\_\+\+T\+I\+M\+E\+R\+\_\+\+C1}~(\mbox{\hyperlink{raspberrypi_8h_a1850c253e740c856ddc2aeb9f50d7efc}{B\+C\+M2835\+\_\+\+G\+P\+U\+\_\+\+T\+I\+M\+E\+R\+\_\+\+B\+A\+SE}} + 0x10)
+\item 
+\mbox{\Hypertarget{raspberrypi_8h_a3f1b5d673336639ce40c2577b1b29939}\label{raspberrypi_8h_a3f1b5d673336639ce40c2577b1b29939}} 
+\#define {\bfseries B\+C\+M2835\+\_\+\+G\+P\+U\+\_\+\+T\+I\+M\+E\+R\+\_\+\+C2}~(\mbox{\hyperlink{raspberrypi_8h_a1850c253e740c856ddc2aeb9f50d7efc}{B\+C\+M2835\+\_\+\+G\+P\+U\+\_\+\+T\+I\+M\+E\+R\+\_\+\+B\+A\+SE}} + 0x14)
+\item 
+\mbox{\Hypertarget{raspberrypi_8h_a3396daa04fdee18b4aaf77f89537b6fa}\label{raspberrypi_8h_a3396daa04fdee18b4aaf77f89537b6fa}} 
+\#define {\bfseries B\+C\+M2835\+\_\+\+G\+P\+U\+\_\+\+T\+I\+M\+E\+R\+\_\+\+C3}~(\mbox{\hyperlink{raspberrypi_8h_a1850c253e740c856ddc2aeb9f50d7efc}{B\+C\+M2835\+\_\+\+G\+P\+U\+\_\+\+T\+I\+M\+E\+R\+\_\+\+B\+A\+SE}} + 0x18)
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ E\+M\+MC Registers}\par
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{raspberrypi_8h_a202f22b302f87b75af3b11cafeeae1cf}{B\+C\+M2835\+\_\+\+E\+M\+M\+C\+\_\+\+B\+A\+SE}}~(R\+P\+I\+\_\+\+P\+E\+R\+I\+P\+H\+E\+R\+A\+L\+\_\+\+B\+A\+SE + 0x300000)
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Mailbox Registers}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{raspberrypi_8h_a65cc2835aaba0e58b5e23b4433cede2f}\label{raspberrypi_8h_a65cc2835aaba0e58b5e23b4433cede2f}} 
+\#define {\bfseries B\+C\+M2835\+\_\+\+M\+B\+O\+X\+\_\+\+B\+A\+SE}~(R\+P\+I\+\_\+\+P\+E\+R\+I\+P\+H\+E\+R\+A\+L\+\_\+\+B\+A\+SE+0x\+B880)
+\item 
+\mbox{\Hypertarget{raspberrypi_8h_a148693c2350df03554d307096be3d5e9}\label{raspberrypi_8h_a148693c2350df03554d307096be3d5e9}} 
+\#define {\bfseries B\+C\+M2835\+\_\+\+M\+B\+O\+X\+\_\+\+P\+E\+EK}~(B\+C\+M2835\+\_\+\+M\+B\+O\+X\+\_\+\+B\+A\+SE+0x10)
+\item 
+\mbox{\Hypertarget{raspberrypi_8h_ab2bc5f7261525bc2d38b4440c41d7f67}\label{raspberrypi_8h_ab2bc5f7261525bc2d38b4440c41d7f67}} 
+\#define {\bfseries B\+C\+M2835\+\_\+\+M\+B\+O\+X\+\_\+\+R\+E\+AD}~(B\+C\+M2835\+\_\+\+M\+B\+O\+X\+\_\+\+B\+A\+SE+0x00)
+\item 
+\mbox{\Hypertarget{raspberrypi_8h_a5c2a33cc3584e071341931e262476798}\label{raspberrypi_8h_a5c2a33cc3584e071341931e262476798}} 
+\#define {\bfseries B\+C\+M2835\+\_\+\+M\+B\+O\+X\+\_\+\+W\+R\+I\+TE}~(B\+C\+M2835\+\_\+\+M\+B\+O\+X\+\_\+\+B\+A\+SE+0x20)
+\item 
+\mbox{\Hypertarget{raspberrypi_8h_ab232c824316986064af6d48c958be446}\label{raspberrypi_8h_ab232c824316986064af6d48c958be446}} 
+\#define {\bfseries B\+C\+M2835\+\_\+\+M\+B\+O\+X\+\_\+\+S\+T\+A\+T\+US}~(B\+C\+M2835\+\_\+\+M\+B\+O\+X\+\_\+\+B\+A\+SE+0x18)
+\item 
+\mbox{\Hypertarget{raspberrypi_8h_aedc12b0f3605824b26dbf80300010bef}\label{raspberrypi_8h_aedc12b0f3605824b26dbf80300010bef}} 
+\#define {\bfseries B\+C\+M2835\+\_\+\+M\+B\+O\+X\+\_\+\+S\+E\+N\+D\+ER}~(B\+C\+M2835\+\_\+\+M\+B\+O\+X\+\_\+\+B\+A\+SE+0x14)
+\item 
+\mbox{\Hypertarget{raspberrypi_8h_a87e1bc3f31c24db681043581c52e3a90}\label{raspberrypi_8h_a87e1bc3f31c24db681043581c52e3a90}} 
+\#define {\bfseries B\+C\+M2835\+\_\+\+M\+B\+O\+X\+\_\+\+C\+O\+N\+F\+IG}~(B\+C\+M2835\+\_\+\+M\+B\+O\+X\+\_\+\+B\+A\+SE+0x1\+C)
+\item 
+\mbox{\Hypertarget{raspberrypi_8h_acbac531420face8d71a4c93ccde5fd98}\label{raspberrypi_8h_acbac531420face8d71a4c93ccde5fd98}} 
+\#define {\bfseries B\+C\+M2835\+\_\+\+M\+B\+O\+X\+\_\+\+F\+U\+LL}~0x80000000
+\item 
+\mbox{\Hypertarget{raspberrypi_8h_afb04c919aa9dfa25c5663fa54dbec8ac}\label{raspberrypi_8h_afb04c919aa9dfa25c5663fa54dbec8ac}} 
+\#define {\bfseries B\+C\+M2835\+\_\+\+M\+B\+O\+X\+\_\+\+E\+M\+P\+TY}~0x40000000
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Mailbox Channels}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{raspberrypi_8h_a1f05ae12eb58fbebaf08f3fbdd8668fc}\label{raspberrypi_8h_a1f05ae12eb58fbebaf08f3fbdd8668fc}} 
+\#define {\bfseries B\+C\+M2835\+\_\+\+M\+B\+O\+X\+\_\+\+C\+H\+A\+N\+N\+E\+L\+\_\+\+PM}~0
+\item 
+\mbox{\Hypertarget{raspberrypi_8h_a0723d1ffdc8c240820b7a88c73194f35}\label{raspberrypi_8h_a0723d1ffdc8c240820b7a88c73194f35}} 
+\#define {\bfseries B\+C\+M2835\+\_\+\+M\+B\+O\+X\+\_\+\+C\+H\+A\+N\+N\+E\+L\+\_\+\+FB}~1
+\item 
+\mbox{\Hypertarget{raspberrypi_8h_a31fe1ac79a896eb7b8dd3963767e54cf}\label{raspberrypi_8h_a31fe1ac79a896eb7b8dd3963767e54cf}} 
+\#define {\bfseries B\+C\+M2835\+\_\+\+M\+B\+O\+X\+\_\+\+C\+H\+A\+N\+N\+E\+L\+\_\+\+V\+U\+A\+RT}~2
+\item 
+\mbox{\Hypertarget{raspberrypi_8h_ae5af5d685a4d1f2a1d8e92856d81bac5}\label{raspberrypi_8h_ae5af5d685a4d1f2a1d8e92856d81bac5}} 
+\#define {\bfseries B\+C\+M2835\+\_\+\+M\+B\+O\+X\+\_\+\+C\+H\+A\+N\+N\+E\+L\+\_\+\+V\+C\+H\+IQ}~3
+\item 
+\mbox{\Hypertarget{raspberrypi_8h_af20849dc91233121581be417627c07c0}\label{raspberrypi_8h_af20849dc91233121581be417627c07c0}} 
+\#define {\bfseries B\+C\+M2835\+\_\+\+M\+B\+O\+X\+\_\+\+C\+H\+A\+N\+N\+E\+L\+\_\+\+L\+ED}~4
+\item 
+\mbox{\Hypertarget{raspberrypi_8h_a45f5121e745e3ebf376d84ff3b48df12}\label{raspberrypi_8h_a45f5121e745e3ebf376d84ff3b48df12}} 
+\#define {\bfseries B\+C\+M2835\+\_\+\+M\+B\+O\+X\+\_\+\+C\+H\+A\+N\+N\+E\+L\+\_\+\+B\+U\+T\+T\+ON}~5
+\item 
+\mbox{\Hypertarget{raspberrypi_8h_a672a70127477d2f43299813945d07c0c}\label{raspberrypi_8h_a672a70127477d2f43299813945d07c0c}} 
+\#define {\bfseries B\+C\+M2835\+\_\+\+M\+B\+O\+X\+\_\+\+C\+H\+A\+N\+N\+E\+L\+\_\+\+T\+O\+U\+C\+HS}~6
+\item 
+\mbox{\Hypertarget{raspberrypi_8h_ad1223ce547a883269001a1ebc3178187}\label{raspberrypi_8h_ad1223ce547a883269001a1ebc3178187}} 
+\#define {\bfseries B\+C\+M2835\+\_\+\+M\+B\+O\+X\+\_\+\+C\+H\+A\+N\+N\+E\+L\+\_\+\+P\+R\+O\+P\+\_\+\+A\+VC}~8
+\item 
+\mbox{\Hypertarget{raspberrypi_8h_ace761ab9a96ebb5ed8cf6702f2f3fb1b}\label{raspberrypi_8h_ace761ab9a96ebb5ed8cf6702f2f3fb1b}} 
+\#define {\bfseries B\+C\+M2835\+\_\+\+M\+B\+O\+X\+\_\+\+C\+H\+A\+N\+N\+E\+L\+\_\+\+P\+R\+O\+P\+\_\+\+V\+CA}~9
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ U\+SB Registers}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{raspberrypi_8h_a55a2495f96f8d42266008e0989854cd5}\label{raspberrypi_8h_a55a2495f96f8d42266008e0989854cd5}} 
+\#define {\bfseries B\+C\+M2835\+\_\+\+U\+S\+B\+\_\+\+B\+A\+SE}~(R\+P\+I\+\_\+\+P\+E\+R\+I\+P\+H\+E\+R\+A\+L\+\_\+\+B\+A\+SE + 0x980000) /$\ast$ D\+T\+C\+\_\+\+O\+T\+G U\+S\+B controller $\ast$/
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Raspberry Pi 2 C\+PU Cores Local Peripherals}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{raspberrypi_8h_a79592b1812e923da403708243c21219b}\label{raspberrypi_8h_a79592b1812e923da403708243c21219b}} 
+\#define {\bfseries B\+C\+M2836\+\_\+\+C\+O\+R\+E\+\_\+\+L\+O\+C\+A\+L\+\_\+\+P\+E\+R\+I\+P\+H\+\_\+\+B\+A\+SE}~0x40000000
+\item 
+\mbox{\Hypertarget{raspberrypi_8h_acb42f9901ea4d654c2dc0c7e04a5228b}\label{raspberrypi_8h_acb42f9901ea4d654c2dc0c7e04a5228b}} 
+\#define {\bfseries B\+C\+M2836\+\_\+\+C\+O\+R\+E\+\_\+\+L\+O\+C\+A\+L\+\_\+\+P\+E\+R\+I\+P\+H\+\_\+\+S\+I\+ZE}~0x00040000
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Raspberry Pi 2 Mailbox Register Defines}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{raspberrypi_8h_a34c7ddb11d3fa0e94d6e06fcbb7509a0}\label{raspberrypi_8h_a34c7ddb11d3fa0e94d6e06fcbb7509a0}} 
+\#define {\bfseries B\+C\+M2836\+\_\+\+M\+A\+I\+L\+B\+O\+X\+\_\+0\+\_\+\+W\+R\+I\+T\+E\+\_\+\+S\+E\+T\+\_\+\+B\+A\+SE}~0x40000080
+\item 
+\mbox{\Hypertarget{raspberrypi_8h_a6fde05bacdffdb1660f4c1a188b1e836}\label{raspberrypi_8h_a6fde05bacdffdb1660f4c1a188b1e836}} 
+\#define {\bfseries B\+C\+M2836\+\_\+\+M\+A\+I\+L\+B\+O\+X\+\_\+1\+\_\+\+W\+R\+I\+T\+E\+\_\+\+S\+E\+T\+\_\+\+B\+A\+SE}~0x40000084
+\item 
+\mbox{\Hypertarget{raspberrypi_8h_a8cebf29f6510f1d99b8beeb5ac6ab6c7}\label{raspberrypi_8h_a8cebf29f6510f1d99b8beeb5ac6ab6c7}} 
+\#define {\bfseries B\+C\+M2836\+\_\+\+M\+A\+I\+L\+B\+O\+X\+\_\+2\+\_\+\+W\+R\+I\+T\+E\+\_\+\+S\+E\+T\+\_\+\+B\+A\+SE}~0x40000088
+\item 
+\mbox{\Hypertarget{raspberrypi_8h_a1d097a95071807a96146754936039e4a}\label{raspberrypi_8h_a1d097a95071807a96146754936039e4a}} 
+\#define {\bfseries B\+C\+M2836\+\_\+\+M\+A\+I\+L\+B\+O\+X\+\_\+3\+\_\+\+W\+R\+I\+T\+E\+\_\+\+S\+E\+T\+\_\+\+B\+A\+SE}~0x4000008C
+\item 
+\mbox{\Hypertarget{raspberrypi_8h_a45b4961f9b27eddc3e7368315f660710}\label{raspberrypi_8h_a45b4961f9b27eddc3e7368315f660710}} 
+\#define {\bfseries B\+C\+M2836\+\_\+\+M\+A\+I\+L\+B\+O\+X\+\_\+0\+\_\+\+R\+E\+A\+D\+\_\+\+C\+L\+E\+A\+R\+\_\+\+B\+A\+SE}~0x400000\+C0
+\item 
+\mbox{\Hypertarget{raspberrypi_8h_af104d8100c87834c3eb35634714b60ab}\label{raspberrypi_8h_af104d8100c87834c3eb35634714b60ab}} 
+\#define {\bfseries B\+C\+M2836\+\_\+\+M\+A\+I\+L\+B\+O\+X\+\_\+1\+\_\+\+R\+E\+A\+D\+\_\+\+C\+L\+E\+A\+R\+\_\+\+B\+A\+SE}~0x400000\+C4
+\item 
+\mbox{\Hypertarget{raspberrypi_8h_a71e4e8943b0245d858fabd1af3613153}\label{raspberrypi_8h_a71e4e8943b0245d858fabd1af3613153}} 
+\#define {\bfseries B\+C\+M2836\+\_\+\+M\+A\+I\+L\+B\+O\+X\+\_\+2\+\_\+\+R\+E\+A\+D\+\_\+\+C\+L\+E\+A\+R\+\_\+\+B\+A\+SE}~0x400000\+C8
+\item 
+\mbox{\Hypertarget{raspberrypi_8h_ae3b757f8ba09ba41aea90e84b5495b37}\label{raspberrypi_8h_ae3b757f8ba09ba41aea90e84b5495b37}} 
+\#define {\bfseries B\+C\+M2836\+\_\+\+M\+A\+I\+L\+B\+O\+X\+\_\+3\+\_\+\+R\+E\+A\+D\+\_\+\+C\+L\+E\+A\+R\+\_\+\+B\+A\+SE}~0x400000\+CC
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Raspberry Pi 2 Core Timer}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{raspberrypi_8h_ad6a8c05943362ad41b256e78a7812020}\label{raspberrypi_8h_ad6a8c05943362ad41b256e78a7812020}} 
+\#define {\bfseries B\+C\+M2836\+\_\+\+C\+O\+R\+E\+\_\+\+T\+I\+M\+E\+R\+\_\+\+C\+T\+RL}~0x40000000
+\item 
+\mbox{\Hypertarget{raspberrypi_8h_ae0118615413cc8310678139daabdf5a2}\label{raspberrypi_8h_ae0118615413cc8310678139daabdf5a2}} 
+\#define {\bfseries B\+C\+M2836\+\_\+\+C\+O\+R\+E\+\_\+\+T\+I\+M\+E\+R\+\_\+\+C\+T\+R\+L\+\_\+\+A\+P\+B\+\_\+\+C\+LK}~0x00000100
+\item 
+\mbox{\Hypertarget{raspberrypi_8h_a8149da36d958e70fefec39fa386f3197}\label{raspberrypi_8h_a8149da36d958e70fefec39fa386f3197}} 
+\#define {\bfseries B\+C\+M2836\+\_\+\+C\+O\+R\+E\+\_\+\+T\+I\+M\+E\+R\+\_\+\+C\+T\+R\+L\+\_\+\+I\+N\+C\+\_\+2}~0x00000200
+\item 
+\mbox{\Hypertarget{raspberrypi_8h_ab5c90bf73c019bd68693984c8e7632b2}\label{raspberrypi_8h_ab5c90bf73c019bd68693984c8e7632b2}} 
+\#define {\bfseries B\+C\+M2836\+\_\+\+C\+O\+R\+E\+\_\+\+T\+I\+M\+E\+R\+\_\+\+P\+R\+E\+S\+C\+A\+L\+ER}~0x40000008
+\item 
+\mbox{\Hypertarget{raspberrypi_8h_a239a5db2c7b6ac70995c49ac4be2f466}\label{raspberrypi_8h_a239a5db2c7b6ac70995c49ac4be2f466}} 
+\#define {\bfseries B\+C\+M2836\+\_\+\+C\+O\+R\+E\+\_\+\+T\+I\+M\+E\+R\+\_\+\+L\+S32}~0x4000001C
+\item 
+\mbox{\Hypertarget{raspberrypi_8h_ac42f184d9dc6b519c3a10d4ee7fb1fbe}\label{raspberrypi_8h_ac42f184d9dc6b519c3a10d4ee7fb1fbe}} 
+\#define {\bfseries B\+C\+M2836\+\_\+\+C\+O\+R\+E\+\_\+\+T\+I\+M\+E\+R\+\_\+\+M\+S32}~0x40000020
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Raspberry Pi 2 Local Timer}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{raspberrypi_8h_a931327fcb99155efa535242ec1af4d50}\label{raspberrypi_8h_a931327fcb99155efa535242ec1af4d50}} 
+\#define {\bfseries B\+C\+M2836\+\_\+\+L\+O\+C\+A\+L\+\_\+\+T\+I\+M\+E\+R\+\_\+\+C\+T\+RL}~0x40000034
+\item 
+\mbox{\Hypertarget{raspberrypi_8h_a6d2fc23d0cc743eb04a283b411c04880}\label{raspberrypi_8h_a6d2fc23d0cc743eb04a283b411c04880}} 
+\#define {\bfseries B\+C\+M2836\+\_\+\+L\+O\+C\+A\+L\+\_\+\+T\+I\+M\+E\+R\+\_\+\+C\+T\+R\+L\+\_\+\+I\+R\+Q\+\_\+\+F\+L\+AG}~0x80000000
+\item 
+\mbox{\Hypertarget{raspberrypi_8h_a5762e7bacdf11411e38350bc19a78006}\label{raspberrypi_8h_a5762e7bacdf11411e38350bc19a78006}} 
+\#define {\bfseries B\+C\+M2836\+\_\+\+L\+O\+C\+A\+L\+\_\+\+T\+I\+M\+E\+R\+\_\+\+C\+T\+R\+L\+\_\+\+I\+R\+Q\+\_\+\+EN}~0x20000000
+\item 
+\mbox{\Hypertarget{raspberrypi_8h_abf747edf9cc35eee8a46f61eb422f961}\label{raspberrypi_8h_abf747edf9cc35eee8a46f61eb422f961}} 
+\#define {\bfseries B\+C\+M2836\+\_\+\+L\+O\+C\+A\+L\+\_\+\+T\+I\+M\+E\+R\+\_\+\+C\+T\+R\+L\+\_\+\+T\+I\+M\+E\+R\+\_\+\+EN}~0x10000000
+\item 
+\mbox{\Hypertarget{raspberrypi_8h_ade320ff65b8f113696a8cbafb03ed2f3}\label{raspberrypi_8h_ade320ff65b8f113696a8cbafb03ed2f3}} 
+\#define {\bfseries B\+C\+M2836\+\_\+\+L\+O\+C\+A\+L\+\_\+\+T\+I\+M\+E\+R\+\_\+\+R\+E\+L\+O\+AD}~0x0\+F\+F\+F\+F\+F\+FF
+\item 
+\mbox{\Hypertarget{raspberrypi_8h_afca5b82b6c529e7ae6cb8a807fc73d1b}\label{raspberrypi_8h_afca5b82b6c529e7ae6cb8a807fc73d1b}} 
+\#define {\bfseries B\+C\+M2836\+\_\+\+L\+O\+C\+A\+L\+\_\+\+T\+I\+M\+E\+R\+\_\+\+I\+R\+Q\+\_\+\+R\+E\+L\+O\+AD}~0x40000038
+\item 
+\mbox{\Hypertarget{raspberrypi_8h_ac8e5d472923d441a9f6471df0756ce68}\label{raspberrypi_8h_ac8e5d472923d441a9f6471df0756ce68}} 
+\#define {\bfseries B\+C\+M2836\+\_\+\+L\+O\+C\+A\+L\+\_\+\+T\+I\+M\+E\+R\+\_\+\+I\+R\+Q\+\_\+\+C\+L\+E\+AR}~0x80000000
+\item 
+\mbox{\Hypertarget{raspberrypi_8h_a6c4c19fe27e8061350010323ebcd06b5}\label{raspberrypi_8h_a6c4c19fe27e8061350010323ebcd06b5}} 
+\#define {\bfseries B\+C\+M2836\+\_\+\+L\+O\+C\+A\+L\+\_\+\+T\+I\+M\+E\+R\+\_\+\+R\+E\+L\+O\+A\+D\+\_\+\+N\+OW}~0x40000000
+\item 
+\mbox{\Hypertarget{raspberrypi_8h_a4525ffaadee86bf604e64afe4f635438}\label{raspberrypi_8h_a4525ffaadee86bf604e64afe4f635438}} 
+\#define {\bfseries B\+C\+M2836\+\_\+\+L\+O\+C\+A\+L\+\_\+\+T\+I\+M\+E\+R\+\_\+\+I\+R\+Q\+\_\+\+R\+O\+U\+T\+I\+NG}~0x40000024
+\item 
+\mbox{\Hypertarget{raspberrypi_8h_ac4045120196959fdb8855372bb767d14}\label{raspberrypi_8h_ac4045120196959fdb8855372bb767d14}} 
+\#define {\bfseries B\+C\+M2836\+\_\+\+L\+O\+C\+A\+L\+\_\+\+T\+I\+M\+E\+R\+\_\+\+R\+O\+U\+\_\+\+C\+O\+R\+E0\+\_\+\+I\+RQ}~0x00
+\item 
+\mbox{\Hypertarget{raspberrypi_8h_ac9dbd8f250e331206f0e570fcacb01c3}\label{raspberrypi_8h_ac9dbd8f250e331206f0e570fcacb01c3}} 
+\#define {\bfseries B\+C\+M2836\+\_\+\+L\+O\+C\+A\+L\+\_\+\+T\+I\+M\+E\+R\+\_\+\+R\+O\+U\+\_\+\+C\+O\+R\+E1\+\_\+\+I\+RQ}~0x01
+\item 
+\mbox{\Hypertarget{raspberrypi_8h_a55181d9b9bb47e5909ac1963a1f36a09}\label{raspberrypi_8h_a55181d9b9bb47e5909ac1963a1f36a09}} 
+\#define {\bfseries B\+C\+M2836\+\_\+\+L\+O\+C\+A\+L\+\_\+\+T\+I\+M\+E\+R\+\_\+\+R\+O\+U\+\_\+\+C\+O\+R\+E2\+\_\+\+I\+RQ}~0x02
+\item 
+\mbox{\Hypertarget{raspberrypi_8h_a42bce717698fc49daf557a24771f886e}\label{raspberrypi_8h_a42bce717698fc49daf557a24771f886e}} 
+\#define {\bfseries B\+C\+M2836\+\_\+\+L\+O\+C\+A\+L\+\_\+\+T\+I\+M\+E\+R\+\_\+\+R\+O\+U\+\_\+\+C\+O\+R\+E3\+\_\+\+I\+RQ}~0x03
+\item 
+\mbox{\Hypertarget{raspberrypi_8h_a3c21d12e29e2a10402c62245092fe0e4}\label{raspberrypi_8h_a3c21d12e29e2a10402c62245092fe0e4}} 
+\#define {\bfseries B\+C\+M2836\+\_\+\+L\+O\+C\+A\+L\+\_\+\+T\+I\+M\+E\+R\+\_\+\+R\+O\+U\+\_\+\+C\+O\+R\+E0\+\_\+\+F\+IQ}~0x04
+\item 
+\mbox{\Hypertarget{raspberrypi_8h_a1574c23e25971e614a55ead5a33294c5}\label{raspberrypi_8h_a1574c23e25971e614a55ead5a33294c5}} 
+\#define {\bfseries B\+C\+M2836\+\_\+\+L\+O\+C\+A\+L\+\_\+\+T\+I\+M\+E\+R\+\_\+\+R\+O\+U\+\_\+\+C\+O\+R\+E1\+\_\+\+F\+IQ}~0x05
+\item 
+\mbox{\Hypertarget{raspberrypi_8h_a3f70d5e1faca9a4ebffdca465916918e}\label{raspberrypi_8h_a3f70d5e1faca9a4ebffdca465916918e}} 
+\#define {\bfseries B\+C\+M2836\+\_\+\+L\+O\+C\+A\+L\+\_\+\+T\+I\+M\+E\+R\+\_\+\+R\+O\+U\+\_\+\+C\+O\+R\+E2\+\_\+\+F\+IQ}~0x06
+\item 
+\mbox{\Hypertarget{raspberrypi_8h_a136a8d0a1181fa1e07ed606c9f9bba8c}\label{raspberrypi_8h_a136a8d0a1181fa1e07ed606c9f9bba8c}} 
+\#define {\bfseries B\+C\+M2836\+\_\+\+L\+O\+C\+A\+L\+\_\+\+T\+I\+M\+E\+R\+\_\+\+R\+O\+U\+\_\+\+C\+O\+R\+E3\+\_\+\+F\+IQ}~0x07
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Raspberry Pi 2 I\+RQ Routing}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{raspberrypi_8h_aa5b2ec58dcd414bc737b15f59217314d}\label{raspberrypi_8h_aa5b2ec58dcd414bc737b15f59217314d}} 
+\#define {\bfseries B\+C\+M2836\+\_\+\+G\+P\+U\+\_\+\+I\+R\+Q\+\_\+\+R\+O\+U\+T\+I\+NG}~0x4000000C
+\item 
+\mbox{\Hypertarget{raspberrypi_8h_a0b7ed3521b630aeaad95c3cf3fe9c58d}\label{raspberrypi_8h_a0b7ed3521b630aeaad95c3cf3fe9c58d}} 
+\#define {\bfseries B\+C\+M2836\+\_\+\+G\+P\+U\+\_\+\+I\+R\+Q\+\_\+\+R\+O\+U\+\_\+\+G\+P\+U\+\_\+\+I\+R\+Q\+\_\+\+C\+O\+R\+E0}~0x00000000
+\item 
+\mbox{\Hypertarget{raspberrypi_8h_a6491aca25fa4416db2a8d279934cd0b2}\label{raspberrypi_8h_a6491aca25fa4416db2a8d279934cd0b2}} 
+\#define {\bfseries B\+C\+M2836\+\_\+\+G\+P\+U\+\_\+\+I\+R\+Q\+\_\+\+R\+O\+U\+\_\+\+G\+P\+U\+\_\+\+I\+R\+Q\+\_\+\+C\+O\+R\+E1}~0x00000001
+\item 
+\mbox{\Hypertarget{raspberrypi_8h_ad53c596d1b47a2dd31082a88126d3512}\label{raspberrypi_8h_ad53c596d1b47a2dd31082a88126d3512}} 
+\#define {\bfseries B\+C\+M2836\+\_\+\+G\+P\+U\+\_\+\+I\+R\+Q\+\_\+\+R\+O\+U\+\_\+\+G\+P\+U\+\_\+\+I\+R\+Q\+\_\+\+C\+O\+R\+E2}~0x00000002
+\item 
+\mbox{\Hypertarget{raspberrypi_8h_a0fdf6d870858f242d79f6dad8906d4d3}\label{raspberrypi_8h_a0fdf6d870858f242d79f6dad8906d4d3}} 
+\#define {\bfseries B\+C\+M2836\+\_\+\+G\+P\+U\+\_\+\+I\+R\+Q\+\_\+\+R\+O\+U\+\_\+\+G\+P\+U\+\_\+\+I\+R\+Q\+\_\+\+C\+O\+R\+E4}~0x00000003
+\item 
+\mbox{\Hypertarget{raspberrypi_8h_a649344485fddf89a083ef48e1789e693}\label{raspberrypi_8h_a649344485fddf89a083ef48e1789e693}} 
+\#define {\bfseries B\+C\+M2836\+\_\+\+G\+P\+U\+\_\+\+I\+R\+Q\+\_\+\+R\+O\+U\+\_\+\+G\+P\+U\+\_\+\+F\+I\+Q\+\_\+\+C\+O\+R\+E0}~0x00000000
+\item 
+\mbox{\Hypertarget{raspberrypi_8h_a28e6361454c89dd61112d0249b964c79}\label{raspberrypi_8h_a28e6361454c89dd61112d0249b964c79}} 
+\#define {\bfseries B\+C\+M2836\+\_\+\+G\+P\+U\+\_\+\+I\+R\+Q\+\_\+\+R\+O\+U\+\_\+\+G\+P\+U\+\_\+\+F\+I\+Q\+\_\+\+C\+O\+R\+E1}~0x00000004
+\item 
+\mbox{\Hypertarget{raspberrypi_8h_a736b46068f0703cf534139f1ce5b6e22}\label{raspberrypi_8h_a736b46068f0703cf534139f1ce5b6e22}} 
+\#define {\bfseries B\+C\+M2836\+\_\+\+G\+P\+U\+\_\+\+I\+R\+Q\+\_\+\+R\+O\+U\+\_\+\+G\+P\+U\+\_\+\+F\+I\+Q\+\_\+\+C\+O\+R\+E2}~0x00000008
+\item 
+\mbox{\Hypertarget{raspberrypi_8h_a5197d6ff65911d5f9c34e0910df66275}\label{raspberrypi_8h_a5197d6ff65911d5f9c34e0910df66275}} 
+\#define {\bfseries B\+C\+M2836\+\_\+\+G\+P\+U\+\_\+\+I\+R\+Q\+\_\+\+R\+O\+U\+\_\+\+G\+P\+U\+\_\+\+F\+I\+Q\+\_\+\+C\+O\+R\+E4}~0x0000000C
+\item 
+\mbox{\Hypertarget{raspberrypi_8h_a5197d6ff65911d5f9c34e0910df66275}\label{raspberrypi_8h_a5197d6ff65911d5f9c34e0910df66275}} 
+\#define {\bfseries B\+C\+M2836\+\_\+\+G\+P\+U\+\_\+\+I\+R\+Q\+\_\+\+R\+O\+U\+\_\+\+G\+P\+U\+\_\+\+F\+I\+Q\+\_\+\+C\+O\+R\+E4}~0x0000000C
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Raspberry Pi 2 Interrupt Register Defines}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{raspberrypi_8h_a532f0bded544cf7e1c283aceb9665c9c}\label{raspberrypi_8h_a532f0bded544cf7e1c283aceb9665c9c}} 
+\#define {\bfseries B\+C\+M2836\+\_\+\+C\+O\+R\+E0\+\_\+\+T\+I\+M\+E\+R\+\_\+\+I\+R\+Q\+\_\+\+C\+T\+R\+L\+\_\+\+B\+A\+SE}~0x40000040
+\item 
+\mbox{\Hypertarget{raspberrypi_8h_a2793a622a0f0ef925ab9dedb5f49bb3c}\label{raspberrypi_8h_a2793a622a0f0ef925ab9dedb5f49bb3c}} 
+\#define {\bfseries B\+C\+M2836\+\_\+\+C\+O\+R\+E1\+\_\+\+T\+I\+M\+E\+R\+\_\+\+I\+R\+Q\+\_\+\+C\+T\+R\+L\+\_\+\+B\+A\+SE}~0x40000044
+\item 
+\mbox{\Hypertarget{raspberrypi_8h_a59b55a4c836dc4d6b394473b7f5eefdf}\label{raspberrypi_8h_a59b55a4c836dc4d6b394473b7f5eefdf}} 
+\#define {\bfseries B\+C\+M2836\+\_\+\+C\+O\+R\+E2\+\_\+\+T\+I\+M\+E\+R\+\_\+\+I\+R\+Q\+\_\+\+C\+T\+R\+L\+\_\+\+B\+A\+SE}~0x40000048
+\item 
+\mbox{\Hypertarget{raspberrypi_8h_aa5b1f90f4a5ada1ce5cd76032e63e8e8}\label{raspberrypi_8h_aa5b1f90f4a5ada1ce5cd76032e63e8e8}} 
+\#define {\bfseries B\+C\+M2836\+\_\+\+C\+O\+R\+E3\+\_\+\+T\+I\+M\+E\+R\+\_\+\+I\+R\+Q\+\_\+\+C\+T\+R\+L\+\_\+\+B\+A\+SE}~0x4000004C
+\item 
+\mbox{\Hypertarget{raspberrypi_8h_a5d19b2409e96c9dd7f1384d4b26656c2}\label{raspberrypi_8h_a5d19b2409e96c9dd7f1384d4b26656c2}} 
+\#define {\bfseries B\+C\+M2836\+\_\+\+C\+O\+R\+E\+\_\+\+T\+I\+M\+E\+R\+\_\+\+I\+R\+Q\+\_\+\+C\+T\+RL}(cpuidx)~(B\+C\+M2836\+\_\+\+C\+O\+R\+E0\+\_\+\+T\+I\+M\+E\+R\+\_\+\+I\+R\+Q\+\_\+\+C\+T\+R\+L\+\_\+\+B\+A\+SE + 0x4 $\ast$ (cpuidx))
+\item 
+\mbox{\Hypertarget{raspberrypi_8h_a58778d4739aebedec01f5946257dc39b}\label{raspberrypi_8h_a58778d4739aebedec01f5946257dc39b}} 
+\#define {\bfseries B\+C\+M2836\+\_\+\+C\+O\+R\+E\+\_\+\+T\+I\+M\+E\+R\+\_\+\+I\+R\+Q\+\_\+\+C\+T\+R\+L\+\_\+\+T\+I\+M\+E\+R0\+\_\+\+I\+RQ}~0x01
+\item 
+\mbox{\Hypertarget{raspberrypi_8h_aa7bd50a867e43fbc603613aaa6f7df82}\label{raspberrypi_8h_aa7bd50a867e43fbc603613aaa6f7df82}} 
+\#define {\bfseries B\+C\+M2836\+\_\+\+C\+O\+R\+E\+\_\+\+T\+I\+M\+E\+R\+\_\+\+I\+R\+Q\+\_\+\+C\+T\+R\+L\+\_\+\+T\+I\+M\+E\+R1\+\_\+\+I\+RQ}~0x02
+\item 
+\mbox{\Hypertarget{raspberrypi_8h_ad4e70129d39b749315c5fcd380544644}\label{raspberrypi_8h_ad4e70129d39b749315c5fcd380544644}} 
+\#define {\bfseries B\+C\+M2836\+\_\+\+C\+O\+R\+E\+\_\+\+T\+I\+M\+E\+R\+\_\+\+I\+R\+Q\+\_\+\+C\+T\+R\+L\+\_\+\+T\+I\+M\+E\+R2\+\_\+\+I\+RQ}~0x04
+\item 
+\mbox{\Hypertarget{raspberrypi_8h_a967f5f17e2d2bb772de9ca3ec6ea8836}\label{raspberrypi_8h_a967f5f17e2d2bb772de9ca3ec6ea8836}} 
+\#define {\bfseries B\+C\+M2836\+\_\+\+C\+O\+R\+E\+\_\+\+T\+I\+M\+E\+R\+\_\+\+I\+R\+Q\+\_\+\+C\+T\+R\+L\+\_\+\+T\+I\+M\+E\+R3\+\_\+\+I\+RQ}~0x08
+\item 
+\mbox{\Hypertarget{raspberrypi_8h_a7381bb3f4a6f251d20517c12f75a6e9b}\label{raspberrypi_8h_a7381bb3f4a6f251d20517c12f75a6e9b}} 
+\#define {\bfseries B\+C\+M2836\+\_\+\+C\+O\+R\+E\+\_\+\+T\+I\+M\+E\+R\+\_\+\+I\+R\+Q\+\_\+\+C\+T\+R\+L\+\_\+\+T\+I\+M\+E\+R0\+\_\+\+F\+IQ}~0x10
+\item 
+\mbox{\Hypertarget{raspberrypi_8h_a0697d2746e45270fdcb13f0895167b29}\label{raspberrypi_8h_a0697d2746e45270fdcb13f0895167b29}} 
+\#define {\bfseries B\+C\+M2836\+\_\+\+C\+O\+R\+E\+\_\+\+T\+I\+M\+E\+R\+\_\+\+I\+R\+Q\+\_\+\+C\+T\+R\+L\+\_\+\+T\+I\+M\+E\+R1\+\_\+\+F\+IQ}~0x20
+\item 
+\mbox{\Hypertarget{raspberrypi_8h_a550b50eff746ab2afeebc92d9b7252db}\label{raspberrypi_8h_a550b50eff746ab2afeebc92d9b7252db}} 
+\#define {\bfseries B\+C\+M2836\+\_\+\+C\+O\+R\+E\+\_\+\+T\+I\+M\+E\+R\+\_\+\+I\+R\+Q\+\_\+\+C\+T\+R\+L\+\_\+\+T\+I\+M\+E\+R2\+\_\+\+F\+IQ}~0x40
+\item 
+\mbox{\Hypertarget{raspberrypi_8h_ae6b1090780a02be2a05cafb2cc82f6f5}\label{raspberrypi_8h_ae6b1090780a02be2a05cafb2cc82f6f5}} 
+\#define {\bfseries B\+C\+M2836\+\_\+\+C\+O\+R\+E\+\_\+\+T\+I\+M\+E\+R\+\_\+\+I\+R\+Q\+\_\+\+C\+T\+R\+L\+\_\+\+T\+I\+M\+E\+R3\+\_\+\+F\+IQ}~0x80
+\item 
+\mbox{\Hypertarget{raspberrypi_8h_a1c043ee6945e4e761c3f0e4524795cbf}\label{raspberrypi_8h_a1c043ee6945e4e761c3f0e4524795cbf}} 
+\#define {\bfseries B\+C\+M2836\+\_\+\+M\+A\+I\+L\+B\+O\+X\+\_\+\+I\+R\+Q\+\_\+\+C\+T\+R\+L\+\_\+\+B\+A\+SE}~0x40000050
+\item 
+\mbox{\Hypertarget{raspberrypi_8h_a57eeeb7dae0a27a77dd2296e9b22b932}\label{raspberrypi_8h_a57eeeb7dae0a27a77dd2296e9b22b932}} 
+\#define {\bfseries B\+C\+M2836\+\_\+\+M\+A\+I\+L\+B\+O\+X\+\_\+\+I\+R\+Q\+\_\+\+C\+T\+RL}(cpuidx)~(B\+C\+M2836\+\_\+\+M\+A\+I\+L\+B\+O\+X\+\_\+\+I\+R\+Q\+\_\+\+C\+T\+R\+L\+\_\+\+B\+A\+SE + 0x4 $\ast$ (cpuidx))
+\item 
+\mbox{\Hypertarget{raspberrypi_8h_aab06322f81f299c0242133c3c002e92b}\label{raspberrypi_8h_aab06322f81f299c0242133c3c002e92b}} 
+\#define {\bfseries B\+C\+M2836\+\_\+\+M\+A\+I\+L\+B\+O\+X\+\_\+\+I\+R\+Q\+\_\+\+C\+T\+R\+L\+\_\+\+M\+B\+O\+X0\+\_\+\+I\+RQ}~0x01
+\item 
+\mbox{\Hypertarget{raspberrypi_8h_a23e7495af9b11e1dfca7d9b063f1def9}\label{raspberrypi_8h_a23e7495af9b11e1dfca7d9b063f1def9}} 
+\#define {\bfseries B\+C\+M2836\+\_\+\+M\+A\+I\+L\+B\+O\+X\+\_\+\+I\+R\+Q\+\_\+\+C\+T\+R\+L\+\_\+\+M\+B\+O\+X1\+\_\+\+I\+RQ}~0x02
+\item 
+\mbox{\Hypertarget{raspberrypi_8h_a1134a1c0d3c99041a2ef68e7561cb044}\label{raspberrypi_8h_a1134a1c0d3c99041a2ef68e7561cb044}} 
+\#define {\bfseries B\+C\+M2836\+\_\+\+M\+A\+I\+L\+B\+O\+X\+\_\+\+I\+R\+Q\+\_\+\+C\+T\+R\+L\+\_\+\+M\+B\+O\+X2\+\_\+\+I\+RQ}~0x04
+\item 
+\mbox{\Hypertarget{raspberrypi_8h_a391538207f6bccb12aaeb7cb8537428c}\label{raspberrypi_8h_a391538207f6bccb12aaeb7cb8537428c}} 
+\#define {\bfseries B\+C\+M2836\+\_\+\+M\+A\+I\+L\+B\+O\+X\+\_\+\+I\+R\+Q\+\_\+\+C\+T\+R\+L\+\_\+\+M\+B\+O\+X3\+\_\+\+I\+RQ}~0x08
+\item 
+\mbox{\Hypertarget{raspberrypi_8h_a471e643ff79f6c768712d804f41d7b81}\label{raspberrypi_8h_a471e643ff79f6c768712d804f41d7b81}} 
+\#define {\bfseries B\+C\+M2836\+\_\+\+M\+A\+I\+L\+B\+O\+X\+\_\+\+I\+R\+Q\+\_\+\+C\+T\+R\+L\+\_\+\+M\+B\+O\+X0\+\_\+\+F\+IQ}~0x10
+\item 
+\mbox{\Hypertarget{raspberrypi_8h_a26d8f182dbae5ddd05908bde124a92bb}\label{raspberrypi_8h_a26d8f182dbae5ddd05908bde124a92bb}} 
+\#define {\bfseries B\+C\+M2836\+\_\+\+M\+A\+I\+L\+B\+O\+X\+\_\+\+I\+R\+Q\+\_\+\+C\+T\+R\+L\+\_\+\+M\+B\+O\+X1\+\_\+\+F\+IQ}~0x20
+\item 
+\mbox{\Hypertarget{raspberrypi_8h_a2932bd4902544e47a4dece888cdec45e}\label{raspberrypi_8h_a2932bd4902544e47a4dece888cdec45e}} 
+\#define {\bfseries B\+C\+M2836\+\_\+\+M\+A\+I\+L\+B\+O\+X\+\_\+\+I\+R\+Q\+\_\+\+C\+T\+R\+L\+\_\+\+M\+B\+O\+X2\+\_\+\+F\+IQ}~0x40
+\item 
+\mbox{\Hypertarget{raspberrypi_8h_a0c6f5869a225da00f2ccc773c6dba1a8}\label{raspberrypi_8h_a0c6f5869a225da00f2ccc773c6dba1a8}} 
+\#define {\bfseries B\+C\+M2836\+\_\+\+M\+A\+I\+L\+B\+O\+X\+\_\+\+I\+R\+Q\+\_\+\+C\+T\+R\+L\+\_\+\+M\+B\+O\+X3\+\_\+\+F\+IQ}~0x80
+\item 
+\mbox{\Hypertarget{raspberrypi_8h_a49274853ad55fb31a563f364045685bc}\label{raspberrypi_8h_a49274853ad55fb31a563f364045685bc}} 
+\#define {\bfseries B\+C\+M2836\+\_\+\+I\+R\+Q\+\_\+\+S\+O\+U\+R\+C\+E\+\_\+\+R\+E\+G\+\_\+\+B\+A\+SE}~0x40000060
+\item 
+\mbox{\Hypertarget{raspberrypi_8h_a3c4d70917c5a0d6278dc7f42e7bb82c7}\label{raspberrypi_8h_a3c4d70917c5a0d6278dc7f42e7bb82c7}} 
+\#define {\bfseries B\+C\+M2836\+\_\+\+I\+R\+Q\+\_\+\+S\+O\+U\+R\+C\+E\+\_\+\+R\+EG}(cpuidx)~(B\+C\+M2836\+\_\+\+I\+R\+Q\+\_\+\+S\+O\+U\+R\+C\+E\+\_\+\+R\+E\+G\+\_\+\+B\+A\+SE + 0x4 $\ast$ (cpuidx))
+\item 
+\mbox{\Hypertarget{raspberrypi_8h_a8c229841ba049e78df47fec3fb9c03d4}\label{raspberrypi_8h_a8c229841ba049e78df47fec3fb9c03d4}} 
+\#define {\bfseries B\+C\+M2836\+\_\+\+F\+I\+Q\+\_\+\+S\+O\+U\+R\+C\+E\+\_\+\+R\+E\+G\+\_\+\+B\+A\+SE}~0x40000070
+\item 
+\mbox{\Hypertarget{raspberrypi_8h_a809cc31ada053f2b49ac8bb293691077}\label{raspberrypi_8h_a809cc31ada053f2b49ac8bb293691077}} 
+\#define {\bfseries B\+C\+M2836\+\_\+\+F\+I\+Q\+\_\+\+S\+O\+U\+R\+C\+E\+\_\+\+R\+EG}(cpuidx)~(B\+C\+M2836\+\_\+\+F\+I\+Q\+\_\+\+S\+O\+U\+R\+C\+E\+\_\+\+R\+E\+G\+\_\+\+B\+A\+SE + 0x4 $\ast$ (cpuidx))
+\item 
+\mbox{\Hypertarget{raspberrypi_8h_ae01bdbd5b8e46b6fcce590f9485530fb}\label{raspberrypi_8h_ae01bdbd5b8e46b6fcce590f9485530fb}} 
+\#define {\bfseries B\+C\+M2836\+\_\+\+I\+R\+Q\+\_\+\+S\+O\+U\+R\+C\+E\+\_\+\+T\+I\+M\+E\+R0}~0x00000001
+\item 
+\mbox{\Hypertarget{raspberrypi_8h_a1642fe2ef98440511f81800a24662042}\label{raspberrypi_8h_a1642fe2ef98440511f81800a24662042}} 
+\#define {\bfseries B\+C\+M2836\+\_\+\+I\+R\+Q\+\_\+\+S\+O\+U\+R\+C\+E\+\_\+\+T\+I\+M\+E\+R1}~0x00000002
+\item 
+\mbox{\Hypertarget{raspberrypi_8h_a2eb3aa4c68f929778c4768197a528af8}\label{raspberrypi_8h_a2eb3aa4c68f929778c4768197a528af8}} 
+\#define {\bfseries B\+C\+M2836\+\_\+\+I\+R\+Q\+\_\+\+S\+O\+U\+R\+C\+E\+\_\+\+T\+I\+M\+E\+R2}~0x00000004
+\item 
+\mbox{\Hypertarget{raspberrypi_8h_abc670271c0d194d9f8733f427eec5a97}\label{raspberrypi_8h_abc670271c0d194d9f8733f427eec5a97}} 
+\#define {\bfseries B\+C\+M2836\+\_\+\+I\+R\+Q\+\_\+\+S\+O\+U\+R\+C\+E\+\_\+\+T\+I\+M\+E\+R3}~0x00000008
+\item 
+\mbox{\Hypertarget{raspberrypi_8h_af22ed1cab67316fdc5e27f2719bcfa77}\label{raspberrypi_8h_af22ed1cab67316fdc5e27f2719bcfa77}} 
+\#define {\bfseries B\+C\+M2836\+\_\+\+I\+R\+Q\+\_\+\+S\+O\+U\+R\+C\+E\+\_\+\+M\+B\+O\+X0}~0x00000010
+\item 
+\mbox{\Hypertarget{raspberrypi_8h_a6cb893a5d87eaa85a3d347e1fbdc918f}\label{raspberrypi_8h_a6cb893a5d87eaa85a3d347e1fbdc918f}} 
+\#define {\bfseries B\+C\+M2836\+\_\+\+I\+R\+Q\+\_\+\+S\+O\+U\+R\+C\+E\+\_\+\+M\+B\+O\+X1}~0x00000020
+\item 
+\mbox{\Hypertarget{raspberrypi_8h_a2a900ed1171a3d8695a751538f932eaf}\label{raspberrypi_8h_a2a900ed1171a3d8695a751538f932eaf}} 
+\#define {\bfseries B\+C\+M2836\+\_\+\+I\+R\+Q\+\_\+\+S\+O\+U\+R\+C\+E\+\_\+\+M\+B\+O\+X2}~0x00000040
+\item 
+\mbox{\Hypertarget{raspberrypi_8h_acaf900ad891b701777c09b5e62609ec0}\label{raspberrypi_8h_acaf900ad891b701777c09b5e62609ec0}} 
+\#define {\bfseries B\+C\+M2836\+\_\+\+I\+R\+Q\+\_\+\+S\+O\+U\+R\+C\+E\+\_\+\+M\+B\+O\+X3}~0x00000080
+\item 
+\mbox{\Hypertarget{raspberrypi_8h_aad4c5ca0a77ef710ce1d96beaf6257ed}\label{raspberrypi_8h_aad4c5ca0a77ef710ce1d96beaf6257ed}} 
+\#define {\bfseries B\+C\+M2836\+\_\+\+I\+R\+Q\+\_\+\+S\+O\+U\+R\+C\+E\+\_\+\+G\+PU}~0x00000100
+\item 
+\mbox{\Hypertarget{raspberrypi_8h_a911f2d2af3a3970b927b227c981f1b29}\label{raspberrypi_8h_a911f2d2af3a3970b927b227c981f1b29}} 
+\#define {\bfseries B\+C\+M2836\+\_\+\+I\+R\+Q\+\_\+\+S\+O\+U\+R\+C\+E\+\_\+\+P\+MU}~0x00000200
+\item 
+\mbox{\Hypertarget{raspberrypi_8h_a7d40144c82b6b8d1ed112b5344714215}\label{raspberrypi_8h_a7d40144c82b6b8d1ed112b5344714215}} 
+\#define {\bfseries B\+C\+M2836\+\_\+\+I\+R\+Q\+\_\+\+S\+O\+U\+R\+C\+E\+\_\+\+L\+O\+C\+A\+L\+\_\+\+T\+I\+M\+ER}~0x00000800
+\end{DoxyCompactItemize}
+\end{Indent}
+
+
+\subsection{Detailed Description}
+Register definitions. 
+
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{raspberrypi_8h_a202f22b302f87b75af3b11cafeeae1cf}\label{raspberrypi_8h_a202f22b302f87b75af3b11cafeeae1cf}} 
+\index{raspberrypi.h@{raspberrypi.h}!BCM2835\_EMMC\_BASE@{BCM2835\_EMMC\_BASE}}
+\index{BCM2835\_EMMC\_BASE@{BCM2835\_EMMC\_BASE}!raspberrypi.h@{raspberrypi.h}}
+\subsubsection{\texorpdfstring{BCM2835\_EMMC\_BASE}{BCM2835\_EMMC\_BASE}}
+{\footnotesize\ttfamily \#define B\+C\+M2835\+\_\+\+E\+M\+M\+C\+\_\+\+B\+A\+SE~(R\+P\+I\+\_\+\+P\+E\+R\+I\+P\+H\+E\+R\+A\+L\+\_\+\+B\+A\+SE + 0x300000)}
+
+N\+O\+TE\+: Since the SD controller follows the S\+D\+H\+CI standard, the rtems-\/libbsd tree already provides the remaining registers. \mbox{\Hypertarget{raspberrypi_8h_a1850c253e740c856ddc2aeb9f50d7efc}\label{raspberrypi_8h_a1850c253e740c856ddc2aeb9f50d7efc}} 
+\index{raspberrypi.h@{raspberrypi.h}!BCM2835\_GPU\_TIMER\_BASE@{BCM2835\_GPU\_TIMER\_BASE}}
+\index{BCM2835\_GPU\_TIMER\_BASE@{BCM2835\_GPU\_TIMER\_BASE}!raspberrypi.h@{raspberrypi.h}}
+\subsubsection{\texorpdfstring{BCM2835\_GPU\_TIMER\_BASE}{BCM2835\_GPU\_TIMER\_BASE}}
+{\footnotesize\ttfamily \#define B\+C\+M2835\+\_\+\+G\+P\+U\+\_\+\+T\+I\+M\+E\+R\+\_\+\+B\+A\+SE~(R\+P\+I\+\_\+\+P\+E\+R\+I\+P\+H\+E\+R\+A\+L\+\_\+\+B\+A\+SE + 0x3000)}
+
+N\+O\+TE\+: The G\+PU uses Compare registers 0 and 2 for it\textquotesingle{}s own R\+T\+OS. 1 and 3 are available for use in R\+T\+E\+MS. 

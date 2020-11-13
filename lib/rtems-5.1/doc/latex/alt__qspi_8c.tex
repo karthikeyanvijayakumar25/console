@@ -1,0 +1,207 @@
+\hypertarget{alt__qspi_8c}{}\section{bsps/arm/altera-\/cyclone-\/v/contrib/hwlib/src/hwmgr/alt\+\_\+qspi.c File Reference}
+\label{alt__qspi_8c}\index{bsps/arm/altera-\/cyclone-\/v/contrib/hwlib/src/hwmgr/alt\_qspi.c@{bsps/arm/altera-\/cyclone-\/v/contrib/hwlib/src/hwmgr/alt\_qspi.c}}
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$inttypes.\+h$>$}\newline
+{\ttfamily \#include $<$bsp/hwlib.\+h$>$}\newline
+{\ttfamily \#include $<$bsp/alt\+\_\+clock\+\_\+manager.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}alt\+\_\+qspi.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$bsp/alt\+\_\+qspi\+\_\+private.\+h$>$}\newline
+{\ttfamily \#include $<$bsp/socal/alt\+\_\+qspi.\+h$>$}\newline
+{\ttfamily \#include $<$bsp/socal/alt\+\_\+rstmgr.\+h$>$}\newline
+{\ttfamily \#include $<$bsp/socal/alt\+\_\+sysmgr.\+h$>$}\newline
+{\ttfamily \#include $<$bsp/socal/hps.\+h$>$}\newline
+{\ttfamily \#include $<$bsp/socal/socal.\+h$>$}\newline
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{alt__qspi_8c_a0fb7bf82c787085c8b1ef0ad7d028424}\label{alt__qspi_8c_a0fb7bf82c787085c8b1ef0ad7d028424}} 
+\#define {\bfseries dprintf}(...)
+\item 
+\mbox{\Hypertarget{alt__qspi_8c_a3acffbd305ee72dcd4593c0d8af64a4f}\label{alt__qspi_8c_a3acffbd305ee72dcd4593c0d8af64a4f}} 
+\#define {\bfseries M\+IN}(a,  b)~((a) $>$ (b) ? (b) \+: (a))
+\item 
+\mbox{\Hypertarget{alt__qspi_8c_ae0ee8b9eb90648949cb34607110edaa1}\label{alt__qspi_8c_ae0ee8b9eb90648949cb34607110edaa1}} 
+\#define {\bfseries A\+L\+T\+\_\+\+Q\+S\+P\+I\+\_\+\+C\+L\+K\+\_\+\+F\+R\+E\+Q\+\_\+\+M\+IN}~((\mbox{\hyperlink{group__CLK__MGR_gaa32fe6dfaa6def16098e0039eb336383}{alt\+\_\+freq\+\_\+t}})0)
+\item 
+\mbox{\Hypertarget{alt__qspi_8c_a3ac985201bae472529f018b3cadf6a4e}\label{alt__qspi_8c_a3ac985201bae472529f018b3cadf6a4e}} 
+\#define {\bfseries A\+L\+T\+\_\+\+Q\+S\+P\+I\+\_\+\+C\+L\+K\+\_\+\+F\+R\+E\+Q\+\_\+\+M\+AX}~((\mbox{\hyperlink{group__CLK__MGR_gaa32fe6dfaa6def16098e0039eb336383}{alt\+\_\+freq\+\_\+t}})432000000)
+\item 
+\#define {\bfseries A\+L\+T\+\_\+\+Q\+S\+P\+I\+\_\+\+I\+N\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+A\+LL}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__ALT__QSPI__CSR_gaecd5fe1f525bf35cd38257148b6be226}{alt\+\_\+qspi\+\_\+init}} (void)
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__ALT__QSPI__CSR_gae1149191120939cb56f2bea8be12ae3c}{alt\+\_\+qspi\+\_\+uninit}} (void)
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__ALT__QSPI__CSR_ga22df5a849bd115eef330974c03734fc1}{alt\+\_\+qspi\+\_\+disable}} (void)
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__ALT__QSPI__CSR_ga68501b9717901e2d160297a802728772}{alt\+\_\+qspi\+\_\+enable}} (void)
+\item 
+uint32\+\_\+t \mbox{\hyperlink{group__ALT__QSPI__CSR_ga6eeaf36913f59120b21affa31d6f9632}{alt\+\_\+qspi\+\_\+int\+\_\+status\+\_\+get}} (void)
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__ALT__QSPI__CSR_gaf436f88abd8e2af796cc070792db5168}{alt\+\_\+qspi\+\_\+int\+\_\+clear}} (const uint32\+\_\+t mask)
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__ALT__QSPI__CSR_gabafd6da28abc48578f144cbd6c85e224}{alt\+\_\+qspi\+\_\+int\+\_\+disable}} (const uint32\+\_\+t mask)
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__ALT__QSPI__CSR_ga90573895220218be5c3be1888010e5bc}{alt\+\_\+qspi\+\_\+int\+\_\+enable}} (const uint32\+\_\+t mask)
+\item 
+bool \mbox{\hyperlink{group__ALT__QSPI__CSR_gaeaa7e762d8b79b1989385c978174b7b8}{alt\+\_\+qspi\+\_\+is\+\_\+idle}} (void)
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__ALT__QSPI__GP__BLKIO_gab2b8361bcea883e886d7cc7feada314e}{alt\+\_\+qspi\+\_\+read}} (void $\ast$dst, uint32\+\_\+t src, size\+\_\+t \mbox{\hyperlink{sun4u_2tte_8h_a245260f6f74972558f61b85227df5aae}{size}})
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__ALT__QSPI__GP__BLKIO_ga5b54d580ee87bf243f6b7d57f8740ef9}{alt\+\_\+qspi\+\_\+write}} (uint32\+\_\+t dst, const void $\ast$src, size\+\_\+t \mbox{\hyperlink{sun4u_2tte_8h_a245260f6f74972558f61b85227df5aae}{size}})
+\item 
+\mbox{\Hypertarget{alt__qspi_8c_a5a40d6291bdc6a677e74c0eb9b4908e9}\label{alt__qspi_8c_a5a40d6291bdc6a677e74c0eb9b4908e9}} 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} {\bfseries alt\+\_\+qspi\+\_\+replace} (uint32\+\_\+t dst, const void $\ast$src, size\+\_\+t \mbox{\hyperlink{sun4u_2tte_8h_a245260f6f74972558f61b85227df5aae}{size}})
+\item 
+\mbox{\hyperlink{group__ALT__QSPI__DEV__CFG_ga5a183c627f4dc5f1469a227c748b01ec}{A\+L\+T\+\_\+\+Q\+S\+P\+I\+\_\+\+B\+A\+U\+D\+\_\+\+D\+I\+V\+\_\+t}} \mbox{\hyperlink{group__ALT__QSPI__DEV__CFG_ga49ab5eb9e2067a6724b0bd41162eb359}{alt\+\_\+qspi\+\_\+baud\+\_\+rate\+\_\+div\+\_\+get}} (void)
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__ALT__QSPI__DEV__CFG_ga964033a111f879c5ddfab32cfec0b5f6}{alt\+\_\+qspi\+\_\+baud\+\_\+rate\+\_\+div\+\_\+set}} (const \mbox{\hyperlink{group__ALT__QSPI__DEV__CFG_ga5a183c627f4dc5f1469a227c748b01ec}{A\+L\+T\+\_\+\+Q\+S\+P\+I\+\_\+\+B\+A\+U\+D\+\_\+\+D\+I\+V\+\_\+t}} baud\+\_\+rate\+\_\+div)
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__ALT__QSPI__DEV__CFG_ga4ecb1d5a8109c664aea8b1dc950dd9e4}{alt\+\_\+qspi\+\_\+chip\+\_\+select\+\_\+config\+\_\+get}} (uint32\+\_\+t $\ast$cs, \mbox{\hyperlink{group__ALT__QSPI__DEV__CFG_gaffe96455cbf44fb3adb844c576c045fe}{A\+L\+T\+\_\+\+Q\+S\+P\+I\+\_\+\+C\+S\+\_\+\+M\+O\+D\+E\+\_\+t}} $\ast$cs\+\_\+mode)
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__ALT__QSPI__DEV__CFG_ga26f3a0e03cc1bca6f76c1fb6c1195864}{alt\+\_\+qspi\+\_\+chip\+\_\+select\+\_\+config\+\_\+set}} (const uint32\+\_\+t cs, const \mbox{\hyperlink{group__ALT__QSPI__DEV__CFG_gaffe96455cbf44fb3adb844c576c045fe}{A\+L\+T\+\_\+\+Q\+S\+P\+I\+\_\+\+C\+S\+\_\+\+M\+O\+D\+E\+\_\+t}} cs\+\_\+mode)
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__ALT__QSPI__DEV__CFG_gab73dc90410cd0b88c97e836b68cfcd11}{alt\+\_\+qspi\+\_\+mode\+\_\+bit\+\_\+disable}} (void)
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__ALT__QSPI__DEV__CFG_gac4eb6995a032a293aa3ff09739344712}{alt\+\_\+qspi\+\_\+mode\+\_\+bit\+\_\+enable}} (void)
+\item 
+uint32\+\_\+t \mbox{\hyperlink{group__ALT__QSPI__DEV__CFG_ga842b7ccf9d836ca4073713967ffc1272}{alt\+\_\+qspi\+\_\+mode\+\_\+bit\+\_\+config\+\_\+get}} (void)
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__ALT__QSPI__DEV__CFG_gada3ca0ace7fbbf8bd1ea1ce2ad9dada0}{alt\+\_\+qspi\+\_\+mode\+\_\+bit\+\_\+config\+\_\+set}} (const uint32\+\_\+t mode\+\_\+bits)
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__ALT__QSPI__DEV__CFG_ga18f9aa687fa06f6ac72deade0d74e2dd}{alt\+\_\+qspi\+\_\+device\+\_\+size\+\_\+config\+\_\+get}} (\mbox{\hyperlink{group__ALT__QSPI__DEV__CFG_gaeeacf956659047dac90f9dde87817817}{A\+L\+T\+\_\+\+Q\+S\+P\+I\+\_\+\+D\+E\+V\+\_\+\+S\+I\+Z\+E\+\_\+\+C\+O\+N\+F\+I\+G\+\_\+t}} $\ast$cfg)
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__ALT__QSPI__DEV__CFG_ga80c5f6f70f44a4ddf9f4766b0f643b10}{alt\+\_\+qspi\+\_\+device\+\_\+size\+\_\+config\+\_\+set}} (const \mbox{\hyperlink{group__ALT__QSPI__DEV__CFG_gaeeacf956659047dac90f9dde87817817}{A\+L\+T\+\_\+\+Q\+S\+P\+I\+\_\+\+D\+E\+V\+\_\+\+S\+I\+Z\+E\+\_\+\+C\+O\+N\+F\+I\+G\+\_\+t}} $\ast$cfg)
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__ALT__QSPI__DEV__CFG_gaabb39817428dc541ded23202db2c5029}{alt\+\_\+qspi\+\_\+device\+\_\+read\+\_\+config\+\_\+get}} (\mbox{\hyperlink{group__ALT__QSPI__DEV__CFG_ga56516b11d66633580f54d1cc69c7aa8e}{A\+L\+T\+\_\+\+Q\+S\+P\+I\+\_\+\+D\+E\+V\+\_\+\+I\+N\+S\+T\+\_\+\+C\+O\+N\+F\+I\+G\+\_\+t}} $\ast$cfg)
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__ALT__QSPI__DEV__CFG_gaf6a82874a4199a30a940ac23a84d12d6}{alt\+\_\+qspi\+\_\+device\+\_\+read\+\_\+config\+\_\+set}} (const \mbox{\hyperlink{group__ALT__QSPI__DEV__CFG_ga56516b11d66633580f54d1cc69c7aa8e}{A\+L\+T\+\_\+\+Q\+S\+P\+I\+\_\+\+D\+E\+V\+\_\+\+I\+N\+S\+T\+\_\+\+C\+O\+N\+F\+I\+G\+\_\+t}} $\ast$cfg)
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__ALT__QSPI__DEV__CFG_gaf930e784718f5bb26125f4ad782c0d27}{alt\+\_\+qspi\+\_\+device\+\_\+write\+\_\+config\+\_\+get}} (\mbox{\hyperlink{group__ALT__QSPI__DEV__CFG_ga56516b11d66633580f54d1cc69c7aa8e}{A\+L\+T\+\_\+\+Q\+S\+P\+I\+\_\+\+D\+E\+V\+\_\+\+I\+N\+S\+T\+\_\+\+C\+O\+N\+F\+I\+G\+\_\+t}} $\ast$cfg)
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__ALT__QSPI__DEV__CFG_gafc72bb52ae38dbe7a9260c730d96428a}{alt\+\_\+qspi\+\_\+device\+\_\+write\+\_\+config\+\_\+set}} (const \mbox{\hyperlink{group__ALT__QSPI__DEV__CFG_ga56516b11d66633580f54d1cc69c7aa8e}{A\+L\+T\+\_\+\+Q\+S\+P\+I\+\_\+\+D\+E\+V\+\_\+\+I\+N\+S\+T\+\_\+\+C\+O\+N\+F\+I\+G\+\_\+t}} $\ast$cfg)
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__ALT__QSPI__DEV__CFG_ga5f89298f2ed75c53da574d53cfbd747a}{alt\+\_\+qspi\+\_\+timing\+\_\+config\+\_\+get}} (\mbox{\hyperlink{group__ALT__QSPI__DEV__CFG_ga81b5f892a981d0ecb8fb454b3a1e1230}{A\+L\+T\+\_\+\+Q\+S\+P\+I\+\_\+\+T\+I\+M\+I\+N\+G\+\_\+\+C\+O\+N\+F\+I\+G\+\_\+t}} $\ast$cfg)
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__ALT__QSPI__DEV__CFG_ga1d0afe5312fe0294ef67f6525c52cf1e}{alt\+\_\+qspi\+\_\+timing\+\_\+config\+\_\+set}} (const \mbox{\hyperlink{group__ALT__QSPI__DEV__CFG_ga81b5f892a981d0ecb8fb454b3a1e1230}{A\+L\+T\+\_\+\+Q\+S\+P\+I\+\_\+\+T\+I\+M\+I\+N\+G\+\_\+\+C\+O\+N\+F\+I\+G\+\_\+t}} $\ast$cfg)
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__ALT__QSPI__DAC_ga87c0f59732f55d34b21cb53a26e385c2}{alt\+\_\+qspi\+\_\+direct\+\_\+disable}} (void)
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__ALT__QSPI__DAC_gae37eb1b5749d99e70b9cbb59aa02abe3}{alt\+\_\+qspi\+\_\+direct\+\_\+enable}} (void)
+\item 
+uint32\+\_\+t \mbox{\hyperlink{group__ALT__QSPI__DAC_ga37e95f1b1aba211cf942a9db0ca46073}{alt\+\_\+qspi\+\_\+ahb\+\_\+remap\+\_\+address\+\_\+get}} (void)
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__ALT__QSPI__DAC_gad7b0dc3a61560e7d7c2edeb9204698ad}{alt\+\_\+qspi\+\_\+ahb\+\_\+remap\+\_\+address\+\_\+set}} (const uint32\+\_\+t ahb\+\_\+remap\+\_\+addr)
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__ALT__QSPI__DAC_ga7df90b3cb6c7074554eaf324b72a3b00}{alt\+\_\+qspi\+\_\+ahb\+\_\+address\+\_\+remap\+\_\+disable}} (void)
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__ALT__QSPI__DAC_ga0663558383dd05011ee908f98acbf0b0}{alt\+\_\+qspi\+\_\+ahb\+\_\+address\+\_\+remap\+\_\+enable}} (void)
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__ALT__QSPI__INDAC_ga1249afce923d78b6515d22b5190cf4ea}{alt\+\_\+qspi\+\_\+indirect\+\_\+read\+\_\+start}} (const uint32\+\_\+t flash\+\_\+addr, const size\+\_\+t num\+\_\+bytes)
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__ALT__QSPI__INDAC_gaa36b9eb2736eaaaecaf718b164857c7e}{alt\+\_\+qspi\+\_\+indirect\+\_\+read\+\_\+finish}} (void)
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__ALT__QSPI__INDAC_ga44da2573bde828e7d5f1675419df63e7}{alt\+\_\+qspi\+\_\+indirect\+\_\+read\+\_\+cancel}} (void)
+\item 
+uint32\+\_\+t \mbox{\hyperlink{group__ALT__QSPI__INDAC_gae7452ee77a72a893dbce80439107d0e2}{alt\+\_\+qspi\+\_\+indirect\+\_\+read\+\_\+fill\+\_\+level}} (void)
+\item 
+uint32\+\_\+t \mbox{\hyperlink{group__ALT__QSPI__INDAC_ga5c90fccba9d6aecc4a0f76f23a1d7910}{alt\+\_\+qspi\+\_\+indirect\+\_\+read\+\_\+watermark\+\_\+get}} (void)
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__ALT__QSPI__INDAC_gaad236d0859ac6a3eac9875be365b74c6}{alt\+\_\+qspi\+\_\+indirect\+\_\+read\+\_\+watermark\+\_\+set}} (const uint32\+\_\+t watermark)
+\item 
+bool \mbox{\hyperlink{group__ALT__QSPI__INDAC_ga7199629817c34345d00da8c5c09493f7}{alt\+\_\+qspi\+\_\+indirect\+\_\+read\+\_\+is\+\_\+complete}} (void)
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__ALT__QSPI__INDAC_ga3c9283ecedcc1d04f06654c2db8d7e0d}{alt\+\_\+qspi\+\_\+indirect\+\_\+write\+\_\+start}} (const uint32\+\_\+t flash\+\_\+addr, const size\+\_\+t num\+\_\+bytes)
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__ALT__QSPI__INDAC_ga8a1da95058c3fd260accfaa4bddd8e2c}{alt\+\_\+qspi\+\_\+indirect\+\_\+write\+\_\+finish}} (void)
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__ALT__QSPI__INDAC_gab230e625145fcc1cab7ac7f1255a15ce}{alt\+\_\+qspi\+\_\+indirect\+\_\+write\+\_\+cancel}} (void)
+\item 
+uint32\+\_\+t \mbox{\hyperlink{group__ALT__QSPI__INDAC_gac43e6a8266b083b11f61f4443c391d11}{alt\+\_\+qspi\+\_\+indirect\+\_\+write\+\_\+fill\+\_\+level}} (void)
+\item 
+uint32\+\_\+t \mbox{\hyperlink{group__ALT__QSPI__INDAC_gaa3558aff9a1c3995ad175b16cb4635ad}{alt\+\_\+qspi\+\_\+indirect\+\_\+write\+\_\+watermark\+\_\+get}} (void)
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__ALT__QSPI__INDAC_ga073b6e8986e869fbde56e74e699feed1}{alt\+\_\+qspi\+\_\+indirect\+\_\+write\+\_\+watermark\+\_\+set}} (const uint32\+\_\+t watermark)
+\item 
+bool \mbox{\hyperlink{group__ALT__QSPI__INDAC_gacc44a84a99a06afa241272a686f3bb33}{alt\+\_\+qspi\+\_\+indirect\+\_\+write\+\_\+is\+\_\+complete}} (void)
+\item 
+uint32\+\_\+t \mbox{\hyperlink{group__ALT__QSPI__CFG__SRAM_ga8c07c0b8537b8ecf939809e82ddcf789}{alt\+\_\+qspi\+\_\+sram\+\_\+partition\+\_\+get}} (void)
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__ALT__QSPI__CFG__SRAM_ga7852658f96558099c7c27a761e4ba2cc}{alt\+\_\+qspi\+\_\+sram\+\_\+partition\+\_\+set}} (const uint32\+\_\+t read\+\_\+part\+\_\+size)
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__ALT__QSPI__ERASE_ga88347ce19e1f6289dd4df5b25e7758aa}{alt\+\_\+qspi\+\_\+erase\+\_\+subsector}} (const uint32\+\_\+t addr)
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__ALT__QSPI__ERASE_ga862192048f797c8387b71a8165e61944}{alt\+\_\+qspi\+\_\+erase\+\_\+sector}} (const uint32\+\_\+t addr)
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__ALT__QSPI__ERASE_gaaeba262ced6f5cc1f671bf3d17f681bb}{alt\+\_\+qspi\+\_\+erase\+\_\+chip}} (void)
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__ALT__QSPI__DMA_ga4d16f0e1e367185438c882b1e54ad69a}{alt\+\_\+qspi\+\_\+dma\+\_\+disable}} (void)
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__ALT__QSPI__DMA_gab7335b92adfb09af82a3e7e92e2c1765}{alt\+\_\+qspi\+\_\+dma\+\_\+enable}} (void)
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__ALT__QSPI__DMA_ga92ee264b9fe98d0acfabe3c0ac2d9d1b}{alt\+\_\+qspi\+\_\+dma\+\_\+config\+\_\+get}} (uint32\+\_\+t $\ast$single\+\_\+type\+\_\+sz, uint32\+\_\+t $\ast$burst\+\_\+type\+\_\+sz)
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__ALT__QSPI__DMA_ga6544a397843d6b1204f500be26896878}{alt\+\_\+qspi\+\_\+dma\+\_\+config\+\_\+set}} (const uint32\+\_\+t single\+\_\+type\+\_\+sz, const uint32\+\_\+t burst\+\_\+type\+\_\+sz)
+\item 
+\mbox{\Hypertarget{alt__qspi_8c_ad5b7019fa730c5165b7a48e8a0462f85}\label{alt__qspi_8c_ad5b7019fa730c5165b7a48e8a0462f85}} 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} {\bfseries alt\+\_\+qspi\+\_\+stig\+\_\+cmd} (uint32\+\_\+t opcode, uint32\+\_\+t dummy, uint32\+\_\+t timeout)
+\item 
+\mbox{\Hypertarget{alt__qspi_8c_acfb930334f945eb400ce00224795f498}\label{alt__qspi_8c_acfb930334f945eb400ce00224795f498}} 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} {\bfseries alt\+\_\+qspi\+\_\+stig\+\_\+rd\+\_\+cmd} (uint8\+\_\+t opcode, uint32\+\_\+t dummy, uint32\+\_\+t num\+\_\+bytes, uint32\+\_\+t $\ast$output, uint32\+\_\+t timeout)
+\item 
+\mbox{\Hypertarget{alt__qspi_8c_aa1c5935eeb60e1539a3c0ba44546f77b}\label{alt__qspi_8c_aa1c5935eeb60e1539a3c0ba44546f77b}} 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} {\bfseries alt\+\_\+qspi\+\_\+stig\+\_\+wr\+\_\+cmd} (uint8\+\_\+t opcode, uint32\+\_\+t dummy, uint32\+\_\+t num\+\_\+bytes, const uint32\+\_\+t $\ast$input, uint32\+\_\+t timeout)
+\item 
+\mbox{\Hypertarget{alt__qspi_8c_a96475fecf9b649ec6b86a9d5806190f9}\label{alt__qspi_8c_a96475fecf9b649ec6b86a9d5806190f9}} 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} {\bfseries alt\+\_\+qspi\+\_\+stig\+\_\+addr\+\_\+cmd} (uint8\+\_\+t opcode, uint32\+\_\+t dummy, uint32\+\_\+t address, uint32\+\_\+t timeout)
+\item 
+\mbox{\Hypertarget{alt__qspi_8c_a9c564944a3ee6aa993d1c56ca649d9a6}\label{alt__qspi_8c_a9c564944a3ee6aa993d1c56ca649d9a6}} 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} {\bfseries alt\+\_\+qspi\+\_\+device\+\_\+wren} (void)
+\item 
+\mbox{\Hypertarget{alt__qspi_8c_a9614d2c6ae17e147920785e0971a66e2}\label{alt__qspi_8c_a9614d2c6ae17e147920785e0971a66e2}} 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} {\bfseries alt\+\_\+qspi\+\_\+device\+\_\+wrdis} (void)
+\item 
+\mbox{\Hypertarget{alt__qspi_8c_accf4586defb20eadcebd8d05dea14764}\label{alt__qspi_8c_accf4586defb20eadcebd8d05dea14764}} 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} {\bfseries alt\+\_\+qspi\+\_\+device\+\_\+rdid} (uint32\+\_\+t $\ast$rdid)
+\item 
+\mbox{\Hypertarget{alt__qspi_8c_aa209893b3dd72ce7a781d9163d75f5a3}\label{alt__qspi_8c_aa209893b3dd72ce7a781d9163d75f5a3}} 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} {\bfseries alt\+\_\+qspi\+\_\+discovery\+\_\+parameter} (uint32\+\_\+t $\ast$param)
+\item 
+\mbox{\Hypertarget{alt__qspi_8c_a8486778f9087f38539a552ceb5e984bd}\label{alt__qspi_8c_a8486778f9087f38539a552ceb5e984bd}} 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} {\bfseries alt\+\_\+qspi\+\_\+device\+\_\+bank\+\_\+select} (uint32\+\_\+t bank)
+\item 
+\mbox{\Hypertarget{alt__qspi_8c_a995caee09cb31f8d30d147c4b0714ae7}\label{alt__qspi_8c_a995caee09cb31f8d30d147c4b0714ae7}} 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} {\bfseries alt\+\_\+qspi\+\_\+ecc\+\_\+start} (void $\ast$block, size\+\_\+t \mbox{\hyperlink{sun4u_2tte_8h_a245260f6f74972558f61b85227df5aae}{size}})
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{alt__qspi_8c_a3b5710767e8f3bd8a4e0f27ddbb8296c}\label{alt__qspi_8c_a3b5710767e8f3bd8a4e0f27ddbb8296c}} 
+\index{alt\_qspi.c@{alt\_qspi.c}!ALT\_QSPI\_INT\_STATUS\_ALL@{ALT\_QSPI\_INT\_STATUS\_ALL}}
+\index{ALT\_QSPI\_INT\_STATUS\_ALL@{ALT\_QSPI\_INT\_STATUS\_ALL}!alt\_qspi.c@{alt\_qspi.c}}
+\subsubsection{\texorpdfstring{ALT\_QSPI\_INT\_STATUS\_ALL}{ALT\_QSPI\_INT\_STATUS\_ALL}}
+{\footnotesize\ttfamily \#define A\+L\+T\+\_\+\+Q\+S\+P\+I\+\_\+\+I\+N\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+A\+LL}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{( \(\backslash\)}
+\DoxyCodeLine{        ALT\_QSPI\_INT\_STATUS\_MODE\_FAIL         | \(\backslash\)}
+\DoxyCodeLine{        ALT\_QSPI\_INT\_STATUS\_UFL               | \(\backslash\)}
+\DoxyCodeLine{        ALT\_QSPI\_INT\_STATUS\_IDAC\_OP\_COMPLETE  | \(\backslash\)}
+\DoxyCodeLine{        ALT\_QSPI\_INT\_STATUS\_IDAC\_OP\_REJECT    | \(\backslash\)}
+\DoxyCodeLine{        ALT\_QSPI\_INT\_STATUS\_WR\_PROT\_VIOL      | \(\backslash\)}
+\DoxyCodeLine{        ALT\_QSPI\_INT\_STATUS\_ILL\_AHB\_ACCESS    | \(\backslash\)}
+\DoxyCodeLine{        ALT\_QSPI\_INT\_STATUS\_IDAC\_WTRMK\_TRIG   | \(\backslash\)}
+\DoxyCodeLine{        ALT\_QSPI\_INT\_STATUS\_RX\_OVF            | \(\backslash\)}
+\DoxyCodeLine{        ALT\_QSPI\_INT\_STATUS\_TX\_FIFO\_NOT\_FULL  | \(\backslash\)}
+\DoxyCodeLine{        ALT\_QSPI\_INT\_STATUS\_TX\_FIFO\_FULL      | \(\backslash\)}
+\DoxyCodeLine{        ALT\_QSPI\_INT\_STATUS\_RX\_FIFO\_NOT\_EMPTY | \(\backslash\)}
+\DoxyCodeLine{        ALT\_QSPI\_INT\_STATUS\_RX\_FIFO\_FULL      | \(\backslash\)}
+\DoxyCodeLine{        ALT\_QSPI\_INT\_STATUS\_IDAC\_RD\_FULL        \(\backslash\)}
+\DoxyCodeLine{        )}
+
+\end{DoxyCode}

@@ -1,0 +1,69 @@
+\hypertarget{group__ALT__QSPI__CFG__SRAM}{}\section{S\+R\+AM Partition}
+\label{group__ALT__QSPI__CFG__SRAM}\index{SRAM Partition@{SRAM Partition}}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__ALT__QSPI__CFG__SRAM_gadfc85605a06cbd2925967039f1533fdd}{A\+L\+T\+\_\+\+Q\+S\+P\+I\+\_\+\+S\+R\+A\+M\+\_\+\+F\+I\+F\+O\+\_\+\+S\+I\+ZE}}~(512)
+\item 
+\mbox{\Hypertarget{group__ALT__QSPI__CFG__SRAM_gab457cff37bedf4d892f5e66ac1c554d2}\label{group__ALT__QSPI__CFG__SRAM_gab457cff37bedf4d892f5e66ac1c554d2}} 
+\#define {\bfseries A\+L\+T\+\_\+\+Q\+S\+P\+I\+\_\+\+S\+R\+A\+M\+\_\+\+F\+I\+F\+O\+\_\+\+E\+N\+T\+R\+Y\+\_\+\+C\+O\+U\+NT}~(512 / sizeof(uint32\+\_\+t))
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{group__ALT__QSPI__CFG__SRAM_ga8c07c0b8537b8ecf939809e82ddcf789}{alt\+\_\+qspi\+\_\+sram\+\_\+partition\+\_\+get}} (void)
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__ALT__QSPI__CFG__SRAM_ga7852658f96558099c7c27a761e4ba2cc}{alt\+\_\+qspi\+\_\+sram\+\_\+partition\+\_\+set}} (const uint32\+\_\+t read\+\_\+part\+\_\+size)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+The S\+R\+AM local memory buffer is a 128 by 32-\/bit (512 total bytes) memory. The S\+R\+AM has two partitions, with the lower partition reserved for indirect read operations and the upper partition for indirect write operations. The size of the partitions is specified in the S\+R\+AM partition register, based on 32-\/bit word sizes. For example, to specify four bytes of storage, write the value 1. The value written to the indirect read partition size field ( addr ) defines the number of entries reserved for indirect read operations. For example, write the value 32 (0x20) to partition the 128-\/entry S\+R\+AM to 32 entries (25\%) for read usage and 96 entries (75\%) for write usage.
+
+The functions in this section provide accces to configure the S\+R\+AM read partition allocation. 
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{group__ALT__QSPI__CFG__SRAM_gadfc85605a06cbd2925967039f1533fdd}\label{group__ALT__QSPI__CFG__SRAM_gadfc85605a06cbd2925967039f1533fdd}} 
+\index{SRAM Partition@{SRAM Partition}!ALT\_QSPI\_SRAM\_FIFO\_SIZE@{ALT\_QSPI\_SRAM\_FIFO\_SIZE}}
+\index{ALT\_QSPI\_SRAM\_FIFO\_SIZE@{ALT\_QSPI\_SRAM\_FIFO\_SIZE}!SRAM Partition@{SRAM Partition}}
+\subsubsection{\texorpdfstring{ALT\_QSPI\_SRAM\_FIFO\_SIZE}{ALT\_QSPI\_SRAM\_FIFO\_SIZE}}
+{\footnotesize\ttfamily \#define A\+L\+T\+\_\+\+Q\+S\+P\+I\+\_\+\+S\+R\+A\+M\+\_\+\+F\+I\+F\+O\+\_\+\+S\+I\+ZE~(512)}
+
+The size of the onboard S\+R\+AM in bytes. 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{group__ALT__QSPI__CFG__SRAM_ga8c07c0b8537b8ecf939809e82ddcf789}\label{group__ALT__QSPI__CFG__SRAM_ga8c07c0b8537b8ecf939809e82ddcf789}} 
+\index{SRAM Partition@{SRAM Partition}!alt\_qspi\_sram\_partition\_get@{alt\_qspi\_sram\_partition\_get}}
+\index{alt\_qspi\_sram\_partition\_get@{alt\_qspi\_sram\_partition\_get}!SRAM Partition@{SRAM Partition}}
+\subsubsection{\texorpdfstring{alt\_qspi\_sram\_partition\_get()}{alt\_qspi\_sram\_partition\_get()}}
+{\footnotesize\ttfamily uint32\+\_\+t alt\+\_\+qspi\+\_\+sram\+\_\+partition\+\_\+get (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+Get the entry count (words) of the indirect read partition in the Q\+S\+PI controller S\+R\+AM.
+
+There is an additional word of read memory not in the S\+R\+AM but used to buffer the S\+R\+AM and the A\+HB. As such, the total on board memory buffer for indirect read is 1 more than the value reported by this function.
+
+\begin{DoxyReturn}{Returns}
+The count of 32-\/bit words of the indirect read partition in the Q\+S\+PI controller S\+R\+AM. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{group__ALT__QSPI__CFG__SRAM_ga7852658f96558099c7c27a761e4ba2cc}\label{group__ALT__QSPI__CFG__SRAM_ga7852658f96558099c7c27a761e4ba2cc}} 
+\index{SRAM Partition@{SRAM Partition}!alt\_qspi\_sram\_partition\_set@{alt\_qspi\_sram\_partition\_set}}
+\index{alt\_qspi\_sram\_partition\_set@{alt\_qspi\_sram\_partition\_set}!SRAM Partition@{SRAM Partition}}
+\subsubsection{\texorpdfstring{alt\_qspi\_sram\_partition\_set()}{alt\_qspi\_sram\_partition\_set()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} alt\+\_\+qspi\+\_\+sram\+\_\+partition\+\_\+set (\begin{DoxyParamCaption}\item[{const uint32\+\_\+t}]{read\+\_\+part\+\_\+size }\end{DoxyParamCaption})}
+
+Set the entry count (words) of the indirect read partition in the Q\+S\+PI controller S\+R\+AM.
+
+Note\+: It is recommended that setting S\+R\+AM partition to 0 or 127 should be avoided although it is not prohibited.
+
+
+\begin{DoxyParams}{Parameters}
+{\em read\+\_\+part\+\_\+size} & The count of 32-\/bit words to allocate to the indirect read partition in the Q\+S\+PI controller S\+R\+AM.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em A\+L\+T\+\_\+\+E\+\_\+\+S\+U\+C\+C\+E\+SS} & Indicates successful completion. \\
+\hline
+{\em A\+L\+T\+\_\+\+E\+\_\+\+E\+R\+R\+OR} & Indicates an error occurred. \\
+\hline
+\end{DoxyRetVals}

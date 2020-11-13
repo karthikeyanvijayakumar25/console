@@ -1,0 +1,86 @@
+\hypertarget{arm_2raspberrypi_2i2c_2i2c_8c}{}\section{bsps/arm/raspberrypi/i2c/i2c.c File Reference}
+\label{arm_2raspberrypi_2i2c_2i2c_8c}\index{bsps/arm/raspberrypi/i2c/i2c.c@{bsps/arm/raspberrypi/i2c/i2c.c}}
+
+
+Support for the I2C bus on the Raspberry Pi G\+P\+IO P1 header (model A/B) and G\+P\+IO J8 header on model B+.  
+
+
+{\ttfamily \#include $<$bsp.\+h$>$}\newline
+{\ttfamily \#include $<$bsp/raspberrypi.\+h$>$}\newline
+{\ttfamily \#include $<$bsp/gpio.\+h$>$}\newline
+{\ttfamily \#include $<$bsp/rpi-\/gpio.\+h$>$}\newline
+{\ttfamily \#include $<$bsp/irq.\+h$>$}\newline
+{\ttfamily \#include $<$bsp/i2c.\+h$>$}\newline
+{\ttfamily \#include $<$assert.\+h$>$}\newline
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structrpi__i2c__bus}{rpi\+\_\+i2c\+\_\+bus}}
+\begin{DoxyCompactList}\small\item\em Object containing relevant information about an I2C bus. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{arm_2raspberrypi_2i2c_2i2c_8c_ac3e4eaebad7d803222a49e5d350a82cb}\label{arm_2raspberrypi_2i2c_2i2c_8c_ac3e4eaebad7d803222a49e5d350a82cb}} 
+\#define {\bfseries T\+R\+A\+N\+S\+F\+E\+R\+\_\+\+C\+O\+U\+NT}(buffer\+\_\+size)~(buffer\+\_\+size + 0x\+F\+F\+F\+E) / 0x\+F\+F\+FF
+\item 
+\mbox{\Hypertarget{arm_2raspberrypi_2i2c_2i2c_8c_a712d348a226054f5223bcaa51d9b1427}\label{arm_2raspberrypi_2i2c_2i2c_8c_a712d348a226054f5223bcaa51d9b1427}} 
+\#define {\bfseries A\+D\+J\+U\+S\+T\+\_\+\+T\+R\+A\+N\+S\+F\+E\+R\+\_\+\+S\+I\+ZE}(transfer\+\_\+count,  remaining\+\_\+bytes)~transfer\+\_\+count $>$ 1 ? 0x\+F\+F\+F\+F \+: (remaining\+\_\+bytes \& 0x\+F\+F\+F\+F)
+\item 
+\#define {\bfseries I2\+C\+\_\+\+P\+O\+L\+L\+I\+NG}(condition)
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{arm_2raspberrypi_2i2c_2i2c_8c_ac9ff13da5d045264d4020d4b4ec31b08}{rpi\+\_\+i2c\+\_\+register\+\_\+bus}} (const char $\ast$bus\+\_\+path, uint32\+\_\+t bus\+\_\+clock)
+\begin{DoxyCompactList}\small\item\em Registers the Raspberry Pi B\+SC I2C bus with the Linux I2C User-\/\+Space A\+PI. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{arm_2raspberrypi_2i2c_2i2c_8c_ad904ea27262283694b605280beaa9074}\label{arm_2raspberrypi_2i2c_2i2c_8c_ad904ea27262283694b605280beaa9074}} 
+void \mbox{\hyperlink{arm_2raspberrypi_2i2c_2i2c_8c_ad904ea27262283694b605280beaa9074}{rpi\+\_\+i2c\+\_\+init}} (void)
+\begin{DoxyCompactList}\small\item\em Setups the Raspberry Pi G\+P\+IO header to activate the B\+SC I2C bus. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Support for the I2C bus on the Raspberry Pi G\+P\+IO P1 header (model A/B) and G\+P\+IO J8 header on model B+. 
+
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{arm_2raspberrypi_2i2c_2i2c_8c_acffbcb983b1af6ce3eb354ab0f9ce859}\label{arm_2raspberrypi_2i2c_2i2c_8c_acffbcb983b1af6ce3eb354ab0f9ce859}} 
+\index{i2c.c@{i2c.c}!I2C\_POLLING@{I2C\_POLLING}}
+\index{I2C\_POLLING@{I2C\_POLLING}!i2c.c@{i2c.c}}
+\subsubsection{\texorpdfstring{I2C\_POLLING}{I2C\_POLLING}}
+{\footnotesize\ttfamily \#define I2\+C\+\_\+\+P\+O\+L\+L\+I\+NG(\begin{DoxyParamCaption}\item[{}]{condition }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{while} ( condition ) \{                         \(\backslash\)}
+\DoxyCodeLine{    ;                                           \(\backslash\)}
+\DoxyCodeLine{  \}}
+
+\end{DoxyCode}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{arm_2raspberrypi_2i2c_2i2c_8c_ac9ff13da5d045264d4020d4b4ec31b08}\label{arm_2raspberrypi_2i2c_2i2c_8c_ac9ff13da5d045264d4020d4b4ec31b08}} 
+\index{i2c.c@{i2c.c}!rpi\_i2c\_register\_bus@{rpi\_i2c\_register\_bus}}
+\index{rpi\_i2c\_register\_bus@{rpi\_i2c\_register\_bus}!i2c.c@{i2c.c}}
+\subsubsection{\texorpdfstring{rpi\_i2c\_register\_bus()}{rpi\_i2c\_register\_bus()}}
+{\footnotesize\ttfamily int rpi\+\_\+i2c\+\_\+register\+\_\+bus (\begin{DoxyParamCaption}\item[{const char $\ast$}]{bus\+\_\+path,  }\item[{uint32\+\_\+t}]{bus\+\_\+clock }\end{DoxyParamCaption})}
+
+
+
+Registers the Raspberry Pi B\+SC I2C bus with the Linux I2C User-\/\+Space A\+PI. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em bus\+\_\+path} & Path to the bus device file. \\
+\hline
+\mbox{\texttt{ in}}  & {\em bus\+\_\+clock} & Bus clock in Hz.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em 0} & Bus registered successfully. \\
+\hline
+{\em $<$0} & Could not register the bus. The return value is a negative errno code. \\
+\hline
+\end{DoxyRetVals}

@@ -1,0 +1,26 @@
+\hypertarget{timerisr_8c}{}\section{bsps/no\+\_\+cpu/no\+\_\+bsp/btimer/timerisr.c File Reference}
+\label{timerisr_8c}\index{bsps/no\_cpu/no\_bsp/btimer/timerisr.c@{bsps/no\_cpu/no\_bsp/btimer/timerisr.c}}
+{\ttfamily \#include $<$rtems.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/btimer.\+h$>$}\newline
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{timerisr_8c_ad0456d369c78dc959246bebcbde4d670}\label{timerisr_8c_ad0456d369c78dc959246bebcbde4d670}} 
+void {\bfseries timerisr} (void)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{timerisr_8c_a2893f9995d33756c7a78d45a9e0d9be9}\label{timerisr_8c_a2893f9995d33756c7a78d45a9e0d9be9}} 
+uint32\+\_\+t {\bfseries \+\_\+\+Timer\+\_\+interrupts}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+If required this I\+SR is used to bump a count of interval \char`\"{}overflow\char`\"{} interrupts which have occurred since the timer was started. The number of overflows is taken into account in the \mbox{\hyperlink{arm_2csb336_2btimer_2btimer_8c_ab8dc8517e97918d293d78e85b9454855}{benchmark\+\_\+timer\+\_\+read()}} routine if necessary.
+
+To reduce overhead this is best to be the \char`\"{}rawest\char`\"{} hardware interupt handler you can write. This should be the only interrupt which can occur during the measured time period.
+
+\begin{DoxyNote}{Note}
+This file is U\+S\+U\+A\+L\+LY in assembly and is L\+E\+AN A\+ND M\+E\+AN. Any code in this isr is pure overhead which can perturb the accuracy of the Timing Test Suite. 
+\end{DoxyNote}

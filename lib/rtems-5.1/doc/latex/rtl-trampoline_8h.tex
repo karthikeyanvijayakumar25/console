@@ -1,0 +1,80 @@
+\hypertarget{rtl-trampoline_8h}{}\section{cpukit/libdl/rtl-\/trampoline.h File Reference}
+\label{rtl-trampoline_8h}\index{cpukit/libdl/rtl-\/trampoline.h@{cpukit/libdl/rtl-\/trampoline.h}}
+
+
+R\+T\+E\+MS Run-\/\+Time Linker Object File Trampoline Relocations Table.  
+
+
+{\ttfamily \#include $<$rtems/rtl/rtl-\/unresolved.\+h$>$}\newline
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{rtl-trampoline_8h_a996f6ce5f419e92e3d4b00093da4320e}{rtems\+\_\+rtl\+\_\+trampoline\+\_\+add}} (\mbox{\hyperlink{structrtems__rtl__obj}{rtems\+\_\+rtl\+\_\+obj}} $\ast$obj, const uint16\+\_\+t flags, const uint16\+\_\+t sect, const \mbox{\hyperlink{rtl-unresolved_8h_a5ab1ca8c94e49686f84f5ccf0731f0e6}{rtems\+\_\+rtl\+\_\+word}} symvalue, const \mbox{\hyperlink{rtl-unresolved_8h_a5ab1ca8c94e49686f84f5ccf0731f0e6}{rtems\+\_\+rtl\+\_\+word}} $\ast$rel)
+\item 
+void \mbox{\hyperlink{rtl-trampoline_8h_a962fc939ba38c1794ff7acdb15cdfa16}{rtems\+\_\+rtl\+\_\+trampoline\+\_\+remove}} (\mbox{\hyperlink{structrtems__rtl__obj}{rtems\+\_\+rtl\+\_\+obj}} $\ast$obj)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+R\+T\+E\+MS Run-\/\+Time Linker Object File Trampoline Relocations Table. 
+
+Cache relocation records that could result in a trampoline. The unresolved symbol table holds variable the symbol name (length string) and the object file\textquotesingle{}s relocation records that reference the unresolved symbol. The trampoline cache is an extension to this table to reuse the code and memory and support trampolines.
+
+Some architectures require trampolines or veneers to extend the range of some instructions. The compiler generates small optimized instructions assuming most destinations are within the range of the instruction. The instructions are smaller in size and can have a number of encodings with different ranges. If a relocation record points to a symbol that is out of range for the instruction a trampoline is used to extend the instruction\textquotesingle{}s range. A trampoline is a small fragment of architecture specific instructions located within the range of the relocation record instruction that can reach the entire address range. The trampoline\textquotesingle{}s execution is transparent to the execution of the object file.
+
+An object file that needs a trampoline has a table allocated close to the text section. It has to be close to ensure the largest possible object file can be spported. The number of slots in a table depends on\+:
+
+\subsection*{Location of the code}
+
+\subsection*{The type of relocation records in the object file}
+
+\subsection*{The instruction encoding the relocation record points too}
+
+\subsection*{The landing address of the instruction}
+
+The allocation of the text segment and the trampoline table have to happen with the allocator lock being locked and held to make sure no other allocations happen inbetween the text section allocation and the trampoline table. Holding an allocator lock limits what the link editor can do when when the default heap allocator is being used. If calls any operating system services including the file system use the same allocator a deadlock will occur. This creates a conflict between performing the allocations together and reading the instructions while holding the allocator lock.
+
+The trampoline cache holds the parsed relocation records that could result in a trampoline. These records can be exaimined after the allocation of the text segment to determine how many relocation record target\textquotesingle{}s are out of range. The minimum range for a specific type of relocation record has to be used as the instructions cannot be loaded. 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{rtl-trampoline_8h_a996f6ce5f419e92e3d4b00093da4320e}\label{rtl-trampoline_8h_a996f6ce5f419e92e3d4b00093da4320e}} 
+\index{rtl-\/trampoline.h@{rtl-\/trampoline.h}!rtems\_rtl\_trampoline\_add@{rtems\_rtl\_trampoline\_add}}
+\index{rtems\_rtl\_trampoline\_add@{rtems\_rtl\_trampoline\_add}!rtl-\/trampoline.h@{rtl-\/trampoline.h}}
+\subsubsection{\texorpdfstring{rtems\_rtl\_trampoline\_add()}{rtems\_rtl\_trampoline\_add()}}
+{\footnotesize\ttfamily bool rtems\+\_\+rtl\+\_\+trampoline\+\_\+add (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structrtems__rtl__obj}{rtems\+\_\+rtl\+\_\+obj}} $\ast$}]{obj,  }\item[{const uint16\+\_\+t}]{flags,  }\item[{const uint16\+\_\+t}]{sect,  }\item[{const \mbox{\hyperlink{rtl-unresolved_8h_a5ab1ca8c94e49686f84f5ccf0731f0e6}{rtems\+\_\+rtl\+\_\+word}}}]{symvalue,  }\item[{const \mbox{\hyperlink{rtl-unresolved_8h_a5ab1ca8c94e49686f84f5ccf0731f0e6}{rtems\+\_\+rtl\+\_\+word}} $\ast$}]{rel }\end{DoxyParamCaption})}
+
+Add a relocation to the list of trampolinr relocations.
+
+
+\begin{DoxyParams}{Parameters}
+{\em obj} & The object table the relocation record is for. \\
+\hline
+{\em flags} & Format specific flags. \\
+\hline
+{\em sect} & The target section number the relocation references. \\
+\hline
+{\em symvalue} & The symbol\textquotesingle{}s value. \\
+\hline
+{\em rel} & The format specific relocation data. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em true} & The relocation has been added. \\
+\hline
+{\em false} & The relocation could not be added. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{rtl-trampoline_8h_a962fc939ba38c1794ff7acdb15cdfa16}\label{rtl-trampoline_8h_a962fc939ba38c1794ff7acdb15cdfa16}} 
+\index{rtl-\/trampoline.h@{rtl-\/trampoline.h}!rtems\_rtl\_trampoline\_remove@{rtems\_rtl\_trampoline\_remove}}
+\index{rtems\_rtl\_trampoline\_remove@{rtems\_rtl\_trampoline\_remove}!rtl-\/trampoline.h@{rtl-\/trampoline.h}}
+\subsubsection{\texorpdfstring{rtems\_rtl\_trampoline\_remove()}{rtems\_rtl\_trampoline\_remove()}}
+{\footnotesize\ttfamily void rtems\+\_\+rtl\+\_\+trampoline\+\_\+remove (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structrtems__rtl__obj}{rtems\+\_\+rtl\+\_\+obj}} $\ast$}]{obj }\end{DoxyParamCaption})}
+
+Remove the relocation records for an object file.
+
+
+\begin{DoxyParams}{Parameters}
+{\em obj} & The object table the symbols are for. \\
+\hline
+\end{DoxyParams}

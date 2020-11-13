@@ -1,0 +1,32 @@
+\hypertarget{structrtems__capture__record__lock__context}{}\section{rtems\+\_\+capture\+\_\+record\+\_\+lock\+\_\+context Struct Reference}
+\label{structrtems__capture__record__lock__context}\index{rtems\_capture\_record\_lock\_context@{rtems\_capture\_record\_lock\_context}}
+
+
+Capture record lock context.  
+
+
+
+
+{\ttfamily \#include $<$capture.\+h$>$}
+
+\subsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structrtems__capture__record__lock__context_a7d39eb61e31dfb0aca152e43c7b3ff7c}\label{structrtems__capture__record__lock__context_a7d39eb61e31dfb0aca152e43c7b3ff7c}} 
+\mbox{\hyperlink{group__ClassicINTRLocks_gab9d4b488f1537323799db7c1fa69b9aa}{rtems\+\_\+interrupt\+\_\+lock\+\_\+context}} {\bfseries lock\+\_\+context}
+\item 
+\mbox{\Hypertarget{structrtems__capture__record__lock__context_ac16f8cb4133bdbd01a7dec9e82ea8bd2}\label{structrtems__capture__record__lock__context_ac16f8cb4133bdbd01a7dec9e82ea8bd2}} 
+\mbox{\hyperlink{group__ClassicINTRLocks_ga7d4b54b01fd1507aa842d5fbc7b11177}{rtems\+\_\+interrupt\+\_\+lock}} $\ast$ {\bfseries lock}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Capture record lock context. 
+
+This structure is used to lock a per C\+PU buffer when opeining recording. The per C\+PU buffer is held locked until the record close is called. Locking masks interrupts so use this lock only when needed and do not hold it for long.
+
+The lock first masks the C\+PU interrupt before taking the interrupt lock. This stops a thread context taking the lock and then an interrupt on the same C\+PU attempting to take the lock so creating a deadlock. 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+cpukit/include/rtems/\mbox{\hyperlink{capture_8h}{capture.\+h}}\end{DoxyCompactItemize}

@@ -1,0 +1,246 @@
+\hypertarget{dbg__console_8c}{}\section{bsps/arm/atsam/contrib/libraries/libboard/source/dbg\+\_\+console.c File Reference}
+\label{dbg__console_8c}\index{bsps/arm/atsam/contrib/libraries/libboard/source/dbg\_console.c@{bsps/arm/atsam/contrib/libraries/libboard/source/dbg\_console.c}}
+{\ttfamily \#include \char`\"{}board.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{dbg__console_8c_a40ffb962a11e58bd992ccc415974537e}{C\+O\+N\+S\+O\+L\+E\+\_\+\+B\+A\+U\+D\+R\+A\+TE}}~115200
+\item 
+\#define \mbox{\hyperlink{dbg__console_8c_ad98c0bea33fa991e587ba92d3d9b4bb1}{C\+O\+N\+S\+O\+L\+E\+\_\+\+E\+D\+BG}}
+\item 
+\mbox{\Hypertarget{dbg__console_8c_a981adc1bfb325d44577d1525bc3adcde}\label{dbg__console_8c_a981adc1bfb325d44577d1525bc3adcde}} 
+\#define {\bfseries C\+O\+N\+S\+O\+L\+E\+\_\+\+O\+N\+\_\+\+U\+S\+A\+RT}
+\item 
+\#define \mbox{\hyperlink{dbg__console_8c_aeb58ea6fac0d4e692efe689e022be9d5}{P\+I\+N\+\_\+\+U\+S\+A\+R\+T1\+\_\+\+R\+X\+D\+\_\+\+D\+BG}}~\{P\+I\+O\+\_\+\+P\+A21\+A\+\_\+\+R\+X\+D1, \mbox{\hyperlink{group__SAMV71Q21__base_ga1692c0510a8ab56be133b9693ec14267}{P\+I\+OA}}, \mbox{\hyperlink{group__SAMV71Q21__id_ga2981ffe400e0d14c59058b04bbe91860}{I\+D\+\_\+\+P\+I\+OA}}, \mbox{\hyperlink{pio_8h_a15f9c885fad4d3dc1e3d213e6e24882f}{P\+I\+O\+\_\+\+P\+E\+R\+I\+P\+H\+\_\+A}}, \mbox{\hyperlink{pio_8h_a39ae42ff91b54d8e03f741bd3f4b12f4}{P\+I\+O\+\_\+\+D\+E\+F\+A\+U\+LT}}\}
+\item 
+\#define \mbox{\hyperlink{dbg__console_8c_a263a167e5c98d861a5952bed2e43600f}{P\+I\+N\+\_\+\+U\+S\+A\+R\+T1\+\_\+\+T\+X\+D\+\_\+\+D\+BG}}~\{P\+I\+O\+\_\+\+P\+B4\+D\+\_\+\+T\+X\+D1, \mbox{\hyperlink{group__SAMV71Q21__base_ga8c30b9a06527ef9a7890c25f24aa3769}{P\+I\+OB}}, \mbox{\hyperlink{group__SAMV71Q21__id_ga3cbfa681738adb66740eed42b28f8bd9}{I\+D\+\_\+\+P\+I\+OB}}, \mbox{\hyperlink{pio_8h_ac7ddad536665546c289797afc03b8d5d}{P\+I\+O\+\_\+\+P\+E\+R\+I\+P\+H\+\_\+D}}, \mbox{\hyperlink{pio_8h_a39ae42ff91b54d8e03f741bd3f4b12f4}{P\+I\+O\+\_\+\+D\+E\+F\+A\+U\+LT}}\}
+\item 
+\mbox{\Hypertarget{dbg__console_8c_a0ec25463c2ce4de90eddc53da8c493db}\label{dbg__console_8c_a0ec25463c2ce4de90eddc53da8c493db}} 
+\#define {\bfseries P\+I\+N\+S\+\_\+\+U\+S\+A\+R\+T1}~\mbox{\hyperlink{dbg__console_8c_a263a167e5c98d861a5952bed2e43600f}{P\+I\+N\+\_\+\+U\+S\+A\+R\+T1\+\_\+\+T\+X\+D\+\_\+\+D\+BG}}, \mbox{\hyperlink{dbg__console_8c_aeb58ea6fac0d4e692efe689e022be9d5}{P\+I\+N\+\_\+\+U\+S\+A\+R\+T1\+\_\+\+R\+X\+D\+\_\+\+D\+BG}}
+\item 
+\#define \mbox{\hyperlink{dbg__console_8c_ac17d25afedece4eb724baa90a0e415ff}{C\+O\+N\+S\+O\+L\+E\+\_\+\+Usart}}~\mbox{\hyperlink{group__SAMV71Q21__base_ga92871691058ff7ccffd7635930cb08da}{U\+S\+A\+R\+T1}}
+\item 
+\#define \mbox{\hyperlink{dbg__console_8c_a531b67bfef5cbfd8ca9ec940af2796dc}{C\+O\+N\+S\+O\+L\+E\+\_\+\+P\+I\+NS}}~\{P\+I\+N\+S\+\_\+\+U\+S\+A\+R\+T1\}
+\item 
+\mbox{\Hypertarget{dbg__console_8c_af50d3a3a5589e846dca652a4fdbb51eb}\label{dbg__console_8c_af50d3a3a5589e846dca652a4fdbb51eb}} 
+\#define {\bfseries C\+O\+N\+S\+O\+L\+E\+\_\+\+ID}~\mbox{\hyperlink{group__SAMV71Q21__id_ga0529c3636c76fd1086c486dd154a5d4d}{I\+D\+\_\+\+U\+S\+A\+R\+T1}}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{dbg__console_8c_ace83a2e17586584b7c798ca7ba872bb9}{D\+B\+G\+\_\+\+Configure}} (uint32\+\_\+t baudrate, uint32\+\_\+t master\+Clock)
+\begin{DoxyCompactList}\small\item\em Configures an U\+S\+A\+RT peripheral with the specified parameters. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{dbg__console_8c_a7f949ce5c762badb554572a41e19e3fb}{D\+B\+G\+\_\+\+Put\+Char}} (uint8\+\_\+t c)
+\begin{DoxyCompactList}\small\item\em Outputs a character on the U\+A\+RT line. \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{dbg__console_8c_a2eef99b5de5b33158b69f38c0bdfd655}{D\+B\+G\+\_\+\+Get\+Char}} (void)
+\begin{DoxyCompactList}\small\item\em Input a character from the U\+A\+RT line. \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{dbg__console_8c_a7585af50e201cf7f0d6bb1fba96b3915}{D\+B\+G\+\_\+\+Is\+Rx\+Ready}} (void)
+\begin{DoxyCompactList}\small\item\em Check if there is Input from U\+A\+RT line. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{dbg__console_8c_a85b3ca31771c82534a7a407b043e6da5}{D\+B\+G\+\_\+\+Dump\+Frame}} (uint8\+\_\+t $\ast$puc\+Frame, uint32\+\_\+t dw\+Size)
+\item 
+void \mbox{\hyperlink{dbg__console_8c_a9fb3a4c8d4eb60a7b43a57477c8d8c5c}{D\+B\+G\+\_\+\+Dump\+Memory}} (uint8\+\_\+t $\ast$puc\+Buffer, uint32\+\_\+t dw\+Size, uint32\+\_\+t dw\+Address)
+\item 
+uint32\+\_\+t \mbox{\hyperlink{dbg__console_8c_a807d59a58a4312efa7ef1c445107c256}{D\+B\+G\+\_\+\+Get\+Integer}} (int32\+\_\+t $\ast$pdw\+Value)
+\item 
+uint32\+\_\+t \mbox{\hyperlink{dbg__console_8c_a96012354201cbb18946e35061140c87d}{D\+B\+G\+\_\+\+Get\+Integer\+Min\+Max}} (int32\+\_\+t $\ast$pdw\+Value, int32\+\_\+t dw\+Min, int32\+\_\+t dw\+Max)
+\item 
+uint32\+\_\+t \mbox{\hyperlink{dbg__console_8c_af9bb27367f558fe5135b7f59a134f074}{D\+B\+G\+\_\+\+Get\+Hexa32}} (uint32\+\_\+t $\ast$pdw\+Value)
+\item 
+\mbox{\Hypertarget{dbg__console_8c_addff62e507194a8602e3bd3e93532917}\label{dbg__console_8c_addff62e507194a8602e3bd3e93532917}} 
+W\+E\+AK int {\bfseries puts} (const char $\ast$ptr)
+\item 
+\mbox{\Hypertarget{dbg__console_8c_a4c525b3c7f5f90a659cacb562a248c20}\label{dbg__console_8c_a4c525b3c7f5f90a659cacb562a248c20}} 
+W\+E\+AK char $\ast$ {\bfseries gets} (char $\ast$ptr)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Implements U\+A\+RT console. 
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{dbg__console_8c_a40ffb962a11e58bd992ccc415974537e}\label{dbg__console_8c_a40ffb962a11e58bd992ccc415974537e}} 
+\index{dbg\_console.c@{dbg\_console.c}!CONSOLE\_BAUDRATE@{CONSOLE\_BAUDRATE}}
+\index{CONSOLE\_BAUDRATE@{CONSOLE\_BAUDRATE}!dbg\_console.c@{dbg\_console.c}}
+\subsubsection{\texorpdfstring{CONSOLE\_BAUDRATE}{CONSOLE\_BAUDRATE}}
+{\footnotesize\ttfamily \#define C\+O\+N\+S\+O\+L\+E\+\_\+\+B\+A\+U\+D\+R\+A\+TE~115200}
+
+Console baud rate always using 115200. \mbox{\Hypertarget{dbg__console_8c_ad98c0bea33fa991e587ba92d3d9b4bb1}\label{dbg__console_8c_ad98c0bea33fa991e587ba92d3d9b4bb1}} 
+\index{dbg\_console.c@{dbg\_console.c}!CONSOLE\_EDBG@{CONSOLE\_EDBG}}
+\index{CONSOLE\_EDBG@{CONSOLE\_EDBG}!dbg\_console.c@{dbg\_console.c}}
+\subsubsection{\texorpdfstring{CONSOLE\_EDBG}{CONSOLE\_EDBG}}
+{\footnotesize\ttfamily \#define C\+O\+N\+S\+O\+L\+E\+\_\+\+E\+D\+BG}
+
+E\+D\+BG used U\+S\+A\+R\+T1 as the console, but L\+ON support on U\+S\+A\+R\+T1 only \mbox{\Hypertarget{dbg__console_8c_a531b67bfef5cbfd8ca9ec940af2796dc}\label{dbg__console_8c_a531b67bfef5cbfd8ca9ec940af2796dc}} 
+\index{dbg\_console.c@{dbg\_console.c}!CONSOLE\_PINS@{CONSOLE\_PINS}}
+\index{CONSOLE\_PINS@{CONSOLE\_PINS}!dbg\_console.c@{dbg\_console.c}}
+\subsubsection{\texorpdfstring{CONSOLE\_PINS}{CONSOLE\_PINS}}
+{\footnotesize\ttfamily \#define C\+O\+N\+S\+O\+L\+E\+\_\+\+P\+I\+NS~\{P\+I\+N\+S\+\_\+\+U\+S\+A\+R\+T1\}}
+
+Pins description corresponding to Rxd,Txd, (\mbox{\hyperlink{structUsart}{Usart}} pins) \mbox{\Hypertarget{dbg__console_8c_ac17d25afedece4eb724baa90a0e415ff}\label{dbg__console_8c_ac17d25afedece4eb724baa90a0e415ff}} 
+\index{dbg\_console.c@{dbg\_console.c}!CONSOLE\_Usart@{CONSOLE\_Usart}}
+\index{CONSOLE\_Usart@{CONSOLE\_Usart}!dbg\_console.c@{dbg\_console.c}}
+\subsubsection{\texorpdfstring{CONSOLE\_Usart}{CONSOLE\_Usart}}
+{\footnotesize\ttfamily \#define C\+O\+N\+S\+O\+L\+E\+\_\+\+Usart~\mbox{\hyperlink{group__SAMV71Q21__base_ga92871691058ff7ccffd7635930cb08da}{U\+S\+A\+R\+T1}}}
+
+\mbox{\hyperlink{structUsart}{Usart}} Hw interface used by the console (Usart0). \mbox{\Hypertarget{dbg__console_8c_aeb58ea6fac0d4e692efe689e022be9d5}\label{dbg__console_8c_aeb58ea6fac0d4e692efe689e022be9d5}} 
+\index{dbg\_console.c@{dbg\_console.c}!PIN\_USART1\_RXD\_DBG@{PIN\_USART1\_RXD\_DBG}}
+\index{PIN\_USART1\_RXD\_DBG@{PIN\_USART1\_RXD\_DBG}!dbg\_console.c@{dbg\_console.c}}
+\subsubsection{\texorpdfstring{PIN\_USART1\_RXD\_DBG}{PIN\_USART1\_RXD\_DBG}}
+{\footnotesize\ttfamily \#define P\+I\+N\+\_\+\+U\+S\+A\+R\+T1\+\_\+\+R\+X\+D\+\_\+\+D\+BG~\{P\+I\+O\+\_\+\+P\+A21\+A\+\_\+\+R\+X\+D1, \mbox{\hyperlink{group__SAMV71Q21__base_ga1692c0510a8ab56be133b9693ec14267}{P\+I\+OA}}, \mbox{\hyperlink{group__SAMV71Q21__id_ga2981ffe400e0d14c59058b04bbe91860}{I\+D\+\_\+\+P\+I\+OA}}, \mbox{\hyperlink{pio_8h_a15f9c885fad4d3dc1e3d213e6e24882f}{P\+I\+O\+\_\+\+P\+E\+R\+I\+P\+H\+\_\+A}}, \mbox{\hyperlink{pio_8h_a39ae42ff91b54d8e03f741bd3f4b12f4}{P\+I\+O\+\_\+\+D\+E\+F\+A\+U\+LT}}\}}
+
+U\+S\+A\+R\+T1 pin RX \mbox{\Hypertarget{dbg__console_8c_a263a167e5c98d861a5952bed2e43600f}\label{dbg__console_8c_a263a167e5c98d861a5952bed2e43600f}} 
+\index{dbg\_console.c@{dbg\_console.c}!PIN\_USART1\_TXD\_DBG@{PIN\_USART1\_TXD\_DBG}}
+\index{PIN\_USART1\_TXD\_DBG@{PIN\_USART1\_TXD\_DBG}!dbg\_console.c@{dbg\_console.c}}
+\subsubsection{\texorpdfstring{PIN\_USART1\_TXD\_DBG}{PIN\_USART1\_TXD\_DBG}}
+{\footnotesize\ttfamily \#define P\+I\+N\+\_\+\+U\+S\+A\+R\+T1\+\_\+\+T\+X\+D\+\_\+\+D\+BG~\{P\+I\+O\+\_\+\+P\+B4\+D\+\_\+\+T\+X\+D1, \mbox{\hyperlink{group__SAMV71Q21__base_ga8c30b9a06527ef9a7890c25f24aa3769}{P\+I\+OB}}, \mbox{\hyperlink{group__SAMV71Q21__id_ga3cbfa681738adb66740eed42b28f8bd9}{I\+D\+\_\+\+P\+I\+OB}}, \mbox{\hyperlink{pio_8h_ac7ddad536665546c289797afc03b8d5d}{P\+I\+O\+\_\+\+P\+E\+R\+I\+P\+H\+\_\+D}}, \mbox{\hyperlink{pio_8h_a39ae42ff91b54d8e03f741bd3f4b12f4}{P\+I\+O\+\_\+\+D\+E\+F\+A\+U\+LT}}\}}
+
+U\+S\+A\+R\+T1 pin TX 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{dbg__console_8c_ace83a2e17586584b7c798ca7ba872bb9}\label{dbg__console_8c_ace83a2e17586584b7c798ca7ba872bb9}} 
+\index{dbg\_console.c@{dbg\_console.c}!DBG\_Configure@{DBG\_Configure}}
+\index{DBG\_Configure@{DBG\_Configure}!dbg\_console.c@{dbg\_console.c}}
+\subsubsection{\texorpdfstring{DBG\_Configure()}{DBG\_Configure()}}
+{\footnotesize\ttfamily void D\+B\+G\+\_\+\+Configure (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{baudrate,  }\item[{uint32\+\_\+t}]{master\+Clock }\end{DoxyParamCaption})}
+
+
+
+Configures an U\+S\+A\+RT peripheral with the specified parameters. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em baudrate} & Baudrate at which the U\+S\+A\+RT should operate (in Hz). \\
+\hline
+{\em master\+Clock} & Frequency of the system master clock (in Hz). \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{dbg__console_8c_a85b3ca31771c82534a7a407b043e6da5}\label{dbg__console_8c_a85b3ca31771c82534a7a407b043e6da5}} 
+\index{dbg\_console.c@{dbg\_console.c}!DBG\_DumpFrame@{DBG\_DumpFrame}}
+\index{DBG\_DumpFrame@{DBG\_DumpFrame}!dbg\_console.c@{dbg\_console.c}}
+\subsubsection{\texorpdfstring{DBG\_DumpFrame()}{DBG\_DumpFrame()}}
+{\footnotesize\ttfamily void D\+B\+G\+\_\+\+Dump\+Frame (\begin{DoxyParamCaption}\item[{uint8\+\_\+t $\ast$}]{puc\+Frame,  }\item[{uint32\+\_\+t}]{dw\+Size }\end{DoxyParamCaption})}
+
+Displays the content of the given frame on the U\+A\+R\+T0.
+
+
+\begin{DoxyParams}{Parameters}
+{\em puc\+Frame} & Pointer to the frame to dump. \\
+\hline
+{\em dw\+Size} & Buffer size in bytes. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{dbg__console_8c_a9fb3a4c8d4eb60a7b43a57477c8d8c5c}\label{dbg__console_8c_a9fb3a4c8d4eb60a7b43a57477c8d8c5c}} 
+\index{dbg\_console.c@{dbg\_console.c}!DBG\_DumpMemory@{DBG\_DumpMemory}}
+\index{DBG\_DumpMemory@{DBG\_DumpMemory}!dbg\_console.c@{dbg\_console.c}}
+\subsubsection{\texorpdfstring{DBG\_DumpMemory()}{DBG\_DumpMemory()}}
+{\footnotesize\ttfamily void D\+B\+G\+\_\+\+Dump\+Memory (\begin{DoxyParamCaption}\item[{uint8\+\_\+t $\ast$}]{puc\+Buffer,  }\item[{uint32\+\_\+t}]{dw\+Size,  }\item[{uint32\+\_\+t}]{dw\+Address }\end{DoxyParamCaption})}
+
+Displays the content of the given buffer on the U\+A\+R\+T0.
+
+
+\begin{DoxyParams}{Parameters}
+{\em puc\+Buffer} & Pointer to the buffer to dump. \\
+\hline
+{\em dw\+Size} & Buffer size in bytes. \\
+\hline
+{\em dw\+Address} & Start address to display \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{dbg__console_8c_a2eef99b5de5b33158b69f38c0bdfd655}\label{dbg__console_8c_a2eef99b5de5b33158b69f38c0bdfd655}} 
+\index{dbg\_console.c@{dbg\_console.c}!DBG\_GetChar@{DBG\_GetChar}}
+\index{DBG\_GetChar@{DBG\_GetChar}!dbg\_console.c@{dbg\_console.c}}
+\subsubsection{\texorpdfstring{DBG\_GetChar()}{DBG\_GetChar()}}
+{\footnotesize\ttfamily uint32\+\_\+t D\+B\+G\+\_\+\+Get\+Char (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Input a character from the U\+A\+RT line. 
+
+\begin{DoxyNote}{Note}
+This function is synchronous 
+\end{DoxyNote}
+\begin{DoxyReturn}{Returns}
+character received. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{dbg__console_8c_af9bb27367f558fe5135b7f59a134f074}\label{dbg__console_8c_af9bb27367f558fe5135b7f59a134f074}} 
+\index{dbg\_console.c@{dbg\_console.c}!DBG\_GetHexa32@{DBG\_GetHexa32}}
+\index{DBG\_GetHexa32@{DBG\_GetHexa32}!dbg\_console.c@{dbg\_console.c}}
+\subsubsection{\texorpdfstring{DBG\_GetHexa32()}{DBG\_GetHexa32()}}
+{\footnotesize\ttfamily uint32\+\_\+t D\+B\+G\+\_\+\+Get\+Hexa32 (\begin{DoxyParamCaption}\item[{uint32\+\_\+t $\ast$}]{pdw\+Value }\end{DoxyParamCaption})}
+
+Reads an hexadecimal number
+
+
+\begin{DoxyParams}{Parameters}
+{\em pdw\+Value} & Pointer to the uint32\+\_\+t variable to contain the input value. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{dbg__console_8c_a807d59a58a4312efa7ef1c445107c256}\label{dbg__console_8c_a807d59a58a4312efa7ef1c445107c256}} 
+\index{dbg\_console.c@{dbg\_console.c}!DBG\_GetInteger@{DBG\_GetInteger}}
+\index{DBG\_GetInteger@{DBG\_GetInteger}!dbg\_console.c@{dbg\_console.c}}
+\subsubsection{\texorpdfstring{DBG\_GetInteger()}{DBG\_GetInteger()}}
+{\footnotesize\ttfamily uint32\+\_\+t D\+B\+G\+\_\+\+Get\+Integer (\begin{DoxyParamCaption}\item[{int32\+\_\+t $\ast$}]{pdw\+Value }\end{DoxyParamCaption})}
+
+Reads an integer
+
+
+\begin{DoxyParams}{Parameters}
+{\em pdw\+Value} & Pointer to a integer variable to contain the input value.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+success(1) or failure(0) 
+\end{DoxyReturn}
+\mbox{\Hypertarget{dbg__console_8c_a96012354201cbb18946e35061140c87d}\label{dbg__console_8c_a96012354201cbb18946e35061140c87d}} 
+\index{dbg\_console.c@{dbg\_console.c}!DBG\_GetIntegerMinMax@{DBG\_GetIntegerMinMax}}
+\index{DBG\_GetIntegerMinMax@{DBG\_GetIntegerMinMax}!dbg\_console.c@{dbg\_console.c}}
+\subsubsection{\texorpdfstring{DBG\_GetIntegerMinMax()}{DBG\_GetIntegerMinMax()}}
+{\footnotesize\ttfamily uint32\+\_\+t D\+B\+G\+\_\+\+Get\+Integer\+Min\+Max (\begin{DoxyParamCaption}\item[{int32\+\_\+t $\ast$}]{pdw\+Value,  }\item[{int32\+\_\+t}]{dw\+Min,  }\item[{int32\+\_\+t}]{dw\+Max }\end{DoxyParamCaption})}
+
+Reads an integer and check the value
+
+
+\begin{DoxyParams}{Parameters}
+{\em pdw\+Value} & Pointer to a integer variable to contain the input value. \\
+\hline
+{\em dw\+Min} & Minimum value \\
+\hline
+{\em dw\+Max} & Maximum value\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+success(1) or failure(0) 
+\end{DoxyReturn}
+\mbox{\Hypertarget{dbg__console_8c_a7585af50e201cf7f0d6bb1fba96b3915}\label{dbg__console_8c_a7585af50e201cf7f0d6bb1fba96b3915}} 
+\index{dbg\_console.c@{dbg\_console.c}!DBG\_IsRxReady@{DBG\_IsRxReady}}
+\index{DBG\_IsRxReady@{DBG\_IsRxReady}!dbg\_console.c@{dbg\_console.c}}
+\subsubsection{\texorpdfstring{DBG\_IsRxReady()}{DBG\_IsRxReady()}}
+{\footnotesize\ttfamily uint32\+\_\+t D\+B\+G\+\_\+\+Is\+Rx\+Ready (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Check if there is Input from U\+A\+RT line. 
+
+\begin{DoxyReturn}{Returns}
+true if there is Input. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{dbg__console_8c_a7f949ce5c762badb554572a41e19e3fb}\label{dbg__console_8c_a7f949ce5c762badb554572a41e19e3fb}} 
+\index{dbg\_console.c@{dbg\_console.c}!DBG\_PutChar@{DBG\_PutChar}}
+\index{DBG\_PutChar@{DBG\_PutChar}!dbg\_console.c@{dbg\_console.c}}
+\subsubsection{\texorpdfstring{DBG\_PutChar()}{DBG\_PutChar()}}
+{\footnotesize\ttfamily void D\+B\+G\+\_\+\+Put\+Char (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{c }\end{DoxyParamCaption})}
+
+
+
+Outputs a character on the U\+A\+RT line. 
+
+\begin{DoxyNote}{Note}
+This function is synchronous (i.\+e. uses polling). 
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em c} & Character to send. \\
+\hline
+\end{DoxyParams}

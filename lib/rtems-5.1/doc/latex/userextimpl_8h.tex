@@ -1,0 +1,73 @@
+\hypertarget{userextimpl_8h}{}\section{cpukit/include/rtems/score/userextimpl.h File Reference}
+\label{userextimpl_8h}\index{cpukit/include/rtems/score/userextimpl.h@{cpukit/include/rtems/score/userextimpl.h}}
+
+
+User Extension Handler A\+PI.  
+
+
+{\ttfamily \#include $<$rtems/score/userextdata.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/score/chainimpl.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/score/isrlock.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/score/thread.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/score/percpu.\+h$>$}\newline
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structUser__extensions__Iterator}{User\+\_\+extensions\+\_\+\+Iterator}}
+\begin{DoxyCompactList}\small\item\em Chain iterator for dynamic user extensions. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structUser__extensions__List}{User\+\_\+extensions\+\_\+\+List}}
+\item 
+struct \mbox{\hyperlink{structUser__extensions__Thread__create__context}{User\+\_\+extensions\+\_\+\+Thread\+\_\+create\+\_\+context}}
+\item 
+struct \mbox{\hyperlink{structUser__extensions__Fatal__context}{User\+\_\+extensions\+\_\+\+Fatal\+\_\+context}}
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \mbox{\hyperlink{structUser__extensions__Iterator}{User\+\_\+extensions\+\_\+\+Iterator}} \mbox{\hyperlink{group__RTEMSScoreUserExt_ga990aa1088e4be8ec19d73426b18f0e48}{User\+\_\+extensions\+\_\+\+Iterator}}
+\begin{DoxyCompactList}\small\item\em Chain iterator for dynamic user extensions. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structUser__extensions__List}{User\+\_\+extensions\+\_\+\+List}} \mbox{\hyperlink{group__RTEMSScoreUserExt_ga9630ab4d2e4630bc6de8982fe799642c}{\+\_\+\+User\+\_\+extensions\+\_\+\+List}}
+\begin{DoxyCompactList}\small\item\em List of active extensions. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{unionChain__Control}{Chain\+\_\+\+Control}} \mbox{\hyperlink{group__RTEMSScoreUserExt_gaa15ba4f9aaebc886150a5736191be2f3}{\+\_\+\+User\+\_\+extensions\+\_\+\+Switches\+\_\+list}}
+\begin{DoxyCompactList}\small\item\em List of active task switch extensions. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Extension Maintainance}
+\begin{DoxyCompactItemize}
+\item 
+typedef void($\ast$ \mbox{\hyperlink{group__RTEMSScoreUserExt_ga4f98f3e3ed809cbef39b59d326dc4a16}{User\+\_\+extensions\+\_\+\+Visitor}}) (\mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$executing, void $\ast$arg, const \mbox{\hyperlink{structUser__extensions__Table}{User\+\_\+extensions\+\_\+\+Table}} $\ast$callouts)
+\begin{DoxyCompactList}\small\item\em User extension visitor. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__RTEMSScoreUserExt_gac1791fb5fe3a1119a894a3847b0885ce}{\+\_\+\+User\+\_\+extensions\+\_\+\+Handler\+\_\+initialization}} (void)
+\begin{DoxyCompactList}\small\item\em Initializes the user extensions handler. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__RTEMSScoreUserExt_gafdc6f52aa40887a25007f2c57a133a14}{\+\_\+\+User\+\_\+extensions\+\_\+\+Add\+\_\+set}} (\mbox{\hyperlink{structUser__extensions__Control}{User\+\_\+extensions\+\_\+\+Control}} $\ast$extension)
+\begin{DoxyCompactList}\small\item\em Adds a user extension. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \mbox{\hyperlink{group__RTEMSScoreUserExt_gad235d2232b189b36c6ddc9068691ac9b}{\+\_\+\+User\+\_\+extensions\+\_\+\+Add\+\_\+\+A\+P\+I\+\_\+set}} (\mbox{\hyperlink{structUser__extensions__Control}{User\+\_\+extensions\+\_\+\+Control}} $\ast$extension)
+\begin{DoxyCompactList}\small\item\em Adds a user extension. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \mbox{\hyperlink{group__RTEMSScoreUserExt_gaa59ba5ba0d79eb8b04a9987c5323b29a}{\+\_\+\+User\+\_\+extensions\+\_\+\+Add\+\_\+set\+\_\+with\+\_\+table}} (\mbox{\hyperlink{structUser__extensions__Control}{User\+\_\+extensions\+\_\+\+Control}} $\ast$extension, const \mbox{\hyperlink{structUser__extensions__Table}{User\+\_\+extensions\+\_\+\+Table}} $\ast$extension\+\_\+table)
+\begin{DoxyCompactList}\small\item\em Adds a user extension with the given extension table as callouts. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__RTEMSScoreUserExt_ga20b95995efceaae7454b6bfbf4d9cf94}{\+\_\+\+User\+\_\+extensions\+\_\+\+Remove\+\_\+set}} (\mbox{\hyperlink{structUser__extensions__Control}{User\+\_\+extensions\+\_\+\+Control}} $\ast$extension)
+\begin{DoxyCompactList}\small\item\em Removes a user extension. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__RTEMSScoreUserExt_ga01a5e998ca8f18fa00f3082d71333dcb}{\+\_\+\+User\+\_\+extensions\+\_\+\+Thread\+\_\+create\+\_\+visitor}} (\mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$executing, void $\ast$arg, const \mbox{\hyperlink{structUser__extensions__Table}{User\+\_\+extensions\+\_\+\+Table}} $\ast$callouts)
+\begin{DoxyCompactList}\small\item\em Creates a visitor. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__RTEMSScoreUserExt_ga047c9fc100da2ddf9baf9aacc79c306d}{\+\_\+\+User\+\_\+extensions\+\_\+\+Thread\+\_\+delete\+\_\+visitor}} (\mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$executing, void $\ast$arg, const \mbox{\hyperlink{structUser__extensions__Table}{User\+\_\+extensions\+\_\+\+Table}} $\ast$callouts)
+\begin{DoxyCompactList}\small\item\em Deletes a visitor. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__RTEMSScoreUserExt_ga0dfb0797d5b69d1d9b178083722f145c}{\+\_\+\+User\+\_\+extensions\+\_\+\+Thread\+\_\+start\+\_\+visitor}} (\mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$executing, void $\ast$arg, const \mbox{\hyperlink{structUser__extensions__Table}{User\+\_\+extensions\+\_\+\+Table}} $\ast$callouts)
+\begin{DoxyCompactList}\small\item\em Starts a visitor. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__RTEMSScoreUserExt_ga2dcb30df10fb5c296246f8c259789112}{\+\_\+\+User\+\_\+extensions\+\_\+\+Thread\+\_\+restart\+\_\+visitor}} (\mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$executing, void $\ast$arg, const \mbox{\hyperlink{structUser__extensions__Table}{User\+\_\+extensions\+\_\+\+Table}} $\ast$callouts)
+\begin{DoxyCompactList}\small\item\em Restarts a visitor. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__RTEMSScoreUserExt_ga6dde9d38facceb09a17dfd2231762ae3}{\+\_\+\+User\+\_\+extensions\+\_\+\+Thread\+\_\+begin\+\_\+visitor}} (\mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$executing, void $\ast$arg, const \mbox{\hyperlink{structUser__extensions__Table}{User\+\_\+extensions\+\_\+\+Table}} $\ast$callouts)
+\begin{DoxyCompactList}\small\item\em Calls the begin function of the thread callout for the visitor. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__RTEMSScoreUserExt_ga8212ce5f17f5b1c493fe9c5d842f6204}{\+\_\+\+User\+\_\+extensions\+\_\+\+Thread\+\_\+exitted\+\_\+visitor}} (\mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$executing, void $\ast$arg, const \mbox{\hyperlink{structUser__extensions__Table}{User\+\_\+extensions\+\_\+\+Table}} $\ast$callouts)
+\begin{DoxyCompactList}\small\item\em Calls the exitted function of the thread callout for the visitor. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__RTEMSScoreUserExt_ga5eca481e26b6a04851ec4ca1c65c81c1}{\+\_\+\+User\+\_\+extensions\+\_\+\+Fatal\+\_\+visitor}} (\mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$executing, void $\ast$arg, const \mbox{\hyperlink{structUser__extensions__Table}{User\+\_\+extensions\+\_\+\+Table}} $\ast$callouts)
+\begin{DoxyCompactList}\small\item\em Calls the fatal function of the thread callout for the visitor. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__RTEMSScoreUserExt_ga5b2b88288d7bad0121611826e46b7962}{\+\_\+\+User\+\_\+extensions\+\_\+\+Thread\+\_\+terminate\+\_\+visitor}} (\mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$executing, void $\ast$arg, const \mbox{\hyperlink{structUser__extensions__Table}{User\+\_\+extensions\+\_\+\+Table}} $\ast$callouts)
+\begin{DoxyCompactList}\small\item\em Terminates a visitor. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__RTEMSScoreUserExt_ga1246f6873da0a4fae3dd8e8e3b41324b}{\+\_\+\+User\+\_\+extensions\+\_\+\+Iterate}} (void $\ast$arg, \mbox{\hyperlink{group__RTEMSScoreUserExt_ga4f98f3e3ed809cbef39b59d326dc4a16}{User\+\_\+extensions\+\_\+\+Visitor}} visitor, \mbox{\hyperlink{group__RTEMSScoreChain_gac754c64a6c8a46b7b17cf3b7ac33124b}{Chain\+\_\+\+Iterator\+\_\+direction}} direction)
+\begin{DoxyCompactList}\small\item\em Iterates through all user extensions and calls the visitor for each. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+User Extension Handler A\+PI. 
+

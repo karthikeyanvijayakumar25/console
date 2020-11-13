@@ -1,0 +1,90 @@
+\hypertarget{cpukit_2score_2cpu_2sparc64_2cpu_8c}{}\section{cpukit/score/cpu/sparc64/cpu.c File Reference}
+\label{cpukit_2score_2cpu_2sparc64_2cpu_8c}\index{cpukit/score/cpu/sparc64/cpu.c@{cpukit/score/cpu/sparc64/cpu.c}}
+
+
+S\+P\+A\+R\+C64 C\+PU Dependent Source.  
+
+
+{\ttfamily \#include $<$rtems/score/isr.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/score/tls.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/rtems/cache.\+h$>$}\newline
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{cpukit_2score_2cpu_2sparc64_2cpu_8c_acc0fce08f43047886061f63d71d3a85e}\label{cpukit_2score_2cpu_2sparc64_2cpu_8c_acc0fce08f43047886061f63d71d3a85e}} 
+\#define {\bfseries H\+I\+\_\+\+B\+I\+T\+S\+\_\+\+S\+H\+I\+FT}~10
+\item 
+\mbox{\Hypertarget{cpukit_2score_2cpu_2sparc64_2cpu_8c_a66149d95544d145c455e1caf2b7c2e8e}\label{cpukit_2score_2cpu_2sparc64_2cpu_8c_a66149d95544d145c455e1caf2b7c2e8e}} 
+\#define {\bfseries H\+M\+\_\+\+B\+I\+T\+S\+\_\+\+S\+H\+I\+FT}~32
+\item 
+\mbox{\Hypertarget{cpukit_2score_2cpu_2sparc64_2cpu_8c_ad6cff103d3e8081c1a6231eb1cea5ad6}\label{cpukit_2score_2cpu_2sparc64_2cpu_8c_ad6cff103d3e8081c1a6231eb1cea5ad6}} 
+\#define {\bfseries H\+H\+\_\+\+B\+I\+T\+S\+\_\+\+S\+H\+I\+FT}~42
+\item 
+\mbox{\Hypertarget{cpukit_2score_2cpu_2sparc64_2cpu_8c_ad8f40d3b518c29306a72d77d70d208d2}\label{cpukit_2score_2cpu_2sparc64_2cpu_8c_ad8f40d3b518c29306a72d77d70d208d2}} 
+\#define {\bfseries I\+M\+M\+\_\+\+M\+A\+SK}~0x000003\+FF
+\item 
+\mbox{\Hypertarget{cpukit_2score_2cpu_2sparc64_2cpu_8c_a97599183d3d31b2ce90cc14cb4bff41f}\label{cpukit_2score_2cpu_2sparc64_2cpu_8c_a97599183d3d31b2ce90cc14cb4bff41f}} 
+\#define {\bfseries H\+H\+\_\+\+B\+I\+T\+S\+\_\+\+M\+A\+SK}~0x\+F\+F\+F\+F\+F\+C0000000000
+\item 
+\mbox{\Hypertarget{cpukit_2score_2cpu_2sparc64_2cpu_8c_ab7d164bdc1c85a2f9a4f851608d8cbd8}\label{cpukit_2score_2cpu_2sparc64_2cpu_8c_ab7d164bdc1c85a2f9a4f851608d8cbd8}} 
+\#define {\bfseries H\+M\+\_\+\+B\+I\+T\+S\+\_\+\+M\+A\+SK}~0x000003\+F\+F00000000
+\item 
+\mbox{\Hypertarget{cpukit_2score_2cpu_2sparc64_2cpu_8c_a9f3ec42491015da51fa05f87fb37397a}\label{cpukit_2score_2cpu_2sparc64_2cpu_8c_a9f3ec42491015da51fa05f87fb37397a}} 
+\#define {\bfseries H\+I\+\_\+\+B\+I\+T\+S\+\_\+\+M\+A\+SK}~0x00000000\+F\+F\+F\+F\+F\+C00
+\item 
+\mbox{\Hypertarget{cpukit_2score_2cpu_2sparc64_2cpu_8c_a9418b0b59c157b23effab7be4c95563e}\label{cpukit_2score_2cpu_2sparc64_2cpu_8c_a9418b0b59c157b23effab7be4c95563e}} 
+\#define {\bfseries L\+O\+\_\+\+B\+I\+T\+S\+\_\+\+M\+A\+SK}~0x00000000000003\+FF
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{group__RTEMSScoreCPUARM_ga869484e3d851b032fd826c69ff21fc72}{\+\_\+\+C\+P\+U\+\_\+\+Initialize}} (void)
+\begin{DoxyCompactList}\small\item\em C\+PU initialization. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{cpukit_2score_2cpu_2sparc64_2cpu_8c_af1ded3209ffea59be0eaa83fede92119}\label{cpukit_2score_2cpu_2sparc64_2cpu_8c_af1ded3209ffea59be0eaa83fede92119}} 
+void {\bfseries \+\_\+\+C\+P\+U\+\_\+\+Context\+\_\+\+Initialize} (\mbox{\hyperlink{structContext__Control}{Context\+\_\+\+Control}} $\ast$the\+\_\+context, void $\ast$stack\+\_\+base, uint32\+\_\+t \mbox{\hyperlink{sun4u_2tte_8h_a245260f6f74972558f61b85227df5aae}{size}}, uint32\+\_\+t new\+\_\+level, void $\ast$entry\+\_\+point, bool is\+\_\+fp, void $\ast$tls\+\_\+area)
+\item 
+uint32\+\_\+t \mbox{\hyperlink{group__RTEMSScoreCPUARM_ga1d9dcab9170d532b6634a5620385adbd}{\+\_\+\+C\+P\+U\+\_\+\+I\+S\+R\+\_\+\+Get\+\_\+level}} (void)
+\begin{DoxyCompactList}\small\item\em Returns the interrupt level of the executing thread. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__RTEMSScoreCPUlm32Interrupt_gaa993b7752d5db306f85586ac400432ab}{\+\_\+\+C\+P\+U\+\_\+\+I\+S\+R\+\_\+install\+\_\+raw\+\_\+handler}} (uint32\+\_\+t vector, C\+P\+U\+\_\+\+I\+S\+R\+\_\+raw\+\_\+handler new\+\_\+handler, C\+P\+U\+\_\+\+I\+S\+R\+\_\+raw\+\_\+handler $\ast$old\+\_\+handler)
+\begin{DoxyCompactList}\small\item\em S\+P\+A\+RC specific raw I\+SR installer. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__RTEMSScoreCPUARM_gaa3480454768ad843ce97909111a48a1f}{\+\_\+\+C\+P\+U\+\_\+\+I\+S\+R\+\_\+install\+\_\+vector}} (uint32\+\_\+t vector, C\+P\+U\+\_\+\+I\+S\+R\+\_\+handler new\+\_\+handler, C\+P\+U\+\_\+\+I\+S\+R\+\_\+handler $\ast$old\+\_\+handler)
+\begin{DoxyCompactList}\small\item\em S\+P\+A\+RC specific R\+T\+E\+MS I\+SR installer. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{cpukit_2score_2cpu_2sparc64_2cpu_8c_a7f4df5e2089b1cc1498e8f482cc27f60}\label{cpukit_2score_2cpu_2sparc64_2cpu_8c_a7f4df5e2089b1cc1498e8f482cc27f60}} 
+volatile uint32\+\_\+t {\bfseries \+\_\+\+C\+P\+U\+\_\+\+I\+S\+R\+\_\+\+Dispatch\+\_\+disable}
+\item 
+const \mbox{\hyperlink{structCPU__Trap__table__entry}{C\+P\+U\+\_\+\+Trap\+\_\+table\+\_\+entry}} \mbox{\hyperlink{cpukit_2score_2cpu_2sparc64_2cpu_8c_a379cc535ebfbfead96c7914b3f1de861}{\+\_\+\+C\+P\+U\+\_\+\+Trap\+\_\+slot\+\_\+template}}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+S\+P\+A\+R\+C64 C\+PU Dependent Source. 
+
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{cpukit_2score_2cpu_2sparc64_2cpu_8c_a379cc535ebfbfead96c7914b3f1de861}\label{cpukit_2score_2cpu_2sparc64_2cpu_8c_a379cc535ebfbfead96c7914b3f1de861}} 
+\index{cpu.c@{cpu.c}!\_CPU\_Trap\_slot\_template@{\_CPU\_Trap\_slot\_template}}
+\index{\_CPU\_Trap\_slot\_template@{\_CPU\_Trap\_slot\_template}!cpu.c@{cpu.c}}
+\subsubsection{\texorpdfstring{\_CPU\_Trap\_slot\_template}{\_CPU\_Trap\_slot\_template}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{structCPU__Trap__table__entry}{C\+P\+U\+\_\+\+Trap\+\_\+table\+\_\+entry}} \+\_\+\+C\+P\+U\+\_\+\+Trap\+\_\+slot\+\_\+template}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{  0x89508000,   }
+\DoxyCodeLine{  0x05000000,   }
+\DoxyCodeLine{  0x8410a000,   }
+\DoxyCodeLine{  0x8528b020,   }
+\DoxyCodeLine{  0x07000000,   }
+\DoxyCodeLine{  0x8610c002,   }
+\DoxyCodeLine{  0x81c0e000, }
+\DoxyCodeLine{  0x84102000  }
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+This is the set of opcodes for the instructions loaded into a trap table entry. The routine which installs a handler is responsible for filling in the fields for the \+\_\+handler address and the \+\_\+vector trap type.
+
+The constants following this structure are masks for the fields which must be filled in when the handler is installed. 

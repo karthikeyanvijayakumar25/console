@@ -1,0 +1,48 @@
+\hypertarget{timercreate_8c}{}\section{cpukit/rtems/src/timercreate.c File Reference}
+\label{timercreate_8c}\index{cpukit/rtems/src/timercreate.c@{cpukit/rtems/src/timercreate.c}}
+
+
+R\+T\+E\+MS Create Timer.  
+
+
+{\ttfamily \#include $<$rtems/rtems/timerimpl.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/rtems/clock.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/rtems/status.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/rtems/support.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/score/assert.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/score/chainimpl.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/score/thread.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/score/todimpl.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/score/watchdogimpl.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/sysinit.\+h$>$}\newline
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{timercreate_8c_a0a123575a0972ade1c12aec6b5cf6e90}\label{timercreate_8c_a0a123575a0972ade1c12aec6b5cf6e90}} 
+{\bfseries R\+T\+E\+M\+S\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+A\+S\+S\+E\+RT} (\mbox{\hyperlink{group__PerCPU_gga43ab5440a69211901b58fa787f9cd76ea4e0da8bba174c18170d5ef3a7a892b75}{P\+E\+R\+\_\+\+C\+P\+U\+\_\+\+W\+A\+T\+C\+H\+D\+O\+G\+\_\+\+R\+E\+A\+L\+T\+I\+ME}}==T\+I\+M\+E\+R\+\_\+\+C\+L\+A\+S\+S\+\_\+\+B\+I\+T\+\_\+\+T\+I\+M\+E\+\_\+\+O\+F\+\_\+\+D\+AY, T\+I\+M\+E\+R\+\_\+\+C\+L\+A\+S\+S\+\_\+\+B\+I\+T\+\_\+\+T\+I\+M\+E\+\_\+\+O\+F\+\_\+\+D\+AY)
+\item 
+void {\bfseries \+\_\+\+Timer\+\_\+\+Routine\+\_\+adaptor} (\mbox{\hyperlink{structWatchdog__Control}{Watchdog\+\_\+\+Control}} $\ast$the\+\_\+watchdog)
+\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} {\bfseries \+\_\+\+Timer\+\_\+\+Fire} (\mbox{\hyperlink{group__ClassicTasks_gab20892b814dced7dd4e5b9bf42becd57}{rtems\+\_\+id}} id, \mbox{\hyperlink{group__ClassicTasks_gad39c43f949683d46874e3a5586b93aee}{rtems\+\_\+interval}} interval, \mbox{\hyperlink{group__ClassicTimer_gab7851346dd520066ddc58a25de671f51}{rtems\+\_\+timer\+\_\+service\+\_\+routine\+\_\+entry}} routine, void $\ast$user\+\_\+data, \mbox{\hyperlink{group__ClassicTimer_gaca88ac1e833f63ec72d38e07677f2f27}{Timer\+\_\+\+Classes}} the\+\_\+class, \mbox{\hyperlink{group__RTEMSScoreWatchdog_ga6ae5e52f6c4046535272c18a8cba66e1}{Watchdog\+\_\+\+Service\+\_\+routine\+\_\+entry}} adaptor)
+\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} {\bfseries \+\_\+\+Timer\+\_\+\+Fire\+\_\+after} (\mbox{\hyperlink{group__ClassicTasks_gab20892b814dced7dd4e5b9bf42becd57}{rtems\+\_\+id}} id, \mbox{\hyperlink{group__ClassicTasks_gad39c43f949683d46874e3a5586b93aee}{rtems\+\_\+interval}} ticks, \mbox{\hyperlink{group__ClassicTimer_gab7851346dd520066ddc58a25de671f51}{rtems\+\_\+timer\+\_\+service\+\_\+routine\+\_\+entry}} routine, void $\ast$user\+\_\+data, \mbox{\hyperlink{group__ClassicTimer_gaca88ac1e833f63ec72d38e07677f2f27}{Timer\+\_\+\+Classes}} the\+\_\+class, \mbox{\hyperlink{group__RTEMSScoreWatchdog_ga6ae5e52f6c4046535272c18a8cba66e1}{Watchdog\+\_\+\+Service\+\_\+routine\+\_\+entry}} adaptor)
+\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} {\bfseries \+\_\+\+Timer\+\_\+\+Fire\+\_\+when} (\mbox{\hyperlink{group__ClassicTasks_gab20892b814dced7dd4e5b9bf42becd57}{rtems\+\_\+id}} id, const \mbox{\hyperlink{structrtems__time__of__day}{rtems\+\_\+time\+\_\+of\+\_\+day}} $\ast$wall\+\_\+time, \mbox{\hyperlink{group__ClassicTimer_gab7851346dd520066ddc58a25de671f51}{rtems\+\_\+timer\+\_\+service\+\_\+routine\+\_\+entry}} routine, void $\ast$user\+\_\+data, \mbox{\hyperlink{group__ClassicTimer_gaca88ac1e833f63ec72d38e07677f2f27}{Timer\+\_\+\+Classes}} the\+\_\+class, \mbox{\hyperlink{group__RTEMSScoreWatchdog_ga6ae5e52f6c4046535272c18a8cba66e1}{Watchdog\+\_\+\+Service\+\_\+routine\+\_\+entry}} adaptor)
+\item 
+void {\bfseries \+\_\+\+Timer\+\_\+\+Cancel} (\mbox{\hyperlink{structPer__CPU__Control}{Per\+\_\+\+C\+P\+U\+\_\+\+Control}} $\ast$cpu, \mbox{\hyperlink{structTimer__Control}{Timer\+\_\+\+Control}} $\ast$the\+\_\+timer)
+\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{group__ClassicTimer_ga57cf664e958961aefdb8ef8440f23afa}{rtems\+\_\+timer\+\_\+create}} (\mbox{\hyperlink{group__ClassicTasks_ga55fb63c49f68c0cbd9bee004da15b1fd}{rtems\+\_\+name}} name, \mbox{\hyperlink{group__ClassicTasks_gab20892b814dced7dd4e5b9bf42becd57}{rtems\+\_\+id}} $\ast$id)
+\begin{DoxyCompactList}\small\item\em R\+T\+E\+MS Create Timer. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{timercreate_8c_ad14c26f61837b28623da9d9bbdd9ed81}\label{timercreate_8c_ad14c26f61837b28623da9d9bbdd9ed81}} 
+{\bfseries R\+T\+E\+M\+S\+\_\+\+S\+Y\+S\+I\+N\+I\+T\+\_\+\+I\+T\+EM} (\+\_\+\+Timer\+\_\+\+Manager\+\_\+initialization, R\+T\+E\+M\+S\+\_\+\+S\+Y\+S\+I\+N\+I\+T\+\_\+\+C\+L\+A\+S\+S\+I\+C\+\_\+\+T\+I\+M\+ER, R\+T\+E\+M\+S\+\_\+\+S\+Y\+S\+I\+N\+I\+T\+\_\+\+O\+R\+D\+E\+R\+\_\+\+M\+I\+D\+D\+LE)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structTimer__server__Control}{Timer\+\_\+server\+\_\+\+Control}} $\ast$volatile \mbox{\hyperlink{group__ClassicTimerImpl_ga22a1cf7a5c39d7c8ea2ec3764ddb88fa}{\+\_\+\+Timer\+\_\+server}}
+\begin{DoxyCompactList}\small\item\em Pointer to default timer server control block. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+R\+T\+E\+MS Create Timer. 
+

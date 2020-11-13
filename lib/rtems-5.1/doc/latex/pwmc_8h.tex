@@ -1,0 +1,529 @@
+\hypertarget{pwmc_8h}{}\section{bsps/arm/atsam/include/libchip/include/pwmc.h File Reference}
+\label{pwmc_8h}\index{bsps/arm/atsam/include/libchip/include/pwmc.h@{bsps/arm/atsam/include/libchip/include/pwmc.h}}
+{\ttfamily \#include \char`\"{}chip.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{pwmc_8h_a471066ce23e4343fcca1727878972887}{P\+W\+M\+C\+\_\+\+Configure\+Channel}} (\mbox{\hyperlink{structPwm}{Pwm}} $\ast$p\+Pwm, uint8\+\_\+t channel, uint32\+\_\+t prescaler, uint32\+\_\+t alignment, uint32\+\_\+t polarity)
+\begin{DoxyCompactList}\small\item\em Configures P\+WM a channel with the given parameters, basic configure function. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{pwmc_8h_a340b5bbad001afb9ca0c39ae67d0429a}{P\+W\+M\+C\+\_\+\+Configure\+Channel\+Ext}} (\mbox{\hyperlink{structPwm}{Pwm}} $\ast$p\+Pwm, uint8\+\_\+t channel, uint32\+\_\+t prescaler, uint32\+\_\+t alignment, uint32\+\_\+t polarity, uint32\+\_\+t count\+Event\+Select, uint32\+\_\+t D\+T\+Enable, uint32\+\_\+t D\+T\+H\+Inverte, uint32\+\_\+t D\+T\+L\+Inverte)
+\begin{DoxyCompactList}\small\item\em Configures P\+WM a channel with the given parameters, extend configure function. The P\+WM controller must have been clocked in the P\+MC prior to calling this function. Beware\+: this function disables the channel. It waits until disable is effective. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{pwmc_8h_a1f4d445f4e2139f2507f70f3d8a5b689}{P\+W\+M\+C\+\_\+\+Configure\+Clocks}} (\mbox{\hyperlink{structPwm}{Pwm}} $\ast$p\+Pwm, uint32\+\_\+t clka, uint32\+\_\+t clkb, uint32\+\_\+t mck)
+\begin{DoxyCompactList}\small\item\em Configures P\+WM clocks A \& B to run at the given frequencies. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{pwmc_8h_a89425ddd8a81c74220d9c7786bc6e892}{P\+W\+M\+C\+\_\+\+Set\+Period}} (\mbox{\hyperlink{structPwm}{Pwm}} $\ast$p\+Pwm, uint8\+\_\+t channel, uint16\+\_\+t period)
+\begin{DoxyCompactList}\small\item\em Sets the period value used by a P\+WM channel. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{pwmc_8h_ad568ae9cc98ca77642950aded8981aab}{P\+W\+M\+C\+\_\+\+Set\+Duty\+Cycle}} (\mbox{\hyperlink{structPwm}{Pwm}} $\ast$p\+Pwm, uint8\+\_\+t channel, uint16\+\_\+t duty)
+\begin{DoxyCompactList}\small\item\em Sets the duty cycle used by a P\+WM channel. This function writes directly to the C\+D\+TY register if the channel is disabled; otherwise it uses the update register C\+D\+T\+Y\+U\+PD. Note that the duty cycle must always be inferior or equal to the channel period. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{pwmc_8h_ade3831bc9750aa702413f77e6689cb2a}{P\+W\+M\+C\+\_\+\+Set\+Dead\+Time}} (\mbox{\hyperlink{structPwm}{Pwm}} $\ast$p\+Pwm, uint8\+\_\+t channel, uint16\+\_\+t timeH, uint16\+\_\+t timeL)
+\begin{DoxyCompactList}\small\item\em Sets the dead time used by a P\+WM channel. This function writes directly to the DT register if the channel is disabled; otherwise it uses the update register D\+T\+U\+PD. Note that the dead time must always be inferior or equal to the channel period. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{pwmc_8h_a0a183898b7dd1c3332f4834e84437b43}{P\+W\+M\+C\+\_\+\+Configure\+Sync\+Channel}} (\mbox{\hyperlink{structPwm}{Pwm}} $\ast$p\+Pwm, uint32\+\_\+t channels, uint32\+\_\+t update\+Mode, uint32\+\_\+t request\+Mode, uint32\+\_\+t request\+Comparison\+Select)
+\begin{DoxyCompactList}\small\item\em Configures Synchronous channel with the given parameters. Beware\+: At this time, the channels should be disabled. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{pwmc_8h_aac828e13f25cfb86253d8501e0c4b46e}{P\+W\+M\+C\+\_\+\+Set\+Sync\+Channel\+Update\+Period}} (\mbox{\hyperlink{structPwm}{Pwm}} $\ast$p\+Pwm, uint8\+\_\+t period)
+\begin{DoxyCompactList}\small\item\em Sets the update period of the synchronous channels. This function writes directly to the S\+C\+UP register if the channel \#0 is disabled; otherwise it uses the update register S\+C\+U\+P\+U\+PD. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{pwmc_8h_a9ad3fafbcf79a6db6ae9b601a194d7c1}{P\+W\+M\+C\+\_\+\+Set\+Sync\+Channel\+Update\+Unlock}} (\mbox{\hyperlink{structPwm}{Pwm}} $\ast$p\+Pwm)
+\begin{DoxyCompactList}\small\item\em Sets synchronous channels update unlock. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{pwmc_8h_a6dca9f0d3c82a96556b0d8797f112153}{P\+W\+M\+C\+\_\+\+Enable\+Channel}} (\mbox{\hyperlink{structPwm}{Pwm}} $\ast$p\+Pwm, uint8\+\_\+t channel)
+\begin{DoxyCompactList}\small\item\em Enables the given P\+WM channel. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{pwmc_8h_a852c532da5b0ab6d1b00110889bc2a36}{P\+W\+M\+C\+\_\+\+Disable\+Channel}} (\mbox{\hyperlink{structPwm}{Pwm}} $\ast$p\+Pwm, uint8\+\_\+t channel)
+\begin{DoxyCompactList}\small\item\em Disables the given P\+WM channel. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{pwmc_8h_aa9af5ed9163dfdce443aa99872f00bc1}{P\+W\+M\+C\+\_\+\+Enable\+Channel\+It}} (\mbox{\hyperlink{structPwm}{Pwm}} $\ast$p\+Pwm, uint8\+\_\+t channel)
+\begin{DoxyCompactList}\small\item\em Enables the period interrupt for the given P\+WM channel. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{pwmc_8h_a54331cbc912b199f149be4bdd7dc6854}{P\+W\+M\+C\+\_\+\+Disable\+Channel\+It}} (\mbox{\hyperlink{structPwm}{Pwm}} $\ast$p\+Pwm, uint8\+\_\+t channel)
+\begin{DoxyCompactList}\small\item\em Disables the period interrupt for the given P\+WM channel. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{pwmc_8h_aa953571f5e0c40a15d2edab98168ae07}{P\+W\+M\+C\+\_\+\+Enable\+It}} (\mbox{\hyperlink{structPwm}{Pwm}} $\ast$p\+Pwm, uint32\+\_\+t sources1, uint32\+\_\+t sources2)
+\begin{DoxyCompactList}\small\item\em Enables the selected interrupts sources on a P\+W\+MC peripheral. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{pwmc_8h_a783cd26783c232a992935c2b9e4ca2ae}{P\+W\+M\+C\+\_\+\+Disable\+It}} (\mbox{\hyperlink{structPwm}{Pwm}} $\ast$p\+Pwm, uint32\+\_\+t sources1, uint32\+\_\+t sources2)
+\begin{DoxyCompactList}\small\item\em Disables the selected interrupts sources on a P\+W\+MC peripheral. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{pwmc_8h_ab6461ab0c1697425e1f09370632403e3}\label{pwmc_8h_ab6461ab0c1697425e1f09370632403e3}} 
+uint8\+\_\+t {\bfseries P\+W\+M\+C\+\_\+\+Write\+Buffer} (\mbox{\hyperlink{structPwm}{Pwm}} $\ast$pwmc, void $\ast$buffer, uint32\+\_\+t length)
+\item 
+void \mbox{\hyperlink{pwmc_8h_a48a044fbe3858d2a1901a45e0f00c5c8}{P\+W\+M\+C\+\_\+\+Set\+Override\+Value}} (\mbox{\hyperlink{structPwm}{Pwm}} $\ast$p\+Pwm, uint32\+\_\+t value)
+\begin{DoxyCompactList}\small\item\em Set P\+WM output override value. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{pwmc_8h_a6c65099e3d458c058e40df85c11b270d}{P\+W\+M\+C\+\_\+\+Enable\+Override\+Output}} (\mbox{\hyperlink{structPwm}{Pwm}} $\ast$p\+Pwm, uint32\+\_\+t value, uint32\+\_\+t \mbox{\hyperlink{sync_8c_ac4fa2e6d36e97983d62b9377cc4f6c73}{sync}})
+\begin{DoxyCompactList}\small\item\em Enable override output. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{pwmc_8h_a083ba78af850299ef27c7cd3e4a61834}{P\+W\+M\+C\+\_\+\+Output\+Override\+Selection}} (\mbox{\hyperlink{structPwm}{Pwm}} $\ast$p\+Pwm, uint32\+\_\+t value)
+\begin{DoxyCompactList}\small\item\em Output Selection for override P\+WM output. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{pwmc_8h_abaa1d4ad2f430cf929d04da8169c5992}{P\+W\+M\+C\+\_\+\+Disable\+Override\+Output}} (\mbox{\hyperlink{structPwm}{Pwm}} $\ast$p\+Pwm, uint32\+\_\+t value, uint32\+\_\+t \mbox{\hyperlink{sync_8c_ac4fa2e6d36e97983d62b9377cc4f6c73}{sync}})
+\begin{DoxyCompactList}\small\item\em Disable override output. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{pwmc_8h_aab41db98ee2e0f0b7b34def3e4edc8eb}{P\+W\+M\+C\+\_\+\+Set\+Fault\+Mode}} (\mbox{\hyperlink{structPwm}{Pwm}} $\ast$p\+Pwm, uint32\+\_\+t mode)
+\begin{DoxyCompactList}\small\item\em Set P\+WM fault mode. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{pwmc_8h_a92497933925995adb04ac53f5e39327a}{P\+W\+M\+C\+\_\+\+Fault\+Clear}} (\mbox{\hyperlink{structPwm}{Pwm}} $\ast$p\+Pwm, uint32\+\_\+t fault)
+\begin{DoxyCompactList}\small\item\em P\+WM fault clear. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{pwmc_8h_aaa2af5dbdf3c5f19be594bda552a27b0}{P\+W\+M\+C\+\_\+\+Set\+Fault\+Protection\+Value}} (\mbox{\hyperlink{structPwm}{Pwm}} $\ast$p\+Pwm, uint32\+\_\+t value)
+\begin{DoxyCompactList}\small\item\em Set P\+WM fault protection value. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{pwmc_8h_ae588232ae74b47dff79a3a4d6cd8b109}{P\+W\+M\+C\+\_\+\+Enable\+Fault\+Protection}} (\mbox{\hyperlink{structPwm}{Pwm}} $\ast$p\+Pwm, uint32\+\_\+t value)
+\begin{DoxyCompactList}\small\item\em Enable P\+WM fault protection. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{pwmc_8h_aa2d1dc0e1253a70229e45c59b1d2dd15}{P\+W\+M\+C\+\_\+\+Configure\+Comparison\+Unit}} (\mbox{\hyperlink{structPwm}{Pwm}} $\ast$p\+Pwm, uint32\+\_\+t x, uint32\+\_\+t value, uint32\+\_\+t mode)
+\begin{DoxyCompactList}\small\item\em Configure comparison unit. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{pwmc_8h_aaeddd56bfeb1520d1d56c9bf1dc69253}{P\+W\+M\+C\+\_\+\+Configure\+Event\+Line\+Mode}} (\mbox{\hyperlink{structPwm}{Pwm}} $\ast$p\+Pwm, uint32\+\_\+t x, uint32\+\_\+t mode)
+\begin{DoxyCompactList}\small\item\em Configure event line mode. \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{pwmc_8h_a38f5798d05c9d347d74b6f17d5aa294f}{P\+W\+M\+C\+\_\+\+Get\+Status2}} (\mbox{\hyperlink{structPwm}{Pwm}} $\ast$p\+Pwm)
+\begin{DoxyCompactList}\small\item\em Return P\+WM Interrupt Status2 Register. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\begin{DoxyParagraph}{Purpose}
+
+\end{DoxyParagraph}
+Interface for configuration the Pulse Width Modulation Controller (P\+WM) peripheral.
+
+\begin{DoxyParagraph}{Usage}
+
+\end{DoxyParagraph}
+
+\begin{DoxyEnumerate}
+\item Configures P\+WM clocks A \& B to run at the given frequencies using \mbox{\hyperlink{pwmc_8c_a1f4d445f4e2139f2507f70f3d8a5b689}{P\+W\+M\+C\+\_\+\+Configure\+Clocks()}}.
+\item Configure P\+W\+MC channel using \mbox{\hyperlink{pwmc_8c_a471066ce23e4343fcca1727878972887}{P\+W\+M\+C\+\_\+\+Configure\+Channel()}}, \mbox{\hyperlink{pwmc_8c_a340b5bbad001afb9ca0c39ae67d0429a}{P\+W\+M\+C\+\_\+\+Configure\+Channel\+Ext()}} \mbox{\hyperlink{pwmc_8c_a89425ddd8a81c74220d9c7786bc6e892}{P\+W\+M\+C\+\_\+\+Set\+Period()}}, \mbox{\hyperlink{pwmc_8c_ad568ae9cc98ca77642950aded8981aab}{P\+W\+M\+C\+\_\+\+Set\+Duty\+Cycle()}} and \mbox{\hyperlink{pwmc_8c_ade3831bc9750aa702413f77e6689cb2a}{P\+W\+M\+C\+\_\+\+Set\+Dead\+Time()}}.
+\item Enable \& disable channel using \mbox{\hyperlink{pwmc_8c_a6dca9f0d3c82a96556b0d8797f112153}{P\+W\+M\+C\+\_\+\+Enable\+Channel()}} and \mbox{\hyperlink{pwmc_8c_a852c532da5b0ab6d1b00110889bc2a36}{P\+W\+M\+C\+\_\+\+Disable\+Channel()}}.
+\item Enable \& disable the period interrupt for the given P\+WM channel using \mbox{\hyperlink{pwmc_8c_aa9af5ed9163dfdce443aa99872f00bc1}{P\+W\+M\+C\+\_\+\+Enable\+Channel\+It()}} and \mbox{\hyperlink{pwmc_8c_a54331cbc912b199f149be4bdd7dc6854}{P\+W\+M\+C\+\_\+\+Disable\+Channel\+It()}}.
+\item Enable \& disable the selected interrupts sources on a P\+W\+MC peripheral using \mbox{\hyperlink{pwmc_8c_aa953571f5e0c40a15d2edab98168ae07}{P\+W\+M\+C\+\_\+\+Enable\+It()}} and \mbox{\hyperlink{pwmc_8c_a783cd26783c232a992935c2b9e4ca2ae}{P\+W\+M\+C\+\_\+\+Disable\+It()}}.
+\item Control synchronous channel using \mbox{\hyperlink{pwmc_8c_a0a183898b7dd1c3332f4834e84437b43}{P\+W\+M\+C\+\_\+\+Configure\+Sync\+Channel()}}, \mbox{\hyperlink{pwmc_8c_aac828e13f25cfb86253d8501e0c4b46e}{P\+W\+M\+C\+\_\+\+Set\+Sync\+Channel\+Update\+Period()}} and \mbox{\hyperlink{pwmc_8c_a9ad3fafbcf79a6db6ae9b601a194d7c1}{P\+W\+M\+C\+\_\+\+Set\+Sync\+Channel\+Update\+Unlock()}}.
+\item Control P\+WM override output using \mbox{\hyperlink{pwmc_8c_a48a044fbe3858d2a1901a45e0f00c5c8}{P\+W\+M\+C\+\_\+\+Set\+Override\+Value()}}, \mbox{\hyperlink{pwmc_8c_a6c65099e3d458c058e40df85c11b270d}{P\+W\+M\+C\+\_\+\+Enable\+Override\+Output()}} and \mbox{\hyperlink{pwmc_8c_abaa1d4ad2f430cf929d04da8169c5992}{P\+W\+M\+C\+\_\+\+Disable\+Override\+Output()}}.
+\item Send data through the transmitter using P\+W\+M\+C\+\_\+\+Write\+Buffer(). 
+\end{DoxyEnumerate}
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{pwmc_8h_a471066ce23e4343fcca1727878972887}\label{pwmc_8h_a471066ce23e4343fcca1727878972887}} 
+\index{pwmc.h@{pwmc.h}!PWMC\_ConfigureChannel@{PWMC\_ConfigureChannel}}
+\index{PWMC\_ConfigureChannel@{PWMC\_ConfigureChannel}!pwmc.h@{pwmc.h}}
+\subsubsection{\texorpdfstring{PWMC\_ConfigureChannel()}{PWMC\_ConfigureChannel()}}
+{\footnotesize\ttfamily void P\+W\+M\+C\+\_\+\+Configure\+Channel (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structPwm}{Pwm}} $\ast$}]{p\+Pwm,  }\item[{uint8\+\_\+t}]{channel,  }\item[{uint32\+\_\+t}]{prescaler,  }\item[{uint32\+\_\+t}]{alignment,  }\item[{uint32\+\_\+t}]{polarity }\end{DoxyParamCaption})}
+
+
+
+Configures P\+WM a channel with the given parameters, basic configure function. 
+
+The P\+WM controller must have been clocked in the P\+MC prior to calling this function. Beware\+: this function disables the channel. It waits until disable is effective.
+
+
+\begin{DoxyParams}{Parameters}
+{\em channel} & Channel number. \\
+\hline
+{\em prescaler} & Channel prescaler. \\
+\hline
+{\em alignment} & Channel alignment. \\
+\hline
+{\em polarity} & Channel polarity. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{pwmc_8h_a340b5bbad001afb9ca0c39ae67d0429a}\label{pwmc_8h_a340b5bbad001afb9ca0c39ae67d0429a}} 
+\index{pwmc.h@{pwmc.h}!PWMC\_ConfigureChannelExt@{PWMC\_ConfigureChannelExt}}
+\index{PWMC\_ConfigureChannelExt@{PWMC\_ConfigureChannelExt}!pwmc.h@{pwmc.h}}
+\subsubsection{\texorpdfstring{PWMC\_ConfigureChannelExt()}{PWMC\_ConfigureChannelExt()}}
+{\footnotesize\ttfamily void P\+W\+M\+C\+\_\+\+Configure\+Channel\+Ext (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structPwm}{Pwm}} $\ast$}]{p\+Pwm,  }\item[{uint8\+\_\+t}]{channel,  }\item[{uint32\+\_\+t}]{prescaler,  }\item[{uint32\+\_\+t}]{alignment,  }\item[{uint32\+\_\+t}]{polarity,  }\item[{uint32\+\_\+t}]{count\+Event\+Select,  }\item[{uint32\+\_\+t}]{D\+T\+Enable,  }\item[{uint32\+\_\+t}]{D\+T\+H\+Inverte,  }\item[{uint32\+\_\+t}]{D\+T\+L\+Inverte }\end{DoxyParamCaption})}
+
+
+
+Configures P\+WM a channel with the given parameters, extend configure function. The P\+WM controller must have been clocked in the P\+MC prior to calling this function. Beware\+: this function disables the channel. It waits until disable is effective. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em channel} & Channel number. \\
+\hline
+{\em prescaler} & Channel prescaler. \\
+\hline
+{\em alignment} & Channel alignment. \\
+\hline
+{\em polarity} & Channel polarity. \\
+\hline
+{\em count\+Event\+Select} & Channel counter event selection. \\
+\hline
+{\em D\+T\+Enable} & Channel dead time generator enable. \\
+\hline
+{\em D\+T\+H\+Inverte} & Channel Dead-\/\+Time P\+W\+M\+Hx output Inverted. \\
+\hline
+{\em D\+T\+L\+Inverte} & Channel Dead-\/\+Time P\+W\+M\+Hx output Inverted. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{pwmc_8h_a1f4d445f4e2139f2507f70f3d8a5b689}\label{pwmc_8h_a1f4d445f4e2139f2507f70f3d8a5b689}} 
+\index{pwmc.h@{pwmc.h}!PWMC\_ConfigureClocks@{PWMC\_ConfigureClocks}}
+\index{PWMC\_ConfigureClocks@{PWMC\_ConfigureClocks}!pwmc.h@{pwmc.h}}
+\subsubsection{\texorpdfstring{PWMC\_ConfigureClocks()}{PWMC\_ConfigureClocks()}}
+{\footnotesize\ttfamily void P\+W\+M\+C\+\_\+\+Configure\+Clocks (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structPwm}{Pwm}} $\ast$}]{p\+Pwm,  }\item[{uint32\+\_\+t}]{clka,  }\item[{uint32\+\_\+t}]{clkb,  }\item[{uint32\+\_\+t}]{mck }\end{DoxyParamCaption})}
+
+
+
+Configures P\+WM clocks A \& B to run at the given frequencies. 
+
+This function finds the best M\+CK divisor and prescaler values automatically.
+
+
+\begin{DoxyParams}{Parameters}
+{\em clka} & Desired clock A frequency (0 if not used). \\
+\hline
+{\em clkb} & Desired clock B frequency (0 if not used). \\
+\hline
+{\em mck} & Master clock frequency. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{pwmc_8h_aa2d1dc0e1253a70229e45c59b1d2dd15}\label{pwmc_8h_aa2d1dc0e1253a70229e45c59b1d2dd15}} 
+\index{pwmc.h@{pwmc.h}!PWMC\_ConfigureComparisonUnit@{PWMC\_ConfigureComparisonUnit}}
+\index{PWMC\_ConfigureComparisonUnit@{PWMC\_ConfigureComparisonUnit}!pwmc.h@{pwmc.h}}
+\subsubsection{\texorpdfstring{PWMC\_ConfigureComparisonUnit()}{PWMC\_ConfigureComparisonUnit()}}
+{\footnotesize\ttfamily void P\+W\+M\+C\+\_\+\+Configure\+Comparison\+Unit (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structPwm}{Pwm}} $\ast$}]{p\+Pwm,  }\item[{uint32\+\_\+t}]{x,  }\item[{uint32\+\_\+t}]{value,  }\item[{uint32\+\_\+t}]{mode }\end{DoxyParamCaption})}
+
+
+
+Configure comparison unit. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & comparison x index \\
+\hline
+{\em value} & comparison x value. \\
+\hline
+{\em mode} & comparison x mode \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{pwmc_8h_aaeddd56bfeb1520d1d56c9bf1dc69253}\label{pwmc_8h_aaeddd56bfeb1520d1d56c9bf1dc69253}} 
+\index{pwmc.h@{pwmc.h}!PWMC\_ConfigureEventLineMode@{PWMC\_ConfigureEventLineMode}}
+\index{PWMC\_ConfigureEventLineMode@{PWMC\_ConfigureEventLineMode}!pwmc.h@{pwmc.h}}
+\subsubsection{\texorpdfstring{PWMC\_ConfigureEventLineMode()}{PWMC\_ConfigureEventLineMode()}}
+{\footnotesize\ttfamily void P\+W\+M\+C\+\_\+\+Configure\+Event\+Line\+Mode (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structPwm}{Pwm}} $\ast$}]{p\+Pwm,  }\item[{uint32\+\_\+t}]{x,  }\item[{uint32\+\_\+t}]{mode }\end{DoxyParamCaption})}
+
+
+
+Configure event line mode. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & Line x \\
+\hline
+{\em mode} & Bitwise OR of line mode selection \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{pwmc_8h_a0a183898b7dd1c3332f4834e84437b43}\label{pwmc_8h_a0a183898b7dd1c3332f4834e84437b43}} 
+\index{pwmc.h@{pwmc.h}!PWMC\_ConfigureSyncChannel@{PWMC\_ConfigureSyncChannel}}
+\index{PWMC\_ConfigureSyncChannel@{PWMC\_ConfigureSyncChannel}!pwmc.h@{pwmc.h}}
+\subsubsection{\texorpdfstring{PWMC\_ConfigureSyncChannel()}{PWMC\_ConfigureSyncChannel()}}
+{\footnotesize\ttfamily void P\+W\+M\+C\+\_\+\+Configure\+Sync\+Channel (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structPwm}{Pwm}} $\ast$}]{p\+Pwm,  }\item[{uint32\+\_\+t}]{channels,  }\item[{uint32\+\_\+t}]{update\+Mode,  }\item[{uint32\+\_\+t}]{request\+Mode,  }\item[{uint32\+\_\+t}]{request\+Comparison\+Select }\end{DoxyParamCaption})}
+
+
+
+Configures Synchronous channel with the given parameters. Beware\+: At this time, the channels should be disabled. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em channels} & Bitwise OR of Synchronous channels. \\
+\hline
+{\em update\+Mode} & Synchronous channel update mode. \\
+\hline
+{\em request\+Mode} & P\+DC transfer request mode. \\
+\hline
+{\em request\+Comparison\+Select} & P\+DC transfer request comparison selection. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{pwmc_8h_a852c532da5b0ab6d1b00110889bc2a36}\label{pwmc_8h_a852c532da5b0ab6d1b00110889bc2a36}} 
+\index{pwmc.h@{pwmc.h}!PWMC\_DisableChannel@{PWMC\_DisableChannel}}
+\index{PWMC\_DisableChannel@{PWMC\_DisableChannel}!pwmc.h@{pwmc.h}}
+\subsubsection{\texorpdfstring{PWMC\_DisableChannel()}{PWMC\_DisableChannel()}}
+{\footnotesize\ttfamily void P\+W\+M\+C\+\_\+\+Disable\+Channel (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structPwm}{Pwm}} $\ast$}]{p\+Pwm,  }\item[{uint8\+\_\+t}]{channel }\end{DoxyParamCaption})}
+
+
+
+Disables the given P\+WM channel. 
+
+Beware, channel will be effectively disabled at the end of the current period. Application can check channel is disabled using the following wait loop\+: while ((P\+W\+M-\/$>$P\+W\+M\+\_\+\+SR \& (1 $<$$<$ channel)) != 0);
+
+
+\begin{DoxyParams}{Parameters}
+{\em channel} & Channel number. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{pwmc_8h_a54331cbc912b199f149be4bdd7dc6854}\label{pwmc_8h_a54331cbc912b199f149be4bdd7dc6854}} 
+\index{pwmc.h@{pwmc.h}!PWMC\_DisableChannelIt@{PWMC\_DisableChannelIt}}
+\index{PWMC\_DisableChannelIt@{PWMC\_DisableChannelIt}!pwmc.h@{pwmc.h}}
+\subsubsection{\texorpdfstring{PWMC\_DisableChannelIt()}{PWMC\_DisableChannelIt()}}
+{\footnotesize\ttfamily void P\+W\+M\+C\+\_\+\+Disable\+Channel\+It (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structPwm}{Pwm}} $\ast$}]{p\+Pwm,  }\item[{uint8\+\_\+t}]{channel }\end{DoxyParamCaption})}
+
+
+
+Disables the period interrupt for the given P\+WM channel. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em channel} & Channel number. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{pwmc_8h_a783cd26783c232a992935c2b9e4ca2ae}\label{pwmc_8h_a783cd26783c232a992935c2b9e4ca2ae}} 
+\index{pwmc.h@{pwmc.h}!PWMC\_DisableIt@{PWMC\_DisableIt}}
+\index{PWMC\_DisableIt@{PWMC\_DisableIt}!pwmc.h@{pwmc.h}}
+\subsubsection{\texorpdfstring{PWMC\_DisableIt()}{PWMC\_DisableIt()}}
+{\footnotesize\ttfamily void P\+W\+M\+C\+\_\+\+Disable\+It (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structPwm}{Pwm}} $\ast$}]{p\+Pwm,  }\item[{uint32\+\_\+t}]{sources1,  }\item[{uint32\+\_\+t}]{sources2 }\end{DoxyParamCaption})}
+
+
+
+Disables the selected interrupts sources on a P\+W\+MC peripheral. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sources1} & Bitwise OR of selected interrupt sources of P\+W\+M\+\_\+\+I\+D\+R1. \\
+\hline
+{\em sources2} & Bitwise OR of selected interrupt sources of P\+W\+M\+\_\+\+I\+D\+R2. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{pwmc_8h_abaa1d4ad2f430cf929d04da8169c5992}\label{pwmc_8h_abaa1d4ad2f430cf929d04da8169c5992}} 
+\index{pwmc.h@{pwmc.h}!PWMC\_DisableOverrideOutput@{PWMC\_DisableOverrideOutput}}
+\index{PWMC\_DisableOverrideOutput@{PWMC\_DisableOverrideOutput}!pwmc.h@{pwmc.h}}
+\subsubsection{\texorpdfstring{PWMC\_DisableOverrideOutput()}{PWMC\_DisableOverrideOutput()}}
+{\footnotesize\ttfamily void P\+W\+M\+C\+\_\+\+Disable\+Override\+Output (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structPwm}{Pwm}} $\ast$}]{p\+Pwm,  }\item[{uint32\+\_\+t}]{value,  }\item[{uint32\+\_\+t}]{sync }\end{DoxyParamCaption})}
+
+
+
+Disable override output. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em value} & Bitwise OR of output selection. \\
+\hline
+{\em sync} & 0\+: enable the output asynchronously, 1\+: enable it synchronously \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{pwmc_8h_a6dca9f0d3c82a96556b0d8797f112153}\label{pwmc_8h_a6dca9f0d3c82a96556b0d8797f112153}} 
+\index{pwmc.h@{pwmc.h}!PWMC\_EnableChannel@{PWMC\_EnableChannel}}
+\index{PWMC\_EnableChannel@{PWMC\_EnableChannel}!pwmc.h@{pwmc.h}}
+\subsubsection{\texorpdfstring{PWMC\_EnableChannel()}{PWMC\_EnableChannel()}}
+{\footnotesize\ttfamily void P\+W\+M\+C\+\_\+\+Enable\+Channel (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structPwm}{Pwm}} $\ast$}]{p\+Pwm,  }\item[{uint8\+\_\+t}]{channel }\end{DoxyParamCaption})}
+
+
+
+Enables the given P\+WM channel. 
+
+This does N\+OT enable the corresponding pin;this must be done in the user code.
+
+
+\begin{DoxyParams}{Parameters}
+{\em channel} & Channel number. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{pwmc_8h_aa9af5ed9163dfdce443aa99872f00bc1}\label{pwmc_8h_aa9af5ed9163dfdce443aa99872f00bc1}} 
+\index{pwmc.h@{pwmc.h}!PWMC\_EnableChannelIt@{PWMC\_EnableChannelIt}}
+\index{PWMC\_EnableChannelIt@{PWMC\_EnableChannelIt}!pwmc.h@{pwmc.h}}
+\subsubsection{\texorpdfstring{PWMC\_EnableChannelIt()}{PWMC\_EnableChannelIt()}}
+{\footnotesize\ttfamily void P\+W\+M\+C\+\_\+\+Enable\+Channel\+It (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structPwm}{Pwm}} $\ast$}]{p\+Pwm,  }\item[{uint8\+\_\+t}]{channel }\end{DoxyParamCaption})}
+
+
+
+Enables the period interrupt for the given P\+WM channel. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em channel} & Channel number. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{pwmc_8h_ae588232ae74b47dff79a3a4d6cd8b109}\label{pwmc_8h_ae588232ae74b47dff79a3a4d6cd8b109}} 
+\index{pwmc.h@{pwmc.h}!PWMC\_EnableFaultProtection@{PWMC\_EnableFaultProtection}}
+\index{PWMC\_EnableFaultProtection@{PWMC\_EnableFaultProtection}!pwmc.h@{pwmc.h}}
+\subsubsection{\texorpdfstring{PWMC\_EnableFaultProtection()}{PWMC\_EnableFaultProtection()}}
+{\footnotesize\ttfamily void P\+W\+M\+C\+\_\+\+Enable\+Fault\+Protection (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structPwm}{Pwm}} $\ast$}]{p\+Pwm,  }\item[{uint32\+\_\+t}]{value }\end{DoxyParamCaption})}
+
+
+
+Enable P\+WM fault protection. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em value} & Bitwise OR of F\+P\+Ex\mbox{[}y\mbox{]}. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{pwmc_8h_aa953571f5e0c40a15d2edab98168ae07}\label{pwmc_8h_aa953571f5e0c40a15d2edab98168ae07}} 
+\index{pwmc.h@{pwmc.h}!PWMC\_EnableIt@{PWMC\_EnableIt}}
+\index{PWMC\_EnableIt@{PWMC\_EnableIt}!pwmc.h@{pwmc.h}}
+\subsubsection{\texorpdfstring{PWMC\_EnableIt()}{PWMC\_EnableIt()}}
+{\footnotesize\ttfamily void P\+W\+M\+C\+\_\+\+Enable\+It (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structPwm}{Pwm}} $\ast$}]{p\+Pwm,  }\item[{uint32\+\_\+t}]{sources1,  }\item[{uint32\+\_\+t}]{sources2 }\end{DoxyParamCaption})}
+
+
+
+Enables the selected interrupts sources on a P\+W\+MC peripheral. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sources1} & Bitwise OR of selected interrupt sources of P\+W\+M\+\_\+\+I\+E\+R1. \\
+\hline
+{\em sources2} & Bitwise OR of selected interrupt sources of P\+W\+M\+\_\+\+I\+E\+R2. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{pwmc_8h_a6c65099e3d458c058e40df85c11b270d}\label{pwmc_8h_a6c65099e3d458c058e40df85c11b270d}} 
+\index{pwmc.h@{pwmc.h}!PWMC\_EnableOverrideOutput@{PWMC\_EnableOverrideOutput}}
+\index{PWMC\_EnableOverrideOutput@{PWMC\_EnableOverrideOutput}!pwmc.h@{pwmc.h}}
+\subsubsection{\texorpdfstring{PWMC\_EnableOverrideOutput()}{PWMC\_EnableOverrideOutput()}}
+{\footnotesize\ttfamily void P\+W\+M\+C\+\_\+\+Enable\+Override\+Output (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structPwm}{Pwm}} $\ast$}]{p\+Pwm,  }\item[{uint32\+\_\+t}]{value,  }\item[{uint32\+\_\+t}]{sync }\end{DoxyParamCaption})}
+
+
+
+Enable override output. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em value} & Bitwise OR of output selection. \\
+\hline
+{\em sync} & 0\+: enable the output asynchronously, 1\+: enable it synchronously \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{pwmc_8h_a92497933925995adb04ac53f5e39327a}\label{pwmc_8h_a92497933925995adb04ac53f5e39327a}} 
+\index{pwmc.h@{pwmc.h}!PWMC\_FaultClear@{PWMC\_FaultClear}}
+\index{PWMC\_FaultClear@{PWMC\_FaultClear}!pwmc.h@{pwmc.h}}
+\subsubsection{\texorpdfstring{PWMC\_FaultClear()}{PWMC\_FaultClear()}}
+{\footnotesize\ttfamily void P\+W\+M\+C\+\_\+\+Fault\+Clear (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structPwm}{Pwm}} $\ast$}]{p\+Pwm,  }\item[{uint32\+\_\+t}]{fault }\end{DoxyParamCaption})}
+
+
+
+P\+WM fault clear. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em fault} & Bitwise OR of fault to clear. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{pwmc_8h_a38f5798d05c9d347d74b6f17d5aa294f}\label{pwmc_8h_a38f5798d05c9d347d74b6f17d5aa294f}} 
+\index{pwmc.h@{pwmc.h}!PWMC\_GetStatus2@{PWMC\_GetStatus2}}
+\index{PWMC\_GetStatus2@{PWMC\_GetStatus2}!pwmc.h@{pwmc.h}}
+\subsubsection{\texorpdfstring{PWMC\_GetStatus2()}{PWMC\_GetStatus2()}}
+{\footnotesize\ttfamily uint32\+\_\+t P\+W\+M\+C\+\_\+\+Get\+Status2 (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structPwm}{Pwm}} $\ast$}]{p\+Pwm }\end{DoxyParamCaption})}
+
+
+
+Return P\+WM Interrupt Status2 Register. 
+
+\mbox{\Hypertarget{pwmc_8h_a083ba78af850299ef27c7cd3e4a61834}\label{pwmc_8h_a083ba78af850299ef27c7cd3e4a61834}} 
+\index{pwmc.h@{pwmc.h}!PWMC\_OutputOverrideSelection@{PWMC\_OutputOverrideSelection}}
+\index{PWMC\_OutputOverrideSelection@{PWMC\_OutputOverrideSelection}!pwmc.h@{pwmc.h}}
+\subsubsection{\texorpdfstring{PWMC\_OutputOverrideSelection()}{PWMC\_OutputOverrideSelection()}}
+{\footnotesize\ttfamily void P\+W\+M\+C\+\_\+\+Output\+Override\+Selection (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structPwm}{Pwm}} $\ast$}]{p\+Pwm,  }\item[{uint32\+\_\+t}]{value }\end{DoxyParamCaption})}
+
+
+
+Output Selection for override P\+WM output. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em value} & Bitwise OR of output override value. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{pwmc_8h_ade3831bc9750aa702413f77e6689cb2a}\label{pwmc_8h_ade3831bc9750aa702413f77e6689cb2a}} 
+\index{pwmc.h@{pwmc.h}!PWMC\_SetDeadTime@{PWMC\_SetDeadTime}}
+\index{PWMC\_SetDeadTime@{PWMC\_SetDeadTime}!pwmc.h@{pwmc.h}}
+\subsubsection{\texorpdfstring{PWMC\_SetDeadTime()}{PWMC\_SetDeadTime()}}
+{\footnotesize\ttfamily void P\+W\+M\+C\+\_\+\+Set\+Dead\+Time (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structPwm}{Pwm}} $\ast$}]{p\+Pwm,  }\item[{uint8\+\_\+t}]{channel,  }\item[{uint16\+\_\+t}]{timeH,  }\item[{uint16\+\_\+t}]{timeL }\end{DoxyParamCaption})}
+
+
+
+Sets the dead time used by a P\+WM channel. This function writes directly to the DT register if the channel is disabled; otherwise it uses the update register D\+T\+U\+PD. Note that the dead time must always be inferior or equal to the channel period. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em channel} & Channel number. \\
+\hline
+{\em timeH} & Dead time value for P\+W\+M\+Hx output. \\
+\hline
+{\em timeL} & Dead time value for P\+W\+M\+Lx output. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{pwmc_8h_ad568ae9cc98ca77642950aded8981aab}\label{pwmc_8h_ad568ae9cc98ca77642950aded8981aab}} 
+\index{pwmc.h@{pwmc.h}!PWMC\_SetDutyCycle@{PWMC\_SetDutyCycle}}
+\index{PWMC\_SetDutyCycle@{PWMC\_SetDutyCycle}!pwmc.h@{pwmc.h}}
+\subsubsection{\texorpdfstring{PWMC\_SetDutyCycle()}{PWMC\_SetDutyCycle()}}
+{\footnotesize\ttfamily void P\+W\+M\+C\+\_\+\+Set\+Duty\+Cycle (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structPwm}{Pwm}} $\ast$}]{p\+Pwm,  }\item[{uint8\+\_\+t}]{channel,  }\item[{uint16\+\_\+t}]{duty }\end{DoxyParamCaption})}
+
+
+
+Sets the duty cycle used by a P\+WM channel. This function writes directly to the C\+D\+TY register if the channel is disabled; otherwise it uses the update register C\+D\+T\+Y\+U\+PD. Note that the duty cycle must always be inferior or equal to the channel period. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em channel} & Channel number. \\
+\hline
+{\em duty} & Duty cycle value. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{pwmc_8h_aab41db98ee2e0f0b7b34def3e4edc8eb}\label{pwmc_8h_aab41db98ee2e0f0b7b34def3e4edc8eb}} 
+\index{pwmc.h@{pwmc.h}!PWMC\_SetFaultMode@{PWMC\_SetFaultMode}}
+\index{PWMC\_SetFaultMode@{PWMC\_SetFaultMode}!pwmc.h@{pwmc.h}}
+\subsubsection{\texorpdfstring{PWMC\_SetFaultMode()}{PWMC\_SetFaultMode()}}
+{\footnotesize\ttfamily void P\+W\+M\+C\+\_\+\+Set\+Fault\+Mode (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structPwm}{Pwm}} $\ast$}]{p\+Pwm,  }\item[{uint32\+\_\+t}]{mode }\end{DoxyParamCaption})}
+
+
+
+Set P\+WM fault mode. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em mode} & Bitwise OR of fault mode. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{pwmc_8h_aaa2af5dbdf3c5f19be594bda552a27b0}\label{pwmc_8h_aaa2af5dbdf3c5f19be594bda552a27b0}} 
+\index{pwmc.h@{pwmc.h}!PWMC\_SetFaultProtectionValue@{PWMC\_SetFaultProtectionValue}}
+\index{PWMC\_SetFaultProtectionValue@{PWMC\_SetFaultProtectionValue}!pwmc.h@{pwmc.h}}
+\subsubsection{\texorpdfstring{PWMC\_SetFaultProtectionValue()}{PWMC\_SetFaultProtectionValue()}}
+{\footnotesize\ttfamily void P\+W\+M\+C\+\_\+\+Set\+Fault\+Protection\+Value (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structPwm}{Pwm}} $\ast$}]{p\+Pwm,  }\item[{uint32\+\_\+t}]{value }\end{DoxyParamCaption})}
+
+
+
+Set P\+WM fault protection value. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em value} & Bitwise OR of fault protection value. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{pwmc_8h_a48a044fbe3858d2a1901a45e0f00c5c8}\label{pwmc_8h_a48a044fbe3858d2a1901a45e0f00c5c8}} 
+\index{pwmc.h@{pwmc.h}!PWMC\_SetOverrideValue@{PWMC\_SetOverrideValue}}
+\index{PWMC\_SetOverrideValue@{PWMC\_SetOverrideValue}!pwmc.h@{pwmc.h}}
+\subsubsection{\texorpdfstring{PWMC\_SetOverrideValue()}{PWMC\_SetOverrideValue()}}
+{\footnotesize\ttfamily void P\+W\+M\+C\+\_\+\+Set\+Override\+Value (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structPwm}{Pwm}} $\ast$}]{p\+Pwm,  }\item[{uint32\+\_\+t}]{value }\end{DoxyParamCaption})}
+
+
+
+Set P\+WM output override value. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em value} & Bitwise OR of output override value. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{pwmc_8h_a89425ddd8a81c74220d9c7786bc6e892}\label{pwmc_8h_a89425ddd8a81c74220d9c7786bc6e892}} 
+\index{pwmc.h@{pwmc.h}!PWMC\_SetPeriod@{PWMC\_SetPeriod}}
+\index{PWMC\_SetPeriod@{PWMC\_SetPeriod}!pwmc.h@{pwmc.h}}
+\subsubsection{\texorpdfstring{PWMC\_SetPeriod()}{PWMC\_SetPeriod()}}
+{\footnotesize\ttfamily void P\+W\+M\+C\+\_\+\+Set\+Period (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structPwm}{Pwm}} $\ast$}]{p\+Pwm,  }\item[{uint8\+\_\+t}]{channel,  }\item[{uint16\+\_\+t}]{period }\end{DoxyParamCaption})}
+
+
+
+Sets the period value used by a P\+WM channel. 
+
+This function writes directly to the C\+P\+RD register if the channel is disabled; otherwise, it uses the update register C\+P\+R\+D\+U\+PD.
+
+
+\begin{DoxyParams}{Parameters}
+{\em channel} & Channel number. \\
+\hline
+{\em period} & Period value. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{pwmc_8h_aac828e13f25cfb86253d8501e0c4b46e}\label{pwmc_8h_aac828e13f25cfb86253d8501e0c4b46e}} 
+\index{pwmc.h@{pwmc.h}!PWMC\_SetSyncChannelUpdatePeriod@{PWMC\_SetSyncChannelUpdatePeriod}}
+\index{PWMC\_SetSyncChannelUpdatePeriod@{PWMC\_SetSyncChannelUpdatePeriod}!pwmc.h@{pwmc.h}}
+\subsubsection{\texorpdfstring{PWMC\_SetSyncChannelUpdatePeriod()}{PWMC\_SetSyncChannelUpdatePeriod()}}
+{\footnotesize\ttfamily void P\+W\+M\+C\+\_\+\+Set\+Sync\+Channel\+Update\+Period (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structPwm}{Pwm}} $\ast$}]{p\+Pwm,  }\item[{uint8\+\_\+t}]{period }\end{DoxyParamCaption})}
+
+
+
+Sets the update period of the synchronous channels. This function writes directly to the S\+C\+UP register if the channel \#0 is disabled; otherwise it uses the update register S\+C\+U\+P\+U\+PD. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em period} & update period. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{pwmc_8h_a9ad3fafbcf79a6db6ae9b601a194d7c1}\label{pwmc_8h_a9ad3fafbcf79a6db6ae9b601a194d7c1}} 
+\index{pwmc.h@{pwmc.h}!PWMC\_SetSyncChannelUpdateUnlock@{PWMC\_SetSyncChannelUpdateUnlock}}
+\index{PWMC\_SetSyncChannelUpdateUnlock@{PWMC\_SetSyncChannelUpdateUnlock}!pwmc.h@{pwmc.h}}
+\subsubsection{\texorpdfstring{PWMC\_SetSyncChannelUpdateUnlock()}{PWMC\_SetSyncChannelUpdateUnlock()}}
+{\footnotesize\ttfamily void P\+W\+M\+C\+\_\+\+Set\+Sync\+Channel\+Update\+Unlock (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structPwm}{Pwm}} $\ast$}]{p\+Pwm }\end{DoxyParamCaption})}
+
+
+
+Sets synchronous channels update unlock. 
+
+Note\+: If the U\+P\+DM field is set to 0, writing the U\+P\+D\+U\+L\+O\+CK bit to 1 triggers the update of the period value, the duty-\/cycle and the dead-\/time values of synchronous channels at the beginning of the next P\+WM period. If the field U\+P\+DM is set to 1 or 2, writing the U\+P\+D\+U\+L\+O\+CK bit to 1 triggers only the update of the period value and of the dead-\/time values of synchronous channels. This bit is automatically reset when the update is done. 

@@ -1,0 +1,75 @@
+\hypertarget{diskdevs_8h}{}\section{cpukit/include/rtems/diskdevs.h File Reference}
+\label{diskdevs_8h}\index{cpukit/include/rtems/diskdevs.h@{cpukit/include/rtems/diskdevs.h}}
+
+
+Block Device Disk Management A\+PI.  
+
+
+{\ttfamily \#include $<$rtems.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/libio.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/chain.\+h$>$}\newline
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structrtems__blkdev__read__ahead}{rtems\+\_\+blkdev\+\_\+read\+\_\+ahead}}
+\begin{DoxyCompactList}\small\item\em Block device read-\/ahead control. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structrtems__blkdev__stats}{rtems\+\_\+blkdev\+\_\+stats}}
+\begin{DoxyCompactList}\small\item\em Block device statistics. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structrtems__disk__device}{rtems\+\_\+disk\+\_\+device}}
+\begin{DoxyCompactList}\small\item\em Description of a disk device (logical and physical disks). \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__rtems__disk_gaee772b1121d8d039acb0e0126341a1de}{R\+T\+E\+M\+S\+\_\+\+D\+I\+S\+K\+\_\+\+R\+E\+A\+D\+\_\+\+A\+H\+E\+A\+D\+\_\+\+N\+O\+\_\+\+T\+R\+I\+G\+G\+ER}}~((\mbox{\hyperlink{group__rtems__disk_ga5fbcfd40b657bff6c54d9e393fab3274}{rtems\+\_\+blkdev\+\_\+bnum}}) -\/1)
+\begin{DoxyCompactList}\small\item\em Trigger value to disable further read-\/ahead requests. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{diskdevs_8h_a9aa53c07907b61fb30820bb469b21d1c}\label{diskdevs_8h_a9aa53c07907b61fb30820bb469b21d1c}} 
+typedef struct \mbox{\hyperlink{structrtems__disk__device}{rtems\+\_\+disk\+\_\+device}} {\bfseries rtems\+\_\+disk\+\_\+device}
+\item 
+typedef uint32\+\_\+t \mbox{\hyperlink{group__rtems__disk_ga5fbcfd40b657bff6c54d9e393fab3274}{rtems\+\_\+blkdev\+\_\+bnum}}
+\begin{DoxyCompactList}\small\item\em Block device block index type. \end{DoxyCompactList}\item 
+typedef int($\ast$ \mbox{\hyperlink{group__rtems__disk_gacbf717f10129b976deaf8e6f4deb17ad}{rtems\+\_\+block\+\_\+device\+\_\+ioctl}}) (\mbox{\hyperlink{structrtems__disk__device}{rtems\+\_\+disk\+\_\+device}} $\ast$dd, uint32\+\_\+t req, void $\ast$argp)
+\begin{DoxyCompactList}\small\item\em Block device \mbox{\hyperlink{structIO}{IO}} control handler type. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{diskdevs_8h_a0582cf2c97e25de108717c712f54eaf6}\label{diskdevs_8h_a0582cf2c97e25de108717c712f54eaf6}} 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gab651a076d4d51d50221e7ef7ac99d4e7}{R\+T\+E\+M\+S\+\_\+\+D\+E\+P\+R\+E\+C\+A\+T\+ED}} \mbox{\hyperlink{structrtems__disk__device}{rtems\+\_\+disk\+\_\+device}} $\ast$ {\bfseries rtems\+\_\+disk\+\_\+next} (dev\+\_\+t dev)
+\item 
+\mbox{\Hypertarget{diskdevs_8h_a7d51281a91b871283c31b8a6a48aeb24}\label{diskdevs_8h_a7d51281a91b871283c31b8a6a48aeb24}} 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} {\bfseries rtems\+\_\+disk\+\_\+init\+\_\+phys} (\mbox{\hyperlink{structrtems__disk__device}{rtems\+\_\+disk\+\_\+device}} $\ast$dd, uint32\+\_\+t block\+\_\+size, \mbox{\hyperlink{group__rtems__disk_ga5fbcfd40b657bff6c54d9e393fab3274}{rtems\+\_\+blkdev\+\_\+bnum}} block\+\_\+count, \mbox{\hyperlink{group__rtems__disk_gacbf717f10129b976deaf8e6f4deb17ad}{rtems\+\_\+block\+\_\+device\+\_\+ioctl}} handler, void $\ast$driver\+\_\+data)
+\item 
+\mbox{\Hypertarget{diskdevs_8h_a9b28528b9c9049f3c934c1ecabc88d95}\label{diskdevs_8h_a9b28528b9c9049f3c934c1ecabc88d95}} 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} {\bfseries rtems\+\_\+disk\+\_\+init\+\_\+log} (\mbox{\hyperlink{structrtems__disk__device}{rtems\+\_\+disk\+\_\+device}} $\ast$dd, \mbox{\hyperlink{structrtems__disk__device}{rtems\+\_\+disk\+\_\+device}} $\ast$phys\+\_\+dd, \mbox{\hyperlink{group__rtems__disk_ga5fbcfd40b657bff6c54d9e393fab3274}{rtems\+\_\+blkdev\+\_\+bnum}} block\+\_\+begin, \mbox{\hyperlink{group__rtems__disk_ga5fbcfd40b657bff6c54d9e393fab3274}{rtems\+\_\+blkdev\+\_\+bnum}} block\+\_\+count)
+\end{DoxyCompactItemize}
+\begin{Indent}\textbf{ Disk Device Data}\par
+\end{Indent}
+\begin{Indent}\textbf{ Disk Device Maintainance}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gab651a076d4d51d50221e7ef7ac99d4e7}{R\+T\+E\+M\+S\+\_\+\+D\+E\+P\+R\+E\+C\+A\+T\+ED}} \mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} {\bfseries rtems\+\_\+disk\+\_\+create\+\_\+phys} (dev\+\_\+t dev, uint32\+\_\+t block\+\_\+size, \mbox{\hyperlink{group__rtems__disk_ga5fbcfd40b657bff6c54d9e393fab3274}{rtems\+\_\+blkdev\+\_\+bnum}} block\+\_\+count, \mbox{\hyperlink{group__rtems__disk_gacbf717f10129b976deaf8e6f4deb17ad}{rtems\+\_\+block\+\_\+device\+\_\+ioctl}} handler, void $\ast$driver\+\_\+data, const char $\ast$name)
+\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gab651a076d4d51d50221e7ef7ac99d4e7}{R\+T\+E\+M\+S\+\_\+\+D\+E\+P\+R\+E\+C\+A\+T\+ED}} \mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} {\bfseries rtems\+\_\+disk\+\_\+create\+\_\+log} (dev\+\_\+t dev, dev\+\_\+t phys, \mbox{\hyperlink{group__rtems__disk_ga5fbcfd40b657bff6c54d9e393fab3274}{rtems\+\_\+blkdev\+\_\+bnum}} block\+\_\+begin, \mbox{\hyperlink{group__rtems__disk_ga5fbcfd40b657bff6c54d9e393fab3274}{rtems\+\_\+blkdev\+\_\+bnum}} block\+\_\+count, const char $\ast$name)
+\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gab651a076d4d51d50221e7ef7ac99d4e7}{R\+T\+E\+M\+S\+\_\+\+D\+E\+P\+R\+E\+C\+A\+T\+ED}} \mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} {\bfseries rtems\+\_\+disk\+\_\+delete} (dev\+\_\+t dev)
+\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gab651a076d4d51d50221e7ef7ac99d4e7}{R\+T\+E\+M\+S\+\_\+\+D\+E\+P\+R\+E\+C\+A\+T\+ED}} \mbox{\hyperlink{structrtems__disk__device}{rtems\+\_\+disk\+\_\+device}} $\ast$ {\bfseries rtems\+\_\+disk\+\_\+obtain} (dev\+\_\+t dev)
+\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gab651a076d4d51d50221e7ef7ac99d4e7}{R\+T\+E\+M\+S\+\_\+\+D\+E\+P\+R\+E\+C\+A\+T\+ED}} \mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} {\bfseries rtems\+\_\+disk\+\_\+release} (\mbox{\hyperlink{structrtems__disk__device}{rtems\+\_\+disk\+\_\+device}} $\ast$dd)
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Disk Management}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gab651a076d4d51d50221e7ef7ac99d4e7}{R\+T\+E\+M\+S\+\_\+\+D\+E\+P\+R\+E\+C\+A\+T\+ED}} \mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} {\bfseries rtems\+\_\+disk\+\_\+io\+\_\+initialize} (void)
+\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gab651a076d4d51d50221e7ef7ac99d4e7}{R\+T\+E\+M\+S\+\_\+\+D\+E\+P\+R\+E\+C\+A\+T\+ED}} \mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} {\bfseries rtems\+\_\+disk\+\_\+io\+\_\+done} (void)
+\end{DoxyCompactItemize}
+\end{Indent}
+
+
+\subsection{Detailed Description}
+Block Device Disk Management A\+PI. 
+

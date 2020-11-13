@@ -1,0 +1,52 @@
+\hypertarget{rtl-debugger_8c}{}\section{cpukit/libdl/rtl-\/debugger.c File Reference}
+\label{rtl-debugger_8c}\index{cpukit/libdl/rtl-\/debugger.c@{cpukit/libdl/rtl-\/debugger.c}}
+
+
+R\+T\+E\+MS Module Loading Debugger Interface.  
+
+
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$link.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/rtl/rtl.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/rtl/rtl-\/trace.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/rtl/rtl-\/obj-\/fwd.\+h$>$}\newline
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{rtl-debugger_8c_a240e0af85abf0e26f425d668dfc0ef3f}{\+\_\+rtld\+\_\+debug\+\_\+state}} (void)
+\item 
+\mbox{\Hypertarget{rtl-debugger_8c_aeee5d06465c235c0ccc2f44f13b32457}\label{rtl-debugger_8c_aeee5d06465c235c0ccc2f44f13b32457}} 
+int {\bfseries \+\_\+rtld\+\_\+linkmap\+\_\+add} (\mbox{\hyperlink{structrtems__rtl__obj}{rtems\+\_\+rtl\+\_\+obj}} $\ast$obj)
+\item 
+\mbox{\Hypertarget{rtl-debugger_8c_a40276ea2c52af7ffe7d86af3e94db4b3}\label{rtl-debugger_8c_a40276ea2c52af7ffe7d86af3e94db4b3}} 
+void {\bfseries \+\_\+rtld\+\_\+linkmap\+\_\+delete} (\mbox{\hyperlink{structrtems__rtl__obj}{rtems\+\_\+rtl\+\_\+obj}} $\ast$obj)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structr__debug}{r\+\_\+debug}} \mbox{\hyperlink{rtl-debugger_8c_af51fdd69058427a602e93792bffc74bd}{\+\_\+rtld\+\_\+debug}}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+R\+T\+E\+MS Module Loading Debugger Interface. 
+
+Inspection of run-\/time linkers in Net\+B\+SD and Android show a common type of structure that is used to interface to G\+DB. The Net\+B\+SD definition of this interface is being used and is defined in $<$\mbox{\hyperlink{link_8h_source}{link.\+h}}$>$. It defines a protocol that is used by G\+DB to inspect the state of dynamic libraries. I have not checked G\+DB code at when writing this comment but I suspect G\+DB sets a break point on the r\+\_\+brk field of \+\_\+rtld\+\_\+debug and it has code that detects this break point being hit. When this happens it reads the state and performs the operation based on the r\+\_\+state field. 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{rtl-debugger_8c_a240e0af85abf0e26f425d668dfc0ef3f}\label{rtl-debugger_8c_a240e0af85abf0e26f425d668dfc0ef3f}} 
+\index{rtl-\/debugger.c@{rtl-\/debugger.c}!\_rtld\_debug\_state@{\_rtld\_debug\_state}}
+\index{\_rtld\_debug\_state@{\_rtld\_debug\_state}!rtl-\/debugger.c@{rtl-\/debugger.c}}
+\subsubsection{\texorpdfstring{\_rtld\_debug\_state()}{\_rtld\_debug\_state()}}
+{\footnotesize\ttfamily void \+\_\+rtld\+\_\+debug\+\_\+state (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+Debugger break function. Call when debugging to have it read the \+\_\+rtld\+\_\+debug variable. 
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{rtl-debugger_8c_af51fdd69058427a602e93792bffc74bd}\label{rtl-debugger_8c_af51fdd69058427a602e93792bffc74bd}} 
+\index{rtl-\/debugger.c@{rtl-\/debugger.c}!\_rtld\_debug@{\_rtld\_debug}}
+\index{\_rtld\_debug@{\_rtld\_debug}!rtl-\/debugger.c@{rtl-\/debugger.c}}
+\subsubsection{\texorpdfstring{\_rtld\_debug}{\_rtld\_debug}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structr__debug}{r\+\_\+debug}} \+\_\+rtld\+\_\+debug}
+
+The global debugger interface variable. 

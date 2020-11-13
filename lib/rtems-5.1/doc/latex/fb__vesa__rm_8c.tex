@@ -1,0 +1,421 @@
+\hypertarget{fb__vesa__rm_8c}{}\section{bsps/i386/pc386/console/fb\+\_\+vesa\+\_\+rm.c File Reference}
+\label{fb__vesa__rm_8c}\index{bsps/i386/pc386/console/fb\_vesa\_rm.c@{bsps/i386/pc386/console/fb\_vesa\_rm.c}}
+
+
+FB driver for graphic hardware compatible with V\+E\+SA Bios Extension Real mode interface utilized Tested on real HW.  
+
+
+{\ttfamily \#include $<$inttypes.\+h$>$}\newline
+{\ttfamily \#include $<$bsp.\+h$>$}\newline
+{\ttfamily \#include $<$bsp/fb\+\_\+default\+\_\+mode.\+h$>$}\newline
+{\ttfamily \#include $<$bsp/fb\+\_\+vesa.\+h$>$}\newline
+{\ttfamily \#include $<$bsp/realmode\+\_\+int.\+h$>$}\newline
+{\ttfamily \#include $<$pthread.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/libio.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/fb.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/framebuffer.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/score/atomic.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structMode__params}{Mode\+\_\+params}}
+\begin{DoxyCompactList}\small\item\em Basic graphic\textquotesingle{}s mode parameters. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{fb__vesa__rm_8c_a6f5201cbc860c891698d41d5f860f0ce}\label{fb__vesa__rm_8c_a6f5201cbc860c891698d41d5f860f0ce}} 
+\#define {\bfseries F\+B\+\_\+\+V\+E\+S\+A\+\_\+\+N\+A\+ME}~\char`\"{}F\+B\+\_\+\+V\+E\+S\+A\+\_\+\+RM\char`\"{}
+\item 
+\mbox{\Hypertarget{fb__vesa__rm_8c_aaebcef00281332ac9573b78293d3ac1e}\label{fb__vesa__rm_8c_aaebcef00281332ac9573b78293d3ac1e}} 
+\#define {\bfseries M\+A\+X\+\_\+\+N\+O\+\_\+\+O\+F\+\_\+\+S\+O\+R\+T\+E\+D\+\_\+\+M\+O\+D\+ES}~100
+\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{fb__vesa__rm_8c_aa1c3d7ad13bc494292330e4dd2d60d6b}\label{fb__vesa__rm_8c_aa1c3d7ad13bc494292330e4dd2d60d6b}} 
+enum {\bfseries mode\+\_\+err\+\_\+ret\+\_\+val} \{ \newline
+{\bfseries N\+O\+\_\+\+S\+U\+I\+T\+A\+B\+L\+E\+\_\+\+M\+O\+DE} = -\/1, 
+{\bfseries B\+A\+D\+\_\+\+F\+O\+R\+M\+AT} = -\/2, 
+{\bfseries A\+U\+T\+O\+\_\+\+S\+E\+L\+E\+CT} = -\/3, 
+{\bfseries D\+O\+N\+T\+\_\+\+I\+N\+IT} = -\/4, 
+\newline
+{\bfseries N\+O\+\_\+\+M\+O\+D\+E\+\_\+\+R\+EQ} = -\/5, 
+{\bfseries N\+O\+\_\+\+S\+U\+I\+T\+A\+B\+L\+E\+\_\+\+M\+O\+DE} = -\/1, 
+{\bfseries B\+A\+D\+\_\+\+F\+O\+R\+M\+AT} = -\/2, 
+{\bfseries A\+U\+T\+O\+\_\+\+S\+E\+L\+E\+CT} = -\/3, 
+\newline
+{\bfseries D\+O\+N\+T\+\_\+\+I\+N\+IT} = -\/4, 
+{\bfseries N\+O\+\_\+\+M\+O\+D\+E\+\_\+\+R\+EQ} = -\/5
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{fb__vesa__rm_8c_a66442b4301c2a23d9f9baef8f4cdab8f}{vesa\+\_\+realmode\+\_\+bootup\+\_\+init}} (void)
+\begin{DoxyCompactList}\small\item\em Initializes V\+BE framebuffer during bootup. \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{fb__vesa__rm_8c_af79f34df313a78e2330ccf2d81b867bb}{V\+B\+E\+\_\+controller\+\_\+information}} (V\+B\+E\+\_\+vbe\+\_\+info\+\_\+block $\ast$info\+\_\+block, uint16\+\_\+t queried\+\_\+\+V\+B\+E\+\_\+\+Version)
+\begin{DoxyCompactList}\small\item\em Returns information about graphic\textquotesingle{}s controller in the {\ttfamily info\+\_\+block} structure. \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{fb__vesa__rm_8c_ad6912df918c80a1d1af9396d298fa290}{V\+B\+E\+\_\+mode\+\_\+information}} (V\+B\+E\+\_\+mode\+\_\+info\+\_\+block $\ast$info\+\_\+block, uint16\+\_\+t mode\+\_\+number)
+\begin{DoxyCompactList}\small\item\em Fills structure {\ttfamily info\+\_\+block} with informations about selected mode in {\ttfamily mode\+\_\+number} variable. \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{fb__vesa__rm_8c_a9db0915ef74a364c88a6d42e847fa1b4}{V\+B\+E\+\_\+set\+\_\+mode}} (uint16\+\_\+t mode\+\_\+number, V\+B\+E\+\_\+\+C\+R\+T\+C\+\_\+info\+\_\+block $\ast$info\+\_\+block)
+\begin{DoxyCompactList}\small\item\em Sets graphics mode selected. If mode has refresh\+Rate\+Ctrl bit set, than the {\ttfamily info\+\_\+block} must be filled accordingly. \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{fb__vesa__rm_8c_ad3c4b4e341541adb5ebbed06a56d4df6}{V\+B\+E\+\_\+current\+\_\+mode}} (uint16\+\_\+t $\ast$mode\+\_\+number)
+\begin{DoxyCompactList}\small\item\em Get currently set mode number. \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{fb__vesa__rm_8c_aac4d734cef2ff871d97a6ba67a28192e}{V\+B\+E\+\_\+report\+\_\+\+D\+D\+C\+\_\+capabilities}} (uint16\+\_\+t controller\+\_\+unit\+\_\+number, uint8\+\_\+t $\ast$seconds\+\_\+to\+\_\+transfer\+\_\+\+E\+D\+I\+D\+\_\+block, uint8\+\_\+t $\ast$D\+D\+C\+\_\+level\+\_\+supported)
+\begin{DoxyCompactList}\small\item\em Gets information about display data channel implemented in the graphic\textquotesingle{}s controller. \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{fb__vesa__rm_8c_a14025cd716317297c59efcf17afb8d71}{V\+B\+E\+\_\+read\+\_\+\+E\+D\+ID}} (uint16\+\_\+t controller\+\_\+unit\+\_\+number, uint16\+\_\+t E\+D\+I\+D\+\_\+block\+\_\+number, E\+D\+I\+D\+\_\+edid1 $\ast$buffer)
+\begin{DoxyCompactList}\small\item\em Reads selected E\+D\+ID block from display attached to controller\textquotesingle{}s interface. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+device\+\_\+driver}} \mbox{\hyperlink{fb__vesa__rm_8c_aa2a4a319a3e9853e688c96116a088743}{frame\+\_\+buffer\+\_\+initialize}} (rtems\+\_\+device\+\_\+major\+\_\+number major, rtems\+\_\+device\+\_\+minor\+\_\+number minor, void $\ast$arg)
+\begin{DoxyCompactList}\small\item\em Frame Buffer Initialization Entry Point. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+device\+\_\+driver}} \mbox{\hyperlink{fb__vesa__rm_8c_a82e568b33aca35a724b8d71a4d0dac3c}{frame\+\_\+buffer\+\_\+open}} (rtems\+\_\+device\+\_\+major\+\_\+number major, rtems\+\_\+device\+\_\+minor\+\_\+number minor, void $\ast$arg)
+\begin{DoxyCompactList}\small\item\em Frame Buffer Open Entry Point. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+device\+\_\+driver}} \mbox{\hyperlink{fb__vesa__rm_8c_aa1f239cfe02b6fe70d7be3e0f7d96c63}{frame\+\_\+buffer\+\_\+close}} (rtems\+\_\+device\+\_\+major\+\_\+number major, rtems\+\_\+device\+\_\+minor\+\_\+number minor, void $\ast$arg)
+\begin{DoxyCompactList}\small\item\em Frame Buffer Close Entry Point. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+device\+\_\+driver}} \mbox{\hyperlink{fb__vesa__rm_8c_a2bb1e09cf325cedeade812912e9bd7d4}{frame\+\_\+buffer\+\_\+read}} (rtems\+\_\+device\+\_\+major\+\_\+number major, rtems\+\_\+device\+\_\+minor\+\_\+number minor, void $\ast$arg)
+\begin{DoxyCompactList}\small\item\em Frame Buffer Read Entry Point. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+device\+\_\+driver}} \mbox{\hyperlink{fb__vesa__rm_8c_a012f6bdeaf8e460385cc2ca86b7ad9f7}{frame\+\_\+buffer\+\_\+write}} (rtems\+\_\+device\+\_\+major\+\_\+number major, rtems\+\_\+device\+\_\+minor\+\_\+number minor, void $\ast$arg)
+\begin{DoxyCompactList}\small\item\em Frame Buffer Write Entry Point. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+device\+\_\+driver}} \mbox{\hyperlink{fb__vesa__rm_8c_a5d2c8a2dcd579aece42342ba0405c87d}{frame\+\_\+buffer\+\_\+control}} (rtems\+\_\+device\+\_\+major\+\_\+number major, rtems\+\_\+device\+\_\+minor\+\_\+number minor, void $\ast$arg)
+\begin{DoxyCompactList}\small\item\em Frame Buffer \mbox{\hyperlink{structIO}{IO}} Control Entry Point. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const char $\ast$const \mbox{\hyperlink{fb__vesa__rm_8c_a2844c398d862a1febaac41957a17b4be}{rtems\+\_\+fb\+\_\+default\+\_\+mode}}
+\begin{DoxyCompactList}\small\item\em Allows to enable initialization of V\+E\+SA real mode driver from an application by setting the value of this variable to non null value in user\textquotesingle{}s module. The value of this variable will be then updated when linked with application\textquotesingle{}s object. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+FB driver for graphic hardware compatible with V\+E\+SA Bios Extension Real mode interface utilized Tested on real HW. 
+
+Public sources related\+:
+\begin{DoxyItemize}
+\item V\+E\+SA B\+I\+OS E\+X\+T\+E\+N\+S\+I\+ON (V\+BE) Core Function Standard, Ver\+: 3.\+0, Sep 16, 1998
+\item V\+E\+SA Enhanced Extended Display Identification Data (E-\/\+E\+D\+ID) Standard Release A, Revision 2, September 25, 2006
+\end{DoxyItemize}
+
+Hardware is completely initialized upon boot of the system. Therefore there is no way to change graphics mode later.
+
+Interrupt 0x10 is used for entering graphics B\+I\+OS.
+
+Driver reads parameter from multiboot command line to setup video\+: \char`\"{}-\/-\/video=$<$res\+X$>$x$<$res\+Y$>$\mbox{[}-\/$<$bpp$>$\mbox{]}\char`\"{} \char`\"{}-\/-\/video=auto\char`\"{} -\/ try E\+D\+ID to find mode that fits the display attached best \char`\"{}-\/-\/video=none\char`\"{} / \char`\"{}-\/-\/video=off\char`\"{} -\/ do not initialize the driver If cmdline parameter is not specified the rtems\+\_\+fb\+\_\+default\+\_\+mode variable content is tested (see doc below). Command line option has higher priority. rtems\+\_\+fb\+\_\+default\+\_\+mode is probed only if cmdline \char`\"{}-\/-\/video=\char`\"{} is not specified at all.
+
+If neither of the above options is specified the driver is not initialized. 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{fb__vesa__rm_8c_aa1f239cfe02b6fe70d7be3e0f7d96c63}\label{fb__vesa__rm_8c_aa1f239cfe02b6fe70d7be3e0f7d96c63}} 
+\index{fb\_vesa\_rm.c@{fb\_vesa\_rm.c}!frame\_buffer\_close@{frame\_buffer\_close}}
+\index{frame\_buffer\_close@{frame\_buffer\_close}!fb\_vesa\_rm.c@{fb\_vesa\_rm.c}}
+\subsubsection{\texorpdfstring{frame\_buffer\_close()}{frame\_buffer\_close()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+device\+\_\+driver}} frame\+\_\+buffer\+\_\+close (\begin{DoxyParamCaption}\item[{rtems\+\_\+device\+\_\+major\+\_\+number}]{major,  }\item[{rtems\+\_\+device\+\_\+minor\+\_\+number}]{minor,  }\item[{void $\ast$}]{arg }\end{DoxyParamCaption})}
+
+
+
+Frame Buffer Close Entry Point. 
+
+This method closes a specific device supported by the frame buffer device driver.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em major} & is the device driver major number \\
+\hline
+\mbox{\texttt{ in}}  & {\em minor} & is the device driver minor number \\
+\hline
+\mbox{\texttt{ in}}  & {\em arg} & is the parameters to this call\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+This method returns R\+T\+E\+M\+S\+\_\+\+S\+U\+C\+C\+E\+S\+S\+F\+UL when the device is successfully closed. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{fb__vesa__rm_8c_a5d2c8a2dcd579aece42342ba0405c87d}\label{fb__vesa__rm_8c_a5d2c8a2dcd579aece42342ba0405c87d}} 
+\index{fb\_vesa\_rm.c@{fb\_vesa\_rm.c}!frame\_buffer\_control@{frame\_buffer\_control}}
+\index{frame\_buffer\_control@{frame\_buffer\_control}!fb\_vesa\_rm.c@{fb\_vesa\_rm.c}}
+\subsubsection{\texorpdfstring{frame\_buffer\_control()}{frame\_buffer\_control()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+device\+\_\+driver}} frame\+\_\+buffer\+\_\+control (\begin{DoxyParamCaption}\item[{rtems\+\_\+device\+\_\+major\+\_\+number}]{major,  }\item[{rtems\+\_\+device\+\_\+minor\+\_\+number}]{minor,  }\item[{void $\ast$}]{arg }\end{DoxyParamCaption})}
+
+
+
+Frame Buffer \mbox{\hyperlink{structIO}{IO}} Control Entry Point. 
+
+This method performs an \mbox{\hyperlink{structIO}{IO}} Control operation on a specific device supported by the frame buffer device driver.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em major} & is the device driver major number \\
+\hline
+\mbox{\texttt{ in}}  & {\em minor} & is the device driver minor number \\
+\hline
+\mbox{\texttt{ in}}  & {\em arg} & is the parameters to this call\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+This method returns R\+T\+E\+M\+S\+\_\+\+S\+U\+C\+C\+E\+S\+S\+F\+UL when the device driver \mbox{\hyperlink{structIO}{IO}} control operation is successfully performed. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{fb__vesa__rm_8c_aa2a4a319a3e9853e688c96116a088743}\label{fb__vesa__rm_8c_aa2a4a319a3e9853e688c96116a088743}} 
+\index{fb\_vesa\_rm.c@{fb\_vesa\_rm.c}!frame\_buffer\_initialize@{frame\_buffer\_initialize}}
+\index{frame\_buffer\_initialize@{frame\_buffer\_initialize}!fb\_vesa\_rm.c@{fb\_vesa\_rm.c}}
+\subsubsection{\texorpdfstring{frame\_buffer\_initialize()}{frame\_buffer\_initialize()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+device\+\_\+driver}} frame\+\_\+buffer\+\_\+initialize (\begin{DoxyParamCaption}\item[{rtems\+\_\+device\+\_\+major\+\_\+number}]{major,  }\item[{rtems\+\_\+device\+\_\+minor\+\_\+number}]{minor,  }\item[{void $\ast$}]{arg }\end{DoxyParamCaption})}
+
+
+
+Frame Buffer Initialization Entry Point. 
+
+This method initializes the frame buffer device driver.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em major} & is the device driver major number \\
+\hline
+\mbox{\texttt{ in}}  & {\em minor} & is the device driver minor number \\
+\hline
+\mbox{\texttt{ in}}  & {\em arg} & is the parameters to this call\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+This method returns R\+T\+E\+M\+S\+\_\+\+S\+U\+C\+C\+E\+S\+S\+F\+UL when the device driver is successfully initialized. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{fb__vesa__rm_8c_a82e568b33aca35a724b8d71a4d0dac3c}\label{fb__vesa__rm_8c_a82e568b33aca35a724b8d71a4d0dac3c}} 
+\index{fb\_vesa\_rm.c@{fb\_vesa\_rm.c}!frame\_buffer\_open@{frame\_buffer\_open}}
+\index{frame\_buffer\_open@{frame\_buffer\_open}!fb\_vesa\_rm.c@{fb\_vesa\_rm.c}}
+\subsubsection{\texorpdfstring{frame\_buffer\_open()}{frame\_buffer\_open()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+device\+\_\+driver}} frame\+\_\+buffer\+\_\+open (\begin{DoxyParamCaption}\item[{rtems\+\_\+device\+\_\+major\+\_\+number}]{major,  }\item[{rtems\+\_\+device\+\_\+minor\+\_\+number}]{minor,  }\item[{void $\ast$}]{arg }\end{DoxyParamCaption})}
+
+
+
+Frame Buffer Open Entry Point. 
+
+This method opens a specific device supported by the frame buffer device driver.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em major} & is the device driver major number \\
+\hline
+\mbox{\texttt{ in}}  & {\em minor} & is the device driver minor number \\
+\hline
+\mbox{\texttt{ in}}  & {\em arg} & is the parameters to this call\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+This method returns R\+T\+E\+M\+S\+\_\+\+S\+U\+C\+C\+E\+S\+S\+F\+UL when the device driver is successfully opened. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{fb__vesa__rm_8c_a2bb1e09cf325cedeade812912e9bd7d4}\label{fb__vesa__rm_8c_a2bb1e09cf325cedeade812912e9bd7d4}} 
+\index{fb\_vesa\_rm.c@{fb\_vesa\_rm.c}!frame\_buffer\_read@{frame\_buffer\_read}}
+\index{frame\_buffer\_read@{frame\_buffer\_read}!fb\_vesa\_rm.c@{fb\_vesa\_rm.c}}
+\subsubsection{\texorpdfstring{frame\_buffer\_read()}{frame\_buffer\_read()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+device\+\_\+driver}} frame\+\_\+buffer\+\_\+read (\begin{DoxyParamCaption}\item[{rtems\+\_\+device\+\_\+major\+\_\+number}]{major,  }\item[{rtems\+\_\+device\+\_\+minor\+\_\+number}]{minor,  }\item[{void $\ast$}]{arg }\end{DoxyParamCaption})}
+
+
+
+Frame Buffer Read Entry Point. 
+
+This method reads from a specific device supported by the frame buffer device driver.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em major} & is the device driver major number \\
+\hline
+\mbox{\texttt{ in}}  & {\em minor} & is the device driver minor number \\
+\hline
+\mbox{\texttt{ in}}  & {\em arg} & is the parameters to this call\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+This method returns R\+T\+E\+M\+S\+\_\+\+S\+U\+C\+C\+E\+S\+S\+F\+UL when the device is successfully read from. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{fb__vesa__rm_8c_a012f6bdeaf8e460385cc2ca86b7ad9f7}\label{fb__vesa__rm_8c_a012f6bdeaf8e460385cc2ca86b7ad9f7}} 
+\index{fb\_vesa\_rm.c@{fb\_vesa\_rm.c}!frame\_buffer\_write@{frame\_buffer\_write}}
+\index{frame\_buffer\_write@{frame\_buffer\_write}!fb\_vesa\_rm.c@{fb\_vesa\_rm.c}}
+\subsubsection{\texorpdfstring{frame\_buffer\_write()}{frame\_buffer\_write()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+device\+\_\+driver}} frame\+\_\+buffer\+\_\+write (\begin{DoxyParamCaption}\item[{rtems\+\_\+device\+\_\+major\+\_\+number}]{major,  }\item[{rtems\+\_\+device\+\_\+minor\+\_\+number}]{minor,  }\item[{void $\ast$}]{arg }\end{DoxyParamCaption})}
+
+
+
+Frame Buffer Write Entry Point. 
+
+This method writes to a specific device supported by the frame buffer device driver.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em major} & is the device driver major number \\
+\hline
+\mbox{\texttt{ in}}  & {\em minor} & is the device driver minor number \\
+\hline
+\mbox{\texttt{ in}}  & {\em arg} & is the parameters to this call\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+This method returns R\+T\+E\+M\+S\+\_\+\+S\+U\+C\+C\+E\+S\+S\+F\+UL when the device is successfully written. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{fb__vesa__rm_8c_af79f34df313a78e2330ccf2d81b867bb}\label{fb__vesa__rm_8c_af79f34df313a78e2330ccf2d81b867bb}} 
+\index{fb\_vesa\_rm.c@{fb\_vesa\_rm.c}!VBE\_controller\_information@{VBE\_controller\_information}}
+\index{VBE\_controller\_information@{VBE\_controller\_information}!fb\_vesa\_rm.c@{fb\_vesa\_rm.c}}
+\subsubsection{\texorpdfstring{VBE\_controller\_information()}{VBE\_controller\_information()}}
+{\footnotesize\ttfamily uint32\+\_\+t V\+B\+E\+\_\+controller\+\_\+information (\begin{DoxyParamCaption}\item[{V\+B\+E\+\_\+vbe\+\_\+info\+\_\+block $\ast$}]{info\+\_\+block,  }\item[{uint16\+\_\+t}]{queried\+\_\+\+V\+B\+E\+\_\+\+Version }\end{DoxyParamCaption})}
+
+
+
+Returns information about graphic\textquotesingle{}s controller in the {\ttfamily info\+\_\+block} structure. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em info\+\_\+block} & pointer to the struct to be filled with controller information \\
+\hline
+\mbox{\texttt{ in}}  & {\em queried\+\_\+\+V\+B\+E\+\_\+\+Version} & if $>$0x200 then video bios is asked to fill in parameters which appeared with second version of V\+BE. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em ax} & register content as defined in V\+BE R\+E\+T\+U\+RN S\+T\+A\+T\+US paragraph \\
+\hline
+{\em -\/1} & error calling graphical bios \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{fb__vesa__rm_8c_ad3c4b4e341541adb5ebbed06a56d4df6}\label{fb__vesa__rm_8c_ad3c4b4e341541adb5ebbed06a56d4df6}} 
+\index{fb\_vesa\_rm.c@{fb\_vesa\_rm.c}!VBE\_current\_mode@{VBE\_current\_mode}}
+\index{VBE\_current\_mode@{VBE\_current\_mode}!fb\_vesa\_rm.c@{fb\_vesa\_rm.c}}
+\subsubsection{\texorpdfstring{VBE\_current\_mode()}{VBE\_current\_mode()}}
+{\footnotesize\ttfamily uint32\+\_\+t V\+B\+E\+\_\+current\+\_\+mode (\begin{DoxyParamCaption}\item[{uint16\+\_\+t $\ast$}]{mode\+\_\+number }\end{DoxyParamCaption})}
+
+
+
+Get currently set mode number. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em mode\+\_\+number} & variable to be filled with current mode number \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em ax} & register content as defined in V\+BE R\+E\+T\+U\+RN S\+T\+A\+T\+US paragraph \\
+\hline
+{\em -\/1} & error calling graphical bios \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{fb__vesa__rm_8c_ad6912df918c80a1d1af9396d298fa290}\label{fb__vesa__rm_8c_ad6912df918c80a1d1af9396d298fa290}} 
+\index{fb\_vesa\_rm.c@{fb\_vesa\_rm.c}!VBE\_mode\_information@{VBE\_mode\_information}}
+\index{VBE\_mode\_information@{VBE\_mode\_information}!fb\_vesa\_rm.c@{fb\_vesa\_rm.c}}
+\subsubsection{\texorpdfstring{VBE\_mode\_information()}{VBE\_mode\_information()}}
+{\footnotesize\ttfamily uint32\+\_\+t V\+B\+E\+\_\+mode\+\_\+information (\begin{DoxyParamCaption}\item[{V\+B\+E\+\_\+mode\+\_\+info\+\_\+block $\ast$}]{info\+\_\+block,  }\item[{uint16\+\_\+t}]{mode\+\_\+number }\end{DoxyParamCaption})}
+
+
+
+Fills structure {\ttfamily info\+\_\+block} with informations about selected mode in {\ttfamily mode\+\_\+number} variable. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em info\+\_\+block} & pointer to the struct to be filled with mode information \\
+\hline
+\mbox{\texttt{ in}}  & {\em mode\+\_\+number} & detailes of this mode to be filled \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em ax} & register content as defined in V\+BE R\+E\+T\+U\+RN S\+T\+A\+T\+US paragraph \\
+\hline
+{\em -\/1} & error calling graphical bios \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{fb__vesa__rm_8c_a14025cd716317297c59efcf17afb8d71}\label{fb__vesa__rm_8c_a14025cd716317297c59efcf17afb8d71}} 
+\index{fb\_vesa\_rm.c@{fb\_vesa\_rm.c}!VBE\_read\_EDID@{VBE\_read\_EDID}}
+\index{VBE\_read\_EDID@{VBE\_read\_EDID}!fb\_vesa\_rm.c@{fb\_vesa\_rm.c}}
+\subsubsection{\texorpdfstring{VBE\_read\_EDID()}{VBE\_read\_EDID()}}
+{\footnotesize\ttfamily uint32\+\_\+t V\+B\+E\+\_\+read\+\_\+\+E\+D\+ID (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{controller\+\_\+unit\+\_\+number,  }\item[{uint16\+\_\+t}]{E\+D\+I\+D\+\_\+block\+\_\+number,  }\item[{E\+D\+I\+D\+\_\+edid1 $\ast$}]{buffer }\end{DoxyParamCaption})}
+
+
+
+Reads selected E\+D\+ID block from display attached to controller\textquotesingle{}s interface. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em controller\+\_\+unit\+\_\+number} & \\
+\hline
+\mbox{\texttt{ in}}  & {\em E\+D\+I\+D\+\_\+block\+\_\+number} & block no. to be read from the display \\
+\hline
+\mbox{\texttt{ out}}  & {\em buffer} & place to store block fetched from the display \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em ax} & register content as defined in V\+BE R\+E\+T\+U\+RN S\+T\+A\+T\+US paragraph \\
+\hline
+{\em -\/1} & error calling graphical bios \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{fb__vesa__rm_8c_aac4d734cef2ff871d97a6ba67a28192e}\label{fb__vesa__rm_8c_aac4d734cef2ff871d97a6ba67a28192e}} 
+\index{fb\_vesa\_rm.c@{fb\_vesa\_rm.c}!VBE\_report\_DDC\_capabilities@{VBE\_report\_DDC\_capabilities}}
+\index{VBE\_report\_DDC\_capabilities@{VBE\_report\_DDC\_capabilities}!fb\_vesa\_rm.c@{fb\_vesa\_rm.c}}
+\subsubsection{\texorpdfstring{VBE\_report\_DDC\_capabilities()}{VBE\_report\_DDC\_capabilities()}}
+{\footnotesize\ttfamily uint32\+\_\+t V\+B\+E\+\_\+report\+\_\+\+D\+D\+C\+\_\+capabilities (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{controller\+\_\+unit\+\_\+number,  }\item[{uint8\+\_\+t $\ast$}]{seconds\+\_\+to\+\_\+transfer\+\_\+\+E\+D\+I\+D\+\_\+block,  }\item[{uint8\+\_\+t $\ast$}]{D\+D\+C\+\_\+level\+\_\+supported }\end{DoxyParamCaption})}
+
+
+
+Gets information about display data channel implemented in the graphic\textquotesingle{}s controller. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em controller\+\_\+unit\+\_\+number} & \\
+\hline
+\mbox{\texttt{ out}}  & {\em seconds\+\_\+to\+\_\+transfer\+\_\+\+E\+D\+I\+D\+\_\+block} & approximate time to transfer one E\+D\+ID block rounded up to seconds \\
+\hline
+\mbox{\texttt{ out}}  & {\em D\+D\+C\+\_\+level\+\_\+supported} & contains D\+DC version supported and screen blanking state during transfer \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em ax} & register content as defined in V\+BE R\+E\+T\+U\+RN S\+T\+A\+T\+US paragraph \\
+\hline
+{\em -\/1} & error calling graphical bios \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{fb__vesa__rm_8c_a9db0915ef74a364c88a6d42e847fa1b4}\label{fb__vesa__rm_8c_a9db0915ef74a364c88a6d42e847fa1b4}} 
+\index{fb\_vesa\_rm.c@{fb\_vesa\_rm.c}!VBE\_set\_mode@{VBE\_set\_mode}}
+\index{VBE\_set\_mode@{VBE\_set\_mode}!fb\_vesa\_rm.c@{fb\_vesa\_rm.c}}
+\subsubsection{\texorpdfstring{VBE\_set\_mode()}{VBE\_set\_mode()}}
+{\footnotesize\ttfamily uint32\+\_\+t V\+B\+E\+\_\+set\+\_\+mode (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{mode\+\_\+number,  }\item[{V\+B\+E\+\_\+\+C\+R\+T\+C\+\_\+info\+\_\+block $\ast$}]{info\+\_\+block }\end{DoxyParamCaption})}
+
+
+
+Sets graphics mode selected. If mode has refresh\+Rate\+Ctrl bit set, than the {\ttfamily info\+\_\+block} must be filled accordingly. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em mode\+\_\+number} & number of mode to be set \\
+\hline
+\mbox{\texttt{ in}}  & {\em info\+\_\+block} & pointer to struct containing refresh rate control info \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em ax} & register content as defined in V\+BE R\+E\+T\+U\+RN S\+T\+A\+T\+US paragraph \\
+\hline
+{\em -\/1} & error calling graphical bios \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{fb__vesa__rm_8c_a66442b4301c2a23d9f9baef8f4cdab8f}\label{fb__vesa__rm_8c_a66442b4301c2a23d9f9baef8f4cdab8f}} 
+\index{fb\_vesa\_rm.c@{fb\_vesa\_rm.c}!vesa\_realmode\_bootup\_init@{vesa\_realmode\_bootup\_init}}
+\index{vesa\_realmode\_bootup\_init@{vesa\_realmode\_bootup\_init}!fb\_vesa\_rm.c@{fb\_vesa\_rm.c}}
+\subsubsection{\texorpdfstring{vesa\_realmode\_bootup\_init()}{vesa\_realmode\_bootup\_init()}}
+{\footnotesize\ttfamily void vesa\+\_\+realmode\+\_\+bootup\+\_\+init (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Initializes V\+BE framebuffer during bootup. 
+
+utilizes switches to real mode interrupts and therefore must be called during bootup before tick is set up and real-\/time interrupt vectors utilized 
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{fb__vesa__rm_8c_a2844c398d862a1febaac41957a17b4be}\label{fb__vesa__rm_8c_a2844c398d862a1febaac41957a17b4be}} 
+\index{fb\_vesa\_rm.c@{fb\_vesa\_rm.c}!rtems\_fb\_default\_mode@{rtems\_fb\_default\_mode}}
+\index{rtems\_fb\_default\_mode@{rtems\_fb\_default\_mode}!fb\_vesa\_rm.c@{fb\_vesa\_rm.c}}
+\subsubsection{\texorpdfstring{rtems\_fb\_default\_mode}{rtems\_fb\_default\_mode}}
+{\footnotesize\ttfamily const char$\ast$ const rtems\+\_\+fb\+\_\+default\+\_\+mode}
+
+
+
+Allows to enable initialization of V\+E\+SA real mode driver from an application by setting the value of this variable to non null value in user\textquotesingle{}s module. The value of this variable will be then updated when linked with application\textquotesingle{}s object. 
+
+Further the value should point to string in the following format\+: \char`\"{}$<$res\+X$>$x$<$res\+Y$>$\mbox{[}-\/$<$bpp$>$\mbox{]}\char`\"{} -\/ e.\+g. \char`\"{}1024x768-\/32\char`\"{} \char`\"{}auto\char`\"{} -\/ try E\+D\+ID to find mode that fits the display attached best \char`\"{}none\char`\"{} / \char`\"{}off\char`\"{} -\/ do not initialize the driver the given parameters are used if applicable.
+
+Command line argument \char`\"{}-\/-\/video=\char`\"{} has priority over this string. 

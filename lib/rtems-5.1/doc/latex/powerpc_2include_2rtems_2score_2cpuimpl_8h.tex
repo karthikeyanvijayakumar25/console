@@ -1,0 +1,126 @@
+\hypertarget{powerpc_2include_2rtems_2score_2cpuimpl_8h}{}\section{cpukit/score/cpu/powerpc/include/rtems/score/cpuimpl.h File Reference}
+\label{powerpc_2include_2rtems_2score_2cpuimpl_8h}\index{cpukit/score/cpu/powerpc/include/rtems/score/cpuimpl.h@{cpukit/score/cpu/powerpc/include/rtems/score/cpuimpl.h}}
+
+
+C\+PU Port Implementation A\+PI.  
+
+
+{\ttfamily \#include $<$rtems/score/cpu.\+h$>$}\newline
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structCPU__Interrupt__frame}{C\+P\+U\+\_\+\+Interrupt\+\_\+frame}}
+\begin{DoxyCompactList}\small\item\em Interrupt stack frame (I\+SF). \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bfseries F\+R\+A\+M\+E\+\_\+\+L\+I\+N\+K\+\_\+\+S\+P\+A\+CE}~8
+\item 
+\#define {\bfseries S\+R\+R0\+\_\+\+F\+R\+A\+M\+E\+\_\+\+O\+F\+F\+S\+ET}~F\+R\+A\+M\+E\+\_\+\+L\+I\+N\+K\+\_\+\+S\+P\+A\+CE
+\item 
+\#define {\bfseries S\+R\+R1\+\_\+\+F\+R\+A\+M\+E\+\_\+\+O\+F\+F\+S\+ET}~(S\+R\+R0\+\_\+\+F\+R\+A\+M\+E\+\_\+\+O\+F\+F\+S\+ET + P\+P\+C\+\_\+\+R\+E\+G\+\_\+\+S\+I\+ZE)
+\item 
+\#define {\bfseries E\+X\+C\+E\+P\+T\+I\+O\+N\+\_\+\+N\+U\+M\+B\+E\+R\+\_\+\+O\+F\+F\+S\+ET}~(S\+R\+R1\+\_\+\+F\+R\+A\+M\+E\+\_\+\+O\+F\+F\+S\+ET + P\+P\+C\+\_\+\+R\+E\+G\+\_\+\+S\+I\+ZE)
+\item 
+\#define {\bfseries P\+P\+C\+\_\+\+E\+X\+C\+\_\+\+I\+N\+T\+E\+R\+R\+U\+P\+T\+\_\+\+E\+N\+T\+R\+Y\+\_\+\+I\+N\+S\+T\+A\+N\+T\+\_\+\+O\+F\+F\+S\+ET}~(E\+X\+C\+E\+P\+T\+I\+O\+N\+\_\+\+N\+U\+M\+B\+E\+R\+\_\+\+O\+F\+F\+S\+ET + 4)
+\item 
+\#define {\bfseries E\+X\+C\+\_\+\+C\+R\+\_\+\+O\+F\+F\+S\+ET}~(E\+X\+C\+E\+P\+T\+I\+O\+N\+\_\+\+N\+U\+M\+B\+E\+R\+\_\+\+O\+F\+F\+S\+ET + 8)
+\item 
+\#define {\bfseries E\+X\+C\+\_\+\+X\+E\+R\+\_\+\+O\+F\+F\+S\+ET}~(E\+X\+C\+\_\+\+C\+R\+\_\+\+O\+F\+F\+S\+ET + 4)
+\item 
+\#define {\bfseries E\+X\+C\+\_\+\+C\+T\+R\+\_\+\+O\+F\+F\+S\+ET}~(E\+X\+C\+\_\+\+X\+E\+R\+\_\+\+O\+F\+F\+S\+ET + 4)
+\item 
+\#define {\bfseries E\+X\+C\+\_\+\+L\+R\+\_\+\+O\+F\+F\+S\+ET}~(E\+X\+C\+\_\+\+C\+T\+R\+\_\+\+O\+F\+F\+S\+ET + P\+P\+C\+\_\+\+R\+E\+G\+\_\+\+S\+I\+ZE)
+\item 
+\#define {\bfseries P\+P\+C\+\_\+\+E\+X\+C\+\_\+\+I\+N\+T\+E\+R\+R\+U\+P\+T\+\_\+\+F\+R\+A\+M\+E\+\_\+\+O\+F\+F\+S\+ET}~(E\+X\+C\+\_\+\+L\+R\+\_\+\+O\+F\+F\+S\+ET + P\+P\+C\+\_\+\+R\+E\+G\+\_\+\+S\+I\+ZE)
+\item 
+\#define {\bfseries P\+P\+C\+\_\+\+E\+X\+C\+\_\+\+G\+P\+R\+\_\+\+O\+F\+F\+S\+ET}(gpr)~((gpr) $\ast$ P\+P\+C\+\_\+\+G\+P\+R\+\_\+\+S\+I\+ZE + P\+P\+C\+\_\+\+E\+X\+C\+\_\+\+I\+N\+T\+E\+R\+R\+U\+P\+T\+\_\+\+F\+R\+A\+M\+E\+\_\+\+O\+F\+F\+S\+ET + P\+P\+C\+\_\+\+R\+E\+G\+\_\+\+S\+I\+ZE)
+\item 
+\#define {\bfseries P\+P\+C\+\_\+\+E\+X\+C\+\_\+\+G\+P\+R3\+\_\+\+P\+R\+O\+L\+O\+G\+U\+E\+\_\+\+O\+F\+F\+S\+ET}~P\+P\+C\+\_\+\+E\+X\+C\+\_\+\+G\+P\+R\+\_\+\+O\+F\+F\+S\+ET(3)
+\item 
+\#define {\bfseries P\+P\+C\+\_\+\+E\+X\+C\+\_\+\+F\+R\+A\+M\+E\+\_\+\+S\+I\+ZE}~P\+P\+C\+\_\+\+E\+X\+C\+\_\+\+G\+P\+R\+\_\+\+O\+F\+F\+S\+ET(33)
+\item 
+\#define {\bfseries C\+P\+U\+\_\+\+I\+N\+T\+E\+R\+R\+U\+P\+T\+\_\+\+F\+R\+A\+M\+E\+\_\+\+S\+I\+ZE}~(P\+P\+C\+\_\+\+E\+X\+C\+\_\+\+G\+P\+R\+\_\+\+O\+F\+F\+S\+ET(13) + P\+P\+C\+\_\+\+S\+T\+A\+C\+K\+\_\+\+R\+E\+D\+\_\+\+Z\+O\+N\+E\+\_\+\+S\+I\+ZE)
+\item 
+\#define {\bfseries G\+P\+R0\+\_\+\+O\+F\+F\+S\+ET}~P\+P\+C\+\_\+\+E\+X\+C\+\_\+\+G\+P\+R\+\_\+\+O\+F\+F\+S\+ET(0)
+\item 
+\#define {\bfseries G\+P\+R1\+\_\+\+O\+F\+F\+S\+ET}~P\+P\+C\+\_\+\+E\+X\+C\+\_\+\+G\+P\+R\+\_\+\+O\+F\+F\+S\+ET(1)
+\item 
+\#define {\bfseries G\+P\+R2\+\_\+\+O\+F\+F\+S\+ET}~P\+P\+C\+\_\+\+E\+X\+C\+\_\+\+G\+P\+R\+\_\+\+O\+F\+F\+S\+ET(2)
+\item 
+\#define {\bfseries G\+P\+R3\+\_\+\+O\+F\+F\+S\+ET}~P\+P\+C\+\_\+\+E\+X\+C\+\_\+\+G\+P\+R\+\_\+\+O\+F\+F\+S\+ET(3)
+\item 
+\#define {\bfseries G\+P\+R4\+\_\+\+O\+F\+F\+S\+ET}~P\+P\+C\+\_\+\+E\+X\+C\+\_\+\+G\+P\+R\+\_\+\+O\+F\+F\+S\+ET(4)
+\item 
+\#define {\bfseries G\+P\+R5\+\_\+\+O\+F\+F\+S\+ET}~P\+P\+C\+\_\+\+E\+X\+C\+\_\+\+G\+P\+R\+\_\+\+O\+F\+F\+S\+ET(5)
+\item 
+\#define {\bfseries G\+P\+R6\+\_\+\+O\+F\+F\+S\+ET}~P\+P\+C\+\_\+\+E\+X\+C\+\_\+\+G\+P\+R\+\_\+\+O\+F\+F\+S\+ET(6)
+\item 
+\#define {\bfseries G\+P\+R7\+\_\+\+O\+F\+F\+S\+ET}~P\+P\+C\+\_\+\+E\+X\+C\+\_\+\+G\+P\+R\+\_\+\+O\+F\+F\+S\+ET(7)
+\item 
+\#define {\bfseries G\+P\+R8\+\_\+\+O\+F\+F\+S\+ET}~P\+P\+C\+\_\+\+E\+X\+C\+\_\+\+G\+P\+R\+\_\+\+O\+F\+F\+S\+ET(8)
+\item 
+\#define {\bfseries G\+P\+R9\+\_\+\+O\+F\+F\+S\+ET}~P\+P\+C\+\_\+\+E\+X\+C\+\_\+\+G\+P\+R\+\_\+\+O\+F\+F\+S\+ET(9)
+\item 
+\#define {\bfseries G\+P\+R10\+\_\+\+O\+F\+F\+S\+ET}~P\+P\+C\+\_\+\+E\+X\+C\+\_\+\+G\+P\+R\+\_\+\+O\+F\+F\+S\+ET(10)
+\item 
+\#define {\bfseries G\+P\+R11\+\_\+\+O\+F\+F\+S\+ET}~P\+P\+C\+\_\+\+E\+X\+C\+\_\+\+G\+P\+R\+\_\+\+O\+F\+F\+S\+ET(11)
+\item 
+\#define {\bfseries G\+P\+R12\+\_\+\+O\+F\+F\+S\+ET}~P\+P\+C\+\_\+\+E\+X\+C\+\_\+\+G\+P\+R\+\_\+\+O\+F\+F\+S\+ET(12)
+\item 
+\#define {\bfseries G\+P\+R13\+\_\+\+O\+F\+F\+S\+ET}~P\+P\+C\+\_\+\+E\+X\+C\+\_\+\+G\+P\+R\+\_\+\+O\+F\+F\+S\+ET(13)
+\item 
+\#define {\bfseries G\+P\+R14\+\_\+\+O\+F\+F\+S\+ET}~P\+P\+C\+\_\+\+E\+X\+C\+\_\+\+G\+P\+R\+\_\+\+O\+F\+F\+S\+ET(14)
+\item 
+\#define {\bfseries G\+P\+R15\+\_\+\+O\+F\+F\+S\+ET}~P\+P\+C\+\_\+\+E\+X\+C\+\_\+\+G\+P\+R\+\_\+\+O\+F\+F\+S\+ET(15)
+\item 
+\#define {\bfseries G\+P\+R16\+\_\+\+O\+F\+F\+S\+ET}~P\+P\+C\+\_\+\+E\+X\+C\+\_\+\+G\+P\+R\+\_\+\+O\+F\+F\+S\+ET(16)
+\item 
+\#define {\bfseries G\+P\+R17\+\_\+\+O\+F\+F\+S\+ET}~P\+P\+C\+\_\+\+E\+X\+C\+\_\+\+G\+P\+R\+\_\+\+O\+F\+F\+S\+ET(17)
+\item 
+\#define {\bfseries G\+P\+R18\+\_\+\+O\+F\+F\+S\+ET}~P\+P\+C\+\_\+\+E\+X\+C\+\_\+\+G\+P\+R\+\_\+\+O\+F\+F\+S\+ET(18)
+\item 
+\#define {\bfseries G\+P\+R19\+\_\+\+O\+F\+F\+S\+ET}~P\+P\+C\+\_\+\+E\+X\+C\+\_\+\+G\+P\+R\+\_\+\+O\+F\+F\+S\+ET(19)
+\item 
+\#define {\bfseries G\+P\+R20\+\_\+\+O\+F\+F\+S\+ET}~P\+P\+C\+\_\+\+E\+X\+C\+\_\+\+G\+P\+R\+\_\+\+O\+F\+F\+S\+ET(20)
+\item 
+\#define {\bfseries G\+P\+R21\+\_\+\+O\+F\+F\+S\+ET}~P\+P\+C\+\_\+\+E\+X\+C\+\_\+\+G\+P\+R\+\_\+\+O\+F\+F\+S\+ET(21)
+\item 
+\#define {\bfseries G\+P\+R22\+\_\+\+O\+F\+F\+S\+ET}~P\+P\+C\+\_\+\+E\+X\+C\+\_\+\+G\+P\+R\+\_\+\+O\+F\+F\+S\+ET(22)
+\item 
+\#define {\bfseries G\+P\+R23\+\_\+\+O\+F\+F\+S\+ET}~P\+P\+C\+\_\+\+E\+X\+C\+\_\+\+G\+P\+R\+\_\+\+O\+F\+F\+S\+ET(23)
+\item 
+\#define {\bfseries G\+P\+R24\+\_\+\+O\+F\+F\+S\+ET}~P\+P\+C\+\_\+\+E\+X\+C\+\_\+\+G\+P\+R\+\_\+\+O\+F\+F\+S\+ET(24)
+\item 
+\#define {\bfseries G\+P\+R25\+\_\+\+O\+F\+F\+S\+ET}~P\+P\+C\+\_\+\+E\+X\+C\+\_\+\+G\+P\+R\+\_\+\+O\+F\+F\+S\+ET(25)
+\item 
+\#define {\bfseries G\+P\+R26\+\_\+\+O\+F\+F\+S\+ET}~P\+P\+C\+\_\+\+E\+X\+C\+\_\+\+G\+P\+R\+\_\+\+O\+F\+F\+S\+ET(26)
+\item 
+\#define {\bfseries G\+P\+R27\+\_\+\+O\+F\+F\+S\+ET}~P\+P\+C\+\_\+\+E\+X\+C\+\_\+\+G\+P\+R\+\_\+\+O\+F\+F\+S\+ET(27)
+\item 
+\#define {\bfseries G\+P\+R28\+\_\+\+O\+F\+F\+S\+ET}~P\+P\+C\+\_\+\+E\+X\+C\+\_\+\+G\+P\+R\+\_\+\+O\+F\+F\+S\+ET(28)
+\item 
+\#define {\bfseries G\+P\+R29\+\_\+\+O\+F\+F\+S\+ET}~P\+P\+C\+\_\+\+E\+X\+C\+\_\+\+G\+P\+R\+\_\+\+O\+F\+F\+S\+ET(29)
+\item 
+\#define {\bfseries G\+P\+R30\+\_\+\+O\+F\+F\+S\+ET}~P\+P\+C\+\_\+\+E\+X\+C\+\_\+\+G\+P\+R\+\_\+\+O\+F\+F\+S\+ET(30)
+\item 
+\#define {\bfseries G\+P\+R31\+\_\+\+O\+F\+F\+S\+ET}~P\+P\+C\+\_\+\+E\+X\+C\+\_\+\+G\+P\+R\+\_\+\+O\+F\+F\+S\+ET(31)
+\item 
+\#define {\bfseries C\+P\+U\+\_\+\+P\+E\+R\+\_\+\+C\+P\+U\+\_\+\+C\+O\+N\+T\+R\+O\+L\+\_\+\+S\+I\+ZE}~0
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void {\bfseries \+\_\+\+C\+P\+U\+\_\+\+Context\+\_\+volatile\+\_\+clobber} (uintptr\+\_\+t pattern)
+\item 
+void {\bfseries \+\_\+\+C\+P\+U\+\_\+\+Context\+\_\+validate} (uintptr\+\_\+t pattern)
+\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void {\bfseries \+\_\+\+C\+P\+U\+\_\+\+Instruction\+\_\+illegal} (void)
+\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void {\bfseries \+\_\+\+C\+P\+U\+\_\+\+Instruction\+\_\+no\+\_\+operation} (void)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+C\+PU Port Implementation A\+PI. 
+

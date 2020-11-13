@@ -1,0 +1,62 @@
+\hypertarget{objectmp_8c}{}\section{cpukit/score/src/objectmp.c File Reference}
+\label{objectmp_8c}\index{cpukit/score/src/objectmp.c@{cpukit/score/src/objectmp.c}}
+
+
+Objects MP Support.  
+
+
+{\ttfamily \#include $<$rtems/score/objectimpl.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/score/interr.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/score/isrlock.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/config.\+h$>$}\newline
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structObjects__MP__Name__and__node}{Objects\+\_\+\+M\+P\+\_\+\+Name\+\_\+and\+\_\+node}}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{objectmp_8c_a631f7b1ab8407c4f0a2c45e55a9d7931}\label{objectmp_8c_a631f7b1ab8407c4f0a2c45e55a9d7931}} 
+\#define {\bfseries O\+B\+J\+E\+C\+T\+S\+\_\+\+M\+P\+\_\+\+C\+O\+N\+T\+R\+O\+L\+\_\+\+O\+F\+\_\+\+I\+D\+\_\+\+L\+O\+O\+K\+U\+P\+\_\+\+N\+O\+DE}(node)~\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gab2e7a0141fd898ae358fa9b134aa2610}{R\+T\+E\+M\+S\+\_\+\+C\+O\+N\+T\+A\+I\+N\+E\+R\+\_\+\+OF}}( node, Objects\+\_\+\+M\+P\+\_\+\+Control, Nodes.\+Active.\+Id\+\_\+lookup )
+\item 
+\mbox{\Hypertarget{objectmp_8c_a5cc31a959c9a348e6fa7b2229a7ddc81}\label{objectmp_8c_a5cc31a959c9a348e6fa7b2229a7ddc81}} 
+\#define {\bfseries O\+B\+J\+E\+C\+T\+S\+\_\+\+M\+P\+\_\+\+C\+O\+N\+T\+R\+O\+L\+\_\+\+O\+F\+\_\+\+N\+A\+M\+E\+\_\+\+L\+O\+O\+K\+U\+P\+\_\+\+N\+O\+DE}(node)~\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gab2e7a0141fd898ae358fa9b134aa2610}{R\+T\+E\+M\+S\+\_\+\+C\+O\+N\+T\+A\+I\+N\+E\+R\+\_\+\+OF}}( node, Objects\+\_\+\+M\+P\+\_\+\+Control, Nodes.\+Active.\+Name\+\_\+lookup )
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{group__RTEMSScoreObjectMP_ga8eeb67c75c0df3e90a12619b9efa8917}{\+\_\+\+Objects\+\_\+\+M\+P\+\_\+\+Handler\+\_\+early\+\_\+initialization}} (void)
+\begin{DoxyCompactList}\small\item\em Intializes the global object node number used in the ID field of all objects. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__RTEMSScoreObjectMP_ga1d2257e8720ed52a8f851d768a0facfd}{\+\_\+\+Objects\+\_\+\+M\+P\+\_\+\+Handler\+\_\+initialization}} (void)
+\begin{DoxyCompactList}\small\item\em Intializes the inactive global object chain based on the maximum number of global objects configured. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__RTEMSScoreObjectMP_gaa5c13d3459c22165867d079319392ee6}{\+\_\+\+Objects\+\_\+\+M\+P\+\_\+\+Open}} (\mbox{\hyperlink{structObjects__Information}{Objects\+\_\+\+Information}} $\ast$information, Objects\+\_\+\+M\+P\+\_\+\+Control $\ast$the\+\_\+global\+\_\+object, uint32\+\_\+t the\+\_\+name, \mbox{\hyperlink{group__RTEMSScoreObject_ga5821f52a51072941bdd603e542d0863e}{Objects\+\_\+\+Id}} the\+\_\+id)
+\begin{DoxyCompactList}\small\item\em Place the specified global object in the specified information table. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__RTEMSScoreObjectMP_gaee5f1bac6bea600e8f437c6cb0458f97}{\+\_\+\+Objects\+\_\+\+M\+P\+\_\+\+Allocate\+\_\+and\+\_\+open}} (\mbox{\hyperlink{structObjects__Information}{Objects\+\_\+\+Information}} $\ast$information, uint32\+\_\+t the\+\_\+name, \mbox{\hyperlink{group__RTEMSScoreObject_ga5821f52a51072941bdd603e542d0863e}{Objects\+\_\+\+Id}} the\+\_\+id, bool is\+\_\+fatal\+\_\+error)
+\begin{DoxyCompactList}\small\item\em Allocates a global object control block and places it in the specified information table. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__RTEMSScoreObjectMP_gaddafb4298b03f748102e804b89aaea15}{\+\_\+\+Objects\+\_\+\+M\+P\+\_\+\+Close}} (\mbox{\hyperlink{structObjects__Information}{Objects\+\_\+\+Information}} $\ast$information, \mbox{\hyperlink{group__RTEMSScoreObject_ga5821f52a51072941bdd603e542d0863e}{Objects\+\_\+\+Id}} the\+\_\+id)
+\begin{DoxyCompactList}\small\item\em Removes a global object from the specified information table. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreObject_gaccfeec04954711c389b10aeccc91cabe}{Objects\+\_\+\+Name\+\_\+or\+\_\+id\+\_\+lookup\+\_\+errors}} \mbox{\hyperlink{group__RTEMSScoreObjectMP_ga9bca9a227f05b1c197c498b019fc9099}{\+\_\+\+Objects\+\_\+\+M\+P\+\_\+\+Global\+\_\+name\+\_\+search}} (\mbox{\hyperlink{structObjects__Information}{Objects\+\_\+\+Information}} $\ast$information, \mbox{\hyperlink{unionObjects__Name}{Objects\+\_\+\+Name}} the\+\_\+name, uint32\+\_\+t nodes\+\_\+to\+\_\+search, \mbox{\hyperlink{group__RTEMSScoreObject_ga5821f52a51072941bdd603e542d0863e}{Objects\+\_\+\+Id}} $\ast$the\+\_\+id)
+\begin{DoxyCompactList}\small\item\em Looks for the object with the\+\_\+name in the global object tables indicated by information. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__RTEMSScoreObjectMP_gae1144d0c54b95368022bd861539e9694}{\+\_\+\+Objects\+\_\+\+M\+P\+\_\+\+Is\+\_\+remote}} (\mbox{\hyperlink{group__RTEMSScoreObject_ga5821f52a51072941bdd603e542d0863e}{Objects\+\_\+\+Id}} the\+\_\+id, const \mbox{\hyperlink{structObjects__Information}{Objects\+\_\+\+Information}} $\ast$information)
+\begin{DoxyCompactList}\small\item\em Checks if the object identifier is in the global object identifier cache of the specified object information. \end{DoxyCompactList}\item 
+Objects\+\_\+\+M\+P\+\_\+\+Control $\ast$ \mbox{\hyperlink{group__RTEMSScoreObjectMP_gaac123fca33d27617283f1d6ec4a4f1bd}{\+\_\+\+Objects\+\_\+\+M\+P\+\_\+\+Allocate\+\_\+global\+\_\+object}} (void)
+\begin{DoxyCompactList}\small\item\em This function allocates a Global Object control block. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__RTEMSScoreObjectMP_ga7046ff6304d231056117c0bbf5d72f14}{\+\_\+\+Objects\+\_\+\+M\+P\+\_\+\+Free\+\_\+global\+\_\+object}} (Objects\+\_\+\+M\+P\+\_\+\+Control $\ast$the\+\_\+global\+\_\+object)
+\begin{DoxyCompactList}\small\item\em This routine deallocates a Global Object control block. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{objectmp_8c_a9eecfbbde1892bdde13846336e81f32c}\label{objectmp_8c_a9eecfbbde1892bdde13846336e81f32c}} 
+uint16\+\_\+t {\bfseries \+\_\+\+Objects\+\_\+\+Local\+\_\+node}
+\item 
+\mbox{\Hypertarget{objectmp_8c_adb7f04fb60149656c370717d0f4c6215}\label{objectmp_8c_adb7f04fb60149656c370717d0f4c6215}} 
+uint16\+\_\+t {\bfseries \+\_\+\+Objects\+\_\+\+Maximum\+\_\+nodes}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{group__RTEMSScoreObjectMP_ga33d2259b664cf64ff969534c0ecc8a3c}{\+\_\+\+Objects\+\_\+\+M\+P\+\_\+\+Maximum\+\_\+global\+\_\+objects}}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Objects MP Support. 
+

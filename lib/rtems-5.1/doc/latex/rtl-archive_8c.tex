@@ -1,0 +1,242 @@
+\hypertarget{rtl-archive_8c}{}\section{cpukit/libdl/rtl-\/archive.c File Reference}
+\label{rtl-archive_8c}\index{cpukit/libdl/rtl-\/archive.c@{cpukit/libdl/rtl-\/archive.c}}
+
+
+R\+T\+E\+MS Run-\/\+Time Linker Archive.  
+
+
+{\ttfamily \#include $<$ctype.\+h$>$}\newline
+{\ttfamily \#include $<$dirent.\+h$>$}\newline
+{\ttfamily \#include $<$errno.\+h$>$}\newline
+{\ttfamily \#include $<$fnmatch.\+h$>$}\newline
+{\ttfamily \#include $<$inttypes.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/libio\+\_\+.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/rtl/rtl.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}rtl-\/chain-\/iterator.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$rtems/rtl/rtl-\/trace.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}rtl-\/string.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}rtl-\/error.\+h\char`\"{}}\newline
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structrtems__rtl__archive__chain__data}{rtems\+\_\+rtl\+\_\+archive\+\_\+chain\+\_\+data}}
+\item 
+struct \mbox{\hyperlink{structrtems__rtl__archive__find__data}{rtems\+\_\+rtl\+\_\+archive\+\_\+find\+\_\+data}}
+\item 
+struct \mbox{\hyperlink{structrtems__rtl__archive__obj__data}{rtems\+\_\+rtl\+\_\+archive\+\_\+obj\+\_\+data}}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{rtl-archive_8c_a5ef2fee55deb8475bec01267e205ca2b}{R\+T\+E\+M\+S\+\_\+\+R\+T\+L\+\_\+\+A\+R\+\_\+\+I\+D\+E\+NT}}~\char`\"{}!$<$arch$>$\textbackslash{}n\char`\"{}
+\item 
+\mbox{\Hypertarget{rtl-archive_8c_a742efdd96ae51d369a9f8325b481c109}\label{rtl-archive_8c_a742efdd96ae51d369a9f8325b481c109}} 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+R\+T\+L\+\_\+\+A\+R\+\_\+\+I\+D\+E\+N\+T\+\_\+\+S\+I\+ZE}~(sizeof (\mbox{\hyperlink{rtl-archive_8c_a5ef2fee55deb8475bec01267e205ca2b}{R\+T\+E\+M\+S\+\_\+\+R\+T\+L\+\_\+\+A\+R\+\_\+\+I\+D\+E\+NT}}) -\/ 1)
+\item 
+\mbox{\Hypertarget{rtl-archive_8c_af457aa770a55d2fefac50ba5d9583329}\label{rtl-archive_8c_af457aa770a55d2fefac50ba5d9583329}} 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+R\+T\+L\+\_\+\+A\+R\+\_\+\+F\+H\+D\+R\+\_\+\+B\+A\+SE}~R\+T\+E\+M\+S\+\_\+\+R\+T\+L\+\_\+\+A\+R\+\_\+\+I\+D\+E\+N\+T\+\_\+\+S\+I\+ZE
+\item 
+\mbox{\Hypertarget{rtl-archive_8c_a46d18cf1ca2d6abd918671017bf830cd}\label{rtl-archive_8c_a46d18cf1ca2d6abd918671017bf830cd}} 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+R\+T\+L\+\_\+\+A\+R\+\_\+\+F\+N\+A\+ME}~(0)
+\item 
+\mbox{\Hypertarget{rtl-archive_8c_a83d88c400e775010c1ca51e37e5bb3d2}\label{rtl-archive_8c_a83d88c400e775010c1ca51e37e5bb3d2}} 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+R\+T\+L\+\_\+\+A\+R\+\_\+\+F\+N\+A\+M\+E\+\_\+\+S\+I\+ZE}~(16)
+\item 
+\mbox{\Hypertarget{rtl-archive_8c_a8707de37f14218eab5754cad321fa282}\label{rtl-archive_8c_a8707de37f14218eab5754cad321fa282}} 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+R\+T\+L\+\_\+\+A\+R\+\_\+\+S\+I\+ZE}~(48)
+\item 
+\mbox{\Hypertarget{rtl-archive_8c_afcefff3fcdcdf738e52edab998ec724a}\label{rtl-archive_8c_afcefff3fcdcdf738e52edab998ec724a}} 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+R\+T\+L\+\_\+\+A\+R\+\_\+\+S\+I\+Z\+E\+\_\+\+S\+I\+ZE}~(10)
+\item 
+\mbox{\Hypertarget{rtl-archive_8c_a9c93b2d6f4bbabe66ca648217cc8c83e}\label{rtl-archive_8c_a9c93b2d6f4bbabe66ca648217cc8c83e}} 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+R\+T\+L\+\_\+\+A\+R\+\_\+\+M\+A\+G\+IC}~(58)
+\item 
+\mbox{\Hypertarget{rtl-archive_8c_ab3996b02b8e1f3772c87bf1bc4a8117f}\label{rtl-archive_8c_ab3996b02b8e1f3772c87bf1bc4a8117f}} 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+R\+T\+L\+\_\+\+A\+R\+\_\+\+M\+A\+G\+I\+C\+\_\+\+S\+I\+ZE}~(2)
+\item 
+\mbox{\Hypertarget{rtl-archive_8c_a401fa1240565d53aab76de4fc1f406a2}\label{rtl-archive_8c_a401fa1240565d53aab76de4fc1f406a2}} 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+R\+T\+L\+\_\+\+A\+R\+\_\+\+F\+H\+D\+R\+\_\+\+S\+I\+ZE}~(60)
+\item 
+\mbox{\Hypertarget{rtl-archive_8c_ae3783462b379eeab8e8829f70d846ae2}\label{rtl-archive_8c_ae3783462b379eeab8e8829f70d846ae2}} 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+R\+T\+L\+\_\+\+M\+A\+X\+\_\+\+F\+I\+L\+E\+\_\+\+S\+I\+ZE}~(256)
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef bool($\ast$ \mbox{\hyperlink{rtl-archive_8c_a7f654505aadef94dfaca10b5cce047e4}{rtems\+\_\+rtl\+\_\+archive\+\_\+iterator}}) (\mbox{\hyperlink{structrtems__rtl__archive}{rtems\+\_\+rtl\+\_\+archive}} $\ast$archive, void $\ast$data)
+\item 
+typedef struct \mbox{\hyperlink{structrtems__rtl__archive__chain__data}{rtems\+\_\+rtl\+\_\+archive\+\_\+chain\+\_\+data}} \mbox{\hyperlink{rtl-archive_8c_a8104f59b72abc78fe651d276082bfcfd}{rtems\+\_\+rtl\+\_\+archive\+\_\+chain\+\_\+data}}
+\item 
+\mbox{\Hypertarget{rtl-archive_8c_a31ab71c51ed6ebfa22cf6eb118826fa3}\label{rtl-archive_8c_a31ab71c51ed6ebfa22cf6eb118826fa3}} 
+typedef struct \mbox{\hyperlink{structrtems__rtl__archive__find__data}{rtems\+\_\+rtl\+\_\+archive\+\_\+find\+\_\+data}} {\bfseries rtems\+\_\+rtl\+\_\+archive\+\_\+find\+\_\+data}
+\item 
+\mbox{\Hypertarget{rtl-archive_8c_a004ab254ee9e587ebedfc399b72ad3da}\label{rtl-archive_8c_a004ab254ee9e587ebedfc399b72ad3da}} 
+typedef struct \mbox{\hyperlink{structrtems__rtl__archive__obj__data}{rtems\+\_\+rtl\+\_\+archive\+\_\+obj\+\_\+data}} {\bfseries rtems\+\_\+rtl\+\_\+archive\+\_\+obj\+\_\+data}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{rtl-archive_8c_af74d596594b488ff923e027e9b895d1f}{rtems\+\_\+rtl\+\_\+archives\+\_\+open}} (\mbox{\hyperlink{structrtems__rtl__archives}{rtems\+\_\+rtl\+\_\+archives}} $\ast$archives, const char $\ast$\mbox{\hyperlink{structconfig__s}{config}})
+\item 
+void \mbox{\hyperlink{rtl-archive_8c_a0c1d8b43e832e9f6c9dd0d583b952384}{rtems\+\_\+rtl\+\_\+archives\+\_\+close}} (\mbox{\hyperlink{structrtems__rtl__archives}{rtems\+\_\+rtl\+\_\+archives}} $\ast$archives)
+\item 
+bool \mbox{\hyperlink{rtl-archive_8c_ad357ba19c50eb2c554a8ef8bbd1baa74}{rtems\+\_\+rtl\+\_\+archives\+\_\+refresh}} (\mbox{\hyperlink{structrtems__rtl__archives}{rtems\+\_\+rtl\+\_\+archives}} $\ast$archives)
+\item 
+bool \mbox{\hyperlink{rtl-archive_8c_aec513bfd77432b5004d1a4ed91b7bc3d}{rtems\+\_\+rtl\+\_\+archive\+\_\+load}} (\mbox{\hyperlink{structrtems__rtl__archives}{rtems\+\_\+rtl\+\_\+archives}} $\ast$archives, const char $\ast$name)
+\item 
+\mbox{\hyperlink{rtl-archive_8h_a82930c14e64f3f5853052e84af4a6c2e}{rtems\+\_\+rtl\+\_\+archive\+\_\+search}} \mbox{\hyperlink{rtl-archive_8c_a48e3be1af298eca62a62e5f1bc72c916}{rtems\+\_\+rtl\+\_\+archive\+\_\+obj\+\_\+load}} (\mbox{\hyperlink{structrtems__rtl__archives}{rtems\+\_\+rtl\+\_\+archives}} $\ast$archives, const char $\ast$symbol, bool load)
+\item 
+bool \mbox{\hyperlink{rtl-archive_8c_a227474f93062e44724c06cb229de6142}{rtems\+\_\+rtl\+\_\+obj\+\_\+archive\+\_\+find\+\_\+obj}} (int fd, size\+\_\+t fsize, const char $\ast$$\ast$name, off\+\_\+t $\ast$ooffset, size\+\_\+t $\ast$osize, off\+\_\+t $\ast$extended\+\_\+file\+\_\+names, \mbox{\hyperlink{rtl-archive_8h_aeb92821ca23c9daa5393579aa7b9212f}{rtems\+\_\+rtl\+\_\+archive\+\_\+error}} error)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+R\+T\+E\+MS Run-\/\+Time Linker Archive. 
+
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{rtl-archive_8c_a5ef2fee55deb8475bec01267e205ca2b}\label{rtl-archive_8c_a5ef2fee55deb8475bec01267e205ca2b}} 
+\index{rtl-\/archive.c@{rtl-\/archive.c}!RTEMS\_RTL\_AR\_IDENT@{RTEMS\_RTL\_AR\_IDENT}}
+\index{RTEMS\_RTL\_AR\_IDENT@{RTEMS\_RTL\_AR\_IDENT}!rtl-\/archive.c@{rtl-\/archive.c}}
+\subsubsection{\texorpdfstring{RTEMS\_RTL\_AR\_IDENT}{RTEMS\_RTL\_AR\_IDENT}}
+{\footnotesize\ttfamily \#define R\+T\+E\+M\+S\+\_\+\+R\+T\+L\+\_\+\+A\+R\+\_\+\+I\+D\+E\+NT~\char`\"{}!$<$arch$>$\textbackslash{}n\char`\"{}}
+
+Archive headers. 
+
+\subsection{Typedef Documentation}
+\mbox{\Hypertarget{rtl-archive_8c_a8104f59b72abc78fe651d276082bfcfd}\label{rtl-archive_8c_a8104f59b72abc78fe651d276082bfcfd}} 
+\index{rtl-\/archive.c@{rtl-\/archive.c}!rtems\_rtl\_archive\_chain\_data@{rtems\_rtl\_archive\_chain\_data}}
+\index{rtems\_rtl\_archive\_chain\_data@{rtems\_rtl\_archive\_chain\_data}!rtl-\/archive.c@{rtl-\/archive.c}}
+\subsubsection{\texorpdfstring{rtems\_rtl\_archive\_chain\_data}{rtems\_rtl\_archive\_chain\_data}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structrtems__rtl__archive__chain__data}{rtems\+\_\+rtl\+\_\+archive\+\_\+chain\+\_\+data}}  \mbox{\hyperlink{structrtems__rtl__archive__chain__data}{rtems\+\_\+rtl\+\_\+archive\+\_\+chain\+\_\+data}}}
+
+Chain iterator data. \mbox{\Hypertarget{rtl-archive_8c_a7f654505aadef94dfaca10b5cce047e4}\label{rtl-archive_8c_a7f654505aadef94dfaca10b5cce047e4}} 
+\index{rtl-\/archive.c@{rtl-\/archive.c}!rtems\_rtl\_archive\_iterator@{rtems\_rtl\_archive\_iterator}}
+\index{rtems\_rtl\_archive\_iterator@{rtems\_rtl\_archive\_iterator}!rtl-\/archive.c@{rtl-\/archive.c}}
+\subsubsection{\texorpdfstring{rtems\_rtl\_archive\_iterator}{rtems\_rtl\_archive\_iterator}}
+{\footnotesize\ttfamily typedef bool($\ast$ rtems\+\_\+rtl\+\_\+archive\+\_\+iterator) (\mbox{\hyperlink{structrtems__rtl__archive}{rtems\+\_\+rtl\+\_\+archive}} $\ast$archive, void $\ast$data)}
+
+Archive iterator. 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{rtl-archive_8c_aec513bfd77432b5004d1a4ed91b7bc3d}\label{rtl-archive_8c_aec513bfd77432b5004d1a4ed91b7bc3d}} 
+\index{rtl-\/archive.c@{rtl-\/archive.c}!rtems\_rtl\_archive\_load@{rtems\_rtl\_archive\_load}}
+\index{rtems\_rtl\_archive\_load@{rtems\_rtl\_archive\_load}!rtl-\/archive.c@{rtl-\/archive.c}}
+\subsubsection{\texorpdfstring{rtems\_rtl\_archive\_load()}{rtems\_rtl\_archive\_load()}}
+{\footnotesize\ttfamily bool rtems\+\_\+rtl\+\_\+archive\+\_\+load (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structrtems__rtl__archives}{rtems\+\_\+rtl\+\_\+archives}} $\ast$}]{archives,  }\item[{const char $\ast$}]{name }\end{DoxyParamCaption})}
+
+Load an archive.
+
+
+\begin{DoxyParams}{Parameters}
+{\em archives} & The archives data to search. \\
+\hline
+{\em name} & The archive to load. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em true} & The archive is loaded. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{rtl-archive_8c_a48e3be1af298eca62a62e5f1bc72c916}\label{rtl-archive_8c_a48e3be1af298eca62a62e5f1bc72c916}} 
+\index{rtl-\/archive.c@{rtl-\/archive.c}!rtems\_rtl\_archive\_obj\_load@{rtems\_rtl\_archive\_obj\_load}}
+\index{rtems\_rtl\_archive\_obj\_load@{rtems\_rtl\_archive\_obj\_load}!rtl-\/archive.c@{rtl-\/archive.c}}
+\subsubsection{\texorpdfstring{rtems\_rtl\_archive\_obj\_load()}{rtems\_rtl\_archive\_obj\_load()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{rtl-archive_8h_a82930c14e64f3f5853052e84af4a6c2e}{rtems\+\_\+rtl\+\_\+archive\+\_\+search}} rtems\+\_\+rtl\+\_\+archive\+\_\+obj\+\_\+load (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structrtems__rtl__archives}{rtems\+\_\+rtl\+\_\+archives}} $\ast$}]{archives,  }\item[{const char $\ast$}]{symbol,  }\item[{bool}]{load }\end{DoxyParamCaption})}
+
+Search for a symbol and load the first object file that has the symbol.
+
+
+\begin{DoxyParams}{Parameters}
+{\em archives} & The archives data to search. \\
+\hline
+{\em symbol} & The symbol name to search for. \\
+\hline
+{\em load} & If @true load the object file the symbol is found in else return the found not found status. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{rtl-archive_8c_a0c1d8b43e832e9f6c9dd0d583b952384}\label{rtl-archive_8c_a0c1d8b43e832e9f6c9dd0d583b952384}} 
+\index{rtl-\/archive.c@{rtl-\/archive.c}!rtems\_rtl\_archives\_close@{rtems\_rtl\_archives\_close}}
+\index{rtems\_rtl\_archives\_close@{rtems\_rtl\_archives\_close}!rtl-\/archive.c@{rtl-\/archive.c}}
+\subsubsection{\texorpdfstring{rtems\_rtl\_archives\_close()}{rtems\_rtl\_archives\_close()}}
+{\footnotesize\ttfamily void rtems\+\_\+rtl\+\_\+archives\+\_\+close (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structrtems__rtl__archives}{rtems\+\_\+rtl\+\_\+archives}} $\ast$}]{archives }\end{DoxyParamCaption})}
+
+Close the R\+TL archives support.
+
+
+\begin{DoxyParams}{Parameters}
+{\em archives} & The archives data to close. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{rtl-archive_8c_af74d596594b488ff923e027e9b895d1f}\label{rtl-archive_8c_af74d596594b488ff923e027e9b895d1f}} 
+\index{rtl-\/archive.c@{rtl-\/archive.c}!rtems\_rtl\_archives\_open@{rtems\_rtl\_archives\_open}}
+\index{rtems\_rtl\_archives\_open@{rtems\_rtl\_archives\_open}!rtl-\/archive.c@{rtl-\/archive.c}}
+\subsubsection{\texorpdfstring{rtems\_rtl\_archives\_open()}{rtems\_rtl\_archives\_open()}}
+{\footnotesize\ttfamily void rtems\+\_\+rtl\+\_\+archives\+\_\+open (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structrtems__rtl__archives}{rtems\+\_\+rtl\+\_\+archives}} $\ast$}]{archives,  }\item[{const char $\ast$}]{config }\end{DoxyParamCaption})}
+
+Open the R\+TL archives support with the specified configration file.
+
+
+\begin{DoxyParams}{Parameters}
+{\em archives} & The archives data to open. \\
+\hline
+{\em config} & The path to the configuration file. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool Returns @true is the archives are open. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{rtl-archive_8c_ad357ba19c50eb2c554a8ef8bbd1baa74}\label{rtl-archive_8c_ad357ba19c50eb2c554a8ef8bbd1baa74}} 
+\index{rtl-\/archive.c@{rtl-\/archive.c}!rtems\_rtl\_archives\_refresh@{rtems\_rtl\_archives\_refresh}}
+\index{rtems\_rtl\_archives\_refresh@{rtems\_rtl\_archives\_refresh}!rtl-\/archive.c@{rtl-\/archive.c}}
+\subsubsection{\texorpdfstring{rtems\_rtl\_archives\_refresh()}{rtems\_rtl\_archives\_refresh()}}
+{\footnotesize\ttfamily bool rtems\+\_\+rtl\+\_\+archives\+\_\+refresh (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structrtems__rtl__archives}{rtems\+\_\+rtl\+\_\+archives}} $\ast$}]{archives }\end{DoxyParamCaption})}
+
+Refresh the archives data. Check if the configuration has changes and if it has reload it. Check each path in the configuration and creates archive instances for new archives and remove archives not present any more.
+
+Refreshing is a development aid so reboots can be avoided as users trial configurations that work.
+
+
+\begin{DoxyParams}{Parameters}
+{\em archives} & The archives data to refresh. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em false} & The refresh failed, an error will have been set. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{rtl-archive_8c_a227474f93062e44724c06cb229de6142}\label{rtl-archive_8c_a227474f93062e44724c06cb229de6142}} 
+\index{rtl-\/archive.c@{rtl-\/archive.c}!rtems\_rtl\_obj\_archive\_find\_obj@{rtems\_rtl\_obj\_archive\_find\_obj}}
+\index{rtems\_rtl\_obj\_archive\_find\_obj@{rtems\_rtl\_obj\_archive\_find\_obj}!rtl-\/archive.c@{rtl-\/archive.c}}
+\subsubsection{\texorpdfstring{rtems\_rtl\_obj\_archive\_find\_obj()}{rtems\_rtl\_obj\_archive\_find\_obj()}}
+{\footnotesize\ttfamily bool rtems\+\_\+rtl\+\_\+obj\+\_\+archive\+\_\+find\+\_\+obj (\begin{DoxyParamCaption}\item[{int}]{fd,  }\item[{size\+\_\+t}]{fsize,  }\item[{const char $\ast$$\ast$}]{name,  }\item[{off\+\_\+t $\ast$}]{offset,  }\item[{size\+\_\+t $\ast$}]{size,  }\item[{off\+\_\+t $\ast$}]{extended\+\_\+names,  }\item[{\mbox{\hyperlink{rtl-archive_8h_aeb92821ca23c9daa5393579aa7b9212f}{rtems\+\_\+rtl\+\_\+archive\+\_\+error}}}]{error }\end{DoxyParamCaption})}
+
+Find a module in an archive returning the offset in the archive and the size. If the name field is pointing to a string pointer and that poniter is N\+U\+LL and the offset is valid the name is extracted from the archive and filled in. This is used when loading a file from the archive after a symbol is found. The file name is not know and could be extended which requires searching the extended string table in the archive.
+
+
+\begin{DoxyParams}{Parameters}
+{\em fd} & Open file handle for the archive. \\
+\hline
+{\em fsize} & Size of the archive. @paarm name Pointer to the name string. \\
+\hline
+{\em offset} & The offset of the file in the archive. \\
+\hline
+{\em size} & The size of the file in the archive. \\
+\hline
+{\em extended\+\_\+names} & The offset in the archive for the extended names. \\
+\hline
+{\em error} & The error handler called on an error. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em true} & The file was found in the archive. \\
+\hline
+{\em false} & The file was not found. \\
+\hline
+\end{DoxyRetVals}

@@ -1,0 +1,83 @@
+\hypertarget{structrtems__record__client__per__cpu}{}\section{rtems\+\_\+record\+\_\+client\+\_\+per\+\_\+cpu Struct Reference}
+\label{structrtems__record__client__per__cpu}\index{rtems\_record\_client\_per\_cpu@{rtems\_record\_client\_per\_cpu}}
+\subsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structrtems__record__client__per__cpu_afa468ba2e7fee7e41a97c68d5b211608}\label{structrtems__record__client__per__cpu_afa468ba2e7fee7e41a97c68d5b211608}} 
+\begin{tabbing}
+xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=\kill
+struct \{\\
+\>uint64\_t {\bfseries bt}\\
+\>uint32\_t {\bfseries time\_at\_bt}\\
+\>uint32\_t {\bfseries time\_last}\\
+\>uint32\_t {\bfseries time\_accumulated}\\
+\} \mbox{\hyperlink{structrtems__record__client__per__cpu_afa468ba2e7fee7e41a97c68d5b211608}{uptime}}\\
+
+\end{tabbing}\begin{DoxyCompactList}\small\item\em Event time to uptime maintenance. \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{structrtems__record__client__per__cpu_a59dbb9d3e3f5ed2a50e9ac3e266e2ad4}{tail}} \mbox{[}2\mbox{]}
+\begin{DoxyCompactList}\small\item\em The current or previous ring buffer tail. \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{structrtems__record__client__per__cpu_a52b2ef1058a1fa5e5cd0a0be6f955e4a}{head}} \mbox{[}2\mbox{]}
+\begin{DoxyCompactList}\small\item\em The current or previous ring buffer head. \end{DoxyCompactList}\item 
+size\+\_\+t \mbox{\hyperlink{structrtems__record__client__per__cpu_a15f079666f41a7b1182f84a1011f1194}{tail\+\_\+head\+\_\+index}}
+\begin{DoxyCompactList}\small\item\em The index of the tail and head members. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structrtems__record__client__per__cpu_a8cac7df8d0f3749b6bedcb599f1a2864}\label{structrtems__record__client__per__cpu_a8cac7df8d0f3749b6bedcb599f1a2864}} 
+uint32\+\_\+t \mbox{\hyperlink{structrtems__record__client__per__cpu_a8cac7df8d0f3749b6bedcb599f1a2864}{overflow}}
+\begin{DoxyCompactList}\small\item\em Count of lost items due to ring buffer overflows. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structrtems__record__client__per__cpu_a5affbacdc564e44eb2e21cd5992f59b1}\label{structrtems__record__client__per__cpu_a5affbacdc564e44eb2e21cd5992f59b1}} 
+bool \mbox{\hyperlink{structrtems__record__client__per__cpu_a5affbacdc564e44eb2e21cd5992f59b1}{hold\+\_\+back}}
+\begin{DoxyCompactList}\small\item\em If true, then hold back items for overflow or initial ramp up processing. \end{DoxyCompactList}\item 
+rtems\+\_\+record\+\_\+item\+\_\+64 $\ast$ \mbox{\hyperlink{structrtems__record__client__per__cpu_a2f547baeca362e27980a9251c86f1bdd}{items}}
+\begin{DoxyCompactList}\small\item\em Storage for hold back items. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structrtems__record__client__per__cpu_a96c619dc2d0440f03b510a63dc0529df}\label{structrtems__record__client__per__cpu_a96c619dc2d0440f03b510a63dc0529df}} 
+size\+\_\+t \mbox{\hyperlink{structrtems__record__client__per__cpu_a96c619dc2d0440f03b510a63dc0529df}{item\+\_\+index}}
+\begin{DoxyCompactList}\small\item\em The index for the next hold back item. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Field Documentation}
+\mbox{\Hypertarget{structrtems__record__client__per__cpu_a52b2ef1058a1fa5e5cd0a0be6f955e4a}\label{structrtems__record__client__per__cpu_a52b2ef1058a1fa5e5cd0a0be6f955e4a}} 
+\index{rtems\_record\_client\_per\_cpu@{rtems\_record\_client\_per\_cpu}!head@{head}}
+\index{head@{head}!rtems\_record\_client\_per\_cpu@{rtems\_record\_client\_per\_cpu}}
+\subsubsection{\texorpdfstring{head}{head}}
+{\footnotesize\ttfamily uint32\+\_\+t rtems\+\_\+record\+\_\+client\+\_\+per\+\_\+cpu\+::head\mbox{[}2\mbox{]}}
+
+
+
+The current or previous ring buffer head. 
+
+Indexed by the tail\+\_\+head\+\_\+index member. \mbox{\Hypertarget{structrtems__record__client__per__cpu_a2f547baeca362e27980a9251c86f1bdd}\label{structrtems__record__client__per__cpu_a2f547baeca362e27980a9251c86f1bdd}} 
+\index{rtems\_record\_client\_per\_cpu@{rtems\_record\_client\_per\_cpu}!items@{items}}
+\index{items@{items}!rtems\_record\_client\_per\_cpu@{rtems\_record\_client\_per\_cpu}}
+\subsubsection{\texorpdfstring{items}{items}}
+{\footnotesize\ttfamily rtems\+\_\+record\+\_\+item\+\_\+64$\ast$ rtems\+\_\+record\+\_\+client\+\_\+per\+\_\+cpu\+::items}
+
+
+
+Storage for hold back items. 
+
+In case of a ring buffer overflow, the \mbox{\hyperlink{group__RTEMSRecord_ga99ed015930e0cc3e9c1a802b80dacb69}{rtems\+\_\+record\+\_\+drain()}} will push the complete ring buffer content to the client. While the items are processed by the client, new items may overwrite some items being processed. The overwritten items can be detected in the following iteration once the next tail/head information is pushed to the client.
+
+In case of the initial ramp up, the items are stored in the hold back buffer to determine the uptime of the first event. \mbox{\Hypertarget{structrtems__record__client__per__cpu_a59dbb9d3e3f5ed2a50e9ac3e266e2ad4}\label{structrtems__record__client__per__cpu_a59dbb9d3e3f5ed2a50e9ac3e266e2ad4}} 
+\index{rtems\_record\_client\_per\_cpu@{rtems\_record\_client\_per\_cpu}!tail@{tail}}
+\index{tail@{tail}!rtems\_record\_client\_per\_cpu@{rtems\_record\_client\_per\_cpu}}
+\subsubsection{\texorpdfstring{tail}{tail}}
+{\footnotesize\ttfamily uint32\+\_\+t rtems\+\_\+record\+\_\+client\+\_\+per\+\_\+cpu\+::tail\mbox{[}2\mbox{]}}
+
+
+
+The current or previous ring buffer tail. 
+
+Indexed by the tail\+\_\+head\+\_\+index member. \mbox{\Hypertarget{structrtems__record__client__per__cpu_a15f079666f41a7b1182f84a1011f1194}\label{structrtems__record__client__per__cpu_a15f079666f41a7b1182f84a1011f1194}} 
+\index{rtems\_record\_client\_per\_cpu@{rtems\_record\_client\_per\_cpu}!tail\_head\_index@{tail\_head\_index}}
+\index{tail\_head\_index@{tail\_head\_index}!rtems\_record\_client\_per\_cpu@{rtems\_record\_client\_per\_cpu}}
+\subsubsection{\texorpdfstring{tail\_head\_index}{tail\_head\_index}}
+{\footnotesize\ttfamily size\+\_\+t rtems\+\_\+record\+\_\+client\+\_\+per\+\_\+cpu\+::tail\+\_\+head\+\_\+index}
+
+
+
+The index of the tail and head members. 
+
+This index is used to maintain the current and previous tail/head positions to detect ring buffer overflows. 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+cpukit/include/rtems/recordclient.\+h\end{DoxyCompactItemize}

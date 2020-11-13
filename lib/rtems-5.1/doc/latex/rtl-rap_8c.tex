@@ -1,0 +1,182 @@
+\hypertarget{rtl-rap_8c}{}\section{cpukit/libdl/rtl-\/rap.c File Reference}
+\label{rtl-rap_8c}\index{cpukit/libdl/rtl-\/rap.c@{cpukit/libdl/rtl-\/rap.c}}
+
+
+R\+T\+E\+MS Run-\/\+Time Link Editor.  
+
+
+{\ttfamily \#include $<$errno.\+h$>$}\newline
+{\ttfamily \#include $<$fcntl.\+h$>$}\newline
+{\ttfamily \#include $<$inttypes.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/rtl/rtl.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}rtl-\/elf.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}rtl-\/error.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$rtems/rtl/rtl-\/obj-\/comp.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}rtl-\/rap.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$rtems/rtl/rtl-\/trace.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/rtl/rtl-\/unresolved.\+h$>$}\newline
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structrtems__rtl__rap__sectdef}{rtems\+\_\+rtl\+\_\+rap\+\_\+sectdef}}
+\item 
+struct \mbox{\hyperlink{structrtems__rtl__rap__section}{rtems\+\_\+rtl\+\_\+rap\+\_\+section}}
+\item 
+struct \mbox{\hyperlink{structrtems__rtl__rap}{rtems\+\_\+rtl\+\_\+rap}}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{rtl-rap_8c_a8809de6f03e511a56892b94bb0ed49dd}{R\+E\+L\+\_\+\+R\+\_\+\+O\+F\+F\+S\+ET}}~(0)
+\item 
+\mbox{\Hypertarget{rtl-rap_8c_a439f57647c949873428cde19d81e0216}\label{rtl-rap_8c_a439f57647c949873428cde19d81e0216}} 
+\#define {\bfseries R\+E\+L\+\_\+\+R\+\_\+\+I\+N\+FO}~(1)
+\item 
+\mbox{\Hypertarget{rtl-rap_8c_a032a46e321b9ba0b02ff84228c22679f}\label{rtl-rap_8c_a032a46e321b9ba0b02ff84228c22679f}} 
+\#define {\bfseries R\+E\+L\+\_\+\+R\+\_\+\+A\+D\+D\+E\+ND}~(2)
+\item 
+\#define \mbox{\hyperlink{rtl-rap_8c_ad56c26e006ac29d4e28ca8c0c9d04cf6}{R\+T\+E\+M\+S\+\_\+\+R\+T\+L\+\_\+\+R\+A\+P\+\_\+\+T\+E\+X\+T\+\_\+\+S\+EC}}~(0)
+\item 
+\mbox{\Hypertarget{rtl-rap_8c_a2e6617dc152d720c78ecf24dfe3d37b0}\label{rtl-rap_8c_a2e6617dc152d720c78ecf24dfe3d37b0}} 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+R\+T\+L\+\_\+\+R\+A\+P\+\_\+\+C\+O\+N\+S\+T\+\_\+\+S\+EC}~(1)
+\item 
+\mbox{\Hypertarget{rtl-rap_8c_a5946902cb54ecd8b39ff98af9e5d11ab}\label{rtl-rap_8c_a5946902cb54ecd8b39ff98af9e5d11ab}} 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+R\+T\+L\+\_\+\+R\+A\+P\+\_\+\+C\+T\+O\+R\+\_\+\+S\+EC}~(2)
+\item 
+\mbox{\Hypertarget{rtl-rap_8c_ad27494b4b1a814a842f06bd36ba06171}\label{rtl-rap_8c_ad27494b4b1a814a842f06bd36ba06171}} 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+R\+T\+L\+\_\+\+R\+A\+P\+\_\+\+D\+T\+O\+R\+\_\+\+S\+EC}~(3)
+\item 
+\mbox{\Hypertarget{rtl-rap_8c_adb87b3455426bafe49b2e10a13aff1dd}\label{rtl-rap_8c_adb87b3455426bafe49b2e10a13aff1dd}} 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+R\+T\+L\+\_\+\+R\+A\+P\+\_\+\+D\+A\+T\+A\+\_\+\+S\+EC}~(4)
+\item 
+\mbox{\Hypertarget{rtl-rap_8c_a28eb51356519fabf757faff395c30297}\label{rtl-rap_8c_a28eb51356519fabf757faff395c30297}} 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+R\+T\+L\+\_\+\+R\+A\+P\+\_\+\+B\+S\+S\+\_\+\+S\+EC}~(5)
+\item 
+\mbox{\Hypertarget{rtl-rap_8c_a2fefdf17f144eb01caff06cedbbf27c1}\label{rtl-rap_8c_a2fefdf17f144eb01caff06cedbbf27c1}} 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+R\+T\+L\+\_\+\+R\+A\+P\+\_\+\+S\+E\+CS}~(6)
+\item 
+\mbox{\Hypertarget{rtl-rap_8c_a3e76f32e8d2d866a739d08021f3c729c}\label{rtl-rap_8c_a3e76f32e8d2d866a739d08021f3c729c}} 
+\#define {\bfseries S\+Y\+M\+N\+A\+M\+E\+\_\+\+B\+U\+F\+F\+E\+R\+\_\+\+S\+I\+ZE}~(1024)
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \mbox{\hyperlink{structrtems__rtl__rap__sectdef}{rtems\+\_\+rtl\+\_\+rap\+\_\+sectdef}} \mbox{\hyperlink{rtl-rap_8c_a992ba7a2f73c7000ec31705f805d1996}{rtems\+\_\+rtl\+\_\+rap\+\_\+sectdef}}
+\item 
+typedef struct \mbox{\hyperlink{structrtems__rtl__rap__section}{rtems\+\_\+rtl\+\_\+rap\+\_\+section}} \mbox{\hyperlink{rtl-rap_8c_a50343088766a6a267bf105074d0d485b}{rtems\+\_\+rtl\+\_\+rap\+\_\+section}}
+\item 
+typedef struct \mbox{\hyperlink{structrtems__rtl__rap}{rtems\+\_\+rtl\+\_\+rap}} \mbox{\hyperlink{rtl-rap_8c_a5d329f3fbdcc98def5cc0dd025812d77}{rtems\+\_\+rtl\+\_\+rap}}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{rtl-rap_8c_a1c969535841d803fd98b4b8f518daf79}{rtems\+\_\+rtl\+\_\+rap\+\_\+file\+\_\+check}} (\mbox{\hyperlink{structrtems__rtl__obj}{rtems\+\_\+rtl\+\_\+obj}} $\ast$obj, int fd)
+\item 
+bool \mbox{\hyperlink{rtl-rap_8c_a0ce5487461c31a98e4ddda966ad7fad9}{rtems\+\_\+rtl\+\_\+rap\+\_\+file\+\_\+load}} (\mbox{\hyperlink{structrtems__rtl__obj}{rtems\+\_\+rtl\+\_\+obj}} $\ast$obj, int fd)
+\item 
+bool \mbox{\hyperlink{rtl-rap_8c_ab14c07dd22f90a014ff7e192015cf1c4}{rtems\+\_\+rtl\+\_\+rap\+\_\+file\+\_\+unload}} (\mbox{\hyperlink{structrtems__rtl__obj}{rtems\+\_\+rtl\+\_\+obj}} $\ast$obj)
+\item 
+\mbox{\hyperlink{structrtems__rtl__loader__format}{rtems\+\_\+rtl\+\_\+loader\+\_\+format}} $\ast$ \mbox{\hyperlink{rtl-rap_8c_a0ba92ca2206cf08da6e0ead2563ae1fd}{rtems\+\_\+rtl\+\_\+rap\+\_\+file\+\_\+sig}} (void)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+R\+T\+E\+MS Run-\/\+Time Link Editor. 
+
+This is the R\+AP format loader support.. 
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{rtl-rap_8c_a8809de6f03e511a56892b94bb0ed49dd}\label{rtl-rap_8c_a8809de6f03e511a56892b94bb0ed49dd}} 
+\index{rtl-\/rap.c@{rtl-\/rap.c}!REL\_R\_OFFSET@{REL\_R\_OFFSET}}
+\index{REL\_R\_OFFSET@{REL\_R\_OFFSET}!rtl-\/rap.c@{rtl-\/rap.c}}
+\subsubsection{\texorpdfstring{REL\_R\_OFFSET}{REL\_R\_OFFSET}}
+{\footnotesize\ttfamily \#define R\+E\+L\+\_\+\+R\+\_\+\+O\+F\+F\+S\+ET~(0)}
+
+The offsets in the unresolved array. \mbox{\Hypertarget{rtl-rap_8c_ad56c26e006ac29d4e28ca8c0c9d04cf6}\label{rtl-rap_8c_ad56c26e006ac29d4e28ca8c0c9d04cf6}} 
+\index{rtl-\/rap.c@{rtl-\/rap.c}!RTEMS\_RTL\_RAP\_TEXT\_SEC@{RTEMS\_RTL\_RAP\_TEXT\_SEC}}
+\index{RTEMS\_RTL\_RAP\_TEXT\_SEC@{RTEMS\_RTL\_RAP\_TEXT\_SEC}!rtl-\/rap.c@{rtl-\/rap.c}}
+\subsubsection{\texorpdfstring{RTEMS\_RTL\_RAP\_TEXT\_SEC}{RTEMS\_RTL\_RAP\_TEXT\_SEC}}
+{\footnotesize\ttfamily \#define R\+T\+E\+M\+S\+\_\+\+R\+T\+L\+\_\+\+R\+A\+P\+\_\+\+T\+E\+X\+T\+\_\+\+S\+EC~(0)}
+
+The section indexes. These are fixed. 
+
+\subsection{Typedef Documentation}
+\mbox{\Hypertarget{rtl-rap_8c_a5d329f3fbdcc98def5cc0dd025812d77}\label{rtl-rap_8c_a5d329f3fbdcc98def5cc0dd025812d77}} 
+\index{rtl-\/rap.c@{rtl-\/rap.c}!rtems\_rtl\_rap@{rtems\_rtl\_rap}}
+\index{rtems\_rtl\_rap@{rtems\_rtl\_rap}!rtl-\/rap.c@{rtl-\/rap.c}}
+\subsubsection{\texorpdfstring{rtems\_rtl\_rap}{rtems\_rtl\_rap}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structrtems__rtl__rap}{rtems\+\_\+rtl\+\_\+rap}}  \mbox{\hyperlink{structrtems__rtl__rap}{rtems\+\_\+rtl\+\_\+rap}}}
+
+The R\+AP loader. \mbox{\Hypertarget{rtl-rap_8c_a992ba7a2f73c7000ec31705f805d1996}\label{rtl-rap_8c_a992ba7a2f73c7000ec31705f805d1996}} 
+\index{rtl-\/rap.c@{rtl-\/rap.c}!rtems\_rtl\_rap\_sectdef@{rtems\_rtl\_rap\_sectdef}}
+\index{rtems\_rtl\_rap\_sectdef@{rtems\_rtl\_rap\_sectdef}!rtl-\/rap.c@{rtl-\/rap.c}}
+\subsubsection{\texorpdfstring{rtems\_rtl\_rap\_sectdef}{rtems\_rtl\_rap\_sectdef}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structrtems__rtl__rap__sectdef}{rtems\+\_\+rtl\+\_\+rap\+\_\+sectdef}}  \mbox{\hyperlink{structrtems__rtl__rap__sectdef}{rtems\+\_\+rtl\+\_\+rap\+\_\+sectdef}}}
+
+The section definitions found in a R\+AP file. \mbox{\Hypertarget{rtl-rap_8c_a50343088766a6a267bf105074d0d485b}\label{rtl-rap_8c_a50343088766a6a267bf105074d0d485b}} 
+\index{rtl-\/rap.c@{rtl-\/rap.c}!rtems\_rtl\_rap\_section@{rtems\_rtl\_rap\_section}}
+\index{rtems\_rtl\_rap\_section@{rtems\_rtl\_rap\_section}!rtl-\/rap.c@{rtl-\/rap.c}}
+\subsubsection{\texorpdfstring{rtems\_rtl\_rap\_section}{rtems\_rtl\_rap\_section}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structrtems__rtl__rap__section}{rtems\+\_\+rtl\+\_\+rap\+\_\+section}}  \mbox{\hyperlink{structrtems__rtl__rap__section}{rtems\+\_\+rtl\+\_\+rap\+\_\+section}}}
+
+The section definitions found in a R\+AP file. 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{rtl-rap_8c_a1c969535841d803fd98b4b8f518daf79}\label{rtl-rap_8c_a1c969535841d803fd98b4b8f518daf79}} 
+\index{rtl-\/rap.c@{rtl-\/rap.c}!rtems\_rtl\_rap\_file\_check@{rtems\_rtl\_rap\_file\_check}}
+\index{rtems\_rtl\_rap\_file\_check@{rtems\_rtl\_rap\_file\_check}!rtl-\/rap.c@{rtl-\/rap.c}}
+\subsubsection{\texorpdfstring{rtems\_rtl\_rap\_file\_check()}{rtems\_rtl\_rap\_file\_check()}}
+{\footnotesize\ttfamily bool rtems\+\_\+rtl\+\_\+rap\+\_\+file\+\_\+check (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structrtems__rtl__obj}{rtems\+\_\+rtl\+\_\+obj}} $\ast$}]{obj,  }\item[{int}]{fd }\end{DoxyParamCaption})}
+
+The R\+AP format check handler.
+
+
+\begin{DoxyParams}{Parameters}
+{\em obj} & The object being checked. \\
+\hline
+{\em fd} & The file descriptor. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{rtl-rap_8c_a0ce5487461c31a98e4ddda966ad7fad9}\label{rtl-rap_8c_a0ce5487461c31a98e4ddda966ad7fad9}} 
+\index{rtl-\/rap.c@{rtl-\/rap.c}!rtems\_rtl\_rap\_file\_load@{rtems\_rtl\_rap\_file\_load}}
+\index{rtems\_rtl\_rap\_file\_load@{rtems\_rtl\_rap\_file\_load}!rtl-\/rap.c@{rtl-\/rap.c}}
+\subsubsection{\texorpdfstring{rtems\_rtl\_rap\_file\_load()}{rtems\_rtl\_rap\_file\_load()}}
+{\footnotesize\ttfamily bool rtems\+\_\+rtl\+\_\+rap\+\_\+file\+\_\+load (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structrtems__rtl__obj}{rtems\+\_\+rtl\+\_\+obj}} $\ast$}]{obj,  }\item[{int}]{fd }\end{DoxyParamCaption})}
+
+The R\+AP format load handler.
+
+
+\begin{DoxyParams}{Parameters}
+{\em obj} & The object to load. \\
+\hline
+{\em fd} & The file descriptor. \\
+\hline
+\end{DoxyParams}
+obj-\/$>$entry = (void$\ast$)(uintptr\+\_\+t) ehdr.\+e\+\_\+entry; \mbox{\Hypertarget{rtl-rap_8c_a0ba92ca2206cf08da6e0ead2563ae1fd}\label{rtl-rap_8c_a0ba92ca2206cf08da6e0ead2563ae1fd}} 
+\index{rtl-\/rap.c@{rtl-\/rap.c}!rtems\_rtl\_rap\_file\_sig@{rtems\_rtl\_rap\_file\_sig}}
+\index{rtems\_rtl\_rap\_file\_sig@{rtems\_rtl\_rap\_file\_sig}!rtl-\/rap.c@{rtl-\/rap.c}}
+\subsubsection{\texorpdfstring{rtems\_rtl\_rap\_file\_sig()}{rtems\_rtl\_rap\_file\_sig()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structrtems__rtl__loader__format}{rtems\+\_\+rtl\+\_\+loader\+\_\+format}}$\ast$ rtems\+\_\+rtl\+\_\+rap\+\_\+file\+\_\+sig (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+The R\+AP format signature handler.
+
+\begin{DoxyReturn}{Returns}
+rtems\+\_\+rtl\+\_\+loader\+\_\+format$\ast$ The format\textquotesingle{}s signature. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{rtl-rap_8c_ab14c07dd22f90a014ff7e192015cf1c4}\label{rtl-rap_8c_ab14c07dd22f90a014ff7e192015cf1c4}} 
+\index{rtl-\/rap.c@{rtl-\/rap.c}!rtems\_rtl\_rap\_file\_unload@{rtems\_rtl\_rap\_file\_unload}}
+\index{rtems\_rtl\_rap\_file\_unload@{rtems\_rtl\_rap\_file\_unload}!rtl-\/rap.c@{rtl-\/rap.c}}
+\subsubsection{\texorpdfstring{rtems\_rtl\_rap\_file\_unload()}{rtems\_rtl\_rap\_file\_unload()}}
+{\footnotesize\ttfamily bool rtems\+\_\+rtl\+\_\+rap\+\_\+file\+\_\+unload (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structrtems__rtl__obj}{rtems\+\_\+rtl\+\_\+obj}} $\ast$}]{obj }\end{DoxyParamCaption})}
+
+The R\+AP format unload handler.
+
+
+\begin{DoxyParams}{Parameters}
+{\em obj} & The object to unload. \\
+\hline
+\end{DoxyParams}

@@ -1,0 +1,94 @@
+\hypertarget{m68k_2mcf5206elite_2dev_2timer_8c}{}\section{bsps/m68k/mcf5206elite/dev/timer.c File Reference}
+\label{m68k_2mcf5206elite_2dev_2timer_8c}\index{bsps/m68k/mcf5206elite/dev/timer.c@{bsps/m68k/mcf5206elite/dev/timer.c}}
+
+
+Timer Init.  
+
+
+{\ttfamily \#include $<$rtems.\+h$>$}\newline
+{\ttfamily \#include $<$bsp.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/btimer.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}mcf5206/mcf5206e.\+h\char`\"{}}\newline
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{m68k_2mcf5206elite_2dev_2timer_8c_a3e41e685ddbb47b521ef8a28e24f147f}\label{m68k_2mcf5206elite_2dev_2timer_8c_a3e41e685ddbb47b521ef8a28e24f147f}} 
+\#define {\bfseries T\+R\+R2\+\_\+\+V\+AL}~65530
+\item 
+\mbox{\Hypertarget{m68k_2mcf5206elite_2dev_2timer_8c_aac89169fdf120750d8321464268bf18b}\label{m68k_2mcf5206elite_2dev_2timer_8c_aac89169fdf120750d8321464268bf18b}} 
+\#define {\bfseries A\+V\+G\+\_\+\+O\+V\+E\+R\+H\+E\+AD}~0  /$\ast$ It typically takes 2.\+0 microseconds $\ast$/
+\item 
+\mbox{\Hypertarget{m68k_2mcf5206elite_2dev_2timer_8c_ae0b5ca13bcf573a43bdf52d4eae8f79c}\label{m68k_2mcf5206elite_2dev_2timer_8c_ae0b5ca13bcf573a43bdf52d4eae8f79c}} 
+\#define {\bfseries L\+E\+A\+S\+T\+\_\+\+V\+A\+L\+ID}~1  /$\ast$ Don\textquotesingle{}t trust a clicks value lower than this $\ast$/
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{m68k_2mcf5206elite_2dev_2timer_8c_aef974c76e1b1b5fc432d1d303908c3b4}\label{m68k_2mcf5206elite_2dev_2timer_8c_aef974c76e1b1b5fc432d1d303908c3b4}} 
+\mbox{\hyperlink{group__ClassicINTR_ga17fb491bd308ce6b1bf27a51dec0b46d}{rtems\+\_\+isr}} {\bfseries timerisr} (\mbox{\hyperlink{group__ClassicINTR_ga3e434c197d99f128e78cae4d9358bd8b}{rtems\+\_\+vector\+\_\+number}} vector)
+\item 
+void \mbox{\hyperlink{m68k_2mcf5206elite_2dev_2timer_8c_a9ba0ae2fd8880801fb86979a16cd3b2b}{benchmark\+\_\+timer\+\_\+initialize}} (void)
+\begin{DoxyCompactList}\small\item\em Initialize the Benchmark Timer. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{btimer_8h_ac0f944fe3193b01df09c3d3a5a677e5a}{benchmark\+\_\+timer\+\_\+t}} \mbox{\hyperlink{m68k_2mcf5206elite_2dev_2timer_8c_ab8dc8517e97918d293d78e85b9454855}{benchmark\+\_\+timer\+\_\+read}} (void)
+\begin{DoxyCompactList}\small\item\em Read the Benchmark Timer. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{m68k_2mcf5206elite_2dev_2timer_8c_af3b4e28a2f0f7870be848a1d5cee0d03}{benchmark\+\_\+timer\+\_\+disable\+\_\+subtracting\+\_\+average\+\_\+overhead}} (bool find\+\_\+flag)
+\begin{DoxyCompactList}\small\item\em Disable Average Overhead Removal from the Benchmark Timer. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{m68k_2mcf5206elite_2dev_2timer_8c_aba349124f3a80d8bb731b10caa268edc}\label{m68k_2mcf5206elite_2dev_2timer_8c_aba349124f3a80d8bb731b10caa268edc}} 
+uint32\+\_\+t {\bfseries Timer\+\_\+interrupts}
+\item 
+\mbox{\Hypertarget{m68k_2mcf5206elite_2dev_2timer_8c_aff7592371a0cc40ceba40a1adf11bbc0}\label{m68k_2mcf5206elite_2dev_2timer_8c_aff7592371a0cc40ceba40a1adf11bbc0}} 
+bool {\bfseries benchmark\+\_\+timer\+\_\+find\+\_\+average\+\_\+overhead}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Timer Init. 
+
+This module initializes T\+I\+M\+ER 2 for on the M\+C\+F5206E for benchmarks. 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{m68k_2mcf5206elite_2dev_2timer_8c_af3b4e28a2f0f7870be848a1d5cee0d03}\label{m68k_2mcf5206elite_2dev_2timer_8c_af3b4e28a2f0f7870be848a1d5cee0d03}} 
+\index{timer.c@{timer.c}!benchmark\_timer\_disable\_subtracting\_average\_overhead@{benchmark\_timer\_disable\_subtracting\_average\_overhead}}
+\index{benchmark\_timer\_disable\_subtracting\_average\_overhead@{benchmark\_timer\_disable\_subtracting\_average\_overhead}!timer.c@{timer.c}}
+\subsubsection{\texorpdfstring{benchmark\_timer\_disable\_subtracting\_average\_overhead()}{benchmark\_timer\_disable\_subtracting\_average\_overhead()}}
+{\footnotesize\ttfamily void benchmark\+\_\+timer\+\_\+disable\+\_\+subtracting\+\_\+average\+\_\+overhead (\begin{DoxyParamCaption}\item[{bool}]{find\+\_\+flag }\end{DoxyParamCaption})}
+
+
+
+Disable Average Overhead Removal from the Benchmark Timer. 
+
+This method places the benchmark timer in a \char`\"{}raw\char`\"{} mode where it returns the actual number of units which have passed between calls to {\itshape benchmark\+\_\+timer\+\_\+initialize} and {\itshape benchmark\+\_\+timer\+\_\+read} counting.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em find\+\_\+flag} & indicates to enable or disable the mode \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{m68k_2mcf5206elite_2dev_2timer_8c_a9ba0ae2fd8880801fb86979a16cd3b2b}\label{m68k_2mcf5206elite_2dev_2timer_8c_a9ba0ae2fd8880801fb86979a16cd3b2b}} 
+\index{timer.c@{timer.c}!benchmark\_timer\_initialize@{benchmark\_timer\_initialize}}
+\index{benchmark\_timer\_initialize@{benchmark\_timer\_initialize}!timer.c@{timer.c}}
+\subsubsection{\texorpdfstring{benchmark\_timer\_initialize()}{benchmark\_timer\_initialize()}}
+{\footnotesize\ttfamily void benchmark\+\_\+timer\+\_\+initialize (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Initialize the Benchmark Timer. 
+
+This method initializes the benchmark timer and resets it to begin counting. \mbox{\Hypertarget{m68k_2mcf5206elite_2dev_2timer_8c_ab8dc8517e97918d293d78e85b9454855}\label{m68k_2mcf5206elite_2dev_2timer_8c_ab8dc8517e97918d293d78e85b9454855}} 
+\index{timer.c@{timer.c}!benchmark\_timer\_read@{benchmark\_timer\_read}}
+\index{benchmark\_timer\_read@{benchmark\_timer\_read}!timer.c@{timer.c}}
+\subsubsection{\texorpdfstring{benchmark\_timer\_read()}{benchmark\_timer\_read()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{btimer_8h_ac0f944fe3193b01df09c3d3a5a677e5a}{benchmark\+\_\+timer\+\_\+t}} benchmark\+\_\+timer\+\_\+read (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Read the Benchmark Timer. 
+
+This method stops the benchmark timer and returns the number of units that have passed since {\itshape benchmark\+\_\+timer\+\_\+initialize} was invoked.
+
+\begin{DoxyReturn}{Returns}
+This method returns the number of units with the average overhead removed. If the value is below the minimum trusted value, zero is returned. 
+\end{DoxyReturn}

@@ -1,0 +1,166 @@
+\hypertarget{libio___8h}{}\section{cpukit/include/rtems/libio\+\_\+.h File Reference}
+\label{libio___8h}\index{cpukit/include/rtems/libio\_.h@{cpukit/include/rtems/libio\_.h}}
+
+
+Lib\+IO Internal Interface.  
+
+
+{\ttfamily \#include $<$sys/uio.\+h$>$}\newline
+{\ttfamily \#include $<$errno.\+h$>$}\newline
+{\ttfamily \#include $<$limits.\+h$>$}\newline
+{\ttfamily \#include $<$pthread.\+h$>$}\newline
+{\ttfamily \#include $<$rtems.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/libio.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/seterr.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/score/assert.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/userenv.\+h$>$}\newline
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structrtems__filesystem__eval__path__generic__config}{rtems\+\_\+filesystem\+\_\+eval\+\_\+path\+\_\+generic\+\_\+config}}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+F\+I\+L\+E\+S\+Y\+S\+T\+E\+M\+\_\+\+S\+Y\+M\+L\+O\+O\+P\+\_\+\+M\+AX}~32
+\item 
+\#define {\bfseries F\+\_\+\+D\+U\+P2\+FD}~20
+\item 
+\#define {\bfseries rtems\+\_\+libio\+\_\+iop\+\_\+to\+\_\+descriptor}(\+\_\+iop)~((\+\_\+iop) -\/ \&rtems\+\_\+libio\+\_\+iops\mbox{[}0\mbox{]})
+\item 
+\#define {\bfseries rtems\+\_\+libio\+\_\+check\+\_\+is\+\_\+open}(\+\_\+iop)
+\item 
+\#define \mbox{\hyperlink{group__LibIOInternal_gae8da391ba86b1fc626eca3a7f3e9fada}{L\+I\+B\+I\+O\+\_\+\+G\+E\+T\+\_\+\+I\+OP}}(\+\_\+fd,  \+\_\+iop)
+\begin{DoxyCompactList}\small\item\em Macro to get the iop for the specified file descriptor. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__LibIOInternal_ga0abd228f2daccda438cb45d17c76f3ca}{L\+I\+B\+I\+O\+\_\+\+G\+E\+T\+\_\+\+I\+O\+P\+\_\+\+W\+I\+T\+H\+\_\+\+A\+C\+C\+E\+SS}}(\+\_\+fd,  \+\_\+iop,  \+\_\+access\+\_\+flags,  \+\_\+access\+\_\+error)
+\begin{DoxyCompactList}\small\item\em Macro to get the iop for the specified file descriptor with access flags and error. \end{DoxyCompactList}\item 
+\#define {\bfseries rtems\+\_\+libio\+\_\+check\+\_\+buffer}(\+\_\+buffer)
+\item 
+\#define {\bfseries rtems\+\_\+libio\+\_\+check\+\_\+count}(\+\_\+count)
+\item 
+\#define {\bfseries rtems\+\_\+filesystem\+\_\+mt\+\_\+entry\+\_\+declare\+\_\+lock\+\_\+context}(ctx)~\mbox{\hyperlink{group__ClassicINTRLocks_gab9d4b488f1537323799db7c1fa69b9aa}{rtems\+\_\+interrupt\+\_\+lock\+\_\+context}} ctx
+\item 
+\#define {\bfseries rtems\+\_\+filesystem\+\_\+mt\+\_\+entry\+\_\+lock}(ctx)~\mbox{\hyperlink{group__ClassicINTRLocks_ga0eeb7f40f9ac9e9c7b092d5fd85b5b3c}{rtems\+\_\+interrupt\+\_\+lock\+\_\+acquire}}( \&rtems\+\_\+filesystem\+\_\+mt\+\_\+entry\+\_\+lock\+\_\+control, \&ctx )
+\item 
+\#define {\bfseries rtems\+\_\+filesystem\+\_\+mt\+\_\+entry\+\_\+unlock}(ctx)~\mbox{\hyperlink{group__ClassicINTRLocks_gaefc0c78feded09af9fd5b3ed93262f97}{rtems\+\_\+interrupt\+\_\+lock\+\_\+release}}( \&rtems\+\_\+filesystem\+\_\+mt\+\_\+entry\+\_\+lock\+\_\+control, \&ctx )
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef bool($\ast$ \mbox{\hyperlink{group__LibIOInternal_ga163c6e729278f5dd69c324f462ef4e59}{rtems\+\_\+filesystem\+\_\+eval\+\_\+path\+\_\+is\+\_\+directory}}) (\mbox{\hyperlink{structrtems__filesystem__eval__path__context__t}{rtems\+\_\+filesystem\+\_\+eval\+\_\+path\+\_\+context\+\_\+t}} $\ast$ctx, void $\ast$arg)
+\begin{DoxyCompactList}\small\item\em Tests if the current location is a directory. \end{DoxyCompactList}\item 
+typedef rtems\+\_\+filesystem\+\_\+eval\+\_\+path\+\_\+generic\+\_\+status($\ast$ \mbox{\hyperlink{group__LibIOInternal_gae436fc8f66ede6cf15f46c38ea8958b0}{rtems\+\_\+filesystem\+\_\+eval\+\_\+path\+\_\+eval\+\_\+token}}) (\mbox{\hyperlink{structrtems__filesystem__eval__path__context__t}{rtems\+\_\+filesystem\+\_\+eval\+\_\+path\+\_\+context\+\_\+t}} $\ast$ctx, void $\ast$arg, const char $\ast$token, size\+\_\+t tokenlen)
+\begin{DoxyCompactList}\small\item\em Evaluates a token. \end{DoxyCompactList}\item 
+typedef ssize\+\_\+t($\ast$ {\bfseries rtems\+\_\+libio\+\_\+iovec\+\_\+adapter}) (\mbox{\hyperlink{structrtems__libio__tt}{rtems\+\_\+libio\+\_\+t}} $\ast$iop, const struct iovec $\ast$iov, int iovcnt, ssize\+\_\+t total)
+\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{group__LibIOInternal_ga35c9ceafafba9bc85ceb49e6361d88db}\label{group__LibIOInternal_ga35c9ceafafba9bc85ceb49e6361d88db}} 
+enum {\bfseries rtems\+\_\+filesystem\+\_\+eval\+\_\+path\+\_\+generic\+\_\+status} \{ {\bfseries R\+T\+E\+M\+S\+\_\+\+F\+I\+L\+E\+S\+Y\+S\+T\+E\+M\+\_\+\+E\+V\+A\+L\+\_\+\+P\+A\+T\+H\+\_\+\+G\+E\+N\+E\+R\+I\+C\+\_\+\+C\+O\+N\+T\+I\+N\+UE}, 
+{\bfseries R\+T\+E\+M\+S\+\_\+\+F\+I\+L\+E\+S\+Y\+S\+T\+E\+M\+\_\+\+E\+V\+A\+L\+\_\+\+P\+A\+T\+H\+\_\+\+G\+E\+N\+E\+R\+I\+C\+\_\+\+D\+O\+NE}, 
+{\bfseries R\+T\+E\+M\+S\+\_\+\+F\+I\+L\+E\+S\+Y\+S\+T\+E\+M\+\_\+\+E\+V\+A\+L\+\_\+\+P\+A\+T\+H\+\_\+\+G\+E\+N\+E\+R\+I\+C\+\_\+\+N\+O\+\_\+\+E\+N\+T\+RY}
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{group__LibIOInternal_gab454a726bf3325246734f547ab2a3705}{rtems\+\_\+filesystem\+\_\+location\+\_\+clone}} (\mbox{\hyperlink{group__LibIO_ga3252b3d31ee3c49ffff0b7604a676864}{rtems\+\_\+filesystem\+\_\+location\+\_\+info\+\_\+t}} $\ast$clone, const \mbox{\hyperlink{group__LibIO_ga3252b3d31ee3c49ffff0b7604a676864}{rtems\+\_\+filesystem\+\_\+location\+\_\+info\+\_\+t}} $\ast$master)
+\begin{DoxyCompactList}\small\item\em Clones a node. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__LibIOInternal_ga9b7b1dc3036af3d9e03ce5723420f9c4}{rtems\+\_\+filesystem\+\_\+location\+\_\+free}} (\mbox{\hyperlink{group__LibIO_ga3252b3d31ee3c49ffff0b7604a676864}{rtems\+\_\+filesystem\+\_\+location\+\_\+info\+\_\+t}} $\ast$loc)
+\begin{DoxyCompactList}\small\item\em Releases all resources of a location. \end{DoxyCompactList}\item 
+void {\bfseries rtems\+\_\+libio\+\_\+lock} (void)
+\item 
+void {\bfseries rtems\+\_\+libio\+\_\+unlock} (void)
+\item 
+\mbox{\hyperlink{structrtems__libio__tt}{rtems\+\_\+libio\+\_\+t}} $\ast$ \mbox{\hyperlink{group__LibIOInternal_ga2021231771d73c426958cf0bb7400666}{rtems\+\_\+libio\+\_\+allocate}} (void)
+\item 
+unsigned int \mbox{\hyperlink{group__LibIOInternal_ga0f1f1dcc65233793d22aa713c4709020}{rtems\+\_\+libio\+\_\+fcntl\+\_\+flags}} (int fcntl\+\_\+flags)
+\item 
+int \mbox{\hyperlink{group__LibIOInternal_ga86d5bf2c994da708cbd613aa2bb80d16}{rtems\+\_\+libio\+\_\+to\+\_\+fcntl\+\_\+flags}} (unsigned int flags)
+\item 
+void \mbox{\hyperlink{group__LibIOInternal_gac127d757d9117617d438a18f83eafac8}{rtems\+\_\+libio\+\_\+free}} (\mbox{\hyperlink{structrtems__libio__tt}{rtems\+\_\+libio\+\_\+t}} $\ast$iop)
+\item 
+\mbox{\hyperlink{group__LibIO_ga3252b3d31ee3c49ffff0b7604a676864}{rtems\+\_\+filesystem\+\_\+location\+\_\+info\+\_\+t}} $\ast$ {\bfseries rtems\+\_\+filesystem\+\_\+eval\+\_\+path\+\_\+start} (\mbox{\hyperlink{structrtems__filesystem__eval__path__context__t}{rtems\+\_\+filesystem\+\_\+eval\+\_\+path\+\_\+context\+\_\+t}} $\ast$ctx, const char $\ast$path, int eval\+\_\+flags)
+\item 
+\mbox{\hyperlink{group__LibIO_ga3252b3d31ee3c49ffff0b7604a676864}{rtems\+\_\+filesystem\+\_\+location\+\_\+info\+\_\+t}} $\ast$ {\bfseries rtems\+\_\+filesystem\+\_\+eval\+\_\+path\+\_\+start\+\_\+with\+\_\+parent} (\mbox{\hyperlink{structrtems__filesystem__eval__path__context__t}{rtems\+\_\+filesystem\+\_\+eval\+\_\+path\+\_\+context\+\_\+t}} $\ast$ctx, const char $\ast$path, int eval\+\_\+flags, \mbox{\hyperlink{group__LibIO_ga3252b3d31ee3c49ffff0b7604a676864}{rtems\+\_\+filesystem\+\_\+location\+\_\+info\+\_\+t}} $\ast$parentloc, int parent\+\_\+eval\+\_\+flags)
+\item 
+\mbox{\hyperlink{group__LibIO_ga3252b3d31ee3c49ffff0b7604a676864}{rtems\+\_\+filesystem\+\_\+location\+\_\+info\+\_\+t}} $\ast$ {\bfseries rtems\+\_\+filesystem\+\_\+eval\+\_\+path\+\_\+start\+\_\+with\+\_\+root\+\_\+and\+\_\+current} (\mbox{\hyperlink{structrtems__filesystem__eval__path__context__t}{rtems\+\_\+filesystem\+\_\+eval\+\_\+path\+\_\+context\+\_\+t}} $\ast$ctx, const char $\ast$path, size\+\_\+t pathlen, int eval\+\_\+flags, \mbox{\hyperlink{structrtems__filesystem__global__location__t}{rtems\+\_\+filesystem\+\_\+global\+\_\+location\+\_\+t}} $\ast$const $\ast$global\+\_\+root\+\_\+ptr, \mbox{\hyperlink{structrtems__filesystem__global__location__t}{rtems\+\_\+filesystem\+\_\+global\+\_\+location\+\_\+t}} $\ast$const $\ast$global\+\_\+current\+\_\+ptr)
+\item 
+void {\bfseries rtems\+\_\+filesystem\+\_\+eval\+\_\+path\+\_\+continue} (\mbox{\hyperlink{structrtems__filesystem__eval__path__context__t}{rtems\+\_\+filesystem\+\_\+eval\+\_\+path\+\_\+context\+\_\+t}} $\ast$ctx)
+\item 
+void {\bfseries rtems\+\_\+filesystem\+\_\+eval\+\_\+path\+\_\+cleanup} (\mbox{\hyperlink{structrtems__filesystem__eval__path__context__t}{rtems\+\_\+filesystem\+\_\+eval\+\_\+path\+\_\+context\+\_\+t}} $\ast$ctx)
+\item 
+void {\bfseries rtems\+\_\+filesystem\+\_\+eval\+\_\+path\+\_\+recursive} (\mbox{\hyperlink{structrtems__filesystem__eval__path__context__t}{rtems\+\_\+filesystem\+\_\+eval\+\_\+path\+\_\+context\+\_\+t}} $\ast$ctx, const char $\ast$path, size\+\_\+t pathlen)
+\item 
+void {\bfseries rtems\+\_\+filesystem\+\_\+eval\+\_\+path\+\_\+cleanup\+\_\+with\+\_\+parent} (\mbox{\hyperlink{structrtems__filesystem__eval__path__context__t}{rtems\+\_\+filesystem\+\_\+eval\+\_\+path\+\_\+context\+\_\+t}} $\ast$ctx, \mbox{\hyperlink{group__LibIO_ga3252b3d31ee3c49ffff0b7604a676864}{rtems\+\_\+filesystem\+\_\+location\+\_\+info\+\_\+t}} $\ast$parentloc)
+\item 
+void \mbox{\hyperlink{group__LibIOInternal_ga300dc32a385ff38c7a4d836064593f1d}{rtems\+\_\+filesystem\+\_\+eval\+\_\+path\+\_\+restart}} (\mbox{\hyperlink{structrtems__filesystem__eval__path__context__t}{rtems\+\_\+filesystem\+\_\+eval\+\_\+path\+\_\+context\+\_\+t}} $\ast$ctx, \mbox{\hyperlink{structrtems__filesystem__global__location__t}{rtems\+\_\+filesystem\+\_\+global\+\_\+location\+\_\+t}} $\ast$$\ast$newstartloc\+\_\+ptr)
+\begin{DoxyCompactList}\small\item\em Requests a path evaluation restart. \end{DoxyCompactList}\item 
+void {\bfseries rtems\+\_\+filesystem\+\_\+eval\+\_\+path\+\_\+generic} (\mbox{\hyperlink{structrtems__filesystem__eval__path__context__t}{rtems\+\_\+filesystem\+\_\+eval\+\_\+path\+\_\+context\+\_\+t}} $\ast$ctx, void $\ast$arg, const \mbox{\hyperlink{structrtems__filesystem__eval__path__generic__config}{rtems\+\_\+filesystem\+\_\+eval\+\_\+path\+\_\+generic\+\_\+config}} $\ast$\mbox{\hyperlink{structconfig__s}{config}})
+\item 
+void \mbox{\hyperlink{group__LibIOInternal_gad5344541746c6e86ef313e926ac2d7af}{rtems\+\_\+filesystem\+\_\+initialize}} (void)
+\begin{DoxyCompactList}\small\item\em Base File System Initialization. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__LibIO_ga3252b3d31ee3c49ffff0b7604a676864}{rtems\+\_\+filesystem\+\_\+location\+\_\+info\+\_\+t}} $\ast$ \mbox{\hyperlink{group__LibIOInternal_gadbbd487370aedc2573c86060973ac90d}{rtems\+\_\+filesystem\+\_\+location\+\_\+copy}} (\mbox{\hyperlink{group__LibIO_ga3252b3d31ee3c49ffff0b7604a676864}{rtems\+\_\+filesystem\+\_\+location\+\_\+info\+\_\+t}} $\ast$dst, const \mbox{\hyperlink{group__LibIO_ga3252b3d31ee3c49ffff0b7604a676864}{rtems\+\_\+filesystem\+\_\+location\+\_\+info\+\_\+t}} $\ast$src)
+\begin{DoxyCompactList}\small\item\em Copies a location. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structrtems__filesystem__global__location__t}{rtems\+\_\+filesystem\+\_\+global\+\_\+location\+\_\+t}} $\ast$ {\bfseries rtems\+\_\+filesystem\+\_\+location\+\_\+transform\+\_\+to\+\_\+global} (\mbox{\hyperlink{group__LibIO_ga3252b3d31ee3c49ffff0b7604a676864}{rtems\+\_\+filesystem\+\_\+location\+\_\+info\+\_\+t}} $\ast$loc)
+\item 
+void \mbox{\hyperlink{group__LibIOInternal_ga2536c8d7db07525e56711437a627d0ee}{rtems\+\_\+filesystem\+\_\+global\+\_\+location\+\_\+assign}} (\mbox{\hyperlink{structrtems__filesystem__global__location__t}{rtems\+\_\+filesystem\+\_\+global\+\_\+location\+\_\+t}} $\ast$$\ast$lhs\+\_\+global\+\_\+loc\+\_\+ptr, \mbox{\hyperlink{structrtems__filesystem__global__location__t}{rtems\+\_\+filesystem\+\_\+global\+\_\+location\+\_\+t}} $\ast$rhs\+\_\+global\+\_\+loc)
+\begin{DoxyCompactList}\small\item\em Assigns a global file system location. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structrtems__filesystem__global__location__t}{rtems\+\_\+filesystem\+\_\+global\+\_\+location\+\_\+t}} $\ast$ \mbox{\hyperlink{group__LibIOInternal_ga3df19d6d5f1f73b574478e7c4b42e643}{rtems\+\_\+filesystem\+\_\+global\+\_\+location\+\_\+obtain}} (\mbox{\hyperlink{structrtems__filesystem__global__location__t}{rtems\+\_\+filesystem\+\_\+global\+\_\+location\+\_\+t}} $\ast$const $\ast$global\+\_\+loc\+\_\+ptr)
+\begin{DoxyCompactList}\small\item\em Obtains a global file system location. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__LibIOInternal_ga66aa5e6d0bbf4c03b533deac66fb328f}{rtems\+\_\+filesystem\+\_\+global\+\_\+location\+\_\+release}} (\mbox{\hyperlink{structrtems__filesystem__global__location__t}{rtems\+\_\+filesystem\+\_\+global\+\_\+location\+\_\+t}} $\ast$global\+\_\+loc, bool deferred)
+\begin{DoxyCompactList}\small\item\em Releases a global file system location. \end{DoxyCompactList}\item 
+void {\bfseries rtems\+\_\+filesystem\+\_\+location\+\_\+detach} (\mbox{\hyperlink{group__LibIO_ga3252b3d31ee3c49ffff0b7604a676864}{rtems\+\_\+filesystem\+\_\+location\+\_\+info\+\_\+t}} $\ast$detach)
+\item 
+void {\bfseries rtems\+\_\+filesystem\+\_\+location\+\_\+copy\+\_\+and\+\_\+detach} (\mbox{\hyperlink{group__LibIO_ga3252b3d31ee3c49ffff0b7604a676864}{rtems\+\_\+filesystem\+\_\+location\+\_\+info\+\_\+t}} $\ast$copy, \mbox{\hyperlink{group__LibIO_ga3252b3d31ee3c49ffff0b7604a676864}{rtems\+\_\+filesystem\+\_\+location\+\_\+info\+\_\+t}} $\ast$detach)
+\item 
+int {\bfseries rtems\+\_\+filesystem\+\_\+mknod} (const \mbox{\hyperlink{group__LibIO_ga3252b3d31ee3c49ffff0b7604a676864}{rtems\+\_\+filesystem\+\_\+location\+\_\+info\+\_\+t}} $\ast$parentloc, const char $\ast$name, size\+\_\+t namelen, mode\+\_\+t mode, dev\+\_\+t dev)
+\item 
+int {\bfseries rtems\+\_\+filesystem\+\_\+chdir} (\mbox{\hyperlink{group__LibIO_ga3252b3d31ee3c49ffff0b7604a676864}{rtems\+\_\+filesystem\+\_\+location\+\_\+info\+\_\+t}} $\ast$loc)
+\item 
+int {\bfseries rtems\+\_\+filesystem\+\_\+chmod} (const \mbox{\hyperlink{group__LibIO_ga3252b3d31ee3c49ffff0b7604a676864}{rtems\+\_\+filesystem\+\_\+location\+\_\+info\+\_\+t}} $\ast$loc, mode\+\_\+t mode)
+\item 
+int {\bfseries rtems\+\_\+filesystem\+\_\+chown} (const \mbox{\hyperlink{group__LibIO_ga3252b3d31ee3c49ffff0b7604a676864}{rtems\+\_\+filesystem\+\_\+location\+\_\+info\+\_\+t}} $\ast$loc, uid\+\_\+t owner, gid\+\_\+t group)
+\item 
+void {\bfseries rtems\+\_\+filesystem\+\_\+location\+\_\+remove\+\_\+from\+\_\+mt\+\_\+entry} (\mbox{\hyperlink{group__LibIO_ga3252b3d31ee3c49ffff0b7604a676864}{rtems\+\_\+filesystem\+\_\+location\+\_\+info\+\_\+t}} $\ast$loc)
+\item 
+void {\bfseries rtems\+\_\+filesystem\+\_\+do\+\_\+unmount} (\mbox{\hyperlink{structrtems__filesystem__mount__table__entry__tt}{rtems\+\_\+filesystem\+\_\+mount\+\_\+table\+\_\+entry\+\_\+t}} $\ast$mt\+\_\+entry)
+\item 
+void {\bfseries rtems\+\_\+filesystem\+\_\+eval\+\_\+path\+\_\+eat\+\_\+delimiter} (\mbox{\hyperlink{structrtems__filesystem__eval__path__context__t}{rtems\+\_\+filesystem\+\_\+eval\+\_\+path\+\_\+context\+\_\+t}} $\ast$ctx)
+\item 
+void {\bfseries rtems\+\_\+filesystem\+\_\+eval\+\_\+path\+\_\+next\+\_\+token} (\mbox{\hyperlink{structrtems__filesystem__eval__path__context__t}{rtems\+\_\+filesystem\+\_\+eval\+\_\+path\+\_\+context\+\_\+t}} $\ast$ctx)
+\item 
+void {\bfseries rtems\+\_\+filesystem\+\_\+eval\+\_\+path\+\_\+error} (\mbox{\hyperlink{structrtems__filesystem__eval__path__context__t}{rtems\+\_\+filesystem\+\_\+eval\+\_\+path\+\_\+context\+\_\+t}} $\ast$ctx, int eno)
+\item 
+int \mbox{\hyperlink{group__LibIOInternal_gad070afa17e85fbb4b8f96a954ba4fda4}{rtems\+\_\+filesystem\+\_\+location\+\_\+exists\+\_\+in\+\_\+same\+\_\+instance\+\_\+as}} (const \mbox{\hyperlink{group__LibIO_ga3252b3d31ee3c49ffff0b7604a676864}{rtems\+\_\+filesystem\+\_\+location\+\_\+info\+\_\+t}} $\ast$a, const \mbox{\hyperlink{group__LibIO_ga3252b3d31ee3c49ffff0b7604a676864}{rtems\+\_\+filesystem\+\_\+location\+\_\+info\+\_\+t}} $\ast$b)
+\begin{DoxyCompactList}\small\item\em Checks that the locations exist in the same file system instance. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__LibIOInternal_ga411917db0d9b800480d1055734e81590}{rtems\+\_\+filesystem\+\_\+check\+\_\+access}} (int flags, mode\+\_\+t object\+\_\+mode, uid\+\_\+t object\+\_\+uid, gid\+\_\+t object\+\_\+gid)
+\begin{DoxyCompactList}\small\item\em Checks if access to an object is allowed for the current user. \end{DoxyCompactList}\item 
+bool {\bfseries rtems\+\_\+filesystem\+\_\+eval\+\_\+path\+\_\+check\+\_\+access} (\mbox{\hyperlink{structrtems__filesystem__eval__path__context__t}{rtems\+\_\+filesystem\+\_\+eval\+\_\+path\+\_\+context\+\_\+t}} $\ast$ctx, int eval\+\_\+flags, mode\+\_\+t node\+\_\+mode, uid\+\_\+t node\+\_\+uid, gid\+\_\+t node\+\_\+gid)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const uint32\+\_\+t {\bfseries rtems\+\_\+libio\+\_\+number\+\_\+iops}
+\item 
+\mbox{\hyperlink{structrtems__libio__tt}{rtems\+\_\+libio\+\_\+t}} {\bfseries rtems\+\_\+libio\+\_\+iops} \mbox{[}$\,$\mbox{]}
+\item 
+void $\ast$ {\bfseries rtems\+\_\+libio\+\_\+iop\+\_\+free\+\_\+head}
+\item 
+void $\ast$$\ast$ {\bfseries rtems\+\_\+libio\+\_\+iop\+\_\+free\+\_\+tail}
+\item 
+const \mbox{\hyperlink{struct__rtems__filesystem__file__handlers__r}{rtems\+\_\+filesystem\+\_\+file\+\_\+handlers\+\_\+r}} {\bfseries rtems\+\_\+filesystem\+\_\+null\+\_\+handlers}
+\item 
+\mbox{\hyperlink{structrtems__filesystem__mount__table__entry__tt}{rtems\+\_\+filesystem\+\_\+mount\+\_\+table\+\_\+entry\+\_\+t}} {\bfseries rtems\+\_\+filesystem\+\_\+null\+\_\+mt\+\_\+entry}
+\item 
+\mbox{\hyperlink{structrtems__filesystem__global__location__t}{rtems\+\_\+filesystem\+\_\+global\+\_\+location\+\_\+t}} \mbox{\hyperlink{group__LibIOInternal_ga2a1ff10ed80896b794427789c2c44a4b}{rtems\+\_\+filesystem\+\_\+global\+\_\+location\+\_\+null}}
+\begin{DoxyCompactList}\small\item\em The global null location. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicINTRLocks_ga7d4b54b01fd1507aa842d5fbc7b11177}{rtems\+\_\+interrupt\+\_\+lock}} {\bfseries rtems\+\_\+filesystem\+\_\+mt\+\_\+entry\+\_\+lock\+\_\+control}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Lib\+IO Internal Interface. 
+
+This file is the libio internal interface. 

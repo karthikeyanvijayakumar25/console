@@ -1,0 +1,404 @@
+\hypertarget{group__RTEMSScoreISRLocks}{}\section{I\+SR Locks}
+\label{group__RTEMSScoreISRLocks}\index{ISR Locks@{ISR Locks}}
+
+
+Low-\/level lock to protect critical sections accessed by threads and interrupt service routines.  
+
+
+\subsection*{Files}
+\begin{DoxyCompactItemize}
+\item 
+file \mbox{\hyperlink{isrlock_8h}{isrlock.\+h}}
+\begin{DoxyCompactList}\small\item\em I\+SR Locks. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structISR__lock__Control}{I\+S\+R\+\_\+lock\+\_\+\+Control}}
+\begin{DoxyCompactList}\small\item\em I\+SR lock control. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structISR__lock__Context}{I\+S\+R\+\_\+lock\+\_\+\+Context}}
+\begin{DoxyCompactList}\small\item\em Local I\+SR lock context for acquire and release pairs. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__RTEMSScoreISRLocks_ga09174e3121c9ec30b08d4ab09706833d}{I\+S\+R\+\_\+\+L\+O\+C\+K\+\_\+\+M\+E\+M\+B\+ER}}(\+\_\+designator)
+\begin{DoxyCompactList}\small\item\em Defines an I\+SR lock member. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTEMSScoreISRLocks_ga6702456c1dc97f69ebbbf1438c2b7e2e}{I\+S\+R\+\_\+\+L\+O\+C\+K\+\_\+\+D\+E\+C\+L\+A\+RE}}(\+\_\+qualifier,  \+\_\+designator)
+\begin{DoxyCompactList}\small\item\em Declares an I\+SR lock variable. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTEMSScoreISRLocks_ga24058ced522fcade5ccdc9bd477574f2}{I\+S\+R\+\_\+\+L\+O\+C\+K\+\_\+\+D\+E\+F\+I\+NE}}(\+\_\+qualifier,  \+\_\+designator,  \+\_\+name)
+\begin{DoxyCompactList}\small\item\em Defines an I\+SR lock variable. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTEMSScoreISRLocks_gad41ddc507bfa7022bd9355ff252888d2}{I\+S\+R\+\_\+\+L\+O\+C\+K\+\_\+\+R\+E\+F\+E\+R\+E\+N\+CE}}(\+\_\+designator,  \+\_\+target)
+\begin{DoxyCompactList}\small\item\em Defines an I\+SR lock variable reference. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTEMSScoreISRLocks_ga5fd39a446bb4cfbfc53838fd434d5f6c}{I\+S\+R\+\_\+\+L\+O\+C\+K\+\_\+\+I\+N\+I\+T\+I\+A\+L\+I\+Z\+ER}}(\+\_\+name)~\{ \}
+\begin{DoxyCompactList}\small\item\em Initializer for static initialization of I\+SR locks. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTEMSScoreISRLocks_gafeb5128bdf7cc2d29f9f51a85a7d0220}{\+\_\+\+I\+S\+R\+\_\+lock\+\_\+\+Initialize}}(\+\_\+lock,  \+\_\+name)
+\begin{DoxyCompactList}\small\item\em Initializes an I\+SR lock. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTEMSScoreISRLocks_ga918784c3c13a2fb3a27173cbc471285a}{\+\_\+\+I\+S\+R\+\_\+lock\+\_\+\+Destroy}}(\+\_\+lock)
+\begin{DoxyCompactList}\small\item\em Destroys an I\+SR lock. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTEMSScoreISRLocks_ga50c13faa89292b96a4bcf5ef34d76fac}{\+\_\+\+I\+S\+R\+\_\+lock\+\_\+\+Set\+\_\+name}}(\+\_\+lock,  \+\_\+name)
+\begin{DoxyCompactList}\small\item\em Sets the name of an I\+SR lock. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTEMSScoreISRLocks_gaa4ecfcd40e90531bdd3c348a99b3b7d9}{\+\_\+\+I\+S\+R\+\_\+lock\+\_\+\+I\+S\+R\+\_\+disable\+\_\+and\+\_\+acquire}}(\+\_\+lock,  \+\_\+context)~\mbox{\hyperlink{group__RTEMSScoreISR_ga2a829f51f98576aa596562985e1df2fc}{\+\_\+\+I\+S\+R\+\_\+\+Local\+\_\+disable}}( ( \+\_\+context )-\/$>$isr\+\_\+level )
+\begin{DoxyCompactList}\small\item\em Acquires an I\+SR lock. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTEMSScoreISRLocks_ga87a2125e8bfba5f2f5b72adbeee4dcc3}{\+\_\+\+I\+S\+R\+\_\+lock\+\_\+\+Release\+\_\+and\+\_\+\+I\+S\+R\+\_\+enable}}(\+\_\+lock,  \+\_\+context)~\mbox{\hyperlink{group__RTEMSScoreISR_ga508f5a32655cb590906a477b5a8174f1}{\+\_\+\+I\+S\+R\+\_\+\+Local\+\_\+enable}}( ( \+\_\+context )-\/$>$isr\+\_\+level )
+\begin{DoxyCompactList}\small\item\em Releases an I\+SR lock. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTEMSScoreISRLocks_ga69700d5284dea5b4ce06b5ebc405d797}{\+\_\+\+I\+S\+R\+\_\+lock\+\_\+\+Acquire}}(\+\_\+lock,  \+\_\+context)~do \{ (void) \+\_\+context; \} while ( 0 )
+\begin{DoxyCompactList}\small\item\em Acquires an I\+SR lock inside an I\+SR disabled section. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTEMSScoreISRLocks_ga35acfee397d43e90bc30f63e4bd960d7}{\+\_\+\+I\+S\+R\+\_\+lock\+\_\+\+Release}}(\+\_\+lock,  \+\_\+context)~do \{ (void) \+\_\+context; \} while ( 0 )
+\begin{DoxyCompactList}\small\item\em Releases an I\+SR lock inside an I\+SR disabled section. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTEMSScoreISRLocks_ga78b1ad93f43e74e8155f7cebb539e14b}{\+\_\+\+I\+S\+R\+\_\+lock\+\_\+\+Acquire\+\_\+inline}}(\+\_\+lock,  \+\_\+context)~do \{ (void) \+\_\+context; \} while ( 0 )
+\begin{DoxyCompactList}\small\item\em Acquires an I\+SR lock inside an I\+SR disabled section (inline). \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTEMSScoreISRLocks_gaa273cf4f280a0cbd05e9b2f4b8321793}{\+\_\+\+I\+S\+R\+\_\+lock\+\_\+\+Release\+\_\+inline}}(\+\_\+lock,  \+\_\+context)~do \{ (void) \+\_\+context; \} while ( 0 )
+\begin{DoxyCompactList}\small\item\em Releases an I\+SR lock inside an I\+SR disabled section (inline). \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__RTEMSScoreISRLocks_gae9119b4016103d596edcf0e4e3ed9bd4}\label{group__RTEMSScoreISRLocks_gae9119b4016103d596edcf0e4e3ed9bd4}} 
+\#define {\bfseries \+\_\+\+I\+S\+R\+\_\+lock\+\_\+\+I\+S\+R\+\_\+disable\+\_\+profile}(\+\_\+context)
+\item 
+\#define \mbox{\hyperlink{group__RTEMSScoreISRLocks_ga36d91ceed1df931ce6291d7bc9e60573}{\+\_\+\+I\+S\+R\+\_\+lock\+\_\+\+I\+S\+R\+\_\+disable}}(\+\_\+context)
+\begin{DoxyCompactList}\small\item\em Disables interrupts and saves the previous interrupt state in the I\+SR lock context. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTEMSScoreISRLocks_ga2a9af8c6d9bdc4c652759c84df115559}{\+\_\+\+I\+S\+R\+\_\+lock\+\_\+\+I\+S\+R\+\_\+enable}}(\+\_\+context)~\mbox{\hyperlink{group__RTEMSScoreISR_ga508f5a32655cb590906a477b5a8174f1}{\+\_\+\+I\+S\+R\+\_\+\+Local\+\_\+enable}}( ( \+\_\+context )-\/$>$isr\+\_\+level )
+\begin{DoxyCompactList}\small\item\em Restores the saved interrupt state of the I\+SR lock context. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \mbox{\hyperlink{group__RTEMSScoreISRLocks_ga937f2866844702a8e85148bcdc4d49d0}{\+\_\+\+I\+S\+R\+\_\+lock\+\_\+\+Context\+\_\+set\+\_\+level}} (\mbox{\hyperlink{structISR__lock__Context}{I\+S\+R\+\_\+lock\+\_\+\+Context}} $\ast$\mbox{\hyperlink{sun4u_2tte_8h_a9b4a99475e2709333b8e5d70483173f1}{context}}, \mbox{\hyperlink{group__RTEMSScoreISR_gad1af728587ebcefec5b5cf94fc7909b9}{I\+S\+R\+\_\+\+Level}} level)
+\begin{DoxyCompactList}\small\item\em Sets the I\+SR level in the I\+SR lock context. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Low-\/level lock to protect critical sections accessed by threads and interrupt service routines. 
+
+On single processor configurations the I\+SR locks degrade to simple I\+SR disable/enable sequences. No additional storage or objects are required.
+
+This synchronization primitive is supported on S\+MP configurations. Here S\+MP locks are used. 
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{group__RTEMSScoreISRLocks_ga69700d5284dea5b4ce06b5ebc405d797}\label{group__RTEMSScoreISRLocks_ga69700d5284dea5b4ce06b5ebc405d797}} 
+\index{ISR Locks@{ISR Locks}!\_ISR\_lock\_Acquire@{\_ISR\_lock\_Acquire}}
+\index{\_ISR\_lock\_Acquire@{\_ISR\_lock\_Acquire}!ISR Locks@{ISR Locks}}
+\subsubsection{\texorpdfstring{\_ISR\_lock\_Acquire}{\_ISR\_lock\_Acquire}}
+{\footnotesize\ttfamily \#define \+\_\+\+I\+S\+R\+\_\+lock\+\_\+\+Acquire(\begin{DoxyParamCaption}\item[{}]{\+\_\+lock,  }\item[{}]{\+\_\+context }\end{DoxyParamCaption})~do \{ (void) \+\_\+context; \} while ( 0 )}
+
+
+
+Acquires an I\+SR lock inside an I\+SR disabled section. 
+
+The interrupt status will remain unchanged. On S\+MP configurations this function acquires an S\+MP lock.
+
+In case the executing context can be interrupted by higher priority interrupts and these interrupts enter the critical section protected by this lock, then the result is unpredictable.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+lock} & The I\+SR lock control. \\
+\hline
+\mbox{\texttt{ in}}  & {\em \+\_\+context} & The local I\+SR lock context for an acquire and release pair.\\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{group__RTEMSScoreISRLocks_ga35acfee397d43e90bc30f63e4bd960d7}{\+\_\+\+I\+S\+R\+\_\+lock\+\_\+\+Release()}}. 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{group__RTEMSScoreISRLocks_ga78b1ad93f43e74e8155f7cebb539e14b}\label{group__RTEMSScoreISRLocks_ga78b1ad93f43e74e8155f7cebb539e14b}} 
+\index{ISR Locks@{ISR Locks}!\_ISR\_lock\_Acquire\_inline@{\_ISR\_lock\_Acquire\_inline}}
+\index{\_ISR\_lock\_Acquire\_inline@{\_ISR\_lock\_Acquire\_inline}!ISR Locks@{ISR Locks}}
+\subsubsection{\texorpdfstring{\_ISR\_lock\_Acquire\_inline}{\_ISR\_lock\_Acquire\_inline}}
+{\footnotesize\ttfamily \#define \+\_\+\+I\+S\+R\+\_\+lock\+\_\+\+Acquire\+\_\+inline(\begin{DoxyParamCaption}\item[{}]{\+\_\+lock,  }\item[{}]{\+\_\+context }\end{DoxyParamCaption})~do \{ (void) \+\_\+context; \} while ( 0 )}
+
+
+
+Acquires an I\+SR lock inside an I\+SR disabled section (inline). 
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{group__RTEMSScoreISRLocks_ga69700d5284dea5b4ce06b5ebc405d797}{\+\_\+\+I\+S\+R\+\_\+lock\+\_\+\+Acquire()}}. 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{group__RTEMSScoreISRLocks_ga918784c3c13a2fb3a27173cbc471285a}\label{group__RTEMSScoreISRLocks_ga918784c3c13a2fb3a27173cbc471285a}} 
+\index{ISR Locks@{ISR Locks}!\_ISR\_lock\_Destroy@{\_ISR\_lock\_Destroy}}
+\index{\_ISR\_lock\_Destroy@{\_ISR\_lock\_Destroy}!ISR Locks@{ISR Locks}}
+\subsubsection{\texorpdfstring{\_ISR\_lock\_Destroy}{\_ISR\_lock\_Destroy}}
+{\footnotesize\ttfamily \#define \+\_\+\+I\+S\+R\+\_\+lock\+\_\+\+Destroy(\begin{DoxyParamCaption}\item[{}]{\+\_\+lock }\end{DoxyParamCaption})}
+
+
+
+Destroys an I\+SR lock. 
+
+Concurrent destruction leads to unpredictable results.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+lock} & The I\+SR lock control. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__RTEMSScoreISRLocks_gafeb5128bdf7cc2d29f9f51a85a7d0220}\label{group__RTEMSScoreISRLocks_gafeb5128bdf7cc2d29f9f51a85a7d0220}} 
+\index{ISR Locks@{ISR Locks}!\_ISR\_lock\_Initialize@{\_ISR\_lock\_Initialize}}
+\index{\_ISR\_lock\_Initialize@{\_ISR\_lock\_Initialize}!ISR Locks@{ISR Locks}}
+\subsubsection{\texorpdfstring{\_ISR\_lock\_Initialize}{\_ISR\_lock\_Initialize}}
+{\footnotesize\ttfamily \#define \+\_\+\+I\+S\+R\+\_\+lock\+\_\+\+Initialize(\begin{DoxyParamCaption}\item[{}]{\+\_\+lock,  }\item[{}]{\+\_\+name }\end{DoxyParamCaption})}
+
+
+
+Initializes an I\+SR lock. 
+
+Concurrent initialization leads to unpredictable results.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+lock} & The I\+SR lock control. \\
+\hline
+\mbox{\texttt{ in}}  & {\em \+\_\+name} & The name for the I\+SR lock. This name must be a string persistent throughout the life time of this lock. The name is only used if profiling is enabled. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__RTEMSScoreISRLocks_ga36d91ceed1df931ce6291d7bc9e60573}\label{group__RTEMSScoreISRLocks_ga36d91ceed1df931ce6291d7bc9e60573}} 
+\index{ISR Locks@{ISR Locks}!\_ISR\_lock\_ISR\_disable@{\_ISR\_lock\_ISR\_disable}}
+\index{\_ISR\_lock\_ISR\_disable@{\_ISR\_lock\_ISR\_disable}!ISR Locks@{ISR Locks}}
+\subsubsection{\texorpdfstring{\_ISR\_lock\_ISR\_disable}{\_ISR\_lock\_ISR\_disable}}
+{\footnotesize\ttfamily \#define \+\_\+\+I\+S\+R\+\_\+lock\+\_\+\+I\+S\+R\+\_\+disable(\begin{DoxyParamCaption}\item[{}]{\+\_\+context }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do} \{ \(\backslash\)}
+\DoxyCodeLine{      \_ISR\_Local\_disable( ( \_context )->isr\_level ); \(\backslash\)}
+\DoxyCodeLine{      \_ISR\_lock\_ISR\_disable\_profile( \_context ) \(\backslash\)}
+\DoxyCodeLine{    \} \textcolor{keywordflow}{while} ( 0 )}
+
+\end{DoxyCode}
+
+
+Disables interrupts and saves the previous interrupt state in the I\+SR lock context. 
+
+This function can be used in thread and interrupt context.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+context} & The local I\+SR lock context to store the interrupt state.\\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{group__RTEMSScoreISRLocks_ga2a9af8c6d9bdc4c652759c84df115559}{\+\_\+\+I\+S\+R\+\_\+lock\+\_\+\+I\+S\+R\+\_\+enable()}}. 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{group__RTEMSScoreISRLocks_gaa4ecfcd40e90531bdd3c348a99b3b7d9}\label{group__RTEMSScoreISRLocks_gaa4ecfcd40e90531bdd3c348a99b3b7d9}} 
+\index{ISR Locks@{ISR Locks}!\_ISR\_lock\_ISR\_disable\_and\_acquire@{\_ISR\_lock\_ISR\_disable\_and\_acquire}}
+\index{\_ISR\_lock\_ISR\_disable\_and\_acquire@{\_ISR\_lock\_ISR\_disable\_and\_acquire}!ISR Locks@{ISR Locks}}
+\subsubsection{\texorpdfstring{\_ISR\_lock\_ISR\_disable\_and\_acquire}{\_ISR\_lock\_ISR\_disable\_and\_acquire}}
+{\footnotesize\ttfamily \#define \+\_\+\+I\+S\+R\+\_\+lock\+\_\+\+I\+S\+R\+\_\+disable\+\_\+and\+\_\+acquire(\begin{DoxyParamCaption}\item[{}]{\+\_\+lock,  }\item[{}]{\+\_\+context }\end{DoxyParamCaption})~\mbox{\hyperlink{group__RTEMSScoreISR_ga2a829f51f98576aa596562985e1df2fc}{\+\_\+\+I\+S\+R\+\_\+\+Local\+\_\+disable}}( ( \+\_\+context )-\/$>$isr\+\_\+level )}
+
+
+
+Acquires an I\+SR lock. 
+
+Interrupts will be disabled. On S\+MP configurations this function acquires an S\+MP lock.
+
+This function can be used in thread and interrupt context.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+lock} & The I\+SR lock control. \\
+\hline
+\mbox{\texttt{ in}}  & {\em \+\_\+context} & The local I\+SR lock context for an acquire and release pair.\\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{group__RTEMSScoreISRLocks_ga87a2125e8bfba5f2f5b72adbeee4dcc3}{\+\_\+\+I\+S\+R\+\_\+lock\+\_\+\+Release\+\_\+and\+\_\+\+I\+S\+R\+\_\+enable()}}. 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{group__RTEMSScoreISRLocks_ga2a9af8c6d9bdc4c652759c84df115559}\label{group__RTEMSScoreISRLocks_ga2a9af8c6d9bdc4c652759c84df115559}} 
+\index{ISR Locks@{ISR Locks}!\_ISR\_lock\_ISR\_enable@{\_ISR\_lock\_ISR\_enable}}
+\index{\_ISR\_lock\_ISR\_enable@{\_ISR\_lock\_ISR\_enable}!ISR Locks@{ISR Locks}}
+\subsubsection{\texorpdfstring{\_ISR\_lock\_ISR\_enable}{\_ISR\_lock\_ISR\_enable}}
+{\footnotesize\ttfamily \#define \+\_\+\+I\+S\+R\+\_\+lock\+\_\+\+I\+S\+R\+\_\+enable(\begin{DoxyParamCaption}\item[{}]{\+\_\+context }\end{DoxyParamCaption})~\mbox{\hyperlink{group__RTEMSScoreISR_ga508f5a32655cb590906a477b5a8174f1}{\+\_\+\+I\+S\+R\+\_\+\+Local\+\_\+enable}}( ( \+\_\+context )-\/$>$isr\+\_\+level )}
+
+
+
+Restores the saved interrupt state of the I\+SR lock context. 
+
+This function can be used in thread and interrupt context.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+context} & The local I\+SR lock context containing the saved interrupt state.\\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{group__RTEMSScoreISRLocks_ga36d91ceed1df931ce6291d7bc9e60573}{\+\_\+\+I\+S\+R\+\_\+lock\+\_\+\+I\+S\+R\+\_\+disable()}}. 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{group__RTEMSScoreISRLocks_ga35acfee397d43e90bc30f63e4bd960d7}\label{group__RTEMSScoreISRLocks_ga35acfee397d43e90bc30f63e4bd960d7}} 
+\index{ISR Locks@{ISR Locks}!\_ISR\_lock\_Release@{\_ISR\_lock\_Release}}
+\index{\_ISR\_lock\_Release@{\_ISR\_lock\_Release}!ISR Locks@{ISR Locks}}
+\subsubsection{\texorpdfstring{\_ISR\_lock\_Release}{\_ISR\_lock\_Release}}
+{\footnotesize\ttfamily \#define \+\_\+\+I\+S\+R\+\_\+lock\+\_\+\+Release(\begin{DoxyParamCaption}\item[{}]{\+\_\+lock,  }\item[{}]{\+\_\+context }\end{DoxyParamCaption})~do \{ (void) \+\_\+context; \} while ( 0 )}
+
+
+
+Releases an I\+SR lock inside an I\+SR disabled section. 
+
+The interrupt status will remain unchanged. On S\+MP configurations this function releases an S\+MP lock.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+lock} & The I\+SR lock control. \\
+\hline
+\mbox{\texttt{ in}}  & {\em \+\_\+context} & The local I\+SR lock context for an acquire and release pair.\\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{group__RTEMSScoreISRLocks_ga69700d5284dea5b4ce06b5ebc405d797}{\+\_\+\+I\+S\+R\+\_\+lock\+\_\+\+Acquire()}}. 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{group__RTEMSScoreISRLocks_ga87a2125e8bfba5f2f5b72adbeee4dcc3}\label{group__RTEMSScoreISRLocks_ga87a2125e8bfba5f2f5b72adbeee4dcc3}} 
+\index{ISR Locks@{ISR Locks}!\_ISR\_lock\_Release\_and\_ISR\_enable@{\_ISR\_lock\_Release\_and\_ISR\_enable}}
+\index{\_ISR\_lock\_Release\_and\_ISR\_enable@{\_ISR\_lock\_Release\_and\_ISR\_enable}!ISR Locks@{ISR Locks}}
+\subsubsection{\texorpdfstring{\_ISR\_lock\_Release\_and\_ISR\_enable}{\_ISR\_lock\_Release\_and\_ISR\_enable}}
+{\footnotesize\ttfamily \#define \+\_\+\+I\+S\+R\+\_\+lock\+\_\+\+Release\+\_\+and\+\_\+\+I\+S\+R\+\_\+enable(\begin{DoxyParamCaption}\item[{}]{\+\_\+lock,  }\item[{}]{\+\_\+context }\end{DoxyParamCaption})~\mbox{\hyperlink{group__RTEMSScoreISR_ga508f5a32655cb590906a477b5a8174f1}{\+\_\+\+I\+S\+R\+\_\+\+Local\+\_\+enable}}( ( \+\_\+context )-\/$>$isr\+\_\+level )}
+
+
+
+Releases an I\+SR lock. 
+
+The interrupt status will be restored. On S\+MP configurations this function releases an S\+MP lock.
+
+This function can be used in thread and interrupt context.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+lock} & The I\+SR lock control. \\
+\hline
+\mbox{\texttt{ in}}  & {\em \+\_\+context} & The local I\+SR lock context for an acquire and release pair.\\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{group__RTEMSScoreISRLocks_gaa4ecfcd40e90531bdd3c348a99b3b7d9}{\+\_\+\+I\+S\+R\+\_\+lock\+\_\+\+I\+S\+R\+\_\+disable\+\_\+and\+\_\+acquire()}}. 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{group__RTEMSScoreISRLocks_gaa273cf4f280a0cbd05e9b2f4b8321793}\label{group__RTEMSScoreISRLocks_gaa273cf4f280a0cbd05e9b2f4b8321793}} 
+\index{ISR Locks@{ISR Locks}!\_ISR\_lock\_Release\_inline@{\_ISR\_lock\_Release\_inline}}
+\index{\_ISR\_lock\_Release\_inline@{\_ISR\_lock\_Release\_inline}!ISR Locks@{ISR Locks}}
+\subsubsection{\texorpdfstring{\_ISR\_lock\_Release\_inline}{\_ISR\_lock\_Release\_inline}}
+{\footnotesize\ttfamily \#define \+\_\+\+I\+S\+R\+\_\+lock\+\_\+\+Release\+\_\+inline(\begin{DoxyParamCaption}\item[{}]{\+\_\+lock,  }\item[{}]{\+\_\+context }\end{DoxyParamCaption})~do \{ (void) \+\_\+context; \} while ( 0 )}
+
+
+
+Releases an I\+SR lock inside an I\+SR disabled section (inline). 
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{group__RTEMSScoreISRLocks_ga35acfee397d43e90bc30f63e4bd960d7}{\+\_\+\+I\+S\+R\+\_\+lock\+\_\+\+Release()}}. 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{group__RTEMSScoreISRLocks_ga50c13faa89292b96a4bcf5ef34d76fac}\label{group__RTEMSScoreISRLocks_ga50c13faa89292b96a4bcf5ef34d76fac}} 
+\index{ISR Locks@{ISR Locks}!\_ISR\_lock\_Set\_name@{\_ISR\_lock\_Set\_name}}
+\index{\_ISR\_lock\_Set\_name@{\_ISR\_lock\_Set\_name}!ISR Locks@{ISR Locks}}
+\subsubsection{\texorpdfstring{\_ISR\_lock\_Set\_name}{\_ISR\_lock\_Set\_name}}
+{\footnotesize\ttfamily \#define \+\_\+\+I\+S\+R\+\_\+lock\+\_\+\+Set\+\_\+name(\begin{DoxyParamCaption}\item[{}]{\+\_\+lock,  }\item[{}]{\+\_\+name }\end{DoxyParamCaption})}
+
+
+
+Sets the name of an I\+SR lock. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em \+\_\+lock} & The I\+SR lock control. \\
+\hline
+ & {\em \+\_\+name} & The name for the I\+SR lock. This name must be a string persistent throughout the life time of this lock. The name is only used if profiling is enabled. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__RTEMSScoreISRLocks_ga6702456c1dc97f69ebbbf1438c2b7e2e}\label{group__RTEMSScoreISRLocks_ga6702456c1dc97f69ebbbf1438c2b7e2e}} 
+\index{ISR Locks@{ISR Locks}!ISR\_LOCK\_DECLARE@{ISR\_LOCK\_DECLARE}}
+\index{ISR\_LOCK\_DECLARE@{ISR\_LOCK\_DECLARE}!ISR Locks@{ISR Locks}}
+\subsubsection{\texorpdfstring{ISR\_LOCK\_DECLARE}{ISR\_LOCK\_DECLARE}}
+{\footnotesize\ttfamily \#define I\+S\+R\+\_\+\+L\+O\+C\+K\+\_\+\+D\+E\+C\+L\+A\+RE(\begin{DoxyParamCaption}\item[{}]{\+\_\+qualifier,  }\item[{}]{\+\_\+designator }\end{DoxyParamCaption})}
+
+
+
+Declares an I\+SR lock variable. 
+
+Do not add a \textquotesingle{};\textquotesingle{} after this macro.
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+qualifier} & The qualifier for the interrupt lock, e.\+g. extern. \\
+\hline
+{\em \+\_\+designator} & The designator for the interrupt lock. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__RTEMSScoreISRLocks_ga24058ced522fcade5ccdc9bd477574f2}\label{group__RTEMSScoreISRLocks_ga24058ced522fcade5ccdc9bd477574f2}} 
+\index{ISR Locks@{ISR Locks}!ISR\_LOCK\_DEFINE@{ISR\_LOCK\_DEFINE}}
+\index{ISR\_LOCK\_DEFINE@{ISR\_LOCK\_DEFINE}!ISR Locks@{ISR Locks}}
+\subsubsection{\texorpdfstring{ISR\_LOCK\_DEFINE}{ISR\_LOCK\_DEFINE}}
+{\footnotesize\ttfamily \#define I\+S\+R\+\_\+\+L\+O\+C\+K\+\_\+\+D\+E\+F\+I\+NE(\begin{DoxyParamCaption}\item[{}]{\+\_\+qualifier,  }\item[{}]{\+\_\+designator,  }\item[{}]{\+\_\+name }\end{DoxyParamCaption})}
+
+
+
+Defines an I\+SR lock variable. 
+
+Do not add a \textquotesingle{};\textquotesingle{} after this macro.
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+qualifier} & The qualifier for the interrupt lock, e.\+g. static. \\
+\hline
+{\em \+\_\+designator} & The designator for the interrupt lock. \\
+\hline
+{\em \+\_\+name} & The name for the interrupt lock. It must be a string. The name is only used if profiling is enabled. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__RTEMSScoreISRLocks_ga5fd39a446bb4cfbfc53838fd434d5f6c}\label{group__RTEMSScoreISRLocks_ga5fd39a446bb4cfbfc53838fd434d5f6c}} 
+\index{ISR Locks@{ISR Locks}!ISR\_LOCK\_INITIALIZER@{ISR\_LOCK\_INITIALIZER}}
+\index{ISR\_LOCK\_INITIALIZER@{ISR\_LOCK\_INITIALIZER}!ISR Locks@{ISR Locks}}
+\subsubsection{\texorpdfstring{ISR\_LOCK\_INITIALIZER}{ISR\_LOCK\_INITIALIZER}}
+{\footnotesize\ttfamily \#define I\+S\+R\+\_\+\+L\+O\+C\+K\+\_\+\+I\+N\+I\+T\+I\+A\+L\+I\+Z\+ER(\begin{DoxyParamCaption}\item[{}]{\+\_\+name }\end{DoxyParamCaption})~\{ \}}
+
+
+
+Initializer for static initialization of I\+SR locks. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+name} & The name for the interrupt lock. It must be a string. The name is only used if profiling is enabled. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__RTEMSScoreISRLocks_ga09174e3121c9ec30b08d4ab09706833d}\label{group__RTEMSScoreISRLocks_ga09174e3121c9ec30b08d4ab09706833d}} 
+\index{ISR Locks@{ISR Locks}!ISR\_LOCK\_MEMBER@{ISR\_LOCK\_MEMBER}}
+\index{ISR\_LOCK\_MEMBER@{ISR\_LOCK\_MEMBER}!ISR Locks@{ISR Locks}}
+\subsubsection{\texorpdfstring{ISR\_LOCK\_MEMBER}{ISR\_LOCK\_MEMBER}}
+{\footnotesize\ttfamily \#define I\+S\+R\+\_\+\+L\+O\+C\+K\+\_\+\+M\+E\+M\+B\+ER(\begin{DoxyParamCaption}\item[{}]{\+\_\+designator }\end{DoxyParamCaption})}
+
+
+
+Defines an I\+SR lock member. 
+
+Do not add a \textquotesingle{};\textquotesingle{} after this macro.
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+designator} & The designator for the interrupt lock. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__RTEMSScoreISRLocks_gad41ddc507bfa7022bd9355ff252888d2}\label{group__RTEMSScoreISRLocks_gad41ddc507bfa7022bd9355ff252888d2}} 
+\index{ISR Locks@{ISR Locks}!ISR\_LOCK\_REFERENCE@{ISR\_LOCK\_REFERENCE}}
+\index{ISR\_LOCK\_REFERENCE@{ISR\_LOCK\_REFERENCE}!ISR Locks@{ISR Locks}}
+\subsubsection{\texorpdfstring{ISR\_LOCK\_REFERENCE}{ISR\_LOCK\_REFERENCE}}
+{\footnotesize\ttfamily \#define I\+S\+R\+\_\+\+L\+O\+C\+K\+\_\+\+R\+E\+F\+E\+R\+E\+N\+CE(\begin{DoxyParamCaption}\item[{}]{\+\_\+designator,  }\item[{}]{\+\_\+target }\end{DoxyParamCaption})}
+
+
+
+Defines an I\+SR lock variable reference. 
+
+Do not add a \textquotesingle{};\textquotesingle{} after this macro.
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+designator} & The designator for the interrupt lock reference. \\
+\hline
+{\em \+\_\+target} & The target for the interrupt lock reference. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{group__RTEMSScoreISRLocks_ga937f2866844702a8e85148bcdc4d49d0}\label{group__RTEMSScoreISRLocks_ga937f2866844702a8e85148bcdc4d49d0}} 
+\index{ISR Locks@{ISR Locks}!\_ISR\_lock\_Context\_set\_level@{\_ISR\_lock\_Context\_set\_level}}
+\index{\_ISR\_lock\_Context\_set\_level@{\_ISR\_lock\_Context\_set\_level}!ISR Locks@{ISR Locks}}
+\subsubsection{\texorpdfstring{\_ISR\_lock\_Context\_set\_level()}{\_ISR\_lock\_Context\_set\_level()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \+\_\+\+I\+S\+R\+\_\+lock\+\_\+\+Context\+\_\+set\+\_\+level (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structISR__lock__Context}{I\+S\+R\+\_\+lock\+\_\+\+Context}} $\ast$}]{context,  }\item[{\mbox{\hyperlink{group__RTEMSScoreISR_gad1af728587ebcefec5b5cf94fc7909b9}{I\+S\+R\+\_\+\+Level}}}]{level }\end{DoxyParamCaption})}
+
+
+
+Sets the I\+SR level in the I\+SR lock context. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em context} & The I\+SR lock context. \\
+\hline
+ & {\em level} & The I\+SR level. \\
+\hline
+\end{DoxyParams}

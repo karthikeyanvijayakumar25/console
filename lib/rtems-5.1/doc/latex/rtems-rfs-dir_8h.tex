@@ -1,0 +1,326 @@
+\hypertarget{rtems-rfs-dir_8h}{}\section{cpukit/include/rtems/rfs/rtems-\/rfs-\/dir.h File Reference}
+\label{rtems-rfs-dir_8h}\index{cpukit/include/rtems/rfs/rtems-\/rfs-\/dir.h@{cpukit/include/rtems/rfs/rtems-\/rfs-\/dir.h}}
+
+
+R\+T\+E\+MS File System Directory Support.  
+
+
+{\ttfamily \#include $<$dirent.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/libio\+\_\+.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/rfs/rtems-\/rfs-\/data.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/rfs/rtems-\/rfs-\/file-\/system.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/rfs/rtems-\/rfs-\/inode.\+h$>$}\newline
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{rtems-rfs-dir_8h_a0b52d37896f9be61b9946bc726aecd4d}{R\+T\+E\+M\+S\+\_\+\+R\+F\+S\+\_\+\+D\+I\+R\+\_\+\+E\+N\+T\+R\+Y\+\_\+\+I\+NO}}~(0)
+\item 
+\#define \mbox{\hyperlink{rtems-rfs-dir_8h_a63fb1e0d701229800ef9f1206d8ac295}{R\+T\+E\+M\+S\+\_\+\+R\+F\+S\+\_\+\+D\+I\+R\+\_\+\+E\+N\+T\+R\+Y\+\_\+\+H\+A\+SH}}~(4)
+\item 
+\#define \mbox{\hyperlink{rtems-rfs-dir_8h_ab32ed76f1463d9de333a986fd2290f8f}{R\+T\+E\+M\+S\+\_\+\+R\+F\+S\+\_\+\+D\+I\+R\+\_\+\+E\+N\+T\+R\+Y\+\_\+\+L\+EN}}~(8)
+\item 
+\#define \mbox{\hyperlink{rtems-rfs-dir_8h_a57764521961897da4d101db20a52b054}{R\+T\+E\+M\+S\+\_\+\+R\+F\+S\+\_\+\+D\+I\+R\+\_\+\+E\+N\+T\+R\+Y\+\_\+\+S\+I\+ZE}}~(4 + 4 + 2)
+\item 
+\#define \mbox{\hyperlink{rtems-rfs-dir_8h_aa915855cc4cb98df4b2066beaa13030c}{R\+T\+E\+M\+S\+\_\+\+R\+F\+S\+\_\+\+D\+I\+R\+\_\+\+E\+N\+T\+R\+Y\+\_\+\+E\+M\+P\+TY}}~(0xffff)
+\item 
+\#define \mbox{\hyperlink{rtems-rfs-dir_8h_af5bfaf8b9997cd44ca60fd1e2347c73b}{rtems\+\_\+rfs\+\_\+dir\+\_\+entry\+\_\+hash}}(\+\_\+e)~\mbox{\hyperlink{rtems-rfs-data_8h_ae061f1784ebeef490293e0080740041a}{rtems\+\_\+rfs\+\_\+read\+\_\+u32}} (\+\_\+e + \mbox{\hyperlink{rtems-rfs-dir_8h_a63fb1e0d701229800ef9f1206d8ac295}{R\+T\+E\+M\+S\+\_\+\+R\+F\+S\+\_\+\+D\+I\+R\+\_\+\+E\+N\+T\+R\+Y\+\_\+\+H\+A\+SH}})
+\item 
+\#define \mbox{\hyperlink{rtems-rfs-dir_8h_a654eb125381a6880f1f2c681c762888c}{rtems\+\_\+rfs\+\_\+dir\+\_\+set\+\_\+entry\+\_\+hash}}(\+\_\+e,  \+\_\+h)~\mbox{\hyperlink{rtems-rfs-data_8h_a0e7b57b15dac03868caaeb7d2c8c1ba7}{rtems\+\_\+rfs\+\_\+write\+\_\+u32}} (\+\_\+e + \mbox{\hyperlink{rtems-rfs-dir_8h_a63fb1e0d701229800ef9f1206d8ac295}{R\+T\+E\+M\+S\+\_\+\+R\+F\+S\+\_\+\+D\+I\+R\+\_\+\+E\+N\+T\+R\+Y\+\_\+\+H\+A\+SH}}, \+\_\+h)
+\item 
+\#define \mbox{\hyperlink{rtems-rfs-dir_8h_a0de1a6950065a7f9d60e67991bebcd9e}{rtems\+\_\+rfs\+\_\+dir\+\_\+entry\+\_\+ino}}(\+\_\+e)~\mbox{\hyperlink{rtems-rfs-data_8h_ae061f1784ebeef490293e0080740041a}{rtems\+\_\+rfs\+\_\+read\+\_\+u32}} (\+\_\+e + \mbox{\hyperlink{rtems-rfs-dir_8h_a0b52d37896f9be61b9946bc726aecd4d}{R\+T\+E\+M\+S\+\_\+\+R\+F\+S\+\_\+\+D\+I\+R\+\_\+\+E\+N\+T\+R\+Y\+\_\+\+I\+NO}})
+\item 
+\#define \mbox{\hyperlink{rtems-rfs-dir_8h_a2f5bd944867371a12678c287ada2683a}{rtems\+\_\+rfs\+\_\+dir\+\_\+set\+\_\+entry\+\_\+ino}}(\+\_\+e,  \+\_\+i)~\mbox{\hyperlink{rtems-rfs-data_8h_a0e7b57b15dac03868caaeb7d2c8c1ba7}{rtems\+\_\+rfs\+\_\+write\+\_\+u32}} (\+\_\+e + \mbox{\hyperlink{rtems-rfs-dir_8h_a0b52d37896f9be61b9946bc726aecd4d}{R\+T\+E\+M\+S\+\_\+\+R\+F\+S\+\_\+\+D\+I\+R\+\_\+\+E\+N\+T\+R\+Y\+\_\+\+I\+NO}}, \+\_\+i)
+\item 
+\#define \mbox{\hyperlink{rtems-rfs-dir_8h_a33fdddc3d6b082731e449cb18d008264}{rtems\+\_\+rfs\+\_\+dir\+\_\+entry\+\_\+length}}(\+\_\+e)~\mbox{\hyperlink{rtems-rfs-data_8h_a602400ac127a6614ac1e16f322df3f0b}{rtems\+\_\+rfs\+\_\+read\+\_\+u16}} (\+\_\+e + \mbox{\hyperlink{rtems-rfs-dir_8h_ab32ed76f1463d9de333a986fd2290f8f}{R\+T\+E\+M\+S\+\_\+\+R\+F\+S\+\_\+\+D\+I\+R\+\_\+\+E\+N\+T\+R\+Y\+\_\+\+L\+EN}})
+\item 
+\#define \mbox{\hyperlink{rtems-rfs-dir_8h_a55dd971fb074640f99b5368125cc2814}{rtems\+\_\+rfs\+\_\+dir\+\_\+set\+\_\+entry\+\_\+length}}(\+\_\+e,  \+\_\+l)~\mbox{\hyperlink{rtems-rfs-data_8h_a7f9da284acf36ff50739fd3fd252f210}{rtems\+\_\+rfs\+\_\+write\+\_\+u16}} (\+\_\+e + \mbox{\hyperlink{rtems-rfs-dir_8h_ab32ed76f1463d9de333a986fd2290f8f}{R\+T\+E\+M\+S\+\_\+\+R\+F\+S\+\_\+\+D\+I\+R\+\_\+\+E\+N\+T\+R\+Y\+\_\+\+L\+EN}}, \+\_\+l)
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{rtems-rfs-dir_8h_a925d23dfc36f8f42bdb373855f94c226}{rtems\+\_\+rfs\+\_\+dir\+\_\+lookup\+\_\+ino}} (\mbox{\hyperlink{struct__rtems__rfs__file__system}{rtems\+\_\+rfs\+\_\+file\+\_\+system}} $\ast$fs, \mbox{\hyperlink{rtems-rfs-inode_8h_a91f02dac5a2d91e072d676f3266ab8d2}{rtems\+\_\+rfs\+\_\+inode\+\_\+handle}} $\ast$inode, const char $\ast$name, int length, \mbox{\hyperlink{rtems-rfs-inode_8h_ae658325c3ff9941f2e68315d20e3c723}{rtems\+\_\+rfs\+\_\+ino}} $\ast$ino, uint32\+\_\+t $\ast$offset)
+\item 
+int \mbox{\hyperlink{rtems-rfs-dir_8h_a8b0d72704a836e92be9211cd27b50aab}{rtems\+\_\+rfs\+\_\+dir\+\_\+add\+\_\+entry}} (\mbox{\hyperlink{struct__rtems__rfs__file__system}{rtems\+\_\+rfs\+\_\+file\+\_\+system}} $\ast$fs, \mbox{\hyperlink{rtems-rfs-inode_8h_a91f02dac5a2d91e072d676f3266ab8d2}{rtems\+\_\+rfs\+\_\+inode\+\_\+handle}} $\ast$dir, const char $\ast$name, size\+\_\+t length, \mbox{\hyperlink{rtems-rfs-inode_8h_ae658325c3ff9941f2e68315d20e3c723}{rtems\+\_\+rfs\+\_\+ino}} ino)
+\item 
+int \mbox{\hyperlink{rtems-rfs-dir_8h_a50190aa71ba1a3d42d0dcd2b37095c5f}{rtems\+\_\+rfs\+\_\+dir\+\_\+del\+\_\+entry}} (\mbox{\hyperlink{struct__rtems__rfs__file__system}{rtems\+\_\+rfs\+\_\+file\+\_\+system}} $\ast$fs, \mbox{\hyperlink{rtems-rfs-inode_8h_a91f02dac5a2d91e072d676f3266ab8d2}{rtems\+\_\+rfs\+\_\+inode\+\_\+handle}} $\ast$dir, \mbox{\hyperlink{rtems-rfs-inode_8h_ae658325c3ff9941f2e68315d20e3c723}{rtems\+\_\+rfs\+\_\+ino}} ino, uint32\+\_\+t offset)
+\item 
+int \mbox{\hyperlink{rtems-rfs-dir_8h_a3487727e61e23fc3c551cc6cc49115f1}{rtems\+\_\+rfs\+\_\+dir\+\_\+read}} (\mbox{\hyperlink{struct__rtems__rfs__file__system}{rtems\+\_\+rfs\+\_\+file\+\_\+system}} $\ast$fs, \mbox{\hyperlink{rtems-rfs-inode_8h_a91f02dac5a2d91e072d676f3266ab8d2}{rtems\+\_\+rfs\+\_\+inode\+\_\+handle}} $\ast$dir, \mbox{\hyperlink{rtems-rfs-file-system_8h_af6bccb465dcd34c68e9f0c214950ef57}{rtems\+\_\+rfs\+\_\+pos\+\_\+rel}} offset, struct dirent $\ast$dirent, size\+\_\+t $\ast$length)
+\item 
+int \mbox{\hyperlink{rtems-rfs-dir_8h_a8347f100a80fdbfb9ba8bcb3aff40a38}{rtems\+\_\+rfs\+\_\+dir\+\_\+empty}} (\mbox{\hyperlink{struct__rtems__rfs__file__system}{rtems\+\_\+rfs\+\_\+file\+\_\+system}} $\ast$fs, \mbox{\hyperlink{rtems-rfs-inode_8h_a91f02dac5a2d91e072d676f3266ab8d2}{rtems\+\_\+rfs\+\_\+inode\+\_\+handle}} $\ast$dir)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+R\+T\+E\+MS File System Directory Support. 
+
+R\+T\+E\+MS File System Directory Support
+
+This file provides the directory support functions. 
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{rtems-rfs-dir_8h_aa915855cc4cb98df4b2066beaa13030c}\label{rtems-rfs-dir_8h_aa915855cc4cb98df4b2066beaa13030c}} 
+\index{rtems-\/rfs-\/dir.h@{rtems-\/rfs-\/dir.h}!RTEMS\_RFS\_DIR\_ENTRY\_EMPTY@{RTEMS\_RFS\_DIR\_ENTRY\_EMPTY}}
+\index{RTEMS\_RFS\_DIR\_ENTRY\_EMPTY@{RTEMS\_RFS\_DIR\_ENTRY\_EMPTY}!rtems-\/rfs-\/dir.h@{rtems-\/rfs-\/dir.h}}
+\subsubsection{\texorpdfstring{RTEMS\_RFS\_DIR\_ENTRY\_EMPTY}{RTEMS\_RFS\_DIR\_ENTRY\_EMPTY}}
+{\footnotesize\ttfamily \#define R\+T\+E\+M\+S\+\_\+\+R\+F\+S\+\_\+\+D\+I\+R\+\_\+\+E\+N\+T\+R\+Y\+\_\+\+E\+M\+P\+TY~(0xffff)}
+
+The length when the remainder of the directory block is empty. \mbox{\Hypertarget{rtems-rfs-dir_8h_a63fb1e0d701229800ef9f1206d8ac295}\label{rtems-rfs-dir_8h_a63fb1e0d701229800ef9f1206d8ac295}} 
+\index{rtems-\/rfs-\/dir.h@{rtems-\/rfs-\/dir.h}!RTEMS\_RFS\_DIR\_ENTRY\_HASH@{RTEMS\_RFS\_DIR\_ENTRY\_HASH}}
+\index{RTEMS\_RFS\_DIR\_ENTRY\_HASH@{RTEMS\_RFS\_DIR\_ENTRY\_HASH}!rtems-\/rfs-\/dir.h@{rtems-\/rfs-\/dir.h}}
+\subsubsection{\texorpdfstring{RTEMS\_RFS\_DIR\_ENTRY\_HASH}{RTEMS\_RFS\_DIR\_ENTRY\_HASH}}
+{\footnotesize\ttfamily \#define R\+T\+E\+M\+S\+\_\+\+R\+F\+S\+\_\+\+D\+I\+R\+\_\+\+E\+N\+T\+R\+Y\+\_\+\+H\+A\+SH~(4)}
+
+The hash offset in a directory entry. The hash is 32bits. We need at least 16bits and given the length and ino field are 4 the extra 2 bytes is not a big overhead. \mbox{\Hypertarget{rtems-rfs-dir_8h_af5bfaf8b9997cd44ca60fd1e2347c73b}\label{rtems-rfs-dir_8h_af5bfaf8b9997cd44ca60fd1e2347c73b}} 
+\index{rtems-\/rfs-\/dir.h@{rtems-\/rfs-\/dir.h}!rtems\_rfs\_dir\_entry\_hash@{rtems\_rfs\_dir\_entry\_hash}}
+\index{rtems\_rfs\_dir\_entry\_hash@{rtems\_rfs\_dir\_entry\_hash}!rtems-\/rfs-\/dir.h@{rtems-\/rfs-\/dir.h}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_dir\_entry\_hash}{rtems\_rfs\_dir\_entry\_hash}}
+{\footnotesize\ttfamily \#define rtems\+\_\+rfs\+\_\+dir\+\_\+entry\+\_\+hash(\begin{DoxyParamCaption}\item[{}]{\+\_\+e }\end{DoxyParamCaption})~\mbox{\hyperlink{rtems-rfs-data_8h_ae061f1784ebeef490293e0080740041a}{rtems\+\_\+rfs\+\_\+read\+\_\+u32}} (\+\_\+e + \mbox{\hyperlink{rtems-rfs-dir_8h_a63fb1e0d701229800ef9f1206d8ac295}{R\+T\+E\+M\+S\+\_\+\+R\+F\+S\+\_\+\+D\+I\+R\+\_\+\+E\+N\+T\+R\+Y\+\_\+\+H\+A\+SH}})}
+
+Return the hash of the entry.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+e} & is a pointer to the directory entry.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em hash} & The uint32\+\_\+t hash of the entry. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{rtems-rfs-dir_8h_a0b52d37896f9be61b9946bc726aecd4d}\label{rtems-rfs-dir_8h_a0b52d37896f9be61b9946bc726aecd4d}} 
+\index{rtems-\/rfs-\/dir.h@{rtems-\/rfs-\/dir.h}!RTEMS\_RFS\_DIR\_ENTRY\_INO@{RTEMS\_RFS\_DIR\_ENTRY\_INO}}
+\index{RTEMS\_RFS\_DIR\_ENTRY\_INO@{RTEMS\_RFS\_DIR\_ENTRY\_INO}!rtems-\/rfs-\/dir.h@{rtems-\/rfs-\/dir.h}}
+\subsubsection{\texorpdfstring{RTEMS\_RFS\_DIR\_ENTRY\_INO}{RTEMS\_RFS\_DIR\_ENTRY\_INO}}
+{\footnotesize\ttfamily \#define R\+T\+E\+M\+S\+\_\+\+R\+F\+S\+\_\+\+D\+I\+R\+\_\+\+E\+N\+T\+R\+Y\+\_\+\+I\+NO~(0)}
+
+Define the offsets of the fields of a directory entry.\+The ino offset in a directory entry. \mbox{\Hypertarget{rtems-rfs-dir_8h_a0de1a6950065a7f9d60e67991bebcd9e}\label{rtems-rfs-dir_8h_a0de1a6950065a7f9d60e67991bebcd9e}} 
+\index{rtems-\/rfs-\/dir.h@{rtems-\/rfs-\/dir.h}!rtems\_rfs\_dir\_entry\_ino@{rtems\_rfs\_dir\_entry\_ino}}
+\index{rtems\_rfs\_dir\_entry\_ino@{rtems\_rfs\_dir\_entry\_ino}!rtems-\/rfs-\/dir.h@{rtems-\/rfs-\/dir.h}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_dir\_entry\_ino}{rtems\_rfs\_dir\_entry\_ino}}
+{\footnotesize\ttfamily \#define rtems\+\_\+rfs\+\_\+dir\+\_\+entry\+\_\+ino(\begin{DoxyParamCaption}\item[{}]{\+\_\+e }\end{DoxyParamCaption})~\mbox{\hyperlink{rtems-rfs-data_8h_ae061f1784ebeef490293e0080740041a}{rtems\+\_\+rfs\+\_\+read\+\_\+u32}} (\+\_\+e + \mbox{\hyperlink{rtems-rfs-dir_8h_a0b52d37896f9be61b9946bc726aecd4d}{R\+T\+E\+M\+S\+\_\+\+R\+F\+S\+\_\+\+D\+I\+R\+\_\+\+E\+N\+T\+R\+Y\+\_\+\+I\+NO}})}
+
+Return the ino of the entry.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+e} & is a pointer to the directory entry.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em ino} & The ino of the entry. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{rtems-rfs-dir_8h_ab32ed76f1463d9de333a986fd2290f8f}\label{rtems-rfs-dir_8h_ab32ed76f1463d9de333a986fd2290f8f}} 
+\index{rtems-\/rfs-\/dir.h@{rtems-\/rfs-\/dir.h}!RTEMS\_RFS\_DIR\_ENTRY\_LEN@{RTEMS\_RFS\_DIR\_ENTRY\_LEN}}
+\index{RTEMS\_RFS\_DIR\_ENTRY\_LEN@{RTEMS\_RFS\_DIR\_ENTRY\_LEN}!rtems-\/rfs-\/dir.h@{rtems-\/rfs-\/dir.h}}
+\subsubsection{\texorpdfstring{RTEMS\_RFS\_DIR\_ENTRY\_LEN}{RTEMS\_RFS\_DIR\_ENTRY\_LEN}}
+{\footnotesize\ttfamily \#define R\+T\+E\+M\+S\+\_\+\+R\+F\+S\+\_\+\+D\+I\+R\+\_\+\+E\+N\+T\+R\+Y\+\_\+\+L\+EN~(8)}
+
+The length offset in a directory entry. \mbox{\Hypertarget{rtems-rfs-dir_8h_a33fdddc3d6b082731e449cb18d008264}\label{rtems-rfs-dir_8h_a33fdddc3d6b082731e449cb18d008264}} 
+\index{rtems-\/rfs-\/dir.h@{rtems-\/rfs-\/dir.h}!rtems\_rfs\_dir\_entry\_length@{rtems\_rfs\_dir\_entry\_length}}
+\index{rtems\_rfs\_dir\_entry\_length@{rtems\_rfs\_dir\_entry\_length}!rtems-\/rfs-\/dir.h@{rtems-\/rfs-\/dir.h}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_dir\_entry\_length}{rtems\_rfs\_dir\_entry\_length}}
+{\footnotesize\ttfamily \#define rtems\+\_\+rfs\+\_\+dir\+\_\+entry\+\_\+length(\begin{DoxyParamCaption}\item[{}]{\+\_\+e }\end{DoxyParamCaption})~\mbox{\hyperlink{rtems-rfs-data_8h_a602400ac127a6614ac1e16f322df3f0b}{rtems\+\_\+rfs\+\_\+read\+\_\+u16}} (\+\_\+e + \mbox{\hyperlink{rtems-rfs-dir_8h_ab32ed76f1463d9de333a986fd2290f8f}{R\+T\+E\+M\+S\+\_\+\+R\+F\+S\+\_\+\+D\+I\+R\+\_\+\+E\+N\+T\+R\+Y\+\_\+\+L\+EN}})}
+
+Return the length of the entry.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+e} & Pointer to the directory entry.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em length} & The length of the entry. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{rtems-rfs-dir_8h_a57764521961897da4d101db20a52b054}\label{rtems-rfs-dir_8h_a57764521961897da4d101db20a52b054}} 
+\index{rtems-\/rfs-\/dir.h@{rtems-\/rfs-\/dir.h}!RTEMS\_RFS\_DIR\_ENTRY\_SIZE@{RTEMS\_RFS\_DIR\_ENTRY\_SIZE}}
+\index{RTEMS\_RFS\_DIR\_ENTRY\_SIZE@{RTEMS\_RFS\_DIR\_ENTRY\_SIZE}!rtems-\/rfs-\/dir.h@{rtems-\/rfs-\/dir.h}}
+\subsubsection{\texorpdfstring{RTEMS\_RFS\_DIR\_ENTRY\_SIZE}{RTEMS\_RFS\_DIR\_ENTRY\_SIZE}}
+{\footnotesize\ttfamily \#define R\+T\+E\+M\+S\+\_\+\+R\+F\+S\+\_\+\+D\+I\+R\+\_\+\+E\+N\+T\+R\+Y\+\_\+\+S\+I\+ZE~(4 + 4 + 2)}
+
+The length of the directory entry header. \mbox{\Hypertarget{rtems-rfs-dir_8h_a654eb125381a6880f1f2c681c762888c}\label{rtems-rfs-dir_8h_a654eb125381a6880f1f2c681c762888c}} 
+\index{rtems-\/rfs-\/dir.h@{rtems-\/rfs-\/dir.h}!rtems\_rfs\_dir\_set\_entry\_hash@{rtems\_rfs\_dir\_set\_entry\_hash}}
+\index{rtems\_rfs\_dir\_set\_entry\_hash@{rtems\_rfs\_dir\_set\_entry\_hash}!rtems-\/rfs-\/dir.h@{rtems-\/rfs-\/dir.h}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_dir\_set\_entry\_hash}{rtems\_rfs\_dir\_set\_entry\_hash}}
+{\footnotesize\ttfamily \#define rtems\+\_\+rfs\+\_\+dir\+\_\+set\+\_\+entry\+\_\+hash(\begin{DoxyParamCaption}\item[{}]{\+\_\+e,  }\item[{}]{\+\_\+h }\end{DoxyParamCaption})~\mbox{\hyperlink{rtems-rfs-data_8h_a0e7b57b15dac03868caaeb7d2c8c1ba7}{rtems\+\_\+rfs\+\_\+write\+\_\+u32}} (\+\_\+e + \mbox{\hyperlink{rtems-rfs-dir_8h_a63fb1e0d701229800ef9f1206d8ac295}{R\+T\+E\+M\+S\+\_\+\+R\+F\+S\+\_\+\+D\+I\+R\+\_\+\+E\+N\+T\+R\+Y\+\_\+\+H\+A\+SH}}, \+\_\+h)}
+
+Set the hash of the entry.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+e} & is a pointer to the directory entry.\\
+\hline
+\mbox{\texttt{ in}}  & {\em \+\_\+h} & is the hash of the entry. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{rtems-rfs-dir_8h_a2f5bd944867371a12678c287ada2683a}\label{rtems-rfs-dir_8h_a2f5bd944867371a12678c287ada2683a}} 
+\index{rtems-\/rfs-\/dir.h@{rtems-\/rfs-\/dir.h}!rtems\_rfs\_dir\_set\_entry\_ino@{rtems\_rfs\_dir\_set\_entry\_ino}}
+\index{rtems\_rfs\_dir\_set\_entry\_ino@{rtems\_rfs\_dir\_set\_entry\_ino}!rtems-\/rfs-\/dir.h@{rtems-\/rfs-\/dir.h}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_dir\_set\_entry\_ino}{rtems\_rfs\_dir\_set\_entry\_ino}}
+{\footnotesize\ttfamily \#define rtems\+\_\+rfs\+\_\+dir\+\_\+set\+\_\+entry\+\_\+ino(\begin{DoxyParamCaption}\item[{}]{\+\_\+e,  }\item[{}]{\+\_\+i }\end{DoxyParamCaption})~\mbox{\hyperlink{rtems-rfs-data_8h_a0e7b57b15dac03868caaeb7d2c8c1ba7}{rtems\+\_\+rfs\+\_\+write\+\_\+u32}} (\+\_\+e + \mbox{\hyperlink{rtems-rfs-dir_8h_a0b52d37896f9be61b9946bc726aecd4d}{R\+T\+E\+M\+S\+\_\+\+R\+F\+S\+\_\+\+D\+I\+R\+\_\+\+E\+N\+T\+R\+Y\+\_\+\+I\+NO}}, \+\_\+i)}
+
+Set the ino of the entry.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+e} & is a pointer to the directory entry.\\
+\hline
+\mbox{\texttt{ in}}  & {\em \+\_\+i} & is the ino of the entry. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{rtems-rfs-dir_8h_a55dd971fb074640f99b5368125cc2814}\label{rtems-rfs-dir_8h_a55dd971fb074640f99b5368125cc2814}} 
+\index{rtems-\/rfs-\/dir.h@{rtems-\/rfs-\/dir.h}!rtems\_rfs\_dir\_set\_entry\_length@{rtems\_rfs\_dir\_set\_entry\_length}}
+\index{rtems\_rfs\_dir\_set\_entry\_length@{rtems\_rfs\_dir\_set\_entry\_length}!rtems-\/rfs-\/dir.h@{rtems-\/rfs-\/dir.h}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_dir\_set\_entry\_length}{rtems\_rfs\_dir\_set\_entry\_length}}
+{\footnotesize\ttfamily \#define rtems\+\_\+rfs\+\_\+dir\+\_\+set\+\_\+entry\+\_\+length(\begin{DoxyParamCaption}\item[{}]{\+\_\+e,  }\item[{}]{\+\_\+l }\end{DoxyParamCaption})~\mbox{\hyperlink{rtems-rfs-data_8h_a7f9da284acf36ff50739fd3fd252f210}{rtems\+\_\+rfs\+\_\+write\+\_\+u16}} (\+\_\+e + \mbox{\hyperlink{rtems-rfs-dir_8h_ab32ed76f1463d9de333a986fd2290f8f}{R\+T\+E\+M\+S\+\_\+\+R\+F\+S\+\_\+\+D\+I\+R\+\_\+\+E\+N\+T\+R\+Y\+\_\+\+L\+EN}}, \+\_\+l)}
+
+Set the length of the entry.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+e} & is a pointer to the directory entry. \\
+\hline
+\mbox{\texttt{ in}}  & {\em \+\_\+l} & is the length. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{rtems-rfs-dir_8h_a8b0d72704a836e92be9211cd27b50aab}\label{rtems-rfs-dir_8h_a8b0d72704a836e92be9211cd27b50aab}} 
+\index{rtems-\/rfs-\/dir.h@{rtems-\/rfs-\/dir.h}!rtems\_rfs\_dir\_add\_entry@{rtems\_rfs\_dir\_add\_entry}}
+\index{rtems\_rfs\_dir\_add\_entry@{rtems\_rfs\_dir\_add\_entry}!rtems-\/rfs-\/dir.h@{rtems-\/rfs-\/dir.h}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_dir\_add\_entry()}{rtems\_rfs\_dir\_add\_entry()}}
+{\footnotesize\ttfamily int rtems\+\_\+rfs\+\_\+dir\+\_\+add\+\_\+entry (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__rtems__rfs__file__system}{rtems\+\_\+rfs\+\_\+file\+\_\+system}} $\ast$}]{fs,  }\item[{\mbox{\hyperlink{rtems-rfs-inode_8h_a91f02dac5a2d91e072d676f3266ab8d2}{rtems\+\_\+rfs\+\_\+inode\+\_\+handle}} $\ast$}]{dir,  }\item[{const char $\ast$}]{name,  }\item[{size\+\_\+t}]{length,  }\item[{\mbox{\hyperlink{rtems-rfs-inode_8h_ae658325c3ff9941f2e68315d20e3c723}{rtems\+\_\+rfs\+\_\+ino}}}]{ino }\end{DoxyParamCaption})}
+
+Add an entry to the directory returing the inode number allocated to the entry.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em fs} & is the file system data. \\
+\hline
+\mbox{\texttt{ in}}  & {\em dir} & is a pointer to the directory inode the entry is to be added too. \\
+\hline
+\mbox{\texttt{ in}}  & {\em name} & is a pointer to the name of the entry to be added. \\
+\hline
+\mbox{\texttt{ in}}  & {\em length} & is the length of the name excluding a terminating 0. \\
+\hline
+\mbox{\texttt{ in}}  & {\em ino} & is the ino of the entry.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em 0} & Successful operation. \\
+\hline
+{\em error\+\_\+code} & An error occurred. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{rtems-rfs-dir_8h_a50190aa71ba1a3d42d0dcd2b37095c5f}\label{rtems-rfs-dir_8h_a50190aa71ba1a3d42d0dcd2b37095c5f}} 
+\index{rtems-\/rfs-\/dir.h@{rtems-\/rfs-\/dir.h}!rtems\_rfs\_dir\_del\_entry@{rtems\_rfs\_dir\_del\_entry}}
+\index{rtems\_rfs\_dir\_del\_entry@{rtems\_rfs\_dir\_del\_entry}!rtems-\/rfs-\/dir.h@{rtems-\/rfs-\/dir.h}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_dir\_del\_entry()}{rtems\_rfs\_dir\_del\_entry()}}
+{\footnotesize\ttfamily int rtems\+\_\+rfs\+\_\+dir\+\_\+del\+\_\+entry (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__rtems__rfs__file__system}{rtems\+\_\+rfs\+\_\+file\+\_\+system}} $\ast$}]{fs,  }\item[{\mbox{\hyperlink{rtems-rfs-inode_8h_a91f02dac5a2d91e072d676f3266ab8d2}{rtems\+\_\+rfs\+\_\+inode\+\_\+handle}} $\ast$}]{dir,  }\item[{\mbox{\hyperlink{rtems-rfs-inode_8h_ae658325c3ff9941f2e68315d20e3c723}{rtems\+\_\+rfs\+\_\+ino}}}]{ino,  }\item[{uint32\+\_\+t}]{offset }\end{DoxyParamCaption})}
+
+Del an entry from the directory using an inode number as a key.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em fs} & is the file system data. \\
+\hline
+\mbox{\texttt{ in}}  & {\em dir} & is a pointer to the directory inode the entry is to be deleted from. \\
+\hline
+\mbox{\texttt{ in}}  & {\em ino} & is the ino of the entry. \\
+\hline
+\mbox{\texttt{ in}}  & {\em offset} & is the offset in the directory of the entry to delete. If 0 search from the start for the ino.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em 0} & Successful operation. \\
+\hline
+{\em error\+\_\+code} & An error occurred. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{rtems-rfs-dir_8h_a8347f100a80fdbfb9ba8bcb3aff40a38}\label{rtems-rfs-dir_8h_a8347f100a80fdbfb9ba8bcb3aff40a38}} 
+\index{rtems-\/rfs-\/dir.h@{rtems-\/rfs-\/dir.h}!rtems\_rfs\_dir\_empty@{rtems\_rfs\_dir\_empty}}
+\index{rtems\_rfs\_dir\_empty@{rtems\_rfs\_dir\_empty}!rtems-\/rfs-\/dir.h@{rtems-\/rfs-\/dir.h}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_dir\_empty()}{rtems\_rfs\_dir\_empty()}}
+{\footnotesize\ttfamily int rtems\+\_\+rfs\+\_\+dir\+\_\+empty (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__rtems__rfs__file__system}{rtems\+\_\+rfs\+\_\+file\+\_\+system}} $\ast$}]{fs,  }\item[{\mbox{\hyperlink{rtems-rfs-inode_8h_a91f02dac5a2d91e072d676f3266ab8d2}{rtems\+\_\+rfs\+\_\+inode\+\_\+handle}} $\ast$}]{dir }\end{DoxyParamCaption})}
+
+Check if the directory is empty. The current and parent directory entries are ignored.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em fs} & is the file system data \\
+\hline
+\mbox{\texttt{ in}}  & {\em dir} & is a pointer to the directory inode to check.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em 0} & Successful operation. \\
+\hline
+{\em error\+\_\+code} & An error occurred. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{rtems-rfs-dir_8h_a925d23dfc36f8f42bdb373855f94c226}\label{rtems-rfs-dir_8h_a925d23dfc36f8f42bdb373855f94c226}} 
+\index{rtems-\/rfs-\/dir.h@{rtems-\/rfs-\/dir.h}!rtems\_rfs\_dir\_lookup\_ino@{rtems\_rfs\_dir\_lookup\_ino}}
+\index{rtems\_rfs\_dir\_lookup\_ino@{rtems\_rfs\_dir\_lookup\_ino}!rtems-\/rfs-\/dir.h@{rtems-\/rfs-\/dir.h}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_dir\_lookup\_ino()}{rtems\_rfs\_dir\_lookup\_ino()}}
+{\footnotesize\ttfamily int rtems\+\_\+rfs\+\_\+dir\+\_\+lookup\+\_\+ino (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__rtems__rfs__file__system}{rtems\+\_\+rfs\+\_\+file\+\_\+system}} $\ast$}]{fs,  }\item[{\mbox{\hyperlink{rtems-rfs-inode_8h_a91f02dac5a2d91e072d676f3266ab8d2}{rtems\+\_\+rfs\+\_\+inode\+\_\+handle}} $\ast$}]{inode,  }\item[{const char $\ast$}]{name,  }\item[{int}]{length,  }\item[{\mbox{\hyperlink{rtems-rfs-inode_8h_ae658325c3ff9941f2e68315d20e3c723}{rtems\+\_\+rfs\+\_\+ino}} $\ast$}]{ino,  }\item[{uint32\+\_\+t $\ast$}]{offset }\end{DoxyParamCaption})}
+
+Look up a directory entry in the directory pointed to by the inode. The look up is local to this directory. No need to decend.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em fs} & is the file system. \\
+\hline
+\mbox{\texttt{ in}}  & {\em inode} & is a pointer to the inode of the directory to search. \\
+\hline
+\mbox{\texttt{ in}}  & {\em name} & is a pointer to the name to look up. The name may not be nul terminated. \\
+\hline
+\mbox{\texttt{ in}}  & {\em length} & is the length of the name. \\
+\hline
+\mbox{\texttt{ out}}  & {\em ino} & will be filled in with the inode number if there is no error. \\
+\hline
+\mbox{\texttt{ in}}  & {\em offset} & is the offset in the directory for the entry.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em 0} & Successful operation. \\
+\hline
+{\em error\+\_\+code} & An error occurred. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{rtems-rfs-dir_8h_a3487727e61e23fc3c551cc6cc49115f1}\label{rtems-rfs-dir_8h_a3487727e61e23fc3c551cc6cc49115f1}} 
+\index{rtems-\/rfs-\/dir.h@{rtems-\/rfs-\/dir.h}!rtems\_rfs\_dir\_read@{rtems\_rfs\_dir\_read}}
+\index{rtems\_rfs\_dir\_read@{rtems\_rfs\_dir\_read}!rtems-\/rfs-\/dir.h@{rtems-\/rfs-\/dir.h}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_dir\_read()}{rtems\_rfs\_dir\_read()}}
+{\footnotesize\ttfamily int rtems\+\_\+rfs\+\_\+dir\+\_\+read (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__rtems__rfs__file__system}{rtems\+\_\+rfs\+\_\+file\+\_\+system}} $\ast$}]{fs,  }\item[{\mbox{\hyperlink{rtems-rfs-inode_8h_a91f02dac5a2d91e072d676f3266ab8d2}{rtems\+\_\+rfs\+\_\+inode\+\_\+handle}} $\ast$}]{dir,  }\item[{\mbox{\hyperlink{rtems-rfs-file-system_8h_af6bccb465dcd34c68e9f0c214950ef57}{rtems\+\_\+rfs\+\_\+pos\+\_\+rel}}}]{offset,  }\item[{struct dirent $\ast$}]{dirent,  }\item[{size\+\_\+t $\ast$}]{length }\end{DoxyParamCaption})}
+
+Read the directory entry from offset into the directory entry buffer and return the length of space this entry uses in the directory table.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em fs} & is the file system data. \\
+\hline
+\mbox{\texttt{ in}}  & {\em dir} & is a pointer to the direct inode handler. \\
+\hline
+\mbox{\texttt{ in}}  & {\em offset} & is the offset in the directory to read from. \\
+\hline
+\mbox{\texttt{ in}}  & {\em dirent} & is a ointer to the dirent structure the entry is written into. \\
+\hline
+\mbox{\texttt{ out}}  & {\em length} & will contain the length this entry takes in the directory.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em 0} & Successful operation. \\
+\hline
+{\em error\+\_\+code} & An error occurred. \\
+\hline
+\end{DoxyRetVals}

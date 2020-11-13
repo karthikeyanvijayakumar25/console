@@ -1,0 +1,192 @@
+\hypertarget{rtems-rfs-dir_8c}{}\section{cpukit/libfs/src/rfs/rtems-\/rfs-\/dir.c File Reference}
+\label{rtems-rfs-dir_8c}\index{cpukit/libfs/src/rfs/rtems-\/rfs-\/dir.c@{cpukit/libfs/src/rfs/rtems-\/rfs-\/dir.c}}
+
+
+R\+T\+E\+MS File Systems Directory Routines.  
+
+
+{\ttfamily \#include $<$inttypes.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/rfs/rtems-\/rfs-\/block.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/rfs/rtems-\/rfs-\/buffer.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/rfs/rtems-\/rfs-\/file-\/system.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/rfs/rtems-\/rfs-\/trace.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/rfs/rtems-\/rfs-\/dir.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/rfs/rtems-\/rfs-\/dir-\/hash.\+h$>$}\newline
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{rtems-rfs-dir_8c_a7c9a4896613364950a98984676e74fd8}{rtems\+\_\+rfs\+\_\+dir\+\_\+entry\+\_\+valid}}(\+\_\+f,  \+\_\+l,  \+\_\+i)
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{rtems-rfs-dir_8c_a925d23dfc36f8f42bdb373855f94c226}{rtems\+\_\+rfs\+\_\+dir\+\_\+lookup\+\_\+ino}} (\mbox{\hyperlink{struct__rtems__rfs__file__system}{rtems\+\_\+rfs\+\_\+file\+\_\+system}} $\ast$fs, \mbox{\hyperlink{rtems-rfs-inode_8h_a91f02dac5a2d91e072d676f3266ab8d2}{rtems\+\_\+rfs\+\_\+inode\+\_\+handle}} $\ast$inode, const char $\ast$name, int length, \mbox{\hyperlink{rtems-rfs-inode_8h_ae658325c3ff9941f2e68315d20e3c723}{rtems\+\_\+rfs\+\_\+ino}} $\ast$ino, uint32\+\_\+t $\ast$offset)
+\item 
+int \mbox{\hyperlink{rtems-rfs-dir_8c_a8b0d72704a836e92be9211cd27b50aab}{rtems\+\_\+rfs\+\_\+dir\+\_\+add\+\_\+entry}} (\mbox{\hyperlink{struct__rtems__rfs__file__system}{rtems\+\_\+rfs\+\_\+file\+\_\+system}} $\ast$fs, \mbox{\hyperlink{rtems-rfs-inode_8h_a91f02dac5a2d91e072d676f3266ab8d2}{rtems\+\_\+rfs\+\_\+inode\+\_\+handle}} $\ast$dir, const char $\ast$name, size\+\_\+t length, \mbox{\hyperlink{rtems-rfs-inode_8h_ae658325c3ff9941f2e68315d20e3c723}{rtems\+\_\+rfs\+\_\+ino}} ino)
+\item 
+int \mbox{\hyperlink{rtems-rfs-dir_8c_a50190aa71ba1a3d42d0dcd2b37095c5f}{rtems\+\_\+rfs\+\_\+dir\+\_\+del\+\_\+entry}} (\mbox{\hyperlink{struct__rtems__rfs__file__system}{rtems\+\_\+rfs\+\_\+file\+\_\+system}} $\ast$fs, \mbox{\hyperlink{rtems-rfs-inode_8h_a91f02dac5a2d91e072d676f3266ab8d2}{rtems\+\_\+rfs\+\_\+inode\+\_\+handle}} $\ast$dir, \mbox{\hyperlink{rtems-rfs-inode_8h_ae658325c3ff9941f2e68315d20e3c723}{rtems\+\_\+rfs\+\_\+ino}} ino, uint32\+\_\+t offset)
+\item 
+int \mbox{\hyperlink{rtems-rfs-dir_8c_a3487727e61e23fc3c551cc6cc49115f1}{rtems\+\_\+rfs\+\_\+dir\+\_\+read}} (\mbox{\hyperlink{struct__rtems__rfs__file__system}{rtems\+\_\+rfs\+\_\+file\+\_\+system}} $\ast$fs, \mbox{\hyperlink{rtems-rfs-inode_8h_a91f02dac5a2d91e072d676f3266ab8d2}{rtems\+\_\+rfs\+\_\+inode\+\_\+handle}} $\ast$dir, \mbox{\hyperlink{rtems-rfs-file-system_8h_af6bccb465dcd34c68e9f0c214950ef57}{rtems\+\_\+rfs\+\_\+pos\+\_\+rel}} offset, struct dirent $\ast$dirent, size\+\_\+t $\ast$length)
+\item 
+int \mbox{\hyperlink{rtems-rfs-dir_8c_a8347f100a80fdbfb9ba8bcb3aff40a38}{rtems\+\_\+rfs\+\_\+dir\+\_\+empty}} (\mbox{\hyperlink{struct__rtems__rfs__file__system}{rtems\+\_\+rfs\+\_\+file\+\_\+system}} $\ast$fs, \mbox{\hyperlink{rtems-rfs-inode_8h_a91f02dac5a2d91e072d676f3266ab8d2}{rtems\+\_\+rfs\+\_\+inode\+\_\+handle}} $\ast$dir)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+R\+T\+E\+MS File Systems Directory Routines. 
+
+These functions manage blocks in the directory format. A directory entry is a variable length record in the block. The entry consists of a length, hash and the string. The length allows the next entry to be located and the hash allows a simple check to be performed without a string compare. Directory entries do not span a block and removal of an entry results in the space in the block being compacted and the spare area being initialised to ones.
+
+The maximum length can be 1 or 2 bytes depending on the value in the superblock. 
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{rtems-rfs-dir_8c_a7c9a4896613364950a98984676e74fd8}\label{rtems-rfs-dir_8c_a7c9a4896613364950a98984676e74fd8}} 
+\index{rtems-\/rfs-\/dir.c@{rtems-\/rfs-\/dir.c}!rtems\_rfs\_dir\_entry\_valid@{rtems\_rfs\_dir\_entry\_valid}}
+\index{rtems\_rfs\_dir\_entry\_valid@{rtems\_rfs\_dir\_entry\_valid}!rtems-\/rfs-\/dir.c@{rtems-\/rfs-\/dir.c}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_dir\_entry\_valid}{rtems\_rfs\_dir\_entry\_valid}}
+{\footnotesize\ttfamily \#define rtems\+\_\+rfs\+\_\+dir\+\_\+entry\+\_\+valid(\begin{DoxyParamCaption}\item[{}]{\+\_\+f,  }\item[{}]{\+\_\+l,  }\item[{}]{\+\_\+i }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(((\_l) <= \mbox{\hyperlink{rtems-rfs-dir_8h_a57764521961897da4d101db20a52b054}{RTEMS\_RFS\_DIR\_ENTRY\_SIZE}}) || ((\_l) >= \mbox{\hyperlink{rtems-rfs-file-system_8h_adcf995ca24dfef0d825b9d1fc080a806}{rtems\_rfs\_fs\_max\_name}} (\_f)) \(\backslash\)}
+\DoxyCodeLine{   || (\_i < \mbox{\hyperlink{rtems-rfs-file-system_8h_a341dd2280c086baadd35b5e4471ff416}{RTEMS\_RFS\_ROOT\_INO}}) || (\_i > \mbox{\hyperlink{rtems-rfs-file-system_8h_a876d1ab071a182aeb6cc74bf16c562c7}{rtems\_rfs\_fs\_inodes}} (\_f)))}
+
+\end{DoxyCode}
+Validate the directory entry data. 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{rtems-rfs-dir_8c_a8b0d72704a836e92be9211cd27b50aab}\label{rtems-rfs-dir_8c_a8b0d72704a836e92be9211cd27b50aab}} 
+\index{rtems-\/rfs-\/dir.c@{rtems-\/rfs-\/dir.c}!rtems\_rfs\_dir\_add\_entry@{rtems\_rfs\_dir\_add\_entry}}
+\index{rtems\_rfs\_dir\_add\_entry@{rtems\_rfs\_dir\_add\_entry}!rtems-\/rfs-\/dir.c@{rtems-\/rfs-\/dir.c}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_dir\_add\_entry()}{rtems\_rfs\_dir\_add\_entry()}}
+{\footnotesize\ttfamily int rtems\+\_\+rfs\+\_\+dir\+\_\+add\+\_\+entry (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__rtems__rfs__file__system}{rtems\+\_\+rfs\+\_\+file\+\_\+system}} $\ast$}]{fs,  }\item[{\mbox{\hyperlink{rtems-rfs-inode_8h_a91f02dac5a2d91e072d676f3266ab8d2}{rtems\+\_\+rfs\+\_\+inode\+\_\+handle}} $\ast$}]{dir,  }\item[{const char $\ast$}]{name,  }\item[{size\+\_\+t}]{length,  }\item[{\mbox{\hyperlink{rtems-rfs-inode_8h_ae658325c3ff9941f2e68315d20e3c723}{rtems\+\_\+rfs\+\_\+ino}}}]{ino }\end{DoxyParamCaption})}
+
+Add an entry to the directory returing the inode number allocated to the entry.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em fs} & is the file system data. \\
+\hline
+\mbox{\texttt{ in}}  & {\em dir} & is a pointer to the directory inode the entry is to be added too. \\
+\hline
+\mbox{\texttt{ in}}  & {\em name} & is a pointer to the name of the entry to be added. \\
+\hline
+\mbox{\texttt{ in}}  & {\em length} & is the length of the name excluding a terminating 0. \\
+\hline
+\mbox{\texttt{ in}}  & {\em ino} & is the ino of the entry.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em 0} & Successful operation. \\
+\hline
+{\em error\+\_\+code} & An error occurred. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{rtems-rfs-dir_8c_a50190aa71ba1a3d42d0dcd2b37095c5f}\label{rtems-rfs-dir_8c_a50190aa71ba1a3d42d0dcd2b37095c5f}} 
+\index{rtems-\/rfs-\/dir.c@{rtems-\/rfs-\/dir.c}!rtems\_rfs\_dir\_del\_entry@{rtems\_rfs\_dir\_del\_entry}}
+\index{rtems\_rfs\_dir\_del\_entry@{rtems\_rfs\_dir\_del\_entry}!rtems-\/rfs-\/dir.c@{rtems-\/rfs-\/dir.c}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_dir\_del\_entry()}{rtems\_rfs\_dir\_del\_entry()}}
+{\footnotesize\ttfamily int rtems\+\_\+rfs\+\_\+dir\+\_\+del\+\_\+entry (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__rtems__rfs__file__system}{rtems\+\_\+rfs\+\_\+file\+\_\+system}} $\ast$}]{fs,  }\item[{\mbox{\hyperlink{rtems-rfs-inode_8h_a91f02dac5a2d91e072d676f3266ab8d2}{rtems\+\_\+rfs\+\_\+inode\+\_\+handle}} $\ast$}]{dir,  }\item[{\mbox{\hyperlink{rtems-rfs-inode_8h_ae658325c3ff9941f2e68315d20e3c723}{rtems\+\_\+rfs\+\_\+ino}}}]{ino,  }\item[{uint32\+\_\+t}]{offset }\end{DoxyParamCaption})}
+
+Del an entry from the directory using an inode number as a key.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em fs} & is the file system data. \\
+\hline
+\mbox{\texttt{ in}}  & {\em dir} & is a pointer to the directory inode the entry is to be deleted from. \\
+\hline
+\mbox{\texttt{ in}}  & {\em ino} & is the ino of the entry. \\
+\hline
+\mbox{\texttt{ in}}  & {\em offset} & is the offset in the directory of the entry to delete. If 0 search from the start for the ino.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em 0} & Successful operation. \\
+\hline
+{\em error\+\_\+code} & An error occurred. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{rtems-rfs-dir_8c_a8347f100a80fdbfb9ba8bcb3aff40a38}\label{rtems-rfs-dir_8c_a8347f100a80fdbfb9ba8bcb3aff40a38}} 
+\index{rtems-\/rfs-\/dir.c@{rtems-\/rfs-\/dir.c}!rtems\_rfs\_dir\_empty@{rtems\_rfs\_dir\_empty}}
+\index{rtems\_rfs\_dir\_empty@{rtems\_rfs\_dir\_empty}!rtems-\/rfs-\/dir.c@{rtems-\/rfs-\/dir.c}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_dir\_empty()}{rtems\_rfs\_dir\_empty()}}
+{\footnotesize\ttfamily int rtems\+\_\+rfs\+\_\+dir\+\_\+empty (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__rtems__rfs__file__system}{rtems\+\_\+rfs\+\_\+file\+\_\+system}} $\ast$}]{fs,  }\item[{\mbox{\hyperlink{rtems-rfs-inode_8h_a91f02dac5a2d91e072d676f3266ab8d2}{rtems\+\_\+rfs\+\_\+inode\+\_\+handle}} $\ast$}]{dir }\end{DoxyParamCaption})}
+
+Check if the directory is empty. The current and parent directory entries are ignored.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em fs} & is the file system data \\
+\hline
+\mbox{\texttt{ in}}  & {\em dir} & is a pointer to the directory inode to check.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em 0} & Successful operation. \\
+\hline
+{\em error\+\_\+code} & An error occurred. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{rtems-rfs-dir_8c_a925d23dfc36f8f42bdb373855f94c226}\label{rtems-rfs-dir_8c_a925d23dfc36f8f42bdb373855f94c226}} 
+\index{rtems-\/rfs-\/dir.c@{rtems-\/rfs-\/dir.c}!rtems\_rfs\_dir\_lookup\_ino@{rtems\_rfs\_dir\_lookup\_ino}}
+\index{rtems\_rfs\_dir\_lookup\_ino@{rtems\_rfs\_dir\_lookup\_ino}!rtems-\/rfs-\/dir.c@{rtems-\/rfs-\/dir.c}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_dir\_lookup\_ino()}{rtems\_rfs\_dir\_lookup\_ino()}}
+{\footnotesize\ttfamily int rtems\+\_\+rfs\+\_\+dir\+\_\+lookup\+\_\+ino (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__rtems__rfs__file__system}{rtems\+\_\+rfs\+\_\+file\+\_\+system}} $\ast$}]{fs,  }\item[{\mbox{\hyperlink{rtems-rfs-inode_8h_a91f02dac5a2d91e072d676f3266ab8d2}{rtems\+\_\+rfs\+\_\+inode\+\_\+handle}} $\ast$}]{inode,  }\item[{const char $\ast$}]{name,  }\item[{int}]{length,  }\item[{\mbox{\hyperlink{rtems-rfs-inode_8h_ae658325c3ff9941f2e68315d20e3c723}{rtems\+\_\+rfs\+\_\+ino}} $\ast$}]{ino,  }\item[{uint32\+\_\+t $\ast$}]{offset }\end{DoxyParamCaption})}
+
+Look up a directory entry in the directory pointed to by the inode. The look up is local to this directory. No need to decend.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em fs} & is the file system. \\
+\hline
+\mbox{\texttt{ in}}  & {\em inode} & is a pointer to the inode of the directory to search. \\
+\hline
+\mbox{\texttt{ in}}  & {\em name} & is a pointer to the name to look up. The name may not be nul terminated. \\
+\hline
+\mbox{\texttt{ in}}  & {\em length} & is the length of the name. \\
+\hline
+\mbox{\texttt{ out}}  & {\em ino} & will be filled in with the inode number if there is no error. \\
+\hline
+\mbox{\texttt{ in}}  & {\em offset} & is the offset in the directory for the entry.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em 0} & Successful operation. \\
+\hline
+{\em error\+\_\+code} & An error occurred. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{rtems-rfs-dir_8c_a3487727e61e23fc3c551cc6cc49115f1}\label{rtems-rfs-dir_8c_a3487727e61e23fc3c551cc6cc49115f1}} 
+\index{rtems-\/rfs-\/dir.c@{rtems-\/rfs-\/dir.c}!rtems\_rfs\_dir\_read@{rtems\_rfs\_dir\_read}}
+\index{rtems\_rfs\_dir\_read@{rtems\_rfs\_dir\_read}!rtems-\/rfs-\/dir.c@{rtems-\/rfs-\/dir.c}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_dir\_read()}{rtems\_rfs\_dir\_read()}}
+{\footnotesize\ttfamily int rtems\+\_\+rfs\+\_\+dir\+\_\+read (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__rtems__rfs__file__system}{rtems\+\_\+rfs\+\_\+file\+\_\+system}} $\ast$}]{fs,  }\item[{\mbox{\hyperlink{rtems-rfs-inode_8h_a91f02dac5a2d91e072d676f3266ab8d2}{rtems\+\_\+rfs\+\_\+inode\+\_\+handle}} $\ast$}]{dir,  }\item[{\mbox{\hyperlink{rtems-rfs-file-system_8h_af6bccb465dcd34c68e9f0c214950ef57}{rtems\+\_\+rfs\+\_\+pos\+\_\+rel}}}]{offset,  }\item[{struct dirent $\ast$}]{dirent,  }\item[{size\+\_\+t $\ast$}]{length }\end{DoxyParamCaption})}
+
+Read the directory entry from offset into the directory entry buffer and return the length of space this entry uses in the directory table.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em fs} & is the file system data. \\
+\hline
+\mbox{\texttt{ in}}  & {\em dir} & is a pointer to the direct inode handler. \\
+\hline
+\mbox{\texttt{ in}}  & {\em offset} & is the offset in the directory to read from. \\
+\hline
+\mbox{\texttt{ in}}  & {\em dirent} & is a ointer to the dirent structure the entry is written into. \\
+\hline
+\mbox{\texttt{ out}}  & {\em length} & will contain the length this entry takes in the directory.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em 0} & Successful operation. \\
+\hline
+{\em error\+\_\+code} & An error occurred. \\
+\hline
+\end{DoxyRetVals}

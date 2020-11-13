@@ -1,0 +1,112 @@
+\hypertarget{structrtems__test__parallel__job}{}\section{rtems\+\_\+test\+\_\+parallel\+\_\+job Struct Reference}
+\label{structrtems__test__parallel__job}\index{rtems\_test\_parallel\_job@{rtems\_test\_parallel\_job}}
+
+
+Basic parallel job description.  
+
+
+
+
+{\ttfamily \#include $<$test.\+h$>$}
+
+\subsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{group__ClassicTasks_gad39c43f949683d46874e3a5586b93aee}{rtems\+\_\+interval}}($\ast$ \mbox{\hyperlink{structrtems__test__parallel__job_a0640b0509f506cf8e7d2d597975be45b}{init}} )(\mbox{\hyperlink{structrtems__test__parallel__context}{rtems\+\_\+test\+\_\+parallel\+\_\+context}} $\ast$ctx, void $\ast$\mbox{\hyperlink{structrtems__test__parallel__job_a52ddd602bb812999b845a10b44c32954}{arg}}, size\+\_\+t active\+\_\+workers)
+\begin{DoxyCompactList}\small\item\em Job initialization handler. \end{DoxyCompactList}\item 
+void($\ast$ \mbox{\hyperlink{structrtems__test__parallel__job_aa0e1e25be6484e3995243907de9bdba8}{body}} )(\mbox{\hyperlink{structrtems__test__parallel__context}{rtems\+\_\+test\+\_\+parallel\+\_\+context}} $\ast$ctx, void $\ast$\mbox{\hyperlink{structrtems__test__parallel__job_a52ddd602bb812999b845a10b44c32954}{arg}}, size\+\_\+t active\+\_\+workers, size\+\_\+t worker\+\_\+index)
+\begin{DoxyCompactList}\small\item\em Job body handler. \end{DoxyCompactList}\item 
+void($\ast$ \mbox{\hyperlink{structrtems__test__parallel__job_ab03e128980326bb30db0f5a457613010}{fini}} )(\mbox{\hyperlink{structrtems__test__parallel__context}{rtems\+\_\+test\+\_\+parallel\+\_\+context}} $\ast$ctx, void $\ast$\mbox{\hyperlink{structrtems__test__parallel__job_a52ddd602bb812999b845a10b44c32954}{arg}}, size\+\_\+t active\+\_\+workers)
+\begin{DoxyCompactList}\small\item\em Job finalization handler. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structrtems__test__parallel__job_a52ddd602bb812999b845a10b44c32954}\label{structrtems__test__parallel__job_a52ddd602bb812999b845a10b44c32954}} 
+void $\ast$ \mbox{\hyperlink{structrtems__test__parallel__job_a52ddd602bb812999b845a10b44c32954}{arg}}
+\begin{DoxyCompactList}\small\item\em Job specific argument. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{structrtems__test__parallel__job_ac5f199a12b5bb5ed6062054f2cfcea32}{cascade}}
+\begin{DoxyCompactList}\small\item\em Job cascading flag. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Basic parallel job description. 
+
+\subsection{Field Documentation}
+\mbox{\Hypertarget{structrtems__test__parallel__job_aa0e1e25be6484e3995243907de9bdba8}\label{structrtems__test__parallel__job_aa0e1e25be6484e3995243907de9bdba8}} 
+\index{rtems\_test\_parallel\_job@{rtems\_test\_parallel\_job}!body@{body}}
+\index{body@{body}!rtems\_test\_parallel\_job@{rtems\_test\_parallel\_job}}
+\subsubsection{\texorpdfstring{body}{body}}
+{\footnotesize\ttfamily void($\ast$ rtems\+\_\+test\+\_\+parallel\+\_\+job\+::body) (\mbox{\hyperlink{structrtems__test__parallel__context}{rtems\+\_\+test\+\_\+parallel\+\_\+context}} $\ast$ctx, void $\ast$\mbox{\hyperlink{structrtems__test__parallel__job_a52ddd602bb812999b845a10b44c32954}{arg}}, size\+\_\+t active\+\_\+workers, size\+\_\+t worker\+\_\+index)}
+
+
+
+Job body handler. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em ctx} & The parallel context. \\
+\hline
+\mbox{\texttt{ in}}  & {\em arg} & The user specified argument. \\
+\hline
+\mbox{\texttt{ in}}  & {\em active\+\_\+workers} & Count of active workers. Depends on the cascade option. \\
+\hline
+\mbox{\texttt{ in}}  & {\em worker\+\_\+index} & The worker index. It ranges from 0 to the processor count minus one. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{structrtems__test__parallel__job_ac5f199a12b5bb5ed6062054f2cfcea32}\label{structrtems__test__parallel__job_ac5f199a12b5bb5ed6062054f2cfcea32}} 
+\index{rtems\_test\_parallel\_job@{rtems\_test\_parallel\_job}!cascade@{cascade}}
+\index{cascade@{cascade}!rtems\_test\_parallel\_job@{rtems\_test\_parallel\_job}}
+\subsubsection{\texorpdfstring{cascade}{cascade}}
+{\footnotesize\ttfamily bool rtems\+\_\+test\+\_\+parallel\+\_\+job\+::cascade}
+
+
+
+Job cascading flag. 
+
+This flag indicates whether the job should be executed in a cascaded manner (the job is executed on one processor first, two processors afterwards and incremented step by step until all processors are used). \mbox{\Hypertarget{structrtems__test__parallel__job_ab03e128980326bb30db0f5a457613010}\label{structrtems__test__parallel__job_ab03e128980326bb30db0f5a457613010}} 
+\index{rtems\_test\_parallel\_job@{rtems\_test\_parallel\_job}!fini@{fini}}
+\index{fini@{fini}!rtems\_test\_parallel\_job@{rtems\_test\_parallel\_job}}
+\subsubsection{\texorpdfstring{fini}{fini}}
+{\footnotesize\ttfamily void($\ast$ rtems\+\_\+test\+\_\+parallel\+\_\+job\+::fini) (\mbox{\hyperlink{structrtems__test__parallel__context}{rtems\+\_\+test\+\_\+parallel\+\_\+context}} $\ast$ctx, void $\ast$\mbox{\hyperlink{structrtems__test__parallel__job_a52ddd602bb812999b845a10b44c32954}{arg}}, size\+\_\+t active\+\_\+workers)}
+
+
+
+Job finalization handler. 
+
+This handler executes only in the context of the master worker after the job body handler.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em ctx} & The parallel context. \\
+\hline
+\mbox{\texttt{ in}}  & {\em arg} & The user specified argument. \\
+\hline
+\mbox{\texttt{ in}}  & {\em active\+\_\+workers} & Count of active workers. Depends on the cascade option. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{structrtems__test__parallel__job_a0640b0509f506cf8e7d2d597975be45b}\label{structrtems__test__parallel__job_a0640b0509f506cf8e7d2d597975be45b}} 
+\index{rtems\_test\_parallel\_job@{rtems\_test\_parallel\_job}!init@{init}}
+\index{init@{init}!rtems\_test\_parallel\_job@{rtems\_test\_parallel\_job}}
+\subsubsection{\texorpdfstring{init}{init}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__ClassicTasks_gad39c43f949683d46874e3a5586b93aee}{rtems\+\_\+interval}}($\ast$ rtems\+\_\+test\+\_\+parallel\+\_\+job\+::init) (\mbox{\hyperlink{structrtems__test__parallel__context}{rtems\+\_\+test\+\_\+parallel\+\_\+context}} $\ast$ctx, void $\ast$\mbox{\hyperlink{structrtems__test__parallel__job_a52ddd602bb812999b845a10b44c32954}{arg}}, size\+\_\+t active\+\_\+workers)}
+
+
+
+Job initialization handler. 
+
+This handler executes only in the context of the master worker before the job body handler.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em ctx} & The parallel context. \\
+\hline
+\mbox{\texttt{ in}}  & {\em arg} & The user specified argument. \\
+\hline
+\mbox{\texttt{ in}}  & {\em active\+\_\+workers} & Count of active workers. Depends on the cascade option.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The desired job body execution time in clock ticks. See rtems\+\_\+test\+\_\+parallel\+\_\+stop\+\_\+job(). 
+\end{DoxyReturn}
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+cpukit/include/rtems/test.\+h\end{DoxyCompactItemize}

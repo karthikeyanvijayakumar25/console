@@ -1,0 +1,68 @@
+\hypertarget{rtems_2timerimpl_8h}{}\section{cpukit/include/rtems/rtems/timerimpl.h File Reference}
+\label{rtems_2timerimpl_8h}\index{cpukit/include/rtems/rtems/timerimpl.h@{cpukit/include/rtems/rtems/timerimpl.h}}
+
+
+Classic Timer Implementation.  
+
+
+{\ttfamily \#include $<$rtems/rtems/timerdata.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/score/objectimpl.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/score/thread.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/score/watchdogimpl.\+h$>$}\newline
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structTimer__server__Control}{Timer\+\_\+server\+\_\+\+Control}}
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \mbox{\hyperlink{structTimer__server__Control}{Timer\+\_\+server\+\_\+\+Control}} {\bfseries Timer\+\_\+server\+\_\+\+Control}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} \mbox{\hyperlink{structTimer__Control}{Timer\+\_\+\+Control}} $\ast$ \mbox{\hyperlink{group__ClassicTimerImpl_ga77ef33047cce91fa663a936bafee7eac}{\+\_\+\+Timer\+\_\+\+Allocate}} (void)
+\begin{DoxyCompactList}\small\item\em Timer\+\_\+\+Allocate. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \mbox{\hyperlink{group__ClassicTimerImpl_gac8b9418437bbd28ed3d1c81093cb9ec8}{\+\_\+\+Timer\+\_\+\+Free}} (\mbox{\hyperlink{structTimer__Control}{Timer\+\_\+\+Control}} $\ast$the\+\_\+timer)
+\begin{DoxyCompactList}\small\item\em Timer\+\_\+\+Free. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} \mbox{\hyperlink{structTimer__Control}{Timer\+\_\+\+Control}} $\ast$ {\bfseries \+\_\+\+Timer\+\_\+\+Get} (\mbox{\hyperlink{group__RTEMSScoreObject_ga5821f52a51072941bdd603e542d0863e}{Objects\+\_\+\+Id}} id, \mbox{\hyperlink{structISR__lock__Context}{I\+S\+R\+\_\+lock\+\_\+\+Context}} $\ast$lock\+\_\+context)
+\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} \mbox{\hyperlink{structPer__CPU__Control}{Per\+\_\+\+C\+P\+U\+\_\+\+Control}} $\ast$ {\bfseries \+\_\+\+Timer\+\_\+\+Acquire\+\_\+critical} (\mbox{\hyperlink{structTimer__Control}{Timer\+\_\+\+Control}} $\ast$the\+\_\+timer, \mbox{\hyperlink{structISR__lock__Context}{I\+S\+R\+\_\+lock\+\_\+\+Context}} $\ast$lock\+\_\+context)
+\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void {\bfseries \+\_\+\+Timer\+\_\+\+Release} (\mbox{\hyperlink{structPer__CPU__Control}{Per\+\_\+\+C\+P\+U\+\_\+\+Control}} $\ast$cpu, \mbox{\hyperlink{structISR__lock__Context}{I\+S\+R\+\_\+lock\+\_\+\+Context}} $\ast$lock\+\_\+context)
+\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} bool {\bfseries \+\_\+\+Timer\+\_\+\+Is\+\_\+interval\+\_\+class} (\mbox{\hyperlink{group__ClassicTimer_gaca88ac1e833f63ec72d38e07677f2f27}{Timer\+\_\+\+Classes}} the\+\_\+class)
+\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} bool {\bfseries \+\_\+\+Timer\+\_\+\+Is\+\_\+on\+\_\+task\+\_\+class} (\mbox{\hyperlink{group__ClassicTimer_gaca88ac1e833f63ec72d38e07677f2f27}{Timer\+\_\+\+Classes}} the\+\_\+class)
+\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} \mbox{\hyperlink{group__PerCPU_ga43ab5440a69211901b58fa787f9cd76e}{Per\+\_\+\+C\+P\+U\+\_\+\+Watchdog\+\_\+index}} {\bfseries \+\_\+\+Timer\+\_\+\+Watchdog\+\_\+header\+\_\+index} (\mbox{\hyperlink{group__ClassicTimer_gaca88ac1e833f63ec72d38e07677f2f27}{Timer\+\_\+\+Classes}} the\+\_\+class)
+\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} \mbox{\hyperlink{group__RTEMSScoreWatchdog_gaa1834fd7531ca9bb5c4ca6fd990388d5}{Watchdog\+\_\+\+Interval}} {\bfseries \+\_\+\+Timer\+\_\+\+Get\+\_\+\+C\+P\+U\+\_\+ticks} (const \mbox{\hyperlink{structPer__CPU__Control}{Per\+\_\+\+C\+P\+U\+\_\+\+Control}} $\ast$cpu)
+\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} {\bfseries \+\_\+\+Timer\+\_\+\+Fire} (\mbox{\hyperlink{group__ClassicTasks_gab20892b814dced7dd4e5b9bf42becd57}{rtems\+\_\+id}} id, \mbox{\hyperlink{group__ClassicTasks_gad39c43f949683d46874e3a5586b93aee}{rtems\+\_\+interval}} interval, \mbox{\hyperlink{group__ClassicTimer_gab7851346dd520066ddc58a25de671f51}{rtems\+\_\+timer\+\_\+service\+\_\+routine\+\_\+entry}} routine, void $\ast$user\+\_\+data, \mbox{\hyperlink{group__ClassicTimer_gaca88ac1e833f63ec72d38e07677f2f27}{Timer\+\_\+\+Classes}} the\+\_\+class, \mbox{\hyperlink{group__RTEMSScoreWatchdog_ga6ae5e52f6c4046535272c18a8cba66e1}{Watchdog\+\_\+\+Service\+\_\+routine\+\_\+entry}} adaptor)
+\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} {\bfseries \+\_\+\+Timer\+\_\+\+Fire\+\_\+after} (\mbox{\hyperlink{group__ClassicTasks_gab20892b814dced7dd4e5b9bf42becd57}{rtems\+\_\+id}} id, \mbox{\hyperlink{group__ClassicTasks_gad39c43f949683d46874e3a5586b93aee}{rtems\+\_\+interval}} ticks, \mbox{\hyperlink{group__ClassicTimer_gab7851346dd520066ddc58a25de671f51}{rtems\+\_\+timer\+\_\+service\+\_\+routine\+\_\+entry}} routine, void $\ast$user\+\_\+data, \mbox{\hyperlink{group__ClassicTimer_gaca88ac1e833f63ec72d38e07677f2f27}{Timer\+\_\+\+Classes}} the\+\_\+class, \mbox{\hyperlink{group__RTEMSScoreWatchdog_ga6ae5e52f6c4046535272c18a8cba66e1}{Watchdog\+\_\+\+Service\+\_\+routine\+\_\+entry}} adaptor)
+\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} {\bfseries \+\_\+\+Timer\+\_\+\+Fire\+\_\+when} (\mbox{\hyperlink{group__ClassicTasks_gab20892b814dced7dd4e5b9bf42becd57}{rtems\+\_\+id}} id, const \mbox{\hyperlink{structrtems__time__of__day}{rtems\+\_\+time\+\_\+of\+\_\+day}} $\ast$wall\+\_\+time, \mbox{\hyperlink{group__ClassicTimer_gab7851346dd520066ddc58a25de671f51}{rtems\+\_\+timer\+\_\+service\+\_\+routine\+\_\+entry}} routine, void $\ast$user\+\_\+data, \mbox{\hyperlink{group__ClassicTimer_gaca88ac1e833f63ec72d38e07677f2f27}{Timer\+\_\+\+Classes}} the\+\_\+class, \mbox{\hyperlink{group__RTEMSScoreWatchdog_ga6ae5e52f6c4046535272c18a8cba66e1}{Watchdog\+\_\+\+Service\+\_\+routine\+\_\+entry}} adaptor)
+\item 
+void {\bfseries \+\_\+\+Timer\+\_\+\+Cancel} (\mbox{\hyperlink{structPer__CPU__Control}{Per\+\_\+\+C\+P\+U\+\_\+\+Control}} $\ast$cpu, \mbox{\hyperlink{structTimer__Control}{Timer\+\_\+\+Control}} $\ast$the\+\_\+timer)
+\item 
+void {\bfseries \+\_\+\+Timer\+\_\+\+Routine\+\_\+adaptor} (\mbox{\hyperlink{structWatchdog__Control}{Watchdog\+\_\+\+Control}} $\ast$the\+\_\+watchdog)
+\item 
+void {\bfseries \+\_\+\+Timer\+\_\+server\+\_\+\+Routine\+\_\+adaptor} (\mbox{\hyperlink{structWatchdog__Control}{Watchdog\+\_\+\+Control}} $\ast$the\+\_\+watchdog)
+\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void {\bfseries \+\_\+\+Timer\+\_\+server\+\_\+\+Acquire\+\_\+critical} (\mbox{\hyperlink{structTimer__server__Control}{Timer\+\_\+server\+\_\+\+Control}} $\ast$timer\+\_\+server, \mbox{\hyperlink{structISR__lock__Context}{I\+S\+R\+\_\+lock\+\_\+\+Context}} $\ast$lock\+\_\+context)
+\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void {\bfseries \+\_\+\+Timer\+\_\+server\+\_\+\+Release\+\_\+critical} (\mbox{\hyperlink{structTimer__server__Control}{Timer\+\_\+server\+\_\+\+Control}} $\ast$timer\+\_\+server, \mbox{\hyperlink{structISR__lock__Context}{I\+S\+R\+\_\+lock\+\_\+\+Context}} $\ast$lock\+\_\+context)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structTimer__server__Control}{Timer\+\_\+server\+\_\+\+Control}} $\ast$volatile \mbox{\hyperlink{group__ClassicTimerImpl_ga22a1cf7a5c39d7c8ea2ec3764ddb88fa}{\+\_\+\+Timer\+\_\+server}}
+\begin{DoxyCompactList}\small\item\em Pointer to default timer server control block. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Classic Timer Implementation. 
+

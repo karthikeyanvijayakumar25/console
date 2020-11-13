@@ -1,0 +1,191 @@
+\hypertarget{group__ALT__I2C__INT}{}\section{Interrupt and Status Conditions}
+\label{group__ALT__I2C__INT}\index{Interrupt and Status Conditions@{Interrupt and Status Conditions}}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__ALT__I2C__INT_ga55a40d841dd93d2861a4597603844776}{alt\+\_\+i2c\+\_\+int\+\_\+status\+\_\+get}} (\mbox{\hyperlink{structALT__I2C__DEV__s}{A\+L\+T\+\_\+\+I2\+C\+\_\+\+D\+E\+V\+\_\+t}} $\ast$\mbox{\hyperlink{structi2c__dev}{i2c\+\_\+dev}}, uint32\+\_\+t $\ast$status)
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__ALT__I2C__INT_ga15ff55010cad84db0476be38e064851d}{alt\+\_\+i2c\+\_\+int\+\_\+raw\+\_\+status\+\_\+get}} (\mbox{\hyperlink{structALT__I2C__DEV__s}{A\+L\+T\+\_\+\+I2\+C\+\_\+\+D\+E\+V\+\_\+t}} $\ast$\mbox{\hyperlink{structi2c__dev}{i2c\+\_\+dev}}, uint32\+\_\+t $\ast$status)
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__ALT__I2C__INT_gae00500b27051a82ff75905e777f0e1c8}{alt\+\_\+i2c\+\_\+int\+\_\+clear}} (\mbox{\hyperlink{structALT__I2C__DEV__s}{A\+L\+T\+\_\+\+I2\+C\+\_\+\+D\+E\+V\+\_\+t}} $\ast$\mbox{\hyperlink{structi2c__dev}{i2c\+\_\+dev}}, const uint32\+\_\+t mask)
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__ALT__I2C__INT_gae81d1d1af98f385fd6202d382af93ecc}{alt\+\_\+i2c\+\_\+int\+\_\+disable}} (\mbox{\hyperlink{structALT__I2C__DEV__s}{A\+L\+T\+\_\+\+I2\+C\+\_\+\+D\+E\+V\+\_\+t}} $\ast$\mbox{\hyperlink{structi2c__dev}{i2c\+\_\+dev}}, const uint32\+\_\+t mask)
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__ALT__I2C__INT_ga8b2d5d1cdd08eb4c7d431bf42532ef85}{alt\+\_\+i2c\+\_\+int\+\_\+enable}} (\mbox{\hyperlink{structALT__I2C__DEV__s}{A\+L\+T\+\_\+\+I2\+C\+\_\+\+D\+E\+V\+\_\+t}} $\ast$\mbox{\hyperlink{structi2c__dev}{i2c\+\_\+dev}}, const uint32\+\_\+t mask)
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__ALT__I2C__INT_gac5a4221442c1b5fd5aff9672ccf91ad1}{alt\+\_\+i2c\+\_\+tx\+\_\+abort\+\_\+cause\+\_\+get}} (\mbox{\hyperlink{structALT__I2C__DEV__s}{A\+L\+T\+\_\+\+I2\+C\+\_\+\+D\+E\+V\+\_\+t}} $\ast$\mbox{\hyperlink{structi2c__dev}{i2c\+\_\+dev}}, \mbox{\hyperlink{group__ALT__I2C_gae7ca3bb5e96b3425588a975987407738}{A\+L\+T\+\_\+\+I2\+C\+\_\+\+T\+X\+\_\+\+A\+B\+O\+R\+T\+\_\+\+C\+A\+U\+S\+E\+\_\+t}} $\ast$cause)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+The functions in this group provide management for the I2C controller status conditions and interrupts.
+
+Each I2C controller has a single combined interrupt output ({\bfseries{A\+L\+T\+\_\+\+I\+N\+T\+\_\+\+I\+N\+T\+E\+R\+R\+U\+P\+T\+\_\+\+I2C{\itshape n}\+\_\+\+I\+RQ}}). The following events can generate an interrupt\+:
+\begin{DoxyItemize}
+\item General Call Address Received
+\item Start or Restart Condition Occurred
+\item Stop Condition Occurred
+\item I2C Controller Activity
+\item Receive Done
+\item Transmit Abort
+\item Read Request
+\item Transmit Buffer Empty
+\item Transmit Overflow
+\item Receive Buffer Full
+\item Receive Overflow
+\item Receive Underflow
+\end{DoxyItemize}
+
+These interrupt status conditions may be monitored either by polling their status or by configuring interrupt handlers using the H\+W\+L\+IB Interrupt Controller A\+PI.
+
+Functions to get the current status, enable or disable (i.\+e. mass or unmask), and clear interrupt status conditions for the I2C controller are defined in this section. 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{group__ALT__I2C__INT_gae00500b27051a82ff75905e777f0e1c8}\label{group__ALT__I2C__INT_gae00500b27051a82ff75905e777f0e1c8}} 
+\index{Interrupt and Status Conditions@{Interrupt and Status Conditions}!alt\_i2c\_int\_clear@{alt\_i2c\_int\_clear}}
+\index{alt\_i2c\_int\_clear@{alt\_i2c\_int\_clear}!Interrupt and Status Conditions@{Interrupt and Status Conditions}}
+\subsubsection{\texorpdfstring{alt\_i2c\_int\_clear()}{alt\_i2c\_int\_clear()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} alt\+\_\+i2c\+\_\+int\+\_\+clear (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structALT__I2C__DEV__s}{A\+L\+T\+\_\+\+I2\+C\+\_\+\+D\+E\+V\+\_\+t}} $\ast$}]{i2c\+\_\+dev,  }\item[{const uint32\+\_\+t}]{mask }\end{DoxyParamCaption})}
+
+Clears the specified I2C controller interrupt status conditions identified in the mask.
+
+This function clears one or more of the status conditions as contributors to the {\bfseries{A\+L\+T\+\_\+\+I\+N\+T\+\_\+\+I\+N\+T\+E\+R\+R\+U\+P\+T\+\_\+\+I2C{\itshape n}\+\_\+\+I\+RQ}} interrupt signal state.
+
+
+\begin{DoxyParams}{Parameters}
+{\em \mbox{\hyperlink{structi2c__dev}{i2c\+\_\+dev}}} & A pointer to the I2C controller device block instance.\\
+\hline
+{\em mask} & Specifies the Q\+S\+PI interrupt status conditions to clear. {\itshape mask} is a mask of logically OR\textquotesingle{}ed \mbox{\hyperlink{group__ALT__I2C_gaff6fbc8f47536dd27035588f0ea138fe}{A\+L\+T\+\_\+\+I2\+C\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+t}} values that designate the status conditions to clear.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em A\+L\+T\+\_\+\+E\+\_\+\+S\+U\+C\+C\+E\+SS} & Successful status. \\
+\hline
+{\em A\+L\+T\+\_\+\+E\+\_\+\+E\+R\+R\+OR} & Details about error status code \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{group__ALT__I2C__INT_gae81d1d1af98f385fd6202d382af93ecc}\label{group__ALT__I2C__INT_gae81d1d1af98f385fd6202d382af93ecc}} 
+\index{Interrupt and Status Conditions@{Interrupt and Status Conditions}!alt\_i2c\_int\_disable@{alt\_i2c\_int\_disable}}
+\index{alt\_i2c\_int\_disable@{alt\_i2c\_int\_disable}!Interrupt and Status Conditions@{Interrupt and Status Conditions}}
+\subsubsection{\texorpdfstring{alt\_i2c\_int\_disable()}{alt\_i2c\_int\_disable()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} alt\+\_\+i2c\+\_\+int\+\_\+disable (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structALT__I2C__DEV__s}{A\+L\+T\+\_\+\+I2\+C\+\_\+\+D\+E\+V\+\_\+t}} $\ast$}]{i2c\+\_\+dev,  }\item[{const uint32\+\_\+t}]{mask }\end{DoxyParamCaption})}
+
+Disable the specified I2C controller interrupt status conditions identified in the mask.
+
+This function disables one or more of the status conditions as contributors to the {\bfseries{A\+L\+T\+\_\+\+I\+N\+T\+\_\+\+I\+N\+T\+E\+R\+R\+U\+P\+T\+\_\+\+I2C{\itshape n}\+\_\+\+I\+RQ}} interrupt signal state.
+
+N\+O\+TE\+: A cleared bit for any status condition in the mask value does not have the effect of enabling it as a contributor to the {\bfseries{A\+L\+T\+\_\+\+I\+N\+T\+\_\+\+I\+N\+T\+E\+R\+R\+U\+P\+T\+\_\+\+I2C{\itshape n}\+\_\+\+I\+RQ}} interrupt signal state. The function \mbox{\hyperlink{group__ALT__I2C__INT_ga8b2d5d1cdd08eb4c7d431bf42532ef85}{alt\+\_\+i2c\+\_\+int\+\_\+enable()}} is used to enable status source conditions.
+
+
+\begin{DoxyParams}{Parameters}
+{\em \mbox{\hyperlink{structi2c__dev}{i2c\+\_\+dev}}} & A pointer to the I2C controller device block instance.\\
+\hline
+{\em mask} & Specifies the status conditions to disable as interrupt source contributors. {\itshape mask} is a mask of logically OR\textquotesingle{}ed \mbox{\hyperlink{group__ALT__I2C_gaff6fbc8f47536dd27035588f0ea138fe}{A\+L\+T\+\_\+\+I2\+C\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+t}} values that designate the status conditions to disable.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em A\+L\+T\+\_\+\+E\+\_\+\+S\+U\+C\+C\+E\+SS} & Successful status. \\
+\hline
+{\em A\+L\+T\+\_\+\+E\+\_\+\+E\+R\+R\+OR} & Details about error status code \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{group__ALT__I2C__INT_ga8b2d5d1cdd08eb4c7d431bf42532ef85}\label{group__ALT__I2C__INT_ga8b2d5d1cdd08eb4c7d431bf42532ef85}} 
+\index{Interrupt and Status Conditions@{Interrupt and Status Conditions}!alt\_i2c\_int\_enable@{alt\_i2c\_int\_enable}}
+\index{alt\_i2c\_int\_enable@{alt\_i2c\_int\_enable}!Interrupt and Status Conditions@{Interrupt and Status Conditions}}
+\subsubsection{\texorpdfstring{alt\_i2c\_int\_enable()}{alt\_i2c\_int\_enable()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} alt\+\_\+i2c\+\_\+int\+\_\+enable (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structALT__I2C__DEV__s}{A\+L\+T\+\_\+\+I2\+C\+\_\+\+D\+E\+V\+\_\+t}} $\ast$}]{i2c\+\_\+dev,  }\item[{const uint32\+\_\+t}]{mask }\end{DoxyParamCaption})}
+
+Enable the specified I2C controller interrupt status conditions identified in the mask.
+
+This function enables one or more of the status conditions as contributors to the {\bfseries{A\+L\+T\+\_\+\+I\+N\+T\+\_\+\+I\+N\+T\+E\+R\+R\+U\+P\+T\+\_\+\+I2C{\itshape n}\+\_\+\+I\+RQ}} interrupt signal state.
+
+N\+O\+TE\+: A cleared bit for any status condition in the mask value does not have the effect of disabling it as a contributor to the {\bfseries{A\+L\+T\+\_\+\+I\+N\+T\+\_\+\+I\+N\+T\+E\+R\+R\+U\+P\+T\+\_\+\+I2C{\itshape n}\+\_\+\+I\+RQ}} interrupt signal state. The function \mbox{\hyperlink{group__ALT__I2C__INT_gae81d1d1af98f385fd6202d382af93ecc}{alt\+\_\+i2c\+\_\+int\+\_\+disable()}} is used to disable status source conditions.
+
+
+\begin{DoxyParams}{Parameters}
+{\em \mbox{\hyperlink{structi2c__dev}{i2c\+\_\+dev}}} & A pointer to the I2C controller device block instance.\\
+\hline
+{\em mask} & Specifies the status conditions to enable as interrupt source contributors. {\itshape mask} is a mask of logically OR\textquotesingle{}ed \mbox{\hyperlink{group__ALT__I2C_gaff6fbc8f47536dd27035588f0ea138fe}{A\+L\+T\+\_\+\+I2\+C\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+t}} values that designate the status conditions to enable.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em A\+L\+T\+\_\+\+E\+\_\+\+S\+U\+C\+C\+E\+SS} & Successful status. \\
+\hline
+{\em A\+L\+T\+\_\+\+E\+\_\+\+E\+R\+R\+OR} & Details about error status code \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{group__ALT__I2C__INT_ga15ff55010cad84db0476be38e064851d}\label{group__ALT__I2C__INT_ga15ff55010cad84db0476be38e064851d}} 
+\index{Interrupt and Status Conditions@{Interrupt and Status Conditions}!alt\_i2c\_int\_raw\_status\_get@{alt\_i2c\_int\_raw\_status\_get}}
+\index{alt\_i2c\_int\_raw\_status\_get@{alt\_i2c\_int\_raw\_status\_get}!Interrupt and Status Conditions@{Interrupt and Status Conditions}}
+\subsubsection{\texorpdfstring{alt\_i2c\_int\_raw\_status\_get()}{alt\_i2c\_int\_raw\_status\_get()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} alt\+\_\+i2c\+\_\+int\+\_\+raw\+\_\+status\+\_\+get (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structALT__I2C__DEV__s}{A\+L\+T\+\_\+\+I2\+C\+\_\+\+D\+E\+V\+\_\+t}} $\ast$}]{i2c\+\_\+dev,  }\item[{uint32\+\_\+t $\ast$}]{status }\end{DoxyParamCaption})}
+
+Returns the I2C controller raw interrupt status conditions irrespective of the interrupt status condition enablement state.
+
+This function returns the current value of the I2C controller raw interrupt status register value which reflects the current I2C controller status conditions regardless of whether they are disabled (i.\+e. masked) or not.
+
+
+\begin{DoxyParams}{Parameters}
+{\em \mbox{\hyperlink{structi2c__dev}{i2c\+\_\+dev}}} & A pointer to the I2C controller device block instance.\\
+\hline
+{\em status} & \mbox{[}out\mbox{]} A pointer to a bit mask of the active \mbox{\hyperlink{group__ALT__I2C_gaff6fbc8f47536dd27035588f0ea138fe}{A\+L\+T\+\_\+\+I2\+C\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+t}} interrupt and status conditions.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em A\+L\+T\+\_\+\+E\+\_\+\+S\+U\+C\+C\+E\+SS} & Successful status. \\
+\hline
+{\em A\+L\+T\+\_\+\+E\+\_\+\+E\+R\+R\+OR} & Details about error status code \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{group__ALT__I2C__INT_ga55a40d841dd93d2861a4597603844776}\label{group__ALT__I2C__INT_ga55a40d841dd93d2861a4597603844776}} 
+\index{Interrupt and Status Conditions@{Interrupt and Status Conditions}!alt\_i2c\_int\_status\_get@{alt\_i2c\_int\_status\_get}}
+\index{alt\_i2c\_int\_status\_get@{alt\_i2c\_int\_status\_get}!Interrupt and Status Conditions@{Interrupt and Status Conditions}}
+\subsubsection{\texorpdfstring{alt\_i2c\_int\_status\_get()}{alt\_i2c\_int\_status\_get()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} alt\+\_\+i2c\+\_\+int\+\_\+status\+\_\+get (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structALT__I2C__DEV__s}{A\+L\+T\+\_\+\+I2\+C\+\_\+\+D\+E\+V\+\_\+t}} $\ast$}]{i2c\+\_\+dev,  }\item[{uint32\+\_\+t $\ast$}]{status }\end{DoxyParamCaption})}
+
+Returns the current I2C controller interrupt status conditions.
+
+This function returns the current value of the I2C controller interrupt status register value which reflects the current I2C controller status conditions that are not disabled (i.\+e. masked).
+
+
+\begin{DoxyParams}{Parameters}
+{\em \mbox{\hyperlink{structi2c__dev}{i2c\+\_\+dev}}} & A pointer to the I2C controller device block instance.\\
+\hline
+{\em status} & \mbox{[}out\mbox{]} A pointer to a bit mask of the active \mbox{\hyperlink{group__ALT__I2C_gaff6fbc8f47536dd27035588f0ea138fe}{A\+L\+T\+\_\+\+I2\+C\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+t}} interrupt and status conditions.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em A\+L\+T\+\_\+\+E\+\_\+\+S\+U\+C\+C\+E\+SS} & Successful status. \\
+\hline
+{\em A\+L\+T\+\_\+\+E\+\_\+\+E\+R\+R\+OR} & Details about error status code \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{group__ALT__I2C__INT_gac5a4221442c1b5fd5aff9672ccf91ad1}\label{group__ALT__I2C__INT_gac5a4221442c1b5fd5aff9672ccf91ad1}} 
+\index{Interrupt and Status Conditions@{Interrupt and Status Conditions}!alt\_i2c\_tx\_abort\_cause\_get@{alt\_i2c\_tx\_abort\_cause\_get}}
+\index{alt\_i2c\_tx\_abort\_cause\_get@{alt\_i2c\_tx\_abort\_cause\_get}!Interrupt and Status Conditions@{Interrupt and Status Conditions}}
+\subsubsection{\texorpdfstring{alt\_i2c\_tx\_abort\_cause\_get()}{alt\_i2c\_tx\_abort\_cause\_get()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} alt\+\_\+i2c\+\_\+tx\+\_\+abort\+\_\+cause\+\_\+get (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structALT__I2C__DEV__s}{A\+L\+T\+\_\+\+I2\+C\+\_\+\+D\+E\+V\+\_\+t}} $\ast$}]{i2c\+\_\+dev,  }\item[{\mbox{\hyperlink{group__ALT__I2C_gae7ca3bb5e96b3425588a975987407738}{A\+L\+T\+\_\+\+I2\+C\+\_\+\+T\+X\+\_\+\+A\+B\+O\+R\+T\+\_\+\+C\+A\+U\+S\+E\+\_\+t}} $\ast$}]{cause }\end{DoxyParamCaption})}
+
+Gets the cause of I2C transmission abort. A I2C transmission abort indicates that the I2C transmitter is unable to complete the intended actions on the contents of the transmit F\+I\+FO. This situation can occur both as an I2C master or an I2C slave, and is referred to as a \char`\"{}transmit abort\char`\"{}.
+
+The returned value of this function is the value of the I\+C\+\_\+\+T\+X\+\_\+\+A\+B\+R\+T\+\_\+\+S\+O\+U\+R\+CE register which indicates the cause why the transmit abort occurred.
+
+
+\begin{DoxyParams}{Parameters}
+{\em \mbox{\hyperlink{structi2c__dev}{i2c\+\_\+dev}}} & A pointer to the I2C controller device block instance.\\
+\hline
+{\em cause} & \mbox{[}out\mbox{]} A pointer to a bit mask of the \mbox{\hyperlink{group__ALT__I2C_gae7ca3bb5e96b3425588a975987407738}{A\+L\+T\+\_\+\+I2\+C\+\_\+\+T\+X\+\_\+\+A\+B\+O\+R\+T\+\_\+\+C\+A\+U\+S\+E\+\_\+t}} causes of the transmission abort.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em A\+L\+T\+\_\+\+E\+\_\+\+S\+U\+C\+C\+E\+SS} & Successful status. \\
+\hline
+{\em A\+L\+T\+\_\+\+E\+\_\+\+E\+R\+R\+OR} & Details about error status code \\
+\hline
+\end{DoxyRetVals}

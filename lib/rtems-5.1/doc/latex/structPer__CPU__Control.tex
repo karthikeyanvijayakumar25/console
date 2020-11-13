@@ -1,0 +1,168 @@
+\hypertarget{structPer__CPU__Control}{}\section{Per\+\_\+\+C\+P\+U\+\_\+\+Control Struct Reference}
+\label{structPer__CPU__Control}\index{Per\_CPU\_Control@{Per\_CPU\_Control}}
+
+
+Per C\+PU Core Structure.  
+
+
+
+
+{\ttfamily \#include $<$percpu.\+h$>$}
+
+\subsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structPer__CPU__Control_af4f231b359e49935320c7bb75570fc4e}\label{structPer__CPU__Control_af4f231b359e49935320c7bb75570fc4e}} 
+void $\ast$ \mbox{\hyperlink{structPer__CPU__Control_af4f231b359e49935320c7bb75570fc4e}{interrupt\+\_\+stack\+\_\+low}}
+\begin{DoxyCompactList}\small\item\em The interrupt stack low address for this processor. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structPer__CPU__Control_a358b6ecaa2a521b92b5999e2df486276}\label{structPer__CPU__Control_a358b6ecaa2a521b92b5999e2df486276}} 
+void $\ast$ \mbox{\hyperlink{structPer__CPU__Control_a358b6ecaa2a521b92b5999e2df486276}{interrupt\+\_\+stack\+\_\+high}}
+\begin{DoxyCompactList}\small\item\em The interrupt stack high address for this processor. \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{structPer__CPU__Control_aee16a4dbad577bfb87c857042f089c69}{isr\+\_\+nest\+\_\+level}}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{structPer__CPU__Control_a255ba7c5e213a7a2513ab0c5a5a29f64}{isr\+\_\+dispatch\+\_\+disable}}
+\begin{DoxyCompactList}\small\item\em Indicates if an I\+SR thread dispatch is disabled. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structPer__CPU__Control_a76fecf04eaa2fa1a3acade2171fe2e75}\label{structPer__CPU__Control_a76fecf04eaa2fa1a3acade2171fe2e75}} 
+volatile uint32\+\_\+t \mbox{\hyperlink{structPer__CPU__Control_a76fecf04eaa2fa1a3acade2171fe2e75}{thread\+\_\+dispatch\+\_\+disable\+\_\+level}}
+\begin{DoxyCompactList}\small\item\em The thread dispatch critical section nesting counter which is used to prevent context switches at inopportune moments. \end{DoxyCompactList}\item 
+volatile bool \mbox{\hyperlink{structPer__CPU__Control_a96af7f4805c6b75b775f5304e6c39d99}{dispatch\+\_\+necessary}}
+\begin{DoxyCompactList}\small\item\em This is set to true when this processor needs to run the thread dispatcher. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structPer__CPU__Control_aefd7a737e9da4942192ae4c5db1179dd}\label{structPer__CPU__Control_aefd7a737e9da4942192ae4c5db1179dd}} 
+bool {\bfseries reserved\+\_\+for\+\_\+executing\+\_\+alignment} \mbox{[}3\mbox{]}
+\item 
+struct \mbox{\hyperlink{struct__Thread__Control}{\+\_\+\+Thread\+\_\+\+Control}} $\ast$ \mbox{\hyperlink{structPer__CPU__Control_ab798eb05fe75cb2f73cae76b1b209bab}{executing}}
+\begin{DoxyCompactList}\small\item\em This is the thread executing on this processor. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{struct__Thread__Control}{\+\_\+\+Thread\+\_\+\+Control}} $\ast$ \mbox{\hyperlink{structPer__CPU__Control_a04b6cae98eb4a23510c81d90caf0a196}{heir}}
+\begin{DoxyCompactList}\small\item\em This is the heir thread for this processor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__SuperCoreTimeStamp_ga8508036506d5211c98844c88045e2410}{Timestamp\+\_\+\+Control}} \mbox{\hyperlink{structPer__CPU__Control_a9fbfc99808e4e02178776e66334a4eb4}{cpu\+\_\+usage\+\_\+timestamp}}
+\begin{DoxyCompactList}\small\item\em The C\+PU usage timestamp contains the time point of the last heir thread change or last C\+PU usage update of the executing thread of this processor. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structPer__CPU__Control_ae806d93446182a03cc73817a4d955373}\label{structPer__CPU__Control_ae806d93446182a03cc73817a4d955373}} 
+\begin{tabbing}
+xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=\kill
+struct \{\\
+\>uint64\_t \mbox{\hyperlink{structPer__CPU__Control_abafac09e8013b144149bf2b800797dc6}{ticks}}\\
+\>\>{\em Protects all watchdog operations on this processor. }\\
+\>\mbox{\hyperlink{structWatchdog__Header}{Watchdog\_Header}} \mbox{\hyperlink{structPer__CPU__Control_a2d2163a1bbf81d706b0018f438a9c61f}{Header}} \mbox{[}\mbox{\hyperlink{group__PerCPU_gga43ab5440a69211901b58fa787f9cd76ea49ebdf20f41288627c23ddc6e63a20ab}{PER\_CPU\_WATCHDOG\_COUNT}}\mbox{]}\\
+\>\>{\em Header for watchdogs. }\\
+\} \mbox{\hyperlink{structPer__CPU__Control_ae806d93446182a03cc73817a4d955373}{Watchdog}}\\
+
+\end{tabbing}\begin{DoxyCompactList}\small\item\em Watchdog state for this processor. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structPer__CPU__Control_a50c66678d52ff23c16487c686e6178cb}\label{structPer__CPU__Control_a50c66678d52ff23c16487c686e6178cb}} 
+struct \mbox{\hyperlink{structRecord__Control}{Record\+\_\+\+Control}} $\ast$ {\bfseries record}
+\item 
+\mbox{\Hypertarget{structPer__CPU__Control_aea3dae83cb87a4dcf69c34fc93f2a02a}\label{structPer__CPU__Control_aea3dae83cb87a4dcf69c34fc93f2a02a}} 
+\mbox{\hyperlink{structPer__CPU__Stats}{Per\+\_\+\+C\+P\+U\+\_\+\+Stats}} {\bfseries Stats}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Per C\+PU Core Structure. 
+
+This structure is used to hold per core state information. 
+
+\subsection{Field Documentation}
+\mbox{\Hypertarget{structPer__CPU__Control_a9fbfc99808e4e02178776e66334a4eb4}\label{structPer__CPU__Control_a9fbfc99808e4e02178776e66334a4eb4}} 
+\index{Per\_CPU\_Control@{Per\_CPU\_Control}!cpu\_usage\_timestamp@{cpu\_usage\_timestamp}}
+\index{cpu\_usage\_timestamp@{cpu\_usage\_timestamp}!Per\_CPU\_Control@{Per\_CPU\_Control}}
+\subsubsection{\texorpdfstring{cpu\_usage\_timestamp}{cpu\_usage\_timestamp}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__SuperCoreTimeStamp_ga8508036506d5211c98844c88045e2410}{Timestamp\+\_\+\+Control}} Per\+\_\+\+C\+P\+U\+\_\+\+Control\+::cpu\+\_\+usage\+\_\+timestamp}
+
+
+
+The C\+PU usage timestamp contains the time point of the last heir thread change or last C\+PU usage update of the executing thread of this processor. 
+
+Protected by the scheduler lock.
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{group__RTEMSScoreScheduler_ga29bb7f28ab22ddb95869cc527f2f75bf}{\+\_\+\+Scheduler\+\_\+\+Update\+\_\+heir()}}, \+\_\+\+Thread\+\_\+\+Dispatch\+\_\+update\+\_\+heir() and \mbox{\hyperlink{group__RTEMSScoreThread_gaade6e27239f8126f2c2848e7e2ec7244}{\+\_\+\+Thread\+\_\+\+Get\+\_\+\+C\+P\+U\+\_\+time\+\_\+used()}}. 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{structPer__CPU__Control_a96af7f4805c6b75b775f5304e6c39d99}\label{structPer__CPU__Control_a96af7f4805c6b75b775f5304e6c39d99}} 
+\index{Per\_CPU\_Control@{Per\_CPU\_Control}!dispatch\_necessary@{dispatch\_necessary}}
+\index{dispatch\_necessary@{dispatch\_necessary}!Per\_CPU\_Control@{Per\_CPU\_Control}}
+\subsubsection{\texorpdfstring{dispatch\_necessary}{dispatch\_necessary}}
+{\footnotesize\ttfamily volatile bool Per\+\_\+\+C\+P\+U\+\_\+\+Control\+::dispatch\+\_\+necessary}
+
+
+
+This is set to true when this processor needs to run the thread dispatcher. 
+
+It is volatile since interrupts may alter this flag.
+
+This member is not protected by a lock and must be accessed only by this processor. Code (e.\+g. scheduler and post-\/switch action requests) running on another processors must use an inter-\/processor interrupt to set the thread dispatch necessary indicator to true.
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{group__RTEMSScoreThread_gacd7c2e371fbc36ba623dffe713e6c427}{\+\_\+\+Thread\+\_\+\+Get\+\_\+heir\+\_\+and\+\_\+make\+\_\+it\+\_\+executing()}}. 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{structPer__CPU__Control_ab798eb05fe75cb2f73cae76b1b209bab}\label{structPer__CPU__Control_ab798eb05fe75cb2f73cae76b1b209bab}} 
+\index{Per\_CPU\_Control@{Per\_CPU\_Control}!executing@{executing}}
+\index{executing@{executing}!Per\_CPU\_Control@{Per\_CPU\_Control}}
+\subsubsection{\texorpdfstring{executing}{executing}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{struct__Thread__Control}{\+\_\+\+Thread\+\_\+\+Control}}$\ast$ Per\+\_\+\+C\+P\+U\+\_\+\+Control\+::executing}
+
+
+
+This is the thread executing on this processor. 
+
+This member is not protected by a lock. The only writer is this processor.
+
+On S\+MP configurations a thread may be registered as executing on more than one processor in case a thread migration is in progress. On S\+MP configurations use \+\_\+\+Thread\+\_\+\+Is\+\_\+executing\+\_\+on\+\_\+a\+\_\+processor() to figure out if a thread context is executing on a processor. \mbox{\Hypertarget{structPer__CPU__Control_a2d2163a1bbf81d706b0018f438a9c61f}\label{structPer__CPU__Control_a2d2163a1bbf81d706b0018f438a9c61f}} 
+\index{Per\_CPU\_Control@{Per\_CPU\_Control}!Header@{Header}}
+\index{Header@{Header}!Per\_CPU\_Control@{Per\_CPU\_Control}}
+\subsubsection{\texorpdfstring{Header}{Header}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structWatchdog__Header}{Watchdog\+\_\+\+Header}} Per\+\_\+\+C\+P\+U\+\_\+\+Control\+::\+Header\mbox{[}\mbox{\hyperlink{group__PerCPU_gga43ab5440a69211901b58fa787f9cd76ea49ebdf20f41288627c23ddc6e63a20ab}{P\+E\+R\+\_\+\+C\+P\+U\+\_\+\+W\+A\+T\+C\+H\+D\+O\+G\+\_\+\+C\+O\+U\+NT}}\mbox{]}}
+
+
+
+Header for watchdogs. 
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{group__PerCPU_ga43ab5440a69211901b58fa787f9cd76e}{Per\+\_\+\+C\+P\+U\+\_\+\+Watchdog\+\_\+index}}. 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{structPer__CPU__Control_a04b6cae98eb4a23510c81d90caf0a196}\label{structPer__CPU__Control_a04b6cae98eb4a23510c81d90caf0a196}} 
+\index{Per\_CPU\_Control@{Per\_CPU\_Control}!heir@{heir}}
+\index{heir@{heir}!Per\_CPU\_Control@{Per\_CPU\_Control}}
+\subsubsection{\texorpdfstring{heir}{heir}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{struct__Thread__Control}{\+\_\+\+Thread\+\_\+\+Control}}$\ast$ Per\+\_\+\+C\+P\+U\+\_\+\+Control\+::heir}
+
+
+
+This is the heir thread for this processor. 
+
+This member is not protected by a lock. The only writer after multitasking start is the scheduler owning this processor. It is assumed that stores to pointers are atomic on all supported S\+MP architectures. The C\+PU port specific code (inter-\/processor interrupt handling and \+\_\+\+C\+P\+U\+\_\+\+S\+M\+P\+\_\+\+Send\+\_\+interrupt()) must guarantee that this processor observes the last value written.
+
+A thread can be a heir on at most one processor in the system.
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{group__RTEMSScoreThread_gacd7c2e371fbc36ba623dffe713e6c427}{\+\_\+\+Thread\+\_\+\+Get\+\_\+heir\+\_\+and\+\_\+make\+\_\+it\+\_\+executing()}}. 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{structPer__CPU__Control_a255ba7c5e213a7a2513ab0c5a5a29f64}\label{structPer__CPU__Control_a255ba7c5e213a7a2513ab0c5a5a29f64}} 
+\index{Per\_CPU\_Control@{Per\_CPU\_Control}!isr\_dispatch\_disable@{isr\_dispatch\_disable}}
+\index{isr\_dispatch\_disable@{isr\_dispatch\_disable}!Per\_CPU\_Control@{Per\_CPU\_Control}}
+\subsubsection{\texorpdfstring{isr\_dispatch\_disable}{isr\_dispatch\_disable}}
+{\footnotesize\ttfamily uint32\+\_\+t Per\+\_\+\+C\+P\+U\+\_\+\+Control\+::isr\+\_\+dispatch\+\_\+disable}
+
+
+
+Indicates if an I\+SR thread dispatch is disabled. 
+
+This flag is context switched with each thread. It indicates that this thread has an interrupt stack frame on its stack. By using this flag, we can avoid nesting more interrupt dispatching attempts on a previously interrupted thread\textquotesingle{}s stack. \mbox{\Hypertarget{structPer__CPU__Control_aee16a4dbad577bfb87c857042f089c69}\label{structPer__CPU__Control_aee16a4dbad577bfb87c857042f089c69}} 
+\index{Per\_CPU\_Control@{Per\_CPU\_Control}!isr\_nest\_level@{isr\_nest\_level}}
+\index{isr\_nest\_level@{isr\_nest\_level}!Per\_CPU\_Control@{Per\_CPU\_Control}}
+\subsubsection{\texorpdfstring{isr\_nest\_level}{isr\_nest\_level}}
+{\footnotesize\ttfamily uint32\+\_\+t Per\+\_\+\+C\+P\+U\+\_\+\+Control\+::isr\+\_\+nest\+\_\+level}
+
+This contains the current interrupt nesting level on this C\+PU. \mbox{\Hypertarget{structPer__CPU__Control_abafac09e8013b144149bf2b800797dc6}\label{structPer__CPU__Control_abafac09e8013b144149bf2b800797dc6}} 
+\index{Per\_CPU\_Control@{Per\_CPU\_Control}!ticks@{ticks}}
+\index{ticks@{ticks}!Per\_CPU\_Control@{Per\_CPU\_Control}}
+\subsubsection{\texorpdfstring{ticks}{ticks}}
+{\footnotesize\ttfamily uint64\+\_\+t Per\+\_\+\+C\+P\+U\+\_\+\+Control\+::ticks}
+
+
+
+Protects all watchdog operations on this processor. 
+
+Watchdog ticks on this processor used for monotonic clock watchdogs. 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+cpukit/include/rtems/score/\mbox{\hyperlink{score_2percpu_8h}{percpu.\+h}}\end{DoxyCompactItemize}

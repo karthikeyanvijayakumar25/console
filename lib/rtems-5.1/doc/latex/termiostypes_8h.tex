@@ -1,0 +1,409 @@
+\hypertarget{termiostypes_8h}{}\section{cpukit/include/rtems/termiostypes.h File Reference}
+\label{termiostypes_8h}\index{cpukit/include/rtems/termiostypes.h@{cpukit/include/rtems/termiostypes.h}}
+{\ttfamily \#include $<$rtems.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/libio.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/assoc.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/chain.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/thread.\+h$>$}\newline
+{\ttfamily \#include $<$sys/ioccom.\+h$>$}\newline
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include $<$termios.\+h$>$}\newline
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structttywakeup}{ttywakeup}}
+\item 
+struct \mbox{\hyperlink{structrtems__termios__rawbuf}{rtems\+\_\+termios\+\_\+rawbuf}}
+\item 
+struct \mbox{\hyperlink{structrtems__termios__device__context}{rtems\+\_\+termios\+\_\+device\+\_\+context}}
+\begin{DoxyCompactList}\small\item\em Termios device context. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structrtems__termios__device__handler}{rtems\+\_\+termios\+\_\+device\+\_\+handler}}
+\begin{DoxyCompactList}\small\item\em Termios device handler. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structrtems__termios__device__flow}{rtems\+\_\+termios\+\_\+device\+\_\+flow}}
+\begin{DoxyCompactList}\small\item\em Termios device flow control handler. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structrtems__termios__device__node}{rtems\+\_\+termios\+\_\+device\+\_\+node}}
+\begin{DoxyCompactList}\small\item\em Termios device node for installed devices. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structrtems__termios__tty}{rtems\+\_\+termios\+\_\+tty}}
+\item 
+struct \mbox{\hyperlink{structrtems__termios__linesw}{rtems\+\_\+termios\+\_\+linesw}}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{termiostypes_8h_a2f61e75fe352067a33998556c23789a1}{R\+T\+E\+M\+S\+\_\+\+T\+E\+R\+M\+I\+O\+S\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+C\+O\+N\+T\+E\+X\+T\+\_\+\+I\+N\+I\+T\+I\+A\+L\+I\+Z\+ER}}(name)
+\begin{DoxyCompactList}\small\item\em Initializer for static initialization of Termios device contexts. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{termiostypes_8h_a2d032f4659929cd9b38636555f3b422c}\label{termiostypes_8h_a2d032f4659929cd9b38636555f3b422c}} 
+\#define {\bfseries T\+T\+Y\+D\+I\+SC}~0    /$\ast$ termios tty line discipline $\ast$/
+\item 
+\mbox{\Hypertarget{termiostypes_8h_ac3c887edf3c4fa4759e6a4e24b0192f3}\label{termiostypes_8h_ac3c887edf3c4fa4759e6a4e24b0192f3}} 
+\#define {\bfseries T\+A\+B\+L\+D\+I\+SC}~3    /$\ast$ tablet discipline $\ast$/
+\item 
+\mbox{\Hypertarget{termiostypes_8h_a545059f4de1f578207d3265ada50bd1c}\label{termiostypes_8h_a545059f4de1f578207d3265ada50bd1c}} 
+\#define {\bfseries S\+L\+I\+P\+D\+I\+SC}~4    /$\ast$ serial IP discipline $\ast$/
+\item 
+\mbox{\Hypertarget{termiostypes_8h_aa56a6d7279f490b9918f49e7ec45f395}\label{termiostypes_8h_aa56a6d7279f490b9918f49e7ec45f395}} 
+\#define {\bfseries P\+P\+P\+D\+I\+SC}~5    /$\ast$ P\+PP discipline $\ast$/
+\item 
+\mbox{\Hypertarget{termiostypes_8h_a7ab2ecc64e68bdf1e4c1e3a204d17499}\label{termiostypes_8h_a7ab2ecc64e68bdf1e4c1e3a204d17499}} 
+\#define {\bfseries M\+A\+X\+L\+D\+I\+SC}~8
+\item 
+\mbox{\Hypertarget{termiostypes_8h_a5069362fcd146c44fb18079b53f76e79}\label{termiostypes_8h_a5069362fcd146c44fb18079b53f76e79}} 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+I\+O\+\_\+\+S\+N\+D\+W\+A\+K\+E\+UP}~\+\_\+\+I\+OW(\textquotesingle{}t\textquotesingle{}, 11, struct \mbox{\hyperlink{structttywakeup}{ttywakeup}} ) /$\ast$ send tty wakeup $\ast$/
+\item 
+\mbox{\Hypertarget{termiostypes_8h_af061ce1974232b356ccf0c1750d2c5d2}\label{termiostypes_8h_af061ce1974232b356ccf0c1750d2c5d2}} 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+I\+O\+\_\+\+R\+C\+V\+W\+A\+K\+E\+UP}~\+\_\+\+I\+OW(\textquotesingle{}t\textquotesingle{}, 12, struct \mbox{\hyperlink{structttywakeup}{ttywakeup}} ) /$\ast$ recv tty wakeup $\ast$/
+\item 
+\mbox{\Hypertarget{termiostypes_8h_a2ed0011eaf721d107946bf06f1824b36}\label{termiostypes_8h_a2ed0011eaf721d107946bf06f1824b36}} 
+\#define {\bfseries O\+L\+C\+UC}~0x00000100	/$\ast$ map lower case to upper case on output $\ast$/
+\item 
+\mbox{\Hypertarget{termiostypes_8h_a60397fb1a881cadaa5e210dd5d347989}\label{termiostypes_8h_a60397fb1a881cadaa5e210dd5d347989}} 
+\#define {\bfseries I\+U\+C\+LC}~0x00004000	/$\ast$ map upper case to lower case on input $\ast$/
+\item 
+\mbox{\Hypertarget{termiostypes_8h_aafdf03f8665f5d70098ee5a93018e37e}\label{termiostypes_8h_aafdf03f8665f5d70098ee5a93018e37e}} 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+T\+E\+R\+M\+I\+O\+S\+\_\+\+N\+U\+M\+B\+E\+R\+\_\+\+B\+A\+U\+D\+\_\+\+R\+A\+T\+ES}~25
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \mbox{\hyperlink{structrtems__termios__device__context}{rtems\+\_\+termios\+\_\+device\+\_\+context}} \mbox{\hyperlink{termiostypes_8h_a605905d6e2fbdb54991cb900c1c69007}{rtems\+\_\+termios\+\_\+device\+\_\+context}}
+\begin{DoxyCompactList}\small\item\em Termios device context. \end{DoxyCompactList}\item 
+typedef struct \mbox{\hyperlink{structrtems__termios__device__node}{rtems\+\_\+termios\+\_\+device\+\_\+node}} \mbox{\hyperlink{termiostypes_8h_aa2114d2be232e8073568a4fb3ea2c918}{rtems\+\_\+termios\+\_\+device\+\_\+node}}
+\begin{DoxyCompactList}\small\item\em Termios device node for installed devices. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{termiostypes_8h_a888f1f8f7a23f2d7eb036cdc18c459fc}\label{termiostypes_8h_a888f1f8f7a23f2d7eb036cdc18c459fc}} 
+typedef struct \mbox{\hyperlink{structrtems__termios__tty}{rtems\+\_\+termios\+\_\+tty}} {\bfseries rtems\+\_\+termios\+\_\+tty}
+\item 
+\mbox{\Hypertarget{termiostypes_8h_a046bb323eec43399a44312c3e482875a}\label{termiostypes_8h_a046bb323eec43399a44312c3e482875a}} 
+typedef uint32\+\_\+t {\bfseries rtems\+\_\+termios\+\_\+baud\+\_\+t}
+\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{termiostypes_8h_aa4d862267345dbbcd9c325ac77e20ee4}\label{termiostypes_8h_aa4d862267345dbbcd9c325ac77e20ee4}} 
+enum {\bfseries rtems\+\_\+termios\+\_\+device\+\_\+mode} \{ {\bfseries T\+E\+R\+M\+I\+O\+S\+\_\+\+P\+O\+L\+L\+ED}, 
+{\bfseries T\+E\+R\+M\+I\+O\+S\+\_\+\+I\+R\+Q\+\_\+\+D\+R\+I\+V\+EN}, 
+{\bfseries T\+E\+R\+M\+I\+O\+S\+\_\+\+T\+A\+S\+K\+\_\+\+D\+R\+I\+V\+EN}, 
+{\bfseries T\+E\+R\+M\+I\+O\+S\+\_\+\+I\+R\+Q\+\_\+\+S\+E\+R\+V\+E\+R\+\_\+\+D\+R\+I\+V\+EN}
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{termiostypes_8h_a4580a21147fe5d2bed02d97d346f7c50}\label{termiostypes_8h_a4580a21147fe5d2bed02d97d346f7c50}} 
+void {\bfseries rtems\+\_\+termios\+\_\+device\+\_\+lock\+\_\+acquire\+\_\+default} (\mbox{\hyperlink{structrtems__termios__device__context}{rtems\+\_\+termios\+\_\+device\+\_\+context}} $\ast$ctx, \mbox{\hyperlink{group__ClassicINTRLocks_gab9d4b488f1537323799db7c1fa69b9aa}{rtems\+\_\+interrupt\+\_\+lock\+\_\+context}} $\ast$lock\+\_\+context)
+\item 
+\mbox{\Hypertarget{termiostypes_8h_add2698924ceec3322af8e6e92282ddc5}\label{termiostypes_8h_add2698924ceec3322af8e6e92282ddc5}} 
+void {\bfseries rtems\+\_\+termios\+\_\+device\+\_\+lock\+\_\+release\+\_\+default} (\mbox{\hyperlink{structrtems__termios__device__context}{rtems\+\_\+termios\+\_\+device\+\_\+context}} $\ast$ctx, \mbox{\hyperlink{group__ClassicINTRLocks_gab9d4b488f1537323799db7c1fa69b9aa}{rtems\+\_\+interrupt\+\_\+lock\+\_\+context}} $\ast$lock\+\_\+context)
+\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \mbox{\hyperlink{termiostypes_8h_a8ad7b82b22b5761f19a237d563342e1f}{rtems\+\_\+termios\+\_\+device\+\_\+context\+\_\+initialize}} (\mbox{\hyperlink{structrtems__termios__device__context}{rtems\+\_\+termios\+\_\+device\+\_\+context}} $\ast$\mbox{\hyperlink{sun4u_2tte_8h_a9b4a99475e2709333b8e5d70483173f1}{context}}, const char $\ast$name)
+\begin{DoxyCompactList}\small\item\em Initializes a device context. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{termiostypes_8h_aede46864d5d763fd7591830fefe22e1c}{rtems\+\_\+termios\+\_\+device\+\_\+install}} (const char $\ast$device\+\_\+file, const \mbox{\hyperlink{structrtems__termios__device__handler}{rtems\+\_\+termios\+\_\+device\+\_\+handler}} $\ast$handler, const \mbox{\hyperlink{structrtems__termios__device__flow}{rtems\+\_\+termios\+\_\+device\+\_\+flow}} $\ast$flow, \mbox{\hyperlink{structrtems__termios__device__context}{rtems\+\_\+termios\+\_\+device\+\_\+context}} $\ast$\mbox{\hyperlink{sun4u_2tte_8h_a9b4a99475e2709333b8e5d70483173f1}{context}})
+\begin{DoxyCompactList}\small\item\em Installs a Termios device. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void $\ast$ \mbox{\hyperlink{termiostypes_8h_afa4793c232f435902a7c61806215bfcf}{rtems\+\_\+termios\+\_\+get\+\_\+device\+\_\+context}} (const \mbox{\hyperlink{structrtems__termios__tty}{rtems\+\_\+termios\+\_\+tty}} $\ast$tty)
+\begin{DoxyCompactList}\small\item\em Returns the device context of an installed Termios device. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \mbox{\hyperlink{termiostypes_8h_a1ebc146d0aeeb60c14d75e16f902aae0}{rtems\+\_\+termios\+\_\+device\+\_\+lock\+\_\+acquire}} (\mbox{\hyperlink{structrtems__termios__device__context}{rtems\+\_\+termios\+\_\+device\+\_\+context}} $\ast$\mbox{\hyperlink{sun4u_2tte_8h_a9b4a99475e2709333b8e5d70483173f1}{context}}, \mbox{\hyperlink{group__ClassicINTRLocks_gab9d4b488f1537323799db7c1fa69b9aa}{rtems\+\_\+interrupt\+\_\+lock\+\_\+context}} $\ast$lock\+\_\+context)
+\begin{DoxyCompactList}\small\item\em Acquires the device lock. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \mbox{\hyperlink{termiostypes_8h_a0d928bfa5fb62de3c9e66caa5a07dfc9}{rtems\+\_\+termios\+\_\+device\+\_\+lock\+\_\+release}} (\mbox{\hyperlink{structrtems__termios__device__context}{rtems\+\_\+termios\+\_\+device\+\_\+context}} $\ast$\mbox{\hyperlink{sun4u_2tte_8h_a9b4a99475e2709333b8e5d70483173f1}{context}}, \mbox{\hyperlink{group__ClassicINTRLocks_gab9d4b488f1537323799db7c1fa69b9aa}{rtems\+\_\+interrupt\+\_\+lock\+\_\+context}} $\ast$lock\+\_\+context)
+\begin{DoxyCompactList}\small\item\em Releases the device lock. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{termiostypes_8h_a3879a43ec1e7512dde0d959bcdd20c2d}{rtems\+\_\+termios\+\_\+set\+\_\+best\+\_\+baud}} (struct termios $\ast$term, uint32\+\_\+t baud)
+\begin{DoxyCompactList}\small\item\em Sets the best baud value in the Termios control. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{termiostypes_8h_a9dd97a1b494e296caf2522740f602841}\label{termiostypes_8h_a9dd97a1b494e296caf2522740f602841}} 
+void {\bfseries rtems\+\_\+termios\+\_\+rxirq\+\_\+occured} (struct \mbox{\hyperlink{structrtems__termios__tty}{rtems\+\_\+termios\+\_\+tty}} $\ast$tty)
+\item 
+\mbox{\Hypertarget{termiostypes_8h_a9daddba6c63fd0d22725aa362c997a15}\label{termiostypes_8h_a9daddba6c63fd0d22725aa362c997a15}} 
+void {\bfseries rtems\+\_\+termios\+\_\+puts} (const void $\ast$buf, size\+\_\+t len, struct \mbox{\hyperlink{structrtems__termios__tty}{rtems\+\_\+termios\+\_\+tty}} $\ast$tty)
+\item 
+speed\+\_\+t \mbox{\hyperlink{termiostypes_8h_a98a3cf31930fd6a41f9bb8a9ca33cba8}{rtems\+\_\+termios\+\_\+number\+\_\+to\+\_\+baud}} (rtems\+\_\+termios\+\_\+baud\+\_\+t baud)
+\begin{DoxyCompactList}\small\item\em Converts the Integral Baud value {\itshape baud} to the Termios Control Flag Representation. \end{DoxyCompactList}\item 
+rtems\+\_\+termios\+\_\+baud\+\_\+t \mbox{\hyperlink{termiostypes_8h_aa02f7f2f749c9ada10f68a33ddfdd07b}{rtems\+\_\+termios\+\_\+baud\+\_\+to\+\_\+number}} (speed\+\_\+t baud)
+\begin{DoxyCompactList}\small\item\em Converts the baud flags to an integral baud value. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{termiostypes_8h_a69f80c1807e818dff29e415fd214647b}\label{termiostypes_8h_a69f80c1807e818dff29e415fd214647b}} 
+int \mbox{\hyperlink{termiostypes_8h_a69f80c1807e818dff29e415fd214647b}{rtems\+\_\+termios\+\_\+baud\+\_\+to\+\_\+index}} (rtems\+\_\+termios\+\_\+baud\+\_\+t termios\+\_\+baud)
+\begin{DoxyCompactList}\small\item\em Convert Bxxx Constant to Index. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{termiostypes_8h_a4a9045d415184c5cfb1c9b762ba920c4}{rtems\+\_\+termios\+\_\+set\+\_\+initial\+\_\+baud}} (struct \mbox{\hyperlink{structrtems__termios__tty}{rtems\+\_\+termios\+\_\+tty}} $\ast$tty, rtems\+\_\+termios\+\_\+baud\+\_\+t baud)
+\begin{DoxyCompactList}\small\item\em Sets the initial {\itshape baud} in the Termios context {\itshape tty}. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{termiostypes_8h_ab1892613a675377ed7e9886a754a4690}{rtems\+\_\+termios\+\_\+kqfilter}} (\mbox{\hyperlink{structrtems__libio__tt}{rtems\+\_\+libio\+\_\+t}} $\ast$iop, struct knote $\ast$kn)
+\begin{DoxyCompactList}\small\item\em Termios kqueue() filter filesystem node handler. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{termiostypes_8h_a4f6b10b14b7a68af1b62673e51c94b8c}{rtems\+\_\+termios\+\_\+mmap}} (\mbox{\hyperlink{structrtems__libio__tt}{rtems\+\_\+libio\+\_\+t}} $\ast$iop, void $\ast$$\ast$addr, size\+\_\+t len, int prot, off\+\_\+t off)
+\begin{DoxyCompactList}\small\item\em Termios mmap() filter filesystem node handler. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{termiostypes_8h_a3776dfa0f417d7dee3baf400101ef5ec}{rtems\+\_\+termios\+\_\+poll}} (\mbox{\hyperlink{structrtems__libio__tt}{rtems\+\_\+libio\+\_\+t}} $\ast$iop, int events)
+\begin{DoxyCompactList}\small\item\em Termios poll() filesystem node handler. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{termiostypes_8h_ada1ce50baf6e31fbf9580d3b301aae4b}\label{termiostypes_8h_ada1ce50baf6e31fbf9580d3b301aae4b}} 
+struct \mbox{\hyperlink{structrtems__termios__linesw}{rtems\+\_\+termios\+\_\+linesw}} {\bfseries rtems\+\_\+termios\+\_\+linesw} \mbox{[}$\,$\mbox{]}
+\item 
+\mbox{\Hypertarget{termiostypes_8h_a85524bff1b63360352a237895cccaaa4}\label{termiostypes_8h_a85524bff1b63360352a237895cccaaa4}} 
+int {\bfseries rtems\+\_\+termios\+\_\+nlinesw}
+\item 
+\mbox{\Hypertarget{termiostypes_8h_a402922c4d61acb5f56132f41714f3c70}\label{termiostypes_8h_a402922c4d61acb5f56132f41714f3c70}} 
+const \mbox{\hyperlink{structrtems__assoc__t}{rtems\+\_\+assoc\+\_\+t}} \mbox{\hyperlink{termiostypes_8h_a402922c4d61acb5f56132f41714f3c70}{rtems\+\_\+termios\+\_\+baud\+\_\+table}} \mbox{[}$\,$\mbox{]}
+\begin{DoxyCompactList}\small\item\em R\+T\+E\+MS Termios Baud Table. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{termiostypes_8h_aca3121eaea254213c1adf80ed4f85307}\label{termiostypes_8h_aca3121eaea254213c1adf80ed4f85307}} 
+rtems\+\_\+mutex {\bfseries rtems\+\_\+termios\+\_\+tty\+Mutex}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+R\+T\+E\+MS termios device support internal data structures 
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{termiostypes_8h_a2f61e75fe352067a33998556c23789a1}\label{termiostypes_8h_a2f61e75fe352067a33998556c23789a1}} 
+\index{termiostypes.h@{termiostypes.h}!RTEMS\_TERMIOS\_DEVICE\_CONTEXT\_INITIALIZER@{RTEMS\_TERMIOS\_DEVICE\_CONTEXT\_INITIALIZER}}
+\index{RTEMS\_TERMIOS\_DEVICE\_CONTEXT\_INITIALIZER@{RTEMS\_TERMIOS\_DEVICE\_CONTEXT\_INITIALIZER}!termiostypes.h@{termiostypes.h}}
+\subsubsection{\texorpdfstring{RTEMS\_TERMIOS\_DEVICE\_CONTEXT\_INITIALIZER}{RTEMS\_TERMIOS\_DEVICE\_CONTEXT\_INITIALIZER}}
+{\footnotesize\ttfamily \#define R\+T\+E\+M\+S\+\_\+\+T\+E\+R\+M\+I\+O\+S\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+C\+O\+N\+T\+E\+X\+T\+\_\+\+I\+N\+I\+T\+I\+A\+L\+I\+Z\+ER(\begin{DoxyParamCaption}\item[{}]{name }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{ \(\backslash\)}
+\DoxyCodeLine{    \{ \mbox{\hyperlink{group__ClassicINTRLocks_ga8a9392920390007da5a660cb9570077f}{RTEMS\_INTERRUPT\_LOCK\_INITIALIZER}}( name ) \}, \(\backslash\)}
+\DoxyCodeLine{    rtems\_termios\_device\_lock\_acquire\_default, \(\backslash\)}
+\DoxyCodeLine{    rtems\_termios\_device\_lock\_release\_default \(\backslash\)}
+\DoxyCodeLine{  \}}
+
+\end{DoxyCode}
+
+
+Initializer for static initialization of Termios device contexts. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & The name for the interrupt lock. It must be a string. The name is only used if profiling is enabled. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Typedef Documentation}
+\mbox{\Hypertarget{termiostypes_8h_a605905d6e2fbdb54991cb900c1c69007}\label{termiostypes_8h_a605905d6e2fbdb54991cb900c1c69007}} 
+\index{termiostypes.h@{termiostypes.h}!rtems\_termios\_device\_context@{rtems\_termios\_device\_context}}
+\index{rtems\_termios\_device\_context@{rtems\_termios\_device\_context}!termiostypes.h@{termiostypes.h}}
+\subsubsection{\texorpdfstring{rtems\_termios\_device\_context}{rtems\_termios\_device\_context}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structrtems__termios__device__context}{rtems\+\_\+termios\+\_\+device\+\_\+context}}  \mbox{\hyperlink{structrtems__termios__device__context}{rtems\+\_\+termios\+\_\+device\+\_\+context}}}
+
+
+
+Termios device context. 
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{termiostypes_8h_a2f61e75fe352067a33998556c23789a1}{R\+T\+E\+M\+S\+\_\+\+T\+E\+R\+M\+I\+O\+S\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+C\+O\+N\+T\+E\+X\+T\+\_\+\+I\+N\+I\+T\+I\+A\+L\+I\+Z\+E\+R()}}, \mbox{\hyperlink{termiostypes_8h_a8ad7b82b22b5761f19a237d563342e1f}{rtems\+\_\+termios\+\_\+device\+\_\+context\+\_\+initialize()}} and \mbox{\hyperlink{termiostypes_8h_aede46864d5d763fd7591830fefe22e1c}{rtems\+\_\+termios\+\_\+device\+\_\+install()}}. 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{termiostypes_8h_aa2114d2be232e8073568a4fb3ea2c918}\label{termiostypes_8h_aa2114d2be232e8073568a4fb3ea2c918}} 
+\index{termiostypes.h@{termiostypes.h}!rtems\_termios\_device\_node@{rtems\_termios\_device\_node}}
+\index{rtems\_termios\_device\_node@{rtems\_termios\_device\_node}!termiostypes.h@{termiostypes.h}}
+\subsubsection{\texorpdfstring{rtems\_termios\_device\_node}{rtems\_termios\_device\_node}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structrtems__termios__device__node}{rtems\+\_\+termios\+\_\+device\+\_\+node}}  \mbox{\hyperlink{structrtems__termios__device__node}{rtems\+\_\+termios\+\_\+device\+\_\+node}}}
+
+
+
+Termios device node for installed devices. 
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{termiostypes_8h_aede46864d5d763fd7591830fefe22e1c}{rtems\+\_\+termios\+\_\+device\+\_\+install()}}. 
+\end{DoxySeeAlso}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{termiostypes_8h_aa02f7f2f749c9ada10f68a33ddfdd07b}\label{termiostypes_8h_aa02f7f2f749c9ada10f68a33ddfdd07b}} 
+\index{termiostypes.h@{termiostypes.h}!rtems\_termios\_baud\_to\_number@{rtems\_termios\_baud\_to\_number}}
+\index{rtems\_termios\_baud\_to\_number@{rtems\_termios\_baud\_to\_number}!termiostypes.h@{termiostypes.h}}
+\subsubsection{\texorpdfstring{rtems\_termios\_baud\_to\_number()}{rtems\_termios\_baud\_to\_number()}}
+{\footnotesize\ttfamily rtems\+\_\+termios\+\_\+baud\+\_\+t rtems\+\_\+termios\+\_\+baud\+\_\+to\+\_\+number (\begin{DoxyParamCaption}\item[{speed\+\_\+t}]{baud }\end{DoxyParamCaption})}
+
+
+
+Converts the baud flags to an integral baud value. 
+
+
+\begin{DoxyRetVals}{Return values}
+{\em 0} & Invalid baud value or a baud value of {\ttfamily B0}. \\
+\hline
+{\em other} & Integral baud value. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{termiostypes_8h_a8ad7b82b22b5761f19a237d563342e1f}\label{termiostypes_8h_a8ad7b82b22b5761f19a237d563342e1f}} 
+\index{termiostypes.h@{termiostypes.h}!rtems\_termios\_device\_context\_initialize@{rtems\_termios\_device\_context\_initialize}}
+\index{rtems\_termios\_device\_context\_initialize@{rtems\_termios\_device\_context\_initialize}!termiostypes.h@{termiostypes.h}}
+\subsubsection{\texorpdfstring{rtems\_termios\_device\_context\_initialize()}{rtems\_termios\_device\_context\_initialize()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void rtems\+\_\+termios\+\_\+device\+\_\+context\+\_\+initialize (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structrtems__termios__device__context}{rtems\+\_\+termios\+\_\+device\+\_\+context}} $\ast$}]{context,  }\item[{const char $\ast$}]{name }\end{DoxyParamCaption})}
+
+
+
+Initializes a device context. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em context} & The Termios device context. \\
+\hline
+\mbox{\texttt{ in}}  & {\em name} & The name for the interrupt lock. This name must be a string persistent throughout the life time of this lock. The name is only used if profiling is enabled. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{termiostypes_8h_aede46864d5d763fd7591830fefe22e1c}\label{termiostypes_8h_aede46864d5d763fd7591830fefe22e1c}} 
+\index{termiostypes.h@{termiostypes.h}!rtems\_termios\_device\_install@{rtems\_termios\_device\_install}}
+\index{rtems\_termios\_device\_install@{rtems\_termios\_device\_install}!termiostypes.h@{termiostypes.h}}
+\subsubsection{\texorpdfstring{rtems\_termios\_device\_install()}{rtems\_termios\_device\_install()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} rtems\+\_\+termios\+\_\+device\+\_\+install (\begin{DoxyParamCaption}\item[{const char $\ast$}]{device\+\_\+file,  }\item[{const \mbox{\hyperlink{structrtems__termios__device__handler}{rtems\+\_\+termios\+\_\+device\+\_\+handler}} $\ast$}]{handler,  }\item[{const \mbox{\hyperlink{structrtems__termios__device__flow}{rtems\+\_\+termios\+\_\+device\+\_\+flow}} $\ast$}]{flow,  }\item[{\mbox{\hyperlink{structrtems__termios__device__context}{rtems\+\_\+termios\+\_\+device\+\_\+context}} $\ast$}]{context }\end{DoxyParamCaption})}
+
+
+
+Installs a Termios device. 
+
+The installed Termios device may be removed via \mbox{\hyperlink{unlink_8c_a28af9471bbdf262321af663e02899a47}{unlink()}}.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em device\+\_\+file} & The device file path. \\
+\hline
+\mbox{\texttt{ in}}  & {\em handler} & The device handler. It must be persistent throughout the installed time of the device. \\
+\hline
+\mbox{\texttt{ in}}  & {\em flow} & The device flow control handler. The device flow control handler are optional and may be {\ttfamily N\+U\+LL}. If present must be persistent throughout the installed time of the device. \\
+\hline
+\mbox{\texttt{ in}}  & {\em context} & The device context. It must be persistent throughout the installed time of the device.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em R\+T\+E\+M\+S\+\_\+\+S\+U\+C\+C\+E\+S\+S\+F\+UL} & Successful operation. \\
+\hline
+{\em R\+T\+E\+M\+S\+\_\+\+N\+O\+\_\+\+M\+E\+M\+O\+RY} & Not enough memory to create a device node. \\
+\hline
+{\em R\+T\+E\+M\+S\+\_\+\+U\+N\+S\+A\+T\+I\+S\+F\+I\+ED} & Creation of the device file failed. \\
+\hline
+{\em R\+T\+E\+M\+S\+\_\+\+I\+N\+C\+O\+R\+R\+E\+C\+T\+\_\+\+S\+T\+A\+TE} & Termios is not initialized.\\
+\hline
+\end{DoxyRetVals}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{termiostypes_8h_afa4793c232f435902a7c61806215bfcf}{rtems\+\_\+termios\+\_\+get\+\_\+device\+\_\+context()}}. 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{termiostypes_8h_a1ebc146d0aeeb60c14d75e16f902aae0}\label{termiostypes_8h_a1ebc146d0aeeb60c14d75e16f902aae0}} 
+\index{termiostypes.h@{termiostypes.h}!rtems\_termios\_device\_lock\_acquire@{rtems\_termios\_device\_lock\_acquire}}
+\index{rtems\_termios\_device\_lock\_acquire@{rtems\_termios\_device\_lock\_acquire}!termiostypes.h@{termiostypes.h}}
+\subsubsection{\texorpdfstring{rtems\_termios\_device\_lock\_acquire()}{rtems\_termios\_device\_lock\_acquire()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void rtems\+\_\+termios\+\_\+device\+\_\+lock\+\_\+acquire (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structrtems__termios__device__context}{rtems\+\_\+termios\+\_\+device\+\_\+context}} $\ast$}]{context,  }\item[{\mbox{\hyperlink{group__ClassicINTRLocks_gab9d4b488f1537323799db7c1fa69b9aa}{rtems\+\_\+interrupt\+\_\+lock\+\_\+context}} $\ast$}]{lock\+\_\+context }\end{DoxyParamCaption})}
+
+
+
+Acquires the device lock. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em context} & The device context. \\
+\hline
+\mbox{\texttt{ in}}  & {\em lock\+\_\+context} & The local interrupt lock context for an acquire and release pair. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{termiostypes_8h_a0d928bfa5fb62de3c9e66caa5a07dfc9}\label{termiostypes_8h_a0d928bfa5fb62de3c9e66caa5a07dfc9}} 
+\index{termiostypes.h@{termiostypes.h}!rtems\_termios\_device\_lock\_release@{rtems\_termios\_device\_lock\_release}}
+\index{rtems\_termios\_device\_lock\_release@{rtems\_termios\_device\_lock\_release}!termiostypes.h@{termiostypes.h}}
+\subsubsection{\texorpdfstring{rtems\_termios\_device\_lock\_release()}{rtems\_termios\_device\_lock\_release()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void rtems\+\_\+termios\+\_\+device\+\_\+lock\+\_\+release (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structrtems__termios__device__context}{rtems\+\_\+termios\+\_\+device\+\_\+context}} $\ast$}]{context,  }\item[{\mbox{\hyperlink{group__ClassicINTRLocks_gab9d4b488f1537323799db7c1fa69b9aa}{rtems\+\_\+interrupt\+\_\+lock\+\_\+context}} $\ast$}]{lock\+\_\+context }\end{DoxyParamCaption})}
+
+
+
+Releases the device lock. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em context} & The device context. \\
+\hline
+\mbox{\texttt{ in}}  & {\em lock\+\_\+context} & The local interrupt lock context for an acquire and release pair. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{termiostypes_8h_afa4793c232f435902a7c61806215bfcf}\label{termiostypes_8h_afa4793c232f435902a7c61806215bfcf}} 
+\index{termiostypes.h@{termiostypes.h}!rtems\_termios\_get\_device\_context@{rtems\_termios\_get\_device\_context}}
+\index{rtems\_termios\_get\_device\_context@{rtems\_termios\_get\_device\_context}!termiostypes.h@{termiostypes.h}}
+\subsubsection{\texorpdfstring{rtems\_termios\_get\_device\_context()}{rtems\_termios\_get\_device\_context()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void$\ast$ rtems\+\_\+termios\+\_\+get\+\_\+device\+\_\+context (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structrtems__termios__tty}{rtems\+\_\+termios\+\_\+tty}} $\ast$}]{tty }\end{DoxyParamCaption})}
+
+
+
+Returns the device context of an installed Termios device. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em tty} & The Termios control. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{termiostypes_8h_ab1892613a675377ed7e9886a754a4690}\label{termiostypes_8h_ab1892613a675377ed7e9886a754a4690}} 
+\index{termiostypes.h@{termiostypes.h}!rtems\_termios\_kqfilter@{rtems\_termios\_kqfilter}}
+\index{rtems\_termios\_kqfilter@{rtems\_termios\_kqfilter}!termiostypes.h@{termiostypes.h}}
+\subsubsection{\texorpdfstring{rtems\_termios\_kqfilter()}{rtems\_termios\_kqfilter()}}
+{\footnotesize\ttfamily int rtems\+\_\+termios\+\_\+kqfilter (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structrtems__libio__tt}{rtems\+\_\+libio\+\_\+t}} $\ast$}]{iop,  }\item[{struct knote $\ast$}]{kn }\end{DoxyParamCaption})}
+
+
+
+Termios kqueue() filter filesystem node handler. 
+
+Real implementation is provided by libbsd. \mbox{\Hypertarget{termiostypes_8h_a4f6b10b14b7a68af1b62673e51c94b8c}\label{termiostypes_8h_a4f6b10b14b7a68af1b62673e51c94b8c}} 
+\index{termiostypes.h@{termiostypes.h}!rtems\_termios\_mmap@{rtems\_termios\_mmap}}
+\index{rtems\_termios\_mmap@{rtems\_termios\_mmap}!termiostypes.h@{termiostypes.h}}
+\subsubsection{\texorpdfstring{rtems\_termios\_mmap()}{rtems\_termios\_mmap()}}
+{\footnotesize\ttfamily int rtems\+\_\+termios\+\_\+mmap (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structrtems__libio__tt}{rtems\+\_\+libio\+\_\+t}} $\ast$}]{iop,  }\item[{void $\ast$$\ast$}]{addr,  }\item[{size\+\_\+t}]{len,  }\item[{int}]{prot,  }\item[{off\+\_\+t}]{off }\end{DoxyParamCaption})}
+
+
+
+Termios mmap() filter filesystem node handler. 
+
+Real implementation is provided by libbsd. \mbox{\Hypertarget{termiostypes_8h_a98a3cf31930fd6a41f9bb8a9ca33cba8}\label{termiostypes_8h_a98a3cf31930fd6a41f9bb8a9ca33cba8}} 
+\index{termiostypes.h@{termiostypes.h}!rtems\_termios\_number\_to\_baud@{rtems\_termios\_number\_to\_baud}}
+\index{rtems\_termios\_number\_to\_baud@{rtems\_termios\_number\_to\_baud}!termiostypes.h@{termiostypes.h}}
+\subsubsection{\texorpdfstring{rtems\_termios\_number\_to\_baud()}{rtems\_termios\_number\_to\_baud()}}
+{\footnotesize\ttfamily speed\+\_\+t rtems\+\_\+termios\+\_\+number\+\_\+to\+\_\+baud (\begin{DoxyParamCaption}\item[{rtems\+\_\+termios\+\_\+baud\+\_\+t}]{baud }\end{DoxyParamCaption})}
+
+
+
+Converts the Integral Baud value {\itshape baud} to the Termios Control Flag Representation. 
+
+
+\begin{DoxyRetVals}{Return values}
+{\em B0} & Invalid baud value or a baud value of 0. \\
+\hline
+{\em other} & Baud constant according to {\itshape baud}. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{termiostypes_8h_a3776dfa0f417d7dee3baf400101ef5ec}\label{termiostypes_8h_a3776dfa0f417d7dee3baf400101ef5ec}} 
+\index{termiostypes.h@{termiostypes.h}!rtems\_termios\_poll@{rtems\_termios\_poll}}
+\index{rtems\_termios\_poll@{rtems\_termios\_poll}!termiostypes.h@{termiostypes.h}}
+\subsubsection{\texorpdfstring{rtems\_termios\_poll()}{rtems\_termios\_poll()}}
+{\footnotesize\ttfamily int rtems\+\_\+termios\+\_\+poll (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structrtems__libio__tt}{rtems\+\_\+libio\+\_\+t}} $\ast$}]{iop,  }\item[{int}]{events }\end{DoxyParamCaption})}
+
+
+
+Termios poll() filesystem node handler. 
+
+Real implementation is provided by libbsd. \mbox{\Hypertarget{termiostypes_8h_a3879a43ec1e7512dde0d959bcdd20c2d}\label{termiostypes_8h_a3879a43ec1e7512dde0d959bcdd20c2d}} 
+\index{termiostypes.h@{termiostypes.h}!rtems\_termios\_set\_best\_baud@{rtems\_termios\_set\_best\_baud}}
+\index{rtems\_termios\_set\_best\_baud@{rtems\_termios\_set\_best\_baud}!termiostypes.h@{termiostypes.h}}
+\subsubsection{\texorpdfstring{rtems\_termios\_set\_best\_baud()}{rtems\_termios\_set\_best\_baud()}}
+{\footnotesize\ttfamily void rtems\+\_\+termios\+\_\+set\+\_\+best\+\_\+baud (\begin{DoxyParamCaption}\item[{struct termios $\ast$}]{term,  }\item[{uint32\+\_\+t}]{baud }\end{DoxyParamCaption})}
+
+
+
+Sets the best baud value in the Termios control. 
+
+The valid Termios baud values are between 0 and 460800. The Termios baud value is chosen which minimizes the difference to the value specified.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em term} & The Termios attributes. \\
+\hline
+\mbox{\texttt{ in}}  & {\em baud} & The current baud setting of the device. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{termiostypes_8h_a4a9045d415184c5cfb1c9b762ba920c4}\label{termiostypes_8h_a4a9045d415184c5cfb1c9b762ba920c4}} 
+\index{termiostypes.h@{termiostypes.h}!rtems\_termios\_set\_initial\_baud@{rtems\_termios\_set\_initial\_baud}}
+\index{rtems\_termios\_set\_initial\_baud@{rtems\_termios\_set\_initial\_baud}!termiostypes.h@{termiostypes.h}}
+\subsubsection{\texorpdfstring{rtems\_termios\_set\_initial\_baud()}{rtems\_termios\_set\_initial\_baud()}}
+{\footnotesize\ttfamily int rtems\+\_\+termios\+\_\+set\+\_\+initial\+\_\+baud (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structrtems__termios__tty}{rtems\+\_\+termios\+\_\+tty}} $\ast$}]{tty,  }\item[{rtems\+\_\+termios\+\_\+baud\+\_\+t}]{baud }\end{DoxyParamCaption})}
+
+
+
+Sets the initial {\itshape baud} in the Termios context {\itshape tty}. 
+
+
+\begin{DoxyRetVals}{Return values}
+{\em 0} & Successful operation. \\
+\hline
+{\em -\/1} & Invalid baud value. \\
+\hline
+\end{DoxyRetVals}

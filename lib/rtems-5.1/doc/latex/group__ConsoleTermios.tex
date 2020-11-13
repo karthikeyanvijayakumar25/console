@@ -1,0 +1,123 @@
+\hypertarget{group__ConsoleTermios}{}\section{Termios Console Driver}
+\label{group__ConsoleTermios}\index{Termios Console Driver@{Termios Console Driver}}
+
+
+Console driver for Termios devices.  
+
+
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structconsole__device}{console\+\_\+device}}
+\begin{DoxyCompactList}\small\item\em Console device information. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef bool($\ast$ \mbox{\hyperlink{group__ConsoleTermios_ga256c0a60dec13fd909e708ca271de6f1}{console\+\_\+device\+\_\+probe}}) (\mbox{\hyperlink{structrtems__termios__device__context}{rtems\+\_\+termios\+\_\+device\+\_\+context}} $\ast$\mbox{\hyperlink{sun4u_2tte_8h_a9b4a99475e2709333b8e5d70483173f1}{context}})
+\begin{DoxyCompactList}\small\item\em Console device probe function type. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{group__ConsoleTermios_ga277813476b6c680269d9102dba5ddd48}\label{group__ConsoleTermios_ga277813476b6c680269d9102dba5ddd48}} 
+bool \mbox{\hyperlink{group__ConsoleTermios_ga277813476b6c680269d9102dba5ddd48}{console\+\_\+device\+\_\+probe\+\_\+default}} (\mbox{\hyperlink{structrtems__termios__device__context}{rtems\+\_\+termios\+\_\+device\+\_\+context}} $\ast$\mbox{\hyperlink{sun4u_2tte_8h_a9b4a99475e2709333b8e5d70483173f1}{context}})
+\begin{DoxyCompactList}\small\item\em Returns true and does nothing else. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const char $\ast$ \mbox{\hyperlink{group__ConsoleTermios_ga0e92b47597259fb578d5a651d91255ea}{console\+\_\+device\+::device\+\_\+file}}
+\begin{DoxyCompactList}\small\item\em The device file path. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__ConsoleTermios_ga986b63ec495d64d2c797805eff3cb28b}\label{group__ConsoleTermios_ga986b63ec495d64d2c797805eff3cb28b}} 
+\mbox{\hyperlink{group__ConsoleTermios_ga256c0a60dec13fd909e708ca271de6f1}{console\+\_\+device\+\_\+probe}} \mbox{\hyperlink{group__ConsoleTermios_ga986b63ec495d64d2c797805eff3cb28b}{console\+\_\+device\+::probe}}
+\begin{DoxyCompactList}\small\item\em The device probe function. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__ConsoleTermios_ga2883081a14f477f2a3be297f737269aa}\label{group__ConsoleTermios_ga2883081a14f477f2a3be297f737269aa}} 
+const \mbox{\hyperlink{structrtems__termios__device__handler}{rtems\+\_\+termios\+\_\+device\+\_\+handler}} $\ast$ \mbox{\hyperlink{group__ConsoleTermios_ga2883081a14f477f2a3be297f737269aa}{console\+\_\+device\+::handler}}
+\begin{DoxyCompactList}\small\item\em The Termios device handler. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__ConsoleTermios_gaaefe0e8802b5775c4e211a74ccf372ac}\label{group__ConsoleTermios_gaaefe0e8802b5775c4e211a74ccf372ac}} 
+const \mbox{\hyperlink{structrtems__termios__device__flow}{rtems\+\_\+termios\+\_\+device\+\_\+flow}} $\ast$ \mbox{\hyperlink{group__ConsoleTermios_gaaefe0e8802b5775c4e211a74ccf372ac}{console\+\_\+device\+::flow}}
+\begin{DoxyCompactList}\small\item\em The Termios device flow control handler. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__ConsoleTermios_ga3dfebeb03f639f0c27e52128404b7141}\label{group__ConsoleTermios_ga3dfebeb03f639f0c27e52128404b7141}} 
+\mbox{\hyperlink{structrtems__termios__device__context}{rtems\+\_\+termios\+\_\+device\+\_\+context}} $\ast$ \mbox{\hyperlink{group__ConsoleTermios_ga3dfebeb03f639f0c27e52128404b7141}{console\+\_\+device\+::context}}
+\begin{DoxyCompactList}\small\item\em The Termios device context. \end{DoxyCompactList}\item 
+const \mbox{\hyperlink{structconsole__device}{console\+\_\+device}} \mbox{\hyperlink{group__ConsoleTermios_ga7f058e756eb724397922b823131fba5c}{console\+\_\+device\+\_\+table}} \mbox{[}$\,$\mbox{]}
+\begin{DoxyCompactList}\small\item\em Table for console devices installed via \mbox{\hyperlink{arm_2raspberrypi_2console_2console-config_8c_a4bdc321ef3ab62a261d77b5dbe075566}{console\+\_\+initialize()}} during system initialization. \end{DoxyCompactList}\item 
+const size\+\_\+t \mbox{\hyperlink{group__ConsoleTermios_gabca2c9c9873b0482f9fd306e6bade017}{console\+\_\+device\+\_\+count}}
+\begin{DoxyCompactList}\small\item\em Count of entries in the console\+\_\+device\+\_\+table. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Console driver for Termios devices. 
+
+In order to use this driver add the following lines to the Makefile.\+am of the B\+SP\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{libbsp\_a\_SOURCES += ../../shared/console-termios-init.c}
+\DoxyCodeLine{libbsp\_a\_SOURCES += ../../shared/console-termios.c}
+\DoxyCodeLine{libbsp\_a\_SOURCES += console/console-\mbox{\hyperlink{structconfig__s}{config}}.c}
+\end{DoxyCode}
+
+
+Define the console\+\_\+device\+\_\+table and console\+\_\+device\+\_\+count in the console-\/config.\+c file of the B\+SP. 
+
+\subsection{Typedef Documentation}
+\mbox{\Hypertarget{group__ConsoleTermios_ga256c0a60dec13fd909e708ca271de6f1}\label{group__ConsoleTermios_ga256c0a60dec13fd909e708ca271de6f1}} 
+\index{Termios Console Driver@{Termios Console Driver}!console\_device\_probe@{console\_device\_probe}}
+\index{console\_device\_probe@{console\_device\_probe}!Termios Console Driver@{Termios Console Driver}}
+\subsubsection{\texorpdfstring{console\_device\_probe}{console\_device\_probe}}
+{\footnotesize\ttfamily typedef bool($\ast$ console\+\_\+device\+\_\+probe) (\mbox{\hyperlink{structrtems__termios__device__context}{rtems\+\_\+termios\+\_\+device\+\_\+context}} $\ast$\mbox{\hyperlink{sun4u_2tte_8h_a9b4a99475e2709333b8e5d70483173f1}{context}})}
+
+
+
+Console device probe function type. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em context} & The Termios device context.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em true} & Install this device. \\
+\hline
+{\em false} & Otherwise. \\
+\hline
+\end{DoxyRetVals}
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{group__ConsoleTermios_gabca2c9c9873b0482f9fd306e6bade017}\label{group__ConsoleTermios_gabca2c9c9873b0482f9fd306e6bade017}} 
+\index{Termios Console Driver@{Termios Console Driver}!console\_device\_count@{console\_device\_count}}
+\index{console\_device\_count@{console\_device\_count}!Termios Console Driver@{Termios Console Driver}}
+\subsubsection{\texorpdfstring{console\_device\_count}{console\_device\_count}}
+{\footnotesize\ttfamily const size\+\_\+t console\+\_\+device\+\_\+count}
+
+
+
+Count of entries in the console\+\_\+device\+\_\+table. 
+
+It must be provided by the B\+SP. \mbox{\Hypertarget{group__ConsoleTermios_ga7f058e756eb724397922b823131fba5c}\label{group__ConsoleTermios_ga7f058e756eb724397922b823131fba5c}} 
+\index{Termios Console Driver@{Termios Console Driver}!console\_device\_table@{console\_device\_table}}
+\index{console\_device\_table@{console\_device\_table}!Termios Console Driver@{Termios Console Driver}}
+\subsubsection{\texorpdfstring{console\_device\_table}{console\_device\_table}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{structconsole__device}{console\+\_\+device}} console\+\_\+device\+\_\+table\mbox{[}$\,$\mbox{]}}
+
+
+
+Table for console devices installed via \mbox{\hyperlink{arm_2raspberrypi_2console_2console-config_8c_a4bdc321ef3ab62a261d77b5dbe075566}{console\+\_\+initialize()}} during system initialization. 
+
+It must be provided by the B\+SP.
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{group__ConsoleTermios_gabca2c9c9873b0482f9fd306e6bade017}{console\+\_\+device\+\_\+count}}. 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{group__ConsoleTermios_ga0e92b47597259fb578d5a651d91255ea}\label{group__ConsoleTermios_ga0e92b47597259fb578d5a651d91255ea}} 
+\index{Termios Console Driver@{Termios Console Driver}!device\_file@{device\_file}}
+\index{device\_file@{device\_file}!Termios Console Driver@{Termios Console Driver}}
+\subsubsection{\texorpdfstring{device\_file}{device\_file}}
+{\footnotesize\ttfamily const char$\ast$ console\+\_\+device\+::device\+\_\+file}
+
+
+
+The device file path. 
+
+The \char`\"{}/dev/console\char`\"{} device will be automatically installed as the first device of console\+\_\+device\+\_\+table with a successful probe. 

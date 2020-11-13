@@ -1,0 +1,111 @@
+\hypertarget{lm32_8h}{}\section{cpukit/score/cpu/lm32/include/rtems/score/lm32.h File Reference}
+\label{lm32_8h}\index{cpukit/score/cpu/lm32/include/rtems/score/lm32.h@{cpukit/score/cpu/lm32/include/rtems/score/lm32.h}}
+
+
+L\+M32 Set up Basic C\+PU Dependency Settings Based on Compiler Settings.  
+
+
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{lm32_8h_a65a2f3e765349445fd8ad6a44d7e498a}\label{lm32_8h_a65a2f3e765349445fd8ad6a44d7e498a}} 
+\#define {\bfseries C\+P\+U\+\_\+\+N\+A\+ME}~\char`\"{}L\+M32\char`\"{}
+\item 
+\mbox{\Hypertarget{lm32_8h_acdf066ef8b266b0a509901d5eb79b26d}\label{lm32_8h_acdf066ef8b266b0a509901d5eb79b26d}} 
+\#define {\bfseries lm32\+\_\+read\+\_\+interrupts}(\+\_\+ip)~\mbox{\hyperlink{group__RTEMSScoreCPUSPARC_ga82257d4fc068f4b21b029dd69d276839}{\+\_\+\+\_\+asm\+\_\+\+\_\+}} volatile (\char`\"{}rcsr \%0, ip\char`\"{}\+:\char`\"{}=r\char`\"{}(\+\_\+ip));
+\item 
+\#define {\bfseries lm32\+\_\+disable\+\_\+interrupts}(\+\_\+level)
+\item 
+\mbox{\Hypertarget{lm32_8h_a461d33ca45083f3477f22b6cc613fcfe}\label{lm32_8h_a461d33ca45083f3477f22b6cc613fcfe}} 
+\#define {\bfseries lm32\+\_\+enable\+\_\+interrupts}(\+\_\+level)~\mbox{\hyperlink{group__RTEMSScoreCPUSPARC_ga82257d4fc068f4b21b029dd69d276839}{\+\_\+\+\_\+asm\+\_\+\+\_\+}} volatile (\char`\"{}wcsr \mbox{\hyperlink{sun4u_2tte_8h_ac7c826c104b2f496cf7e437589d47b74}{ie}},\%0\char`\"{}\+::\char`\"{}r\char`\"{}(\+\_\+level));
+\item 
+\#define {\bfseries lm32\+\_\+flash\+\_\+interrupts}(\+\_\+level)
+\item 
+\#define {\bfseries lm32\+\_\+interrupt\+\_\+unmask}(\+\_\+mask)
+\item 
+\#define {\bfseries lm32\+\_\+interrupt\+\_\+mask}(\+\_\+mask)
+\item 
+\#define {\bfseries lm32\+\_\+interrupt\+\_\+ack}(\+\_\+mask)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+L\+M32 Set up Basic C\+PU Dependency Settings Based on Compiler Settings. 
+
+This file sets up basic C\+PU dependency settings based on compiler settings. For example, it can determine if floating point is available. This particular implementation is specified to the NO C\+PU port. 
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{lm32_8h_a10554b2605d0b8130c594a0615cca518}\label{lm32_8h_a10554b2605d0b8130c594a0615cca518}} 
+\index{lm32.h@{lm32.h}!lm32\_disable\_interrupts@{lm32\_disable\_interrupts}}
+\index{lm32\_disable\_interrupts@{lm32\_disable\_interrupts}!lm32.h@{lm32.h}}
+\subsubsection{\texorpdfstring{lm32\_disable\_interrupts}{lm32\_disable\_interrupts}}
+{\footnotesize\ttfamily \#define lm32\+\_\+disable\+\_\+interrupts(\begin{DoxyParamCaption}\item[{}]{\+\_\+level }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do} \{ uint32\_t \mbox{\hyperlink{sun4u_2tte_8h_ac7c826c104b2f496cf7e437589d47b74}{ie}}; \(\backslash\)}
+\DoxyCodeLine{    \_\_asm\_\_ \textcolor{keyword}{volatile} (\textcolor{stringliteral}{"rcsr \%0,ie"}:\textcolor{stringliteral}{"=r"}(\mbox{\hyperlink{sun4u_2tte_8h_ac7c826c104b2f496cf7e437589d47b74}{ie}})); \(\backslash\)}
+\DoxyCodeLine{    (\_level) = \mbox{\hyperlink{sun4u_2tte_8h_ac7c826c104b2f496cf7e437589d47b74}{ie}}; \(\backslash\)}
+\DoxyCodeLine{    ie \&= (~0x0001); \(\backslash\)}
+\DoxyCodeLine{    \_\_asm\_\_ \textcolor{keyword}{volatile} (\textcolor{stringliteral}{"wcsr ie,\%0"}::\textcolor{stringliteral}{"r"}(\mbox{\hyperlink{sun4u_2tte_8h_ac7c826c104b2f496cf7e437589d47b74}{ie}})); \(\backslash\)}
+\DoxyCodeLine{  \} \textcolor{keywordflow}{while} (0)}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{lm32_8h_a980f4dd242692d58088ec182dbe66950}\label{lm32_8h_a980f4dd242692d58088ec182dbe66950}} 
+\index{lm32.h@{lm32.h}!lm32\_flash\_interrupts@{lm32\_flash\_interrupts}}
+\index{lm32\_flash\_interrupts@{lm32\_flash\_interrupts}!lm32.h@{lm32.h}}
+\subsubsection{\texorpdfstring{lm32\_flash\_interrupts}{lm32\_flash\_interrupts}}
+{\footnotesize\ttfamily \#define lm32\+\_\+flash\+\_\+interrupts(\begin{DoxyParamCaption}\item[{}]{\+\_\+level }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do} \{ uint32\_t \mbox{\hyperlink{sun4u_2tte_8h_ac7c826c104b2f496cf7e437589d47b74}{ie}}; \(\backslash\)}
+\DoxyCodeLine{    \_\_asm\_\_ \textcolor{keyword}{volatile} (\textcolor{stringliteral}{"wcsr ie,\%0"}::\textcolor{stringliteral}{"r"}(\_level)); \(\backslash\)}
+\DoxyCodeLine{    ie = (\_level) \& (~0x0001); \(\backslash\)}
+\DoxyCodeLine{    \_\_asm\_\_ \textcolor{keyword}{volatile} (\textcolor{stringliteral}{"wcsr ie,\%0"}::\textcolor{stringliteral}{"r"}(\mbox{\hyperlink{sun4u_2tte_8h_ac7c826c104b2f496cf7e437589d47b74}{ie}})); \(\backslash\)}
+\DoxyCodeLine{  \} \textcolor{keywordflow}{while} (0)}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{lm32_8h_a08bbfc72e0d4c3eeea89f7a65d953e57}\label{lm32_8h_a08bbfc72e0d4c3eeea89f7a65d953e57}} 
+\index{lm32.h@{lm32.h}!lm32\_interrupt\_ack@{lm32\_interrupt\_ack}}
+\index{lm32\_interrupt\_ack@{lm32\_interrupt\_ack}!lm32.h@{lm32.h}}
+\subsubsection{\texorpdfstring{lm32\_interrupt\_ack}{lm32\_interrupt\_ack}}
+{\footnotesize\ttfamily \#define lm32\+\_\+interrupt\+\_\+ack(\begin{DoxyParamCaption}\item[{}]{\+\_\+mask }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do} \{ uint32\_t ip = \_mask; \(\backslash\)}
+\DoxyCodeLine{    \_\_asm\_\_ \textcolor{keyword}{volatile} (\textcolor{stringliteral}{"wcsr ip,\%0"}::\textcolor{stringliteral}{"r"}(ip)); \(\backslash\)}
+\DoxyCodeLine{  \} \textcolor{keywordflow}{while} (0)}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{lm32_8h_a131932fb25c975a64e0ff10ca66228b4}\label{lm32_8h_a131932fb25c975a64e0ff10ca66228b4}} 
+\index{lm32.h@{lm32.h}!lm32\_interrupt\_mask@{lm32\_interrupt\_mask}}
+\index{lm32\_interrupt\_mask@{lm32\_interrupt\_mask}!lm32.h@{lm32.h}}
+\subsubsection{\texorpdfstring{lm32\_interrupt\_mask}{lm32\_interrupt\_mask}}
+{\footnotesize\ttfamily \#define lm32\+\_\+interrupt\+\_\+mask(\begin{DoxyParamCaption}\item[{}]{\+\_\+mask }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do} \{ uint32\_t im; \(\backslash\)}
+\DoxyCodeLine{    \_\_asm\_\_ \textcolor{keyword}{volatile} (\textcolor{stringliteral}{"rcsr \%0,im"}:\textcolor{stringliteral}{"=r"}(im)); \(\backslash\)}
+\DoxyCodeLine{    im \&= ~(\_mask); \(\backslash\)}
+\DoxyCodeLine{    \_\_asm\_\_ \textcolor{keyword}{volatile} (\textcolor{stringliteral}{"wcsr im,\%0"}::\textcolor{stringliteral}{"r"}(im)); \(\backslash\)}
+\DoxyCodeLine{  \} \textcolor{keywordflow}{while} (0)}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{lm32_8h_abfa553b1effd57ce3e7b4054d6b85737}\label{lm32_8h_abfa553b1effd57ce3e7b4054d6b85737}} 
+\index{lm32.h@{lm32.h}!lm32\_interrupt\_unmask@{lm32\_interrupt\_unmask}}
+\index{lm32\_interrupt\_unmask@{lm32\_interrupt\_unmask}!lm32.h@{lm32.h}}
+\subsubsection{\texorpdfstring{lm32\_interrupt\_unmask}{lm32\_interrupt\_unmask}}
+{\footnotesize\ttfamily \#define lm32\+\_\+interrupt\+\_\+unmask(\begin{DoxyParamCaption}\item[{}]{\+\_\+mask }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do} \{ uint32\_t im; \(\backslash\)}
+\DoxyCodeLine{    \_\_asm\_\_ \textcolor{keyword}{volatile} (\textcolor{stringliteral}{"rcsr \%0,im"}:\textcolor{stringliteral}{"=r"}(im)); \(\backslash\)}
+\DoxyCodeLine{    im |= \_mask; \(\backslash\)}
+\DoxyCodeLine{    \_\_asm\_\_ \textcolor{keyword}{volatile} (\textcolor{stringliteral}{"wcsr im,\%0"}::\textcolor{stringliteral}{"r"}(im)); \(\backslash\)}
+\DoxyCodeLine{  \} \textcolor{keywordflow}{while} (0)}
+
+\end{DoxyCode}

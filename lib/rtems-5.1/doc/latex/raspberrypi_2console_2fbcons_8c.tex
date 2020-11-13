@@ -1,0 +1,58 @@
+\hypertarget{raspberrypi_2console_2fbcons_8c}{}\section{bsps/arm/raspberrypi/console/fbcons.c File Reference}
+\label{raspberrypi_2console_2fbcons_8c}\index{bsps/arm/raspberrypi/console/fbcons.c@{bsps/arm/raspberrypi/console/fbcons.c}}
+
+
+framebuffer graphic console support.  
+
+
+{\ttfamily \#include $<$rtems.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/libio.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/termiostypes.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$libchip/serial.\+h$>$}\newline
+{\ttfamily \#include $<$libchip/sersupp.\+h$>$}\newline
+{\ttfamily \#include $<$bsp.\+h$>$}\newline
+{\ttfamily \#include $<$bsp/fbcons.\+h$>$}\newline
+{\ttfamily \#include $<$bsp/vc.\+h$>$}\newline
+{\ttfamily \#include $<$bsp/rpi-\/fb.\+h$>$}\newline
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{raspberrypi_2console_2fbcons_8c_aa1d551137251f5304b3dd2b9688834bd}\label{raspberrypi_2console_2fbcons_8c_aa1d551137251f5304b3dd2b9688834bd}} 
+void {\bfseries fbcons\+\_\+write\+\_\+polled} (\mbox{\hyperlink{structrtems__termios__device__context}{rtems\+\_\+termios\+\_\+device\+\_\+context}} $\ast$base, char c)
+\item 
+\mbox{\Hypertarget{raspberrypi_2console_2fbcons_8c_abc82400e5f1cfde6eab111db63d339df}\label{raspberrypi_2console_2fbcons_8c_abc82400e5f1cfde6eab111db63d339df}} 
+bool {\bfseries fbcons\+\_\+probe} (\mbox{\hyperlink{structrtems__termios__device__context}{rtems\+\_\+termios\+\_\+device\+\_\+context}} $\ast$\mbox{\hyperlink{sun4u_2tte_8h_a9b4a99475e2709333b8e5d70483173f1}{context}})
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const \mbox{\hyperlink{structrtems__termios__device__handler}{rtems\+\_\+termios\+\_\+device\+\_\+handler}} {\bfseries fbcons\+\_\+fns}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+framebuffer graphic console support. 
+
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{raspberrypi_2console_2fbcons_8c_a4f46f0be4eee9016f4324b2f76e55bc1}\label{raspberrypi_2console_2fbcons_8c_a4f46f0be4eee9016f4324b2f76e55bc1}} 
+\index{fbcons.c@{fbcons.c}!fbcons\_fns@{fbcons\_fns}}
+\index{fbcons\_fns@{fbcons\_fns}!fbcons.c@{fbcons.c}}
+\subsubsection{\texorpdfstring{fbcons\_fns}{fbcons\_fns}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{structrtems__termios__device__handler}{rtems\+\_\+termios\+\_\+device\+\_\+handler}} fbcons\+\_\+fns}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{  .first\_open = fbcons\_open,}
+\DoxyCodeLine{  .last\_close = fbcons\_close,}
+\DoxyCodeLine{  .poll\_read = fbcons\_inbyte\_nonblocking\_polled,}
+\DoxyCodeLine{  .write = fbcons\_write\_support\_polled,}
+\DoxyCodeLine{  .set\_attributes = fbcons\_set\_attributes,}
+\DoxyCodeLine{  .mode = TERMIOS\_POLLED}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}

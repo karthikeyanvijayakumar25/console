@@ -1,0 +1,1046 @@
+\hypertarget{vmeUniverse_8h}{}\section{bsps/powerpc/include/bsp/vme\+Universe.h File Reference}
+\label{vmeUniverse_8h}\index{bsps/powerpc/include/bsp/vmeUniverse.h@{bsps/powerpc/include/bsp/vmeUniverse.h}}
+
+
+Driver for the Tundra Universe II pci-\/vme bridge.  
+
+
+{\ttfamily \#include $<$bsp/vme\+\_\+am\+\_\+defs.\+h$>$}\newline
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structVmeUniverseDMAPacketRec__}{Vme\+Universe\+D\+M\+A\+Packet\+Rec\+\_\+}}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_adb97434950054cd7012ea5f8773fc43c}\label{vmeUniverse_8h_adb97434950054cd7012ea5f8773fc43c}} 
+\#define {\bfseries V\+M\+E\+\_\+\+M\+O\+D\+E\+\_\+\+M\+A\+T\+C\+H\+\_\+\+M\+A\+SK}~(3$<$$<$30)
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_aded4c05239ea6dc6c4e9f0b542ccfb60}\label{vmeUniverse_8h_aded4c05239ea6dc6c4e9f0b542ccfb60}} 
+\#define {\bfseries V\+M\+E\+\_\+\+M\+O\+D\+E\+\_\+\+E\+X\+A\+C\+T\+\_\+\+M\+A\+T\+CH}~(2$<$$<$30)	/$\ast$ all bits must match $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a8bbaa02cab79ae303500841a3fff9de4}\label{vmeUniverse_8h_a8bbaa02cab79ae303500841a3fff9de4}} 
+\#define {\bfseries V\+M\+E\+\_\+\+M\+O\+D\+E\+\_\+\+A\+S\+\_\+\+M\+A\+T\+CH}~(1$<$$<$30)	/$\ast$ only A16/24/32 must match $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a758870dc8a2462358f9b97b27d1f8de4}\label{vmeUniverse_8h_a758870dc8a2462358f9b97b27d1f8de4}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+R\+E\+G\+O\+F\+F\+\_\+\+P\+C\+I\+\_\+\+C\+SR}~0x4
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_af74ff534234a24335712eab48680b303}\label{vmeUniverse_8h_af74ff534234a24335712eab48680b303}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+P\+C\+I\+\_\+\+C\+S\+R\+\_\+\+D\+\_\+\+PE}~(1$<$$<$31)	/$\ast$ detected parity error; \mbox{\hyperlink{libcsupport_2src_2write_8c_a448dd253ee4c0e3d3b1275df845e7146}{write}} 1 to clear $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a2de88d673b6127ad72b11677e24afeec}\label{vmeUniverse_8h_a2de88d673b6127ad72b11677e24afeec}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+P\+C\+I\+\_\+\+C\+S\+R\+\_\+\+S\+\_\+\+S\+E\+RR}~(1$<$$<$30)	/$\ast$ S\+E\+RR (signalled error) asserted; \mbox{\hyperlink{libcsupport_2src_2write_8c_a448dd253ee4c0e3d3b1275df845e7146}{write}} 1 to clear $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a566f4b83e926ec685bd6e6a9e261e7c1}\label{vmeUniverse_8h_a566f4b83e926ec685bd6e6a9e261e7c1}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+P\+C\+I\+\_\+\+C\+S\+R\+\_\+\+R\+\_\+\+MA}~(1$<$$<$29)	/$\ast$ received master abort; \mbox{\hyperlink{libcsupport_2src_2write_8c_a448dd253ee4c0e3d3b1275df845e7146}{write}} 1 to clear $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_accf302dd8236d759b4732c41677f89fd}\label{vmeUniverse_8h_accf302dd8236d759b4732c41677f89fd}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+P\+C\+I\+\_\+\+C\+S\+R\+\_\+\+R\+\_\+\+TA}~(1$<$$<$28)	/$\ast$ received target abort; \mbox{\hyperlink{libcsupport_2src_2write_8c_a448dd253ee4c0e3d3b1275df845e7146}{write}} 1 to clear $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a2a8571805df749ddeff03b9895ca98a4}\label{vmeUniverse_8h_a2a8571805df749ddeff03b9895ca98a4}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+P\+C\+I\+\_\+\+C\+S\+R\+\_\+\+S\+\_\+\+TA}~(1$<$$<$27)	/$\ast$ signalled target abort; \mbox{\hyperlink{libcsupport_2src_2write_8c_a448dd253ee4c0e3d3b1275df845e7146}{write}} 1 to clear $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a5b28dbd9f30db90800126b93f9e81c7a}\label{vmeUniverse_8h_a5b28dbd9f30db90800126b93f9e81c7a}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+P\+C\+I\+\_\+\+C\+S\+R\+\_\+\+D\+E\+V\+S\+E\+L\+\_\+\+M\+A\+SK}~(3$<$$<$25)	/$\ast$ \mbox{\hyperlink{structdevice}{device}} select timing (RO) $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a7be81c38cc1825c0647d170265e4056b}\label{vmeUniverse_8h_a7be81c38cc1825c0647d170265e4056b}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+P\+C\+I\+\_\+\+C\+S\+R\+\_\+\+D\+P\+\_\+D}~(1$<$$<$24)	/$\ast$ data parity error detected; \mbox{\hyperlink{libcsupport_2src_2write_8c_a448dd253ee4c0e3d3b1275df845e7146}{write}} 1 to clear $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a5d586e1bb0ea969903f712ec0242536c}\label{vmeUniverse_8h_a5d586e1bb0ea969903f712ec0242536c}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+P\+C\+I\+\_\+\+C\+S\+R\+\_\+\+T\+F\+B\+BC}~(1$<$$<$23)	/$\ast$ target fast back to back capable (RO) $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a55b247bff836f94c2d19bc89edeb1538}\label{vmeUniverse_8h_a55b247bff836f94c2d19bc89edeb1538}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+P\+C\+I\+\_\+\+C\+S\+R\+\_\+\+M\+F\+B\+BC}~(1$<$$<$9)	/$\ast$ master fast back to back capable (RO) $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a36bb40df3e41fc7315082b4a7b8cb639}\label{vmeUniverse_8h_a36bb40df3e41fc7315082b4a7b8cb639}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+P\+C\+I\+\_\+\+C\+S\+R\+\_\+\+S\+E\+R\+R\+\_\+\+EN}~(1$<$$<$8)	/$\ast$ enable S\+E\+RR driver $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_ab0ec5d9000558b99a4c44f33f24da5ad}\label{vmeUniverse_8h_ab0ec5d9000558b99a4c44f33f24da5ad}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+P\+C\+I\+\_\+\+C\+S\+R\+\_\+\+W\+A\+IT}~(1$<$$<$7)	/$\ast$ wait cycle \mbox{\hyperlink{structcontrol}{control}} (RO) $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a89847be7b5c027ce732fe85de3564e51}\label{vmeUniverse_8h_a89847be7b5c027ce732fe85de3564e51}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+P\+C\+I\+\_\+\+C\+S\+R\+\_\+\+P\+E\+R\+E\+SP}~(1$<$$<$6)	/$\ast$ parity error response enable $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_acbcb9c4640d406c51e949cdbafedd0a2}\label{vmeUniverse_8h_acbcb9c4640d406c51e949cdbafedd0a2}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+P\+C\+I\+\_\+\+C\+S\+R\+\_\+\+V\+G\+A\+PS}~(1$<$$<$5)	/$\ast$ V\+GA palette snoop (RO) $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_aa4207a6d861a31dbae6c74e5cdadf585}\label{vmeUniverse_8h_aa4207a6d861a31dbae6c74e5cdadf585}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+P\+C\+I\+\_\+\+C\+S\+R\+\_\+\+M\+W\+I\+\_\+\+EN}~(1$<$$<$4)	/$\ast$ Memory \mbox{\hyperlink{libcsupport_2src_2write_8c_a448dd253ee4c0e3d3b1275df845e7146}{write}} and invalidate enable (RO) $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a2b26ce308bccd57529d340e440a9655b}\label{vmeUniverse_8h_a2b26ce308bccd57529d340e440a9655b}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+P\+C\+I\+\_\+\+C\+S\+R\+\_\+\+SC}~(1$<$$<$3)	/$\ast$ special cycles (RO) $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a733fb10e5c396c4ef798464c83feb649}\label{vmeUniverse_8h_a733fb10e5c396c4ef798464c83feb649}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+P\+C\+I\+\_\+\+C\+S\+R\+\_\+\+BM}~(1$<$$<$2)	/$\ast$ master enable (M\+U\+ST S\+ET TO E\+N\+A\+B\+LE V\+ME S\+L\+A\+V\+ES) $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_af43520f8895d4bc403ffc88728a963c4}\label{vmeUniverse_8h_af43520f8895d4bc403ffc88728a963c4}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+P\+C\+I\+\_\+\+C\+S\+R\+\_\+\+MS}~(1$<$$<$1)	/$\ast$ target memory enable $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_aed85f2013ba4018458f7030966b42ae9}\label{vmeUniverse_8h_aed85f2013ba4018458f7030966b42ae9}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+P\+C\+I\+\_\+\+C\+S\+R\+\_\+\+I\+OS}~(1$<$$<$0)	/$\ast$ target \mbox{\hyperlink{structIO}{IO}} enable $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a6059d67e6e1c3945e191b16cc3d06645}\label{vmeUniverse_8h_a6059d67e6e1c3945e191b16cc3d06645}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+R\+E\+G\+O\+F\+F\+\_\+\+S\+C\+Y\+C\+\_\+\+C\+TL}~0x170	/$\ast$ write 0 to disable $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_ad51b9b33e693a32ea3c2b5b6953de726}\label{vmeUniverse_8h_ad51b9b33e693a32ea3c2b5b6953de726}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+S\+C\+Y\+C\+\_\+\+C\+T\+L\+\_\+\+L\+A\+S\+\_\+\+IO}~(1$<$$<$2)	/$\ast$ P\+CI address space (1\+: \mbox{\hyperlink{structIO}{IO}}, 0\+: mem) $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_ae7abf73066370ef4eaa12ea673ee89ca}\label{vmeUniverse_8h_ae7abf73066370ef4eaa12ea673ee89ca}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+S\+C\+Y\+C\+\_\+\+C\+T\+L\+\_\+\+S\+C\+Y\+C\+\_\+\+R\+MW}~(1$<$$<$0)	/$\ast$ do a R\+MW cycle when reading  P\+CI address $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a687ba0a89fdf07d04d071b34325712f5}\label{vmeUniverse_8h_a687ba0a89fdf07d04d071b34325712f5}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+S\+C\+Y\+C\+\_\+\+C\+T\+L\+\_\+\+S\+C\+Y\+C\+\_\+\+A\+D\+OH}~(2$<$$<$0)	/$\ast$ do a A\+D\+OH cycle when reading/writing  P\+CI address $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a4e213ce136efed5fe74c98f047478dfd}\label{vmeUniverse_8h_a4e213ce136efed5fe74c98f047478dfd}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+R\+E\+G\+O\+F\+F\+\_\+\+S\+C\+Y\+C\+\_\+\+A\+D\+DR}~0x174	/$\ast$ P\+C\+I address (must be long word aligned) $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a2ade5e9a2efccee3a20baefdc3a10841}\label{vmeUniverse_8h_a2ade5e9a2efccee3a20baefdc3a10841}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+R\+E\+G\+O\+F\+F\+\_\+\+S\+C\+Y\+C\+\_\+\+EN}~0x178	/$\ast$ mask determining the bits involved in the compare and swap operations for V\+M\+E R\+M\+W cycles $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_af8ca8a151a80e60db939db4640c0939d}\label{vmeUniverse_8h_af8ca8a151a80e60db939db4640c0939d}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+R\+E\+G\+O\+F\+F\+\_\+\+S\+C\+Y\+C\+\_\+\+C\+MP}~0x17c	/$\ast$ data to compare with word returned from V\+M\+E R\+M\+W read $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a0f60dbde8961b7ac0588d0d9e435572d}\label{vmeUniverse_8h_a0f60dbde8961b7ac0588d0d9e435572d}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+R\+E\+G\+O\+F\+F\+\_\+\+S\+C\+Y\+C\+\_\+\+S\+WP}~0x180	/$\ast$ If enabled bits of C\+M\+P match, corresponding S\+W\+P bits are written back to V\+M\+E (under control of E\+N) $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a0e87150d0bbcf342d13ca3b4581e85c3}\label{vmeUniverse_8h_a0e87150d0bbcf342d13ca3b4581e85c3}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+R\+E\+G\+O\+F\+F\+\_\+\+L\+M\+I\+SC}~0x184
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a628bab02aec2e3630e4c5d88029a1a53}\label{vmeUniverse_8h_a628bab02aec2e3630e4c5d88029a1a53}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+L\+M\+I\+S\+C\+\_\+\+C\+R\+T\+\_\+\+M\+A\+SK}~(7$<$$<$28)	/$\ast$ Univ. I only, not used on II $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a9f8a42500c8906defcfb97d05ed9854c}\label{vmeUniverse_8h_a9f8a42500c8906defcfb97d05ed9854c}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+L\+M\+I\+S\+C\+\_\+\+C\+R\+T\+\_\+\+I\+NF}~(0$<$$<$28)	/$\ast$ Coupled Request Timeout $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_acac0d7903a332dfb5c8b1be50f1fb1b4}\label{vmeUniverse_8h_acac0d7903a332dfb5c8b1be50f1fb1b4}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+L\+M\+I\+S\+C\+\_\+\+C\+R\+T\+\_\+128\+\_\+\+US}~(1$<$$<$28)	/$\ast$ Coupled Request Timeout $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a687885c0b5c68add59db190fcb0a2269}\label{vmeUniverse_8h_a687885c0b5c68add59db190fcb0a2269}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+L\+M\+I\+S\+C\+\_\+\+C\+R\+T\+\_\+256\+\_\+\+US}~(2$<$$<$28)	/$\ast$ Coupled Request Timeout $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a5906c6fcc5801dae06821222f9d6f0b8}\label{vmeUniverse_8h_a5906c6fcc5801dae06821222f9d6f0b8}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+L\+M\+I\+S\+C\+\_\+\+C\+R\+T\+\_\+512\+\_\+\+US}~(3$<$$<$28)	/$\ast$ Coupled Request Timeout $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a7085bc687550bc33723552666fed4dd3}\label{vmeUniverse_8h_a7085bc687550bc33723552666fed4dd3}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+L\+M\+I\+S\+C\+\_\+\+C\+R\+T\+\_\+1024\+\_\+\+US}~(4$<$$<$28)	/$\ast$ Coupled Request Timeout $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a1abc4513dc041715c193615a98158714}\label{vmeUniverse_8h_a1abc4513dc041715c193615a98158714}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+L\+M\+I\+S\+C\+\_\+\+C\+R\+T\+\_\+2048\+\_\+\+US}~(5$<$$<$28)	/$\ast$ Coupled Request Timeout $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a59a3c5112ac3093c56fa035ae7d4a0e3}\label{vmeUniverse_8h_a59a3c5112ac3093c56fa035ae7d4a0e3}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+L\+M\+I\+S\+C\+\_\+\+C\+R\+T\+\_\+4096\+\_\+\+US}~(6$<$$<$28)	/$\ast$ Coupled Request Timeout $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a8c6a561185a353d6ebe622665531efcc}\label{vmeUniverse_8h_a8c6a561185a353d6ebe622665531efcc}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+L\+M\+I\+S\+C\+\_\+\+C\+W\+T\+\_\+\+M\+A\+SK}~(7$<$$<$24)	/$\ast$ coupled window timer $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a1bfa8cfd7b1cc772ac202fc9fa651d7d}\label{vmeUniverse_8h_a1bfa8cfd7b1cc772ac202fc9fa651d7d}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+L\+M\+I\+S\+C\+\_\+\+C\+W\+T\+\_\+\+D\+I\+S\+A\+B\+LE}~0	/$\ast$ disabled (release V\+ME after 1 coupled xaction) $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a00366b54713a2b855c8ab22d05db355c}\label{vmeUniverse_8h_a00366b54713a2b855c8ab22d05db355c}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+L\+M\+I\+S\+C\+\_\+\+C\+W\+T\+\_\+16}~(1$<$$<$24)	/$\ast$ 16 P\+CI clock cycles $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a3c6f077187c98e6bdce4a3f45257ec78}\label{vmeUniverse_8h_a3c6f077187c98e6bdce4a3f45257ec78}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+L\+M\+I\+S\+C\+\_\+\+C\+W\+T\+\_\+32}~(2$<$$<$24)	/$\ast$ 32 P\+CI clock cycles $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_ab755115f12c0bbfb51ed1f817b40bb0c}\label{vmeUniverse_8h_ab755115f12c0bbfb51ed1f817b40bb0c}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+L\+M\+I\+S\+C\+\_\+\+C\+W\+T\+\_\+64}~(3$<$$<$24)	/$\ast$ 64 P\+CI clock cycles $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_ae0d370d584986d47bc10094c29bdba6e}\label{vmeUniverse_8h_ae0d370d584986d47bc10094c29bdba6e}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+L\+M\+I\+S\+C\+\_\+\+C\+W\+T\+\_\+128}~(4$<$$<$24)	/$\ast$ 128 P\+CI clock cycles $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a823001cabc49fcdfee84e41c938cada5}\label{vmeUniverse_8h_a823001cabc49fcdfee84e41c938cada5}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+L\+M\+I\+S\+C\+\_\+\+C\+W\+T\+\_\+256}~(5$<$$<$24)	/$\ast$ 256 P\+CI clock cycles $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_ac1588a536db20cf09f407e6a490cbd7e}\label{vmeUniverse_8h_ac1588a536db20cf09f407e6a490cbd7e}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+L\+M\+I\+S\+C\+\_\+\+C\+W\+T\+\_\+512}~(6$<$$<$24)	/$\ast$ 512 P\+CI clock cycles $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a572d39a8a8b919df7b741f06d77d2819}\label{vmeUniverse_8h_a572d39a8a8b919df7b741f06d77d2819}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+R\+E\+G\+O\+F\+F\+\_\+\+L\+\_\+\+C\+M\+D\+E\+RR}~0x18c
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a926fbddfac81bab66f8f90e30431b97f}\label{vmeUniverse_8h_a926fbddfac81bab66f8f90e30431b97f}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+L\+\_\+\+C\+M\+D\+E\+R\+R\+\_\+\+C\+M\+D\+E\+RR}(reg)~(((reg)$>$$>$28)\&0xf) /$\ast$ extract P\+C\+I cmd error log $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a505174a985c5a4e524da80a72ecb4259}\label{vmeUniverse_8h_a505174a985c5a4e524da80a72ecb4259}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+L\+\_\+\+C\+M\+D\+E\+R\+R\+\_\+\+M\+\_\+\+E\+RR}~(1$<$$<$27)	/$\ast$ multiple errors have occurred $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_ad4ae0381bccca16d5c0e7ff5b2da98f3}\label{vmeUniverse_8h_ad4ae0381bccca16d5c0e7ff5b2da98f3}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+L\+\_\+\+C\+M\+D\+E\+R\+R\+\_\+\+L\+\_\+\+S\+T\+AT}~(1$<$$<$23)	/$\ast$ P\+CI error log status valid (\mbox{\hyperlink{libcsupport_2src_2write_8c_a448dd253ee4c0e3d3b1275df845e7146}{write}} 1 to clear and enable logging) $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a81e7c568ca3cbabc3ab950afa9cb8388}\label{vmeUniverse_8h_a81e7c568ca3cbabc3ab950afa9cb8388}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+R\+E\+G\+O\+F\+F\+\_\+\+L\+A\+E\+RR}~0x190	/$\ast$ P\+C\+I fault address (if L\+\_\+\+C\+M\+D\+E\+R\+R\+\_\+\+L\+\_\+\+S\+T\+A\+T valid) $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a60f1286c988466b36dd6b8f5863505e6}\label{vmeUniverse_8h_a60f1286c988466b36dd6b8f5863505e6}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+R\+E\+G\+O\+F\+F\+\_\+\+D\+C\+TL}~0x200
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_ae829577e3b2f4d4f7553e934185729fe}\label{vmeUniverse_8h_ae829577e3b2f4d4f7553e934185729fe}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+D\+C\+T\+L\+\_\+\+L2V}~(1$<$$<$31)	/$\ast$ P\+CI-\/$>$V\+ME if set $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_ac826b430246c6c2fe76bd8957b129605}\label{vmeUniverse_8h_ac826b430246c6c2fe76bd8957b129605}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+D\+C\+T\+L\+\_\+\+V\+D\+W\+\_\+\+M\+SK}~(3$<$$<$22)	/$\ast$ V\+ME max. width mask 0x00c00000 $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a8bf646c54dc790ca20ebeae247971e45}\label{vmeUniverse_8h_a8bf646c54dc790ca20ebeae247971e45}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+D\+C\+T\+L\+\_\+\+V\+D\+W\+\_\+8}~(0$<$$<$22)	/$\ast$ V\+ME max. width 8 $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a169e7813b3dd3b98e1f885052bb46148}\label{vmeUniverse_8h_a169e7813b3dd3b98e1f885052bb46148}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+D\+C\+T\+L\+\_\+\+V\+D\+W\+\_\+16}~(1$<$$<$22)	/$\ast$ V\+ME max. width 16 $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a497e935fd1c49d76c43640d94f841354}\label{vmeUniverse_8h_a497e935fd1c49d76c43640d94f841354}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+D\+C\+T\+L\+\_\+\+V\+D\+W\+\_\+32}~(2$<$$<$22)	/$\ast$ V\+ME max. width 32 $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_aa8a9bc67df1c1df3d3d7c159d548e178}\label{vmeUniverse_8h_aa8a9bc67df1c1df3d3d7c159d548e178}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+D\+C\+T\+L\+\_\+\+V\+D\+W\+\_\+64}~(3$<$$<$22)	/$\ast$ V\+ME max. width 64 $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a13753bbb9249f11b339fe12eb4cc571d}\label{vmeUniverse_8h_a13753bbb9249f11b339fe12eb4cc571d}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+D\+C\+T\+L\+\_\+\+V\+A\+S\+\_\+\+M\+SK}~(7$<$$<$16)	/$\ast$ V\+ME AS mask 0x00070000 $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_aa83d8946a81a698d1ad3c31a43d81a22}\label{vmeUniverse_8h_aa83d8946a81a698d1ad3c31a43d81a22}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+D\+C\+T\+L\+\_\+\+V\+A\+S\+\_\+\+A16}~(0$<$$<$16)	/$\ast$ V\+ME A16 $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_af447c883b0bcfa5dcd56df98ce3cee69}\label{vmeUniverse_8h_af447c883b0bcfa5dcd56df98ce3cee69}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+D\+C\+T\+L\+\_\+\+V\+A\+S\+\_\+\+A24}~(1$<$$<$16)	/$\ast$ V\+ME A24 $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a8f4365d7123bff6c260a6fbe59cd947d}\label{vmeUniverse_8h_a8f4365d7123bff6c260a6fbe59cd947d}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+D\+C\+T\+L\+\_\+\+V\+A\+S\+\_\+\+A32}~(2$<$$<$16)	/$\ast$ V\+ME A32 $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_af3ddf49f6434a4c5564c5ea9c7980dbf}\label{vmeUniverse_8h_af3ddf49f6434a4c5564c5ea9c7980dbf}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+D\+C\+T\+L\+\_\+\+P\+G\+M\+\_\+\+M\+SK}~(3$<$$<$14)	/$\ast$ V\+ME P\+GM/D\+A\+TA mask 0x0000c000 $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_ae7d344e5c042dba22ad6958acf98b18d}\label{vmeUniverse_8h_ae7d344e5c042dba22ad6958acf98b18d}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+D\+C\+T\+L\+\_\+\+P\+GM}~(1$<$$<$14)	/$\ast$ V\+ME P\+GM(1)/D\+A\+TA(0) $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a84da7fcef48527ae6617393bcd28456b}\label{vmeUniverse_8h_a84da7fcef48527ae6617393bcd28456b}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+D\+C\+T\+L\+\_\+\+S\+U\+P\+E\+R\+\_\+\+M\+SK}~(3$<$$<$12)	/$\ast$ V\+ME S\+U\+P\+ER/U\+SR mask 0x00003000 $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a2a26544492e78fd2712c13829ed74d30}\label{vmeUniverse_8h_a2a26544492e78fd2712c13829ed74d30}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+D\+C\+T\+L\+\_\+\+S\+U\+P\+ER}~(1$<$$<$12)	/$\ast$ V\+ME S\+U\+P\+ER(1)/U\+SR(0) $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_afe0c5ab98e9402128cb49c0e1bd2a7ca}\label{vmeUniverse_8h_afe0c5ab98e9402128cb49c0e1bd2a7ca}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+D\+C\+T\+L\+\_\+\+N\+O\+\_\+\+V\+I\+NC}~(1$<$$<$9)	/$\ast$ V\+ME no V\+ME address increment \mbox{[}Universe I\+Ia/b O\+N\+LY $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_aadfe2908d3e46eb9ad86c2646bd7e11a}\label{vmeUniverse_8h_aadfe2908d3e46eb9ad86c2646bd7e11a}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+D\+C\+T\+L\+\_\+\+V\+CT}~(1$<$$<$8)	/$\ast$ V\+ME enable B\+LT $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a2572f1879d2095cc7c33d99aaef31ffc}\label{vmeUniverse_8h_a2572f1879d2095cc7c33d99aaef31ffc}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+D\+C\+T\+L\+\_\+\+L\+D64\+EN}~(1$<$$<$7)	/$\ast$ P\+CI 64 enable  $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a154acdfefb545584fe2efa11775675a2}\label{vmeUniverse_8h_a154acdfefb545584fe2efa11775675a2}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+R\+E\+G\+O\+F\+F\+\_\+\+D\+T\+BC}~0x204
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_af4a1f1de3a83330c17c36662d3b1d6b9}\label{vmeUniverse_8h_af4a1f1de3a83330c17c36662d3b1d6b9}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+R\+E\+G\+O\+F\+F\+\_\+\+D\+LA}~0x208
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a9897aa25d4bf60d3325f0d71d5ce57ea}\label{vmeUniverse_8h_a9897aa25d4bf60d3325f0d71d5ce57ea}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+R\+E\+G\+O\+F\+F\+\_\+\+D\+VA}~0x210
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a89cd6c6eddc317189e921a7dfad8984e}\label{vmeUniverse_8h_a89cd6c6eddc317189e921a7dfad8984e}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+R\+E\+G\+O\+F\+F\+\_\+\+D\+C\+PP}~0x218
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a8209563cc427cdbd3fb53e6bb5c15389}\label{vmeUniverse_8h_a8209563cc427cdbd3fb53e6bb5c15389}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+D\+C\+P\+P\+\_\+\+I\+M\+G\+\_\+\+N\+U\+LL}~(1$<$$<$0)	/$\ast$ last \mbox{\hyperlink{structpacket}{packet}} in list $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_ac0163b91b11e11bca9f3388f21416223}\label{vmeUniverse_8h_ac0163b91b11e11bca9f3388f21416223}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+D\+C\+P\+P\+\_\+\+I\+M\+G\+\_\+\+P\+R\+O\+C\+E\+S\+S\+ED}~(1$<$$<$1)	/$\ast$ \mbox{\hyperlink{structpacket}{packet}} processed $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_aec013d5e9f9a6ff4de4d3f985865abaf}\label{vmeUniverse_8h_aec013d5e9f9a6ff4de4d3f985865abaf}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+R\+E\+G\+O\+F\+F\+\_\+\+D\+G\+CS}~0x220
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a661c05d3f3ddb9396626978eecf207be}\label{vmeUniverse_8h_a661c05d3f3ddb9396626978eecf207be}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+D\+G\+C\+S\+\_\+\+GO}~(1$<$$<$31)	/$\ast$ start xfer $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_ac393f3cb5f72313ee434c5ca5961bf91}\label{vmeUniverse_8h_ac393f3cb5f72313ee434c5ca5961bf91}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+D\+G\+C\+S\+\_\+\+S\+T\+O\+P\+\_\+\+R\+EQ}~(1$<$$<$30) /$\ast$ stop xfer (immediate abort) $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a18f4792f698c006bfbbc3f8a489d41cf}\label{vmeUniverse_8h_a18f4792f698c006bfbbc3f8a489d41cf}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+D\+G\+C\+S\+\_\+\+H\+A\+L\+T\+\_\+\+R\+EQ}~(1$<$$<$29) /$\ast$ halt xfer (abort after current \mbox{\hyperlink{structpacket}{packet}}) $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_ad78154dcc1d7cf78ec89c806af4a642e}\label{vmeUniverse_8h_ad78154dcc1d7cf78ec89c806af4a642e}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+D\+G\+C\+S\+\_\+\+C\+H\+A\+IN}~(1$<$$<$27) /$\ast$ enable linked list mode $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a4c6b2699f5c0d082ea5cd928585cf9a3}\label{vmeUniverse_8h_a4c6b2699f5c0d082ea5cd928585cf9a3}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+D\+G\+C\+S\+\_\+\+V\+O\+N\+\_\+\+M\+SK}~(7$<$$<$20) /$\ast$ V\+ON mask $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a22477ac7842f65e3fe564a397825ec40}\label{vmeUniverse_8h_a22477ac7842f65e3fe564a397825ec40}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+D\+G\+C\+S\+\_\+\+V\+O\+N\+\_\+\+D\+O\+NE}~(0$<$$<$20) /$\ast$ V\+ON counter disabled (do until done) $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a73e89f859837f881184d36f7aa7edecc}\label{vmeUniverse_8h_a73e89f859837f881184d36f7aa7edecc}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+D\+G\+C\+S\+\_\+\+V\+O\+N\+\_\+256}~(1$<$$<$20) /$\ast$ V\+ON yield bus after 256 bytes $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a6890da6be784a3c0828e3b0d77e80bfa}\label{vmeUniverse_8h_a6890da6be784a3c0828e3b0d77e80bfa}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+D\+G\+C\+S\+\_\+\+V\+O\+N\+\_\+512}~(2$<$$<$20) /$\ast$ V\+ON yield bus after 512 bytes $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a874e5ff27959bfa6af7b6ad4f44bc1c2}\label{vmeUniverse_8h_a874e5ff27959bfa6af7b6ad4f44bc1c2}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+D\+G\+C\+S\+\_\+\+V\+O\+N\+\_\+1024}~(3$<$$<$20) /$\ast$ V\+ON yield bus after 1024 bytes $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a582ec341497e98c8ea2e1e7205e842ab}\label{vmeUniverse_8h_a582ec341497e98c8ea2e1e7205e842ab}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+D\+G\+C\+S\+\_\+\+V\+O\+N\+\_\+2048}~(4$<$$<$20) /$\ast$ V\+ON yield bus after 2048 bytes $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a79697ab253b60acccabb242dbe9b394a}\label{vmeUniverse_8h_a79697ab253b60acccabb242dbe9b394a}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+D\+G\+C\+S\+\_\+\+V\+O\+N\+\_\+4096}~(5$<$$<$20) /$\ast$ V\+ON yield bus after 4096 bytes $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_ae023b2877b72a8842018cd0b4054bbae}\label{vmeUniverse_8h_ae023b2877b72a8842018cd0b4054bbae}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+D\+G\+C\+S\+\_\+\+V\+O\+N\+\_\+8192}~(6$<$$<$20) /$\ast$ V\+ON yield bus after 8192 bytes $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_adfc3315dd3767827f15a3588fdfe9288}\label{vmeUniverse_8h_adfc3315dd3767827f15a3588fdfe9288}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+D\+G\+C\+S\+\_\+\+V\+O\+N\+\_\+16384}~(7$<$$<$20) /$\ast$ V\+ON yield bus after 16384 bytes $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a5420cd1d52e1d465f283c056a7150f91}\label{vmeUniverse_8h_a5420cd1d52e1d465f283c056a7150f91}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+D\+G\+C\+S\+\_\+\+V\+O\+F\+F\+\_\+\+M\+SK}~(15$<$$<$16) /$\ast$ V\+O\+FF mask $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_abd7a34f037a9e703b87d8c9bb2e665c5}\label{vmeUniverse_8h_abd7a34f037a9e703b87d8c9bb2e665c5}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+D\+G\+C\+S\+\_\+\+V\+O\+F\+F\+\_\+0\+\_\+\+US}~(0$<$$<$16)	/$\ast$ re-\/request V\+ME master after 0 us $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a8f1458cdabba9c94264f329531eac850}\label{vmeUniverse_8h_a8f1458cdabba9c94264f329531eac850}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+D\+G\+C\+S\+\_\+\+V\+O\+F\+F\+\_\+2\+\_\+\+US}~(8$<$$<$16)	/$\ast$ re-\/request V\+ME master after 2 us $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a2ad6ae0c908406106a9e205237f2fe40}\label{vmeUniverse_8h_a2ad6ae0c908406106a9e205237f2fe40}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+D\+G\+C\+S\+\_\+\+V\+O\+F\+F\+\_\+4\+\_\+\+US}~(9$<$$<$16)	/$\ast$ re-\/request V\+ME master after 4 us $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a3bb5cf3005ae52cb8a833732d4adb99e}\label{vmeUniverse_8h_a3bb5cf3005ae52cb8a833732d4adb99e}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+D\+G\+C\+S\+\_\+\+V\+O\+F\+F\+\_\+8\+\_\+\+US}~(10$<$$<$16)/$\ast$ re-\/request V\+ME master after 8 us $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a50072012720961927d4176bcc2a49392}\label{vmeUniverse_8h_a50072012720961927d4176bcc2a49392}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+D\+G\+C\+S\+\_\+\+V\+O\+F\+F\+\_\+16\+\_\+\+US}~(1$<$$<$16)	/$\ast$ re-\/request V\+ME master after 16 us $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_af45135cba1f7052e1f9271e08f39e7e7}\label{vmeUniverse_8h_af45135cba1f7052e1f9271e08f39e7e7}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+D\+G\+C\+S\+\_\+\+V\+O\+F\+F\+\_\+32\+\_\+\+US}~(2$<$$<$16)	/$\ast$ re-\/request V\+ME master after 32 us $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a7564eff53a496f95cd585ab1a3363bcc}\label{vmeUniverse_8h_a7564eff53a496f95cd585ab1a3363bcc}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+D\+G\+C\+S\+\_\+\+V\+O\+F\+F\+\_\+64\+\_\+\+US}~(3$<$$<$16)	/$\ast$ re-\/request V\+ME master after 64 us $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_ac2861359583ac04d44df2805798b30c4}\label{vmeUniverse_8h_ac2861359583ac04d44df2805798b30c4}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+D\+G\+C\+S\+\_\+\+V\+O\+F\+F\+\_\+128\+\_\+\+US}~(4$<$$<$16)	/$\ast$ re-\/request V\+ME master after 128 us $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_aac4e46acd489fd5e021a9e286d700243}\label{vmeUniverse_8h_aac4e46acd489fd5e021a9e286d700243}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+D\+G\+C\+S\+\_\+\+V\+O\+F\+F\+\_\+256\+\_\+\+US}~(5$<$$<$16)	/$\ast$ re-\/request V\+ME master after 256 us $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a2c50475aa2c320e7897d84659d1feed5}\label{vmeUniverse_8h_a2c50475aa2c320e7897d84659d1feed5}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+D\+G\+C\+S\+\_\+\+V\+O\+F\+F\+\_\+512\+\_\+\+US}~(6$<$$<$16)	/$\ast$ re-\/request V\+ME master after 512 us $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a2f5cd7cc6e2c8817c361e5740b3ac42a}\label{vmeUniverse_8h_a2f5cd7cc6e2c8817c361e5740b3ac42a}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+D\+G\+C\+S\+\_\+\+V\+O\+F\+F\+\_\+1024\+\_\+\+US}~(7$<$$<$16)	/$\ast$ re-\/request V\+ME master after 1024 us $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a29cfbfeecc6849819e428bc2b58be220}\label{vmeUniverse_8h_a29cfbfeecc6849819e428bc2b58be220}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+D\+G\+C\+S\+\_\+\+A\+CT}~(1$<$$<$15)	/$\ast$ D\+MA active $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a4a6e9c53bc1a4a083425379afc11f3e2}\label{vmeUniverse_8h_a4a6e9c53bc1a4a083425379afc11f3e2}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+D\+G\+C\+S\+\_\+\+S\+T\+OP}~(1$<$$<$14)	/$\ast$ D\+MA stopped $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a515791536ed537aab7eef820172b4947}\label{vmeUniverse_8h_a515791536ed537aab7eef820172b4947}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+D\+G\+C\+S\+\_\+\+H\+A\+LT}~(1$<$$<$13)	/$\ast$ D\+MA halted $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a9606849013ac33632f2d8f95f7095a0f}\label{vmeUniverse_8h_a9606849013ac33632f2d8f95f7095a0f}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+D\+G\+C\+S\+\_\+\+D\+O\+NE}~(1$<$$<$11)	/$\ast$ D\+MA done (OK) $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a91584eae7eaf878beceb7860fdfc3754}\label{vmeUniverse_8h_a91584eae7eaf878beceb7860fdfc3754}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+D\+G\+C\+S\+\_\+\+L\+E\+RR}~(1$<$$<$10)	/$\ast$ P\+CI bus error $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a633b27fad230f1c46a36f0694b273273}\label{vmeUniverse_8h_a633b27fad230f1c46a36f0694b273273}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+D\+G\+C\+S\+\_\+\+V\+E\+RR}~(1$<$$<$9)	/$\ast$ V\+ME bus error $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a40f938791c547f2d40aefb8a2471fd50}\label{vmeUniverse_8h_a40f938791c547f2d40aefb8a2471fd50}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+D\+G\+C\+S\+\_\+\+P\+\_\+\+E\+RR}~(1$<$$<$8)	/$\ast$ programming protocol error (e.\+g. P\+CI master disabled) $\ast$/
+\item 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+D\+G\+C\+S\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+L\+E\+AR}
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a40f938791c547f2d40aefb8a2471fd50}\label{vmeUniverse_8h_a40f938791c547f2d40aefb8a2471fd50}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+D\+G\+C\+S\+\_\+\+P\+\_\+\+E\+RR}~(1$<$$<$8)	/$\ast$ programming protocol error (e.\+g. P\+CI master disabled) $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a8d53c79a33b0ae8a7ffdc577a09d16fc}\label{vmeUniverse_8h_a8d53c79a33b0ae8a7ffdc577a09d16fc}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+D\+G\+C\+S\+\_\+\+I\+N\+T\+\_\+\+S\+T\+OP}~(1$<$$<$6)	/$\ast$ interrupt when stopped $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_adaaee14b6333a38b7b42a351dfeb1a48}\label{vmeUniverse_8h_adaaee14b6333a38b7b42a351dfeb1a48}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+D\+G\+C\+S\+\_\+\+I\+N\+T\+\_\+\+H\+A\+LT}~(1$<$$<$5)  /$\ast$ interrupt when halted $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_afacc034bd0509e7dd42a80fd3f4345c8}\label{vmeUniverse_8h_afacc034bd0509e7dd42a80fd3f4345c8}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+D\+G\+C\+S\+\_\+\+I\+N\+T\+\_\+\+D\+O\+NE}~(1$<$$<$3)	/$\ast$ interrupt when done $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a577e6ed0a35ccace2745a68cf6282c95}\label{vmeUniverse_8h_a577e6ed0a35ccace2745a68cf6282c95}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+D\+G\+C\+S\+\_\+\+I\+N\+T\+\_\+\+L\+E\+RR}~(1$<$$<$2)	/$\ast$ interrupt on L\+E\+RR $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a5e607fa67ff060d9fc74da9e3af54069}\label{vmeUniverse_8h_a5e607fa67ff060d9fc74da9e3af54069}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+D\+G\+C\+S\+\_\+\+I\+N\+T\+\_\+\+V\+E\+RR}~(1$<$$<$1)	/$\ast$ interrupt on V\+E\+RR $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_ac5aa7b9e921c913ff409285dff24c756}\label{vmeUniverse_8h_ac5aa7b9e921c913ff409285dff24c756}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+D\+G\+C\+S\+\_\+\+I\+N\+T\+\_\+\+P\+\_\+\+E\+RR}~(1$<$$<$0)	/$\ast$ interrupt on P\+\_\+\+E\+RR $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a25d6ddcbdb4b1663af457e546a945895}\label{vmeUniverse_8h_a25d6ddcbdb4b1663af457e546a945895}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+D\+G\+C\+S\+\_\+\+I\+N\+T\+\_\+\+M\+SK}~(0x0000006f) /$\ast$ interrupt mask $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a186f3ffd2c1fb7fd24589b81936c59aa}\label{vmeUniverse_8h_a186f3ffd2c1fb7fd24589b81936c59aa}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+R\+E\+G\+O\+F\+F\+\_\+\+D\+\_\+\+L\+L\+UE}~0x224
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a9a9f03b1ec37553491e9ccfd2436a87f}\label{vmeUniverse_8h_a9a9f03b1ec37553491e9ccfd2436a87f}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+D\+\_\+\+L\+L\+U\+E\+\_\+\+U\+P\+D\+A\+TE}~(1$<$$<$31)
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a55bb270a0f2875a95c9f7a128d4c071c}\label{vmeUniverse_8h_a55bb270a0f2875a95c9f7a128d4c071c}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+R\+E\+G\+O\+F\+F\+\_\+\+L\+I\+N\+T\+\_\+\+EN}~0x300
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a1b558810fd268c60ee3e54ec5b76df16}\label{vmeUniverse_8h_a1b558810fd268c60ee3e54ec5b76df16}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+L\+I\+N\+T\+\_\+\+E\+N\+\_\+\+L\+M3}~(1$<$$<$23)	/$\ast$ location monitor 3 mask $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a3ea213ace3715bb7c321519faa3250e6}\label{vmeUniverse_8h_a3ea213ace3715bb7c321519faa3250e6}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+L\+I\+N\+T\+\_\+\+E\+N\+\_\+\+L\+M2}~(1$<$$<$22)	/$\ast$ location monitor 2 mask $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_ae7dcfaffaed8f0bd1d14c190d5db9638}\label{vmeUniverse_8h_ae7dcfaffaed8f0bd1d14c190d5db9638}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+L\+I\+N\+T\+\_\+\+E\+N\+\_\+\+L\+M1}~(1$<$$<$21)	/$\ast$ location monitor 1 mask $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a8900becd3a6d646b6d3e5564defb40e2}\label{vmeUniverse_8h_a8900becd3a6d646b6d3e5564defb40e2}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+L\+I\+N\+T\+\_\+\+E\+N\+\_\+\+L\+M0}~(1$<$$<$20)	/$\ast$ location monitor 0 mask $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_aa1c523ce954f7dba4d7a28d71448a14a}\label{vmeUniverse_8h_aa1c523ce954f7dba4d7a28d71448a14a}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+L\+I\+N\+T\+\_\+\+E\+N\+\_\+\+M\+B\+O\+X3}~(1$<$$<$19)	/$\ast$ mailbox 3 mask $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_af6fee95973c56c9b700562422d0e103f}\label{vmeUniverse_8h_af6fee95973c56c9b700562422d0e103f}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+L\+I\+N\+T\+\_\+\+E\+N\+\_\+\+M\+B\+O\+X2}~(1$<$$<$18)	/$\ast$ mailbox 2 mask $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_af55bd89f2020236009639a4c5a61d8f8}\label{vmeUniverse_8h_af55bd89f2020236009639a4c5a61d8f8}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+L\+I\+N\+T\+\_\+\+E\+N\+\_\+\+M\+B\+O\+X1}~(1$<$$<$17)	/$\ast$ mailbox 1 mask $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_af09ad7bd82f01e9dbe4a28085981b5ea}\label{vmeUniverse_8h_af09ad7bd82f01e9dbe4a28085981b5ea}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+L\+I\+N\+T\+\_\+\+E\+N\+\_\+\+M\+B\+O\+X0}~(1$<$$<$16)	/$\ast$ mailbox 0 mask $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a8e3f67031c7cb8f2e9dc3fc5b8d788d4}\label{vmeUniverse_8h_a8e3f67031c7cb8f2e9dc3fc5b8d788d4}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+L\+I\+N\+T\+\_\+\+E\+N\+\_\+\+A\+C\+F\+A\+IL}~(1$<$$<$15)	/$\ast$ A\+C\+F\+A\+IL irq mask $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a2c52936642946addfc1286f68c0f14fe}\label{vmeUniverse_8h_a2c52936642946addfc1286f68c0f14fe}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+L\+I\+N\+T\+\_\+\+E\+N\+\_\+\+S\+Y\+S\+F\+A\+IL}~(1$<$$<$14)	/$\ast$ S\+Y\+S\+F\+A\+IL irq mask $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a226ae2aceca3591218487c1a36085d15}\label{vmeUniverse_8h_a226ae2aceca3591218487c1a36085d15}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+L\+I\+N\+T\+\_\+\+E\+N\+\_\+\+S\+W\+\_\+\+I\+NT}~(1$<$$<$13)	/$\ast$ P\+CI (local) software irq $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_abf5fdd2e301ccad0717242d3a823fa98}\label{vmeUniverse_8h_abf5fdd2e301ccad0717242d3a823fa98}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+L\+I\+N\+T\+\_\+\+E\+N\+\_\+\+S\+W\+\_\+\+I\+A\+CK}~(1$<$$<$12)	/$\ast$ V\+ME software I\+A\+CK mask $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a3e394702e90eebe5fee7932bdcdbdef6}\label{vmeUniverse_8h_a3e394702e90eebe5fee7932bdcdbdef6}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+L\+I\+N\+T\+\_\+\+E\+N\+\_\+\+V\+E\+RR}~(1$<$$<$10)	/$\ast$ P\+CI V\+E\+RR irq mask $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_ab8d004fc4fd8f8d8cfa80426da002be8}\label{vmeUniverse_8h_ab8d004fc4fd8f8d8cfa80426da002be8}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+L\+I\+N\+T\+\_\+\+E\+N\+\_\+\+L\+E\+RR}~(1$<$$<$9)	/$\ast$ P\+CI L\+E\+RR irq mask $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_ae7ed5846eb91e423144ef521092a016d}\label{vmeUniverse_8h_ae7ed5846eb91e423144ef521092a016d}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+L\+I\+N\+T\+\_\+\+E\+N\+\_\+\+D\+MA}~(1$<$$<$8)	/$\ast$ P\+CI D\+MA irq mask $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a50552dc658bd95b7826954055690ee57}\label{vmeUniverse_8h_a50552dc658bd95b7826954055690ee57}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+L\+I\+N\+T\+\_\+\+E\+N\+\_\+\+V\+I\+R\+Q7}~(1$<$$<$7)	/$\ast$ V\+I\+R\+Q7 mask (universe does I\+A\+CK automatically) $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_ab1b53c7b204c30b9ce7d545e86577ee7}\label{vmeUniverse_8h_ab1b53c7b204c30b9ce7d545e86577ee7}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+L\+I\+N\+T\+\_\+\+E\+N\+\_\+\+V\+I\+R\+Q6}~(1$<$$<$6)	/$\ast$ V\+I\+R\+Q6 mask $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a6bc4586a1cf2d4f2cb640c0cb587701b}\label{vmeUniverse_8h_a6bc4586a1cf2d4f2cb640c0cb587701b}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+L\+I\+N\+T\+\_\+\+E\+N\+\_\+\+V\+I\+R\+Q5}~(1$<$$<$5)	/$\ast$ V\+I\+R\+Q5 mask $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a233d68b1757dc292336d57cdc4b6640d}\label{vmeUniverse_8h_a233d68b1757dc292336d57cdc4b6640d}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+L\+I\+N\+T\+\_\+\+E\+N\+\_\+\+V\+I\+R\+Q4}~(1$<$$<$4)	/$\ast$ V\+I\+R\+Q4 mask $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a3fb7d52cb00ac48c38f970a0f5623680}\label{vmeUniverse_8h_a3fb7d52cb00ac48c38f970a0f5623680}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+L\+I\+N\+T\+\_\+\+E\+N\+\_\+\+V\+I\+R\+Q3}~(1$<$$<$3)	/$\ast$ V\+I\+R\+Q3 mask $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a33821b566b0ad0f9b39df353e462e1fa}\label{vmeUniverse_8h_a33821b566b0ad0f9b39df353e462e1fa}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+L\+I\+N\+T\+\_\+\+E\+N\+\_\+\+V\+I\+R\+Q2}~(1$<$$<$2)	/$\ast$ V\+I\+R\+Q2 mask $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_abf6e4dfe7b526d4ec5837480b206503f}\label{vmeUniverse_8h_abf6e4dfe7b526d4ec5837480b206503f}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+L\+I\+N\+T\+\_\+\+E\+N\+\_\+\+V\+I\+R\+Q1}~(1$<$$<$1)	/$\ast$ V\+I\+R\+Q1 mask $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a815e5ba78d811538059b2b9f941962bc}\label{vmeUniverse_8h_a815e5ba78d811538059b2b9f941962bc}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+L\+I\+N\+T\+\_\+\+E\+N\+\_\+\+V\+O\+WN}~(1$<$$<$0)	/$\ast$ V\+O\+WN mask $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a47e54d2b85a806f66cc29e69690f2f06}\label{vmeUniverse_8h_a47e54d2b85a806f66cc29e69690f2f06}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+R\+E\+G\+O\+F\+F\+\_\+\+L\+I\+N\+T\+\_\+\+S\+T\+AT}~0x304
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a295c0ac1428873de7254e7c5b72c86e8}\label{vmeUniverse_8h_a295c0ac1428873de7254e7c5b72c86e8}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+L\+I\+N\+T\+\_\+\+S\+T\+A\+T\+\_\+\+L\+M3}~(1$<$$<$23)	/$\ast$ location monitor 3 status $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a57f114337f47d8357317feb52b6ce7ea}\label{vmeUniverse_8h_a57f114337f47d8357317feb52b6ce7ea}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+L\+I\+N\+T\+\_\+\+S\+T\+A\+T\+\_\+\+L\+M2}~(1$<$$<$22)	/$\ast$ location monitor 2 status $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a375e4dec6b2d505ad1198ac97322d825}\label{vmeUniverse_8h_a375e4dec6b2d505ad1198ac97322d825}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+L\+I\+N\+T\+\_\+\+S\+T\+A\+T\+\_\+\+L\+M1}~(1$<$$<$21)	/$\ast$ location monitor 1 status $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_acb33e7883e4d66e98eeb58bc6c02a1eb}\label{vmeUniverse_8h_acb33e7883e4d66e98eeb58bc6c02a1eb}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+L\+I\+N\+T\+\_\+\+S\+T\+A\+T\+\_\+\+L\+M0}~(1$<$$<$20)	/$\ast$ location monitor 0 status $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_ab6b822d8ef2eef4e981798b0bf7ddd28}\label{vmeUniverse_8h_ab6b822d8ef2eef4e981798b0bf7ddd28}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+L\+I\+N\+T\+\_\+\+S\+T\+A\+T\+\_\+\+M\+B\+O\+X3}~(1$<$$<$19)	/$\ast$ mailbox 3 status $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a278fd65d34e67e083aec8efa27cba2b8}\label{vmeUniverse_8h_a278fd65d34e67e083aec8efa27cba2b8}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+L\+I\+N\+T\+\_\+\+S\+T\+A\+T\+\_\+\+M\+B\+O\+X2}~(1$<$$<$18)	/$\ast$ mailbox 2 status $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a4544319606497b98d2d0084d13ae8f24}\label{vmeUniverse_8h_a4544319606497b98d2d0084d13ae8f24}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+L\+I\+N\+T\+\_\+\+S\+T\+A\+T\+\_\+\+M\+B\+O\+X1}~(1$<$$<$17)	/$\ast$ mailbox 1 status $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_ad5bcb671f2dbc3cca8c7574331ceb32d}\label{vmeUniverse_8h_ad5bcb671f2dbc3cca8c7574331ceb32d}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+L\+I\+N\+T\+\_\+\+S\+T\+A\+T\+\_\+\+M\+B\+O\+X0}~(1$<$$<$16)	/$\ast$ mailbox 0 status $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_ab0db9200c940309c7ca6e763c6cdcc58}\label{vmeUniverse_8h_ab0db9200c940309c7ca6e763c6cdcc58}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+L\+I\+N\+T\+\_\+\+S\+T\+A\+T\+\_\+\+A\+C\+F\+A\+IL}~(1$<$$<$15)	/$\ast$ A\+C\+F\+A\+IL irq status $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a68246186aead21a0c027215f865264ad}\label{vmeUniverse_8h_a68246186aead21a0c027215f865264ad}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+L\+I\+N\+T\+\_\+\+S\+T\+A\+T\+\_\+\+S\+Y\+S\+F\+A\+IL}~(1$<$$<$14)	/$\ast$ S\+Y\+S\+F\+A\+IL irq status $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a7e6d39954a2b0cddf901da4ad73a10f9}\label{vmeUniverse_8h_a7e6d39954a2b0cddf901da4ad73a10f9}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+L\+I\+N\+T\+\_\+\+S\+T\+A\+T\+\_\+\+S\+W\+\_\+\+I\+NT}~(1$<$$<$13)	/$\ast$ P\+CI (local) software irq $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a4a474af0cf278dee4ccda57d4f2b1cae}\label{vmeUniverse_8h_a4a474af0cf278dee4ccda57d4f2b1cae}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+L\+I\+N\+T\+\_\+\+S\+T\+A\+T\+\_\+\+S\+W\+\_\+\+I\+A\+CK}~(1$<$$<$12)	/$\ast$ V\+ME software I\+A\+CK status $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_aabb268e5f66b0213f5335d559db88061}\label{vmeUniverse_8h_aabb268e5f66b0213f5335d559db88061}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+L\+I\+N\+T\+\_\+\+S\+T\+A\+T\+\_\+\+V\+E\+RR}~(1$<$$<$10)	/$\ast$ P\+CI V\+E\+RR irq status $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_acacd9bc9b73e89c3d271e3c2bdee4a4e}\label{vmeUniverse_8h_acacd9bc9b73e89c3d271e3c2bdee4a4e}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+L\+I\+N\+T\+\_\+\+S\+T\+A\+T\+\_\+\+L\+E\+RR}~(1$<$$<$9)	/$\ast$ P\+CI L\+E\+RR irq status $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_acc4db5b240bacf73d4bc70a5713a8fae}\label{vmeUniverse_8h_acc4db5b240bacf73d4bc70a5713a8fae}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+L\+I\+N\+T\+\_\+\+S\+T\+A\+T\+\_\+\+D\+MA}~(1$<$$<$8)	/$\ast$ P\+CI D\+MA irq status $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a4cdc94dd0b74fcc781089e345240d306}\label{vmeUniverse_8h_a4cdc94dd0b74fcc781089e345240d306}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+L\+I\+N\+T\+\_\+\+S\+T\+A\+T\+\_\+\+V\+I\+R\+Q7}~(1$<$$<$7)	/$\ast$ V\+I\+R\+Q7 status $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a054353f2c0931f1c8fe76136e59149d5}\label{vmeUniverse_8h_a054353f2c0931f1c8fe76136e59149d5}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+L\+I\+N\+T\+\_\+\+S\+T\+A\+T\+\_\+\+V\+I\+R\+Q6}~(1$<$$<$6)	/$\ast$ V\+I\+R\+Q6 status $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a421a429f2bd92e05476fa45a6b01eff0}\label{vmeUniverse_8h_a421a429f2bd92e05476fa45a6b01eff0}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+L\+I\+N\+T\+\_\+\+S\+T\+A\+T\+\_\+\+V\+I\+R\+Q5}~(1$<$$<$5)	/$\ast$ V\+I\+R\+Q5 status $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a21750dc706a9a1697a6ff255805cb66b}\label{vmeUniverse_8h_a21750dc706a9a1697a6ff255805cb66b}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+L\+I\+N\+T\+\_\+\+S\+T\+A\+T\+\_\+\+V\+I\+R\+Q4}~(1$<$$<$4)	/$\ast$ V\+I\+R\+Q4 status $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a5f6319b466c3f289433341e5ae030395}\label{vmeUniverse_8h_a5f6319b466c3f289433341e5ae030395}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+L\+I\+N\+T\+\_\+\+S\+T\+A\+T\+\_\+\+V\+I\+R\+Q3}~(1$<$$<$3)	/$\ast$ V\+I\+R\+Q3 status $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a92b9007f64e1676b32d7227f25d9a688}\label{vmeUniverse_8h_a92b9007f64e1676b32d7227f25d9a688}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+L\+I\+N\+T\+\_\+\+S\+T\+A\+T\+\_\+\+V\+I\+R\+Q2}~(1$<$$<$2)	/$\ast$ V\+I\+R\+Q2 status $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a1362f1cf46dc3d84a1935f8ee949e5d8}\label{vmeUniverse_8h_a1362f1cf46dc3d84a1935f8ee949e5d8}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+L\+I\+N\+T\+\_\+\+S\+T\+A\+T\+\_\+\+V\+I\+R\+Q1}~(1$<$$<$1)	/$\ast$ V\+I\+R\+Q1 status $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a85373e532159ea688b7d68cb28ce428f}\label{vmeUniverse_8h_a85373e532159ea688b7d68cb28ce428f}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+L\+I\+N\+T\+\_\+\+S\+T\+A\+T\+\_\+\+V\+O\+WN}~(1$<$$<$0)	/$\ast$ V\+O\+WN status $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a9d87b0eb3a8162b3542cf5ee68de4724}\label{vmeUniverse_8h_a9d87b0eb3a8162b3542cf5ee68de4724}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+L\+I\+N\+T\+\_\+\+S\+T\+A\+T\+\_\+\+C\+LR}~(0xfff7ff)/$\ast$ Clear all status bits $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_aa772beb7a78bedcac07f2cbe65d470cf}\label{vmeUniverse_8h_aa772beb7a78bedcac07f2cbe65d470cf}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+R\+E\+G\+O\+F\+F\+\_\+\+L\+I\+N\+T\+\_\+\+M\+A\+P0}~0x308	/$\ast$ mapping of V\+M\+E I\+R\+Q sources to P\+C\+I irqs $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a6beef1a7a8e411131442d59a852e6a79}\label{vmeUniverse_8h_a6beef1a7a8e411131442d59a852e6a79}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+L\+I\+N\+T\+\_\+\+M\+A\+P0\+\_\+\+V\+I\+R\+Q7}(lint)~(((lint)\&0x7)$<$$<$(7$\ast$4))
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_ae8638a915a012a1fa1e6a065b43b6c5e}\label{vmeUniverse_8h_ae8638a915a012a1fa1e6a065b43b6c5e}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+L\+I\+N\+T\+\_\+\+M\+A\+P0\+\_\+\+V\+I\+R\+Q6}(lint)~(((lint)\&0x7)$<$$<$(6$\ast$4))
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a5ff2f492e5ec7f915fdd41ed462b5240}\label{vmeUniverse_8h_a5ff2f492e5ec7f915fdd41ed462b5240}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+L\+I\+N\+T\+\_\+\+M\+A\+P0\+\_\+\+V\+I\+R\+Q5}(lint)~(((lint)\&0x7)$<$$<$(5$\ast$4))
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a41f3cb91e58476a1adb4ef67b310b0ca}\label{vmeUniverse_8h_a41f3cb91e58476a1adb4ef67b310b0ca}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+L\+I\+N\+T\+\_\+\+M\+A\+P0\+\_\+\+V\+I\+R\+Q4}(lint)~(((lint)\&0x7)$<$$<$(4$\ast$4))
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_ab7e84e755d8053d84d24820d52e6edef}\label{vmeUniverse_8h_ab7e84e755d8053d84d24820d52e6edef}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+L\+I\+N\+T\+\_\+\+M\+A\+P0\+\_\+\+V\+I\+R\+Q3}(lint)~(((lint)\&0x7)$<$$<$(3$\ast$4))
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_ac919e75af36ba12aad2159c98084702c}\label{vmeUniverse_8h_ac919e75af36ba12aad2159c98084702c}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+L\+I\+N\+T\+\_\+\+M\+A\+P0\+\_\+\+V\+I\+R\+Q2}(lint)~(((lint)\&0x7)$<$$<$(2$\ast$4))
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a890d81c699f4bbe31e8f6fdfd0ee45c1}\label{vmeUniverse_8h_a890d81c699f4bbe31e8f6fdfd0ee45c1}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+L\+I\+N\+T\+\_\+\+M\+A\+P0\+\_\+\+V\+I\+R\+Q1}(lint)~(((lint)\&0x7)$<$$<$(1$\ast$4))
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a7ed6d3182c39dea2073a5da541af0af4}\label{vmeUniverse_8h_a7ed6d3182c39dea2073a5da541af0af4}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+L\+I\+N\+T\+\_\+\+M\+A\+P0\+\_\+\+V\+O\+WN}(lint)~(((lint)\&0x7)$<$$<$(0$\ast$4))
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a5b61ee2ec22028bc91dda9f9881c53b6}\label{vmeUniverse_8h_a5b61ee2ec22028bc91dda9f9881c53b6}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+R\+E\+G\+O\+F\+F\+\_\+\+L\+I\+N\+T\+\_\+\+M\+A\+P1}~0x30c	/$\ast$ mapping of internal / V\+M\+E I\+R\+Q sources to P\+C\+I irqs $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a11de5f6d882bc0488f53e20a2acc119f}\label{vmeUniverse_8h_a11de5f6d882bc0488f53e20a2acc119f}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+L\+I\+N\+T\+\_\+\+M\+A\+P1\+\_\+\+A\+C\+F\+A\+IL}(lint)~(((lint)\&0x7)$<$$<$(7$\ast$4))
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a6b87f38ae4c494f3a65d96f7b0981a6a}\label{vmeUniverse_8h_a6b87f38ae4c494f3a65d96f7b0981a6a}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+L\+I\+N\+T\+\_\+\+M\+A\+P1\+\_\+\+S\+Y\+S\+F\+A\+IL}(lint)~(((lint)\&0x7)$<$$<$(6$\ast$4))
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a160aecd375680986b4f4de5c6009f8bd}\label{vmeUniverse_8h_a160aecd375680986b4f4de5c6009f8bd}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+L\+I\+N\+T\+\_\+\+M\+A\+P1\+\_\+\+S\+W\+\_\+\+I\+NT}(lint)~(((lint)\&0x7)$<$$<$(5$\ast$4))
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_aa28117b608a38780792dfb795b590719}\label{vmeUniverse_8h_aa28117b608a38780792dfb795b590719}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+L\+I\+N\+T\+\_\+\+M\+A\+P1\+\_\+\+S\+W\+\_\+\+I\+A\+CK}(lint)~(((lint)\&0x7)$<$$<$(4$\ast$4))
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a532afb174f1769ab2bbe546bcb6e65ea}\label{vmeUniverse_8h_a532afb174f1769ab2bbe546bcb6e65ea}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+L\+I\+N\+T\+\_\+\+M\+A\+P1\+\_\+\+V\+E\+RR}(lint)~(((lint)\&0x7)$<$$<$(2$\ast$4))
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_ae2b61b13c7cd1b0b8637b67ff024eb7f}\label{vmeUniverse_8h_ae2b61b13c7cd1b0b8637b67ff024eb7f}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+L\+I\+N\+T\+\_\+\+M\+A\+P1\+\_\+\+L\+E\+RR}(lint)~(((lint)\&0x7)$<$$<$(1$\ast$4))
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_ac543413cf0b54ac13ee5ae9b5dad339f}\label{vmeUniverse_8h_ac543413cf0b54ac13ee5ae9b5dad339f}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+L\+I\+N\+T\+\_\+\+M\+A\+P1\+\_\+\+D\+MA}(lint)~(((lint)\&0x7)$<$$<$(0$\ast$4))
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a1ed25cb1521bed69de72dd5bc1ae72c0}\label{vmeUniverse_8h_a1ed25cb1521bed69de72dd5bc1ae72c0}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+R\+E\+G\+O\+F\+F\+\_\+\+V\+I\+N\+T\+\_\+\+EN}~0x310
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a3d029f794cdc06d68819cd61d637b99c}\label{vmeUniverse_8h_a3d029f794cdc06d68819cd61d637b99c}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+V\+I\+N\+T\+\_\+\+E\+N\+\_\+\+D\+I\+S\+A\+B\+L\+E\+\_\+\+A\+LL}~0
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a0b101558aab44c8a436b7d3ba6026688}\label{vmeUniverse_8h_a0b101558aab44c8a436b7d3ba6026688}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+V\+I\+N\+T\+\_\+\+E\+N\+\_\+\+S\+W\+I\+NT}~(1$<$$<$12)
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a6fda4dcaab845c146a790574ea2e27fa}\label{vmeUniverse_8h_a6fda4dcaab845c146a790574ea2e27fa}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+V\+I\+N\+T\+\_\+\+E\+N\+\_\+\+S\+W\+I\+N\+T\+\_\+\+L\+VL}(\mbox{\hyperlink{sun4u_2tte_8h_ab80d2bb0a8a32941fb282b41785ce07f}{l}})~(1$<$$<$(((\mbox{\hyperlink{sun4u_2tte_8h_ab80d2bb0a8a32941fb282b41785ce07f}{l}})\&7)+24))	/$\ast$ universe II only $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a68cb39edf6d48418d3ff0482fb708487}\label{vmeUniverse_8h_a68cb39edf6d48418d3ff0482fb708487}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+R\+E\+G\+O\+F\+F\+\_\+\+V\+I\+N\+T\+\_\+\+S\+T\+AT}~0x314
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a335052eeeab9a5a31ff66b416e4cd8e1}\label{vmeUniverse_8h_a335052eeeab9a5a31ff66b416e4cd8e1}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+V\+I\+N\+T\+\_\+\+S\+T\+A\+T\+\_\+\+L\+I\+NT}(lint)~(1$<$$<$((lint)\&7))
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a2f8ab042dac26fe68de7d3dd532e53a6}\label{vmeUniverse_8h_a2f8ab042dac26fe68de7d3dd532e53a6}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+V\+I\+N\+T\+\_\+\+S\+T\+A\+T\+\_\+\+L\+I\+N\+T\+\_\+\+M\+A\+SK}~(0xff)
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a74a013b1ba72dc89b297022bd5181307}\label{vmeUniverse_8h_a74a013b1ba72dc89b297022bd5181307}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+V\+I\+N\+T\+\_\+\+S\+T\+A\+T\+\_\+\+C\+LR}~(0xfe0f17ff)
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_af96bbbae1e6e14db2d8ca8549640651c}\label{vmeUniverse_8h_af96bbbae1e6e14db2d8ca8549640651c}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+V\+I\+N\+T\+\_\+\+S\+T\+A\+T\+\_\+\+S\+W\+I\+NT}(\mbox{\hyperlink{sun4u_2tte_8h_ab80d2bb0a8a32941fb282b41785ce07f}{l}})~(1$<$$<$(((\mbox{\hyperlink{sun4u_2tte_8h_ab80d2bb0a8a32941fb282b41785ce07f}{l}})\&7)+24))
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a95c4c7f8d39afb5e5177e501bceb811b}\label{vmeUniverse_8h_a95c4c7f8d39afb5e5177e501bceb811b}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+R\+E\+G\+O\+F\+F\+\_\+\+V\+I\+N\+T\+\_\+\+M\+A\+P0}~0x318	/$\ast$ V\+M\+E destination of P\+C\+I I\+R\+Q source, T\+O\+D\+O $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a7ddacc6dd35ea05046d03d48f21470a6}\label{vmeUniverse_8h_a7ddacc6dd35ea05046d03d48f21470a6}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+R\+E\+G\+O\+F\+F\+\_\+\+V\+I\+N\+T\+\_\+\+M\+A\+P1}~0x31c	/$\ast$ V\+M\+E destination of P\+C\+I I\+R\+Q source, T\+O\+D\+O $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a21f353f7243ae87b5d59be1a43125d6b}\label{vmeUniverse_8h_a21f353f7243ae87b5d59be1a43125d6b}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+V\+I\+N\+T\+\_\+\+M\+A\+P1\+\_\+\+S\+W\+I\+NT}(level)~(((level)\&0x7)$<$$<$16)
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_aa212166c3128ff6dcdb1451a10e8ee11}\label{vmeUniverse_8h_aa212166c3128ff6dcdb1451a10e8ee11}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+R\+E\+G\+O\+F\+F\+\_\+\+V\+I\+N\+T\+\_\+\+S\+T\+A\+T\+ID}~0x320	/$\ast$ our status/id response to I\+A\+C\+K, T\+O\+D\+O $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_abc7cc6aeb0d06f9b4afed80477234e9b}\label{vmeUniverse_8h_abc7cc6aeb0d06f9b4afed80477234e9b}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+V\+I\+N\+T\+\_\+\+S\+T\+A\+T\+ID}(id)~((id)$<$$<$24)
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a8cb8e69c5248b1683718d5256b271226}\label{vmeUniverse_8h_a8cb8e69c5248b1683718d5256b271226}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+R\+E\+G\+O\+F\+F\+\_\+\+V\+I\+R\+Q1\+\_\+\+S\+T\+A\+T\+ID}~0x324	/$\ast$ status/id of V\+M\+E I\+R\+Q level 1 $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a35bcf522705c8377f6bd4dd0abee76a2}\label{vmeUniverse_8h_a35bcf522705c8377f6bd4dd0abee76a2}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+R\+E\+G\+O\+F\+F\+\_\+\+V\+I\+R\+Q2\+\_\+\+S\+T\+A\+T\+ID}~0x328	/$\ast$ status/id of V\+M\+E I\+R\+Q level 2 $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_af19d9c2db9f2e37458995e29bbefbb89}\label{vmeUniverse_8h_af19d9c2db9f2e37458995e29bbefbb89}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+R\+E\+G\+O\+F\+F\+\_\+\+V\+I\+R\+Q3\+\_\+\+S\+T\+A\+T\+ID}~0x32c	/$\ast$ status/id of V\+M\+E I\+R\+Q level 3 $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a28557e0652f5fb2098e990d117c26ab0}\label{vmeUniverse_8h_a28557e0652f5fb2098e990d117c26ab0}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+R\+E\+G\+O\+F\+F\+\_\+\+V\+I\+R\+Q4\+\_\+\+S\+T\+A\+T\+ID}~0x330	/$\ast$ status/id of V\+M\+E I\+R\+Q level 4 $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a40d73d05d18c0f0b0fa76c777ff2f60f}\label{vmeUniverse_8h_a40d73d05d18c0f0b0fa76c777ff2f60f}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+R\+E\+G\+O\+F\+F\+\_\+\+V\+I\+R\+Q5\+\_\+\+S\+T\+A\+T\+ID}~0x334	/$\ast$ status/id of V\+M\+E I\+R\+Q level 5 $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a3522fd9e26fb084770a931878f1eaf0c}\label{vmeUniverse_8h_a3522fd9e26fb084770a931878f1eaf0c}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+R\+E\+G\+O\+F\+F\+\_\+\+V\+I\+R\+Q6\+\_\+\+S\+T\+A\+T\+ID}~0x338	/$\ast$ status/id of V\+M\+E I\+R\+Q level 6 $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_acbcc4f77d8e80f42db05e12927861855}\label{vmeUniverse_8h_acbcc4f77d8e80f42db05e12927861855}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+R\+E\+G\+O\+F\+F\+\_\+\+V\+I\+R\+Q7\+\_\+\+S\+T\+A\+T\+ID}~0x33c	/$\ast$ status/id of V\+M\+E I\+R\+Q level 7 $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a82bb557a54a78ccc4a5b36200a314f86}\label{vmeUniverse_8h_a82bb557a54a78ccc4a5b36200a314f86}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+V\+I\+R\+Q\+\_\+\+E\+RR}~(1$<$$<$8)	/$\ast$ set if universe encountered a bus error when doing I\+A\+CK $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_ace5ae74bf0d32d1e138a90b2184187f0}\label{vmeUniverse_8h_ace5ae74bf0d32d1e138a90b2184187f0}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+V\+I\+R\+Q\+\_\+\+S\+T\+A\+T\+I\+D\+\_\+\+M\+A\+SK}~(0xff)
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_af6bd25eb5c6a5f034af06037e4a99e85}\label{vmeUniverse_8h_af6bd25eb5c6a5f034af06037e4a99e85}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+R\+E\+G\+O\+F\+F\+\_\+\+L\+I\+N\+T\+\_\+\+M\+A\+P2}~0x340	/$\ast$ mapping of internal sources to P\+C\+I irqs $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a8e4bf71fe898af011ac3810293cc0315}\label{vmeUniverse_8h_a8e4bf71fe898af011ac3810293cc0315}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+L\+I\+N\+T\+\_\+\+M\+A\+P2\+\_\+\+L\+M3}(lint)~(((lint)\&0x7)$<$$<$7$\ast$4)	/$\ast$ location monitor 3 $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_af7b69dd7e8784646645402f55e30a919}\label{vmeUniverse_8h_af7b69dd7e8784646645402f55e30a919}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+L\+I\+N\+T\+\_\+\+M\+A\+P2\+\_\+\+L\+M2}(lint)~(((lint)\&0x7)$<$$<$6$\ast$4)	/$\ast$ location monitor 2 $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a5d130d2a8e8212eeed4880bda61c30ae}\label{vmeUniverse_8h_a5d130d2a8e8212eeed4880bda61c30ae}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+L\+I\+N\+T\+\_\+\+M\+A\+P2\+\_\+\+L\+M1}(lint)~(((lint)\&0x7)$<$$<$5$\ast$4)	/$\ast$ location monitor 1 $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_aa7f41f82db0b6281f81e9bd126d1872d}\label{vmeUniverse_8h_aa7f41f82db0b6281f81e9bd126d1872d}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+L\+I\+N\+T\+\_\+\+M\+A\+P2\+\_\+\+L\+M0}(lint)~(((lint)\&0x7)$<$$<$4$\ast$4)	/$\ast$ location monitor 0 $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_aaf4a1d2227f57b1ef7e221dd524a6cad}\label{vmeUniverse_8h_aaf4a1d2227f57b1ef7e221dd524a6cad}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+L\+I\+N\+T\+\_\+\+M\+A\+P2\+\_\+\+M\+B\+O\+X3}(lint)~(((lint)\&0x7)$<$$<$3$\ast$4)	/$\ast$ mailbox 3 $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a8e9d2c489e36f50a65c8d6533750efa3}\label{vmeUniverse_8h_a8e9d2c489e36f50a65c8d6533750efa3}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+L\+I\+N\+T\+\_\+\+M\+A\+P2\+\_\+\+M\+B\+O\+X2}(lint)~(((lint)\&0x7)$<$$<$2$\ast$4)	/$\ast$ mailbox 2 $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a8fc49a0f2ac4235387017c16d3997b45}\label{vmeUniverse_8h_a8fc49a0f2ac4235387017c16d3997b45}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+L\+I\+N\+T\+\_\+\+M\+A\+P2\+\_\+\+M\+B\+O\+X1}(lint)~(((lint)\&0x7)$<$$<$1$\ast$4)	/$\ast$ mailbox 1 $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a9d40f89fdfff1e7fc0164526fa25d76b}\label{vmeUniverse_8h_a9d40f89fdfff1e7fc0164526fa25d76b}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+L\+I\+N\+T\+\_\+\+M\+A\+P2\+\_\+\+M\+B\+O\+X0}(lint)~(((lint)\&0x7)$<$$<$0$\ast$4)	/$\ast$ mailbox 0 $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_aadac9217f923fa19359533acec6e42f7}\label{vmeUniverse_8h_aadac9217f923fa19359533acec6e42f7}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+R\+E\+G\+O\+F\+F\+\_\+\+V\+I\+N\+T\+\_\+\+M\+A\+P2}~0x344	/$\ast$ mapping of internal sources to V\+M\+E irqs $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a0e38032777a5d54c39b65beb6085156b}\label{vmeUniverse_8h_a0e38032777a5d54c39b65beb6085156b}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+V\+I\+N\+T\+\_\+\+M\+A\+P2\+\_\+\+M\+B\+O\+X3}(vint)~(((vint)\&0x7)$<$$<$3$\ast$4)	/$\ast$ mailbox 3 $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_ade9da9726bea7d8f909087985dc4fd8a}\label{vmeUniverse_8h_ade9da9726bea7d8f909087985dc4fd8a}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+V\+I\+N\+T\+\_\+\+M\+A\+P2\+\_\+\+M\+B\+O\+X2}(vint)~(((vint)\&0x7)$<$$<$2$\ast$4)	/$\ast$ mailbox 2 $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a2cfae8790f58c4a47b6245d08a37e273}\label{vmeUniverse_8h_a2cfae8790f58c4a47b6245d08a37e273}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+V\+I\+N\+T\+\_\+\+M\+A\+P2\+\_\+\+M\+B\+O\+X1}(vint)~(((vint)\&0x7)$<$$<$1$\ast$4)	/$\ast$ mailbox 1 $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_ad774e07739eede79d38fee2bc11fd317}\label{vmeUniverse_8h_ad774e07739eede79d38fee2bc11fd317}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+V\+I\+N\+T\+\_\+\+M\+A\+P2\+\_\+\+M\+B\+O\+X0}(vint)~(((vint)\&0x7)$<$$<$0$\ast$4)	/$\ast$ mailbox 0 $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_afdbcb3b96295d94e54ab4a5aedb36116}\label{vmeUniverse_8h_afdbcb3b96295d94e54ab4a5aedb36116}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+R\+E\+G\+O\+F\+F\+\_\+\+M\+B\+O\+X0}~0x348	/$\ast$ mailbox 0 $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a98fe05cd8bd71ca2eb327fad0d973dea}\label{vmeUniverse_8h_a98fe05cd8bd71ca2eb327fad0d973dea}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+R\+E\+G\+O\+F\+F\+\_\+\+M\+B\+O\+X1}~0x34c	/$\ast$ mailbox 1 $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_aa7ddf53e0768c06e4f6e5bc970ff7573}\label{vmeUniverse_8h_aa7ddf53e0768c06e4f6e5bc970ff7573}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+R\+E\+G\+O\+F\+F\+\_\+\+M\+B\+O\+X2}~0x350	/$\ast$ mailbox 2 $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a71ffe1937a2058bf5e3e7295fbf31234}\label{vmeUniverse_8h_a71ffe1937a2058bf5e3e7295fbf31234}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+R\+E\+G\+O\+F\+F\+\_\+\+M\+B\+O\+X3}~0x354	/$\ast$ mailbox 3 $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_ab4410d16f074c3aa095755291a4f9e73}\label{vmeUniverse_8h_ab4410d16f074c3aa095755291a4f9e73}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+R\+E\+G\+O\+F\+F\+\_\+\+S\+E\+M\+A0}~0x358	/$\ast$ semaphore 0 $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a97e9e7f8d14e17c913efe08acdf51ba2}\label{vmeUniverse_8h_a97e9e7f8d14e17c913efe08acdf51ba2}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+R\+E\+G\+O\+F\+F\+\_\+\+S\+E\+M\+A1}~0x35c	/$\ast$ semaphore 0 $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_aa7413825c6e7bce6c61a43d43bd72d61}\label{vmeUniverse_8h_aa7413825c6e7bce6c61a43d43bd72d61}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+R\+E\+G\+O\+F\+F\+\_\+\+M\+A\+S\+T\+\_\+\+C\+TL}~0x400	/$\ast$ master control register $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a0d22e21663b9d9d5718a6420873f957c}\label{vmeUniverse_8h_a0d22e21663b9d9d5718a6420873f957c}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+M\+A\+S\+T\+\_\+\+C\+T\+L\+\_\+\+M\+A\+X\+R\+T\+RY}(val)~(((val)\&0xf)$<$$<$7$\ast$4)	/$\ast$ max \# of pci master retries $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a665f91158d51b0511cc840eea83eb20c}\label{vmeUniverse_8h_a665f91158d51b0511cc840eea83eb20c}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+M\+A\+S\+T\+\_\+\+C\+T\+L\+\_\+\+P\+W\+ON}(val)~(((val)\&0xf)$<$$<$6$\ast$4)	/$\ast$ posted write xfer count $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a24ed4bd720f1efc040c76e64dd6db8e4}\label{vmeUniverse_8h_a24ed4bd720f1efc040c76e64dd6db8e4}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+M\+A\+S\+T\+\_\+\+C\+T\+L\+\_\+\+V\+RL}(val)~(((val)\&0x3)$<$$<$22)	/$\ast$ V\+M\+E bus request level $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a5b27e5dbd8cbe789a2801e28f8ee89ca}\label{vmeUniverse_8h_a5b27e5dbd8cbe789a2801e28f8ee89ca}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+M\+A\+S\+T\+\_\+\+C\+T\+L\+\_\+\+V\+RM}~(1$<$$<$21)	/$\ast$ bus request mode (demand = 0, fair = 1) $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_af4db837c3defc66ac9243a89fb78b8b8}\label{vmeUniverse_8h_af4db837c3defc66ac9243a89fb78b8b8}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+M\+A\+S\+T\+\_\+\+C\+T\+L\+\_\+\+V\+R\+EL}~(1$<$$<$20)	/$\ast$ bus release mode (when done = 0, on request = 1) $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a5b50e282bcca78012e994ca2b493d330}\label{vmeUniverse_8h_a5b50e282bcca78012e994ca2b493d330}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+M\+A\+S\+T\+\_\+\+C\+T\+L\+\_\+\+V\+O\+WN}~(1$<$$<$19)	/$\ast$ bus ownership (release = 0, acquire/hold = 1) $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_ac168b28a49e21b41dff927e547cd2717}\label{vmeUniverse_8h_ac168b28a49e21b41dff927e547cd2717}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+M\+A\+S\+T\+\_\+\+C\+T\+L\+\_\+\+V\+O\+W\+N\+\_\+\+A\+CK}~(1$<$$<$18)	/$\ast$ bus ownership (not owned = 0, acquired/held = 1) $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_abebdb9dfb60b95287785e910b0150564}\label{vmeUniverse_8h_abebdb9dfb60b95287785e910b0150564}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+M\+A\+S\+T\+\_\+\+C\+T\+L\+\_\+\+P\+A\+BS}(val)~(((val)\&0x3)$<$$<$3$\ast$4)	/$\ast$ P\+C\+I aligned burst size (32,64,128 byte / 0x3 is reserved) $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a888fca5880e9c43245d9c7e9c11af790}\label{vmeUniverse_8h_a888fca5880e9c43245d9c7e9c11af790}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+M\+A\+S\+T\+\_\+\+C\+T\+L\+\_\+\+B\+U\+S\+\_\+\+NO}(val)~(((val)\&0xff)$<$$<$0$\ast$4)	/$\ast$ P\+C\+I bus number $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_ae2aaf4e9b2632770dfeb3c915a10e921}\label{vmeUniverse_8h_ae2aaf4e9b2632770dfeb3c915a10e921}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+R\+E\+G\+O\+F\+F\+\_\+\+M\+I\+S\+C\+\_\+\+C\+TL}~0x404	/$\ast$ misc control register $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a483a71ac8859ba8728bace2eb7a6216f}\label{vmeUniverse_8h_a483a71ac8859ba8728bace2eb7a6216f}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+M\+I\+S\+C\+\_\+\+C\+T\+L\+\_\+\+V\+B\+TO}(val)~(((val)\&0x7)$<$$<$7$\ast$4)	/$\ast$ V\+M\+E bus timeout (0=disable, 16$\ast$2$^\wedge$(val-\/1) us) $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a196a1612c9f2a664811e4b0058a72d10}\label{vmeUniverse_8h_a196a1612c9f2a664811e4b0058a72d10}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+M\+I\+S\+C\+\_\+\+C\+T\+L\+\_\+\+V\+A\+RB}~(1$<$$<$26)	/$\ast$ V\+ME bus arbitration mode (0=round robin, 1= priority) $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_ab91723b854e9ac5142ba8d78e7510294}\label{vmeUniverse_8h_ab91723b854e9ac5142ba8d78e7510294}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+M\+I\+S\+C\+\_\+\+C\+T\+L\+\_\+\+V\+A\+R\+B\+TO}(val)~(((val)\&0x3)$<$$<$6$\ast$4)	/$\ast$ arbitration time out\+: disable, 16us, 256us, reserved $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a542d70e486dabe6d4503a2d89781268e}\label{vmeUniverse_8h_a542d70e486dabe6d4503a2d89781268e}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+M\+I\+S\+C\+\_\+\+C\+T\+L\+\_\+\+S\+W\+\_\+\+L\+R\+ST}~(1$<$$<$23)	/$\ast$ software P\+CI reset $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a9b2daad43420948ef6917ff4efab8a2f}\label{vmeUniverse_8h_a9b2daad43420948ef6917ff4efab8a2f}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+M\+I\+S\+C\+\_\+\+C\+T\+L\+\_\+\+S\+W\+\_\+\+S\+Y\+S\+R\+ST}~(1$<$$<$22)	/$\ast$ software V\+ME reset $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_ae9bcd312e12c957745aeb4ac882ca809}\label{vmeUniverse_8h_ae9bcd312e12c957745aeb4ac882ca809}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+M\+I\+S\+C\+\_\+\+C\+T\+L\+\_\+\+BI}~(1$<$$<$20)	/$\ast$ \mbox{\hyperlink{group__i386__uart_gaa9ed1764c4b42e49f22c3a4f0f3b8244}{BI}} mode $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_aaf04728040e853f4ddc615a5a579bd19}\label{vmeUniverse_8h_aaf04728040e853f4ddc615a5a579bd19}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+M\+I\+S\+C\+\_\+\+C\+T\+L\+\_\+\+E\+N\+G\+BI}~(1$<$$<$19)	/$\ast$ enable global \mbox{\hyperlink{group__i386__uart_gaa9ed1764c4b42e49f22c3a4f0f3b8244}{BI}} mode initiator $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_af36e41ced0f11062dc3a196ac63c3ed0}\label{vmeUniverse_8h_af36e41ced0f11062dc3a196ac63c3ed0}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+M\+I\+S\+C\+\_\+\+C\+T\+L\+\_\+\+S\+Y\+S\+C\+ON}~(1$<$$<$17)	/$\ast$ (R/W) 1\+:universe is system controller $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_aff3b3e929b5aceee246dd37c2c63bd69}\label{vmeUniverse_8h_aff3b3e929b5aceee246dd37c2c63bd69}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+M\+I\+S\+C\+\_\+\+C\+T\+L\+\_\+\+V64\+A\+U\+TO}~(1$<$$<$16)	/$\ast$ (R/W) 1\+:initiate V\+M\+E64 auto id slave participation $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a755e804eb0596a28d8f73d3d9f8c302d}\label{vmeUniverse_8h_a755e804eb0596a28d8f73d3d9f8c302d}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+R\+E\+G\+O\+F\+F\+\_\+\+U2\+S\+P\+EC}~0x4fc
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_aedef7d0f34774dbac4661bbf40790352}\label{vmeUniverse_8h_aedef7d0f34774dbac4661bbf40790352}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+U2\+S\+P\+E\+C\+\_\+\+D\+T\+K\+F\+L\+TR}~(1$<$$<$12)	/$\ast$ D\+T\+Ack filter\+: 0\+: slow, better filter; 1\+: fast, poorer filter $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_abff6d3ebdb575919c65243f26e2cbeed}\label{vmeUniverse_8h_abff6d3ebdb575919c65243f26e2cbeed}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+U2\+S\+P\+E\+C\+\_\+\+M\+A\+St11}~(1$<$$<$10)	/$\ast$ Master parameter t11 (DS hi time during B\+LT and M\+B\+L\+Ts) $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a82e5c378559c4235f05efdbfb5f8cece}\label{vmeUniverse_8h_a82e5c378559c4235f05efdbfb5f8cece}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+U2\+S\+P\+E\+C\+\_\+\+R\+E\+A\+Dt27\+\_\+\+D\+E\+F\+A\+U\+LT}~(0$<$$<$8)	/$\ast$ V\+ME master parameter t27\+: (latch data after D\+T\+Ack + 25ns) $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a323b34599440b93b303cebcbdc571463}\label{vmeUniverse_8h_a323b34599440b93b303cebcbdc571463}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+U2\+S\+P\+E\+C\+\_\+\+R\+E\+A\+Dt27\+\_\+\+F\+A\+ST}~(1$<$$<$8)	/$\ast$ V\+ME master parameter t27\+: (latch data faster than 25ns)  $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a15abc81e46f9e22fee028a25bc624bb5}\label{vmeUniverse_8h_a15abc81e46f9e22fee028a25bc624bb5}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+U2\+S\+P\+E\+C\+\_\+\+R\+E\+A\+Dt27\+\_\+\+N\+O\+D\+E\+L\+AY}~(2$<$$<$8)	/$\ast$ V\+ME master parameter t27\+: (latch data without any delay)  $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a7d039adae43bc22fa6803607be89025e}\label{vmeUniverse_8h_a7d039adae43bc22fa6803607be89025e}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+U2\+S\+P\+E\+C\+\_\+\+P\+O\+St28\+\_\+\+F\+A\+ST}~(1$<$$<$2)	/$\ast$ V\+ME slave parameter t28\+: (faster time of DS to D\+T\+Ack for posted \mbox{\hyperlink{libcsupport_2src_2write_8c_a448dd253ee4c0e3d3b1275df845e7146}{write}}) $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a441b86918ca011bb90163cef1bcead35}\label{vmeUniverse_8h_a441b86918ca011bb90163cef1bcead35}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+U2\+S\+P\+E\+C\+\_\+\+P\+R\+Et28\+\_\+\+F\+A\+ST}~(1$<$$<$0)	/$\ast$ V\+ME slave parameter t28\+: (faster time of DS to D\+T\+Ack for prefetch \mbox{\hyperlink{libcsupport_2src_2read_8c_a26d4711c05afec4c7771c3d17b2db9e9}{read}}) $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_ad8f605923f320990ad8c3517ae4ed619}\label{vmeUniverse_8h_ad8f605923f320990ad8c3517ae4ed619}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+R\+E\+G\+O\+F\+F\+\_\+\+L\+M\+\_\+\+C\+TL}~0xf64
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a0e9133c461416b169a681c3421f5558e}\label{vmeUniverse_8h_a0e9133c461416b169a681c3421f5558e}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+L\+M\+\_\+\+C\+T\+L\+\_\+\+EN}~(1$<$$<$31)	/$\ast$ image enable $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a9bb4aa182862dc5dc879b5c026f1f937}\label{vmeUniverse_8h_a9bb4aa182862dc5dc879b5c026f1f937}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+L\+M\+\_\+\+C\+T\+L\+\_\+\+P\+GM}~(1$<$$<$23)	/$\ast$ program AM $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a291a43461652f12a444578bb05559e84}\label{vmeUniverse_8h_a291a43461652f12a444578bb05559e84}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+L\+M\+\_\+\+C\+T\+L\+\_\+\+D\+A\+TA}~(1$<$$<$22)	/$\ast$ data AM $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a563df6a3175e95f04484a794caee085f}\label{vmeUniverse_8h_a563df6a3175e95f04484a794caee085f}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+L\+M\+\_\+\+C\+T\+L\+\_\+\+S\+U\+P\+ER}~(1$<$$<$21)	/$\ast$ supervisor AM $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_ac5174c909e8cd98db8b0d7d70d7b110c}\label{vmeUniverse_8h_ac5174c909e8cd98db8b0d7d70d7b110c}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+L\+M\+\_\+\+C\+T\+L\+\_\+\+U\+S\+ER}~(1$<$$<$20)	/$\ast$ user AM $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a17529d2ed15f1a58163d301888e56cb4}\label{vmeUniverse_8h_a17529d2ed15f1a58163d301888e56cb4}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+L\+M\+\_\+\+C\+T\+L\+\_\+\+V\+A\+S\+\_\+\+A16}~(0$<$$<$16)	/$\ast$ A16 $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_aaa2d653322b1750449ef8e866c04db26}\label{vmeUniverse_8h_aaa2d653322b1750449ef8e866c04db26}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+L\+M\+\_\+\+C\+T\+L\+\_\+\+V\+A\+S\+\_\+\+A24}~(1$<$$<$16)	/$\ast$ A16 $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_ac3e1b1041251e46c219875aec8f19894}\label{vmeUniverse_8h_ac3e1b1041251e46c219875aec8f19894}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+L\+M\+\_\+\+C\+T\+L\+\_\+\+V\+A\+S\+\_\+\+A32}~(2$<$$<$16)	/$\ast$ A16 $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a7ce8abf2dbe43393b570e19817e4ace2}\label{vmeUniverse_8h_a7ce8abf2dbe43393b570e19817e4ace2}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+R\+E\+G\+O\+F\+F\+\_\+\+L\+M\+\_\+\+BS}~0xf68
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a5484ccc84799f6e2af78fc83b6a6ad0a}\label{vmeUniverse_8h_a5484ccc84799f6e2af78fc83b6a6ad0a}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+R\+E\+G\+O\+F\+F\+\_\+\+V\+R\+A\+I\+\_\+\+C\+TL}~0xf70
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a8c08a021f336f6a52f14eefb9d74fd8d}\label{vmeUniverse_8h_a8c08a021f336f6a52f14eefb9d74fd8d}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+V\+R\+A\+I\+\_\+\+C\+T\+L\+\_\+\+EN}~(1$<$$<$31)	/$\ast$ image enable $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a20521b321e4ac1ee3f3defd8cb5a66e3}\label{vmeUniverse_8h_a20521b321e4ac1ee3f3defd8cb5a66e3}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+V\+R\+A\+I\+\_\+\+C\+T\+L\+\_\+\+P\+GM}~(1$<$$<$23)	/$\ast$ program AM $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a3c4f49d8da6775fa5a17ab40334e3505}\label{vmeUniverse_8h_a3c4f49d8da6775fa5a17ab40334e3505}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+V\+R\+A\+I\+\_\+\+C\+T\+L\+\_\+\+D\+A\+TA}~(1$<$$<$22)	/$\ast$ data AM $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_af3a34c24f86003ca40ce7f2f027f23e0}\label{vmeUniverse_8h_af3a34c24f86003ca40ce7f2f027f23e0}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+V\+R\+A\+I\+\_\+\+C\+T\+L\+\_\+\+S\+U\+P\+ER}~(1$<$$<$21)	/$\ast$ supervisor AM $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a4c580f7c5d9654a1d9e2ce7226a3daf7}\label{vmeUniverse_8h_a4c580f7c5d9654a1d9e2ce7226a3daf7}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+V\+R\+A\+I\+\_\+\+C\+T\+L\+\_\+\+U\+S\+ER}~(1$<$$<$20)	/$\ast$ user AM $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a0daad641fb2fe778369f9139b83bf306}\label{vmeUniverse_8h_a0daad641fb2fe778369f9139b83bf306}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+V\+R\+A\+I\+\_\+\+C\+T\+L\+\_\+\+V\+A\+S\+\_\+\+A16}~(0$<$$<$16)	/$\ast$ A16 $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a9589977bb1e79d899b6b684cbc74524c}\label{vmeUniverse_8h_a9589977bb1e79d899b6b684cbc74524c}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+V\+R\+A\+I\+\_\+\+C\+T\+L\+\_\+\+V\+A\+S\+\_\+\+A24}~(1$<$$<$16)	/$\ast$ A14 $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_ae86d1d300a32faa8ce48d40242c8a919}\label{vmeUniverse_8h_ae86d1d300a32faa8ce48d40242c8a919}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+V\+R\+A\+I\+\_\+\+C\+T\+L\+\_\+\+V\+A\+S\+\_\+\+A32}~(2$<$$<$16)	/$\ast$ A32 $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_aa9b674eef3262fa1780feab1259c43ac}\label{vmeUniverse_8h_aa9b674eef3262fa1780feab1259c43ac}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+V\+R\+A\+I\+\_\+\+C\+T\+L\+\_\+\+V\+A\+S\+\_\+\+M\+SK}~(3$<$$<$16)
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a264d766bb8465fcec5a8ae100a7982b7}\label{vmeUniverse_8h_a264d766bb8465fcec5a8ae100a7982b7}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+R\+E\+G\+O\+F\+F\+\_\+\+V\+R\+A\+I\+\_\+\+BS}~0xf74
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_ae1ebeb01f545fd5b8887e6fd45adebac}\label{vmeUniverse_8h_ae1ebeb01f545fd5b8887e6fd45adebac}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+R\+E\+G\+O\+F\+F\+\_\+\+V\+C\+S\+R\+\_\+\+C\+TL}~0xf80
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_ace384afc975d1380c1435da7f2a4e3dd}\label{vmeUniverse_8h_ace384afc975d1380c1435da7f2a4e3dd}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+V\+C\+S\+R\+\_\+\+C\+T\+L\+\_\+\+EN}~(1$<$$<$31)	/$\ast$ image enable $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a95e2154b6a61e55787e5a01fea5ab313}\label{vmeUniverse_8h_a95e2154b6a61e55787e5a01fea5ab313}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+V\+C\+S\+R\+\_\+\+C\+T\+L\+\_\+\+L\+A\+S\+\_\+\+P\+C\+I\+\_\+\+M\+EM}~(0$<$$<$0)	/$\ast$ pci mem space $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_af265bf36ab1579caca80221b0e51a294}\label{vmeUniverse_8h_af265bf36ab1579caca80221b0e51a294}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+V\+C\+S\+R\+\_\+\+C\+T\+L\+\_\+\+L\+A\+S\+\_\+\+P\+C\+I\+\_\+\+IO}~(1$<$$<$0)	/$\ast$ pci \mbox{\hyperlink{structIO}{IO}} space $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_aa6f905a96c19ae743b7ac6400d5b68b5}\label{vmeUniverse_8h_aa6f905a96c19ae743b7ac6400d5b68b5}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+V\+C\+S\+R\+\_\+\+C\+T\+L\+\_\+\+L\+A\+S\+\_\+\+P\+C\+I\+\_\+\+C\+FG}~(2$<$$<$0)	/$\ast$ pci \mbox{\hyperlink{structconfig__s}{config}} space $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a855791b819d7082c23ad1e7cd2b6c0c4}\label{vmeUniverse_8h_a855791b819d7082c23ad1e7cd2b6c0c4}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+R\+E\+G\+O\+F\+F\+\_\+\+V\+C\+S\+R\+\_\+\+TO}~0xf84
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_aefe30031001f964372da5153ef3af3bd}\label{vmeUniverse_8h_aefe30031001f964372da5153ef3af3bd}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+R\+E\+G\+O\+F\+F\+\_\+\+V\+\_\+\+A\+M\+E\+RR}~0xf88
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_af622df9e34be7c051d16fa778b3bf5c0}\label{vmeUniverse_8h_af622df9e34be7c051d16fa778b3bf5c0}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+V\+\_\+\+A\+M\+E\+R\+R\+\_\+\+A\+M\+E\+RR}(reg)~(((reg)$>$$>$26)\&0x3f)	/$\ast$ extract error log code $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a2e6c29c0dce37375d3b3fe1fa1f8237f}\label{vmeUniverse_8h_a2e6c29c0dce37375d3b3fe1fa1f8237f}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+V\+\_\+\+A\+M\+E\+R\+R\+\_\+\+I\+A\+CK}~(1$<$$<$25)	/$\ast$ V\+M\+Ebus I\+A\+CK signal $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a93287944bc0d5f46439a96c925ce012b}\label{vmeUniverse_8h_a93287944bc0d5f46439a96c925ce012b}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+V\+\_\+\+A\+M\+E\+R\+R\+\_\+\+M\+\_\+\+E\+RR}~(1$<$$<$24)	/$\ast$ multiple errors occurred $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_ad2b1c9de1d2baca806cdf195b654a806}\label{vmeUniverse_8h_ad2b1c9de1d2baca806cdf195b654a806}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+V\+\_\+\+A\+M\+E\+R\+R\+\_\+\+V\+\_\+\+S\+T\+AT}~(1$<$$<$23)	/$\ast$ log status valid (\mbox{\hyperlink{libcsupport_2src_2write_8c_a448dd253ee4c0e3d3b1275df845e7146}{write}} 1 to clear) $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_ae393a50bc7e35412dcf0ac295eae46f7}\label{vmeUniverse_8h_ae393a50bc7e35412dcf0ac295eae46f7}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+R\+E\+G\+O\+F\+F\+\_\+\+V\+A\+E\+RR}~0xf8c		/$\ast$ address of fault address (if M\+E\+R\+R\+\_\+\+V\+\_\+\+S\+T\+A\+T valid) $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a564ee294f34d56e8fcc0a40ab4e254f5}\label{vmeUniverse_8h_a564ee294f34d56e8fcc0a40ab4e254f5}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+R\+E\+G\+O\+F\+F\+\_\+\+V\+C\+S\+R\+\_\+\+C\+LR}~0xff4
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_aeedacd9d154ccd38ffa8abf0849a6a1d}\label{vmeUniverse_8h_aeedacd9d154ccd38ffa8abf0849a6a1d}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+V\+C\+S\+R\+\_\+\+C\+L\+R\+\_\+\+R\+E\+S\+ET}~(1$<$$<$31)	/$\ast$ \mbox{\hyperlink{libcsupport_2src_2read_8c_a26d4711c05afec4c7771c3d17b2db9e9}{read}}/negate L\+R\+ST (can only be written from V\+ME bus $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a9592f2825b311e4a74cf44c1f96aac85}\label{vmeUniverse_8h_a9592f2825b311e4a74cf44c1f96aac85}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+V\+C\+S\+R\+\_\+\+C\+L\+R\+\_\+\+S\+Y\+S\+F\+A\+IL}~(1$<$$<$30)	/$\ast$ \mbox{\hyperlink{libcsupport_2src_2read_8c_a26d4711c05afec4c7771c3d17b2db9e9}{read}}/negate S\+Y\+S\+F\+A\+IL $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a3ced0f209db68997f52ec2aaa3c9a6fe}\label{vmeUniverse_8h_a3ced0f209db68997f52ec2aaa3c9a6fe}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+V\+C\+S\+R\+\_\+\+C\+L\+R\+\_\+\+F\+A\+IL}~(1$<$$<$29)	/$\ast$ read\+: board has failed $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a0af4b207e3dc93d70859402ecd05548a}\label{vmeUniverse_8h_a0af4b207e3dc93d70859402ecd05548a}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+R\+E\+G\+O\+F\+F\+\_\+\+V\+C\+S\+R\+\_\+\+S\+ET}~(0xff8)
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_ae48cd14882ebc992a993fdd90bf019eb}\label{vmeUniverse_8h_ae48cd14882ebc992a993fdd90bf019eb}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+V\+C\+S\+R\+\_\+\+S\+E\+T\+\_\+\+R\+E\+S\+ET}~(1$<$$<$31)	/$\ast$ \mbox{\hyperlink{libcsupport_2src_2read_8c_a26d4711c05afec4c7771c3d17b2db9e9}{read}}/assert L\+R\+ST (can only be written from V\+ME bus $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_aa1b7f25bc85194107bd4a045c773618d}\label{vmeUniverse_8h_aa1b7f25bc85194107bd4a045c773618d}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+V\+C\+S\+R\+\_\+\+S\+E\+T\+\_\+\+S\+Y\+S\+F\+A\+IL}~(1$<$$<$30)	/$\ast$ \mbox{\hyperlink{libcsupport_2src_2read_8c_a26d4711c05afec4c7771c3d17b2db9e9}{read}}/assert S\+Y\+S\+F\+A\+IL $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a44ad6378678aa83b0c25107263520e4f}\label{vmeUniverse_8h_a44ad6378678aa83b0c25107263520e4f}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+V\+C\+S\+R\+\_\+\+S\+E\+T\+\_\+\+F\+A\+IL}~(1$<$$<$29)	/$\ast$ read\+: board has failed $\ast$/
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_ae9a02fac9ec1c0a40d57f1233ef7a3fa}\label{vmeUniverse_8h_ae9a02fac9ec1c0a40d57f1233ef7a3fa}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+R\+E\+G\+O\+F\+F\+\_\+\+V\+C\+S\+R\+\_\+\+BS}~0xffc
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_aecfe29742abf82308e6d486ff7622180}\label{vmeUniverse_8h_aecfe29742abf82308e6d486ff7622180}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+V\+C\+S\+R\+\_\+\+B\+S\+\_\+\+M\+A\+SK}~(0xf8000000)
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a4cbed21583bc7b5af5de09b202886f5f}\label{vmeUniverse_8h_a4cbed21583bc7b5af5de09b202886f5f}} 
+\#define {\bfseries U\+N\+I\+V\+\_\+\+C\+S\+R\+\_\+\+O\+F\+F\+S\+ET}~0x7f000
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_af7914a868dd7f1f9352ec84d7fca18ab}\label{vmeUniverse_8h_af7914a868dd7f1f9352ec84d7fca18ab}} 
+typedef unsigned long {\bfseries L\+E\+Register}
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_aefb2ffa827f51bbd9320c860e23a734f}\label{vmeUniverse_8h_aefb2ffa827f51bbd9320c860e23a734f}} 
+typedef struct \mbox{\hyperlink{structVmeUniverseDMAPacketRec__}{Vme\+Universe\+D\+M\+A\+Packet\+Rec\+\_\+}} {\bfseries Vme\+Universe\+D\+M\+A\+Packet\+Rec}
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_afce38421f6bf17382f0d39a407f9e1d0}\label{vmeUniverse_8h_afce38421f6bf17382f0d39a407f9e1d0}} 
+typedef struct \mbox{\hyperlink{structVmeUniverseDMAPacketRec__}{Vme\+Universe\+D\+M\+A\+Packet\+Rec\+\_\+}} $\ast$ {\bfseries Vme\+Universe\+D\+M\+A\+Packet}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a1f618b094665e1165013f060c85c8171}\label{vmeUniverse_8h_a1f618b094665e1165013f060c85c8171}} 
+int {\bfseries vme\+Universe\+Init} (void)
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_add034e8e5ebe6047fe5c0950d22cb38d}\label{vmeUniverse_8h_add034e8e5ebe6047fe5c0950d22cb38d}} 
+void {\bfseries vme\+Universe\+Reset} (void)
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a347b8ba8889cfb0008d5f62750a54476}\label{vmeUniverse_8h_a347b8ba8889cfb0008d5f62750a54476}} 
+void {\bfseries vme\+Universe\+Master\+Ports\+Show} (F\+I\+LE $\ast$f)
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a6431b2ea4ceaef387a0d5a2c06544e1a}\label{vmeUniverse_8h_a6431b2ea4ceaef387a0d5a2c06544e1a}} 
+void {\bfseries vme\+Universe\+Slave\+Ports\+Show} (F\+I\+LE $\ast$f)
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a4d8dbe34ef867c422e6124c28be4e6a8}\label{vmeUniverse_8h_a4d8dbe34ef867c422e6124c28be4e6a8}} 
+void {\bfseries vme\+Universe\+Disable\+All\+Masters} (void)
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_ae854f5965c1d8e83512b64174477ec09}\label{vmeUniverse_8h_ae854f5965c1d8e83512b64174477ec09}} 
+void {\bfseries vme\+Universe\+Disable\+All\+Slaves} (void)
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a293f4e4f98b31b6c7b0a1ce25ce53443}\label{vmeUniverse_8h_a293f4e4f98b31b6c7b0a1ce25ce53443}} 
+int {\bfseries vme\+Universe\+Master\+Port\+Cfg} (unsigned long port, unsigned long address\+\_\+space, unsigned long vme\+\_\+address, unsigned long local\+\_\+address, unsigned long length)
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a157830499ad5c563e62f88d8760f4f58}\label{vmeUniverse_8h_a157830499ad5c563e62f88d8760f4f58}} 
+int {\bfseries vme\+Universe\+Xlate\+Addr} (int master, int reverse, unsigned long as, unsigned long addr, unsigned long $\ast$pa\+Out)
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_ab44cc6d4605d0120b85f6c5608676f65}\label{vmeUniverse_8h_ab44cc6d4605d0120b85f6c5608676f65}} 
+int {\bfseries vme\+Universe\+Slave\+Port\+Cfg} (unsigned long port, unsigned long address\+\_\+space, unsigned long vme\+\_\+address, unsigned long local\+\_\+address, unsigned long length)
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a7fab28103975cc6a4cfd1cf74c7c10dc}\label{vmeUniverse_8h_a7fab28103975cc6a4cfd1cf74c7c10dc}} 
+int {\bfseries vme\+Universe\+Start\+D\+MA} (unsigned long local\+\_\+addr, unsigned long vme\+\_\+addr, unsigned long count)
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_acc7c6c464a08a88318264120ebebd021}\label{vmeUniverse_8h_acc7c6c464a08a88318264120ebebd021}} 
+int {\bfseries vme\+Universe\+Start\+D\+M\+A\+XX} (volatile L\+E\+Register $\ast$ubase, unsigned long local\+\_\+addr, unsigned long vme\+\_\+addr, unsigned long count)
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_afec3bad8acc18742b8b0a4d8bdac3293}\label{vmeUniverse_8h_afec3bad8acc18742b8b0a4d8bdac3293}} 
+unsigned long {\bfseries vme\+Universe\+Read\+Reg} (unsigned long offset)
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_afef8705e09181ab1cb14d6c8b4d3cf88}\label{vmeUniverse_8h_afef8705e09181ab1cb14d6c8b4d3cf88}} 
+void {\bfseries vme\+Universe\+Write\+Reg} (unsigned long value, unsigned long offset)
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a1c4156adf4ae9c724bcf761e30424cda}\label{vmeUniverse_8h_a1c4156adf4ae9c724bcf761e30424cda}} 
+void {\bfseries vme\+Universe\+Cvt\+To\+LE} (unsigned long $\ast$ptr, unsigned long num)
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a367a195dd203ccf877f7a1d3b5d3a712}\label{vmeUniverse_8h_a367a195dd203ccf877f7a1d3b5d3a712}} 
+void {\bfseries vme\+Universe\+Reset\+Bus} (void)
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_ade888e6f9f21b67767413ededbeeb8f3}\label{vmeUniverse_8h_ade888e6f9f21b67767413ededbeeb8f3}} 
+unsigned long {\bfseries vme\+Universe\+Read\+Reg\+XX} (volatile L\+E\+Register $\ast$ubase, unsigned long offset)
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a7c0a06c13ce8bd35bb9fbcd450f45b71}\label{vmeUniverse_8h_a7c0a06c13ce8bd35bb9fbcd450f45b71}} 
+void {\bfseries vme\+Universe\+Write\+Reg\+XX} (volatile L\+E\+Register $\ast$ubase, unsigned long value, unsigned long offset)
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_ad54b403aeee97ed223657387a6563f0a}\label{vmeUniverse_8h_ad54b403aeee97ed223657387a6563f0a}} 
+int {\bfseries vme\+Universe\+Xlate\+Addr\+XX} (volatile L\+E\+Register $\ast$ubase, int master, int reverse, unsigned long as, unsigned long addr, unsigned long $\ast$pa\+Out)
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_ad22c66cc5a8ece7c58578f180e64d15a}\label{vmeUniverse_8h_ad22c66cc5a8ece7c58578f180e64d15a}} 
+int {\bfseries vme\+Universe\+Master\+Port\+Cfg\+XX} (volatile L\+E\+Register $\ast$ubase, unsigned long port, unsigned long address\+\_\+space, unsigned long vme\+\_\+address, unsigned long local\+\_\+address, unsigned long length)
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a6eef159a0b6aac1cd6968af2e6e8dc5a}\label{vmeUniverse_8h_a6eef159a0b6aac1cd6968af2e6e8dc5a}} 
+int {\bfseries vme\+Universe\+Slave\+Port\+Cfg\+XX} (volatile L\+E\+Register $\ast$ubase, unsigned long port, unsigned long address\+\_\+space, unsigned long vme\+\_\+address, unsigned long local\+\_\+address, unsigned long length)
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_af10fd33f5b185a89d7025cd3e7a30e63}\label{vmeUniverse_8h_af10fd33f5b185a89d7025cd3e7a30e63}} 
+void {\bfseries vme\+Universe\+Disable\+All\+Masters\+XX} (volatile L\+E\+Register $\ast$ubase)
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a72b41765da7d557deb4ed146d804ad86}\label{vmeUniverse_8h_a72b41765da7d557deb4ed146d804ad86}} 
+void {\bfseries vme\+Universe\+Disable\+All\+Slaves\+XX} (volatile L\+E\+Register $\ast$ubase)
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a68b9c1ad010af71a52add8eb806806b3}\label{vmeUniverse_8h_a68b9c1ad010af71a52add8eb806806b3}} 
+void {\bfseries vme\+Universe\+Master\+Ports\+Show\+XX} (volatile L\+E\+Register $\ast$ubase, F\+I\+LE $\ast$f)
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_aa37e7d059cccdb8fec3209c60d1dc44e}\label{vmeUniverse_8h_aa37e7d059cccdb8fec3209c60d1dc44e}} 
+void {\bfseries vme\+Universe\+Slave\+Ports\+Show\+XX} (volatile L\+E\+Register $\ast$ubase, F\+I\+LE $\ast$f)
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_aa39b74032efe281ea3e0ff7a097df467}\label{vmeUniverse_8h_aa39b74032efe281ea3e0ff7a097df467}} 
+int {\bfseries vme\+Universe\+Int\+Raise\+XX} (volatile L\+E\+Register $\ast$base, int level, unsigned vector)
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a4849cb6bd71580c42e2212f0059f5ad6}\label{vmeUniverse_8h_a4849cb6bd71580c42e2212f0059f5ad6}} 
+int {\bfseries vme\+Universe\+Int\+Raise} (int level, unsigned vector)
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a2c772975d507fd7e21966fc62f614725}\label{vmeUniverse_8h_a2c772975d507fd7e21966fc62f614725}} 
+int {\bfseries vme\+Universe\+Map\+C\+R\+G\+XX} (volatile L\+E\+Register $\ast$base, unsigned long vme\+\_\+base, unsigned long address\+\_\+space)
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_ae4340f408bf3775b51732086e91722ed}\label{vmeUniverse_8h_ae4340f408bf3775b51732086e91722ed}} 
+int {\bfseries vme\+Universe\+Map\+C\+RG} (unsigned long vme\+\_\+base, unsigned long address\+\_\+space)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_ad012a6e03f0fe95286555b0fa1178ba0}\label{vmeUniverse_8h_ad012a6e03f0fe95286555b0fa1178ba0}} 
+volatile L\+E\+Register $\ast$ {\bfseries vme\+Universe0\+Base\+Addr}
+\item 
+\mbox{\Hypertarget{vmeUniverse_8h_a0f064827f0ac417ff568834b755ca554}\label{vmeUniverse_8h_a0f064827f0ac417ff568834b755ca554}} 
+int {\bfseries vme\+Universe0\+Pci\+Irq\+Line}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Driver for the Tundra Universe II pci-\/vme bridge. 
+
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{vmeUniverse_8h_a578f4a6e93e7a7747c55c5a4ccbcf886}\label{vmeUniverse_8h_a578f4a6e93e7a7747c55c5a4ccbcf886}} 
+\index{vmeUniverse.h@{vmeUniverse.h}!UNIV\_DGCS\_STATUS\_CLEAR@{UNIV\_DGCS\_STATUS\_CLEAR}}
+\index{UNIV\_DGCS\_STATUS\_CLEAR@{UNIV\_DGCS\_STATUS\_CLEAR}!vmeUniverse.h@{vmeUniverse.h}}
+\subsubsection{\texorpdfstring{UNIV\_DGCS\_STATUS\_CLEAR}{UNIV\_DGCS\_STATUS\_CLEAR}}
+{\footnotesize\ttfamily \#define U\+N\+I\+V\+\_\+\+D\+G\+C\+S\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+L\+E\+AR}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(UNIV\_DGCS\_ACT|UNIV\_DGCS\_STOP|UNIV\_DGCS\_HALT|\(\backslash\)}
+\DoxyCodeLine{     UNIV\_DGCS\_DONE|UNIV\_DGCS\_LERR|UNIV\_DGCS\_VERR|UNIV\_DGCS\_P\_ERR)}
+
+\end{DoxyCode}

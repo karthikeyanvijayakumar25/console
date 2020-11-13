@@ -1,0 +1,101 @@
+\hypertarget{i8259_8h}{}\section{bsps/mips/include/bsp/i8259.h File Reference}
+\label{i8259_8h}\index{bsps/mips/include/bsp/i8259.h@{bsps/mips/include/bsp/i8259.h}}
+
+
+Data structure and functions used to control i8259 chip.  
+
+
+\subsection*{Macros}
+\begin{Indent}\textbf{ 8259 edge/level control definitions at V\+IA}\par
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bfseries I\+S\+A8259\+\_\+\+M\+\_\+\+E\+L\+CR}~0x4d0
+\item 
+\#define {\bfseries I\+S\+A8259\+\_\+\+S\+\_\+\+E\+L\+CR}~0x4d1
+\item 
+\#define {\bfseries E\+L\+C\+R\+S\+\_\+\+I\+N\+T15\+\_\+\+L\+VL}~0x80
+\item 
+\#define {\bfseries E\+L\+C\+R\+S\+\_\+\+I\+N\+T14\+\_\+\+L\+VL}~0x40
+\item 
+\#define {\bfseries E\+L\+C\+R\+S\+\_\+\+I\+N\+T13\+\_\+\+L\+VL}~0x20
+\item 
+\#define {\bfseries E\+L\+C\+R\+S\+\_\+\+I\+N\+T12\+\_\+\+L\+VL}~0x10
+\item 
+\#define {\bfseries E\+L\+C\+R\+S\+\_\+\+I\+N\+T11\+\_\+\+L\+VL}~0x08
+\item 
+\#define {\bfseries E\+L\+C\+R\+S\+\_\+\+I\+N\+T10\+\_\+\+L\+VL}~0x04
+\item 
+\#define {\bfseries E\+L\+C\+R\+S\+\_\+\+I\+N\+T9\+\_\+\+L\+VL}~0x02
+\item 
+\#define {\bfseries E\+L\+C\+R\+S\+\_\+\+I\+N\+T8\+\_\+\+L\+VL}~0x01
+\item 
+\#define {\bfseries E\+L\+C\+R\+M\+\_\+\+I\+N\+T7\+\_\+\+L\+VL}~0x80
+\item 
+\#define {\bfseries E\+L\+C\+R\+M\+\_\+\+I\+N\+T6\+\_\+\+L\+VL}~0x40
+\item 
+\#define {\bfseries E\+L\+C\+R\+M\+\_\+\+I\+N\+T5\+\_\+\+L\+VL}~0x20
+\item 
+\#define {\bfseries E\+L\+C\+R\+M\+\_\+\+I\+N\+T4\+\_\+\+L\+VL}~0x10
+\item 
+\#define {\bfseries E\+L\+C\+R\+M\+\_\+\+I\+N\+T3\+\_\+\+L\+VL}~0x8
+\item 
+\#define {\bfseries E\+L\+C\+R\+M\+\_\+\+I\+N\+T2\+\_\+\+L\+VL}~0x4
+\item 
+\#define {\bfseries E\+L\+C\+R\+M\+\_\+\+I\+N\+T1\+\_\+\+L\+VL}~0x2
+\item 
+\#define {\bfseries E\+L\+C\+R\+M\+\_\+\+I\+N\+T0\+\_\+\+L\+VL}~0x1
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ P\+IC\textquotesingle{}s command and mask registers}\par
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__mips__i8259__irq_ga1a3ee301f9e0314a9657ab0fc71f73a5}{P\+I\+C\+\_\+\+M\+A\+S\+T\+E\+R\+\_\+\+C\+O\+M\+M\+A\+N\+D\+\_\+\+I\+O\+\_\+\+P\+O\+RT}}~0x20
+\begin{DoxyCompactList}\small\item\em Master P\+IC command register $\ast$/. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__mips__i8259__irq_gaa2344529019714e2ba78b74a18a20ff9}{P\+I\+C\+\_\+\+S\+L\+A\+V\+E\+\_\+\+C\+O\+M\+M\+A\+N\+D\+\_\+\+I\+O\+\_\+\+P\+O\+RT}}~0xa0
+\begin{DoxyCompactList}\small\item\em Slave P\+IC command register $\ast$/. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__mips__i8259__irq_gafb5e70ba8fa65622b32b205d3568d1f0}{P\+I\+C\+\_\+\+M\+A\+S\+T\+E\+R\+\_\+\+I\+M\+R\+\_\+\+I\+O\+\_\+\+P\+O\+RT}}~0x21
+\begin{DoxyCompactList}\small\item\em Master P\+IC Interrupt Mask Register $\ast$/. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__mips__i8259__irq_ga5bbabe22cf07171c58bb2887feba6301}{P\+I\+C\+\_\+\+S\+L\+A\+V\+E\+\_\+\+I\+M\+R\+\_\+\+I\+O\+\_\+\+P\+O\+RT}}~0xa1
+\begin{DoxyCompactList}\small\item\em Slave P\+IC Interrupt Mask Register $\ast$/. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Command for specific E\+OI (End Of Interrupt)\+: Interrupt acknowledge}\par
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__mips__i8259__irq_ga870dd62bbf5648027756646c08804680}{P\+I\+C\+\_\+\+E\+O\+SI}}~0x60
+\begin{DoxyCompactList}\small\item\em End of Specific Interrupt (E\+O\+SI) $\ast$/. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__mips__i8259__irq_gafb66965d7c27635f99e9431dd7d23225}{S\+L\+A\+V\+E\+\_\+\+P\+I\+C\+\_\+\+E\+O\+SI}}~0x62
+\begin{DoxyCompactList}\small\item\em End of Specific Interrupt (E\+O\+SI) for cascade $\ast$/. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__mips__i8259__irq_ga170d8eebdb48c16cfcd60cbd46760cb2}{P\+I\+C\+\_\+\+E\+OI}}~0x20
+\begin{DoxyCompactList}\small\item\em Generic End of Interrupt (E\+OI) $\ast$/. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Functions}
+\begin{Indent}\textbf{ Function Prototypes}\par
+\begin{DoxyCompactItemize}
+\item 
+void {\bfseries B\+S\+P\+\_\+i8259s\+\_\+init} (void)
+\item 
+int \mbox{\hyperlink{group__mips__i8259__irq_ga2cbf3b2287a4937b96bacd73ce4ce3c7}{B\+S\+P\+\_\+irq\+\_\+disable\+\_\+at\+\_\+i8259s}} (const rtems\+\_\+irq\+\_\+number irq\+Line)
+\begin{DoxyCompactList}\small\item\em function to disable a particular irq at 8259 level. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__mips__i8259__irq_ga0504c1761cd7a8b649a5794ac4f15afe}{B\+S\+P\+\_\+irq\+\_\+enable\+\_\+at\+\_\+i8259s}} (const rtems\+\_\+irq\+\_\+number irq\+Line)
+\begin{DoxyCompactList}\small\item\em function to enable a particular irq at 8259 level. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__mips__i8259__irq_ga71748a7cd08c833484dc27fe32dafeb5}{B\+S\+P\+\_\+irq\+\_\+ack\+\_\+at\+\_\+i8259s}} (const rtems\+\_\+irq\+\_\+number irq\+Line)
+\begin{DoxyCompactList}\small\item\em function to acknowledge a particular irq at 8259 level. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__mips__i8259__irq_gad45f6f265e31986fe1a820cd0b82339e}{B\+S\+P\+\_\+irq\+\_\+enabled\+\_\+at\+\_\+i8259s}} (const rtems\+\_\+irq\+\_\+number irq\+Line)
+\begin{DoxyCompactList}\small\item\em function to check if a particular irq is enabled at 8259 level. \end{DoxyCompactList}\item 
+int {\bfseries B\+S\+P\+\_\+i8259s\+\_\+int\+\_\+process} (void)
+\item 
+void {\bfseries B\+S\+P\+\_\+rtems\+\_\+irq\+\_\+mng\+\_\+init} (unsigned cpu\+Id)
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Type definition for R\+T\+E\+MS managed interrupts}
+\begin{DoxyCompactItemize}
+\item 
+typedef unsigned short {\bfseries rtems\+\_\+i8259\+\_\+masks}
+\item 
+volatile \mbox{\hyperlink{group__i386__irq_gabcb5f2200fea51d658c5ed728282ee77}{rtems\+\_\+i8259\+\_\+masks}} {\bfseries i8259s\+\_\+cache}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Data structure and functions used to control i8259 chip. 
+

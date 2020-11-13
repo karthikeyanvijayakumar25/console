@@ -1,0 +1,63 @@
+\hypertarget{isrlock_8h}{}\section{cpukit/include/rtems/score/isrlock.h File Reference}
+\label{isrlock_8h}\index{cpukit/include/rtems/score/isrlock.h@{cpukit/include/rtems/score/isrlock.h}}
+
+
+I\+SR Locks.  
+
+
+{\ttfamily \#include $<$rtems/score/isrlevel.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/score/smplock.\+h$>$}\newline
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structISR__lock__Control}{I\+S\+R\+\_\+lock\+\_\+\+Control}}
+\begin{DoxyCompactList}\small\item\em I\+SR lock control. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structISR__lock__Context}{I\+S\+R\+\_\+lock\+\_\+\+Context}}
+\begin{DoxyCompactList}\small\item\em Local I\+SR lock context for acquire and release pairs. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__RTEMSScoreISRLocks_ga09174e3121c9ec30b08d4ab09706833d}{I\+S\+R\+\_\+\+L\+O\+C\+K\+\_\+\+M\+E\+M\+B\+ER}}(\+\_\+designator)
+\begin{DoxyCompactList}\small\item\em Defines an I\+SR lock member. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTEMSScoreISRLocks_ga6702456c1dc97f69ebbbf1438c2b7e2e}{I\+S\+R\+\_\+\+L\+O\+C\+K\+\_\+\+D\+E\+C\+L\+A\+RE}}(\+\_\+qualifier,  \+\_\+designator)
+\begin{DoxyCompactList}\small\item\em Declares an I\+SR lock variable. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTEMSScoreISRLocks_ga24058ced522fcade5ccdc9bd477574f2}{I\+S\+R\+\_\+\+L\+O\+C\+K\+\_\+\+D\+E\+F\+I\+NE}}(\+\_\+qualifier,  \+\_\+designator,  \+\_\+name)
+\begin{DoxyCompactList}\small\item\em Defines an I\+SR lock variable. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTEMSScoreISRLocks_gad41ddc507bfa7022bd9355ff252888d2}{I\+S\+R\+\_\+\+L\+O\+C\+K\+\_\+\+R\+E\+F\+E\+R\+E\+N\+CE}}(\+\_\+designator,  \+\_\+target)
+\begin{DoxyCompactList}\small\item\em Defines an I\+SR lock variable reference. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTEMSScoreISRLocks_ga5fd39a446bb4cfbfc53838fd434d5f6c}{I\+S\+R\+\_\+\+L\+O\+C\+K\+\_\+\+I\+N\+I\+T\+I\+A\+L\+I\+Z\+ER}}(\+\_\+name)~\{ \}
+\begin{DoxyCompactList}\small\item\em Initializer for static initialization of I\+SR locks. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTEMSScoreISRLocks_gafeb5128bdf7cc2d29f9f51a85a7d0220}{\+\_\+\+I\+S\+R\+\_\+lock\+\_\+\+Initialize}}(\+\_\+lock,  \+\_\+name)
+\begin{DoxyCompactList}\small\item\em Initializes an I\+SR lock. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTEMSScoreISRLocks_ga918784c3c13a2fb3a27173cbc471285a}{\+\_\+\+I\+S\+R\+\_\+lock\+\_\+\+Destroy}}(\+\_\+lock)
+\begin{DoxyCompactList}\small\item\em Destroys an I\+SR lock. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTEMSScoreISRLocks_ga50c13faa89292b96a4bcf5ef34d76fac}{\+\_\+\+I\+S\+R\+\_\+lock\+\_\+\+Set\+\_\+name}}(\+\_\+lock,  \+\_\+name)
+\begin{DoxyCompactList}\small\item\em Sets the name of an I\+SR lock. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTEMSScoreISRLocks_gaa4ecfcd40e90531bdd3c348a99b3b7d9}{\+\_\+\+I\+S\+R\+\_\+lock\+\_\+\+I\+S\+R\+\_\+disable\+\_\+and\+\_\+acquire}}(\+\_\+lock,  \+\_\+context)~\mbox{\hyperlink{group__RTEMSScoreISR_ga2a829f51f98576aa596562985e1df2fc}{\+\_\+\+I\+S\+R\+\_\+\+Local\+\_\+disable}}( ( \+\_\+context )-\/$>$isr\+\_\+level )
+\begin{DoxyCompactList}\small\item\em Acquires an I\+SR lock. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTEMSScoreISRLocks_ga87a2125e8bfba5f2f5b72adbeee4dcc3}{\+\_\+\+I\+S\+R\+\_\+lock\+\_\+\+Release\+\_\+and\+\_\+\+I\+S\+R\+\_\+enable}}(\+\_\+lock,  \+\_\+context)~\mbox{\hyperlink{group__RTEMSScoreISR_ga508f5a32655cb590906a477b5a8174f1}{\+\_\+\+I\+S\+R\+\_\+\+Local\+\_\+enable}}( ( \+\_\+context )-\/$>$isr\+\_\+level )
+\begin{DoxyCompactList}\small\item\em Releases an I\+SR lock. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTEMSScoreISRLocks_ga69700d5284dea5b4ce06b5ebc405d797}{\+\_\+\+I\+S\+R\+\_\+lock\+\_\+\+Acquire}}(\+\_\+lock,  \+\_\+context)~do \{ (void) \+\_\+context; \} while ( 0 )
+\begin{DoxyCompactList}\small\item\em Acquires an I\+SR lock inside an I\+SR disabled section. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTEMSScoreISRLocks_ga35acfee397d43e90bc30f63e4bd960d7}{\+\_\+\+I\+S\+R\+\_\+lock\+\_\+\+Release}}(\+\_\+lock,  \+\_\+context)~do \{ (void) \+\_\+context; \} while ( 0 )
+\begin{DoxyCompactList}\small\item\em Releases an I\+SR lock inside an I\+SR disabled section. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTEMSScoreISRLocks_ga78b1ad93f43e74e8155f7cebb539e14b}{\+\_\+\+I\+S\+R\+\_\+lock\+\_\+\+Acquire\+\_\+inline}}(\+\_\+lock,  \+\_\+context)~do \{ (void) \+\_\+context; \} while ( 0 )
+\begin{DoxyCompactList}\small\item\em Acquires an I\+SR lock inside an I\+SR disabled section (inline). \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTEMSScoreISRLocks_gaa273cf4f280a0cbd05e9b2f4b8321793}{\+\_\+\+I\+S\+R\+\_\+lock\+\_\+\+Release\+\_\+inline}}(\+\_\+lock,  \+\_\+context)~do \{ (void) \+\_\+context; \} while ( 0 )
+\begin{DoxyCompactList}\small\item\em Releases an I\+SR lock inside an I\+SR disabled section (inline). \end{DoxyCompactList}\item 
+\#define {\bfseries \+\_\+\+I\+S\+R\+\_\+lock\+\_\+\+I\+S\+R\+\_\+disable\+\_\+profile}(\+\_\+context)
+\item 
+\#define \mbox{\hyperlink{group__RTEMSScoreISRLocks_ga36d91ceed1df931ce6291d7bc9e60573}{\+\_\+\+I\+S\+R\+\_\+lock\+\_\+\+I\+S\+R\+\_\+disable}}(\+\_\+context)
+\begin{DoxyCompactList}\small\item\em Disables interrupts and saves the previous interrupt state in the I\+SR lock context. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTEMSScoreISRLocks_ga2a9af8c6d9bdc4c652759c84df115559}{\+\_\+\+I\+S\+R\+\_\+lock\+\_\+\+I\+S\+R\+\_\+enable}}(\+\_\+context)~\mbox{\hyperlink{group__RTEMSScoreISR_ga508f5a32655cb590906a477b5a8174f1}{\+\_\+\+I\+S\+R\+\_\+\+Local\+\_\+enable}}( ( \+\_\+context )-\/$>$isr\+\_\+level )
+\begin{DoxyCompactList}\small\item\em Restores the saved interrupt state of the I\+SR lock context. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \mbox{\hyperlink{group__RTEMSScoreISRLocks_ga937f2866844702a8e85148bcdc4d49d0}{\+\_\+\+I\+S\+R\+\_\+lock\+\_\+\+Context\+\_\+set\+\_\+level}} (\mbox{\hyperlink{structISR__lock__Context}{I\+S\+R\+\_\+lock\+\_\+\+Context}} $\ast$\mbox{\hyperlink{sun4u_2tte_8h_a9b4a99475e2709333b8e5d70483173f1}{context}}, \mbox{\hyperlink{group__RTEMSScoreISR_gad1af728587ebcefec5b5cf94fc7909b9}{I\+S\+R\+\_\+\+Level}} level)
+\begin{DoxyCompactList}\small\item\em Sets the I\+SR level in the I\+SR lock context. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+I\+SR Locks. 
+

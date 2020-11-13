@@ -1,0 +1,90 @@
+\hypertarget{idtcpu_8h}{}\section{cpukit/score/cpu/mips/include/rtems/mips/idtcpu.h File Reference}
+\label{idtcpu_8h}\index{cpukit/score/cpu/mips/include/rtems/mips/idtcpu.h@{cpukit/score/cpu/mips/include/rtems/mips/idtcpu.h}}
+
+
+C\+PU Related Definitions.  
+
+
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bfseries K0\+B\+A\+SE}~0x80000000
+\item 
+\#define {\bfseries K0\+S\+I\+ZE}~0x20000000
+\item 
+\#define {\bfseries K1\+B\+A\+SE}~0xa0000000
+\item 
+\#define {\bfseries K1\+S\+I\+ZE}~0x20000000
+\item 
+\#define {\bfseries K2\+B\+A\+SE}~0xc0000000
+\item 
+\#define {\bfseries K2\+S\+I\+ZE}~0x20000000
+\item 
+\#define {\bfseries K\+U\+B\+A\+SE}~0
+\item 
+\#define {\bfseries K\+U\+S\+I\+ZE}~0x80000000
+\item 
+\#define {\bfseries R\+\_\+\+V\+EC}~(K1\+B\+A\+SE+0x1fc00000)	/$\ast$ reset vector $\ast$/
+\item 
+\#define {\bfseries C\+A\+ST}(as)
+\item 
+\#define {\bfseries K0\+\_\+\+T\+O\+\_\+\+K1}(x)~(C\+A\+ST(unsigned)(x)$\vert$0x\+A0000000)	/$\ast$ kseg0 to kseg1 $\ast$/
+\item 
+\#define {\bfseries K1\+\_\+\+T\+O\+\_\+\+K0}(x)~(C\+A\+ST(unsigned)(x)\&0x9\+F\+F\+F\+F\+F\+F\+F)	/$\ast$ kseg1 to kseg0 $\ast$/
+\item 
+\#define {\bfseries K0\+\_\+\+T\+O\+\_\+\+P\+H\+YS}(x)~(C\+A\+ST(unsigned)(x)\&0x1\+F\+F\+F\+F\+F\+F\+F)	/$\ast$ kseg0 to physical $\ast$/
+\item 
+\#define {\bfseries K1\+\_\+\+T\+O\+\_\+\+P\+H\+YS}(x)~(C\+A\+ST(unsigned)(x)\&0x1\+F\+F\+F\+F\+F\+F\+F)	/$\ast$ kseg1 to physical $\ast$/
+\item 
+\#define {\bfseries P\+H\+Y\+S\+\_\+\+T\+O\+\_\+\+K0}(x)~(C\+A\+ST(unsigned)(x)$\vert$0x80000000)	/$\ast$ physical to kseg0 $\ast$/
+\item 
+\#define {\bfseries P\+H\+Y\+S\+\_\+\+T\+O\+\_\+\+K1}(x)~(C\+A\+ST(unsigned)(x)$\vert$0x\+A0000000)	/$\ast$ physical to kseg1 $\ast$/
+\item 
+\#define {\bfseries M\+I\+N\+C\+A\+C\+HE}~0x200		/$\ast$ 512       For 3041. $\ast$/
+\item 
+\#define {\bfseries M\+A\+X\+C\+A\+C\+HE}~0x40000		/$\ast$ 256$\ast$1024   256k $\ast$/
+\item 
+\#define {\bfseries C\+A\+U\+S\+E\+\_\+\+BD}~0x80000000	/$\ast$ Branch delay slot $\ast$/
+\item 
+\#define {\bfseries C\+A\+U\+S\+E\+\_\+\+BT}~0x40000000	/$\ast$ Branch Taken $\ast$/
+\item 
+\#define {\bfseries C\+A\+U\+S\+E\+\_\+\+C\+E\+M\+A\+SK}~0x30000000	/$\ast$ coprocessor error $\ast$/
+\item 
+\#define {\bfseries C\+A\+U\+S\+E\+\_\+\+C\+E\+S\+H\+I\+FT}~28
+\item 
+\#define {\bfseries C\+A\+U\+S\+E\+\_\+\+I\+P\+M\+A\+SK}~0x0000\+F\+F00	/$\ast$ Pending interrupt mask $\ast$/
+\item 
+\#define {\bfseries C\+A\+U\+S\+E\+\_\+\+I\+P\+S\+H\+I\+FT}~8
+\item 
+\#define {\bfseries C\+A\+U\+S\+E\+\_\+\+E\+X\+C\+M\+A\+SK}~0x0000003\+C	/$\ast$ Cause code bits $\ast$/
+\item 
+\#define {\bfseries C\+A\+U\+S\+E\+\_\+\+E\+X\+C\+S\+H\+I\+FT}~2
+\item 
+\#define {\bfseries C0\+\_\+\+I\+NX}~\$0		/$\ast$ tlb index $\ast$/
+\item 
+\#define {\bfseries C0\+\_\+\+R\+A\+ND}~\$1		/$\ast$ tlb random $\ast$/
+\item 
+\#define {\bfseries C0\+\_\+\+C\+T\+XT}~\$4		/$\ast$ tlb \mbox{\hyperlink{sun4u_2tte_8h_a9b4a99475e2709333b8e5d70483173f1}{context}} $\ast$/
+\item 
+\#define {\bfseries C0\+\_\+\+B\+A\+D\+V\+A\+D\+DR}~\$8		/$\ast$ bad virtual address $\ast$/
+\item 
+\#define {\bfseries C0\+\_\+\+T\+L\+B\+HI}~\$10		/$\ast$ tlb \mbox{\hyperlink{structentry}{entry}} hi $\ast$/
+\item 
+\#define {\bfseries C0\+\_\+\+SR}~\$12		/$\ast$ status register $\ast$/
+\item 
+\#define {\bfseries C0\+\_\+\+C\+A\+U\+SE}~\$13		/$\ast$ exception cause $\ast$/
+\item 
+\#define {\bfseries C0\+\_\+\+E\+PC}~\$14		/$\ast$ exception \mbox{\hyperlink{group__mips__regs_ga2f03b14a71de24f7c904d4ce6d26d7f5}{pc}} $\ast$/
+\item 
+\#define {\bfseries C0\+\_\+\+P\+R\+ID}~\$15		/$\ast$ revision identifier $\ast$/
+\item 
+\#define {\bfseries C1\+\_\+\+R\+E\+V\+I\+S\+I\+ON}~\$0
+\item 
+\#define {\bfseries C1\+\_\+\+S\+T\+A\+T\+US}~\$31
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+C\+PU Related Definitions. 
+
+950313\+: Ketan added sreg/lreg and R\+\_\+\+SZ for 64-\/bit saves added Register definition for X\+Context reg. Look towards end of this file. 

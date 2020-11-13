@@ -1,0 +1,101 @@
+\hypertarget{msdos__misc_8c}{}\section{cpukit/libfs/src/dosfs/msdos\+\_\+misc.c File Reference}
+\label{msdos__misc_8c}\index{cpukit/libfs/src/dosfs/msdos\_misc.c@{cpukit/libfs/src/dosfs/msdos\_misc.c}}
+
+
+Miscellaneous Routines Implementation for M\+S\+D\+OS File\+System.  
+
+
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$ctype.\+h$>$}\newline
+{\ttfamily \#include $<$sys/time.\+h$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$assert.\+h$>$}\newline
+{\ttfamily \#include $<$errno.\+h$>$}\newline
+{\ttfamily \#include $<$inttypes.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/libio\+\_\+.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}fat.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}fat\+\_\+fat\+\_\+operations.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}fat\+\_\+file.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}msdos.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{msdos__misc_8c_a4c7458496d446fa1c05ba019dadd25a1}\label{msdos__misc_8c_a4c7458496d446fa1c05ba019dadd25a1}} 
+\#define {\bfseries M\+S\+D\+O\+S\+\_\+\+T\+R\+A\+CE}~1
+\item 
+\mbox{\Hypertarget{msdos__misc_8c_a9ba432588355047b140a753a5aa5819e}\label{msdos__misc_8c_a9ba432588355047b140a753a5aa5819e}} 
+\#define {\bfseries M\+S\+D\+O\+S\+\_\+\+L\+F\+N\+\_\+\+E\+N\+T\+R\+Y\+\_\+\+S\+I\+ZE}~(M\+S\+D\+O\+S\+\_\+\+L\+F\+N\+\_\+\+L\+E\+N\+\_\+\+P\+E\+R\+\_\+\+E\+N\+T\+RY $\ast$ M\+S\+D\+O\+S\+\_\+\+N\+A\+M\+E\+\_\+\+L\+F\+N\+\_\+\+B\+Y\+T\+E\+S\+\_\+\+P\+E\+R\+\_\+\+C\+H\+AR)
+\item 
+\#define {\bfseries M\+S\+D\+O\+S\+\_\+\+L\+F\+N\+\_\+\+E\+N\+T\+R\+Y\+\_\+\+S\+I\+Z\+E\+\_\+\+U\+T\+F8}
+\item 
+\mbox{\Hypertarget{msdos__misc_8c_a66225a61ed190e05f42dd4dc736f1bdf}\label{msdos__misc_8c_a66225a61ed190e05f42dd4dc736f1bdf}} 
+\#define {\bfseries M\+S\+D\+O\+S\+\_\+\+N\+A\+M\+E\+\_\+\+T\+Y\+P\+E\+\_\+\+P\+R\+I\+NT}~0
+\item 
+\mbox{\Hypertarget{msdos__misc_8c_ad46829bc26a8e70123bfb829d4091b96}\label{msdos__misc_8c_ad46829bc26a8e70123bfb829d4091b96}} 
+\#define {\bfseries M\+S\+D\+O\+S\+\_\+\+L2\+S\+\_\+\+P\+R\+I\+NT}~0
+\item 
+\mbox{\Hypertarget{msdos__misc_8c_a435734eb7718a988914279ad303c7ea0}\label{msdos__misc_8c_a435734eb7718a988914279ad303c7ea0}} 
+\#define {\bfseries M\+S\+D\+O\+S\+\_\+\+F\+I\+N\+D\+\_\+\+P\+R\+I\+NT}~0
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+uint8\+\_\+t {\bfseries msdos\+\_\+lfn\+\_\+checksum} (const void $\ast$\mbox{\hyperlink{structentry}{entry}})
+\item 
+msdos\+\_\+name\+\_\+type\+\_\+t {\bfseries msdos\+\_\+long\+\_\+to\+\_\+short} (\mbox{\hyperlink{structrtems__dosfs__convert__control}{rtems\+\_\+dosfs\+\_\+convert\+\_\+control}} $\ast$converter, const char $\ast$lfn, int lfn\+\_\+len, char $\ast$sfn, int sfn\+\_\+len)
+\item 
+int {\bfseries msdos\+\_\+find\+\_\+name} (\mbox{\hyperlink{group__LibIO_ga3252b3d31ee3c49ffff0b7604a676864}{rtems\+\_\+filesystem\+\_\+location\+\_\+info\+\_\+t}} $\ast$parent\+\_\+loc, const char $\ast$name, int name\+\_\+len)
+\item 
+int {\bfseries msdos\+\_\+get\+\_\+name\+\_\+node} (const \mbox{\hyperlink{group__LibIO_ga3252b3d31ee3c49ffff0b7604a676864}{rtems\+\_\+filesystem\+\_\+location\+\_\+info\+\_\+t}} $\ast$parent\+\_\+loc, bool create\+\_\+node, const char $\ast$name, int name\+\_\+len, msdos\+\_\+name\+\_\+type\+\_\+t name\+\_\+type, \mbox{\hyperlink{structfat__dir__pos__s}{fat\+\_\+dir\+\_\+pos\+\_\+t}} $\ast$dir\+\_\+pos, char $\ast$name\+\_\+dir\+\_\+entry)
+\item 
+int {\bfseries msdos\+\_\+get\+\_\+dotdot\+\_\+dir\+\_\+info\+\_\+cluster\+\_\+num\+\_\+and\+\_\+offset} (\mbox{\hyperlink{structrtems__filesystem__mount__table__entry__tt}{rtems\+\_\+filesystem\+\_\+mount\+\_\+table\+\_\+entry\+\_\+t}} $\ast$mt\+\_\+entry, uint32\+\_\+t cln, \mbox{\hyperlink{structfat__dir__pos__s}{fat\+\_\+dir\+\_\+pos\+\_\+t}} $\ast$dir\+\_\+pos, char $\ast$dir\+\_\+entry)
+\item 
+int {\bfseries fat\+\_\+file\+\_\+write\+\_\+time\+\_\+and\+\_\+date} (\mbox{\hyperlink{structfat__fs__info__s}{fat\+\_\+fs\+\_\+info\+\_\+t}} $\ast$fs\+\_\+info, \mbox{\hyperlink{group__libfs__ff_gaa53f9c544914509505e3cfbd3796f877}{fat\+\_\+file\+\_\+fd\+\_\+t}} $\ast$fat\+\_\+fd)
+\item 
+int {\bfseries fat\+\_\+file\+\_\+write\+\_\+first\+\_\+cluster\+\_\+num} (\mbox{\hyperlink{structfat__fs__info__s}{fat\+\_\+fs\+\_\+info\+\_\+t}} $\ast$fs\+\_\+info, \mbox{\hyperlink{group__libfs__ff_gaa53f9c544914509505e3cfbd3796f877}{fat\+\_\+file\+\_\+fd\+\_\+t}} $\ast$fat\+\_\+fd)
+\item 
+int {\bfseries fat\+\_\+file\+\_\+write\+\_\+file\+\_\+size} (\mbox{\hyperlink{structfat__fs__info__s}{fat\+\_\+fs\+\_\+info\+\_\+t}} $\ast$fs\+\_\+info, \mbox{\hyperlink{group__libfs__ff_gaa53f9c544914509505e3cfbd3796f877}{fat\+\_\+file\+\_\+fd\+\_\+t}} $\ast$fat\+\_\+fd)
+\item 
+int {\bfseries msdos\+\_\+set\+\_\+first\+\_\+char4file\+\_\+name} (\mbox{\hyperlink{structrtems__filesystem__mount__table__entry__tt}{rtems\+\_\+filesystem\+\_\+mount\+\_\+table\+\_\+entry\+\_\+t}} $\ast$mt\+\_\+entry, \mbox{\hyperlink{structfat__dir__pos__s}{fat\+\_\+dir\+\_\+pos\+\_\+t}} $\ast$dir\+\_\+pos, unsigned char fchar)
+\item 
+int {\bfseries msdos\+\_\+dir\+\_\+is\+\_\+empty} (\mbox{\hyperlink{structrtems__filesystem__mount__table__entry__tt}{rtems\+\_\+filesystem\+\_\+mount\+\_\+table\+\_\+entry\+\_\+t}} $\ast$mt\+\_\+entry, \mbox{\hyperlink{group__libfs__ff_gaa53f9c544914509505e3cfbd3796f877}{fat\+\_\+file\+\_\+fd\+\_\+t}} $\ast$fat\+\_\+fd, bool $\ast$ret\+\_\+val)
+\item 
+ssize\+\_\+t {\bfseries msdos\+\_\+get\+\_\+utf16\+\_\+string\+\_\+from\+\_\+long\+\_\+entry} (const char $\ast$\mbox{\hyperlink{structentry}{entry}}, uint16\+\_\+t $\ast$entry\+\_\+string\+\_\+buf, const size\+\_\+t buf\+\_\+size, bool is\+\_\+first\+\_\+entry)
+\item 
+ssize\+\_\+t {\bfseries msdos\+\_\+format\+\_\+dirent\+\_\+with\+\_\+dot} (char $\ast$dst, const char $\ast$src)
+\item 
+int {\bfseries msdos\+\_\+find\+\_\+name\+\_\+in\+\_\+fat\+\_\+file} (\mbox{\hyperlink{structrtems__filesystem__mount__table__entry__tt}{rtems\+\_\+filesystem\+\_\+mount\+\_\+table\+\_\+entry\+\_\+t}} $\ast$mt\+\_\+entry, \mbox{\hyperlink{group__libfs__ff_gaa53f9c544914509505e3cfbd3796f877}{fat\+\_\+file\+\_\+fd\+\_\+t}} $\ast$fat\+\_\+fd, bool create\+\_\+node, const uint8\+\_\+t $\ast$name\+\_\+utf8, int name\+\_\+utf8\+\_\+len, msdos\+\_\+name\+\_\+type\+\_\+t name\+\_\+type, \mbox{\hyperlink{structfat__dir__pos__s}{fat\+\_\+dir\+\_\+pos\+\_\+t}} $\ast$dir\+\_\+pos, char $\ast$name\+\_\+dir\+\_\+entry)
+\item 
+int {\bfseries msdos\+\_\+find\+\_\+node\+\_\+by\+\_\+cluster\+\_\+num\+\_\+in\+\_\+fat\+\_\+file} (\mbox{\hyperlink{structrtems__filesystem__mount__table__entry__tt}{rtems\+\_\+filesystem\+\_\+mount\+\_\+table\+\_\+entry\+\_\+t}} $\ast$mt\+\_\+entry, \mbox{\hyperlink{group__libfs__ff_gaa53f9c544914509505e3cfbd3796f877}{fat\+\_\+file\+\_\+fd\+\_\+t}} $\ast$fat\+\_\+fd, uint32\+\_\+t cl4find, \mbox{\hyperlink{structfat__dir__pos__s}{fat\+\_\+dir\+\_\+pos\+\_\+t}} $\ast$dir\+\_\+pos, char $\ast$dir\+\_\+entry)
+\item 
+int {\bfseries msdos\+\_\+sync} (\mbox{\hyperlink{structrtems__libio__tt}{rtems\+\_\+libio\+\_\+t}} $\ast$iop)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const char $\ast$const {\bfseries M\+S\+D\+O\+S\+\_\+\+D\+O\+T\+\_\+\+N\+A\+ME} = \char`\"{}. \char`\"{}
+\item 
+const char $\ast$const {\bfseries M\+S\+D\+O\+S\+\_\+\+D\+O\+T\+D\+O\+T\+\_\+\+N\+A\+ME} = \char`\"{}.. \char`\"{}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Miscellaneous Routines Implementation for M\+S\+D\+OS File\+System. 
+
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{msdos__misc_8c_aec4d630fb5b6bea4be90f4229047b74c}\label{msdos__misc_8c_aec4d630fb5b6bea4be90f4229047b74c}} 
+\index{msdos\_misc.c@{msdos\_misc.c}!MSDOS\_LFN\_ENTRY\_SIZE\_UTF8@{MSDOS\_LFN\_ENTRY\_SIZE\_UTF8}}
+\index{MSDOS\_LFN\_ENTRY\_SIZE\_UTF8@{MSDOS\_LFN\_ENTRY\_SIZE\_UTF8}!msdos\_misc.c@{msdos\_misc.c}}
+\subsubsection{\texorpdfstring{MSDOS\_LFN\_ENTRY\_SIZE\_UTF8}{MSDOS\_LFN\_ENTRY\_SIZE\_UTF8}}
+{\footnotesize\ttfamily \#define M\+S\+D\+O\+S\+\_\+\+L\+F\+N\+\_\+\+E\+N\+T\+R\+Y\+\_\+\+S\+I\+Z\+E\+\_\+\+U\+T\+F8}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{((MSDOS\_LFN\_LEN\_PER\_ENTRY + 1 ) * MSDOS\_NAME\_LFN\_BYTES\_PER\_CHAR \(\backslash\)}
+\DoxyCodeLine{    * MSDOS\_NAME\_MAX\_UTF8\_BYTES\_PER\_CHAR)}
+
+\end{DoxyCode}

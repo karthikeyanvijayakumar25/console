@@ -1,0 +1,113 @@
+\hypertarget{bdbuf_8h}{}\section{cpukit/include/rtems/bdbuf.h File Reference}
+\label{bdbuf_8h}\index{cpukit/include/rtems/bdbuf.h@{cpukit/include/rtems/bdbuf.h}}
+
+
+Block Device Buffer Management.  
+
+
+{\ttfamily \#include $<$rtems.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/libio.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/chain.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/blkdev.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/diskdevs.\+h$>$}\newline
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structrtems__bdbuf__buffer}{rtems\+\_\+bdbuf\+\_\+buffer}}
+\item 
+struct \mbox{\hyperlink{structrtems__bdbuf__buffer_1_1rtems__bdbuf__avl__node}{rtems\+\_\+bdbuf\+\_\+buffer\+::rtems\+\_\+bdbuf\+\_\+avl\+\_\+node}}
+\item 
+struct \mbox{\hyperlink{structrtems__bdbuf__group}{rtems\+\_\+bdbuf\+\_\+group}}
+\item 
+struct \mbox{\hyperlink{structrtems__bdbuf__config}{rtems\+\_\+bdbuf\+\_\+config}}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__rtems__bdbuf_gaae5144ea7d6721e55dfeda0c8df8d370}{R\+T\+E\+M\+S\+\_\+\+B\+D\+B\+U\+F\+\_\+\+M\+A\+X\+\_\+\+R\+E\+A\+D\+\_\+\+A\+H\+E\+A\+D\+\_\+\+B\+L\+O\+C\+K\+S\+\_\+\+D\+E\+F\+A\+U\+LT}}~0
+\item 
+\#define \mbox{\hyperlink{group__rtems__bdbuf_ga9572529188b3c315f4f0b0b160129dba}{R\+T\+E\+M\+S\+\_\+\+B\+D\+B\+U\+F\+\_\+\+M\+A\+X\+\_\+\+W\+R\+I\+T\+E\+\_\+\+B\+L\+O\+C\+K\+S\+\_\+\+D\+E\+F\+A\+U\+LT}}~16
+\item 
+\#define \mbox{\hyperlink{group__rtems__bdbuf_ga4389b6ef4328f397e91288e8479a944c}{R\+T\+E\+M\+S\+\_\+\+B\+D\+B\+U\+F\+\_\+\+S\+W\+A\+P\+O\+U\+T\+\_\+\+T\+A\+S\+K\+\_\+\+P\+R\+I\+O\+R\+I\+T\+Y\+\_\+\+D\+E\+F\+A\+U\+LT}}~15
+\item 
+\#define \mbox{\hyperlink{group__rtems__bdbuf_ga2286d9fcac2fdd6f19497da7faa82f81}{R\+T\+E\+M\+S\+\_\+\+B\+D\+B\+U\+F\+\_\+\+S\+W\+A\+P\+O\+U\+T\+\_\+\+T\+A\+S\+K\+\_\+\+S\+W\+A\+P\+\_\+\+P\+E\+R\+I\+O\+D\+\_\+\+D\+E\+F\+A\+U\+LT}}~250
+\item 
+\#define \mbox{\hyperlink{group__rtems__bdbuf_gab5083de2064c8c45031afe425b65812d}{R\+T\+E\+M\+S\+\_\+\+B\+D\+B\+U\+F\+\_\+\+S\+W\+A\+P\+O\+U\+T\+\_\+\+T\+A\+S\+K\+\_\+\+B\+L\+O\+C\+K\+\_\+\+H\+O\+L\+D\+\_\+\+D\+E\+F\+A\+U\+LT}}~1000
+\item 
+\#define \mbox{\hyperlink{group__rtems__bdbuf_ga43a9167effd55601db78237e927c0288}{R\+T\+E\+M\+S\+\_\+\+B\+D\+B\+U\+F\+\_\+\+S\+W\+A\+P\+O\+U\+T\+\_\+\+W\+O\+R\+K\+E\+R\+\_\+\+T\+A\+S\+K\+S\+\_\+\+D\+E\+F\+A\+U\+LT}}~0
+\item 
+\#define \mbox{\hyperlink{group__rtems__bdbuf_ga49a9f2ff52d57ceb4f3897da82942fee}{R\+T\+E\+M\+S\+\_\+\+B\+D\+B\+U\+F\+\_\+\+S\+W\+A\+P\+O\+U\+T\+\_\+\+W\+O\+R\+K\+E\+R\+\_\+\+T\+A\+S\+K\+\_\+\+P\+R\+I\+O\+R\+I\+T\+Y\+\_\+\+D\+E\+F\+A\+U\+LT}}~\mbox{\hyperlink{group__rtems__bdbuf_ga4389b6ef4328f397e91288e8479a944c}{R\+T\+E\+M\+S\+\_\+\+B\+D\+B\+U\+F\+\_\+\+S\+W\+A\+P\+O\+U\+T\+\_\+\+T\+A\+S\+K\+\_\+\+P\+R\+I\+O\+R\+I\+T\+Y\+\_\+\+D\+E\+F\+A\+U\+LT}}
+\item 
+\#define \mbox{\hyperlink{group__rtems__bdbuf_ga6e516e2a5ff9d285cef0aacb6c0768c1}{R\+T\+E\+M\+S\+\_\+\+B\+D\+B\+U\+F\+\_\+\+R\+E\+A\+D\+\_\+\+A\+H\+E\+A\+D\+\_\+\+T\+A\+S\+K\+\_\+\+P\+R\+I\+O\+R\+I\+T\+Y\+\_\+\+D\+E\+F\+A\+U\+LT}}~\mbox{\hyperlink{group__rtems__bdbuf_ga4389b6ef4328f397e91288e8479a944c}{R\+T\+E\+M\+S\+\_\+\+B\+D\+B\+U\+F\+\_\+\+S\+W\+A\+P\+O\+U\+T\+\_\+\+T\+A\+S\+K\+\_\+\+P\+R\+I\+O\+R\+I\+T\+Y\+\_\+\+D\+E\+F\+A\+U\+LT}}
+\item 
+\#define \mbox{\hyperlink{group__rtems__bdbuf_ga39a54490a2930a1a321c5b06cc5e3e54}{R\+T\+E\+M\+S\+\_\+\+B\+D\+B\+U\+F\+\_\+\+T\+A\+S\+K\+\_\+\+S\+T\+A\+C\+K\+\_\+\+S\+I\+Z\+E\+\_\+\+D\+E\+F\+A\+U\+LT}}~\mbox{\hyperlink{group__RTEMSAPIClassic_ga2e35188053c5e97a85df8e3aa4d23d2f}{R\+T\+E\+M\+S\+\_\+\+M\+I\+N\+I\+M\+U\+M\+\_\+\+S\+T\+A\+C\+K\+\_\+\+S\+I\+ZE}}
+\item 
+\#define \mbox{\hyperlink{group__rtems__bdbuf_ga2bb4bb2bf0d5333d78272725eab143f8}{R\+T\+E\+M\+S\+\_\+\+B\+D\+B\+U\+F\+\_\+\+C\+A\+C\+H\+E\+\_\+\+M\+E\+M\+O\+R\+Y\+\_\+\+S\+I\+Z\+E\+\_\+\+D\+E\+F\+A\+U\+LT}}~(64 $\ast$ 512)
+\item 
+\#define \mbox{\hyperlink{group__rtems__bdbuf_gaad496ebd5fc85425bc1d8545955051ca}{R\+T\+E\+M\+S\+\_\+\+B\+D\+B\+U\+F\+\_\+\+B\+U\+F\+F\+E\+R\+\_\+\+M\+I\+N\+\_\+\+S\+I\+Z\+E\+\_\+\+D\+E\+F\+A\+U\+LT}}~(512)
+\item 
+\#define \mbox{\hyperlink{group__rtems__bdbuf_ga3de9417ce0cc9bce90e924796c191cc2}{R\+T\+E\+M\+S\+\_\+\+B\+D\+B\+U\+F\+\_\+\+B\+U\+F\+F\+E\+R\+\_\+\+M\+A\+X\+\_\+\+S\+I\+Z\+E\+\_\+\+D\+E\+F\+A\+U\+LT}}~(4096)
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \mbox{\hyperlink{structrtems__bdbuf__group}{rtems\+\_\+bdbuf\+\_\+group}} {\bfseries rtems\+\_\+bdbuf\+\_\+group}
+\item 
+typedef struct \mbox{\hyperlink{structrtems__bdbuf__buffer}{rtems\+\_\+bdbuf\+\_\+buffer}} \mbox{\hyperlink{group__rtems__bdbuf_gacce5a2661bea8023c1b5097f7566f051}{rtems\+\_\+bdbuf\+\_\+buffer}}
+\item 
+typedef struct \mbox{\hyperlink{structrtems__bdbuf__config}{rtems\+\_\+bdbuf\+\_\+config}} \mbox{\hyperlink{group__rtems__bdbuf_gaf4f5fc331dd33379471c78d5459c69f7}{rtems\+\_\+bdbuf\+\_\+config}}
+\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{group__rtems__bdbuf_ga0169f36547d36f0723b6456172eeef0a}{rtems\+\_\+bdbuf\+\_\+buf\+\_\+state}} \{ \newline
+\mbox{\hyperlink{group__rtems__bdbuf_gga0169f36547d36f0723b6456172eeef0aa71f15d80aec284191be9dd7aa16ba12c}{R\+T\+E\+M\+S\+\_\+\+B\+D\+B\+U\+F\+\_\+\+S\+T\+A\+T\+E\+\_\+\+F\+R\+EE}} = 0, 
+\mbox{\hyperlink{group__rtems__bdbuf_gga0169f36547d36f0723b6456172eeef0aaf20ea6300aa6f0c306411e459e346655}{R\+T\+E\+M\+S\+\_\+\+B\+D\+B\+U\+F\+\_\+\+S\+T\+A\+T\+E\+\_\+\+E\+M\+P\+TY}}, 
+\mbox{\hyperlink{group__rtems__bdbuf_gga0169f36547d36f0723b6456172eeef0aac3b227c132567db236f300a26b092a69}{R\+T\+E\+M\+S\+\_\+\+B\+D\+B\+U\+F\+\_\+\+S\+T\+A\+T\+E\+\_\+\+C\+A\+C\+H\+ED}}, 
+\mbox{\hyperlink{group__rtems__bdbuf_gga0169f36547d36f0723b6456172eeef0aa366b8d851fe5a11f4733c00b1409df7d}{R\+T\+E\+M\+S\+\_\+\+B\+D\+B\+U\+F\+\_\+\+S\+T\+A\+T\+E\+\_\+\+A\+C\+C\+E\+S\+S\+\_\+\+C\+A\+C\+H\+ED}}, 
+\newline
+\mbox{\hyperlink{group__rtems__bdbuf_gga0169f36547d36f0723b6456172eeef0aab079a61b153c4b0313bcc2a788131e02}{R\+T\+E\+M\+S\+\_\+\+B\+D\+B\+U\+F\+\_\+\+S\+T\+A\+T\+E\+\_\+\+A\+C\+C\+E\+S\+S\+\_\+\+M\+O\+D\+I\+F\+I\+ED}}, 
+\mbox{\hyperlink{group__rtems__bdbuf_gga0169f36547d36f0723b6456172eeef0aa4939e1384db29ded8d98dff95580a4ed}{R\+T\+E\+M\+S\+\_\+\+B\+D\+B\+U\+F\+\_\+\+S\+T\+A\+T\+E\+\_\+\+A\+C\+C\+E\+S\+S\+\_\+\+E\+M\+P\+TY}}, 
+\mbox{\hyperlink{group__rtems__bdbuf_gga0169f36547d36f0723b6456172eeef0aa4ae71d01cced39a3dc2339a68d5fdb3c}{R\+T\+E\+M\+S\+\_\+\+B\+D\+B\+U\+F\+\_\+\+S\+T\+A\+T\+E\+\_\+\+A\+C\+C\+E\+S\+S\+\_\+\+P\+U\+R\+G\+ED}}, 
+\mbox{\hyperlink{group__rtems__bdbuf_gga0169f36547d36f0723b6456172eeef0aad4ad56ebb96642f2c35a59d50e04cdc8}{R\+T\+E\+M\+S\+\_\+\+B\+D\+B\+U\+F\+\_\+\+S\+T\+A\+T\+E\+\_\+\+M\+O\+D\+I\+F\+I\+ED}}, 
+\newline
+\mbox{\hyperlink{group__rtems__bdbuf_gga0169f36547d36f0723b6456172eeef0aa2c826ea2246ca7a4bab97a5879cbf99d}{R\+T\+E\+M\+S\+\_\+\+B\+D\+B\+U\+F\+\_\+\+S\+T\+A\+T\+E\+\_\+\+S\+Y\+NC}}, 
+\mbox{\hyperlink{group__rtems__bdbuf_gga0169f36547d36f0723b6456172eeef0aa50fc56fabf62a4753588ad64aabb2c9c}{R\+T\+E\+M\+S\+\_\+\+B\+D\+B\+U\+F\+\_\+\+S\+T\+A\+T\+E\+\_\+\+T\+R\+A\+N\+S\+F\+ER}}, 
+\mbox{\hyperlink{group__rtems__bdbuf_gga0169f36547d36f0723b6456172eeef0aacef35ec154e4f4fe26262af3ed685ca7}{R\+T\+E\+M\+S\+\_\+\+B\+D\+B\+U\+F\+\_\+\+S\+T\+A\+T\+E\+\_\+\+T\+R\+A\+N\+S\+F\+E\+R\+\_\+\+P\+U\+R\+G\+ED}}
+ \}
+\begin{DoxyCompactList}\small\item\em State of a buffer of the cache. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{group__rtems__bdbuf_gaf19ee8ba7815e24767b6a91e200a78bc}{rtems\+\_\+bdbuf\+\_\+init}} (void)
+\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{group__rtems__bdbuf_ga05fa34cc25ade6d09797b0dc88cf33e1}{rtems\+\_\+bdbuf\+\_\+get}} (\mbox{\hyperlink{structrtems__disk__device}{rtems\+\_\+disk\+\_\+device}} $\ast$dd, \mbox{\hyperlink{group__rtems__disk_ga5fbcfd40b657bff6c54d9e393fab3274}{rtems\+\_\+blkdev\+\_\+bnum}} block, \mbox{\hyperlink{structrtems__bdbuf__buffer}{rtems\+\_\+bdbuf\+\_\+buffer}} $\ast$$\ast$bd)
+\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{group__rtems__bdbuf_ga8546cefc842eef10cdb5b38a6cead9f7}{rtems\+\_\+bdbuf\+\_\+read}} (\mbox{\hyperlink{structrtems__disk__device}{rtems\+\_\+disk\+\_\+device}} $\ast$dd, \mbox{\hyperlink{group__rtems__disk_ga5fbcfd40b657bff6c54d9e393fab3274}{rtems\+\_\+blkdev\+\_\+bnum}} block, \mbox{\hyperlink{structrtems__bdbuf__buffer}{rtems\+\_\+bdbuf\+\_\+buffer}} $\ast$$\ast$bd)
+\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{group__rtems__bdbuf_ga005a3a396079975d67eac6de5640d744}{rtems\+\_\+bdbuf\+\_\+release}} (\mbox{\hyperlink{structrtems__bdbuf__buffer}{rtems\+\_\+bdbuf\+\_\+buffer}} $\ast$bd)
+\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{group__rtems__bdbuf_ga3f8af85cf0abcb0858811f74130aa6c7}{rtems\+\_\+bdbuf\+\_\+release\+\_\+modified}} (\mbox{\hyperlink{structrtems__bdbuf__buffer}{rtems\+\_\+bdbuf\+\_\+buffer}} $\ast$bd)
+\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{group__rtems__bdbuf_ga9a49c1519760b60eace0463277af50ee}{rtems\+\_\+bdbuf\+\_\+sync}} (\mbox{\hyperlink{structrtems__bdbuf__buffer}{rtems\+\_\+bdbuf\+\_\+buffer}} $\ast$bd)
+\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{group__rtems__bdbuf_ga1f02deb0d0ca33a6b9da04b9f3f2078d}{rtems\+\_\+bdbuf\+\_\+syncdev}} (\mbox{\hyperlink{structrtems__disk__device}{rtems\+\_\+disk\+\_\+device}} $\ast$dd)
+\item 
+void \mbox{\hyperlink{group__rtems__bdbuf_gadc7712bcd488ea249f4a84d362126d46}{rtems\+\_\+bdbuf\+\_\+purge\+\_\+dev}} (\mbox{\hyperlink{structrtems__disk__device}{rtems\+\_\+disk\+\_\+device}} $\ast$dd)
+\begin{DoxyCompactList}\small\item\em Purges all buffers corresponding to the disk device {\itshape dd}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{group__rtems__bdbuf_ga649b3b4fb368921f579a0204552a7a60}{rtems\+\_\+bdbuf\+\_\+set\+\_\+block\+\_\+size}} (\mbox{\hyperlink{structrtems__disk__device}{rtems\+\_\+disk\+\_\+device}} $\ast$dd, uint32\+\_\+t block\+\_\+size, bool \mbox{\hyperlink{sync_8c_ac4fa2e6d36e97983d62b9377cc4f6c73}{sync}})
+\begin{DoxyCompactList}\small\item\em Sets the block size of a disk device. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__rtems__bdbuf_ga9dd6ce1ba113683d019a29d04861f33d}{rtems\+\_\+bdbuf\+\_\+get\+\_\+device\+\_\+stats}} (const \mbox{\hyperlink{structrtems__disk__device}{rtems\+\_\+disk\+\_\+device}} $\ast$dd, \mbox{\hyperlink{structrtems__blkdev__stats}{rtems\+\_\+blkdev\+\_\+stats}} $\ast$stats)
+\begin{DoxyCompactList}\small\item\em Returns the block device statistics. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__rtems__bdbuf_ga2f88a5110e6063af34b36063edd291f1}{rtems\+\_\+bdbuf\+\_\+reset\+\_\+device\+\_\+stats}} (\mbox{\hyperlink{structrtems__disk__device}{rtems\+\_\+disk\+\_\+device}} $\ast$dd)
+\begin{DoxyCompactList}\small\item\em Resets the block device statistics. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const \mbox{\hyperlink{structrtems__bdbuf__config}{rtems\+\_\+bdbuf\+\_\+config}} \mbox{\hyperlink{group__rtems__bdbuf_gac1ab295c43675e17b20a7af3956c2a72}{rtems\+\_\+bdbuf\+\_\+configuration}}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Block Device Buffer Management. 
+

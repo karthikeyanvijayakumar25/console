@@ -1,0 +1,103 @@
+\hypertarget{sh_2gensh4_2btimer_2btimer_8c}{}\section{bsps/sh/gensh4/btimer/btimer.c File Reference}
+\label{sh_2gensh4_2btimer_2btimer_8c}\index{bsps/sh/gensh4/btimer/btimer.c@{bsps/sh/gensh4/btimer/btimer.c}}
+
+
+Timer driver for the Hitachi SH 7750.  
+
+
+{\ttfamily \#include $<$rtems.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/btimer.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/score/sh\+\_\+io.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/score/iosh7750.\+h$>$}\newline
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{sh_2gensh4_2btimer_2btimer_8c_a46edf60dad8a9fc6bb6376ee44b14f9b}\label{sh_2gensh4_2btimer_2btimer_8c_a46edf60dad8a9fc6bb6376ee44b14f9b}} 
+\#define {\bfseries T\+I\+M\+E\+R\+\_\+\+P\+R\+IO}~15
+\item 
+\mbox{\Hypertarget{sh_2gensh4_2btimer_2btimer_8c_aa7914b8d7fd0bae056b85acb5062676b}\label{sh_2gensh4_2btimer_2btimer_8c_aa7914b8d7fd0bae056b85acb5062676b}} 
+\#define {\bfseries T\+I\+M\+E\+R\+\_\+\+P\+R\+E\+S\+C\+A\+L\+ER}~4
+\item 
+\mbox{\Hypertarget{sh_2gensh4_2btimer_2btimer_8c_afa5a78fd99dab1fd39296fc69d03fa07}\label{sh_2gensh4_2btimer_2btimer_8c_afa5a78fd99dab1fd39296fc69d03fa07}} 
+\#define {\bfseries T\+C\+R1\+\_\+\+T\+P\+SC}~S\+H7750\+\_\+\+T\+C\+R\+\_\+\+T\+P\+S\+C\+\_\+\+D\+I\+V4
+\item 
+\mbox{\Hypertarget{sh_2gensh4_2btimer_2btimer_8c_a664839648fa40e020db83c21689e0af9}\label{sh_2gensh4_2btimer_2btimer_8c_a664839648fa40e020db83c21689e0af9}} 
+\#define {\bfseries T\+I\+M\+E\+R\+\_\+\+V\+E\+C\+T\+OR}~S\+H7750\+\_\+\+E\+V\+T\+\_\+\+T\+O\+\_\+\+N\+UM(S\+H7750\+\_\+\+E\+V\+T\+\_\+\+T\+U\+N\+I1)
+\item 
+\mbox{\Hypertarget{sh_2gensh4_2btimer_2btimer_8c_aac89169fdf120750d8321464268bf18b}\label{sh_2gensh4_2btimer_2btimer_8c_aac89169fdf120750d8321464268bf18b}} 
+\#define {\bfseries A\+V\+G\+\_\+\+O\+V\+E\+R\+H\+E\+AD}~0  /$\ast$ It typically takes X.\+X microseconds $\ast$/
+\item 
+\mbox{\Hypertarget{sh_2gensh4_2btimer_2btimer_8c_ae0b5ca13bcf573a43bdf52d4eae8f79c}\label{sh_2gensh4_2btimer_2btimer_8c_ae0b5ca13bcf573a43bdf52d4eae8f79c}} 
+\#define {\bfseries L\+E\+A\+S\+T\+\_\+\+V\+A\+L\+ID}~0 /$\ast$ 20 $\ast$/ /$\ast$ Don\textquotesingle{}t trust a clicks value lower than this $\ast$/
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{sh_2gensh4_2btimer_2btimer_8c_accb5d6b358651d6e4ced2ae927af32ce}\label{sh_2gensh4_2btimer_2btimer_8c_accb5d6b358651d6e4ced2ae927af32ce}} 
+\mbox{\hyperlink{group__ClassicINTR_ga17fb491bd308ce6b1bf27a51dec0b46d}{rtems\+\_\+isr}} {\bfseries timerisr} (void)
+\item 
+void \mbox{\hyperlink{sh_2gensh4_2btimer_2btimer_8c_a9ba0ae2fd8880801fb86979a16cd3b2b}{benchmark\+\_\+timer\+\_\+initialize}} (void)
+\begin{DoxyCompactList}\small\item\em Initialize the Benchmark Timer. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{btimer_8h_ac0f944fe3193b01df09c3d3a5a677e5a}{benchmark\+\_\+timer\+\_\+t}} \mbox{\hyperlink{sh_2gensh4_2btimer_2btimer_8c_ab8dc8517e97918d293d78e85b9454855}{benchmark\+\_\+timer\+\_\+read}} (void)
+\begin{DoxyCompactList}\small\item\em Read the Benchmark Timer. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{sh_2gensh4_2btimer_2btimer_8c_af3b4e28a2f0f7870be848a1d5cee0d03}{benchmark\+\_\+timer\+\_\+disable\+\_\+subtracting\+\_\+average\+\_\+overhead}} (bool find\+\_\+flag)
+\begin{DoxyCompactList}\small\item\em Disable Average Overhead Removal from the Benchmark Timer. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{sh_2gensh4_2btimer_2btimer_8c_a3dc8a22ed1d593be7203d55af272509f}\label{sh_2gensh4_2btimer_2btimer_8c_a3dc8a22ed1d593be7203d55af272509f}} 
+uint32\+\_\+t {\bfseries bsp\+\_\+clicks\+\_\+per\+\_\+second}
+\item 
+\mbox{\Hypertarget{sh_2gensh4_2btimer_2btimer_8c_aff7592371a0cc40ceba40a1adf11bbc0}\label{sh_2gensh4_2btimer_2btimer_8c_aff7592371a0cc40ceba40a1adf11bbc0}} 
+bool {\bfseries benchmark\+\_\+timer\+\_\+find\+\_\+average\+\_\+overhead}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Timer driver for the Hitachi SH 7750. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{sh_2gensh4_2btimer_2btimer_8c_af3b4e28a2f0f7870be848a1d5cee0d03}\label{sh_2gensh4_2btimer_2btimer_8c_af3b4e28a2f0f7870be848a1d5cee0d03}} 
+\index{btimer.c@{btimer.c}!benchmark\_timer\_disable\_subtracting\_average\_overhead@{benchmark\_timer\_disable\_subtracting\_average\_overhead}}
+\index{benchmark\_timer\_disable\_subtracting\_average\_overhead@{benchmark\_timer\_disable\_subtracting\_average\_overhead}!btimer.c@{btimer.c}}
+\subsubsection{\texorpdfstring{benchmark\_timer\_disable\_subtracting\_average\_overhead()}{benchmark\_timer\_disable\_subtracting\_average\_overhead()}}
+{\footnotesize\ttfamily void benchmark\+\_\+timer\+\_\+disable\+\_\+subtracting\+\_\+average\+\_\+overhead (\begin{DoxyParamCaption}\item[{bool}]{find\+\_\+flag }\end{DoxyParamCaption})}
+
+
+
+Disable Average Overhead Removal from the Benchmark Timer. 
+
+This method places the benchmark timer in a \char`\"{}raw\char`\"{} mode where it returns the actual number of units which have passed between calls to {\itshape benchmark\+\_\+timer\+\_\+initialize} and {\itshape benchmark\+\_\+timer\+\_\+read} counting.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em find\+\_\+flag} & indicates to enable or disable the mode \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{sh_2gensh4_2btimer_2btimer_8c_a9ba0ae2fd8880801fb86979a16cd3b2b}\label{sh_2gensh4_2btimer_2btimer_8c_a9ba0ae2fd8880801fb86979a16cd3b2b}} 
+\index{btimer.c@{btimer.c}!benchmark\_timer\_initialize@{benchmark\_timer\_initialize}}
+\index{benchmark\_timer\_initialize@{benchmark\_timer\_initialize}!btimer.c@{btimer.c}}
+\subsubsection{\texorpdfstring{benchmark\_timer\_initialize()}{benchmark\_timer\_initialize()}}
+{\footnotesize\ttfamily void benchmark\+\_\+timer\+\_\+initialize (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Initialize the Benchmark Timer. 
+
+This method initializes the benchmark timer and resets it to begin counting. \mbox{\Hypertarget{sh_2gensh4_2btimer_2btimer_8c_ab8dc8517e97918d293d78e85b9454855}\label{sh_2gensh4_2btimer_2btimer_8c_ab8dc8517e97918d293d78e85b9454855}} 
+\index{btimer.c@{btimer.c}!benchmark\_timer\_read@{benchmark\_timer\_read}}
+\index{benchmark\_timer\_read@{benchmark\_timer\_read}!btimer.c@{btimer.c}}
+\subsubsection{\texorpdfstring{benchmark\_timer\_read()}{benchmark\_timer\_read()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{btimer_8h_ac0f944fe3193b01df09c3d3a5a677e5a}{benchmark\+\_\+timer\+\_\+t}} benchmark\+\_\+timer\+\_\+read (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Read the Benchmark Timer. 
+
+This method stops the benchmark timer and returns the number of units that have passed since {\itshape benchmark\+\_\+timer\+\_\+initialize} was invoked.
+
+\begin{DoxyReturn}{Returns}
+This method returns the number of units with the average overhead removed. If the value is below the minimum trusted value, zero is returned. 
+\end{DoxyReturn}

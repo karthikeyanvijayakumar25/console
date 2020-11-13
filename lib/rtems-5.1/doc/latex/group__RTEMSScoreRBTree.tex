@@ -1,0 +1,872 @@
+\hypertarget{group__RTEMSScoreRBTree}{}\section{Red-\/\+Black Tree Handler}
+\label{group__RTEMSScoreRBTree}\index{Red-\/Black Tree Handler@{Red-\/Black Tree Handler}}
+
+
+Red-\/\+Black Tree Handler.  
+
+
+\subsection*{Files}
+\begin{DoxyCompactItemize}
+\item 
+file \mbox{\hyperlink{rtems_2score_2rbtree_8h}{rbtree.\+h}}
+\begin{DoxyCompactList}\small\item\em Constants and Structures Associated with the Red-\/\+Black Tree Handler. \end{DoxyCompactList}\item 
+file \mbox{\hyperlink{rbtreeimpl_8h}{rbtreeimpl.\+h}}
+\begin{DoxyCompactList}\small\item\em Inlined Routines Associated with Red-\/\+Black Trees. \end{DoxyCompactList}\item 
+file \mbox{\hyperlink{rbtreeiterate_8c}{rbtreeiterate.\+c}}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{group__RTEMSScoreRBTree_ga84900b1947f50a5fe6e67234007c5c36}{\+\_\+\+R\+B\+Tree\+\_\+\+Iterate()}} implementation. \end{DoxyCompactList}\item 
+file \mbox{\hyperlink{rbtreenext_8c}{rbtreenext.\+c}}
+\begin{DoxyCompactList}\small\item\em \+\_\+\+R\+B\+Tree\+\_\+\+Next() and \+\_\+\+R\+B\+Tree\+\_\+\+Next() implementation. \end{DoxyCompactList}\item 
+file \mbox{\hyperlink{rbtreepostorder_8c}{rbtreepostorder.\+c}}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{group__RTEMSScoreRBTree_ga35988f7d76f4cbc30fa90df30993cdf7}{\+\_\+\+R\+B\+Tree\+\_\+\+Postorder\+\_\+first()}} and \mbox{\hyperlink{group__RTEMSScoreRBTree_ga98dcfd6daa73d5c6ba3b159a3816cc91}{\+\_\+\+R\+B\+Tree\+\_\+\+Postorder\+\_\+next()}} implementation. \end{DoxyCompactList}\item 
+file \mbox{\hyperlink{rbtreereplace_8c}{rbtreereplace.\+c}}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{group__RTEMSScoreRBTree_gac0ebf997d5cc78686db8cd65c3111299}{\+\_\+\+R\+B\+Tree\+\_\+\+Replace\+\_\+node()}} implementation. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structRBTree__Node}{R\+B\+Tree\+\_\+\+Node}}
+\begin{DoxyCompactList}\small\item\em Red-\/black tree node. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{group__RTEMSScoreRBTree_gae75b07f4e75d776a7a1eedde8b22ca85}\label{group__RTEMSScoreRBTree_gae75b07f4e75d776a7a1eedde8b22ca85}} 
+\#define \mbox{\hyperlink{group__RTEMSScoreRBTree_gae75b07f4e75d776a7a1eedde8b22ca85}{R\+B\+T\+R\+E\+E\+\_\+\+I\+N\+I\+T\+I\+A\+L\+I\+Z\+E\+R\+\_\+\+E\+M\+P\+TY}}(name)~R\+B\+\_\+\+I\+N\+I\+T\+I\+A\+L\+I\+Z\+ER( name )
+\begin{DoxyCompactList}\small\item\em Initializer for an empty red-\/black tree with designator {\itshape name}. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__RTEMSScoreRBTree_ga87fa6213376a9feed10d3de0a39e61be}\label{group__RTEMSScoreRBTree_ga87fa6213376a9feed10d3de0a39e61be}} 
+\#define \mbox{\hyperlink{group__RTEMSScoreRBTree_ga87fa6213376a9feed10d3de0a39e61be}{R\+B\+T\+R\+E\+E\+\_\+\+D\+E\+F\+I\+N\+E\+\_\+\+E\+M\+P\+TY}}(name)~R\+B\+Tree\+\_\+\+Control name = \mbox{\hyperlink{group__RTEMSScoreRBTree_gae75b07f4e75d776a7a1eedde8b22ca85}{R\+B\+T\+R\+E\+E\+\_\+\+I\+N\+I\+T\+I\+A\+L\+I\+Z\+E\+R\+\_\+\+E\+M\+P\+TY}}( name )
+\begin{DoxyCompactList}\small\item\em Definition for an empty red-\/black tree with designator {\itshape name}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \mbox{\hyperlink{structRBTree__Node}{R\+B\+Tree\+\_\+\+Node}} \mbox{\hyperlink{group__RTEMSScoreRBTree_ga36c440a9648ec535acfaaf4fd91d40ff}{R\+B\+Tree\+\_\+\+Node}}
+\begin{DoxyCompactList}\small\item\em Red-\/black tree node. \end{DoxyCompactList}\item 
+typedef bool($\ast$ \mbox{\hyperlink{group__RTEMSScoreRBTree_gade4e2c479a5f652c310ce39eac52d84b}{R\+B\+Tree\+\_\+\+Visitor}}) (const \mbox{\hyperlink{structRBTree__Node}{R\+B\+Tree\+\_\+\+Node}} $\ast$node, void $\ast$visitor\+\_\+arg)
+\begin{DoxyCompactList}\small\item\em Red-\/black tree visitor. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+typedef \mbox{\hyperlink{group__RTEMSScoreRBTree_ga64d3e47d6fcda98acddb35fd53f28f26}{R\+B\+\_\+\+H\+E\+AD}} (R\+B\+Tree\+\_\+\+Control, \mbox{\hyperlink{structRBTree__Node}{R\+B\+Tree\+\_\+\+Node}}) R\+B\+Tree\+\_\+\+Control
+\begin{DoxyCompactList}\small\item\em Red-\/black tree control. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \mbox{\hyperlink{group__RTEMSScoreRBTree_ga82d9b6f1aad201e7c8b614a0e970b356}{\+\_\+\+R\+B\+Tree\+\_\+\+Set\+\_\+off\+\_\+tree}} (\mbox{\hyperlink{structRBTree__Node}{R\+B\+Tree\+\_\+\+Node}} $\ast$the\+\_\+node)
+\begin{DoxyCompactList}\small\item\em Sets a red-\/black tree node as off-\/tree. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} bool \mbox{\hyperlink{group__RTEMSScoreRBTree_ga4076722f9dbc78d8e6682b88a3ed0c8e}{\+\_\+\+R\+B\+Tree\+\_\+\+Is\+\_\+node\+\_\+off\+\_\+tree}} (const \mbox{\hyperlink{structRBTree__Node}{R\+B\+Tree\+\_\+\+Node}} $\ast$the\+\_\+node)
+\begin{DoxyCompactList}\small\item\em Checks if this red-\/black tree node is off-\/tree. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__RTEMSScoreRBTree_gaa303230648c3b9b472362387864698ed}{\+\_\+\+R\+B\+Tree\+\_\+\+Insert\+\_\+color}} (R\+B\+Tree\+\_\+\+Control $\ast$the\+\_\+rbtree, \mbox{\hyperlink{structRBTree__Node}{R\+B\+Tree\+\_\+\+Node}} $\ast$the\+\_\+node)
+\begin{DoxyCompactList}\small\item\em Rebalances the red-\/black tree after insertion of the node. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \mbox{\hyperlink{group__RTEMSScoreRBTree_gabbc757c2fd03694b6f9bb5aa2be553ff}{\+\_\+\+R\+B\+Tree\+\_\+\+Initialize\+\_\+node}} (\mbox{\hyperlink{structRBTree__Node}{R\+B\+Tree\+\_\+\+Node}} $\ast$the\+\_\+node)
+\begin{DoxyCompactList}\small\item\em Initializes a red-\/black tree node. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \mbox{\hyperlink{group__RTEMSScoreRBTree_ga19978673ca0cb615f8228e4888d2c53c}{\+\_\+\+R\+B\+Tree\+\_\+\+Add\+\_\+child}} (\mbox{\hyperlink{structRBTree__Node}{R\+B\+Tree\+\_\+\+Node}} $\ast$child, \mbox{\hyperlink{structRBTree__Node}{R\+B\+Tree\+\_\+\+Node}} $\ast$parent, \mbox{\hyperlink{structRBTree__Node}{R\+B\+Tree\+\_\+\+Node}} $\ast$$\ast$\mbox{\hyperlink{link_8c_a8c94afd0b7e5bb4ce95fefd964241f7f}{link}})
+\begin{DoxyCompactList}\small\item\em Adds a child node to a parent node. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \mbox{\hyperlink{group__RTEMSScoreRBTree_ga4fd457fb2e3eaacda2c13a5ab05a11e7}{\+\_\+\+R\+B\+Tree\+\_\+\+Insert\+\_\+with\+\_\+parent}} (R\+B\+Tree\+\_\+\+Control $\ast$the\+\_\+rbtree, \mbox{\hyperlink{structRBTree__Node}{R\+B\+Tree\+\_\+\+Node}} $\ast$the\+\_\+node, \mbox{\hyperlink{structRBTree__Node}{R\+B\+Tree\+\_\+\+Node}} $\ast$parent, \mbox{\hyperlink{structRBTree__Node}{R\+B\+Tree\+\_\+\+Node}} $\ast$$\ast$\mbox{\hyperlink{link_8c_a8c94afd0b7e5bb4ce95fefd964241f7f}{link}})
+\begin{DoxyCompactList}\small\item\em Inserts the node into the red-\/black tree using the specified parent node and link. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__RTEMSScoreRBTree_ga26bf30d26e521f0599ae0467abdacc85}{\+\_\+\+R\+B\+Tree\+\_\+\+Extract}} (R\+B\+Tree\+\_\+\+Control $\ast$the\+\_\+rbtree, \mbox{\hyperlink{structRBTree__Node}{R\+B\+Tree\+\_\+\+Node}} $\ast$the\+\_\+node)
+\begin{DoxyCompactList}\small\item\em Extracts (removes) the node from the red-\/black tree. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} \mbox{\hyperlink{structRBTree__Node}{R\+B\+Tree\+\_\+\+Node}} $\ast$ \mbox{\hyperlink{group__RTEMSScoreRBTree_ga29242f056330aaabc12dcfcaa6f10a05}{\+\_\+\+R\+B\+Tree\+\_\+\+Root}} (const R\+B\+Tree\+\_\+\+Control $\ast$the\+\_\+rbtree)
+\begin{DoxyCompactList}\small\item\em Returns a pointer to root node of the red-\/black tree. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} \mbox{\hyperlink{structRBTree__Node}{R\+B\+Tree\+\_\+\+Node}} $\ast$$\ast$ \mbox{\hyperlink{group__RTEMSScoreRBTree_ga195bd19595223fc96c4683fbb2f96460}{\+\_\+\+R\+B\+Tree\+\_\+\+Root\+\_\+reference}} (R\+B\+Tree\+\_\+\+Control $\ast$the\+\_\+rbtree)
+\begin{DoxyCompactList}\small\item\em Returns a reference to the root pointer of the red-\/black tree. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} \mbox{\hyperlink{structRBTree__Node}{R\+B\+Tree\+\_\+\+Node}} $\ast$const  $\ast$ \mbox{\hyperlink{group__RTEMSScoreRBTree_ga78ee0ed3eaeca6a2a70372bbfe872f7b}{\+\_\+\+R\+B\+Tree\+\_\+\+Root\+\_\+const\+\_\+reference}} (const R\+B\+Tree\+\_\+\+Control $\ast$the\+\_\+rbtree)
+\begin{DoxyCompactList}\small\item\em Returns a constant reference to the root pointer of the red-\/black tree. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} \mbox{\hyperlink{structRBTree__Node}{R\+B\+Tree\+\_\+\+Node}} $\ast$ \mbox{\hyperlink{group__RTEMSScoreRBTree_ga15c887d3c6f0fe578b8ddb8332ad3828}{\+\_\+\+R\+B\+Tree\+\_\+\+Parent}} (const \mbox{\hyperlink{structRBTree__Node}{R\+B\+Tree\+\_\+\+Node}} $\ast$the\+\_\+node)
+\begin{DoxyCompactList}\small\item\em Returns a pointer to the parent of this node. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} \mbox{\hyperlink{structRBTree__Node}{R\+B\+Tree\+\_\+\+Node}} $\ast$ \mbox{\hyperlink{group__RTEMSScoreRBTree_ga760e7fbf0596be06c7c872c1fb3ed319}{\+\_\+\+R\+B\+Tree\+\_\+\+Left}} (const \mbox{\hyperlink{structRBTree__Node}{R\+B\+Tree\+\_\+\+Node}} $\ast$the\+\_\+node)
+\begin{DoxyCompactList}\small\item\em Returns pointer to the left of this node. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} \mbox{\hyperlink{structRBTree__Node}{R\+B\+Tree\+\_\+\+Node}} $\ast$$\ast$ \mbox{\hyperlink{group__RTEMSScoreRBTree_ga3a992a2f539e70293f35e11d5fdc6be9}{\+\_\+\+R\+B\+Tree\+\_\+\+Left\+\_\+reference}} (\mbox{\hyperlink{structRBTree__Node}{R\+B\+Tree\+\_\+\+Node}} $\ast$the\+\_\+node)
+\begin{DoxyCompactList}\small\item\em Returns a reference to the left child pointer of the red-\/black tree node. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} \mbox{\hyperlink{structRBTree__Node}{R\+B\+Tree\+\_\+\+Node}} $\ast$ \mbox{\hyperlink{group__RTEMSScoreRBTree_gadb8aa819c64641ff7a2342a7ef20b950}{\+\_\+\+R\+B\+Tree\+\_\+\+Right}} (const \mbox{\hyperlink{structRBTree__Node}{R\+B\+Tree\+\_\+\+Node}} $\ast$the\+\_\+node)
+\begin{DoxyCompactList}\small\item\em Returns pointer to the right of this node. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} \mbox{\hyperlink{structRBTree__Node}{R\+B\+Tree\+\_\+\+Node}} $\ast$$\ast$ \mbox{\hyperlink{group__RTEMSScoreRBTree_gaf093b342c362e8e20ba3ddb98f21e44b}{\+\_\+\+R\+B\+Tree\+\_\+\+Right\+\_\+reference}} (\mbox{\hyperlink{structRBTree__Node}{R\+B\+Tree\+\_\+\+Node}} $\ast$the\+\_\+node)
+\begin{DoxyCompactList}\small\item\em Returns a reference to the right child pointer of the red-\/black tree node. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} bool \mbox{\hyperlink{group__RTEMSScoreRBTree_ga26bddef2c5a0e1f832d7673c45b284c7}{\+\_\+\+R\+B\+Tree\+\_\+\+Is\+\_\+empty}} (const R\+B\+Tree\+\_\+\+Control $\ast$the\+\_\+rbtree)
+\begin{DoxyCompactList}\small\item\em Checks if the R\+B\+Tree is empty. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} bool \mbox{\hyperlink{group__RTEMSScoreRBTree_ga8496286f0a637353c8046e0d2625ea08}{\+\_\+\+R\+B\+Tree\+\_\+\+Is\+\_\+root}} (const \mbox{\hyperlink{structRBTree__Node}{R\+B\+Tree\+\_\+\+Node}} $\ast$the\+\_\+node)
+\begin{DoxyCompactList}\small\item\em Checks if this node is the root node of a red-\/black tree. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \mbox{\hyperlink{group__RTEMSScoreRBTree_ga3b281ee15da2dfdd1a8c2bc7b4fc40b5}{\+\_\+\+R\+B\+Tree\+\_\+\+Initialize\+\_\+empty}} (R\+B\+Tree\+\_\+\+Control $\ast$the\+\_\+rbtree)
+\begin{DoxyCompactList}\small\item\em Initializes this R\+B\+Tree as empty. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \mbox{\hyperlink{group__RTEMSScoreRBTree_ga610819cba38ae2e02b461823f60c5daa}{\+\_\+\+R\+B\+Tree\+\_\+\+Initialize\+\_\+one}} (R\+B\+Tree\+\_\+\+Control $\ast$the\+\_\+rbtree, \mbox{\hyperlink{structRBTree__Node}{R\+B\+Tree\+\_\+\+Node}} $\ast$the\+\_\+node)
+\begin{DoxyCompactList}\small\item\em Initializes this red-\/black tree to contain exactly the specified node. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structRBTree__Node}{R\+B\+Tree\+\_\+\+Node}} $\ast$ \mbox{\hyperlink{group__RTEMSScoreRBTree_ga4b74812f06506bb6f19b910bfb011070}{\+\_\+\+R\+B\+Tree\+\_\+\+Minimum}} (const R\+B\+Tree\+\_\+\+Control $\ast$the\+\_\+rbtree)
+\begin{DoxyCompactList}\small\item\em Returns the minimum node of the red-\/black tree. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structRBTree__Node}{R\+B\+Tree\+\_\+\+Node}} $\ast$ \mbox{\hyperlink{group__RTEMSScoreRBTree_gac5ea3ed76d45cb2b1cfa6f6290f90b65}{\+\_\+\+R\+B\+Tree\+\_\+\+Maximum}} (const R\+B\+Tree\+\_\+\+Control $\ast$the\+\_\+rbtree)
+\begin{DoxyCompactList}\small\item\em Returns the maximum node of the red-\/black tree. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structRBTree__Node}{R\+B\+Tree\+\_\+\+Node}} $\ast$ \mbox{\hyperlink{group__RTEMSScoreRBTree_ga89d4ea55962eb531d2322d42468ea45c}{\+\_\+\+R\+B\+Tree\+\_\+\+Predecessor}} (const \mbox{\hyperlink{structRBTree__Node}{R\+B\+Tree\+\_\+\+Node}} $\ast$node)
+\begin{DoxyCompactList}\small\item\em Returns the predecessor of a node. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structRBTree__Node}{R\+B\+Tree\+\_\+\+Node}} $\ast$ \mbox{\hyperlink{group__RTEMSScoreRBTree_ga0951acbbfbf23c8dc0eb4930f9516bf5}{\+\_\+\+R\+B\+Tree\+\_\+\+Successor}} (const \mbox{\hyperlink{structRBTree__Node}{R\+B\+Tree\+\_\+\+Node}} $\ast$node)
+\begin{DoxyCompactList}\small\item\em Returns the successor of a node. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__RTEMSScoreRBTree_gac0ebf997d5cc78686db8cd65c3111299}{\+\_\+\+R\+B\+Tree\+\_\+\+Replace\+\_\+node}} (R\+B\+Tree\+\_\+\+Control $\ast$the\+\_\+rbtree, \mbox{\hyperlink{structRBTree__Node}{R\+B\+Tree\+\_\+\+Node}} $\ast$victim, \mbox{\hyperlink{structRBTree__Node}{R\+B\+Tree\+\_\+\+Node}} $\ast$replacement)
+\begin{DoxyCompactList}\small\item\em Replaces a node in the red-\/black tree without a rebalance. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} bool \mbox{\hyperlink{group__RTEMSScoreRBTree_gaaeb02c9e8cc4f09cf5788dc1050487f9}{\+\_\+\+R\+B\+Tree\+\_\+\+Insert\+\_\+inline}} (R\+B\+Tree\+\_\+\+Control $\ast$the\+\_\+rbtree, \mbox{\hyperlink{structRBTree__Node}{R\+B\+Tree\+\_\+\+Node}} $\ast$the\+\_\+node, const void $\ast$key, bool($\ast$less)(const void $\ast$, const \mbox{\hyperlink{structRBTree__Node}{R\+B\+Tree\+\_\+\+Node}} $\ast$))
+\begin{DoxyCompactList}\small\item\em Inserts the node into the red-\/black tree. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void $\ast$ \mbox{\hyperlink{group__RTEMSScoreRBTree_gaf629e7ea604ec8354c84a2a31bd1aef4}{\+\_\+\+R\+B\+Tree\+\_\+\+Find\+\_\+inline}} (const R\+B\+Tree\+\_\+\+Control $\ast$the\+\_\+rbtree, const void $\ast$key, bool($\ast$equal)(const void $\ast$, const \mbox{\hyperlink{structRBTree__Node}{R\+B\+Tree\+\_\+\+Node}} $\ast$), bool($\ast$less)(const void $\ast$, const \mbox{\hyperlink{structRBTree__Node}{R\+B\+Tree\+\_\+\+Node}} $\ast$), void $\ast$($\ast$\mbox{\hyperlink{struct__map}{map}})(\mbox{\hyperlink{structRBTree__Node}{R\+B\+Tree\+\_\+\+Node}} $\ast$))
+\begin{DoxyCompactList}\small\item\em Finds an object in the red-\/black tree with the specified key. \end{DoxyCompactList}\item 
+void $\ast$ \mbox{\hyperlink{group__RTEMSScoreRBTree_ga35988f7d76f4cbc30fa90df30993cdf7}{\+\_\+\+R\+B\+Tree\+\_\+\+Postorder\+\_\+first}} (const R\+B\+Tree\+\_\+\+Control $\ast$the\+\_\+rbtree, size\+\_\+t offset)
+\begin{DoxyCompactList}\small\item\em Returns the container of the first node of the specified red-\/black tree in postorder. \end{DoxyCompactList}\item 
+void $\ast$ \mbox{\hyperlink{group__RTEMSScoreRBTree_ga98dcfd6daa73d5c6ba3b159a3816cc91}{\+\_\+\+R\+B\+Tree\+\_\+\+Postorder\+\_\+next}} (const \mbox{\hyperlink{structRBTree__Node}{R\+B\+Tree\+\_\+\+Node}} $\ast$the\+\_\+node, size\+\_\+t offset)
+\begin{DoxyCompactList}\small\item\em Returns the container of the next node in postorder. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__RTEMSScoreRBTree_ga84900b1947f50a5fe6e67234007c5c36}{\+\_\+\+R\+B\+Tree\+\_\+\+Iterate}} (const R\+B\+Tree\+\_\+\+Control $\ast$rbtree, \mbox{\hyperlink{group__RTEMSScoreRBTree_gade4e2c479a5f652c310ce39eac52d84b}{R\+B\+Tree\+\_\+\+Visitor}} visitor, void $\ast$visitor\+\_\+arg)
+\begin{DoxyCompactList}\small\item\em Red-\/black tree iteration. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Red-\/\+Black Tree Handler. 
+
+The Red-\/\+Black Tree Handler is used to manage sets of entities. This handler provides two data structures. The rbtree Node data structure is included as the first part of every data structure that will be placed on a R\+B\+Tree. The second data structure is rbtree Control which is used to manage a set of rbtree Nodes. 
+
+\subsection{Typedef Documentation}
+\mbox{\Hypertarget{group__RTEMSScoreRBTree_ga36c440a9648ec535acfaaf4fd91d40ff}\label{group__RTEMSScoreRBTree_ga36c440a9648ec535acfaaf4fd91d40ff}} 
+\index{Red-\/Black Tree Handler@{Red-\/Black Tree Handler}!RBTree\_Node@{RBTree\_Node}}
+\index{RBTree\_Node@{RBTree\_Node}!Red-\/Black Tree Handler@{Red-\/Black Tree Handler}}
+\subsubsection{\texorpdfstring{RBTree\_Node}{RBTree\_Node}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structRBTree__Node}{R\+B\+Tree\+\_\+\+Node}}  \mbox{\hyperlink{structRBTree__Node}{R\+B\+Tree\+\_\+\+Node}}}
+
+
+
+Red-\/black tree node. 
+
+This is used to manage each node (element) which is placed on a red-\/black tree. \mbox{\Hypertarget{group__RTEMSScoreRBTree_gade4e2c479a5f652c310ce39eac52d84b}\label{group__RTEMSScoreRBTree_gade4e2c479a5f652c310ce39eac52d84b}} 
+\index{Red-\/Black Tree Handler@{Red-\/Black Tree Handler}!RBTree\_Visitor@{RBTree\_Visitor}}
+\index{RBTree\_Visitor@{RBTree\_Visitor}!Red-\/Black Tree Handler@{Red-\/Black Tree Handler}}
+\subsubsection{\texorpdfstring{RBTree\_Visitor}{RBTree\_Visitor}}
+{\footnotesize\ttfamily typedef bool($\ast$ R\+B\+Tree\+\_\+\+Visitor) (const \mbox{\hyperlink{structRBTree__Node}{R\+B\+Tree\+\_\+\+Node}} $\ast$node, void $\ast$visitor\+\_\+arg)}
+
+
+
+Red-\/black tree visitor. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em node} & The node. \\
+\hline
+\mbox{\texttt{ in}}  & {\em visitor\+\_\+arg} & The visitor argument.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em true} & Stop the iteration. \\
+\hline
+{\em false} & Continue the iteration.\\
+\hline
+\end{DoxyRetVals}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{group__RTEMSScoreRBTree_ga84900b1947f50a5fe6e67234007c5c36}{\+\_\+\+R\+B\+Tree\+\_\+\+Iterate()}}. 
+\end{DoxySeeAlso}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{group__RTEMSScoreRBTree_ga19978673ca0cb615f8228e4888d2c53c}\label{group__RTEMSScoreRBTree_ga19978673ca0cb615f8228e4888d2c53c}} 
+\index{Red-\/Black Tree Handler@{Red-\/Black Tree Handler}!\_RBTree\_Add\_child@{\_RBTree\_Add\_child}}
+\index{\_RBTree\_Add\_child@{\_RBTree\_Add\_child}!Red-\/Black Tree Handler@{Red-\/Black Tree Handler}}
+\subsubsection{\texorpdfstring{\_RBTree\_Add\_child()}{\_RBTree\_Add\_child()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \+\_\+\+R\+B\+Tree\+\_\+\+Add\+\_\+child (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structRBTree__Node}{R\+B\+Tree\+\_\+\+Node}} $\ast$}]{child,  }\item[{\mbox{\hyperlink{structRBTree__Node}{R\+B\+Tree\+\_\+\+Node}} $\ast$}]{parent,  }\item[{\mbox{\hyperlink{structRBTree__Node}{R\+B\+Tree\+\_\+\+Node}} $\ast$$\ast$}]{link }\end{DoxyParamCaption})}
+
+
+
+Adds a child node to a parent node. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+ & {\em child} & The child node. \\
+\hline
+\mbox{\texttt{ out}}  & {\em parent} & The parent node. \\
+\hline
+\mbox{\texttt{ out}}  & {\em link} & The child node link of the parent node. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__RTEMSScoreRBTree_ga26bf30d26e521f0599ae0467abdacc85}\label{group__RTEMSScoreRBTree_ga26bf30d26e521f0599ae0467abdacc85}} 
+\index{Red-\/Black Tree Handler@{Red-\/Black Tree Handler}!\_RBTree\_Extract@{\_RBTree\_Extract}}
+\index{\_RBTree\_Extract@{\_RBTree\_Extract}!Red-\/Black Tree Handler@{Red-\/Black Tree Handler}}
+\subsubsection{\texorpdfstring{\_RBTree\_Extract()}{\_RBTree\_Extract()}}
+{\footnotesize\ttfamily void \+\_\+\+R\+B\+Tree\+\_\+\+Extract (\begin{DoxyParamCaption}\item[{R\+B\+Tree\+\_\+\+Control $\ast$}]{the\+\_\+rbtree,  }\item[{\mbox{\hyperlink{structRBTree__Node}{R\+B\+Tree\+\_\+\+Node}} $\ast$}]{the\+\_\+node }\end{DoxyParamCaption})}
+
+
+
+Extracts (removes) the node from the red-\/black tree. 
+
+This function does not set the node off-\/tree. In the case this is desired, then call \mbox{\hyperlink{group__RTEMSScoreRBTree_ga82d9b6f1aad201e7c8b614a0e970b356}{\+\_\+\+R\+B\+Tree\+\_\+\+Set\+\_\+off\+\_\+tree()}} after the extraction.
+
+In the case the node to extract is not a node of the tree, then this function yields unpredictable results.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em the\+\_\+rbtree} & The red-\/black tree control. \\
+\hline
+\mbox{\texttt{ out}}  & {\em the\+\_\+node} & The node to extract. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__RTEMSScoreRBTree_gaf629e7ea604ec8354c84a2a31bd1aef4}\label{group__RTEMSScoreRBTree_gaf629e7ea604ec8354c84a2a31bd1aef4}} 
+\index{Red-\/Black Tree Handler@{Red-\/Black Tree Handler}!\_RBTree\_Find\_inline@{\_RBTree\_Find\_inline}}
+\index{\_RBTree\_Find\_inline@{\_RBTree\_Find\_inline}!Red-\/Black Tree Handler@{Red-\/Black Tree Handler}}
+\subsubsection{\texorpdfstring{\_RBTree\_Find\_inline()}{\_RBTree\_Find\_inline()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void$\ast$ \+\_\+\+R\+B\+Tree\+\_\+\+Find\+\_\+inline (\begin{DoxyParamCaption}\item[{const R\+B\+Tree\+\_\+\+Control $\ast$}]{the\+\_\+rbtree,  }\item[{const void $\ast$}]{key,  }\item[{bool($\ast$)(const void $\ast$, const \mbox{\hyperlink{structRBTree__Node}{R\+B\+Tree\+\_\+\+Node}} $\ast$)}]{equal,  }\item[{bool($\ast$)(const void $\ast$, const \mbox{\hyperlink{structRBTree__Node}{R\+B\+Tree\+\_\+\+Node}} $\ast$)}]{less,  }\item[{void $\ast$($\ast$)(\mbox{\hyperlink{structRBTree__Node}{R\+B\+Tree\+\_\+\+Node}} $\ast$)}]{map }\end{DoxyParamCaption})}
+
+
+
+Finds an object in the red-\/black tree with the specified key. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em the\+\_\+rbtree} & The red-\/black tree control. \\
+\hline
+{\em key} & The key to look after. \\
+\hline
+{\em equal} & Must return true if the specified key equals the key of the node, otherwise false. \\
+\hline
+{\em less} & Must return true if the specified key is less than the key of the node, otherwise false. \\
+\hline
+{\em map} & In case a node with the specified key is found, then this function is called to map the node to the object returned. Usually it performs some offset operation via \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gab2e7a0141fd898ae358fa9b134aa2610}{R\+T\+E\+M\+S\+\_\+\+C\+O\+N\+T\+A\+I\+N\+E\+R\+\_\+\+O\+F()}} to map the node to its containing object. Thus, the return type is a void pointer and not a red-\/black tree node.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em object} & An object with the specified key. \\
+\hline
+{\em N\+U\+LL} & No object with the specified key exists in the red-\/black tree. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{group__RTEMSScoreRBTree_ga3b281ee15da2dfdd1a8c2bc7b4fc40b5}\label{group__RTEMSScoreRBTree_ga3b281ee15da2dfdd1a8c2bc7b4fc40b5}} 
+\index{Red-\/Black Tree Handler@{Red-\/Black Tree Handler}!\_RBTree\_Initialize\_empty@{\_RBTree\_Initialize\_empty}}
+\index{\_RBTree\_Initialize\_empty@{\_RBTree\_Initialize\_empty}!Red-\/Black Tree Handler@{Red-\/Black Tree Handler}}
+\subsubsection{\texorpdfstring{\_RBTree\_Initialize\_empty()}{\_RBTree\_Initialize\_empty()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \+\_\+\+R\+B\+Tree\+\_\+\+Initialize\+\_\+empty (\begin{DoxyParamCaption}\item[{R\+B\+Tree\+\_\+\+Control $\ast$}]{the\+\_\+rbtree }\end{DoxyParamCaption})}
+
+
+
+Initializes this R\+B\+Tree as empty. 
+
+This routine initializes {\itshape the\+\_\+rbtree} to contain zero nodes.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em the\+\_\+rbtree} & The rbtree to initialize. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__RTEMSScoreRBTree_gabbc757c2fd03694b6f9bb5aa2be553ff}\label{group__RTEMSScoreRBTree_gabbc757c2fd03694b6f9bb5aa2be553ff}} 
+\index{Red-\/Black Tree Handler@{Red-\/Black Tree Handler}!\_RBTree\_Initialize\_node@{\_RBTree\_Initialize\_node}}
+\index{\_RBTree\_Initialize\_node@{\_RBTree\_Initialize\_node}!Red-\/Black Tree Handler@{Red-\/Black Tree Handler}}
+\subsubsection{\texorpdfstring{\_RBTree\_Initialize\_node()}{\_RBTree\_Initialize\_node()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \+\_\+\+R\+B\+Tree\+\_\+\+Initialize\+\_\+node (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structRBTree__Node}{R\+B\+Tree\+\_\+\+Node}} $\ast$}]{the\+\_\+node }\end{DoxyParamCaption})}
+
+
+
+Initializes a red-\/black tree node. 
+
+In debug configurations, the node is set off tree. In all other configurations, this function does nothing.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em the\+\_\+node} & The red-\/black tree node to initialize. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__RTEMSScoreRBTree_ga610819cba38ae2e02b461823f60c5daa}\label{group__RTEMSScoreRBTree_ga610819cba38ae2e02b461823f60c5daa}} 
+\index{Red-\/Black Tree Handler@{Red-\/Black Tree Handler}!\_RBTree\_Initialize\_one@{\_RBTree\_Initialize\_one}}
+\index{\_RBTree\_Initialize\_one@{\_RBTree\_Initialize\_one}!Red-\/Black Tree Handler@{Red-\/Black Tree Handler}}
+\subsubsection{\texorpdfstring{\_RBTree\_Initialize\_one()}{\_RBTree\_Initialize\_one()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \+\_\+\+R\+B\+Tree\+\_\+\+Initialize\+\_\+one (\begin{DoxyParamCaption}\item[{R\+B\+Tree\+\_\+\+Control $\ast$}]{the\+\_\+rbtree,  }\item[{\mbox{\hyperlink{structRBTree__Node}{R\+B\+Tree\+\_\+\+Node}} $\ast$}]{the\+\_\+node }\end{DoxyParamCaption})}
+
+
+
+Initializes this red-\/black tree to contain exactly the specified node. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em the\+\_\+rbtree} & The red-\/black tree control. \\
+\hline
+\mbox{\texttt{ out}}  & {\em the\+\_\+node} & The one and only node. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__RTEMSScoreRBTree_gaa303230648c3b9b472362387864698ed}\label{group__RTEMSScoreRBTree_gaa303230648c3b9b472362387864698ed}} 
+\index{Red-\/Black Tree Handler@{Red-\/Black Tree Handler}!\_RBTree\_Insert\_color@{\_RBTree\_Insert\_color}}
+\index{\_RBTree\_Insert\_color@{\_RBTree\_Insert\_color}!Red-\/Black Tree Handler@{Red-\/Black Tree Handler}}
+\subsubsection{\texorpdfstring{\_RBTree\_Insert\_color()}{\_RBTree\_Insert\_color()}}
+{\footnotesize\ttfamily void \+\_\+\+R\+B\+Tree\+\_\+\+Insert\+\_\+color (\begin{DoxyParamCaption}\item[{R\+B\+Tree\+\_\+\+Control $\ast$}]{the\+\_\+rbtree,  }\item[{\mbox{\hyperlink{structRBTree__Node}{R\+B\+Tree\+\_\+\+Node}} $\ast$}]{the\+\_\+node }\end{DoxyParamCaption})}
+
+
+
+Rebalances the red-\/black tree after insertion of the node. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em the\+\_\+rbtree} & The red-\/black tree control. \\
+\hline
+\mbox{\texttt{ in,out}}  & {\em the\+\_\+node} & The most recently inserted node. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__RTEMSScoreRBTree_gaaeb02c9e8cc4f09cf5788dc1050487f9}\label{group__RTEMSScoreRBTree_gaaeb02c9e8cc4f09cf5788dc1050487f9}} 
+\index{Red-\/Black Tree Handler@{Red-\/Black Tree Handler}!\_RBTree\_Insert\_inline@{\_RBTree\_Insert\_inline}}
+\index{\_RBTree\_Insert\_inline@{\_RBTree\_Insert\_inline}!Red-\/Black Tree Handler@{Red-\/Black Tree Handler}}
+\subsubsection{\texorpdfstring{\_RBTree\_Insert\_inline()}{\_RBTree\_Insert\_inline()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} bool \+\_\+\+R\+B\+Tree\+\_\+\+Insert\+\_\+inline (\begin{DoxyParamCaption}\item[{R\+B\+Tree\+\_\+\+Control $\ast$}]{the\+\_\+rbtree,  }\item[{\mbox{\hyperlink{structRBTree__Node}{R\+B\+Tree\+\_\+\+Node}} $\ast$}]{the\+\_\+node,  }\item[{const void $\ast$}]{key,  }\item[{bool($\ast$)(const void $\ast$, const \mbox{\hyperlink{structRBTree__Node}{R\+B\+Tree\+\_\+\+Node}} $\ast$)}]{less }\end{DoxyParamCaption})}
+
+
+
+Inserts the node into the red-\/black tree. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em the\+\_\+rbtree} & The red-\/black tree control. \\
+\hline
+\mbox{\texttt{ out}}  & {\em the\+\_\+node} & The node to insert. \\
+\hline
+ & {\em key} & The key of the node to insert. This key must be equal to the key stored in the node to insert. The separate key parameter is provided for two reasons. Firstly, it allows to share the less operator with \mbox{\hyperlink{group__RTEMSScoreRBTree_gaf629e7ea604ec8354c84a2a31bd1aef4}{\+\_\+\+R\+B\+Tree\+\_\+\+Find\+\_\+inline()}}. Secondly, the compiler may generate better code if the key is stored in a local variable. \\
+\hline
+ & {\em less} & Must return true if the specified key is less than the key of the node, otherwise false.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em true} & The inserted node is the new minimum node according to the specified less order function. \\
+\hline
+{\em false} & The inserted node is not the new minimum node according to the specified less order function. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{group__RTEMSScoreRBTree_ga4fd457fb2e3eaacda2c13a5ab05a11e7}\label{group__RTEMSScoreRBTree_ga4fd457fb2e3eaacda2c13a5ab05a11e7}} 
+\index{Red-\/Black Tree Handler@{Red-\/Black Tree Handler}!\_RBTree\_Insert\_with\_parent@{\_RBTree\_Insert\_with\_parent}}
+\index{\_RBTree\_Insert\_with\_parent@{\_RBTree\_Insert\_with\_parent}!Red-\/Black Tree Handler@{Red-\/Black Tree Handler}}
+\subsubsection{\texorpdfstring{\_RBTree\_Insert\_with\_parent()}{\_RBTree\_Insert\_with\_parent()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \+\_\+\+R\+B\+Tree\+\_\+\+Insert\+\_\+with\+\_\+parent (\begin{DoxyParamCaption}\item[{R\+B\+Tree\+\_\+\+Control $\ast$}]{the\+\_\+rbtree,  }\item[{\mbox{\hyperlink{structRBTree__Node}{R\+B\+Tree\+\_\+\+Node}} $\ast$}]{the\+\_\+node,  }\item[{\mbox{\hyperlink{structRBTree__Node}{R\+B\+Tree\+\_\+\+Node}} $\ast$}]{parent,  }\item[{\mbox{\hyperlink{structRBTree__Node}{R\+B\+Tree\+\_\+\+Node}} $\ast$$\ast$}]{link }\end{DoxyParamCaption})}
+
+
+
+Inserts the node into the red-\/black tree using the specified parent node and link. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em the\+\_\+rbtree} & The red-\/black tree control. \\
+\hline
+\mbox{\texttt{ in,out}}  & {\em the\+\_\+node} & The node to insert. \\
+\hline
+\mbox{\texttt{ out}}  & {\em parent} & The parent node. \\
+\hline
+\mbox{\texttt{ out}}  & {\em link} & The child node link of the parent node.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include <\mbox{\hyperlink{rtems_2score_2rbtree_8h}{rtems/score/rbtree.h}}>}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keyword}{typedef} \textcolor{keyword}{struct }\{}
+\DoxyCodeLine{  \textcolor{keywordtype}{int} value;}
+\DoxyCodeLine{  \mbox{\hyperlink{structRBTree__Node}{RBTree\_Node}} Node;}
+\DoxyCodeLine{\} Some\_Node;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{bool} \_Some\_Less(}
+\DoxyCodeLine{  \textcolor{keyword}{const} \mbox{\hyperlink{structRBTree__Node}{RBTree\_Node}} *a,}
+\DoxyCodeLine{  \textcolor{keyword}{const} \mbox{\hyperlink{structRBTree__Node}{RBTree\_Node}} *b}
+\DoxyCodeLine{)}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{  \textcolor{keyword}{const} Some\_Node *aa = \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gab2e7a0141fd898ae358fa9b134aa2610}{RTEMS\_CONTAINER\_OF}}( a, Some\_Node, Node );}
+\DoxyCodeLine{  \textcolor{keyword}{const} Some\_Node *bb = \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gab2e7a0141fd898ae358fa9b134aa2610}{RTEMS\_CONTAINER\_OF}}( b, Some\_Node, Node );}
+\DoxyCodeLine{}
+\DoxyCodeLine{  \textcolor{keywordflow}{return} aa->value < bb->value;}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{void} \_Some\_Insert(}
+\DoxyCodeLine{  RBTree\_Control *the\_rbtree,}
+\DoxyCodeLine{  Some\_Node      *the\_node}
+\DoxyCodeLine{)}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{  \mbox{\hyperlink{structRBTree__Node}{RBTree\_Node}} **\mbox{\hyperlink{link_8c_a8c94afd0b7e5bb4ce95fefd964241f7f}{link}} = \mbox{\hyperlink{group__RTEMSScoreRBTree_ga195bd19595223fc96c4683fbb2f96460}{\_RBTree\_Root\_reference}}( the\_rbtree );}
+\DoxyCodeLine{  \mbox{\hyperlink{structRBTree__Node}{RBTree\_Node}}  *parent = \mbox{\hyperlink{bestcomm__api_8h_a872bb74de61c3689ccd5b41873fce42c}{NULL}};}
+\DoxyCodeLine{}
+\DoxyCodeLine{  \textcolor{keywordflow}{while} ( *\mbox{\hyperlink{link_8c_a8c94afd0b7e5bb4ce95fefd964241f7f}{link}} != \mbox{\hyperlink{bestcomm__api_8h_a872bb74de61c3689ccd5b41873fce42c}{NULL}} ) \{}
+\DoxyCodeLine{    parent = *\mbox{\hyperlink{link_8c_a8c94afd0b7e5bb4ce95fefd964241f7f}{link}};}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keywordflow}{if} ( \_Some\_Less( \&the\_node->Node, parent ) ) \{}
+\DoxyCodeLine{      \mbox{\hyperlink{link_8c_a8c94afd0b7e5bb4ce95fefd964241f7f}{link}} = \mbox{\hyperlink{group__RTEMSScoreRBTree_ga3a992a2f539e70293f35e11d5fdc6be9}{\_RBTree\_Left\_reference}}( parent );}
+\DoxyCodeLine{    \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{      \mbox{\hyperlink{link_8c_a8c94afd0b7e5bb4ce95fefd964241f7f}{link}} = \mbox{\hyperlink{group__RTEMSScoreRBTree_gaf093b342c362e8e20ba3ddb98f21e44b}{\_RBTree\_Right\_reference}}( parent );}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{  \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{  \mbox{\hyperlink{group__RTEMSScoreRBTree_ga4fd457fb2e3eaacda2c13a5ab05a11e7}{\_RBTree\_Insert\_with\_parent}}( the\_rbtree, \&the\_node->Node, parent, \mbox{\hyperlink{link_8c_a8c94afd0b7e5bb4ce95fefd964241f7f}{link}} );}
+\DoxyCodeLine{\}}
+\end{DoxyCode}
+ \mbox{\Hypertarget{group__RTEMSScoreRBTree_ga26bddef2c5a0e1f832d7673c45b284c7}\label{group__RTEMSScoreRBTree_ga26bddef2c5a0e1f832d7673c45b284c7}} 
+\index{Red-\/Black Tree Handler@{Red-\/Black Tree Handler}!\_RBTree\_Is\_empty@{\_RBTree\_Is\_empty}}
+\index{\_RBTree\_Is\_empty@{\_RBTree\_Is\_empty}!Red-\/Black Tree Handler@{Red-\/Black Tree Handler}}
+\subsubsection{\texorpdfstring{\_RBTree\_Is\_empty()}{\_RBTree\_Is\_empty()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} bool \+\_\+\+R\+B\+Tree\+\_\+\+Is\+\_\+empty (\begin{DoxyParamCaption}\item[{const R\+B\+Tree\+\_\+\+Control $\ast$}]{the\+\_\+rbtree }\end{DoxyParamCaption})}
+
+
+
+Checks if the R\+B\+Tree is empty. 
+
+This function returns true if there are no nodes on {\itshape the\+\_\+rbtree} and false otherwise.
+
+
+\begin{DoxyParams}{Parameters}
+{\em the\+\_\+rbtree} & is the rbtree to be operated upon.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em true} & There are no nodes on {\itshape the\+\_\+rbtree}. \\
+\hline
+{\em false} & There are nodes on {\itshape the\+\_\+rbtree}. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{group__RTEMSScoreRBTree_ga4076722f9dbc78d8e6682b88a3ed0c8e}\label{group__RTEMSScoreRBTree_ga4076722f9dbc78d8e6682b88a3ed0c8e}} 
+\index{Red-\/Black Tree Handler@{Red-\/Black Tree Handler}!\_RBTree\_Is\_node\_off\_tree@{\_RBTree\_Is\_node\_off\_tree}}
+\index{\_RBTree\_Is\_node\_off\_tree@{\_RBTree\_Is\_node\_off\_tree}!Red-\/Black Tree Handler@{Red-\/Black Tree Handler}}
+\subsubsection{\texorpdfstring{\_RBTree\_Is\_node\_off\_tree()}{\_RBTree\_Is\_node\_off\_tree()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} bool \+\_\+\+R\+B\+Tree\+\_\+\+Is\+\_\+node\+\_\+off\+\_\+tree (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structRBTree__Node}{R\+B\+Tree\+\_\+\+Node}} $\ast$}]{the\+\_\+node }\end{DoxyParamCaption})}
+
+
+
+Checks if this red-\/black tree node is off-\/tree. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em the\+\_\+node} & The node to test.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em true} & The node is not a part of a tree (off-\/tree). \\
+\hline
+{\em false} & The node is part of a tree.\\
+\hline
+\end{DoxyRetVals}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{group__RTEMSScoreRBTree_ga82d9b6f1aad201e7c8b614a0e970b356}{\+\_\+\+R\+B\+Tree\+\_\+\+Set\+\_\+off\+\_\+tree()}}. 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{group__RTEMSScoreRBTree_ga8496286f0a637353c8046e0d2625ea08}\label{group__RTEMSScoreRBTree_ga8496286f0a637353c8046e0d2625ea08}} 
+\index{Red-\/Black Tree Handler@{Red-\/Black Tree Handler}!\_RBTree\_Is\_root@{\_RBTree\_Is\_root}}
+\index{\_RBTree\_Is\_root@{\_RBTree\_Is\_root}!Red-\/Black Tree Handler@{Red-\/Black Tree Handler}}
+\subsubsection{\texorpdfstring{\_RBTree\_Is\_root()}{\_RBTree\_Is\_root()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} bool \+\_\+\+R\+B\+Tree\+\_\+\+Is\+\_\+root (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structRBTree__Node}{R\+B\+Tree\+\_\+\+Node}} $\ast$}]{the\+\_\+node }\end{DoxyParamCaption})}
+
+
+
+Checks if this node is the root node of a red-\/black tree. 
+
+The root node may change after insert or extract operations. In case the node is not a node of a tree, then this function yields unpredictable results.
+
+
+\begin{DoxyParams}{Parameters}
+{\em the\+\_\+node} & The node of interest.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em true} & {\itshape the\+\_\+node} is the root node. \\
+\hline
+{\em false} & {\itshape the\+\_\+node} is not the root node.\\
+\hline
+\end{DoxyRetVals}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{group__RTEMSScoreRBTree_ga29242f056330aaabc12dcfcaa6f10a05}{\+\_\+\+R\+B\+Tree\+\_\+\+Root()}}. 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{group__RTEMSScoreRBTree_ga84900b1947f50a5fe6e67234007c5c36}\label{group__RTEMSScoreRBTree_ga84900b1947f50a5fe6e67234007c5c36}} 
+\index{Red-\/Black Tree Handler@{Red-\/Black Tree Handler}!\_RBTree\_Iterate@{\_RBTree\_Iterate}}
+\index{\_RBTree\_Iterate@{\_RBTree\_Iterate}!Red-\/Black Tree Handler@{Red-\/Black Tree Handler}}
+\subsubsection{\texorpdfstring{\_RBTree\_Iterate()}{\_RBTree\_Iterate()}}
+{\footnotesize\ttfamily void \+\_\+\+R\+B\+Tree\+\_\+\+Iterate (\begin{DoxyParamCaption}\item[{const R\+B\+Tree\+\_\+\+Control $\ast$}]{rbtree,  }\item[{\mbox{\hyperlink{group__RTEMSScoreRBTree_gade4e2c479a5f652c310ce39eac52d84b}{R\+B\+Tree\+\_\+\+Visitor}}}]{visitor,  }\item[{void $\ast$}]{visitor\+\_\+arg }\end{DoxyParamCaption})}
+
+
+
+Red-\/black tree iteration. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em rbtree} & The red-\/black tree. \\
+\hline
+{\em visitor} & The visitor. \\
+\hline
+{\em visitor\+\_\+arg} & The visitor argument. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__RTEMSScoreRBTree_ga760e7fbf0596be06c7c872c1fb3ed319}\label{group__RTEMSScoreRBTree_ga760e7fbf0596be06c7c872c1fb3ed319}} 
+\index{Red-\/Black Tree Handler@{Red-\/Black Tree Handler}!\_RBTree\_Left@{\_RBTree\_Left}}
+\index{\_RBTree\_Left@{\_RBTree\_Left}!Red-\/Black Tree Handler@{Red-\/Black Tree Handler}}
+\subsubsection{\texorpdfstring{\_RBTree\_Left()}{\_RBTree\_Left()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} \mbox{\hyperlink{structRBTree__Node}{R\+B\+Tree\+\_\+\+Node}}$\ast$ \+\_\+\+R\+B\+Tree\+\_\+\+Left (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structRBTree__Node}{R\+B\+Tree\+\_\+\+Node}} $\ast$}]{the\+\_\+node }\end{DoxyParamCaption})}
+
+
+
+Returns pointer to the left of this node. 
+
+This function returns a pointer to the left node of this node.
+
+
+\begin{DoxyParams}{Parameters}
+{\em the\+\_\+node} & is the node to be operated upon.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+This method returns the left node on the rbtree. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{group__RTEMSScoreRBTree_ga3a992a2f539e70293f35e11d5fdc6be9}\label{group__RTEMSScoreRBTree_ga3a992a2f539e70293f35e11d5fdc6be9}} 
+\index{Red-\/Black Tree Handler@{Red-\/Black Tree Handler}!\_RBTree\_Left\_reference@{\_RBTree\_Left\_reference}}
+\index{\_RBTree\_Left\_reference@{\_RBTree\_Left\_reference}!Red-\/Black Tree Handler@{Red-\/Black Tree Handler}}
+\subsubsection{\texorpdfstring{\_RBTree\_Left\_reference()}{\_RBTree\_Left\_reference()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} \mbox{\hyperlink{structRBTree__Node}{R\+B\+Tree\+\_\+\+Node}}$\ast$$\ast$ \+\_\+\+R\+B\+Tree\+\_\+\+Left\+\_\+reference (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structRBTree__Node}{R\+B\+Tree\+\_\+\+Node}} $\ast$}]{the\+\_\+node }\end{DoxyParamCaption})}
+
+
+
+Returns a reference to the left child pointer of the red-\/black tree node. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em the\+\_\+node} & is the node to be operated upon.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+This method returns a reference to the left child pointer on the rbtree. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{group__RTEMSScoreRBTree_gac5ea3ed76d45cb2b1cfa6f6290f90b65}\label{group__RTEMSScoreRBTree_gac5ea3ed76d45cb2b1cfa6f6290f90b65}} 
+\index{Red-\/Black Tree Handler@{Red-\/Black Tree Handler}!\_RBTree\_Maximum@{\_RBTree\_Maximum}}
+\index{\_RBTree\_Maximum@{\_RBTree\_Maximum}!Red-\/Black Tree Handler@{Red-\/Black Tree Handler}}
+\subsubsection{\texorpdfstring{\_RBTree\_Maximum()}{\_RBTree\_Maximum()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structRBTree__Node}{R\+B\+Tree\+\_\+\+Node}}$\ast$ \+\_\+\+R\+B\+Tree\+\_\+\+Maximum (\begin{DoxyParamCaption}\item[{const R\+B\+Tree\+\_\+\+Control $\ast$}]{the\+\_\+rbtree }\end{DoxyParamCaption})}
+
+
+
+Returns the maximum node of the red-\/black tree. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em the\+\_\+rbtree} & The red-\/black tree control.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em node} & The maximum node. \\
+\hline
+{\em N\+U\+LL} & The red-\/black tree is empty. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{group__RTEMSScoreRBTree_ga4b74812f06506bb6f19b910bfb011070}\label{group__RTEMSScoreRBTree_ga4b74812f06506bb6f19b910bfb011070}} 
+\index{Red-\/Black Tree Handler@{Red-\/Black Tree Handler}!\_RBTree\_Minimum@{\_RBTree\_Minimum}}
+\index{\_RBTree\_Minimum@{\_RBTree\_Minimum}!Red-\/Black Tree Handler@{Red-\/Black Tree Handler}}
+\subsubsection{\texorpdfstring{\_RBTree\_Minimum()}{\_RBTree\_Minimum()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structRBTree__Node}{R\+B\+Tree\+\_\+\+Node}}$\ast$ \+\_\+\+R\+B\+Tree\+\_\+\+Minimum (\begin{DoxyParamCaption}\item[{const R\+B\+Tree\+\_\+\+Control $\ast$}]{the\+\_\+rbtree }\end{DoxyParamCaption})}
+
+
+
+Returns the minimum node of the red-\/black tree. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em the\+\_\+rbtree} & The red-\/black tree control.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em node} & The minimum node. \\
+\hline
+{\em N\+U\+LL} & The red-\/black tree is empty. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{group__RTEMSScoreRBTree_ga15c887d3c6f0fe578b8ddb8332ad3828}\label{group__RTEMSScoreRBTree_ga15c887d3c6f0fe578b8ddb8332ad3828}} 
+\index{Red-\/Black Tree Handler@{Red-\/Black Tree Handler}!\_RBTree\_Parent@{\_RBTree\_Parent}}
+\index{\_RBTree\_Parent@{\_RBTree\_Parent}!Red-\/Black Tree Handler@{Red-\/Black Tree Handler}}
+\subsubsection{\texorpdfstring{\_RBTree\_Parent()}{\_RBTree\_Parent()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} \mbox{\hyperlink{structRBTree__Node}{R\+B\+Tree\+\_\+\+Node}}$\ast$ \+\_\+\+R\+B\+Tree\+\_\+\+Parent (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structRBTree__Node}{R\+B\+Tree\+\_\+\+Node}} $\ast$}]{the\+\_\+node }\end{DoxyParamCaption})}
+
+
+
+Returns a pointer to the parent of this node. 
+
+The node must have a parent, thus it is invalid to use this function for the root node or a node that is not part of a tree. To test for the root node compare with \mbox{\hyperlink{group__RTEMSScoreRBTree_ga29242f056330aaabc12dcfcaa6f10a05}{\+\_\+\+R\+B\+Tree\+\_\+\+Root()}} or use \mbox{\hyperlink{group__RTEMSScoreRBTree_ga8496286f0a637353c8046e0d2625ea08}{\+\_\+\+R\+B\+Tree\+\_\+\+Is\+\_\+root()}}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em the\+\_\+node} & The node of interest.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em parent} & The parent of this node. \\
+\hline
+{\em undefined} & The node is the root node or not part of a tree. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{group__RTEMSScoreRBTree_ga35988f7d76f4cbc30fa90df30993cdf7}\label{group__RTEMSScoreRBTree_ga35988f7d76f4cbc30fa90df30993cdf7}} 
+\index{Red-\/Black Tree Handler@{Red-\/Black Tree Handler}!\_RBTree\_Postorder\_first@{\_RBTree\_Postorder\_first}}
+\index{\_RBTree\_Postorder\_first@{\_RBTree\_Postorder\_first}!Red-\/Black Tree Handler@{Red-\/Black Tree Handler}}
+\subsubsection{\texorpdfstring{\_RBTree\_Postorder\_first()}{\_RBTree\_Postorder\_first()}}
+{\footnotesize\ttfamily void$\ast$ \+\_\+\+R\+B\+Tree\+\_\+\+Postorder\+\_\+first (\begin{DoxyParamCaption}\item[{const R\+B\+Tree\+\_\+\+Control $\ast$}]{the\+\_\+rbtree,  }\item[{size\+\_\+t}]{offset }\end{DoxyParamCaption})}
+
+
+
+Returns the container of the first node of the specified red-\/black tree in postorder. 
+
+Postorder traversal may be used to delete all nodes of a red-\/black tree.
+
+
+\begin{DoxyParams}{Parameters}
+{\em the\+\_\+rbtree} & The red-\/black tree control. \\
+\hline
+{\em offset} & The offset to the red-\/black tree node in the container structure.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em container} & The container of the first node of the specified red-\/black tree in postorder. \\
+\hline
+{\em N\+U\+LL} & The red-\/black tree is empty.\\
+\hline
+\end{DoxyRetVals}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{group__RTEMSScoreRBTree_ga98dcfd6daa73d5c6ba3b159a3816cc91}{\+\_\+\+R\+B\+Tree\+\_\+\+Postorder\+\_\+next()}}.
+\end{DoxySeeAlso}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include <\mbox{\hyperlink{rtems_2score_2rbtree_8h}{rtems/score/rbtree.h}}>}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keyword}{typedef} \textcolor{keyword}{struct }\{}
+\DoxyCodeLine{  \textcolor{keywordtype}{int}         data;}
+\DoxyCodeLine{  \mbox{\hyperlink{structRBTree__Node}{RBTree\_Node}} Node;}
+\DoxyCodeLine{\} Container\_Control;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{void} visit( Container\_Control *the\_container );}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{void} postorder\_traversal( RBTree\_Control *the\_rbtree )}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{  Container\_Control *the\_container;}
+\DoxyCodeLine{}
+\DoxyCodeLine{  the\_container = \mbox{\hyperlink{group__RTEMSScoreRBTree_ga35988f7d76f4cbc30fa90df30993cdf7}{\_RBTree\_Postorder\_first}}(}
+\DoxyCodeLine{    the\_rbtree,}
+\DoxyCodeLine{    offsetof( Container\_Control, Node )}
+\DoxyCodeLine{  );}
+\DoxyCodeLine{}
+\DoxyCodeLine{  \textcolor{keywordflow}{while} ( the\_container != \mbox{\hyperlink{bestcomm__api_8h_a872bb74de61c3689ccd5b41873fce42c}{NULL}} ) \{}
+\DoxyCodeLine{    visit( the\_container );}
+\DoxyCodeLine{}
+\DoxyCodeLine{    the\_container = \mbox{\hyperlink{group__RTEMSScoreRBTree_ga98dcfd6daa73d5c6ba3b159a3816cc91}{\_RBTree\_Postorder\_next}}(}
+\DoxyCodeLine{      \&the\_container->Node,}
+\DoxyCodeLine{      offsetof( Container\_Control, Node )}
+\DoxyCodeLine{    );}
+\DoxyCodeLine{  \}}
+\DoxyCodeLine{\}}
+\end{DoxyCode}
+ \mbox{\Hypertarget{group__RTEMSScoreRBTree_ga98dcfd6daa73d5c6ba3b159a3816cc91}\label{group__RTEMSScoreRBTree_ga98dcfd6daa73d5c6ba3b159a3816cc91}} 
+\index{Red-\/Black Tree Handler@{Red-\/Black Tree Handler}!\_RBTree\_Postorder\_next@{\_RBTree\_Postorder\_next}}
+\index{\_RBTree\_Postorder\_next@{\_RBTree\_Postorder\_next}!Red-\/Black Tree Handler@{Red-\/Black Tree Handler}}
+\subsubsection{\texorpdfstring{\_RBTree\_Postorder\_next()}{\_RBTree\_Postorder\_next()}}
+{\footnotesize\ttfamily void$\ast$ \+\_\+\+R\+B\+Tree\+\_\+\+Postorder\+\_\+next (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structRBTree__Node}{R\+B\+Tree\+\_\+\+Node}} $\ast$}]{the\+\_\+node,  }\item[{size\+\_\+t}]{offset }\end{DoxyParamCaption})}
+
+
+
+Returns the container of the next node in postorder. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em the\+\_\+node} & The red-\/black tree node. The node must not be N\+U\+LL. \\
+\hline
+{\em offset} & The offset to the red-\/black tree node in the container structure.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em container} & The container of the next node in postorder. \\
+\hline
+{\em N\+U\+LL} & The node is N\+U\+LL or there is no next node in postorder.\\
+\hline
+\end{DoxyRetVals}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{group__RTEMSScoreRBTree_ga35988f7d76f4cbc30fa90df30993cdf7}{\+\_\+\+R\+B\+Tree\+\_\+\+Postorder\+\_\+first()}}. 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{group__RTEMSScoreRBTree_ga89d4ea55962eb531d2322d42468ea45c}\label{group__RTEMSScoreRBTree_ga89d4ea55962eb531d2322d42468ea45c}} 
+\index{Red-\/Black Tree Handler@{Red-\/Black Tree Handler}!\_RBTree\_Predecessor@{\_RBTree\_Predecessor}}
+\index{\_RBTree\_Predecessor@{\_RBTree\_Predecessor}!Red-\/Black Tree Handler@{Red-\/Black Tree Handler}}
+\subsubsection{\texorpdfstring{\_RBTree\_Predecessor()}{\_RBTree\_Predecessor()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structRBTree__Node}{R\+B\+Tree\+\_\+\+Node}}$\ast$ \+\_\+\+R\+B\+Tree\+\_\+\+Predecessor (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structRBTree__Node}{R\+B\+Tree\+\_\+\+Node}} $\ast$}]{node }\end{DoxyParamCaption})}
+
+
+
+Returns the predecessor of a node. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em node} & is the node.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em node} & The predecessor node. \\
+\hline
+{\em N\+U\+LL} & The predecessor does not exist. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{group__RTEMSScoreRBTree_gac0ebf997d5cc78686db8cd65c3111299}\label{group__RTEMSScoreRBTree_gac0ebf997d5cc78686db8cd65c3111299}} 
+\index{Red-\/Black Tree Handler@{Red-\/Black Tree Handler}!\_RBTree\_Replace\_node@{\_RBTree\_Replace\_node}}
+\index{\_RBTree\_Replace\_node@{\_RBTree\_Replace\_node}!Red-\/Black Tree Handler@{Red-\/Black Tree Handler}}
+\subsubsection{\texorpdfstring{\_RBTree\_Replace\_node()}{\_RBTree\_Replace\_node()}}
+{\footnotesize\ttfamily void \+\_\+\+R\+B\+Tree\+\_\+\+Replace\+\_\+node (\begin{DoxyParamCaption}\item[{R\+B\+Tree\+\_\+\+Control $\ast$}]{the\+\_\+rbtree,  }\item[{\mbox{\hyperlink{structRBTree__Node}{R\+B\+Tree\+\_\+\+Node}} $\ast$}]{victim,  }\item[{\mbox{\hyperlink{structRBTree__Node}{R\+B\+Tree\+\_\+\+Node}} $\ast$}]{replacement }\end{DoxyParamCaption})}
+
+
+
+Replaces a node in the red-\/black tree without a rebalance. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em the\+\_\+rbtree} & The red-\/black tree control. \\
+\hline
+ & {\em victim} & The victim node. \\
+\hline
+\mbox{\texttt{ out}}  & {\em replacement} & The replacement node. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__RTEMSScoreRBTree_gadb8aa819c64641ff7a2342a7ef20b950}\label{group__RTEMSScoreRBTree_gadb8aa819c64641ff7a2342a7ef20b950}} 
+\index{Red-\/Black Tree Handler@{Red-\/Black Tree Handler}!\_RBTree\_Right@{\_RBTree\_Right}}
+\index{\_RBTree\_Right@{\_RBTree\_Right}!Red-\/Black Tree Handler@{Red-\/Black Tree Handler}}
+\subsubsection{\texorpdfstring{\_RBTree\_Right()}{\_RBTree\_Right()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} \mbox{\hyperlink{structRBTree__Node}{R\+B\+Tree\+\_\+\+Node}}$\ast$ \+\_\+\+R\+B\+Tree\+\_\+\+Right (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structRBTree__Node}{R\+B\+Tree\+\_\+\+Node}} $\ast$}]{the\+\_\+node }\end{DoxyParamCaption})}
+
+
+
+Returns pointer to the right of this node. 
+
+This function returns a pointer to the right node of this node.
+
+
+\begin{DoxyParams}{Parameters}
+{\em the\+\_\+node} & is the node to be operated upon.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+This method returns the right node on the rbtree. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{group__RTEMSScoreRBTree_gaf093b342c362e8e20ba3ddb98f21e44b}\label{group__RTEMSScoreRBTree_gaf093b342c362e8e20ba3ddb98f21e44b}} 
+\index{Red-\/Black Tree Handler@{Red-\/Black Tree Handler}!\_RBTree\_Right\_reference@{\_RBTree\_Right\_reference}}
+\index{\_RBTree\_Right\_reference@{\_RBTree\_Right\_reference}!Red-\/Black Tree Handler@{Red-\/Black Tree Handler}}
+\subsubsection{\texorpdfstring{\_RBTree\_Right\_reference()}{\_RBTree\_Right\_reference()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} \mbox{\hyperlink{structRBTree__Node}{R\+B\+Tree\+\_\+\+Node}}$\ast$$\ast$ \+\_\+\+R\+B\+Tree\+\_\+\+Right\+\_\+reference (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structRBTree__Node}{R\+B\+Tree\+\_\+\+Node}} $\ast$}]{the\+\_\+node }\end{DoxyParamCaption})}
+
+
+
+Returns a reference to the right child pointer of the red-\/black tree node. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em the\+\_\+node} & is the node to be operated upon.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+This method returns a reference to the right child pointer on the rbtree. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{group__RTEMSScoreRBTree_ga29242f056330aaabc12dcfcaa6f10a05}\label{group__RTEMSScoreRBTree_ga29242f056330aaabc12dcfcaa6f10a05}} 
+\index{Red-\/Black Tree Handler@{Red-\/Black Tree Handler}!\_RBTree\_Root@{\_RBTree\_Root}}
+\index{\_RBTree\_Root@{\_RBTree\_Root}!Red-\/Black Tree Handler@{Red-\/Black Tree Handler}}
+\subsubsection{\texorpdfstring{\_RBTree\_Root()}{\_RBTree\_Root()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} \mbox{\hyperlink{structRBTree__Node}{R\+B\+Tree\+\_\+\+Node}}$\ast$ \+\_\+\+R\+B\+Tree\+\_\+\+Root (\begin{DoxyParamCaption}\item[{const R\+B\+Tree\+\_\+\+Control $\ast$}]{the\+\_\+rbtree }\end{DoxyParamCaption})}
+
+
+
+Returns a pointer to root node of the red-\/black tree. 
+
+The root node may change after insert or extract operations.
+
+
+\begin{DoxyParams}{Parameters}
+{\em the\+\_\+rbtree} & The red-\/black tree control.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em root} & The root node. \\
+\hline
+{\em N\+U\+LL} & The tree is empty.\\
+\hline
+\end{DoxyRetVals}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{group__RTEMSScoreRBTree_ga8496286f0a637353c8046e0d2625ea08}{\+\_\+\+R\+B\+Tree\+\_\+\+Is\+\_\+root()}}. 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{group__RTEMSScoreRBTree_ga78ee0ed3eaeca6a2a70372bbfe872f7b}\label{group__RTEMSScoreRBTree_ga78ee0ed3eaeca6a2a70372bbfe872f7b}} 
+\index{Red-\/Black Tree Handler@{Red-\/Black Tree Handler}!\_RBTree\_Root\_const\_reference@{\_RBTree\_Root\_const\_reference}}
+\index{\_RBTree\_Root\_const\_reference@{\_RBTree\_Root\_const\_reference}!Red-\/Black Tree Handler@{Red-\/Black Tree Handler}}
+\subsubsection{\texorpdfstring{\_RBTree\_Root\_const\_reference()}{\_RBTree\_Root\_const\_reference()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} \mbox{\hyperlink{structRBTree__Node}{R\+B\+Tree\+\_\+\+Node}}$\ast$ const$\ast$ \+\_\+\+R\+B\+Tree\+\_\+\+Root\+\_\+const\+\_\+reference (\begin{DoxyParamCaption}\item[{const R\+B\+Tree\+\_\+\+Control $\ast$}]{the\+\_\+rbtree }\end{DoxyParamCaption})}
+
+
+
+Returns a constant reference to the root pointer of the red-\/black tree. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em the\+\_\+rbtree} & The red-\/black tree control.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em pointer} & Pointer to the root node. \\
+\hline
+{\em N\+U\+LL} & The tree is empty. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{group__RTEMSScoreRBTree_ga195bd19595223fc96c4683fbb2f96460}\label{group__RTEMSScoreRBTree_ga195bd19595223fc96c4683fbb2f96460}} 
+\index{Red-\/Black Tree Handler@{Red-\/Black Tree Handler}!\_RBTree\_Root\_reference@{\_RBTree\_Root\_reference}}
+\index{\_RBTree\_Root\_reference@{\_RBTree\_Root\_reference}!Red-\/Black Tree Handler@{Red-\/Black Tree Handler}}
+\subsubsection{\texorpdfstring{\_RBTree\_Root\_reference()}{\_RBTree\_Root\_reference()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} \mbox{\hyperlink{structRBTree__Node}{R\+B\+Tree\+\_\+\+Node}}$\ast$$\ast$ \+\_\+\+R\+B\+Tree\+\_\+\+Root\+\_\+reference (\begin{DoxyParamCaption}\item[{R\+B\+Tree\+\_\+\+Control $\ast$}]{the\+\_\+rbtree }\end{DoxyParamCaption})}
+
+
+
+Returns a reference to the root pointer of the red-\/black tree. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em the\+\_\+rbtree} & The red-\/black tree control.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em pointer} & Pointer to the root node. \\
+\hline
+{\em N\+U\+LL} & The tree is empty. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{group__RTEMSScoreRBTree_ga82d9b6f1aad201e7c8b614a0e970b356}\label{group__RTEMSScoreRBTree_ga82d9b6f1aad201e7c8b614a0e970b356}} 
+\index{Red-\/Black Tree Handler@{Red-\/Black Tree Handler}!\_RBTree\_Set\_off\_tree@{\_RBTree\_Set\_off\_tree}}
+\index{\_RBTree\_Set\_off\_tree@{\_RBTree\_Set\_off\_tree}!Red-\/Black Tree Handler@{Red-\/Black Tree Handler}}
+\subsubsection{\texorpdfstring{\_RBTree\_Set\_off\_tree()}{\_RBTree\_Set\_off\_tree()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \+\_\+\+R\+B\+Tree\+\_\+\+Set\+\_\+off\+\_\+tree (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structRBTree__Node}{R\+B\+Tree\+\_\+\+Node}} $\ast$}]{the\+\_\+node }\end{DoxyParamCaption})}
+
+
+
+Sets a red-\/black tree node as off-\/tree. 
+
+Do not use this function on nodes which are a part of a tree.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em the\+\_\+node} & The node to set off-\/tree.\\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{group__RTEMSScoreRBTree_ga4076722f9dbc78d8e6682b88a3ed0c8e}{\+\_\+\+R\+B\+Tree\+\_\+\+Is\+\_\+node\+\_\+off\+\_\+tree()}}. 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{group__RTEMSScoreRBTree_ga0951acbbfbf23c8dc0eb4930f9516bf5}\label{group__RTEMSScoreRBTree_ga0951acbbfbf23c8dc0eb4930f9516bf5}} 
+\index{Red-\/Black Tree Handler@{Red-\/Black Tree Handler}!\_RBTree\_Successor@{\_RBTree\_Successor}}
+\index{\_RBTree\_Successor@{\_RBTree\_Successor}!Red-\/Black Tree Handler@{Red-\/Black Tree Handler}}
+\subsubsection{\texorpdfstring{\_RBTree\_Successor()}{\_RBTree\_Successor()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structRBTree__Node}{R\+B\+Tree\+\_\+\+Node}}$\ast$ \+\_\+\+R\+B\+Tree\+\_\+\+Successor (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structRBTree__Node}{R\+B\+Tree\+\_\+\+Node}} $\ast$}]{node }\end{DoxyParamCaption})}
+
+
+
+Returns the successor of a node. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em node} & is the node.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em node} & The successor node. \\
+\hline
+{\em N\+U\+LL} & The successor does not exist. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{group__RTEMSScoreRBTree_ga64d3e47d6fcda98acddb35fd53f28f26}\label{group__RTEMSScoreRBTree_ga64d3e47d6fcda98acddb35fd53f28f26}} 
+\index{Red-\/Black Tree Handler@{Red-\/Black Tree Handler}!RB\_HEAD@{RB\_HEAD}}
+\index{RB\_HEAD@{RB\_HEAD}!Red-\/Black Tree Handler@{Red-\/Black Tree Handler}}
+\subsubsection{\texorpdfstring{RB\_HEAD()}{RB\_HEAD()}}
+{\footnotesize\ttfamily typedef R\+B\+\_\+\+H\+E\+AD (\begin{DoxyParamCaption}\item[{R\+B\+Tree\+\_\+\+Control}]{,  }\item[{\mbox{\hyperlink{structRBTree__Node}{R\+B\+Tree\+\_\+\+Node}}}]{ }\end{DoxyParamCaption})}
+
+
+
+Red-\/black tree control. 
+
+This is used to manage a red-\/black tree. A red-\/black tree consists of a tree of zero or more nodes. 

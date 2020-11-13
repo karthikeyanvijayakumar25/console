@@ -1,0 +1,223 @@
+\hypertarget{bfin_2TLL6527M_2console_2console_8c}{}\section{bsps/bfin/\+T\+L\+L6527\+M/console/console.c File Reference}
+\label{bfin_2TLL6527M_2console_2console_8c}\index{bsps/bfin/TLL6527M/console/console.c@{bsps/bfin/TLL6527M/console/console.c}}
+{\ttfamily \#include $<$rtems.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/libio.\+h$>$}\newline
+{\ttfamily \#include $<$bsp.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/bsp\+Io.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/console.\+h$>$}\newline
+{\ttfamily \#include $<$bsp/interrupt.\+h$>$}\newline
+{\ttfamily \#include $<$libcpu/uart.\+h$>$}\newline
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+device\+\_\+driver}} \mbox{\hyperlink{bfin_2TLL6527M_2console_2console_8c_a4efabb094608f8155b1a679e03f2eafc}{console\+\_\+close}} (rtems\+\_\+device\+\_\+major\+\_\+number major, rtems\+\_\+device\+\_\+minor\+\_\+number minor, void $\ast$arg)
+\begin{DoxyCompactList}\small\item\em Console close entry point. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+device\+\_\+driver}} \mbox{\hyperlink{bfin_2TLL6527M_2console_2console_8c_affd7cbaa034887f37032640f39c74b0d}{console\+\_\+read}} (rtems\+\_\+device\+\_\+major\+\_\+number major, rtems\+\_\+device\+\_\+minor\+\_\+number minor, void $\ast$arg)
+\begin{DoxyCompactList}\small\item\em Console read entry point. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+device\+\_\+driver}} \mbox{\hyperlink{bfin_2TLL6527M_2console_2console_8c_a211cf468eb7aec89e37bc784a62753ce}{console\+\_\+write}} (rtems\+\_\+device\+\_\+major\+\_\+number major, rtems\+\_\+device\+\_\+minor\+\_\+number minor, void $\ast$arg)
+\begin{DoxyCompactList}\small\item\em Console write entry point. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+device\+\_\+driver}} \mbox{\hyperlink{bfin_2TLL6527M_2console_2console_8c_a3ecfcbb4d683d7d77476039aba0f94db}{console\+\_\+control}} (rtems\+\_\+device\+\_\+major\+\_\+number major, rtems\+\_\+device\+\_\+minor\+\_\+number minor, void $\ast$arg)
+\begin{DoxyCompactList}\small\item\em Console \mbox{\hyperlink{structIO}{IO}} control entry point. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+device\+\_\+driver}} \mbox{\hyperlink{bfin_2TLL6527M_2console_2console_8c_a3f4320ff384009c3bdfa6ec4f1b79501}{console\+\_\+open}} (rtems\+\_\+device\+\_\+major\+\_\+number major, rtems\+\_\+device\+\_\+minor\+\_\+number minor, void $\ast$arg)
+\begin{DoxyCompactList}\small\item\em Console open entry point. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+device\+\_\+driver}} \mbox{\hyperlink{bfin_2TLL6527M_2console_2console_8c_aafa42e88bcc94ce0f507f77be54a90a6}{console\+\_\+initialize}} (rtems\+\_\+device\+\_\+major\+\_\+number major, rtems\+\_\+device\+\_\+minor\+\_\+number minor, void $\ast$arg)
+\begin{DoxyCompactList}\small\item\em Console initialization entry point. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{bspIo_8h_a0b0dff1c3d35110ae303b4098c60dc14}{B\+S\+P\+\_\+output\+\_\+char\+\_\+function\+\_\+type}} \mbox{\hyperlink{bfin_2TLL6527M_2console_2console_8c_a5fb8c9c4f076f0340b4a17ed432ced5c}{B\+S\+P\+\_\+output\+\_\+char}} = T\+L\+L6527\+\_\+\+B\+S\+P\+\_\+output\+\_\+char
+\item 
+\mbox{\hyperlink{bspIo_8h_a132b9ceff428a634ece5dfaac7ef1006}{B\+S\+P\+\_\+polling\+\_\+getchar\+\_\+function\+\_\+type}} \mbox{\hyperlink{bfin_2TLL6527M_2console_2console_8c_ae5846eecdfa8f2813504371bf01c29b0}{B\+S\+P\+\_\+poll\+\_\+char}} = T\+L\+L6527\+\_\+\+B\+S\+P\+\_\+poll\+\_\+char
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+\begin{DoxyItemize}
+\item This file implements uart console for T\+L\+L6527M. T\+L\+L6527M has B\+F527 with second uart (uart-\/1) connected to the console.
+\end{DoxyItemize}
+
+Target\+: T\+L\+L6527v1-\/0 Compiler\+:
+
+C\+O\+P\+Y\+R\+I\+G\+HT (c) 2010 by E\+CE Northeastern University.
+
+The license and distribution terms for this file may be found in the file L\+I\+C\+E\+N\+SE in this distribution or at \href{http://www.rtems.org/license}{\texttt{ http\+://www.\+rtems.\+org/license}}
+
+\begin{DoxyAuthor}{Author}
+Rohan Kangralkar, E\+CE, Northeastern University (\href{mailto:kangralkar.r@husky.neu.edu}{\texttt{ kangralkar.\+r@husky.\+neu.\+edu}})
+\end{DoxyAuthor}
+Last\+Change\+: 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{bfin_2TLL6527M_2console_2console_8c_a4efabb094608f8155b1a679e03f2eafc}\label{bfin_2TLL6527M_2console_2console_8c_a4efabb094608f8155b1a679e03f2eafc}} 
+\index{console.c@{console.c}!console\_close@{console\_close}}
+\index{console\_close@{console\_close}!console.c@{console.c}}
+\subsubsection{\texorpdfstring{console\_close()}{console\_close()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+device\+\_\+driver}} console\+\_\+close (\begin{DoxyParamCaption}\item[{rtems\+\_\+device\+\_\+major\+\_\+number}]{major,  }\item[{rtems\+\_\+device\+\_\+minor\+\_\+number}]{minor,  }\item[{void $\ast$}]{arg }\end{DoxyParamCaption})}
+
+
+
+Console close entry point. 
+
+This method closes a specific device supported by the console device driver.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em major} & is the device driver major number \\
+\hline
+\mbox{\texttt{ in}}  & {\em minor} & is the device driver minor number \\
+\hline
+\mbox{\texttt{ in}}  & {\em arg} & is the parameters to this call\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em R\+T\+E\+M\+S\+\_\+\+S\+U\+C\+C\+E\+S\+S\+F\+UL} & The device driver is successfully closed. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{bfin_2TLL6527M_2console_2console_8c_a3ecfcbb4d683d7d77476039aba0f94db}\label{bfin_2TLL6527M_2console_2console_8c_a3ecfcbb4d683d7d77476039aba0f94db}} 
+\index{console.c@{console.c}!console\_control@{console\_control}}
+\index{console\_control@{console\_control}!console.c@{console.c}}
+\subsubsection{\texorpdfstring{console\_control()}{console\_control()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+device\+\_\+driver}} console\+\_\+control (\begin{DoxyParamCaption}\item[{rtems\+\_\+device\+\_\+major\+\_\+number}]{major,  }\item[{rtems\+\_\+device\+\_\+minor\+\_\+number}]{minor,  }\item[{void $\ast$}]{arg }\end{DoxyParamCaption})}
+
+
+
+Console \mbox{\hyperlink{structIO}{IO}} control entry point. 
+
+This method performs an \mbox{\hyperlink{structIO}{IO}} Control operation on a specific device supported by the console device driver.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em major} & is the device driver major number \\
+\hline
+\mbox{\texttt{ in}}  & {\em minor} & is the device driver minor number \\
+\hline
+\mbox{\texttt{ in}}  & {\em arg} & is the parameters to this call\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em R\+T\+E\+M\+S\+\_\+\+S\+U\+C\+C\+E\+S\+S\+F\+UL} & the device driver \mbox{\hyperlink{structIO}{IO}} control operation is successfully performed. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{bfin_2TLL6527M_2console_2console_8c_aafa42e88bcc94ce0f507f77be54a90a6}\label{bfin_2TLL6527M_2console_2console_8c_aafa42e88bcc94ce0f507f77be54a90a6}} 
+\index{console.c@{console.c}!console\_initialize@{console\_initialize}}
+\index{console\_initialize@{console\_initialize}!console.c@{console.c}}
+\subsubsection{\texorpdfstring{console\_initialize()}{console\_initialize()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+device\+\_\+driver}} console\+\_\+initialize (\begin{DoxyParamCaption}\item[{rtems\+\_\+device\+\_\+major\+\_\+number}]{major,  }\item[{rtems\+\_\+device\+\_\+minor\+\_\+number}]{minor,  }\item[{void $\ast$}]{arg }\end{DoxyParamCaption})}
+
+
+
+Console initialization entry point. 
+
+This routine initializes the console \mbox{\hyperlink{structIO}{IO}} driver.
+
+Parameters 
+\begin{DoxyParams}{Parameters}
+{\em major} & major number \\
+\hline
+{\em minor} & minor number\\
+\hline
+\end{DoxyParams}
+Output parameters\+: N\+O\+NE
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\mbox{\Hypertarget{bfin_2TLL6527M_2console_2console_8c_a3f4320ff384009c3bdfa6ec4f1b79501}\label{bfin_2TLL6527M_2console_2console_8c_a3f4320ff384009c3bdfa6ec4f1b79501}} 
+\index{console.c@{console.c}!console\_open@{console\_open}}
+\index{console\_open@{console\_open}!console.c@{console.c}}
+\subsubsection{\texorpdfstring{console\_open()}{console\_open()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+device\+\_\+driver}} console\+\_\+open (\begin{DoxyParamCaption}\item[{rtems\+\_\+device\+\_\+major\+\_\+number}]{major,  }\item[{rtems\+\_\+device\+\_\+minor\+\_\+number}]{minor,  }\item[{void $\ast$}]{arg }\end{DoxyParamCaption})}
+
+
+
+Console open entry point. 
+
+This method opens a specific device supported by the console device driver.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em major} & is the device driver major number \\
+\hline
+\mbox{\texttt{ in}}  & {\em minor} & is the device driver minor number \\
+\hline
+\mbox{\texttt{ in}}  & {\em arg} & is the parameters to this call\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em R\+T\+E\+M\+S\+\_\+\+S\+U\+C\+C\+E\+S\+S\+F\+UL} & The device driver is successfully opened. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{bfin_2TLL6527M_2console_2console_8c_affd7cbaa034887f37032640f39c74b0d}\label{bfin_2TLL6527M_2console_2console_8c_affd7cbaa034887f37032640f39c74b0d}} 
+\index{console.c@{console.c}!console\_read@{console\_read}}
+\index{console\_read@{console\_read}!console.c@{console.c}}
+\subsubsection{\texorpdfstring{console\_read()}{console\_read()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+device\+\_\+driver}} console\+\_\+read (\begin{DoxyParamCaption}\item[{rtems\+\_\+device\+\_\+major\+\_\+number}]{major,  }\item[{rtems\+\_\+device\+\_\+minor\+\_\+number}]{minor,  }\item[{void $\ast$}]{arg }\end{DoxyParamCaption})}
+
+
+
+Console read entry point. 
+
+This method reads from a specific device supported by the console device driver.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em major} & is the device driver major number \\
+\hline
+\mbox{\texttt{ in}}  & {\em minor} & is the device driver minor number \\
+\hline
+\mbox{\texttt{ in}}  & {\em arg} & is the parameters to this call\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em R\+T\+E\+M\+S\+\_\+\+S\+U\+C\+C\+E\+S\+S\+F\+UL} & The device is successfully read from. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{bfin_2TLL6527M_2console_2console_8c_a211cf468eb7aec89e37bc784a62753ce}\label{bfin_2TLL6527M_2console_2console_8c_a211cf468eb7aec89e37bc784a62753ce}} 
+\index{console.c@{console.c}!console\_write@{console\_write}}
+\index{console\_write@{console\_write}!console.c@{console.c}}
+\subsubsection{\texorpdfstring{console\_write()}{console\_write()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+device\+\_\+driver}} console\+\_\+write (\begin{DoxyParamCaption}\item[{rtems\+\_\+device\+\_\+major\+\_\+number}]{major,  }\item[{rtems\+\_\+device\+\_\+minor\+\_\+number}]{minor,  }\item[{void $\ast$}]{arg }\end{DoxyParamCaption})}
+
+
+
+Console write entry point. 
+
+This method writes to a specific device supported by the console device driver.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em major} & is the device driver major number \\
+\hline
+\mbox{\texttt{ in}}  & {\em minor} & is the device driver minor number \\
+\hline
+\mbox{\texttt{ in}}  & {\em arg} & is the parameters to this call\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em R\+T\+E\+M\+S\+\_\+\+S\+U\+C\+C\+E\+S\+S\+F\+UL} & The device is successfully written. \\
+\hline
+\end{DoxyRetVals}
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{bfin_2TLL6527M_2console_2console_8c_a5fb8c9c4f076f0340b4a17ed432ced5c}\label{bfin_2TLL6527M_2console_2console_8c_a5fb8c9c4f076f0340b4a17ed432ced5c}} 
+\index{console.c@{console.c}!BSP\_output\_char@{BSP\_output\_char}}
+\index{BSP\_output\_char@{BSP\_output\_char}!console.c@{console.c}}
+\subsubsection{\texorpdfstring{BSP\_output\_char}{BSP\_output\_char}}
+{\footnotesize\ttfamily \mbox{\hyperlink{bspIo_8h_a0b0dff1c3d35110ae303b4098c60dc14}{B\+S\+P\+\_\+output\+\_\+char\+\_\+function\+\_\+type}} B\+S\+P\+\_\+output\+\_\+char = T\+L\+L6527\+\_\+\+B\+S\+P\+\_\+output\+\_\+char}
+
+This variable points to the B\+SP provided method to output a character for the purposes of debug output.
+
+It must output only the specific character. It must not perform character translations, e.\+g. \char`\"{}\textbackslash{}n\char`\"{} to \char`\"{}\textbackslash{}r\textbackslash{}n\char`\"{}. \mbox{\Hypertarget{bfin_2TLL6527M_2console_2console_8c_ae5846eecdfa8f2813504371bf01c29b0}\label{bfin_2TLL6527M_2console_2console_8c_ae5846eecdfa8f2813504371bf01c29b0}} 
+\index{console.c@{console.c}!BSP\_poll\_char@{BSP\_poll\_char}}
+\index{BSP\_poll\_char@{BSP\_poll\_char}!console.c@{console.c}}
+\subsubsection{\texorpdfstring{BSP\_poll\_char}{BSP\_poll\_char}}
+{\footnotesize\ttfamily \mbox{\hyperlink{bspIo_8h_a132b9ceff428a634ece5dfaac7ef1006}{B\+S\+P\+\_\+polling\+\_\+getchar\+\_\+function\+\_\+type}} B\+S\+P\+\_\+poll\+\_\+char = T\+L\+L6527\+\_\+\+B\+S\+P\+\_\+poll\+\_\+char}
+
+This variable points to the B\+SP provided method to input a character for the purposes of debug input. 

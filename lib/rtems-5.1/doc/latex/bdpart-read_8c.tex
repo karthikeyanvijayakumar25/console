@@ -1,0 +1,55 @@
+\hypertarget{bdpart-read_8c}{}\section{cpukit/libblock/src/bdpart-\/read.c File Reference}
+\label{bdpart-read_8c}\index{cpukit/libblock/src/bdpart-\/read.c@{cpukit/libblock/src/bdpart-\/read.c}}
+
+
+Block Device Partition Management.  
+
+
+{\ttfamily \#include $<$sys/stat.\+h$>$}\newline
+{\ttfamily \#include $<$fcntl.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$rtems.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/bdbuf.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/bdpart.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/endian.\+h$>$}\newline
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+B\+D\+P\+A\+R\+T\+\_\+\+M\+B\+R\+\_\+\+P\+A\+R\+T\+I\+T\+I\+O\+N\+\_\+\+T\+Y\+PE}(type)
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{group__rtems__bdpart_ga1620402cb457ec28f7712296fa66c04b}{rtems\+\_\+bdpart\+\_\+to\+\_\+partition\+\_\+type}} (uint8\+\_\+t mbr\+\_\+type, uuid\+\_\+t type)
+\begin{DoxyCompactList}\small\item\em Returns the partition type for the M\+BR partition type value {\itshape mbr\+\_\+type} in {\itshape type}. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__rtems__bdpart_ga13ba144439be58871fa6c7e26854f11a}{rtems\+\_\+bdpart\+\_\+to\+\_\+mbr\+\_\+partition\+\_\+type}} (const uuid\+\_\+t type, uint8\+\_\+t $\ast$mbr\+\_\+type)
+\begin{DoxyCompactList}\small\item\em Converts the partition type in {\itshape type} to the M\+BR partition type. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{bdpart-read_8c_a59b7911ed99f103fe6dfa1b07a956925}\label{bdpart-read_8c_a59b7911ed99f103fe6dfa1b07a956925}} 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} {\bfseries rtems\+\_\+bdpart\+\_\+get\+\_\+disk\+\_\+data} (const char $\ast$disk\+\_\+name, int $\ast$fd\+\_\+ptr, \mbox{\hyperlink{structrtems__disk__device}{rtems\+\_\+disk\+\_\+device}} $\ast$$\ast$dd\+\_\+ptr, \mbox{\hyperlink{group__rtems__disk_ga5fbcfd40b657bff6c54d9e393fab3274}{rtems\+\_\+blkdev\+\_\+bnum}} $\ast$disk\+\_\+end)
+\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{group__rtems__bdpart_ga1ffdc1b7fc86d324faa9b93500ab0e63}{rtems\+\_\+bdpart\+\_\+read}} (const char $\ast$disk\+\_\+name, \mbox{\hyperlink{unionrtems__bdpart__format}{rtems\+\_\+bdpart\+\_\+format}} $\ast$\mbox{\hyperlink{structformat}{format}}, \mbox{\hyperlink{structrtems__bdpart__partition}{rtems\+\_\+bdpart\+\_\+partition}} $\ast$pt, size\+\_\+t $\ast$count)
+\begin{DoxyCompactList}\small\item\em Reads the partition information from the physical disk device with name {\itshape disk\+\_\+name}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Block Device Partition Management. 
+
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{bdpart-read_8c_ab8d7eaf872d7839cee788470759abb2b}\label{bdpart-read_8c_ab8d7eaf872d7839cee788470759abb2b}} 
+\index{bdpart-\/read.c@{bdpart-\/read.c}!RTEMS\_BDPART\_MBR\_PARTITION\_TYPE@{RTEMS\_BDPART\_MBR\_PARTITION\_TYPE}}
+\index{RTEMS\_BDPART\_MBR\_PARTITION\_TYPE@{RTEMS\_BDPART\_MBR\_PARTITION\_TYPE}!bdpart-\/read.c@{bdpart-\/read.c}}
+\subsubsection{\texorpdfstring{RTEMS\_BDPART\_MBR\_PARTITION\_TYPE}{RTEMS\_BDPART\_MBR\_PARTITION\_TYPE}}
+{\footnotesize\ttfamily \#define R\+T\+E\+M\+S\+\_\+\+B\+D\+P\+A\+R\+T\+\_\+\+M\+B\+R\+\_\+\+P\+A\+R\+T\+I\+T\+I\+O\+N\+\_\+\+T\+Y\+PE(\begin{DoxyParamCaption}\item[{}]{type }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{ \(\backslash\)}
+\DoxyCodeLine{    (type), 0xa2U, 0x2eU, 0x38U, \(\backslash\)}
+\DoxyCodeLine{    0x38U, 0xb5U, 0xdeU, 0x11U, \(\backslash\)}
+\DoxyCodeLine{    0xbcU, 0x13U, 0x00U, 0x1dU, \(\backslash\)}
+\DoxyCodeLine{    0x09U, 0xb0U, 0x5fU, 0xa4U \(\backslash\)}
+\DoxyCodeLine{  \}}
+
+\end{DoxyCode}

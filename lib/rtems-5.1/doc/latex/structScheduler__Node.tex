@@ -1,0 +1,66 @@
+\hypertarget{structScheduler__Node}{}\section{Scheduler\+\_\+\+Node Struct Reference}
+\label{structScheduler__Node}\index{Scheduler\_Node@{Scheduler\_Node}}
+
+
+Scheduler node for per-\/thread data.  
+
+
+
+
+{\ttfamily \#include $<$schedulernode.\+h$>$}
+
+\subsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structScheduler__Node_a994f6a9e748421b4077b7312b7c472aa}\label{structScheduler__Node_a994f6a9e748421b4077b7312b7c472aa}} 
+struct \mbox{\hyperlink{struct__Thread__Control}{\+\_\+\+Thread\+\_\+\+Control}} $\ast$ \mbox{\hyperlink{structScheduler__Node_a994f6a9e748421b4077b7312b7c472aa}{owner}}
+\begin{DoxyCompactList}\small\item\em The thread owning this node. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structScheduler__Node_a280362c9060aa96a540a64a5b066d449}\label{structScheduler__Node_a280362c9060aa96a540a64a5b066d449}} 
+\begin{tabbing}
+xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=\kill
+struct \{\\
+\>\mbox{\hyperlink{structPriority__Aggregation}{Priority\_Aggregation}} {\bfseries Priority}\\
+\} \mbox{\hyperlink{structScheduler__Node_a280362c9060aa96a540a64a5b066d449}{Wait}}\\
+
+\end{tabbing}\begin{DoxyCompactList}\small\item\em Thread wait support block. \end{DoxyCompactList}\item 
+\begin{tabbing}
+xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=\kill
+struct \{\\
+\>\mbox{\hyperlink{group__RTEMSScorePriority_ga59d02b58072d31a9a1cfe644557aefe2}{Priority\_Control}} \mbox{\hyperlink{structScheduler__Node_a0223e20a233540fd2a75e50e2141a2b7}{value}}\\
+\>\>{\em The thread priority value of this scheduler node. }\\
+\} \mbox{\hyperlink{structScheduler__Node_aad013001a975d1ea432ff3ef76a24c46}{Priority}}\\
+
+\end{tabbing}\begin{DoxyCompactList}\small\item\em The thread priority information used by the scheduler. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Scheduler node for per-\/thread data. 
+
+\subsection{Field Documentation}
+\mbox{\Hypertarget{structScheduler__Node_aad013001a975d1ea432ff3ef76a24c46}\label{structScheduler__Node_aad013001a975d1ea432ff3ef76a24c46}} 
+\index{Scheduler\_Node@{Scheduler\_Node}!Priority@{Priority}}
+\index{Priority@{Priority}!Scheduler\_Node@{Scheduler\_Node}}
+\subsubsection{\texorpdfstring{Priority}{Priority}}
+{\footnotesize\ttfamily struct \{ ... \}   Scheduler\+\_\+\+Node\+::\+Priority}
+
+
+
+The thread priority information used by the scheduler. 
+
+The thread priority is manifest in two independent areas. One area is the user visible thread priority along with a potential thread queue. The other is the scheduler. During a thread priority change, the user visible thread priority and the thread queue are first updated and the thread priority value here is changed. Once this is done the scheduler is notified via the update priority operation, so that it can update its internal state and honour a new thread priority value. \mbox{\Hypertarget{structScheduler__Node_a0223e20a233540fd2a75e50e2141a2b7}\label{structScheduler__Node_a0223e20a233540fd2a75e50e2141a2b7}} 
+\index{Scheduler\_Node@{Scheduler\_Node}!value@{value}}
+\index{value@{value}!Scheduler\_Node@{Scheduler\_Node}}
+\subsubsection{\texorpdfstring{value}{value}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScorePriority_ga59d02b58072d31a9a1cfe644557aefe2}{Priority\+\_\+\+Control}} Scheduler\+\_\+\+Node\+::value}
+
+
+
+The thread priority value of this scheduler node. 
+
+The producer of this value is \+\_\+\+Thread\+\_\+\+Change\+\_\+priority(). The consumer is the scheduler via the unblock and update priority operations.
+
+This priority control consists of two parts. One part is the plain priority value (most-\/significant 63 bits). The other part is the least-\/significant bit which indicates if the thread should be appended (bit set) or prepended (bit cleared) to its priority group, see \mbox{\hyperlink{group__RTEMSScoreScheduler_ga2bc5f17fd4204768543893a50c09bd26}{S\+C\+H\+E\+D\+U\+L\+E\+R\+\_\+\+P\+R\+I\+O\+R\+I\+T\+Y\+\_\+\+A\+P\+P\+E\+N\+D()}}. 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+cpukit/include/rtems/score/\mbox{\hyperlink{schedulernode_8h}{schedulernode.\+h}}\end{DoxyCompactItemize}

@@ -1,0 +1,124 @@
+\hypertarget{ns16550-context_8c}{}\section{bsps/shared/dev/serial/ns16550-\/context.c File Reference}
+\label{ns16550-context_8c}\index{bsps/shared/dev/serial/ns16550-\/context.c@{bsps/shared/dev/serial/ns16550-\/context.c}}
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/bsp\+Io.\+h$>$}\newline
+{\ttfamily \#include $<$bsp.\+h$>$}\newline
+{\ttfamily \#include $<$libchip/ns16550.\+h$>$}\newline
+{\ttfamily \#include $<$libchip/ns16550\+\_\+p.\+h$>$}\newline
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{ns16550-context_8c_a399e94659149b71bbcd51b54b2e2a8a1}\label{ns16550-context_8c_a399e94659149b71bbcd51b54b2e2a8a1}} 
+bool {\bfseries ns16550\+\_\+probe} (\mbox{\hyperlink{structrtems__termios__device__context}{rtems\+\_\+termios\+\_\+device\+\_\+context}} $\ast$base)
+\item 
+\mbox{\Hypertarget{ns16550-context_8c_aeecfbdb95bf85a2961673be4e3bba832}\label{ns16550-context_8c_aeecfbdb95bf85a2961673be4e3bba832}} 
+void \mbox{\hyperlink{ns16550-context_8c_aeecfbdb95bf85a2961673be4e3bba832}{ns16550\+\_\+polled\+\_\+putchar}} (\mbox{\hyperlink{structrtems__termios__device__context}{rtems\+\_\+termios\+\_\+device\+\_\+context}} $\ast$base, char out)
+\begin{DoxyCompactList}\small\item\em Polled write for N\+S16550. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{ns16550-context_8c_ac48542ca657ac7cb578cac5ea39e7a1e}\label{ns16550-context_8c_ac48542ca657ac7cb578cac5ea39e7a1e}} 
+int {\bfseries ns16550\+\_\+polled\+\_\+getchar} (\mbox{\hyperlink{structrtems__termios__device__context}{rtems\+\_\+termios\+\_\+device\+\_\+context}} $\ast$base)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const \mbox{\hyperlink{structrtems__termios__device__flow}{rtems\+\_\+termios\+\_\+device\+\_\+flow}} {\bfseries ns16550\+\_\+flow\+\_\+rtscts}
+\item 
+const \mbox{\hyperlink{structrtems__termios__device__flow}{rtems\+\_\+termios\+\_\+device\+\_\+flow}} {\bfseries ns16550\+\_\+flow\+\_\+dtrcts}
+\item 
+const \mbox{\hyperlink{structrtems__termios__device__handler}{rtems\+\_\+termios\+\_\+device\+\_\+handler}} {\bfseries ns16550\+\_\+handler\+\_\+interrupt}
+\item 
+const \mbox{\hyperlink{structrtems__termios__device__handler}{rtems\+\_\+termios\+\_\+device\+\_\+handler}} {\bfseries ns16550\+\_\+handler\+\_\+polled}
+\item 
+const \mbox{\hyperlink{structrtems__termios__device__handler}{rtems\+\_\+termios\+\_\+device\+\_\+handler}} {\bfseries ns16550\+\_\+handler\+\_\+task}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This file contains the T\+TY driver for the National Semiconductor N\+S16550.
+
+This part is widely cloned and second sourced. It is found in a number of \char`\"{}\+Super I\+O\char`\"{} controllers.
+
+This driver uses the termios pseudo driver. 
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{ns16550-context_8c_a7b7f34aabc3b3251adf7bdcaa4844a4b}\label{ns16550-context_8c_a7b7f34aabc3b3251adf7bdcaa4844a4b}} 
+\index{ns16550-\/context.c@{ns16550-\/context.c}!ns16550\_flow\_dtrcts@{ns16550\_flow\_dtrcts}}
+\index{ns16550\_flow\_dtrcts@{ns16550\_flow\_dtrcts}!ns16550-\/context.c@{ns16550-\/context.c}}
+\subsubsection{\texorpdfstring{ns16550\_flow\_dtrcts}{ns16550\_flow\_dtrcts}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{structrtems__termios__device__flow}{rtems\+\_\+termios\+\_\+device\+\_\+flow}} ns16550\+\_\+flow\+\_\+dtrcts}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{  .stop\_remote\_tx = ns16550\_negate\_DTR,}
+\DoxyCodeLine{  .start\_remote\_tx = ns16550\_assert\_DTR}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{ns16550-context_8c_a36edd3f87e789b035342a872f0858a15}\label{ns16550-context_8c_a36edd3f87e789b035342a872f0858a15}} 
+\index{ns16550-\/context.c@{ns16550-\/context.c}!ns16550\_flow\_rtscts@{ns16550\_flow\_rtscts}}
+\index{ns16550\_flow\_rtscts@{ns16550\_flow\_rtscts}!ns16550-\/context.c@{ns16550-\/context.c}}
+\subsubsection{\texorpdfstring{ns16550\_flow\_rtscts}{ns16550\_flow\_rtscts}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{structrtems__termios__device__flow}{rtems\+\_\+termios\+\_\+device\+\_\+flow}} ns16550\+\_\+flow\+\_\+rtscts}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{  .stop\_remote\_tx = ns16550\_negate\_RTS,}
+\DoxyCodeLine{  .start\_remote\_tx = ns16550\_assert\_RTS}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{ns16550-context_8c_afda3960293f73acf4edf8c97e2de8f54}\label{ns16550-context_8c_afda3960293f73acf4edf8c97e2de8f54}} 
+\index{ns16550-\/context.c@{ns16550-\/context.c}!ns16550\_handler\_interrupt@{ns16550\_handler\_interrupt}}
+\index{ns16550\_handler\_interrupt@{ns16550\_handler\_interrupt}!ns16550-\/context.c@{ns16550-\/context.c}}
+\subsubsection{\texorpdfstring{ns16550\_handler\_interrupt}{ns16550\_handler\_interrupt}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{structrtems__termios__device__handler}{rtems\+\_\+termios\+\_\+device\+\_\+handler}} ns16550\+\_\+handler\+\_\+interrupt}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{  .first\_open = ns16550\_open,}
+\DoxyCodeLine{  .last\_close = ns16550\_close,}
+\DoxyCodeLine{  .poll\_read = \mbox{\hyperlink{bestcomm__api_8h_a872bb74de61c3689ccd5b41873fce42c}{NULL}},}
+\DoxyCodeLine{  .write = \mbox{\hyperlink{ns16550_8c_a65b538bd6105f1257bf250d34f245b73}{ns16550\_write\_support\_int}},}
+\DoxyCodeLine{  .set\_attributes = ns16550\_set\_attributes,}
+\DoxyCodeLine{  .mode = TERMIOS\_IRQ\_DRIVEN}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{ns16550-context_8c_a12545b5c416d7e226c102d9044e71952}\label{ns16550-context_8c_a12545b5c416d7e226c102d9044e71952}} 
+\index{ns16550-\/context.c@{ns16550-\/context.c}!ns16550\_handler\_polled@{ns16550\_handler\_polled}}
+\index{ns16550\_handler\_polled@{ns16550\_handler\_polled}!ns16550-\/context.c@{ns16550-\/context.c}}
+\subsubsection{\texorpdfstring{ns16550\_handler\_polled}{ns16550\_handler\_polled}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{structrtems__termios__device__handler}{rtems\+\_\+termios\+\_\+device\+\_\+handler}} ns16550\+\_\+handler\+\_\+polled}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{  .first\_open = ns16550\_open,}
+\DoxyCodeLine{  .last\_close = ns16550\_close,}
+\DoxyCodeLine{  .poll\_read = ns16550\_polled\_getchar,}
+\DoxyCodeLine{  .write = ns16550\_write\_support\_polled,}
+\DoxyCodeLine{  .set\_attributes = ns16550\_set\_attributes,}
+\DoxyCodeLine{  .mode = TERMIOS\_POLLED}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{ns16550-context_8c_a88aed630400db7a1255bafd28edc9c60}\label{ns16550-context_8c_a88aed630400db7a1255bafd28edc9c60}} 
+\index{ns16550-\/context.c@{ns16550-\/context.c}!ns16550\_handler\_task@{ns16550\_handler\_task}}
+\index{ns16550\_handler\_task@{ns16550\_handler\_task}!ns16550-\/context.c@{ns16550-\/context.c}}
+\subsubsection{\texorpdfstring{ns16550\_handler\_task}{ns16550\_handler\_task}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{structrtems__termios__device__handler}{rtems\+\_\+termios\+\_\+device\+\_\+handler}} ns16550\+\_\+handler\+\_\+task}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{  .first\_open = ns16550\_open,}
+\DoxyCodeLine{  .last\_close = ns16550\_close,}
+\DoxyCodeLine{  .poll\_read = ns16550\_read\_task,}
+\DoxyCodeLine{  .write = ns16550\_write\_support\_task,}
+\DoxyCodeLine{  .set\_attributes = ns16550\_set\_attributes,}
+\DoxyCodeLine{  .mode = TERMIOS\_TASK\_DRIVEN}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}

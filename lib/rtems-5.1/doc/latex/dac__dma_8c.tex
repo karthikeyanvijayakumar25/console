@@ -1,0 +1,59 @@
+\hypertarget{dac__dma_8c}{}\section{bsps/arm/atsam/contrib/libraries/libchip/source/dac\+\_\+dma.c File Reference}
+\label{dac__dma_8c}\index{bsps/arm/atsam/contrib/libraries/libchip/source/dac\_dma.c@{bsps/arm/atsam/contrib/libraries/libchip/source/dac\_dma.c}}
+{\ttfamily \#include \char`\"{}chip.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include $<$assert.\+h$>$}\newline
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{dac__dma_8c_a7e1d0cb187e4384e431128b4a748c542}{Dac\+\_\+\+Configure\+Dma}} (\mbox{\hyperlink{structDacDma}{Dac\+Dma}} $\ast$p\+Dacd, \mbox{\hyperlink{structDacc}{Dacc}} $\ast$p\+Dac\+Hw, uint8\+\_\+t Dac\+Id, \mbox{\hyperlink{group__dmad__structs_gaf2c13151514615a6beb35c0d868a5053}{s\+Xdmad}} $\ast$p\+Xdmad)
+\begin{DoxyCompactList}\small\item\em Initializes the \mbox{\hyperlink{structDacDma}{Dac\+Dma}} structure and the corresponding D\+AC \& D\+MA . hardware select value. The driver will uses D\+MA channel 0 for RX . The D\+MA channels are freed automatically when no D\+MA command processing. \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{dac__dma_8c_a06fc7a9dafb44c7434b2f28a79d0b5ca}{Dac\+\_\+\+Send\+Data}} (\mbox{\hyperlink{structDacDma}{Dac\+Dma}} $\ast$p\+Dacd, \mbox{\hyperlink{structDacCmd}{Dac\+Cmd}} $\ast$p\+Command)
+\begin{DoxyCompactList}\small\item\em Starts a D\+AC transfer. This is a non blocking function. It will return as soon as the transfer is started. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Implementation of Digital-\/to-\/\+Analog Converter Controller (D\+A\+CC). 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{dac__dma_8c_a7e1d0cb187e4384e431128b4a748c542}\label{dac__dma_8c_a7e1d0cb187e4384e431128b4a748c542}} 
+\index{dac\_dma.c@{dac\_dma.c}!Dac\_ConfigureDma@{Dac\_ConfigureDma}}
+\index{Dac\_ConfigureDma@{Dac\_ConfigureDma}!dac\_dma.c@{dac\_dma.c}}
+\subsubsection{\texorpdfstring{Dac\_ConfigureDma()}{Dac\_ConfigureDma()}}
+{\footnotesize\ttfamily uint32\+\_\+t Dac\+\_\+\+Configure\+Dma (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structDacDma}{Dac\+Dma}} $\ast$}]{p\+Dacd,  }\item[{\mbox{\hyperlink{structDacc}{Dacc}} $\ast$}]{p\+Dac\+Hw,  }\item[{uint8\+\_\+t}]{Dac\+Id,  }\item[{\mbox{\hyperlink{group__dmad__structs_gaf2c13151514615a6beb35c0d868a5053}{s\+Xdmad}} $\ast$}]{p\+Xdmad }\end{DoxyParamCaption})}
+
+
+
+Initializes the \mbox{\hyperlink{structDacDma}{Dac\+Dma}} structure and the corresponding D\+AC \& D\+MA . hardware select value. The driver will uses D\+MA channel 0 for RX . The D\+MA channels are freed automatically when no D\+MA command processing. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Dacd} & Pointer to a \mbox{\hyperlink{structDacDma}{Dac\+Dma}} instance. \\
+\hline
+{\em p\+Dac\+Hw} & Associated Dac peripheral. \\
+\hline
+{\em Dac\+Id} & Dac peripheral identifier. \\
+\hline
+{\em p\+Dmad} & Pointer to a Dmad instance. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{dac__dma_8c_a06fc7a9dafb44c7434b2f28a79d0b5ca}\label{dac__dma_8c_a06fc7a9dafb44c7434b2f28a79d0b5ca}} 
+\index{dac\_dma.c@{dac\_dma.c}!Dac\_SendData@{Dac\_SendData}}
+\index{Dac\_SendData@{Dac\_SendData}!dac\_dma.c@{dac\_dma.c}}
+\subsubsection{\texorpdfstring{Dac\_SendData()}{Dac\_SendData()}}
+{\footnotesize\ttfamily uint32\+\_\+t Dac\+\_\+\+Send\+Data (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structDacDma}{Dac\+Dma}} $\ast$}]{p\+Dacd,  }\item[{\mbox{\hyperlink{structDacCmd}{Dac\+Cmd}} $\ast$}]{p\+Command }\end{DoxyParamCaption})}
+
+
+
+Starts a D\+AC transfer. This is a non blocking function. It will return as soon as the transfer is started. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Dacd} & Pointer to a \mbox{\hyperlink{structDacDma}{Dac\+Dma}} instance. \\
+\hline
+{\em p\+Command} & Pointer to the Dac command to execute. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if the transfer has been started successfully; otherwise returns D\+A\+C\+\_\+\+E\+R\+R\+O\+R\+\_\+\+L\+O\+CK is the driver is in use, or D\+A\+C\+\_\+\+E\+R\+R\+OR if the command is not valid. 
+\end{DoxyReturn}

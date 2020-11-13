@@ -1,0 +1,166 @@
+\hypertarget{group__PerCPU}{}\section{R\+T\+E\+MS Per C\+PU Information}
+\label{group__PerCPU}\index{RTEMS Per CPU Information@{RTEMS Per CPU Information}}
+\subsection*{Modules}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{group__PerCPUData}{Flexible Per-\/\+C\+P\+U Data}}
+\begin{DoxyCompactList}\small\item\em Flexible Per-\/\+C\+PU Data. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Files}
+\begin{DoxyCompactItemize}
+\item 
+file \mbox{\hyperlink{percpu_8c}{percpu.\+c}}
+\begin{DoxyCompactList}\small\item\em Allocate and Initialize Per C\+PU Structures. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structPer__CPU__Stats}{Per\+\_\+\+C\+P\+U\+\_\+\+Stats}}
+\begin{DoxyCompactList}\small\item\em Per-\/\+C\+PU statistics. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structPer__CPU__Control}{Per\+\_\+\+C\+P\+U\+\_\+\+Control}}
+\begin{DoxyCompactList}\small\item\em Per C\+PU Core Structure. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structPer__CPU__Control__envelope}{Per\+\_\+\+C\+P\+U\+\_\+\+Control\+\_\+envelope}}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{group__PerCPU_ga9aac43e4379e069efd5ef00fe2f61e92}\label{group__PerCPU_ga9aac43e4379e069efd5ef00fe2f61e92}} 
+\#define {\bfseries \+\_\+\+Per\+\_\+\+C\+P\+U\+\_\+\+Acquire}(cpu,  lock\+\_\+context)~\mbox{\hyperlink{group__RTEMSScoreISRLocks_ga69700d5284dea5b4ce06b5ebc405d797}{\+\_\+\+I\+S\+R\+\_\+lock\+\_\+\+Acquire}}( \&( cpu )-\/$>$Lock, lock\+\_\+context )
+\item 
+\mbox{\Hypertarget{group__PerCPU_ga543ddc837634f299799bc497ab17a8e6}\label{group__PerCPU_ga543ddc837634f299799bc497ab17a8e6}} 
+\#define {\bfseries \+\_\+\+Per\+\_\+\+C\+P\+U\+\_\+\+Release}(cpu,  lock\+\_\+context)~\mbox{\hyperlink{group__RTEMSScoreISRLocks_ga35acfee397d43e90bc30f63e4bd960d7}{\+\_\+\+I\+S\+R\+\_\+lock\+\_\+\+Release}}( \&( cpu )-\/$>$Lock, lock\+\_\+context )
+\item 
+\mbox{\Hypertarget{group__PerCPU_gaeb26011e2a73cf987a9530df13b968d1}\label{group__PerCPU_gaeb26011e2a73cf987a9530df13b968d1}} 
+\#define {\bfseries \+\_\+\+Per\+\_\+\+C\+P\+U\+\_\+\+Get\+\_\+snapshot}()~( \&\+\_\+\+Per\+\_\+\+C\+P\+U\+\_\+\+Information\mbox{[} \+\_\+\+S\+M\+P\+\_\+\+Get\+\_\+current\+\_\+processor() \mbox{]}.per\+\_\+cpu )
+\item 
+\mbox{\Hypertarget{group__PerCPU_gaf7325ef68fec22fb55109267131eb641}\label{group__PerCPU_gaf7325ef68fec22fb55109267131eb641}} 
+\#define {\bfseries \+\_\+\+Per\+\_\+\+C\+P\+U\+\_\+\+Get}()~\+\_\+\+Per\+\_\+\+C\+P\+U\+\_\+\+Get\+\_\+snapshot()
+\item 
+\mbox{\Hypertarget{group__PerCPU_gaf422bc03f192f17a95c705b96c248b76}\label{group__PerCPU_gaf422bc03f192f17a95c705b96c248b76}} 
+\#define {\bfseries \+\_\+\+Thread\+\_\+\+Dispatch\+\_\+disable\+\_\+level}~\+\_\+\+Per\+\_\+\+C\+P\+U\+\_\+\+Get()-\/$>$thread\+\_\+dispatch\+\_\+disable\+\_\+level
+\item 
+\mbox{\Hypertarget{group__PerCPU_ga90c60216a6d81ad3997c71ff3482a896}\label{group__PerCPU_ga90c60216a6d81ad3997c71ff3482a896}} 
+\#define {\bfseries \+\_\+\+Thread\+\_\+\+Heir}~\+\_\+\+Per\+\_\+\+C\+P\+U\+\_\+\+Get()-\/$>$heir
+\item 
+\mbox{\Hypertarget{group__PerCPU_ga329266ac3e43b242461d238fdb34d98c}\label{group__PerCPU_ga329266ac3e43b242461d238fdb34d98c}} 
+\#define {\bfseries \+\_\+\+Thread\+\_\+\+Executing}~\+\_\+\+Per\+\_\+\+C\+P\+U\+\_\+\+Get\+\_\+executing( \+\_\+\+Per\+\_\+\+C\+P\+U\+\_\+\+Get() )
+\item 
+\mbox{\Hypertarget{group__PerCPU_ga2881c2196850d5341a388a72307ec754}\label{group__PerCPU_ga2881c2196850d5341a388a72307ec754}} 
+\#define {\bfseries \+\_\+\+I\+S\+R\+\_\+\+Nest\+\_\+level}~\+\_\+\+Per\+\_\+\+C\+P\+U\+\_\+\+Get()-\/$>$isr\+\_\+nest\+\_\+level
+\item 
+\mbox{\Hypertarget{group__PerCPU_ga9df0c0abc224c38c2c5e9984595f2b57}\label{group__PerCPU_ga9df0c0abc224c38c2c5e9984595f2b57}} 
+\#define {\bfseries \+\_\+\+C\+P\+U\+\_\+\+Interrupt\+\_\+stack\+\_\+low}~\+\_\+\+Per\+\_\+\+C\+P\+U\+\_\+\+Get()-\/$>$interrupt\+\_\+stack\+\_\+low
+\item 
+\mbox{\Hypertarget{group__PerCPU_ga50162672d4717b5a55b63f1194eedc11}\label{group__PerCPU_ga50162672d4717b5a55b63f1194eedc11}} 
+\#define {\bfseries \+\_\+\+C\+P\+U\+\_\+\+Interrupt\+\_\+stack\+\_\+high}~\+\_\+\+Per\+\_\+\+C\+P\+U\+\_\+\+Get()-\/$>$interrupt\+\_\+stack\+\_\+high
+\item 
+\mbox{\Hypertarget{group__PerCPU_gac644dc63788b9a806dba420eef735637}\label{group__PerCPU_gac644dc63788b9a806dba420eef735637}} 
+\#define {\bfseries \+\_\+\+Thread\+\_\+\+Dispatch\+\_\+necessary}~\+\_\+\+Per\+\_\+\+C\+P\+U\+\_\+\+Get()-\/$>$dispatch\+\_\+necessary
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \mbox{\hyperlink{structPer__CPU__Control}{Per\+\_\+\+C\+P\+U\+\_\+\+Control}} \mbox{\hyperlink{group__PerCPU_ga206935ee396e0bd5bedf80098a07578b}{Per\+\_\+\+C\+P\+U\+\_\+\+Control}}
+\begin{DoxyCompactList}\small\item\em Per C\+PU Core Structure. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{group__PerCPU_ga43ab5440a69211901b58fa787f9cd76e}{Per\+\_\+\+C\+P\+U\+\_\+\+Watchdog\+\_\+index}} \{ \mbox{\hyperlink{group__PerCPU_gga43ab5440a69211901b58fa787f9cd76ea5c304d1cc31623c14e84892aec184fc0}{P\+E\+R\+\_\+\+C\+P\+U\+\_\+\+W\+A\+T\+C\+H\+D\+O\+G\+\_\+\+T\+I\+C\+KS}}, 
+\mbox{\hyperlink{group__PerCPU_gga43ab5440a69211901b58fa787f9cd76ea4e0da8bba174c18170d5ef3a7a892b75}{P\+E\+R\+\_\+\+C\+P\+U\+\_\+\+W\+A\+T\+C\+H\+D\+O\+G\+\_\+\+R\+E\+A\+L\+T\+I\+ME}}, 
+\mbox{\hyperlink{group__PerCPU_gga43ab5440a69211901b58fa787f9cd76ea35f3d6d7579387ed24aaf6b8ebfc64a5}{P\+E\+R\+\_\+\+C\+P\+U\+\_\+\+W\+A\+T\+C\+H\+D\+O\+G\+\_\+\+M\+O\+N\+O\+T\+O\+N\+IC}}, 
+\mbox{\hyperlink{group__PerCPU_gga43ab5440a69211901b58fa787f9cd76ea49ebdf20f41288627c23ddc6e63a20ab}{P\+E\+R\+\_\+\+C\+P\+U\+\_\+\+W\+A\+T\+C\+H\+D\+O\+G\+\_\+\+C\+O\+U\+NT}}
+ \}
+\begin{DoxyCompactList}\small\item\em Per-\/\+C\+PU watchdog header index. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{group__PerCPU_ga9f5a37354c7461fdffd3693bba17c94e}\label{group__PerCPU_ga9f5a37354c7461fdffd3693bba17c94e}} 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void {\bfseries \+\_\+\+Per\+\_\+\+C\+P\+U\+\_\+\+Acquire\+\_\+all} (\mbox{\hyperlink{structISR__lock__Context}{I\+S\+R\+\_\+lock\+\_\+\+Context}} $\ast$lock\+\_\+context)
+\item 
+\mbox{\Hypertarget{group__PerCPU_gad9b0b0999b5d73437b2067289f120089}\label{group__PerCPU_gad9b0b0999b5d73437b2067289f120089}} 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void {\bfseries \+\_\+\+Per\+\_\+\+C\+P\+U\+\_\+\+Release\+\_\+all} (\mbox{\hyperlink{structISR__lock__Context}{I\+S\+R\+\_\+lock\+\_\+\+Context}} $\ast$lock\+\_\+context)
+\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} struct \mbox{\hyperlink{struct__Thread__Control}{\+\_\+\+Thread\+\_\+\+Control}} $\ast$ \mbox{\hyperlink{group__PerCPU_ga294cfaf3cf50de03f1d9821d68b9c1bd}{\+\_\+\+Thread\+\_\+\+Get\+\_\+executing}} (void)
+\begin{DoxyCompactList}\small\item\em Returns the thread control block of the executing thread. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structPer__CPU__Control__envelope}{Per\+\_\+\+C\+P\+U\+\_\+\+Control\+\_\+envelope}} \+\_\+\+Per\+\_\+\+C\+P\+U\+\_\+\+Information \mbox{[}$\,$\mbox{]} \mbox{\hyperlink{group__PerCPU_ga0d4329f03b0319134ca2c192f96f4e5a}{C\+P\+U\+\_\+\+S\+T\+R\+U\+C\+T\+U\+R\+E\+\_\+\+A\+L\+I\+G\+N\+M\+E\+NT}}
+\begin{DoxyCompactList}\small\item\em Set of Per C\+PU Core Information. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This defines the per C\+PU state information required by R\+T\+E\+MS and the B\+SP. In an S\+MP configuration, there will be multiple instances of this data structure -- one per C\+PU -- and the current C\+PU number will be used as the index. 
+
+\subsection{Typedef Documentation}
+\mbox{\Hypertarget{group__PerCPU_ga206935ee396e0bd5bedf80098a07578b}\label{group__PerCPU_ga206935ee396e0bd5bedf80098a07578b}} 
+\index{RTEMS Per CPU Information@{RTEMS Per CPU Information}!Per\_CPU\_Control@{Per\_CPU\_Control}}
+\index{Per\_CPU\_Control@{Per\_CPU\_Control}!RTEMS Per CPU Information@{RTEMS Per CPU Information}}
+\subsubsection{\texorpdfstring{Per\_CPU\_Control}{Per\_CPU\_Control}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structPer__CPU__Control}{Per\+\_\+\+C\+P\+U\+\_\+\+Control}}  \mbox{\hyperlink{structPer__CPU__Control}{Per\+\_\+\+C\+P\+U\+\_\+\+Control}}}
+
+
+
+Per C\+PU Core Structure. 
+
+This structure is used to hold per core state information. 
+
+\subsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{group__PerCPU_ga43ab5440a69211901b58fa787f9cd76e}\label{group__PerCPU_ga43ab5440a69211901b58fa787f9cd76e}} 
+\index{RTEMS Per CPU Information@{RTEMS Per CPU Information}!Per\_CPU\_Watchdog\_index@{Per\_CPU\_Watchdog\_index}}
+\index{Per\_CPU\_Watchdog\_index@{Per\_CPU\_Watchdog\_index}!RTEMS Per CPU Information@{RTEMS Per CPU Information}}
+\subsubsection{\texorpdfstring{Per\_CPU\_Watchdog\_index}{Per\_CPU\_Watchdog\_index}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{group__PerCPU_ga43ab5440a69211901b58fa787f9cd76e}{Per\+\_\+\+C\+P\+U\+\_\+\+Watchdog\+\_\+index}}}
+
+
+
+Per-\/\+C\+PU watchdog header index. 
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{PER\_CPU\_WATCHDOG\_TICKS@{PER\_CPU\_WATCHDOG\_TICKS}!RTEMS Per CPU Information@{RTEMS Per CPU Information}}\index{RTEMS Per CPU Information@{RTEMS Per CPU Information}!PER\_CPU\_WATCHDOG\_TICKS@{PER\_CPU\_WATCHDOG\_TICKS}}}\mbox{\Hypertarget{group__PerCPU_gga43ab5440a69211901b58fa787f9cd76ea5c304d1cc31623c14e84892aec184fc0}\label{group__PerCPU_gga43ab5440a69211901b58fa787f9cd76ea5c304d1cc31623c14e84892aec184fc0}} 
+P\+E\+R\+\_\+\+C\+P\+U\+\_\+\+W\+A\+T\+C\+H\+D\+O\+G\+\_\+\+T\+I\+C\+KS&Index for tick clock per-\/\+C\+PU watchdog header. The reference time point for the tick clock is the system start. The clock resolution is one system clock tick. It is used for the system clock tick based time services. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{PER\_CPU\_WATCHDOG\_REALTIME@{PER\_CPU\_WATCHDOG\_REALTIME}!RTEMS Per CPU Information@{RTEMS Per CPU Information}}\index{RTEMS Per CPU Information@{RTEMS Per CPU Information}!PER\_CPU\_WATCHDOG\_REALTIME@{PER\_CPU\_WATCHDOG\_REALTIME}}}\mbox{\Hypertarget{group__PerCPU_gga43ab5440a69211901b58fa787f9cd76ea4e0da8bba174c18170d5ef3a7a892b75}\label{group__PerCPU_gga43ab5440a69211901b58fa787f9cd76ea4e0da8bba174c18170d5ef3a7a892b75}} 
+P\+E\+R\+\_\+\+C\+P\+U\+\_\+\+W\+A\+T\+C\+H\+D\+O\+G\+\_\+\+R\+E\+A\+L\+T\+I\+ME&Index for realtime clock per-\/\+C\+PU watchdog header. The reference time point for the realtime clock is the P\+O\+S\+IX Epoch. The clock resolution is one nanosecond. It is used for the time of day services and the P\+O\+S\+IX services using C\+L\+O\+C\+K\+\_\+\+R\+E\+A\+L\+T\+I\+ME. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{PER\_CPU\_WATCHDOG\_MONOTONIC@{PER\_CPU\_WATCHDOG\_MONOTONIC}!RTEMS Per CPU Information@{RTEMS Per CPU Information}}\index{RTEMS Per CPU Information@{RTEMS Per CPU Information}!PER\_CPU\_WATCHDOG\_MONOTONIC@{PER\_CPU\_WATCHDOG\_MONOTONIC}}}\mbox{\Hypertarget{group__PerCPU_gga43ab5440a69211901b58fa787f9cd76ea35f3d6d7579387ed24aaf6b8ebfc64a5}\label{group__PerCPU_gga43ab5440a69211901b58fa787f9cd76ea35f3d6d7579387ed24aaf6b8ebfc64a5}} 
+P\+E\+R\+\_\+\+C\+P\+U\+\_\+\+W\+A\+T\+C\+H\+D\+O\+G\+\_\+\+M\+O\+N\+O\+T\+O\+N\+IC&Index for monotonic clock per-\/\+C\+PU watchdog header. The reference time point for the monotonic clock is the system start. The clock resolution is one nanosecond. It is used for the P\+O\+S\+IX services using C\+L\+O\+C\+K\+\_\+\+M\+O\+N\+O\+T\+O\+N\+IC. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{PER\_CPU\_WATCHDOG\_COUNT@{PER\_CPU\_WATCHDOG\_COUNT}!RTEMS Per CPU Information@{RTEMS Per CPU Information}}\index{RTEMS Per CPU Information@{RTEMS Per CPU Information}!PER\_CPU\_WATCHDOG\_COUNT@{PER\_CPU\_WATCHDOG\_COUNT}}}\mbox{\Hypertarget{group__PerCPU_gga43ab5440a69211901b58fa787f9cd76ea49ebdf20f41288627c23ddc6e63a20ab}\label{group__PerCPU_gga43ab5440a69211901b58fa787f9cd76ea49ebdf20f41288627c23ddc6e63a20ab}} 
+P\+E\+R\+\_\+\+C\+P\+U\+\_\+\+W\+A\+T\+C\+H\+D\+O\+G\+\_\+\+C\+O\+U\+NT&Count of per-\/\+C\+PU watchdog headers. \\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{group__PerCPU_ga294cfaf3cf50de03f1d9821d68b9c1bd}\label{group__PerCPU_ga294cfaf3cf50de03f1d9821d68b9c1bd}} 
+\index{RTEMS Per CPU Information@{RTEMS Per CPU Information}!\_Thread\_Get\_executing@{\_Thread\_Get\_executing}}
+\index{\_Thread\_Get\_executing@{\_Thread\_Get\_executing}!RTEMS Per CPU Information@{RTEMS Per CPU Information}}
+\subsubsection{\texorpdfstring{\_Thread\_Get\_executing()}{\_Thread\_Get\_executing()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} struct \mbox{\hyperlink{struct__Thread__Control}{\+\_\+\+Thread\+\_\+\+Control}}$\ast$ \+\_\+\+Thread\+\_\+\+Get\+\_\+executing (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Returns the thread control block of the executing thread. 
+
+This function can be called in any thread context. On S\+MP configurations, interrupts are disabled to ensure that the processor index is used consistently if no C\+PU port specific method is available to get the executing thread.
+
+\begin{DoxyReturn}{Returns}
+The thread control block of the executing thread. 
+\end{DoxyReturn}
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{group__PerCPU_ga0d4329f03b0319134ca2c192f96f4e5a}\label{group__PerCPU_ga0d4329f03b0319134ca2c192f96f4e5a}} 
+\index{RTEMS Per CPU Information@{RTEMS Per CPU Information}!CPU\_STRUCTURE\_ALIGNMENT@{CPU\_STRUCTURE\_ALIGNMENT}}
+\index{CPU\_STRUCTURE\_ALIGNMENT@{CPU\_STRUCTURE\_ALIGNMENT}!RTEMS Per CPU Information@{RTEMS Per CPU Information}}
+\subsubsection{\texorpdfstring{CPU\_STRUCTURE\_ALIGNMENT}{CPU\_STRUCTURE\_ALIGNMENT}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structPer__CPU__Control__envelope}{Per\+\_\+\+C\+P\+U\+\_\+\+Control\+\_\+envelope}} \+\_\+\+Per\+\_\+\+C\+P\+U\+\_\+\+Information \mbox{[}$\,$\mbox{]} C\+P\+U\+\_\+\+S\+T\+R\+U\+C\+T\+U\+R\+E\+\_\+\+A\+L\+I\+G\+N\+M\+E\+NT}
+
+
+
+Set of Per C\+PU Core Information. 
+
+This is an array of per C\+PU core information. 

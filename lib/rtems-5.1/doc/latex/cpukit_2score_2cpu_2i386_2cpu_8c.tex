@@ -1,0 +1,141 @@
+\hypertarget{cpukit_2score_2cpu_2i386_2cpu_8c}{}\section{cpukit/score/cpu/i386/cpu.c File Reference}
+\label{cpukit_2score_2cpu_2i386_2cpu_8c}\index{cpukit/score/cpu/i386/cpu.c@{cpukit/score/cpu/i386/cpu.c}}
+
+
+Intel i386 Dependent Source.  
+
+
+{\ttfamily \#include $<$inttypes.\+h$>$}\newline
+{\ttfamily \#include $<$rtems.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/score/isr.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/score/idtr.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/score/tls.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/bsp\+Io.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/score/percpu.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/score/thread.\+h$>$}\newline
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structFrame__}{Frame\+\_\+}}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bfseries I386\+\_\+\+A\+S\+S\+E\+R\+T\+\_\+\+O\+F\+F\+S\+ET}(field,  off)
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{cpukit_2score_2cpu_2i386_2cpu_8c_abc4b3e2a24c9344724e320be4fdf1458}\label{cpukit_2score_2cpu_2i386_2cpu_8c_abc4b3e2a24c9344724e320be4fdf1458}} 
+{\bfseries I386\+\_\+\+A\+S\+S\+E\+R\+T\+\_\+\+O\+F\+F\+S\+ET} (eflags, E\+F\+L\+A\+GS)
+\item 
+\mbox{\Hypertarget{cpukit_2score_2cpu_2i386_2cpu_8c_afe824f86a5105486addbee2d57b63e0f}\label{cpukit_2score_2cpu_2i386_2cpu_8c_afe824f86a5105486addbee2d57b63e0f}} 
+{\bfseries I386\+\_\+\+A\+S\+S\+E\+R\+T\+\_\+\+O\+F\+F\+S\+ET} (esp, E\+SP)
+\item 
+\mbox{\Hypertarget{cpukit_2score_2cpu_2i386_2cpu_8c_a1bc303d44d13e9bc062844dbf355e57d}\label{cpukit_2score_2cpu_2i386_2cpu_8c_a1bc303d44d13e9bc062844dbf355e57d}} 
+{\bfseries I386\+\_\+\+A\+S\+S\+E\+R\+T\+\_\+\+O\+F\+F\+S\+ET} (ebp, E\+BP)
+\item 
+\mbox{\Hypertarget{cpukit_2score_2cpu_2i386_2cpu_8c_a1a502839e20c831d74e82d5d3b2976db}\label{cpukit_2score_2cpu_2i386_2cpu_8c_a1a502839e20c831d74e82d5d3b2976db}} 
+{\bfseries I386\+\_\+\+A\+S\+S\+E\+R\+T\+\_\+\+O\+F\+F\+S\+ET} (ebx, E\+BX)
+\item 
+\mbox{\Hypertarget{cpukit_2score_2cpu_2i386_2cpu_8c_a23f977bf15aceca2d8e54562f5df8123}\label{cpukit_2score_2cpu_2i386_2cpu_8c_a23f977bf15aceca2d8e54562f5df8123}} 
+{\bfseries I386\+\_\+\+A\+S\+S\+E\+R\+T\+\_\+\+O\+F\+F\+S\+ET} (esi, E\+SI)
+\item 
+\mbox{\Hypertarget{cpukit_2score_2cpu_2i386_2cpu_8c_a8245d9eacfb9a94471f9a81eefc3f9da}\label{cpukit_2score_2cpu_2i386_2cpu_8c_a8245d9eacfb9a94471f9a81eefc3f9da}} 
+{\bfseries I386\+\_\+\+A\+S\+S\+E\+R\+T\+\_\+\+O\+F\+F\+S\+ET} (edi, E\+DI)
+\item 
+\mbox{\Hypertarget{cpukit_2score_2cpu_2i386_2cpu_8c_a857918f73e3d4ef26e1a037825ae04ef}\label{cpukit_2score_2cpu_2i386_2cpu_8c_a857918f73e3d4ef26e1a037825ae04ef}} 
+{\bfseries R\+T\+E\+M\+S\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+A\+S\+S\+E\+RT} (offsetof(\mbox{\hyperlink{structContext__Control}{Context\+\_\+\+Control}}, gs)==I386\+\_\+\+C\+O\+N\+T\+E\+X\+T\+\_\+\+C\+O\+N\+T\+R\+O\+L\+\_\+\+G\+S\+\_\+0\+\_\+\+O\+F\+F\+S\+ET, Context\+\_\+\+Control\+\_\+gs\+\_\+0)
+\item 
+void \mbox{\hyperlink{group__RTEMSScoreCPUARM_ga869484e3d851b032fd826c69ff21fc72}{\+\_\+\+C\+P\+U\+\_\+\+Initialize}} (void)
+\begin{DoxyCompactList}\small\item\em C\+PU initialization. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__RTEMSScoreCPUARM_gaa92701994ad8e3b646667a3e92935ddf}{\+\_\+\+C\+P\+U\+\_\+\+Context\+\_\+\+Initialize}} (\mbox{\hyperlink{structContext__Control}{Context\+\_\+\+Control}} $\ast$the\+\_\+context, void $\ast$\+\_\+stack\+\_\+base, size\+\_\+t \+\_\+size, uint32\+\_\+t \+\_\+isr, void($\ast$\+\_\+entry\+\_\+point)(void), bool is\+\_\+fp, void $\ast$tls\+\_\+area)
+\begin{DoxyCompactList}\small\item\em Initializes the C\+PU context. \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{group__RTEMSScoreCPUARM_ga1d9dcab9170d532b6634a5620385adbd}{\+\_\+\+C\+P\+U\+\_\+\+I\+S\+R\+\_\+\+Get\+\_\+level}} (void)
+\begin{DoxyCompactList}\small\item\em Returns the interrupt level of the executing thread. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__RTEMSScoreCPUARM_gaa34a35de496258577c1454ba1ee07ce0}{\+\_\+\+C\+P\+U\+\_\+\+Exception\+\_\+frame\+\_\+print}} (const \mbox{\hyperlink{structCPU__Exception__frame}{C\+P\+U\+\_\+\+Exception\+\_\+frame}} $\ast$ctx)
+\begin{DoxyCompactList}\small\item\em Prints the exception frame via \mbox{\hyperlink{bspIo_8h_a380cfecc8035cec8a13b68c0cb90f32f}{printk()}}. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{cpukit_2score_2cpu_2i386_2cpu_8c_abbf14c87632d15899a8dff6e2015dd16}\label{cpukit_2score_2cpu_2i386_2cpu_8c_abbf14c87632d15899a8dff6e2015dd16}} 
+void {\bfseries rtems\+\_\+exception\+\_\+prologue\+\_\+0} (void)
+\item 
+\mbox{\Hypertarget{cpukit_2score_2cpu_2i386_2cpu_8c_ad3946ad10ee6cc344ba53df472902127}\label{cpukit_2score_2cpu_2i386_2cpu_8c_ad3946ad10ee6cc344ba53df472902127}} 
+void {\bfseries rtems\+\_\+exception\+\_\+prologue\+\_\+1} (void)
+\item 
+\mbox{\Hypertarget{cpukit_2score_2cpu_2i386_2cpu_8c_ad0a0a5f8698ec203d3ce84bbb7852a2a}\label{cpukit_2score_2cpu_2i386_2cpu_8c_ad0a0a5f8698ec203d3ce84bbb7852a2a}} 
+void {\bfseries rtems\+\_\+exception\+\_\+prologue\+\_\+2} (void)
+\item 
+\mbox{\Hypertarget{cpukit_2score_2cpu_2i386_2cpu_8c_a9c51d3f89a0a6b7415a6da8c8c012f8d}\label{cpukit_2score_2cpu_2i386_2cpu_8c_a9c51d3f89a0a6b7415a6da8c8c012f8d}} 
+void {\bfseries rtems\+\_\+exception\+\_\+prologue\+\_\+3} (void)
+\item 
+\mbox{\Hypertarget{cpukit_2score_2cpu_2i386_2cpu_8c_affa56d9787c5b7ff6b8c9f39f3a9f7c7}\label{cpukit_2score_2cpu_2i386_2cpu_8c_affa56d9787c5b7ff6b8c9f39f3a9f7c7}} 
+void {\bfseries rtems\+\_\+exception\+\_\+prologue\+\_\+4} (void)
+\item 
+\mbox{\Hypertarget{cpukit_2score_2cpu_2i386_2cpu_8c_a2a589d0014ff8d9d2ebf78fcf2bb0173}\label{cpukit_2score_2cpu_2i386_2cpu_8c_a2a589d0014ff8d9d2ebf78fcf2bb0173}} 
+void {\bfseries rtems\+\_\+exception\+\_\+prologue\+\_\+5} (void)
+\item 
+\mbox{\Hypertarget{cpukit_2score_2cpu_2i386_2cpu_8c_a761da3ac2cd2a02dd5fb822de2da24be}\label{cpukit_2score_2cpu_2i386_2cpu_8c_a761da3ac2cd2a02dd5fb822de2da24be}} 
+void {\bfseries rtems\+\_\+exception\+\_\+prologue\+\_\+6} (void)
+\item 
+\mbox{\Hypertarget{cpukit_2score_2cpu_2i386_2cpu_8c_aab131fdef877b33ea6ca29bd35b16334}\label{cpukit_2score_2cpu_2i386_2cpu_8c_aab131fdef877b33ea6ca29bd35b16334}} 
+void {\bfseries rtems\+\_\+exception\+\_\+prologue\+\_\+7} (void)
+\item 
+\mbox{\Hypertarget{cpukit_2score_2cpu_2i386_2cpu_8c_ab6fc27042b0ee426d29fe9cd0af255b4}\label{cpukit_2score_2cpu_2i386_2cpu_8c_ab6fc27042b0ee426d29fe9cd0af255b4}} 
+void {\bfseries rtems\+\_\+exception\+\_\+prologue\+\_\+8} (void)
+\item 
+\mbox{\Hypertarget{cpukit_2score_2cpu_2i386_2cpu_8c_ac57949d4380174a3f57827c85626c9b0}\label{cpukit_2score_2cpu_2i386_2cpu_8c_ac57949d4380174a3f57827c85626c9b0}} 
+void {\bfseries rtems\+\_\+exception\+\_\+prologue\+\_\+9} (void)
+\item 
+\mbox{\Hypertarget{cpukit_2score_2cpu_2i386_2cpu_8c_ace2e9b327e4821d76cd2a8a030dcaa91}\label{cpukit_2score_2cpu_2i386_2cpu_8c_ace2e9b327e4821d76cd2a8a030dcaa91}} 
+void {\bfseries rtems\+\_\+exception\+\_\+prologue\+\_\+10} (void)
+\item 
+\mbox{\Hypertarget{cpukit_2score_2cpu_2i386_2cpu_8c_a56e6737780f43a2b7217eb32242eaf0b}\label{cpukit_2score_2cpu_2i386_2cpu_8c_a56e6737780f43a2b7217eb32242eaf0b}} 
+void {\bfseries rtems\+\_\+exception\+\_\+prologue\+\_\+11} (void)
+\item 
+\mbox{\Hypertarget{cpukit_2score_2cpu_2i386_2cpu_8c_a690522e68084d8f5139cb38db803e290}\label{cpukit_2score_2cpu_2i386_2cpu_8c_a690522e68084d8f5139cb38db803e290}} 
+void {\bfseries rtems\+\_\+exception\+\_\+prologue\+\_\+12} (void)
+\item 
+\mbox{\Hypertarget{cpukit_2score_2cpu_2i386_2cpu_8c_ae59b1a664f14cfe315c78cb1d7dcfa90}\label{cpukit_2score_2cpu_2i386_2cpu_8c_ae59b1a664f14cfe315c78cb1d7dcfa90}} 
+void {\bfseries rtems\+\_\+exception\+\_\+prologue\+\_\+13} (void)
+\item 
+\mbox{\Hypertarget{cpukit_2score_2cpu_2i386_2cpu_8c_a778e876f25af76056ecba6f4c71a44b8}\label{cpukit_2score_2cpu_2i386_2cpu_8c_a778e876f25af76056ecba6f4c71a44b8}} 
+void {\bfseries rtems\+\_\+exception\+\_\+prologue\+\_\+14} (void)
+\item 
+\mbox{\Hypertarget{cpukit_2score_2cpu_2i386_2cpu_8c_a56be4114b5f65aea5f51354aa61eb8ae}\label{cpukit_2score_2cpu_2i386_2cpu_8c_a56be4114b5f65aea5f51354aa61eb8ae}} 
+void {\bfseries rtems\+\_\+exception\+\_\+prologue\+\_\+16} (void)
+\item 
+\mbox{\Hypertarget{cpukit_2score_2cpu_2i386_2cpu_8c_a588c66a7a4dcb78475e339862b4369e2}\label{cpukit_2score_2cpu_2i386_2cpu_8c_a588c66a7a4dcb78475e339862b4369e2}} 
+void {\bfseries rtems\+\_\+exception\+\_\+prologue\+\_\+17} (void)
+\item 
+\mbox{\Hypertarget{cpukit_2score_2cpu_2i386_2cpu_8c_ad1a8e590ecdc73ee5e7e138abb46f7d2}\label{cpukit_2score_2cpu_2i386_2cpu_8c_ad1a8e590ecdc73ee5e7e138abb46f7d2}} 
+void {\bfseries rtems\+\_\+exception\+\_\+prologue\+\_\+18} (void)
+\item 
+void {\bfseries rtems\+\_\+exception\+\_\+init\+\_\+mngt} (void)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+cpu\+Exc\+Handler\+Type {\bfseries \+\_\+current\+Exc\+Handler} = \+\_\+default\+Exc\+Handler
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Intel i386 Dependent Source. 
+
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{cpukit_2score_2cpu_2i386_2cpu_8c_a55ebcdf72858b133bab65606ff2ed0a8}\label{cpukit_2score_2cpu_2i386_2cpu_8c_a55ebcdf72858b133bab65606ff2ed0a8}} 
+\index{cpu.c@{cpu.c}!I386\_ASSERT\_OFFSET@{I386\_ASSERT\_OFFSET}}
+\index{I386\_ASSERT\_OFFSET@{I386\_ASSERT\_OFFSET}!cpu.c@{cpu.c}}
+\subsubsection{\texorpdfstring{I386\_ASSERT\_OFFSET}{I386\_ASSERT\_OFFSET}}
+{\footnotesize\ttfamily \#define I386\+\_\+\+A\+S\+S\+E\+R\+T\+\_\+\+O\+F\+F\+S\+ET(\begin{DoxyParamCaption}\item[{}]{field,  }\item[{}]{off }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{RTEMS\_STATIC\_ASSERT( \(\backslash\)}
+\DoxyCodeLine{    offsetof(\mbox{\hyperlink{structContext__Control}{Context\_Control}}, field) \(\backslash\)}
+\DoxyCodeLine{      == I386\_CONTEXT\_CONTROL\_ \#\# off \#\# \_OFFSET, \(\backslash\)}
+\DoxyCodeLine{    Context\_Control\_ \#\# field \(\backslash\)}
+\DoxyCodeLine{  )}
+
+\end{DoxyCode}

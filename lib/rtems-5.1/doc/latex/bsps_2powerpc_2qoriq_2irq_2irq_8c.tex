@@ -1,0 +1,85 @@
+\hypertarget{bsps_2powerpc_2qoriq_2irq_2irq_8c}{}\section{bsps/powerpc/qoriq/irq/irq.c File Reference}
+\label{bsps_2powerpc_2qoriq_2irq_2irq_8c}\index{bsps/powerpc/qoriq/irq/irq.c@{bsps/powerpc/qoriq/irq/irq.c}}
+
+
+Interrupt implementation.  
+
+
+{\ttfamily \#include $<$sys/param.\+h$>$}\newline
+{\ttfamily \#include $<$rtems.\+h$>$}\newline
+{\ttfamily \#include $<$libcpu/powerpc-\/utility.\+h$>$}\newline
+{\ttfamily \#include $<$asm/epapr\+\_\+hcalls.\+h$>$}\newline
+{\ttfamily \#include $<$bsp.\+h$>$}\newline
+{\ttfamily \#include $<$bsp/irq.\+h$>$}\newline
+{\ttfamily \#include $<$bsp/irq-\/generic.\+h$>$}\newline
+{\ttfamily \#include $<$bsp/vectors.\+h$>$}\newline
+{\ttfamily \#include $<$bsp/utility.\+h$>$}\newline
+{\ttfamily \#include $<$bsp/qoriq.\+h$>$}\newline
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{bsps_2powerpc_2qoriq_2irq_2irq_8c_ad386a39313bb023d9ac3f30c1d75844c}\label{bsps_2powerpc_2qoriq_2irq_2irq_8c_ad386a39313bb023d9ac3f30c1d75844c}} 
+\#define {\bfseries S\+P\+U\+R\+I\+O\+US}~0xffff
+\item 
+\mbox{\Hypertarget{bsps_2powerpc_2qoriq_2irq_2irq_8c_ab5fcc4519e48e6e369c3c6c82ac39d4a}\label{bsps_2powerpc_2qoriq_2irq_2irq_8c_ab5fcc4519e48e6e369c3c6c82ac39d4a}} 
+\#define {\bfseries V\+P\+R\+\_\+\+M\+SK}~B\+S\+P\+\_\+\+B\+B\+I\+T32(0)
+\item 
+\mbox{\Hypertarget{bsps_2powerpc_2qoriq_2irq_2irq_8c_a6d6eae2c67ed27c56febd94a63a8b065}\label{bsps_2powerpc_2qoriq_2irq_2irq_8c_a6d6eae2c67ed27c56febd94a63a8b065}} 
+\#define {\bfseries V\+P\+R\+\_\+A}~B\+S\+P\+\_\+\+B\+B\+I\+T32(1)
+\item 
+\mbox{\Hypertarget{bsps_2powerpc_2qoriq_2irq_2irq_8c_adf81dac6b9a81d7322d37e7550bc787f}\label{bsps_2powerpc_2qoriq_2irq_2irq_8c_adf81dac6b9a81d7322d37e7550bc787f}} 
+\#define {\bfseries V\+P\+R\+\_\+P}~B\+S\+P\+\_\+\+B\+B\+I\+T32(8)
+\item 
+\mbox{\Hypertarget{bsps_2powerpc_2qoriq_2irq_2irq_8c_ad92e150878f66a26be562f0e7ed5e3de}\label{bsps_2powerpc_2qoriq_2irq_2irq_8c_ad92e150878f66a26be562f0e7ed5e3de}} 
+\#define {\bfseries V\+P\+R\+\_\+S}~B\+S\+P\+\_\+\+B\+B\+I\+T32(9)
+\item 
+\mbox{\Hypertarget{bsps_2powerpc_2qoriq_2irq_2irq_8c_a8438d3b2da5c932db80e6efbd6e0e86f}\label{bsps_2powerpc_2qoriq_2irq_2irq_8c_a8438d3b2da5c932db80e6efbd6e0e86f}} 
+\#define {\bfseries V\+P\+R\+\_\+\+P\+R\+I\+O\+R\+I\+TY}(val)~B\+S\+P\+\_\+\+B\+F\+L\+D32(val, 12, 15)
+\item 
+\mbox{\Hypertarget{bsps_2powerpc_2qoriq_2irq_2irq_8c_a0a05851e1ce3cf7b67c40fb9b5ca13d1}\label{bsps_2powerpc_2qoriq_2irq_2irq_8c_a0a05851e1ce3cf7b67c40fb9b5ca13d1}} 
+\#define {\bfseries V\+P\+R\+\_\+\+P\+R\+I\+O\+R\+I\+T\+Y\+\_\+\+G\+ET}(reg)~B\+S\+P\+\_\+\+B\+F\+L\+D32\+G\+ET(reg, 12, 15)
+\item 
+\mbox{\Hypertarget{bsps_2powerpc_2qoriq_2irq_2irq_8c_a92854bd63e26975feb4407636e8b9c90}\label{bsps_2powerpc_2qoriq_2irq_2irq_8c_a92854bd63e26975feb4407636e8b9c90}} 
+\#define {\bfseries V\+P\+R\+\_\+\+P\+R\+I\+O\+R\+I\+T\+Y\+\_\+\+S\+ET}(reg,  val)~B\+S\+P\+\_\+\+B\+F\+L\+D32\+S\+ET(reg, val, 12, 15)
+\item 
+\mbox{\Hypertarget{bsps_2powerpc_2qoriq_2irq_2irq_8c_a39b88140ee923d0e101bf3a347a8bf71}\label{bsps_2powerpc_2qoriq_2irq_2irq_8c_a39b88140ee923d0e101bf3a347a8bf71}} 
+\#define {\bfseries V\+P\+R\+\_\+\+V\+E\+C\+T\+OR}(val)~B\+S\+P\+\_\+\+B\+F\+L\+D32(val, 16, 31)
+\item 
+\mbox{\Hypertarget{bsps_2powerpc_2qoriq_2irq_2irq_8c_a539a311cc0c52edabed3fc337fad53ec}\label{bsps_2powerpc_2qoriq_2irq_2irq_8c_a539a311cc0c52edabed3fc337fad53ec}} 
+\#define {\bfseries V\+P\+R\+\_\+\+V\+E\+C\+T\+O\+R\+\_\+\+G\+ET}(reg)~B\+S\+P\+\_\+\+B\+F\+L\+D32\+G\+ET(reg, 16, 31)
+\item 
+\mbox{\Hypertarget{bsps_2powerpc_2qoriq_2irq_2irq_8c_a4c030f2536ea2b6db3c9ceff6ed3cd19}\label{bsps_2powerpc_2qoriq_2irq_2irq_8c_a4c030f2536ea2b6db3c9ceff6ed3cd19}} 
+\#define {\bfseries V\+P\+R\+\_\+\+V\+E\+C\+T\+O\+R\+\_\+\+S\+ET}(reg,  val)~B\+S\+P\+\_\+\+B\+F\+L\+D32\+S\+ET(reg, val, 16, 31)
+\item 
+\mbox{\Hypertarget{bsps_2powerpc_2qoriq_2irq_2irq_8c_aaab7427800341566cd2def5eb5e1224c}\label{bsps_2powerpc_2qoriq_2irq_2irq_8c_aaab7427800341566cd2def5eb5e1224c}} 
+\#define {\bfseries G\+C\+R\+\_\+\+R\+ST}~B\+S\+P\+\_\+\+B\+B\+I\+T32(0)
+\item 
+\mbox{\Hypertarget{bsps_2powerpc_2qoriq_2irq_2irq_8c_a73fea61a72d9ac4bf8de8090a10e76dd}\label{bsps_2powerpc_2qoriq_2irq_2irq_8c_a73fea61a72d9ac4bf8de8090a10e76dd}} 
+\#define {\bfseries G\+C\+R\+\_\+M}~B\+S\+P\+\_\+\+B\+B\+I\+T32(2)
+\item 
+\mbox{\Hypertarget{bsps_2powerpc_2qoriq_2irq_2irq_8c_a8e90421ac73001f3de21289fe3c3046e}\label{bsps_2powerpc_2qoriq_2irq_2irq_8c_a8e90421ac73001f3de21289fe3c3046e}} 
+\#define {\bfseries S\+R\+C\+\_\+\+C\+F\+G\+\_\+\+I\+DX}(i)~((i) -\/ Q\+O\+R\+I\+Q\+\_\+\+I\+R\+Q\+\_\+\+E\+X\+T\+\_\+\+B\+A\+SE)
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} {\bfseries qoriq\+\_\+pic\+\_\+set\+\_\+priority} (\mbox{\hyperlink{group__ClassicINTR_ga3e434c197d99f128e78cae4d9358bd8b}{rtems\+\_\+vector\+\_\+number}} vector, int new\+\_\+priority, int $\ast$old\+\_\+priority)
+\item 
+void {\bfseries bsp\+\_\+interrupt\+\_\+set\+\_\+affinity} (\mbox{\hyperlink{group__ClassicINTR_ga3e434c197d99f128e78cae4d9358bd8b}{rtems\+\_\+vector\+\_\+number}} vector, const Processor\+\_\+mask $\ast$affinity)
+\item 
+void {\bfseries bsp\+\_\+interrupt\+\_\+get\+\_\+affinity} (\mbox{\hyperlink{group__ClassicINTR_ga3e434c197d99f128e78cae4d9358bd8b}{rtems\+\_\+vector\+\_\+number}} vector, Processor\+\_\+mask $\ast$affinity)
+\item 
+void \mbox{\hyperlink{group__bsp__interrupt_ga9968f1703b04b05f4f7e9fc5220da39a}{bsp\+\_\+interrupt\+\_\+vector\+\_\+enable}} (\mbox{\hyperlink{group__ClassicINTR_ga3e434c197d99f128e78cae4d9358bd8b}{rtems\+\_\+vector\+\_\+number}} vector)
+\begin{DoxyCompactList}\small\item\em Enables the interrupt vector with number {\itshape vector}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__bsp__interrupt_ga5428b914d0cb037e9b3f7cb2b758cabd}{bsp\+\_\+interrupt\+\_\+vector\+\_\+disable}} (\mbox{\hyperlink{group__ClassicINTR_ga3e434c197d99f128e78cae4d9358bd8b}{rtems\+\_\+vector\+\_\+number}} vector)
+\begin{DoxyCompactList}\small\item\em Disables the interrupt vector with number {\itshape vector}. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{bsps_2powerpc_2qoriq_2irq_2irq_8c_a1a82774947e1458b93c7fa5e532cd27b}\label{bsps_2powerpc_2qoriq_2irq_2irq_8c_a1a82774947e1458b93c7fa5e532cd27b}} 
+void {\bfseries bsp\+\_\+interrupt\+\_\+dispatch} (uintptr\+\_\+t exception\+\_\+number)
+\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{group__bsp__interrupt_gab114a6e92b17b99bf52cf24d1125a9df}{bsp\+\_\+interrupt\+\_\+facility\+\_\+initialize}} (void)
+\begin{DoxyCompactList}\small\item\em B\+SP specific initialization. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Interrupt implementation. 
+

@@ -1,0 +1,166 @@
+\hypertarget{alt__i2c_8c}{}\section{bsps/arm/altera-\/cyclone-\/v/contrib/hwlib/src/hwmgr/alt\+\_\+i2c.c File Reference}
+\label{alt__i2c_8c}\index{bsps/arm/altera-\/cyclone-\/v/contrib/hwlib/src/hwmgr/alt\_i2c.c@{bsps/arm/altera-\/cyclone-\/v/contrib/hwlib/src/hwmgr/alt\_i2c.c}}
+{\ttfamily \#include $<$bsp/alt\+\_\+i2c.\+h$>$}\newline
+{\ttfamily \#include $<$bsp/alt\+\_\+reset\+\_\+manager.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{alt__i2c_8c_a0fb7bf82c787085c8b1ef0ad7d028424}\label{alt__i2c_8c_a0fb7bf82c787085c8b1ef0ad7d028424}} 
+\#define {\bfseries dprintf}(...)
+\item 
+\mbox{\Hypertarget{alt__i2c_8c_a3acffbd305ee72dcd4593c0d8af64a4f}\label{alt__i2c_8c_a3acffbd305ee72dcd4593c0d8af64a4f}} 
+\#define {\bfseries M\+IN}(a,  b)~((a) $>$ (b) ? (b) \+: (a))
+\item 
+\mbox{\Hypertarget{alt__i2c_8c_a4cf482b6dc41e7fd7d11954e77c16a35}\label{alt__i2c_8c_a4cf482b6dc41e7fd7d11954e77c16a35}} 
+\#define {\bfseries A\+L\+T\+\_\+\+I2\+C\+\_\+\+R\+E\+S\+E\+T\+\_\+\+T\+M\+O\+\_\+\+I\+N\+IT}~8192
+\item 
+\mbox{\Hypertarget{alt__i2c_8c_ae7d44c802539e9db22e082c6976fde60}\label{alt__i2c_8c_ae7d44c802539e9db22e082c6976fde60}} 
+\#define {\bfseries A\+L\+T\+\_\+\+I2\+C\+\_\+\+M\+A\+X\+\_\+\+T\+\_\+\+P\+O\+L\+L\+\_\+\+C\+O\+U\+NT}~8192
+\item 
+\mbox{\Hypertarget{alt__i2c_8c_a2fd6d1f7ce9218de6451c2b51d46bf7e}\label{alt__i2c_8c_a2fd6d1f7ce9218de6451c2b51d46bf7e}} 
+\#define {\bfseries A\+L\+T\+\_\+\+I2\+C\+\_\+\+T\+M\+O\+\_\+\+W\+A\+I\+T\+ER}~2500000
+\item 
+\mbox{\Hypertarget{alt__i2c_8c_a8662f3c08f951a707385958f1e3a19da}\label{alt__i2c_8c_a8662f3c08f951a707385958f1e3a19da}} 
+\#define {\bfseries A\+L\+T\+\_\+\+I2\+C\+\_\+\+S\+S\+\_\+\+M\+I\+N\+\_\+\+S\+P\+E\+ED}~8000
+\item 
+\mbox{\Hypertarget{alt__i2c_8c_ad8bfc36559ebffb36a3725e67d80d50c}\label{alt__i2c_8c_ad8bfc36559ebffb36a3725e67d80d50c}} 
+\#define {\bfseries A\+L\+T\+\_\+\+I2\+C\+\_\+\+S\+S\+\_\+\+M\+A\+X\+\_\+\+S\+P\+E\+ED}~100000
+\item 
+\mbox{\Hypertarget{alt__i2c_8c_ac2f78cee2d09d6aaeccaeb1c4ffd7d8b}\label{alt__i2c_8c_ac2f78cee2d09d6aaeccaeb1c4ffd7d8b}} 
+\#define {\bfseries A\+L\+T\+\_\+\+I2\+C\+\_\+\+F\+S\+\_\+\+M\+I\+N\+\_\+\+S\+P\+E\+ED}~100000
+\item 
+\mbox{\Hypertarget{alt__i2c_8c_a72fc2de257b4b0dd7f5f173824a40751}\label{alt__i2c_8c_a72fc2de257b4b0dd7f5f173824a40751}} 
+\#define {\bfseries A\+L\+T\+\_\+\+I2\+C\+\_\+\+F\+S\+\_\+\+M\+A\+X\+\_\+\+S\+P\+E\+ED}~400000
+\item 
+\mbox{\Hypertarget{alt__i2c_8c_a9998dd0c7a2b07f1743b6051f7587d66}\label{alt__i2c_8c_a9998dd0c7a2b07f1743b6051f7587d66}} 
+\#define {\bfseries A\+L\+T\+\_\+\+I2\+C\+\_\+\+S\+S\+\_\+\+D\+E\+F\+A\+U\+L\+T\+\_\+\+S\+P\+K\+L\+EN}~11
+\item 
+\mbox{\Hypertarget{alt__i2c_8c_a0bf16c4918c3644c79d76709ce3e284d}\label{alt__i2c_8c_a0bf16c4918c3644c79d76709ce3e284d}} 
+\#define {\bfseries A\+L\+T\+\_\+\+I2\+C\+\_\+\+F\+S\+\_\+\+D\+E\+F\+A\+U\+L\+T\+\_\+\+S\+P\+K\+L\+EN}~4
+\item 
+\mbox{\Hypertarget{alt__i2c_8c_a1ae43824c6b486e839d5fa0d1b623c8b}\label{alt__i2c_8c_a1ae43824c6b486e839d5fa0d1b623c8b}} 
+\#define {\bfseries A\+L\+T\+\_\+\+I2\+C\+\_\+\+D\+I\+F\+F\+\_\+\+L\+C\+N\+T\+\_\+\+H\+C\+NT}~70
+\item 
+\mbox{\Hypertarget{alt__i2c_8c_a9f8cebedd809edcc27b3feb5f9039ce9}\label{alt__i2c_8c_a9f8cebedd809edcc27b3feb5f9039ce9}} 
+\#define {\bfseries A\+L\+T\+\_\+\+I2\+C\+\_\+\+S\+L\+V\+\_\+\+R\+E\+S\+E\+R\+V\+E\+\_\+\+A\+D\+D\+R\+\_\+\+S\+\_\+1}~0x00
+\item 
+\mbox{\Hypertarget{alt__i2c_8c_a0de7cdbf41d8ca1b912027b387de03ce}\label{alt__i2c_8c_a0de7cdbf41d8ca1b912027b387de03ce}} 
+\#define {\bfseries A\+L\+T\+\_\+\+I2\+C\+\_\+\+S\+L\+V\+\_\+\+R\+E\+S\+E\+R\+V\+E\+\_\+\+A\+D\+D\+R\+\_\+\+F\+\_\+1}~0x07
+\item 
+\mbox{\Hypertarget{alt__i2c_8c_a36e6cd028c40588b5e775ff13249ba18}\label{alt__i2c_8c_a36e6cd028c40588b5e775ff13249ba18}} 
+\#define {\bfseries A\+L\+T\+\_\+\+I2\+C\+\_\+\+S\+L\+V\+\_\+\+R\+E\+S\+E\+R\+V\+E\+\_\+\+A\+D\+D\+R\+\_\+\+S\+\_\+2}~0x78
+\item 
+\mbox{\Hypertarget{alt__i2c_8c_ae5c759bb8d30f49fc9f6a00dc24ada14}\label{alt__i2c_8c_ae5c759bb8d30f49fc9f6a00dc24ada14}} 
+\#define {\bfseries A\+L\+T\+\_\+\+I2\+C\+\_\+\+S\+L\+V\+\_\+\+R\+E\+S\+E\+R\+V\+E\+\_\+\+A\+D\+D\+R\+\_\+\+F\+\_\+2}~0x7F
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__ALT__I2C_ga6c4e543ed4ae5b99e8e2ff02eae463cc}{alt\+\_\+i2c\+\_\+init}} (const \mbox{\hyperlink{group__ALT__I2C_ga1db51a8ca7c78d287a620a1f894ba1c5}{A\+L\+T\+\_\+\+I2\+C\+\_\+\+C\+T\+L\+R\+\_\+t}} \mbox{\hyperlink{structi2c}{i2c}}, \mbox{\hyperlink{structALT__I2C__DEV__s}{A\+L\+T\+\_\+\+I2\+C\+\_\+\+D\+E\+V\+\_\+t}} $\ast$\mbox{\hyperlink{structi2c__dev}{i2c\+\_\+dev}})
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__ALT__I2C_gaeabf95833cc757c3ff6315c13194777d}{alt\+\_\+i2c\+\_\+reset}} (\mbox{\hyperlink{structALT__I2C__DEV__s}{A\+L\+T\+\_\+\+I2\+C\+\_\+\+D\+E\+V\+\_\+t}} $\ast$\mbox{\hyperlink{structi2c__dev}{i2c\+\_\+dev}})
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__ALT__I2C_gae7cc51922c0e90eb3695c4757fb7eba3}{alt\+\_\+i2c\+\_\+uninit}} (\mbox{\hyperlink{structALT__I2C__DEV__s}{A\+L\+T\+\_\+\+I2\+C\+\_\+\+D\+E\+V\+\_\+t}} $\ast$\mbox{\hyperlink{structi2c__dev}{i2c\+\_\+dev}})
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__ALT__I2C_ga60c931e6e918b963313fc729c5418289}{alt\+\_\+i2c\+\_\+enable}} (\mbox{\hyperlink{structALT__I2C__DEV__s}{A\+L\+T\+\_\+\+I2\+C\+\_\+\+D\+E\+V\+\_\+t}} $\ast$\mbox{\hyperlink{structi2c__dev}{i2c\+\_\+dev}})
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__ALT__I2C_gad16c19c9abacbfbe6f4501b0db490322}{alt\+\_\+i2c\+\_\+disable}} (\mbox{\hyperlink{structALT__I2C__DEV__s}{A\+L\+T\+\_\+\+I2\+C\+\_\+\+D\+E\+V\+\_\+t}} $\ast$\mbox{\hyperlink{structi2c__dev}{i2c\+\_\+dev}})
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__ALT__I2C_ga766698352e55a0abdf158be06c7faed1}{alt\+\_\+i2c\+\_\+is\+\_\+enabled}} (\mbox{\hyperlink{structALT__I2C__DEV__s}{A\+L\+T\+\_\+\+I2\+C\+\_\+\+D\+E\+V\+\_\+t}} $\ast$\mbox{\hyperlink{structi2c__dev}{i2c\+\_\+dev}})
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__ALT__I2C_ga33fc9aa9f017d7ae7eb0779415e9d69f}{alt\+\_\+i2c\+\_\+master\+\_\+config\+\_\+get}} (\mbox{\hyperlink{structALT__I2C__DEV__s}{A\+L\+T\+\_\+\+I2\+C\+\_\+\+D\+E\+V\+\_\+t}} $\ast$\mbox{\hyperlink{structi2c__dev}{i2c\+\_\+dev}}, \mbox{\hyperlink{group__ALT__I2C_ga4f317dbba3080bb537f6c145ca30d503}{A\+L\+T\+\_\+\+I2\+C\+\_\+\+M\+A\+S\+T\+E\+R\+\_\+\+C\+O\+N\+F\+I\+G\+\_\+t}} $\ast$cfg)
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__ALT__I2C_gae1e81c86d394a6cc962598e3e32931d5}{alt\+\_\+i2c\+\_\+master\+\_\+config\+\_\+set}} (\mbox{\hyperlink{structALT__I2C__DEV__s}{A\+L\+T\+\_\+\+I2\+C\+\_\+\+D\+E\+V\+\_\+t}} $\ast$\mbox{\hyperlink{structi2c__dev}{i2c\+\_\+dev}}, const \mbox{\hyperlink{group__ALT__I2C_ga4f317dbba3080bb537f6c145ca30d503}{A\+L\+T\+\_\+\+I2\+C\+\_\+\+M\+A\+S\+T\+E\+R\+\_\+\+C\+O\+N\+F\+I\+G\+\_\+t}} $\ast$cfg)
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__ALT__I2C_ga90d8a89d7b447bede11a9c1c79ea3b99}{alt\+\_\+i2c\+\_\+master\+\_\+config\+\_\+speed\+\_\+get}} (\mbox{\hyperlink{structALT__I2C__DEV__s}{A\+L\+T\+\_\+\+I2\+C\+\_\+\+D\+E\+V\+\_\+t}} $\ast$\mbox{\hyperlink{structi2c__dev}{i2c\+\_\+dev}}, const \mbox{\hyperlink{group__ALT__I2C_ga4f317dbba3080bb537f6c145ca30d503}{A\+L\+T\+\_\+\+I2\+C\+\_\+\+M\+A\+S\+T\+E\+R\+\_\+\+C\+O\+N\+F\+I\+G\+\_\+t}} $\ast$cfg, uint32\+\_\+t $\ast$speed\+\_\+in\+\_\+hz)
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__ALT__I2C_gab7a9d3d9d126cce421b7a9e0254b2a6e}{alt\+\_\+i2c\+\_\+master\+\_\+config\+\_\+speed\+\_\+set}} (\mbox{\hyperlink{structALT__I2C__DEV__s}{A\+L\+T\+\_\+\+I2\+C\+\_\+\+D\+E\+V\+\_\+t}} $\ast$\mbox{\hyperlink{structi2c__dev}{i2c\+\_\+dev}}, \mbox{\hyperlink{group__ALT__I2C_ga4f317dbba3080bb537f6c145ca30d503}{A\+L\+T\+\_\+\+I2\+C\+\_\+\+M\+A\+S\+T\+E\+R\+\_\+\+C\+O\+N\+F\+I\+G\+\_\+t}} $\ast$cfg, uint32\+\_\+t speed\+\_\+in\+\_\+hz)
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__ALT__I2C_ga2db2575ff493909f71d05f9aa37848b6}{alt\+\_\+i2c\+\_\+slave\+\_\+config\+\_\+get}} (\mbox{\hyperlink{structALT__I2C__DEV__s}{A\+L\+T\+\_\+\+I2\+C\+\_\+\+D\+E\+V\+\_\+t}} $\ast$\mbox{\hyperlink{structi2c__dev}{i2c\+\_\+dev}}, \mbox{\hyperlink{group__ALT__I2C_ga9c0d22378cb1d6eb0194ca424026081d}{A\+L\+T\+\_\+\+I2\+C\+\_\+\+S\+L\+A\+V\+E\+\_\+\+C\+O\+N\+F\+I\+G\+\_\+t}} $\ast$cfg)
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__ALT__I2C_gaf11d526a49799f04d8f5336bce0dde18}{alt\+\_\+i2c\+\_\+slave\+\_\+config\+\_\+set}} (\mbox{\hyperlink{structALT__I2C__DEV__s}{A\+L\+T\+\_\+\+I2\+C\+\_\+\+D\+E\+V\+\_\+t}} $\ast$\mbox{\hyperlink{structi2c__dev}{i2c\+\_\+dev}}, const \mbox{\hyperlink{group__ALT__I2C_ga9c0d22378cb1d6eb0194ca424026081d}{A\+L\+T\+\_\+\+I2\+C\+\_\+\+S\+L\+A\+V\+E\+\_\+\+C\+O\+N\+F\+I\+G\+\_\+t}} $\ast$cfg)
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__ALT__I2C__SDA__HOLD_ga0aa85561acfa2b054283557208be0b46}{alt\+\_\+i2c\+\_\+sda\+\_\+hold\+\_\+time\+\_\+get}} (\mbox{\hyperlink{structALT__I2C__DEV__s}{A\+L\+T\+\_\+\+I2\+C\+\_\+\+D\+E\+V\+\_\+t}} $\ast$\mbox{\hyperlink{structi2c__dev}{i2c\+\_\+dev}}, uint16\+\_\+t $\ast$hold\+\_\+time)
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__ALT__I2C__SDA__HOLD_ga9e5a55cd63be05ba095bb53448c1aeee}{alt\+\_\+i2c\+\_\+sda\+\_\+hold\+\_\+time\+\_\+set}} (\mbox{\hyperlink{structALT__I2C__DEV__s}{A\+L\+T\+\_\+\+I2\+C\+\_\+\+D\+E\+V\+\_\+t}} $\ast$\mbox{\hyperlink{structi2c__dev}{i2c\+\_\+dev}}, const uint16\+\_\+t hold\+\_\+time)
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__ALT__I2C_ga422d03c04681a4c27b1894ffe133213c}{alt\+\_\+i2c\+\_\+op\+\_\+mode\+\_\+get}} (\mbox{\hyperlink{structALT__I2C__DEV__s}{A\+L\+T\+\_\+\+I2\+C\+\_\+\+D\+E\+V\+\_\+t}} $\ast$\mbox{\hyperlink{structi2c__dev}{i2c\+\_\+dev}}, \mbox{\hyperlink{group__ALT__I2C_ga15e9cb79693e43e74075112b2aebe1e2}{A\+L\+T\+\_\+\+I2\+C\+\_\+\+M\+O\+D\+E\+\_\+t}} $\ast$mode)
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__ALT__I2C_gafc79f16589bc6e18cfa6841d316c8109}{alt\+\_\+i2c\+\_\+op\+\_\+mode\+\_\+set}} (\mbox{\hyperlink{structALT__I2C__DEV__s}{A\+L\+T\+\_\+\+I2\+C\+\_\+\+D\+E\+V\+\_\+t}} $\ast$\mbox{\hyperlink{structi2c__dev}{i2c\+\_\+dev}}, const \mbox{\hyperlink{group__ALT__I2C_ga15e9cb79693e43e74075112b2aebe1e2}{A\+L\+T\+\_\+\+I2\+C\+\_\+\+M\+O\+D\+E\+\_\+t}} mode)
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__ALT__I2C_ga511834bf99afd6c808d4fdc593a40bde}{alt\+\_\+i2c\+\_\+is\+\_\+busy}} (\mbox{\hyperlink{structALT__I2C__DEV__s}{A\+L\+T\+\_\+\+I2\+C\+\_\+\+D\+E\+V\+\_\+t}} $\ast$\mbox{\hyperlink{structi2c__dev}{i2c\+\_\+dev}})
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__ALT__I2C_ga4fef6676a5473f870bf441d29932239b}{alt\+\_\+i2c\+\_\+read}} (\mbox{\hyperlink{structALT__I2C__DEV__s}{A\+L\+T\+\_\+\+I2\+C\+\_\+\+D\+E\+V\+\_\+t}} $\ast$\mbox{\hyperlink{structi2c__dev}{i2c\+\_\+dev}}, uint8\+\_\+t $\ast$value)
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__ALT__I2C_ga22c701c3cecc56086156a0cde75277ef}{alt\+\_\+i2c\+\_\+write}} (\mbox{\hyperlink{structALT__I2C__DEV__s}{A\+L\+T\+\_\+\+I2\+C\+\_\+\+D\+E\+V\+\_\+t}} $\ast$\mbox{\hyperlink{structi2c__dev}{i2c\+\_\+dev}}, const uint8\+\_\+t value)
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__ALT__I2C_gaadba976480855d6b962cd0abbdb01c42}{alt\+\_\+i2c\+\_\+slave\+\_\+receive}} (\mbox{\hyperlink{structALT__I2C__DEV__s}{A\+L\+T\+\_\+\+I2\+C\+\_\+\+D\+E\+V\+\_\+t}} $\ast$\mbox{\hyperlink{structi2c__dev}{i2c\+\_\+dev}}, uint8\+\_\+t $\ast$data)
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__ALT__I2C_ga3137e57044cb1f6d1b8ce9b09baf61e3}{alt\+\_\+i2c\+\_\+slave\+\_\+transmit}} (\mbox{\hyperlink{structALT__I2C__DEV__s}{A\+L\+T\+\_\+\+I2\+C\+\_\+\+D\+E\+V\+\_\+t}} $\ast$\mbox{\hyperlink{structi2c__dev}{i2c\+\_\+dev}}, const uint8\+\_\+t data)
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__ALT__I2C_ga0328c19c0b8da8349533947b15ae291d}{alt\+\_\+i2c\+\_\+slave\+\_\+bulk\+\_\+transmit}} (\mbox{\hyperlink{structALT__I2C__DEV__s}{A\+L\+T\+\_\+\+I2\+C\+\_\+\+D\+E\+V\+\_\+t}} $\ast$\mbox{\hyperlink{structi2c__dev}{i2c\+\_\+dev}}, const void $\ast$data, const size\+\_\+t \mbox{\hyperlink{sun4u_2tte_8h_a245260f6f74972558f61b85227df5aae}{size}})
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__ALT__I2C_gaa24c8832ba8eb5643a4455adfaf48b3c}{alt\+\_\+i2c\+\_\+master\+\_\+target\+\_\+get}} (\mbox{\hyperlink{structALT__I2C__DEV__s}{A\+L\+T\+\_\+\+I2\+C\+\_\+\+D\+E\+V\+\_\+t}} $\ast$\mbox{\hyperlink{structi2c__dev}{i2c\+\_\+dev}}, uint32\+\_\+t $\ast$target\+\_\+addr)
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__ALT__I2C_ga9069f423699fb1a1a7ba60ce524a8320}{alt\+\_\+i2c\+\_\+master\+\_\+target\+\_\+set}} (\mbox{\hyperlink{structALT__I2C__DEV__s}{A\+L\+T\+\_\+\+I2\+C\+\_\+\+D\+E\+V\+\_\+t}} $\ast$\mbox{\hyperlink{structi2c__dev}{i2c\+\_\+dev}}, uint32\+\_\+t target\+\_\+addr)
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__ALT__I2C_ga1dcffc4f158e9b5c4ddab03f75e1a393}{alt\+\_\+i2c\+\_\+master\+\_\+transmit}} (\mbox{\hyperlink{structALT__I2C__DEV__s}{A\+L\+T\+\_\+\+I2\+C\+\_\+\+D\+E\+V\+\_\+t}} $\ast$\mbox{\hyperlink{structi2c__dev}{i2c\+\_\+dev}}, const void $\ast$data, const size\+\_\+t \mbox{\hyperlink{sun4u_2tte_8h_a245260f6f74972558f61b85227df5aae}{size}}, const bool issue\+\_\+restart, const bool issue\+\_\+stop)
+\item 
+\mbox{\Hypertarget{alt__i2c_8c_a601a9ac4f5ee1aad4325fe4133cfb12e}\label{alt__i2c_8c_a601a9ac4f5ee1aad4325fe4133cfb12e}} 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} {\bfseries alt\+\_\+i2c\+\_\+master\+\_\+receive\+\_\+helper} (\mbox{\hyperlink{structALT__I2C__DEV__s}{A\+L\+T\+\_\+\+I2\+C\+\_\+\+D\+E\+V\+\_\+t}} $\ast$\mbox{\hyperlink{structi2c__dev}{i2c\+\_\+dev}}, uint8\+\_\+t $\ast$buffer, size\+\_\+t \mbox{\hyperlink{sun4u_2tte_8h_a245260f6f74972558f61b85227df5aae}{size}}, bool issue\+\_\+restart, bool issue\+\_\+stop)
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__ALT__I2C_gab0663c3f923ca348dc16b5f4a4f96f9b}{alt\+\_\+i2c\+\_\+master\+\_\+receive}} (\mbox{\hyperlink{structALT__I2C__DEV__s}{A\+L\+T\+\_\+\+I2\+C\+\_\+\+D\+E\+V\+\_\+t}} $\ast$\mbox{\hyperlink{structi2c__dev}{i2c\+\_\+dev}}, void $\ast$data, const size\+\_\+t \mbox{\hyperlink{sun4u_2tte_8h_a245260f6f74972558f61b85227df5aae}{size}}, const bool issue\+\_\+restart, const bool issue\+\_\+stop)
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__ALT__I2C_ga25b161ac5d073c8f1ba5ad3bb822b951}{alt\+\_\+i2c\+\_\+issue\+\_\+write}} (\mbox{\hyperlink{structALT__I2C__DEV__s}{A\+L\+T\+\_\+\+I2\+C\+\_\+\+D\+E\+V\+\_\+t}} $\ast$\mbox{\hyperlink{structi2c__dev}{i2c\+\_\+dev}}, const uint8\+\_\+t value, const bool issue\+\_\+restart, const bool issue\+\_\+stop)
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__ALT__I2C_gad3dbad0b53d35273f476b2c9c6284fae}{alt\+\_\+i2c\+\_\+issue\+\_\+read}} (\mbox{\hyperlink{structALT__I2C__DEV__s}{A\+L\+T\+\_\+\+I2\+C\+\_\+\+D\+E\+V\+\_\+t}} $\ast$\mbox{\hyperlink{structi2c__dev}{i2c\+\_\+dev}}, const bool issue\+\_\+restart, const bool issue\+\_\+stop)
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__ALT__I2C__GEN__CALL_gadf63bde5b3f565154bc4bd101176f1b2}{alt\+\_\+i2c\+\_\+master\+\_\+general\+\_\+call}} (\mbox{\hyperlink{structALT__I2C__DEV__s}{A\+L\+T\+\_\+\+I2\+C\+\_\+\+D\+E\+V\+\_\+t}} $\ast$\mbox{\hyperlink{structi2c__dev}{i2c\+\_\+dev}}, const void $\ast$data, const size\+\_\+t \mbox{\hyperlink{sun4u_2tte_8h_a245260f6f74972558f61b85227df5aae}{size}}, const bool issue\+\_\+restart, const bool issue\+\_\+stop)
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__ALT__I2C__GEN__CALL_gab82cad6cc438695db0f5c68e3447c422}{alt\+\_\+i2c\+\_\+general\+\_\+call\+\_\+ack\+\_\+disable}} (\mbox{\hyperlink{structALT__I2C__DEV__s}{A\+L\+T\+\_\+\+I2\+C\+\_\+\+D\+E\+V\+\_\+t}} $\ast$\mbox{\hyperlink{structi2c__dev}{i2c\+\_\+dev}})
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__ALT__I2C__GEN__CALL_ga649f8983f2840fbaa480ca33b2ff82b6}{alt\+\_\+i2c\+\_\+general\+\_\+call\+\_\+ack\+\_\+enable}} (\mbox{\hyperlink{structALT__I2C__DEV__s}{A\+L\+T\+\_\+\+I2\+C\+\_\+\+D\+E\+V\+\_\+t}} $\ast$\mbox{\hyperlink{structi2c__dev}{i2c\+\_\+dev}})
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__ALT__I2C__GEN__CALL_gadb0801fc81c23610fc980552c52dede4}{alt\+\_\+i2c\+\_\+general\+\_\+call\+\_\+ack\+\_\+is\+\_\+enabled}} (\mbox{\hyperlink{structALT__I2C__DEV__s}{A\+L\+T\+\_\+\+I2\+C\+\_\+\+D\+E\+V\+\_\+t}} $\ast$\mbox{\hyperlink{structi2c__dev}{i2c\+\_\+dev}})
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__ALT__I2C__INT_ga55a40d841dd93d2861a4597603844776}{alt\+\_\+i2c\+\_\+int\+\_\+status\+\_\+get}} (\mbox{\hyperlink{structALT__I2C__DEV__s}{A\+L\+T\+\_\+\+I2\+C\+\_\+\+D\+E\+V\+\_\+t}} $\ast$\mbox{\hyperlink{structi2c__dev}{i2c\+\_\+dev}}, uint32\+\_\+t $\ast$status)
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__ALT__I2C__INT_ga15ff55010cad84db0476be38e064851d}{alt\+\_\+i2c\+\_\+int\+\_\+raw\+\_\+status\+\_\+get}} (\mbox{\hyperlink{structALT__I2C__DEV__s}{A\+L\+T\+\_\+\+I2\+C\+\_\+\+D\+E\+V\+\_\+t}} $\ast$\mbox{\hyperlink{structi2c__dev}{i2c\+\_\+dev}}, uint32\+\_\+t $\ast$status)
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__ALT__I2C__INT_gae00500b27051a82ff75905e777f0e1c8}{alt\+\_\+i2c\+\_\+int\+\_\+clear}} (\mbox{\hyperlink{structALT__I2C__DEV__s}{A\+L\+T\+\_\+\+I2\+C\+\_\+\+D\+E\+V\+\_\+t}} $\ast$\mbox{\hyperlink{structi2c__dev}{i2c\+\_\+dev}}, const uint32\+\_\+t mask)
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__ALT__I2C__INT_gae81d1d1af98f385fd6202d382af93ecc}{alt\+\_\+i2c\+\_\+int\+\_\+disable}} (\mbox{\hyperlink{structALT__I2C__DEV__s}{A\+L\+T\+\_\+\+I2\+C\+\_\+\+D\+E\+V\+\_\+t}} $\ast$\mbox{\hyperlink{structi2c__dev}{i2c\+\_\+dev}}, const uint32\+\_\+t mask)
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__ALT__I2C__INT_ga8b2d5d1cdd08eb4c7d431bf42532ef85}{alt\+\_\+i2c\+\_\+int\+\_\+enable}} (\mbox{\hyperlink{structALT__I2C__DEV__s}{A\+L\+T\+\_\+\+I2\+C\+\_\+\+D\+E\+V\+\_\+t}} $\ast$\mbox{\hyperlink{structi2c__dev}{i2c\+\_\+dev}}, const uint32\+\_\+t mask)
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__ALT__I2C__INT_gac5a4221442c1b5fd5aff9672ccf91ad1}{alt\+\_\+i2c\+\_\+tx\+\_\+abort\+\_\+cause\+\_\+get}} (\mbox{\hyperlink{structALT__I2C__DEV__s}{A\+L\+T\+\_\+\+I2\+C\+\_\+\+D\+E\+V\+\_\+t}} $\ast$\mbox{\hyperlink{structi2c__dev}{i2c\+\_\+dev}}, \mbox{\hyperlink{group__ALT__I2C_gae7ca3bb5e96b3425588a975987407738}{A\+L\+T\+\_\+\+I2\+C\+\_\+\+T\+X\+\_\+\+A\+B\+O\+R\+T\+\_\+\+C\+A\+U\+S\+E\+\_\+t}} $\ast$cause)
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__ALT__I2C__RX__FIFO_gacfc0421dad98b6fbd6abfba07c059d3d}{alt\+\_\+i2c\+\_\+rx\+\_\+fifo\+\_\+is\+\_\+empty}} (\mbox{\hyperlink{structALT__I2C__DEV__s}{A\+L\+T\+\_\+\+I2\+C\+\_\+\+D\+E\+V\+\_\+t}} $\ast$\mbox{\hyperlink{structi2c__dev}{i2c\+\_\+dev}})
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__ALT__I2C__RX__FIFO_gac1dd68ec990d8bb5ce40157855c4dd7b}{alt\+\_\+i2c\+\_\+rx\+\_\+fifo\+\_\+is\+\_\+full}} (\mbox{\hyperlink{structALT__I2C__DEV__s}{A\+L\+T\+\_\+\+I2\+C\+\_\+\+D\+E\+V\+\_\+t}} $\ast$\mbox{\hyperlink{structi2c__dev}{i2c\+\_\+dev}})
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__ALT__I2C__RX__FIFO_ga2e0e7b4f85140e81aeaa10007fd63059}{alt\+\_\+i2c\+\_\+rx\+\_\+fifo\+\_\+level\+\_\+get}} (\mbox{\hyperlink{structALT__I2C__DEV__s}{A\+L\+T\+\_\+\+I2\+C\+\_\+\+D\+E\+V\+\_\+t}} $\ast$\mbox{\hyperlink{structi2c__dev}{i2c\+\_\+dev}}, uint32\+\_\+t $\ast$num\+\_\+entries)
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__ALT__I2C__RX__FIFO_ga4772432d9bc0c0fcf944d2174bb4452d}{alt\+\_\+i2c\+\_\+rx\+\_\+fifo\+\_\+threshold\+\_\+get}} (\mbox{\hyperlink{structALT__I2C__DEV__s}{A\+L\+T\+\_\+\+I2\+C\+\_\+\+D\+E\+V\+\_\+t}} $\ast$\mbox{\hyperlink{structi2c__dev}{i2c\+\_\+dev}}, uint8\+\_\+t $\ast$threshold)
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__ALT__I2C__RX__FIFO_ga1c108da9dc02648f215035d878b92b88}{alt\+\_\+i2c\+\_\+rx\+\_\+fifo\+\_\+threshold\+\_\+set}} (\mbox{\hyperlink{structALT__I2C__DEV__s}{A\+L\+T\+\_\+\+I2\+C\+\_\+\+D\+E\+V\+\_\+t}} $\ast$\mbox{\hyperlink{structi2c__dev}{i2c\+\_\+dev}}, const uint8\+\_\+t threshold)
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__ALT__I2C__TX__FIFO_gad05ec1e8cc6ad14170154fb6ceac7bc6}{alt\+\_\+i2c\+\_\+tx\+\_\+fifo\+\_\+is\+\_\+empty}} (\mbox{\hyperlink{structALT__I2C__DEV__s}{A\+L\+T\+\_\+\+I2\+C\+\_\+\+D\+E\+V\+\_\+t}} $\ast$\mbox{\hyperlink{structi2c__dev}{i2c\+\_\+dev}})
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__ALT__I2C__TX__FIFO_ga741f705473ce5cb1c2859f91c1dc3f6b}{alt\+\_\+i2c\+\_\+tx\+\_\+fifo\+\_\+is\+\_\+full}} (\mbox{\hyperlink{structALT__I2C__DEV__s}{A\+L\+T\+\_\+\+I2\+C\+\_\+\+D\+E\+V\+\_\+t}} $\ast$\mbox{\hyperlink{structi2c__dev}{i2c\+\_\+dev}})
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__ALT__I2C__TX__FIFO_ga933113da14d91a6276239c233e123572}{alt\+\_\+i2c\+\_\+tx\+\_\+fifo\+\_\+level\+\_\+get}} (\mbox{\hyperlink{structALT__I2C__DEV__s}{A\+L\+T\+\_\+\+I2\+C\+\_\+\+D\+E\+V\+\_\+t}} $\ast$\mbox{\hyperlink{structi2c__dev}{i2c\+\_\+dev}}, uint32\+\_\+t $\ast$num\+\_\+entries)
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__ALT__I2C__TX__FIFO_gad72ef4aff5f1ee4e1f35aa525a4f04c2}{alt\+\_\+i2c\+\_\+tx\+\_\+fifo\+\_\+threshold\+\_\+get}} (\mbox{\hyperlink{structALT__I2C__DEV__s}{A\+L\+T\+\_\+\+I2\+C\+\_\+\+D\+E\+V\+\_\+t}} $\ast$\mbox{\hyperlink{structi2c__dev}{i2c\+\_\+dev}}, uint8\+\_\+t $\ast$threshold)
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__ALT__I2C__TX__FIFO_ga586c10f3131294a2d8a20b8698277279}{alt\+\_\+i2c\+\_\+tx\+\_\+fifo\+\_\+threshold\+\_\+set}} (\mbox{\hyperlink{structALT__I2C__DEV__s}{A\+L\+T\+\_\+\+I2\+C\+\_\+\+D\+E\+V\+\_\+t}} $\ast$\mbox{\hyperlink{structi2c__dev}{i2c\+\_\+dev}}, const uint8\+\_\+t threshold)
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__ALT__I2C__DMA_ga7424ca160282d4131f918000f7c6f6c1}{alt\+\_\+i2c\+\_\+rx\+\_\+dma\+\_\+threshold\+\_\+get}} (\mbox{\hyperlink{structALT__I2C__DEV__s}{A\+L\+T\+\_\+\+I2\+C\+\_\+\+D\+E\+V\+\_\+t}} $\ast$\mbox{\hyperlink{structi2c__dev}{i2c\+\_\+dev}}, uint8\+\_\+t $\ast$threshold)
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__ALT__I2C__DMA_ga556f776c29ff76200811565f5f21f212}{alt\+\_\+i2c\+\_\+rx\+\_\+dma\+\_\+threshold\+\_\+set}} (\mbox{\hyperlink{structALT__I2C__DEV__s}{A\+L\+T\+\_\+\+I2\+C\+\_\+\+D\+E\+V\+\_\+t}} $\ast$\mbox{\hyperlink{structi2c__dev}{i2c\+\_\+dev}}, uint8\+\_\+t threshold)
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__ALT__I2C__DMA_ga7bd9b0fc4745d569930c13ef37fbb8d4}{alt\+\_\+i2c\+\_\+tx\+\_\+dma\+\_\+threshold\+\_\+get}} (\mbox{\hyperlink{structALT__I2C__DEV__s}{A\+L\+T\+\_\+\+I2\+C\+\_\+\+D\+E\+V\+\_\+t}} $\ast$\mbox{\hyperlink{structi2c__dev}{i2c\+\_\+dev}}, uint8\+\_\+t $\ast$threshold)
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__ALT__I2C__DMA_ga3aaf92e0837ceb1c37af47b603985c5c}{alt\+\_\+i2c\+\_\+tx\+\_\+dma\+\_\+threshold\+\_\+set}} (\mbox{\hyperlink{structALT__I2C__DEV__s}{A\+L\+T\+\_\+\+I2\+C\+\_\+\+D\+E\+V\+\_\+t}} $\ast$\mbox{\hyperlink{structi2c__dev}{i2c\+\_\+dev}}, uint8\+\_\+t threshold)
+\end{DoxyCompactItemize}

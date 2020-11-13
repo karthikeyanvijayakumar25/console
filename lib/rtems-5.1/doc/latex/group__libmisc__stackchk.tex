@@ -1,0 +1,162 @@
+\hypertarget{group__libmisc__stackchk}{}\section{Stack Checker Mechanism}
+\label{group__libmisc__stackchk}\index{Stack Checker Mechanism@{Stack Checker Mechanism}}
+\subsection*{Files}
+\begin{DoxyCompactItemize}
+\item 
+file \mbox{\hyperlink{stackchk_8h}{stackchk.\+h}}
+\begin{DoxyCompactList}\small\item\em Stack Checker Information. \end{DoxyCompactList}\item 
+file \mbox{\hyperlink{check_8c}{check.\+c}}
+\begin{DoxyCompactList}\small\item\em Stack Overflow Check User Extension Set. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__libmisc__stackchk_gae63f9d087743a5d9e2cc66bec5009e71}{R\+T\+E\+M\+S\+\_\+\+S\+T\+A\+C\+K\+\_\+\+C\+H\+E\+C\+K\+E\+R\+\_\+\+E\+X\+T\+E\+N\+S\+I\+ON}}
+\begin{DoxyCompactList}\small\item\em Stack Checker Extension Set Definition. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{group__libmisc__stackchk_ga3d14a039e776b11639d8b0a4166756e6}{rtems\+\_\+stack\+\_\+checker\+\_\+is\+\_\+blown}} (void)
+\begin{DoxyCompactList}\small\item\em Checks if current task is blown its stack. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__libmisc__stackchk_ga8df4c8fbe9071233068782c83dc83fd0}{rtems\+\_\+stack\+\_\+checker\+\_\+report\+\_\+usage}} (void)
+\begin{DoxyCompactList}\small\item\em Print the stack usage report using printk. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__libmisc__stackchk_ga25ea63d8178d6eb26d2a1148bb03117d}{rtems\+\_\+stack\+\_\+checker\+\_\+report\+\_\+usage\+\_\+with\+\_\+plugin}} (const \mbox{\hyperlink{structrtems__printer}{rtems\+\_\+printer}} $\ast$printer)
+\begin{DoxyCompactList}\small\item\em Print the stack usage report using caller\textquotesingle{}s routine. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__libmisc__stackchk_ga024648492aa565244588c42a90955d3d}{rtems\+\_\+stack\+\_\+checker\+\_\+create\+\_\+extension}} (\mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$running, \mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$the\+\_\+thread)
+\begin{DoxyCompactList}\small\item\em Stack Checker Task Create Extension. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__libmisc__stackchk_ga2ab96674e9e2f3ae35b8d165b548aa61}\label{group__libmisc__stackchk_ga2ab96674e9e2f3ae35b8d165b548aa61}} 
+void {\bfseries rtems\+\_\+stack\+\_\+checker\+\_\+begin\+\_\+extension} (\mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$executing)
+\item 
+void \mbox{\hyperlink{group__libmisc__stackchk_gaab6fe708fb2c9109528ce4c55c92e9f2}{rtems\+\_\+stack\+\_\+checker\+\_\+switch\+\_\+extension}} (\mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$running, \mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$heir)
+\begin{DoxyCompactList}\small\item\em Stack Checker Task Context Switch Extension. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{group__libmisc__stackchk_gae63f9d087743a5d9e2cc66bec5009e71}\label{group__libmisc__stackchk_gae63f9d087743a5d9e2cc66bec5009e71}} 
+\index{Stack Checker Mechanism@{Stack Checker Mechanism}!RTEMS\_STACK\_CHECKER\_EXTENSION@{RTEMS\_STACK\_CHECKER\_EXTENSION}}
+\index{RTEMS\_STACK\_CHECKER\_EXTENSION@{RTEMS\_STACK\_CHECKER\_EXTENSION}!Stack Checker Mechanism@{Stack Checker Mechanism}}
+\subsubsection{\texorpdfstring{RTEMS\_STACK\_CHECKER\_EXTENSION}{RTEMS\_STACK\_CHECKER\_EXTENSION}}
+{\footnotesize\ttfamily \#define R\+T\+E\+M\+S\+\_\+\+S\+T\+A\+C\+K\+\_\+\+C\+H\+E\+C\+K\+E\+R\+\_\+\+E\+X\+T\+E\+N\+S\+I\+ON}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{ \(\backslash\)}
+\DoxyCodeLine{  rtems\_stack\_checker\_create\_extension,        \textcolor{comment}{/* rtems\_task\_create  */} \(\backslash\)}
+\DoxyCodeLine{  0,                                           \textcolor{comment}{/* rtems\_task\_start   */} \(\backslash\)}
+\DoxyCodeLine{  0,                                           \textcolor{comment}{/* rtems\_task\_restart */} \(\backslash\)}
+\DoxyCodeLine{  0,                                           \textcolor{comment}{/* rtems\_task\_delete  */} \(\backslash\)}
+\DoxyCodeLine{  rtems\_stack\_checker\_switch\_extension,        \textcolor{comment}{/* task\_switch  */} \(\backslash\)}
+\DoxyCodeLine{  rtems\_stack\_checker\_begin\_extension,         \textcolor{comment}{/* task\_begin   */} \(\backslash\)}
+\DoxyCodeLine{  0,                                           \textcolor{comment}{/* task\_exitted */} \(\backslash\)}
+\DoxyCodeLine{  0,                                           \textcolor{comment}{/* fatal        */} \(\backslash\)}
+\DoxyCodeLine{  0                                            \textcolor{comment}{/* terminate    */} \(\backslash\)}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Stack Checker Extension Set Definition. 
+
+This macro defines the user extension handler set for the stack checker. This macro is normally only used by \mbox{\hyperlink{confdefs_8h}{confdefs.\+h}}. 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{group__libmisc__stackchk_ga024648492aa565244588c42a90955d3d}\label{group__libmisc__stackchk_ga024648492aa565244588c42a90955d3d}} 
+\index{Stack Checker Mechanism@{Stack Checker Mechanism}!rtems\_stack\_checker\_create\_extension@{rtems\_stack\_checker\_create\_extension}}
+\index{rtems\_stack\_checker\_create\_extension@{rtems\_stack\_checker\_create\_extension}!Stack Checker Mechanism@{Stack Checker Mechanism}}
+\subsubsection{\texorpdfstring{rtems\_stack\_checker\_create\_extension()}{rtems\_stack\_checker\_create\_extension()}}
+{\footnotesize\ttfamily bool rtems\+\_\+stack\+\_\+checker\+\_\+create\+\_\+extension (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$}]{running,  }\item[{\mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$}]{the\+\_\+thread }\end{DoxyParamCaption})}
+
+
+
+Stack Checker Task Create Extension. 
+
+This method is the task create extension for the stack checker.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em running} & points to the currently executing task \\
+\hline
+\mbox{\texttt{ in}}  & {\em the\+\_\+thread} & points to the newly created task\\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+If this this the first task created, the stack checker will automatically intialize itself. 
+\end{DoxyNote}
+\mbox{\Hypertarget{group__libmisc__stackchk_ga3d14a039e776b11639d8b0a4166756e6}\label{group__libmisc__stackchk_ga3d14a039e776b11639d8b0a4166756e6}} 
+\index{Stack Checker Mechanism@{Stack Checker Mechanism}!rtems\_stack\_checker\_is\_blown@{rtems\_stack\_checker\_is\_blown}}
+\index{rtems\_stack\_checker\_is\_blown@{rtems\_stack\_checker\_is\_blown}!Stack Checker Mechanism@{Stack Checker Mechanism}}
+\subsubsection{\texorpdfstring{rtems\_stack\_checker\_is\_blown()}{rtems\_stack\_checker\_is\_blown()}}
+{\footnotesize\ttfamily bool rtems\+\_\+stack\+\_\+checker\+\_\+is\+\_\+blown (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Checks if current task is blown its stack. 
+
+This method is used to determine if the current stack pointer of the currently executing task is within bounds.
+
+
+\begin{DoxyRetVals}{Return values}
+{\em This} & method returns true if the currently executing task has blown its stack. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{group__libmisc__stackchk_ga8df4c8fbe9071233068782c83dc83fd0}\label{group__libmisc__stackchk_ga8df4c8fbe9071233068782c83dc83fd0}} 
+\index{Stack Checker Mechanism@{Stack Checker Mechanism}!rtems\_stack\_checker\_report\_usage@{rtems\_stack\_checker\_report\_usage}}
+\index{rtems\_stack\_checker\_report\_usage@{rtems\_stack\_checker\_report\_usage}!Stack Checker Mechanism@{Stack Checker Mechanism}}
+\subsubsection{\texorpdfstring{rtems\_stack\_checker\_report\_usage()}{rtems\_stack\_checker\_report\_usage()}}
+{\footnotesize\ttfamily void rtems\+\_\+stack\+\_\+checker\+\_\+report\+\_\+usage (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Print the stack usage report using printk. 
+
+This method prints a stack usage report for the curently executing task.
+
+\begin{DoxyNote}{Note}
+It uses printk to print the report. 
+\end{DoxyNote}
+\mbox{\Hypertarget{group__libmisc__stackchk_ga25ea63d8178d6eb26d2a1148bb03117d}\label{group__libmisc__stackchk_ga25ea63d8178d6eb26d2a1148bb03117d}} 
+\index{Stack Checker Mechanism@{Stack Checker Mechanism}!rtems\_stack\_checker\_report\_usage\_with\_plugin@{rtems\_stack\_checker\_report\_usage\_with\_plugin}}
+\index{rtems\_stack\_checker\_report\_usage\_with\_plugin@{rtems\_stack\_checker\_report\_usage\_with\_plugin}!Stack Checker Mechanism@{Stack Checker Mechanism}}
+\subsubsection{\texorpdfstring{rtems\_stack\_checker\_report\_usage\_with\_plugin()}{rtems\_stack\_checker\_report\_usage\_with\_plugin()}}
+{\footnotesize\ttfamily void rtems\+\_\+stack\+\_\+checker\+\_\+report\+\_\+usage\+\_\+with\+\_\+plugin (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structrtems__printer}{rtems\+\_\+printer}} $\ast$}]{printer }\end{DoxyParamCaption})}
+
+
+
+Print the stack usage report using caller\textquotesingle{}s routine. 
+
+This method prints a stack usage report for the curently executing task.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em context} & is the context to pass to the print handler \\
+\hline
+\mbox{\texttt{ in}}  & {\em print} & is the print handler\\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+It uses the caller\textquotesingle{}s routine to print the report. 
+\end{DoxyNote}
+\mbox{\Hypertarget{group__libmisc__stackchk_gaab6fe708fb2c9109528ce4c55c92e9f2}\label{group__libmisc__stackchk_gaab6fe708fb2c9109528ce4c55c92e9f2}} 
+\index{Stack Checker Mechanism@{Stack Checker Mechanism}!rtems\_stack\_checker\_switch\_extension@{rtems\_stack\_checker\_switch\_extension}}
+\index{rtems\_stack\_checker\_switch\_extension@{rtems\_stack\_checker\_switch\_extension}!Stack Checker Mechanism@{Stack Checker Mechanism}}
+\subsubsection{\texorpdfstring{rtems\_stack\_checker\_switch\_extension()}{rtems\_stack\_checker\_switch\_extension()}}
+{\footnotesize\ttfamily void rtems\+\_\+stack\+\_\+checker\+\_\+switch\+\_\+extension (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$}]{running,  }\item[{\mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$}]{heir }\end{DoxyParamCaption})}
+
+
+
+Stack Checker Task Context Switch Extension. 
+
+This method is the task context switch extension for the stack checker.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em running} & points to the currently executing task which is being context switched out \\
+\hline
+\mbox{\texttt{ in}}  & {\em running} & points to the heir task which we are switching to\\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+This is called from the internal method \+\_\+\+Thread\+\_\+\+Dispatch. 
+\end{DoxyNote}

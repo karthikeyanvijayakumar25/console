@@ -1,0 +1,227 @@
+\hypertarget{mips_2malta_2pci_2pci_8c}{}\section{bsps/mips/malta/pci/pci.c File Reference}
+\label{mips_2malta_2pci_2pci_8c}\index{bsps/mips/malta/pci/pci.c@{bsps/mips/malta/pci/pci.c}}
+{\ttfamily \#include $<$rtems.\+h$>$}\newline
+{\ttfamily \#include $<$bsp.\+h$>$}\newline
+{\ttfamily \#include $<$bsp/pci.\+h$>$}\newline
+{\ttfamily \#include $<$bsp/irq.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/bsp\+Io.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/endian.\+h$>$}\newline
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{mips_2malta_2pci_2pci_8c_a021c1fbdf175999fc707979d4674f5b9}\label{mips_2malta_2pci_2pci_8c_a021c1fbdf175999fc707979d4674f5b9}} 
+\#define {\bfseries P\+C\+I\+\_\+\+C\+O\+N\+F\+I\+G\+\_\+\+A\+D\+DR}~0xcf8
+\item 
+\mbox{\Hypertarget{mips_2malta_2pci_2pci_8c_ad1fedcf5fe37518ccc1ddfcb880d1b01}\label{mips_2malta_2pci_2pci_8c_ad1fedcf5fe37518ccc1ddfcb880d1b01}} 
+\#define {\bfseries P\+C\+I\+\_\+\+C\+O\+N\+F\+I\+G\+\_\+\+D\+A\+TA}~0xcfc
+\item 
+\mbox{\Hypertarget{mips_2malta_2pci_2pci_8c_ab57348e8749fbc47646df40643bde630}\label{mips_2malta_2pci_2pci_8c_ab57348e8749fbc47646df40643bde630}} 
+\#define {\bfseries pci}~B\+S\+P\+\_\+pci\+\_\+configuration
+\item 
+\mbox{\Hypertarget{mips_2malta_2pci_2pci_8c_a6da573133898cbe994e1c2b5182fa2fa}\label{mips_2malta_2pci_2pci_8c_a6da573133898cbe994e1c2b5182fa2fa}} 
+\#define {\bfseries P\+C\+I\+\_\+\+C\+O\+N\+F\+I\+G\+\_\+\+A\+D\+D\+R\+\_\+\+V\+AL}(bus,  slot,  funcion,  offset)~(0x80000000$\vert$((bus)$<$$<$16)$\vert$(\+P\+C\+I\+\_\+\+D\+E\+V\+F\+N((slot),(function))$<$$<$8)$\vert$(((offset)\&$\sim$3)))
+\item 
+\mbox{\Hypertarget{mips_2malta_2pci_2pci_8c_a6657fa67d3b783c22b6c3a4f978c4e5b}\label{mips_2malta_2pci_2pci_8c_a6657fa67d3b783c22b6c3a4f978c4e5b}} 
+\#define {\bfseries J\+P\+R\+I\+N\+TK}(fmt, ...)
+\item 
+\mbox{\Hypertarget{mips_2malta_2pci_2pci_8c_afda846e492e75fe0980a7849d2e1deca}\label{mips_2malta_2pci_2pci_8c_afda846e492e75fe0980a7849d2e1deca}} 
+\#define {\bfseries P\+C\+I\+\_\+\+C\+O\+N\+F\+I\+G\+\_\+\+W\+R\+\_\+\+A\+D\+DR}(addr,  val)~out\+\_\+le32((uint32\+\_\+t)(addr), (val))
+\item 
+\#define {\bfseries P\+C\+I\+\_\+\+C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+\_\+\+A\+D\+DR}(addr,  bus,  slot,  function,  offset)
+\item 
+\#define {\bfseries P\+R\+I\+N\+T\+\_\+\+M\+SG}()
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{mips_2malta_2pci_2pci_8c_a3306b34a5a349436c22480551cb45f1a}\label{mips_2malta_2pci_2pci_8c_a3306b34a5a349436c22480551cb45f1a}} 
+void {\bfseries print\+\_\+bars} (unsigned char slot, unsigned char func)
+\item 
+\mbox{\Hypertarget{mips_2malta_2pci_2pci_8c_a597a5f861e80781ba60dc9d42679e3c9}\label{mips_2malta_2pci_2pci_8c_a597a5f861e80781ba60dc9d42679e3c9}} 
+int {\bfseries direct\+\_\+pci\+\_\+read\+\_\+config\+\_\+byte} (unsigned char bus, unsigned char slot, unsigned char function, unsigned char offset, uint8\+\_\+t $\ast$val)
+\item 
+\mbox{\Hypertarget{mips_2malta_2pci_2pci_8c_af9cb47c3677c4883cec7842e8d513f52}\label{mips_2malta_2pci_2pci_8c_af9cb47c3677c4883cec7842e8d513f52}} 
+int {\bfseries direct\+\_\+pci\+\_\+read\+\_\+config\+\_\+word} (unsigned char bus, unsigned char slot, unsigned char function, unsigned char offset, uint16\+\_\+t $\ast$val)
+\item 
+\mbox{\Hypertarget{mips_2malta_2pci_2pci_8c_a8ed762bbf0c4839a926d7c9ef3f7bb6e}\label{mips_2malta_2pci_2pci_8c_a8ed762bbf0c4839a926d7c9ef3f7bb6e}} 
+int {\bfseries direct\+\_\+pci\+\_\+read\+\_\+config\+\_\+dword} (unsigned char bus, unsigned char slot, unsigned char function, unsigned char offset, uint32\+\_\+t $\ast$val)
+\item 
+\mbox{\Hypertarget{mips_2malta_2pci_2pci_8c_a3254200fafb0f0532271d7c9f78252fc}\label{mips_2malta_2pci_2pci_8c_a3254200fafb0f0532271d7c9f78252fc}} 
+int {\bfseries direct\+\_\+pci\+\_\+write\+\_\+config\+\_\+byte} (unsigned char bus, unsigned char slot, unsigned char function, unsigned char offset, uint8\+\_\+t val)
+\item 
+\mbox{\Hypertarget{mips_2malta_2pci_2pci_8c_a1fe6e3b47523a754fc58badc78f494be}\label{mips_2malta_2pci_2pci_8c_a1fe6e3b47523a754fc58badc78f494be}} 
+int {\bfseries direct\+\_\+pci\+\_\+write\+\_\+config\+\_\+word} (unsigned char bus, unsigned char slot, unsigned char function, unsigned char offset, uint16\+\_\+t val)
+\item 
+\mbox{\Hypertarget{mips_2malta_2pci_2pci_8c_adc17db8b076c62dab7a8ab0efa87298f}\label{mips_2malta_2pci_2pci_8c_adc17db8b076c62dab7a8ab0efa87298f}} 
+int {\bfseries direct\+\_\+pci\+\_\+write\+\_\+config\+\_\+dword} (unsigned char bus, unsigned char slot, unsigned char function, unsigned char offset, uint32\+\_\+t val)
+\item 
+\mbox{\Hypertarget{mips_2malta_2pci_2pci_8c_aec7bc7f31493186e79edded2409766dc}\label{mips_2malta_2pci_2pci_8c_aec7bc7f31493186e79edded2409766dc}} 
+int {\bfseries test\+\_\+intname} (const struct \mbox{\hyperlink{struct__int__map}{\+\_\+int\+\_\+map}} $\ast$row, int pbus, int pslot, int pfun, int int\+\_\+pin, int int\+\_\+name)
+\item 
+\mbox{\Hypertarget{mips_2malta_2pci_2pci_8c_aba355c9971d26deaf364bdc31a0fa082}\label{mips_2malta_2pci_2pci_8c_aba355c9971d26deaf364bdc31a0fa082}} 
+void {\bfseries pci\+\_\+memory\+\_\+enable} (unsigned char bus, unsigned char slot, unsigned char function)
+\item 
+\mbox{\Hypertarget{mips_2malta_2pci_2pci_8c_a6e6e85ab3673a6165cd005c9732b9c6e}\label{mips_2malta_2pci_2pci_8c_a6e6e85ab3673a6165cd005c9732b9c6e}} 
+void {\bfseries pci\+\_\+io\+\_\+enable} (unsigned char bus, unsigned char slot, unsigned char function)
+\item 
+\mbox{\Hypertarget{mips_2malta_2pci_2pci_8c_a50dccd160f0d8f5e919bf4e3a7b787a6}\label{mips_2malta_2pci_2pci_8c_a50dccd160f0d8f5e919bf4e3a7b787a6}} 
+void {\bfseries pci\+\_\+busmaster\+\_\+enable} (unsigned char bus, unsigned char slot, unsigned char function)
+\item 
+\mbox{\Hypertarget{mips_2malta_2pci_2pci_8c_ae1fc5b8b4ed910da0f27dba28425116e}\label{mips_2malta_2pci_2pci_8c_ae1fc5b8b4ed910da0f27dba28425116e}} 
+void {\bfseries pci\+\_\+out\+\_\+32} (uint32\+\_\+t base, uint32\+\_\+t addr, uint32\+\_\+t val)
+\item 
+\mbox{\Hypertarget{mips_2malta_2pci_2pci_8c_a24d8ed66162ebd22ad70947189945d98}\label{mips_2malta_2pci_2pci_8c_a24d8ed66162ebd22ad70947189945d98}} 
+void {\bfseries pci\+\_\+out\+\_\+le32} (uint32\+\_\+t base, uint32\+\_\+t addr, uint32\+\_\+t val)
+\item 
+\mbox{\Hypertarget{mips_2malta_2pci_2pci_8c_a60d6d5983b42a119d5b7fe6905f36556}\label{mips_2malta_2pci_2pci_8c_a60d6d5983b42a119d5b7fe6905f36556}} 
+uint8\+\_\+t {\bfseries pci\+\_\+in\+\_\+8} (uint32\+\_\+t base, uint32\+\_\+t addr)
+\item 
+\mbox{\Hypertarget{mips_2malta_2pci_2pci_8c_af8ee36418d60e471c3f674e78dcdb231}\label{mips_2malta_2pci_2pci_8c_af8ee36418d60e471c3f674e78dcdb231}} 
+int16\+\_\+t {\bfseries pci\+\_\+in\+\_\+le16} (uint32\+\_\+t base, uint32\+\_\+t addr)
+\item 
+\mbox{\Hypertarget{mips_2malta_2pci_2pci_8c_a43e182ede9a7dafe2f26b9079ccc893d}\label{mips_2malta_2pci_2pci_8c_a43e182ede9a7dafe2f26b9079ccc893d}} 
+int16\+\_\+t {\bfseries pci\+\_\+in\+\_\+16} (uint32\+\_\+t base, uint32\+\_\+t addr)
+\item 
+\mbox{\Hypertarget{mips_2malta_2pci_2pci_8c_ada94b0dc24d0633402d9bfac84b45ab3}\label{mips_2malta_2pci_2pci_8c_ada94b0dc24d0633402d9bfac84b45ab3}} 
+uint32\+\_\+t {\bfseries pci\+\_\+in\+\_\+32} (uint32\+\_\+t base, uint32\+\_\+t addr)
+\item 
+\mbox{\Hypertarget{mips_2malta_2pci_2pci_8c_a7c368f495febff6b51361248783bcd45}\label{mips_2malta_2pci_2pci_8c_a7c368f495febff6b51361248783bcd45}} 
+uint32\+\_\+t {\bfseries pci\+\_\+in\+\_\+le32} (uint32\+\_\+t base, uint32\+\_\+t addr)
+\item 
+\mbox{\Hypertarget{mips_2malta_2pci_2pci_8c_ab49255a7e01c64fa6286cec26b5983cc}\label{mips_2malta_2pci_2pci_8c_ab49255a7e01c64fa6286cec26b5983cc}} 
+void {\bfseries pci\+\_\+out\+\_\+8} (uint32\+\_\+t base, uint32\+\_\+t addr, uint8\+\_\+t val)
+\item 
+\mbox{\Hypertarget{mips_2malta_2pci_2pci_8c_a1522b678215e5a79696538c4af1bc51e}\label{mips_2malta_2pci_2pci_8c_a1522b678215e5a79696538c4af1bc51e}} 
+void {\bfseries pci\+\_\+out\+\_\+le16} (uint32\+\_\+t base, uint32\+\_\+t addr, uint16\+\_\+t val)
+\item 
+\mbox{\Hypertarget{mips_2malta_2pci_2pci_8c_aadfd18b60177a6bdc431634b458770b9}\label{mips_2malta_2pci_2pci_8c_aadfd18b60177a6bdc431634b458770b9}} 
+void {\bfseries pci\+\_\+out\+\_\+16} (uint32\+\_\+t base, uint32\+\_\+t addr, uint16\+\_\+t val)
+\item 
+\mbox{\Hypertarget{mips_2malta_2pci_2pci_8c_af7f8a8621af4177fe66d29d1e86e40a5}\label{mips_2malta_2pci_2pci_8c_af7f8a8621af4177fe66d29d1e86e40a5}} 
+int {\bfseries indirect\+\_\+pci\+\_\+read\+\_\+config\+\_\+byte} (unsigned char bus, unsigned char slot, unsigned char function, unsigned char offset, uint8\+\_\+t $\ast$val)
+\item 
+\mbox{\Hypertarget{mips_2malta_2pci_2pci_8c_a2b75249816599e5e0f109c43a8a533e0}\label{mips_2malta_2pci_2pci_8c_a2b75249816599e5e0f109c43a8a533e0}} 
+int {\bfseries indirect\+\_\+pci\+\_\+read\+\_\+config\+\_\+word} (unsigned char bus, unsigned char slot, unsigned char function, unsigned char offset, uint16\+\_\+t $\ast$val)
+\item 
+\mbox{\Hypertarget{mips_2malta_2pci_2pci_8c_a3da04a8d38f8d49124376f7af0654ee5}\label{mips_2malta_2pci_2pci_8c_a3da04a8d38f8d49124376f7af0654ee5}} 
+int {\bfseries indirect\+\_\+pci\+\_\+read\+\_\+config\+\_\+dword} (unsigned char bus, unsigned char slot, unsigned char function, unsigned char offset, uint32\+\_\+t $\ast$val)
+\item 
+\mbox{\Hypertarget{mips_2malta_2pci_2pci_8c_a90cdf0aa88a515a3d716b24918daac38}\label{mips_2malta_2pci_2pci_8c_a90cdf0aa88a515a3d716b24918daac38}} 
+int {\bfseries indirect\+\_\+pci\+\_\+write\+\_\+config\+\_\+byte} (unsigned char bus, unsigned char slot, unsigned char function, unsigned char offset, uint8\+\_\+t val)
+\item 
+\mbox{\Hypertarget{mips_2malta_2pci_2pci_8c_a87b1446b46dea4c0cf3e91e8badce279}\label{mips_2malta_2pci_2pci_8c_a87b1446b46dea4c0cf3e91e8badce279}} 
+int {\bfseries indirect\+\_\+pci\+\_\+write\+\_\+config\+\_\+word} (unsigned char bus, unsigned char slot, unsigned char function, unsigned char offset, uint16\+\_\+t val)
+\item 
+\mbox{\Hypertarget{mips_2malta_2pci_2pci_8c_a8b229c947577b7d5b42450980cc2b912}\label{mips_2malta_2pci_2pci_8c_a8b229c947577b7d5b42450980cc2b912}} 
+int {\bfseries indirect\+\_\+pci\+\_\+write\+\_\+config\+\_\+dword} (unsigned char bus, unsigned char slot, unsigned char function, unsigned char offset, uint32\+\_\+t val)
+\item 
+\mbox{\Hypertarget{mips_2malta_2pci_2pci_8c_ace39c3a6fdfa1946d33f60de0c87866a}\label{mips_2malta_2pci_2pci_8c_ace39c3a6fdfa1946d33f60de0c87866a}} 
+int {\bfseries Find\+P\+C\+Ibridge} (int mybus, struct \mbox{\hyperlink{structpcibridge}{pcibridge}} $\ast$pb)
+\item 
+\mbox{\Hypertarget{mips_2malta_2pci_2pci_8c_abca2e32dcbd0b3b9c21b5236d593ef87}\label{mips_2malta_2pci_2pci_8c_abca2e32dcbd0b3b9c21b5236d593ef87}} 
+void {\bfseries Fixup\+P\+CI} (const struct \mbox{\hyperlink{struct__int__map}{\+\_\+int\+\_\+map}} $\ast$bspmap, int($\ast$swizzler)(int, int))
+\item 
+\mbox{\Hypertarget{mips_2malta_2pci_2pci_8c_a99eb2e47ce2a64d4bec951d0ace7fef8}\label{mips_2malta_2pci_2pci_8c_a99eb2e47ce2a64d4bec951d0ace7fef8}} 
+int {\bfseries pci\+\_\+initialize} (void)
+\item 
+\mbox{\Hypertarget{mips_2malta_2pci_2pci_8c_aa649e5b3413134ef41f54f72db645264}\label{mips_2malta_2pci_2pci_8c_aa649e5b3413134ef41f54f72db645264}} 
+unsigned char {\bfseries pci\+\_\+bus\+\_\+count} (void)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{mips_2malta_2pci_2pci_8c_a238ec0550f3f6e1c71e9bd43980529b7}\label{mips_2malta_2pci_2pci_8c_a238ec0550f3f6e1c71e9bd43980529b7}} 
+unsigned char {\bfseries uc\+Max\+P\+C\+I\+Bus}
+\item 
+const \mbox{\hyperlink{structpci__config__access__functions}{pci\+\_\+config\+\_\+access\+\_\+functions}} {\bfseries pci\+\_\+indirect\+\_\+functions}
+\item 
+\mbox{\hyperlink{structrtems__pci__config__t}{rtems\+\_\+pci\+\_\+config\+\_\+t}} {\bfseries B\+S\+P\+\_\+pci\+\_\+configuration}
+\item 
+const \mbox{\hyperlink{structpci__config__access__functions}{pci\+\_\+config\+\_\+access\+\_\+functions}} {\bfseries pci\+\_\+direct\+\_\+functions}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This file was based on the powerpc. 
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{mips_2malta_2pci_2pci_8c_a6080e6dd57dfc283fd6aa700e73b5788}\label{mips_2malta_2pci_2pci_8c_a6080e6dd57dfc283fd6aa700e73b5788}} 
+\index{pci.c@{pci.c}!PCI\_CONFIG\_SET\_ADDR@{PCI\_CONFIG\_SET\_ADDR}}
+\index{PCI\_CONFIG\_SET\_ADDR@{PCI\_CONFIG\_SET\_ADDR}!pci.c@{pci.c}}
+\subsubsection{\texorpdfstring{PCI\_CONFIG\_SET\_ADDR}{PCI\_CONFIG\_SET\_ADDR}}
+{\footnotesize\ttfamily \#define P\+C\+I\+\_\+\+C\+O\+N\+F\+I\+G\+\_\+\+S\+E\+T\+\_\+\+A\+D\+DR(\begin{DoxyParamCaption}\item[{}]{addr,  }\item[{}]{bus,  }\item[{}]{slot,  }\item[{}]{function,  }\item[{}]{offset }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{PCI\_CONFIG\_WR\_ADDR( \(\backslash\)}
+\DoxyCodeLine{    (addr), \(\backslash\)}
+\DoxyCodeLine{    PCI\_CONFIG\_ADDR\_VAL((bus), (slot), (\textcolor{keyword}{function}), (offset))\(\backslash\)}
+\DoxyCodeLine{  )}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{mips_2malta_2pci_2pci_8c_aa748bcc8eb8e5c8dacca6409f67e270c}\label{mips_2malta_2pci_2pci_8c_aa748bcc8eb8e5c8dacca6409f67e270c}} 
+\index{pci.c@{pci.c}!PRINT\_MSG@{PRINT\_MSG}}
+\index{PRINT\_MSG@{PRINT\_MSG}!pci.c@{pci.c}}
+\subsubsection{\texorpdfstring{PRINT\_MSG}{PRINT\_MSG}}
+{\footnotesize\ttfamily \#define P\+R\+I\+N\+T\+\_\+\+M\+SG(\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{bspIo_8h_a380cfecc8035cec8a13b68c0cb90f32f}{printk}}(\textcolor{stringliteral}{"pci : Device \%d:0x\%02x:\%d routed to interrupt\_line \%d\(\backslash\)n"}, \(\backslash\)}
+\DoxyCodeLine{    pbus, pslot, pfun, int\_name )}
+
+\end{DoxyCode}
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{mips_2malta_2pci_2pci_8c_ad74d568bb5b25bd526c79154ad414081}\label{mips_2malta_2pci_2pci_8c_ad74d568bb5b25bd526c79154ad414081}} 
+\index{pci.c@{pci.c}!BSP\_pci\_configuration@{BSP\_pci\_configuration}}
+\index{BSP\_pci\_configuration@{BSP\_pci\_configuration}!pci.c@{pci.c}}
+\subsubsection{\texorpdfstring{BSP\_pci\_configuration}{BSP\_pci\_configuration}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structrtems__pci__config__t}{rtems\+\_\+pci\+\_\+config\+\_\+t}} B\+S\+P\+\_\+pci\+\_\+configuration}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{  (\textcolor{keyword}{volatile} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char}*)PCI\_CONFIG\_ADDR,}
+\DoxyCodeLine{  (\textcolor{keyword}{volatile} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char}*)PCI\_CONFIG\_DATA,}
+\DoxyCodeLine{  \&pci\_indirect\_functions}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{mips_2malta_2pci_2pci_8c_a40f82587e04b2f8ec12f47f60aa92e64}\label{mips_2malta_2pci_2pci_8c_a40f82587e04b2f8ec12f47f60aa92e64}} 
+\index{pci.c@{pci.c}!pci\_direct\_functions@{pci\_direct\_functions}}
+\index{pci\_direct\_functions@{pci\_direct\_functions}!pci.c@{pci.c}}
+\subsubsection{\texorpdfstring{pci\_direct\_functions}{pci\_direct\_functions}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{structpci__config__access__functions}{pci\+\_\+config\+\_\+access\+\_\+functions}} pci\+\_\+direct\+\_\+functions}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{  direct\_pci\_read\_config\_byte,}
+\DoxyCodeLine{  direct\_pci\_read\_config\_word,}
+\DoxyCodeLine{  direct\_pci\_read\_config\_dword,}
+\DoxyCodeLine{  direct\_pci\_write\_config\_byte,}
+\DoxyCodeLine{  direct\_pci\_write\_config\_word,}
+\DoxyCodeLine{  direct\_pci\_write\_config\_dword}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{mips_2malta_2pci_2pci_8c_ac0c624f930d2ceb5f9dfae33895a1fdb}\label{mips_2malta_2pci_2pci_8c_ac0c624f930d2ceb5f9dfae33895a1fdb}} 
+\index{pci.c@{pci.c}!pci\_indirect\_functions@{pci\_indirect\_functions}}
+\index{pci\_indirect\_functions@{pci\_indirect\_functions}!pci.c@{pci.c}}
+\subsubsection{\texorpdfstring{pci\_indirect\_functions}{pci\_indirect\_functions}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{structpci__config__access__functions}{pci\+\_\+config\+\_\+access\+\_\+functions}} pci\+\_\+indirect\+\_\+functions}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{  indirect\_pci\_read\_config\_byte,}
+\DoxyCodeLine{  indirect\_pci\_read\_config\_word,}
+\DoxyCodeLine{  indirect\_pci\_read\_config\_dword,}
+\DoxyCodeLine{  indirect\_pci\_write\_config\_byte,}
+\DoxyCodeLine{  indirect\_pci\_write\_config\_word,}
+\DoxyCodeLine{  indirect\_pci\_write\_config\_dword}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}

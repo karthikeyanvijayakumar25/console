@@ -1,0 +1,48 @@
+\hypertarget{imfs__fifo_8c}{}\section{cpukit/libfs/src/imfs/imfs\+\_\+fifo.c File Reference}
+\label{imfs__fifo_8c}\index{cpukit/libfs/src/imfs/imfs\_fifo.c@{cpukit/libfs/src/imfs/imfs\_fifo.c}}
+
+
+F\+I\+FO Support.  
+
+
+{\ttfamily \#include $<$rtems/imfs.\+h$>$}\newline
+{\ttfamily \#include $<$sys/filio.\+h$>$}\newline
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{imfs__fifo_8c_ab2f7932cad9d227f5fc2da4a663dffff}\label{imfs__fifo_8c_ab2f7932cad9d227f5fc2da4a663dffff}} 
+\#define {\bfseries J\+N\+O\+D\+E2\+P\+I\+PE}(\+\_\+jnode)~( ((\mbox{\hyperlink{structIMFS__fifo__t}{I\+M\+F\+S\+\_\+fifo\+\_\+t}} $\ast$)(\+\_\+jnode))-\/$>$pipe )
+\item 
+\mbox{\Hypertarget{imfs__fifo_8c_a8e7645e86fe383bf0bacb97b224babd6}\label{imfs__fifo_8c_a8e7645e86fe383bf0bacb97b224babd6}} 
+\#define {\bfseries L\+I\+B\+I\+O2\+P\+I\+PE}(\+\_\+iop)~( J\+N\+O\+D\+E2\+P\+I\+PE((\mbox{\hyperlink{structIMFS__jnode__tt}{I\+M\+F\+S\+\_\+jnode\+\_\+t}} $\ast$)(\+\_\+iop)-\/$>$pathinfo.\+node\+\_\+access) )
+\item 
+\#define {\bfseries I\+M\+F\+S\+\_\+\+F\+I\+F\+O\+\_\+\+R\+E\+T\+U\+RN}(\+\_\+err)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const \mbox{\hyperlink{structIMFS__mknod__control}{I\+M\+F\+S\+\_\+mknod\+\_\+control}} {\bfseries I\+M\+F\+S\+\_\+mknod\+\_\+control\+\_\+fifo}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+F\+I\+FO Support. 
+
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{imfs__fifo_8c_a94bb5d570f4639ef1f1c6f62346a0ec0}\label{imfs__fifo_8c_a94bb5d570f4639ef1f1c6f62346a0ec0}} 
+\index{imfs\_fifo.c@{imfs\_fifo.c}!IMFS\_FIFO\_RETURN@{IMFS\_FIFO\_RETURN}}
+\index{IMFS\_FIFO\_RETURN@{IMFS\_FIFO\_RETURN}!imfs\_fifo.c@{imfs\_fifo.c}}
+\subsubsection{\texorpdfstring{IMFS\_FIFO\_RETURN}{IMFS\_FIFO\_RETURN}}
+{\footnotesize\ttfamily \#define I\+M\+F\+S\+\_\+\+F\+I\+F\+O\+\_\+\+R\+E\+T\+U\+RN(\begin{DoxyParamCaption}\item[{}]{\+\_\+err }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do} \{  \(\backslash\)}
+\DoxyCodeLine{  if (\_err < 0) \(\backslash\)}
+\DoxyCodeLine{    rtems\_set\_errno\_and\_return\_minus\_one(-\_err); \(\backslash\)}
+\DoxyCodeLine{  return \_err; \(\backslash\)}
+\DoxyCodeLine{\} \textcolor{keywordflow}{while} (0)}
+
+\end{DoxyCode}

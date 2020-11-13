@@ -1,0 +1,51 @@
+\hypertarget{score_2timespec_8h}{}\section{cpukit/include/rtems/score/timespec.h File Reference}
+\label{score_2timespec_8h}\index{cpukit/include/rtems/score/timespec.h@{cpukit/include/rtems/score/timespec.h}}
+
+
+Contains Helpers for Manipulating Timespecs.  
+
+
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include $<$time.\+h$>$}\newline
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__Timespec_ga98b5ee3f544d2ab6732b054176ab6655}{\+\_\+\+Timespec\+\_\+\+Set}}(\+\_\+time,  \+\_\+seconds,  \+\_\+nanoseconds)
+\begin{DoxyCompactList}\small\item\em Set timespec to seconds nanosecond. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__Timespec_gaed72194da101184e87a9ee9625fdaf17}{\+\_\+\+Timespec\+\_\+\+Set\+\_\+to\+\_\+zero}}(\+\_\+time)
+\begin{DoxyCompactList}\small\item\em Sets the Timespec to Zero. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__Timespec_gae6f0f2e487b0a752ff7df43677c196d4}{\+\_\+\+Timespec\+\_\+\+Get\+\_\+seconds}}(\+\_\+time)~((\+\_\+time)-\/$>$tv\+\_\+sec)
+\begin{DoxyCompactList}\small\item\em Get seconds portion of timespec. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__Timespec_ga49fb63470ab8061cff099adc8c59410c}{\+\_\+\+Timespec\+\_\+\+Get\+\_\+nanoseconds}}(\+\_\+time)~((\+\_\+time)-\/$>$tv\+\_\+nsec)
+\begin{DoxyCompactList}\small\item\em Get nanoseconds portion of timespec. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__Timespec_ga7018e5a82aa23041b924c6320dade507}{\+\_\+\+Timespec\+\_\+\+Greater\+\_\+than}}(\+\_\+lhs,  \+\_\+rhs)~\mbox{\hyperlink{group__Timespec_ga16c13224570044fc45d39c342bf3aaa3}{\+\_\+\+Timespec\+\_\+\+Less\+\_\+than}}( \+\_\+rhs, \+\_\+lhs )
+\begin{DoxyCompactList}\small\item\em The Timespec \char`\"{}greater than\char`\"{} operator. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__Timespec_gac166c49ce5d03894939298956202bbb1}{\+\_\+\+Timespec\+\_\+\+Equal\+\_\+to}}(lhs,  rhs)
+\begin{DoxyCompactList}\small\item\em The Timespec \char`\"{}equal to\char`\"{} operator. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+uint64\+\_\+t \mbox{\hyperlink{group__Timespec_ga380512dcd17fcd4d7d41e7291eacad7f}{\+\_\+\+Timespec\+\_\+\+Get\+\_\+as\+\_\+nanoseconds}} (const struct timespec $\ast$time)
+\begin{DoxyCompactList}\small\item\em Gets the timestamp as nanoseconds. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__Timespec_gaa356c6f70683da692c46e41fcd75b412}{\+\_\+\+Timespec\+\_\+\+Is\+\_\+valid}} (const struct timespec $\ast$time)
+\begin{DoxyCompactList}\small\item\em Checks if timespec is valid. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__Timespec_ga16c13224570044fc45d39c342bf3aaa3}{\+\_\+\+Timespec\+\_\+\+Less\+\_\+than}} (const struct timespec $\ast$lhs, const struct timespec $\ast$rhs)
+\begin{DoxyCompactList}\small\item\em Checks if the left hand side timespec is less than the right one. \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{group__Timespec_ga87611505342ef38778226f80e0258368}{\+\_\+\+Timespec\+\_\+\+Add\+\_\+to}} (struct timespec $\ast$time, const struct timespec $\ast$add)
+\begin{DoxyCompactList}\small\item\em Adds two timespecs. \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{group__Timespec_ga1aa89ad35c5fdabdef548cd32cf8a40f}{\+\_\+\+Timespec\+\_\+\+To\+\_\+ticks}} (const struct timespec $\ast$time)
+\begin{DoxyCompactList}\small\item\em Converts timespec to number of ticks. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__Timespec_ga457e50d3d65d2a890754fa88ccccc43e}{\+\_\+\+Timespec\+\_\+\+From\+\_\+ticks}} (uint32\+\_\+t ticks, struct timespec $\ast$time)
+\begin{DoxyCompactList}\small\item\em Converts ticks to timespec. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__Timespec_gaa3d0b8cf3ba2b22e8bffae07c7ec7408}{\+\_\+\+Timespec\+\_\+\+Subtract}} (const struct timespec $\ast$start, const struct timespec $\ast$end, struct timespec $\ast$result)
+\begin{DoxyCompactList}\small\item\em Subtracts two timespec. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__Timespec_gafeb09a5e78020a734aad0fb42feb7057}{\+\_\+\+Timespec\+\_\+\+Divide\+\_\+by\+\_\+integer}} (const struct timespec $\ast$time, uint32\+\_\+t iterations, struct timespec $\ast$result)
+\begin{DoxyCompactList}\small\item\em Divides timespec by an integer. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__Timespec_ga098b04e1bc31a65688df2971188fca06}{\+\_\+\+Timespec\+\_\+\+Divide}} (const struct timespec $\ast$lhs, const struct timespec $\ast$rhs, uint32\+\_\+t $\ast$ival\+\_\+percentage, uint32\+\_\+t $\ast$fval\+\_\+percentage)
+\begin{DoxyCompactList}\small\item\em Divides a timespec by another timespec. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Contains Helpers for Manipulating Timespecs. 
+

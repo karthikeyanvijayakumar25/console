@@ -1,0 +1,105 @@
+\hypertarget{group__RTEMSScoreCPUi386Interrupt}{}\section{Processor Dependent Interrupt Management}
+\label{group__RTEMSScoreCPUi386Interrupt}\index{Processor Dependent Interrupt Management@{Processor Dependent Interrupt Management}}
+
+
+i386 Interrupt Management  
+
+
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{group__RTEMSScoreCPUi386Interrupt_gaeb23ad0e3f403fff94bc90da50361efd}\label{group__RTEMSScoreCPUi386Interrupt_gaeb23ad0e3f403fff94bc90da50361efd}} 
+typedef void($\ast$ {\bfseries rtems\+\_\+raw\+\_\+irq\+\_\+hdl}) (void)
+\item 
+\mbox{\Hypertarget{group__RTEMSScoreCPUi386Interrupt_ga4cd67daf978658cc4cffbaf584fb34ba}\label{group__RTEMSScoreCPUi386Interrupt_ga4cd67daf978658cc4cffbaf584fb34ba}} 
+typedef void($\ast$ {\bfseries rtems\+\_\+raw\+\_\+irq\+\_\+enable}) (const struct \mbox{\hyperlink{struct____rtems__raw__irq__connect__data____}{\+\_\+\+\_\+rtems\+\_\+raw\+\_\+irq\+\_\+connect\+\_\+data\+\_\+\+\_\+}} $\ast$)
+\item 
+\mbox{\Hypertarget{group__RTEMSScoreCPUi386Interrupt_gaa4fb5296caed154778c241189abb725d}\label{group__RTEMSScoreCPUi386Interrupt_gaa4fb5296caed154778c241189abb725d}} 
+typedef void($\ast$ {\bfseries rtems\+\_\+raw\+\_\+irq\+\_\+disable}) (const struct \mbox{\hyperlink{struct____rtems__raw__irq__connect__data____}{\+\_\+\+\_\+rtems\+\_\+raw\+\_\+irq\+\_\+connect\+\_\+data\+\_\+\+\_\+}} $\ast$)
+\item 
+\mbox{\Hypertarget{group__RTEMSScoreCPUi386Interrupt_gad08ff3964fea26be84f43fd1911bbef6}\label{group__RTEMSScoreCPUi386Interrupt_gad08ff3964fea26be84f43fd1911bbef6}} 
+typedef int($\ast$ {\bfseries rtems\+\_\+raw\+\_\+irq\+\_\+is\+\_\+enabled}) (const struct \mbox{\hyperlink{struct____rtems__raw__irq__connect__data____}{\+\_\+\+\_\+rtems\+\_\+raw\+\_\+irq\+\_\+connect\+\_\+data\+\_\+\+\_\+}} $\ast$)
+\end{DoxyCompactItemize}
+\subsection*{Interrupt Level Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bfseries i386\+\_\+disable\+\_\+interrupts}(\+\_\+level)
+\item 
+\#define {\bfseries i386\+\_\+enable\+\_\+interrupts}(\+\_\+level)
+\item 
+\#define {\bfseries i386\+\_\+flash\+\_\+interrupts}(\+\_\+level)
+\item 
+\#define {\bfseries i386\+\_\+get\+\_\+interrupt\+\_\+level}(\+\_\+level)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+i386 Interrupt Management 
+
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{group__RTEMSScoreCPUi386Interrupt_ga3c6b171502c2abe68edcee1903cd192e}\label{group__RTEMSScoreCPUi386Interrupt_ga3c6b171502c2abe68edcee1903cd192e}} 
+\index{Processor Dependent Interrupt Management@{Processor Dependent Interrupt Management}!i386\_disable\_interrupts@{i386\_disable\_interrupts}}
+\index{i386\_disable\_interrupts@{i386\_disable\_interrupts}!Processor Dependent Interrupt Management@{Processor Dependent Interrupt Management}}
+\subsubsection{\texorpdfstring{i386\_disable\_interrupts}{i386\_disable\_interrupts}}
+{\footnotesize\ttfamily \#define i386\+\_\+disable\+\_\+interrupts(\begin{DoxyParamCaption}\item[{}]{\+\_\+level }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{ \(\backslash\)}
+\DoxyCodeLine{    \_\_asm\_\_ \textcolor{keyword}{volatile} ( \textcolor{stringliteral}{"pushf ; \(\backslash\)                    cli ; \(\backslash\)                    pop \%0"} \(\backslash\)}
+\DoxyCodeLine{                   : \textcolor{stringliteral}{"=rm"} ((\_level)) \(\backslash\)}
+\DoxyCodeLine{    ); \(\backslash\)}
+\DoxyCodeLine{  \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{group__RTEMSScoreCPUi386Interrupt_ga2cb7be148b4844f0971d9d092bbddf42}\label{group__RTEMSScoreCPUi386Interrupt_ga2cb7be148b4844f0971d9d092bbddf42}} 
+\index{Processor Dependent Interrupt Management@{Processor Dependent Interrupt Management}!i386\_enable\_interrupts@{i386\_enable\_interrupts}}
+\index{i386\_enable\_interrupts@{i386\_enable\_interrupts}!Processor Dependent Interrupt Management@{Processor Dependent Interrupt Management}}
+\subsubsection{\texorpdfstring{i386\_enable\_interrupts}{i386\_enable\_interrupts}}
+{\footnotesize\ttfamily \#define i386\+\_\+enable\+\_\+interrupts(\begin{DoxyParamCaption}\item[{}]{\+\_\+level }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{ \(\backslash\)}
+\DoxyCodeLine{    \_\_asm\_\_ \textcolor{keyword}{volatile} ( \textcolor{stringliteral}{"push \%0 ; \(\backslash\)                    popf"} \(\backslash\)}
+\DoxyCodeLine{                    : : \textcolor{stringliteral}{"rm"} ((\_level)) : \textcolor{stringliteral}{"cc"} \(\backslash\)}
+\DoxyCodeLine{    ); \(\backslash\)}
+\DoxyCodeLine{  \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{group__RTEMSScoreCPUi386Interrupt_ga56d2622e72ec88b2abe1702f3c198445}\label{group__RTEMSScoreCPUi386Interrupt_ga56d2622e72ec88b2abe1702f3c198445}} 
+\index{Processor Dependent Interrupt Management@{Processor Dependent Interrupt Management}!i386\_flash\_interrupts@{i386\_flash\_interrupts}}
+\index{i386\_flash\_interrupts@{i386\_flash\_interrupts}!Processor Dependent Interrupt Management@{Processor Dependent Interrupt Management}}
+\subsubsection{\texorpdfstring{i386\_flash\_interrupts}{i386\_flash\_interrupts}}
+{\footnotesize\ttfamily \#define i386\+\_\+flash\+\_\+interrupts(\begin{DoxyParamCaption}\item[{}]{\+\_\+level }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{ \(\backslash\)}
+\DoxyCodeLine{    \_\_asm\_\_ \textcolor{keyword}{volatile} ( \textcolor{stringliteral}{"push \%0 ; \(\backslash\)                    popf ; \(\backslash\)                    cli"} \(\backslash\)}
+\DoxyCodeLine{                    : : \textcolor{stringliteral}{"rm"} ((\_level)) : \textcolor{stringliteral}{"cc"} \(\backslash\)}
+\DoxyCodeLine{    ); \(\backslash\)}
+\DoxyCodeLine{  \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{group__RTEMSScoreCPUi386Interrupt_ga9cede1ed4d1746a02bdd00f510f7f538}\label{group__RTEMSScoreCPUi386Interrupt_ga9cede1ed4d1746a02bdd00f510f7f538}} 
+\index{Processor Dependent Interrupt Management@{Processor Dependent Interrupt Management}!i386\_get\_interrupt\_level@{i386\_get\_interrupt\_level}}
+\index{i386\_get\_interrupt\_level@{i386\_get\_interrupt\_level}!Processor Dependent Interrupt Management@{Processor Dependent Interrupt Management}}
+\subsubsection{\texorpdfstring{i386\_get\_interrupt\_level}{i386\_get\_interrupt\_level}}
+{\footnotesize\ttfamily \#define i386\+\_\+get\+\_\+interrupt\+\_\+level(\begin{DoxyParamCaption}\item[{}]{\+\_\+level }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do} \{ \(\backslash\)}
+\DoxyCodeLine{    uint32\_t   \_eflags; \(\backslash\)}
+\DoxyCodeLine{    \(\backslash\)}
+\DoxyCodeLine{    \_\_asm\_\_ \textcolor{keyword}{volatile} ( \textcolor{stringliteral}{"pushf ; \(\backslash\)                    pop \%0"} \(\backslash\)}
+\DoxyCodeLine{                    : \textcolor{stringliteral}{"=rm"} ((\_eflags)) \(\backslash\)}
+\DoxyCodeLine{    ); \(\backslash\)}
+\DoxyCodeLine{    \(\backslash\)}
+\DoxyCodeLine{    \_level = (\_eflags \& EFLAGS\_INTR\_ENABLE) ? 0 : 1; \(\backslash\)}
+\DoxyCodeLine{  \} \textcolor{keywordflow}{while} (0)}
+
+\end{DoxyCode}

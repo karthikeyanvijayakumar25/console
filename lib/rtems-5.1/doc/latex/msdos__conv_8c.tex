@@ -1,0 +1,81 @@
+\hypertarget{msdos__conv_8c}{}\section{cpukit/libfs/src/dosfs/msdos\+\_\+conv.c File Reference}
+\label{msdos__conv_8c}\index{cpukit/libfs/src/dosfs/msdos\_conv.c@{cpukit/libfs/src/dosfs/msdos\_conv.c}}
+
+
+M\+D\+OS Date Conversion.  
+
+
+{\ttfamily \#include $<$ctype.\+h$>$}\newline
+{\ttfamily \#include $<$rtems.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}msdos.\+h\char`\"{}}\newline
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{msdos__conv_8c_a3adcac2563c16052b7cec21267f9cec8}\label{msdos__conv_8c_a3adcac2563c16052b7cec21267f9cec8}} 
+\#define {\bfseries S\+E\+C\+O\+N\+D\+S\+P\+E\+R\+D\+AY}~((uint32\+\_\+t) 86400)
+\item 
+\mbox{\Hypertarget{msdos__conv_8c_a35e4eb85f5d50275745dc7589e165684}\label{msdos__conv_8c_a35e4eb85f5d50275745dc7589e165684}} 
+\#define {\bfseries U\+T\+F8\+\_\+\+M\+A\+X\+\_\+\+C\+H\+A\+R\+\_\+\+S\+I\+ZE}~4
+\item 
+\mbox{\Hypertarget{msdos__conv_8c_af8b55e39099b99c7399ef7c0cd88c3bc}\label{msdos__conv_8c_af8b55e39099b99c7399ef7c0cd88c3bc}} 
+\#define {\bfseries U\+T\+F8\+\_\+\+N\+U\+LL}~0x00
+\item 
+\mbox{\Hypertarget{msdos__conv_8c_a16e0dec76b4a3f4cf9b55be2ce64d2ea}\label{msdos__conv_8c_a16e0dec76b4a3f4cf9b55be2ce64d2ea}} 
+\#define {\bfseries U\+T\+F8\+\_\+\+N\+U\+L\+L\+\_\+\+S\+I\+ZE}~1
+\item 
+\mbox{\Hypertarget{msdos__conv_8c_a21358510dcaa85e61a56d19f49c1da5e}\label{msdos__conv_8c_a21358510dcaa85e61a56d19f49c1da5e}} 
+\#define {\bfseries U\+T\+F8\+\_\+\+B\+L\+A\+NK}~0x20
+\item 
+\mbox{\Hypertarget{msdos__conv_8c_a4bc5ab09a65a3bd0cc0017283a90d6eb}\label{msdos__conv_8c_a4bc5ab09a65a3bd0cc0017283a90d6eb}} 
+\#define {\bfseries U\+T\+F8\+\_\+\+B\+L\+A\+N\+K\+\_\+\+S\+I\+ZE}~1
+\item 
+\mbox{\Hypertarget{msdos__conv_8c_a0578c04da8f80f9b1ea29e7c84ea4d46}\label{msdos__conv_8c_a0578c04da8f80f9b1ea29e7c84ea4d46}} 
+\#define {\bfseries U\+T\+F8\+\_\+\+F\+U\+L\+L\+\_\+\+S\+T\+OP}~0x2e
+\item 
+\mbox{\Hypertarget{msdos__conv_8c_adf499aa33937b483b053b206076f44df}\label{msdos__conv_8c_adf499aa33937b483b053b206076f44df}} 
+\#define {\bfseries U\+T\+F8\+\_\+\+F\+U\+L\+L\+\_\+\+S\+T\+O\+P\+\_\+\+S\+I\+ZE}~1
+\item 
+\mbox{\Hypertarget{msdos__conv_8c_a3f6f3592e61be396366968d842b336e5}\label{msdos__conv_8c_a3f6f3592e61be396366968d842b336e5}} 
+\#define {\bfseries U\+T\+F16\+\_\+\+M\+A\+X\+\_\+\+C\+H\+A\+R\+\_\+\+S\+I\+ZE}~4
+\item 
+\mbox{\Hypertarget{msdos__conv_8c_ab4b3fcac95bbc14fe26ee8abdfa31dce}\label{msdos__conv_8c_ab4b3fcac95bbc14fe26ee8abdfa31dce}} 
+\#define {\bfseries U\+T\+F16\+\_\+\+N\+U\+LL}~C\+T\+\_\+\+L\+E\+\_\+W( 0x0000 )
+\item 
+\mbox{\Hypertarget{msdos__conv_8c_ab468e9820559d358ef31600dc8ae8a4a}\label{msdos__conv_8c_ab468e9820559d358ef31600dc8ae8a4a}} 
+\#define {\bfseries U\+T\+F16\+\_\+\+N\+U\+L\+L\+\_\+\+S\+I\+ZE}~2
+\item 
+\mbox{\Hypertarget{msdos__conv_8c_af5336859ad2eb34011aa54f897e00ddf}\label{msdos__conv_8c_af5336859ad2eb34011aa54f897e00ddf}} 
+\#define {\bfseries U\+T\+F16\+\_\+\+B\+L\+A\+NK}~C\+T\+\_\+\+L\+E\+\_\+W( 0x0020 )
+\item 
+\mbox{\Hypertarget{msdos__conv_8c_abbcda8d66745b8e29fc31c79886ceed5}\label{msdos__conv_8c_abbcda8d66745b8e29fc31c79886ceed5}} 
+\#define {\bfseries U\+T\+F16\+\_\+\+B\+L\+A\+N\+K\+\_\+\+S\+I\+ZE}~2
+\item 
+\mbox{\Hypertarget{msdos__conv_8c_a622938756de992ebf62b9b655e1ae2c5}\label{msdos__conv_8c_a622938756de992ebf62b9b655e1ae2c5}} 
+\#define {\bfseries U\+T\+F16\+\_\+\+F\+U\+L\+L\+\_\+\+S\+T\+OP}~C\+T\+\_\+\+L\+E\+\_\+W( 0x002e )
+\item 
+\mbox{\Hypertarget{msdos__conv_8c_a89ae7acc7e079125bbb5734ee1cb44bd}\label{msdos__conv_8c_a89ae7acc7e079125bbb5734ee1cb44bd}} 
+\#define {\bfseries U\+T\+F16\+\_\+\+F\+U\+L\+L\+\_\+\+S\+T\+O\+P\+\_\+\+S\+I\+ZE}~2
+\item 
+\mbox{\Hypertarget{msdos__conv_8c_a4d20e2fed51b720dce39a695371ed308}\label{msdos__conv_8c_a4d20e2fed51b720dce39a695371ed308}} 
+\#define {\bfseries D\+A\+Y\+S\+T\+O1980}~((uint32\+\_\+t) 3652)
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void {\bfseries msdos\+\_\+date\+\_\+unix2dos} (unsigned int t, uint16\+\_\+t $\ast$ddp, uint16\+\_\+t $\ast$dtp)
+\item 
+unsigned int {\bfseries msdos\+\_\+date\+\_\+dos2unix} (unsigned int dd, unsigned int dt)
+\item 
+ssize\+\_\+t {\bfseries msdos\+\_\+filename\+\_\+utf8\+\_\+to\+\_\+long\+\_\+name\+\_\+for\+\_\+compare} (\mbox{\hyperlink{structrtems__dosfs__convert__control}{rtems\+\_\+dosfs\+\_\+convert\+\_\+control}} $\ast$converter, const uint8\+\_\+t $\ast$utf8\+\_\+name, const size\+\_\+t utf8\+\_\+name\+\_\+size, uint8\+\_\+t $\ast$long\+\_\+name, const size\+\_\+t long\+\_\+name\+\_\+size)
+\item 
+ssize\+\_\+t {\bfseries msdos\+\_\+filename\+\_\+utf8\+\_\+to\+\_\+long\+\_\+name\+\_\+for\+\_\+save} (\mbox{\hyperlink{structrtems__dosfs__convert__control}{rtems\+\_\+dosfs\+\_\+convert\+\_\+control}} $\ast$converter, const uint8\+\_\+t $\ast$utf8\+\_\+name, const size\+\_\+t utf8\+\_\+name\+\_\+size, uint16\+\_\+t $\ast$long\+\_\+name, const size\+\_\+t long\+\_\+name\+\_\+size)
+\item 
+ssize\+\_\+t {\bfseries msdos\+\_\+filename\+\_\+utf8\+\_\+to\+\_\+short\+\_\+name\+\_\+for\+\_\+compare} (\mbox{\hyperlink{structrtems__dosfs__convert__control}{rtems\+\_\+dosfs\+\_\+convert\+\_\+control}} $\ast$converter, const uint8\+\_\+t $\ast$utf8\+\_\+name, const size\+\_\+t utf8\+\_\+name\+\_\+size, void $\ast$short\+\_\+name, const size\+\_\+t short\+\_\+name\+\_\+size)
+\item 
+ssize\+\_\+t {\bfseries msdos\+\_\+filename\+\_\+utf8\+\_\+to\+\_\+short\+\_\+name\+\_\+for\+\_\+save} (\mbox{\hyperlink{structrtems__dosfs__convert__control}{rtems\+\_\+dosfs\+\_\+convert\+\_\+control}} $\ast$converter, const uint8\+\_\+t $\ast$utf8\+\_\+name, const size\+\_\+t utf8\+\_\+name\+\_\+size, void $\ast$short\+\_\+name, const size\+\_\+t short\+\_\+name\+\_\+size)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+M\+D\+OS Date Conversion. 
+

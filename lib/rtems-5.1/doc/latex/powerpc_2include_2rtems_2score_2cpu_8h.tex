@@ -1,0 +1,347 @@
+\hypertarget{powerpc_2include_2rtems_2score_2cpu_8h}{}\section{cpukit/score/cpu/powerpc/include/rtems/score/cpu.h File Reference}
+\label{powerpc_2include_2rtems_2score_2cpu_8h}\index{cpukit/score/cpu/powerpc/include/rtems/score/cpu.h@{cpukit/score/cpu/powerpc/include/rtems/score/cpu.h}}
+{\ttfamily \#include $<$rtems/score/basedefs.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/score/powerpc.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/powerpc/registers.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structppc__context}{ppc\+\_\+context}}
+\item 
+struct \mbox{\hyperlink{structContext__Control}{Context\+\_\+\+Control}}
+\begin{DoxyCompactList}\small\item\em Thread register context. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structContext__Control__fp}{Context\+\_\+\+Control\+\_\+fp}}
+\begin{DoxyCompactList}\small\item\em S\+P\+A\+RC basic context. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structCPU__Exception__frame}{C\+P\+U\+\_\+\+Exception\+\_\+frame}}
+\begin{DoxyCompactList}\small\item\em The set of registers that specifies the complete processor state. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{powerpc_2include_2rtems_2score_2cpu_8h_ac40d98a563f63934a5775f1366ba1b67}\label{powerpc_2include_2rtems_2score_2cpu_8h_ac40d98a563f63934a5775f1366ba1b67}} 
+\#define {\bfseries C\+P\+U\+\_\+\+S\+T\+A\+C\+K\+\_\+\+G\+R\+O\+W\+S\+\_\+\+UP}~\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gaa93f0eb578d23995850d61f7d61c55c1}{F\+A\+L\+SE}}
+\item 
+\mbox{\Hypertarget{powerpc_2include_2rtems_2score_2cpu_8h_aafa1399e268a9ae6adf6d6aad4371688}\label{powerpc_2include_2rtems_2score_2cpu_8h_aafa1399e268a9ae6adf6d6aad4371688}} 
+\#define {\bfseries C\+P\+U\+\_\+\+C\+A\+C\+H\+E\+\_\+\+L\+I\+N\+E\+\_\+\+B\+Y\+T\+ES}~P\+P\+C\+\_\+\+S\+T\+R\+U\+C\+T\+U\+R\+E\+\_\+\+A\+L\+I\+G\+N\+M\+E\+NT
+\item 
+\mbox{\Hypertarget{powerpc_2include_2rtems_2score_2cpu_8h_acd43704c7821a2c042d212801156584e}\label{powerpc_2include_2rtems_2score_2cpu_8h_acd43704c7821a2c042d212801156584e}} 
+\#define {\bfseries C\+P\+U\+\_\+\+S\+T\+R\+U\+C\+T\+U\+R\+E\+\_\+\+A\+L\+I\+G\+N\+M\+E\+NT}~\mbox{\hyperlink{structRTEMS__ALIGNED}{R\+T\+E\+M\+S\+\_\+\+A\+L\+I\+G\+N\+ED}}( \mbox{\hyperlink{no__cpu_2include_2rtems_2score_2cpu_8h_aafa1399e268a9ae6adf6d6aad4371688}{C\+P\+U\+\_\+\+C\+A\+C\+H\+E\+\_\+\+L\+I\+N\+E\+\_\+\+B\+Y\+T\+ES}} )
+\item 
+\mbox{\Hypertarget{powerpc_2include_2rtems_2score_2cpu_8h_a112f88f13afe8bb8f1b13f1ca7e09b8d}\label{powerpc_2include_2rtems_2score_2cpu_8h_a112f88f13afe8bb8f1b13f1ca7e09b8d}} 
+\#define {\bfseries C\+P\+U\+\_\+\+H\+A\+R\+D\+W\+A\+R\+E\+\_\+\+FP}~\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gaa93f0eb578d23995850d61f7d61c55c1}{F\+A\+L\+SE}}
+\item 
+\mbox{\Hypertarget{powerpc_2include_2rtems_2score_2cpu_8h_a304f78c61edce38bb88e909f90a326dc}\label{powerpc_2include_2rtems_2score_2cpu_8h_a304f78c61edce38bb88e909f90a326dc}} 
+\#define {\bfseries C\+P\+U\+\_\+\+S\+O\+F\+T\+W\+A\+R\+E\+\_\+\+FP}~\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gaa93f0eb578d23995850d61f7d61c55c1}{F\+A\+L\+SE}}
+\item 
+\mbox{\Hypertarget{powerpc_2include_2rtems_2score_2cpu_8h_a225de03a8647bf307a73cf907969778d}\label{powerpc_2include_2rtems_2score_2cpu_8h_a225de03a8647bf307a73cf907969778d}} 
+\#define {\bfseries C\+P\+U\+\_\+\+A\+L\+L\+\_\+\+T\+A\+S\+K\+S\+\_\+\+A\+R\+E\+\_\+\+FP}~\mbox{\hyperlink{sparc_2include_2rtems_2score_2cpu_8h_a112f88f13afe8bb8f1b13f1ca7e09b8d}{C\+P\+U\+\_\+\+H\+A\+R\+D\+W\+A\+R\+E\+\_\+\+FP}}
+\item 
+\mbox{\Hypertarget{powerpc_2include_2rtems_2score_2cpu_8h_af1c906c8ee4c3d012dc456285e42d3ee}\label{powerpc_2include_2rtems_2score_2cpu_8h_af1c906c8ee4c3d012dc456285e42d3ee}} 
+\#define {\bfseries C\+P\+U\+\_\+\+I\+D\+L\+E\+\_\+\+T\+A\+S\+K\+\_\+\+I\+S\+\_\+\+FP}~\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gaa93f0eb578d23995850d61f7d61c55c1}{F\+A\+L\+SE}}
+\item 
+\mbox{\Hypertarget{powerpc_2include_2rtems_2score_2cpu_8h_adea68a7fa02909edcebee08748f94223}\label{powerpc_2include_2rtems_2score_2cpu_8h_adea68a7fa02909edcebee08748f94223}} 
+\#define {\bfseries C\+P\+U\+\_\+\+M\+A\+X\+I\+M\+U\+M\+\_\+\+P\+R\+O\+C\+E\+S\+S\+O\+RS}~32
+\item 
+\mbox{\Hypertarget{powerpc_2include_2rtems_2score_2cpu_8h_aa90e5b219aa54734b2a23c65501b68cc}\label{powerpc_2include_2rtems_2score_2cpu_8h_aa90e5b219aa54734b2a23c65501b68cc}} 
+\#define {\bfseries P\+P\+C\+\_\+\+G\+P\+R\+\_\+\+T\+Y\+PE}~uintptr\+\_\+t
+\item 
+\mbox{\Hypertarget{powerpc_2include_2rtems_2score_2cpu_8h_a4629800f11e54867696d3c030e44cdfe}\label{powerpc_2include_2rtems_2score_2cpu_8h_a4629800f11e54867696d3c030e44cdfe}} 
+\#define {\bfseries P\+P\+C\+\_\+\+G\+P\+R\+\_\+\+S\+I\+ZE}~4
+\item 
+\mbox{\Hypertarget{powerpc_2include_2rtems_2score_2cpu_8h_ab21472a4d6037ee76e80c9770d7bf6bc}\label{powerpc_2include_2rtems_2score_2cpu_8h_ab21472a4d6037ee76e80c9770d7bf6bc}} 
+\#define {\bfseries P\+P\+C\+\_\+\+G\+P\+R\+\_\+\+L\+O\+AD}~lwz
+\item 
+\mbox{\Hypertarget{powerpc_2include_2rtems_2score_2cpu_8h_a79c3837bac2f33e94d97dec4a835ea1c}\label{powerpc_2include_2rtems_2score_2cpu_8h_a79c3837bac2f33e94d97dec4a835ea1c}} 
+\#define {\bfseries P\+P\+C\+\_\+\+G\+P\+R\+\_\+\+S\+T\+O\+RE}~stw
+\item 
+\mbox{\Hypertarget{powerpc_2include_2rtems_2score_2cpu_8h_a5ae96c879f5656e6717f8cfddff13493}\label{powerpc_2include_2rtems_2score_2cpu_8h_a5ae96c879f5656e6717f8cfddff13493}} 
+\#define {\bfseries P\+P\+C\+\_\+\+R\+E\+G\+\_\+\+S\+I\+ZE}~4
+\item 
+\mbox{\Hypertarget{powerpc_2include_2rtems_2score_2cpu_8h_a095e0ac2b43e6acd6f84b52816a4175e}\label{powerpc_2include_2rtems_2score_2cpu_8h_a095e0ac2b43e6acd6f84b52816a4175e}} 
+\#define {\bfseries P\+P\+C\+\_\+\+R\+E\+G\+\_\+\+L\+O\+AD}~lwz
+\item 
+\mbox{\Hypertarget{powerpc_2include_2rtems_2score_2cpu_8h_a359281ca31729c8edeb3e9797e288c8b}\label{powerpc_2include_2rtems_2score_2cpu_8h_a359281ca31729c8edeb3e9797e288c8b}} 
+\#define {\bfseries P\+P\+C\+\_\+\+R\+E\+G\+\_\+\+S\+T\+O\+RE}~stw
+\item 
+\mbox{\Hypertarget{powerpc_2include_2rtems_2score_2cpu_8h_a2bc3582a21fc9a6f749138dedc13dbb8}\label{powerpc_2include_2rtems_2score_2cpu_8h_a2bc3582a21fc9a6f749138dedc13dbb8}} 
+\#define {\bfseries P\+P\+C\+\_\+\+R\+E\+G\+\_\+\+S\+T\+O\+R\+E\+\_\+\+U\+P\+D\+A\+TE}~stwu
+\item 
+\mbox{\Hypertarget{powerpc_2include_2rtems_2score_2cpu_8h_af88e75de8a1f1c0af97a7cc08c5ab371}\label{powerpc_2include_2rtems_2score_2cpu_8h_af88e75de8a1f1c0af97a7cc08c5ab371}} 
+\#define {\bfseries P\+P\+C\+\_\+\+R\+E\+G\+\_\+\+C\+MP}~cmpw
+\item 
+\mbox{\Hypertarget{powerpc_2include_2rtems_2score_2cpu_8h_a896055157b72692a6141f7c0039eabdf}\label{powerpc_2include_2rtems_2score_2cpu_8h_a896055157b72692a6141f7c0039eabdf}} 
+\#define {\bfseries \+\_\+\+C\+P\+U\+\_\+\+Context\+\_\+\+Get\+\_\+\+SP}(\+\_\+context)~ppc\+\_\+get\+\_\+context(\+\_\+context)-\/$>$gpr1
+\item 
+\mbox{\Hypertarget{powerpc_2include_2rtems_2score_2cpu_8h_a21b75cc5dd5a92171c676fd95acdbe6c}\label{powerpc_2include_2rtems_2score_2cpu_8h_a21b75cc5dd5a92171c676fd95acdbe6c}} 
+\#define {\bfseries P\+P\+C\+\_\+\+C\+O\+N\+T\+E\+X\+T\+\_\+\+O\+F\+F\+S\+E\+T\+\_\+\+M\+SR}~(P\+P\+C\+\_\+\+D\+E\+F\+A\+U\+L\+T\+\_\+\+C\+A\+C\+H\+E\+\_\+\+L\+I\+N\+E\+\_\+\+S\+I\+ZE)
+\item 
+\mbox{\Hypertarget{powerpc_2include_2rtems_2score_2cpu_8h_af12a1f4bcae9a98e5ad23b1b2d3966b4}\label{powerpc_2include_2rtems_2score_2cpu_8h_af12a1f4bcae9a98e5ad23b1b2d3966b4}} 
+\#define {\bfseries P\+P\+C\+\_\+\+C\+O\+N\+T\+E\+X\+T\+\_\+\+O\+F\+F\+S\+E\+T\+\_\+\+CR}~(P\+P\+C\+\_\+\+D\+E\+F\+A\+U\+L\+T\+\_\+\+C\+A\+C\+H\+E\+\_\+\+L\+I\+N\+E\+\_\+\+S\+I\+ZE + 4)
+\item 
+\mbox{\Hypertarget{powerpc_2include_2rtems_2score_2cpu_8h_a94390b9601816939d042a727a8a88764}\label{powerpc_2include_2rtems_2score_2cpu_8h_a94390b9601816939d042a727a8a88764}} 
+\#define {\bfseries P\+P\+C\+\_\+\+C\+O\+N\+T\+E\+X\+T\+\_\+\+O\+F\+F\+S\+E\+T\+\_\+\+G\+P\+R1}~(P\+P\+C\+\_\+\+D\+E\+F\+A\+U\+L\+T\+\_\+\+C\+A\+C\+H\+E\+\_\+\+L\+I\+N\+E\+\_\+\+S\+I\+ZE + 8)
+\item 
+\mbox{\Hypertarget{powerpc_2include_2rtems_2score_2cpu_8h_aa371c1d211aa3ea70f14fb65a2953a7f}\label{powerpc_2include_2rtems_2score_2cpu_8h_aa371c1d211aa3ea70f14fb65a2953a7f}} 
+\#define {\bfseries P\+P\+C\+\_\+\+C\+O\+N\+T\+E\+X\+T\+\_\+\+O\+F\+F\+S\+E\+T\+\_\+\+LR}~(P\+P\+C\+\_\+\+D\+E\+F\+A\+U\+L\+T\+\_\+\+C\+A\+C\+H\+E\+\_\+\+L\+I\+N\+E\+\_\+\+S\+I\+ZE + P\+P\+C\+\_\+\+R\+E\+G\+\_\+\+S\+I\+ZE + 8)
+\item 
+\#define {\bfseries P\+P\+C\+\_\+\+C\+O\+N\+T\+E\+X\+T\+\_\+\+G\+P\+R\+\_\+\+O\+F\+F\+S\+ET}(gpr)
+\item 
+\mbox{\Hypertarget{powerpc_2include_2rtems_2score_2cpu_8h_aad38fcac9257f5004ba1d46f31a1125d}\label{powerpc_2include_2rtems_2score_2cpu_8h_aad38fcac9257f5004ba1d46f31a1125d}} 
+\#define {\bfseries P\+P\+C\+\_\+\+C\+O\+N\+T\+E\+X\+T\+\_\+\+O\+F\+F\+S\+E\+T\+\_\+\+G\+P\+R14}~P\+P\+C\+\_\+\+C\+O\+N\+T\+E\+X\+T\+\_\+\+G\+P\+R\+\_\+\+O\+F\+F\+S\+ET( 14 )
+\item 
+\mbox{\Hypertarget{powerpc_2include_2rtems_2score_2cpu_8h_a234f900f3efeecfd305df619c708f617}\label{powerpc_2include_2rtems_2score_2cpu_8h_a234f900f3efeecfd305df619c708f617}} 
+\#define {\bfseries P\+P\+C\+\_\+\+C\+O\+N\+T\+E\+X\+T\+\_\+\+O\+F\+F\+S\+E\+T\+\_\+\+G\+P\+R15}~P\+P\+C\+\_\+\+C\+O\+N\+T\+E\+X\+T\+\_\+\+G\+P\+R\+\_\+\+O\+F\+F\+S\+ET( 15 )
+\item 
+\mbox{\Hypertarget{powerpc_2include_2rtems_2score_2cpu_8h_a409d9fa0604f0117e06ef01c11e9c63d}\label{powerpc_2include_2rtems_2score_2cpu_8h_a409d9fa0604f0117e06ef01c11e9c63d}} 
+\#define {\bfseries P\+P\+C\+\_\+\+C\+O\+N\+T\+E\+X\+T\+\_\+\+O\+F\+F\+S\+E\+T\+\_\+\+G\+P\+R16}~P\+P\+C\+\_\+\+C\+O\+N\+T\+E\+X\+T\+\_\+\+G\+P\+R\+\_\+\+O\+F\+F\+S\+ET( 16 )
+\item 
+\mbox{\Hypertarget{powerpc_2include_2rtems_2score_2cpu_8h_a416fbb19890eb300f626538513677674}\label{powerpc_2include_2rtems_2score_2cpu_8h_a416fbb19890eb300f626538513677674}} 
+\#define {\bfseries P\+P\+C\+\_\+\+C\+O\+N\+T\+E\+X\+T\+\_\+\+O\+F\+F\+S\+E\+T\+\_\+\+G\+P\+R17}~P\+P\+C\+\_\+\+C\+O\+N\+T\+E\+X\+T\+\_\+\+G\+P\+R\+\_\+\+O\+F\+F\+S\+ET( 17 )
+\item 
+\mbox{\Hypertarget{powerpc_2include_2rtems_2score_2cpu_8h_a9b4f89e3dd79cbd0cbb0c35d74b00d06}\label{powerpc_2include_2rtems_2score_2cpu_8h_a9b4f89e3dd79cbd0cbb0c35d74b00d06}} 
+\#define {\bfseries P\+P\+C\+\_\+\+C\+O\+N\+T\+E\+X\+T\+\_\+\+O\+F\+F\+S\+E\+T\+\_\+\+G\+P\+R18}~P\+P\+C\+\_\+\+C\+O\+N\+T\+E\+X\+T\+\_\+\+G\+P\+R\+\_\+\+O\+F\+F\+S\+ET( 18 )
+\item 
+\mbox{\Hypertarget{powerpc_2include_2rtems_2score_2cpu_8h_a569da8212962403e809189321ea0efa5}\label{powerpc_2include_2rtems_2score_2cpu_8h_a569da8212962403e809189321ea0efa5}} 
+\#define {\bfseries P\+P\+C\+\_\+\+C\+O\+N\+T\+E\+X\+T\+\_\+\+O\+F\+F\+S\+E\+T\+\_\+\+G\+P\+R19}~P\+P\+C\+\_\+\+C\+O\+N\+T\+E\+X\+T\+\_\+\+G\+P\+R\+\_\+\+O\+F\+F\+S\+ET( 19 )
+\item 
+\mbox{\Hypertarget{powerpc_2include_2rtems_2score_2cpu_8h_a5c89e2c497ef69bdb659e13f7dbe2b5d}\label{powerpc_2include_2rtems_2score_2cpu_8h_a5c89e2c497ef69bdb659e13f7dbe2b5d}} 
+\#define {\bfseries P\+P\+C\+\_\+\+C\+O\+N\+T\+E\+X\+T\+\_\+\+O\+F\+F\+S\+E\+T\+\_\+\+G\+P\+R20}~P\+P\+C\+\_\+\+C\+O\+N\+T\+E\+X\+T\+\_\+\+G\+P\+R\+\_\+\+O\+F\+F\+S\+ET( 20 )
+\item 
+\mbox{\Hypertarget{powerpc_2include_2rtems_2score_2cpu_8h_a839a97c0b8eb13b4bfd6c39bc0dfa756}\label{powerpc_2include_2rtems_2score_2cpu_8h_a839a97c0b8eb13b4bfd6c39bc0dfa756}} 
+\#define {\bfseries P\+P\+C\+\_\+\+C\+O\+N\+T\+E\+X\+T\+\_\+\+O\+F\+F\+S\+E\+T\+\_\+\+G\+P\+R21}~P\+P\+C\+\_\+\+C\+O\+N\+T\+E\+X\+T\+\_\+\+G\+P\+R\+\_\+\+O\+F\+F\+S\+ET( 21 )
+\item 
+\mbox{\Hypertarget{powerpc_2include_2rtems_2score_2cpu_8h_a8e66c20eeb335e6fda79e2657d1dd2d8}\label{powerpc_2include_2rtems_2score_2cpu_8h_a8e66c20eeb335e6fda79e2657d1dd2d8}} 
+\#define {\bfseries P\+P\+C\+\_\+\+C\+O\+N\+T\+E\+X\+T\+\_\+\+O\+F\+F\+S\+E\+T\+\_\+\+G\+P\+R22}~P\+P\+C\+\_\+\+C\+O\+N\+T\+E\+X\+T\+\_\+\+G\+P\+R\+\_\+\+O\+F\+F\+S\+ET( 22 )
+\item 
+\mbox{\Hypertarget{powerpc_2include_2rtems_2score_2cpu_8h_ab41288d553616054efd84bce422062e2}\label{powerpc_2include_2rtems_2score_2cpu_8h_ab41288d553616054efd84bce422062e2}} 
+\#define {\bfseries P\+P\+C\+\_\+\+C\+O\+N\+T\+E\+X\+T\+\_\+\+O\+F\+F\+S\+E\+T\+\_\+\+G\+P\+R23}~P\+P\+C\+\_\+\+C\+O\+N\+T\+E\+X\+T\+\_\+\+G\+P\+R\+\_\+\+O\+F\+F\+S\+ET( 23 )
+\item 
+\mbox{\Hypertarget{powerpc_2include_2rtems_2score_2cpu_8h_ad1f1ad5f4a72281cbe3209242f9e9a63}\label{powerpc_2include_2rtems_2score_2cpu_8h_ad1f1ad5f4a72281cbe3209242f9e9a63}} 
+\#define {\bfseries P\+P\+C\+\_\+\+C\+O\+N\+T\+E\+X\+T\+\_\+\+O\+F\+F\+S\+E\+T\+\_\+\+G\+P\+R24}~P\+P\+C\+\_\+\+C\+O\+N\+T\+E\+X\+T\+\_\+\+G\+P\+R\+\_\+\+O\+F\+F\+S\+ET( 24 )
+\item 
+\mbox{\Hypertarget{powerpc_2include_2rtems_2score_2cpu_8h_a63b495401e87594783b5283c3406da18}\label{powerpc_2include_2rtems_2score_2cpu_8h_a63b495401e87594783b5283c3406da18}} 
+\#define {\bfseries P\+P\+C\+\_\+\+C\+O\+N\+T\+E\+X\+T\+\_\+\+O\+F\+F\+S\+E\+T\+\_\+\+G\+P\+R25}~P\+P\+C\+\_\+\+C\+O\+N\+T\+E\+X\+T\+\_\+\+G\+P\+R\+\_\+\+O\+F\+F\+S\+ET( 25 )
+\item 
+\mbox{\Hypertarget{powerpc_2include_2rtems_2score_2cpu_8h_a873c3b9287981e4be009c7fbaffef961}\label{powerpc_2include_2rtems_2score_2cpu_8h_a873c3b9287981e4be009c7fbaffef961}} 
+\#define {\bfseries P\+P\+C\+\_\+\+C\+O\+N\+T\+E\+X\+T\+\_\+\+O\+F\+F\+S\+E\+T\+\_\+\+G\+P\+R26}~P\+P\+C\+\_\+\+C\+O\+N\+T\+E\+X\+T\+\_\+\+G\+P\+R\+\_\+\+O\+F\+F\+S\+ET( 26 )
+\item 
+\mbox{\Hypertarget{powerpc_2include_2rtems_2score_2cpu_8h_a34858d4ed1470c521b32d37eb2079658}\label{powerpc_2include_2rtems_2score_2cpu_8h_a34858d4ed1470c521b32d37eb2079658}} 
+\#define {\bfseries P\+P\+C\+\_\+\+C\+O\+N\+T\+E\+X\+T\+\_\+\+O\+F\+F\+S\+E\+T\+\_\+\+G\+P\+R27}~P\+P\+C\+\_\+\+C\+O\+N\+T\+E\+X\+T\+\_\+\+G\+P\+R\+\_\+\+O\+F\+F\+S\+ET( 27 )
+\item 
+\mbox{\Hypertarget{powerpc_2include_2rtems_2score_2cpu_8h_a06ef10be924511862237b1c83b0174e6}\label{powerpc_2include_2rtems_2score_2cpu_8h_a06ef10be924511862237b1c83b0174e6}} 
+\#define {\bfseries P\+P\+C\+\_\+\+C\+O\+N\+T\+E\+X\+T\+\_\+\+O\+F\+F\+S\+E\+T\+\_\+\+G\+P\+R28}~P\+P\+C\+\_\+\+C\+O\+N\+T\+E\+X\+T\+\_\+\+G\+P\+R\+\_\+\+O\+F\+F\+S\+ET( 28 )
+\item 
+\mbox{\Hypertarget{powerpc_2include_2rtems_2score_2cpu_8h_aad303014c824c7a11f784882a97fb9b3}\label{powerpc_2include_2rtems_2score_2cpu_8h_aad303014c824c7a11f784882a97fb9b3}} 
+\#define {\bfseries P\+P\+C\+\_\+\+C\+O\+N\+T\+E\+X\+T\+\_\+\+O\+F\+F\+S\+E\+T\+\_\+\+G\+P\+R29}~P\+P\+C\+\_\+\+C\+O\+N\+T\+E\+X\+T\+\_\+\+G\+P\+R\+\_\+\+O\+F\+F\+S\+ET( 29 )
+\item 
+\mbox{\Hypertarget{powerpc_2include_2rtems_2score_2cpu_8h_acd2673126e96c472d9ca0e41876fa269}\label{powerpc_2include_2rtems_2score_2cpu_8h_acd2673126e96c472d9ca0e41876fa269}} 
+\#define {\bfseries P\+P\+C\+\_\+\+C\+O\+N\+T\+E\+X\+T\+\_\+\+O\+F\+F\+S\+E\+T\+\_\+\+G\+P\+R30}~P\+P\+C\+\_\+\+C\+O\+N\+T\+E\+X\+T\+\_\+\+G\+P\+R\+\_\+\+O\+F\+F\+S\+ET( 30 )
+\item 
+\mbox{\Hypertarget{powerpc_2include_2rtems_2score_2cpu_8h_a5d9365832d0d2ef62ad4cf9f046afddc}\label{powerpc_2include_2rtems_2score_2cpu_8h_a5d9365832d0d2ef62ad4cf9f046afddc}} 
+\#define {\bfseries P\+P\+C\+\_\+\+C\+O\+N\+T\+E\+X\+T\+\_\+\+O\+F\+F\+S\+E\+T\+\_\+\+G\+P\+R31}~P\+P\+C\+\_\+\+C\+O\+N\+T\+E\+X\+T\+\_\+\+G\+P\+R\+\_\+\+O\+F\+F\+S\+ET( 31 )
+\item 
+\mbox{\Hypertarget{powerpc_2include_2rtems_2score_2cpu_8h_a36980a434f19458ba18b53cb010f9b3e}\label{powerpc_2include_2rtems_2score_2cpu_8h_a36980a434f19458ba18b53cb010f9b3e}} 
+\#define {\bfseries P\+P\+C\+\_\+\+C\+O\+N\+T\+E\+X\+T\+\_\+\+O\+F\+F\+S\+E\+T\+\_\+\+I\+S\+R\+\_\+\+D\+I\+S\+P\+A\+T\+C\+H\+\_\+\+D\+I\+S\+A\+B\+LE}~P\+P\+C\+\_\+\+C\+O\+N\+T\+E\+X\+T\+\_\+\+G\+P\+R\+\_\+\+O\+F\+F\+S\+ET( 32 )
+\item 
+\mbox{\Hypertarget{powerpc_2include_2rtems_2score_2cpu_8h_ade5b728006697523bbd1762273d0606f}\label{powerpc_2include_2rtems_2score_2cpu_8h_ade5b728006697523bbd1762273d0606f}} 
+\#define {\bfseries P\+P\+C\+\_\+\+C\+O\+N\+T\+E\+X\+T\+\_\+\+O\+F\+F\+S\+E\+T\+\_\+F}(f)~( ( ( f ) -\/ 14 ) $\ast$ 8 + P\+P\+C\+\_\+\+C\+O\+N\+T\+E\+X\+T\+\_\+\+O\+F\+F\+S\+E\+T\+\_\+\+I\+S\+R\+\_\+\+D\+I\+S\+P\+A\+T\+C\+H\+\_\+\+D\+I\+S\+A\+B\+LE + 8 )
+\item 
+\mbox{\Hypertarget{powerpc_2include_2rtems_2score_2cpu_8h_a28ee3ccbccc04ed21c701bdfe3bbbc23}\label{powerpc_2include_2rtems_2score_2cpu_8h_a28ee3ccbccc04ed21c701bdfe3bbbc23}} 
+\#define {\bfseries P\+P\+C\+\_\+\+C\+O\+N\+T\+E\+X\+T\+\_\+\+V\+O\+L\+A\+T\+I\+L\+E\+\_\+\+S\+I\+ZE}~(P\+P\+C\+\_\+\+C\+O\+N\+T\+E\+X\+T\+\_\+\+G\+P\+R\+\_\+\+O\+F\+F\+S\+ET( 32 ) + 8)
+\item 
+\mbox{\Hypertarget{powerpc_2include_2rtems_2score_2cpu_8h_a45c9108fee32063def42befc888fd989}\label{powerpc_2include_2rtems_2score_2cpu_8h_a45c9108fee32063def42befc888fd989}} 
+\#define {\bfseries P\+P\+C\+\_\+\+C\+O\+N\+T\+E\+X\+T\+\_\+\+O\+F\+F\+S\+E\+T\+\_\+\+TP}~P\+P\+C\+\_\+\+C\+O\+N\+T\+E\+X\+T\+\_\+\+V\+O\+L\+A\+T\+I\+L\+E\+\_\+\+S\+I\+ZE
+\item 
+\mbox{\Hypertarget{powerpc_2include_2rtems_2score_2cpu_8h_a1eca01dbb1ef2873349cc4e222509f0a}\label{powerpc_2include_2rtems_2score_2cpu_8h_a1eca01dbb1ef2873349cc4e222509f0a}} 
+\#define {\bfseries C\+P\+U\+\_\+\+S\+I\+M\+P\+L\+E\+\_\+\+V\+E\+C\+T\+O\+R\+E\+D\+\_\+\+I\+N\+T\+E\+R\+R\+U\+P\+TS}~\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gaa93f0eb578d23995850d61f7d61c55c1}{F\+A\+L\+SE}}
+\item 
+\mbox{\Hypertarget{powerpc_2include_2rtems_2score_2cpu_8h_a30c4d320f85b1383c5059da5b19b164a}\label{powerpc_2include_2rtems_2score_2cpu_8h_a30c4d320f85b1383c5059da5b19b164a}} 
+\#define {\bfseries C\+P\+U\+\_\+\+I\+S\+R\+\_\+\+P\+A\+S\+S\+E\+S\+\_\+\+F\+R\+A\+M\+E\+\_\+\+P\+O\+I\+N\+T\+ER}~\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gaa93f0eb578d23995850d61f7d61c55c1}{F\+A\+L\+SE}}
+\item 
+\mbox{\Hypertarget{powerpc_2include_2rtems_2score_2cpu_8h_a155bcf88149016c6c58f30eeab9f1598}\label{powerpc_2include_2rtems_2score_2cpu_8h_a155bcf88149016c6c58f30eeab9f1598}} 
+\#define {\bfseries C\+P\+U\+\_\+\+U\+S\+E\+\_\+\+D\+E\+F\+E\+R\+R\+E\+D\+\_\+\+F\+P\+\_\+\+S\+W\+I\+T\+CH}~\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gaa93f0eb578d23995850d61f7d61c55c1}{F\+A\+L\+SE}}
+\item 
+\mbox{\Hypertarget{powerpc_2include_2rtems_2score_2cpu_8h_a0c634f4a6bc9236bcacafc9b6119e011}\label{powerpc_2include_2rtems_2score_2cpu_8h_a0c634f4a6bc9236bcacafc9b6119e011}} 
+\#define {\bfseries C\+P\+U\+\_\+\+E\+N\+A\+B\+L\+E\+\_\+\+R\+O\+B\+U\+S\+T\+\_\+\+T\+H\+R\+E\+A\+D\+\_\+\+D\+I\+S\+P\+A\+T\+CH}~\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gaa93f0eb578d23995850d61f7d61c55c1}{F\+A\+L\+SE}}
+\item 
+\mbox{\Hypertarget{powerpc_2include_2rtems_2score_2cpu_8h_af8823e651e33b9683e0d89e5a8054ee6}\label{powerpc_2include_2rtems_2score_2cpu_8h_af8823e651e33b9683e0d89e5a8054ee6}} 
+\#define {\bfseries C\+P\+U\+\_\+\+M\+O\+D\+E\+S\+\_\+\+I\+N\+T\+E\+R\+R\+U\+P\+T\+\_\+\+M\+A\+SK}~0x00000001 /$\ast$ interrupt level in mode $\ast$/
+\item 
+\mbox{\Hypertarget{powerpc_2include_2rtems_2score_2cpu_8h_af58e4ff1f7e1c85fc5c0b80cbd0672c5}\label{powerpc_2include_2rtems_2score_2cpu_8h_af58e4ff1f7e1c85fc5c0b80cbd0672c5}} 
+\#define {\bfseries C\+P\+U\+\_\+\+C\+O\+N\+T\+E\+X\+T\+\_\+\+F\+P\+\_\+\+S\+I\+ZE}~sizeof( \mbox{\hyperlink{structContext__Control__fp}{Context\+\_\+\+Control\+\_\+fp}} )
+\item 
+\#define {\bfseries C\+P\+U\+\_\+\+S\+T\+A\+C\+K\+\_\+\+C\+H\+E\+C\+K\+\_\+\+P\+A\+T\+T\+E\+R\+N\+\_\+\+I\+N\+I\+T\+I\+A\+L\+I\+Z\+ER}
+\item 
+\mbox{\Hypertarget{powerpc_2include_2rtems_2score_2cpu_8h_ab94869be93a41da88a10fa59771ce2c9}\label{powerpc_2include_2rtems_2score_2cpu_8h_ab94869be93a41da88a10fa59771ce2c9}} 
+\#define {\bfseries C\+P\+U\+\_\+\+M\+P\+C\+I\+\_\+\+R\+E\+C\+E\+I\+V\+E\+\_\+\+S\+E\+R\+V\+E\+R\+\_\+\+E\+X\+T\+R\+A\+\_\+\+S\+T\+A\+CK}~0
+\item 
+\mbox{\Hypertarget{powerpc_2include_2rtems_2score_2cpu_8h_a47f6e4d60c72b5f65fc775b0b5dd14ec}\label{powerpc_2include_2rtems_2score_2cpu_8h_a47f6e4d60c72b5f65fc775b0b5dd14ec}} 
+\#define {\bfseries C\+P\+U\+\_\+\+P\+R\+O\+V\+I\+D\+E\+S\+\_\+\+I\+S\+R\+\_\+\+I\+S\+\_\+\+I\+N\+\_\+\+P\+R\+O\+G\+R\+E\+SS}~\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gaa93f0eb578d23995850d61f7d61c55c1}{F\+A\+L\+SE}}
+\item 
+\#define {\bfseries \+\_\+\+C\+P\+U\+\_\+\+Fatal\+\_\+halt}(\+\_\+source,  \+\_\+error)
+\item 
+\mbox{\Hypertarget{powerpc_2include_2rtems_2score_2cpu_8h_a4c92ceea7549cc7b21db2c466916b733}\label{powerpc_2include_2rtems_2score_2cpu_8h_a4c92ceea7549cc7b21db2c466916b733}} 
+\#define {\bfseries C\+P\+U\+\_\+\+S\+T\+A\+C\+K\+\_\+\+M\+I\+N\+I\+M\+U\+M\+\_\+\+S\+I\+ZE}~(1024$\ast$8)
+\item 
+\mbox{\Hypertarget{powerpc_2include_2rtems_2score_2cpu_8h_aea4bd2905092d69bc92fbff6103ced8b}\label{powerpc_2include_2rtems_2score_2cpu_8h_aea4bd2905092d69bc92fbff6103ced8b}} 
+\#define {\bfseries C\+P\+U\+\_\+\+S\+I\+Z\+E\+O\+F\+\_\+\+P\+O\+I\+N\+T\+ER}~4
+\item 
+\mbox{\Hypertarget{powerpc_2include_2rtems_2score_2cpu_8h_ae526a309e32001688261048b19cdb7d8}\label{powerpc_2include_2rtems_2score_2cpu_8h_ae526a309e32001688261048b19cdb7d8}} 
+\#define {\bfseries C\+P\+U\+\_\+\+A\+L\+I\+G\+N\+M\+E\+NT}~(P\+P\+C\+\_\+\+A\+L\+I\+G\+N\+M\+E\+NT)
+\item 
+\mbox{\Hypertarget{powerpc_2include_2rtems_2score_2cpu_8h_ac71c1e0159c32144a04f18646ede252b}\label{powerpc_2include_2rtems_2score_2cpu_8h_ac71c1e0159c32144a04f18646ede252b}} 
+\#define {\bfseries C\+P\+U\+\_\+\+H\+E\+A\+P\+\_\+\+A\+L\+I\+G\+N\+M\+E\+NT}~(P\+P\+C\+\_\+\+A\+L\+I\+G\+N\+M\+E\+NT)
+\item 
+\mbox{\Hypertarget{powerpc_2include_2rtems_2score_2cpu_8h_a8aed43eb1b3c346772c127482b4b5372}\label{powerpc_2include_2rtems_2score_2cpu_8h_a8aed43eb1b3c346772c127482b4b5372}} 
+\#define {\bfseries C\+P\+U\+\_\+\+S\+T\+A\+C\+K\+\_\+\+A\+L\+I\+G\+N\+M\+E\+NT}~(P\+P\+C\+\_\+\+S\+T\+A\+C\+K\+\_\+\+A\+L\+I\+G\+N\+M\+E\+NT)
+\item 
+\mbox{\Hypertarget{powerpc_2include_2rtems_2score_2cpu_8h_a6a578627686e1020a28f5a295703ca74}\label{powerpc_2include_2rtems_2score_2cpu_8h_a6a578627686e1020a28f5a295703ca74}} 
+\#define {\bfseries C\+P\+U\+\_\+\+I\+N\+T\+E\+R\+R\+U\+P\+T\+\_\+\+S\+T\+A\+C\+K\+\_\+\+A\+L\+I\+G\+N\+M\+E\+NT}~\mbox{\hyperlink{no__cpu_2include_2rtems_2score_2cpu_8h_aafa1399e268a9ae6adf6d6aad4371688}{C\+P\+U\+\_\+\+C\+A\+C\+H\+E\+\_\+\+L\+I\+N\+E\+\_\+\+B\+Y\+T\+ES}}
+\item 
+\mbox{\Hypertarget{powerpc_2include_2rtems_2score_2cpu_8h_a1936ecb0107e5875a7b538374c1f621d}\label{powerpc_2include_2rtems_2score_2cpu_8h_a1936ecb0107e5875a7b538374c1f621d}} 
+\#define {\bfseries C\+P\+U\+\_\+swap\+\_\+u16}(value)~(((value\&0xff) $<$$<$ 8) $\vert$ ((value $>$$>$ 8)\&0xff))
+\item 
+\mbox{\Hypertarget{powerpc_2include_2rtems_2score_2cpu_8h_a3fb67e174d7b61251322cd32126acd1a}\label{powerpc_2include_2rtems_2score_2cpu_8h_a3fb67e174d7b61251322cd32126acd1a}} 
+\#define {\bfseries \+\_\+\+C\+P\+U\+\_\+\+Context\+\_\+\+Restart\+\_\+self}(\+\_\+the\+\_\+context)~\mbox{\hyperlink{group__RTEMSScoreCPUARM_ga80726ebfe00f31a88b086cc4474c472f}{\+\_\+\+C\+P\+U\+\_\+\+Context\+\_\+restore}}( (\+\_\+the\+\_\+context) );
+\item 
+\mbox{\Hypertarget{powerpc_2include_2rtems_2score_2cpu_8h_ac34a28abe9b31559d4096b2c942860a6}\label{powerpc_2include_2rtems_2score_2cpu_8h_ac34a28abe9b31559d4096b2c942860a6}} 
+\#define {\bfseries \+\_\+\+C\+P\+U\+\_\+\+Context\+\_\+\+Initialize\+\_\+fp}(\+\_\+destination)~memset( $\ast$(\+\_\+destination), 0, sizeof( $\ast$$\ast$(\+\_\+destination) ) )
+\item 
+\mbox{\Hypertarget{powerpc_2include_2rtems_2score_2cpu_8h_ab0aff7a561b9c030a4d88eff201f4688}\label{powerpc_2include_2rtems_2score_2cpu_8h_ab0aff7a561b9c030a4d88eff201f4688}} 
+\#define {\bfseries C\+P\+U\+\_\+\+U\+S\+E\+\_\+\+G\+E\+N\+E\+R\+I\+C\+\_\+\+B\+I\+T\+F\+I\+E\+L\+D\+\_\+\+C\+O\+DE}~\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gaa93f0eb578d23995850d61f7d61c55c1}{F\+A\+L\+SE}}
+\item 
+\#define {\bfseries \+\_\+\+C\+P\+U\+\_\+\+Bitfield\+\_\+\+Find\+\_\+first\+\_\+bit}(\+\_\+value,  \+\_\+output)
+\item 
+\mbox{\Hypertarget{powerpc_2include_2rtems_2score_2cpu_8h_ab2b14ff6bbccff7e0a99f55c4c8b8e87}\label{powerpc_2include_2rtems_2score_2cpu_8h_ab2b14ff6bbccff7e0a99f55c4c8b8e87}} 
+\#define {\bfseries \+\_\+\+C\+P\+U\+\_\+\+Priority\+\_\+\+Mask}(\+\_\+bit\+\_\+number)~( 0x8000u $>$$>$ (\+\_\+bit\+\_\+number) )
+\item 
+\mbox{\Hypertarget{powerpc_2include_2rtems_2score_2cpu_8h_a806e09db1107cf84732edffb7c7f96b2}\label{powerpc_2include_2rtems_2score_2cpu_8h_a806e09db1107cf84732edffb7c7f96b2}} 
+\#define {\bfseries \+\_\+\+C\+P\+U\+\_\+\+Priority\+\_\+bits\+\_\+index}(\+\_\+priority)~(\+\_\+priority)
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{powerpc_2include_2rtems_2score_2cpu_8h_a67f8550aad58bccb6fcb4589894444ad}\label{powerpc_2include_2rtems_2score_2cpu_8h_a67f8550aad58bccb6fcb4589894444ad}} 
+typedef uint32\+\_\+t {\bfseries C\+P\+U\+\_\+\+Counter\+\_\+ticks}
+\item 
+typedef uintptr\+\_\+t \mbox{\hyperlink{powerpc_2include_2rtems_2score_2cpu_8h_a9fca17f81f850e128fcc8ed5b87ff2ab}{C\+P\+U\+\_\+\+Uint32ptr}}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} bool \mbox{\hyperlink{group__RTEMSScoreCPUARM_ga5254669b54a06e96ebb585fd50a02c4d}{\+\_\+\+C\+P\+U\+\_\+\+I\+S\+R\+\_\+\+Is\+\_\+enabled}} (uint32\+\_\+t level)
+\begin{DoxyCompactList}\small\item\em Returns true if interrupts are enabled in the specified I\+SR level, otherwise returns false. \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{group__RTEMSScoreCPUARM_gaa675150e5d00169c99410a82011b6117}{\+\_\+\+C\+P\+U\+\_\+\+Counter\+\_\+frequency}} (void)
+\begin{DoxyCompactList}\small\item\em Returns the current C\+PU counter frequency in Hz. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{powerpc_2include_2rtems_2score_2cpu_8h_ae3ba58d3d2341d3137d94c54a5ef06b0}\label{powerpc_2include_2rtems_2score_2cpu_8h_ae3ba58d3d2341d3137d94c54a5ef06b0}} 
+void {\bfseries \+\_\+\+C\+P\+U\+\_\+\+Context\+\_\+\+Initialize} (\mbox{\hyperlink{structContext__Control}{Context\+\_\+\+Control}} $\ast$the\+\_\+context, void $\ast$stack\+\_\+base, size\+\_\+t \mbox{\hyperlink{sun4u_2tte_8h_a245260f6f74972558f61b85227df5aae}{size}}, uint32\+\_\+t new\+\_\+level, void $\ast$entry\+\_\+point, bool is\+\_\+fp, void $\ast$tls\+\_\+area)
+\item 
+void \mbox{\hyperlink{group__RTEMSScoreCPUARM_ga869484e3d851b032fd826c69ff21fc72}{\+\_\+\+C\+P\+U\+\_\+\+Initialize}} (void)
+\begin{DoxyCompactList}\small\item\em C\+PU initialization. \end{DoxyCompactList}\item 
+void $\ast$ \mbox{\hyperlink{group__RTEMSScoreCPUARM_ga903a802003c95d6ef5206cb330424a1b}{\+\_\+\+C\+P\+U\+\_\+\+Thread\+\_\+\+Idle\+\_\+body}} (uintptr\+\_\+t ignored)
+\item 
+void \mbox{\hyperlink{group__RTEMSScoreCPUARM_gaa9f8cc989454b28232e5375e30c90970}{\+\_\+\+C\+P\+U\+\_\+\+Context\+\_\+switch}} (\mbox{\hyperlink{structContext__Control}{Context\+\_\+\+Control}} $\ast$run, \mbox{\hyperlink{structContext__Control}{Context\+\_\+\+Control}} $\ast$heir)
+\begin{DoxyCompactList}\small\item\em C\+PU switch context. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__RTEMSScoreCPUARM_ga80726ebfe00f31a88b086cc4474c472f}{\+\_\+\+C\+P\+U\+\_\+\+Context\+\_\+restore}} (\mbox{\hyperlink{structContext__Control}{Context\+\_\+\+Control}} $\ast$new\+\_\+context) \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gaa2f0ed67aa174f684bb31b7e8bdb386f}{R\+T\+E\+M\+S\+\_\+\+N\+O\+\_\+\+R\+E\+T\+U\+RN}}
+\item 
+void {\bfseries \+\_\+\+C\+P\+U\+\_\+\+Context\+\_\+save\+\_\+fp} (\mbox{\hyperlink{structContext__Control__fp}{Context\+\_\+\+Control\+\_\+fp}} $\ast$$\ast$fp\+\_\+context\+\_\+ptr)
+\item 
+void {\bfseries \+\_\+\+C\+P\+U\+\_\+\+Context\+\_\+restore\+\_\+fp} (\mbox{\hyperlink{structContext__Control__fp}{Context\+\_\+\+Control\+\_\+fp}} $\ast$$\ast$fp\+\_\+context\+\_\+ptr)
+\item 
+void \mbox{\hyperlink{group__RTEMSScoreCPUARM_gaa34a35de496258577c1454ba1ee07ce0}{\+\_\+\+C\+P\+U\+\_\+\+Exception\+\_\+frame\+\_\+print}} (const \mbox{\hyperlink{structCPU__Exception__frame}{C\+P\+U\+\_\+\+Exception\+\_\+frame}} $\ast$frame)
+\begin{DoxyCompactList}\small\item\em Prints the exception frame via \mbox{\hyperlink{bspIo_8h_a380cfecc8035cec8a13b68c0cb90f32f}{printk()}}. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{powerpc_2include_2rtems_2score_2cpu_8h_a6d715d6843139451ca6646c47b99889b}\label{powerpc_2include_2rtems_2score_2cpu_8h_a6d715d6843139451ca6646c47b99889b}} 
+void {\bfseries \+\_\+\+C\+P\+U\+\_\+\+Initialize\+\_\+altivec} (void)
+\item 
+\mbox{\Hypertarget{powerpc_2include_2rtems_2score_2cpu_8h_a4937fd02a2ed42498b26c52a293af054}\label{powerpc_2include_2rtems_2score_2cpu_8h_a4937fd02a2ed42498b26c52a293af054}} 
+void {\bfseries \+\_\+\+C\+P\+U\+\_\+\+Context\+\_\+switch\+\_\+altivec} (\mbox{\hyperlink{structppc__context}{ppc\+\_\+context}} $\ast$from, \mbox{\hyperlink{structppc__context}{ppc\+\_\+context}} $\ast$to)
+\item 
+\mbox{\Hypertarget{powerpc_2include_2rtems_2score_2cpu_8h_a195dbbe4902d0744a4b82070ce6fd9a6}\label{powerpc_2include_2rtems_2score_2cpu_8h_a195dbbe4902d0744a4b82070ce6fd9a6}} 
+void {\bfseries \+\_\+\+C\+P\+U\+\_\+\+Context\+\_\+restore\+\_\+altivec} (\mbox{\hyperlink{structppc__context}{ppc\+\_\+context}} $\ast$\mbox{\hyperlink{struct__ctxt}{ctxt}})
+\item 
+\mbox{\Hypertarget{powerpc_2include_2rtems_2score_2cpu_8h_aab15dd81929d106efbd48d00638b3bea}\label{powerpc_2include_2rtems_2score_2cpu_8h_aab15dd81929d106efbd48d00638b3bea}} 
+void {\bfseries \+\_\+\+C\+P\+U\+\_\+\+Context\+\_\+initialize\+\_\+altivec} (\mbox{\hyperlink{structppc__context}{ppc\+\_\+context}} $\ast$\mbox{\hyperlink{struct__ctxt}{ctxt}})
+\item 
+\mbox{\Hypertarget{powerpc_2include_2rtems_2score_2cpu_8h_a6e503b9a389360bd5b1c73e67835672a}\label{powerpc_2include_2rtems_2score_2cpu_8h_a6e503b9a389360bd5b1c73e67835672a}} 
+void {\bfseries \+\_\+\+C\+P\+U\+\_\+\+Fatal\+\_\+error} (uint32\+\_\+t \+\_\+error)
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{powerpc_2include_2rtems_2score_2cpu_8h_abbc6ee0d13009243d4088dfde2fe5da9}\label{powerpc_2include_2rtems_2score_2cpu_8h_abbc6ee0d13009243d4088dfde2fe5da9}} 
+\index{cpu.h@{cpu.h}!\_CPU\_Bitfield\_Find\_first\_bit@{\_CPU\_Bitfield\_Find\_first\_bit}}
+\index{\_CPU\_Bitfield\_Find\_first\_bit@{\_CPU\_Bitfield\_Find\_first\_bit}!cpu.h@{cpu.h}}
+\subsubsection{\texorpdfstring{\_CPU\_Bitfield\_Find\_first\_bit}{\_CPU\_Bitfield\_Find\_first\_bit}}
+{\footnotesize\ttfamily \#define \+\_\+\+C\+P\+U\+\_\+\+Bitfield\+\_\+\+Find\+\_\+first\+\_\+bit(\begin{DoxyParamCaption}\item[{}]{\+\_\+value,  }\item[{}]{\+\_\+output }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{ \(\backslash\)}
+\DoxyCodeLine{    \_\_asm\_\_ \textcolor{keyword}{volatile} (\textcolor{stringliteral}{"cntlzw \%0, \%1"} : \textcolor{stringliteral}{"=r"} ((\_output)), \textcolor{stringliteral}{"=r"} ((\_value)) : \(\backslash\)}
+\DoxyCodeLine{          \textcolor{stringliteral}{"1"} ((\_value))); \(\backslash\)}
+\DoxyCodeLine{    (\_output) = (\_output) - 16; \(\backslash\)}
+\DoxyCodeLine{  \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{powerpc_2include_2rtems_2score_2cpu_8h_a4c07c0150ec7894dd128993e931ceee5}\label{powerpc_2include_2rtems_2score_2cpu_8h_a4c07c0150ec7894dd128993e931ceee5}} 
+\index{cpu.h@{cpu.h}!\_CPU\_Fatal\_halt@{\_CPU\_Fatal\_halt}}
+\index{\_CPU\_Fatal\_halt@{\_CPU\_Fatal\_halt}!cpu.h@{cpu.h}}
+\subsubsection{\texorpdfstring{\_CPU\_Fatal\_halt}{\_CPU\_Fatal\_halt}}
+{\footnotesize\ttfamily \#define \+\_\+\+C\+P\+U\+\_\+\+Fatal\+\_\+halt(\begin{DoxyParamCaption}\item[{}]{\+\_\+source,  }\item[{}]{\+\_\+error }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do} \{ \(\backslash\)}
+\DoxyCodeLine{    ppc\_interrupt\_disable(); \(\backslash\)}
+\DoxyCodeLine{    \_\_asm\_\_ \textcolor{keyword}{volatile} ( \(\backslash\)}
+\DoxyCodeLine{      \textcolor{stringliteral}{"mr 3, \%0\(\backslash\)n"} \(\backslash\)}
+\DoxyCodeLine{      \textcolor{stringliteral}{"mr 4, \%1\(\backslash\)n"} \(\backslash\)}
+\DoxyCodeLine{      \textcolor{stringliteral}{"1:\(\backslash\)n"} \(\backslash\)}
+\DoxyCodeLine{      \textcolor{stringliteral}{"b 1b\(\backslash\)n"} \(\backslash\)}
+\DoxyCodeLine{      : \(\backslash\)}
+\DoxyCodeLine{      : \textcolor{stringliteral}{"r"} (\_source), \textcolor{stringliteral}{"r"} (\_error) \(\backslash\)}
+\DoxyCodeLine{      : \textcolor{stringliteral}{"memory"} \(\backslash\)}
+\DoxyCodeLine{    ); \(\backslash\)}
+\DoxyCodeLine{  \} \textcolor{keywordflow}{while} ( 0 )}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{powerpc_2include_2rtems_2score_2cpu_8h_a433b7cd2961f69ac55bd732ccdf7393c}\label{powerpc_2include_2rtems_2score_2cpu_8h_a433b7cd2961f69ac55bd732ccdf7393c}} 
+\index{cpu.h@{cpu.h}!CPU\_STACK\_CHECK\_PATTERN\_INITIALIZER@{CPU\_STACK\_CHECK\_PATTERN\_INITIALIZER}}
+\index{CPU\_STACK\_CHECK\_PATTERN\_INITIALIZER@{CPU\_STACK\_CHECK\_PATTERN\_INITIALIZER}!cpu.h@{cpu.h}}
+\subsubsection{\texorpdfstring{CPU\_STACK\_CHECK\_PATTERN\_INITIALIZER}{CPU\_STACK\_CHECK\_PATTERN\_INITIALIZER}}
+{\footnotesize\ttfamily \#define C\+P\+U\+\_\+\+S\+T\+A\+C\+K\+\_\+\+C\+H\+E\+C\+K\+\_\+\+P\+A\+T\+T\+E\+R\+N\+\_\+\+I\+N\+I\+T\+I\+A\+L\+I\+Z\+ER}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{ 0xFEEDF00D, 0x0BAD0D06, 0xDEADF00D, 0x600D0D06, \(\backslash\)}
+\DoxyCodeLine{    0xFEEDF00D, 0x0BAD0D06, 0xDEADF00D, 0x600D0D06, \(\backslash\)}
+\DoxyCodeLine{    0xFEEDF00D, 0x0BAD0D06, 0xDEADF00D, 0x600D0D06, \(\backslash\)}
+\DoxyCodeLine{    0xFEEDF00D, 0x0BAD0D06, 0xDEADF00D, 0x600D0D06, \(\backslash\)}
+\DoxyCodeLine{    0xFEEDF00D, 0x0BAD0D06, 0xDEADF00D, 0x600D0D06, \(\backslash\)}
+\DoxyCodeLine{    0xFEEDF00D, 0x0BAD0D06, 0xDEADF00D, 0x600D0D06, \(\backslash\)}
+\DoxyCodeLine{    0xFEEDF00D, 0x0BAD0D06, 0xDEADF00D, 0x600D0D06, \(\backslash\)}
+\DoxyCodeLine{    0xFEEDF00D, 0x0BAD0D06, 0xDEADF00D, 0x600D0D06 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{powerpc_2include_2rtems_2score_2cpu_8h_a5ae5d3d20b88278987c51901ce796111}\label{powerpc_2include_2rtems_2score_2cpu_8h_a5ae5d3d20b88278987c51901ce796111}} 
+\index{cpu.h@{cpu.h}!PPC\_CONTEXT\_GPR\_OFFSET@{PPC\_CONTEXT\_GPR\_OFFSET}}
+\index{PPC\_CONTEXT\_GPR\_OFFSET@{PPC\_CONTEXT\_GPR\_OFFSET}!cpu.h@{cpu.h}}
+\subsubsection{\texorpdfstring{PPC\_CONTEXT\_GPR\_OFFSET}{PPC\_CONTEXT\_GPR\_OFFSET}}
+{\footnotesize\ttfamily \#define P\+P\+C\+\_\+\+C\+O\+N\+T\+E\+X\+T\+\_\+\+G\+P\+R\+\_\+\+O\+F\+F\+S\+ET(\begin{DoxyParamCaption}\item[{}]{gpr }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(((gpr) - 14) * PPC\_GPR\_SIZE + \(\backslash\)}
+\DoxyCodeLine{    PPC\_DEFAULT\_CACHE\_LINE\_SIZE + 8 + 2 * PPC\_REG\_SIZE)}
+
+\end{DoxyCode}
+
+
+\subsection{Typedef Documentation}
+\mbox{\Hypertarget{powerpc_2include_2rtems_2score_2cpu_8h_a9fca17f81f850e128fcc8ed5b87ff2ab}\label{powerpc_2include_2rtems_2score_2cpu_8h_a9fca17f81f850e128fcc8ed5b87ff2ab}} 
+\index{cpu.h@{cpu.h}!CPU\_Uint32ptr@{CPU\_Uint32ptr}}
+\index{CPU\_Uint32ptr@{CPU\_Uint32ptr}!cpu.h@{cpu.h}}
+\subsubsection{\texorpdfstring{CPU\_Uint32ptr}{CPU\_Uint32ptr}}
+{\footnotesize\ttfamily typedef uintptr\+\_\+t \mbox{\hyperlink{group__RTEMSScoreCPUARM_ga9fca17f81f850e128fcc8ed5b87ff2ab}{C\+P\+U\+\_\+\+Uint32ptr}}}
+
+Type that can store a 32-\/bit integer or a pointer. 

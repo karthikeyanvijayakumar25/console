@@ -1,0 +1,238 @@
+\hypertarget{ssc_8h}{}\section{bsps/arm/atsam/include/libchip/include/ssc.h File Reference}
+\label{ssc_8h}\index{bsps/arm/atsam/include/libchip/include/ssc.h@{bsps/arm/atsam/include/libchip/include/ssc.h}}
+{\ttfamily \#include \char`\"{}chip.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{ssc_8h_a936155ced242aad2850d1e341c80b9c1}{S\+S\+C\+\_\+\+Configure}} (\mbox{\hyperlink{structSsc}{Ssc}} $\ast$ssc, uint32\+\_\+t bit\+Rate, uint32\+\_\+t master\+Clock)
+\begin{DoxyCompactList}\small\item\em Configures a S\+SC peripheral.\+If the divided clock is not used, the master clock frequency can be set to 0. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{ssc_8h_a57442f32d1ef6e59f8d337919bcc414a}{S\+S\+C\+\_\+\+Configure\+Transmitter}} (\mbox{\hyperlink{structSsc}{Ssc}} $\ast$ssc, uint32\+\_\+t tcmr, uint32\+\_\+t tfmr)
+\begin{DoxyCompactList}\small\item\em Configures the transmitter of a S\+SC peripheral. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{ssc_8h_a94fb2a583936efd2d881a2fbd8196dea}{S\+S\+C\+\_\+\+Configure\+Receiver}} (\mbox{\hyperlink{structSsc}{Ssc}} $\ast$ssc, uint32\+\_\+t rcmr, uint32\+\_\+t rfmr)
+\begin{DoxyCompactList}\small\item\em Configures the receiver of a S\+SC peripheral. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{ssc_8h_a5a740750d38837ddcc763d354c3c051e}{S\+S\+C\+\_\+\+Enable\+Transmitter}} (\mbox{\hyperlink{structSsc}{Ssc}} $\ast$ssc)
+\begin{DoxyCompactList}\small\item\em Enables the transmitter of a S\+SC peripheral. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{ssc_8h_aff6d41354eef0fb13cc9ec84e28b5783}{S\+S\+C\+\_\+\+Disable\+Transmitter}} (\mbox{\hyperlink{structSsc}{Ssc}} $\ast$ssc)
+\begin{DoxyCompactList}\small\item\em Disables the transmitter of a S\+SC peripheral. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{ssc_8h_a92c4ee1c26ada76c827eee0479817faf}{S\+S\+C\+\_\+\+Enable\+Receiver}} (\mbox{\hyperlink{structSsc}{Ssc}} $\ast$ssc)
+\begin{DoxyCompactList}\small\item\em Enables the receiver of a S\+SC peripheral. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{ssc_8h_af450f09455a60e039542bcc974d5e74f}{S\+S\+C\+\_\+\+Disable\+Receiver}} (\mbox{\hyperlink{structSsc}{Ssc}} $\ast$ssc)
+\begin{DoxyCompactList}\small\item\em Disables the receiver of a S\+SC peripheral. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{ssc_8h_a0f421e1bb74e72b8619f2f2e0d0f901e}{S\+S\+C\+\_\+\+Enable\+Interrupts}} (\mbox{\hyperlink{structSsc}{Ssc}} $\ast$ssc, uint32\+\_\+t sources)
+\begin{DoxyCompactList}\small\item\em Enables one or more interrupt sources of a S\+SC peripheral. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{ssc_8h_acbba6ded138bc1459ea293b0f25cbc87}{S\+S\+C\+\_\+\+Disable\+Interrupts}} (\mbox{\hyperlink{structSsc}{Ssc}} $\ast$ssc, uint32\+\_\+t sources)
+\begin{DoxyCompactList}\small\item\em Disables one or more interrupt sources of a S\+SC peripheral. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{ssc_8h_a6c8765a16feea4278c1fbee27dabe76c}{S\+S\+C\+\_\+\+Write}} (\mbox{\hyperlink{structSsc}{Ssc}} $\ast$ssc, uint32\+\_\+t frame)
+\begin{DoxyCompactList}\small\item\em Sends one data frame through a S\+SC peripheral. If another frame is currently being sent, this function waits for the previous transfer to complete. \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{ssc_8h_a690b5b0177c3d1ea85b8f8dd8b2c7c00}{S\+S\+C\+\_\+\+Read}} (\mbox{\hyperlink{structSsc}{Ssc}} $\ast$ssc)
+\begin{DoxyCompactList}\small\item\em Waits until one frame is received on a S\+SC peripheral, and returns it. \end{DoxyCompactList}\item 
+uint8\+\_\+t \mbox{\hyperlink{ssc_8h_a87731410af7261f6b19c61e7bc4a5739}{S\+S\+C\+\_\+\+Is\+Rx\+Ready}} (\mbox{\hyperlink{structSsc}{Ssc}} $\ast$ssc)
+\begin{DoxyCompactList}\small\item\em Return 1 if one frame is received, 0 otherwise. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Interface for Synchronous Serial (S\+SC) controller. 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{ssc_8h_a936155ced242aad2850d1e341c80b9c1}\label{ssc_8h_a936155ced242aad2850d1e341c80b9c1}} 
+\index{ssc.h@{ssc.h}!SSC\_Configure@{SSC\_Configure}}
+\index{SSC\_Configure@{SSC\_Configure}!ssc.h@{ssc.h}}
+\subsubsection{\texorpdfstring{SSC\_Configure()}{SSC\_Configure()}}
+{\footnotesize\ttfamily void S\+S\+C\+\_\+\+Configure (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structSsc}{Ssc}} $\ast$}]{ssc,  }\item[{uint32\+\_\+t}]{bit\+Rate,  }\item[{uint32\+\_\+t}]{master\+Clock }\end{DoxyParamCaption})}
+
+
+
+Configures a S\+SC peripheral.\+If the divided clock is not used, the master clock frequency can be set to 0. 
+
+\begin{DoxyNote}{Note}
+The emitter and transmitter are disabled by this function. 
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em ssc} & Pointer to an S\+SC instance. \\
+\hline
+{\em bit\+Rate} & bit rate. \\
+\hline
+{\em master\+Clock} & master clock. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{ssc_8h_a94fb2a583936efd2d881a2fbd8196dea}\label{ssc_8h_a94fb2a583936efd2d881a2fbd8196dea}} 
+\index{ssc.h@{ssc.h}!SSC\_ConfigureReceiver@{SSC\_ConfigureReceiver}}
+\index{SSC\_ConfigureReceiver@{SSC\_ConfigureReceiver}!ssc.h@{ssc.h}}
+\subsubsection{\texorpdfstring{SSC\_ConfigureReceiver()}{SSC\_ConfigureReceiver()}}
+{\footnotesize\ttfamily void S\+S\+C\+\_\+\+Configure\+Receiver (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structSsc}{Ssc}} $\ast$}]{ssc,  }\item[{uint32\+\_\+t}]{rcmr,  }\item[{uint32\+\_\+t}]{rfmr }\end{DoxyParamCaption})}
+
+
+
+Configures the receiver of a S\+SC peripheral. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ssc} & Pointer to an S\+SC instance. \\
+\hline
+{\em rcmr} & Receive Clock Mode Register value. \\
+\hline
+{\em rfmr} & Receive Frame Mode Register value. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{ssc_8h_a57442f32d1ef6e59f8d337919bcc414a}\label{ssc_8h_a57442f32d1ef6e59f8d337919bcc414a}} 
+\index{ssc.h@{ssc.h}!SSC\_ConfigureTransmitter@{SSC\_ConfigureTransmitter}}
+\index{SSC\_ConfigureTransmitter@{SSC\_ConfigureTransmitter}!ssc.h@{ssc.h}}
+\subsubsection{\texorpdfstring{SSC\_ConfigureTransmitter()}{SSC\_ConfigureTransmitter()}}
+{\footnotesize\ttfamily void S\+S\+C\+\_\+\+Configure\+Transmitter (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structSsc}{Ssc}} $\ast$}]{ssc,  }\item[{uint32\+\_\+t}]{tcmr,  }\item[{uint32\+\_\+t}]{tfmr }\end{DoxyParamCaption})}
+
+
+
+Configures the transmitter of a S\+SC peripheral. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ssc} & Pointer to an S\+SC instance. \\
+\hline
+{\em tcmr} & Transmit Clock Mode Register value. \\
+\hline
+{\em tfmr} & Transmit Frame Mode Register value. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{ssc_8h_acbba6ded138bc1459ea293b0f25cbc87}\label{ssc_8h_acbba6ded138bc1459ea293b0f25cbc87}} 
+\index{ssc.h@{ssc.h}!SSC\_DisableInterrupts@{SSC\_DisableInterrupts}}
+\index{SSC\_DisableInterrupts@{SSC\_DisableInterrupts}!ssc.h@{ssc.h}}
+\subsubsection{\texorpdfstring{SSC\_DisableInterrupts()}{SSC\_DisableInterrupts()}}
+{\footnotesize\ttfamily void S\+S\+C\+\_\+\+Disable\+Interrupts (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structSsc}{Ssc}} $\ast$}]{ssc,  }\item[{uint32\+\_\+t}]{sources }\end{DoxyParamCaption})}
+
+
+
+Disables one or more interrupt sources of a S\+SC peripheral. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ssc} & Pointer to an S\+SC instance. \\
+\hline
+{\em sources} & Bitwise OR of selected interrupt sources. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{ssc_8h_af450f09455a60e039542bcc974d5e74f}\label{ssc_8h_af450f09455a60e039542bcc974d5e74f}} 
+\index{ssc.h@{ssc.h}!SSC\_DisableReceiver@{SSC\_DisableReceiver}}
+\index{SSC\_DisableReceiver@{SSC\_DisableReceiver}!ssc.h@{ssc.h}}
+\subsubsection{\texorpdfstring{SSC\_DisableReceiver()}{SSC\_DisableReceiver()}}
+{\footnotesize\ttfamily void S\+S\+C\+\_\+\+Disable\+Receiver (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structSsc}{Ssc}} $\ast$}]{ssc }\end{DoxyParamCaption})}
+
+
+
+Disables the receiver of a S\+SC peripheral. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ssc} & Pointer to an S\+SC instance. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{ssc_8h_aff6d41354eef0fb13cc9ec84e28b5783}\label{ssc_8h_aff6d41354eef0fb13cc9ec84e28b5783}} 
+\index{ssc.h@{ssc.h}!SSC\_DisableTransmitter@{SSC\_DisableTransmitter}}
+\index{SSC\_DisableTransmitter@{SSC\_DisableTransmitter}!ssc.h@{ssc.h}}
+\subsubsection{\texorpdfstring{SSC\_DisableTransmitter()}{SSC\_DisableTransmitter()}}
+{\footnotesize\ttfamily void S\+S\+C\+\_\+\+Disable\+Transmitter (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structSsc}{Ssc}} $\ast$}]{ssc }\end{DoxyParamCaption})}
+
+
+
+Disables the transmitter of a S\+SC peripheral. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ssc} & Pointer to an S\+SC instance. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{ssc_8h_a0f421e1bb74e72b8619f2f2e0d0f901e}\label{ssc_8h_a0f421e1bb74e72b8619f2f2e0d0f901e}} 
+\index{ssc.h@{ssc.h}!SSC\_EnableInterrupts@{SSC\_EnableInterrupts}}
+\index{SSC\_EnableInterrupts@{SSC\_EnableInterrupts}!ssc.h@{ssc.h}}
+\subsubsection{\texorpdfstring{SSC\_EnableInterrupts()}{SSC\_EnableInterrupts()}}
+{\footnotesize\ttfamily void S\+S\+C\+\_\+\+Enable\+Interrupts (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structSsc}{Ssc}} $\ast$}]{ssc,  }\item[{uint32\+\_\+t}]{sources }\end{DoxyParamCaption})}
+
+
+
+Enables one or more interrupt sources of a S\+SC peripheral. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ssc} & Pointer to an S\+SC instance. \\
+\hline
+{\em sources} & Bitwise OR of selected interrupt sources. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{ssc_8h_a92c4ee1c26ada76c827eee0479817faf}\label{ssc_8h_a92c4ee1c26ada76c827eee0479817faf}} 
+\index{ssc.h@{ssc.h}!SSC\_EnableReceiver@{SSC\_EnableReceiver}}
+\index{SSC\_EnableReceiver@{SSC\_EnableReceiver}!ssc.h@{ssc.h}}
+\subsubsection{\texorpdfstring{SSC\_EnableReceiver()}{SSC\_EnableReceiver()}}
+{\footnotesize\ttfamily void S\+S\+C\+\_\+\+Enable\+Receiver (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structSsc}{Ssc}} $\ast$}]{ssc }\end{DoxyParamCaption})}
+
+
+
+Enables the receiver of a S\+SC peripheral. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ssc} & Pointer to an S\+SC instance. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{ssc_8h_a5a740750d38837ddcc763d354c3c051e}\label{ssc_8h_a5a740750d38837ddcc763d354c3c051e}} 
+\index{ssc.h@{ssc.h}!SSC\_EnableTransmitter@{SSC\_EnableTransmitter}}
+\index{SSC\_EnableTransmitter@{SSC\_EnableTransmitter}!ssc.h@{ssc.h}}
+\subsubsection{\texorpdfstring{SSC\_EnableTransmitter()}{SSC\_EnableTransmitter()}}
+{\footnotesize\ttfamily void S\+S\+C\+\_\+\+Enable\+Transmitter (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structSsc}{Ssc}} $\ast$}]{ssc }\end{DoxyParamCaption})}
+
+
+
+Enables the transmitter of a S\+SC peripheral. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ssc} & Pointer to an S\+SC instance. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{ssc_8h_a87731410af7261f6b19c61e7bc4a5739}\label{ssc_8h_a87731410af7261f6b19c61e7bc4a5739}} 
+\index{ssc.h@{ssc.h}!SSC\_IsRxReady@{SSC\_IsRxReady}}
+\index{SSC\_IsRxReady@{SSC\_IsRxReady}!ssc.h@{ssc.h}}
+\subsubsection{\texorpdfstring{SSC\_IsRxReady()}{SSC\_IsRxReady()}}
+{\footnotesize\ttfamily uint8\+\_\+t S\+S\+C\+\_\+\+Is\+Rx\+Ready (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structSsc}{Ssc}} $\ast$}]{ssc }\end{DoxyParamCaption})}
+
+
+
+Return 1 if one frame is received, 0 otherwise. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ssc} & Pointer to an S\+SC instance. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{ssc_8h_a690b5b0177c3d1ea85b8f8dd8b2c7c00}\label{ssc_8h_a690b5b0177c3d1ea85b8f8dd8b2c7c00}} 
+\index{ssc.h@{ssc.h}!SSC\_Read@{SSC\_Read}}
+\index{SSC\_Read@{SSC\_Read}!ssc.h@{ssc.h}}
+\subsubsection{\texorpdfstring{SSC\_Read()}{SSC\_Read()}}
+{\footnotesize\ttfamily uint32\+\_\+t S\+S\+C\+\_\+\+Read (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structSsc}{Ssc}} $\ast$}]{ssc }\end{DoxyParamCaption})}
+
+
+
+Waits until one frame is received on a S\+SC peripheral, and returns it. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ssc} & Pointer to an S\+SC instance. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{ssc_8h_a6c8765a16feea4278c1fbee27dabe76c}\label{ssc_8h_a6c8765a16feea4278c1fbee27dabe76c}} 
+\index{ssc.h@{ssc.h}!SSC\_Write@{SSC\_Write}}
+\index{SSC\_Write@{SSC\_Write}!ssc.h@{ssc.h}}
+\subsubsection{\texorpdfstring{SSC\_Write()}{SSC\_Write()}}
+{\footnotesize\ttfamily void S\+S\+C\+\_\+\+Write (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structSsc}{Ssc}} $\ast$}]{ssc,  }\item[{uint32\+\_\+t}]{frame }\end{DoxyParamCaption})}
+
+
+
+Sends one data frame through a S\+SC peripheral. If another frame is currently being sent, this function waits for the previous transfer to complete. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ssc} & Pointer to an S\+SC instance. \\
+\hline
+{\em frame} & Data frame to send. \\
+\hline
+\end{DoxyParams}

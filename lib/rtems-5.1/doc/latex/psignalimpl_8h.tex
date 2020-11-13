@@ -1,0 +1,74 @@
+\hypertarget{psignalimpl_8h}{}\section{cpukit/include/rtems/posix/psignalimpl.h File Reference}
+\label{psignalimpl_8h}\index{cpukit/include/rtems/posix/psignalimpl.h@{cpukit/include/rtems/posix/psignalimpl.h}}
+
+
+P\+O\+S\+IX Signals Support.  
+
+
+{\ttfamily \#include $<$rtems/posix/psignal.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/posix/pthread.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/posix/sigset.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/score/isrlock.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/score/percpu.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/score/threadqimpl.\+h$>$}\newline
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bfseries P\+O\+S\+I\+X\+\_\+\+S\+I\+G\+N\+A\+L\+S\+\_\+\+T\+Q\+\_\+\+O\+P\+E\+R\+A\+T\+I\+O\+NS}~\&\+\_\+\+Thread\+\_\+queue\+\_\+\+Operations\+\_\+\+F\+I\+FO
+\item 
+\#define {\bfseries \+\_\+\+States\+\_\+\+Is\+\_\+interruptible\+\_\+signal}(\+\_\+states)
+\item 
+\#define {\bfseries S\+I\+G\+A\+C\+T\+I\+O\+N\+\_\+\+T\+E\+R\+M\+I\+N\+A\+TE}~\{ 0, S\+I\+G\+N\+A\+L\+\_\+\+A\+L\+L\+\_\+\+M\+A\+SK, \{\+\_\+\+P\+O\+S\+I\+X\+\_\+signals\+\_\+\+Abnormal\+\_\+termination\+\_\+handler\} \}
+\item 
+\#define {\bfseries S\+I\+G\+A\+C\+T\+I\+O\+N\+\_\+\+I\+G\+N\+O\+RE}~\{ 0, S\+I\+G\+N\+A\+L\+\_\+\+A\+L\+L\+\_\+\+M\+A\+SK, \{S\+I\+G\+\_\+\+I\+GN\} \}
+\item 
+\#define {\bfseries S\+I\+G\+A\+C\+T\+I\+O\+N\+\_\+\+S\+T\+OP}~\{ 0, S\+I\+G\+N\+A\+L\+\_\+\+A\+L\+L\+\_\+\+M\+A\+SK, \{\+\_\+\+P\+O\+S\+I\+X\+\_\+signals\+\_\+\+Stop\+\_\+handler\} \}
+\item 
+\#define {\bfseries S\+I\+G\+A\+C\+T\+I\+O\+N\+\_\+\+C\+O\+N\+T\+I\+N\+UE}~\{ 0, S\+I\+G\+N\+A\+L\+\_\+\+A\+L\+L\+\_\+\+M\+A\+SK, \{\+\_\+\+P\+O\+S\+I\+X\+\_\+signals\+\_\+\+Continue\+\_\+handler\} \}
+\item 
+\#define {\bfseries S\+I\+G\+\_\+\+A\+R\+R\+A\+Y\+\_\+\+M\+AX}~(S\+I\+G\+R\+T\+M\+AX + 1)
+\item 
+\#define {\bfseries \+\_\+\+P\+O\+S\+I\+X\+\_\+signals\+\_\+\+Stop\+\_\+handler}~\mbox{\hyperlink{bestcomm__api_8h_a872bb74de61c3689ccd5b41873fce42c}{N\+U\+LL}}
+\item 
+\#define {\bfseries \+\_\+\+P\+O\+S\+I\+X\+\_\+signals\+\_\+\+Continue\+\_\+handler}~\mbox{\hyperlink{bestcomm__api_8h_a872bb74de61c3689ccd5b41873fce42c}{N\+U\+LL}}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void {\bfseries \+\_\+\+P\+O\+S\+I\+X\+\_\+signals\+\_\+\+Acquire} (\mbox{\hyperlink{structThread__queue__Context}{Thread\+\_\+queue\+\_\+\+Context}} $\ast$queue\+\_\+context)
+\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void {\bfseries \+\_\+\+P\+O\+S\+I\+X\+\_\+signals\+\_\+\+Release} (\mbox{\hyperlink{structThread__queue__Context}{Thread\+\_\+queue\+\_\+\+Context}} $\ast$queue\+\_\+context)
+\item 
+bool \mbox{\hyperlink{group__POSIX__SIGNALS_ga4863c006d4abcface6e2fc9821c00d13}{\+\_\+\+P\+O\+S\+I\+X\+\_\+signals\+\_\+\+Unblock\+\_\+thread}} (\mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$the\+\_\+thread, int signo, siginfo\+\_\+t $\ast$info)
+\begin{DoxyCompactList}\small\item\em Unlock P\+O\+S\+IX signals thread. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__POSIX__SIGNALS_gaf6c9fcc7ad91c06f45e1adcd1a4b1f67}{\+\_\+\+P\+O\+S\+I\+X\+\_\+signals\+\_\+\+Clear\+\_\+signals}} (P\+O\+S\+I\+X\+\_\+\+A\+P\+I\+\_\+\+Control $\ast$api, int signo, siginfo\+\_\+t $\ast$info, bool is\+\_\+global, bool check\+\_\+blocked, bool do\+\_\+signals\+\_\+acquire\+\_\+release)
+\begin{DoxyCompactList}\small\item\em Clear P\+O\+S\+IX signals. \end{DoxyCompactList}\item 
+int {\bfseries \+\_\+\+P\+O\+S\+I\+X\+\_\+signals\+\_\+\+Send} (pid\+\_\+t pid, int sig, const union sigval $\ast$value)
+\item 
+void \mbox{\hyperlink{group__POSIX__SIGNALS_gab678ac01e81226400e1326d3fbb92e77}{\+\_\+\+P\+O\+S\+I\+X\+\_\+signals\+\_\+\+Set\+\_\+process\+\_\+signals}} (sigset\+\_\+t mask)
+\begin{DoxyCompactList}\small\item\em Set P\+O\+S\+IX process signals. \end{DoxyCompactList}\item 
+void {\bfseries \+\_\+\+P\+O\+S\+I\+X\+\_\+signals\+\_\+\+Clear\+\_\+process\+\_\+signals} (int signo)
+\item 
+void {\bfseries \+\_\+\+P\+O\+S\+I\+X\+\_\+signals\+\_\+\+Abnormal\+\_\+termination\+\_\+handler} (int signo)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+sigset\+\_\+t {\bfseries \+\_\+\+P\+O\+S\+I\+X\+\_\+signals\+\_\+\+Pending}
+\item 
+const struct sigaction {\bfseries \+\_\+\+P\+O\+S\+I\+X\+\_\+signals\+\_\+\+Default\+\_\+vectors} \mbox{[}S\+I\+G\+\_\+\+A\+R\+R\+A\+Y\+\_\+\+M\+AX\mbox{]}
+\item 
+struct sigaction {\bfseries \+\_\+\+P\+O\+S\+I\+X\+\_\+signals\+\_\+\+Vectors} \mbox{[}S\+I\+G\+\_\+\+A\+R\+R\+A\+Y\+\_\+\+M\+AX\mbox{]}
+\item 
+\mbox{\hyperlink{structThread__queue__Control}{Thread\+\_\+queue\+\_\+\+Control}} {\bfseries \+\_\+\+P\+O\+S\+I\+X\+\_\+signals\+\_\+\+Wait\+\_\+queue}
+\item 
+\mbox{\hyperlink{unionChain__Control}{Chain\+\_\+\+Control}} {\bfseries \+\_\+\+P\+O\+S\+I\+X\+\_\+signals\+\_\+\+Inactive\+\_\+siginfo}
+\item 
+\mbox{\hyperlink{unionChain__Control}{Chain\+\_\+\+Control}} {\bfseries \+\_\+\+P\+O\+S\+I\+X\+\_\+signals\+\_\+\+Siginfo} \mbox{[}S\+I\+G\+\_\+\+A\+R\+R\+A\+Y\+\_\+\+M\+AX\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+P\+O\+S\+IX Signals Support. 
+
+This include file defines internal information about P\+O\+S\+IX signals. 

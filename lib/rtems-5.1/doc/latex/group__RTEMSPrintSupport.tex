@@ -1,0 +1,155 @@
+\hypertarget{group__RTEMSPrintSupport}{}\section{R\+T\+E\+MS Print Support}
+\label{group__RTEMSPrintSupport}\index{RTEMS Print Support@{RTEMS Print Support}}
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structrtems__printer}{rtems\+\_\+printer}}
+\item 
+struct \mbox{\hyperlink{structrtems__printer__task__context}{rtems\+\_\+printer\+\_\+task\+\_\+context}}
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef int($\ast$ \mbox{\hyperlink{group__RTEMSPrintSupport_ga1a1d078f9f2a229f68b017e3c21ded61}{rtems\+\_\+print\+\_\+printer}}) (void $\ast$, const char $\ast$\mbox{\hyperlink{structformat}{format}}, va\+\_\+list ap)
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{group__RTEMSPrintSupport_ga553b725c5361554dc9788e1a6a82b373}{rtems\+\_\+print\+\_\+printer\+\_\+printk}} (\mbox{\hyperlink{structrtems__printer}{rtems\+\_\+printer}} $\ast$printer)
+\begin{DoxyCompactList}\small\item\em Initializes the printer to print via \mbox{\hyperlink{bspIo_8h_a380cfecc8035cec8a13b68c0cb90f32f}{printk()}}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__RTEMSPrintSupport_ga90a67702ffe1d15690e1de2b15bf229f}{rtems\+\_\+print\+\_\+printer\+\_\+printf}} (\mbox{\hyperlink{structrtems__printer}{rtems\+\_\+printer}} $\ast$printer)
+\begin{DoxyCompactList}\small\item\em Initializes the printer to print via printf(). \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__RTEMSPrintSupport_ga1495ba5b6aea0cd31f5b98f5c28d3beb}{rtems\+\_\+print\+\_\+printer\+\_\+fprintf}} (\mbox{\hyperlink{structrtems__printer}{rtems\+\_\+printer}} $\ast$printer, F\+I\+LE $\ast$\mbox{\hyperlink{structfile}{file}})
+\begin{DoxyCompactList}\small\item\em Initializes the printer to print via fprintf() using the specified file stream. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__RTEMSPrintSupport_ga527e5e5b91e40e2fc44a13be10484105}{rtems\+\_\+print\+\_\+printer\+\_\+fprintf\+\_\+putc}} (\mbox{\hyperlink{structrtems__printer}{rtems\+\_\+printer}} $\ast$printer)
+\begin{DoxyCompactList}\small\item\em Initializes the printer to print via fprintf() using an unbuffered F\+I\+LE stream with output through \mbox{\hyperlink{bspIo_8h_a6fd11f34260f10035f38a051af872e1e}{rtems\+\_\+putc()}}. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__RTEMSPrintSupport_ga826644e95a7ef01b186d55cf7bf37766}{rtems\+\_\+print\+\_\+printer\+\_\+task}} (\mbox{\hyperlink{structrtems__printer}{rtems\+\_\+printer}} $\ast$printer, \mbox{\hyperlink{structrtems__printer__task__context}{rtems\+\_\+printer\+\_\+task\+\_\+context}} $\ast$\mbox{\hyperlink{sun4u_2tte_8h_a9b4a99475e2709333b8e5d70483173f1}{context}})
+\begin{DoxyCompactList}\small\item\em Creates a printer task. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__RTEMSPrintSupport_ga96fffda2c9f3f85e47b6c15a2c6b3708}{rtems\+\_\+printer\+\_\+task\+\_\+drain}} (\mbox{\hyperlink{structrtems__printer__task__context}{rtems\+\_\+printer\+\_\+task\+\_\+context}} $\ast$\mbox{\hyperlink{sun4u_2tte_8h_a9b4a99475e2709333b8e5d70483173f1}{context}})
+\begin{DoxyCompactList}\small\item\em Drains the work queue of the printer task. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This module contains all methods and support related to providing the user with an interface to the kernel level print support. 
+
+\subsection{Typedef Documentation}
+\mbox{\Hypertarget{group__RTEMSPrintSupport_ga1a1d078f9f2a229f68b017e3c21ded61}\label{group__RTEMSPrintSupport_ga1a1d078f9f2a229f68b017e3c21ded61}} 
+\index{RTEMS Print Support@{RTEMS Print Support}!rtems\_print\_printer@{rtems\_print\_printer}}
+\index{rtems\_print\_printer@{rtems\_print\_printer}!RTEMS Print Support@{RTEMS Print Support}}
+\subsubsection{\texorpdfstring{rtems\_print\_printer}{rtems\_print\_printer}}
+{\footnotesize\ttfamily typedef int($\ast$ rtems\+\_\+print\+\_\+printer) (void $\ast$, const char $\ast$\mbox{\hyperlink{structformat}{format}}, va\+\_\+list ap)}
+
+Type definition for function which can be plugged in to certain reporting routines to redirect the output.
+
+Use the R\+T\+E\+MS Print interface to call these functions. Do not directly use them.
+
+If the user provides their own printer, then they may redirect those reports as they see fit. 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{group__RTEMSPrintSupport_ga1495ba5b6aea0cd31f5b98f5c28d3beb}\label{group__RTEMSPrintSupport_ga1495ba5b6aea0cd31f5b98f5c28d3beb}} 
+\index{RTEMS Print Support@{RTEMS Print Support}!rtems\_print\_printer\_fprintf@{rtems\_print\_printer\_fprintf}}
+\index{rtems\_print\_printer\_fprintf@{rtems\_print\_printer\_fprintf}!RTEMS Print Support@{RTEMS Print Support}}
+\subsubsection{\texorpdfstring{rtems\_print\_printer\_fprintf()}{rtems\_print\_printer\_fprintf()}}
+{\footnotesize\ttfamily void rtems\+\_\+print\+\_\+printer\+\_\+fprintf (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structrtems__printer}{rtems\+\_\+printer}} $\ast$}]{printer,  }\item[{F\+I\+LE $\ast$}]{file }\end{DoxyParamCaption})}
+
+
+
+Initializes the printer to print via fprintf() using the specified file stream. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em printer} & Pointer to the printer structure. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__RTEMSPrintSupport_ga527e5e5b91e40e2fc44a13be10484105}\label{group__RTEMSPrintSupport_ga527e5e5b91e40e2fc44a13be10484105}} 
+\index{RTEMS Print Support@{RTEMS Print Support}!rtems\_print\_printer\_fprintf\_putc@{rtems\_print\_printer\_fprintf\_putc}}
+\index{rtems\_print\_printer\_fprintf\_putc@{rtems\_print\_printer\_fprintf\_putc}!RTEMS Print Support@{RTEMS Print Support}}
+\subsubsection{\texorpdfstring{rtems\_print\_printer\_fprintf\_putc()}{rtems\_print\_printer\_fprintf\_putc()}}
+{\footnotesize\ttfamily void rtems\+\_\+print\+\_\+printer\+\_\+fprintf\+\_\+putc (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structrtems__printer}{rtems\+\_\+printer}} $\ast$}]{printer }\end{DoxyParamCaption})}
+
+
+
+Initializes the printer to print via fprintf() using an unbuffered F\+I\+LE stream with output through \mbox{\hyperlink{bspIo_8h_a6fd11f34260f10035f38a051af872e1e}{rtems\+\_\+putc()}}. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em printer} & Pointer to the printer structure. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__RTEMSPrintSupport_ga90a67702ffe1d15690e1de2b15bf229f}\label{group__RTEMSPrintSupport_ga90a67702ffe1d15690e1de2b15bf229f}} 
+\index{RTEMS Print Support@{RTEMS Print Support}!rtems\_print\_printer\_printf@{rtems\_print\_printer\_printf}}
+\index{rtems\_print\_printer\_printf@{rtems\_print\_printer\_printf}!RTEMS Print Support@{RTEMS Print Support}}
+\subsubsection{\texorpdfstring{rtems\_print\_printer\_printf()}{rtems\_print\_printer\_printf()}}
+{\footnotesize\ttfamily void rtems\+\_\+print\+\_\+printer\+\_\+printf (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structrtems__printer}{rtems\+\_\+printer}} $\ast$}]{printer }\end{DoxyParamCaption})}
+
+
+
+Initializes the printer to print via printf(). 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em printer} & Pointer to the printer structure. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__RTEMSPrintSupport_ga553b725c5361554dc9788e1a6a82b373}\label{group__RTEMSPrintSupport_ga553b725c5361554dc9788e1a6a82b373}} 
+\index{RTEMS Print Support@{RTEMS Print Support}!rtems\_print\_printer\_printk@{rtems\_print\_printer\_printk}}
+\index{rtems\_print\_printer\_printk@{rtems\_print\_printer\_printk}!RTEMS Print Support@{RTEMS Print Support}}
+\subsubsection{\texorpdfstring{rtems\_print\_printer\_printk()}{rtems\_print\_printer\_printk()}}
+{\footnotesize\ttfamily void rtems\+\_\+print\+\_\+printer\+\_\+printk (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structrtems__printer}{rtems\+\_\+printer}} $\ast$}]{printer }\end{DoxyParamCaption})}
+
+
+
+Initializes the printer to print via \mbox{\hyperlink{bspIo_8h_a380cfecc8035cec8a13b68c0cb90f32f}{printk()}}. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em printer} & Pointer to the printer structure. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__RTEMSPrintSupport_ga826644e95a7ef01b186d55cf7bf37766}\label{group__RTEMSPrintSupport_ga826644e95a7ef01b186d55cf7bf37766}} 
+\index{RTEMS Print Support@{RTEMS Print Support}!rtems\_print\_printer\_task@{rtems\_print\_printer\_task}}
+\index{rtems\_print\_printer\_task@{rtems\_print\_printer\_task}!RTEMS Print Support@{RTEMS Print Support}}
+\subsubsection{\texorpdfstring{rtems\_print\_printer\_task()}{rtems\_print\_printer\_task()}}
+{\footnotesize\ttfamily int rtems\+\_\+print\+\_\+printer\+\_\+task (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structrtems__printer}{rtems\+\_\+printer}} $\ast$}]{printer,  }\item[{\mbox{\hyperlink{structrtems__printer__task__context}{rtems\+\_\+printer\+\_\+task\+\_\+context}} $\ast$}]{context }\end{DoxyParamCaption})}
+
+
+
+Creates a printer task. 
+
+Print requests via \mbox{\hyperlink{print_8h_a9d7cd7d1a2242a0d33f403ecec3f9baa}{rtems\+\_\+printf()}} or \mbox{\hyperlink{print_8h_aef1a908de45eb9d57903eef636db95d2}{rtems\+\_\+vprintf()}} using a printer task printer are output to a buffer and then placed on a work queue in F\+I\+FO order. The work queue is emptied by the printer task. The printer task writes the buffer content to the file descriptor specified by the context. Buffers are allocated from a pool of buffers as specified by the context.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em printer} & Pointer to the printer structure. \\
+\hline
+\mbox{\texttt{ in}}  & {\em context} & The initialized printer task context.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em 0} & Successful operation. \\
+\hline
+{\em E\+I\+N\+V\+AL} & Invalid context parameters. \\
+\hline
+{\em E\+N\+O\+M\+EM} & Not enough resources. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{group__RTEMSPrintSupport_ga96fffda2c9f3f85e47b6c15a2c6b3708}\label{group__RTEMSPrintSupport_ga96fffda2c9f3f85e47b6c15a2c6b3708}} 
+\index{RTEMS Print Support@{RTEMS Print Support}!rtems\_printer\_task\_drain@{rtems\_printer\_task\_drain}}
+\index{rtems\_printer\_task\_drain@{rtems\_printer\_task\_drain}!RTEMS Print Support@{RTEMS Print Support}}
+\subsubsection{\texorpdfstring{rtems\_printer\_task\_drain()}{rtems\_printer\_task\_drain()}}
+{\footnotesize\ttfamily void rtems\+\_\+printer\+\_\+task\+\_\+drain (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structrtems__printer__task__context}{rtems\+\_\+printer\+\_\+task\+\_\+context}} $\ast$}]{context }\end{DoxyParamCaption})}
+
+
+
+Drains the work queue of the printer task. 
+
+Waits until all output buffers in the work queue at the time of this function call are written to the file descriptor and an \mbox{\hyperlink{fsync_8c_a9ba34c4ff72e21db486eedf77c2a18d0}{fsync()}} completed.
+
+The printer task must be successfully started via \mbox{\hyperlink{group__RTEMSPrintSupport_ga826644e95a7ef01b186d55cf7bf37766}{rtems\+\_\+print\+\_\+printer\+\_\+task()}} before this function can be used. Otherwise, the behaviour is undefined.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em context} & The printer task context of a successfully started printer task. \\
+\hline
+\end{DoxyParams}

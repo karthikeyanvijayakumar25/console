@@ -1,0 +1,107 @@
+\hypertarget{powerpc_2qoriq_2start_2bspstart_8c}{}\section{bsps/powerpc/qoriq/start/bspstart.c File Reference}
+\label{powerpc_2qoriq_2start_2bspstart_8c}\index{bsps/powerpc/qoriq/start/bspstart.c@{bsps/powerpc/qoriq/start/bspstart.c}}
+
+
+B\+SP startup.  
+
+
+{\ttfamily \#include $<$libfdt.\+h$>$}\newline
+{\ttfamily \#include $<$rtems.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/config.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/counter.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/sysinit.\+h$>$}\newline
+{\ttfamily \#include $<$libcpu/powerpc-\/utility.\+h$>$}\newline
+{\ttfamily \#include $<$bsp.\+h$>$}\newline
+{\ttfamily \#include $<$bsp/bootcard.\+h$>$}\newline
+{\ttfamily \#include $<$bsp/console-\/termios.\+h$>$}\newline
+{\ttfamily \#include $<$bsp/fatal.\+h$>$}\newline
+{\ttfamily \#include $<$bsp/fdt.\+h$>$}\newline
+{\ttfamily \#include $<$bsp/intercom.\+h$>$}\newline
+{\ttfamily \#include $<$bsp/irq-\/generic.\+h$>$}\newline
+{\ttfamily \#include $<$bsp/linker-\/symbols.\+h$>$}\newline
+{\ttfamily \#include $<$bsp/mmu.\+h$>$}\newline
+{\ttfamily \#include $<$bsp/qoriq.\+h$>$}\newline
+{\ttfamily \#include $<$bsp/vectors.\+h$>$}\newline
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{powerpc_2qoriq_2start_2bspstart_8c_acfb04b94a7c2994604c3f0621fdc7c32}\label{powerpc_2qoriq_2start_2bspstart_8c_acfb04b94a7c2994604c3f0621fdc7c32}} 
+\#define {\bfseries M\+T\+I\+V\+PR}(base)~\mbox{\hyperlink{group__RTEMSScoreCPUSPARC_ga82257d4fc068f4b21b029dd69d276839}{\+\_\+\+\_\+asm\+\_\+\+\_\+}} volatile (\char`\"{}mtivpr \%0\char`\"{} \+: \+: \char`\"{}r\char`\"{} (base))
+\item 
+\mbox{\Hypertarget{powerpc_2qoriq_2start_2bspstart_8c_a127e570f7e013ea3a89449522f03706e}\label{powerpc_2qoriq_2start_2bspstart_8c_a127e570f7e013ea3a89449522f03706e}} 
+\#define {\bfseries V\+E\+C\+T\+O\+R\+\_\+\+T\+A\+B\+L\+E\+\_\+\+E\+N\+T\+R\+Y\+\_\+\+S\+I\+ZE}~16
+\item 
+\#define {\bfseries M\+T\+I\+V\+OR}(\mbox{\hyperlink{structvec}{vec}},  offset)
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{powerpc_2qoriq_2start_2bspstart_8c_a33c5406aa25220915296eb37581b9578}\label{powerpc_2qoriq_2start_2bspstart_8c_a33c5406aa25220915296eb37581b9578}} 
+{\bfseries L\+I\+N\+K\+E\+R\+\_\+\+S\+Y\+M\+B\+OL} (bsp\+\_\+exc\+\_\+vector\+\_\+base)
+\item 
+uint32\+\_\+t \mbox{\hyperlink{group__RTEMSScoreCPUARM_gaa675150e5d00169c99410a82011b6117}{\+\_\+\+C\+P\+U\+\_\+\+Counter\+\_\+frequency}} (void)
+\begin{DoxyCompactList}\small\item\em Returns the current C\+PU counter frequency in Hz. \end{DoxyCompactList}\item 
+void {\bfseries qoriq\+\_\+initialize\+\_\+exceptions} (void $\ast$interrupt\+\_\+stack\+\_\+begin)
+\item 
+void {\bfseries bsp\+\_\+start} (void)
+\item 
+uint32\+\_\+t \mbox{\hyperlink{powerpc_2qoriq_2start_2bspstart_8c_aed6f20a58ff5b25fd024bbd935a81d2e}{bsp\+\_\+fdt\+\_\+map\+\_\+intr}} (const uint32\+\_\+t $\ast$intr, size\+\_\+t icells)
+\begin{DoxyCompactList}\small\item\em Maps the interrupt number of the F\+DT to the interrupt vector used by the interrupt management. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structqoriq__start__spin__table}{qoriq\+\_\+start\+\_\+spin\+\_\+table}} $\ast$ {\bfseries qoriq\+\_\+start\+\_\+spin\+\_\+table\+\_\+addr} \mbox{[}Q\+O\+R\+I\+Q\+\_\+\+C\+P\+U\+\_\+\+C\+O\+U\+NT/Q\+O\+R\+I\+Q\+\_\+\+T\+H\+R\+E\+A\+D\+\_\+\+C\+O\+U\+NT\mbox{]}
+\item 
+unsigned int {\bfseries B\+S\+P\+\_\+bus\+\_\+frequency}
+\item 
+uint32\+\_\+t {\bfseries bsp\+\_\+time\+\_\+base\+\_\+frequency}
+\item 
+uint32\+\_\+t {\bfseries qoriq\+\_\+clock\+\_\+frequency}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+B\+SP startup. 
+
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{powerpc_2qoriq_2start_2bspstart_8c_a0b4b0c537bd1a27f0c3f435ca1b2e8aa}\label{powerpc_2qoriq_2start_2bspstart_8c_a0b4b0c537bd1a27f0c3f435ca1b2e8aa}} 
+\index{bspstart.c@{bspstart.c}!MTIVOR@{MTIVOR}}
+\index{MTIVOR@{MTIVOR}!bspstart.c@{bspstart.c}}
+\subsubsection{\texorpdfstring{MTIVOR}{MTIVOR}}
+{\footnotesize\ttfamily \#define M\+T\+I\+V\+OR(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{structvec}{vec}},  }\item[{}]{offset }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do} \{ \(\backslash\)}
+\DoxyCodeLine{    \_\_asm\_\_ \textcolor{keyword}{volatile} (\textcolor{stringliteral}{"mtspr "} \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gae20dd87f41e0e16eae552a6bb857104d}{RTEMS\_XSTRING}}(\mbox{\hyperlink{structvec}{vec}}) \textcolor{stringliteral}{", \%0"} : : \textcolor{stringliteral}{"r"} (offset)); \(\backslash\)}
+\DoxyCodeLine{    offset += VECTOR\_TABLE\_ENTRY\_SIZE; \(\backslash\)}
+\DoxyCodeLine{  \} \textcolor{keywordflow}{while} (0)}
+
+\end{DoxyCode}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{powerpc_2qoriq_2start_2bspstart_8c_aed6f20a58ff5b25fd024bbd935a81d2e}\label{powerpc_2qoriq_2start_2bspstart_8c_aed6f20a58ff5b25fd024bbd935a81d2e}} 
+\index{bspstart.c@{bspstart.c}!bsp\_fdt\_map\_intr@{bsp\_fdt\_map\_intr}}
+\index{bsp\_fdt\_map\_intr@{bsp\_fdt\_map\_intr}!bspstart.c@{bspstart.c}}
+\subsubsection{\texorpdfstring{bsp\_fdt\_map\_intr()}{bsp\_fdt\_map\_intr()}}
+{\footnotesize\ttfamily uint32\+\_\+t bsp\+\_\+fdt\+\_\+map\+\_\+intr (\begin{DoxyParamCaption}\item[{const uint32\+\_\+t $\ast$}]{intr,  }\item[{size\+\_\+t}]{icells }\end{DoxyParamCaption})}
+
+
+
+Maps the interrupt number of the F\+DT to the interrupt vector used by the interrupt management. 
+
+This function is used by the libbsd to implement the O\+F\+W\+\_\+\+B\+U\+S\+\_\+\+M\+A\+P\+\_\+\+I\+N\+TR bus method.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em intr} & The F\+DT interrupt number cells. \\
+\hline
+\mbox{\texttt{ in}}  & {\em icells} & The F\+DT interrupt cell count.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The interrupt vector of the F\+DT interrupt number. 
+\end{DoxyReturn}

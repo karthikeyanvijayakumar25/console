@@ -1,0 +1,109 @@
+\hypertarget{group__CLK__MGR__SAFE__MODE}{}\section{Safe Mode Options}
+\label{group__CLK__MGR__SAFE__MODE}\index{Safe Mode Options@{Safe Mode Options}}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef enum \mbox{\hyperlink{group__CLK__MGR__SAFE__MODE_ga8feb75a3bd96f3d639ed8052133c9029}{A\+L\+T\+\_\+\+C\+L\+K\+\_\+\+S\+A\+F\+E\+\_\+\+D\+O\+M\+A\+I\+N\+\_\+e}} \mbox{\hyperlink{group__CLK__MGR__SAFE__MODE_gacf9924b29261719c075137e2805f8d3f}{A\+L\+T\+\_\+\+C\+L\+K\+\_\+\+S\+A\+F\+E\+\_\+\+D\+O\+M\+A\+I\+N\+\_\+t}}
+\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{group__CLK__MGR__SAFE__MODE_ga8feb75a3bd96f3d639ed8052133c9029}{A\+L\+T\+\_\+\+C\+L\+K\+\_\+\+S\+A\+F\+E\+\_\+\+D\+O\+M\+A\+I\+N\+\_\+e}} \{ \mbox{\hyperlink{group__CLK__MGR__SAFE__MODE_gga8feb75a3bd96f3d639ed8052133c9029ae0c540cb09d7d1a2c7ec1456245cd61d}{A\+L\+T\+\_\+\+C\+L\+K\+\_\+\+D\+O\+M\+A\+I\+N\+\_\+\+N\+O\+R\+M\+AL}}, 
+\mbox{\hyperlink{group__CLK__MGR__SAFE__MODE_gga8feb75a3bd96f3d639ed8052133c9029a3c53d968ed9db9bebdb74c8b350a99ef}{A\+L\+T\+\_\+\+C\+L\+K\+\_\+\+D\+O\+M\+A\+I\+N\+\_\+\+D\+E\+B\+UG}}
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__CLK__MGR__SAFE__MODE_ga7fb95d9c6bf7e2ec7c96b0c1ab65dc6c}{alt\+\_\+clk\+\_\+safe\+\_\+mode\+\_\+clear}} (void)
+\item 
+bool \mbox{\hyperlink{group__CLK__MGR__SAFE__MODE_gada82c454b74519f10ce1769e1273608a}{alt\+\_\+clk\+\_\+is\+\_\+in\+\_\+safe\+\_\+mode}} (\mbox{\hyperlink{group__CLK__MGR__SAFE__MODE_gacf9924b29261719c075137e2805f8d3f}{A\+L\+T\+\_\+\+C\+L\+K\+\_\+\+S\+A\+F\+E\+\_\+\+D\+O\+M\+A\+I\+N\+\_\+t}} clk\+\_\+domain)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+When safe mode is enabled, clocks in the H\+PS are directly generated from the {\bfseries{osc1\+\_\+clk}} clock. Safe mode is enabled by the assertion of a safe mode request from the reset manager or by a cold reset. Assertion of the safe mode request from the reset manager sets the safe mode bit in the clock manager control register. No other control register bits are affected by the safe mode request from the reset manager.
+
+While in safe mode, clock manager register settings which control clock behavior are not changed. However, the output of the registers which control the clock manager state are forced to the safe mode values such that the following conditions occur\+:
+\begin{DoxyItemize}
+\item All P\+L\+Ls are bypassed to the {\bfseries{osc1\+\_\+clk}} clock, including their counters.
+\item Clock dividers select their default reset values.
+\item The flash controllers source clock selections are set to the peripheral P\+LL.
+\item All clocks are enabled.
+\item Safe mode is optionally applied to debug clocks.
+\end{DoxyItemize}
+
+A write by software is the only way to clear the safe mode bit. All registers and clocks need to be configured correctly and all software-\/managed clocks need to be gated off before clearing safe mode. Software can then gate clocks on as required.
+
+On cold reset, all clocks are put in safe mode.
+
+On warm reset, safe mode is optionally and independently applied to debug clocks and normal (i.\+e.\+non-\/debug) clocks based on clock manager register settings. The default response for warm reset is to put all clocks in safe mode.
+
+The A\+P\+Is in this group provide control of the Clock Manager safe mode warm reset response behavior. 
+
+\subsection{Typedef Documentation}
+\mbox{\Hypertarget{group__CLK__MGR__SAFE__MODE_gacf9924b29261719c075137e2805f8d3f}\label{group__CLK__MGR__SAFE__MODE_gacf9924b29261719c075137e2805f8d3f}} 
+\index{Safe Mode Options@{Safe Mode Options}!ALT\_CLK\_SAFE\_DOMAIN\_t@{ALT\_CLK\_SAFE\_DOMAIN\_t}}
+\index{ALT\_CLK\_SAFE\_DOMAIN\_t@{ALT\_CLK\_SAFE\_DOMAIN\_t}!Safe Mode Options@{Safe Mode Options}}
+\subsubsection{\texorpdfstring{ALT\_CLK\_SAFE\_DOMAIN\_t}{ALT\_CLK\_SAFE\_DOMAIN\_t}}
+{\footnotesize\ttfamily typedef enum \mbox{\hyperlink{group__CLK__MGR__SAFE__MODE_ga8feb75a3bd96f3d639ed8052133c9029}{A\+L\+T\+\_\+\+C\+L\+K\+\_\+\+S\+A\+F\+E\+\_\+\+D\+O\+M\+A\+I\+N\+\_\+e}}  \mbox{\hyperlink{group__CLK__MGR__SAFE__MODE_gacf9924b29261719c075137e2805f8d3f}{A\+L\+T\+\_\+\+C\+L\+K\+\_\+\+S\+A\+F\+E\+\_\+\+D\+O\+M\+A\+I\+N\+\_\+t}}}
+
+This type definition enumerates the safe mode clock domains under control of the Clock Manager. 
+
+\subsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{group__CLK__MGR__SAFE__MODE_ga8feb75a3bd96f3d639ed8052133c9029}\label{group__CLK__MGR__SAFE__MODE_ga8feb75a3bd96f3d639ed8052133c9029}} 
+\index{Safe Mode Options@{Safe Mode Options}!ALT\_CLK\_SAFE\_DOMAIN\_e@{ALT\_CLK\_SAFE\_DOMAIN\_e}}
+\index{ALT\_CLK\_SAFE\_DOMAIN\_e@{ALT\_CLK\_SAFE\_DOMAIN\_e}!Safe Mode Options@{Safe Mode Options}}
+\subsubsection{\texorpdfstring{ALT\_CLK\_SAFE\_DOMAIN\_e}{ALT\_CLK\_SAFE\_DOMAIN\_e}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{group__CLK__MGR__SAFE__MODE_ga8feb75a3bd96f3d639ed8052133c9029}{A\+L\+T\+\_\+\+C\+L\+K\+\_\+\+S\+A\+F\+E\+\_\+\+D\+O\+M\+A\+I\+N\+\_\+e}}}
+
+This type definition enumerates the safe mode clock domains under control of the Clock Manager. \begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ALT\_CLK\_DOMAIN\_NORMAL@{ALT\_CLK\_DOMAIN\_NORMAL}!Safe Mode Options@{Safe Mode Options}}\index{Safe Mode Options@{Safe Mode Options}!ALT\_CLK\_DOMAIN\_NORMAL@{ALT\_CLK\_DOMAIN\_NORMAL}}}\mbox{\Hypertarget{group__CLK__MGR__SAFE__MODE_gga8feb75a3bd96f3d639ed8052133c9029ae0c540cb09d7d1a2c7ec1456245cd61d}\label{group__CLK__MGR__SAFE__MODE_gga8feb75a3bd96f3d639ed8052133c9029ae0c540cb09d7d1a2c7ec1456245cd61d}} 
+A\+L\+T\+\_\+\+C\+L\+K\+\_\+\+D\+O\+M\+A\+I\+N\+\_\+\+N\+O\+R\+M\+AL&This enumeration literal specifies the normal safe mode domain. The normal domain consists of all clocks except debug clocks. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ALT\_CLK\_DOMAIN\_DEBUG@{ALT\_CLK\_DOMAIN\_DEBUG}!Safe Mode Options@{Safe Mode Options}}\index{Safe Mode Options@{Safe Mode Options}!ALT\_CLK\_DOMAIN\_DEBUG@{ALT\_CLK\_DOMAIN\_DEBUG}}}\mbox{\Hypertarget{group__CLK__MGR__SAFE__MODE_gga8feb75a3bd96f3d639ed8052133c9029a3c53d968ed9db9bebdb74c8b350a99ef}\label{group__CLK__MGR__SAFE__MODE_gga8feb75a3bd96f3d639ed8052133c9029a3c53d968ed9db9bebdb74c8b350a99ef}} 
+A\+L\+T\+\_\+\+C\+L\+K\+\_\+\+D\+O\+M\+A\+I\+N\+\_\+\+D\+E\+B\+UG&This enumeration literal specifies the debug safe mode domain. The debug domain consists of all debug clocks. \\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{group__CLK__MGR__SAFE__MODE_gada82c454b74519f10ce1769e1273608a}\label{group__CLK__MGR__SAFE__MODE_gada82c454b74519f10ce1769e1273608a}} 
+\index{Safe Mode Options@{Safe Mode Options}!alt\_clk\_is\_in\_safe\_mode@{alt\_clk\_is\_in\_safe\_mode}}
+\index{alt\_clk\_is\_in\_safe\_mode@{alt\_clk\_is\_in\_safe\_mode}!Safe Mode Options@{Safe Mode Options}}
+\subsubsection{\texorpdfstring{alt\_clk\_is\_in\_safe\_mode()}{alt\_clk\_is\_in\_safe\_mode()}}
+{\footnotesize\ttfamily bool alt\+\_\+clk\+\_\+is\+\_\+in\+\_\+safe\+\_\+mode (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__CLK__MGR__SAFE__MODE_gacf9924b29261719c075137e2805f8d3f}{A\+L\+T\+\_\+\+C\+L\+K\+\_\+\+S\+A\+F\+E\+\_\+\+D\+O\+M\+A\+I\+N\+\_\+t}}}]{clk\+\_\+domain }\end{DoxyParamCaption})}
+
+Return whether the specified safe mode clock domain is in safe mode or not.
+
+
+\begin{DoxyParams}{Parameters}
+{\em clk\+\_\+domain} & The safe mode clock domain to check whether in safe mode or not.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em T\+R\+UE} & The safe mode clock domain is in safe mode. \\
+\hline
+{\em F\+A\+L\+SE} & The safe mode clock domain is not in safe mode. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{group__CLK__MGR__SAFE__MODE_ga7fb95d9c6bf7e2ec7c96b0c1ab65dc6c}\label{group__CLK__MGR__SAFE__MODE_ga7fb95d9c6bf7e2ec7c96b0c1ab65dc6c}} 
+\index{Safe Mode Options@{Safe Mode Options}!alt\_clk\_safe\_mode\_clear@{alt\_clk\_safe\_mode\_clear}}
+\index{alt\_clk\_safe\_mode\_clear@{alt\_clk\_safe\_mode\_clear}!Safe Mode Options@{Safe Mode Options}}
+\subsubsection{\texorpdfstring{alt\_clk\_safe\_mode\_clear()}{alt\_clk\_safe\_mode\_clear()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} alt\+\_\+clk\+\_\+safe\+\_\+mode\+\_\+clear (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+Clear the safe mode status of the Clock Manager following a reset.
+
+N\+O\+TE\+: Safe mode should only be cleared once clocks have been correctly configured.
+
+
+\begin{DoxyRetVals}{Return values}
+{\em A\+L\+T\+\_\+\+E\+\_\+\+S\+U\+C\+C\+E\+SS} & The operation was succesful. \\
+\hline
+{\em A\+L\+T\+\_\+\+E\+\_\+\+E\+R\+R\+OR} & The operation failed. \\
+\hline
+\end{DoxyRetVals}

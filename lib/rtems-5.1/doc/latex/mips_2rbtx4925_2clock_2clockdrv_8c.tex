@@ -1,0 +1,125 @@
+\hypertarget{mips_2rbtx4925_2clock_2clockdrv_8c}{}\section{bsps/mips/rbtx4925/clock/clockdrv.c File Reference}
+\label{mips_2rbtx4925_2clock_2clockdrv_8c}\index{bsps/mips/rbtx4925/clock/clockdrv.c@{bsps/mips/rbtx4925/clock/clockdrv.c}}
+{\ttfamily \#include $<$rtems.\+h$>$}\newline
+{\ttfamily \#include $<$bsp/irq.\+h$>$}\newline
+{\ttfamily \#include $<$bsp.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}../../../shared/dev/clock/clockimpl.\+h\char`\"{}}\newline
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{mips_2rbtx4925_2clock_2clockdrv_8c_a4edae1f7872fdace9eb64c197b3f952d}\label{mips_2rbtx4925_2clock_2clockdrv_8c_a4edae1f7872fdace9eb64c197b3f952d}} 
+\#define {\bfseries C\+L\+O\+C\+K\+\_\+\+V\+E\+C\+T\+OR}~T\+X4925\+\_\+\+I\+R\+Q\+\_\+\+T\+M\+R0
+\item 
+\mbox{\Hypertarget{mips_2rbtx4925_2clock_2clockdrv_8c_aa9d4e7e12e3f9e5b64700c7a260300fb}\label{mips_2rbtx4925_2clock_2clockdrv_8c_aa9d4e7e12e3f9e5b64700c7a260300fb}} 
+\#define {\bfseries T\+X4925\+\_\+\+T\+I\+M\+E\+R\+\_\+\+I\+N\+T\+E\+R\+V\+A\+L\+\_\+\+M\+O\+DE}~1
+\item 
+\mbox{\Hypertarget{mips_2rbtx4925_2clock_2clockdrv_8c_a856b7fbc45b44cc15dcd33f72c584b0f}\label{mips_2rbtx4925_2clock_2clockdrv_8c_a856b7fbc45b44cc15dcd33f72c584b0f}} 
+\#define {\bfseries T\+X4925\+\_\+\+T\+I\+M\+E\+R\+\_\+\+P\+U\+L\+S\+E\+\_\+\+M\+O\+DE}~2
+\item 
+\mbox{\Hypertarget{mips_2rbtx4925_2clock_2clockdrv_8c_adedb0be26ce73b54203fb508b49862f3}\label{mips_2rbtx4925_2clock_2clockdrv_8c_adedb0be26ce73b54203fb508b49862f3}} 
+\#define {\bfseries T\+X4925\+\_\+\+T\+I\+M\+E\+R\+\_\+\+M\+O\+DE}~T\+X4925\+\_\+\+T\+I\+M\+E\+R\+\_\+\+I\+N\+T\+E\+R\+V\+A\+L\+\_\+\+M\+O\+DE
+\item 
+\mbox{\Hypertarget{mips_2rbtx4925_2clock_2clockdrv_8c_ad3a906b713573d9acb86a4aba6c00152}\label{mips_2rbtx4925_2clock_2clockdrv_8c_ad3a906b713573d9acb86a4aba6c00152}} 
+\#define {\bfseries T\+X4925\+\_\+\+T\+I\+M\+E\+R\+\_\+\+I\+N\+T\+E\+R\+R\+U\+P\+T\+\_\+\+F\+L\+AG}~T\+I\+IS
+\item 
+\mbox{\Hypertarget{mips_2rbtx4925_2clock_2clockdrv_8c_a37475981ff0420ed43474fb3bdde8cbf}\label{mips_2rbtx4925_2clock_2clockdrv_8c_a37475981ff0420ed43474fb3bdde8cbf}} 
+\#define {\bfseries Clock\+\_\+driver\+\_\+support\+\_\+initialize\+\_\+hardware}()~Initialize\+\_\+timer0\+\_\+in\+\_\+interval\+\_\+mode()
+\item 
+\mbox{\Hypertarget{mips_2rbtx4925_2clock_2clockdrv_8c_a98b2c75f88d730742ba1e0b5b4950a4d}\label{mips_2rbtx4925_2clock_2clockdrv_8c_a98b2c75f88d730742ba1e0b5b4950a4d}} 
+\#define {\bfseries Clock\+\_\+driver\+\_\+support\+\_\+install\+\_\+isr}(\+\_\+new)~\mbox{\hyperlink{group__rtems__interrupt__extension_ga086cc450fcdc9e37bfd0744a763dbfd4}{rtems\+\_\+interrupt\+\_\+handler\+\_\+install}}( C\+L\+O\+C\+K\+\_\+\+V\+E\+C\+T\+OR, \char`\"{}clock\char`\"{}, 0, \+\_\+new, \mbox{\hyperlink{bestcomm__api_8h_a872bb74de61c3689ccd5b41873fce42c}{N\+U\+LL}} )
+\item 
+\#define {\bfseries Clock\+\_\+driver\+\_\+support\+\_\+at\+\_\+tick}()
+\item 
+\#define {\bfseries Initialize\+\_\+timer0\+\_\+in\+\_\+interval\+\_\+mode}()
+\item 
+\#define {\bfseries Initialize\+\_\+timer0\+\_\+in\+\_\+pulse\+\_\+mode}()
+\item 
+\mbox{\Hypertarget{mips_2rbtx4925_2clock_2clockdrv_8c_ab733c59b870d1dbad7a80319644fb5d4}\label{mips_2rbtx4925_2clock_2clockdrv_8c_ab733c59b870d1dbad7a80319644fb5d4}} 
+\#define {\bfseries C\+L\+O\+C\+K\+\_\+\+D\+R\+I\+V\+E\+R\+\_\+\+U\+S\+E\+\_\+\+D\+U\+M\+M\+Y\+\_\+\+T\+I\+M\+E\+C\+O\+U\+N\+T\+ER}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Instantiate the clock driver shell. 
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{mips_2rbtx4925_2clock_2clockdrv_8c_ad0860321c2b7838ffea30059aebd26fa}\label{mips_2rbtx4925_2clock_2clockdrv_8c_ad0860321c2b7838ffea30059aebd26fa}} 
+\index{clockdrv.c@{clockdrv.c}!Clock\_driver\_support\_at\_tick@{Clock\_driver\_support\_at\_tick}}
+\index{Clock\_driver\_support\_at\_tick@{Clock\_driver\_support\_at\_tick}!clockdrv.c@{clockdrv.c}}
+\subsubsection{\texorpdfstring{Clock\_driver\_support\_at\_tick}{Clock\_driver\_support\_at\_tick}}
+{\footnotesize\ttfamily \#define Clock\+\_\+driver\+\_\+support\+\_\+at\+\_\+tick(\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do} \{ \(\backslash\)}
+\DoxyCodeLine{    uint32\_t interrupt\_flag; \(\backslash\)}
+\DoxyCodeLine{    do \{ \(\backslash\)}
+\DoxyCodeLine{        int loop\_count; \(\backslash\)}
+\DoxyCodeLine{        TX4925\_REG\_WRITE( TX4925\_REG\_BASE, TX4925\_TIMER0\_BASE + TX4925\_TIMER\_TISR, 0x0 ); \textcolor{comment}{/* Clear timer 0 interrupt */} \(\backslash\)}
+\DoxyCodeLine{            loop\_count = 0; \(\backslash\)}
+\DoxyCodeLine{            do \{ \textcolor{comment}{/* Wait until interrupt flag is cleared (this prevents re-entering interrupt) */} \(\backslash\)}
+\DoxyCodeLine{                \textcolor{comment}{/* Read back interrupt status register and isolate interval timer flag */} \(\backslash\)}
+\DoxyCodeLine{                interrupt\_flag = TX4925\_REG\_READ( TX4925\_REG\_BASE, TX4925\_TIMER0\_BASE + TX4925\_TIMER\_TISR ) \& TX4925\_TIMER\_INTERRUPT\_FLAG; \(\backslash\)}
+\DoxyCodeLine{            \} \textcolor{keywordflow}{while} (interrupt\_flag \&\& (++loop\_count < 10)); \textcolor{comment}{/* Loop while timer interrupt bit is set, or loop count is lees than 10 */} \(\backslash\)}
+\DoxyCodeLine{    \} \textcolor{keywordflow}{while}(interrupt\_flag); \(\backslash\)}
+\DoxyCodeLine{  \} \textcolor{keywordflow}{while}(0)}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{mips_2rbtx4925_2clock_2clockdrv_8c_ae1f04d491a60491db55fe27955349add}\label{mips_2rbtx4925_2clock_2clockdrv_8c_ae1f04d491a60491db55fe27955349add}} 
+\index{clockdrv.c@{clockdrv.c}!Initialize\_timer0\_in\_interval\_mode@{Initialize\_timer0\_in\_interval\_mode}}
+\index{Initialize\_timer0\_in\_interval\_mode@{Initialize\_timer0\_in\_interval\_mode}!clockdrv.c@{clockdrv.c}}
+\subsubsection{\texorpdfstring{Initialize\_timer0\_in\_interval\_mode}{Initialize\_timer0\_in\_interval\_mode}}
+{\footnotesize\ttfamily \#define Initialize\+\_\+timer0\+\_\+in\+\_\+interval\+\_\+mode(\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do} \{ \(\backslash\)}
+\DoxyCodeLine{    uint32\_t temp; \(\backslash\)}
+\DoxyCodeLine{    TX4925\_REG\_WRITE( TX4925\_REG\_BASE, TX4925\_TIMER0\_BASE + TX4925\_TIMER\_TCR, 0x0 ); \textcolor{comment}{/* Disable timer */} \(\backslash\)}
+\DoxyCodeLine{    TX4925\_REG\_WRITE( TX4925\_REG\_BASE, TX4925\_TIMER0\_BASE + TX4925\_TIMER\_CCDR, 0x0 ); \textcolor{comment}{/* Set register for divide by 2 clock */} \(\backslash\)}
+\DoxyCodeLine{    TX4925\_REG\_WRITE( TX4925\_REG\_BASE, TX4925\_TIMER0\_BASE + TX4925\_TIMER\_ITMR, TIMER\_CLEAR\_ENABLE\_MASK ); \textcolor{comment}{/* Set interval timer mode register */} \(\backslash\)}
+\DoxyCodeLine{    TX4925\_REG\_WRITE( TX4925\_REG\_BASE, TX4925\_TIMER0\_BASE + TX4925\_TIMER\_CPRA, 0x30d40 ); \textcolor{comment}{/* Set tmier period ,10.0 msec (20 MHz timer clock) */} \(\backslash\)}
+\DoxyCodeLine{    TX4925\_REG\_WRITE( TX4925\_REG\_BASE, TX4925\_TIMER0\_BASE + TX4925\_TIMER\_TCR, 0xC0 ); \textcolor{comment}{/* Enable timer in interval mode */} \(\backslash\)}
+\DoxyCodeLine{    TX4925\_REG\_WRITE( TX4925\_REG\_BASE, TX4925\_IRQCTL\_DM0, 0x0 ); \textcolor{comment}{/* Set interrupt controller detection mode */} \(\backslash\)}
+\DoxyCodeLine{    TX4925\_REG\_WRITE( TX4925\_REG\_BASE, TX4925\_IRQCTL\_LVL2, 0x1000000 ); \textcolor{comment}{/* Set interrupt controller level */} \(\backslash\)}
+\DoxyCodeLine{    TX4925\_REG\_WRITE( TX4925\_REG\_BASE, TX4925\_IRQCTL\_MSK, 0x0 ); \textcolor{comment}{/* Set interrupt controller mask */} \(\backslash\)}
+\DoxyCodeLine{    TX4925\_REG\_WRITE( TX4925\_REG\_BASE, TX4925\_IRQCTL\_DEN, 0x1 ); \textcolor{comment}{/* Enable interrupts from controller */} \(\backslash\)}
+\DoxyCodeLine{    temp = TX4925\_REG\_READ( TX4925\_REG\_BASE, TX4925\_TIMER0\_BASE + TX4925\_TIMER\_ITMR ); \textcolor{comment}{/* Enable interval timer interrupts */} \(\backslash\)}
+\DoxyCodeLine{    temp |= TIMER\_INT\_ENABLE\_MASK; \(\backslash\)}
+\DoxyCodeLine{    TX4925\_REG\_WRITE( TX4925\_REG\_BASE, TX4925\_TIMER0\_BASE + TX4925\_TIMER\_ITMR, temp ); \(\backslash\)}
+\DoxyCodeLine{  \} \textcolor{keywordflow}{while}(0)}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{mips_2rbtx4925_2clock_2clockdrv_8c_a5d5b70a7a18ae7e2ab2764c2dc7409eb}\label{mips_2rbtx4925_2clock_2clockdrv_8c_a5d5b70a7a18ae7e2ab2764c2dc7409eb}} 
+\index{clockdrv.c@{clockdrv.c}!Initialize\_timer0\_in\_pulse\_mode@{Initialize\_timer0\_in\_pulse\_mode}}
+\index{Initialize\_timer0\_in\_pulse\_mode@{Initialize\_timer0\_in\_pulse\_mode}!clockdrv.c@{clockdrv.c}}
+\subsubsection{\texorpdfstring{Initialize\_timer0\_in\_pulse\_mode}{Initialize\_timer0\_in\_pulse\_mode}}
+{\footnotesize\ttfamily \#define Initialize\+\_\+timer0\+\_\+in\+\_\+pulse\+\_\+mode(\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do} \{ \(\backslash\)}
+\DoxyCodeLine{    uint32\_t temp; \(\backslash\)}
+\DoxyCodeLine{    TX4925\_REG\_WRITE( TX4925\_REG\_BASE, TX4925\_TIMER0\_BASE + TX4925\_TIMER\_TCR, 0x0 ); \textcolor{comment}{/* Disable timer */} \(\backslash\)}
+\DoxyCodeLine{    TX4925\_REG\_WRITE( TX4925\_REG\_BASE, TX4925\_TIMER0\_BASE + TX4925\_TIMER\_CCDR, 0x0 ); \textcolor{comment}{/* Set register for divide by 2 clock */} \(\backslash\)}
+\DoxyCodeLine{    TX4925\_REG\_WRITE( TX4925\_REG\_BASE, TX4925\_TIMER0\_BASE + TX4925\_TIMER\_PGMR, FFI ); \textcolor{comment}{/* Set pulse generator mode register */} \(\backslash\)}
+\DoxyCodeLine{    TX4925\_REG\_WRITE( TX4925\_REG\_BASE, TX4925\_TIMER0\_BASE + TX4925\_TIMER\_CPRA, 0x3e8 ); \textcolor{comment}{/* Set pulse high duration ,0.05 msec (20 MHz timer clock) */} \(\backslash\)}
+\DoxyCodeLine{\textcolor{comment}{/*    TX4925\_REG\_WRITE( TX4925\_REG\_BASE, TX4925\_TIMER0\_BASE + TX4925\_TIMER\_CPRB, 0x1388 ); */} \textcolor{comment}{/* Set pulse total period, 0.25 msec (20 MHz timer clock) */} \(\backslash\)}
+\DoxyCodeLine{    TX4925\_REG\_WRITE( TX4925\_REG\_BASE, TX4925\_TIMER0\_BASE + TX4925\_TIMER\_CPRB, 0x30d40 ); \textcolor{comment}{/* Set pulse total period, 10 msec (20 MHz timer clock) */} \(\backslash\)}
+\DoxyCodeLine{    TX4925\_REG\_WRITE( TX4925\_REG\_BASE, TX4925\_TIMER0\_BASE + TX4925\_TIMER\_TCR, 0xC1 ); \textcolor{comment}{/* Enable timer in pulse generator mode */} \(\backslash\)}
+\DoxyCodeLine{ \(\backslash\)}
+\DoxyCodeLine{    \textcolor{comment}{/* Enable timer 0 output pulses on PIO20 */} \(\backslash\)}
+\DoxyCodeLine{    temp = TX4925\_REG\_READ( TX4925\_REG\_BASE, TX4925\_CFG\_PCFG ); \(\backslash\)}
+\DoxyCodeLine{    temp = (temp \& ~ SELCHI) | SELTMR0; \textcolor{comment}{/* Enable timer 0 pulses on PIO20 */} \(\backslash\)}
+\DoxyCodeLine{    TX4925\_REG\_WRITE( TX4925\_REG\_BASE, TX4925\_CFG\_PCFG, temp ); \(\backslash\)}
+\DoxyCodeLine{ \(\backslash\)}
+\DoxyCodeLine{    TX4925\_REG\_WRITE( TX4925\_REG\_BASE, TX4925\_IRQCTL\_DM0, 0x0 ); \textcolor{comment}{/* Set interrupt controller detection mode */} \(\backslash\)}
+\DoxyCodeLine{    TX4925\_REG\_WRITE( TX4925\_REG\_BASE, TX4925\_IRQCTL\_LVL2, 0x1000000 ); \textcolor{comment}{/* Set interrupt controller level */} \(\backslash\)}
+\DoxyCodeLine{    TX4925\_REG\_WRITE( TX4925\_REG\_BASE, TX4925\_IRQCTL\_MSK, 0x0 ); \textcolor{comment}{/* Set interrupt controller mask */} \(\backslash\)}
+\DoxyCodeLine{    TX4925\_REG\_WRITE( TX4925\_REG\_BASE, TX4925\_IRQCTL\_DEN, 0x1 ); \textcolor{comment}{/* Enable interrupts from controller */} \(\backslash\)}
+\DoxyCodeLine{    temp = TX4925\_REG\_READ( TX4925\_REG\_BASE, TX4925\_TIMER0\_BASE + TX4925\_TIMER\_PGMR ); \textcolor{comment}{/* Enable pulse generator interrupt */} \(\backslash\)}
+\DoxyCodeLine{    temp |= TPIBE;  \textcolor{comment}{/* Only want interrupts on B compare (where clock count is cleared) */} \(\backslash\)}
+\DoxyCodeLine{    TX4925\_REG\_WRITE( TX4925\_REG\_BASE, TX4925\_TIMER0\_BASE + TX4925\_TIMER\_PGMR, temp ); \(\backslash\)}
+\DoxyCodeLine{  \} \textcolor{keywordflow}{while}(0)}
+
+\end{DoxyCode}

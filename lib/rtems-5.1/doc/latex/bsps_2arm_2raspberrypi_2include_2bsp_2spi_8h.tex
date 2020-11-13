@@ -1,0 +1,68 @@
+\hypertarget{bsps_2arm_2raspberrypi_2include_2bsp_2spi_8h}{}\section{bsps/arm/raspberrypi/include/bsp/spi.h File Reference}
+\label{bsps_2arm_2raspberrypi_2include_2bsp_2spi_8h}\index{bsps/arm/raspberrypi/include/bsp/spi.h@{bsps/arm/raspberrypi/include/bsp/spi.h}}
+
+
+Raspberry Pi specific S\+PI definitions.  
+
+
+{\ttfamily \#include $<$rtems/libi2c.\+h$>$}\newline
+\subsection*{Macros}
+\begin{Indent}\textbf{ S\+PI constants.}\par
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{bsps_2arm_2raspberrypi_2include_2bsp_2spi_8h_a7e1b41639c3884808d9a900e3eb7cd5d}{G\+P\+U\+\_\+\+C\+O\+R\+E\+\_\+\+C\+L\+O\+C\+K\+\_\+\+R\+A\+TE}}~250000000
+\begin{DoxyCompactList}\small\item\em G\+PU processor core clock rate in Hz. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Functions}
+\begin{Indent}\textbf{ S\+PI directives.}\par
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{bsps_2arm_2raspberrypi_2include_2bsp_2spi_8h_abaa5b02fa144b553c3dd5241a4c712d9}{rpi\+\_\+spi\+\_\+init}} (bool bidirectional\+\_\+mode)
+\begin{DoxyCompactList}\small\item\em Setups the Raspberry Pi S\+PI bus (located on the G\+P\+IO header) on the \char`\"{}/dev/spi\char`\"{} device file, and registers the bus on the libi2c A\+PI. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+
+
+\subsection{Detailed Description}
+Raspberry Pi specific S\+PI definitions. 
+
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{bsps_2arm_2raspberrypi_2include_2bsp_2spi_8h_a7e1b41639c3884808d9a900e3eb7cd5d}\label{bsps_2arm_2raspberrypi_2include_2bsp_2spi_8h_a7e1b41639c3884808d9a900e3eb7cd5d}} 
+\index{spi.h@{spi.h}!GPU\_CORE\_CLOCK\_RATE@{GPU\_CORE\_CLOCK\_RATE}}
+\index{GPU\_CORE\_CLOCK\_RATE@{GPU\_CORE\_CLOCK\_RATE}!spi.h@{spi.h}}
+\subsubsection{\texorpdfstring{GPU\_CORE\_CLOCK\_RATE}{GPU\_CORE\_CLOCK\_RATE}}
+{\footnotesize\ttfamily \#define G\+P\+U\+\_\+\+C\+O\+R\+E\+\_\+\+C\+L\+O\+C\+K\+\_\+\+R\+A\+TE~250000000}
+
+
+
+G\+PU processor core clock rate in Hz. 
+
+Unless configured otherwise on a \char`\"{}config.\+txt\char`\"{} file present on the SD card the G\+PU defaults to 250 M\+Hz. Currently only 250 M\+Hz is supported. 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{bsps_2arm_2raspberrypi_2include_2bsp_2spi_8h_abaa5b02fa144b553c3dd5241a4c712d9}\label{bsps_2arm_2raspberrypi_2include_2bsp_2spi_8h_abaa5b02fa144b553c3dd5241a4c712d9}} 
+\index{spi.h@{spi.h}!rpi\_spi\_init@{rpi\_spi\_init}}
+\index{rpi\_spi\_init@{rpi\_spi\_init}!spi.h@{spi.h}}
+\subsubsection{\texorpdfstring{rpi\_spi\_init()}{rpi\_spi\_init()}}
+{\footnotesize\ttfamily int rpi\+\_\+spi\+\_\+init (\begin{DoxyParamCaption}\item[{bool}]{bidirectional\+\_\+mode }\end{DoxyParamCaption})}
+
+
+
+Setups the Raspberry Pi S\+PI bus (located on the G\+P\+IO header) on the \char`\"{}/dev/spi\char`\"{} device file, and registers the bus on the libi2c A\+PI. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em bidirectional\+\_\+mode} & If T\+R\+UE sets the S\+PI bus to use 2-\/wire S\+PI, where the M\+O\+SI data line doubles as the slave out (SO) and slave in (SI) data lines. If F\+A\+L\+SE the bus defaults to the usual 3-\/wire S\+PI, with 2 separate data lines (M\+O\+SI and M\+I\+SO).\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em Returns} & libi2c bus number. \\
+\hline
+{\em $<$0} & Could not register the bus. See \\
+\hline
+\end{DoxyRetVals}
+\begin{DoxySeeAlso}{See also}
+rtems\+\_\+libi2c\+\_\+register\+\_\+bus(). 
+\end{DoxySeeAlso}

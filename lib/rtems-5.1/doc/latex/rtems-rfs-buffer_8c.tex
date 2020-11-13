@@ -1,0 +1,191 @@
+\hypertarget{rtems-rfs-buffer_8c}{}\section{cpukit/libfs/src/rfs/rtems-\/rfs-\/buffer.c File Reference}
+\label{rtems-rfs-buffer_8c}\index{cpukit/libfs/src/rfs/rtems-\/rfs-\/buffer.c@{cpukit/libfs/src/rfs/rtems-\/rfs-\/buffer.c}}
+
+
+R\+T\+E\+MS File Systems Buffer Routines.  
+
+
+{\ttfamily \#include $<$sys/stat.\+h$>$}\newline
+{\ttfamily \#include $<$inttypes.\+h$>$}\newline
+{\ttfamily \#include $<$errno.\+h$>$}\newline
+{\ttfamily \#include $<$fcntl.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/rfs/rtems-\/rfs-\/buffer.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/rfs/rtems-\/rfs-\/file-\/system.\+h$>$}\newline
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{rtems-rfs-buffer_8c_a0663516c5bc4844f8b6f47ebb9705dea}{rtems\+\_\+rfs\+\_\+buffer\+\_\+handle\+\_\+request}} (\mbox{\hyperlink{struct__rtems__rfs__file__system}{rtems\+\_\+rfs\+\_\+file\+\_\+system}} $\ast$fs, \mbox{\hyperlink{rtems-rfs-buffer_8h_a17f97c37c5273ad28d413dfd2d175e23}{rtems\+\_\+rfs\+\_\+buffer\+\_\+handle}} $\ast$handle, \mbox{\hyperlink{rtems-rfs-buffer_8h_a5650d53328a5af0a78198fe780aec043}{rtems\+\_\+rfs\+\_\+buffer\+\_\+block}} block, bool \mbox{\hyperlink{libcsupport_2src_2read_8c_a26d4711c05afec4c7771c3d17b2db9e9}{read}})
+\item 
+int \mbox{\hyperlink{rtems-rfs-buffer_8c_ab50227fce5883f922c86d14e0e558270}{rtems\+\_\+rfs\+\_\+buffer\+\_\+handle\+\_\+release}} (\mbox{\hyperlink{struct__rtems__rfs__file__system}{rtems\+\_\+rfs\+\_\+file\+\_\+system}} $\ast$fs, \mbox{\hyperlink{rtems-rfs-buffer_8h_a17f97c37c5273ad28d413dfd2d175e23}{rtems\+\_\+rfs\+\_\+buffer\+\_\+handle}} $\ast$handle)
+\item 
+int \mbox{\hyperlink{rtems-rfs-buffer_8c_af8b9acf77d20824a7121b89ab7b29bf9}{rtems\+\_\+rfs\+\_\+buffer\+\_\+open}} (const char $\ast$name, \mbox{\hyperlink{struct__rtems__rfs__file__system}{rtems\+\_\+rfs\+\_\+file\+\_\+system}} $\ast$fs)
+\item 
+int \mbox{\hyperlink{rtems-rfs-buffer_8c_ae5b347848c87353252dde82820821b05}{rtems\+\_\+rfs\+\_\+buffer\+\_\+close}} (\mbox{\hyperlink{struct__rtems__rfs__file__system}{rtems\+\_\+rfs\+\_\+file\+\_\+system}} $\ast$fs)
+\item 
+int \mbox{\hyperlink{rtems-rfs-buffer_8c_ae563bb0d8d88241eba145f94ab3056f7}{rtems\+\_\+rfs\+\_\+buffer\+\_\+sync}} (\mbox{\hyperlink{struct__rtems__rfs__file__system}{rtems\+\_\+rfs\+\_\+file\+\_\+system}} $\ast$fs)
+\item 
+int \mbox{\hyperlink{rtems-rfs-buffer_8c_ab9a25f519ce861f9781f99faee5c903e}{rtems\+\_\+rfs\+\_\+buffer\+\_\+setblksize}} (\mbox{\hyperlink{struct__rtems__rfs__file__system}{rtems\+\_\+rfs\+\_\+file\+\_\+system}} $\ast$fs, uint32\+\_\+t \mbox{\hyperlink{sun4u_2tte_8h_a245260f6f74972558f61b85227df5aae}{size}})
+\item 
+int \mbox{\hyperlink{rtems-rfs-buffer_8c_a26b599aacf6e9230ab77cf47d9fad0d9}{rtems\+\_\+rfs\+\_\+buffers\+\_\+release}} (\mbox{\hyperlink{struct__rtems__rfs__file__system}{rtems\+\_\+rfs\+\_\+file\+\_\+system}} $\ast$fs)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+R\+T\+E\+MS File Systems Buffer Routines. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{rtems-rfs-buffer_8c_ae5b347848c87353252dde82820821b05}\label{rtems-rfs-buffer_8c_ae5b347848c87353252dde82820821b05}} 
+\index{rtems-\/rfs-\/buffer.c@{rtems-\/rfs-\/buffer.c}!rtems\_rfs\_buffer\_close@{rtems\_rfs\_buffer\_close}}
+\index{rtems\_rfs\_buffer\_close@{rtems\_rfs\_buffer\_close}!rtems-\/rfs-\/buffer.c@{rtems-\/rfs-\/buffer.c}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_buffer\_close()}{rtems\_rfs\_buffer\_close()}}
+{\footnotesize\ttfamily int rtems\+\_\+rfs\+\_\+buffer\+\_\+close (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__rtems__rfs__file__system}{rtems\+\_\+rfs\+\_\+file\+\_\+system}} $\ast$}]{fs }\end{DoxyParamCaption})}
+
+Close the buffer interface.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em fs} & is the file system data.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em 0} & Successful operation. \\
+\hline
+{\em error\+\_\+code} & An error occurred. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{rtems-rfs-buffer_8c_ab50227fce5883f922c86d14e0e558270}\label{rtems-rfs-buffer_8c_ab50227fce5883f922c86d14e0e558270}} 
+\index{rtems-\/rfs-\/buffer.c@{rtems-\/rfs-\/buffer.c}!rtems\_rfs\_buffer\_handle\_release@{rtems\_rfs\_buffer\_handle\_release}}
+\index{rtems\_rfs\_buffer\_handle\_release@{rtems\_rfs\_buffer\_handle\_release}!rtems-\/rfs-\/buffer.c@{rtems-\/rfs-\/buffer.c}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_buffer\_handle\_release()}{rtems\_rfs\_buffer\_handle\_release()}}
+{\footnotesize\ttfamily int rtems\+\_\+rfs\+\_\+buffer\+\_\+handle\+\_\+release (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__rtems__rfs__file__system}{rtems\+\_\+rfs\+\_\+file\+\_\+system}} $\ast$}]{fs,  }\item[{\mbox{\hyperlink{rtems-rfs-buffer_8h_a17f97c37c5273ad28d413dfd2d175e23}{rtems\+\_\+rfs\+\_\+buffer\+\_\+handle}} $\ast$}]{handle }\end{DoxyParamCaption})}
+
+Release a buffer. If the buffer is dirty the buffer is written to disk. The result does not indicate if the data was successfully written to the disk as this operation may be performed in asynchronously to this release.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em fs} & is the file system data. \\
+\hline
+\mbox{\texttt{ in}}  & {\em handle} & is the handle the requested buffer is attached to.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em 0} & Successful operation. \\
+\hline
+{\em error\+\_\+code} & An error occurred. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{rtems-rfs-buffer_8c_a0663516c5bc4844f8b6f47ebb9705dea}\label{rtems-rfs-buffer_8c_a0663516c5bc4844f8b6f47ebb9705dea}} 
+\index{rtems-\/rfs-\/buffer.c@{rtems-\/rfs-\/buffer.c}!rtems\_rfs\_buffer\_handle\_request@{rtems\_rfs\_buffer\_handle\_request}}
+\index{rtems\_rfs\_buffer\_handle\_request@{rtems\_rfs\_buffer\_handle\_request}!rtems-\/rfs-\/buffer.c@{rtems-\/rfs-\/buffer.c}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_buffer\_handle\_request()}{rtems\_rfs\_buffer\_handle\_request()}}
+{\footnotesize\ttfamily int rtems\+\_\+rfs\+\_\+buffer\+\_\+handle\+\_\+request (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__rtems__rfs__file__system}{rtems\+\_\+rfs\+\_\+file\+\_\+system}} $\ast$}]{fs,  }\item[{\mbox{\hyperlink{rtems-rfs-buffer_8h_a17f97c37c5273ad28d413dfd2d175e23}{rtems\+\_\+rfs\+\_\+buffer\+\_\+handle}} $\ast$}]{handle,  }\item[{\mbox{\hyperlink{rtems-rfs-buffer_8h_a5650d53328a5af0a78198fe780aec043}{rtems\+\_\+rfs\+\_\+buffer\+\_\+block}}}]{block,  }\item[{bool}]{read }\end{DoxyParamCaption})}
+
+Request a buffer. The buffer can be filled with data from the media (read == true) or you can request a buffer to fill with data.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em fs} & is the file system data. \\
+\hline
+\mbox{\texttt{ in}}  & {\em handle} & is the handle the requested buffer is attached to. \\
+\hline
+\mbox{\texttt{ in}}  & {\em block} & is the block number. \\
+\hline
+\mbox{\texttt{ in}}  & {\em read} & Read the data from the disk.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em 0} & Successful operation. \\
+\hline
+{\em error\+\_\+code} & An error occurred. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{rtems-rfs-buffer_8c_af8b9acf77d20824a7121b89ab7b29bf9}\label{rtems-rfs-buffer_8c_af8b9acf77d20824a7121b89ab7b29bf9}} 
+\index{rtems-\/rfs-\/buffer.c@{rtems-\/rfs-\/buffer.c}!rtems\_rfs\_buffer\_open@{rtems\_rfs\_buffer\_open}}
+\index{rtems\_rfs\_buffer\_open@{rtems\_rfs\_buffer\_open}!rtems-\/rfs-\/buffer.c@{rtems-\/rfs-\/buffer.c}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_buffer\_open()}{rtems\_rfs\_buffer\_open()}}
+{\footnotesize\ttfamily int rtems\+\_\+rfs\+\_\+buffer\+\_\+open (\begin{DoxyParamCaption}\item[{const char $\ast$}]{name,  }\item[{\mbox{\hyperlink{struct__rtems__rfs__file__system}{rtems\+\_\+rfs\+\_\+file\+\_\+system}} $\ast$}]{fs }\end{DoxyParamCaption})}
+
+Open the buffer interface.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em name} & is a pointer to the device name to the media. \\
+\hline
+\mbox{\texttt{ in}}  & {\em fs} & is the file system data.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em 0} & Successful operation. \\
+\hline
+{\em error\+\_\+code} & An error occurred. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{rtems-rfs-buffer_8c_ab9a25f519ce861f9781f99faee5c903e}\label{rtems-rfs-buffer_8c_ab9a25f519ce861f9781f99faee5c903e}} 
+\index{rtems-\/rfs-\/buffer.c@{rtems-\/rfs-\/buffer.c}!rtems\_rfs\_buffer\_setblksize@{rtems\_rfs\_buffer\_setblksize}}
+\index{rtems\_rfs\_buffer\_setblksize@{rtems\_rfs\_buffer\_setblksize}!rtems-\/rfs-\/buffer.c@{rtems-\/rfs-\/buffer.c}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_buffer\_setblksize()}{rtems\_rfs\_buffer\_setblksize()}}
+{\footnotesize\ttfamily int rtems\+\_\+rfs\+\_\+buffer\+\_\+setblksize (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__rtems__rfs__file__system}{rtems\+\_\+rfs\+\_\+file\+\_\+system}} $\ast$}]{fs,  }\item[{uint32\+\_\+t}]{size }\end{DoxyParamCaption})}
+
+Set the block size of the device.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em fs} & is the file system data. \\
+\hline
+\mbox{\texttt{ in}}  & {\em size} & is the new block size.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em 0} & Successful operation. \\
+\hline
+{\em error\+\_\+code} & An error occurred. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{rtems-rfs-buffer_8c_ae563bb0d8d88241eba145f94ab3056f7}\label{rtems-rfs-buffer_8c_ae563bb0d8d88241eba145f94ab3056f7}} 
+\index{rtems-\/rfs-\/buffer.c@{rtems-\/rfs-\/buffer.c}!rtems\_rfs\_buffer\_sync@{rtems\_rfs\_buffer\_sync}}
+\index{rtems\_rfs\_buffer\_sync@{rtems\_rfs\_buffer\_sync}!rtems-\/rfs-\/buffer.c@{rtems-\/rfs-\/buffer.c}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_buffer\_sync()}{rtems\_rfs\_buffer\_sync()}}
+{\footnotesize\ttfamily int rtems\+\_\+rfs\+\_\+buffer\+\_\+sync (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__rtems__rfs__file__system}{rtems\+\_\+rfs\+\_\+file\+\_\+system}} $\ast$}]{fs }\end{DoxyParamCaption})}
+
+Sync all buffers to the media.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em fs} & is the file system data.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em 0} & Successful operation. \\
+\hline
+{\em error\+\_\+code} & An error occurred. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{rtems-rfs-buffer_8c_a26b599aacf6e9230ab77cf47d9fad0d9}\label{rtems-rfs-buffer_8c_a26b599aacf6e9230ab77cf47d9fad0d9}} 
+\index{rtems-\/rfs-\/buffer.c@{rtems-\/rfs-\/buffer.c}!rtems\_rfs\_buffers\_release@{rtems\_rfs\_buffers\_release}}
+\index{rtems\_rfs\_buffers\_release@{rtems\_rfs\_buffers\_release}!rtems-\/rfs-\/buffer.c@{rtems-\/rfs-\/buffer.c}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_buffers\_release()}{rtems\_rfs\_buffers\_release()}}
+{\footnotesize\ttfamily int rtems\+\_\+rfs\+\_\+buffers\+\_\+release (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__rtems__rfs__file__system}{rtems\+\_\+rfs\+\_\+file\+\_\+system}} $\ast$}]{fs }\end{DoxyParamCaption})}
+
+Release any chained buffers.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em fs} & is the file system data.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em 0} & Successful operation. \\
+\hline
+{\em error\+\_\+code} & An error occurred. \\
+\hline
+\end{DoxyRetVals}

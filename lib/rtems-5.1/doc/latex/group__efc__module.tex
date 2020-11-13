@@ -1,0 +1,24 @@
+\hypertarget{group__efc__module}{}\section{Working with E\+E\+FC}
+\label{group__efc__module}\index{Working with EEFC@{Working with EEFC}}
+The E\+E\+FC driver provides the interface to configure and use the E\+E\+FC peripheral.
+
+The user needs to set the number of wait states depending on the frequency used.~\newline
+Configure number of cycles for flash read/write operations in the F\+WS field of E\+E\+F\+C\+\_\+\+F\+MR.
+
+It offers a function to send flash command to E\+E\+FC and waits for the flash to be ready.
+
+To send flash command, the user could do in either of following way\+: 
+\begin{DoxyItemize}
+\item Write a correct key, command and argument in E\+E\+F\+C\+\_\+\+F\+CR.  
+\item Or, Use I\+AP (In Application Programming) function which is executed from R\+OM directly, this allows flash programming to be done by code running in flash. 
+\item Once the command is achieved, it can be detected even by polling E\+E\+F\+C\+\_\+\+F\+SR or interrupt. 
+\end{DoxyItemize}
+
+The command argument could be a page number,G\+P\+N\+VM number or nothing, it depends on the command itself. Some useful functions in this driver could help user translate physical flash address into a page number and vice verse.
+
+For more accurate information, please look at the E\+E\+FC section of the Datasheet.
+
+Related files \+:~\newline
+efc.\+c~\newline
+ efc.\+h.~\newline
+ 

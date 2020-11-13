@@ -1,0 +1,92 @@
+\hypertarget{mips_2csb350_2net_2network_8c}{}\section{bsps/mips/csb350/net/network.c File Reference}
+\label{mips_2csb350_2net_2network_8c}\index{bsps/mips/csb350/net/network.c@{bsps/mips/csb350/net/network.c}}
+{\ttfamily \#include $<$machine/rtems-\/bsd-\/kernel-\/space.\+h$>$}\newline
+{\ttfamily \#include $<$rtems.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/rtems\+\_\+bsdnet.\+h$>$}\newline
+{\ttfamily \#include $<$bsp.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/bsp\+Io.\+h$>$}\newline
+{\ttfamily \#include $<$libcpu/au1x00.\+h$>$}\newline
+{\ttfamily \#include $<$bsp/irq.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$errno.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/error.\+h$>$}\newline
+{\ttfamily \#include $<$sys/param.\+h$>$}\newline
+{\ttfamily \#include $<$sys/mbuf.\+h$>$}\newline
+{\ttfamily \#include $<$sys/socket.\+h$>$}\newline
+{\ttfamily \#include $<$sys/sockio.\+h$>$}\newline
+{\ttfamily \#include $<$net/if.\+h$>$}\newline
+{\ttfamily \#include $<$netinet/in.\+h$>$}\newline
+{\ttfamily \#include $<$netinet/if\+\_\+ether.\+h$>$}\newline
+{\ttfamily \#include $<$assert.\+h$>$}\newline
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structau1x00__emac__softc__t}{au1x00\+\_\+emac\+\_\+softc\+\_\+t}}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{mips_2csb350_2net_2network_8c_a4f5c47b87b1f9a6351c6357fc6024276}\label{mips_2csb350_2net_2network_8c_a4f5c47b87b1f9a6351c6357fc6024276}} 
+\#define {\bfseries N\+U\+M\+\_\+\+I\+F\+A\+C\+ES}~1
+\item 
+\mbox{\Hypertarget{mips_2csb350_2net_2network_8c_af0b90b0bc14f6100ac8589af47a8fcd3}\label{mips_2csb350_2net_2network_8c_af0b90b0bc14f6100ac8589af47a8fcd3}} 
+\#define {\bfseries N\+U\+M\+\_\+\+T\+X\+\_\+\+D\+M\+A\+\_\+\+B\+U\+FS}~4
+\item 
+\mbox{\Hypertarget{mips_2csb350_2net_2network_8c_a2e4c030a7bb0dafa787c4daab49b3ed8}\label{mips_2csb350_2net_2network_8c_a2e4c030a7bb0dafa787c4daab49b3ed8}} 
+\#define {\bfseries N\+U\+M\+\_\+\+R\+X\+\_\+\+D\+M\+A\+\_\+\+B\+U\+FS}~4
+\item 
+\mbox{\Hypertarget{mips_2csb350_2net_2network_8c_a14f893fdc7b33617fb45b416cd00b610}\label{mips_2csb350_2net_2network_8c_a14f893fdc7b33617fb45b416cd00b610}} 
+\#define {\bfseries S\+T\+A\+R\+T\+\_\+\+T\+X\+\_\+\+E\+V\+E\+NT}~\mbox{\hyperlink{group__ClassicEventSet_ga9f027021d0070d4f9e35cccb41029e2d}{R\+T\+E\+M\+S\+\_\+\+E\+V\+E\+N\+T\+\_\+1}}
+\item 
+\mbox{\Hypertarget{mips_2csb350_2net_2network_8c_a2fa45a0f05c311d9f7d4e94a7f164d6b}\label{mips_2csb350_2net_2network_8c_a2fa45a0f05c311d9f7d4e94a7f164d6b}} 
+\#define {\bfseries S\+T\+A\+R\+T\+\_\+\+R\+X\+\_\+\+E\+V\+E\+NT}~\mbox{\hyperlink{group__ClassicEventSet_gabe43c4a86241e31321b3cfe70045dca6}{R\+T\+E\+M\+S\+\_\+\+E\+V\+E\+N\+T\+\_\+2}}
+\item 
+\mbox{\Hypertarget{mips_2csb350_2net_2network_8c_a5d3fb1970e1e98050006978a14b3d95e}\label{mips_2csb350_2net_2network_8c_a5d3fb1970e1e98050006978a14b3d95e}} 
+\#define {\bfseries T\+X\+\_\+\+B\+U\+F\+\_\+\+S\+I\+ZE}~2048
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{mips_2csb350_2net_2network_8c_a854cc0c1d0972ae113bd6f235a9637f8}\label{mips_2csb350_2net_2network_8c_a854cc0c1d0972ae113bd6f235a9637f8}} 
+\mbox{\hyperlink{group__ClassicINTR_ga17fb491bd308ce6b1bf27a51dec0b46d}{rtems\+\_\+isr}} {\bfseries au1x00\+\_\+emac\+\_\+isr} (\mbox{\hyperlink{group__ClassicINTR_ga3e434c197d99f128e78cae4d9358bd8b}{rtems\+\_\+vector\+\_\+number}} vector)
+\item 
+int {\bfseries rtems\+\_\+au1x00\+\_\+emac\+\_\+attach} (struct rtems\+\_\+bsdnet\+\_\+ifconfig $\ast$\mbox{\hyperlink{structconfig__s}{config}}, int attaching)
+\item 
+\mbox{\Hypertarget{mips_2csb350_2net_2network_8c_aab9cd5de31b33de712abc8d148c3c909}\label{mips_2csb350_2net_2network_8c_aab9cd5de31b33de712abc8d148c3c909}} 
+void {\bfseries au1x00\+\_\+emac\+\_\+init} (void $\ast$arg)
+\item 
+\mbox{\Hypertarget{mips_2csb350_2net_2network_8c_a93078b183794b051841f8ba79097c18e}\label{mips_2csb350_2net_2network_8c_a93078b183794b051841f8ba79097c18e}} 
+void {\bfseries au1x00\+\_\+emac\+\_\+init\+\_\+hw} (\mbox{\hyperlink{structau1x00__emac__softc__t}{au1x00\+\_\+emac\+\_\+softc\+\_\+t}} $\ast$sc)
+\item 
+\mbox{\Hypertarget{mips_2csb350_2net_2network_8c_a37a3849891f64a4a499c5439817ee67a}\label{mips_2csb350_2net_2network_8c_a37a3849891f64a4a499c5439817ee67a}} 
+void {\bfseries au1x00\+\_\+emac\+\_\+start} (struct ifnet $\ast$ifp)
+\item 
+\mbox{\Hypertarget{mips_2csb350_2net_2network_8c_ab403a40f2252e3939300608fbad10e9c}\label{mips_2csb350_2net_2network_8c_ab403a40f2252e3939300608fbad10e9c}} 
+void {\bfseries au1x00\+\_\+emac\+\_\+stop} (\mbox{\hyperlink{structau1x00__emac__softc__t}{au1x00\+\_\+emac\+\_\+softc\+\_\+t}} $\ast$sc)
+\item 
+\mbox{\Hypertarget{mips_2csb350_2net_2network_8c_aa5a0a71311b8a09ba96f666adc78d4a5}\label{mips_2csb350_2net_2network_8c_aa5a0a71311b8a09ba96f666adc78d4a5}} 
+void {\bfseries au1x00\+\_\+emac\+\_\+tx\+\_\+daemon} (void $\ast$arg)
+\item 
+\mbox{\Hypertarget{mips_2csb350_2net_2network_8c_aed1e3df8127f58e19b029486cc985641}\label{mips_2csb350_2net_2network_8c_aed1e3df8127f58e19b029486cc985641}} 
+void {\bfseries au1x00\+\_\+emac\+\_\+rx\+\_\+daemon} (void $\ast$arg)
+\item 
+\mbox{\Hypertarget{mips_2csb350_2net_2network_8c_ae3be82e79996bef38fd1e3d82ac8b4cd}\label{mips_2csb350_2net_2network_8c_ae3be82e79996bef38fd1e3d82ac8b4cd}} 
+void {\bfseries au1x00\+\_\+emac\+\_\+sendpacket} (struct ifnet $\ast$ifp, struct mbuf $\ast$m)
+\item 
+\mbox{\Hypertarget{mips_2csb350_2net_2network_8c_a601de7d70d6ceb8df3f810fd138787b0}\label{mips_2csb350_2net_2network_8c_a601de7d70d6ceb8df3f810fd138787b0}} 
+void {\bfseries au1x00\+\_\+emac\+\_\+stats} (\mbox{\hyperlink{structau1x00__emac__softc__t}{au1x00\+\_\+emac\+\_\+softc\+\_\+t}} $\ast$sc)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{mips_2csb350_2net_2network_8c_af4db2b06bcc8985e1e5592009ac4f4d9}\label{mips_2csb350_2net_2network_8c_af4db2b06bcc8985e1e5592009ac4f4d9}} 
+char {\bfseries tx\+\_\+buf\+\_\+base} \mbox{[}(4 $\ast$T\+X\+\_\+\+B\+U\+F\+\_\+\+S\+I\+ZE)+32\mbox{]}
+\item 
+\mbox{\Hypertarget{mips_2csb350_2net_2network_8c_a63ebe48b69827a017237f2219fa449d3}\label{mips_2csb350_2net_2network_8c_a63ebe48b69827a017237f2219fa449d3}} 
+volatile int {\bfseries wait\+\_\+count}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Au1x00 ethernet driver 

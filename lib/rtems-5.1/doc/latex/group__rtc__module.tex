@@ -1,0 +1,24 @@
+\hypertarget{group__rtc__module}{}\section{Working with R\+TC}
+\label{group__rtc__module}\index{Working with RTC@{Working with RTC}}
+The R\+TC driver provides the interface to configure and use the R\+TC peripheral.
+
+It manages date, time, and alarms.~\newline
+This timer is clocked by the 32k\+Hz system clock, and is not impacted by power management settings (P\+MC). To be accurate, it is better to use an external 32k\+Hz crystal instead of the internal 32k\+Hz RC.~\newline
+ It uses B\+CD format, and time can be set in A\+M/\+PM or 24h mode through a configuration bit in the mode register.~\newline
+ To update date or time, the user has to follow these few steps \+: 
+\begin{DoxyItemize}
+\item Set U\+P\+D\+T\+IM and/or U\+P\+D\+C\+AL bit(s) in R\+T\+C\+\_\+\+CR, 
+\item Polling or I\+RQ on the A\+C\+K\+U\+PD bit of R\+T\+C\+\_\+\+CR, 
+\item Clear A\+C\+K\+U\+PD bit in R\+T\+C\+\_\+\+S\+C\+CR, 
+\item Update Time and/or Calendar values in R\+T\+C\+\_\+\+T\+I\+M\+R/\+R\+T\+C\+\_\+\+C\+A\+LR (B\+CD format), 
+\item Clear U\+P\+D\+T\+IM and/or U\+P\+D\+C\+AL bit in R\+T\+C\+\_\+\+CR. 
+\end{DoxyItemize}An alarm can be set to happen on month, date, hours, minutes or seconds, by setting the proper \char`\"{}\+Enable\char`\"{} bit of each of these fields in the Time and Calendar registers. This allows a large number of configurations to be available for the user. Alarm occurrence can be detected even by polling or interrupt.
+
+A check of the validity of the date and time format and values written by the user is automatically done. Errors are reported through the Valid Entry Register.
+
+For more accurate information, please look at the R\+TC section of the Datasheet.
+
+Related files \+:~\newline
+rtc.\+c~\newline
+ rtc.\+h.~\newline
+ 

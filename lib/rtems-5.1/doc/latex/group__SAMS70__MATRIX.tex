@@ -1,0 +1,1040 @@
+\hypertarget{group__SAMS70__MATRIX}{}\section{A\+HB Bus Matrix}
+\label{group__SAMS70__MATRIX}\index{AHB Bus Matrix@{AHB Bus Matrix}}
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structMatrix}{Matrix}}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{structMatrix}{Matrix}} hardware registers. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_gacdf8355a07696be09be884af4528a965}\label{group__SAMS70__MATRIX_gacdf8355a07696be09be884af4528a965}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G0\+\_\+\+U\+L\+B\+T\+\_\+\+Pos}~0
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga0387cd5fd352f9c60e44a20f6b359665}\label{group__SAMS70__MATRIX_ga0387cd5fd352f9c60e44a20f6b359665}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_ga0387cd5fd352f9c60e44a20f6b359665}{M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G0\+\_\+\+U\+L\+B\+T\+\_\+\+Msk}}~(0x7u $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G0\+\_\+\+U\+L\+B\+T\+\_\+\+Pos)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G0) Undefined Length Burst Type \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga78a940ff2998526ba301620f186708ca}\label{group__SAMS70__MATRIX_ga78a940ff2998526ba301620f186708ca}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G0\+\_\+\+U\+L\+BT}(value)~((\mbox{\hyperlink{group__SAMS70__MATRIX_ga0387cd5fd352f9c60e44a20f6b359665}{M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G0\+\_\+\+U\+L\+B\+T\+\_\+\+Msk}} \& ((value) $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G0\+\_\+\+U\+L\+B\+T\+\_\+\+Pos)))
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga31c3afc145f0373f9a8d6360114512c0}\label{group__SAMS70__MATRIX_ga31c3afc145f0373f9a8d6360114512c0}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_ga31c3afc145f0373f9a8d6360114512c0}{M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G0\+\_\+\+U\+L\+B\+T\+\_\+\+U\+N\+L\+T\+D\+\_\+\+L\+E\+N\+G\+TH}}~(0x0u $<$$<$ 0)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G0) Unlimited Length Burst-\/\+No predicted end of burst is generated, therefore I\+N\+CR bursts coming from this master can only be broken if the Slave Slot Cycle Limit is reached. If the Slot Cycle Limit is not reached, the burst is normally completed by the master, at the latest, on the next A\+HB 1-\/Kbyte address boundary, allowing up to 256-\/beat word bursts or 128-\/beat double-\/word bursts.\+This value should not be used in the very particular case of a master capable of performing back-\/to-\/back undefined length bursts on a single slave, since this could indefinitely freeze the slave arbitration and thus prevent another master from accessing this slave. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga02177ea0b817d714e4c03d56cb33a2e3}\label{group__SAMS70__MATRIX_ga02177ea0b817d714e4c03d56cb33a2e3}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_ga02177ea0b817d714e4c03d56cb33a2e3}{M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G0\+\_\+\+U\+L\+B\+T\+\_\+\+S\+I\+N\+G\+L\+E\+\_\+\+A\+C\+C\+E\+SS}}~(0x1u $<$$<$ 0)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G0) Single Access-\/\+The undefined length burst is treated as a succession of single accesses, allowing re-\/arbitration at each beat of the I\+N\+CR burst or bursts sequence. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga3fd507012b5e1b40045c76622f1a6ac4}\label{group__SAMS70__MATRIX_ga3fd507012b5e1b40045c76622f1a6ac4}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_ga3fd507012b5e1b40045c76622f1a6ac4}{M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G0\+\_\+\+U\+L\+B\+T\+\_\+4\+B\+E\+A\+T\+\_\+\+B\+U\+R\+ST}}~(0x2u $<$$<$ 0)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G0) 4-\/beat Burst-\/\+The undefined length burst or bursts sequence is split into 4-\/beat bursts or less, allowing re-\/arbitration every 4 beats. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga966f9ac315c1b235963be6476d6461ac}\label{group__SAMS70__MATRIX_ga966f9ac315c1b235963be6476d6461ac}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_ga966f9ac315c1b235963be6476d6461ac}{M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G0\+\_\+\+U\+L\+B\+T\+\_\+8\+B\+E\+A\+T\+\_\+\+B\+U\+R\+ST}}~(0x3u $<$$<$ 0)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G0) 8-\/beat Burst-\/\+The undefined length burst or bursts sequence is split into 8-\/beat bursts or less, allowing re-\/arbitration every 8 beats. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga114c6d13b5832dc7d2b8c4983a3dd73d}\label{group__SAMS70__MATRIX_ga114c6d13b5832dc7d2b8c4983a3dd73d}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_ga114c6d13b5832dc7d2b8c4983a3dd73d}{M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G0\+\_\+\+U\+L\+B\+T\+\_\+16\+B\+E\+A\+T\+\_\+\+B\+U\+R\+ST}}~(0x4u $<$$<$ 0)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G0) 16-\/beat Burst-\/\+The undefined length burst or bursts sequence is split into 16-\/beat bursts or less, allowing re-\/arbitration every 16 beats. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_gaa78b74bc1b7201a94de5cc87640adeea}\label{group__SAMS70__MATRIX_gaa78b74bc1b7201a94de5cc87640adeea}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_gaa78b74bc1b7201a94de5cc87640adeea}{M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G0\+\_\+\+U\+L\+B\+T\+\_\+32\+B\+E\+A\+T\+\_\+\+B\+U\+R\+ST}}~(0x5u $<$$<$ 0)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G0) 32-\/beat Burst -\/The undefined length burst or bursts sequence is split into 32-\/beat bursts or less, allowing re-\/arbitration every 32 beats. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_gad7dc5b92f5a8ab21a4f2d662c355d6d9}\label{group__SAMS70__MATRIX_gad7dc5b92f5a8ab21a4f2d662c355d6d9}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_gad7dc5b92f5a8ab21a4f2d662c355d6d9}{M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G0\+\_\+\+U\+L\+B\+T\+\_\+64\+B\+E\+A\+T\+\_\+\+B\+U\+R\+ST}}~(0x6u $<$$<$ 0)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G0) 64-\/beat Burst-\/\+The undefined length burst or bursts sequence is split into 64-\/beat bursts or less, allowing re-\/arbitration every 64 beats. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga2200a7c99037461f8f4cbef6b123e9d6}\label{group__SAMS70__MATRIX_ga2200a7c99037461f8f4cbef6b123e9d6}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_ga2200a7c99037461f8f4cbef6b123e9d6}{M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G0\+\_\+\+U\+L\+B\+T\+\_\+128\+B\+E\+A\+T\+\_\+\+B\+U\+R\+ST}}~(0x7u $<$$<$ 0)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G0) 128-\/beat Burst-\/\+The undefined length burst or bursts sequence is split into 128-\/beat bursts or less, allowing re-\/arbitration every 128 beats. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga436266af11999ebf0587b290c80dd563}\label{group__SAMS70__MATRIX_ga436266af11999ebf0587b290c80dd563}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G1\+\_\+\+U\+L\+B\+T\+\_\+\+Pos}~0
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_gadbfc1b7cb2dc2cfca27d83f68f5a11af}\label{group__SAMS70__MATRIX_gadbfc1b7cb2dc2cfca27d83f68f5a11af}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_gadbfc1b7cb2dc2cfca27d83f68f5a11af}{M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G1\+\_\+\+U\+L\+B\+T\+\_\+\+Msk}}~(0x7u $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G1\+\_\+\+U\+L\+B\+T\+\_\+\+Pos)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G1) Undefined Length Burst Type \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga8e2a5adc448666bea542523dd6b304c2}\label{group__SAMS70__MATRIX_ga8e2a5adc448666bea542523dd6b304c2}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G1\+\_\+\+U\+L\+BT}(value)~((\mbox{\hyperlink{group__SAMS70__MATRIX_gadbfc1b7cb2dc2cfca27d83f68f5a11af}{M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G1\+\_\+\+U\+L\+B\+T\+\_\+\+Msk}} \& ((value) $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G1\+\_\+\+U\+L\+B\+T\+\_\+\+Pos)))
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga6e59a9ebadc6d590b9cbeec1af27daf5}\label{group__SAMS70__MATRIX_ga6e59a9ebadc6d590b9cbeec1af27daf5}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_ga6e59a9ebadc6d590b9cbeec1af27daf5}{M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G1\+\_\+\+U\+L\+B\+T\+\_\+\+U\+N\+L\+T\+D\+\_\+\+L\+E\+N\+G\+TH}}~(0x0u $<$$<$ 0)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G1) Unlimited Length Burst-\/\+No predicted end of burst is generated, therefore I\+N\+CR bursts coming from this master can only be broken if the Slave Slot Cycle Limit is reached. If the Slot Cycle Limit is not reached, the burst is normally completed by the master, at the latest, on the next A\+HB 1-\/Kbyte address boundary, allowing up to 256-\/beat word bursts or 128-\/beat double-\/word bursts.\+This value should not be used in the very particular case of a master capable of performing back-\/to-\/back undefined length bursts on a single slave, since this could indefinitely freeze the slave arbitration and thus prevent another master from accessing this slave. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_gad564216af6a589a7b9af1d43729604a9}\label{group__SAMS70__MATRIX_gad564216af6a589a7b9af1d43729604a9}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_gad564216af6a589a7b9af1d43729604a9}{M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G1\+\_\+\+U\+L\+B\+T\+\_\+\+S\+I\+N\+G\+L\+E\+\_\+\+A\+C\+C\+E\+SS}}~(0x1u $<$$<$ 0)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G1) Single Access-\/\+The undefined length burst is treated as a succession of single accesses, allowing re-\/arbitration at each beat of the I\+N\+CR burst or bursts sequence. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga4d7c519ef642b5b480fa4a38613bb325}\label{group__SAMS70__MATRIX_ga4d7c519ef642b5b480fa4a38613bb325}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_ga4d7c519ef642b5b480fa4a38613bb325}{M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G1\+\_\+\+U\+L\+B\+T\+\_\+4\+B\+E\+A\+T\+\_\+\+B\+U\+R\+ST}}~(0x2u $<$$<$ 0)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G1) 4-\/beat Burst-\/\+The undefined length burst or bursts sequence is split into 4-\/beat bursts or less, allowing re-\/arbitration every 4 beats. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga8019fcbbc6f1d6a4912f5ab5079c58e3}\label{group__SAMS70__MATRIX_ga8019fcbbc6f1d6a4912f5ab5079c58e3}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_ga8019fcbbc6f1d6a4912f5ab5079c58e3}{M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G1\+\_\+\+U\+L\+B\+T\+\_\+8\+B\+E\+A\+T\+\_\+\+B\+U\+R\+ST}}~(0x3u $<$$<$ 0)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G1) 8-\/beat Burst-\/\+The undefined length burst or bursts sequence is split into 8-\/beat bursts or less, allowing re-\/arbitration every 8 beats. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_gadd581ffcd3f9d07d04b7ba812a554820}\label{group__SAMS70__MATRIX_gadd581ffcd3f9d07d04b7ba812a554820}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_gadd581ffcd3f9d07d04b7ba812a554820}{M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G1\+\_\+\+U\+L\+B\+T\+\_\+16\+B\+E\+A\+T\+\_\+\+B\+U\+R\+ST}}~(0x4u $<$$<$ 0)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G1) 16-\/beat Burst-\/\+The undefined length burst or bursts sequence is split into 16-\/beat bursts or less, allowing re-\/arbitration every 16 beats. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga9b317b50ee5e7dc9052c10dcbef87083}\label{group__SAMS70__MATRIX_ga9b317b50ee5e7dc9052c10dcbef87083}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_ga9b317b50ee5e7dc9052c10dcbef87083}{M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G1\+\_\+\+U\+L\+B\+T\+\_\+32\+B\+E\+A\+T\+\_\+\+B\+U\+R\+ST}}~(0x5u $<$$<$ 0)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G1) 32-\/beat Burst -\/The undefined length burst or bursts sequence is split into 32-\/beat bursts or less, allowing re-\/arbitration every 32 beats. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga920fe4e42fc0e3bdcbe748020e3947b5}\label{group__SAMS70__MATRIX_ga920fe4e42fc0e3bdcbe748020e3947b5}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_ga920fe4e42fc0e3bdcbe748020e3947b5}{M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G1\+\_\+\+U\+L\+B\+T\+\_\+64\+B\+E\+A\+T\+\_\+\+B\+U\+R\+ST}}~(0x6u $<$$<$ 0)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G1) 64-\/beat Burst-\/\+The undefined length burst or bursts sequence is split into 64-\/beat bursts or less, allowing re-\/arbitration every 64 beats. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga3a91a9c1d331f8cc8c3b1c772dad1f17}\label{group__SAMS70__MATRIX_ga3a91a9c1d331f8cc8c3b1c772dad1f17}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_ga3a91a9c1d331f8cc8c3b1c772dad1f17}{M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G1\+\_\+\+U\+L\+B\+T\+\_\+128\+B\+E\+A\+T\+\_\+\+B\+U\+R\+ST}}~(0x7u $<$$<$ 0)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G1) 128-\/beat Burst-\/\+The undefined length burst or bursts sequence is split into 128-\/beat bursts or less, allowing re-\/arbitration every 128 beats. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga6621e585257588f6811943af33ad1055}\label{group__SAMS70__MATRIX_ga6621e585257588f6811943af33ad1055}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G2\+\_\+\+U\+L\+B\+T\+\_\+\+Pos}~0
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga6e43d81dd66d25f8c53c77564b03754b}\label{group__SAMS70__MATRIX_ga6e43d81dd66d25f8c53c77564b03754b}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_ga6e43d81dd66d25f8c53c77564b03754b}{M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G2\+\_\+\+U\+L\+B\+T\+\_\+\+Msk}}~(0x7u $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G2\+\_\+\+U\+L\+B\+T\+\_\+\+Pos)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G2) Undefined Length Burst Type \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga75993e1b69a7a75b49b37435e0816f88}\label{group__SAMS70__MATRIX_ga75993e1b69a7a75b49b37435e0816f88}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G2\+\_\+\+U\+L\+BT}(value)~((\mbox{\hyperlink{group__SAMS70__MATRIX_ga6e43d81dd66d25f8c53c77564b03754b}{M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G2\+\_\+\+U\+L\+B\+T\+\_\+\+Msk}} \& ((value) $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G2\+\_\+\+U\+L\+B\+T\+\_\+\+Pos)))
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_gab0d73af8b260e70526a6ee0034404e92}\label{group__SAMS70__MATRIX_gab0d73af8b260e70526a6ee0034404e92}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_gab0d73af8b260e70526a6ee0034404e92}{M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G2\+\_\+\+U\+L\+B\+T\+\_\+\+U\+N\+L\+T\+D\+\_\+\+L\+E\+N\+G\+TH}}~(0x0u $<$$<$ 0)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G2) Unlimited Length Burst-\/\+No predicted end of burst is generated, therefore I\+N\+CR bursts coming from this master can only be broken if the Slave Slot Cycle Limit is reached. If the Slot Cycle Limit is not reached, the burst is normally completed by the master, at the latest, on the next A\+HB 1-\/Kbyte address boundary, allowing up to 256-\/beat word bursts or 128-\/beat double-\/word bursts.\+This value should not be used in the very particular case of a master capable of performing back-\/to-\/back undefined length bursts on a single slave, since this could indefinitely freeze the slave arbitration and thus prevent another master from accessing this slave. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_gace88404a7af9ef52f126e01e729edd5e}\label{group__SAMS70__MATRIX_gace88404a7af9ef52f126e01e729edd5e}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_gace88404a7af9ef52f126e01e729edd5e}{M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G2\+\_\+\+U\+L\+B\+T\+\_\+\+S\+I\+N\+G\+L\+E\+\_\+\+A\+C\+C\+E\+SS}}~(0x1u $<$$<$ 0)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G2) Single Access-\/\+The undefined length burst is treated as a succession of single accesses, allowing re-\/arbitration at each beat of the I\+N\+CR burst or bursts sequence. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga4ada7541f8c1915bfcec8ecd6a913425}\label{group__SAMS70__MATRIX_ga4ada7541f8c1915bfcec8ecd6a913425}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_ga4ada7541f8c1915bfcec8ecd6a913425}{M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G2\+\_\+\+U\+L\+B\+T\+\_\+4\+B\+E\+A\+T\+\_\+\+B\+U\+R\+ST}}~(0x2u $<$$<$ 0)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G2) 4-\/beat Burst-\/\+The undefined length burst or bursts sequence is split into 4-\/beat bursts or less, allowing re-\/arbitration every 4 beats. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga17f6d0dca5022ca10e7060ca07f4a0ed}\label{group__SAMS70__MATRIX_ga17f6d0dca5022ca10e7060ca07f4a0ed}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_ga17f6d0dca5022ca10e7060ca07f4a0ed}{M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G2\+\_\+\+U\+L\+B\+T\+\_\+8\+B\+E\+A\+T\+\_\+\+B\+U\+R\+ST}}~(0x3u $<$$<$ 0)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G2) 8-\/beat Burst-\/\+The undefined length burst or bursts sequence is split into 8-\/beat bursts or less, allowing re-\/arbitration every 8 beats. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_gad0ab619adbeac617521f4e326c31ceea}\label{group__SAMS70__MATRIX_gad0ab619adbeac617521f4e326c31ceea}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_gad0ab619adbeac617521f4e326c31ceea}{M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G2\+\_\+\+U\+L\+B\+T\+\_\+16\+B\+E\+A\+T\+\_\+\+B\+U\+R\+ST}}~(0x4u $<$$<$ 0)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G2) 16-\/beat Burst-\/\+The undefined length burst or bursts sequence is split into 16-\/beat bursts or less, allowing re-\/arbitration every 16 beats. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga924acbf777010d25e2ce1b08c482a4b8}\label{group__SAMS70__MATRIX_ga924acbf777010d25e2ce1b08c482a4b8}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_ga924acbf777010d25e2ce1b08c482a4b8}{M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G2\+\_\+\+U\+L\+B\+T\+\_\+32\+B\+E\+A\+T\+\_\+\+B\+U\+R\+ST}}~(0x5u $<$$<$ 0)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G2) 32-\/beat Burst -\/The undefined length burst or bursts sequence is split into 32-\/beat bursts or less, allowing re-\/arbitration every 32 beats. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga0053b90901490f8c9c5d34610054af22}\label{group__SAMS70__MATRIX_ga0053b90901490f8c9c5d34610054af22}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_ga0053b90901490f8c9c5d34610054af22}{M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G2\+\_\+\+U\+L\+B\+T\+\_\+64\+B\+E\+A\+T\+\_\+\+B\+U\+R\+ST}}~(0x6u $<$$<$ 0)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G2) 64-\/beat Burst-\/\+The undefined length burst or bursts sequence is split into 64-\/beat bursts or less, allowing re-\/arbitration every 64 beats. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga5132ee1d2781563e368b71764cd03988}\label{group__SAMS70__MATRIX_ga5132ee1d2781563e368b71764cd03988}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_ga5132ee1d2781563e368b71764cd03988}{M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G2\+\_\+\+U\+L\+B\+T\+\_\+128\+B\+E\+A\+T\+\_\+\+B\+U\+R\+ST}}~(0x7u $<$$<$ 0)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G2) 128-\/beat Burst-\/\+The undefined length burst or bursts sequence is split into 128-\/beat bursts or less, allowing re-\/arbitration every 128 beats. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga593430b723f80f2e0c905f75dd0e8a77}\label{group__SAMS70__MATRIX_ga593430b723f80f2e0c905f75dd0e8a77}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G3\+\_\+\+U\+L\+B\+T\+\_\+\+Pos}~0
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga985afc9ed430615f27867fd084145e22}\label{group__SAMS70__MATRIX_ga985afc9ed430615f27867fd084145e22}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_ga985afc9ed430615f27867fd084145e22}{M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G3\+\_\+\+U\+L\+B\+T\+\_\+\+Msk}}~(0x7u $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G3\+\_\+\+U\+L\+B\+T\+\_\+\+Pos)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G3) Undefined Length Burst Type \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_gad59b776b725a01a0e4f5a885c22f941a}\label{group__SAMS70__MATRIX_gad59b776b725a01a0e4f5a885c22f941a}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G3\+\_\+\+U\+L\+BT}(value)~((\mbox{\hyperlink{group__SAMS70__MATRIX_ga985afc9ed430615f27867fd084145e22}{M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G3\+\_\+\+U\+L\+B\+T\+\_\+\+Msk}} \& ((value) $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G3\+\_\+\+U\+L\+B\+T\+\_\+\+Pos)))
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga8f03fed31a60506e09d50fca5c848ba4}\label{group__SAMS70__MATRIX_ga8f03fed31a60506e09d50fca5c848ba4}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_ga8f03fed31a60506e09d50fca5c848ba4}{M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G3\+\_\+\+U\+L\+B\+T\+\_\+\+U\+N\+L\+T\+D\+\_\+\+L\+E\+N\+G\+TH}}~(0x0u $<$$<$ 0)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G3) Unlimited Length Burst-\/\+No predicted end of burst is generated, therefore I\+N\+CR bursts coming from this master can only be broken if the Slave Slot Cycle Limit is reached. If the Slot Cycle Limit is not reached, the burst is normally completed by the master, at the latest, on the next A\+HB 1-\/Kbyte address boundary, allowing up to 256-\/beat word bursts or 128-\/beat double-\/word bursts.\+This value should not be used in the very particular case of a master capable of performing back-\/to-\/back undefined length bursts on a single slave, since this could indefinitely freeze the slave arbitration and thus prevent another master from accessing this slave. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga58292d84711c90c7ff68d8b29699be5d}\label{group__SAMS70__MATRIX_ga58292d84711c90c7ff68d8b29699be5d}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_ga58292d84711c90c7ff68d8b29699be5d}{M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G3\+\_\+\+U\+L\+B\+T\+\_\+\+S\+I\+N\+G\+L\+E\+\_\+\+A\+C\+C\+E\+SS}}~(0x1u $<$$<$ 0)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G3) Single Access-\/\+The undefined length burst is treated as a succession of single accesses, allowing re-\/arbitration at each beat of the I\+N\+CR burst or bursts sequence. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga3d0cb937cd74e958217b0db4e372d0e0}\label{group__SAMS70__MATRIX_ga3d0cb937cd74e958217b0db4e372d0e0}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_ga3d0cb937cd74e958217b0db4e372d0e0}{M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G3\+\_\+\+U\+L\+B\+T\+\_\+4\+B\+E\+A\+T\+\_\+\+B\+U\+R\+ST}}~(0x2u $<$$<$ 0)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G3) 4-\/beat Burst-\/\+The undefined length burst or bursts sequence is split into 4-\/beat bursts or less, allowing re-\/arbitration every 4 beats. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga0ccc12c039816839bfeda6846f2ca79c}\label{group__SAMS70__MATRIX_ga0ccc12c039816839bfeda6846f2ca79c}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_ga0ccc12c039816839bfeda6846f2ca79c}{M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G3\+\_\+\+U\+L\+B\+T\+\_\+8\+B\+E\+A\+T\+\_\+\+B\+U\+R\+ST}}~(0x3u $<$$<$ 0)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G3) 8-\/beat Burst-\/\+The undefined length burst or bursts sequence is split into 8-\/beat bursts or less, allowing re-\/arbitration every 8 beats. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga42e118ae6e7748f8b37afb6c606eb6ea}\label{group__SAMS70__MATRIX_ga42e118ae6e7748f8b37afb6c606eb6ea}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_ga42e118ae6e7748f8b37afb6c606eb6ea}{M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G3\+\_\+\+U\+L\+B\+T\+\_\+16\+B\+E\+A\+T\+\_\+\+B\+U\+R\+ST}}~(0x4u $<$$<$ 0)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G3) 16-\/beat Burst-\/\+The undefined length burst or bursts sequence is split into 16-\/beat bursts or less, allowing re-\/arbitration every 16 beats. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga665bb575ed067169dfb8db5a282f08e7}\label{group__SAMS70__MATRIX_ga665bb575ed067169dfb8db5a282f08e7}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_ga665bb575ed067169dfb8db5a282f08e7}{M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G3\+\_\+\+U\+L\+B\+T\+\_\+32\+B\+E\+A\+T\+\_\+\+B\+U\+R\+ST}}~(0x5u $<$$<$ 0)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G3) 32-\/beat Burst -\/The undefined length burst or bursts sequence is split into 32-\/beat bursts or less, allowing re-\/arbitration every 32 beats. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_gad3c84a1dd77600ae891583056767b4b2}\label{group__SAMS70__MATRIX_gad3c84a1dd77600ae891583056767b4b2}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_gad3c84a1dd77600ae891583056767b4b2}{M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G3\+\_\+\+U\+L\+B\+T\+\_\+64\+B\+E\+A\+T\+\_\+\+B\+U\+R\+ST}}~(0x6u $<$$<$ 0)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G3) 64-\/beat Burst-\/\+The undefined length burst or bursts sequence is split into 64-\/beat bursts or less, allowing re-\/arbitration every 64 beats. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_gacda0076c5f239af69c396341841810e0}\label{group__SAMS70__MATRIX_gacda0076c5f239af69c396341841810e0}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_gacda0076c5f239af69c396341841810e0}{M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G3\+\_\+\+U\+L\+B\+T\+\_\+128\+B\+E\+A\+T\+\_\+\+B\+U\+R\+ST}}~(0x7u $<$$<$ 0)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G3) 128-\/beat Burst-\/\+The undefined length burst or bursts sequence is split into 128-\/beat bursts or less, allowing re-\/arbitration every 128 beats. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga00edf777c2276c71c5a0c1334be3c8eb}\label{group__SAMS70__MATRIX_ga00edf777c2276c71c5a0c1334be3c8eb}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G4\+\_\+\+U\+L\+B\+T\+\_\+\+Pos}~0
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga5ce6240b9f37c8b9e5abfb50ed77aec8}\label{group__SAMS70__MATRIX_ga5ce6240b9f37c8b9e5abfb50ed77aec8}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_ga5ce6240b9f37c8b9e5abfb50ed77aec8}{M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G4\+\_\+\+U\+L\+B\+T\+\_\+\+Msk}}~(0x7u $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G4\+\_\+\+U\+L\+B\+T\+\_\+\+Pos)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G4) Undefined Length Burst Type \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga2302d3a2e76ee5230265cf6893c8e2e3}\label{group__SAMS70__MATRIX_ga2302d3a2e76ee5230265cf6893c8e2e3}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G4\+\_\+\+U\+L\+BT}(value)~((\mbox{\hyperlink{group__SAMS70__MATRIX_ga5ce6240b9f37c8b9e5abfb50ed77aec8}{M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G4\+\_\+\+U\+L\+B\+T\+\_\+\+Msk}} \& ((value) $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G4\+\_\+\+U\+L\+B\+T\+\_\+\+Pos)))
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga46b538a8a9584ba352f74d9ddc7bc2d7}\label{group__SAMS70__MATRIX_ga46b538a8a9584ba352f74d9ddc7bc2d7}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_ga46b538a8a9584ba352f74d9ddc7bc2d7}{M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G4\+\_\+\+U\+L\+B\+T\+\_\+\+U\+N\+L\+T\+D\+\_\+\+L\+E\+N\+G\+TH}}~(0x0u $<$$<$ 0)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G4) Unlimited Length Burst-\/\+No predicted end of burst is generated, therefore I\+N\+CR bursts coming from this master can only be broken if the Slave Slot Cycle Limit is reached. If the Slot Cycle Limit is not reached, the burst is normally completed by the master, at the latest, on the next A\+HB 1-\/Kbyte address boundary, allowing up to 256-\/beat word bursts or 128-\/beat double-\/word bursts.\+This value should not be used in the very particular case of a master capable of performing back-\/to-\/back undefined length bursts on a single slave, since this could indefinitely freeze the slave arbitration and thus prevent another master from accessing this slave. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga62644e141a71e5ac1088a119c1d8565f}\label{group__SAMS70__MATRIX_ga62644e141a71e5ac1088a119c1d8565f}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_ga62644e141a71e5ac1088a119c1d8565f}{M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G4\+\_\+\+U\+L\+B\+T\+\_\+\+S\+I\+N\+G\+L\+E\+\_\+\+A\+C\+C\+E\+SS}}~(0x1u $<$$<$ 0)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G4) Single Access-\/\+The undefined length burst is treated as a succession of single accesses, allowing re-\/arbitration at each beat of the I\+N\+CR burst or bursts sequence. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga4b65f1e17bdd7a8c4d15135905cf21e8}\label{group__SAMS70__MATRIX_ga4b65f1e17bdd7a8c4d15135905cf21e8}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_ga4b65f1e17bdd7a8c4d15135905cf21e8}{M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G4\+\_\+\+U\+L\+B\+T\+\_\+4\+B\+E\+A\+T\+\_\+\+B\+U\+R\+ST}}~(0x2u $<$$<$ 0)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G4) 4-\/beat Burst-\/\+The undefined length burst or bursts sequence is split into 4-\/beat bursts or less, allowing re-\/arbitration every 4 beats. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_gaa30c457e7c6e72a379a5f43bf3dca306}\label{group__SAMS70__MATRIX_gaa30c457e7c6e72a379a5f43bf3dca306}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_gaa30c457e7c6e72a379a5f43bf3dca306}{M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G4\+\_\+\+U\+L\+B\+T\+\_\+8\+B\+E\+A\+T\+\_\+\+B\+U\+R\+ST}}~(0x3u $<$$<$ 0)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G4) 8-\/beat Burst-\/\+The undefined length burst or bursts sequence is split into 8-\/beat bursts or less, allowing re-\/arbitration every 8 beats. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_gab3d57fd0d676259a513cc3cfe3b397fd}\label{group__SAMS70__MATRIX_gab3d57fd0d676259a513cc3cfe3b397fd}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_gab3d57fd0d676259a513cc3cfe3b397fd}{M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G4\+\_\+\+U\+L\+B\+T\+\_\+16\+B\+E\+A\+T\+\_\+\+B\+U\+R\+ST}}~(0x4u $<$$<$ 0)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G4) 16-\/beat Burst-\/\+The undefined length burst or bursts sequence is split into 16-\/beat bursts or less, allowing re-\/arbitration every 16 beats. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga8f104d86419a5cb29a7c15650b43d660}\label{group__SAMS70__MATRIX_ga8f104d86419a5cb29a7c15650b43d660}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_ga8f104d86419a5cb29a7c15650b43d660}{M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G4\+\_\+\+U\+L\+B\+T\+\_\+32\+B\+E\+A\+T\+\_\+\+B\+U\+R\+ST}}~(0x5u $<$$<$ 0)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G4) 32-\/beat Burst -\/The undefined length burst or bursts sequence is split into 32-\/beat bursts or less, allowing re-\/arbitration every 32 beats. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga60a38623cbed90074b5aaa11a991adeb}\label{group__SAMS70__MATRIX_ga60a38623cbed90074b5aaa11a991adeb}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_ga60a38623cbed90074b5aaa11a991adeb}{M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G4\+\_\+\+U\+L\+B\+T\+\_\+64\+B\+E\+A\+T\+\_\+\+B\+U\+R\+ST}}~(0x6u $<$$<$ 0)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G4) 64-\/beat Burst-\/\+The undefined length burst or bursts sequence is split into 64-\/beat bursts or less, allowing re-\/arbitration every 64 beats. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga130d6f02654b6b778ca08959ed3a141b}\label{group__SAMS70__MATRIX_ga130d6f02654b6b778ca08959ed3a141b}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_ga130d6f02654b6b778ca08959ed3a141b}{M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G4\+\_\+\+U\+L\+B\+T\+\_\+128\+B\+E\+A\+T\+\_\+\+B\+U\+R\+ST}}~(0x7u $<$$<$ 0)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G4) 128-\/beat Burst-\/\+The undefined length burst or bursts sequence is split into 128-\/beat bursts or less, allowing re-\/arbitration every 128 beats. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga9507c5a287a45c0bc179c73688871fa8}\label{group__SAMS70__MATRIX_ga9507c5a287a45c0bc179c73688871fa8}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G5\+\_\+\+U\+L\+B\+T\+\_\+\+Pos}~0
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_gacfb737383bff73d613bc283bc9f13776}\label{group__SAMS70__MATRIX_gacfb737383bff73d613bc283bc9f13776}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_gacfb737383bff73d613bc283bc9f13776}{M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G5\+\_\+\+U\+L\+B\+T\+\_\+\+Msk}}~(0x7u $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G5\+\_\+\+U\+L\+B\+T\+\_\+\+Pos)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G5) Undefined Length Burst Type \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga279ce09b25671448ae4a58ec546b2465}\label{group__SAMS70__MATRIX_ga279ce09b25671448ae4a58ec546b2465}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G5\+\_\+\+U\+L\+BT}(value)~((\mbox{\hyperlink{group__SAMS70__MATRIX_gacfb737383bff73d613bc283bc9f13776}{M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G5\+\_\+\+U\+L\+B\+T\+\_\+\+Msk}} \& ((value) $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G5\+\_\+\+U\+L\+B\+T\+\_\+\+Pos)))
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_gac7a55783d3fe37a2f92da44224a37b8f}\label{group__SAMS70__MATRIX_gac7a55783d3fe37a2f92da44224a37b8f}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_gac7a55783d3fe37a2f92da44224a37b8f}{M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G5\+\_\+\+U\+L\+B\+T\+\_\+\+U\+N\+L\+T\+D\+\_\+\+L\+E\+N\+G\+TH}}~(0x0u $<$$<$ 0)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G5) Unlimited Length Burst-\/\+No predicted end of burst is generated, therefore I\+N\+CR bursts coming from this master can only be broken if the Slave Slot Cycle Limit is reached. If the Slot Cycle Limit is not reached, the burst is normally completed by the master, at the latest, on the next A\+HB 1-\/Kbyte address boundary, allowing up to 256-\/beat word bursts or 128-\/beat double-\/word bursts.\+This value should not be used in the very particular case of a master capable of performing back-\/to-\/back undefined length bursts on a single slave, since this could indefinitely freeze the slave arbitration and thus prevent another master from accessing this slave. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_gab78b7adbf67f309f6f89cf9f81ee6679}\label{group__SAMS70__MATRIX_gab78b7adbf67f309f6f89cf9f81ee6679}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_gab78b7adbf67f309f6f89cf9f81ee6679}{M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G5\+\_\+\+U\+L\+B\+T\+\_\+\+S\+I\+N\+G\+L\+E\+\_\+\+A\+C\+C\+E\+SS}}~(0x1u $<$$<$ 0)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G5) Single Access-\/\+The undefined length burst is treated as a succession of single accesses, allowing re-\/arbitration at each beat of the I\+N\+CR burst or bursts sequence. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga0487ae7f639f95b0f1abe93f6b4b0011}\label{group__SAMS70__MATRIX_ga0487ae7f639f95b0f1abe93f6b4b0011}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_ga0487ae7f639f95b0f1abe93f6b4b0011}{M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G5\+\_\+\+U\+L\+B\+T\+\_\+4\+B\+E\+A\+T\+\_\+\+B\+U\+R\+ST}}~(0x2u $<$$<$ 0)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G5) 4-\/beat Burst-\/\+The undefined length burst or bursts sequence is split into 4-\/beat bursts or less, allowing re-\/arbitration every 4 beats. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga47f10d6ce90404b4b4d086a597ba1d5b}\label{group__SAMS70__MATRIX_ga47f10d6ce90404b4b4d086a597ba1d5b}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_ga47f10d6ce90404b4b4d086a597ba1d5b}{M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G5\+\_\+\+U\+L\+B\+T\+\_\+8\+B\+E\+A\+T\+\_\+\+B\+U\+R\+ST}}~(0x3u $<$$<$ 0)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G5) 8-\/beat Burst-\/\+The undefined length burst or bursts sequence is split into 8-\/beat bursts or less, allowing re-\/arbitration every 8 beats. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_gacfb42d2990e8c4c272a329efbb4091d3}\label{group__SAMS70__MATRIX_gacfb42d2990e8c4c272a329efbb4091d3}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_gacfb42d2990e8c4c272a329efbb4091d3}{M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G5\+\_\+\+U\+L\+B\+T\+\_\+16\+B\+E\+A\+T\+\_\+\+B\+U\+R\+ST}}~(0x4u $<$$<$ 0)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G5) 16-\/beat Burst-\/\+The undefined length burst or bursts sequence is split into 16-\/beat bursts or less, allowing re-\/arbitration every 16 beats. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga239a887729e23525e15604ff0b40b9c8}\label{group__SAMS70__MATRIX_ga239a887729e23525e15604ff0b40b9c8}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_ga239a887729e23525e15604ff0b40b9c8}{M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G5\+\_\+\+U\+L\+B\+T\+\_\+32\+B\+E\+A\+T\+\_\+\+B\+U\+R\+ST}}~(0x5u $<$$<$ 0)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G5) 32-\/beat Burst -\/The undefined length burst or bursts sequence is split into 32-\/beat bursts or less, allowing re-\/arbitration every 32 beats. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_gaae87335d1769ac3d3a5b119ddc55b6ff}\label{group__SAMS70__MATRIX_gaae87335d1769ac3d3a5b119ddc55b6ff}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_gaae87335d1769ac3d3a5b119ddc55b6ff}{M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G5\+\_\+\+U\+L\+B\+T\+\_\+64\+B\+E\+A\+T\+\_\+\+B\+U\+R\+ST}}~(0x6u $<$$<$ 0)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G5) 64-\/beat Burst-\/\+The undefined length burst or bursts sequence is split into 64-\/beat bursts or less, allowing re-\/arbitration every 64 beats. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga2cdc95274ef1ae455ebb66e501d34137}\label{group__SAMS70__MATRIX_ga2cdc95274ef1ae455ebb66e501d34137}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_ga2cdc95274ef1ae455ebb66e501d34137}{M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G5\+\_\+\+U\+L\+B\+T\+\_\+128\+B\+E\+A\+T\+\_\+\+B\+U\+R\+ST}}~(0x7u $<$$<$ 0)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G5) 128-\/beat Burst-\/\+The undefined length burst or bursts sequence is split into 128-\/beat bursts or less, allowing re-\/arbitration every 128 beats. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_gae3d80417bd7396dc8666871c2f261889}\label{group__SAMS70__MATRIX_gae3d80417bd7396dc8666871c2f261889}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G6\+\_\+\+U\+L\+B\+T\+\_\+\+Pos}~0
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga74f4a388f3bd82ba8549d384f5710a1c}\label{group__SAMS70__MATRIX_ga74f4a388f3bd82ba8549d384f5710a1c}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_ga74f4a388f3bd82ba8549d384f5710a1c}{M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G6\+\_\+\+U\+L\+B\+T\+\_\+\+Msk}}~(0x7u $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G6\+\_\+\+U\+L\+B\+T\+\_\+\+Pos)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G6) Undefined Length Burst Type \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga3e9605229ab87527cade2bd02098ac2f}\label{group__SAMS70__MATRIX_ga3e9605229ab87527cade2bd02098ac2f}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G6\+\_\+\+U\+L\+BT}(value)~((\mbox{\hyperlink{group__SAMS70__MATRIX_ga74f4a388f3bd82ba8549d384f5710a1c}{M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G6\+\_\+\+U\+L\+B\+T\+\_\+\+Msk}} \& ((value) $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G6\+\_\+\+U\+L\+B\+T\+\_\+\+Pos)))
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_gaaa9d8ed734e988917b19f9b3486671af}\label{group__SAMS70__MATRIX_gaaa9d8ed734e988917b19f9b3486671af}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_gaaa9d8ed734e988917b19f9b3486671af}{M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G6\+\_\+\+U\+L\+B\+T\+\_\+\+U\+N\+L\+T\+D\+\_\+\+L\+E\+N\+G\+TH}}~(0x0u $<$$<$ 0)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G6) Unlimited Length Burst-\/\+No predicted end of burst is generated, therefore I\+N\+CR bursts coming from this master can only be broken if the Slave Slot Cycle Limit is reached. If the Slot Cycle Limit is not reached, the burst is normally completed by the master, at the latest, on the next A\+HB 1-\/Kbyte address boundary, allowing up to 256-\/beat word bursts or 128-\/beat double-\/word bursts.\+This value should not be used in the very particular case of a master capable of performing back-\/to-\/back undefined length bursts on a single slave, since this could indefinitely freeze the slave arbitration and thus prevent another master from accessing this slave. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_gac2118565bf50fef9d7d3c74649c29859}\label{group__SAMS70__MATRIX_gac2118565bf50fef9d7d3c74649c29859}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_gac2118565bf50fef9d7d3c74649c29859}{M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G6\+\_\+\+U\+L\+B\+T\+\_\+\+S\+I\+N\+G\+L\+E\+\_\+\+A\+C\+C\+E\+SS}}~(0x1u $<$$<$ 0)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G6) Single Access-\/\+The undefined length burst is treated as a succession of single accesses, allowing re-\/arbitration at each beat of the I\+N\+CR burst or bursts sequence. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga9936a97b00b01af88374b0917e2ac494}\label{group__SAMS70__MATRIX_ga9936a97b00b01af88374b0917e2ac494}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_ga9936a97b00b01af88374b0917e2ac494}{M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G6\+\_\+\+U\+L\+B\+T\+\_\+4\+B\+E\+A\+T\+\_\+\+B\+U\+R\+ST}}~(0x2u $<$$<$ 0)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G6) 4-\/beat Burst-\/\+The undefined length burst or bursts sequence is split into 4-\/beat bursts or less, allowing re-\/arbitration every 4 beats. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga7d26c03e4dabfb8868fbc6149115289d}\label{group__SAMS70__MATRIX_ga7d26c03e4dabfb8868fbc6149115289d}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_ga7d26c03e4dabfb8868fbc6149115289d}{M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G6\+\_\+\+U\+L\+B\+T\+\_\+8\+B\+E\+A\+T\+\_\+\+B\+U\+R\+ST}}~(0x3u $<$$<$ 0)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G6) 8-\/beat Burst-\/\+The undefined length burst or bursts sequence is split into 8-\/beat bursts or less, allowing re-\/arbitration every 8 beats. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_gaaafaf5eb11c787fe793ce3ca117a4070}\label{group__SAMS70__MATRIX_gaaafaf5eb11c787fe793ce3ca117a4070}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_gaaafaf5eb11c787fe793ce3ca117a4070}{M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G6\+\_\+\+U\+L\+B\+T\+\_\+16\+B\+E\+A\+T\+\_\+\+B\+U\+R\+ST}}~(0x4u $<$$<$ 0)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G6) 16-\/beat Burst-\/\+The undefined length burst or bursts sequence is split into 16-\/beat bursts or less, allowing re-\/arbitration every 16 beats. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga4511e10b7baf851a42483d20dd011bff}\label{group__SAMS70__MATRIX_ga4511e10b7baf851a42483d20dd011bff}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_ga4511e10b7baf851a42483d20dd011bff}{M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G6\+\_\+\+U\+L\+B\+T\+\_\+32\+B\+E\+A\+T\+\_\+\+B\+U\+R\+ST}}~(0x5u $<$$<$ 0)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G6) 32-\/beat Burst -\/The undefined length burst or bursts sequence is split into 32-\/beat bursts or less, allowing re-\/arbitration every 32 beats. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga55a407b41da656065ee246208cf585fe}\label{group__SAMS70__MATRIX_ga55a407b41da656065ee246208cf585fe}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_ga55a407b41da656065ee246208cf585fe}{M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G6\+\_\+\+U\+L\+B\+T\+\_\+64\+B\+E\+A\+T\+\_\+\+B\+U\+R\+ST}}~(0x6u $<$$<$ 0)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G6) 64-\/beat Burst-\/\+The undefined length burst or bursts sequence is split into 64-\/beat bursts or less, allowing re-\/arbitration every 64 beats. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga17399cc34ed4c1acd1dc77ea5b1d213b}\label{group__SAMS70__MATRIX_ga17399cc34ed4c1acd1dc77ea5b1d213b}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_ga17399cc34ed4c1acd1dc77ea5b1d213b}{M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G6\+\_\+\+U\+L\+B\+T\+\_\+128\+B\+E\+A\+T\+\_\+\+B\+U\+R\+ST}}~(0x7u $<$$<$ 0)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G6) 128-\/beat Burst-\/\+The undefined length burst or bursts sequence is split into 128-\/beat bursts or less, allowing re-\/arbitration every 128 beats. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga0f966d5704988e6d44c0fc580a1bae2b}\label{group__SAMS70__MATRIX_ga0f966d5704988e6d44c0fc580a1bae2b}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G8\+\_\+\+U\+L\+B\+T\+\_\+\+Pos}~0
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga7a1875a3f46b451286eef4954b1ab397}\label{group__SAMS70__MATRIX_ga7a1875a3f46b451286eef4954b1ab397}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_ga7a1875a3f46b451286eef4954b1ab397}{M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G8\+\_\+\+U\+L\+B\+T\+\_\+\+Msk}}~(0x7u $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G8\+\_\+\+U\+L\+B\+T\+\_\+\+Pos)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G8) Undefined Length Burst Type \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga8fa99b17e0bb94c4e80eddac9ac969b8}\label{group__SAMS70__MATRIX_ga8fa99b17e0bb94c4e80eddac9ac969b8}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G8\+\_\+\+U\+L\+BT}(value)~((\mbox{\hyperlink{group__SAMS70__MATRIX_ga7a1875a3f46b451286eef4954b1ab397}{M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G8\+\_\+\+U\+L\+B\+T\+\_\+\+Msk}} \& ((value) $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G8\+\_\+\+U\+L\+B\+T\+\_\+\+Pos)))
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_gacd65d6bb1b1580665f6b0161d10d986f}\label{group__SAMS70__MATRIX_gacd65d6bb1b1580665f6b0161d10d986f}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_gacd65d6bb1b1580665f6b0161d10d986f}{M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G8\+\_\+\+U\+L\+B\+T\+\_\+\+U\+N\+L\+T\+D\+\_\+\+L\+E\+N\+G\+TH}}~(0x0u $<$$<$ 0)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G8) Unlimited Length Burst-\/\+No predicted end of burst is generated, therefore I\+N\+CR bursts coming from this master can only be broken if the Slave Slot Cycle Limit is reached. If the Slot Cycle Limit is not reached, the burst is normally completed by the master, at the latest, on the next A\+HB 1-\/Kbyte address boundary, allowing up to 256-\/beat word bursts or 128-\/beat double-\/word bursts.\+This value should not be used in the very particular case of a master capable of performing back-\/to-\/back undefined length bursts on a single slave, since this could indefinitely freeze the slave arbitration and thus prevent another master from accessing this slave. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_gaa36145b34d32e4ac18d3e11b2ea95467}\label{group__SAMS70__MATRIX_gaa36145b34d32e4ac18d3e11b2ea95467}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_gaa36145b34d32e4ac18d3e11b2ea95467}{M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G8\+\_\+\+U\+L\+B\+T\+\_\+\+S\+I\+N\+G\+L\+E\+\_\+\+A\+C\+C\+E\+SS}}~(0x1u $<$$<$ 0)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G8) Single Access-\/\+The undefined length burst is treated as a succession of single accesses, allowing re-\/arbitration at each beat of the I\+N\+CR burst or bursts sequence. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga08bd64fe7b07705fc2538b5eddfad723}\label{group__SAMS70__MATRIX_ga08bd64fe7b07705fc2538b5eddfad723}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_ga08bd64fe7b07705fc2538b5eddfad723}{M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G8\+\_\+\+U\+L\+B\+T\+\_\+4\+B\+E\+A\+T\+\_\+\+B\+U\+R\+ST}}~(0x2u $<$$<$ 0)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G8) 4-\/beat Burst-\/\+The undefined length burst or bursts sequence is split into 4-\/beat bursts or less, allowing re-\/arbitration every 4 beats. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_gae485963e5b2b9818b9577563b2dab85d}\label{group__SAMS70__MATRIX_gae485963e5b2b9818b9577563b2dab85d}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_gae485963e5b2b9818b9577563b2dab85d}{M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G8\+\_\+\+U\+L\+B\+T\+\_\+8\+B\+E\+A\+T\+\_\+\+B\+U\+R\+ST}}~(0x3u $<$$<$ 0)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G8) 8-\/beat Burst-\/\+The undefined length burst or bursts sequence is split into 8-\/beat bursts or less, allowing re-\/arbitration every 8 beats. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga747360e79614c49592b0bd84d3fe9b60}\label{group__SAMS70__MATRIX_ga747360e79614c49592b0bd84d3fe9b60}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_ga747360e79614c49592b0bd84d3fe9b60}{M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G8\+\_\+\+U\+L\+B\+T\+\_\+16\+B\+E\+A\+T\+\_\+\+B\+U\+R\+ST}}~(0x4u $<$$<$ 0)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G8) 16-\/beat Burst-\/\+The undefined length burst or bursts sequence is split into 16-\/beat bursts or less, allowing re-\/arbitration every 16 beats. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_gaee9744ffea1409d93c88a896593e18f2}\label{group__SAMS70__MATRIX_gaee9744ffea1409d93c88a896593e18f2}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_gaee9744ffea1409d93c88a896593e18f2}{M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G8\+\_\+\+U\+L\+B\+T\+\_\+32\+B\+E\+A\+T\+\_\+\+B\+U\+R\+ST}}~(0x5u $<$$<$ 0)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G8) 32-\/beat Burst -\/The undefined length burst or bursts sequence is split into 32-\/beat bursts or less, allowing re-\/arbitration every 32 beats. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga68bc9a7728b76cf449e7918de9f78403}\label{group__SAMS70__MATRIX_ga68bc9a7728b76cf449e7918de9f78403}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_ga68bc9a7728b76cf449e7918de9f78403}{M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G8\+\_\+\+U\+L\+B\+T\+\_\+64\+B\+E\+A\+T\+\_\+\+B\+U\+R\+ST}}~(0x6u $<$$<$ 0)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G8) 64-\/beat Burst-\/\+The undefined length burst or bursts sequence is split into 64-\/beat bursts or less, allowing re-\/arbitration every 64 beats. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga9a1b8ba6e77a85a29ba8a9a0700ed171}\label{group__SAMS70__MATRIX_ga9a1b8ba6e77a85a29ba8a9a0700ed171}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_ga9a1b8ba6e77a85a29ba8a9a0700ed171}{M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G8\+\_\+\+U\+L\+B\+T\+\_\+128\+B\+E\+A\+T\+\_\+\+B\+U\+R\+ST}}~(0x7u $<$$<$ 0)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+M\+C\+F\+G8) 128-\/beat Burst-\/\+The undefined length burst or bursts sequence is split into 128-\/beat bursts or less, allowing re-\/arbitration every 128 beats. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga8381ea5ca099fd27ca8fbfca54c4a8b3}\label{group__SAMS70__MATRIX_ga8381ea5ca099fd27ca8fbfca54c4a8b3}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+S\+C\+F\+G\+\_\+\+S\+L\+O\+T\+\_\+\+C\+Y\+C\+L\+E\+\_\+\+Pos}~0
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga1ec2b1d65bfe56e014a9e9ea6bd81eb6}\label{group__SAMS70__MATRIX_ga1ec2b1d65bfe56e014a9e9ea6bd81eb6}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_ga1ec2b1d65bfe56e014a9e9ea6bd81eb6}{M\+A\+T\+R\+I\+X\+\_\+\+S\+C\+F\+G\+\_\+\+S\+L\+O\+T\+\_\+\+C\+Y\+C\+L\+E\+\_\+\+Msk}}~(0x1ffu $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+S\+C\+F\+G\+\_\+\+S\+L\+O\+T\+\_\+\+C\+Y\+C\+L\+E\+\_\+\+Pos)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+S\+C\+FG\mbox{[}9\mbox{]}) Maximum Bus Grant Duration for Masters \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga61b5ffaeb4d72e689d101d1df7138c32}\label{group__SAMS70__MATRIX_ga61b5ffaeb4d72e689d101d1df7138c32}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+S\+C\+F\+G\+\_\+\+S\+L\+O\+T\+\_\+\+C\+Y\+C\+LE}(value)~((\mbox{\hyperlink{group__SAMV71__MATRIX_ga1ec2b1d65bfe56e014a9e9ea6bd81eb6}{M\+A\+T\+R\+I\+X\+\_\+\+S\+C\+F\+G\+\_\+\+S\+L\+O\+T\+\_\+\+C\+Y\+C\+L\+E\+\_\+\+Msk}} \& ((value) $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+S\+C\+F\+G\+\_\+\+S\+L\+O\+T\+\_\+\+C\+Y\+C\+L\+E\+\_\+\+Pos)))
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga064f806803d17d584f751dfdfbff59be}\label{group__SAMS70__MATRIX_ga064f806803d17d584f751dfdfbff59be}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+S\+C\+F\+G\+\_\+\+D\+E\+F\+M\+S\+T\+R\+\_\+\+T\+Y\+P\+E\+\_\+\+Pos}~16
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_gae095872b0c604d21a97b49e765aa007a}\label{group__SAMS70__MATRIX_gae095872b0c604d21a97b49e765aa007a}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_gae095872b0c604d21a97b49e765aa007a}{M\+A\+T\+R\+I\+X\+\_\+\+S\+C\+F\+G\+\_\+\+D\+E\+F\+M\+S\+T\+R\+\_\+\+T\+Y\+P\+E\+\_\+\+Msk}}~(0x3u $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+S\+C\+F\+G\+\_\+\+D\+E\+F\+M\+S\+T\+R\+\_\+\+T\+Y\+P\+E\+\_\+\+Pos)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+S\+C\+FG\mbox{[}9\mbox{]}) Default Master Type \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga985c6bcc1fdaf9a7b2ac870130b36033}\label{group__SAMS70__MATRIX_ga985c6bcc1fdaf9a7b2ac870130b36033}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+S\+C\+F\+G\+\_\+\+D\+E\+F\+M\+S\+T\+R\+\_\+\+T\+Y\+PE}(value)~((\mbox{\hyperlink{group__SAMV71__MATRIX_gae095872b0c604d21a97b49e765aa007a}{M\+A\+T\+R\+I\+X\+\_\+\+S\+C\+F\+G\+\_\+\+D\+E\+F\+M\+S\+T\+R\+\_\+\+T\+Y\+P\+E\+\_\+\+Msk}} \& ((value) $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+S\+C\+F\+G\+\_\+\+D\+E\+F\+M\+S\+T\+R\+\_\+\+T\+Y\+P\+E\+\_\+\+Pos)))
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_gaa6edc1efa8f3fc131a2c48d959df99e4}\label{group__SAMS70__MATRIX_gaa6edc1efa8f3fc131a2c48d959df99e4}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_gaa6edc1efa8f3fc131a2c48d959df99e4}{M\+A\+T\+R\+I\+X\+\_\+\+S\+C\+F\+G\+\_\+\+D\+E\+F\+M\+S\+T\+R\+\_\+\+T\+Y\+P\+E\+\_\+\+N\+O\+NE}}~(0x0u $<$$<$ 16)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+S\+C\+FG\mbox{[}9\mbox{]}) No Default Master-\/\+At the end of the current slave access, if no other master request is pending, the slave is disconnected from all masters.\+This results in a one clock cycle latency for the first access of a burst transfer or for a single access. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_gab6309467f784a362e9f4909995aa6c95}\label{group__SAMS70__MATRIX_gab6309467f784a362e9f4909995aa6c95}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_gab6309467f784a362e9f4909995aa6c95}{M\+A\+T\+R\+I\+X\+\_\+\+S\+C\+F\+G\+\_\+\+D\+E\+F\+M\+S\+T\+R\+\_\+\+T\+Y\+P\+E\+\_\+\+L\+A\+ST}}~(0x1u $<$$<$ 16)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+S\+C\+FG\mbox{[}9\mbox{]}) Last Default Master-\/\+At the end of the current slave access, if no other master request is pending, the slave stays connected to the last master having accessed it.\+This results in not having one clock cycle latency when the last master tries to access the slave again. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga8d89957356611bdf1a256db82a84c465}\label{group__SAMS70__MATRIX_ga8d89957356611bdf1a256db82a84c465}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_ga8d89957356611bdf1a256db82a84c465}{M\+A\+T\+R\+I\+X\+\_\+\+S\+C\+F\+G\+\_\+\+D\+E\+F\+M\+S\+T\+R\+\_\+\+T\+Y\+P\+E\+\_\+\+F\+I\+X\+ED}}~(0x2u $<$$<$ 16)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+S\+C\+FG\mbox{[}9\mbox{]}) Fixed Default Master-\/\+At the end of the current slave access, if no other master request is pending, the slave connects to the fixed master the number that has been written in the F\+I\+X\+E\+D\+\_\+\+D\+E\+F\+M\+S\+TR field.\+This results in not having one clock cycle latency when the fixed master tries to access the slave again. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga7bf8c13ca20168061abe83d20ee4aaa4}\label{group__SAMS70__MATRIX_ga7bf8c13ca20168061abe83d20ee4aaa4}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+S\+C\+F\+G\+\_\+\+F\+I\+X\+E\+D\+\_\+\+D\+E\+F\+M\+S\+T\+R\+\_\+\+Pos}~18
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_gaf1a2cf87724c9cc01ba7745ced4d4a29}\label{group__SAMS70__MATRIX_gaf1a2cf87724c9cc01ba7745ced4d4a29}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_gaf1a2cf87724c9cc01ba7745ced4d4a29}{M\+A\+T\+R\+I\+X\+\_\+\+S\+C\+F\+G\+\_\+\+F\+I\+X\+E\+D\+\_\+\+D\+E\+F\+M\+S\+T\+R\+\_\+\+Msk}}~(0xfu $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+S\+C\+F\+G\+\_\+\+F\+I\+X\+E\+D\+\_\+\+D\+E\+F\+M\+S\+T\+R\+\_\+\+Pos)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+S\+C\+FG\mbox{[}9\mbox{]}) Fixed Default Master \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga5f96e7339f9cb48e52291ef59a619ad1}\label{group__SAMS70__MATRIX_ga5f96e7339f9cb48e52291ef59a619ad1}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+S\+C\+F\+G\+\_\+\+F\+I\+X\+E\+D\+\_\+\+D\+E\+F\+M\+S\+TR}(value)~((\mbox{\hyperlink{group__SAMV71__MATRIX_gaf1a2cf87724c9cc01ba7745ced4d4a29}{M\+A\+T\+R\+I\+X\+\_\+\+S\+C\+F\+G\+\_\+\+F\+I\+X\+E\+D\+\_\+\+D\+E\+F\+M\+S\+T\+R\+\_\+\+Msk}} \& ((value) $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+S\+C\+F\+G\+\_\+\+F\+I\+X\+E\+D\+\_\+\+D\+E\+F\+M\+S\+T\+R\+\_\+\+Pos)))
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_gab3e750e0aae4220b2fcd14df38406c20}\label{group__SAMS70__MATRIX_gab3e750e0aae4220b2fcd14df38406c20}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S0\+\_\+\+M0\+P\+R\+\_\+\+Pos}~0
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga377f9f3d903002ef68ef278b976fec3c}\label{group__SAMS70__MATRIX_ga377f9f3d903002ef68ef278b976fec3c}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_ga377f9f3d903002ef68ef278b976fec3c}{M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S0\+\_\+\+M0\+P\+R\+\_\+\+Msk}}~(0x3u $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S0\+\_\+\+M0\+P\+R\+\_\+\+Pos)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S0) Master 0 Priority \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga9830a4b3be23a240961402358737cb65}\label{group__SAMS70__MATRIX_ga9830a4b3be23a240961402358737cb65}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S0\+\_\+\+M0\+PR}(value)~((\mbox{\hyperlink{group__SAMS70__MATRIX_ga377f9f3d903002ef68ef278b976fec3c}{M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S0\+\_\+\+M0\+P\+R\+\_\+\+Msk}} \& ((value) $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S0\+\_\+\+M0\+P\+R\+\_\+\+Pos)))
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga060fbb83d4e58edfefcca5391bc3b019}\label{group__SAMS70__MATRIX_ga060fbb83d4e58edfefcca5391bc3b019}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S0\+\_\+\+M1\+P\+R\+\_\+\+Pos}~4
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_gab7bfef76279e85cc7967aa4dccfbb7c2}\label{group__SAMS70__MATRIX_gab7bfef76279e85cc7967aa4dccfbb7c2}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_gab7bfef76279e85cc7967aa4dccfbb7c2}{M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S0\+\_\+\+M1\+P\+R\+\_\+\+Msk}}~(0x3u $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S0\+\_\+\+M1\+P\+R\+\_\+\+Pos)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S0) Master 1 Priority \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_gade8c6ef8a508786e20fdca7ec36a10a0}\label{group__SAMS70__MATRIX_gade8c6ef8a508786e20fdca7ec36a10a0}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S0\+\_\+\+M1\+PR}(value)~((\mbox{\hyperlink{group__SAMS70__MATRIX_gab7bfef76279e85cc7967aa4dccfbb7c2}{M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S0\+\_\+\+M1\+P\+R\+\_\+\+Msk}} \& ((value) $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S0\+\_\+\+M1\+P\+R\+\_\+\+Pos)))
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga26188b8fd96eb41702274b3399f942bf}\label{group__SAMS70__MATRIX_ga26188b8fd96eb41702274b3399f942bf}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S0\+\_\+\+M2\+P\+R\+\_\+\+Pos}~8
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_gaf0a4efcfd189c99895caace3455e8943}\label{group__SAMS70__MATRIX_gaf0a4efcfd189c99895caace3455e8943}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_gaf0a4efcfd189c99895caace3455e8943}{M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S0\+\_\+\+M2\+P\+R\+\_\+\+Msk}}~(0x3u $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S0\+\_\+\+M2\+P\+R\+\_\+\+Pos)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S0) Master 2 Priority \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_gafc12fc02e96af00a2c746f9a8c27a196}\label{group__SAMS70__MATRIX_gafc12fc02e96af00a2c746f9a8c27a196}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S0\+\_\+\+M2\+PR}(value)~((\mbox{\hyperlink{group__SAMS70__MATRIX_gaf0a4efcfd189c99895caace3455e8943}{M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S0\+\_\+\+M2\+P\+R\+\_\+\+Msk}} \& ((value) $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S0\+\_\+\+M2\+P\+R\+\_\+\+Pos)))
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga8fa144539fcd4b74fe0ca7f150cb23e4}\label{group__SAMS70__MATRIX_ga8fa144539fcd4b74fe0ca7f150cb23e4}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S0\+\_\+\+M3\+P\+R\+\_\+\+Pos}~12
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_gafcee02ead20f8b160d3fb2d790368b6e}\label{group__SAMS70__MATRIX_gafcee02ead20f8b160d3fb2d790368b6e}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_gafcee02ead20f8b160d3fb2d790368b6e}{M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S0\+\_\+\+M3\+P\+R\+\_\+\+Msk}}~(0x3u $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S0\+\_\+\+M3\+P\+R\+\_\+\+Pos)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S0) Master 3 Priority \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_gaf854a216ad1fed5514400c531498f7a9}\label{group__SAMS70__MATRIX_gaf854a216ad1fed5514400c531498f7a9}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S0\+\_\+\+M3\+PR}(value)~((\mbox{\hyperlink{group__SAMS70__MATRIX_gafcee02ead20f8b160d3fb2d790368b6e}{M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S0\+\_\+\+M3\+P\+R\+\_\+\+Msk}} \& ((value) $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S0\+\_\+\+M3\+P\+R\+\_\+\+Pos)))
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_gad7b2f0ab3cb6d0cd6661e889003b7ef2}\label{group__SAMS70__MATRIX_gad7b2f0ab3cb6d0cd6661e889003b7ef2}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S0\+\_\+\+M4\+P\+R\+\_\+\+Pos}~16
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_gaab9a5edbe39eaa4bb4a4a490a1a85085}\label{group__SAMS70__MATRIX_gaab9a5edbe39eaa4bb4a4a490a1a85085}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_gaab9a5edbe39eaa4bb4a4a490a1a85085}{M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S0\+\_\+\+M4\+P\+R\+\_\+\+Msk}}~(0x3u $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S0\+\_\+\+M4\+P\+R\+\_\+\+Pos)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S0) Master 4 Priority \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga70514d97d21d09d187fe836ae4e02753}\label{group__SAMS70__MATRIX_ga70514d97d21d09d187fe836ae4e02753}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S0\+\_\+\+M4\+PR}(value)~((\mbox{\hyperlink{group__SAMS70__MATRIX_gaab9a5edbe39eaa4bb4a4a490a1a85085}{M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S0\+\_\+\+M4\+P\+R\+\_\+\+Msk}} \& ((value) $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S0\+\_\+\+M4\+P\+R\+\_\+\+Pos)))
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga9a237d2c7445e8445092b34b493a5cc5}\label{group__SAMS70__MATRIX_ga9a237d2c7445e8445092b34b493a5cc5}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S0\+\_\+\+M5\+P\+R\+\_\+\+Pos}~20
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_gab835149fc5094f6720917820503c11b8}\label{group__SAMS70__MATRIX_gab835149fc5094f6720917820503c11b8}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_gab835149fc5094f6720917820503c11b8}{M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S0\+\_\+\+M5\+P\+R\+\_\+\+Msk}}~(0x3u $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S0\+\_\+\+M5\+P\+R\+\_\+\+Pos)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S0) Master 5 Priority \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_gaf1b67ad930e8fdfab3dd85d5ee4022d0}\label{group__SAMS70__MATRIX_gaf1b67ad930e8fdfab3dd85d5ee4022d0}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S0\+\_\+\+M5\+PR}(value)~((\mbox{\hyperlink{group__SAMS70__MATRIX_gab835149fc5094f6720917820503c11b8}{M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S0\+\_\+\+M5\+P\+R\+\_\+\+Msk}} \& ((value) $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S0\+\_\+\+M5\+P\+R\+\_\+\+Pos)))
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga9e747f27b7d4bc3ad175d04d6e9cdbaa}\label{group__SAMS70__MATRIX_ga9e747f27b7d4bc3ad175d04d6e9cdbaa}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S0\+\_\+\+M6\+P\+R\+\_\+\+Pos}~24
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga951a1344bfeebb8229621a7a152ac18a}\label{group__SAMS70__MATRIX_ga951a1344bfeebb8229621a7a152ac18a}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_ga951a1344bfeebb8229621a7a152ac18a}{M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S0\+\_\+\+M6\+P\+R\+\_\+\+Msk}}~(0x3u $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S0\+\_\+\+M6\+P\+R\+\_\+\+Pos)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S0) Master 6 Priority \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga9dbd8478e2f10ff89295675006457c59}\label{group__SAMS70__MATRIX_ga9dbd8478e2f10ff89295675006457c59}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S0\+\_\+\+M6\+PR}(value)~((\mbox{\hyperlink{group__SAMS70__MATRIX_ga951a1344bfeebb8229621a7a152ac18a}{M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S0\+\_\+\+M6\+P\+R\+\_\+\+Msk}} \& ((value) $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S0\+\_\+\+M6\+P\+R\+\_\+\+Pos)))
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga062d462d7fc3ea5e2085e99708d59470}\label{group__SAMS70__MATRIX_ga062d462d7fc3ea5e2085e99708d59470}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+B\+S0\+\_\+\+M8\+P\+R\+\_\+\+Pos}~0
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga7c04e93a68e6785cb46d0f317b60c506}\label{group__SAMS70__MATRIX_ga7c04e93a68e6785cb46d0f317b60c506}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_ga7c04e93a68e6785cb46d0f317b60c506}{M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+B\+S0\+\_\+\+M8\+P\+R\+\_\+\+Msk}}~(0x3u $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+B\+S0\+\_\+\+M8\+P\+R\+\_\+\+Pos)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+B\+S0) Master 8 Priority \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga6441c03d3a3d2e99258793917138efb7}\label{group__SAMS70__MATRIX_ga6441c03d3a3d2e99258793917138efb7}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+B\+S0\+\_\+\+M8\+PR}(value)~((\mbox{\hyperlink{group__SAMS70__MATRIX_ga7c04e93a68e6785cb46d0f317b60c506}{M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+B\+S0\+\_\+\+M8\+P\+R\+\_\+\+Msk}} \& ((value) $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+B\+S0\+\_\+\+M8\+P\+R\+\_\+\+Pos)))
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_gabc94b7dccc1429f021d3a4660ec68be9}\label{group__SAMS70__MATRIX_gabc94b7dccc1429f021d3a4660ec68be9}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S1\+\_\+\+M0\+P\+R\+\_\+\+Pos}~0
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_gaf3a6b04d6d672964113b0711d80fad52}\label{group__SAMS70__MATRIX_gaf3a6b04d6d672964113b0711d80fad52}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_gaf3a6b04d6d672964113b0711d80fad52}{M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S1\+\_\+\+M0\+P\+R\+\_\+\+Msk}}~(0x3u $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S1\+\_\+\+M0\+P\+R\+\_\+\+Pos)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S1) Master 0 Priority \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga07aaf9d9a2b41cc2263963018a04bb15}\label{group__SAMS70__MATRIX_ga07aaf9d9a2b41cc2263963018a04bb15}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S1\+\_\+\+M0\+PR}(value)~((\mbox{\hyperlink{group__SAMS70__MATRIX_gaf3a6b04d6d672964113b0711d80fad52}{M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S1\+\_\+\+M0\+P\+R\+\_\+\+Msk}} \& ((value) $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S1\+\_\+\+M0\+P\+R\+\_\+\+Pos)))
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_gad1a154ecc32b18a04547292a1045419c}\label{group__SAMS70__MATRIX_gad1a154ecc32b18a04547292a1045419c}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S1\+\_\+\+M1\+P\+R\+\_\+\+Pos}~4
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga6222f97f512b86d65f59f29f0bd2ce11}\label{group__SAMS70__MATRIX_ga6222f97f512b86d65f59f29f0bd2ce11}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_ga6222f97f512b86d65f59f29f0bd2ce11}{M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S1\+\_\+\+M1\+P\+R\+\_\+\+Msk}}~(0x3u $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S1\+\_\+\+M1\+P\+R\+\_\+\+Pos)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S1) Master 1 Priority \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga6e82efb4b19db81ccb52a97cc71f257b}\label{group__SAMS70__MATRIX_ga6e82efb4b19db81ccb52a97cc71f257b}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S1\+\_\+\+M1\+PR}(value)~((\mbox{\hyperlink{group__SAMS70__MATRIX_ga6222f97f512b86d65f59f29f0bd2ce11}{M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S1\+\_\+\+M1\+P\+R\+\_\+\+Msk}} \& ((value) $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S1\+\_\+\+M1\+P\+R\+\_\+\+Pos)))
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga6fa46ae8d8ed0f1a372e0cc2ce5a6f94}\label{group__SAMS70__MATRIX_ga6fa46ae8d8ed0f1a372e0cc2ce5a6f94}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S1\+\_\+\+M2\+P\+R\+\_\+\+Pos}~8
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga8a0d5e60ce8abac03a9b2b1cb80378ea}\label{group__SAMS70__MATRIX_ga8a0d5e60ce8abac03a9b2b1cb80378ea}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_ga8a0d5e60ce8abac03a9b2b1cb80378ea}{M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S1\+\_\+\+M2\+P\+R\+\_\+\+Msk}}~(0x3u $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S1\+\_\+\+M2\+P\+R\+\_\+\+Pos)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S1) Master 2 Priority \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga5b07ab31b88d32425a72cd74f6fbf7d3}\label{group__SAMS70__MATRIX_ga5b07ab31b88d32425a72cd74f6fbf7d3}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S1\+\_\+\+M2\+PR}(value)~((\mbox{\hyperlink{group__SAMS70__MATRIX_ga8a0d5e60ce8abac03a9b2b1cb80378ea}{M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S1\+\_\+\+M2\+P\+R\+\_\+\+Msk}} \& ((value) $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S1\+\_\+\+M2\+P\+R\+\_\+\+Pos)))
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga7555e4ebd431eea56bb7997c5ca289af}\label{group__SAMS70__MATRIX_ga7555e4ebd431eea56bb7997c5ca289af}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S1\+\_\+\+M3\+P\+R\+\_\+\+Pos}~12
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga982581f1e82ee6858a6edf0cd2f95792}\label{group__SAMS70__MATRIX_ga982581f1e82ee6858a6edf0cd2f95792}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_ga982581f1e82ee6858a6edf0cd2f95792}{M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S1\+\_\+\+M3\+P\+R\+\_\+\+Msk}}~(0x3u $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S1\+\_\+\+M3\+P\+R\+\_\+\+Pos)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S1) Master 3 Priority \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga4be0fa7d58c5532993213f0c8dce724d}\label{group__SAMS70__MATRIX_ga4be0fa7d58c5532993213f0c8dce724d}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S1\+\_\+\+M3\+PR}(value)~((\mbox{\hyperlink{group__SAMS70__MATRIX_ga982581f1e82ee6858a6edf0cd2f95792}{M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S1\+\_\+\+M3\+P\+R\+\_\+\+Msk}} \& ((value) $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S1\+\_\+\+M3\+P\+R\+\_\+\+Pos)))
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga9a2e9c0503009abeb4653eac3fbb375c}\label{group__SAMS70__MATRIX_ga9a2e9c0503009abeb4653eac3fbb375c}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S1\+\_\+\+M4\+P\+R\+\_\+\+Pos}~16
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga0cf0f2945fc4296f4b31903d33b3bf9c}\label{group__SAMS70__MATRIX_ga0cf0f2945fc4296f4b31903d33b3bf9c}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_ga0cf0f2945fc4296f4b31903d33b3bf9c}{M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S1\+\_\+\+M4\+P\+R\+\_\+\+Msk}}~(0x3u $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S1\+\_\+\+M4\+P\+R\+\_\+\+Pos)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S1) Master 4 Priority \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_gaeaff56b4adebcfbb2badb4560ba83eaf}\label{group__SAMS70__MATRIX_gaeaff56b4adebcfbb2badb4560ba83eaf}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S1\+\_\+\+M4\+PR}(value)~((\mbox{\hyperlink{group__SAMS70__MATRIX_ga0cf0f2945fc4296f4b31903d33b3bf9c}{M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S1\+\_\+\+M4\+P\+R\+\_\+\+Msk}} \& ((value) $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S1\+\_\+\+M4\+P\+R\+\_\+\+Pos)))
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga81702cd9f434c5e05ade1c12b277dde8}\label{group__SAMS70__MATRIX_ga81702cd9f434c5e05ade1c12b277dde8}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S1\+\_\+\+M5\+P\+R\+\_\+\+Pos}~20
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga45d694817e9fa4f0866bf9ee468d3ffa}\label{group__SAMS70__MATRIX_ga45d694817e9fa4f0866bf9ee468d3ffa}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_ga45d694817e9fa4f0866bf9ee468d3ffa}{M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S1\+\_\+\+M5\+P\+R\+\_\+\+Msk}}~(0x3u $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S1\+\_\+\+M5\+P\+R\+\_\+\+Pos)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S1) Master 5 Priority \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_gab5c0860c3596b1e1922780799ff823e0}\label{group__SAMS70__MATRIX_gab5c0860c3596b1e1922780799ff823e0}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S1\+\_\+\+M5\+PR}(value)~((\mbox{\hyperlink{group__SAMS70__MATRIX_ga45d694817e9fa4f0866bf9ee468d3ffa}{M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S1\+\_\+\+M5\+P\+R\+\_\+\+Msk}} \& ((value) $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S1\+\_\+\+M5\+P\+R\+\_\+\+Pos)))
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga1f0007ed405f5f18b9524a5b45f48e39}\label{group__SAMS70__MATRIX_ga1f0007ed405f5f18b9524a5b45f48e39}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S1\+\_\+\+M6\+P\+R\+\_\+\+Pos}~24
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_gac9b0907700e6b1d855f93c7e6ca956f4}\label{group__SAMS70__MATRIX_gac9b0907700e6b1d855f93c7e6ca956f4}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_gac9b0907700e6b1d855f93c7e6ca956f4}{M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S1\+\_\+\+M6\+P\+R\+\_\+\+Msk}}~(0x3u $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S1\+\_\+\+M6\+P\+R\+\_\+\+Pos)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S1) Master 6 Priority \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga4214d73f0faa694e31e53f09b6446728}\label{group__SAMS70__MATRIX_ga4214d73f0faa694e31e53f09b6446728}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S1\+\_\+\+M6\+PR}(value)~((\mbox{\hyperlink{group__SAMS70__MATRIX_gac9b0907700e6b1d855f93c7e6ca956f4}{M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S1\+\_\+\+M6\+P\+R\+\_\+\+Msk}} \& ((value) $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S1\+\_\+\+M6\+P\+R\+\_\+\+Pos)))
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga9cf42cac91f93c29a9bdf819a9da44b5}\label{group__SAMS70__MATRIX_ga9cf42cac91f93c29a9bdf819a9da44b5}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+B\+S1\+\_\+\+M8\+P\+R\+\_\+\+Pos}~0
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga6da1e725d7847163b5b0a872ff44038c}\label{group__SAMS70__MATRIX_ga6da1e725d7847163b5b0a872ff44038c}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_ga6da1e725d7847163b5b0a872ff44038c}{M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+B\+S1\+\_\+\+M8\+P\+R\+\_\+\+Msk}}~(0x3u $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+B\+S1\+\_\+\+M8\+P\+R\+\_\+\+Pos)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+B\+S1) Master 8 Priority \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga1623a3cedcb17e46fcb8076fb197329b}\label{group__SAMS70__MATRIX_ga1623a3cedcb17e46fcb8076fb197329b}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+B\+S1\+\_\+\+M8\+PR}(value)~((\mbox{\hyperlink{group__SAMS70__MATRIX_ga6da1e725d7847163b5b0a872ff44038c}{M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+B\+S1\+\_\+\+M8\+P\+R\+\_\+\+Msk}} \& ((value) $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+B\+S1\+\_\+\+M8\+P\+R\+\_\+\+Pos)))
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_gad4e53d92c5d043ac8683980aa0764eb6}\label{group__SAMS70__MATRIX_gad4e53d92c5d043ac8683980aa0764eb6}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S2\+\_\+\+M0\+P\+R\+\_\+\+Pos}~0
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_gab37a54babfe3e96230910fde937fd33b}\label{group__SAMS70__MATRIX_gab37a54babfe3e96230910fde937fd33b}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_gab37a54babfe3e96230910fde937fd33b}{M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S2\+\_\+\+M0\+P\+R\+\_\+\+Msk}}~(0x3u $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S2\+\_\+\+M0\+P\+R\+\_\+\+Pos)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S2) Master 0 Priority \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga3fa607b9cd99a38ae8d030cfcb2c5921}\label{group__SAMS70__MATRIX_ga3fa607b9cd99a38ae8d030cfcb2c5921}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S2\+\_\+\+M0\+PR}(value)~((\mbox{\hyperlink{group__SAMS70__MATRIX_gab37a54babfe3e96230910fde937fd33b}{M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S2\+\_\+\+M0\+P\+R\+\_\+\+Msk}} \& ((value) $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S2\+\_\+\+M0\+P\+R\+\_\+\+Pos)))
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_gaeb0a2fd7695ab01822822d77f1d12fc9}\label{group__SAMS70__MATRIX_gaeb0a2fd7695ab01822822d77f1d12fc9}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S2\+\_\+\+M1\+P\+R\+\_\+\+Pos}~4
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga7766782b2c8c39a1d5f517be9b85f6e4}\label{group__SAMS70__MATRIX_ga7766782b2c8c39a1d5f517be9b85f6e4}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_ga7766782b2c8c39a1d5f517be9b85f6e4}{M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S2\+\_\+\+M1\+P\+R\+\_\+\+Msk}}~(0x3u $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S2\+\_\+\+M1\+P\+R\+\_\+\+Pos)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S2) Master 1 Priority \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga9fd6b354c1b984d7bf56d83ec3a3f7ac}\label{group__SAMS70__MATRIX_ga9fd6b354c1b984d7bf56d83ec3a3f7ac}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S2\+\_\+\+M1\+PR}(value)~((\mbox{\hyperlink{group__SAMS70__MATRIX_ga7766782b2c8c39a1d5f517be9b85f6e4}{M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S2\+\_\+\+M1\+P\+R\+\_\+\+Msk}} \& ((value) $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S2\+\_\+\+M1\+P\+R\+\_\+\+Pos)))
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga2a2f7f0b9536644db5e0f2e370e7754a}\label{group__SAMS70__MATRIX_ga2a2f7f0b9536644db5e0f2e370e7754a}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S2\+\_\+\+M2\+P\+R\+\_\+\+Pos}~8
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga4eeee5858e39bb33c8dff0426067618d}\label{group__SAMS70__MATRIX_ga4eeee5858e39bb33c8dff0426067618d}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_ga4eeee5858e39bb33c8dff0426067618d}{M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S2\+\_\+\+M2\+P\+R\+\_\+\+Msk}}~(0x3u $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S2\+\_\+\+M2\+P\+R\+\_\+\+Pos)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S2) Master 2 Priority \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga6160fabc8b7e264d0776fb64a5b5db8b}\label{group__SAMS70__MATRIX_ga6160fabc8b7e264d0776fb64a5b5db8b}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S2\+\_\+\+M2\+PR}(value)~((\mbox{\hyperlink{group__SAMS70__MATRIX_ga4eeee5858e39bb33c8dff0426067618d}{M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S2\+\_\+\+M2\+P\+R\+\_\+\+Msk}} \& ((value) $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S2\+\_\+\+M2\+P\+R\+\_\+\+Pos)))
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_gaf826815b210a39feb9589d9e96b12d81}\label{group__SAMS70__MATRIX_gaf826815b210a39feb9589d9e96b12d81}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S2\+\_\+\+M3\+P\+R\+\_\+\+Pos}~12
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga6f6e4e97cbb7a6b71179bf5d2d83ba8c}\label{group__SAMS70__MATRIX_ga6f6e4e97cbb7a6b71179bf5d2d83ba8c}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_ga6f6e4e97cbb7a6b71179bf5d2d83ba8c}{M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S2\+\_\+\+M3\+P\+R\+\_\+\+Msk}}~(0x3u $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S2\+\_\+\+M3\+P\+R\+\_\+\+Pos)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S2) Master 3 Priority \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga8958b76d89349a13014b77a2725758a3}\label{group__SAMS70__MATRIX_ga8958b76d89349a13014b77a2725758a3}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S2\+\_\+\+M3\+PR}(value)~((\mbox{\hyperlink{group__SAMS70__MATRIX_ga6f6e4e97cbb7a6b71179bf5d2d83ba8c}{M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S2\+\_\+\+M3\+P\+R\+\_\+\+Msk}} \& ((value) $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S2\+\_\+\+M3\+P\+R\+\_\+\+Pos)))
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga68ef8338fa358f273192070abd017937}\label{group__SAMS70__MATRIX_ga68ef8338fa358f273192070abd017937}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S2\+\_\+\+M4\+P\+R\+\_\+\+Pos}~16
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga596c6f9eb77ea9b53704f42bdcee8f4a}\label{group__SAMS70__MATRIX_ga596c6f9eb77ea9b53704f42bdcee8f4a}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_ga596c6f9eb77ea9b53704f42bdcee8f4a}{M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S2\+\_\+\+M4\+P\+R\+\_\+\+Msk}}~(0x3u $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S2\+\_\+\+M4\+P\+R\+\_\+\+Pos)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S2) Master 4 Priority \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga94ac84894408349dd1703a6325344c29}\label{group__SAMS70__MATRIX_ga94ac84894408349dd1703a6325344c29}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S2\+\_\+\+M4\+PR}(value)~((\mbox{\hyperlink{group__SAMS70__MATRIX_ga596c6f9eb77ea9b53704f42bdcee8f4a}{M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S2\+\_\+\+M4\+P\+R\+\_\+\+Msk}} \& ((value) $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S2\+\_\+\+M4\+P\+R\+\_\+\+Pos)))
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_gad70e5bf4a1bc3c6fcb6de0f11ceb5df6}\label{group__SAMS70__MATRIX_gad70e5bf4a1bc3c6fcb6de0f11ceb5df6}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S2\+\_\+\+M5\+P\+R\+\_\+\+Pos}~20
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga21f30904ca7ff054a96a3eee0315c5fe}\label{group__SAMS70__MATRIX_ga21f30904ca7ff054a96a3eee0315c5fe}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_ga21f30904ca7ff054a96a3eee0315c5fe}{M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S2\+\_\+\+M5\+P\+R\+\_\+\+Msk}}~(0x3u $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S2\+\_\+\+M5\+P\+R\+\_\+\+Pos)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S2) Master 5 Priority \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_gabdab873cbd674ded7ad1f778cbf97f57}\label{group__SAMS70__MATRIX_gabdab873cbd674ded7ad1f778cbf97f57}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S2\+\_\+\+M5\+PR}(value)~((\mbox{\hyperlink{group__SAMS70__MATRIX_ga21f30904ca7ff054a96a3eee0315c5fe}{M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S2\+\_\+\+M5\+P\+R\+\_\+\+Msk}} \& ((value) $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S2\+\_\+\+M5\+P\+R\+\_\+\+Pos)))
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_gaacbb2554b570d7cded8a93858f155b91}\label{group__SAMS70__MATRIX_gaacbb2554b570d7cded8a93858f155b91}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S2\+\_\+\+M6\+P\+R\+\_\+\+Pos}~24
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_gab607063d4ab31d88c911e0e03f0cf2fe}\label{group__SAMS70__MATRIX_gab607063d4ab31d88c911e0e03f0cf2fe}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_gab607063d4ab31d88c911e0e03f0cf2fe}{M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S2\+\_\+\+M6\+P\+R\+\_\+\+Msk}}~(0x3u $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S2\+\_\+\+M6\+P\+R\+\_\+\+Pos)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S2) Master 6 Priority \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga93fa2b6d01171fd0e67cfbff424bb7a7}\label{group__SAMS70__MATRIX_ga93fa2b6d01171fd0e67cfbff424bb7a7}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S2\+\_\+\+M6\+PR}(value)~((\mbox{\hyperlink{group__SAMS70__MATRIX_gab607063d4ab31d88c911e0e03f0cf2fe}{M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S2\+\_\+\+M6\+P\+R\+\_\+\+Msk}} \& ((value) $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S2\+\_\+\+M6\+P\+R\+\_\+\+Pos)))
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga13003ff18613f19d635cfa5e97bfb807}\label{group__SAMS70__MATRIX_ga13003ff18613f19d635cfa5e97bfb807}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+B\+S2\+\_\+\+M8\+P\+R\+\_\+\+Pos}~0
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga85f3c3f48279f919d3fcc1e0886e27c4}\label{group__SAMS70__MATRIX_ga85f3c3f48279f919d3fcc1e0886e27c4}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_ga85f3c3f48279f919d3fcc1e0886e27c4}{M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+B\+S2\+\_\+\+M8\+P\+R\+\_\+\+Msk}}~(0x3u $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+B\+S2\+\_\+\+M8\+P\+R\+\_\+\+Pos)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+B\+S2) Master 8 Priority \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga6b0d527a19f45be6cada6096324fa316}\label{group__SAMS70__MATRIX_ga6b0d527a19f45be6cada6096324fa316}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+B\+S2\+\_\+\+M8\+PR}(value)~((\mbox{\hyperlink{group__SAMS70__MATRIX_ga85f3c3f48279f919d3fcc1e0886e27c4}{M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+B\+S2\+\_\+\+M8\+P\+R\+\_\+\+Msk}} \& ((value) $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+B\+S2\+\_\+\+M8\+P\+R\+\_\+\+Pos)))
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga101da511545739d98143b1d96e640add}\label{group__SAMS70__MATRIX_ga101da511545739d98143b1d96e640add}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S3\+\_\+\+M0\+P\+R\+\_\+\+Pos}~0
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_gaf0a95000d46277a8b7250abc04885b5e}\label{group__SAMS70__MATRIX_gaf0a95000d46277a8b7250abc04885b5e}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_gaf0a95000d46277a8b7250abc04885b5e}{M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S3\+\_\+\+M0\+P\+R\+\_\+\+Msk}}~(0x3u $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S3\+\_\+\+M0\+P\+R\+\_\+\+Pos)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S3) Master 0 Priority \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga332f00ebe1842547b780e4e0d0bb87ee}\label{group__SAMS70__MATRIX_ga332f00ebe1842547b780e4e0d0bb87ee}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S3\+\_\+\+M0\+PR}(value)~((\mbox{\hyperlink{group__SAMS70__MATRIX_gaf0a95000d46277a8b7250abc04885b5e}{M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S3\+\_\+\+M0\+P\+R\+\_\+\+Msk}} \& ((value) $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S3\+\_\+\+M0\+P\+R\+\_\+\+Pos)))
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga55586b966eac8d536628825dd06ba171}\label{group__SAMS70__MATRIX_ga55586b966eac8d536628825dd06ba171}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S3\+\_\+\+M1\+P\+R\+\_\+\+Pos}~4
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga2029ad5f97d3c98662c5b185a131db37}\label{group__SAMS70__MATRIX_ga2029ad5f97d3c98662c5b185a131db37}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_ga2029ad5f97d3c98662c5b185a131db37}{M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S3\+\_\+\+M1\+P\+R\+\_\+\+Msk}}~(0x3u $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S3\+\_\+\+M1\+P\+R\+\_\+\+Pos)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S3) Master 1 Priority \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_gaacd8a76e0ff34207207bfd65ed1f6ccb}\label{group__SAMS70__MATRIX_gaacd8a76e0ff34207207bfd65ed1f6ccb}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S3\+\_\+\+M1\+PR}(value)~((\mbox{\hyperlink{group__SAMS70__MATRIX_ga2029ad5f97d3c98662c5b185a131db37}{M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S3\+\_\+\+M1\+P\+R\+\_\+\+Msk}} \& ((value) $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S3\+\_\+\+M1\+P\+R\+\_\+\+Pos)))
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_gae261a090eea662a8407a92ad514a3067}\label{group__SAMS70__MATRIX_gae261a090eea662a8407a92ad514a3067}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S3\+\_\+\+M2\+P\+R\+\_\+\+Pos}~8
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga42f9c8324d4d491734bc3196d746d739}\label{group__SAMS70__MATRIX_ga42f9c8324d4d491734bc3196d746d739}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_ga42f9c8324d4d491734bc3196d746d739}{M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S3\+\_\+\+M2\+P\+R\+\_\+\+Msk}}~(0x3u $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S3\+\_\+\+M2\+P\+R\+\_\+\+Pos)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S3) Master 2 Priority \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga7fe5c0c79e99f3fb71b331f63dba52f9}\label{group__SAMS70__MATRIX_ga7fe5c0c79e99f3fb71b331f63dba52f9}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S3\+\_\+\+M2\+PR}(value)~((\mbox{\hyperlink{group__SAMS70__MATRIX_ga42f9c8324d4d491734bc3196d746d739}{M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S3\+\_\+\+M2\+P\+R\+\_\+\+Msk}} \& ((value) $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S3\+\_\+\+M2\+P\+R\+\_\+\+Pos)))
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga84e1f95a5d20b3654f2f8628461b3170}\label{group__SAMS70__MATRIX_ga84e1f95a5d20b3654f2f8628461b3170}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S3\+\_\+\+M3\+P\+R\+\_\+\+Pos}~12
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga5d00b0fea57f81cc012e565327e86665}\label{group__SAMS70__MATRIX_ga5d00b0fea57f81cc012e565327e86665}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_ga5d00b0fea57f81cc012e565327e86665}{M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S3\+\_\+\+M3\+P\+R\+\_\+\+Msk}}~(0x3u $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S3\+\_\+\+M3\+P\+R\+\_\+\+Pos)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S3) Master 3 Priority \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga07dfee640ff0a8aa163f1d24e2f57e44}\label{group__SAMS70__MATRIX_ga07dfee640ff0a8aa163f1d24e2f57e44}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S3\+\_\+\+M3\+PR}(value)~((\mbox{\hyperlink{group__SAMS70__MATRIX_ga5d00b0fea57f81cc012e565327e86665}{M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S3\+\_\+\+M3\+P\+R\+\_\+\+Msk}} \& ((value) $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S3\+\_\+\+M3\+P\+R\+\_\+\+Pos)))
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga5b85f5531bfa2d787616e20a9fd0892d}\label{group__SAMS70__MATRIX_ga5b85f5531bfa2d787616e20a9fd0892d}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S3\+\_\+\+M4\+P\+R\+\_\+\+Pos}~16
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_gab57646687f5f5709f6d6e97604bd69c3}\label{group__SAMS70__MATRIX_gab57646687f5f5709f6d6e97604bd69c3}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_gab57646687f5f5709f6d6e97604bd69c3}{M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S3\+\_\+\+M4\+P\+R\+\_\+\+Msk}}~(0x3u $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S3\+\_\+\+M4\+P\+R\+\_\+\+Pos)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S3) Master 4 Priority \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga97d7ac232c9ddf39970bdab6b82b1d51}\label{group__SAMS70__MATRIX_ga97d7ac232c9ddf39970bdab6b82b1d51}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S3\+\_\+\+M4\+PR}(value)~((\mbox{\hyperlink{group__SAMS70__MATRIX_gab57646687f5f5709f6d6e97604bd69c3}{M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S3\+\_\+\+M4\+P\+R\+\_\+\+Msk}} \& ((value) $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S3\+\_\+\+M4\+P\+R\+\_\+\+Pos)))
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga5f74f49a2898e6e5954ce67d54d86a23}\label{group__SAMS70__MATRIX_ga5f74f49a2898e6e5954ce67d54d86a23}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S3\+\_\+\+M5\+P\+R\+\_\+\+Pos}~20
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga0c9299fd633bd2c74b88f4a89e196bfd}\label{group__SAMS70__MATRIX_ga0c9299fd633bd2c74b88f4a89e196bfd}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_ga0c9299fd633bd2c74b88f4a89e196bfd}{M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S3\+\_\+\+M5\+P\+R\+\_\+\+Msk}}~(0x3u $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S3\+\_\+\+M5\+P\+R\+\_\+\+Pos)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S3) Master 5 Priority \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga830c7fac28f1f36348bbc75fb668b38d}\label{group__SAMS70__MATRIX_ga830c7fac28f1f36348bbc75fb668b38d}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S3\+\_\+\+M5\+PR}(value)~((\mbox{\hyperlink{group__SAMS70__MATRIX_ga0c9299fd633bd2c74b88f4a89e196bfd}{M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S3\+\_\+\+M5\+P\+R\+\_\+\+Msk}} \& ((value) $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S3\+\_\+\+M5\+P\+R\+\_\+\+Pos)))
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_gaa5eb27cf26dc128a1c4869553a3be84c}\label{group__SAMS70__MATRIX_gaa5eb27cf26dc128a1c4869553a3be84c}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S3\+\_\+\+M6\+P\+R\+\_\+\+Pos}~24
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga6739021e6b0db66d99bb83a9b464f187}\label{group__SAMS70__MATRIX_ga6739021e6b0db66d99bb83a9b464f187}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_ga6739021e6b0db66d99bb83a9b464f187}{M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S3\+\_\+\+M6\+P\+R\+\_\+\+Msk}}~(0x3u $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S3\+\_\+\+M6\+P\+R\+\_\+\+Pos)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S3) Master 6 Priority \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga6067ab109524d923340cd690a709afa8}\label{group__SAMS70__MATRIX_ga6067ab109524d923340cd690a709afa8}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S3\+\_\+\+M6\+PR}(value)~((\mbox{\hyperlink{group__SAMS70__MATRIX_ga6739021e6b0db66d99bb83a9b464f187}{M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S3\+\_\+\+M6\+P\+R\+\_\+\+Msk}} \& ((value) $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S3\+\_\+\+M6\+P\+R\+\_\+\+Pos)))
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga15fbf64b62daeac281a6c2f759883cb4}\label{group__SAMS70__MATRIX_ga15fbf64b62daeac281a6c2f759883cb4}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+B\+S3\+\_\+\+M8\+P\+R\+\_\+\+Pos}~0
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga8b1bede9524f866305e0a9caab4437ec}\label{group__SAMS70__MATRIX_ga8b1bede9524f866305e0a9caab4437ec}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_ga8b1bede9524f866305e0a9caab4437ec}{M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+B\+S3\+\_\+\+M8\+P\+R\+\_\+\+Msk}}~(0x3u $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+B\+S3\+\_\+\+M8\+P\+R\+\_\+\+Pos)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+B\+S3) Master 8 Priority \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_gaa8e6c7c23bd07940c23b1070a2d99226}\label{group__SAMS70__MATRIX_gaa8e6c7c23bd07940c23b1070a2d99226}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+B\+S3\+\_\+\+M8\+PR}(value)~((\mbox{\hyperlink{group__SAMS70__MATRIX_ga8b1bede9524f866305e0a9caab4437ec}{M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+B\+S3\+\_\+\+M8\+P\+R\+\_\+\+Msk}} \& ((value) $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+B\+S3\+\_\+\+M8\+P\+R\+\_\+\+Pos)))
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga2ab0617dc98f080aa7bc1fbc1f41d522}\label{group__SAMS70__MATRIX_ga2ab0617dc98f080aa7bc1fbc1f41d522}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S4\+\_\+\+M0\+P\+R\+\_\+\+Pos}~0
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga4409c15718b237a68739af7f6e0b09ad}\label{group__SAMS70__MATRIX_ga4409c15718b237a68739af7f6e0b09ad}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_ga4409c15718b237a68739af7f6e0b09ad}{M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S4\+\_\+\+M0\+P\+R\+\_\+\+Msk}}~(0x3u $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S4\+\_\+\+M0\+P\+R\+\_\+\+Pos)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S4) Master 0 Priority \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga91d12b60a475a8c2ea1f45678f00ce8b}\label{group__SAMS70__MATRIX_ga91d12b60a475a8c2ea1f45678f00ce8b}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S4\+\_\+\+M0\+PR}(value)~((\mbox{\hyperlink{group__SAMS70__MATRIX_ga4409c15718b237a68739af7f6e0b09ad}{M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S4\+\_\+\+M0\+P\+R\+\_\+\+Msk}} \& ((value) $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S4\+\_\+\+M0\+P\+R\+\_\+\+Pos)))
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_gaeb08703c3d66b50dfde53dca1619e487}\label{group__SAMS70__MATRIX_gaeb08703c3d66b50dfde53dca1619e487}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S4\+\_\+\+M1\+P\+R\+\_\+\+Pos}~4
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga8a91e6b699f7e9f926098c2e23f06185}\label{group__SAMS70__MATRIX_ga8a91e6b699f7e9f926098c2e23f06185}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_ga8a91e6b699f7e9f926098c2e23f06185}{M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S4\+\_\+\+M1\+P\+R\+\_\+\+Msk}}~(0x3u $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S4\+\_\+\+M1\+P\+R\+\_\+\+Pos)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S4) Master 1 Priority \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga626ccc097820ce8e606f7714f7045f27}\label{group__SAMS70__MATRIX_ga626ccc097820ce8e606f7714f7045f27}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S4\+\_\+\+M1\+PR}(value)~((\mbox{\hyperlink{group__SAMS70__MATRIX_ga8a91e6b699f7e9f926098c2e23f06185}{M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S4\+\_\+\+M1\+P\+R\+\_\+\+Msk}} \& ((value) $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S4\+\_\+\+M1\+P\+R\+\_\+\+Pos)))
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga24eba5cfda1ea8c89953290bf8548009}\label{group__SAMS70__MATRIX_ga24eba5cfda1ea8c89953290bf8548009}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S4\+\_\+\+M2\+P\+R\+\_\+\+Pos}~8
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga97c36f52e916451a7b83f8a9641934cb}\label{group__SAMS70__MATRIX_ga97c36f52e916451a7b83f8a9641934cb}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_ga97c36f52e916451a7b83f8a9641934cb}{M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S4\+\_\+\+M2\+P\+R\+\_\+\+Msk}}~(0x3u $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S4\+\_\+\+M2\+P\+R\+\_\+\+Pos)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S4) Master 2 Priority \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga242758dbd6a75b3e1d1c31223be039fa}\label{group__SAMS70__MATRIX_ga242758dbd6a75b3e1d1c31223be039fa}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S4\+\_\+\+M2\+PR}(value)~((\mbox{\hyperlink{group__SAMS70__MATRIX_ga97c36f52e916451a7b83f8a9641934cb}{M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S4\+\_\+\+M2\+P\+R\+\_\+\+Msk}} \& ((value) $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S4\+\_\+\+M2\+P\+R\+\_\+\+Pos)))
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_gaa517d44ebbd5374548385611da5862cb}\label{group__SAMS70__MATRIX_gaa517d44ebbd5374548385611da5862cb}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S4\+\_\+\+M3\+P\+R\+\_\+\+Pos}~12
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga89569f4b550d75486f00c929e8e6f14b}\label{group__SAMS70__MATRIX_ga89569f4b550d75486f00c929e8e6f14b}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_ga89569f4b550d75486f00c929e8e6f14b}{M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S4\+\_\+\+M3\+P\+R\+\_\+\+Msk}}~(0x3u $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S4\+\_\+\+M3\+P\+R\+\_\+\+Pos)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S4) Master 3 Priority \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga9b9771219648985d0281a799c5bd1ab9}\label{group__SAMS70__MATRIX_ga9b9771219648985d0281a799c5bd1ab9}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S4\+\_\+\+M3\+PR}(value)~((\mbox{\hyperlink{group__SAMS70__MATRIX_ga89569f4b550d75486f00c929e8e6f14b}{M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S4\+\_\+\+M3\+P\+R\+\_\+\+Msk}} \& ((value) $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S4\+\_\+\+M3\+P\+R\+\_\+\+Pos)))
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_gab6ac4866a31507162df4357ff9e61db5}\label{group__SAMS70__MATRIX_gab6ac4866a31507162df4357ff9e61db5}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S4\+\_\+\+M4\+P\+R\+\_\+\+Pos}~16
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_gac46bc7453cd949e14705b9a7cf2bc3fd}\label{group__SAMS70__MATRIX_gac46bc7453cd949e14705b9a7cf2bc3fd}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_gac46bc7453cd949e14705b9a7cf2bc3fd}{M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S4\+\_\+\+M4\+P\+R\+\_\+\+Msk}}~(0x3u $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S4\+\_\+\+M4\+P\+R\+\_\+\+Pos)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S4) Master 4 Priority \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga94154b2e56ef0764d26e17f90eb0c07e}\label{group__SAMS70__MATRIX_ga94154b2e56ef0764d26e17f90eb0c07e}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S4\+\_\+\+M4\+PR}(value)~((\mbox{\hyperlink{group__SAMS70__MATRIX_gac46bc7453cd949e14705b9a7cf2bc3fd}{M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S4\+\_\+\+M4\+P\+R\+\_\+\+Msk}} \& ((value) $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S4\+\_\+\+M4\+P\+R\+\_\+\+Pos)))
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga11363ad37cb717887c424c2e001dfa95}\label{group__SAMS70__MATRIX_ga11363ad37cb717887c424c2e001dfa95}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S4\+\_\+\+M5\+P\+R\+\_\+\+Pos}~20
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_gacaab71c48609bb8676d02e6fb0c015f4}\label{group__SAMS70__MATRIX_gacaab71c48609bb8676d02e6fb0c015f4}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_gacaab71c48609bb8676d02e6fb0c015f4}{M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S4\+\_\+\+M5\+P\+R\+\_\+\+Msk}}~(0x3u $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S4\+\_\+\+M5\+P\+R\+\_\+\+Pos)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S4) Master 5 Priority \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga199af84509ae3747029baaf2caf66aa0}\label{group__SAMS70__MATRIX_ga199af84509ae3747029baaf2caf66aa0}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S4\+\_\+\+M5\+PR}(value)~((\mbox{\hyperlink{group__SAMS70__MATRIX_gacaab71c48609bb8676d02e6fb0c015f4}{M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S4\+\_\+\+M5\+P\+R\+\_\+\+Msk}} \& ((value) $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S4\+\_\+\+M5\+P\+R\+\_\+\+Pos)))
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_gae9939d1fee9ceb1621ded429e98583a7}\label{group__SAMS70__MATRIX_gae9939d1fee9ceb1621ded429e98583a7}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S4\+\_\+\+M6\+P\+R\+\_\+\+Pos}~24
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga10dd19eb6095c9c8bcc29a0d68abf427}\label{group__SAMS70__MATRIX_ga10dd19eb6095c9c8bcc29a0d68abf427}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_ga10dd19eb6095c9c8bcc29a0d68abf427}{M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S4\+\_\+\+M6\+P\+R\+\_\+\+Msk}}~(0x3u $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S4\+\_\+\+M6\+P\+R\+\_\+\+Pos)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S4) Master 6 Priority \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_gaa186bce9c9d861bcaefba4d8c96c31be}\label{group__SAMS70__MATRIX_gaa186bce9c9d861bcaefba4d8c96c31be}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S4\+\_\+\+M6\+PR}(value)~((\mbox{\hyperlink{group__SAMS70__MATRIX_ga10dd19eb6095c9c8bcc29a0d68abf427}{M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S4\+\_\+\+M6\+P\+R\+\_\+\+Msk}} \& ((value) $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S4\+\_\+\+M6\+P\+R\+\_\+\+Pos)))
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga9861f3a87e6263d35dd21104b3a3b43a}\label{group__SAMS70__MATRIX_ga9861f3a87e6263d35dd21104b3a3b43a}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+B\+S4\+\_\+\+M8\+P\+R\+\_\+\+Pos}~0
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_gaf2b3870d9e0636169358e170267daf2a}\label{group__SAMS70__MATRIX_gaf2b3870d9e0636169358e170267daf2a}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_gaf2b3870d9e0636169358e170267daf2a}{M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+B\+S4\+\_\+\+M8\+P\+R\+\_\+\+Msk}}~(0x3u $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+B\+S4\+\_\+\+M8\+P\+R\+\_\+\+Pos)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+B\+S4) Master 8 Priority \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_gacf09a8988717e51b95db0882640227ec}\label{group__SAMS70__MATRIX_gacf09a8988717e51b95db0882640227ec}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+B\+S4\+\_\+\+M8\+PR}(value)~((\mbox{\hyperlink{group__SAMS70__MATRIX_gaf2b3870d9e0636169358e170267daf2a}{M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+B\+S4\+\_\+\+M8\+P\+R\+\_\+\+Msk}} \& ((value) $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+B\+S4\+\_\+\+M8\+P\+R\+\_\+\+Pos)))
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga79238a5af8d98b0e7bc9626c479e0273}\label{group__SAMS70__MATRIX_ga79238a5af8d98b0e7bc9626c479e0273}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S5\+\_\+\+M0\+P\+R\+\_\+\+Pos}~0
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga463ea85baca733eac7ae3755f4639925}\label{group__SAMS70__MATRIX_ga463ea85baca733eac7ae3755f4639925}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_ga463ea85baca733eac7ae3755f4639925}{M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S5\+\_\+\+M0\+P\+R\+\_\+\+Msk}}~(0x3u $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S5\+\_\+\+M0\+P\+R\+\_\+\+Pos)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S5) Master 0 Priority \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_gaa800af887668fe46fdad58761b077d59}\label{group__SAMS70__MATRIX_gaa800af887668fe46fdad58761b077d59}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S5\+\_\+\+M0\+PR}(value)~((\mbox{\hyperlink{group__SAMS70__MATRIX_ga463ea85baca733eac7ae3755f4639925}{M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S5\+\_\+\+M0\+P\+R\+\_\+\+Msk}} \& ((value) $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S5\+\_\+\+M0\+P\+R\+\_\+\+Pos)))
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga029556607bd0924a1c76757be3ac8602}\label{group__SAMS70__MATRIX_ga029556607bd0924a1c76757be3ac8602}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S5\+\_\+\+M1\+P\+R\+\_\+\+Pos}~4
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga8a8200c404e0565e2db52f9bec72fdc5}\label{group__SAMS70__MATRIX_ga8a8200c404e0565e2db52f9bec72fdc5}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_ga8a8200c404e0565e2db52f9bec72fdc5}{M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S5\+\_\+\+M1\+P\+R\+\_\+\+Msk}}~(0x3u $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S5\+\_\+\+M1\+P\+R\+\_\+\+Pos)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S5) Master 1 Priority \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_gaa5cecdb8d2556266530810f77354ec3b}\label{group__SAMS70__MATRIX_gaa5cecdb8d2556266530810f77354ec3b}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S5\+\_\+\+M1\+PR}(value)~((\mbox{\hyperlink{group__SAMS70__MATRIX_ga8a8200c404e0565e2db52f9bec72fdc5}{M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S5\+\_\+\+M1\+P\+R\+\_\+\+Msk}} \& ((value) $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S5\+\_\+\+M1\+P\+R\+\_\+\+Pos)))
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga6bb7afcb58230da661cc7850c4019add}\label{group__SAMS70__MATRIX_ga6bb7afcb58230da661cc7850c4019add}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S5\+\_\+\+M2\+P\+R\+\_\+\+Pos}~8
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga4212dcb73ebf91a2bd357e015aa6283d}\label{group__SAMS70__MATRIX_ga4212dcb73ebf91a2bd357e015aa6283d}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_ga4212dcb73ebf91a2bd357e015aa6283d}{M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S5\+\_\+\+M2\+P\+R\+\_\+\+Msk}}~(0x3u $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S5\+\_\+\+M2\+P\+R\+\_\+\+Pos)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S5) Master 2 Priority \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga1d4a2fd796d105689af2de157e5fac6a}\label{group__SAMS70__MATRIX_ga1d4a2fd796d105689af2de157e5fac6a}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S5\+\_\+\+M2\+PR}(value)~((\mbox{\hyperlink{group__SAMS70__MATRIX_ga4212dcb73ebf91a2bd357e015aa6283d}{M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S5\+\_\+\+M2\+P\+R\+\_\+\+Msk}} \& ((value) $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S5\+\_\+\+M2\+P\+R\+\_\+\+Pos)))
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_gad00544cb6568138aa40d6d8112b47e5a}\label{group__SAMS70__MATRIX_gad00544cb6568138aa40d6d8112b47e5a}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S5\+\_\+\+M3\+P\+R\+\_\+\+Pos}~12
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga2b513666afa82e1d4c86240081238c60}\label{group__SAMS70__MATRIX_ga2b513666afa82e1d4c86240081238c60}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_ga2b513666afa82e1d4c86240081238c60}{M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S5\+\_\+\+M3\+P\+R\+\_\+\+Msk}}~(0x3u $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S5\+\_\+\+M3\+P\+R\+\_\+\+Pos)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S5) Master 3 Priority \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga7956985143556611e71d2b7d2b9d136f}\label{group__SAMS70__MATRIX_ga7956985143556611e71d2b7d2b9d136f}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S5\+\_\+\+M3\+PR}(value)~((\mbox{\hyperlink{group__SAMS70__MATRIX_ga2b513666afa82e1d4c86240081238c60}{M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S5\+\_\+\+M3\+P\+R\+\_\+\+Msk}} \& ((value) $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S5\+\_\+\+M3\+P\+R\+\_\+\+Pos)))
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga97a0398184af253c02a46957c5e2442c}\label{group__SAMS70__MATRIX_ga97a0398184af253c02a46957c5e2442c}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S5\+\_\+\+M4\+P\+R\+\_\+\+Pos}~16
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga5112b161712b762a1adabb1f90697b99}\label{group__SAMS70__MATRIX_ga5112b161712b762a1adabb1f90697b99}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_ga5112b161712b762a1adabb1f90697b99}{M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S5\+\_\+\+M4\+P\+R\+\_\+\+Msk}}~(0x3u $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S5\+\_\+\+M4\+P\+R\+\_\+\+Pos)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S5) Master 4 Priority \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga930158e52fc00160c0f7e28ff1cf25a1}\label{group__SAMS70__MATRIX_ga930158e52fc00160c0f7e28ff1cf25a1}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S5\+\_\+\+M4\+PR}(value)~((\mbox{\hyperlink{group__SAMS70__MATRIX_ga5112b161712b762a1adabb1f90697b99}{M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S5\+\_\+\+M4\+P\+R\+\_\+\+Msk}} \& ((value) $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S5\+\_\+\+M4\+P\+R\+\_\+\+Pos)))
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_gacb58939471aae66ea7cbf7713e9e2019}\label{group__SAMS70__MATRIX_gacb58939471aae66ea7cbf7713e9e2019}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S5\+\_\+\+M5\+P\+R\+\_\+\+Pos}~20
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_gafc9c590ca7b7b613effc1fa24511c519}\label{group__SAMS70__MATRIX_gafc9c590ca7b7b613effc1fa24511c519}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_gafc9c590ca7b7b613effc1fa24511c519}{M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S5\+\_\+\+M5\+P\+R\+\_\+\+Msk}}~(0x3u $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S5\+\_\+\+M5\+P\+R\+\_\+\+Pos)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S5) Master 5 Priority \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_gaec8a1a12c6d9fa3c1d0c208f47719c79}\label{group__SAMS70__MATRIX_gaec8a1a12c6d9fa3c1d0c208f47719c79}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S5\+\_\+\+M5\+PR}(value)~((\mbox{\hyperlink{group__SAMS70__MATRIX_gafc9c590ca7b7b613effc1fa24511c519}{M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S5\+\_\+\+M5\+P\+R\+\_\+\+Msk}} \& ((value) $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S5\+\_\+\+M5\+P\+R\+\_\+\+Pos)))
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga42eb7e9969c10a463ed98603eecaef12}\label{group__SAMS70__MATRIX_ga42eb7e9969c10a463ed98603eecaef12}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S5\+\_\+\+M6\+P\+R\+\_\+\+Pos}~24
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga18910620fdd565fbfda88e3e56ab3ea0}\label{group__SAMS70__MATRIX_ga18910620fdd565fbfda88e3e56ab3ea0}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_ga18910620fdd565fbfda88e3e56ab3ea0}{M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S5\+\_\+\+M6\+P\+R\+\_\+\+Msk}}~(0x3u $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S5\+\_\+\+M6\+P\+R\+\_\+\+Pos)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S5) Master 6 Priority \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga3a9933f2c17e4684cb0b9bfa2fd92852}\label{group__SAMS70__MATRIX_ga3a9933f2c17e4684cb0b9bfa2fd92852}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S5\+\_\+\+M6\+PR}(value)~((\mbox{\hyperlink{group__SAMS70__MATRIX_ga18910620fdd565fbfda88e3e56ab3ea0}{M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S5\+\_\+\+M6\+P\+R\+\_\+\+Msk}} \& ((value) $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S5\+\_\+\+M6\+P\+R\+\_\+\+Pos)))
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga74f109b2bfc7ceb6ce105f15c3a1de12}\label{group__SAMS70__MATRIX_ga74f109b2bfc7ceb6ce105f15c3a1de12}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+B\+S5\+\_\+\+M8\+P\+R\+\_\+\+Pos}~0
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_gaf5421a8bbfa494423c0a9dcfded1c226}\label{group__SAMS70__MATRIX_gaf5421a8bbfa494423c0a9dcfded1c226}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_gaf5421a8bbfa494423c0a9dcfded1c226}{M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+B\+S5\+\_\+\+M8\+P\+R\+\_\+\+Msk}}~(0x3u $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+B\+S5\+\_\+\+M8\+P\+R\+\_\+\+Pos)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+B\+S5) Master 8 Priority \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_gac5f1c8e63072881fc0f1a42a5cb90e5d}\label{group__SAMS70__MATRIX_gac5f1c8e63072881fc0f1a42a5cb90e5d}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+B\+S5\+\_\+\+M8\+PR}(value)~((\mbox{\hyperlink{group__SAMS70__MATRIX_gaf5421a8bbfa494423c0a9dcfded1c226}{M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+B\+S5\+\_\+\+M8\+P\+R\+\_\+\+Msk}} \& ((value) $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+B\+S5\+\_\+\+M8\+P\+R\+\_\+\+Pos)))
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga94214bab335bcbd74803602abb5e1cd5}\label{group__SAMS70__MATRIX_ga94214bab335bcbd74803602abb5e1cd5}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S6\+\_\+\+M0\+P\+R\+\_\+\+Pos}~0
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga09190b0bdd322636b85a7385fd21af34}\label{group__SAMS70__MATRIX_ga09190b0bdd322636b85a7385fd21af34}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_ga09190b0bdd322636b85a7385fd21af34}{M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S6\+\_\+\+M0\+P\+R\+\_\+\+Msk}}~(0x3u $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S6\+\_\+\+M0\+P\+R\+\_\+\+Pos)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S6) Master 0 Priority \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_gaa7a410eab93626f95f565352bd2712be}\label{group__SAMS70__MATRIX_gaa7a410eab93626f95f565352bd2712be}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S6\+\_\+\+M0\+PR}(value)~((\mbox{\hyperlink{group__SAMS70__MATRIX_ga09190b0bdd322636b85a7385fd21af34}{M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S6\+\_\+\+M0\+P\+R\+\_\+\+Msk}} \& ((value) $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S6\+\_\+\+M0\+P\+R\+\_\+\+Pos)))
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_gadd5abc22a211c0a82ea9429deb455cc5}\label{group__SAMS70__MATRIX_gadd5abc22a211c0a82ea9429deb455cc5}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S6\+\_\+\+M1\+P\+R\+\_\+\+Pos}~4
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga3735653182327580600220a3a2c0fa24}\label{group__SAMS70__MATRIX_ga3735653182327580600220a3a2c0fa24}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_ga3735653182327580600220a3a2c0fa24}{M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S6\+\_\+\+M1\+P\+R\+\_\+\+Msk}}~(0x3u $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S6\+\_\+\+M1\+P\+R\+\_\+\+Pos)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S6) Master 1 Priority \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga9c0ee2b9754c752b818c59dbaee55e50}\label{group__SAMS70__MATRIX_ga9c0ee2b9754c752b818c59dbaee55e50}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S6\+\_\+\+M1\+PR}(value)~((\mbox{\hyperlink{group__SAMS70__MATRIX_ga3735653182327580600220a3a2c0fa24}{M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S6\+\_\+\+M1\+P\+R\+\_\+\+Msk}} \& ((value) $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S6\+\_\+\+M1\+P\+R\+\_\+\+Pos)))
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_gada99367e2d5d7f367e20c7384bc150ae}\label{group__SAMS70__MATRIX_gada99367e2d5d7f367e20c7384bc150ae}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S6\+\_\+\+M2\+P\+R\+\_\+\+Pos}~8
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_gafa180d1f9ac7c7d56a4733cd30220367}\label{group__SAMS70__MATRIX_gafa180d1f9ac7c7d56a4733cd30220367}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_gafa180d1f9ac7c7d56a4733cd30220367}{M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S6\+\_\+\+M2\+P\+R\+\_\+\+Msk}}~(0x3u $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S6\+\_\+\+M2\+P\+R\+\_\+\+Pos)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S6) Master 2 Priority \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga4fc4840cb3be49f472e9b2d96895249a}\label{group__SAMS70__MATRIX_ga4fc4840cb3be49f472e9b2d96895249a}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S6\+\_\+\+M2\+PR}(value)~((\mbox{\hyperlink{group__SAMS70__MATRIX_gafa180d1f9ac7c7d56a4733cd30220367}{M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S6\+\_\+\+M2\+P\+R\+\_\+\+Msk}} \& ((value) $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S6\+\_\+\+M2\+P\+R\+\_\+\+Pos)))
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga3ea8be02cd59fc525525f7a52dfc0571}\label{group__SAMS70__MATRIX_ga3ea8be02cd59fc525525f7a52dfc0571}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S6\+\_\+\+M3\+P\+R\+\_\+\+Pos}~12
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga0ae8636df89575a01783fbe3a79e89f5}\label{group__SAMS70__MATRIX_ga0ae8636df89575a01783fbe3a79e89f5}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_ga0ae8636df89575a01783fbe3a79e89f5}{M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S6\+\_\+\+M3\+P\+R\+\_\+\+Msk}}~(0x3u $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S6\+\_\+\+M3\+P\+R\+\_\+\+Pos)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S6) Master 3 Priority \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga2f95a9920eecb9f6c0cc61626b029e90}\label{group__SAMS70__MATRIX_ga2f95a9920eecb9f6c0cc61626b029e90}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S6\+\_\+\+M3\+PR}(value)~((\mbox{\hyperlink{group__SAMS70__MATRIX_ga0ae8636df89575a01783fbe3a79e89f5}{M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S6\+\_\+\+M3\+P\+R\+\_\+\+Msk}} \& ((value) $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S6\+\_\+\+M3\+P\+R\+\_\+\+Pos)))
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga737b3ca8cf02212ab4077e01f98ee45c}\label{group__SAMS70__MATRIX_ga737b3ca8cf02212ab4077e01f98ee45c}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S6\+\_\+\+M4\+P\+R\+\_\+\+Pos}~16
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga0456092f3ff3e7e7bd74764c37545d7d}\label{group__SAMS70__MATRIX_ga0456092f3ff3e7e7bd74764c37545d7d}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_ga0456092f3ff3e7e7bd74764c37545d7d}{M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S6\+\_\+\+M4\+P\+R\+\_\+\+Msk}}~(0x3u $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S6\+\_\+\+M4\+P\+R\+\_\+\+Pos)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S6) Master 4 Priority \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga5b15a7e3a92fcf7d442c5b3a9a601837}\label{group__SAMS70__MATRIX_ga5b15a7e3a92fcf7d442c5b3a9a601837}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S6\+\_\+\+M4\+PR}(value)~((\mbox{\hyperlink{group__SAMS70__MATRIX_ga0456092f3ff3e7e7bd74764c37545d7d}{M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S6\+\_\+\+M4\+P\+R\+\_\+\+Msk}} \& ((value) $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S6\+\_\+\+M4\+P\+R\+\_\+\+Pos)))
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga1cfd97347d7e010860f71e3dc7691b93}\label{group__SAMS70__MATRIX_ga1cfd97347d7e010860f71e3dc7691b93}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S6\+\_\+\+M5\+P\+R\+\_\+\+Pos}~20
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga06e8cf5c0c9562ec6ef0822cb6edf9cb}\label{group__SAMS70__MATRIX_ga06e8cf5c0c9562ec6ef0822cb6edf9cb}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_ga06e8cf5c0c9562ec6ef0822cb6edf9cb}{M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S6\+\_\+\+M5\+P\+R\+\_\+\+Msk}}~(0x3u $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S6\+\_\+\+M5\+P\+R\+\_\+\+Pos)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S6) Master 5 Priority \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga5b77218e556c9379c32b827eb01db845}\label{group__SAMS70__MATRIX_ga5b77218e556c9379c32b827eb01db845}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S6\+\_\+\+M5\+PR}(value)~((\mbox{\hyperlink{group__SAMS70__MATRIX_ga06e8cf5c0c9562ec6ef0822cb6edf9cb}{M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S6\+\_\+\+M5\+P\+R\+\_\+\+Msk}} \& ((value) $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S6\+\_\+\+M5\+P\+R\+\_\+\+Pos)))
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga7bd1b96c3e6c25cd7ddd903b555e3f43}\label{group__SAMS70__MATRIX_ga7bd1b96c3e6c25cd7ddd903b555e3f43}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S6\+\_\+\+M6\+P\+R\+\_\+\+Pos}~24
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga539dd9159168a3947b44500b47aa85c5}\label{group__SAMS70__MATRIX_ga539dd9159168a3947b44500b47aa85c5}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_ga539dd9159168a3947b44500b47aa85c5}{M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S6\+\_\+\+M6\+P\+R\+\_\+\+Msk}}~(0x3u $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S6\+\_\+\+M6\+P\+R\+\_\+\+Pos)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S6) Master 6 Priority \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_gaa7733f1767bde17479532aeb4b873fe8}\label{group__SAMS70__MATRIX_gaa7733f1767bde17479532aeb4b873fe8}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S6\+\_\+\+M6\+PR}(value)~((\mbox{\hyperlink{group__SAMS70__MATRIX_ga539dd9159168a3947b44500b47aa85c5}{M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S6\+\_\+\+M6\+P\+R\+\_\+\+Msk}} \& ((value) $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S6\+\_\+\+M6\+P\+R\+\_\+\+Pos)))
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga0e60f96f9b7db3ba3ef80226a9445b78}\label{group__SAMS70__MATRIX_ga0e60f96f9b7db3ba3ef80226a9445b78}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+B\+S6\+\_\+\+M8\+P\+R\+\_\+\+Pos}~0
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga09f12e2417b5b7406f642568a9392c6d}\label{group__SAMS70__MATRIX_ga09f12e2417b5b7406f642568a9392c6d}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_ga09f12e2417b5b7406f642568a9392c6d}{M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+B\+S6\+\_\+\+M8\+P\+R\+\_\+\+Msk}}~(0x3u $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+B\+S6\+\_\+\+M8\+P\+R\+\_\+\+Pos)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+B\+S6) Master 8 Priority \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_gac4b06fd07764988764c2dc27245f87e6}\label{group__SAMS70__MATRIX_gac4b06fd07764988764c2dc27245f87e6}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+B\+S6\+\_\+\+M8\+PR}(value)~((\mbox{\hyperlink{group__SAMS70__MATRIX_ga09f12e2417b5b7406f642568a9392c6d}{M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+B\+S6\+\_\+\+M8\+P\+R\+\_\+\+Msk}} \& ((value) $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+B\+S6\+\_\+\+M8\+P\+R\+\_\+\+Pos)))
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga57809acd7235ff31996ec881595477c3}\label{group__SAMS70__MATRIX_ga57809acd7235ff31996ec881595477c3}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S7\+\_\+\+M0\+P\+R\+\_\+\+Pos}~0
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga08bbbe8bba088f95ed3cce139ddcfbe2}\label{group__SAMS70__MATRIX_ga08bbbe8bba088f95ed3cce139ddcfbe2}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_ga08bbbe8bba088f95ed3cce139ddcfbe2}{M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S7\+\_\+\+M0\+P\+R\+\_\+\+Msk}}~(0x3u $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S7\+\_\+\+M0\+P\+R\+\_\+\+Pos)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S7) Master 0 Priority \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_gaa57b5f8d996aec0856aaa076ac96f7dc}\label{group__SAMS70__MATRIX_gaa57b5f8d996aec0856aaa076ac96f7dc}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S7\+\_\+\+M0\+PR}(value)~((\mbox{\hyperlink{group__SAMS70__MATRIX_ga08bbbe8bba088f95ed3cce139ddcfbe2}{M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S7\+\_\+\+M0\+P\+R\+\_\+\+Msk}} \& ((value) $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S7\+\_\+\+M0\+P\+R\+\_\+\+Pos)))
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_gaa12ba64d73858caf1d964071ca1b503d}\label{group__SAMS70__MATRIX_gaa12ba64d73858caf1d964071ca1b503d}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S7\+\_\+\+M1\+P\+R\+\_\+\+Pos}~4
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga01bc3c53237e3d6bbe8d4b5b9abb53f1}\label{group__SAMS70__MATRIX_ga01bc3c53237e3d6bbe8d4b5b9abb53f1}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_ga01bc3c53237e3d6bbe8d4b5b9abb53f1}{M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S7\+\_\+\+M1\+P\+R\+\_\+\+Msk}}~(0x3u $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S7\+\_\+\+M1\+P\+R\+\_\+\+Pos)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S7) Master 1 Priority \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga4745bb162d82787e1da4a7a15e595589}\label{group__SAMS70__MATRIX_ga4745bb162d82787e1da4a7a15e595589}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S7\+\_\+\+M1\+PR}(value)~((\mbox{\hyperlink{group__SAMS70__MATRIX_ga01bc3c53237e3d6bbe8d4b5b9abb53f1}{M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S7\+\_\+\+M1\+P\+R\+\_\+\+Msk}} \& ((value) $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S7\+\_\+\+M1\+P\+R\+\_\+\+Pos)))
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_gaff0e24cead7fdad7d853cbe6fa622b17}\label{group__SAMS70__MATRIX_gaff0e24cead7fdad7d853cbe6fa622b17}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S7\+\_\+\+M2\+P\+R\+\_\+\+Pos}~8
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_gaf1031a23997cbcc649a3f1b763a5db3a}\label{group__SAMS70__MATRIX_gaf1031a23997cbcc649a3f1b763a5db3a}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_gaf1031a23997cbcc649a3f1b763a5db3a}{M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S7\+\_\+\+M2\+P\+R\+\_\+\+Msk}}~(0x3u $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S7\+\_\+\+M2\+P\+R\+\_\+\+Pos)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S7) Master 2 Priority \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_gabfe78f2e857683c02e54f8930ff6f03b}\label{group__SAMS70__MATRIX_gabfe78f2e857683c02e54f8930ff6f03b}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S7\+\_\+\+M2\+PR}(value)~((\mbox{\hyperlink{group__SAMS70__MATRIX_gaf1031a23997cbcc649a3f1b763a5db3a}{M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S7\+\_\+\+M2\+P\+R\+\_\+\+Msk}} \& ((value) $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S7\+\_\+\+M2\+P\+R\+\_\+\+Pos)))
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga55bbcde9ebb2a5b29a52ff2e2a69562e}\label{group__SAMS70__MATRIX_ga55bbcde9ebb2a5b29a52ff2e2a69562e}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S7\+\_\+\+M3\+P\+R\+\_\+\+Pos}~12
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_gab5744b3587df6693d631f05f61f52888}\label{group__SAMS70__MATRIX_gab5744b3587df6693d631f05f61f52888}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_gab5744b3587df6693d631f05f61f52888}{M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S7\+\_\+\+M3\+P\+R\+\_\+\+Msk}}~(0x3u $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S7\+\_\+\+M3\+P\+R\+\_\+\+Pos)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S7) Master 3 Priority \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga5366eceea653a4b12896fab2595f6672}\label{group__SAMS70__MATRIX_ga5366eceea653a4b12896fab2595f6672}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S7\+\_\+\+M3\+PR}(value)~((\mbox{\hyperlink{group__SAMS70__MATRIX_gab5744b3587df6693d631f05f61f52888}{M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S7\+\_\+\+M3\+P\+R\+\_\+\+Msk}} \& ((value) $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S7\+\_\+\+M3\+P\+R\+\_\+\+Pos)))
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga9001f92df939e701b9e15a257411d7a4}\label{group__SAMS70__MATRIX_ga9001f92df939e701b9e15a257411d7a4}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S7\+\_\+\+M4\+P\+R\+\_\+\+Pos}~16
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga9b99134b14fd5ee0ad849bef74a398b4}\label{group__SAMS70__MATRIX_ga9b99134b14fd5ee0ad849bef74a398b4}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_ga9b99134b14fd5ee0ad849bef74a398b4}{M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S7\+\_\+\+M4\+P\+R\+\_\+\+Msk}}~(0x3u $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S7\+\_\+\+M4\+P\+R\+\_\+\+Pos)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S7) Master 4 Priority \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_gaf11a890ec34f01e926e6d15960e493c9}\label{group__SAMS70__MATRIX_gaf11a890ec34f01e926e6d15960e493c9}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S7\+\_\+\+M4\+PR}(value)~((\mbox{\hyperlink{group__SAMS70__MATRIX_ga9b99134b14fd5ee0ad849bef74a398b4}{M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S7\+\_\+\+M4\+P\+R\+\_\+\+Msk}} \& ((value) $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S7\+\_\+\+M4\+P\+R\+\_\+\+Pos)))
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga1d91f69d49b8559667bbb896a927d98d}\label{group__SAMS70__MATRIX_ga1d91f69d49b8559667bbb896a927d98d}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S7\+\_\+\+M5\+P\+R\+\_\+\+Pos}~20
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga8c33bc5727a8b63c7788c98bfcb4e4d4}\label{group__SAMS70__MATRIX_ga8c33bc5727a8b63c7788c98bfcb4e4d4}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_ga8c33bc5727a8b63c7788c98bfcb4e4d4}{M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S7\+\_\+\+M5\+P\+R\+\_\+\+Msk}}~(0x3u $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S7\+\_\+\+M5\+P\+R\+\_\+\+Pos)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S7) Master 5 Priority \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga8b91f4f29ce6d2b5cb3756de0fb58ea9}\label{group__SAMS70__MATRIX_ga8b91f4f29ce6d2b5cb3756de0fb58ea9}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S7\+\_\+\+M5\+PR}(value)~((\mbox{\hyperlink{group__SAMS70__MATRIX_ga8c33bc5727a8b63c7788c98bfcb4e4d4}{M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S7\+\_\+\+M5\+P\+R\+\_\+\+Msk}} \& ((value) $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S7\+\_\+\+M5\+P\+R\+\_\+\+Pos)))
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_gaa5682148d0eb742da6096a560217a90b}\label{group__SAMS70__MATRIX_gaa5682148d0eb742da6096a560217a90b}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S7\+\_\+\+M6\+P\+R\+\_\+\+Pos}~24
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_gad82ee9a04144d7342c54e71fcc2e00af}\label{group__SAMS70__MATRIX_gad82ee9a04144d7342c54e71fcc2e00af}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_gad82ee9a04144d7342c54e71fcc2e00af}{M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S7\+\_\+\+M6\+P\+R\+\_\+\+Msk}}~(0x3u $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S7\+\_\+\+M6\+P\+R\+\_\+\+Pos)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S7) Master 6 Priority \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga2ae0f56f776f5093d82497b56d05a029}\label{group__SAMS70__MATRIX_ga2ae0f56f776f5093d82497b56d05a029}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S7\+\_\+\+M6\+PR}(value)~((\mbox{\hyperlink{group__SAMS70__MATRIX_gad82ee9a04144d7342c54e71fcc2e00af}{M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S7\+\_\+\+M6\+P\+R\+\_\+\+Msk}} \& ((value) $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S7\+\_\+\+M6\+P\+R\+\_\+\+Pos)))
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga998f0d64220b1456a98759be097a94ac}\label{group__SAMS70__MATRIX_ga998f0d64220b1456a98759be097a94ac}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+B\+S7\+\_\+\+M8\+P\+R\+\_\+\+Pos}~0
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga82e867483bf4e7d308e09459af8d81b8}\label{group__SAMS70__MATRIX_ga82e867483bf4e7d308e09459af8d81b8}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_ga82e867483bf4e7d308e09459af8d81b8}{M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+B\+S7\+\_\+\+M8\+P\+R\+\_\+\+Msk}}~(0x3u $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+B\+S7\+\_\+\+M8\+P\+R\+\_\+\+Pos)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+B\+S7) Master 8 Priority \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_gaf1af19fb313bab4127ec29a68c9c7d36}\label{group__SAMS70__MATRIX_gaf1af19fb313bab4127ec29a68c9c7d36}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+B\+S7\+\_\+\+M8\+PR}(value)~((\mbox{\hyperlink{group__SAMS70__MATRIX_ga82e867483bf4e7d308e09459af8d81b8}{M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+B\+S7\+\_\+\+M8\+P\+R\+\_\+\+Msk}} \& ((value) $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+B\+S7\+\_\+\+M8\+P\+R\+\_\+\+Pos)))
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga0067ccee165e58767a3a035149abb523}\label{group__SAMS70__MATRIX_ga0067ccee165e58767a3a035149abb523}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S8\+\_\+\+M0\+P\+R\+\_\+\+Pos}~0
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga0a49990d2940e8159ee6a2c0df1f2b4e}\label{group__SAMS70__MATRIX_ga0a49990d2940e8159ee6a2c0df1f2b4e}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_ga0a49990d2940e8159ee6a2c0df1f2b4e}{M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S8\+\_\+\+M0\+P\+R\+\_\+\+Msk}}~(0x3u $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S8\+\_\+\+M0\+P\+R\+\_\+\+Pos)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S8) Master 0 Priority \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga7d2eb1f3a4c246ba8ebfa9bfa079ee7c}\label{group__SAMS70__MATRIX_ga7d2eb1f3a4c246ba8ebfa9bfa079ee7c}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S8\+\_\+\+M0\+PR}(value)~((\mbox{\hyperlink{group__SAMS70__MATRIX_ga0a49990d2940e8159ee6a2c0df1f2b4e}{M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S8\+\_\+\+M0\+P\+R\+\_\+\+Msk}} \& ((value) $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S8\+\_\+\+M0\+P\+R\+\_\+\+Pos)))
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga4cccf915a726157ea8c0a33aa6d94189}\label{group__SAMS70__MATRIX_ga4cccf915a726157ea8c0a33aa6d94189}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S8\+\_\+\+M1\+P\+R\+\_\+\+Pos}~4
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga86699b35b41d72ca2e19578f68388eb2}\label{group__SAMS70__MATRIX_ga86699b35b41d72ca2e19578f68388eb2}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_ga86699b35b41d72ca2e19578f68388eb2}{M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S8\+\_\+\+M1\+P\+R\+\_\+\+Msk}}~(0x3u $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S8\+\_\+\+M1\+P\+R\+\_\+\+Pos)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S8) Master 1 Priority \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_gaba21d9abfee0c42390a75891411ba8e7}\label{group__SAMS70__MATRIX_gaba21d9abfee0c42390a75891411ba8e7}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S8\+\_\+\+M1\+PR}(value)~((\mbox{\hyperlink{group__SAMS70__MATRIX_ga86699b35b41d72ca2e19578f68388eb2}{M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S8\+\_\+\+M1\+P\+R\+\_\+\+Msk}} \& ((value) $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S8\+\_\+\+M1\+P\+R\+\_\+\+Pos)))
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga8ed568fbbee556f24dcb21d4e75a1b55}\label{group__SAMS70__MATRIX_ga8ed568fbbee556f24dcb21d4e75a1b55}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S8\+\_\+\+M2\+P\+R\+\_\+\+Pos}~8
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga5700141c28aaa7237f9dc26bd75890f9}\label{group__SAMS70__MATRIX_ga5700141c28aaa7237f9dc26bd75890f9}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_ga5700141c28aaa7237f9dc26bd75890f9}{M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S8\+\_\+\+M2\+P\+R\+\_\+\+Msk}}~(0x3u $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S8\+\_\+\+M2\+P\+R\+\_\+\+Pos)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S8) Master 2 Priority \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga3a405df3487ee7c171eba8c44d60007e}\label{group__SAMS70__MATRIX_ga3a405df3487ee7c171eba8c44d60007e}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S8\+\_\+\+M2\+PR}(value)~((\mbox{\hyperlink{group__SAMS70__MATRIX_ga5700141c28aaa7237f9dc26bd75890f9}{M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S8\+\_\+\+M2\+P\+R\+\_\+\+Msk}} \& ((value) $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S8\+\_\+\+M2\+P\+R\+\_\+\+Pos)))
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_gafc4bdf302e211e50d1a77dd66d985f2e}\label{group__SAMS70__MATRIX_gafc4bdf302e211e50d1a77dd66d985f2e}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S8\+\_\+\+M3\+P\+R\+\_\+\+Pos}~12
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga9db1a3780d7013912258d3e59cfe0fee}\label{group__SAMS70__MATRIX_ga9db1a3780d7013912258d3e59cfe0fee}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_ga9db1a3780d7013912258d3e59cfe0fee}{M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S8\+\_\+\+M3\+P\+R\+\_\+\+Msk}}~(0x3u $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S8\+\_\+\+M3\+P\+R\+\_\+\+Pos)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S8) Master 3 Priority \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga0ea5785fd6d319c9f13235cb86a5d7f9}\label{group__SAMS70__MATRIX_ga0ea5785fd6d319c9f13235cb86a5d7f9}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S8\+\_\+\+M3\+PR}(value)~((\mbox{\hyperlink{group__SAMS70__MATRIX_ga9db1a3780d7013912258d3e59cfe0fee}{M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S8\+\_\+\+M3\+P\+R\+\_\+\+Msk}} \& ((value) $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S8\+\_\+\+M3\+P\+R\+\_\+\+Pos)))
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga50b66239a4bf47c2587c9cea0286d54f}\label{group__SAMS70__MATRIX_ga50b66239a4bf47c2587c9cea0286d54f}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S8\+\_\+\+M4\+P\+R\+\_\+\+Pos}~16
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga8cbc3eb681805cb6bdac5f4ec618598e}\label{group__SAMS70__MATRIX_ga8cbc3eb681805cb6bdac5f4ec618598e}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_ga8cbc3eb681805cb6bdac5f4ec618598e}{M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S8\+\_\+\+M4\+P\+R\+\_\+\+Msk}}~(0x3u $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S8\+\_\+\+M4\+P\+R\+\_\+\+Pos)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S8) Master 4 Priority \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga2591db01377ed03c9cfb48ea894c1fa8}\label{group__SAMS70__MATRIX_ga2591db01377ed03c9cfb48ea894c1fa8}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S8\+\_\+\+M4\+PR}(value)~((\mbox{\hyperlink{group__SAMS70__MATRIX_ga8cbc3eb681805cb6bdac5f4ec618598e}{M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S8\+\_\+\+M4\+P\+R\+\_\+\+Msk}} \& ((value) $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S8\+\_\+\+M4\+P\+R\+\_\+\+Pos)))
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga73ccb81d98e922d429f190497d78a9ab}\label{group__SAMS70__MATRIX_ga73ccb81d98e922d429f190497d78a9ab}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S8\+\_\+\+M5\+P\+R\+\_\+\+Pos}~20
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga8a44210ae2d61540a4e87dd64ac9f564}\label{group__SAMS70__MATRIX_ga8a44210ae2d61540a4e87dd64ac9f564}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_ga8a44210ae2d61540a4e87dd64ac9f564}{M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S8\+\_\+\+M5\+P\+R\+\_\+\+Msk}}~(0x3u $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S8\+\_\+\+M5\+P\+R\+\_\+\+Pos)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S8) Master 5 Priority \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_gaba649c93df6e052dc02aff0e882cfe09}\label{group__SAMS70__MATRIX_gaba649c93df6e052dc02aff0e882cfe09}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S8\+\_\+\+M5\+PR}(value)~((\mbox{\hyperlink{group__SAMS70__MATRIX_ga8a44210ae2d61540a4e87dd64ac9f564}{M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S8\+\_\+\+M5\+P\+R\+\_\+\+Msk}} \& ((value) $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S8\+\_\+\+M5\+P\+R\+\_\+\+Pos)))
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_gad2c2f03eef0242a6ac107b529e95548d}\label{group__SAMS70__MATRIX_gad2c2f03eef0242a6ac107b529e95548d}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S8\+\_\+\+M6\+P\+R\+\_\+\+Pos}~24
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_gad5d35bb2f39ee247c5aacc603e523806}\label{group__SAMS70__MATRIX_gad5d35bb2f39ee247c5aacc603e523806}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_gad5d35bb2f39ee247c5aacc603e523806}{M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S8\+\_\+\+M6\+P\+R\+\_\+\+Msk}}~(0x3u $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S8\+\_\+\+M6\+P\+R\+\_\+\+Pos)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S8) Master 6 Priority \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga2ebc8209a8051b732057aadcb34f494d}\label{group__SAMS70__MATRIX_ga2ebc8209a8051b732057aadcb34f494d}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S8\+\_\+\+M6\+PR}(value)~((\mbox{\hyperlink{group__SAMS70__MATRIX_gad5d35bb2f39ee247c5aacc603e523806}{M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S8\+\_\+\+M6\+P\+R\+\_\+\+Msk}} \& ((value) $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+A\+S8\+\_\+\+M6\+P\+R\+\_\+\+Pos)))
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_gafcf56c78a20fc2ebcc4c8fe686cfd6fd}\label{group__SAMS70__MATRIX_gafcf56c78a20fc2ebcc4c8fe686cfd6fd}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+B\+S8\+\_\+\+M8\+P\+R\+\_\+\+Pos}~0
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_gaa3a39c083d829f17f105df7652b3859f}\label{group__SAMS70__MATRIX_gaa3a39c083d829f17f105df7652b3859f}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_gaa3a39c083d829f17f105df7652b3859f}{M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+B\+S8\+\_\+\+M8\+P\+R\+\_\+\+Msk}}~(0x3u $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+B\+S8\+\_\+\+M8\+P\+R\+\_\+\+Pos)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+B\+S8) Master 8 Priority \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga2632329898dcd3f01c0c2b844ec9b658}\label{group__SAMS70__MATRIX_ga2632329898dcd3f01c0c2b844ec9b658}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+B\+S8\+\_\+\+M8\+PR}(value)~((\mbox{\hyperlink{group__SAMS70__MATRIX_gaa3a39c083d829f17f105df7652b3859f}{M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+B\+S8\+\_\+\+M8\+P\+R\+\_\+\+Msk}} \& ((value) $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+P\+R\+B\+S8\+\_\+\+M8\+P\+R\+\_\+\+Pos)))
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_gaae81f6942c9b24e74a314efd1d72386a}\label{group__SAMS70__MATRIX_gaae81f6942c9b24e74a314efd1d72386a}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_gaae81f6942c9b24e74a314efd1d72386a}{M\+A\+T\+R\+I\+X\+\_\+\+M\+R\+C\+R\+\_\+\+R\+C\+B0}}~(0x1u $<$$<$ 0)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+M\+R\+CR) Remap Command Bit for Master 0 \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_gaf5fdb3d9fe11b424ab3a64e91cf6a3e7}\label{group__SAMS70__MATRIX_gaf5fdb3d9fe11b424ab3a64e91cf6a3e7}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_gaf5fdb3d9fe11b424ab3a64e91cf6a3e7}{M\+A\+T\+R\+I\+X\+\_\+\+M\+R\+C\+R\+\_\+\+R\+C\+B1}}~(0x1u $<$$<$ 1)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+M\+R\+CR) Remap Command Bit for Master 1 \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga00351ef18a7ac1c085b9c6ff34c407b6}\label{group__SAMS70__MATRIX_ga00351ef18a7ac1c085b9c6ff34c407b6}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_ga00351ef18a7ac1c085b9c6ff34c407b6}{M\+A\+T\+R\+I\+X\+\_\+\+M\+R\+C\+R\+\_\+\+R\+C\+B2}}~(0x1u $<$$<$ 2)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+M\+R\+CR) Remap Command Bit for Master 2 \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga02bc99e043ebde6c98ac53065fcdf586}\label{group__SAMS70__MATRIX_ga02bc99e043ebde6c98ac53065fcdf586}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_ga02bc99e043ebde6c98ac53065fcdf586}{M\+A\+T\+R\+I\+X\+\_\+\+M\+R\+C\+R\+\_\+\+R\+C\+B3}}~(0x1u $<$$<$ 3)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+M\+R\+CR) Remap Command Bit for Master 3 \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_gaae904ef00f24da71b8b6805e78ab22e9}\label{group__SAMS70__MATRIX_gaae904ef00f24da71b8b6805e78ab22e9}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_gaae904ef00f24da71b8b6805e78ab22e9}{M\+A\+T\+R\+I\+X\+\_\+\+M\+R\+C\+R\+\_\+\+R\+C\+B4}}~(0x1u $<$$<$ 4)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+M\+R\+CR) Remap Command Bit for Master 4 \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga6cd4d938e52347adefdb0a875206d229}\label{group__SAMS70__MATRIX_ga6cd4d938e52347adefdb0a875206d229}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_ga6cd4d938e52347adefdb0a875206d229}{M\+A\+T\+R\+I\+X\+\_\+\+M\+R\+C\+R\+\_\+\+R\+C\+B5}}~(0x1u $<$$<$ 5)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+M\+R\+CR) Remap Command Bit for Master 5 \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga8fd30af2c60b0722e6448e99b793d0d6}\label{group__SAMS70__MATRIX_ga8fd30af2c60b0722e6448e99b793d0d6}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_ga8fd30af2c60b0722e6448e99b793d0d6}{M\+A\+T\+R\+I\+X\+\_\+\+M\+R\+C\+R\+\_\+\+R\+C\+B6}}~(0x1u $<$$<$ 6)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+M\+R\+CR) Remap Command Bit for Master 6 \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_gad0bf8066b69cd6cd777ff6b5117ef108}\label{group__SAMS70__MATRIX_gad0bf8066b69cd6cd777ff6b5117ef108}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_gad0bf8066b69cd6cd777ff6b5117ef108}{M\+A\+T\+R\+I\+X\+\_\+\+M\+R\+C\+R\+\_\+\+R\+C\+B8}}~(0x1u $<$$<$ 8)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+M\+R\+CR) Remap Command Bit for Master 8 \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga59a09a374bab5cbed270d5aace8082bc}\label{group__SAMS70__MATRIX_ga59a09a374bab5cbed270d5aace8082bc}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_ga59a09a374bab5cbed270d5aace8082bc}{C\+C\+F\+G\+\_\+\+S\+Y\+S\+I\+O\+\_\+\+S\+Y\+S\+I\+O4}}~(0x1u $<$$<$ 4)
+\begin{DoxyCompactList}\small\item\em (C\+C\+F\+G\+\_\+\+S\+Y\+S\+IO) P\+B4 or T\+DI Assignment \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga7700a8793de58ee46189b3af593300ca}\label{group__SAMS70__MATRIX_ga7700a8793de58ee46189b3af593300ca}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_ga7700a8793de58ee46189b3af593300ca}{C\+C\+F\+G\+\_\+\+S\+Y\+S\+I\+O\+\_\+\+S\+Y\+S\+I\+O5}}~(0x1u $<$$<$ 5)
+\begin{DoxyCompactList}\small\item\em (C\+C\+F\+G\+\_\+\+S\+Y\+S\+IO) P\+B5 or T\+D\+O/\+T\+R\+A\+C\+E\+S\+WO Assignment \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga2ed6a8e8801f4a9f5751e5cdaa6a7615}\label{group__SAMS70__MATRIX_ga2ed6a8e8801f4a9f5751e5cdaa6a7615}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_ga2ed6a8e8801f4a9f5751e5cdaa6a7615}{C\+C\+F\+G\+\_\+\+S\+Y\+S\+I\+O\+\_\+\+S\+Y\+S\+I\+O6}}~(0x1u $<$$<$ 6)
+\begin{DoxyCompactList}\small\item\em (C\+C\+F\+G\+\_\+\+S\+Y\+S\+IO) P\+B6 or T\+M\+S/\+S\+W\+D\+IO Assignment \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga28b95aaca8e016fcacd6042b589a1084}\label{group__SAMS70__MATRIX_ga28b95aaca8e016fcacd6042b589a1084}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_ga28b95aaca8e016fcacd6042b589a1084}{C\+C\+F\+G\+\_\+\+S\+Y\+S\+I\+O\+\_\+\+S\+Y\+S\+I\+O7}}~(0x1u $<$$<$ 7)
+\begin{DoxyCompactList}\small\item\em (C\+C\+F\+G\+\_\+\+S\+Y\+S\+IO) P\+B7 or T\+C\+K/\+S\+W\+C\+LK Assignment \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga9e6590c0ddc9425df1a4eefaf2b041e4}\label{group__SAMS70__MATRIX_ga9e6590c0ddc9425df1a4eefaf2b041e4}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_ga9e6590c0ddc9425df1a4eefaf2b041e4}{C\+C\+F\+G\+\_\+\+S\+Y\+S\+I\+O\+\_\+\+S\+Y\+S\+I\+O12}}~(0x1u $<$$<$ 12)
+\begin{DoxyCompactList}\small\item\em (C\+C\+F\+G\+\_\+\+S\+Y\+S\+IO) P\+B12 or E\+R\+A\+SE Assignment \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_gabd95ec8866de0fb2ae4d7c7bccfa0f01}\label{group__SAMS70__MATRIX_gabd95ec8866de0fb2ae4d7c7bccfa0f01}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_gabd95ec8866de0fb2ae4d7c7bccfa0f01}{C\+C\+F\+G\+\_\+\+S\+M\+C\+N\+F\+C\+S\+\_\+\+S\+M\+C\+\_\+\+N\+F\+C\+S0}}~(0x1u $<$$<$ 0)
+\begin{DoxyCompactList}\small\item\em (C\+C\+F\+G\+\_\+\+S\+M\+C\+N\+F\+CS) S\+MC N\+A\+ND Flash Chip Select 0 Assignment \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_gadc59188f4e84386939f05c38eef900b1}\label{group__SAMS70__MATRIX_gadc59188f4e84386939f05c38eef900b1}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_gadc59188f4e84386939f05c38eef900b1}{C\+C\+F\+G\+\_\+\+S\+M\+C\+N\+F\+C\+S\+\_\+\+S\+M\+C\+\_\+\+N\+F\+C\+S1}}~(0x1u $<$$<$ 1)
+\begin{DoxyCompactList}\small\item\em (C\+C\+F\+G\+\_\+\+S\+M\+C\+N\+F\+CS) S\+MC N\+A\+ND Flash Chip Select 1 Assignment \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga1cd07efe97528a43e07007a05c44fe7a}\label{group__SAMS70__MATRIX_ga1cd07efe97528a43e07007a05c44fe7a}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_ga1cd07efe97528a43e07007a05c44fe7a}{C\+C\+F\+G\+\_\+\+S\+M\+C\+N\+F\+C\+S\+\_\+\+S\+M\+C\+\_\+\+N\+F\+C\+S2}}~(0x1u $<$$<$ 2)
+\begin{DoxyCompactList}\small\item\em (C\+C\+F\+G\+\_\+\+S\+M\+C\+N\+F\+CS) S\+MC N\+A\+ND Flash Chip Select 2 Assignment \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga09bdc6a5dde71677033a4644f0746969}\label{group__SAMS70__MATRIX_ga09bdc6a5dde71677033a4644f0746969}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_ga09bdc6a5dde71677033a4644f0746969}{C\+C\+F\+G\+\_\+\+S\+M\+C\+N\+F\+C\+S\+\_\+\+S\+M\+C\+\_\+\+N\+F\+C\+S3}}~(0x1u $<$$<$ 3)
+\begin{DoxyCompactList}\small\item\em (C\+C\+F\+G\+\_\+\+S\+M\+C\+N\+F\+CS) S\+MC N\+A\+ND Flash Chip Select 3 Assignment \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga6ad5dc553fea2b2524e9d2d16ee3d9dc}\label{group__SAMS70__MATRIX_ga6ad5dc553fea2b2524e9d2d16ee3d9dc}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_ga6ad5dc553fea2b2524e9d2d16ee3d9dc}{C\+C\+F\+G\+\_\+\+S\+M\+C\+N\+F\+C\+S\+\_\+\+S\+D\+R\+A\+M\+EN}}~(0x1u $<$$<$ 4)
+\begin{DoxyCompactList}\small\item\em (C\+C\+F\+G\+\_\+\+S\+M\+C\+N\+F\+CS) S\+D\+R\+AM Enable \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga3b3a00ffe1bc6b9a1a1ea9cbe2a7be56}\label{group__SAMS70__MATRIX_ga3b3a00ffe1bc6b9a1a1ea9cbe2a7be56}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_ga3b3a00ffe1bc6b9a1a1ea9cbe2a7be56}{M\+A\+T\+R\+I\+X\+\_\+\+W\+P\+M\+R\+\_\+\+W\+P\+EN}}~(0x1u $<$$<$ 0)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+W\+P\+MR) Write Protection Enable \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga87d71881b54dd5a5a53c9f3c982c2c43}\label{group__SAMS70__MATRIX_ga87d71881b54dd5a5a53c9f3c982c2c43}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+W\+P\+M\+R\+\_\+\+W\+P\+K\+E\+Y\+\_\+\+Pos}~8
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_gaf666194f435ad53147255ed669f1db23}\label{group__SAMS70__MATRIX_gaf666194f435ad53147255ed669f1db23}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_gaf666194f435ad53147255ed669f1db23}{M\+A\+T\+R\+I\+X\+\_\+\+W\+P\+M\+R\+\_\+\+W\+P\+K\+E\+Y\+\_\+\+Msk}}~(0xffffffu $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+W\+P\+M\+R\+\_\+\+W\+P\+K\+E\+Y\+\_\+\+Pos)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+W\+P\+MR) Write Protection Key \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga022c6d30bbe13b05c39bf8d67a25097e}\label{group__SAMS70__MATRIX_ga022c6d30bbe13b05c39bf8d67a25097e}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+W\+P\+M\+R\+\_\+\+W\+P\+K\+EY}(value)~((\mbox{\hyperlink{group__SAMV71__MATRIX_gaf666194f435ad53147255ed669f1db23}{M\+A\+T\+R\+I\+X\+\_\+\+W\+P\+M\+R\+\_\+\+W\+P\+K\+E\+Y\+\_\+\+Msk}} \& ((value) $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+W\+P\+M\+R\+\_\+\+W\+P\+K\+E\+Y\+\_\+\+Pos)))
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_gac0f5c40f5ac50e2dc706131b48fd35b7}\label{group__SAMS70__MATRIX_gac0f5c40f5ac50e2dc706131b48fd35b7}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_gac0f5c40f5ac50e2dc706131b48fd35b7}{M\+A\+T\+R\+I\+X\+\_\+\+W\+P\+M\+R\+\_\+\+W\+P\+K\+E\+Y\+\_\+\+P\+A\+S\+S\+WD}}~(0x4\+D4154u $<$$<$ 8)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+W\+P\+MR) Writing any other value in this field aborts the write operation of the W\+P\+EN bit.\+Always reads as 0. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga19270466607c89e151520034e1af4174}\label{group__SAMS70__MATRIX_ga19270466607c89e151520034e1af4174}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_ga19270466607c89e151520034e1af4174}{M\+A\+T\+R\+I\+X\+\_\+\+W\+P\+S\+R\+\_\+\+W\+P\+VS}}~(0x1u $<$$<$ 0)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+W\+P\+SR) Write Protection Violation Status \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_ga4328f9354287b8c9c376fa7cec6134d7}\label{group__SAMS70__MATRIX_ga4328f9354287b8c9c376fa7cec6134d7}} 
+\#define {\bfseries M\+A\+T\+R\+I\+X\+\_\+\+W\+P\+S\+R\+\_\+\+W\+P\+V\+S\+R\+C\+\_\+\+Pos}~8
+\item 
+\mbox{\Hypertarget{group__SAMS70__MATRIX_gaea8d53a013b472fdfeda880b11af1d0f}\label{group__SAMS70__MATRIX_gaea8d53a013b472fdfeda880b11af1d0f}} 
+\#define \mbox{\hyperlink{group__SAMS70__MATRIX_gaea8d53a013b472fdfeda880b11af1d0f}{M\+A\+T\+R\+I\+X\+\_\+\+W\+P\+S\+R\+\_\+\+W\+P\+V\+S\+R\+C\+\_\+\+Msk}}~(0xffffu $<$$<$ M\+A\+T\+R\+I\+X\+\_\+\+W\+P\+S\+R\+\_\+\+W\+P\+V\+S\+R\+C\+\_\+\+Pos)
+\begin{DoxyCompactList}\small\item\em (M\+A\+T\+R\+I\+X\+\_\+\+W\+P\+SR) Write Protection Violation Source \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+S\+O\+F\+T\+W\+A\+RE A\+PI D\+E\+F\+I\+N\+I\+T\+I\+ON F\+OR A\+HB Bus \mbox{\hyperlink{structMatrix}{Matrix}} 

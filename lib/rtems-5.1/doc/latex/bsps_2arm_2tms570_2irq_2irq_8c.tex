@@ -1,0 +1,108 @@
+\hypertarget{bsps_2arm_2tms570_2irq_2irq_8c}{}\section{bsps/arm/tms570/irq/irq.c File Reference}
+\label{bsps_2arm_2tms570_2irq_2irq_8c}\index{bsps/arm/tms570/irq/irq.c@{bsps/arm/tms570/irq/irq.c}}
+
+
+T\+M\+S570 interrupt support functions definitions.  
+
+
+{\ttfamily \#include $<$bsp.\+h$>$}\newline
+{\ttfamily \#include $<$bsp/irq-\/generic.\+h$>$}\newline
+{\ttfamily \#include $<$bsp/tms570-\/vim.\+h$>$}\newline
+{\ttfamily \#include $<$bsp/irq.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/score/armv4.\+h$>$}\newline
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{bsps_2arm_2tms570_2irq_2irq_8c_a6311063b3df9042baa5c609a2feeda8b}{tms570\+\_\+irq\+\_\+set\+\_\+priority}} (\mbox{\hyperlink{group__ClassicINTR_ga3e434c197d99f128e78cae4d9358bd8b}{rtems\+\_\+vector\+\_\+number}} vector, unsigned priority)
+\begin{DoxyCompactList}\small\item\em Set priority of the interrupt vector. \end{DoxyCompactList}\item 
+unsigned \mbox{\hyperlink{bsps_2arm_2tms570_2irq_2irq_8c_a5c59c54a9d2864081591c29bc2fa11be}{tms570\+\_\+irq\+\_\+get\+\_\+priority}} (\mbox{\hyperlink{group__ClassicINTR_ga3e434c197d99f128e78cae4d9358bd8b}{rtems\+\_\+vector\+\_\+number}} vector)
+\begin{DoxyCompactList}\small\item\em Gets priority of the interrupt vector. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{bsps_2arm_2tms570_2irq_2irq_8c_a2c7c4b4314e0741a67bf581cec3fbf83}{bsp\+\_\+interrupt\+\_\+dispatch}} (void)
+\begin{DoxyCompactList}\small\item\em Interrupt dispatch. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__bsp__interrupt_ga9968f1703b04b05f4f7e9fc5220da39a}{bsp\+\_\+interrupt\+\_\+vector\+\_\+enable}} (\mbox{\hyperlink{group__ClassicINTR_ga3e434c197d99f128e78cae4d9358bd8b}{rtems\+\_\+vector\+\_\+number}} vector)
+\begin{DoxyCompactList}\small\item\em enables interrupt vector in the HW \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__bsp__interrupt_ga5428b914d0cb037e9b3f7cb2b758cabd}{bsp\+\_\+interrupt\+\_\+vector\+\_\+disable}} (\mbox{\hyperlink{group__ClassicINTR_ga3e434c197d99f128e78cae4d9358bd8b}{rtems\+\_\+vector\+\_\+number}} vector)
+\begin{DoxyCompactList}\small\item\em disables interrupt vector in the HW \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{group__bsp__interrupt_gab114a6e92b17b99bf52cf24d1125a9df}{bsp\+\_\+interrupt\+\_\+facility\+\_\+initialize}} (void)
+\begin{DoxyCompactList}\small\item\em Init function of interrupt module. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{bsps_2arm_2tms570_2irq_2irq_8c_a9b68605b438f34dd9f2a5202908c552d}\label{bsps_2arm_2tms570_2irq_2irq_8c_a9b68605b438f34dd9f2a5202908c552d}} 
+unsigned int {\bfseries priority\+Table} \mbox{[}\mbox{\hyperlink{group__bsp__interrupt_gae4a2cdda5816a4c83c2fac0a49880c6e}{B\+S\+P\+\_\+\+I\+N\+T\+E\+R\+R\+U\+P\+T\+\_\+\+V\+E\+C\+T\+O\+R\+\_\+\+M\+AX}}+1\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+T\+M\+S570 interrupt support functions definitions. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{bsps_2arm_2tms570_2irq_2irq_8c_a2c7c4b4314e0741a67bf581cec3fbf83}\label{bsps_2arm_2tms570_2irq_2irq_8c_a2c7c4b4314e0741a67bf581cec3fbf83}} 
+\index{irq.c@{irq.c}!bsp\_interrupt\_dispatch@{bsp\_interrupt\_dispatch}}
+\index{bsp\_interrupt\_dispatch@{bsp\_interrupt\_dispatch}!irq.c@{irq.c}}
+\subsubsection{\texorpdfstring{bsp\_interrupt\_dispatch()}{bsp\_interrupt\_dispatch()}}
+{\footnotesize\ttfamily void bsp\+\_\+interrupt\+\_\+dispatch (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Interrupt dispatch. 
+
+Called by OS to determine which interrupt occured. Function passes control to interrupt handler.
+
+\begin{DoxyReturn}{Returns}
+Void 
+\end{DoxyReturn}
+\mbox{\Hypertarget{bsps_2arm_2tms570_2irq_2irq_8c_a5c59c54a9d2864081591c29bc2fa11be}\label{bsps_2arm_2tms570_2irq_2irq_8c_a5c59c54a9d2864081591c29bc2fa11be}} 
+\index{irq.c@{irq.c}!tms570\_irq\_get\_priority@{tms570\_irq\_get\_priority}}
+\index{tms570\_irq\_get\_priority@{tms570\_irq\_get\_priority}!irq.c@{irq.c}}
+\subsubsection{\texorpdfstring{tms570\_irq\_get\_priority()}{tms570\_irq\_get\_priority()}}
+{\footnotesize\ttfamily unsigned tms570\+\_\+irq\+\_\+get\+\_\+priority (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__ClassicINTR_ga3e434c197d99f128e78cae4d9358bd8b}{rtems\+\_\+vector\+\_\+number}}}]{vector }\end{DoxyParamCaption})}
+
+
+
+Gets priority of the interrupt vector. 
+
+This function is here because of compability. It returns priority of the isr vector last set by tms570\+\_\+irq\+\_\+set\+\_\+priority function.
+
+\begin{DoxyWarning}{Warning}
+It does not return any real priority of the HW layer. 
+\end{DoxyWarning}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em vector} & vector of isr \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em 0} & vector is invalid. \\
+\hline
+{\em priority} & priority of the interrupt \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{bsps_2arm_2tms570_2irq_2irq_8c_a6311063b3df9042baa5c609a2feeda8b}\label{bsps_2arm_2tms570_2irq_2irq_8c_a6311063b3df9042baa5c609a2feeda8b}} 
+\index{irq.c@{irq.c}!tms570\_irq\_set\_priority@{tms570\_irq\_set\_priority}}
+\index{tms570\_irq\_set\_priority@{tms570\_irq\_set\_priority}!irq.c@{irq.c}}
+\subsubsection{\texorpdfstring{tms570\_irq\_set\_priority()}{tms570\_irq\_set\_priority()}}
+{\footnotesize\ttfamily void tms570\+\_\+irq\+\_\+set\+\_\+priority (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__ClassicINTR_ga3e434c197d99f128e78cae4d9358bd8b}{rtems\+\_\+vector\+\_\+number}}}]{vector,  }\item[{unsigned}]{priority }\end{DoxyParamCaption})}
+
+
+
+Set priority of the interrupt vector. 
+
+This function is here because of compability. It should set priority of the interrupt vector. \begin{DoxyWarning}{Warning}
+It does not set any priority at HW layer. It is nearly imposible to 
+
+set priority of the interrupt on T\+M\+S570 in a nice way. 
+\end{DoxyWarning}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em vector} & vector of isr \\
+\hline
+\mbox{\texttt{ in}}  & {\em priority} & new priority assigned to the vector \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Void 
+\end{DoxyReturn}

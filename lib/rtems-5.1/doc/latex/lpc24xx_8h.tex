@@ -1,0 +1,2285 @@
+\hypertarget{lpc24xx_8h}{}\section{bsps/arm/lpc24xx/include/bsp/lpc24xx.h File Reference}
+\label{lpc24xx_8h}\index{bsps/arm/lpc24xx/include/bsp/lpc24xx.h@{bsps/arm/lpc24xx/include/bsp/lpc24xx.h}}
+
+
+Register definitions.  
+
+
+{\ttfamily \#include $<$rtems/score/cpu.\+h$>$}\newline
+{\ttfamily \#include $<$bsp/utility.\+h$>$}\newline
+{\ttfamily \#include $<$bsp/lpc-\/i2s.\+h$>$}\newline
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structlpc24xx__ssp}{lpc24xx\+\_\+ssp}}
+\item 
+struct \mbox{\hyperlink{structlpc24xx__dma__descriptor}{lpc24xx\+\_\+dma\+\_\+descriptor}}
+\item 
+struct \mbox{\hyperlink{structlpc24xx__dma__channel}{lpc24xx\+\_\+dma\+\_\+channel}}
+\item 
+struct \mbox{\hyperlink{structlpc24xx__i2c}{lpc24xx\+\_\+i2c}}
+\item 
+struct \mbox{\hyperlink{structlpc24xx__fio}{lpc24xx\+\_\+fio}}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bfseries P\+I\+N\+S\+E\+L\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR}~0x4002\+C000
+\item 
+\#define {\bfseries G\+P\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR}~0x40028000
+\item 
+\#define {\bfseries I\+O\+P\+I\+N0}~($\ast$(volatile uint32\+\_\+t $\ast$) (G\+P\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x00))
+\item 
+\#define {\bfseries I\+O\+S\+E\+T0}~($\ast$(volatile uint32\+\_\+t $\ast$) (G\+P\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x04))
+\item 
+\#define {\bfseries I\+O\+D\+I\+R0}~($\ast$(volatile uint32\+\_\+t $\ast$) (G\+P\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x08))
+\item 
+\#define {\bfseries I\+O\+C\+L\+R0}~($\ast$(volatile uint32\+\_\+t $\ast$) (G\+P\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x0\+C))
+\item 
+\#define {\bfseries I\+O\+P\+I\+N1}~($\ast$(volatile uint32\+\_\+t $\ast$) (G\+P\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x10))
+\item 
+\#define {\bfseries I\+O\+S\+E\+T1}~($\ast$(volatile uint32\+\_\+t $\ast$) (G\+P\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x14))
+\item 
+\#define {\bfseries I\+O\+D\+I\+R1}~($\ast$(volatile uint32\+\_\+t $\ast$) (G\+P\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x18))
+\item 
+\#define {\bfseries I\+O\+C\+L\+R1}~($\ast$(volatile uint32\+\_\+t $\ast$) (G\+P\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x1\+C))
+\item 
+\#define {\bfseries I\+O0\+\_\+\+I\+N\+T\+\_\+\+E\+N\+\_\+R}~($\ast$(volatile uint32\+\_\+t $\ast$) (G\+P\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x90))
+\item 
+\#define {\bfseries I\+O0\+\_\+\+I\+N\+T\+\_\+\+E\+N\+\_\+F}~($\ast$(volatile uint32\+\_\+t $\ast$) (G\+P\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x94))
+\item 
+\#define {\bfseries I\+O0\+\_\+\+I\+N\+T\+\_\+\+S\+T\+A\+T\+\_\+R}~($\ast$(volatile uint32\+\_\+t $\ast$) (G\+P\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x84))
+\item 
+\#define {\bfseries I\+O0\+\_\+\+I\+N\+T\+\_\+\+S\+T\+A\+T\+\_\+F}~($\ast$(volatile uint32\+\_\+t $\ast$) (G\+P\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x88))
+\item 
+\#define {\bfseries I\+O0\+\_\+\+I\+N\+T\+\_\+\+C\+LR}~($\ast$(volatile uint32\+\_\+t $\ast$) (G\+P\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x8\+C))
+\item 
+\#define {\bfseries I\+O2\+\_\+\+I\+N\+T\+\_\+\+E\+N\+\_\+R}~($\ast$(volatile uint32\+\_\+t $\ast$) (G\+P\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x\+B0))
+\item 
+\#define {\bfseries I\+O2\+\_\+\+I\+N\+T\+\_\+\+E\+N\+\_\+F}~($\ast$(volatile uint32\+\_\+t $\ast$) (G\+P\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x\+B4))
+\item 
+\#define {\bfseries I\+O2\+\_\+\+I\+N\+T\+\_\+\+S\+T\+A\+T\+\_\+R}~($\ast$(volatile uint32\+\_\+t $\ast$) (G\+P\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x\+A4))
+\item 
+\#define {\bfseries I\+O2\+\_\+\+I\+N\+T\+\_\+\+S\+T\+A\+T\+\_\+F}~($\ast$(volatile uint32\+\_\+t $\ast$) (G\+P\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x\+A8))
+\item 
+\#define {\bfseries I\+O2\+\_\+\+I\+N\+T\+\_\+\+C\+LR}~($\ast$(volatile uint32\+\_\+t $\ast$) (G\+P\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x\+A\+C))
+\item 
+\#define {\bfseries I\+O\+\_\+\+I\+N\+T\+\_\+\+S\+T\+AT}~($\ast$(volatile uint32\+\_\+t $\ast$) (G\+P\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x80))
+\item 
+\#define {\bfseries F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR}~0x20098000
+\item 
+\#define {\bfseries F\+I\+O0\+D\+IR}~($\ast$(volatile uint32\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x00))
+\item 
+\#define {\bfseries F\+I\+O0\+M\+A\+SK}~($\ast$(volatile uint32\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x10))
+\item 
+\#define {\bfseries F\+I\+O0\+P\+IN}~($\ast$(volatile uint32\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x14))
+\item 
+\#define {\bfseries F\+I\+O0\+S\+ET}~($\ast$(volatile uint32\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x18))
+\item 
+\#define {\bfseries F\+I\+O0\+C\+LR}~($\ast$(volatile uint32\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x1\+C))
+\item 
+\#define {\bfseries F\+I\+O1\+D\+IR}~($\ast$(volatile uint32\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x20))
+\item 
+\#define {\bfseries F\+I\+O1\+M\+A\+SK}~($\ast$(volatile uint32\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x30))
+\item 
+\#define {\bfseries F\+I\+O1\+P\+IN}~($\ast$(volatile uint32\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x34))
+\item 
+\#define {\bfseries F\+I\+O1\+S\+ET}~($\ast$(volatile uint32\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x38))
+\item 
+\#define {\bfseries F\+I\+O1\+C\+LR}~($\ast$(volatile uint32\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x3\+C))
+\item 
+\#define {\bfseries F\+I\+O2\+D\+IR}~($\ast$(volatile uint32\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x40))
+\item 
+\#define {\bfseries F\+I\+O2\+M\+A\+SK}~($\ast$(volatile uint32\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x50))
+\item 
+\#define {\bfseries F\+I\+O2\+P\+IN}~($\ast$(volatile uint32\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x54))
+\item 
+\#define {\bfseries F\+I\+O2\+S\+ET}~($\ast$(volatile uint32\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x58))
+\item 
+\#define {\bfseries F\+I\+O2\+C\+LR}~($\ast$(volatile uint32\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x5\+C))
+\item 
+\#define {\bfseries F\+I\+O3\+D\+IR}~($\ast$(volatile uint32\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x60))
+\item 
+\#define {\bfseries F\+I\+O3\+M\+A\+SK}~($\ast$(volatile uint32\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x70))
+\item 
+\#define {\bfseries F\+I\+O3\+P\+IN}~($\ast$(volatile uint32\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x74))
+\item 
+\#define {\bfseries F\+I\+O3\+S\+ET}~($\ast$(volatile uint32\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x78))
+\item 
+\#define {\bfseries F\+I\+O3\+C\+LR}~($\ast$(volatile uint32\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x7\+C))
+\item 
+\#define {\bfseries F\+I\+O4\+D\+IR}~($\ast$(volatile uint32\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x80))
+\item 
+\#define {\bfseries F\+I\+O4\+M\+A\+SK}~($\ast$(volatile uint32\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x90))
+\item 
+\#define {\bfseries F\+I\+O4\+P\+IN}~($\ast$(volatile uint32\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x94))
+\item 
+\#define {\bfseries F\+I\+O4\+S\+ET}~($\ast$(volatile uint32\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x98))
+\item 
+\#define {\bfseries F\+I\+O4\+C\+LR}~($\ast$(volatile uint32\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x9\+C))
+\item 
+\#define {\bfseries F\+I\+O0\+D\+I\+R0}~($\ast$(volatile uint8\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x00))
+\item 
+\#define {\bfseries F\+I\+O1\+D\+I\+R0}~($\ast$(volatile uint8\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x20))
+\item 
+\#define {\bfseries F\+I\+O2\+D\+I\+R0}~($\ast$(volatile uint8\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x40))
+\item 
+\#define {\bfseries F\+I\+O3\+D\+I\+R0}~($\ast$(volatile uint8\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x60))
+\item 
+\#define {\bfseries F\+I\+O4\+D\+I\+R0}~($\ast$(volatile uint8\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x80))
+\item 
+\#define {\bfseries F\+I\+O0\+D\+I\+R1}~($\ast$(volatile uint8\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x01))
+\item 
+\#define {\bfseries F\+I\+O1\+D\+I\+R1}~($\ast$(volatile uint8\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x21))
+\item 
+\#define {\bfseries F\+I\+O2\+D\+I\+R1}~($\ast$(volatile uint8\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x41))
+\item 
+\#define {\bfseries F\+I\+O3\+D\+I\+R1}~($\ast$(volatile uint8\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x61))
+\item 
+\#define {\bfseries F\+I\+O4\+D\+I\+R1}~($\ast$(volatile uint8\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x81))
+\item 
+\#define {\bfseries F\+I\+O0\+D\+I\+R2}~($\ast$(volatile uint8\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x02))
+\item 
+\#define {\bfseries F\+I\+O1\+D\+I\+R2}~($\ast$(volatile uint8\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x22))
+\item 
+\#define {\bfseries F\+I\+O2\+D\+I\+R2}~($\ast$(volatile uint8\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x42))
+\item 
+\#define {\bfseries F\+I\+O3\+D\+I\+R2}~($\ast$(volatile uint8\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x62))
+\item 
+\#define {\bfseries F\+I\+O4\+D\+I\+R2}~($\ast$(volatile uint8\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x82))
+\item 
+\#define {\bfseries F\+I\+O0\+D\+I\+R3}~($\ast$(volatile uint8\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x03))
+\item 
+\#define {\bfseries F\+I\+O1\+D\+I\+R3}~($\ast$(volatile uint8\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x23))
+\item 
+\#define {\bfseries F\+I\+O2\+D\+I\+R3}~($\ast$(volatile uint8\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x43))
+\item 
+\#define {\bfseries F\+I\+O3\+D\+I\+R3}~($\ast$(volatile uint8\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x63))
+\item 
+\#define {\bfseries F\+I\+O4\+D\+I\+R3}~($\ast$(volatile uint8\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x83))
+\item 
+\#define {\bfseries F\+I\+O0\+D\+I\+RL}~($\ast$(volatile uint16\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x00))
+\item 
+\#define {\bfseries F\+I\+O1\+D\+I\+RL}~($\ast$(volatile uint16\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x20))
+\item 
+\#define {\bfseries F\+I\+O2\+D\+I\+RL}~($\ast$(volatile uint16\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x40))
+\item 
+\#define {\bfseries F\+I\+O3\+D\+I\+RL}~($\ast$(volatile uint16\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x60))
+\item 
+\#define {\bfseries F\+I\+O4\+D\+I\+RL}~($\ast$(volatile uint16\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x80))
+\item 
+\#define {\bfseries F\+I\+O0\+D\+I\+RU}~($\ast$(volatile uint16\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x02))
+\item 
+\#define {\bfseries F\+I\+O1\+D\+I\+RU}~($\ast$(volatile uint16\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x22))
+\item 
+\#define {\bfseries F\+I\+O2\+D\+I\+RU}~($\ast$(volatile uint16\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x42))
+\item 
+\#define {\bfseries F\+I\+O3\+D\+I\+RU}~($\ast$(volatile uint16\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x62))
+\item 
+\#define {\bfseries F\+I\+O4\+D\+I\+RU}~($\ast$(volatile uint16\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x82))
+\item 
+\#define {\bfseries F\+I\+O0\+M\+A\+S\+K0}~($\ast$(volatile uint8\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x10))
+\item 
+\#define {\bfseries F\+I\+O1\+M\+A\+S\+K0}~($\ast$(volatile uint8\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x30))
+\item 
+\#define {\bfseries F\+I\+O2\+M\+A\+S\+K0}~($\ast$(volatile uint8\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x50))
+\item 
+\#define {\bfseries F\+I\+O3\+M\+A\+S\+K0}~($\ast$(volatile uint8\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x70))
+\item 
+\#define {\bfseries F\+I\+O4\+M\+A\+S\+K0}~($\ast$(volatile uint8\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x90))
+\item 
+\#define {\bfseries F\+I\+O0\+M\+A\+S\+K1}~($\ast$(volatile uint8\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x11))
+\item 
+\#define {\bfseries F\+I\+O1\+M\+A\+S\+K1}~($\ast$(volatile uint8\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x21))
+\item 
+\#define {\bfseries F\+I\+O2\+M\+A\+S\+K1}~($\ast$(volatile uint8\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x51))
+\item 
+\#define {\bfseries F\+I\+O3\+M\+A\+S\+K1}~($\ast$(volatile uint8\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x71))
+\item 
+\#define {\bfseries F\+I\+O4\+M\+A\+S\+K1}~($\ast$(volatile uint8\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x91))
+\item 
+\#define {\bfseries F\+I\+O0\+M\+A\+S\+K2}~($\ast$(volatile uint8\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x12))
+\item 
+\#define {\bfseries F\+I\+O1\+M\+A\+S\+K2}~($\ast$(volatile uint8\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x32))
+\item 
+\#define {\bfseries F\+I\+O2\+M\+A\+S\+K2}~($\ast$(volatile uint8\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x52))
+\item 
+\#define {\bfseries F\+I\+O3\+M\+A\+S\+K2}~($\ast$(volatile uint8\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x72))
+\item 
+\#define {\bfseries F\+I\+O4\+M\+A\+S\+K2}~($\ast$(volatile uint8\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x92))
+\item 
+\#define {\bfseries F\+I\+O0\+M\+A\+S\+K3}~($\ast$(volatile uint8\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x13))
+\item 
+\#define {\bfseries F\+I\+O1\+M\+A\+S\+K3}~($\ast$(volatile uint8\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x33))
+\item 
+\#define {\bfseries F\+I\+O2\+M\+A\+S\+K3}~($\ast$(volatile uint8\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x53))
+\item 
+\#define {\bfseries F\+I\+O3\+M\+A\+S\+K3}~($\ast$(volatile uint8\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x73))
+\item 
+\#define {\bfseries F\+I\+O4\+M\+A\+S\+K3}~($\ast$(volatile uint8\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x93))
+\item 
+\#define {\bfseries F\+I\+O0\+M\+A\+S\+KL}~($\ast$(volatile uint16\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x10))
+\item 
+\#define {\bfseries F\+I\+O1\+M\+A\+S\+KL}~($\ast$(volatile uint16\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x30))
+\item 
+\#define {\bfseries F\+I\+O2\+M\+A\+S\+KL}~($\ast$(volatile uint16\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x50))
+\item 
+\#define {\bfseries F\+I\+O3\+M\+A\+S\+KL}~($\ast$(volatile uint16\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x70))
+\item 
+\#define {\bfseries F\+I\+O4\+M\+A\+S\+KL}~($\ast$(volatile uint16\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x90))
+\item 
+\#define {\bfseries F\+I\+O0\+M\+A\+S\+KU}~($\ast$(volatile uint16\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x12))
+\item 
+\#define {\bfseries F\+I\+O1\+M\+A\+S\+KU}~($\ast$(volatile uint16\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x32))
+\item 
+\#define {\bfseries F\+I\+O2\+M\+A\+S\+KU}~($\ast$(volatile uint16\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x52))
+\item 
+\#define {\bfseries F\+I\+O3\+M\+A\+S\+KU}~($\ast$(volatile uint16\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x72))
+\item 
+\#define {\bfseries F\+I\+O4\+M\+A\+S\+KU}~($\ast$(volatile uint16\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x92))
+\item 
+\#define {\bfseries F\+I\+O0\+P\+I\+N0}~($\ast$(volatile uint8\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x14))
+\item 
+\#define {\bfseries F\+I\+O1\+P\+I\+N0}~($\ast$(volatile uint8\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x34))
+\item 
+\#define {\bfseries F\+I\+O2\+P\+I\+N0}~($\ast$(volatile uint8\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x54))
+\item 
+\#define {\bfseries F\+I\+O3\+P\+I\+N0}~($\ast$(volatile uint8\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x74))
+\item 
+\#define {\bfseries F\+I\+O4\+P\+I\+N0}~($\ast$(volatile uint8\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x94))
+\item 
+\#define {\bfseries F\+I\+O0\+P\+I\+N1}~($\ast$(volatile uint8\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x15))
+\item 
+\#define {\bfseries F\+I\+O1\+P\+I\+N1}~($\ast$(volatile uint8\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x25))
+\item 
+\#define {\bfseries F\+I\+O2\+P\+I\+N1}~($\ast$(volatile uint8\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x55))
+\item 
+\#define {\bfseries F\+I\+O3\+P\+I\+N1}~($\ast$(volatile uint8\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x75))
+\item 
+\#define {\bfseries F\+I\+O4\+P\+I\+N1}~($\ast$(volatile uint8\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x95))
+\item 
+\#define {\bfseries F\+I\+O0\+P\+I\+N2}~($\ast$(volatile uint8\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x16))
+\item 
+\#define {\bfseries F\+I\+O1\+P\+I\+N2}~($\ast$(volatile uint8\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x36))
+\item 
+\#define {\bfseries F\+I\+O2\+P\+I\+N2}~($\ast$(volatile uint8\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x56))
+\item 
+\#define {\bfseries F\+I\+O3\+P\+I\+N2}~($\ast$(volatile uint8\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x76))
+\item 
+\#define {\bfseries F\+I\+O4\+P\+I\+N2}~($\ast$(volatile uint8\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x96))
+\item 
+\#define {\bfseries F\+I\+O0\+P\+I\+N3}~($\ast$(volatile uint8\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x17))
+\item 
+\#define {\bfseries F\+I\+O1\+P\+I\+N3}~($\ast$(volatile uint8\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x37))
+\item 
+\#define {\bfseries F\+I\+O2\+P\+I\+N3}~($\ast$(volatile uint8\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x57))
+\item 
+\#define {\bfseries F\+I\+O3\+P\+I\+N3}~($\ast$(volatile uint8\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x77))
+\item 
+\#define {\bfseries F\+I\+O4\+P\+I\+N3}~($\ast$(volatile uint8\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x97))
+\item 
+\#define {\bfseries F\+I\+O0\+P\+I\+NL}~($\ast$(volatile uint16\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x14))
+\item 
+\#define {\bfseries F\+I\+O1\+P\+I\+NL}~($\ast$(volatile uint16\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x34))
+\item 
+\#define {\bfseries F\+I\+O2\+P\+I\+NL}~($\ast$(volatile uint16\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x54))
+\item 
+\#define {\bfseries F\+I\+O3\+P\+I\+NL}~($\ast$(volatile uint16\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x74))
+\item 
+\#define {\bfseries F\+I\+O4\+P\+I\+NL}~($\ast$(volatile uint16\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x94))
+\item 
+\#define {\bfseries F\+I\+O0\+P\+I\+NU}~($\ast$(volatile uint16\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x16))
+\item 
+\#define {\bfseries F\+I\+O1\+P\+I\+NU}~($\ast$(volatile uint16\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x36))
+\item 
+\#define {\bfseries F\+I\+O2\+P\+I\+NU}~($\ast$(volatile uint16\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x56))
+\item 
+\#define {\bfseries F\+I\+O3\+P\+I\+NU}~($\ast$(volatile uint16\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x76))
+\item 
+\#define {\bfseries F\+I\+O4\+P\+I\+NU}~($\ast$(volatile uint16\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x96))
+\item 
+\#define {\bfseries F\+I\+O0\+S\+E\+T0}~($\ast$(volatile uint8\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x18))
+\item 
+\#define {\bfseries F\+I\+O1\+S\+E\+T0}~($\ast$(volatile uint8\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x38))
+\item 
+\#define {\bfseries F\+I\+O2\+S\+E\+T0}~($\ast$(volatile uint8\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x58))
+\item 
+\#define {\bfseries F\+I\+O3\+S\+E\+T0}~($\ast$(volatile uint8\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x78))
+\item 
+\#define {\bfseries F\+I\+O4\+S\+E\+T0}~($\ast$(volatile uint8\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x98))
+\item 
+\#define {\bfseries F\+I\+O0\+S\+E\+T1}~($\ast$(volatile uint8\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x19))
+\item 
+\#define {\bfseries F\+I\+O1\+S\+E\+T1}~($\ast$(volatile uint8\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x29))
+\item 
+\#define {\bfseries F\+I\+O2\+S\+E\+T1}~($\ast$(volatile uint8\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x59))
+\item 
+\#define {\bfseries F\+I\+O3\+S\+E\+T1}~($\ast$(volatile uint8\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x79))
+\item 
+\#define {\bfseries F\+I\+O4\+S\+E\+T1}~($\ast$(volatile uint8\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x99))
+\item 
+\#define {\bfseries F\+I\+O0\+S\+E\+T2}~($\ast$(volatile uint8\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x1\+A))
+\item 
+\#define {\bfseries F\+I\+O1\+S\+E\+T2}~($\ast$(volatile uint8\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x3\+A))
+\item 
+\#define {\bfseries F\+I\+O2\+S\+E\+T2}~($\ast$(volatile uint8\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x5\+A))
+\item 
+\#define {\bfseries F\+I\+O3\+S\+E\+T2}~($\ast$(volatile uint8\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x7\+A))
+\item 
+\#define {\bfseries F\+I\+O4\+S\+E\+T2}~($\ast$(volatile uint8\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x9\+A))
+\item 
+\#define {\bfseries F\+I\+O0\+S\+E\+T3}~($\ast$(volatile uint8\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x1\+B))
+\item 
+\#define {\bfseries F\+I\+O1\+S\+E\+T3}~($\ast$(volatile uint8\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x3\+B))
+\item 
+\#define {\bfseries F\+I\+O2\+S\+E\+T3}~($\ast$(volatile uint8\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x5\+B))
+\item 
+\#define {\bfseries F\+I\+O3\+S\+E\+T3}~($\ast$(volatile uint8\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x7\+B))
+\item 
+\#define {\bfseries F\+I\+O4\+S\+E\+T3}~($\ast$(volatile uint8\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x9\+B))
+\item 
+\#define {\bfseries F\+I\+O0\+S\+E\+TL}~($\ast$(volatile uint16\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x18))
+\item 
+\#define {\bfseries F\+I\+O1\+S\+E\+TL}~($\ast$(volatile uint16\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x38))
+\item 
+\#define {\bfseries F\+I\+O2\+S\+E\+TL}~($\ast$(volatile uint16\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x58))
+\item 
+\#define {\bfseries F\+I\+O3\+S\+E\+TL}~($\ast$(volatile uint16\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x78))
+\item 
+\#define {\bfseries F\+I\+O4\+S\+E\+TL}~($\ast$(volatile uint16\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x98))
+\item 
+\#define {\bfseries F\+I\+O0\+S\+E\+TU}~($\ast$(volatile uint16\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x1\+A))
+\item 
+\#define {\bfseries F\+I\+O1\+S\+E\+TU}~($\ast$(volatile uint16\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x3\+A))
+\item 
+\#define {\bfseries F\+I\+O2\+S\+E\+TU}~($\ast$(volatile uint16\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x5\+A))
+\item 
+\#define {\bfseries F\+I\+O3\+S\+E\+TU}~($\ast$(volatile uint16\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x7\+A))
+\item 
+\#define {\bfseries F\+I\+O4\+S\+E\+TU}~($\ast$(volatile uint16\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x9\+A))
+\item 
+\#define {\bfseries F\+I\+O0\+C\+L\+R0}~($\ast$(volatile uint8\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x1\+C))
+\item 
+\#define {\bfseries F\+I\+O1\+C\+L\+R0}~($\ast$(volatile uint8\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x3\+C))
+\item 
+\#define {\bfseries F\+I\+O2\+C\+L\+R0}~($\ast$(volatile uint8\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x5\+C))
+\item 
+\#define {\bfseries F\+I\+O3\+C\+L\+R0}~($\ast$(volatile uint8\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x7\+C))
+\item 
+\#define {\bfseries F\+I\+O4\+C\+L\+R0}~($\ast$(volatile uint8\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x9\+C))
+\item 
+\#define {\bfseries F\+I\+O0\+C\+L\+R1}~($\ast$(volatile uint8\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x1\+D))
+\item 
+\#define {\bfseries F\+I\+O1\+C\+L\+R1}~($\ast$(volatile uint8\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x2\+D))
+\item 
+\#define {\bfseries F\+I\+O2\+C\+L\+R1}~($\ast$(volatile uint8\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x5\+D))
+\item 
+\#define {\bfseries F\+I\+O3\+C\+L\+R1}~($\ast$(volatile uint8\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x7\+D))
+\item 
+\#define {\bfseries F\+I\+O4\+C\+L\+R1}~($\ast$(volatile uint8\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x9\+D))
+\item 
+\#define {\bfseries F\+I\+O0\+C\+L\+R2}~($\ast$(volatile uint8\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x1\+E))
+\item 
+\#define {\bfseries F\+I\+O1\+C\+L\+R2}~($\ast$(volatile uint8\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x3\+E))
+\item 
+\#define {\bfseries F\+I\+O2\+C\+L\+R2}~($\ast$(volatile uint8\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x5\+E))
+\item 
+\#define {\bfseries F\+I\+O3\+C\+L\+R2}~($\ast$(volatile uint8\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x7\+E))
+\item 
+\#define {\bfseries F\+I\+O4\+C\+L\+R2}~($\ast$(volatile uint8\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x9\+E))
+\item 
+\#define {\bfseries F\+I\+O0\+C\+L\+R3}~($\ast$(volatile uint8\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x1\+F))
+\item 
+\#define {\bfseries F\+I\+O1\+C\+L\+R3}~($\ast$(volatile uint8\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x3\+F))
+\item 
+\#define {\bfseries F\+I\+O2\+C\+L\+R3}~($\ast$(volatile uint8\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x5\+F))
+\item 
+\#define {\bfseries F\+I\+O3\+C\+L\+R3}~($\ast$(volatile uint8\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x7\+F))
+\item 
+\#define {\bfseries F\+I\+O4\+C\+L\+R3}~($\ast$(volatile uint8\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x9\+F))
+\item 
+\#define {\bfseries F\+I\+O0\+C\+L\+RL}~($\ast$(volatile uint16\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x1\+C))
+\item 
+\#define {\bfseries F\+I\+O1\+C\+L\+RL}~($\ast$(volatile uint16\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x3\+C))
+\item 
+\#define {\bfseries F\+I\+O2\+C\+L\+RL}~($\ast$(volatile uint16\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x5\+C))
+\item 
+\#define {\bfseries F\+I\+O3\+C\+L\+RL}~($\ast$(volatile uint16\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x7\+C))
+\item 
+\#define {\bfseries F\+I\+O4\+C\+L\+RL}~($\ast$(volatile uint16\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x9\+C))
+\item 
+\#define {\bfseries F\+I\+O0\+C\+L\+RU}~($\ast$(volatile uint16\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x1\+E))
+\item 
+\#define {\bfseries F\+I\+O1\+C\+L\+RU}~($\ast$(volatile uint16\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x3\+E))
+\item 
+\#define {\bfseries F\+I\+O2\+C\+L\+RU}~($\ast$(volatile uint16\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x5\+E))
+\item 
+\#define {\bfseries F\+I\+O3\+C\+L\+RU}~($\ast$(volatile uint16\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x7\+E))
+\item 
+\#define {\bfseries F\+I\+O4\+C\+L\+RU}~($\ast$(volatile uint16\+\_\+t $\ast$) (F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x9\+E))
+\item 
+\#define {\bfseries E\+M\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR}~0x2009c000
+\item 
+\#define {\bfseries E\+M\+C\+\_\+\+C\+T\+RL}~($\ast$(volatile uint32\+\_\+t $\ast$) (E\+M\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x000))
+\item 
+\#define {\bfseries E\+M\+C\+\_\+\+S\+T\+AT}~($\ast$(volatile uint32\+\_\+t $\ast$) (E\+M\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x004))
+\item 
+\#define {\bfseries E\+M\+C\+\_\+\+C\+O\+N\+F\+IG}~($\ast$(volatile uint32\+\_\+t $\ast$) (E\+M\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x008))
+\item 
+\#define {\bfseries E\+M\+C\+\_\+\+D\+Y\+N\+\_\+\+C\+T\+RL}~($\ast$(volatile uint32\+\_\+t $\ast$) (E\+M\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x020))
+\item 
+\#define {\bfseries E\+M\+C\+\_\+\+D\+Y\+N\+\_\+\+R\+F\+SH}~($\ast$(volatile uint32\+\_\+t $\ast$) (E\+M\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x024))
+\item 
+\#define {\bfseries E\+M\+C\+\_\+\+D\+Y\+N\+\_\+\+R\+D\+\_\+\+C\+FG}~($\ast$(volatile uint32\+\_\+t $\ast$) (E\+M\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x028))
+\item 
+\#define {\bfseries E\+M\+C\+\_\+\+D\+Y\+N\+\_\+\+RP}~($\ast$(volatile uint32\+\_\+t $\ast$) (E\+M\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x030))
+\item 
+\#define {\bfseries E\+M\+C\+\_\+\+D\+Y\+N\+\_\+\+R\+AS}~($\ast$(volatile uint32\+\_\+t $\ast$) (E\+M\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x034))
+\item 
+\#define {\bfseries E\+M\+C\+\_\+\+D\+Y\+N\+\_\+\+S\+R\+EX}~($\ast$(volatile uint32\+\_\+t $\ast$) (E\+M\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x038))
+\item 
+\#define {\bfseries E\+M\+C\+\_\+\+D\+Y\+N\+\_\+\+A\+PR}~($\ast$(volatile uint32\+\_\+t $\ast$) (E\+M\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x03\+C))
+\item 
+\#define {\bfseries E\+M\+C\+\_\+\+D\+Y\+N\+\_\+\+D\+AL}~($\ast$(volatile uint32\+\_\+t $\ast$) (E\+M\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x040))
+\item 
+\#define {\bfseries E\+M\+C\+\_\+\+D\+Y\+N\+\_\+\+WR}~($\ast$(volatile uint32\+\_\+t $\ast$) (E\+M\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x044))
+\item 
+\#define {\bfseries E\+M\+C\+\_\+\+D\+Y\+N\+\_\+\+RC}~($\ast$(volatile uint32\+\_\+t $\ast$) (E\+M\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x048))
+\item 
+\#define {\bfseries E\+M\+C\+\_\+\+D\+Y\+N\+\_\+\+R\+FC}~($\ast$(volatile uint32\+\_\+t $\ast$) (E\+M\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x04\+C))
+\item 
+\#define {\bfseries E\+M\+C\+\_\+\+D\+Y\+N\+\_\+\+X\+SR}~($\ast$(volatile uint32\+\_\+t $\ast$) (E\+M\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x050))
+\item 
+\#define {\bfseries E\+M\+C\+\_\+\+D\+Y\+N\+\_\+\+R\+RD}~($\ast$(volatile uint32\+\_\+t $\ast$) (E\+M\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x054))
+\item 
+\#define {\bfseries E\+M\+C\+\_\+\+D\+Y\+N\+\_\+\+M\+RD}~($\ast$(volatile uint32\+\_\+t $\ast$) (E\+M\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x058))
+\item 
+\#define {\bfseries E\+M\+C\+\_\+\+D\+Y\+N\+\_\+\+C\+F\+G0}~($\ast$(volatile uint32\+\_\+t $\ast$) (E\+M\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x100))
+\item 
+\#define {\bfseries E\+M\+C\+\_\+\+D\+Y\+N\+\_\+\+R\+A\+S\+C\+A\+S0}~($\ast$(volatile uint32\+\_\+t $\ast$) (E\+M\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x104))
+\item 
+\#define {\bfseries E\+M\+C\+\_\+\+D\+Y\+N\+\_\+\+C\+F\+G1}~($\ast$(volatile uint32\+\_\+t $\ast$) (E\+M\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x140))
+\item 
+\#define {\bfseries E\+M\+C\+\_\+\+D\+Y\+N\+\_\+\+R\+A\+S\+C\+A\+S1}~($\ast$(volatile uint32\+\_\+t $\ast$) (E\+M\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x144))
+\item 
+\#define {\bfseries E\+M\+C\+\_\+\+D\+Y\+N\+\_\+\+C\+F\+G2}~($\ast$(volatile uint32\+\_\+t $\ast$) (E\+M\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x160))
+\item 
+\#define {\bfseries E\+M\+C\+\_\+\+D\+Y\+N\+\_\+\+R\+A\+S\+C\+A\+S2}~($\ast$(volatile uint32\+\_\+t $\ast$) (E\+M\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x164))
+\item 
+\#define {\bfseries E\+M\+C\+\_\+\+D\+Y\+N\+\_\+\+C\+F\+G3}~($\ast$(volatile uint32\+\_\+t $\ast$) (E\+M\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x180))
+\item 
+\#define {\bfseries E\+M\+C\+\_\+\+D\+Y\+N\+\_\+\+R\+A\+S\+C\+A\+S3}~($\ast$(volatile uint32\+\_\+t $\ast$) (E\+M\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x184))
+\item 
+\#define {\bfseries E\+M\+C\+\_\+\+S\+T\+A\+\_\+\+B\+A\+S\+E\+\_\+0}~((uint32\+\_\+t $\ast$) (E\+M\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x200))
+\item 
+\#define {\bfseries E\+M\+C\+\_\+\+S\+T\+A\+\_\+\+C\+F\+G0}~($\ast$(volatile uint32\+\_\+t $\ast$) (E\+M\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x200))
+\item 
+\#define {\bfseries E\+M\+C\+\_\+\+S\+T\+A\+\_\+\+W\+A\+I\+T\+W\+E\+N0}~($\ast$(volatile uint32\+\_\+t $\ast$) (E\+M\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x204))
+\item 
+\#define {\bfseries E\+M\+C\+\_\+\+S\+T\+A\+\_\+\+W\+A\+I\+T\+O\+E\+N0}~($\ast$(volatile uint32\+\_\+t $\ast$) (E\+M\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x208))
+\item 
+\#define {\bfseries E\+M\+C\+\_\+\+S\+T\+A\+\_\+\+W\+A\+I\+T\+R\+D0}~($\ast$(volatile uint32\+\_\+t $\ast$) (E\+M\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x20\+C))
+\item 
+\#define {\bfseries E\+M\+C\+\_\+\+S\+T\+A\+\_\+\+W\+A\+I\+T\+P\+A\+G\+E0}~($\ast$(volatile uint32\+\_\+t $\ast$) (E\+M\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x210))
+\item 
+\#define {\bfseries E\+M\+C\+\_\+\+S\+T\+A\+\_\+\+W\+A\+I\+T\+W\+R0}~($\ast$(volatile uint32\+\_\+t $\ast$) (E\+M\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x214))
+\item 
+\#define {\bfseries E\+M\+C\+\_\+\+S\+T\+A\+\_\+\+W\+A\+I\+T\+T\+U\+R\+N0}~($\ast$(volatile uint32\+\_\+t $\ast$) (E\+M\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x218))
+\item 
+\#define {\bfseries E\+M\+C\+\_\+\+S\+T\+A\+\_\+\+B\+A\+S\+E\+\_\+1}~((uint32\+\_\+t $\ast$) (E\+M\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x220))
+\item 
+\#define {\bfseries E\+M\+C\+\_\+\+S\+T\+A\+\_\+\+C\+F\+G1}~($\ast$(volatile uint32\+\_\+t $\ast$) (E\+M\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x220))
+\item 
+\#define {\bfseries E\+M\+C\+\_\+\+S\+T\+A\+\_\+\+W\+A\+I\+T\+W\+E\+N1}~($\ast$(volatile uint32\+\_\+t $\ast$) (E\+M\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x224))
+\item 
+\#define {\bfseries E\+M\+C\+\_\+\+S\+T\+A\+\_\+\+W\+A\+I\+T\+O\+E\+N1}~($\ast$(volatile uint32\+\_\+t $\ast$) (E\+M\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x228))
+\item 
+\#define {\bfseries E\+M\+C\+\_\+\+S\+T\+A\+\_\+\+W\+A\+I\+T\+R\+D1}~($\ast$(volatile uint32\+\_\+t $\ast$) (E\+M\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x22\+C))
+\item 
+\#define {\bfseries E\+M\+C\+\_\+\+S\+T\+A\+\_\+\+W\+A\+I\+T\+P\+A\+G\+E1}~($\ast$(volatile uint32\+\_\+t $\ast$) (E\+M\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x230))
+\item 
+\#define {\bfseries E\+M\+C\+\_\+\+S\+T\+A\+\_\+\+W\+A\+I\+T\+W\+R1}~($\ast$(volatile uint32\+\_\+t $\ast$) (E\+M\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x234))
+\item 
+\#define {\bfseries E\+M\+C\+\_\+\+S\+T\+A\+\_\+\+W\+A\+I\+T\+T\+U\+R\+N1}~($\ast$(volatile uint32\+\_\+t $\ast$) (E\+M\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x238))
+\item 
+\#define {\bfseries E\+M\+C\+\_\+\+S\+T\+A\+\_\+\+B\+A\+S\+E\+\_\+2}~((uint32\+\_\+t $\ast$) (E\+M\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x240))
+\item 
+\#define {\bfseries E\+M\+C\+\_\+\+S\+T\+A\+\_\+\+C\+F\+G2}~($\ast$(volatile uint32\+\_\+t $\ast$) (E\+M\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x240))
+\item 
+\#define {\bfseries E\+M\+C\+\_\+\+S\+T\+A\+\_\+\+W\+A\+I\+T\+W\+E\+N2}~($\ast$(volatile uint32\+\_\+t $\ast$) (E\+M\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x244))
+\item 
+\#define {\bfseries E\+M\+C\+\_\+\+S\+T\+A\+\_\+\+W\+A\+I\+T\+O\+E\+N2}~($\ast$(volatile uint32\+\_\+t $\ast$) (E\+M\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x248))
+\item 
+\#define {\bfseries E\+M\+C\+\_\+\+S\+T\+A\+\_\+\+W\+A\+I\+T\+R\+D2}~($\ast$(volatile uint32\+\_\+t $\ast$) (E\+M\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x24\+C))
+\item 
+\#define {\bfseries E\+M\+C\+\_\+\+S\+T\+A\+\_\+\+W\+A\+I\+T\+P\+A\+G\+E2}~($\ast$(volatile uint32\+\_\+t $\ast$) (E\+M\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x250))
+\item 
+\#define {\bfseries E\+M\+C\+\_\+\+S\+T\+A\+\_\+\+W\+A\+I\+T\+W\+R2}~($\ast$(volatile uint32\+\_\+t $\ast$) (E\+M\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x254))
+\item 
+\#define {\bfseries E\+M\+C\+\_\+\+S\+T\+A\+\_\+\+W\+A\+I\+T\+T\+U\+R\+N2}~($\ast$(volatile uint32\+\_\+t $\ast$) (E\+M\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x258))
+\item 
+\#define {\bfseries E\+M\+C\+\_\+\+S\+T\+A\+\_\+\+B\+A\+S\+E\+\_\+3}~((uint32\+\_\+t $\ast$) (E\+M\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x260))
+\item 
+\#define {\bfseries E\+M\+C\+\_\+\+S\+T\+A\+\_\+\+C\+F\+G3}~($\ast$(volatile uint32\+\_\+t $\ast$) (E\+M\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x260))
+\item 
+\#define {\bfseries E\+M\+C\+\_\+\+S\+T\+A\+\_\+\+W\+A\+I\+T\+W\+E\+N3}~($\ast$(volatile uint32\+\_\+t $\ast$) (E\+M\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x264))
+\item 
+\#define {\bfseries E\+M\+C\+\_\+\+S\+T\+A\+\_\+\+W\+A\+I\+T\+O\+E\+N3}~($\ast$(volatile uint32\+\_\+t $\ast$) (E\+M\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x268))
+\item 
+\#define {\bfseries E\+M\+C\+\_\+\+S\+T\+A\+\_\+\+W\+A\+I\+T\+R\+D3}~($\ast$(volatile uint32\+\_\+t $\ast$) (E\+M\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x26\+C))
+\item 
+\#define {\bfseries E\+M\+C\+\_\+\+S\+T\+A\+\_\+\+W\+A\+I\+T\+P\+A\+G\+E3}~($\ast$(volatile uint32\+\_\+t $\ast$) (E\+M\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x270))
+\item 
+\#define {\bfseries E\+M\+C\+\_\+\+S\+T\+A\+\_\+\+W\+A\+I\+T\+W\+R3}~($\ast$(volatile uint32\+\_\+t $\ast$) (E\+M\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x274))
+\item 
+\#define {\bfseries E\+M\+C\+\_\+\+S\+T\+A\+\_\+\+W\+A\+I\+T\+T\+U\+R\+N3}~($\ast$(volatile uint32\+\_\+t $\ast$) (E\+M\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x278))
+\item 
+\#define {\bfseries E\+M\+C\+\_\+\+S\+T\+A\+\_\+\+E\+X\+T\+\_\+\+W\+A\+IT}~($\ast$(volatile uint32\+\_\+t $\ast$) (E\+M\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x880))
+\item 
+\#define {\bfseries T\+M\+R0\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR}~0x40004000
+\item 
+\#define {\bfseries T0\+IR}~($\ast$(volatile uint32\+\_\+t $\ast$) (T\+M\+R0\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x00))
+\item 
+\#define {\bfseries T0\+T\+CR}~($\ast$(volatile uint32\+\_\+t $\ast$) (T\+M\+R0\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x04))
+\item 
+\#define {\bfseries T0\+TC}~($\ast$(volatile uint32\+\_\+t $\ast$) (T\+M\+R0\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x08))
+\item 
+\#define {\bfseries T0\+PR}~($\ast$(volatile uint32\+\_\+t $\ast$) (T\+M\+R0\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x0\+C))
+\item 
+\#define {\bfseries T0\+PC}~($\ast$(volatile uint32\+\_\+t $\ast$) (T\+M\+R0\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x10))
+\item 
+\#define {\bfseries T0\+M\+CR}~($\ast$(volatile uint32\+\_\+t $\ast$) (T\+M\+R0\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x14))
+\item 
+\#define {\bfseries T0\+M\+R0}~($\ast$(volatile uint32\+\_\+t $\ast$) (T\+M\+R0\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x18))
+\item 
+\#define {\bfseries T0\+M\+R1}~($\ast$(volatile uint32\+\_\+t $\ast$) (T\+M\+R0\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x1\+C))
+\item 
+\#define {\bfseries T0\+M\+R2}~($\ast$(volatile uint32\+\_\+t $\ast$) (T\+M\+R0\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x20))
+\item 
+\#define {\bfseries T0\+M\+R3}~($\ast$(volatile uint32\+\_\+t $\ast$) (T\+M\+R0\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x24))
+\item 
+\#define {\bfseries T0\+C\+CR}~($\ast$(volatile uint32\+\_\+t $\ast$) (T\+M\+R0\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x28))
+\item 
+\#define {\bfseries T0\+C\+R0}~($\ast$(volatile uint32\+\_\+t $\ast$) (T\+M\+R0\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x2\+C))
+\item 
+\#define {\bfseries T0\+C\+R1}~($\ast$(volatile uint32\+\_\+t $\ast$) (T\+M\+R0\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x30))
+\item 
+\#define {\bfseries T0\+C\+R2}~($\ast$(volatile uint32\+\_\+t $\ast$) (T\+M\+R0\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x34))
+\item 
+\#define {\bfseries T0\+C\+R3}~($\ast$(volatile uint32\+\_\+t $\ast$) (T\+M\+R0\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x38))
+\item 
+\#define {\bfseries T0\+E\+MR}~($\ast$(volatile uint32\+\_\+t $\ast$) (T\+M\+R0\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x3\+C))
+\item 
+\#define {\bfseries T0\+C\+T\+CR}~($\ast$(volatile uint32\+\_\+t $\ast$) (T\+M\+R0\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x70))
+\item 
+\#define {\bfseries T\+M\+R1\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR}~0x40008000
+\item 
+\#define {\bfseries T1\+IR}~($\ast$(volatile uint32\+\_\+t $\ast$) (T\+M\+R1\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x00))
+\item 
+\#define {\bfseries T1\+T\+CR}~($\ast$(volatile uint32\+\_\+t $\ast$) (T\+M\+R1\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x04))
+\item 
+\#define {\bfseries T1\+TC}~($\ast$(volatile uint32\+\_\+t $\ast$) (T\+M\+R1\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x08))
+\item 
+\#define {\bfseries T1\+PR}~($\ast$(volatile uint32\+\_\+t $\ast$) (T\+M\+R1\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x0\+C))
+\item 
+\#define {\bfseries T1\+PC}~($\ast$(volatile uint32\+\_\+t $\ast$) (T\+M\+R1\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x10))
+\item 
+\#define {\bfseries T1\+M\+CR}~($\ast$(volatile uint32\+\_\+t $\ast$) (T\+M\+R1\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x14))
+\item 
+\#define {\bfseries T1\+M\+R0}~($\ast$(volatile uint32\+\_\+t $\ast$) (T\+M\+R1\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x18))
+\item 
+\#define {\bfseries T1\+M\+R1}~($\ast$(volatile uint32\+\_\+t $\ast$) (T\+M\+R1\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x1\+C))
+\item 
+\#define {\bfseries T1\+M\+R2}~($\ast$(volatile uint32\+\_\+t $\ast$) (T\+M\+R1\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x20))
+\item 
+\#define {\bfseries T1\+M\+R3}~($\ast$(volatile uint32\+\_\+t $\ast$) (T\+M\+R1\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x24))
+\item 
+\#define {\bfseries T1\+C\+CR}~($\ast$(volatile uint32\+\_\+t $\ast$) (T\+M\+R1\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x28))
+\item 
+\#define {\bfseries T1\+C\+R0}~($\ast$(volatile uint32\+\_\+t $\ast$) (T\+M\+R1\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x2\+C))
+\item 
+\#define {\bfseries T1\+C\+R1}~($\ast$(volatile uint32\+\_\+t $\ast$) (T\+M\+R1\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x30))
+\item 
+\#define {\bfseries T1\+C\+R2}~($\ast$(volatile uint32\+\_\+t $\ast$) (T\+M\+R1\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x34))
+\item 
+\#define {\bfseries T1\+C\+R3}~($\ast$(volatile uint32\+\_\+t $\ast$) (T\+M\+R1\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x38))
+\item 
+\#define {\bfseries T1\+E\+MR}~($\ast$(volatile uint32\+\_\+t $\ast$) (T\+M\+R1\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x3\+C))
+\item 
+\#define {\bfseries T1\+C\+T\+CR}~($\ast$(volatile uint32\+\_\+t $\ast$) (T\+M\+R1\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x70))
+\item 
+\#define {\bfseries T\+M\+R2\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR}~0x40090000
+\item 
+\#define {\bfseries T2\+IR}~($\ast$(volatile uint32\+\_\+t $\ast$) (T\+M\+R2\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x00))
+\item 
+\#define {\bfseries T2\+T\+CR}~($\ast$(volatile uint32\+\_\+t $\ast$) (T\+M\+R2\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x04))
+\item 
+\#define {\bfseries T2\+TC}~($\ast$(volatile uint32\+\_\+t $\ast$) (T\+M\+R2\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x08))
+\item 
+\#define {\bfseries T2\+PR}~($\ast$(volatile uint32\+\_\+t $\ast$) (T\+M\+R2\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x0\+C))
+\item 
+\#define {\bfseries T2\+PC}~($\ast$(volatile uint32\+\_\+t $\ast$) (T\+M\+R2\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x10))
+\item 
+\#define {\bfseries T2\+M\+CR}~($\ast$(volatile uint32\+\_\+t $\ast$) (T\+M\+R2\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x14))
+\item 
+\#define {\bfseries T2\+M\+R0}~($\ast$(volatile uint32\+\_\+t $\ast$) (T\+M\+R2\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x18))
+\item 
+\#define {\bfseries T2\+M\+R1}~($\ast$(volatile uint32\+\_\+t $\ast$) (T\+M\+R2\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x1\+C))
+\item 
+\#define {\bfseries T2\+M\+R2}~($\ast$(volatile uint32\+\_\+t $\ast$) (T\+M\+R2\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x20))
+\item 
+\#define {\bfseries T2\+M\+R3}~($\ast$(volatile uint32\+\_\+t $\ast$) (T\+M\+R2\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x24))
+\item 
+\#define {\bfseries T2\+C\+CR}~($\ast$(volatile uint32\+\_\+t $\ast$) (T\+M\+R2\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x28))
+\item 
+\#define {\bfseries T2\+C\+R0}~($\ast$(volatile uint32\+\_\+t $\ast$) (T\+M\+R2\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x2\+C))
+\item 
+\#define {\bfseries T2\+C\+R1}~($\ast$(volatile uint32\+\_\+t $\ast$) (T\+M\+R2\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x30))
+\item 
+\#define {\bfseries T2\+C\+R2}~($\ast$(volatile uint32\+\_\+t $\ast$) (T\+M\+R2\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x34))
+\item 
+\#define {\bfseries T2\+C\+R3}~($\ast$(volatile uint32\+\_\+t $\ast$) (T\+M\+R2\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x38))
+\item 
+\#define {\bfseries T2\+E\+MR}~($\ast$(volatile uint32\+\_\+t $\ast$) (T\+M\+R2\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x3\+C))
+\item 
+\#define {\bfseries T2\+C\+T\+CR}~($\ast$(volatile uint32\+\_\+t $\ast$) (T\+M\+R2\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x70))
+\item 
+\#define {\bfseries T\+M\+R3\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR}~0x40094000
+\item 
+\#define {\bfseries T3\+IR}~($\ast$(volatile uint32\+\_\+t $\ast$) (T\+M\+R3\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x00))
+\item 
+\#define {\bfseries T3\+T\+CR}~($\ast$(volatile uint32\+\_\+t $\ast$) (T\+M\+R3\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x04))
+\item 
+\#define {\bfseries T3\+TC}~($\ast$(volatile uint32\+\_\+t $\ast$) (T\+M\+R3\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x08))
+\item 
+\#define {\bfseries T3\+PR}~($\ast$(volatile uint32\+\_\+t $\ast$) (T\+M\+R3\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x0\+C))
+\item 
+\#define {\bfseries T3\+PC}~($\ast$(volatile uint32\+\_\+t $\ast$) (T\+M\+R3\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x10))
+\item 
+\#define {\bfseries T3\+M\+CR}~($\ast$(volatile uint32\+\_\+t $\ast$) (T\+M\+R3\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x14))
+\item 
+\#define {\bfseries T3\+M\+R0}~($\ast$(volatile uint32\+\_\+t $\ast$) (T\+M\+R3\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x18))
+\item 
+\#define {\bfseries T3\+M\+R1}~($\ast$(volatile uint32\+\_\+t $\ast$) (T\+M\+R3\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x1\+C))
+\item 
+\#define {\bfseries T3\+M\+R2}~($\ast$(volatile uint32\+\_\+t $\ast$) (T\+M\+R3\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x20))
+\item 
+\#define {\bfseries T3\+M\+R3}~($\ast$(volatile uint32\+\_\+t $\ast$) (T\+M\+R3\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x24))
+\item 
+\#define {\bfseries T3\+C\+CR}~($\ast$(volatile uint32\+\_\+t $\ast$) (T\+M\+R3\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x28))
+\item 
+\#define {\bfseries T3\+C\+R0}~($\ast$(volatile uint32\+\_\+t $\ast$) (T\+M\+R3\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x2\+C))
+\item 
+\#define {\bfseries T3\+C\+R1}~($\ast$(volatile uint32\+\_\+t $\ast$) (T\+M\+R3\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x30))
+\item 
+\#define {\bfseries T3\+C\+R2}~($\ast$(volatile uint32\+\_\+t $\ast$) (T\+M\+R3\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x34))
+\item 
+\#define {\bfseries T3\+C\+R3}~($\ast$(volatile uint32\+\_\+t $\ast$) (T\+M\+R3\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x38))
+\item 
+\#define {\bfseries T3\+E\+MR}~($\ast$(volatile uint32\+\_\+t $\ast$) (T\+M\+R3\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x3\+C))
+\item 
+\#define {\bfseries T3\+C\+T\+CR}~($\ast$(volatile uint32\+\_\+t $\ast$) (T\+M\+R3\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x70))
+\item 
+\#define {\bfseries P\+W\+M0\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR}~0x40014000
+\item 
+\#define {\bfseries P\+W\+M0\+IR}~($\ast$(volatile uint32\+\_\+t $\ast$) (P\+W\+M0\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x00))
+\item 
+\#define {\bfseries P\+W\+M0\+T\+CR}~($\ast$(volatile uint32\+\_\+t $\ast$) (P\+W\+M0\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x04))
+\item 
+\#define {\bfseries P\+W\+M0\+TC}~($\ast$(volatile uint32\+\_\+t $\ast$) (P\+W\+M0\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x08))
+\item 
+\#define {\bfseries P\+W\+M0\+PR}~($\ast$(volatile uint32\+\_\+t $\ast$) (P\+W\+M0\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x0\+C))
+\item 
+\#define {\bfseries P\+W\+M0\+PC}~($\ast$(volatile uint32\+\_\+t $\ast$) (P\+W\+M0\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x10))
+\item 
+\#define {\bfseries P\+W\+M0\+M\+CR}~($\ast$(volatile uint32\+\_\+t $\ast$) (P\+W\+M0\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x14))
+\item 
+\#define {\bfseries P\+W\+M0\+M\+R0}~($\ast$(volatile uint32\+\_\+t $\ast$) (P\+W\+M0\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x18))
+\item 
+\#define {\bfseries P\+W\+M0\+M\+R1}~($\ast$(volatile uint32\+\_\+t $\ast$) (P\+W\+M0\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x1\+C))
+\item 
+\#define {\bfseries P\+W\+M0\+M\+R2}~($\ast$(volatile uint32\+\_\+t $\ast$) (P\+W\+M0\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x20))
+\item 
+\#define {\bfseries P\+W\+M0\+M\+R3}~($\ast$(volatile uint32\+\_\+t $\ast$) (P\+W\+M0\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x24))
+\item 
+\#define {\bfseries P\+W\+M0\+C\+CR}~($\ast$(volatile uint32\+\_\+t $\ast$) (P\+W\+M0\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x28))
+\item 
+\#define {\bfseries P\+W\+M0\+C\+R0}~($\ast$(volatile uint32\+\_\+t $\ast$) (P\+W\+M0\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x2\+C))
+\item 
+\#define {\bfseries P\+W\+M0\+C\+R1}~($\ast$(volatile uint32\+\_\+t $\ast$) (P\+W\+M0\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x30))
+\item 
+\#define {\bfseries P\+W\+M0\+C\+R2}~($\ast$(volatile uint32\+\_\+t $\ast$) (P\+W\+M0\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x34))
+\item 
+\#define {\bfseries P\+W\+M0\+C\+R3}~($\ast$(volatile uint32\+\_\+t $\ast$) (P\+W\+M0\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x38))
+\item 
+\#define {\bfseries P\+W\+M0\+E\+MR}~($\ast$(volatile uint32\+\_\+t $\ast$) (P\+W\+M0\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x3\+C))
+\item 
+\#define {\bfseries P\+W\+M0\+M\+R4}~($\ast$(volatile uint32\+\_\+t $\ast$) (P\+W\+M0\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x40))
+\item 
+\#define {\bfseries P\+W\+M0\+M\+R5}~($\ast$(volatile uint32\+\_\+t $\ast$) (P\+W\+M0\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x44))
+\item 
+\#define {\bfseries P\+W\+M0\+M\+R6}~($\ast$(volatile uint32\+\_\+t $\ast$) (P\+W\+M0\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x48))
+\item 
+\#define {\bfseries P\+W\+M0\+P\+CR}~($\ast$(volatile uint32\+\_\+t $\ast$) (P\+W\+M0\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x4\+C))
+\item 
+\#define {\bfseries P\+W\+M0\+L\+ER}~($\ast$(volatile uint32\+\_\+t $\ast$) (P\+W\+M0\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x50))
+\item 
+\#define {\bfseries P\+W\+M0\+C\+T\+CR}~($\ast$(volatile uint32\+\_\+t $\ast$) (P\+W\+M0\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x70))
+\item 
+\#define {\bfseries P\+W\+M1\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR}~0x40018000
+\item 
+\#define {\bfseries P\+W\+M1\+IR}~($\ast$(volatile uint32\+\_\+t $\ast$) (P\+W\+M1\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x00))
+\item 
+\#define {\bfseries P\+W\+M1\+T\+CR}~($\ast$(volatile uint32\+\_\+t $\ast$) (P\+W\+M1\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x04))
+\item 
+\#define {\bfseries P\+W\+M1\+TC}~($\ast$(volatile uint32\+\_\+t $\ast$) (P\+W\+M1\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x08))
+\item 
+\#define {\bfseries P\+W\+M1\+PR}~($\ast$(volatile uint32\+\_\+t $\ast$) (P\+W\+M1\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x0\+C))
+\item 
+\#define {\bfseries P\+W\+M1\+PC}~($\ast$(volatile uint32\+\_\+t $\ast$) (P\+W\+M1\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x10))
+\item 
+\#define {\bfseries P\+W\+M1\+M\+CR}~($\ast$(volatile uint32\+\_\+t $\ast$) (P\+W\+M1\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x14))
+\item 
+\#define {\bfseries P\+W\+M1\+M\+R0}~($\ast$(volatile uint32\+\_\+t $\ast$) (P\+W\+M1\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x18))
+\item 
+\#define {\bfseries P\+W\+M1\+M\+R1}~($\ast$(volatile uint32\+\_\+t $\ast$) (P\+W\+M1\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x1\+C))
+\item 
+\#define {\bfseries P\+W\+M1\+M\+R2}~($\ast$(volatile uint32\+\_\+t $\ast$) (P\+W\+M1\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x20))
+\item 
+\#define {\bfseries P\+W\+M1\+M\+R3}~($\ast$(volatile uint32\+\_\+t $\ast$) (P\+W\+M1\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x24))
+\item 
+\#define {\bfseries P\+W\+M1\+C\+CR}~($\ast$(volatile uint32\+\_\+t $\ast$) (P\+W\+M1\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x28))
+\item 
+\#define {\bfseries P\+W\+M1\+C\+R0}~($\ast$(volatile uint32\+\_\+t $\ast$) (P\+W\+M1\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x2\+C))
+\item 
+\#define {\bfseries P\+W\+M1\+C\+R1}~($\ast$(volatile uint32\+\_\+t $\ast$) (P\+W\+M1\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x30))
+\item 
+\#define {\bfseries P\+W\+M1\+C\+R2}~($\ast$(volatile uint32\+\_\+t $\ast$) (P\+W\+M1\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x34))
+\item 
+\#define {\bfseries P\+W\+M1\+C\+R3}~($\ast$(volatile uint32\+\_\+t $\ast$) (P\+W\+M1\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x38))
+\item 
+\#define {\bfseries P\+W\+M1\+E\+MR}~($\ast$(volatile uint32\+\_\+t $\ast$) (P\+W\+M1\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x3\+C))
+\item 
+\#define {\bfseries P\+W\+M1\+M\+R4}~($\ast$(volatile uint32\+\_\+t $\ast$) (P\+W\+M1\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x40))
+\item 
+\#define {\bfseries P\+W\+M1\+M\+R5}~($\ast$(volatile uint32\+\_\+t $\ast$) (P\+W\+M1\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x44))
+\item 
+\#define {\bfseries P\+W\+M1\+M\+R6}~($\ast$(volatile uint32\+\_\+t $\ast$) (P\+W\+M1\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x48))
+\item 
+\#define {\bfseries P\+W\+M1\+P\+CR}~($\ast$(volatile uint32\+\_\+t $\ast$) (P\+W\+M1\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x4\+C))
+\item 
+\#define {\bfseries P\+W\+M1\+L\+ER}~($\ast$(volatile uint32\+\_\+t $\ast$) (P\+W\+M1\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x50))
+\item 
+\#define {\bfseries P\+W\+M1\+C\+T\+CR}~($\ast$(volatile uint32\+\_\+t $\ast$) (P\+W\+M1\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x70))
+\item 
+\#define {\bfseries U\+A\+R\+T0\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR}~0x4000\+C000
+\item 
+\#define {\bfseries U0\+R\+BR}~($\ast$(volatile uint32\+\_\+t $\ast$) (U\+A\+R\+T0\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x00))
+\item 
+\#define {\bfseries U0\+T\+HR}~($\ast$(volatile uint32\+\_\+t $\ast$) (U\+A\+R\+T0\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x00))
+\item 
+\#define {\bfseries U0\+D\+LL}~($\ast$(volatile uint32\+\_\+t $\ast$) (U\+A\+R\+T0\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x00))
+\item 
+\#define {\bfseries U0\+D\+LM}~($\ast$(volatile uint32\+\_\+t $\ast$) (U\+A\+R\+T0\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x04))
+\item 
+\#define {\bfseries U0\+I\+ER}~($\ast$(volatile uint32\+\_\+t $\ast$) (U\+A\+R\+T0\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x04))
+\item 
+\#define {\bfseries U0\+I\+IR}~($\ast$(volatile uint32\+\_\+t $\ast$) (U\+A\+R\+T0\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x08))
+\item 
+\#define {\bfseries U0\+F\+CR}~($\ast$(volatile uint32\+\_\+t $\ast$) (U\+A\+R\+T0\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x08))
+\item 
+\#define {\bfseries U0\+L\+CR}~($\ast$(volatile uint32\+\_\+t $\ast$) (U\+A\+R\+T0\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x0\+C))
+\item 
+\#define {\bfseries U0\+L\+SR}~($\ast$(volatile uint32\+\_\+t $\ast$) (U\+A\+R\+T0\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x14))
+\item 
+\#define {\bfseries U0\+S\+CR}~($\ast$(volatile uint32\+\_\+t $\ast$) (U\+A\+R\+T0\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x1\+C))
+\item 
+\#define {\bfseries U0\+A\+CR}~($\ast$(volatile uint32\+\_\+t $\ast$) (U\+A\+R\+T0\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x20))
+\item 
+\#define {\bfseries U0\+I\+CR}~($\ast$(volatile uint32\+\_\+t $\ast$) (U\+A\+R\+T0\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x24))
+\item 
+\#define {\bfseries U0\+F\+DR}~($\ast$(volatile uint32\+\_\+t $\ast$) (U\+A\+R\+T0\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x28))
+\item 
+\#define {\bfseries U0\+T\+ER}~($\ast$(volatile uint32\+\_\+t $\ast$) (U\+A\+R\+T0\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x30))
+\item 
+\#define {\bfseries U\+A\+R\+T1\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR}~0x40010000
+\item 
+\#define {\bfseries U1\+R\+BR}~($\ast$(volatile uint32\+\_\+t $\ast$) (U\+A\+R\+T1\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x00))
+\item 
+\#define {\bfseries U1\+T\+HR}~($\ast$(volatile uint32\+\_\+t $\ast$) (U\+A\+R\+T1\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x00))
+\item 
+\#define {\bfseries U1\+D\+LL}~($\ast$(volatile uint32\+\_\+t $\ast$) (U\+A\+R\+T1\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x00))
+\item 
+\#define {\bfseries U1\+D\+LM}~($\ast$(volatile uint32\+\_\+t $\ast$) (U\+A\+R\+T1\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x04))
+\item 
+\#define {\bfseries U1\+I\+ER}~($\ast$(volatile uint32\+\_\+t $\ast$) (U\+A\+R\+T1\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x04))
+\item 
+\#define {\bfseries U1\+I\+IR}~($\ast$(volatile uint32\+\_\+t $\ast$) (U\+A\+R\+T1\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x08))
+\item 
+\#define {\bfseries U1\+F\+CR}~($\ast$(volatile uint32\+\_\+t $\ast$) (U\+A\+R\+T1\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x08))
+\item 
+\#define {\bfseries U1\+L\+CR}~($\ast$(volatile uint32\+\_\+t $\ast$) (U\+A\+R\+T1\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x0\+C))
+\item 
+\#define {\bfseries U1\+M\+CR}~($\ast$(volatile uint32\+\_\+t $\ast$) (U\+A\+R\+T1\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x10))
+\item 
+\#define {\bfseries U1\+L\+SR}~($\ast$(volatile uint32\+\_\+t $\ast$) (U\+A\+R\+T1\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x14))
+\item 
+\#define {\bfseries U1\+M\+SR}~($\ast$(volatile uint32\+\_\+t $\ast$) (U\+A\+R\+T1\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x18))
+\item 
+\#define {\bfseries U1\+S\+CR}~($\ast$(volatile uint32\+\_\+t $\ast$) (U\+A\+R\+T1\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x1\+C))
+\item 
+\#define {\bfseries U1\+A\+CR}~($\ast$(volatile uint32\+\_\+t $\ast$) (U\+A\+R\+T1\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x20))
+\item 
+\#define {\bfseries U1\+F\+DR}~($\ast$(volatile uint32\+\_\+t $\ast$) (U\+A\+R\+T1\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x28))
+\item 
+\#define {\bfseries U1\+T\+ER}~($\ast$(volatile uint32\+\_\+t $\ast$) (U\+A\+R\+T1\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x30))
+\item 
+\#define {\bfseries U\+A\+R\+T2\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR}~0x40098000
+\item 
+\#define {\bfseries U2\+R\+BR}~($\ast$(volatile uint32\+\_\+t $\ast$) (U\+A\+R\+T2\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x00))
+\item 
+\#define {\bfseries U2\+T\+HR}~($\ast$(volatile uint32\+\_\+t $\ast$) (U\+A\+R\+T2\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x00))
+\item 
+\#define {\bfseries U2\+D\+LL}~($\ast$(volatile uint32\+\_\+t $\ast$) (U\+A\+R\+T2\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x00))
+\item 
+\#define {\bfseries U2\+D\+LM}~($\ast$(volatile uint32\+\_\+t $\ast$) (U\+A\+R\+T2\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x04))
+\item 
+\#define {\bfseries U2\+I\+ER}~($\ast$(volatile uint32\+\_\+t $\ast$) (U\+A\+R\+T2\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x04))
+\item 
+\#define {\bfseries U2\+I\+IR}~($\ast$(volatile uint32\+\_\+t $\ast$) (U\+A\+R\+T2\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x08))
+\item 
+\#define {\bfseries U2\+F\+CR}~($\ast$(volatile uint32\+\_\+t $\ast$) (U\+A\+R\+T2\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x08))
+\item 
+\#define {\bfseries U2\+L\+CR}~($\ast$(volatile uint32\+\_\+t $\ast$) (U\+A\+R\+T2\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x0\+C))
+\item 
+\#define {\bfseries U2\+L\+SR}~($\ast$(volatile uint32\+\_\+t $\ast$) (U\+A\+R\+T2\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x14))
+\item 
+\#define {\bfseries U2\+S\+CR}~($\ast$(volatile uint32\+\_\+t $\ast$) (U\+A\+R\+T2\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x1\+C))
+\item 
+\#define {\bfseries U2\+A\+CR}~($\ast$(volatile uint32\+\_\+t $\ast$) (U\+A\+R\+T2\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x20))
+\item 
+\#define {\bfseries U2\+I\+CR}~($\ast$(volatile uint32\+\_\+t $\ast$) (U\+A\+R\+T2\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x24))
+\item 
+\#define {\bfseries U2\+F\+DR}~($\ast$(volatile uint32\+\_\+t $\ast$) (U\+A\+R\+T2\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x28))
+\item 
+\#define {\bfseries U2\+T\+ER}~($\ast$(volatile uint32\+\_\+t $\ast$) (U\+A\+R\+T2\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x30))
+\item 
+\#define {\bfseries U\+A\+R\+T3\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR}~0x4009\+C000
+\item 
+\#define {\bfseries U3\+R\+BR}~($\ast$(volatile uint32\+\_\+t $\ast$) (U\+A\+R\+T3\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x00))
+\item 
+\#define {\bfseries U3\+T\+HR}~($\ast$(volatile uint32\+\_\+t $\ast$) (U\+A\+R\+T3\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x00))
+\item 
+\#define {\bfseries U3\+D\+LL}~($\ast$(volatile uint32\+\_\+t $\ast$) (U\+A\+R\+T3\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x00))
+\item 
+\#define {\bfseries U3\+D\+LM}~($\ast$(volatile uint32\+\_\+t $\ast$) (U\+A\+R\+T3\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x04))
+\item 
+\#define {\bfseries U3\+I\+ER}~($\ast$(volatile uint32\+\_\+t $\ast$) (U\+A\+R\+T3\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x04))
+\item 
+\#define {\bfseries U3\+I\+IR}~($\ast$(volatile uint32\+\_\+t $\ast$) (U\+A\+R\+T3\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x08))
+\item 
+\#define {\bfseries U3\+F\+CR}~($\ast$(volatile uint32\+\_\+t $\ast$) (U\+A\+R\+T3\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x08))
+\item 
+\#define {\bfseries U3\+L\+CR}~($\ast$(volatile uint32\+\_\+t $\ast$) (U\+A\+R\+T3\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x0\+C))
+\item 
+\#define {\bfseries U3\+L\+SR}~($\ast$(volatile uint32\+\_\+t $\ast$) (U\+A\+R\+T3\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x14))
+\item 
+\#define {\bfseries U3\+S\+CR}~($\ast$(volatile uint32\+\_\+t $\ast$) (U\+A\+R\+T3\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x1\+C))
+\item 
+\#define {\bfseries U3\+A\+CR}~($\ast$(volatile uint32\+\_\+t $\ast$) (U\+A\+R\+T3\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x20))
+\item 
+\#define {\bfseries U3\+I\+CR}~($\ast$(volatile uint32\+\_\+t $\ast$) (U\+A\+R\+T3\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x24))
+\item 
+\#define {\bfseries U3\+F\+DR}~($\ast$(volatile uint32\+\_\+t $\ast$) (U\+A\+R\+T3\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x28))
+\item 
+\#define {\bfseries U3\+T\+ER}~($\ast$(volatile uint32\+\_\+t $\ast$) (U\+A\+R\+T3\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x30))
+\item 
+\#define {\bfseries I2\+C0\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR}~0x4001\+C000
+\item 
+\#define {\bfseries I20\+C\+O\+N\+S\+ET}~($\ast$(volatile uint32\+\_\+t $\ast$) (I2\+C0\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x00))
+\item 
+\#define {\bfseries I20\+S\+T\+AT}~($\ast$(volatile uint32\+\_\+t $\ast$) (I2\+C0\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x04))
+\item 
+\#define {\bfseries I20\+D\+AT}~($\ast$(volatile uint32\+\_\+t $\ast$) (I2\+C0\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x08))
+\item 
+\#define {\bfseries I20\+A\+DR}~($\ast$(volatile uint32\+\_\+t $\ast$) (I2\+C0\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x0\+C))
+\item 
+\#define {\bfseries I20\+S\+C\+LH}~($\ast$(volatile uint32\+\_\+t $\ast$) (I2\+C0\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x10))
+\item 
+\#define {\bfseries I20\+S\+C\+LL}~($\ast$(volatile uint32\+\_\+t $\ast$) (I2\+C0\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x14))
+\item 
+\#define {\bfseries I20\+C\+O\+N\+C\+LR}~($\ast$(volatile uint32\+\_\+t $\ast$) (I2\+C0\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x18))
+\item 
+\#define {\bfseries I2\+C1\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR}~0x4005\+C000
+\item 
+\#define {\bfseries I21\+C\+O\+N\+S\+ET}~($\ast$(volatile uint32\+\_\+t $\ast$) (I2\+C1\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x00))
+\item 
+\#define {\bfseries I21\+S\+T\+AT}~($\ast$(volatile uint32\+\_\+t $\ast$) (I2\+C1\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x04))
+\item 
+\#define {\bfseries I21\+D\+AT}~($\ast$(volatile uint32\+\_\+t $\ast$) (I2\+C1\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x08))
+\item 
+\#define {\bfseries I21\+A\+DR}~($\ast$(volatile uint32\+\_\+t $\ast$) (I2\+C1\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x0\+C))
+\item 
+\#define {\bfseries I21\+S\+C\+LH}~($\ast$(volatile uint32\+\_\+t $\ast$) (I2\+C1\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x10))
+\item 
+\#define {\bfseries I21\+S\+C\+LL}~($\ast$(volatile uint32\+\_\+t $\ast$) (I2\+C1\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x14))
+\item 
+\#define {\bfseries I21\+C\+O\+N\+C\+LR}~($\ast$(volatile uint32\+\_\+t $\ast$) (I2\+C1\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x18))
+\item 
+\#define {\bfseries I2\+C2\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR}~0x400a0000
+\item 
+\#define {\bfseries I22\+C\+O\+N\+S\+ET}~($\ast$(volatile uint32\+\_\+t $\ast$) (I2\+C2\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x00))
+\item 
+\#define {\bfseries I22\+S\+T\+AT}~($\ast$(volatile uint32\+\_\+t $\ast$) (I2\+C2\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x04))
+\item 
+\#define {\bfseries I22\+D\+AT}~($\ast$(volatile uint32\+\_\+t $\ast$) (I2\+C2\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x08))
+\item 
+\#define {\bfseries I22\+A\+DR}~($\ast$(volatile uint32\+\_\+t $\ast$) (I2\+C2\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x0\+C))
+\item 
+\#define {\bfseries I22\+S\+C\+LH}~($\ast$(volatile uint32\+\_\+t $\ast$) (I2\+C2\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x10))
+\item 
+\#define {\bfseries I22\+S\+C\+LL}~($\ast$(volatile uint32\+\_\+t $\ast$) (I2\+C2\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x14))
+\item 
+\#define {\bfseries I22\+C\+O\+N\+C\+LR}~($\ast$(volatile uint32\+\_\+t $\ast$) (I2\+C2\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x18))
+\item 
+\#define {\bfseries S\+P\+I0\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR}~0x\+E0020000
+\item 
+\#define {\bfseries S0\+S\+P\+CR}~($\ast$(volatile uint32\+\_\+t $\ast$) (S\+P\+I0\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x00))
+\item 
+\#define {\bfseries S0\+S\+P\+SR}~($\ast$(volatile uint32\+\_\+t $\ast$) (S\+P\+I0\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x04))
+\item 
+\#define {\bfseries S0\+S\+P\+DR}~($\ast$(volatile uint32\+\_\+t $\ast$) (S\+P\+I0\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x08))
+\item 
+\#define {\bfseries S0\+S\+P\+C\+CR}~($\ast$(volatile uint32\+\_\+t $\ast$) (S\+P\+I0\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x0\+C))
+\item 
+\#define {\bfseries S0\+S\+P\+I\+NT}~($\ast$(volatile uint32\+\_\+t $\ast$) (S\+P\+I0\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x1\+C))
+\item 
+\#define {\bfseries S\+S\+P0\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR}~0x40088000
+\item 
+\#define {\bfseries S\+S\+P0\+C\+R0}~($\ast$(volatile uint32\+\_\+t $\ast$) (S\+S\+P0\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x00))
+\item 
+\#define {\bfseries S\+S\+P0\+C\+R1}~($\ast$(volatile uint32\+\_\+t $\ast$) (S\+S\+P0\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x04))
+\item 
+\#define {\bfseries S\+S\+P0\+DR}~($\ast$(volatile uint32\+\_\+t $\ast$) (S\+S\+P0\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x08))
+\item 
+\#define {\bfseries S\+S\+P0\+SR}~($\ast$(volatile uint32\+\_\+t $\ast$) (S\+S\+P0\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x0\+C))
+\item 
+\#define {\bfseries S\+S\+P0\+C\+P\+SR}~($\ast$(volatile uint32\+\_\+t $\ast$) (S\+S\+P0\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x10))
+\item 
+\#define {\bfseries S\+S\+P0\+I\+M\+SC}~($\ast$(volatile uint32\+\_\+t $\ast$) (S\+S\+P0\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x14))
+\item 
+\#define {\bfseries S\+S\+P0\+R\+IS}~($\ast$(volatile uint32\+\_\+t $\ast$) (S\+S\+P0\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x18))
+\item 
+\#define {\bfseries S\+S\+P0\+M\+IS}~($\ast$(volatile uint32\+\_\+t $\ast$) (S\+S\+P0\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x1\+C))
+\item 
+\#define {\bfseries S\+S\+P0\+I\+CR}~($\ast$(volatile uint32\+\_\+t $\ast$) (S\+S\+P0\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x20))
+\item 
+\#define {\bfseries S\+S\+P0\+D\+M\+A\+CR}~($\ast$(volatile uint32\+\_\+t $\ast$) (S\+S\+P0\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x24))
+\item 
+\#define {\bfseries S\+S\+P1\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR}~0x40030000
+\item 
+\#define {\bfseries S\+S\+P1\+C\+R0}~($\ast$(volatile uint32\+\_\+t $\ast$) (S\+S\+P1\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x00))
+\item 
+\#define {\bfseries S\+S\+P1\+C\+R1}~($\ast$(volatile uint32\+\_\+t $\ast$) (S\+S\+P1\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x04))
+\item 
+\#define {\bfseries S\+S\+P1\+DR}~($\ast$(volatile uint32\+\_\+t $\ast$) (S\+S\+P1\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x08))
+\item 
+\#define {\bfseries S\+S\+P1\+SR}~($\ast$(volatile uint32\+\_\+t $\ast$) (S\+S\+P1\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x0\+C))
+\item 
+\#define {\bfseries S\+S\+P1\+C\+P\+SR}~($\ast$(volatile uint32\+\_\+t $\ast$) (S\+S\+P1\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x10))
+\item 
+\#define {\bfseries S\+S\+P1\+I\+M\+SC}~($\ast$(volatile uint32\+\_\+t $\ast$) (S\+S\+P1\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x14))
+\item 
+\#define {\bfseries S\+S\+P1\+R\+IS}~($\ast$(volatile uint32\+\_\+t $\ast$) (S\+S\+P1\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x18))
+\item 
+\#define {\bfseries S\+S\+P1\+M\+IS}~($\ast$(volatile uint32\+\_\+t $\ast$) (S\+S\+P1\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x1\+C))
+\item 
+\#define {\bfseries S\+S\+P1\+I\+CR}~($\ast$(volatile uint32\+\_\+t $\ast$) (S\+S\+P1\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x20))
+\item 
+\#define {\bfseries S\+S\+P1\+D\+M\+A\+CR}~($\ast$(volatile uint32\+\_\+t $\ast$) (S\+S\+P1\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x24))
+\item 
+\#define {\bfseries R\+T\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR}~0x40024000
+\item 
+\#define {\bfseries R\+T\+C\+\_\+\+I\+LR}~($\ast$(volatile uint32\+\_\+t $\ast$) (R\+T\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x00))
+\item 
+\#define {\bfseries R\+T\+C\+\_\+\+C\+TC}~($\ast$(volatile uint32\+\_\+t $\ast$) (R\+T\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x04))
+\item 
+\#define {\bfseries R\+T\+C\+\_\+\+C\+CR}~($\ast$(volatile uint32\+\_\+t $\ast$) (R\+T\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x08))
+\item 
+\#define {\bfseries R\+T\+C\+\_\+\+C\+I\+IR}~($\ast$(volatile uint32\+\_\+t $\ast$) (R\+T\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x0\+C))
+\item 
+\#define {\bfseries R\+T\+C\+\_\+\+A\+MR}~($\ast$(volatile uint32\+\_\+t $\ast$) (R\+T\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x10))
+\item 
+\#define {\bfseries R\+T\+C\+\_\+\+C\+T\+I\+M\+E0}~($\ast$(volatile uint32\+\_\+t $\ast$) (R\+T\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x14))
+\item 
+\#define {\bfseries R\+T\+C\+\_\+\+C\+T\+I\+M\+E1}~($\ast$(volatile uint32\+\_\+t $\ast$) (R\+T\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x18))
+\item 
+\#define {\bfseries R\+T\+C\+\_\+\+C\+T\+I\+M\+E2}~($\ast$(volatile uint32\+\_\+t $\ast$) (R\+T\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x1\+C))
+\item 
+\#define {\bfseries R\+T\+C\+\_\+\+S\+EC}~($\ast$(volatile uint32\+\_\+t $\ast$) (R\+T\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x20))
+\item 
+\#define {\bfseries R\+T\+C\+\_\+\+M\+IN}~($\ast$(volatile uint32\+\_\+t $\ast$) (R\+T\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x24))
+\item 
+\#define {\bfseries R\+T\+C\+\_\+\+H\+O\+UR}~($\ast$(volatile uint32\+\_\+t $\ast$) (R\+T\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x28))
+\item 
+\#define {\bfseries R\+T\+C\+\_\+\+D\+OM}~($\ast$(volatile uint32\+\_\+t $\ast$) (R\+T\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x2\+C))
+\item 
+\#define {\bfseries R\+T\+C\+\_\+\+D\+OW}~($\ast$(volatile uint32\+\_\+t $\ast$) (R\+T\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x30))
+\item 
+\#define {\bfseries R\+T\+C\+\_\+\+D\+OY}~($\ast$(volatile uint32\+\_\+t $\ast$) (R\+T\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x34))
+\item 
+\#define {\bfseries R\+T\+C\+\_\+\+M\+O\+N\+TH}~($\ast$(volatile uint32\+\_\+t $\ast$) (R\+T\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x38))
+\item 
+\#define {\bfseries R\+T\+C\+\_\+\+Y\+E\+AR}~($\ast$(volatile uint32\+\_\+t $\ast$) (R\+T\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x3\+C))
+\item 
+\#define {\bfseries R\+T\+C\+\_\+\+C\+I\+SS}~($\ast$(volatile uint32\+\_\+t $\ast$) (R\+T\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x40))
+\item 
+\#define {\bfseries R\+T\+C\+\_\+\+A\+L\+S\+EC}~($\ast$(volatile uint32\+\_\+t $\ast$) (R\+T\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x60))
+\item 
+\#define {\bfseries R\+T\+C\+\_\+\+A\+L\+M\+IN}~($\ast$(volatile uint32\+\_\+t $\ast$) (R\+T\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x64))
+\item 
+\#define {\bfseries R\+T\+C\+\_\+\+A\+L\+H\+O\+UR}~($\ast$(volatile uint32\+\_\+t $\ast$) (R\+T\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x68))
+\item 
+\#define {\bfseries R\+T\+C\+\_\+\+A\+L\+D\+OM}~($\ast$(volatile uint32\+\_\+t $\ast$) (R\+T\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x6\+C))
+\item 
+\#define {\bfseries R\+T\+C\+\_\+\+A\+L\+D\+OW}~($\ast$(volatile uint32\+\_\+t $\ast$) (R\+T\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x70))
+\item 
+\#define {\bfseries R\+T\+C\+\_\+\+A\+L\+D\+OY}~($\ast$(volatile uint32\+\_\+t $\ast$) (R\+T\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x74))
+\item 
+\#define {\bfseries R\+T\+C\+\_\+\+A\+L\+M\+ON}~($\ast$(volatile uint32\+\_\+t $\ast$) (R\+T\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x78))
+\item 
+\#define {\bfseries R\+T\+C\+\_\+\+A\+L\+Y\+E\+AR}~($\ast$(volatile uint32\+\_\+t $\ast$) (R\+T\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x7\+C))
+\item 
+\#define {\bfseries R\+T\+C\+\_\+\+P\+R\+E\+I\+NT}~($\ast$(volatile uint32\+\_\+t $\ast$) (R\+T\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x80))
+\item 
+\#define {\bfseries R\+T\+C\+\_\+\+P\+R\+E\+F\+R\+AC}~($\ast$(volatile uint32\+\_\+t $\ast$) (R\+T\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x84))
+\item 
+\#define {\bfseries A\+D0\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR}~0x40034000
+\item 
+\#define {\bfseries A\+D0\+CR}~($\ast$(volatile uint32\+\_\+t $\ast$) (A\+D0\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x00))
+\item 
+\#define {\bfseries A\+D0\+G\+DR}~($\ast$(volatile uint32\+\_\+t $\ast$) (A\+D0\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x04))
+\item 
+\#define {\bfseries A\+D0\+I\+N\+T\+EN}~($\ast$(volatile uint32\+\_\+t $\ast$) (A\+D0\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x0\+C))
+\item 
+\#define {\bfseries A\+D0\+\_\+\+D\+A\+T\+A\+\_\+\+S\+T\+A\+RT}~((volatile uint32\+\_\+t $\ast$) (A\+D0\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x10))
+\item 
+\#define {\bfseries A\+D0\+D\+R0}~($\ast$(volatile uint32\+\_\+t $\ast$) (A\+D0\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x10))
+\item 
+\#define {\bfseries A\+D0\+D\+R1}~($\ast$(volatile uint32\+\_\+t $\ast$) (A\+D0\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x14))
+\item 
+\#define {\bfseries A\+D0\+D\+R2}~($\ast$(volatile uint32\+\_\+t $\ast$) (A\+D0\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x18))
+\item 
+\#define {\bfseries A\+D0\+D\+R3}~($\ast$(volatile uint32\+\_\+t $\ast$) (A\+D0\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x1\+C))
+\item 
+\#define {\bfseries A\+D0\+D\+R4}~($\ast$(volatile uint32\+\_\+t $\ast$) (A\+D0\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x20))
+\item 
+\#define {\bfseries A\+D0\+D\+R5}~($\ast$(volatile uint32\+\_\+t $\ast$) (A\+D0\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x24))
+\item 
+\#define {\bfseries A\+D0\+D\+R6}~($\ast$(volatile uint32\+\_\+t $\ast$) (A\+D0\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x28))
+\item 
+\#define {\bfseries A\+D0\+D\+R7}~($\ast$(volatile uint32\+\_\+t $\ast$) (A\+D0\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x2\+C))
+\item 
+\#define {\bfseries A\+D0\+S\+T\+AT}~($\ast$(volatile uint32\+\_\+t $\ast$) (A\+D0\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x30))
+\item 
+\#define {\bfseries D\+A\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR}~0x4008\+C000
+\item 
+\#define {\bfseries D\+A\+CR}~($\ast$(volatile uint32\+\_\+t $\ast$) (D\+A\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x00))
+\item 
+\#define {\bfseries W\+D\+G\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR}~0x40000000
+\item 
+\#define {\bfseries W\+D\+M\+OD}~($\ast$(volatile uint32\+\_\+t $\ast$) (W\+D\+G\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x00))
+\item 
+\#define {\bfseries W\+D\+TC}~($\ast$(volatile uint32\+\_\+t $\ast$) (W\+D\+G\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x04))
+\item 
+\#define {\bfseries W\+D\+F\+E\+ED}~($\ast$(volatile uint32\+\_\+t $\ast$) (W\+D\+G\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x08))
+\item 
+\#define {\bfseries W\+D\+TV}~($\ast$(volatile uint32\+\_\+t $\ast$) (W\+D\+G\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x0\+C))
+\item 
+\#define {\bfseries W\+D\+C\+L\+K\+S\+EL}~($\ast$(volatile uint32\+\_\+t $\ast$) (W\+D\+G\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x10))
+\item 
+\#define {\bfseries C\+A\+N\+\_\+\+A\+C\+C\+E\+P\+T\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR}~0x4003\+C000
+\item 
+\#define {\bfseries C\+A\+N\+\_\+\+A\+F\+MR}~($\ast$(volatile uint32\+\_\+t $\ast$) (C\+A\+N\+\_\+\+A\+C\+C\+E\+P\+T\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x00))
+\item 
+\#define {\bfseries C\+A\+N\+\_\+\+S\+F\+F\+\_\+\+SA}~($\ast$(volatile uint32\+\_\+t $\ast$) (C\+A\+N\+\_\+\+A\+C\+C\+E\+P\+T\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x04))
+\item 
+\#define {\bfseries C\+A\+N\+\_\+\+S\+F\+F\+\_\+\+G\+R\+P\+\_\+\+SA}~($\ast$(volatile uint32\+\_\+t $\ast$) (C\+A\+N\+\_\+\+A\+C\+C\+E\+P\+T\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x08))
+\item 
+\#define {\bfseries C\+A\+N\+\_\+\+E\+F\+F\+\_\+\+SA}~($\ast$(volatile uint32\+\_\+t $\ast$) (C\+A\+N\+\_\+\+A\+C\+C\+E\+P\+T\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x0\+C))
+\item 
+\#define {\bfseries C\+A\+N\+\_\+\+E\+F\+F\+\_\+\+G\+R\+P\+\_\+\+SA}~($\ast$(volatile uint32\+\_\+t $\ast$) (C\+A\+N\+\_\+\+A\+C\+C\+E\+P\+T\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x10))
+\item 
+\#define {\bfseries C\+A\+N\+\_\+\+E\+OT}~($\ast$(volatile uint32\+\_\+t $\ast$) (C\+A\+N\+\_\+\+A\+C\+C\+E\+P\+T\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x14))
+\item 
+\#define {\bfseries C\+A\+N\+\_\+\+L\+U\+T\+\_\+\+E\+R\+R\+\_\+\+A\+DR}~($\ast$(volatile uint32\+\_\+t $\ast$) (C\+A\+N\+\_\+\+A\+C\+C\+E\+P\+T\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x18))
+\item 
+\#define {\bfseries C\+A\+N\+\_\+\+L\+U\+T\+\_\+\+E\+RR}~($\ast$(volatile uint32\+\_\+t $\ast$) (C\+A\+N\+\_\+\+A\+C\+C\+E\+P\+T\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x1\+C))
+\item 
+\#define {\bfseries C\+A\+N\+\_\+\+C\+E\+N\+T\+R\+A\+L\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR}~0x40040000
+\item 
+\#define {\bfseries C\+A\+N\+\_\+\+T\+X\+\_\+\+SR}~($\ast$(volatile uint32\+\_\+t $\ast$) (C\+A\+N\+\_\+\+C\+E\+N\+T\+R\+A\+L\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x00))
+\item 
+\#define {\bfseries C\+A\+N\+\_\+\+R\+X\+\_\+\+SR}~($\ast$(volatile uint32\+\_\+t $\ast$) (C\+A\+N\+\_\+\+C\+E\+N\+T\+R\+A\+L\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x04))
+\item 
+\#define {\bfseries C\+A\+N\+\_\+\+M\+SR}~($\ast$(volatile uint32\+\_\+t $\ast$) (C\+A\+N\+\_\+\+C\+E\+N\+T\+R\+A\+L\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x08))
+\item 
+\#define {\bfseries C\+A\+N1\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR}~0x40044000
+\item 
+\#define {\bfseries C\+A\+N1\+M\+OD}~($\ast$(volatile uint32\+\_\+t $\ast$) (C\+A\+N1\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x00))
+\item 
+\#define {\bfseries C\+A\+N1\+C\+MR}~($\ast$(volatile uint32\+\_\+t $\ast$) (C\+A\+N1\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x04))
+\item 
+\#define {\bfseries C\+A\+N1\+G\+SR}~($\ast$(volatile uint32\+\_\+t $\ast$) (C\+A\+N1\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x08))
+\item 
+\#define {\bfseries C\+A\+N1\+I\+CR}~($\ast$(volatile uint32\+\_\+t $\ast$) (C\+A\+N1\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x0\+C))
+\item 
+\#define {\bfseries C\+A\+N1\+I\+ER}~($\ast$(volatile uint32\+\_\+t $\ast$) (C\+A\+N1\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x10))
+\item 
+\#define {\bfseries C\+A\+N1\+B\+TR}~($\ast$(volatile uint32\+\_\+t $\ast$) (C\+A\+N1\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x14))
+\item 
+\#define {\bfseries C\+A\+N1\+E\+WL}~($\ast$(volatile uint32\+\_\+t $\ast$) (C\+A\+N1\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x18))
+\item 
+\#define {\bfseries C\+A\+N1\+SR}~($\ast$(volatile uint32\+\_\+t $\ast$) (C\+A\+N1\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x1\+C))
+\item 
+\#define {\bfseries C\+A\+N1\+R\+FS}~($\ast$(volatile uint32\+\_\+t $\ast$) (C\+A\+N1\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x20))
+\item 
+\#define {\bfseries C\+A\+N1\+R\+ID}~($\ast$(volatile uint32\+\_\+t $\ast$) (C\+A\+N1\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x24))
+\item 
+\#define {\bfseries C\+A\+N1\+R\+DA}~($\ast$(volatile uint32\+\_\+t $\ast$) (C\+A\+N1\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x28))
+\item 
+\#define {\bfseries C\+A\+N1\+R\+DB}~($\ast$(volatile uint32\+\_\+t $\ast$) (C\+A\+N1\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x2\+C))
+\item 
+\#define {\bfseries C\+A\+N1\+T\+F\+I1}~($\ast$(volatile uint32\+\_\+t $\ast$) (C\+A\+N1\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x30))
+\item 
+\#define {\bfseries C\+A\+N1\+T\+I\+D1}~($\ast$(volatile uint32\+\_\+t $\ast$) (C\+A\+N1\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x34))
+\item 
+\#define {\bfseries C\+A\+N1\+T\+D\+A1}~($\ast$(volatile uint32\+\_\+t $\ast$) (C\+A\+N1\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x38))
+\item 
+\#define {\bfseries C\+A\+N1\+T\+D\+B1}~($\ast$(volatile uint32\+\_\+t $\ast$) (C\+A\+N1\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x3\+C))
+\item 
+\#define {\bfseries C\+A\+N1\+T\+F\+I2}~($\ast$(volatile uint32\+\_\+t $\ast$) (C\+A\+N1\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x40))
+\item 
+\#define {\bfseries C\+A\+N1\+T\+I\+D2}~($\ast$(volatile uint32\+\_\+t $\ast$) (C\+A\+N1\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x44))
+\item 
+\#define {\bfseries C\+A\+N1\+T\+D\+A2}~($\ast$(volatile uint32\+\_\+t $\ast$) (C\+A\+N1\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x48))
+\item 
+\#define {\bfseries C\+A\+N1\+T\+D\+B2}~($\ast$(volatile uint32\+\_\+t $\ast$) (C\+A\+N1\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x4\+C))
+\item 
+\#define {\bfseries C\+A\+N1\+T\+F\+I3}~($\ast$(volatile uint32\+\_\+t $\ast$) (C\+A\+N1\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x50))
+\item 
+\#define {\bfseries C\+A\+N1\+T\+I\+D3}~($\ast$(volatile uint32\+\_\+t $\ast$) (C\+A\+N1\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x54))
+\item 
+\#define {\bfseries C\+A\+N1\+T\+D\+A3}~($\ast$(volatile uint32\+\_\+t $\ast$) (C\+A\+N1\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x58))
+\item 
+\#define {\bfseries C\+A\+N1\+T\+D\+B3}~($\ast$(volatile uint32\+\_\+t $\ast$) (C\+A\+N1\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x5\+C))
+\item 
+\#define {\bfseries C\+A\+N2\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR}~0x40048000
+\item 
+\#define {\bfseries C\+A\+N2\+M\+OD}~($\ast$(volatile uint32\+\_\+t $\ast$) (C\+A\+N2\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x00))
+\item 
+\#define {\bfseries C\+A\+N2\+C\+MR}~($\ast$(volatile uint32\+\_\+t $\ast$) (C\+A\+N2\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x04))
+\item 
+\#define {\bfseries C\+A\+N2\+G\+SR}~($\ast$(volatile uint32\+\_\+t $\ast$) (C\+A\+N2\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x08))
+\item 
+\#define {\bfseries C\+A\+N2\+I\+CR}~($\ast$(volatile uint32\+\_\+t $\ast$) (C\+A\+N2\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x0\+C))
+\item 
+\#define {\bfseries C\+A\+N2\+I\+ER}~($\ast$(volatile uint32\+\_\+t $\ast$) (C\+A\+N2\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x10))
+\item 
+\#define {\bfseries C\+A\+N2\+B\+TR}~($\ast$(volatile uint32\+\_\+t $\ast$) (C\+A\+N2\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x14))
+\item 
+\#define {\bfseries C\+A\+N2\+E\+WL}~($\ast$(volatile uint32\+\_\+t $\ast$) (C\+A\+N2\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x18))
+\item 
+\#define {\bfseries C\+A\+N2\+SR}~($\ast$(volatile uint32\+\_\+t $\ast$) (C\+A\+N2\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x1\+C))
+\item 
+\#define {\bfseries C\+A\+N2\+R\+FS}~($\ast$(volatile uint32\+\_\+t $\ast$) (C\+A\+N2\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x20))
+\item 
+\#define {\bfseries C\+A\+N2\+R\+ID}~($\ast$(volatile uint32\+\_\+t $\ast$) (C\+A\+N2\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x24))
+\item 
+\#define {\bfseries C\+A\+N2\+R\+DA}~($\ast$(volatile uint32\+\_\+t $\ast$) (C\+A\+N2\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x28))
+\item 
+\#define {\bfseries C\+A\+N2\+R\+DB}~($\ast$(volatile uint32\+\_\+t $\ast$) (C\+A\+N2\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x2\+C))
+\item 
+\#define {\bfseries C\+A\+N2\+T\+F\+I1}~($\ast$(volatile uint32\+\_\+t $\ast$) (C\+A\+N2\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x30))
+\item 
+\#define {\bfseries C\+A\+N2\+T\+I\+D1}~($\ast$(volatile uint32\+\_\+t $\ast$) (C\+A\+N2\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x34))
+\item 
+\#define {\bfseries C\+A\+N2\+T\+D\+A1}~($\ast$(volatile uint32\+\_\+t $\ast$) (C\+A\+N2\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x38))
+\item 
+\#define {\bfseries C\+A\+N2\+T\+D\+B1}~($\ast$(volatile uint32\+\_\+t $\ast$) (C\+A\+N2\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x3\+C))
+\item 
+\#define {\bfseries C\+A\+N2\+T\+F\+I2}~($\ast$(volatile uint32\+\_\+t $\ast$) (C\+A\+N2\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x40))
+\item 
+\#define {\bfseries C\+A\+N2\+T\+I\+D2}~($\ast$(volatile uint32\+\_\+t $\ast$) (C\+A\+N2\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x44))
+\item 
+\#define {\bfseries C\+A\+N2\+T\+D\+A2}~($\ast$(volatile uint32\+\_\+t $\ast$) (C\+A\+N2\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x48))
+\item 
+\#define {\bfseries C\+A\+N2\+T\+D\+B2}~($\ast$(volatile uint32\+\_\+t $\ast$) (C\+A\+N2\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x4\+C))
+\item 
+\#define {\bfseries C\+A\+N2\+T\+F\+I3}~($\ast$(volatile uint32\+\_\+t $\ast$) (C\+A\+N2\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x50))
+\item 
+\#define {\bfseries C\+A\+N2\+T\+I\+D3}~($\ast$(volatile uint32\+\_\+t $\ast$) (C\+A\+N2\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x54))
+\item 
+\#define {\bfseries C\+A\+N2\+T\+D\+A3}~($\ast$(volatile uint32\+\_\+t $\ast$) (C\+A\+N2\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x58))
+\item 
+\#define {\bfseries C\+A\+N2\+T\+D\+B3}~($\ast$(volatile uint32\+\_\+t $\ast$) (C\+A\+N2\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x5\+C))
+\item 
+\#define {\bfseries M\+C\+I\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR}~0x400c0000
+\item 
+\#define {\bfseries M\+C\+I\+\_\+\+P\+O\+W\+ER}~($\ast$(volatile uint32\+\_\+t $\ast$) (M\+C\+I\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x00))
+\item 
+\#define {\bfseries M\+C\+I\+\_\+\+C\+L\+O\+CK}~($\ast$(volatile uint32\+\_\+t $\ast$) (M\+C\+I\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x04))
+\item 
+\#define {\bfseries M\+C\+I\+\_\+\+A\+R\+G\+U\+M\+E\+NT}~($\ast$(volatile uint32\+\_\+t $\ast$) (M\+C\+I\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x08))
+\item 
+\#define {\bfseries M\+C\+I\+\_\+\+C\+O\+M\+M\+A\+ND}~($\ast$(volatile uint32\+\_\+t $\ast$) (M\+C\+I\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x0\+C))
+\item 
+\#define {\bfseries M\+C\+I\+\_\+\+R\+E\+S\+P\+\_\+\+C\+MD}~($\ast$(volatile uint32\+\_\+t $\ast$) (M\+C\+I\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x10))
+\item 
+\#define {\bfseries M\+C\+I\+\_\+\+R\+E\+S\+P0}~($\ast$(volatile uint32\+\_\+t $\ast$) (M\+C\+I\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x14))
+\item 
+\#define {\bfseries M\+C\+I\+\_\+\+R\+E\+S\+P1}~($\ast$(volatile uint32\+\_\+t $\ast$) (M\+C\+I\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x18))
+\item 
+\#define {\bfseries M\+C\+I\+\_\+\+R\+E\+S\+P2}~($\ast$(volatile uint32\+\_\+t $\ast$) (M\+C\+I\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x1\+C))
+\item 
+\#define {\bfseries M\+C\+I\+\_\+\+R\+E\+S\+P3}~($\ast$(volatile uint32\+\_\+t $\ast$) (M\+C\+I\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x20))
+\item 
+\#define {\bfseries M\+C\+I\+\_\+\+D\+A\+T\+A\+\_\+\+T\+MR}~($\ast$(volatile uint32\+\_\+t $\ast$) (M\+C\+I\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x24))
+\item 
+\#define {\bfseries M\+C\+I\+\_\+\+D\+A\+T\+A\+\_\+\+L\+EN}~($\ast$(volatile uint32\+\_\+t $\ast$) (M\+C\+I\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x28))
+\item 
+\#define {\bfseries M\+C\+I\+\_\+\+D\+A\+T\+A\+\_\+\+C\+T\+RL}~($\ast$(volatile uint32\+\_\+t $\ast$) (M\+C\+I\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x2\+C))
+\item 
+\#define {\bfseries M\+C\+I\+\_\+\+D\+A\+T\+A\+\_\+\+C\+NT}~($\ast$(volatile uint32\+\_\+t $\ast$) (M\+C\+I\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x30))
+\item 
+\#define {\bfseries M\+C\+I\+\_\+\+S\+T\+A\+T\+US}~($\ast$(volatile uint32\+\_\+t $\ast$) (M\+C\+I\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x34))
+\item 
+\#define {\bfseries M\+C\+I\+\_\+\+C\+L\+E\+AR}~($\ast$(volatile uint32\+\_\+t $\ast$) (M\+C\+I\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x38))
+\item 
+\#define {\bfseries M\+C\+I\+\_\+\+M\+A\+S\+K0}~($\ast$(volatile uint32\+\_\+t $\ast$) (M\+C\+I\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x3\+C))
+\item 
+\#define {\bfseries M\+C\+I\+\_\+\+M\+A\+S\+K1}~($\ast$(volatile uint32\+\_\+t $\ast$) (M\+C\+I\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x40))
+\item 
+\#define {\bfseries M\+C\+I\+\_\+\+F\+I\+F\+O\+\_\+\+C\+NT}~($\ast$(volatile uint32\+\_\+t $\ast$) (M\+C\+I\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x48))
+\item 
+\#define {\bfseries M\+C\+I\+\_\+\+F\+I\+FO}~($\ast$(volatile uint32\+\_\+t $\ast$) (M\+C\+I\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x80))
+\item 
+\#define {\bfseries I2\+S\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR}~0x400a8000
+\item 
+\#define {\bfseries I2\+S\+\_\+\+D\+AO}~($\ast$(volatile uint32\+\_\+t $\ast$) (I2\+S\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x00))
+\item 
+\#define {\bfseries I2\+S\+\_\+\+D\+AI}~($\ast$(volatile uint32\+\_\+t $\ast$) (I2\+S\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x04))
+\item 
+\#define {\bfseries I2\+S\+\_\+\+T\+X\+\_\+\+F\+I\+FO}~($\ast$(volatile uint32\+\_\+t $\ast$) (I2\+S\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x08))
+\item 
+\#define {\bfseries I2\+S\+\_\+\+R\+X\+\_\+\+F\+I\+FO}~($\ast$(volatile uint32\+\_\+t $\ast$) (I2\+S\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x0\+C))
+\item 
+\#define {\bfseries I2\+S\+\_\+\+S\+T\+A\+TE}~($\ast$(volatile uint32\+\_\+t $\ast$) (I2\+S\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x10))
+\item 
+\#define {\bfseries I2\+S\+\_\+\+D\+M\+A1}~($\ast$(volatile uint32\+\_\+t $\ast$) (I2\+S\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x14))
+\item 
+\#define {\bfseries I2\+S\+\_\+\+D\+M\+A2}~($\ast$(volatile uint32\+\_\+t $\ast$) (I2\+S\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x18))
+\item 
+\#define {\bfseries I2\+S\+\_\+\+I\+RQ}~($\ast$(volatile uint32\+\_\+t $\ast$) (I2\+S\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x1\+C))
+\item 
+\#define {\bfseries I2\+S\+\_\+\+T\+X\+R\+A\+TE}~($\ast$(volatile uint32\+\_\+t $\ast$) (I2\+S\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x20))
+\item 
+\#define {\bfseries I2\+S\+\_\+\+R\+X\+R\+A\+TE}~($\ast$(volatile uint32\+\_\+t $\ast$) (I2\+S\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x24))
+\item 
+\#define {\bfseries D\+M\+A\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR}~0x20080000
+\item 
+\#define {\bfseries G\+P\+D\+M\+A\+\_\+\+I\+N\+T\+\_\+\+S\+T\+AT}~($\ast$(volatile uint32\+\_\+t $\ast$) (D\+M\+A\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x000))
+\item 
+\#define {\bfseries G\+P\+D\+M\+A\+\_\+\+I\+N\+T\+\_\+\+T\+C\+S\+T\+AT}~($\ast$(volatile uint32\+\_\+t $\ast$) (D\+M\+A\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x004))
+\item 
+\#define {\bfseries G\+P\+D\+M\+A\+\_\+\+I\+N\+T\+\_\+\+T\+C\+C\+LR}~($\ast$(volatile uint32\+\_\+t $\ast$) (D\+M\+A\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x008))
+\item 
+\#define {\bfseries G\+P\+D\+M\+A\+\_\+\+I\+N\+T\+\_\+\+E\+R\+R\+\_\+\+S\+T\+AT}~($\ast$(volatile uint32\+\_\+t $\ast$) (D\+M\+A\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x00\+C))
+\item 
+\#define {\bfseries G\+P\+D\+M\+A\+\_\+\+I\+N\+T\+\_\+\+E\+R\+R\+\_\+\+C\+LR}~($\ast$(volatile uint32\+\_\+t $\ast$) (D\+M\+A\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x010))
+\item 
+\#define {\bfseries G\+P\+D\+M\+A\+\_\+\+R\+A\+W\+\_\+\+I\+N\+T\+\_\+\+T\+C\+S\+T\+AT}~($\ast$(volatile uint32\+\_\+t $\ast$) (D\+M\+A\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x014))
+\item 
+\#define {\bfseries G\+P\+D\+M\+A\+\_\+\+R\+A\+W\+\_\+\+I\+N\+T\+\_\+\+E\+R\+R\+\_\+\+S\+T\+AT}~($\ast$(volatile uint32\+\_\+t $\ast$) (D\+M\+A\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x018))
+\item 
+\#define {\bfseries G\+P\+D\+M\+A\+\_\+\+E\+N\+A\+B\+L\+E\+D\+\_\+\+C\+H\+NS}~($\ast$(volatile uint32\+\_\+t $\ast$) (D\+M\+A\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x01\+C))
+\item 
+\#define {\bfseries G\+P\+D\+M\+A\+\_\+\+S\+O\+F\+T\+\_\+\+B\+R\+EQ}~($\ast$(volatile uint32\+\_\+t $\ast$) (D\+M\+A\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x020))
+\item 
+\#define {\bfseries G\+P\+D\+M\+A\+\_\+\+S\+O\+F\+T\+\_\+\+S\+R\+EQ}~($\ast$(volatile uint32\+\_\+t $\ast$) (D\+M\+A\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x024))
+\item 
+\#define {\bfseries G\+P\+D\+M\+A\+\_\+\+S\+O\+F\+T\+\_\+\+L\+B\+R\+EQ}~($\ast$(volatile uint32\+\_\+t $\ast$) (D\+M\+A\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x028))
+\item 
+\#define {\bfseries G\+P\+D\+M\+A\+\_\+\+S\+O\+F\+T\+\_\+\+L\+S\+R\+EQ}~($\ast$(volatile uint32\+\_\+t $\ast$) (D\+M\+A\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x02\+C))
+\item 
+\#define {\bfseries G\+P\+D\+M\+A\+\_\+\+C\+O\+N\+F\+IG}~($\ast$(volatile uint32\+\_\+t $\ast$) (D\+M\+A\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x030))
+\item 
+\#define {\bfseries G\+P\+D\+M\+A\+\_\+\+S\+Y\+NC}~($\ast$(volatile uint32\+\_\+t $\ast$) (D\+M\+A\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x034))
+\item 
+\#define {\bfseries G\+P\+D\+M\+A\+\_\+\+C\+H0\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR}~(D\+M\+A\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x100)
+\item 
+\#define {\bfseries G\+P\+D\+M\+A\+\_\+\+C\+H0\+\_\+\+S\+RC}~($\ast$(volatile uint32\+\_\+t $\ast$) (D\+M\+A\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x100))
+\item 
+\#define {\bfseries G\+P\+D\+M\+A\+\_\+\+C\+H0\+\_\+\+D\+E\+ST}~($\ast$(volatile uint32\+\_\+t $\ast$) (D\+M\+A\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x104))
+\item 
+\#define {\bfseries G\+P\+D\+M\+A\+\_\+\+C\+H0\+\_\+\+L\+LI}~($\ast$(volatile uint32\+\_\+t $\ast$) (D\+M\+A\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x108))
+\item 
+\#define {\bfseries G\+P\+D\+M\+A\+\_\+\+C\+H0\+\_\+\+C\+T\+RL}~($\ast$(volatile uint32\+\_\+t $\ast$) (D\+M\+A\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x10\+C))
+\item 
+\#define {\bfseries G\+P\+D\+M\+A\+\_\+\+C\+H0\+\_\+\+C\+FG}~($\ast$(volatile uint32\+\_\+t $\ast$) (D\+M\+A\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x110))
+\item 
+\#define {\bfseries G\+P\+D\+M\+A\+\_\+\+C\+H1\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR}~(D\+M\+A\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x120)
+\item 
+\#define {\bfseries G\+P\+D\+M\+A\+\_\+\+C\+H1\+\_\+\+S\+RC}~($\ast$(volatile uint32\+\_\+t $\ast$) (D\+M\+A\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x120))
+\item 
+\#define {\bfseries G\+P\+D\+M\+A\+\_\+\+C\+H1\+\_\+\+D\+E\+ST}~($\ast$(volatile uint32\+\_\+t $\ast$) (D\+M\+A\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x124))
+\item 
+\#define {\bfseries G\+P\+D\+M\+A\+\_\+\+C\+H1\+\_\+\+L\+LI}~($\ast$(volatile uint32\+\_\+t $\ast$) (D\+M\+A\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x128))
+\item 
+\#define {\bfseries G\+P\+D\+M\+A\+\_\+\+C\+H1\+\_\+\+C\+T\+RL}~($\ast$(volatile uint32\+\_\+t $\ast$) (D\+M\+A\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x12\+C))
+\item 
+\#define {\bfseries G\+P\+D\+M\+A\+\_\+\+C\+H1\+\_\+\+C\+FG}~($\ast$(volatile uint32\+\_\+t $\ast$) (D\+M\+A\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x130))
+\item 
+\#define {\bfseries U\+S\+B\+\_\+\+I\+N\+T\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR}~0x400fc1c0
+\item 
+\#define {\bfseries U\+S\+B\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR}~0x2008c200
+\item 
+\#define {\bfseries U\+S\+B\+\_\+\+I\+N\+T\+\_\+\+S\+T\+AT}~($\ast$(volatile uint32\+\_\+t $\ast$) (U\+S\+B\+\_\+\+I\+N\+T\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x00))
+\item 
+\#define {\bfseries D\+E\+V\+\_\+\+I\+N\+T\+\_\+\+S\+T\+AT}~($\ast$(volatile uint32\+\_\+t $\ast$) (U\+S\+B\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x00))
+\item 
+\#define {\bfseries D\+E\+V\+\_\+\+I\+N\+T\+\_\+\+EN}~($\ast$(volatile uint32\+\_\+t $\ast$) (U\+S\+B\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x04))
+\item 
+\#define {\bfseries D\+E\+V\+\_\+\+I\+N\+T\+\_\+\+C\+LR}~($\ast$(volatile uint32\+\_\+t $\ast$) (U\+S\+B\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x08))
+\item 
+\#define {\bfseries D\+E\+V\+\_\+\+I\+N\+T\+\_\+\+S\+ET}~($\ast$(volatile uint32\+\_\+t $\ast$) (U\+S\+B\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x0\+C))
+\item 
+\#define {\bfseries D\+E\+V\+\_\+\+I\+N\+T\+\_\+\+P\+R\+IO}~($\ast$(volatile uint32\+\_\+t $\ast$) (U\+S\+B\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x2\+C))
+\item 
+\#define {\bfseries E\+P\+\_\+\+I\+N\+T\+\_\+\+S\+T\+AT}~($\ast$(volatile uint32\+\_\+t $\ast$) (U\+S\+B\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x30))
+\item 
+\#define {\bfseries E\+P\+\_\+\+I\+N\+T\+\_\+\+EN}~($\ast$(volatile uint32\+\_\+t $\ast$) (U\+S\+B\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x34))
+\item 
+\#define {\bfseries E\+P\+\_\+\+I\+N\+T\+\_\+\+C\+LR}~($\ast$(volatile uint32\+\_\+t $\ast$) (U\+S\+B\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x38))
+\item 
+\#define {\bfseries E\+P\+\_\+\+I\+N\+T\+\_\+\+S\+ET}~($\ast$(volatile uint32\+\_\+t $\ast$) (U\+S\+B\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x3\+C))
+\item 
+\#define {\bfseries E\+P\+\_\+\+I\+N\+T\+\_\+\+P\+R\+IO}~($\ast$(volatile uint32\+\_\+t $\ast$) (U\+S\+B\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x40))
+\item 
+\#define {\bfseries R\+E\+A\+L\+I\+Z\+E\+\_\+\+EP}~($\ast$(volatile uint32\+\_\+t $\ast$) (U\+S\+B\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x44))
+\item 
+\#define {\bfseries E\+P\+\_\+\+I\+N\+D\+EX}~($\ast$(volatile uint32\+\_\+t $\ast$) (U\+S\+B\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x48))
+\item 
+\#define {\bfseries M\+A\+X\+P\+A\+C\+K\+E\+T\+\_\+\+S\+I\+ZE}~($\ast$(volatile uint32\+\_\+t $\ast$) (U\+S\+B\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x4\+C))
+\item 
+\#define {\bfseries C\+M\+D\+\_\+\+C\+O\+DE}~($\ast$(volatile uint32\+\_\+t $\ast$) (U\+S\+B\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x10))
+\item 
+\#define {\bfseries C\+M\+D\+\_\+\+D\+A\+TA}~($\ast$(volatile uint32\+\_\+t $\ast$) (U\+S\+B\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x14))
+\item 
+\#define {\bfseries R\+X\+\_\+\+D\+A\+TA}~($\ast$(volatile uint32\+\_\+t $\ast$) (U\+S\+B\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x18))
+\item 
+\#define {\bfseries T\+X\+\_\+\+D\+A\+TA}~($\ast$(volatile uint32\+\_\+t $\ast$) (U\+S\+B\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x1\+C))
+\item 
+\#define {\bfseries R\+X\+\_\+\+P\+L\+E\+N\+G\+TH}~($\ast$(volatile uint32\+\_\+t $\ast$) (U\+S\+B\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x20))
+\item 
+\#define {\bfseries T\+X\+\_\+\+P\+L\+E\+N\+G\+TH}~($\ast$(volatile uint32\+\_\+t $\ast$) (U\+S\+B\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x24))
+\item 
+\#define {\bfseries U\+S\+B\+\_\+\+C\+T\+RL}~($\ast$(volatile uint32\+\_\+t $\ast$) (U\+S\+B\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x28))
+\item 
+\#define {\bfseries D\+M\+A\+\_\+\+R\+E\+Q\+\_\+\+S\+T\+AT}~($\ast$(volatile uint32\+\_\+t $\ast$) (U\+S\+B\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x50))
+\item 
+\#define {\bfseries D\+M\+A\+\_\+\+R\+E\+Q\+\_\+\+C\+LR}~($\ast$(volatile uint32\+\_\+t $\ast$) (U\+S\+B\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x54))
+\item 
+\#define {\bfseries D\+M\+A\+\_\+\+R\+E\+Q\+\_\+\+S\+ET}~($\ast$(volatile uint32\+\_\+t $\ast$) (U\+S\+B\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x58))
+\item 
+\#define {\bfseries U\+D\+C\+A\+\_\+\+H\+E\+AD}~($\ast$(volatile uint32\+\_\+t $\ast$) (U\+S\+B\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x80))
+\item 
+\#define {\bfseries E\+P\+\_\+\+D\+M\+A\+\_\+\+S\+T\+AT}~($\ast$(volatile uint32\+\_\+t $\ast$) (U\+S\+B\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x84))
+\item 
+\#define {\bfseries E\+P\+\_\+\+D\+M\+A\+\_\+\+EN}~($\ast$(volatile uint32\+\_\+t $\ast$) (U\+S\+B\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x88))
+\item 
+\#define {\bfseries E\+P\+\_\+\+D\+M\+A\+\_\+\+D\+IS}~($\ast$(volatile uint32\+\_\+t $\ast$) (U\+S\+B\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x8\+C))
+\item 
+\#define {\bfseries D\+M\+A\+\_\+\+I\+N\+T\+\_\+\+S\+T\+AT}~($\ast$(volatile uint32\+\_\+t $\ast$) (U\+S\+B\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x90))
+\item 
+\#define {\bfseries D\+M\+A\+\_\+\+I\+N\+T\+\_\+\+EN}~($\ast$(volatile uint32\+\_\+t $\ast$) (U\+S\+B\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x94))
+\item 
+\#define {\bfseries E\+O\+T\+\_\+\+I\+N\+T\+\_\+\+S\+T\+AT}~($\ast$(volatile uint32\+\_\+t $\ast$) (U\+S\+B\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x\+A0))
+\item 
+\#define {\bfseries E\+O\+T\+\_\+\+I\+N\+T\+\_\+\+C\+LR}~($\ast$(volatile uint32\+\_\+t $\ast$) (U\+S\+B\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x\+A4))
+\item 
+\#define {\bfseries E\+O\+T\+\_\+\+I\+N\+T\+\_\+\+S\+ET}~($\ast$(volatile uint32\+\_\+t $\ast$) (U\+S\+B\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x\+A8))
+\item 
+\#define {\bfseries N\+D\+D\+\_\+\+R\+E\+Q\+\_\+\+I\+N\+T\+\_\+\+S\+T\+AT}~($\ast$(volatile uint32\+\_\+t $\ast$) (U\+S\+B\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x\+A\+C))
+\item 
+\#define {\bfseries N\+D\+D\+\_\+\+R\+E\+Q\+\_\+\+I\+N\+T\+\_\+\+C\+LR}~($\ast$(volatile uint32\+\_\+t $\ast$) (U\+S\+B\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x\+B0))
+\item 
+\#define {\bfseries N\+D\+D\+\_\+\+R\+E\+Q\+\_\+\+I\+N\+T\+\_\+\+S\+ET}~($\ast$(volatile uint32\+\_\+t $\ast$) (U\+S\+B\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x\+B4))
+\item 
+\#define {\bfseries S\+Y\+S\+\_\+\+E\+R\+R\+\_\+\+I\+N\+T\+\_\+\+S\+T\+AT}~($\ast$(volatile uint32\+\_\+t $\ast$) (U\+S\+B\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x\+B8))
+\item 
+\#define {\bfseries S\+Y\+S\+\_\+\+E\+R\+R\+\_\+\+I\+N\+T\+\_\+\+C\+LR}~($\ast$(volatile uint32\+\_\+t $\ast$) (U\+S\+B\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x\+B\+C))
+\item 
+\#define {\bfseries S\+Y\+S\+\_\+\+E\+R\+R\+\_\+\+I\+N\+T\+\_\+\+S\+ET}~($\ast$(volatile uint32\+\_\+t $\ast$) (U\+S\+B\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x\+C0))
+\item 
+\#define {\bfseries U\+S\+B\+H\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR}~0x2008c000
+\item 
+\#define {\bfseries H\+C\+\_\+\+R\+E\+V\+I\+S\+I\+ON}~($\ast$(volatile uint32\+\_\+t $\ast$) (U\+S\+B\+H\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x00))
+\item 
+\#define {\bfseries H\+C\+\_\+\+C\+O\+N\+T\+R\+OL}~($\ast$(volatile uint32\+\_\+t $\ast$) (U\+S\+B\+H\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x04))
+\item 
+\#define {\bfseries H\+C\+\_\+\+C\+M\+D\+\_\+\+S\+T\+AT}~($\ast$(volatile uint32\+\_\+t $\ast$) (U\+S\+B\+H\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x08))
+\item 
+\#define {\bfseries H\+C\+\_\+\+I\+N\+T\+\_\+\+S\+T\+AT}~($\ast$(volatile uint32\+\_\+t $\ast$) (U\+S\+B\+H\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x0\+C))
+\item 
+\#define {\bfseries H\+C\+\_\+\+I\+N\+T\+\_\+\+EN}~($\ast$(volatile uint32\+\_\+t $\ast$) (U\+S\+B\+H\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x10))
+\item 
+\#define {\bfseries H\+C\+\_\+\+I\+N\+T\+\_\+\+D\+IS}~($\ast$(volatile uint32\+\_\+t $\ast$) (U\+S\+B\+H\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x14))
+\item 
+\#define {\bfseries H\+C\+\_\+\+H\+C\+CA}~($\ast$(volatile uint32\+\_\+t $\ast$) (U\+S\+B\+H\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x18))
+\item 
+\#define {\bfseries H\+C\+\_\+\+P\+E\+R\+I\+O\+D\+\_\+\+C\+U\+R\+\_\+\+ED}~($\ast$(volatile uint32\+\_\+t $\ast$) (U\+S\+B\+H\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x1\+C))
+\item 
+\#define {\bfseries H\+C\+\_\+\+C\+T\+R\+L\+\_\+\+H\+E\+A\+D\+\_\+\+ED}~($\ast$(volatile uint32\+\_\+t $\ast$) (U\+S\+B\+H\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x20))
+\item 
+\#define {\bfseries H\+C\+\_\+\+C\+T\+R\+L\+\_\+\+C\+U\+R\+\_\+\+ED}~($\ast$(volatile uint32\+\_\+t $\ast$) (U\+S\+B\+H\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x24))
+\item 
+\#define {\bfseries H\+C\+\_\+\+B\+U\+L\+K\+\_\+\+H\+E\+A\+D\+\_\+\+ED}~($\ast$(volatile uint32\+\_\+t $\ast$) (U\+S\+B\+H\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x28))
+\item 
+\#define {\bfseries H\+C\+\_\+\+B\+U\+L\+K\+\_\+\+C\+U\+R\+\_\+\+ED}~($\ast$(volatile uint32\+\_\+t $\ast$) (U\+S\+B\+H\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x2\+C))
+\item 
+\#define {\bfseries H\+C\+\_\+\+D\+O\+N\+E\+\_\+\+H\+E\+AD}~($\ast$(volatile uint32\+\_\+t $\ast$) (U\+S\+B\+H\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x30))
+\item 
+\#define {\bfseries H\+C\+\_\+\+F\+M\+\_\+\+I\+N\+T\+E\+R\+V\+AL}~($\ast$(volatile uint32\+\_\+t $\ast$) (U\+S\+B\+H\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x34))
+\item 
+\#define {\bfseries H\+C\+\_\+\+F\+M\+\_\+\+R\+E\+M\+A\+I\+N\+I\+NG}~($\ast$(volatile uint32\+\_\+t $\ast$) (U\+S\+B\+H\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x38))
+\item 
+\#define {\bfseries H\+C\+\_\+\+F\+M\+\_\+\+N\+U\+M\+B\+ER}~($\ast$(volatile uint32\+\_\+t $\ast$) (U\+S\+B\+H\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x3\+C))
+\item 
+\#define {\bfseries H\+C\+\_\+\+P\+E\+R\+I\+O\+D\+\_\+\+S\+T\+A\+RT}~($\ast$(volatile uint32\+\_\+t $\ast$) (U\+S\+B\+H\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x40))
+\item 
+\#define {\bfseries H\+C\+\_\+\+L\+S\+\_\+\+T\+H\+R\+H\+LD}~($\ast$(volatile uint32\+\_\+t $\ast$) (U\+S\+B\+H\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x44))
+\item 
+\#define {\bfseries H\+C\+\_\+\+R\+H\+\_\+\+D\+E\+S\+CA}~($\ast$(volatile uint32\+\_\+t $\ast$) (U\+S\+B\+H\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x48))
+\item 
+\#define {\bfseries H\+C\+\_\+\+R\+H\+\_\+\+D\+E\+S\+CB}~($\ast$(volatile uint32\+\_\+t $\ast$) (U\+S\+B\+H\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x4\+C))
+\item 
+\#define {\bfseries H\+C\+\_\+\+R\+H\+\_\+\+S\+T\+AT}~($\ast$(volatile uint32\+\_\+t $\ast$) (U\+S\+B\+H\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x50))
+\item 
+\#define {\bfseries H\+C\+\_\+\+R\+H\+\_\+\+P\+O\+R\+T\+\_\+\+S\+T\+A\+T1}~($\ast$(volatile uint32\+\_\+t $\ast$) (U\+S\+B\+H\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x54))
+\item 
+\#define {\bfseries H\+C\+\_\+\+R\+H\+\_\+\+P\+O\+R\+T\+\_\+\+S\+T\+A\+T2}~($\ast$(volatile uint32\+\_\+t $\ast$) (U\+S\+B\+H\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x58))
+\item 
+\#define {\bfseries U\+S\+B\+O\+T\+G\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR}~0x2008c100
+\item 
+\#define {\bfseries O\+T\+G\+\_\+\+I\+N\+T\+\_\+\+S\+T\+AT}~($\ast$(volatile uint32\+\_\+t $\ast$) (U\+S\+B\+O\+T\+G\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x00))
+\item 
+\#define {\bfseries O\+T\+G\+\_\+\+I\+N\+T\+\_\+\+EN}~($\ast$(volatile uint32\+\_\+t $\ast$) (U\+S\+B\+O\+T\+G\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x04))
+\item 
+\#define {\bfseries O\+T\+G\+\_\+\+I\+N\+T\+\_\+\+S\+ET}~($\ast$(volatile uint32\+\_\+t $\ast$) (U\+S\+B\+O\+T\+G\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x08))
+\item 
+\#define {\bfseries O\+T\+G\+\_\+\+I\+N\+T\+\_\+\+C\+LR}~($\ast$(volatile uint32\+\_\+t $\ast$) (U\+S\+B\+O\+T\+G\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x0\+C))
+\item 
+\#define {\bfseries O\+T\+G\+\_\+\+S\+T\+A\+T\+\_\+\+C\+T\+RL}~($\ast$(volatile uint32\+\_\+t $\ast$) (U\+S\+B\+O\+T\+G\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x10))
+\item 
+\#define {\bfseries O\+T\+G\+\_\+\+T\+I\+M\+ER}~($\ast$(volatile uint32\+\_\+t $\ast$) (U\+S\+B\+O\+T\+G\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x14))
+\item 
+\#define {\bfseries U\+S\+B\+O\+T\+G\+\_\+\+I2\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR}~0x2008c300
+\item 
+\#define {\bfseries O\+T\+G\+\_\+\+I2\+C\+\_\+\+RX}~($\ast$(volatile uint32\+\_\+t $\ast$) (U\+S\+B\+O\+T\+G\+\_\+\+I2\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x00))
+\item 
+\#define {\bfseries O\+T\+G\+\_\+\+I2\+C\+\_\+\+TX}~($\ast$(volatile uint32\+\_\+t $\ast$) (U\+S\+B\+O\+T\+G\+\_\+\+I2\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x00))
+\item 
+\#define {\bfseries O\+T\+G\+\_\+\+I2\+C\+\_\+\+S\+TS}~($\ast$(volatile uint32\+\_\+t $\ast$) (U\+S\+B\+O\+T\+G\+\_\+\+I2\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x04))
+\item 
+\#define {\bfseries O\+T\+G\+\_\+\+I2\+C\+\_\+\+C\+TL}~($\ast$(volatile uint32\+\_\+t $\ast$) (U\+S\+B\+O\+T\+G\+\_\+\+I2\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x08))
+\item 
+\#define {\bfseries O\+T\+G\+\_\+\+I2\+C\+\_\+\+C\+L\+K\+HI}~($\ast$(volatile uint32\+\_\+t $\ast$) (U\+S\+B\+O\+T\+G\+\_\+\+I2\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x0\+C))
+\item 
+\#define {\bfseries O\+T\+G\+\_\+\+I2\+C\+\_\+\+C\+L\+K\+LO}~($\ast$(volatile uint32\+\_\+t $\ast$) (U\+S\+B\+O\+T\+G\+\_\+\+I2\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x10))
+\item 
+\#define {\bfseries U\+S\+B\+O\+T\+G\+\_\+\+C\+L\+K\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR}~0x2008cff0
+\item 
+\#define {\bfseries O\+T\+G\+\_\+\+C\+L\+K\+\_\+\+C\+T\+RL}~($\ast$(volatile uint32\+\_\+t $\ast$) (U\+S\+B\+O\+T\+G\+\_\+\+C\+L\+K\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x04))
+\item 
+\#define {\bfseries O\+T\+G\+\_\+\+C\+L\+K\+\_\+\+S\+T\+AT}~($\ast$(volatile uint32\+\_\+t $\ast$) (U\+S\+B\+O\+T\+G\+\_\+\+C\+L\+K\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x08))
+\item 
+\#define {\bfseries M\+A\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR}~0x20084000
+\item 
+\#define {\bfseries M\+A\+C\+\_\+\+M\+A\+C1}~($\ast$(volatile uint32\+\_\+t $\ast$) (M\+A\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x000)) /$\ast$ M\+A\+C config reg 1 $\ast$/
+\item 
+\#define {\bfseries M\+A\+C\+\_\+\+M\+A\+C2}~($\ast$(volatile uint32\+\_\+t $\ast$) (M\+A\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x004)) /$\ast$ M\+A\+C config reg 2 $\ast$/
+\item 
+\#define {\bfseries M\+A\+C\+\_\+\+I\+P\+GT}~($\ast$(volatile uint32\+\_\+t $\ast$) (M\+A\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x008)) /$\ast$ b2b Inter\+Packet\+Gap reg $\ast$/
+\item 
+\#define {\bfseries M\+A\+C\+\_\+\+I\+P\+GR}~($\ast$(volatile uint32\+\_\+t $\ast$) (M\+A\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x00\+C)) /$\ast$ non b2b Inter\+Packet\+Gap reg $\ast$/
+\item 
+\#define {\bfseries M\+A\+C\+\_\+\+C\+L\+RT}~($\ast$(volatile uint32\+\_\+t $\ast$) (M\+A\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x010)) /$\ast$ Co\+Llision window/\+Re\+Try reg $\ast$/
+\item 
+\#define {\bfseries M\+A\+C\+\_\+\+M\+A\+XF}~($\ast$(volatile uint32\+\_\+t $\ast$) (M\+A\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x014)) /$\ast$ M\+A\+Ximum Frame reg $\ast$/
+\item 
+\#define {\bfseries M\+A\+C\+\_\+\+S\+U\+PP}~($\ast$(volatile uint32\+\_\+t $\ast$) (M\+A\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x018)) /$\ast$ P\+H\+Y S\+U\+P\+Port reg $\ast$/
+\item 
+\#define {\bfseries M\+A\+C\+\_\+\+T\+E\+ST}~($\ast$(volatile uint32\+\_\+t $\ast$) (M\+A\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x01\+C)) /$\ast$ T\+E\+S\+T reg $\ast$/
+\item 
+\#define {\bfseries M\+A\+C\+\_\+\+M\+C\+FG}~($\ast$(volatile uint32\+\_\+t $\ast$) (M\+A\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x020)) /$\ast$ M\+I\+I Mgmt Con\+Fi\+G reg $\ast$/
+\item 
+\#define {\bfseries M\+A\+C\+\_\+\+M\+C\+MD}~($\ast$(volatile uint32\+\_\+t $\ast$) (M\+A\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x024)) /$\ast$ M\+I\+I Mgmt Co\+Mman\+D reg $\ast$/
+\item 
+\#define {\bfseries M\+A\+C\+\_\+\+M\+A\+DR}~($\ast$(volatile uint32\+\_\+t $\ast$) (M\+A\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x028)) /$\ast$ M\+I\+I Mgmt A\+Dd\+Ress reg $\ast$/
+\item 
+\#define {\bfseries M\+A\+C\+\_\+\+M\+W\+TD}~($\ast$(volatile uint32\+\_\+t $\ast$) (M\+A\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x02\+C)) /$\ast$ M\+I\+I Mgmt Wri\+Te Data reg (\+W\+O) $\ast$/
+\item 
+\#define {\bfseries M\+A\+C\+\_\+\+M\+R\+DD}~($\ast$(volatile uint32\+\_\+t $\ast$) (M\+A\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x030)) /$\ast$ M\+I\+I Mgmt Rea\+D Data reg (\+R\+O) $\ast$/
+\item 
+\#define {\bfseries M\+A\+C\+\_\+\+M\+I\+ND}~($\ast$(volatile uint32\+\_\+t $\ast$) (M\+A\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x034)) /$\ast$ M\+I\+I Mgmt I\+N\+Dicators reg (\+R\+O) $\ast$/
+\item 
+\#define {\bfseries M\+A\+C\+\_\+\+S\+A0}~($\ast$(volatile uint32\+\_\+t $\ast$) (M\+A\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x040)) /$\ast$ Station Address 0 reg $\ast$/
+\item 
+\#define {\bfseries M\+A\+C\+\_\+\+S\+A1}~($\ast$(volatile uint32\+\_\+t $\ast$) (M\+A\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x044)) /$\ast$ Station Address 1 reg $\ast$/
+\item 
+\#define {\bfseries M\+A\+C\+\_\+\+S\+A2}~($\ast$(volatile uint32\+\_\+t $\ast$) (M\+A\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x048)) /$\ast$ Station Address 2 reg $\ast$/
+\item 
+\#define {\bfseries M\+A\+C\+\_\+\+C\+O\+M\+M\+A\+ND}~($\ast$(volatile uint32\+\_\+t $\ast$) (M\+A\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x100)) /$\ast$ Command reg $\ast$/
+\item 
+\#define {\bfseries M\+A\+C\+\_\+\+S\+T\+A\+T\+US}~($\ast$(volatile uint32\+\_\+t $\ast$) (M\+A\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x104)) /$\ast$ Status reg (\+R\+O) $\ast$/
+\item 
+\#define {\bfseries M\+A\+C\+\_\+\+R\+X\+D\+E\+S\+C\+R\+I\+P\+T\+OR}~($\ast$(volatile uint32\+\_\+t $\ast$) (M\+A\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x108)) /$\ast$ Rx descriptor base address reg $\ast$/
+\item 
+\#define {\bfseries M\+A\+C\+\_\+\+R\+X\+S\+T\+A\+T\+US}~($\ast$(volatile uint32\+\_\+t $\ast$) (M\+A\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x10\+C)) /$\ast$ Rx status base address reg $\ast$/
+\item 
+\#define {\bfseries M\+A\+C\+\_\+\+R\+X\+D\+E\+S\+C\+R\+I\+P\+T\+O\+R\+N\+UM}~($\ast$(volatile uint32\+\_\+t $\ast$) (M\+A\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x110)) /$\ast$ Rx number of descriptors reg $\ast$/
+\item 
+\#define {\bfseries M\+A\+C\+\_\+\+R\+X\+P\+R\+O\+D\+U\+C\+E\+I\+N\+D\+EX}~($\ast$(volatile uint32\+\_\+t $\ast$) (M\+A\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x114)) /$\ast$ Rx produce index reg (\+R\+O) $\ast$/
+\item 
+\#define {\bfseries M\+A\+C\+\_\+\+R\+X\+C\+O\+N\+S\+U\+M\+E\+I\+N\+D\+EX}~($\ast$(volatile uint32\+\_\+t $\ast$) (M\+A\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x118)) /$\ast$ Rx consume index reg $\ast$/
+\item 
+\#define {\bfseries M\+A\+C\+\_\+\+T\+X\+D\+E\+S\+C\+R\+I\+P\+T\+OR}~($\ast$(volatile uint32\+\_\+t $\ast$) (M\+A\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x11\+C)) /$\ast$ Tx descriptor base address reg $\ast$/
+\item 
+\#define {\bfseries M\+A\+C\+\_\+\+T\+X\+S\+T\+A\+T\+US}~($\ast$(volatile uint32\+\_\+t $\ast$) (M\+A\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x120)) /$\ast$ Tx status base address reg $\ast$/
+\item 
+\#define {\bfseries M\+A\+C\+\_\+\+T\+X\+D\+E\+S\+C\+R\+I\+P\+T\+O\+R\+N\+UM}~($\ast$(volatile uint32\+\_\+t $\ast$) (M\+A\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x124)) /$\ast$ Tx number of descriptors reg $\ast$/
+\item 
+\#define {\bfseries M\+A\+C\+\_\+\+T\+X\+P\+R\+O\+D\+U\+C\+E\+I\+N\+D\+EX}~($\ast$(volatile uint32\+\_\+t $\ast$) (M\+A\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x128)) /$\ast$ Tx produce index reg $\ast$/
+\item 
+\#define {\bfseries M\+A\+C\+\_\+\+T\+X\+C\+O\+N\+S\+U\+M\+E\+I\+N\+D\+EX}~($\ast$(volatile uint32\+\_\+t $\ast$) (M\+A\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x12\+C)) /$\ast$ Tx consume index reg (\+R\+O) $\ast$/
+\item 
+\#define {\bfseries M\+A\+C\+\_\+\+T\+S\+V0}~($\ast$(volatile uint32\+\_\+t $\ast$) (M\+A\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x158)) /$\ast$ Tx status vector 0 reg (\+R\+O) $\ast$/
+\item 
+\#define {\bfseries M\+A\+C\+\_\+\+T\+S\+V1}~($\ast$(volatile uint32\+\_\+t $\ast$) (M\+A\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x15\+C)) /$\ast$ Tx status vector 1 reg (\+R\+O) $\ast$/
+\item 
+\#define {\bfseries M\+A\+C\+\_\+\+R\+SV}~($\ast$(volatile uint32\+\_\+t $\ast$) (M\+A\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x160)) /$\ast$ Rx status vector reg (\+R\+O) $\ast$/
+\item 
+\#define {\bfseries M\+A\+C\+\_\+\+F\+L\+O\+W\+C\+O\+N\+T\+R\+O\+L\+C\+NT}~($\ast$(volatile uint32\+\_\+t $\ast$) (M\+A\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x170)) /$\ast$ Flow control counter reg $\ast$/
+\item 
+\#define {\bfseries M\+A\+C\+\_\+\+F\+L\+O\+W\+C\+O\+N\+T\+R\+O\+L\+S\+TS}~($\ast$(volatile uint32\+\_\+t $\ast$) (M\+A\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x174)) /$\ast$ Flow control status reg $\ast$/
+\item 
+\#define {\bfseries M\+A\+C\+\_\+\+R\+X\+F\+I\+L\+T\+E\+R\+C\+T\+RL}~($\ast$(volatile uint32\+\_\+t $\ast$) (M\+A\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x200)) /$\ast$ Rx filter ctrl reg $\ast$/
+\item 
+\#define {\bfseries M\+A\+C\+\_\+\+R\+X\+F\+I\+L\+T\+E\+R\+W\+O\+L\+S\+TS}~($\ast$(volatile uint32\+\_\+t $\ast$) (M\+A\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x204)) /$\ast$ Rx filter Wo\+L status reg (\+R\+O) $\ast$/
+\item 
+\#define {\bfseries M\+A\+C\+\_\+\+R\+X\+F\+I\+L\+T\+E\+R\+W\+O\+L\+C\+LR}~($\ast$(volatile uint32\+\_\+t $\ast$) (M\+A\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x208)) /$\ast$ Rx filter Wo\+L clear reg (\+W\+O) $\ast$/
+\item 
+\#define {\bfseries M\+A\+C\+\_\+\+H\+A\+S\+H\+F\+I\+L\+T\+E\+RL}~($\ast$(volatile uint32\+\_\+t $\ast$) (M\+A\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x210)) /$\ast$ Hash filter L\+S\+Bs reg $\ast$/
+\item 
+\#define {\bfseries M\+A\+C\+\_\+\+H\+A\+S\+H\+F\+I\+L\+T\+E\+RH}~($\ast$(volatile uint32\+\_\+t $\ast$) (M\+A\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x214)) /$\ast$ Hash filter M\+S\+Bs reg $\ast$/
+\item 
+\#define {\bfseries M\+A\+C\+\_\+\+I\+N\+T\+S\+T\+A\+T\+US}~($\ast$(volatile uint32\+\_\+t $\ast$) (M\+A\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x\+F\+E0)) /$\ast$ Interrupt status reg (\+R\+O) $\ast$/
+\item 
+\#define {\bfseries M\+A\+C\+\_\+\+I\+N\+T\+E\+N\+A\+B\+LE}~($\ast$(volatile uint32\+\_\+t $\ast$) (M\+A\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x\+F\+E4)) /$\ast$ Interrupt enable reg  $\ast$/
+\item 
+\#define {\bfseries M\+A\+C\+\_\+\+I\+N\+T\+C\+L\+E\+AR}~($\ast$(volatile uint32\+\_\+t $\ast$) (M\+A\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x\+F\+E8)) /$\ast$ Interrupt clear reg (\+W\+O) $\ast$/
+\item 
+\#define {\bfseries M\+A\+C\+\_\+\+I\+N\+T\+S\+ET}~($\ast$(volatile uint32\+\_\+t $\ast$) (M\+A\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x\+F\+E\+C)) /$\ast$ Interrupt set reg (\+W\+O) $\ast$/
+\item 
+\#define {\bfseries M\+A\+C\+\_\+\+P\+O\+W\+E\+R\+D\+O\+WN}~($\ast$(volatile uint32\+\_\+t $\ast$) (M\+A\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x\+F\+F4)) /$\ast$ Power-\/down reg $\ast$/
+\item 
+\#define {\bfseries M\+A\+C\+\_\+\+M\+O\+D\+U\+L\+E\+ID}~($\ast$(volatile uint32\+\_\+t $\ast$) (M\+A\+C\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x\+F\+F\+C)) /$\ast$ Module I\+D reg (\+R\+O) $\ast$/
+\item 
+\#define {\bfseries L\+C\+D\+\_\+\+C\+FG}~($\ast$(volatile uint32\+\_\+t $\ast$) 0x400\+F\+C1\+B8)
+\item 
+\#define {\bfseries L\+C\+D\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR}~0x20088000
+\item 
+\#define {\bfseries L\+C\+D\+\_\+\+T\+I\+MH}~($\ast$(volatile uint32\+\_\+t $\ast$) (L\+C\+D\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x000))
+\item 
+\#define {\bfseries L\+C\+D\+\_\+\+T\+I\+MV}~($\ast$(volatile uint32\+\_\+t $\ast$) (L\+C\+D\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x004))
+\item 
+\#define {\bfseries L\+C\+D\+\_\+\+P\+OL}~($\ast$(volatile uint32\+\_\+t $\ast$) (L\+C\+D\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x008))
+\item 
+\#define {\bfseries L\+C\+D\+\_\+\+LE}~($\ast$(volatile uint32\+\_\+t $\ast$) (L\+C\+D\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x00\+C))
+\item 
+\#define {\bfseries L\+C\+D\+\_\+\+U\+P\+B\+A\+SE}~($\ast$(volatile uint32\+\_\+t $\ast$) (L\+C\+D\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x010))
+\item 
+\#define {\bfseries L\+C\+D\+\_\+\+L\+P\+B\+A\+SE}~($\ast$(volatile uint32\+\_\+t $\ast$) (L\+C\+D\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x014))
+\item 
+\#define {\bfseries L\+C\+D\+\_\+\+C\+T\+RL}~($\ast$(volatile uint32\+\_\+t $\ast$) (L\+C\+D\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x018))
+\item 
+\#define {\bfseries L\+C\+D\+\_\+\+I\+N\+T\+M\+SK}~($\ast$(volatile uint32\+\_\+t $\ast$) (L\+C\+D\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x01\+C))
+\item 
+\#define {\bfseries L\+C\+D\+\_\+\+I\+N\+T\+R\+AW}~($\ast$(volatile uint32\+\_\+t $\ast$) (L\+C\+D\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x020))
+\item 
+\#define {\bfseries L\+C\+D\+\_\+\+I\+N\+T\+S\+T\+AT}~($\ast$(volatile uint32\+\_\+t $\ast$) (L\+C\+D\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x024))
+\item 
+\#define {\bfseries L\+C\+D\+\_\+\+I\+N\+T\+C\+LR}~($\ast$(volatile uint32\+\_\+t $\ast$) (L\+C\+D\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x028))
+\item 
+\#define {\bfseries L\+C\+D\+\_\+\+U\+P\+C\+U\+RR}~($\ast$(volatile uint32\+\_\+t $\ast$) (L\+C\+D\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x02\+C))
+\item 
+\#define {\bfseries L\+C\+D\+\_\+\+L\+P\+C\+U\+RR}~($\ast$(volatile uint32\+\_\+t $\ast$) (L\+C\+D\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x030))
+\item 
+\#define {\bfseries L\+C\+D\+\_\+\+P\+A\+L\+\_\+\+A\+D\+DR}~($\ast$(volatile uint32\+\_\+t $\ast$) (L\+C\+D\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x200))
+\item 
+\#define {\bfseries C\+R\+S\+R\+\_\+\+I\+MG}~($\ast$(volatile uint32\+\_\+t $\ast$) (L\+C\+D\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x800))
+\item 
+\#define {\bfseries C\+R\+S\+R\+\_\+\+C\+T\+LR}~($\ast$(volatile uint32\+\_\+t $\ast$) (L\+C\+D\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x\+C00))
+\item 
+\#define {\bfseries C\+R\+S\+R\+\_\+\+C\+FG}~($\ast$(volatile uint32\+\_\+t $\ast$) (L\+C\+D\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x\+C04))
+\item 
+\#define {\bfseries C\+R\+S\+R\+\_\+\+P\+A\+L0}~($\ast$(volatile uint32\+\_\+t $\ast$) (L\+C\+D\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x\+C08))
+\item 
+\#define {\bfseries C\+R\+S\+R\+\_\+\+P\+A\+L1}~($\ast$(volatile uint32\+\_\+t $\ast$) (L\+C\+D\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x\+C0\+C))
+\item 
+\#define {\bfseries C\+R\+S\+R\+\_\+\+XY}~($\ast$(volatile uint32\+\_\+t $\ast$) (L\+C\+D\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x\+C10))
+\item 
+\#define {\bfseries C\+R\+S\+R\+\_\+\+C\+L\+IP}~($\ast$(volatile uint32\+\_\+t $\ast$) (L\+C\+D\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x\+C14))
+\item 
+\#define {\bfseries C\+R\+S\+R\+\_\+\+I\+N\+T\+M\+SK}~($\ast$(volatile uint32\+\_\+t $\ast$) (L\+C\+D\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x\+C20))
+\item 
+\#define {\bfseries C\+R\+S\+R\+\_\+\+I\+N\+T\+C\+LR}~($\ast$(volatile uint32\+\_\+t $\ast$) (L\+C\+D\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x\+C24))
+\item 
+\#define {\bfseries C\+R\+S\+R\+\_\+\+I\+N\+T\+R\+AW}~($\ast$(volatile uint32\+\_\+t $\ast$) (L\+C\+D\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x\+C28))
+\item 
+\#define {\bfseries C\+R\+S\+R\+\_\+\+I\+N\+T\+S\+T\+AT}~($\ast$(volatile uint32\+\_\+t $\ast$) (L\+C\+D\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR + 0x\+C2\+C))
+\item 
+\#define {\bfseries G\+E\+T\+\_\+\+F\+I\+E\+LD}(val,  mask,  shift)~(((val) \& (mask)) $>$$>$ (shift))
+\item 
+\#define {\bfseries S\+E\+T\+\_\+\+F\+I\+E\+LD}(val,  field,  mask,  shift)~(((val) \& $\sim$(mask)) $\vert$ (((field) $<$$<$ (shift)) \& (mask)))
+\item 
+\#define {\bfseries C\+L\+K\+S\+R\+C\+S\+E\+L\+\_\+\+C\+L\+K\+S\+R\+C\+\_\+\+M\+A\+SK}~0x00000003U
+\item 
+\#define {\bfseries G\+E\+T\+\_\+\+C\+L\+K\+S\+R\+C\+S\+E\+L\+\_\+\+C\+L\+K\+S\+RC}(reg)~G\+E\+T\+\_\+\+F\+I\+E\+LD(reg, C\+L\+K\+S\+R\+C\+S\+E\+L\+\_\+\+C\+L\+K\+S\+R\+C\+\_\+\+M\+A\+SK, 0)
+\item 
+\#define {\bfseries S\+E\+T\+\_\+\+C\+L\+K\+S\+R\+C\+S\+E\+L\+\_\+\+C\+L\+K\+S\+RC}(reg,  val)~S\+E\+T\+\_\+\+F\+I\+E\+LD(reg, val, C\+L\+K\+S\+R\+C\+S\+E\+L\+\_\+\+C\+L\+K\+S\+R\+C\+\_\+\+M\+A\+SK, 0)
+\item 
+\#define {\bfseries P\+L\+L\+C\+O\+N\+\_\+\+P\+L\+LE}~0x00000001U
+\item 
+\#define {\bfseries P\+L\+L\+C\+O\+N\+\_\+\+P\+L\+LC}~0x00000002U
+\item 
+\#define {\bfseries P\+L\+L\+C\+F\+G\+\_\+\+M\+S\+E\+L\+\_\+\+M\+A\+SK}~0x00007fffU
+\item 
+\#define {\bfseries G\+E\+T\+\_\+\+P\+L\+L\+C\+F\+G\+\_\+\+M\+S\+EL}(reg)~G\+E\+T\+\_\+\+F\+I\+E\+LD(reg, P\+L\+L\+C\+F\+G\+\_\+\+M\+S\+E\+L\+\_\+\+M\+A\+SK, 0)
+\item 
+\#define {\bfseries S\+E\+T\+\_\+\+P\+L\+L\+C\+F\+G\+\_\+\+M\+S\+EL}(reg,  val)~S\+E\+T\+\_\+\+F\+I\+E\+LD(reg, val, P\+L\+L\+C\+F\+G\+\_\+\+M\+S\+E\+L\+\_\+\+M\+A\+SK, 0)
+\item 
+\#define {\bfseries P\+L\+L\+C\+F\+G\+\_\+\+N\+S\+E\+L\+\_\+\+M\+A\+SK}~0x00ff0000U
+\item 
+\#define {\bfseries G\+E\+T\+\_\+\+P\+L\+L\+C\+F\+G\+\_\+\+N\+S\+EL}(reg)~G\+E\+T\+\_\+\+F\+I\+E\+LD(reg, P\+L\+L\+C\+F\+G\+\_\+\+N\+S\+E\+L\+\_\+\+M\+A\+SK, 16)
+\item 
+\#define {\bfseries S\+E\+T\+\_\+\+P\+L\+L\+C\+F\+G\+\_\+\+N\+S\+EL}(reg,  val)~S\+E\+T\+\_\+\+F\+I\+E\+LD(reg, val, P\+L\+L\+C\+F\+G\+\_\+\+N\+S\+E\+L\+\_\+\+M\+A\+SK, 16)
+\item 
+\#define {\bfseries P\+L\+L\+S\+T\+A\+T\+\_\+\+M\+S\+E\+L\+\_\+\+M\+A\+SK}~0x00007fffU
+\item 
+\#define {\bfseries G\+E\+T\+\_\+\+P\+L\+L\+S\+T\+A\+T\+\_\+\+M\+S\+EL}(reg)~G\+E\+T\+\_\+\+F\+I\+E\+LD(reg, P\+L\+L\+S\+T\+A\+T\+\_\+\+M\+S\+E\+L\+\_\+\+M\+A\+SK, 0)
+\item 
+\#define {\bfseries S\+E\+T\+\_\+\+P\+L\+L\+S\+T\+A\+T\+\_\+\+M\+S\+EL}(reg,  val)~S\+E\+T\+\_\+\+F\+I\+E\+LD(reg, val, P\+L\+L\+S\+T\+A\+T\+\_\+\+M\+S\+E\+L\+\_\+\+M\+A\+SK, 0)
+\item 
+\#define {\bfseries P\+L\+L\+S\+T\+A\+T\+\_\+\+N\+S\+E\+L\+\_\+\+M\+A\+SK}~0x00ff0000U
+\item 
+\#define {\bfseries G\+E\+T\+\_\+\+P\+L\+L\+S\+T\+A\+T\+\_\+\+N\+S\+EL}(reg)~G\+E\+T\+\_\+\+F\+I\+E\+LD(reg, P\+L\+L\+S\+T\+A\+T\+\_\+\+N\+S\+E\+L\+\_\+\+M\+A\+SK, 16)
+\item 
+\#define {\bfseries S\+E\+T\+\_\+\+P\+L\+L\+S\+T\+A\+T\+\_\+\+N\+S\+EL}(reg,  val)~S\+E\+T\+\_\+\+F\+I\+E\+LD(reg, val, P\+L\+L\+S\+T\+A\+T\+\_\+\+N\+S\+E\+L\+\_\+\+M\+A\+SK, 16)
+\item 
+\#define {\bfseries P\+L\+L\+S\+T\+A\+T\+\_\+\+P\+L\+LE}~0x01000000U
+\item 
+\#define {\bfseries P\+L\+L\+S\+T\+A\+T\+\_\+\+P\+L\+LC}~0x02000000U
+\item 
+\#define {\bfseries P\+L\+L\+S\+T\+A\+T\+\_\+\+P\+L\+O\+CK}~0x04000000U
+\item 
+\#define {\bfseries C\+C\+L\+K\+C\+F\+G\+\_\+\+C\+C\+L\+K\+S\+E\+L\+\_\+\+M\+A\+SK}~0x000000ffU
+\item 
+\#define {\bfseries G\+E\+T\+\_\+\+C\+C\+L\+K\+C\+F\+G\+\_\+\+C\+C\+L\+K\+S\+EL}(reg)~G\+E\+T\+\_\+\+F\+I\+E\+LD(reg, C\+C\+L\+K\+C\+F\+G\+\_\+\+C\+C\+L\+K\+S\+E\+L\+\_\+\+M\+A\+SK, 0)
+\item 
+\#define {\bfseries S\+E\+T\+\_\+\+C\+C\+L\+K\+C\+F\+G\+\_\+\+C\+C\+L\+K\+S\+EL}(reg,  val)~S\+E\+T\+\_\+\+F\+I\+E\+LD(reg, val, C\+C\+L\+K\+C\+F\+G\+\_\+\+C\+C\+L\+K\+S\+E\+L\+\_\+\+M\+A\+SK, 0)
+\item 
+\#define {\bfseries M\+E\+M\+M\+A\+P\+\_\+\+M\+A\+P\+\_\+\+M\+A\+SK}~0x00000003U
+\item 
+\#define {\bfseries G\+E\+T\+\_\+\+M\+E\+M\+M\+A\+P\+\_\+\+M\+AP}(reg)~G\+E\+T\+\_\+\+F\+I\+E\+LD(reg, M\+E\+M\+M\+A\+P\+\_\+\+M\+A\+P\+\_\+\+M\+A\+SK, 0)
+\item 
+\#define {\bfseries S\+E\+T\+\_\+\+M\+E\+M\+M\+A\+P\+\_\+\+M\+AP}(reg,  val)~S\+E\+T\+\_\+\+F\+I\+E\+LD(reg, val, M\+E\+M\+M\+A\+P\+\_\+\+M\+A\+P\+\_\+\+M\+A\+SK, 0)
+\item 
+\#define {\bfseries T\+I\+R\+\_\+\+M\+R0}~0x00000001U
+\item 
+\#define {\bfseries T\+I\+R\+\_\+\+M\+R1}~0x00000002U
+\item 
+\#define {\bfseries T\+I\+R\+\_\+\+M\+R2}~0x00000004U
+\item 
+\#define {\bfseries T\+I\+R\+\_\+\+M\+R3}~0x00000008U
+\item 
+\#define {\bfseries T\+I\+R\+\_\+\+C\+R0}~0x00000010U
+\item 
+\#define {\bfseries T\+I\+R\+\_\+\+C\+R1}~0x00000020U
+\item 
+\#define {\bfseries T\+I\+R\+\_\+\+C\+R2}~0x00000040U
+\item 
+\#define {\bfseries T\+I\+R\+\_\+\+C\+R3}~0x00000080U
+\item 
+\#define {\bfseries T\+C\+R\+\_\+\+EN}~0x00000001U
+\item 
+\#define {\bfseries T\+C\+R\+\_\+\+R\+ST}~0x00000002U
+\item 
+\#define {\bfseries T\+M\+C\+R\+\_\+\+M\+R0I}~0x00000001U
+\item 
+\#define {\bfseries T\+M\+C\+R\+\_\+\+M\+R0R}~0x00000002U
+\item 
+\#define {\bfseries T\+M\+C\+R\+\_\+\+M\+R0S}~0x00000004U
+\item 
+\#define {\bfseries T\+M\+C\+R\+\_\+\+M\+R1I}~0x00000008U
+\item 
+\#define {\bfseries T\+M\+C\+R\+\_\+\+M\+R1R}~0x00000010U
+\item 
+\#define {\bfseries T\+M\+C\+R\+\_\+\+M\+R1S}~0x00000020U
+\item 
+\#define {\bfseries T\+M\+C\+R\+\_\+\+M\+R2I}~0x00000040U
+\item 
+\#define {\bfseries T\+M\+C\+R\+\_\+\+M\+R2R}~0x00000080U
+\item 
+\#define {\bfseries T\+M\+C\+R\+\_\+\+M\+R2S}~0x00000100U
+\item 
+\#define {\bfseries T\+M\+C\+R\+\_\+\+M\+R3I}~0x00000200U
+\item 
+\#define {\bfseries T\+M\+C\+R\+\_\+\+M\+R3R}~0x00000400U
+\item 
+\#define {\bfseries T\+M\+C\+R\+\_\+\+M\+R3S}~0x00000800U
+\item 
+\#define {\bfseries P\+C\+L\+K\+S\+E\+L0\+\_\+\+P\+C\+L\+K\+\_\+\+W\+D\+T\+\_\+\+M\+A\+SK}~0x00000003U
+\item 
+\#define {\bfseries G\+E\+T\+\_\+\+P\+C\+L\+K\+S\+E\+L0\+\_\+\+P\+C\+L\+K\+\_\+\+W\+DT}(reg)~G\+E\+T\+\_\+\+F\+I\+E\+LD(reg, P\+C\+L\+K\+S\+E\+L0\+\_\+\+P\+C\+L\+K\+\_\+\+W\+D\+T\+\_\+\+M\+A\+SK, 0)
+\item 
+\#define {\bfseries S\+E\+T\+\_\+\+P\+C\+L\+K\+S\+E\+L0\+\_\+\+P\+C\+L\+K\+\_\+\+W\+DT}(reg,  val)~S\+E\+T\+\_\+\+F\+I\+E\+LD(reg, val, P\+C\+L\+K\+S\+E\+L0\+\_\+\+P\+C\+L\+K\+\_\+\+W\+D\+T\+\_\+\+M\+A\+SK, 0)
+\item 
+\#define {\bfseries P\+C\+L\+K\+S\+E\+L0\+\_\+\+P\+C\+L\+K\+\_\+\+T\+I\+M\+E\+R0\+\_\+\+M\+A\+SK}~0x0000000cU
+\item 
+\#define {\bfseries G\+E\+T\+\_\+\+P\+C\+L\+K\+S\+E\+L0\+\_\+\+P\+C\+L\+K\+\_\+\+T\+I\+M\+E\+R0}(reg)~G\+E\+T\+\_\+\+F\+I\+E\+LD(reg, P\+C\+L\+K\+S\+E\+L0\+\_\+\+P\+C\+L\+K\+\_\+\+T\+I\+M\+E\+R0\+\_\+\+M\+A\+SK, 2)
+\item 
+\#define {\bfseries S\+E\+T\+\_\+\+P\+C\+L\+K\+S\+E\+L0\+\_\+\+P\+C\+L\+K\+\_\+\+T\+I\+M\+E\+R0}(reg,  val)~S\+E\+T\+\_\+\+F\+I\+E\+LD(reg, val, P\+C\+L\+K\+S\+E\+L0\+\_\+\+P\+C\+L\+K\+\_\+\+T\+I\+M\+E\+R0\+\_\+\+M\+A\+SK, 2)
+\item 
+\#define {\bfseries P\+C\+L\+K\+S\+E\+L0\+\_\+\+P\+C\+L\+K\+\_\+\+T\+I\+M\+E\+R1\+\_\+\+M\+A\+SK}~0x00000030U
+\item 
+\#define {\bfseries G\+E\+T\+\_\+\+P\+C\+L\+K\+S\+E\+L0\+\_\+\+P\+C\+L\+K\+\_\+\+T\+I\+M\+E\+R1}(reg)~G\+E\+T\+\_\+\+F\+I\+E\+LD(reg, P\+C\+L\+K\+S\+E\+L0\+\_\+\+P\+C\+L\+K\+\_\+\+T\+I\+M\+E\+R1\+\_\+\+M\+A\+SK, 4)
+\item 
+\#define {\bfseries S\+E\+T\+\_\+\+P\+C\+L\+K\+S\+E\+L0\+\_\+\+P\+C\+L\+K\+\_\+\+T\+I\+M\+E\+R1}(reg,  val)~S\+E\+T\+\_\+\+F\+I\+E\+LD(reg, val, P\+C\+L\+K\+S\+E\+L0\+\_\+\+P\+C\+L\+K\+\_\+\+T\+I\+M\+E\+R1\+\_\+\+M\+A\+SK, 4)
+\item 
+\#define {\bfseries P\+C\+L\+K\+S\+E\+L0\+\_\+\+P\+C\+L\+K\+\_\+\+U\+A\+R\+T0\+\_\+\+M\+A\+SK}~0x000000c0U
+\item 
+\#define {\bfseries G\+E\+T\+\_\+\+P\+C\+L\+K\+S\+E\+L0\+\_\+\+P\+C\+L\+K\+\_\+\+U\+A\+R\+T0}(reg)~G\+E\+T\+\_\+\+F\+I\+E\+LD(reg, P\+C\+L\+K\+S\+E\+L0\+\_\+\+P\+C\+L\+K\+\_\+\+U\+A\+R\+T0\+\_\+\+M\+A\+SK, 6)
+\item 
+\#define {\bfseries S\+E\+T\+\_\+\+P\+C\+L\+K\+S\+E\+L0\+\_\+\+P\+C\+L\+K\+\_\+\+U\+A\+R\+T0}(reg,  val)~S\+E\+T\+\_\+\+F\+I\+E\+LD(reg, val, P\+C\+L\+K\+S\+E\+L0\+\_\+\+P\+C\+L\+K\+\_\+\+U\+A\+R\+T0\+\_\+\+M\+A\+SK, 6)
+\item 
+\#define {\bfseries P\+C\+L\+K\+S\+E\+L0\+\_\+\+P\+C\+L\+K\+\_\+\+U\+A\+R\+T1\+\_\+\+M\+A\+SK}~0x00000300U
+\item 
+\#define {\bfseries G\+E\+T\+\_\+\+P\+C\+L\+K\+S\+E\+L0\+\_\+\+P\+C\+L\+K\+\_\+\+U\+A\+R\+T1}(reg)~G\+E\+T\+\_\+\+F\+I\+E\+LD(reg, P\+C\+L\+K\+S\+E\+L0\+\_\+\+P\+C\+L\+K\+\_\+\+U\+A\+R\+T1\+\_\+\+M\+A\+SK, 8)
+\item 
+\#define {\bfseries S\+E\+T\+\_\+\+P\+C\+L\+K\+S\+E\+L0\+\_\+\+P\+C\+L\+K\+\_\+\+U\+A\+R\+T1}(reg,  val)~S\+E\+T\+\_\+\+F\+I\+E\+LD(reg, val, P\+C\+L\+K\+S\+E\+L0\+\_\+\+P\+C\+L\+K\+\_\+\+U\+A\+R\+T1\+\_\+\+M\+A\+SK, 8)
+\item 
+\#define {\bfseries P\+C\+L\+K\+S\+E\+L0\+\_\+\+P\+C\+L\+K\+\_\+\+P\+W\+M0\+\_\+\+M\+A\+SK}~0x00000c00U
+\item 
+\#define {\bfseries G\+E\+T\+\_\+\+P\+C\+L\+K\+S\+E\+L0\+\_\+\+P\+C\+L\+K\+\_\+\+P\+W\+M0}(reg)~G\+E\+T\+\_\+\+F\+I\+E\+LD(reg, P\+C\+L\+K\+S\+E\+L0\+\_\+\+P\+C\+L\+K\+\_\+\+P\+W\+M0\+\_\+\+M\+A\+SK, 10)
+\item 
+\#define {\bfseries S\+E\+T\+\_\+\+P\+C\+L\+K\+S\+E\+L0\+\_\+\+P\+C\+L\+K\+\_\+\+P\+W\+M0}(reg,  val)~S\+E\+T\+\_\+\+F\+I\+E\+LD(reg, val, P\+C\+L\+K\+S\+E\+L0\+\_\+\+P\+C\+L\+K\+\_\+\+P\+W\+M0\+\_\+\+M\+A\+SK, 10)
+\item 
+\#define {\bfseries P\+C\+L\+K\+S\+E\+L0\+\_\+\+P\+C\+L\+K\+\_\+\+P\+W\+M1\+\_\+\+M\+A\+SK}~0x00003000U
+\item 
+\#define {\bfseries G\+E\+T\+\_\+\+P\+C\+L\+K\+S\+E\+L0\+\_\+\+P\+C\+L\+K\+\_\+\+P\+W\+M1}(reg)~G\+E\+T\+\_\+\+F\+I\+E\+LD(reg, P\+C\+L\+K\+S\+E\+L0\+\_\+\+P\+C\+L\+K\+\_\+\+P\+W\+M1\+\_\+\+M\+A\+SK, 12)
+\item 
+\#define {\bfseries S\+E\+T\+\_\+\+P\+C\+L\+K\+S\+E\+L0\+\_\+\+P\+C\+L\+K\+\_\+\+P\+W\+M1}(reg,  val)~S\+E\+T\+\_\+\+F\+I\+E\+LD(reg, val, P\+C\+L\+K\+S\+E\+L0\+\_\+\+P\+C\+L\+K\+\_\+\+P\+W\+M1\+\_\+\+M\+A\+SK, 12)
+\item 
+\#define {\bfseries P\+C\+L\+K\+S\+E\+L0\+\_\+\+P\+C\+L\+K\+\_\+\+I2\+C0\+\_\+\+M\+A\+SK}~0x0000c000U
+\item 
+\#define {\bfseries G\+E\+T\+\_\+\+P\+C\+L\+K\+S\+E\+L0\+\_\+\+P\+C\+L\+K\+\_\+\+I2\+C0}(reg)~G\+E\+T\+\_\+\+F\+I\+E\+LD(reg, P\+C\+L\+K\+S\+E\+L0\+\_\+\+P\+C\+L\+K\+\_\+\+I2\+C0\+\_\+\+M\+A\+SK, 14)
+\item 
+\#define {\bfseries S\+E\+T\+\_\+\+P\+C\+L\+K\+S\+E\+L0\+\_\+\+P\+C\+L\+K\+\_\+\+I2\+C0}(reg,  val)~S\+E\+T\+\_\+\+F\+I\+E\+LD(reg, val, P\+C\+L\+K\+S\+E\+L0\+\_\+\+P\+C\+L\+K\+\_\+\+I2\+C0\+\_\+\+M\+A\+SK, 14)
+\item 
+\#define {\bfseries P\+C\+L\+K\+S\+E\+L0\+\_\+\+P\+C\+L\+K\+\_\+\+S\+P\+I\+\_\+\+M\+A\+SK}~0x00030000U
+\item 
+\#define {\bfseries G\+E\+T\+\_\+\+P\+C\+L\+K\+S\+E\+L0\+\_\+\+P\+C\+L\+K\+\_\+\+S\+PI}(reg)~G\+E\+T\+\_\+\+F\+I\+E\+LD(reg, P\+C\+L\+K\+S\+E\+L0\+\_\+\+P\+C\+L\+K\+\_\+\+S\+P\+I\+\_\+\+M\+A\+SK, 16)
+\item 
+\#define {\bfseries S\+E\+T\+\_\+\+P\+C\+L\+K\+S\+E\+L0\+\_\+\+P\+C\+L\+K\+\_\+\+S\+PI}(reg,  val)~S\+E\+T\+\_\+\+F\+I\+E\+LD(reg, val, P\+C\+L\+K\+S\+E\+L0\+\_\+\+P\+C\+L\+K\+\_\+\+S\+P\+I\+\_\+\+M\+A\+SK, 16)
+\item 
+\#define {\bfseries P\+C\+L\+K\+S\+E\+L0\+\_\+\+P\+C\+L\+K\+\_\+\+R\+T\+C\+\_\+\+M\+A\+SK}~0x000c0000U
+\item 
+\#define {\bfseries G\+E\+T\+\_\+\+P\+C\+L\+K\+S\+E\+L0\+\_\+\+P\+C\+L\+K\+\_\+\+R\+TC}(reg)~G\+E\+T\+\_\+\+F\+I\+E\+LD(reg, P\+C\+L\+K\+S\+E\+L0\+\_\+\+P\+C\+L\+K\+\_\+\+R\+T\+C\+\_\+\+M\+A\+SK, 18)
+\item 
+\#define {\bfseries S\+E\+T\+\_\+\+P\+C\+L\+K\+S\+E\+L0\+\_\+\+P\+C\+L\+K\+\_\+\+R\+TC}(reg,  val)~S\+E\+T\+\_\+\+F\+I\+E\+LD(reg, val, P\+C\+L\+K\+S\+E\+L0\+\_\+\+P\+C\+L\+K\+\_\+\+R\+T\+C\+\_\+\+M\+A\+SK, 18)
+\item 
+\#define {\bfseries P\+C\+L\+K\+S\+E\+L0\+\_\+\+P\+C\+L\+K\+\_\+\+S\+S\+P1\+\_\+\+M\+A\+SK}~0x00300000U
+\item 
+\#define {\bfseries G\+E\+T\+\_\+\+P\+C\+L\+K\+S\+E\+L0\+\_\+\+P\+C\+L\+K\+\_\+\+S\+S\+P1}(reg)~G\+E\+T\+\_\+\+F\+I\+E\+LD(reg, P\+C\+L\+K\+S\+E\+L0\+\_\+\+P\+C\+L\+K\+\_\+\+S\+S\+P1\+\_\+\+M\+A\+SK, 20)
+\item 
+\#define {\bfseries S\+E\+T\+\_\+\+P\+C\+L\+K\+S\+E\+L0\+\_\+\+P\+C\+L\+K\+\_\+\+S\+S\+P1}(reg,  val)~S\+E\+T\+\_\+\+F\+I\+E\+LD(reg, val, P\+C\+L\+K\+S\+E\+L0\+\_\+\+P\+C\+L\+K\+\_\+\+S\+S\+P1\+\_\+\+M\+A\+SK, 20)
+\item 
+\#define {\bfseries P\+C\+L\+K\+S\+E\+L0\+\_\+\+P\+C\+L\+K\+\_\+\+D\+A\+C\+\_\+\+M\+A\+SK}~0x00c00000U
+\item 
+\#define {\bfseries G\+E\+T\+\_\+\+P\+C\+L\+K\+S\+E\+L0\+\_\+\+P\+C\+L\+K\+\_\+\+D\+AC}(reg)~G\+E\+T\+\_\+\+F\+I\+E\+LD(reg, P\+C\+L\+K\+S\+E\+L0\+\_\+\+P\+C\+L\+K\+\_\+\+D\+A\+C\+\_\+\+M\+A\+SK, 22)
+\item 
+\#define {\bfseries S\+E\+T\+\_\+\+P\+C\+L\+K\+S\+E\+L0\+\_\+\+P\+C\+L\+K\+\_\+\+D\+AC}(reg,  val)~S\+E\+T\+\_\+\+F\+I\+E\+LD(reg, val, P\+C\+L\+K\+S\+E\+L0\+\_\+\+P\+C\+L\+K\+\_\+\+D\+A\+C\+\_\+\+M\+A\+SK, 22)
+\item 
+\#define {\bfseries P\+C\+L\+K\+S\+E\+L0\+\_\+\+P\+C\+L\+K\+\_\+\+A\+D\+C\+\_\+\+M\+A\+SK}~0x03000000U
+\item 
+\#define {\bfseries G\+E\+T\+\_\+\+P\+C\+L\+K\+S\+E\+L0\+\_\+\+P\+C\+L\+K\+\_\+\+A\+DC}(reg)~G\+E\+T\+\_\+\+F\+I\+E\+LD(reg, P\+C\+L\+K\+S\+E\+L0\+\_\+\+P\+C\+L\+K\+\_\+\+A\+D\+C\+\_\+\+M\+A\+SK, 24)
+\item 
+\#define {\bfseries S\+E\+T\+\_\+\+P\+C\+L\+K\+S\+E\+L0\+\_\+\+P\+C\+L\+K\+\_\+\+A\+DC}(reg,  val)~S\+E\+T\+\_\+\+F\+I\+E\+LD(reg, val, P\+C\+L\+K\+S\+E\+L0\+\_\+\+P\+C\+L\+K\+\_\+\+A\+D\+C\+\_\+\+M\+A\+SK, 24)
+\item 
+\#define {\bfseries P\+C\+L\+K\+S\+E\+L0\+\_\+\+P\+C\+L\+K\+\_\+\+C\+A\+N1\+\_\+\+M\+A\+SK}~0x0c000000U
+\item 
+\#define {\bfseries G\+E\+T\+\_\+\+P\+C\+L\+K\+S\+E\+L0\+\_\+\+P\+C\+L\+K\+\_\+\+C\+A\+N1}(reg)~G\+E\+T\+\_\+\+F\+I\+E\+LD(reg, P\+C\+L\+K\+S\+E\+L0\+\_\+\+P\+C\+L\+K\+\_\+\+C\+A\+N1\+\_\+\+M\+A\+SK, 26)
+\item 
+\#define {\bfseries S\+E\+T\+\_\+\+P\+C\+L\+K\+S\+E\+L0\+\_\+\+P\+C\+L\+K\+\_\+\+C\+A\+N1}(reg,  val)~S\+E\+T\+\_\+\+F\+I\+E\+LD(reg, val, P\+C\+L\+K\+S\+E\+L0\+\_\+\+P\+C\+L\+K\+\_\+\+C\+A\+N1\+\_\+\+M\+A\+SK, 26)
+\item 
+\#define {\bfseries P\+C\+L\+K\+S\+E\+L0\+\_\+\+P\+C\+L\+K\+\_\+\+C\+A\+N2\+\_\+\+M\+A\+SK}~0x30000000U
+\item 
+\#define {\bfseries G\+E\+T\+\_\+\+P\+C\+L\+K\+S\+E\+L0\+\_\+\+P\+C\+L\+K\+\_\+\+C\+A\+N2}(reg)~G\+E\+T\+\_\+\+F\+I\+E\+LD(reg, P\+C\+L\+K\+S\+E\+L0\+\_\+\+P\+C\+L\+K\+\_\+\+C\+A\+N2\+\_\+\+M\+A\+SK, 28)
+\item 
+\#define {\bfseries S\+E\+T\+\_\+\+P\+C\+L\+K\+S\+E\+L0\+\_\+\+P\+C\+L\+K\+\_\+\+C\+A\+N2}(reg,  val)~S\+E\+T\+\_\+\+F\+I\+E\+LD(reg, val, P\+C\+L\+K\+S\+E\+L0\+\_\+\+P\+C\+L\+K\+\_\+\+C\+A\+N2\+\_\+\+M\+A\+SK, 28)
+\item 
+\#define {\bfseries P\+C\+L\+K\+S\+E\+L1\+\_\+\+P\+C\+L\+K\+\_\+\+B\+A\+T\+\_\+\+R\+A\+M\+\_\+\+M\+A\+SK}~0x00000003U
+\item 
+\#define {\bfseries G\+E\+T\+\_\+\+P\+C\+L\+K\+S\+E\+L1\+\_\+\+P\+C\+L\+K\+\_\+\+B\+A\+T\+\_\+\+R\+AM}(reg)~G\+E\+T\+\_\+\+F\+I\+E\+LD(reg, P\+C\+L\+K\+S\+E\+L1\+\_\+\+P\+C\+L\+K\+\_\+\+B\+A\+T\+\_\+\+R\+A\+M\+\_\+\+M\+A\+SK, 0)
+\item 
+\#define {\bfseries S\+E\+T\+\_\+\+P\+C\+L\+K\+S\+E\+L1\+\_\+\+P\+C\+L\+K\+\_\+\+B\+A\+T\+\_\+\+R\+AM}(reg,  val)~S\+E\+T\+\_\+\+F\+I\+E\+LD(reg, val, P\+C\+L\+K\+S\+E\+L1\+\_\+\+P\+C\+L\+K\+\_\+\+B\+A\+T\+\_\+\+R\+A\+M\+\_\+\+M\+A\+SK, 0)
+\item 
+\#define {\bfseries P\+C\+L\+K\+S\+E\+L1\+\_\+\+P\+C\+L\+K\+\_\+\+G\+P\+I\+O\+\_\+\+M\+A\+SK}~0x0000000cU
+\item 
+\#define {\bfseries G\+E\+T\+\_\+\+P\+C\+L\+K\+S\+E\+L1\+\_\+\+P\+C\+L\+K\+\_\+\+G\+P\+IO}(reg)~G\+E\+T\+\_\+\+F\+I\+E\+LD(reg, P\+C\+L\+K\+S\+E\+L1\+\_\+\+P\+C\+L\+K\+\_\+\+G\+P\+I\+O\+\_\+\+M\+A\+SK, 2)
+\item 
+\#define {\bfseries S\+E\+T\+\_\+\+P\+C\+L\+K\+S\+E\+L1\+\_\+\+P\+C\+L\+K\+\_\+\+G\+P\+IO}(reg,  val)~S\+E\+T\+\_\+\+F\+I\+E\+LD(reg, val, P\+C\+L\+K\+S\+E\+L1\+\_\+\+P\+C\+L\+K\+\_\+\+G\+P\+I\+O\+\_\+\+M\+A\+SK, 2)
+\item 
+\#define {\bfseries P\+C\+L\+K\+S\+E\+L1\+\_\+\+P\+C\+L\+K\+\_\+\+P\+C\+B\+\_\+\+M\+A\+SK}~0x00000030U
+\item 
+\#define {\bfseries G\+E\+T\+\_\+\+P\+C\+L\+K\+S\+E\+L1\+\_\+\+P\+C\+L\+K\+\_\+\+P\+CB}(reg)~G\+E\+T\+\_\+\+F\+I\+E\+LD(reg, P\+C\+L\+K\+S\+E\+L1\+\_\+\+P\+C\+L\+K\+\_\+\+P\+C\+B\+\_\+\+M\+A\+SK, 4)
+\item 
+\#define {\bfseries S\+E\+T\+\_\+\+P\+C\+L\+K\+S\+E\+L1\+\_\+\+P\+C\+L\+K\+\_\+\+P\+CB}(reg,  val)~S\+E\+T\+\_\+\+F\+I\+E\+LD(reg, val, P\+C\+L\+K\+S\+E\+L1\+\_\+\+P\+C\+L\+K\+\_\+\+P\+C\+B\+\_\+\+M\+A\+SK, 4)
+\item 
+\#define {\bfseries P\+C\+L\+K\+S\+E\+L1\+\_\+\+P\+C\+L\+K\+\_\+\+I2\+C1\+\_\+\+M\+A\+SK}~0x000000c0U
+\item 
+\#define {\bfseries G\+E\+T\+\_\+\+P\+C\+L\+K\+S\+E\+L1\+\_\+\+P\+C\+L\+K\+\_\+\+I2\+C1}(reg)~G\+E\+T\+\_\+\+F\+I\+E\+LD(reg, P\+C\+L\+K\+S\+E\+L1\+\_\+\+P\+C\+L\+K\+\_\+\+I2\+C1\+\_\+\+M\+A\+SK, 6)
+\item 
+\#define {\bfseries S\+E\+T\+\_\+\+P\+C\+L\+K\+S\+E\+L1\+\_\+\+P\+C\+L\+K\+\_\+\+I2\+C1}(reg,  val)~S\+E\+T\+\_\+\+F\+I\+E\+LD(reg, val, P\+C\+L\+K\+S\+E\+L1\+\_\+\+P\+C\+L\+K\+\_\+\+I2\+C1\+\_\+\+M\+A\+SK, 6)
+\item 
+\#define {\bfseries P\+C\+L\+K\+S\+E\+L1\+\_\+\+P\+C\+L\+K\+\_\+\+S\+S\+P0\+\_\+\+M\+A\+SK}~0x00000c00U
+\item 
+\#define {\bfseries G\+E\+T\+\_\+\+P\+C\+L\+K\+S\+E\+L1\+\_\+\+P\+C\+L\+K\+\_\+\+S\+S\+P0}(reg)~G\+E\+T\+\_\+\+F\+I\+E\+LD(reg, P\+C\+L\+K\+S\+E\+L1\+\_\+\+P\+C\+L\+K\+\_\+\+S\+S\+P0\+\_\+\+M\+A\+SK, 10)
+\item 
+\#define {\bfseries S\+E\+T\+\_\+\+P\+C\+L\+K\+S\+E\+L1\+\_\+\+P\+C\+L\+K\+\_\+\+S\+S\+P0}(reg,  val)~S\+E\+T\+\_\+\+F\+I\+E\+LD(reg, val, P\+C\+L\+K\+S\+E\+L1\+\_\+\+P\+C\+L\+K\+\_\+\+S\+S\+P0\+\_\+\+M\+A\+SK, 10)
+\item 
+\#define {\bfseries P\+C\+L\+K\+S\+E\+L1\+\_\+\+P\+C\+L\+K\+\_\+\+T\+I\+M\+E\+R2\+\_\+\+M\+A\+SK}~0x00003000U
+\item 
+\#define {\bfseries G\+E\+T\+\_\+\+P\+C\+L\+K\+S\+E\+L1\+\_\+\+P\+C\+L\+K\+\_\+\+T\+I\+M\+E\+R2}(reg)~G\+E\+T\+\_\+\+F\+I\+E\+LD(reg, P\+C\+L\+K\+S\+E\+L1\+\_\+\+P\+C\+L\+K\+\_\+\+T\+I\+M\+E\+R2\+\_\+\+M\+A\+SK, 12)
+\item 
+\#define {\bfseries S\+E\+T\+\_\+\+P\+C\+L\+K\+S\+E\+L1\+\_\+\+P\+C\+L\+K\+\_\+\+T\+I\+M\+E\+R2}(reg,  val)~S\+E\+T\+\_\+\+F\+I\+E\+LD(reg, val, P\+C\+L\+K\+S\+E\+L1\+\_\+\+P\+C\+L\+K\+\_\+\+T\+I\+M\+E\+R2\+\_\+\+M\+A\+SK, 12)
+\item 
+\#define {\bfseries P\+C\+L\+K\+S\+E\+L1\+\_\+\+P\+C\+L\+K\+\_\+\+T\+I\+M\+E\+R3\+\_\+\+M\+A\+SK}~0x0000c000U
+\item 
+\#define {\bfseries G\+E\+T\+\_\+\+P\+C\+L\+K\+S\+E\+L1\+\_\+\+P\+C\+L\+K\+\_\+\+T\+I\+M\+E\+R3}(reg)~G\+E\+T\+\_\+\+F\+I\+E\+LD(reg, P\+C\+L\+K\+S\+E\+L1\+\_\+\+P\+C\+L\+K\+\_\+\+T\+I\+M\+E\+R3\+\_\+\+M\+A\+SK, 14)
+\item 
+\#define {\bfseries S\+E\+T\+\_\+\+P\+C\+L\+K\+S\+E\+L1\+\_\+\+P\+C\+L\+K\+\_\+\+T\+I\+M\+E\+R3}(reg,  val)~S\+E\+T\+\_\+\+F\+I\+E\+LD(reg, val, P\+C\+L\+K\+S\+E\+L1\+\_\+\+P\+C\+L\+K\+\_\+\+T\+I\+M\+E\+R3\+\_\+\+M\+A\+SK, 14)
+\item 
+\#define {\bfseries P\+C\+L\+K\+S\+E\+L1\+\_\+\+P\+C\+L\+K\+\_\+\+U\+A\+R\+T2\+\_\+\+M\+A\+SK}~0x00030000U
+\item 
+\#define {\bfseries G\+E\+T\+\_\+\+P\+C\+L\+K\+S\+E\+L1\+\_\+\+P\+C\+L\+K\+\_\+\+U\+A\+R\+T2}(reg)~G\+E\+T\+\_\+\+F\+I\+E\+LD(reg, P\+C\+L\+K\+S\+E\+L1\+\_\+\+P\+C\+L\+K\+\_\+\+U\+A\+R\+T2\+\_\+\+M\+A\+SK, 16)
+\item 
+\#define {\bfseries S\+E\+T\+\_\+\+P\+C\+L\+K\+S\+E\+L1\+\_\+\+P\+C\+L\+K\+\_\+\+U\+A\+R\+T2}(reg,  val)~S\+E\+T\+\_\+\+F\+I\+E\+LD(reg, val, P\+C\+L\+K\+S\+E\+L1\+\_\+\+P\+C\+L\+K\+\_\+\+U\+A\+R\+T2\+\_\+\+M\+A\+SK, 16)
+\item 
+\#define {\bfseries P\+C\+L\+K\+S\+E\+L1\+\_\+\+P\+C\+L\+K\+\_\+\+U\+A\+R\+T3\+\_\+\+M\+A\+SK}~0x000c0000U
+\item 
+\#define {\bfseries G\+E\+T\+\_\+\+P\+C\+L\+K\+S\+E\+L1\+\_\+\+P\+C\+L\+K\+\_\+\+U\+A\+R\+T3}(reg)~G\+E\+T\+\_\+\+F\+I\+E\+LD(reg, P\+C\+L\+K\+S\+E\+L1\+\_\+\+P\+C\+L\+K\+\_\+\+U\+A\+R\+T3\+\_\+\+M\+A\+SK, 18)
+\item 
+\#define {\bfseries S\+E\+T\+\_\+\+P\+C\+L\+K\+S\+E\+L1\+\_\+\+P\+C\+L\+K\+\_\+\+U\+A\+R\+T3}(reg,  val)~S\+E\+T\+\_\+\+F\+I\+E\+LD(reg, val, P\+C\+L\+K\+S\+E\+L1\+\_\+\+P\+C\+L\+K\+\_\+\+U\+A\+R\+T3\+\_\+\+M\+A\+SK, 18)
+\item 
+\#define {\bfseries P\+C\+L\+K\+S\+E\+L1\+\_\+\+P\+C\+L\+K\+\_\+\+I2\+C2\+\_\+\+M\+A\+SK}~0x00300000U
+\item 
+\#define {\bfseries G\+E\+T\+\_\+\+P\+C\+L\+K\+S\+E\+L1\+\_\+\+P\+C\+L\+K\+\_\+\+I2\+C2}(reg)~G\+E\+T\+\_\+\+F\+I\+E\+LD(reg, P\+C\+L\+K\+S\+E\+L1\+\_\+\+P\+C\+L\+K\+\_\+\+I2\+C2\+\_\+\+M\+A\+SK, 20)
+\item 
+\#define {\bfseries S\+E\+T\+\_\+\+P\+C\+L\+K\+S\+E\+L1\+\_\+\+P\+C\+L\+K\+\_\+\+I2\+C2}(reg,  val)~S\+E\+T\+\_\+\+F\+I\+E\+LD(reg, val, P\+C\+L\+K\+S\+E\+L1\+\_\+\+P\+C\+L\+K\+\_\+\+I2\+C2\+\_\+\+M\+A\+SK, 20)
+\item 
+\#define {\bfseries P\+C\+L\+K\+S\+E\+L1\+\_\+\+P\+C\+L\+K\+\_\+\+I2\+S\+\_\+\+M\+A\+SK}~0x00c00000U
+\item 
+\#define {\bfseries G\+E\+T\+\_\+\+P\+C\+L\+K\+S\+E\+L1\+\_\+\+P\+C\+L\+K\+\_\+\+I2S}(reg)~G\+E\+T\+\_\+\+F\+I\+E\+LD(reg, P\+C\+L\+K\+S\+E\+L1\+\_\+\+P\+C\+L\+K\+\_\+\+I2\+S\+\_\+\+M\+A\+SK, 22)
+\item 
+\#define {\bfseries S\+E\+T\+\_\+\+P\+C\+L\+K\+S\+E\+L1\+\_\+\+P\+C\+L\+K\+\_\+\+I2S}(reg,  val)~S\+E\+T\+\_\+\+F\+I\+E\+LD(reg, val, P\+C\+L\+K\+S\+E\+L1\+\_\+\+P\+C\+L\+K\+\_\+\+I2\+S\+\_\+\+M\+A\+SK, 22)
+\item 
+\#define {\bfseries P\+C\+L\+K\+S\+E\+L1\+\_\+\+P\+C\+L\+K\+\_\+\+M\+C\+I\+\_\+\+M\+A\+SK}~0x03000000U
+\item 
+\#define {\bfseries G\+E\+T\+\_\+\+P\+C\+L\+K\+S\+E\+L1\+\_\+\+P\+C\+L\+K\+\_\+\+M\+CI}(reg)~G\+E\+T\+\_\+\+F\+I\+E\+LD(reg, P\+C\+L\+K\+S\+E\+L1\+\_\+\+P\+C\+L\+K\+\_\+\+M\+C\+I\+\_\+\+M\+A\+SK, 24)
+\item 
+\#define {\bfseries S\+E\+T\+\_\+\+P\+C\+L\+K\+S\+E\+L1\+\_\+\+P\+C\+L\+K\+\_\+\+M\+CI}(reg,  val)~S\+E\+T\+\_\+\+F\+I\+E\+LD(reg, val, P\+C\+L\+K\+S\+E\+L1\+\_\+\+P\+C\+L\+K\+\_\+\+M\+C\+I\+\_\+\+M\+A\+SK, 24)
+\item 
+\#define {\bfseries P\+C\+L\+K\+S\+E\+L1\+\_\+\+P\+C\+L\+K\+\_\+\+S\+Y\+S\+C\+O\+N\+\_\+\+M\+A\+SK}~0x30000000U
+\item 
+\#define {\bfseries G\+E\+T\+\_\+\+P\+C\+L\+K\+S\+E\+L1\+\_\+\+P\+C\+L\+K\+\_\+\+S\+Y\+S\+C\+ON}(reg)~G\+E\+T\+\_\+\+F\+I\+E\+LD(reg, P\+C\+L\+K\+S\+E\+L1\+\_\+\+P\+C\+L\+K\+\_\+\+S\+Y\+S\+C\+O\+N\+\_\+\+M\+A\+SK, 28)
+\item 
+\#define {\bfseries S\+E\+T\+\_\+\+P\+C\+L\+K\+S\+E\+L1\+\_\+\+P\+C\+L\+K\+\_\+\+S\+Y\+S\+C\+ON}(reg,  val)~S\+E\+T\+\_\+\+F\+I\+E\+LD(reg, val, P\+C\+L\+K\+S\+E\+L1\+\_\+\+P\+C\+L\+K\+\_\+\+S\+Y\+S\+C\+O\+N\+\_\+\+M\+A\+SK, 28)
+\item 
+\#define {\bfseries R\+T\+C\+\_\+\+I\+L\+R\+\_\+\+R\+T\+C\+C\+IF}~0x00000001U
+\item 
+\#define {\bfseries R\+T\+C\+\_\+\+I\+L\+R\+\_\+\+R\+T\+C\+A\+LF}~0x00000002U
+\item 
+\#define {\bfseries R\+T\+C\+\_\+\+I\+L\+R\+\_\+\+R\+T\+S\+SF}~0x00000004U
+\item 
+\#define {\bfseries R\+T\+C\+\_\+\+C\+C\+R\+\_\+\+C\+L\+K\+EN}~0x00000001U
+\item 
+\#define {\bfseries R\+T\+C\+\_\+\+C\+C\+R\+\_\+\+C\+T\+C\+R\+ST}~0x00000002U
+\item 
+\#define {\bfseries R\+T\+C\+\_\+\+C\+C\+R\+\_\+\+C\+L\+K\+S\+RC}~0x00000010U
+\item 
+\#define {\bfseries S\+S\+P\+\_\+\+C\+R0\+\_\+\+D\+S\+S\+\_\+\+M\+A\+SK}~0x0000000fU
+\item 
+\#define {\bfseries G\+E\+T\+\_\+\+S\+S\+P\+\_\+\+C\+R0\+\_\+\+D\+SS}(reg)~G\+E\+T\+\_\+\+F\+I\+E\+LD(reg, S\+S\+P\+\_\+\+C\+R0\+\_\+\+D\+S\+S\+\_\+\+M\+A\+SK, 0)
+\item 
+\#define {\bfseries S\+E\+T\+\_\+\+S\+S\+P\+\_\+\+C\+R0\+\_\+\+D\+SS}(reg,  val)~S\+E\+T\+\_\+\+F\+I\+E\+LD(reg, val, S\+S\+P\+\_\+\+C\+R0\+\_\+\+D\+S\+S\+\_\+\+M\+A\+SK, 0)
+\item 
+\#define {\bfseries S\+S\+P\+\_\+\+C\+R0\+\_\+\+F\+R\+F\+\_\+\+M\+A\+SK}~0x00000030U
+\item 
+\#define {\bfseries G\+E\+T\+\_\+\+S\+S\+P\+\_\+\+C\+R0\+\_\+\+F\+RF}(reg)~G\+E\+T\+\_\+\+F\+I\+E\+LD(reg, S\+S\+P\+\_\+\+C\+R0\+\_\+\+F\+R\+F\+\_\+\+M\+A\+SK, 4)
+\item 
+\#define {\bfseries S\+E\+T\+\_\+\+S\+S\+P\+\_\+\+C\+R0\+\_\+\+F\+RF}(reg,  val)~S\+E\+T\+\_\+\+F\+I\+E\+LD(reg, val, S\+S\+P\+\_\+\+C\+R0\+\_\+\+F\+R\+F\+\_\+\+M\+A\+SK, 4)
+\item 
+\#define {\bfseries S\+S\+P\+\_\+\+C\+R0\+\_\+\+C\+P\+OL}~0x00000040U
+\item 
+\#define {\bfseries S\+S\+P\+\_\+\+C\+R0\+\_\+\+C\+P\+HA}~0x00000080U
+\item 
+\#define {\bfseries S\+S\+P\+\_\+\+C\+R0\+\_\+\+S\+C\+R\+\_\+\+M\+A\+SK}~0x0000ff00U
+\item 
+\#define {\bfseries G\+E\+T\+\_\+\+S\+S\+P\+\_\+\+C\+R0\+\_\+\+S\+CR}(reg)~G\+E\+T\+\_\+\+F\+I\+E\+LD(reg, S\+S\+P\+\_\+\+C\+R0\+\_\+\+S\+C\+R\+\_\+\+M\+A\+SK, 8)
+\item 
+\#define {\bfseries S\+E\+T\+\_\+\+S\+S\+P\+\_\+\+C\+R0\+\_\+\+S\+CR}(reg,  val)~S\+E\+T\+\_\+\+F\+I\+E\+LD(reg, val, S\+S\+P\+\_\+\+C\+R0\+\_\+\+S\+C\+R\+\_\+\+M\+A\+SK, 8)
+\item 
+\#define {\bfseries S\+S\+P\+\_\+\+C\+R1\+\_\+\+L\+BM}~0x00000001U
+\item 
+\#define {\bfseries S\+S\+P\+\_\+\+C\+R1\+\_\+\+S\+SE}~0x00000002U
+\item 
+\#define {\bfseries S\+S\+P\+\_\+\+C\+R1\+\_\+\+MS}~0x00000004U
+\item 
+\#define {\bfseries S\+S\+P\+\_\+\+C\+R1\+\_\+\+S\+OD}~0x00000008U
+\item 
+\#define {\bfseries S\+S\+P\+\_\+\+S\+R\+\_\+\+T\+FE}~0x00000001U
+\item 
+\#define {\bfseries S\+S\+P\+\_\+\+S\+R\+\_\+\+T\+NF}~0x00000002U
+\item 
+\#define {\bfseries S\+S\+P\+\_\+\+S\+R\+\_\+\+R\+NE}~0x00000004U
+\item 
+\#define {\bfseries S\+S\+P\+\_\+\+S\+R\+\_\+\+R\+FF}~0x00000008U
+\item 
+\#define {\bfseries S\+S\+P\+\_\+\+S\+R\+\_\+\+B\+SY}~0x00000010U
+\item 
+\#define {\bfseries S\+S\+P\+\_\+\+I\+M\+S\+C\+\_\+\+R\+O\+R\+IM}~0x00000001U
+\item 
+\#define {\bfseries S\+S\+P\+\_\+\+I\+M\+S\+C\+\_\+\+R\+T\+IM}~0x00000002U
+\item 
+\#define {\bfseries S\+S\+P\+\_\+\+I\+M\+S\+C\+\_\+\+R\+X\+IM}~0x00000004U
+\item 
+\#define {\bfseries S\+S\+P\+\_\+\+I\+M\+S\+C\+\_\+\+T\+X\+IM}~0x00000008U
+\item 
+\#define {\bfseries S\+S\+P\+\_\+\+R\+I\+S\+\_\+\+R\+O\+R\+R\+IS}~0x00000001U
+\item 
+\#define {\bfseries S\+S\+P\+\_\+\+R\+I\+S\+\_\+\+R\+T\+R\+IS}~0x00000002U
+\item 
+\#define {\bfseries S\+S\+P\+\_\+\+R\+I\+S\+\_\+\+R\+X\+R\+IS}~0x00000004U
+\item 
+\#define {\bfseries S\+S\+P\+\_\+\+R\+I\+S\+\_\+\+T\+X\+R\+IS}~0x00000008U
+\item 
+\#define {\bfseries S\+S\+P\+\_\+\+M\+I\+S\+\_\+\+R\+O\+R\+R\+IS}~0x00000001U
+\item 
+\#define {\bfseries S\+S\+P\+\_\+\+M\+I\+S\+\_\+\+R\+T\+R\+IS}~0x00000002U
+\item 
+\#define {\bfseries S\+S\+P\+\_\+\+M\+I\+S\+\_\+\+R\+X\+R\+IS}~0x00000004U
+\item 
+\#define {\bfseries S\+S\+P\+\_\+\+M\+I\+S\+\_\+\+T\+X\+R\+IS}~0x00000008U
+\item 
+\#define {\bfseries S\+S\+P\+\_\+\+I\+C\+R\+\_\+\+R\+O\+R\+R\+IS}~0x00000001U
+\item 
+\#define {\bfseries S\+S\+P\+\_\+\+I\+C\+R\+\_\+\+R\+T\+R\+IS}~0x00000002U
+\item 
+\#define {\bfseries S\+S\+P\+\_\+\+I\+C\+R\+\_\+\+R\+X\+R\+IS}~0x00000004U
+\item 
+\#define {\bfseries S\+S\+P\+\_\+\+I\+C\+R\+\_\+\+T\+X\+R\+IS}~0x00000008U
+\item 
+\#define {\bfseries S\+S\+P\+\_\+\+D\+M\+A\+C\+R\+\_\+\+R\+X\+D\+M\+AE}~0x00000001U
+\item 
+\#define {\bfseries S\+S\+P\+\_\+\+D\+M\+A\+C\+R\+\_\+\+T\+X\+D\+M\+AE}~0x00000002U
+\item 
+\#define {\bfseries G\+P\+D\+M\+A\+\_\+\+C\+H\+\_\+\+N\+U\+M\+B\+ER}~2
+\item 
+\#define {\bfseries G\+P\+D\+M\+A\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+H\+\_\+0}~0x00000001U
+\item 
+\#define {\bfseries G\+P\+D\+M\+A\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+H\+\_\+1}~0x00000002U
+\item 
+\#define {\bfseries G\+P\+D\+M\+A\+\_\+\+C\+H\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR}(i)
+\item 
+\#define {\bfseries G\+P\+D\+M\+A\+\_\+\+C\+O\+N\+F\+I\+G\+\_\+\+EN}~0x00000001U
+\item 
+\#define {\bfseries G\+P\+D\+M\+A\+\_\+\+C\+O\+N\+F\+I\+G\+\_\+\+M\+O\+DE}~0x00000002U
+\item 
+\#define {\bfseries G\+P\+D\+M\+A\+\_\+\+E\+N\+A\+B\+L\+E\+D\+\_\+\+C\+H\+N\+S\+\_\+\+C\+H0}~0x00000001U
+\item 
+\#define {\bfseries G\+P\+D\+M\+A\+\_\+\+E\+N\+A\+B\+L\+E\+D\+\_\+\+C\+H\+N\+S\+\_\+\+C\+H1}~0x00000002U
+\item 
+\#define {\bfseries G\+P\+D\+M\+A\+\_\+\+C\+H\+\_\+\+C\+T\+R\+L\+\_\+\+T\+S\+Z\+\_\+\+M\+A\+SK}~0x00000fffU
+\item 
+\#define {\bfseries G\+E\+T\+\_\+\+G\+P\+D\+M\+A\+\_\+\+C\+H\+\_\+\+C\+T\+R\+L\+\_\+\+T\+SZ}(reg)~G\+E\+T\+\_\+\+F\+I\+E\+LD(reg, G\+P\+D\+M\+A\+\_\+\+C\+H\+\_\+\+C\+T\+R\+L\+\_\+\+T\+S\+Z\+\_\+\+M\+A\+SK, 0)
+\item 
+\#define {\bfseries S\+E\+T\+\_\+\+G\+P\+D\+M\+A\+\_\+\+C\+H\+\_\+\+C\+T\+R\+L\+\_\+\+T\+SZ}(reg,  val)~S\+E\+T\+\_\+\+F\+I\+E\+LD(reg, val, G\+P\+D\+M\+A\+\_\+\+C\+H\+\_\+\+C\+T\+R\+L\+\_\+\+T\+S\+Z\+\_\+\+M\+A\+SK, 0)
+\item 
+\#define {\bfseries G\+P\+D\+M\+A\+\_\+\+C\+H\+\_\+\+C\+T\+R\+L\+\_\+\+T\+S\+Z\+\_\+\+M\+AX}~0x00000fffU
+\item 
+\#define {\bfseries G\+P\+D\+M\+A\+\_\+\+C\+H\+\_\+\+C\+T\+R\+L\+\_\+\+S\+B\+S\+Z\+\_\+\+M\+A\+SK}~0x00007000U
+\item 
+\#define {\bfseries G\+E\+T\+\_\+\+G\+P\+D\+M\+A\+\_\+\+C\+H\+\_\+\+C\+T\+R\+L\+\_\+\+S\+B\+SZ}(reg)~G\+E\+T\+\_\+\+F\+I\+E\+LD(reg, G\+P\+D\+M\+A\+\_\+\+C\+H\+\_\+\+C\+T\+R\+L\+\_\+\+S\+B\+S\+Z\+\_\+\+M\+A\+SK, 12)
+\item 
+\#define {\bfseries S\+E\+T\+\_\+\+G\+P\+D\+M\+A\+\_\+\+C\+H\+\_\+\+C\+T\+R\+L\+\_\+\+S\+B\+SZ}(reg,  val)~S\+E\+T\+\_\+\+F\+I\+E\+LD(reg, val, G\+P\+D\+M\+A\+\_\+\+C\+H\+\_\+\+C\+T\+R\+L\+\_\+\+S\+B\+S\+Z\+\_\+\+M\+A\+SK, 12)
+\item 
+\#define {\bfseries G\+P\+D\+M\+A\+\_\+\+C\+H\+\_\+\+C\+T\+R\+L\+\_\+\+D\+B\+S\+Z\+\_\+\+M\+A\+SK}~0x00038000U
+\item 
+\#define {\bfseries G\+E\+T\+\_\+\+G\+P\+D\+M\+A\+\_\+\+C\+H\+\_\+\+C\+T\+R\+L\+\_\+\+D\+B\+SZ}(reg)~G\+E\+T\+\_\+\+F\+I\+E\+LD(reg, G\+P\+D\+M\+A\+\_\+\+C\+H\+\_\+\+C\+T\+R\+L\+\_\+\+D\+B\+S\+Z\+\_\+\+M\+A\+SK, 15)
+\item 
+\#define {\bfseries S\+E\+T\+\_\+\+G\+P\+D\+M\+A\+\_\+\+C\+H\+\_\+\+C\+T\+R\+L\+\_\+\+D\+B\+SZ}(reg,  val)~S\+E\+T\+\_\+\+F\+I\+E\+LD(reg, val, G\+P\+D\+M\+A\+\_\+\+C\+H\+\_\+\+C\+T\+R\+L\+\_\+\+D\+B\+S\+Z\+\_\+\+M\+A\+SK, 15)
+\item 
+\#define {\bfseries G\+P\+D\+M\+A\+\_\+\+C\+H\+\_\+\+C\+T\+R\+L\+\_\+\+B\+S\+Z\+\_\+1}~0x00000000U
+\item 
+\#define {\bfseries G\+P\+D\+M\+A\+\_\+\+C\+H\+\_\+\+C\+T\+R\+L\+\_\+\+B\+S\+Z\+\_\+4}~0x00000001U
+\item 
+\#define {\bfseries G\+P\+D\+M\+A\+\_\+\+C\+H\+\_\+\+C\+T\+R\+L\+\_\+\+B\+S\+Z\+\_\+8}~0x00000002U
+\item 
+\#define {\bfseries G\+P\+D\+M\+A\+\_\+\+C\+H\+\_\+\+C\+T\+R\+L\+\_\+\+B\+S\+Z\+\_\+16}~0x00000003U
+\item 
+\#define {\bfseries G\+P\+D\+M\+A\+\_\+\+C\+H\+\_\+\+C\+T\+R\+L\+\_\+\+B\+S\+Z\+\_\+32}~0x00000004U
+\item 
+\#define {\bfseries G\+P\+D\+M\+A\+\_\+\+C\+H\+\_\+\+C\+T\+R\+L\+\_\+\+B\+S\+Z\+\_\+64}~0x00000005U
+\item 
+\#define {\bfseries G\+P\+D\+M\+A\+\_\+\+C\+H\+\_\+\+C\+T\+R\+L\+\_\+\+B\+S\+Z\+\_\+128}~0x00000006U
+\item 
+\#define {\bfseries G\+P\+D\+M\+A\+\_\+\+C\+H\+\_\+\+C\+T\+R\+L\+\_\+\+B\+S\+Z\+\_\+256}~0x00000007U
+\item 
+\#define {\bfseries G\+P\+D\+M\+A\+\_\+\+C\+H\+\_\+\+C\+T\+R\+L\+\_\+\+S\+W\+\_\+\+M\+A\+SK}~0x001c0000U
+\item 
+\#define {\bfseries G\+E\+T\+\_\+\+G\+P\+D\+M\+A\+\_\+\+C\+H\+\_\+\+C\+T\+R\+L\+\_\+\+SW}(reg)~G\+E\+T\+\_\+\+F\+I\+E\+LD(reg, G\+P\+D\+M\+A\+\_\+\+C\+H\+\_\+\+C\+T\+R\+L\+\_\+\+S\+W\+\_\+\+M\+A\+SK, 18)
+\item 
+\#define {\bfseries S\+E\+T\+\_\+\+G\+P\+D\+M\+A\+\_\+\+C\+H\+\_\+\+C\+T\+R\+L\+\_\+\+SW}(reg,  val)~S\+E\+T\+\_\+\+F\+I\+E\+LD(reg, val, G\+P\+D\+M\+A\+\_\+\+C\+H\+\_\+\+C\+T\+R\+L\+\_\+\+S\+W\+\_\+\+M\+A\+SK, 18)
+\item 
+\#define {\bfseries G\+P\+D\+M\+A\+\_\+\+C\+H\+\_\+\+C\+T\+R\+L\+\_\+\+D\+W\+\_\+\+M\+A\+SK}~0x00e00000U
+\item 
+\#define {\bfseries G\+E\+T\+\_\+\+G\+P\+D\+M\+A\+\_\+\+C\+H\+\_\+\+C\+T\+R\+L\+\_\+\+DW}(reg)~G\+E\+T\+\_\+\+F\+I\+E\+LD(reg, G\+P\+D\+M\+A\+\_\+\+C\+H\+\_\+\+C\+T\+R\+L\+\_\+\+D\+W\+\_\+\+M\+A\+SK, 21)
+\item 
+\#define {\bfseries S\+E\+T\+\_\+\+G\+P\+D\+M\+A\+\_\+\+C\+H\+\_\+\+C\+T\+R\+L\+\_\+\+DW}(reg,  val)~S\+E\+T\+\_\+\+F\+I\+E\+LD(reg, val, G\+P\+D\+M\+A\+\_\+\+C\+H\+\_\+\+C\+T\+R\+L\+\_\+\+D\+W\+\_\+\+M\+A\+SK, 21)
+\item 
+\#define {\bfseries G\+P\+D\+M\+A\+\_\+\+C\+H\+\_\+\+C\+T\+R\+L\+\_\+\+W\+\_\+8}~0x00000000U
+\item 
+\#define {\bfseries G\+P\+D\+M\+A\+\_\+\+C\+H\+\_\+\+C\+T\+R\+L\+\_\+\+W\+\_\+16}~0x00000001U
+\item 
+\#define {\bfseries G\+P\+D\+M\+A\+\_\+\+C\+H\+\_\+\+C\+T\+R\+L\+\_\+\+W\+\_\+32}~0x00000002U
+\item 
+\#define {\bfseries G\+P\+D\+M\+A\+\_\+\+C\+H\+\_\+\+C\+T\+R\+L\+\_\+\+SI}~0x04000000U
+\item 
+\#define {\bfseries G\+P\+D\+M\+A\+\_\+\+C\+H\+\_\+\+C\+T\+R\+L\+\_\+\+DI}~0x08000000U
+\item 
+\#define {\bfseries G\+P\+D\+M\+A\+\_\+\+C\+H\+\_\+\+C\+T\+R\+L\+\_\+\+P\+R\+O\+T\+\_\+\+M\+A\+SK}~0x70000000U
+\item 
+\#define {\bfseries G\+E\+T\+\_\+\+G\+P\+D\+M\+A\+\_\+\+C\+H\+\_\+\+C\+T\+R\+L\+\_\+\+P\+R\+OT}(reg)~G\+E\+T\+\_\+\+F\+I\+E\+LD(reg, G\+P\+D\+M\+A\+\_\+\+C\+H\+\_\+\+C\+T\+R\+L\+\_\+\+P\+R\+O\+T\+\_\+\+M\+A\+SK, 28)
+\item 
+\#define {\bfseries S\+E\+T\+\_\+\+G\+P\+D\+M\+A\+\_\+\+C\+H\+\_\+\+C\+T\+R\+L\+\_\+\+P\+R\+OT}(reg,  val)~S\+E\+T\+\_\+\+F\+I\+E\+LD(reg, val, G\+P\+D\+M\+A\+\_\+\+C\+H\+\_\+\+C\+T\+R\+L\+\_\+\+P\+R\+O\+T\+\_\+\+M\+A\+SK, 28)
+\item 
+\#define {\bfseries G\+P\+D\+M\+A\+\_\+\+C\+H\+\_\+\+C\+T\+R\+L\+\_\+\+I\+TC}~0x80000000U
+\item 
+\#define {\bfseries G\+P\+D\+M\+A\+\_\+\+C\+H\+\_\+\+C\+F\+G\+\_\+\+EN}~0x00000001U
+\item 
+\#define {\bfseries G\+P\+D\+M\+A\+\_\+\+C\+H\+\_\+\+C\+F\+G\+\_\+\+S\+R\+C\+P\+E\+R\+\_\+\+M\+A\+SK}~0x0000001eU
+\item 
+\#define {\bfseries G\+E\+T\+\_\+\+G\+P\+D\+M\+A\+\_\+\+C\+H\+\_\+\+C\+F\+G\+\_\+\+S\+R\+C\+P\+ER}(reg)~G\+E\+T\+\_\+\+F\+I\+E\+LD(reg, G\+P\+D\+M\+A\+\_\+\+C\+H\+\_\+\+C\+F\+G\+\_\+\+S\+R\+C\+P\+E\+R\+\_\+\+M\+A\+SK, 1)
+\item 
+\#define {\bfseries S\+E\+T\+\_\+\+G\+P\+D\+M\+A\+\_\+\+C\+H\+\_\+\+C\+F\+G\+\_\+\+S\+R\+C\+P\+ER}(reg,  val)~S\+E\+T\+\_\+\+F\+I\+E\+LD(reg, val, G\+P\+D\+M\+A\+\_\+\+C\+H\+\_\+\+C\+F\+G\+\_\+\+S\+R\+C\+P\+E\+R\+\_\+\+M\+A\+SK, 1)
+\item 
+\#define {\bfseries G\+P\+D\+M\+A\+\_\+\+C\+H\+\_\+\+C\+F\+G\+\_\+\+D\+E\+S\+T\+P\+E\+R\+\_\+\+M\+A\+SK}~0x000003c0U
+\item 
+\#define {\bfseries G\+E\+T\+\_\+\+G\+P\+D\+M\+A\+\_\+\+C\+H\+\_\+\+C\+F\+G\+\_\+\+D\+E\+S\+T\+P\+ER}(reg)~G\+E\+T\+\_\+\+F\+I\+E\+LD(reg, G\+P\+D\+M\+A\+\_\+\+C\+H\+\_\+\+C\+F\+G\+\_\+\+D\+E\+S\+T\+P\+E\+R\+\_\+\+M\+A\+SK, 6)
+\item 
+\#define {\bfseries S\+E\+T\+\_\+\+G\+P\+D\+M\+A\+\_\+\+C\+H\+\_\+\+C\+F\+G\+\_\+\+D\+E\+S\+T\+P\+ER}(reg,  val)~S\+E\+T\+\_\+\+F\+I\+E\+LD(reg, val, G\+P\+D\+M\+A\+\_\+\+C\+H\+\_\+\+C\+F\+G\+\_\+\+D\+E\+S\+T\+P\+E\+R\+\_\+\+M\+A\+SK, 6)
+\item 
+\#define {\bfseries G\+P\+D\+M\+A\+\_\+\+C\+H\+\_\+\+C\+F\+G\+\_\+\+P\+E\+R\+\_\+\+S\+S\+P0\+\_\+\+TX}~0x00000000U
+\item 
+\#define {\bfseries G\+P\+D\+M\+A\+\_\+\+C\+H\+\_\+\+C\+F\+G\+\_\+\+P\+E\+R\+\_\+\+S\+S\+P0\+\_\+\+RX}~0x00000001U
+\item 
+\#define {\bfseries G\+P\+D\+M\+A\+\_\+\+C\+H\+\_\+\+C\+F\+G\+\_\+\+P\+E\+R\+\_\+\+S\+S\+P1\+\_\+\+TX}~0x00000002U
+\item 
+\#define {\bfseries G\+P\+D\+M\+A\+\_\+\+C\+H\+\_\+\+C\+F\+G\+\_\+\+P\+E\+R\+\_\+\+S\+S\+P1\+\_\+\+RX}~0x00000003U
+\item 
+\#define {\bfseries G\+P\+D\+M\+A\+\_\+\+C\+H\+\_\+\+C\+F\+G\+\_\+\+P\+E\+R\+\_\+\+S\+D\+\_\+\+M\+MC}~0x00000004U
+\item 
+\#define {\bfseries G\+P\+D\+M\+A\+\_\+\+C\+H\+\_\+\+C\+F\+G\+\_\+\+P\+E\+R\+\_\+\+I2\+S\+\_\+\+C\+H0}~0x00000005U
+\item 
+\#define {\bfseries G\+P\+D\+M\+A\+\_\+\+C\+H\+\_\+\+C\+F\+G\+\_\+\+P\+E\+R\+\_\+\+I2\+S\+\_\+\+C\+H1}~0x00000006U
+\item 
+\#define {\bfseries G\+P\+D\+M\+A\+\_\+\+C\+H\+\_\+\+C\+F\+G\+\_\+\+F\+L\+O\+W\+\_\+\+M\+A\+SK}~0x00003800U
+\item 
+\#define {\bfseries G\+E\+T\+\_\+\+G\+P\+D\+M\+A\+\_\+\+C\+H\+\_\+\+C\+F\+G\+\_\+\+F\+L\+OW}(reg)~G\+E\+T\+\_\+\+F\+I\+E\+LD(reg, G\+P\+D\+M\+A\+\_\+\+C\+H\+\_\+\+C\+F\+G\+\_\+\+F\+L\+O\+W\+\_\+\+M\+A\+SK, 11)
+\item 
+\#define {\bfseries S\+E\+T\+\_\+\+G\+P\+D\+M\+A\+\_\+\+C\+H\+\_\+\+C\+F\+G\+\_\+\+F\+L\+OW}(reg,  val)~S\+E\+T\+\_\+\+F\+I\+E\+LD(reg, val, G\+P\+D\+M\+A\+\_\+\+C\+H\+\_\+\+C\+F\+G\+\_\+\+F\+L\+O\+W\+\_\+\+M\+A\+SK, 11)
+\item 
+\#define {\bfseries G\+P\+D\+M\+A\+\_\+\+C\+H\+\_\+\+C\+F\+G\+\_\+\+F\+L\+O\+W\+\_\+\+M\+E\+M\+\_\+\+T\+O\+\_\+\+M\+E\+M\+\_\+\+D\+MA}~0x00000000U
+\item 
+\#define {\bfseries G\+P\+D\+M\+A\+\_\+\+C\+H\+\_\+\+C\+F\+G\+\_\+\+F\+L\+O\+W\+\_\+\+M\+E\+M\+\_\+\+T\+O\+\_\+\+P\+E\+R\+\_\+\+D\+MA}~0x00000001U
+\item 
+\#define {\bfseries G\+P\+D\+M\+A\+\_\+\+C\+H\+\_\+\+C\+F\+G\+\_\+\+F\+L\+O\+W\+\_\+\+P\+E\+R\+\_\+\+T\+O\+\_\+\+M\+E\+M\+\_\+\+D\+MA}~0x00000002U
+\item 
+\#define {\bfseries G\+P\+D\+M\+A\+\_\+\+C\+H\+\_\+\+C\+F\+G\+\_\+\+F\+L\+O\+W\+\_\+\+P\+E\+R\+\_\+\+T\+O\+\_\+\+P\+E\+R\+\_\+\+D\+MA}~0x00000003U
+\item 
+\#define {\bfseries G\+P\+D\+M\+A\+\_\+\+C\+H\+\_\+\+C\+F\+G\+\_\+\+F\+L\+O\+W\+\_\+\+P\+E\+R\+\_\+\+T\+O\+\_\+\+P\+E\+R\+\_\+\+D\+E\+ST}~0x00000004U
+\item 
+\#define {\bfseries G\+P\+D\+M\+A\+\_\+\+C\+H\+\_\+\+C\+F\+G\+\_\+\+F\+L\+O\+W\+\_\+\+M\+E\+M\+\_\+\+T\+O\+\_\+\+P\+E\+R\+\_\+\+P\+ER}~0x00000005U
+\item 
+\#define {\bfseries G\+P\+D\+M\+A\+\_\+\+C\+H\+\_\+\+C\+F\+G\+\_\+\+F\+L\+O\+W\+\_\+\+P\+E\+R\+\_\+\+T\+O\+\_\+\+M\+E\+M\+\_\+\+P\+ER}~0x00000006U
+\item 
+\#define {\bfseries G\+P\+D\+M\+A\+\_\+\+C\+H\+\_\+\+C\+F\+G\+\_\+\+F\+L\+O\+W\+\_\+\+P\+E\+R\+\_\+\+T\+O\+\_\+\+P\+E\+R\+\_\+\+S\+RC}~0x00000007U
+\item 
+\#define {\bfseries G\+P\+D\+M\+A\+\_\+\+C\+H\+\_\+\+C\+F\+G\+\_\+\+IE}~0x00004000U
+\item 
+\#define {\bfseries G\+P\+D\+M\+A\+\_\+\+C\+H\+\_\+\+C\+F\+G\+\_\+\+I\+TC}~0x00008000U
+\item 
+\#define {\bfseries G\+P\+D\+M\+A\+\_\+\+C\+H\+\_\+\+C\+F\+G\+\_\+\+L\+O\+CK}~0x00010000U
+\item 
+\#define {\bfseries G\+P\+D\+M\+A\+\_\+\+C\+H\+\_\+\+C\+F\+G\+\_\+\+A\+C\+T\+I\+VE}~0x00020000U
+\item 
+\#define {\bfseries G\+P\+D\+M\+A\+\_\+\+C\+H\+\_\+\+C\+F\+G\+\_\+\+H\+A\+LT}~0x00040000U
+\item 
+\#define {\bfseries A\+H\+B\+C\+F\+G\+\_\+\+S\+C\+H\+E\+D\+U\+L\+E\+R\+\_\+\+U\+N\+I\+F\+O\+RM}~0x00000001U
+\item 
+\#define {\bfseries A\+H\+B\+C\+F\+G\+\_\+\+B\+R\+E\+A\+K\+\_\+\+B\+U\+R\+S\+T\+\_\+\+M\+A\+SK}~0x00000006U
+\item 
+\#define {\bfseries G\+E\+T\+\_\+\+A\+H\+B\+C\+F\+G\+\_\+\+B\+R\+E\+A\+K\+\_\+\+B\+U\+R\+ST}(reg)~G\+E\+T\+\_\+\+F\+I\+E\+LD(reg, A\+H\+B\+C\+F\+G\+\_\+\+B\+R\+E\+A\+K\+\_\+\+B\+U\+R\+S\+T\+\_\+\+M\+A\+SK, 1)
+\item 
+\#define {\bfseries S\+E\+T\+\_\+\+A\+H\+B\+C\+F\+G\+\_\+\+B\+R\+E\+A\+K\+\_\+\+B\+U\+R\+ST}(reg,  val)~S\+E\+T\+\_\+\+F\+I\+E\+LD(reg, val, A\+H\+B\+C\+F\+G\+\_\+\+B\+R\+E\+A\+K\+\_\+\+B\+U\+R\+S\+T\+\_\+\+M\+A\+SK, 1)
+\item 
+\#define {\bfseries A\+H\+B\+C\+F\+G\+\_\+\+Q\+U\+A\+N\+T\+U\+M\+\_\+\+B\+U\+S\+\_\+\+C\+Y\+C\+LE}~0x00000008U
+\item 
+\#define {\bfseries A\+H\+B\+C\+F\+G\+\_\+\+Q\+U\+A\+N\+T\+U\+M\+\_\+\+S\+I\+Z\+E\+\_\+\+M\+A\+SK}~0x000000f0U
+\item 
+\#define {\bfseries G\+E\+T\+\_\+\+A\+H\+B\+C\+F\+G\+\_\+\+Q\+U\+A\+N\+T\+U\+M\+\_\+\+S\+I\+ZE}(reg)~G\+E\+T\+\_\+\+F\+I\+E\+LD(reg, A\+H\+B\+C\+F\+G\+\_\+\+Q\+U\+A\+N\+T\+U\+M\+\_\+\+S\+I\+Z\+E\+\_\+\+M\+A\+SK, 4)
+\item 
+\#define {\bfseries S\+E\+T\+\_\+\+A\+H\+B\+C\+F\+G\+\_\+\+Q\+U\+A\+N\+T\+U\+M\+\_\+\+S\+I\+ZE}(reg,  val)~S\+E\+T\+\_\+\+F\+I\+E\+LD(reg, val, A\+H\+B\+C\+F\+G\+\_\+\+Q\+U\+A\+N\+T\+U\+M\+\_\+\+S\+I\+Z\+E\+\_\+\+M\+A\+SK, 4)
+\item 
+\#define {\bfseries A\+H\+B\+C\+F\+G\+\_\+\+D\+E\+F\+A\+U\+L\+T\+\_\+\+M\+A\+S\+T\+E\+R\+\_\+\+M\+A\+SK}~0x00000700U
+\item 
+\#define {\bfseries G\+E\+T\+\_\+\+A\+H\+B\+C\+F\+G\+\_\+\+D\+E\+F\+A\+U\+L\+T\+\_\+\+M\+A\+S\+T\+ER}(reg)~G\+E\+T\+\_\+\+F\+I\+E\+LD(reg, A\+H\+B\+C\+F\+G\+\_\+\+D\+E\+F\+A\+U\+L\+T\+\_\+\+M\+A\+S\+T\+E\+R\+\_\+\+M\+A\+SK, 8)
+\item 
+\#define {\bfseries S\+E\+T\+\_\+\+A\+H\+B\+C\+F\+G\+\_\+\+D\+E\+F\+A\+U\+L\+T\+\_\+\+M\+A\+S\+T\+ER}(reg,  val)~S\+E\+T\+\_\+\+F\+I\+E\+LD(reg, val, A\+H\+B\+C\+F\+G\+\_\+\+D\+E\+F\+A\+U\+L\+T\+\_\+\+M\+A\+S\+T\+E\+R\+\_\+\+M\+A\+SK, 8)
+\item 
+\#define {\bfseries A\+H\+B\+C\+F\+G\+\_\+\+E\+P1\+\_\+\+M\+A\+SK}~0x00007000U
+\item 
+\#define {\bfseries G\+E\+T\+\_\+\+A\+H\+B\+C\+F\+G\+\_\+\+E\+P1}(reg)~G\+E\+T\+\_\+\+F\+I\+E\+LD(reg, A\+H\+B\+C\+F\+G\+\_\+\+E\+P1\+\_\+\+M\+A\+SK, 12)
+\item 
+\#define {\bfseries S\+E\+T\+\_\+\+A\+H\+B\+C\+F\+G\+\_\+\+E\+P1}(reg,  val)~S\+E\+T\+\_\+\+F\+I\+E\+LD(reg, val, A\+H\+B\+C\+F\+G\+\_\+\+E\+P1\+\_\+\+M\+A\+SK, 12)
+\item 
+\#define {\bfseries A\+H\+B\+C\+F\+G\+\_\+\+E\+P2\+\_\+\+M\+A\+SK}~0x00070000U
+\item 
+\#define {\bfseries G\+E\+T\+\_\+\+A\+H\+B\+C\+F\+G\+\_\+\+E\+P2}(reg)~G\+E\+T\+\_\+\+F\+I\+E\+LD(reg, A\+H\+B\+C\+F\+G\+\_\+\+E\+P2\+\_\+\+M\+A\+SK, 16)
+\item 
+\#define {\bfseries S\+E\+T\+\_\+\+A\+H\+B\+C\+F\+G\+\_\+\+E\+P2}(reg,  val)~S\+E\+T\+\_\+\+F\+I\+E\+LD(reg, val, A\+H\+B\+C\+F\+G\+\_\+\+E\+P2\+\_\+\+M\+A\+SK, 16)
+\item 
+\#define {\bfseries A\+H\+B\+C\+F\+G\+\_\+\+E\+P3\+\_\+\+M\+A\+SK}~0x00700000U
+\item 
+\#define {\bfseries G\+E\+T\+\_\+\+A\+H\+B\+C\+F\+G\+\_\+\+E\+P3}(reg)~G\+E\+T\+\_\+\+F\+I\+E\+LD(reg, A\+H\+B\+C\+F\+G\+\_\+\+E\+P3\+\_\+\+M\+A\+SK, 20)
+\item 
+\#define {\bfseries S\+E\+T\+\_\+\+A\+H\+B\+C\+F\+G\+\_\+\+E\+P3}(reg,  val)~S\+E\+T\+\_\+\+F\+I\+E\+LD(reg, val, A\+H\+B\+C\+F\+G\+\_\+\+E\+P3\+\_\+\+M\+A\+SK, 20)
+\item 
+\#define {\bfseries A\+H\+B\+C\+F\+G\+\_\+\+E\+P4\+\_\+\+M\+A\+SK}~0x07000000U
+\item 
+\#define {\bfseries G\+E\+T\+\_\+\+A\+H\+B\+C\+F\+G\+\_\+\+E\+P4}(reg)~G\+E\+T\+\_\+\+F\+I\+E\+LD(reg, A\+H\+B\+C\+F\+G\+\_\+\+E\+P4\+\_\+\+M\+A\+SK, 24)
+\item 
+\#define {\bfseries S\+E\+T\+\_\+\+A\+H\+B\+C\+F\+G\+\_\+\+E\+P4}(reg,  val)~S\+E\+T\+\_\+\+F\+I\+E\+LD(reg, val, A\+H\+B\+C\+F\+G\+\_\+\+E\+P4\+\_\+\+M\+A\+SK, 24)
+\item 
+\#define {\bfseries A\+H\+B\+C\+F\+G\+\_\+\+E\+P5\+\_\+\+M\+A\+SK}~0x70000000U
+\item 
+\#define {\bfseries G\+E\+T\+\_\+\+A\+H\+B\+C\+F\+G\+\_\+\+E\+P5}(reg)~G\+E\+T\+\_\+\+F\+I\+E\+LD(reg, A\+H\+B\+C\+F\+G\+\_\+\+E\+P5\+\_\+\+M\+A\+SK, 28)
+\item 
+\#define {\bfseries S\+E\+T\+\_\+\+A\+H\+B\+C\+F\+G\+\_\+\+E\+P5}(reg,  val)~S\+E\+T\+\_\+\+F\+I\+E\+LD(reg, val, A\+H\+B\+C\+F\+G\+\_\+\+E\+P5\+\_\+\+M\+A\+SK, 28)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+I2\+C\+\_\+\+AA}~(1\+U $<$$<$ 2\+U)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+I2\+C\+\_\+\+SI}~(1\+U $<$$<$ 3\+U)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+I2\+C\+\_\+\+S\+TO}~(1\+U $<$$<$ 4\+U)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+I2\+C\+\_\+\+S\+TA}~(1\+U $<$$<$ 5\+U)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+I2\+C\+\_\+\+EN}~(1\+U $<$$<$ 6\+U)
+\item 
+\#define {\bfseries I\+O\+C\+O\+N\+\_\+\+F\+U\+NC}(val)~B\+S\+P\+\_\+\+F\+L\+D32(val, 0, 2)
+\item 
+\#define {\bfseries I\+O\+C\+O\+N\+\_\+\+F\+U\+N\+C\+\_\+\+G\+ET}(reg)~B\+S\+P\+\_\+\+F\+L\+D32\+G\+ET(reg, 0, 2)
+\item 
+\#define {\bfseries I\+O\+C\+O\+N\+\_\+\+F\+U\+N\+C\+\_\+\+S\+ET}(reg,  val)~B\+S\+P\+\_\+\+F\+L\+D32\+S\+ET(reg, val, 0, 2)
+\item 
+\#define {\bfseries I\+O\+C\+O\+N\+\_\+\+M\+O\+DE}(val)~B\+S\+P\+\_\+\+F\+L\+D32(val, 3, 4)
+\item 
+\#define {\bfseries I\+O\+C\+O\+N\+\_\+\+M\+O\+D\+E\+\_\+\+G\+ET}(reg)~B\+S\+P\+\_\+\+F\+L\+D32\+G\+ET(reg, 3, 4)
+\item 
+\#define {\bfseries I\+O\+C\+O\+N\+\_\+\+M\+O\+D\+E\+\_\+\+S\+ET}(reg,  val)~B\+S\+P\+\_\+\+F\+L\+D32\+S\+ET(reg, val, 3, 4)
+\item 
+\#define {\bfseries I\+O\+C\+O\+N\+\_\+\+H\+YS}~B\+S\+P\+\_\+\+B\+I\+T32(5)
+\item 
+\#define {\bfseries I\+O\+C\+O\+N\+\_\+\+I\+NV}~B\+S\+P\+\_\+\+B\+I\+T32(6)
+\item 
+\#define {\bfseries I\+O\+C\+O\+N\+\_\+\+A\+D\+M\+O\+DE}~B\+S\+P\+\_\+\+B\+I\+T32(7)
+\item 
+\#define {\bfseries I\+O\+C\+O\+N\+\_\+\+F\+I\+L\+T\+ER}~B\+S\+P\+\_\+\+B\+I\+T32(8)
+\item 
+\#define {\bfseries I\+O\+C\+O\+N\+\_\+\+HS}~B\+S\+P\+\_\+\+B\+I\+T32(8)
+\item 
+\#define {\bfseries I\+O\+C\+O\+N\+\_\+\+S\+L\+EW}~B\+S\+P\+\_\+\+B\+I\+T32(9)
+\item 
+\#define {\bfseries I\+O\+C\+O\+N\+\_\+\+H\+I\+D\+R\+I\+VE}~B\+S\+P\+\_\+\+B\+I\+T32(9)
+\item 
+\#define {\bfseries I\+O\+C\+O\+N\+\_\+\+OD}~B\+S\+P\+\_\+\+B\+I\+T32(10)
+\item 
+\#define {\bfseries I\+O\+C\+O\+N\+\_\+\+D\+A\+C\+EN}~B\+S\+P\+\_\+\+B\+I\+T32(16)
+\item 
+\#define {\bfseries L\+P\+C17\+X\+X\+\_\+\+I\+O\+C\+ON}~((volatile uint32\+\_\+t $\ast$) P\+I\+N\+S\+E\+L\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR)
+\item 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+F\+IO}~((volatile \mbox{\hyperlink{structlpc24xx__fio}{lpc24xx\+\_\+fio}} $\ast$) F\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR)
+\item 
+\#define {\bfseries A\+D\+C\+\_\+\+C\+R\+\_\+\+S\+EL}(val)~B\+S\+P\+\_\+\+F\+L\+D32(val, 0, 7)
+\item 
+\#define {\bfseries A\+D\+C\+\_\+\+C\+R\+\_\+\+S\+E\+L\+\_\+\+G\+ET}(val)~B\+S\+P\+\_\+\+F\+L\+D32\+G\+ET(val, 0, 7)
+\item 
+\#define {\bfseries A\+D\+C\+\_\+\+C\+R\+\_\+\+S\+E\+L\+\_\+\+S\+ET}(reg,  val)~B\+S\+P\+\_\+\+F\+L\+D32\+S\+ET(reg, val, 0, 7)
+\item 
+\#define {\bfseries A\+D\+C\+\_\+\+C\+R\+\_\+\+C\+L\+K\+D\+IV}(val)~B\+S\+P\+\_\+\+F\+L\+D32(val, 8, 15)
+\item 
+\#define {\bfseries A\+D\+C\+\_\+\+C\+R\+\_\+\+C\+L\+K\+D\+I\+V\+\_\+\+G\+ET}(reg)~B\+S\+P\+\_\+\+F\+L\+D32\+G\+ET(reg, 8, 15)
+\item 
+\#define {\bfseries A\+D\+C\+\_\+\+C\+R\+\_\+\+C\+L\+K\+D\+I\+V\+\_\+\+S\+ET}(reg,  val)~B\+S\+P\+\_\+\+F\+L\+D32\+S\+ET(reg, val, 8, 15)
+\item 
+\#define {\bfseries A\+D\+C\+\_\+\+C\+R\+\_\+\+B\+U\+R\+ST}~B\+S\+P\+\_\+\+B\+I\+T32(16)
+\item 
+\#define {\bfseries A\+D\+C\+\_\+\+C\+R\+\_\+\+C\+L\+KS}(val)~B\+S\+P\+\_\+\+F\+L\+D32(val, 17, 19)
+\item 
+\#define {\bfseries A\+D\+C\+\_\+\+C\+R\+\_\+\+P\+DN}~B\+S\+P\+\_\+\+B\+I\+T32(21)
+\item 
+\#define {\bfseries A\+D\+C\+\_\+\+C\+R\+\_\+\+S\+T\+A\+RT}(val)~B\+S\+P\+\_\+\+F\+L\+D32(val, 24, 26)
+\item 
+\#define {\bfseries A\+D\+C\+\_\+\+C\+R\+\_\+\+E\+D\+GE}~B\+S\+P\+\_\+\+B\+I\+T32(27)
+\item 
+\#define {\bfseries A\+D\+C\+\_\+\+D\+R\+\_\+\+V\+A\+L\+UE}(reg)~B\+S\+P\+\_\+\+F\+L\+D32\+G\+ET(reg, 6, 15)
+\item 
+\#define {\bfseries A\+D\+C\+\_\+\+D\+R\+\_\+\+O\+V\+E\+R\+R\+UN}~B\+S\+P\+\_\+\+B\+I\+T32(30)
+\item 
+\#define {\bfseries A\+D\+C\+\_\+\+D\+R\+\_\+\+D\+O\+NE}~B\+S\+P\+\_\+\+B\+I\+T32(31)
+\item 
+\#define {\bfseries D\+A\+C\+\_\+\+S\+T\+E\+PS}~1024
+\item 
+\#define {\bfseries D\+A\+C\+\_\+\+V\+A\+L\+UE}(val)~B\+S\+P\+\_\+\+F\+L\+D32(val, 6, 15)
+\item 
+\#define {\bfseries D\+A\+C\+\_\+\+B\+I\+AS}~B\+S\+P\+\_\+\+B\+I\+T32(16)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Register definitions. 
+

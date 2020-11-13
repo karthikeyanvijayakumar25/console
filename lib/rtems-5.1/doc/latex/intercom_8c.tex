@@ -1,0 +1,86 @@
+\hypertarget{intercom_8c}{}\section{bsps/powerpc/qoriq/mpci/intercom.c File Reference}
+\label{intercom_8c}\index{bsps/powerpc/qoriq/mpci/intercom.c@{bsps/powerpc/qoriq/mpci/intercom.c}}
+
+
+Inter-\/\+Processor Communication implementation.  
+
+
+{\ttfamily \#include $<$assert.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$rtems.\+h$>$}\newline
+{\ttfamily \#include $<$libcpu/powerpc-\/utility.\+h$>$}\newline
+{\ttfamily \#include $<$bspopts.\+h$>$}\newline
+{\ttfamily \#include $<$bsp/irq.\+h$>$}\newline
+{\ttfamily \#include $<$bsp/qoriq.\+h$>$}\newline
+{\ttfamily \#include $<$bsp/intercom.\+h$>$}\newline
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structconsumer}{consumer}}
+\item 
+struct \mbox{\hyperlink{structconsumer__list}{consumer\+\_\+list}}
+\item 
+struct \mbox{\hyperlink{structfree__list}{free\+\_\+list}}
+\item 
+struct \mbox{\hyperlink{structcore__fifo}{core\+\_\+fifo}}
+\item 
+struct \mbox{\hyperlink{structcontrol}{control}}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{intercom_8c_a22ff679848404d212fb7958ab5777f3f}\label{intercom_8c_a22ff679848404d212fb7958ab5777f3f}} 
+\#define {\bfseries I\+N\+T\+E\+R\+C\+O\+M\+\_\+\+E\+V\+E\+N\+T\+\_\+\+I\+PI}~\mbox{\hyperlink{group__ClassicEventSet_gadab2e575c5b836fcd51a2d50443fefea}{R\+T\+E\+M\+S\+\_\+\+E\+V\+E\+N\+T\+\_\+13}}
+\item 
+\mbox{\Hypertarget{intercom_8c_ae42f72980a04df7fd6de5fef23342cb1}\label{intercom_8c_ae42f72980a04df7fd6de5fef23342cb1}} 
+\#define {\bfseries I\+N\+T\+E\+R\+C\+O\+M\+\_\+\+E\+V\+E\+N\+T\+\_\+\+W\+A\+K\+E\+\_\+\+UP}~\mbox{\hyperlink{group__ClassicEventSet_gab39384e5b927c56a666411ed848b15af}{R\+T\+E\+M\+S\+\_\+\+E\+V\+E\+N\+T\+\_\+14}}
+\item 
+\mbox{\Hypertarget{intercom_8c_ad290749e9bfd71ed156281d9da86a67a}\label{intercom_8c_ad290749e9bfd71ed156281d9da86a67a}} 
+\#define {\bfseries P\+A\+C\+K\+E\+T\+\_\+\+S\+I\+Z\+E\+\_\+\+C\+O\+U\+NT}~4
+\item 
+\mbox{\Hypertarget{intercom_8c_aea084b973389d8cb26251875a2cf7758}\label{intercom_8c_aea084b973389d8cb26251875a2cf7758}} 
+\#define {\bfseries O\+N\+E\+\_\+\+C\+O\+RE}(core)~(1\+U $<$$<$ (core))
+\item 
+\mbox{\Hypertarget{intercom_8c_a2d46b8dd024cc94623b39b73796af9bc}\label{intercom_8c_a2d46b8dd024cc94623b39b73796af9bc}} 
+\#define {\bfseries A\+L\+L\+\_\+\+C\+O\+R\+ES}~((1\+U $<$$<$ I\+N\+T\+E\+R\+C\+O\+M\+\_\+\+C\+O\+R\+E\+\_\+\+C\+O\+U\+N\+T) -\/ 1\+U)
+\item 
+\mbox{\Hypertarget{intercom_8c_aaa6308468b959e60172a15bde4dcedf8}\label{intercom_8c_aaa6308468b959e60172a15bde4dcedf8}} 
+\#define {\bfseries O\+T\+H\+E\+R\+\_\+\+C\+O\+R\+ES}(core)~(A\+L\+L\+\_\+\+C\+O\+R\+ES \& $\sim$O\+N\+E\+\_\+\+C\+O\+RE(core))
+\item 
+\mbox{\Hypertarget{intercom_8c_aebb36eb31cde78e526786e78f9a9a548}\label{intercom_8c_aebb36eb31cde78e526786e78f9a9a548}} 
+\#define {\bfseries I\+P\+I\+\_\+\+I\+N\+D\+EX}~0
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{intercom_8c_ab32e6a87ca929929befb553b1e948010}\label{intercom_8c_ab32e6a87ca929929befb553b1e948010}} 
+typedef struct \mbox{\hyperlink{structconsumer}{consumer}} {\bfseries consumer}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void {\bfseries qoriq\+\_\+intercom\+\_\+free\+\_\+packet} (\mbox{\hyperlink{structintercom__packet}{intercom\+\_\+packet}} $\ast$\mbox{\hyperlink{structpacket}{packet}})
+\item 
+void {\bfseries qoriq\+\_\+intercom\+\_\+init} (void)
+\item 
+void {\bfseries qoriq\+\_\+intercom\+\_\+start} (void)
+\item 
+\mbox{\hyperlink{structintercom__packet}{intercom\+\_\+packet}} $\ast$ {\bfseries qoriq\+\_\+intercom\+\_\+allocate\+\_\+packet} (intercom\+\_\+type type, intercom\+\_\+size \mbox{\hyperlink{sun4u_2tte_8h_a245260f6f74972558f61b85227df5aae}{size}})
+\item 
+void {\bfseries qoriq\+\_\+intercom\+\_\+send\+\_\+packets} (int destination\+\_\+core, \mbox{\hyperlink{structintercom__packet}{intercom\+\_\+packet}} $\ast$first, \mbox{\hyperlink{structintercom__packet}{intercom\+\_\+packet}} $\ast$last)
+\item 
+void {\bfseries qoriq\+\_\+intercom\+\_\+broadcast\+\_\+packets} (\mbox{\hyperlink{structintercom__packet}{intercom\+\_\+packet}} $\ast$first, \mbox{\hyperlink{structintercom__packet}{intercom\+\_\+packet}} $\ast$last)
+\item 
+void {\bfseries qoriq\+\_\+intercom\+\_\+send} (int destination\+\_\+core, intercom\+\_\+type type, intercom\+\_\+size \mbox{\hyperlink{sun4u_2tte_8h_a245260f6f74972558f61b85227df5aae}{size}}, const void $\ast$buf, size\+\_\+t n)
+\item 
+void {\bfseries qoriq\+\_\+intercom\+\_\+service\+\_\+install} (intercom\+\_\+type type, intercom\+\_\+service service, void $\ast$arg)
+\item 
+void {\bfseries qoriq\+\_\+intercom\+\_\+service\+\_\+remove} (intercom\+\_\+type type)
+\item 
+\mbox{\hyperlink{structintercom__packet}{intercom\+\_\+packet}} $\ast$ {\bfseries qoriq\+\_\+intercom\+\_\+clone\+\_\+packet} (const \mbox{\hyperlink{structintercom__packet}{intercom\+\_\+packet}} $\ast$\mbox{\hyperlink{structpacket}{packet}})
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Inter-\/\+Processor Communication implementation. 
+

@@ -1,0 +1,228 @@
+\hypertarget{rtems-rfs-file_8c}{}\section{cpukit/libfs/src/rfs/rtems-\/rfs-\/file.c File Reference}
+\label{rtems-rfs-file_8c}\index{cpukit/libfs/src/rfs/rtems-\/rfs-\/file.c@{cpukit/libfs/src/rfs/rtems-\/rfs-\/file.c}}
+
+
+R\+T\+E\+MS File Systems File Routines.  
+
+
+{\ttfamily \#include $<$inttypes.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/rfs/rtems-\/rfs-\/block-\/pos.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/rfs/rtems-\/rfs-\/file.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/rfs/rtems-\/rfs-\/file-\/system.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/rfs/rtems-\/rfs-\/trace.\+h$>$}\newline
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{rtems-rfs-file_8c_ab990090bd65f8fcbd5941f20a5db4ada}{rtems\+\_\+rfs\+\_\+file\+\_\+open}} (\mbox{\hyperlink{struct__rtems__rfs__file__system}{rtems\+\_\+rfs\+\_\+file\+\_\+system}} $\ast$fs, \mbox{\hyperlink{rtems-rfs-inode_8h_ae658325c3ff9941f2e68315d20e3c723}{rtems\+\_\+rfs\+\_\+ino}} ino, int oflag, \mbox{\hyperlink{rtems-rfs-file_8h_a35a0f4ad45bd35ea0af7df0aa0ad893b}{rtems\+\_\+rfs\+\_\+file\+\_\+handle}} $\ast$$\ast$\mbox{\hyperlink{structfile}{file}})
+\item 
+int \mbox{\hyperlink{rtems-rfs-file_8c_a41fc4f3d47394892b567a5e1d0dd35a6}{rtems\+\_\+rfs\+\_\+file\+\_\+close}} (\mbox{\hyperlink{struct__rtems__rfs__file__system}{rtems\+\_\+rfs\+\_\+file\+\_\+system}} $\ast$fs, \mbox{\hyperlink{rtems-rfs-file_8h_a35a0f4ad45bd35ea0af7df0aa0ad893b}{rtems\+\_\+rfs\+\_\+file\+\_\+handle}} $\ast$handle)
+\item 
+int \mbox{\hyperlink{rtems-rfs-file_8c_a95a9fbf77d3ac355c21ac263db639439}{rtems\+\_\+rfs\+\_\+file\+\_\+io\+\_\+start}} (\mbox{\hyperlink{rtems-rfs-file_8h_a35a0f4ad45bd35ea0af7df0aa0ad893b}{rtems\+\_\+rfs\+\_\+file\+\_\+handle}} $\ast$handle, size\+\_\+t $\ast$available, bool \mbox{\hyperlink{libcsupport_2src_2read_8c_a26d4711c05afec4c7771c3d17b2db9e9}{read}})
+\item 
+int \mbox{\hyperlink{rtems-rfs-file_8c_ae8539cb85352152dd9b0b5f4a756c092}{rtems\+\_\+rfs\+\_\+file\+\_\+io\+\_\+end}} (\mbox{\hyperlink{rtems-rfs-file_8h_a35a0f4ad45bd35ea0af7df0aa0ad893b}{rtems\+\_\+rfs\+\_\+file\+\_\+handle}} $\ast$handle, size\+\_\+t \mbox{\hyperlink{sun4u_2tte_8h_a245260f6f74972558f61b85227df5aae}{size}}, bool \mbox{\hyperlink{libcsupport_2src_2read_8c_a26d4711c05afec4c7771c3d17b2db9e9}{read}})
+\item 
+int \mbox{\hyperlink{rtems-rfs-file_8c_a26077ee233df41e872ae47429fb66d40}{rtems\+\_\+rfs\+\_\+file\+\_\+io\+\_\+release}} (\mbox{\hyperlink{rtems-rfs-file_8h_a35a0f4ad45bd35ea0af7df0aa0ad893b}{rtems\+\_\+rfs\+\_\+file\+\_\+handle}} $\ast$handle)
+\item 
+int \mbox{\hyperlink{rtems-rfs-file_8c_aa6a37c884a77b1399e00425cdf1a864e}{rtems\+\_\+rfs\+\_\+file\+\_\+seek}} (\mbox{\hyperlink{rtems-rfs-file_8h_a35a0f4ad45bd35ea0af7df0aa0ad893b}{rtems\+\_\+rfs\+\_\+file\+\_\+handle}} $\ast$handle, \mbox{\hyperlink{rtems-rfs-file-system_8h_ae6adc04fe673c46403605d64f16699bd}{rtems\+\_\+rfs\+\_\+pos}} pos, \mbox{\hyperlink{rtems-rfs-file-system_8h_ae6adc04fe673c46403605d64f16699bd}{rtems\+\_\+rfs\+\_\+pos}} $\ast$new\+\_\+pos)
+\item 
+int \mbox{\hyperlink{rtems-rfs-file_8c_aef2040cdb71b4884bb5f390f104799b9}{rtems\+\_\+rfs\+\_\+file\+\_\+set\+\_\+size}} (\mbox{\hyperlink{rtems-rfs-file_8h_a35a0f4ad45bd35ea0af7df0aa0ad893b}{rtems\+\_\+rfs\+\_\+file\+\_\+handle}} $\ast$handle, \mbox{\hyperlink{rtems-rfs-file-system_8h_ae6adc04fe673c46403605d64f16699bd}{rtems\+\_\+rfs\+\_\+pos}} new\+\_\+size)
+\item 
+\mbox{\hyperlink{rtems-rfs-file_8h_adb93e0b8dc15817a098cb105949cc3c7}{rtems\+\_\+rfs\+\_\+file\+\_\+shared}} $\ast$ \mbox{\hyperlink{rtems-rfs-file_8c_a47bc6c24c1df4ab25e8cb8dec7c5c86a}{rtems\+\_\+rfs\+\_\+file\+\_\+get\+\_\+shared}} (\mbox{\hyperlink{struct__rtems__rfs__file__system}{rtems\+\_\+rfs\+\_\+file\+\_\+system}} $\ast$fs, \mbox{\hyperlink{rtems-rfs-inode_8h_ae658325c3ff9941f2e68315d20e3c723}{rtems\+\_\+rfs\+\_\+ino}} ino)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+R\+T\+E\+MS File Systems File Routines. 
+
+These functions manage files. 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{rtems-rfs-file_8c_a41fc4f3d47394892b567a5e1d0dd35a6}\label{rtems-rfs-file_8c_a41fc4f3d47394892b567a5e1d0dd35a6}} 
+\index{rtems-\/rfs-\/file.c@{rtems-\/rfs-\/file.c}!rtems\_rfs\_file\_close@{rtems\_rfs\_file\_close}}
+\index{rtems\_rfs\_file\_close@{rtems\_rfs\_file\_close}!rtems-\/rfs-\/file.c@{rtems-\/rfs-\/file.c}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_file\_close()}{rtems\_rfs\_file\_close()}}
+{\footnotesize\ttfamily int rtems\+\_\+rfs\+\_\+file\+\_\+close (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__rtems__rfs__file__system}{rtems\+\_\+rfs\+\_\+file\+\_\+system}} $\ast$}]{fs,  }\item[{\mbox{\hyperlink{rtems-rfs-file_8h_a35a0f4ad45bd35ea0af7df0aa0ad893b}{rtems\+\_\+rfs\+\_\+file\+\_\+handle}} $\ast$}]{handle }\end{DoxyParamCaption})}
+
+Close an open file handle.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em fs} & is the file system. \\
+\hline
+\mbox{\texttt{ in}}  & {\em handle} & is the open file handle.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em 0} & Successful operation. \\
+\hline
+{\em error\+\_\+code} & An error occurred. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{rtems-rfs-file_8c_a47bc6c24c1df4ab25e8cb8dec7c5c86a}\label{rtems-rfs-file_8c_a47bc6c24c1df4ab25e8cb8dec7c5c86a}} 
+\index{rtems-\/rfs-\/file.c@{rtems-\/rfs-\/file.c}!rtems\_rfs\_file\_get\_shared@{rtems\_rfs\_file\_get\_shared}}
+\index{rtems\_rfs\_file\_get\_shared@{rtems\_rfs\_file\_get\_shared}!rtems-\/rfs-\/file.c@{rtems-\/rfs-\/file.c}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_file\_get\_shared()}{rtems\_rfs\_file\_get\_shared()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{rtems-rfs-file_8h_adb93e0b8dc15817a098cb105949cc3c7}{rtems\+\_\+rfs\+\_\+file\+\_\+shared}}$\ast$ rtems\+\_\+rfs\+\_\+file\+\_\+get\+\_\+shared (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__rtems__rfs__file__system}{rtems\+\_\+rfs\+\_\+file\+\_\+system}} $\ast$}]{fs,  }\item[{\mbox{\hyperlink{rtems-rfs-inode_8h_ae658325c3ff9941f2e68315d20e3c723}{rtems\+\_\+rfs\+\_\+ino}}}]{ino }\end{DoxyParamCaption})}
+
+Return the shared file data for an ino.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em fs} & is the file system data. \\
+\hline
+\mbox{\texttt{ in}}  & {\em ino} & is the inode number to locate the data for. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+rtems\+\_\+rfs\+\_\+file\+\_\+shared$\ast$ The shared data or N\+U\+LL is not located.
+\end{DoxyReturn}
+
+\begin{DoxyRetVals}{Return values}
+{\em shared} & The shared data. \\
+\hline
+{\em N\+U\+LL} & No shared file data is located. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{rtems-rfs-file_8c_ae8539cb85352152dd9b0b5f4a756c092}\label{rtems-rfs-file_8c_ae8539cb85352152dd9b0b5f4a756c092}} 
+\index{rtems-\/rfs-\/file.c@{rtems-\/rfs-\/file.c}!rtems\_rfs\_file\_io\_end@{rtems\_rfs\_file\_io\_end}}
+\index{rtems\_rfs\_file\_io\_end@{rtems\_rfs\_file\_io\_end}!rtems-\/rfs-\/file.c@{rtems-\/rfs-\/file.c}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_file\_io\_end()}{rtems\_rfs\_file\_io\_end()}}
+{\footnotesize\ttfamily int rtems\+\_\+rfs\+\_\+file\+\_\+io\+\_\+end (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{rtems-rfs-file_8h_a35a0f4ad45bd35ea0af7df0aa0ad893b}{rtems\+\_\+rfs\+\_\+file\+\_\+handle}} $\ast$}]{handle,  }\item[{size\+\_\+t}]{size,  }\item[{bool}]{read }\end{DoxyParamCaption})}
+
+End the I/O. Any buffers held in the file handle and returned to the cache. If inode updating is not disable and the I/O is a read the atime field is updated and if a write I/O the mtime is updated.
+
+If the file\textquotesingle{}s position is updated by the size amount.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em handle} & is the file handle. \\
+\hline
+\mbox{\texttt{ in}}  & {\em size} & is the amount of data read or written. \\
+\hline
+\mbox{\texttt{ in}}  & {\em read} & is the I/O was a read if true else it was a write.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em 0} & Successful operation. \\
+\hline
+{\em error\+\_\+code} & An error occurred. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{rtems-rfs-file_8c_a26077ee233df41e872ae47429fb66d40}\label{rtems-rfs-file_8c_a26077ee233df41e872ae47429fb66d40}} 
+\index{rtems-\/rfs-\/file.c@{rtems-\/rfs-\/file.c}!rtems\_rfs\_file\_io\_release@{rtems\_rfs\_file\_io\_release}}
+\index{rtems\_rfs\_file\_io\_release@{rtems\_rfs\_file\_io\_release}!rtems-\/rfs-\/file.c@{rtems-\/rfs-\/file.c}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_file\_io\_release()}{rtems\_rfs\_file\_io\_release()}}
+{\footnotesize\ttfamily int rtems\+\_\+rfs\+\_\+file\+\_\+io\+\_\+release (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{rtems-rfs-file_8h_a35a0f4ad45bd35ea0af7df0aa0ad893b}{rtems\+\_\+rfs\+\_\+file\+\_\+handle}} $\ast$}]{handle }\end{DoxyParamCaption})}
+
+Release the I/O resources without any changes. If data has changed in the buffer and the buffer was not already released as modified the data will be lost.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em handle} & is the file handle.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em 0} & Successful operation. \\
+\hline
+{\em error\+\_\+code} & An error occurred. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{rtems-rfs-file_8c_a95a9fbf77d3ac355c21ac263db639439}\label{rtems-rfs-file_8c_a95a9fbf77d3ac355c21ac263db639439}} 
+\index{rtems-\/rfs-\/file.c@{rtems-\/rfs-\/file.c}!rtems\_rfs\_file\_io\_start@{rtems\_rfs\_file\_io\_start}}
+\index{rtems\_rfs\_file\_io\_start@{rtems\_rfs\_file\_io\_start}!rtems-\/rfs-\/file.c@{rtems-\/rfs-\/file.c}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_file\_io\_start()}{rtems\_rfs\_file\_io\_start()}}
+{\footnotesize\ttfamily int rtems\+\_\+rfs\+\_\+file\+\_\+io\+\_\+start (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{rtems-rfs-file_8h_a35a0f4ad45bd35ea0af7df0aa0ad893b}{rtems\+\_\+rfs\+\_\+file\+\_\+handle}} $\ast$}]{handle,  }\item[{size\+\_\+t $\ast$}]{available,  }\item[{bool}]{read }\end{DoxyParamCaption})}
+
+Start I/O on a block of a file. This call only requests the block from the media if reading and makes the buffer available to you the via the rtems\+\_\+rfs\+\_\+file\+\_\+data interface after the call. The available amount data is taken from the current file position until the end of the block. The file position is not adujsted until the I/O ends. An I/O request cannot perform I/O past the end of a block so the call returns the amount of data available.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em handle} & is the file handle. \\
+\hline
+\mbox{\texttt{ in}}  & {\em available} & is the amount of data available for I/O. \\
+\hline
+\mbox{\texttt{ in}}  & {\em read} & is the I/O operation is a read so the block is read from the media.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em 0} & Successful operation. \\
+\hline
+{\em error\+\_\+code} & An error occurred. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{rtems-rfs-file_8c_ab990090bd65f8fcbd5941f20a5db4ada}\label{rtems-rfs-file_8c_ab990090bd65f8fcbd5941f20a5db4ada}} 
+\index{rtems-\/rfs-\/file.c@{rtems-\/rfs-\/file.c}!rtems\_rfs\_file\_open@{rtems\_rfs\_file\_open}}
+\index{rtems\_rfs\_file\_open@{rtems\_rfs\_file\_open}!rtems-\/rfs-\/file.c@{rtems-\/rfs-\/file.c}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_file\_open()}{rtems\_rfs\_file\_open()}}
+{\footnotesize\ttfamily int rtems\+\_\+rfs\+\_\+file\+\_\+open (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__rtems__rfs__file__system}{rtems\+\_\+rfs\+\_\+file\+\_\+system}} $\ast$}]{fs,  }\item[{\mbox{\hyperlink{rtems-rfs-inode_8h_ae658325c3ff9941f2e68315d20e3c723}{rtems\+\_\+rfs\+\_\+ino}}}]{ino,  }\item[{int}]{oflag,  }\item[{\mbox{\hyperlink{rtems-rfs-file_8h_a35a0f4ad45bd35ea0af7df0aa0ad893b}{rtems\+\_\+rfs\+\_\+file\+\_\+handle}} $\ast$$\ast$}]{handle }\end{DoxyParamCaption})}
+
+Open a file handle.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em fs} & is the file system. \\
+\hline
+\mbox{\texttt{ in}}  & {\em ino} & is the inode number of the file to be opened. \\
+\hline
+\mbox{\texttt{ out}}  & {\em handle} & will be filled in with the handle pointer.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em 0} & Successful operation. \\
+\hline
+{\em error\+\_\+code} & An error occurred. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{rtems-rfs-file_8c_aa6a37c884a77b1399e00425cdf1a864e}\label{rtems-rfs-file_8c_aa6a37c884a77b1399e00425cdf1a864e}} 
+\index{rtems-\/rfs-\/file.c@{rtems-\/rfs-\/file.c}!rtems\_rfs\_file\_seek@{rtems\_rfs\_file\_seek}}
+\index{rtems\_rfs\_file\_seek@{rtems\_rfs\_file\_seek}!rtems-\/rfs-\/file.c@{rtems-\/rfs-\/file.c}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_file\_seek()}{rtems\_rfs\_file\_seek()}}
+{\footnotesize\ttfamily int rtems\+\_\+rfs\+\_\+file\+\_\+seek (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{rtems-rfs-file_8h_a35a0f4ad45bd35ea0af7df0aa0ad893b}{rtems\+\_\+rfs\+\_\+file\+\_\+handle}} $\ast$}]{handle,  }\item[{\mbox{\hyperlink{rtems-rfs-file-system_8h_ae6adc04fe673c46403605d64f16699bd}{rtems\+\_\+rfs\+\_\+pos}}}]{pos,  }\item[{\mbox{\hyperlink{rtems-rfs-file-system_8h_ae6adc04fe673c46403605d64f16699bd}{rtems\+\_\+rfs\+\_\+pos}} $\ast$}]{new\+\_\+pos }\end{DoxyParamCaption})}
+
+The file to the position returning the old position. The position is abolute.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em handle} & The file handle. \\
+\hline
+\mbox{\texttt{ in}}  & {\em pos} & is the position to seek to. \\
+\hline
+\mbox{\texttt{ out}}  & {\em new\+\_\+pos} & will contain the actual position.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em 0} & Successful operation. \\
+\hline
+{\em error\+\_\+code} & An error occurred. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{rtems-rfs-file_8c_aef2040cdb71b4884bb5f390f104799b9}\label{rtems-rfs-file_8c_aef2040cdb71b4884bb5f390f104799b9}} 
+\index{rtems-\/rfs-\/file.c@{rtems-\/rfs-\/file.c}!rtems\_rfs\_file\_set\_size@{rtems\_rfs\_file\_set\_size}}
+\index{rtems\_rfs\_file\_set\_size@{rtems\_rfs\_file\_set\_size}!rtems-\/rfs-\/file.c@{rtems-\/rfs-\/file.c}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_file\_set\_size()}{rtems\_rfs\_file\_set\_size()}}
+{\footnotesize\ttfamily int rtems\+\_\+rfs\+\_\+file\+\_\+set\+\_\+size (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{rtems-rfs-file_8h_a35a0f4ad45bd35ea0af7df0aa0ad893b}{rtems\+\_\+rfs\+\_\+file\+\_\+handle}} $\ast$}]{handle,  }\item[{\mbox{\hyperlink{rtems-rfs-file-system_8h_ae6adc04fe673c46403605d64f16699bd}{rtems\+\_\+rfs\+\_\+pos}}}]{size }\end{DoxyParamCaption})}
+
+Set the size of the file to the new size. This can extend the file to a new size.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em handle} & is the file handle. \\
+\hline
+\mbox{\texttt{ in}}  & {\em size} & is the new size of the file. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em 0} & Successful operation. \\
+\hline
+{\em error\+\_\+code} & An error occurred. \\
+\hline
+\end{DoxyRetVals}

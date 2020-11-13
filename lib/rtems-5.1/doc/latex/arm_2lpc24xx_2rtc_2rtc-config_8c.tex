@@ -1,0 +1,76 @@
+\hypertarget{arm_2lpc24xx_2rtc_2rtc-config_8c}{}\section{bsps/arm/lpc24xx/rtc/rtc-\/config.c File Reference}
+\label{arm_2lpc24xx_2rtc_2rtc-config_8c}\index{bsps/arm/lpc24xx/rtc/rtc-\/config.c@{bsps/arm/lpc24xx/rtc/rtc-\/config.c}}
+
+
+R\+TC configuration.  
+
+
+{\ttfamily \#include $<$libchip/rtc.\+h$>$}\newline
+{\ttfamily \#include $<$bsp/lpc24xx.\+h$>$}\newline
+{\ttfamily \#include $<$bsp/io.\+h$>$}\newline
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{arm_2lpc24xx_2rtc_2rtc-config_8c_a9475e226f6ce9080e2c8286628fd0ff1}\label{arm_2lpc24xx_2rtc_2rtc-config_8c_a9475e226f6ce9080e2c8286628fd0ff1}} 
+\#define {\bfseries L\+P\+C24\+X\+X\+\_\+\+R\+T\+C\+\_\+\+N\+U\+M\+B\+ER}~1
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const \mbox{\hyperlink{struct__rtc__fns}{rtc\+\_\+fns}} {\bfseries lpc24xx\+\_\+rtc\+\_\+ops}
+\item 
+\mbox{\Hypertarget{arm_2lpc24xx_2rtc_2rtc-config_8c_a7b04b3ddbc07be0bcfcd73fde9a9f399}\label{arm_2lpc24xx_2rtc_2rtc-config_8c_a7b04b3ddbc07be0bcfcd73fde9a9f399}} 
+size\+\_\+t {\bfseries R\+T\+C\+\_\+\+Count} = L\+P\+C24\+X\+X\+\_\+\+R\+T\+C\+\_\+\+N\+U\+M\+B\+ER
+\item 
+\mbox{\hyperlink{struct__rtc__tbl}{rtc\+\_\+tbl}} \mbox{\hyperlink{arm_2lpc24xx_2rtc_2rtc-config_8c_a1bfa0746152bfd1b5c2eb47ef9f90e0b}{R\+T\+C\+\_\+\+Table}} \mbox{[}L\+P\+C24\+X\+X\+\_\+\+R\+T\+C\+\_\+\+N\+U\+M\+B\+ER\mbox{]}
+\begin{DoxyCompactList}\small\item\em Table to describes the rtc device. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+R\+TC configuration. 
+
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{arm_2lpc24xx_2rtc_2rtc-config_8c_ac206afc1da6ff6236c35c7633071b25a}\label{arm_2lpc24xx_2rtc_2rtc-config_8c_ac206afc1da6ff6236c35c7633071b25a}} 
+\index{rtc-\/config.c@{rtc-\/config.c}!lpc24xx\_rtc\_ops@{lpc24xx\_rtc\_ops}}
+\index{lpc24xx\_rtc\_ops@{lpc24xx\_rtc\_ops}!rtc-\/config.c@{rtc-\/config.c}}
+\subsubsection{\texorpdfstring{lpc24xx\_rtc\_ops}{lpc24xx\_rtc\_ops}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{struct__rtc__fns}{rtc\+\_\+fns}} lpc24xx\+\_\+rtc\+\_\+ops}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{  .deviceInitialize = lpc24xx\_rtc\_initialize,}
+\DoxyCodeLine{  .deviceGetTime = lpc24xx\_rtc\_get\_time,}
+\DoxyCodeLine{  .deviceSetTime = lpc24xx\_rtc\_set\_time}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{arm_2lpc24xx_2rtc_2rtc-config_8c_a1bfa0746152bfd1b5c2eb47ef9f90e0b}\label{arm_2lpc24xx_2rtc_2rtc-config_8c_a1bfa0746152bfd1b5c2eb47ef9f90e0b}} 
+\index{rtc-\/config.c@{rtc-\/config.c}!RTC\_Table@{RTC\_Table}}
+\index{RTC\_Table@{RTC\_Table}!rtc-\/config.c@{rtc-\/config.c}}
+\subsubsection{\texorpdfstring{RTC\_Table}{RTC\_Table}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct__rtc__tbl}{rtc\+\_\+tbl}} R\+T\+C\+\_\+\+Table\mbox{[}L\+P\+C24\+X\+X\+\_\+\+R\+T\+C\+\_\+\+N\+U\+M\+B\+ER\mbox{]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{  \{}
+\DoxyCodeLine{    .sDeviceName = \textcolor{stringliteral}{"/dev/rtc"},}
+\DoxyCodeLine{    .deviceType = RTC\_CUSTOM,}
+\DoxyCodeLine{    .pDeviceFns = \&lpc24xx\_rtc\_ops,}
+\DoxyCodeLine{    .deviceProbe = lpc24xx\_rtc\_probe,}
+\DoxyCodeLine{    .pDeviceParams = \mbox{\hyperlink{bestcomm__api_8h_a872bb74de61c3689ccd5b41873fce42c}{NULL}},}
+\DoxyCodeLine{    .ulCtrlPort1 = 0,}
+\DoxyCodeLine{    .ulDataPort = 0,}
+\DoxyCodeLine{    .getRegister = \mbox{\hyperlink{bestcomm__api_8h_a872bb74de61c3689ccd5b41873fce42c}{NULL}},}
+\DoxyCodeLine{    .setRegister = \mbox{\hyperlink{bestcomm__api_8h_a872bb74de61c3689ccd5b41873fce42c}{NULL}}}
+\DoxyCodeLine{  \}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Table to describes the rtc device. 
+

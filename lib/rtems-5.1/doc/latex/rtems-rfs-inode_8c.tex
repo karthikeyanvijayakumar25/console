@@ -1,0 +1,297 @@
+\hypertarget{rtems-rfs-inode_8c}{}\section{cpukit/libfs/src/rfs/rtems-\/rfs-\/inode.c File Reference}
+\label{rtems-rfs-inode_8c}\index{cpukit/libfs/src/rfs/rtems-\/rfs-\/inode.c@{cpukit/libfs/src/rfs/rtems-\/rfs-\/inode.c}}
+
+
+R\+T\+E\+MS File Systems Inode Routines.  
+
+
+{\ttfamily \#include $<$inttypes.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/rfs/rtems-\/rfs-\/block.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/rfs/rtems-\/rfs-\/file-\/system.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/rfs/rtems-\/rfs-\/inode.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/rfs/rtems-\/rfs-\/dir.\+h$>$}\newline
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{rtems-rfs-inode_8c_a3debf4c8c9f9149e355abd82a1804e44}{rtems\+\_\+rfs\+\_\+inode\+\_\+alloc}} (\mbox{\hyperlink{struct__rtems__rfs__file__system}{rtems\+\_\+rfs\+\_\+file\+\_\+system}} $\ast$fs, \mbox{\hyperlink{rtems-rfs-bitmaps_8h_acc1b0aefe1b090890ccbc1b05279a78e}{rtems\+\_\+rfs\+\_\+bitmap\+\_\+bit}} goal, \mbox{\hyperlink{rtems-rfs-inode_8h_ae658325c3ff9941f2e68315d20e3c723}{rtems\+\_\+rfs\+\_\+ino}} $\ast$ino)
+\item 
+int \mbox{\hyperlink{rtems-rfs-inode_8c_a644fd4c2be2a40b4d9535d01f3279db2}{rtems\+\_\+rfs\+\_\+inode\+\_\+free}} (\mbox{\hyperlink{struct__rtems__rfs__file__system}{rtems\+\_\+rfs\+\_\+file\+\_\+system}} $\ast$fs, \mbox{\hyperlink{rtems-rfs-inode_8h_ae658325c3ff9941f2e68315d20e3c723}{rtems\+\_\+rfs\+\_\+ino}} ino)
+\item 
+int \mbox{\hyperlink{rtems-rfs-inode_8c_a3eaae78410d715b273bf1323bdd39a94}{rtems\+\_\+rfs\+\_\+inode\+\_\+open}} (\mbox{\hyperlink{struct__rtems__rfs__file__system}{rtems\+\_\+rfs\+\_\+file\+\_\+system}} $\ast$fs, \mbox{\hyperlink{rtems-rfs-inode_8h_ae658325c3ff9941f2e68315d20e3c723}{rtems\+\_\+rfs\+\_\+ino}} ino, \mbox{\hyperlink{rtems-rfs-inode_8h_a91f02dac5a2d91e072d676f3266ab8d2}{rtems\+\_\+rfs\+\_\+inode\+\_\+handle}} $\ast$handle, bool load)
+\item 
+int \mbox{\hyperlink{rtems-rfs-inode_8c_a59a67f021dd8d2257d44145f170afbc4}{rtems\+\_\+rfs\+\_\+inode\+\_\+close}} (\mbox{\hyperlink{struct__rtems__rfs__file__system}{rtems\+\_\+rfs\+\_\+file\+\_\+system}} $\ast$fs, \mbox{\hyperlink{rtems-rfs-inode_8h_a91f02dac5a2d91e072d676f3266ab8d2}{rtems\+\_\+rfs\+\_\+inode\+\_\+handle}} $\ast$handle)
+\item 
+int \mbox{\hyperlink{rtems-rfs-inode_8c_ab22829804234411322af37285e692832}{rtems\+\_\+rfs\+\_\+inode\+\_\+load}} (\mbox{\hyperlink{struct__rtems__rfs__file__system}{rtems\+\_\+rfs\+\_\+file\+\_\+system}} $\ast$fs, \mbox{\hyperlink{rtems-rfs-inode_8h_a91f02dac5a2d91e072d676f3266ab8d2}{rtems\+\_\+rfs\+\_\+inode\+\_\+handle}} $\ast$handle)
+\item 
+int \mbox{\hyperlink{rtems-rfs-inode_8c_abeaf719d26450cda93c1111d93aaadea}{rtems\+\_\+rfs\+\_\+inode\+\_\+unload}} (\mbox{\hyperlink{struct__rtems__rfs__file__system}{rtems\+\_\+rfs\+\_\+file\+\_\+system}} $\ast$fs, \mbox{\hyperlink{rtems-rfs-inode_8h_a91f02dac5a2d91e072d676f3266ab8d2}{rtems\+\_\+rfs\+\_\+inode\+\_\+handle}} $\ast$handle, bool update\+\_\+ctime)
+\item 
+int \mbox{\hyperlink{rtems-rfs-inode_8c_a84fd42caa1f9dada5918fbb1e42c7978}{rtems\+\_\+rfs\+\_\+inode\+\_\+create}} (\mbox{\hyperlink{struct__rtems__rfs__file__system}{rtems\+\_\+rfs\+\_\+file\+\_\+system}} $\ast$fs, \mbox{\hyperlink{rtems-rfs-inode_8h_ae658325c3ff9941f2e68315d20e3c723}{rtems\+\_\+rfs\+\_\+ino}} parent, const char $\ast$name, size\+\_\+t length, uint16\+\_\+t mode, uint16\+\_\+t links, uid\+\_\+t uid, gid\+\_\+t gid, \mbox{\hyperlink{rtems-rfs-inode_8h_ae658325c3ff9941f2e68315d20e3c723}{rtems\+\_\+rfs\+\_\+ino}} $\ast$ino)
+\item 
+int \mbox{\hyperlink{rtems-rfs-inode_8c_a4630b6fa02927ccf6cbe2205824ccc75}{rtems\+\_\+rfs\+\_\+inode\+\_\+delete}} (\mbox{\hyperlink{struct__rtems__rfs__file__system}{rtems\+\_\+rfs\+\_\+file\+\_\+system}} $\ast$fs, \mbox{\hyperlink{rtems-rfs-inode_8h_a91f02dac5a2d91e072d676f3266ab8d2}{rtems\+\_\+rfs\+\_\+inode\+\_\+handle}} $\ast$handle)
+\item 
+int \mbox{\hyperlink{rtems-rfs-inode_8c_a7e3f134bbdf115ba538a228ff34a0bce}{rtems\+\_\+rfs\+\_\+inode\+\_\+initialise}} (\mbox{\hyperlink{rtems-rfs-inode_8h_a91f02dac5a2d91e072d676f3266ab8d2}{rtems\+\_\+rfs\+\_\+inode\+\_\+handle}} $\ast$handle, uint16\+\_\+t links, uint16\+\_\+t mode, uid\+\_\+t uid, gid\+\_\+t gid)
+\item 
+int \mbox{\hyperlink{rtems-rfs-inode_8c_ac67c5e1bc5e79949ac7ed82239c67166}{rtems\+\_\+rfs\+\_\+inode\+\_\+time\+\_\+stamp\+\_\+now}} (\mbox{\hyperlink{rtems-rfs-inode_8h_a91f02dac5a2d91e072d676f3266ab8d2}{rtems\+\_\+rfs\+\_\+inode\+\_\+handle}} $\ast$handle, bool atime, bool mtime)
+\item 
+\mbox{\hyperlink{rtems-rfs-file-system_8h_ae6adc04fe673c46403605d64f16699bd}{rtems\+\_\+rfs\+\_\+pos}} \mbox{\hyperlink{rtems-rfs-inode_8c_ab72a7a18e25bf5450738de33dfd4c832}{rtems\+\_\+rfs\+\_\+inode\+\_\+get\+\_\+size}} (\mbox{\hyperlink{struct__rtems__rfs__file__system}{rtems\+\_\+rfs\+\_\+file\+\_\+system}} $\ast$fs, \mbox{\hyperlink{rtems-rfs-inode_8h_a91f02dac5a2d91e072d676f3266ab8d2}{rtems\+\_\+rfs\+\_\+inode\+\_\+handle}} $\ast$handle)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+R\+T\+E\+MS File Systems Inode Routines. 
+
+These functions manage inodes in the R\+FS file system. An inode is part of a block that reside after the bitmaps in the group. 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{rtems-rfs-inode_8c_a3debf4c8c9f9149e355abd82a1804e44}\label{rtems-rfs-inode_8c_a3debf4c8c9f9149e355abd82a1804e44}} 
+\index{rtems-\/rfs-\/inode.c@{rtems-\/rfs-\/inode.c}!rtems\_rfs\_inode\_alloc@{rtems\_rfs\_inode\_alloc}}
+\index{rtems\_rfs\_inode\_alloc@{rtems\_rfs\_inode\_alloc}!rtems-\/rfs-\/inode.c@{rtems-\/rfs-\/inode.c}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_inode\_alloc()}{rtems\_rfs\_inode\_alloc()}}
+{\footnotesize\ttfamily int rtems\+\_\+rfs\+\_\+inode\+\_\+alloc (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__rtems__rfs__file__system}{rtems\+\_\+rfs\+\_\+file\+\_\+system}} $\ast$}]{fs,  }\item[{\mbox{\hyperlink{rtems-rfs-bitmaps_8h_acc1b0aefe1b090890ccbc1b05279a78e}{rtems\+\_\+rfs\+\_\+bitmap\+\_\+bit}}}]{goal,  }\item[{\mbox{\hyperlink{rtems-rfs-inode_8h_ae658325c3ff9941f2e68315d20e3c723}{rtems\+\_\+rfs\+\_\+ino}} $\ast$}]{ino }\end{DoxyParamCaption})}
+
+Allocate an inode number and return it.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em fs} & is the file system data. \\
+\hline
+\mbox{\texttt{ out}}  & {\em ino} & will contain the ino.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em 0} & Successful operation. \\
+\hline
+{\em error\+\_\+code} & An error occurred. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{rtems-rfs-inode_8c_a59a67f021dd8d2257d44145f170afbc4}\label{rtems-rfs-inode_8c_a59a67f021dd8d2257d44145f170afbc4}} 
+\index{rtems-\/rfs-\/inode.c@{rtems-\/rfs-\/inode.c}!rtems\_rfs\_inode\_close@{rtems\_rfs\_inode\_close}}
+\index{rtems\_rfs\_inode\_close@{rtems\_rfs\_inode\_close}!rtems-\/rfs-\/inode.c@{rtems-\/rfs-\/inode.c}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_inode\_close()}{rtems\_rfs\_inode\_close()}}
+{\footnotesize\ttfamily int rtems\+\_\+rfs\+\_\+inode\+\_\+close (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__rtems__rfs__file__system}{rtems\+\_\+rfs\+\_\+file\+\_\+system}} $\ast$}]{fs,  }\item[{\mbox{\hyperlink{rtems-rfs-inode_8h_a91f02dac5a2d91e072d676f3266ab8d2}{rtems\+\_\+rfs\+\_\+inode\+\_\+handle}} $\ast$}]{handle }\end{DoxyParamCaption})}
+
+The close inode handle. All opened inodes need to be closed.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em fs} & is the file system. \\
+\hline
+\mbox{\texttt{ in}}  & {\em handle} & is the handle to close.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em 0} & Successful operation. \\
+\hline
+{\em error\+\_\+code} & An error occurred. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{rtems-rfs-inode_8c_a84fd42caa1f9dada5918fbb1e42c7978}\label{rtems-rfs-inode_8c_a84fd42caa1f9dada5918fbb1e42c7978}} 
+\index{rtems-\/rfs-\/inode.c@{rtems-\/rfs-\/inode.c}!rtems\_rfs\_inode\_create@{rtems\_rfs\_inode\_create}}
+\index{rtems\_rfs\_inode\_create@{rtems\_rfs\_inode\_create}!rtems-\/rfs-\/inode.c@{rtems-\/rfs-\/inode.c}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_inode\_create()}{rtems\_rfs\_inode\_create()}}
+{\footnotesize\ttfamily int rtems\+\_\+rfs\+\_\+inode\+\_\+create (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__rtems__rfs__file__system}{rtems\+\_\+rfs\+\_\+file\+\_\+system}} $\ast$}]{fs,  }\item[{\mbox{\hyperlink{rtems-rfs-inode_8h_ae658325c3ff9941f2e68315d20e3c723}{rtems\+\_\+rfs\+\_\+ino}}}]{parent,  }\item[{const char $\ast$}]{name,  }\item[{size\+\_\+t}]{length,  }\item[{uint16\+\_\+t}]{mode,  }\item[{uint16\+\_\+t}]{links,  }\item[{uid\+\_\+t}]{uid,  }\item[{gid\+\_\+t}]{gid,  }\item[{\mbox{\hyperlink{rtems-rfs-inode_8h_ae658325c3ff9941f2e68315d20e3c723}{rtems\+\_\+rfs\+\_\+ino}} $\ast$}]{ino }\end{DoxyParamCaption})}
+
+Create an inode allocating, initialising and adding an entry to the parent directory.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em fs} & is the file system data. \\
+\hline
+\mbox{\texttt{ in}}  & {\em parent} & is the parent inode number to add the directory entry to. \\
+\hline
+\mbox{\texttt{ in}}  & {\em name} & is a pointer to the name of the directory entryinode to create. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{rtems-rfs-inode_8c_a4630b6fa02927ccf6cbe2205824ccc75}\label{rtems-rfs-inode_8c_a4630b6fa02927ccf6cbe2205824ccc75}} 
+\index{rtems-\/rfs-\/inode.c@{rtems-\/rfs-\/inode.c}!rtems\_rfs\_inode\_delete@{rtems\_rfs\_inode\_delete}}
+\index{rtems\_rfs\_inode\_delete@{rtems\_rfs\_inode\_delete}!rtems-\/rfs-\/inode.c@{rtems-\/rfs-\/inode.c}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_inode\_delete()}{rtems\_rfs\_inode\_delete()}}
+{\footnotesize\ttfamily int rtems\+\_\+rfs\+\_\+inode\+\_\+delete (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__rtems__rfs__file__system}{rtems\+\_\+rfs\+\_\+file\+\_\+system}} $\ast$}]{fs,  }\item[{\mbox{\hyperlink{rtems-rfs-inode_8h_a91f02dac5a2d91e072d676f3266ab8d2}{rtems\+\_\+rfs\+\_\+inode\+\_\+handle}} $\ast$}]{handle }\end{DoxyParamCaption})}
+
+Delete the inode eraseing it and release the buffer to commit the write. You need to load the inode again if you wish to use it again.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em fs} & is the file system. \\
+\hline
+\mbox{\texttt{ in}}  & {\em handle} & is the inode handle to erase.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em 0} & Successful operation. \\
+\hline
+{\em error\+\_\+code} & An error occurred. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{rtems-rfs-inode_8c_a644fd4c2be2a40b4d9535d01f3279db2}\label{rtems-rfs-inode_8c_a644fd4c2be2a40b4d9535d01f3279db2}} 
+\index{rtems-\/rfs-\/inode.c@{rtems-\/rfs-\/inode.c}!rtems\_rfs\_inode\_free@{rtems\_rfs\_inode\_free}}
+\index{rtems\_rfs\_inode\_free@{rtems\_rfs\_inode\_free}!rtems-\/rfs-\/inode.c@{rtems-\/rfs-\/inode.c}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_inode\_free()}{rtems\_rfs\_inode\_free()}}
+{\footnotesize\ttfamily int rtems\+\_\+rfs\+\_\+inode\+\_\+free (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__rtems__rfs__file__system}{rtems\+\_\+rfs\+\_\+file\+\_\+system}} $\ast$}]{fs,  }\item[{\mbox{\hyperlink{rtems-rfs-inode_8h_ae658325c3ff9941f2e68315d20e3c723}{rtems\+\_\+rfs\+\_\+ino}}}]{ino }\end{DoxyParamCaption})}
+
+Free an inode.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em fs} & is the file system data. \\
+\hline
+\mbox{\texttt{ in}}  & {\em ino} & is the ino too free.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em 0} & Successful operation. \\
+\hline
+{\em error\+\_\+code} & An error occurred. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{rtems-rfs-inode_8c_ab72a7a18e25bf5450738de33dfd4c832}\label{rtems-rfs-inode_8c_ab72a7a18e25bf5450738de33dfd4c832}} 
+\index{rtems-\/rfs-\/inode.c@{rtems-\/rfs-\/inode.c}!rtems\_rfs\_inode\_get\_size@{rtems\_rfs\_inode\_get\_size}}
+\index{rtems\_rfs\_inode\_get\_size@{rtems\_rfs\_inode\_get\_size}!rtems-\/rfs-\/inode.c@{rtems-\/rfs-\/inode.c}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_inode\_get\_size()}{rtems\_rfs\_inode\_get\_size()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{rtems-rfs-file-system_8h_ae6adc04fe673c46403605d64f16699bd}{rtems\+\_\+rfs\+\_\+pos}} rtems\+\_\+rfs\+\_\+inode\+\_\+get\+\_\+size (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__rtems__rfs__file__system}{rtems\+\_\+rfs\+\_\+file\+\_\+system}} $\ast$}]{fs,  }\item[{\mbox{\hyperlink{rtems-rfs-inode_8h_a91f02dac5a2d91e072d676f3266ab8d2}{rtems\+\_\+rfs\+\_\+inode\+\_\+handle}} $\ast$}]{handle }\end{DoxyParamCaption})}
+
+Calculate the size of data attached to the inode.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em fs} & is the file system data. \\
+\hline
+\mbox{\texttt{ in}}  & {\em handle} & is the inode handle.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em size} & The data size in bytes in the block map attched to the inode. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{rtems-rfs-inode_8c_a7e3f134bbdf115ba538a228ff34a0bce}\label{rtems-rfs-inode_8c_a7e3f134bbdf115ba538a228ff34a0bce}} 
+\index{rtems-\/rfs-\/inode.c@{rtems-\/rfs-\/inode.c}!rtems\_rfs\_inode\_initialise@{rtems\_rfs\_inode\_initialise}}
+\index{rtems\_rfs\_inode\_initialise@{rtems\_rfs\_inode\_initialise}!rtems-\/rfs-\/inode.c@{rtems-\/rfs-\/inode.c}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_inode\_initialise()}{rtems\_rfs\_inode\_initialise()}}
+{\footnotesize\ttfamily int rtems\+\_\+rfs\+\_\+inode\+\_\+initialise (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{rtems-rfs-inode_8h_a91f02dac5a2d91e072d676f3266ab8d2}{rtems\+\_\+rfs\+\_\+inode\+\_\+handle}} $\ast$}]{handle,  }\item[{uint16\+\_\+t}]{links,  }\item[{uint16\+\_\+t}]{mode,  }\item[{uid\+\_\+t}]{uid,  }\item[{gid\+\_\+t}]{gid }\end{DoxyParamCaption})}
+
+Initialise a new inode.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em handle} & is the inode handle to initialise. \\
+\hline
+\mbox{\texttt{ in}}  & {\em links} & are the number of links to the inode. \\
+\hline
+\mbox{\texttt{ in}}  & {\em mode} & is the inode mode. \\
+\hline
+\mbox{\texttt{ in}}  & {\em uid} & is the user id. \\
+\hline
+\mbox{\texttt{ in}}  & {\em gid} & is the group id.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em 0} & Successful operation. \\
+\hline
+{\em error\+\_\+code} & An error occurred. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{rtems-rfs-inode_8c_ab22829804234411322af37285e692832}\label{rtems-rfs-inode_8c_ab22829804234411322af37285e692832}} 
+\index{rtems-\/rfs-\/inode.c@{rtems-\/rfs-\/inode.c}!rtems\_rfs\_inode\_load@{rtems\_rfs\_inode\_load}}
+\index{rtems\_rfs\_inode\_load@{rtems\_rfs\_inode\_load}!rtems-\/rfs-\/inode.c@{rtems-\/rfs-\/inode.c}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_inode\_load()}{rtems\_rfs\_inode\_load()}}
+{\footnotesize\ttfamily int rtems\+\_\+rfs\+\_\+inode\+\_\+load (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__rtems__rfs__file__system}{rtems\+\_\+rfs\+\_\+file\+\_\+system}} $\ast$}]{fs,  }\item[{\mbox{\hyperlink{rtems-rfs-inode_8h_a91f02dac5a2d91e072d676f3266ab8d2}{rtems\+\_\+rfs\+\_\+inode\+\_\+handle}} $\ast$}]{handle }\end{DoxyParamCaption})}
+
+Load the inode into memory.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em fs} & is the file system. \\
+\hline
+\mbox{\texttt{ in}}  & {\em handle} & is the inode handle to load.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em 0} & Successful operation. \\
+\hline
+{\em error\+\_\+code} & An error occurred. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{rtems-rfs-inode_8c_a3eaae78410d715b273bf1323bdd39a94}\label{rtems-rfs-inode_8c_a3eaae78410d715b273bf1323bdd39a94}} 
+\index{rtems-\/rfs-\/inode.c@{rtems-\/rfs-\/inode.c}!rtems\_rfs\_inode\_open@{rtems\_rfs\_inode\_open}}
+\index{rtems\_rfs\_inode\_open@{rtems\_rfs\_inode\_open}!rtems-\/rfs-\/inode.c@{rtems-\/rfs-\/inode.c}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_inode\_open()}{rtems\_rfs\_inode\_open()}}
+{\footnotesize\ttfamily int rtems\+\_\+rfs\+\_\+inode\+\_\+open (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__rtems__rfs__file__system}{rtems\+\_\+rfs\+\_\+file\+\_\+system}} $\ast$}]{fs,  }\item[{\mbox{\hyperlink{rtems-rfs-inode_8h_ae658325c3ff9941f2e68315d20e3c723}{rtems\+\_\+rfs\+\_\+ino}}}]{ino,  }\item[{\mbox{\hyperlink{rtems-rfs-inode_8h_a91f02dac5a2d91e072d676f3266ab8d2}{rtems\+\_\+rfs\+\_\+inode\+\_\+handle}} $\ast$}]{handle,  }\item[{bool}]{load }\end{DoxyParamCaption})}
+
+Open the inode handle. This reads the inode into the buffer and sets the data pointer. All data is in media byte order and needs to be accessed via the supporting calls.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em fs} & is the file system. \\
+\hline
+\mbox{\texttt{ in}}  & {\em ino} & is the inode number. \\
+\hline
+\mbox{\texttt{ in}}  & {\em handle} & is the handle to the inode we are opening. \\
+\hline
+\mbox{\texttt{ in}}  & {\em load} & If true load the inode into memory from the media.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em 0} & Successful operation. \\
+\hline
+{\em error\+\_\+code} & An error occurred. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{rtems-rfs-inode_8c_ac67c5e1bc5e79949ac7ed82239c67166}\label{rtems-rfs-inode_8c_ac67c5e1bc5e79949ac7ed82239c67166}} 
+\index{rtems-\/rfs-\/inode.c@{rtems-\/rfs-\/inode.c}!rtems\_rfs\_inode\_time\_stamp\_now@{rtems\_rfs\_inode\_time\_stamp\_now}}
+\index{rtems\_rfs\_inode\_time\_stamp\_now@{rtems\_rfs\_inode\_time\_stamp\_now}!rtems-\/rfs-\/inode.c@{rtems-\/rfs-\/inode.c}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_inode\_time\_stamp\_now()}{rtems\_rfs\_inode\_time\_stamp\_now()}}
+{\footnotesize\ttfamily int rtems\+\_\+rfs\+\_\+inode\+\_\+time\+\_\+stamp\+\_\+now (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{rtems-rfs-inode_8h_a91f02dac5a2d91e072d676f3266ab8d2}{rtems\+\_\+rfs\+\_\+inode\+\_\+handle}} $\ast$}]{handle,  }\item[{bool}]{atime,  }\item[{bool}]{mtime }\end{DoxyParamCaption})}
+
+Time stamp the inode with the current time. The ctime field is hanlded automatically.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em handle} & is the inode handle. \\
+\hline
+\mbox{\texttt{ in}}  & {\em atime} & Update the atime field. \\
+\hline
+\mbox{\texttt{ in}}  & {\em mtime} & U\+Pdate the mtime field.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em 0} & Successful operation. \\
+\hline
+{\em E\+N\+X\+IO} & No inode is loaded. \\
+\hline
+{\em error\+\_\+code} & An error occurred. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{rtems-rfs-inode_8c_abeaf719d26450cda93c1111d93aaadea}\label{rtems-rfs-inode_8c_abeaf719d26450cda93c1111d93aaadea}} 
+\index{rtems-\/rfs-\/inode.c@{rtems-\/rfs-\/inode.c}!rtems\_rfs\_inode\_unload@{rtems\_rfs\_inode\_unload}}
+\index{rtems\_rfs\_inode\_unload@{rtems\_rfs\_inode\_unload}!rtems-\/rfs-\/inode.c@{rtems-\/rfs-\/inode.c}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_inode\_unload()}{rtems\_rfs\_inode\_unload()}}
+{\footnotesize\ttfamily int rtems\+\_\+rfs\+\_\+inode\+\_\+unload (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__rtems__rfs__file__system}{rtems\+\_\+rfs\+\_\+file\+\_\+system}} $\ast$}]{fs,  }\item[{\mbox{\hyperlink{rtems-rfs-inode_8h_a91f02dac5a2d91e072d676f3266ab8d2}{rtems\+\_\+rfs\+\_\+inode\+\_\+handle}} $\ast$}]{handle,  }\item[{bool}]{update\+\_\+ctime }\end{DoxyParamCaption})}
+
+Unload the inode from memory.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em fs} & is the file system. \\
+\hline
+\mbox{\texttt{ in}}  & {\em handle} & is the inode handle to unload. \\
+\hline
+\mbox{\texttt{ in}}  & {\em update\+\_\+ctime} & Update the ctime field of the inode.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em 0} & Successful operation. \\
+\hline
+{\em error\+\_\+code} & An error occurred. \\
+\hline
+\end{DoxyRetVals}

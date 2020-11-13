@@ -1,0 +1,58 @@
+\hypertarget{afe__dma_8c}{}\section{bsps/arm/atsam/contrib/libraries/libchip/source/afe\+\_\+dma.c File Reference}
+\label{afe__dma_8c}\index{bsps/arm/atsam/contrib/libraries/libchip/source/afe\_dma.c@{bsps/arm/atsam/contrib/libraries/libchip/source/afe\_dma.c}}
+{\ttfamily \#include \char`\"{}chip.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}afe\+\_\+dma.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}xdmad.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include $<$assert.\+h$>$}\newline
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{afe__dma_8c_a30193c88f762157145fc43e13dcde338}{Afe\+\_\+\+Configure\+Dma}} (\mbox{\hyperlink{structAfeDma}{Afe\+Dma}} $\ast$p\+Afed, \mbox{\hyperlink{structAfec}{Afec}} $\ast$p\+Afe\+Hw, uint8\+\_\+t Afe\+Id, \mbox{\hyperlink{group__dmad__structs_gaf2c13151514615a6beb35c0d868a5053}{s\+Xdmad}} $\ast$p\+Xdmad)
+\begin{DoxyCompactList}\small\item\em Initializes the \mbox{\hyperlink{structAfeDma}{Afe\+Dma}} structure and the corresponding A\+FE \& D\+MA . hardware select value. The driver will uses D\+MA channel 0 for RX . The D\+MA channels are freed automatically when no D\+MA command processing. \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{afe__dma_8c_a7fc901cb910a6298837d57892790161c}{Afe\+\_\+\+Send\+Data}} (\mbox{\hyperlink{structAfeDma}{Afe\+Dma}} $\ast$p\+Afed, \mbox{\hyperlink{structAfeCmd}{Afe\+Cmd}} $\ast$p\+Command)
+\begin{DoxyCompactList}\small\item\em Starts a A\+FE transfer. This is a non blocking function. It will return as soon as the transfer is started. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{afe__dma_8c_a30193c88f762157145fc43e13dcde338}\label{afe__dma_8c_a30193c88f762157145fc43e13dcde338}} 
+\index{afe\_dma.c@{afe\_dma.c}!Afe\_ConfigureDma@{Afe\_ConfigureDma}}
+\index{Afe\_ConfigureDma@{Afe\_ConfigureDma}!afe\_dma.c@{afe\_dma.c}}
+\subsubsection{\texorpdfstring{Afe\_ConfigureDma()}{Afe\_ConfigureDma()}}
+{\footnotesize\ttfamily uint32\+\_\+t Afe\+\_\+\+Configure\+Dma (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structAfeDma}{Afe\+Dma}} $\ast$}]{p\+Afed,  }\item[{\mbox{\hyperlink{structAfec}{Afec}} $\ast$}]{p\+Afe\+Hw,  }\item[{uint8\+\_\+t}]{Afe\+Id,  }\item[{\mbox{\hyperlink{group__dmad__structs_gaf2c13151514615a6beb35c0d868a5053}{s\+Xdmad}} $\ast$}]{p\+Xdmad }\end{DoxyParamCaption})}
+
+
+
+Initializes the \mbox{\hyperlink{structAfeDma}{Afe\+Dma}} structure and the corresponding A\+FE \& D\+MA . hardware select value. The driver will uses D\+MA channel 0 for RX . The D\+MA channels are freed automatically when no D\+MA command processing. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Afed} & Pointer to a \mbox{\hyperlink{structAfeDma}{Afe\+Dma}} instance. \\
+\hline
+{\em p\+Afe\+Hw} & Associated Afe peripheral. \\
+\hline
+{\em Afe\+Id} & Afe peripheral identifier. \\
+\hline
+{\em p\+Dmad} & Pointer to a Dmad instance. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{afe__dma_8c_a7fc901cb910a6298837d57892790161c}\label{afe__dma_8c_a7fc901cb910a6298837d57892790161c}} 
+\index{afe\_dma.c@{afe\_dma.c}!Afe\_SendData@{Afe\_SendData}}
+\index{Afe\_SendData@{Afe\_SendData}!afe\_dma.c@{afe\_dma.c}}
+\subsubsection{\texorpdfstring{Afe\_SendData()}{Afe\_SendData()}}
+{\footnotesize\ttfamily uint32\+\_\+t Afe\+\_\+\+Send\+Data (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structAfeDma}{Afe\+Dma}} $\ast$}]{p\+Afed,  }\item[{\mbox{\hyperlink{structAfeCmd}{Afe\+Cmd}} $\ast$}]{p\+Command }\end{DoxyParamCaption})}
+
+
+
+Starts a A\+FE transfer. This is a non blocking function. It will return as soon as the transfer is started. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Afed} & Pointer to a \mbox{\hyperlink{structAfeDma}{Afe\+Dma}} instance. \\
+\hline
+{\em p\+Command} & Pointer to the Afe command to execute. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if the transfer has been started successfully; otherwise returns A\+F\+E\+\_\+\+E\+R\+R\+O\+R\+\_\+\+L\+O\+CK is the driver is in use, or A\+F\+E\+\_\+\+E\+R\+R\+OR if the command is not valid. 
+\end{DoxyReturn}

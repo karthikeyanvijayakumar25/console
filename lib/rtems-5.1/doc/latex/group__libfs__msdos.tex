@@ -1,0 +1,619 @@
+\hypertarget{group__libfs__msdos}{}\section{M\+S\+D\+OS File\+System}
+\label{group__libfs__msdos}\index{MSDOS FileSystem@{MSDOS FileSystem}}
+\subsection*{Files}
+\begin{DoxyCompactItemize}
+\item 
+file \mbox{\hyperlink{msdos_8h}{msdos.\+h}}
+\begin{DoxyCompactList}\small\item\em The M\+S\+D\+OS Filesystem Constants/\+Data Structures/\+Prototypes. \end{DoxyCompactList}\item 
+file \mbox{\hyperlink{msdos__conv_8c}{msdos\+\_\+conv.\+c}}
+\begin{DoxyCompactList}\small\item\em M\+D\+OS Date Conversion. \end{DoxyCompactList}\item 
+file \mbox{\hyperlink{msdos__create_8c}{msdos\+\_\+create.\+c}}
+\begin{DoxyCompactList}\small\item\em Create a new M\+S\+D\+OS File\+System node. \end{DoxyCompactList}\item 
+file \mbox{\hyperlink{msdos__dir_8c}{msdos\+\_\+dir.\+c}}
+\begin{DoxyCompactList}\small\item\em M\+S\+D\+OS Directory Handlers Implementation. \end{DoxyCompactList}\item 
+file \mbox{\hyperlink{msdos__free_8c}{msdos\+\_\+free.\+c}}
+\begin{DoxyCompactList}\small\item\em Call Fat-\/\+File Close Routine. \end{DoxyCompactList}\item 
+file \mbox{\hyperlink{msdos__fsunmount_8c}{msdos\+\_\+fsunmount.\+c}}
+\begin{DoxyCompactList}\small\item\em Shut Down M\+S\+D\+OS File\+System. \end{DoxyCompactList}\item 
+file \mbox{\hyperlink{msdos__initsupp_8c}{msdos\+\_\+initsupp.\+c}}
+\begin{DoxyCompactList}\small\item\em M\+S\+D\+OS Filesystem Initialization. \end{DoxyCompactList}\item 
+file \mbox{\hyperlink{msdos__mknod_8c}{msdos\+\_\+mknod.\+c}}
+\begin{DoxyCompactList}\small\item\em Routine for Node Creation in M\+S\+D\+OS Filesystem. \end{DoxyCompactList}\item 
+file \mbox{\hyperlink{msdos__rename_8c}{msdos\+\_\+rename.\+c}}
+\begin{DoxyCompactList}\small\item\em Rename a M\+S\+D\+OS File\+System Node. \end{DoxyCompactList}\item 
+file \mbox{\hyperlink{msdos__rmnod_8c}{msdos\+\_\+rmnod.\+c}}
+\begin{DoxyCompactList}\small\item\em Remove Node from M\+S\+D\+OS Directory. \end{DoxyCompactList}\item 
+file \mbox{\hyperlink{msdos__statvfs_8c}{msdos\+\_\+statvfs.\+c}}
+\begin{DoxyCompactList}\small\item\em Obtain M\+S-\/\+D\+OS filesystem information. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structmsdos__fs__info__s}{msdos\+\_\+fs\+\_\+info\+\_\+s}}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{group__libfs__msdos_gaad37026ea110bd32b58085551a0de997}\label{group__libfs__msdos_gaad37026ea110bd32b58085551a0de997}} 
+\#define {\bfseries M\+S\+D\+O\+S\+\_\+\+N\+A\+M\+E\+\_\+\+N\+O\+T\+\_\+\+F\+O\+U\+N\+D\+\_\+\+E\+RR}~0x7\+D01
+\item 
+\mbox{\Hypertarget{group__libfs__msdos_ga70086e6aa2f55d1041bc7a4e2433f44e}\label{group__libfs__msdos_ga70086e6aa2f55d1041bc7a4e2433f44e}} 
+\#define {\bfseries M\+S\+D\+O\+S\+\_\+\+D\+I\+R\+E\+C\+T\+O\+R\+Y\+\_\+\+E\+N\+T\+R\+Y\+\_\+\+S\+T\+R\+U\+C\+T\+\_\+\+S\+I\+ZE}~32 /$\ast$ 32 bytes $\ast$/
+\item 
+\mbox{\Hypertarget{group__libfs__msdos_ga5cff2b06372e5317de15ce5e8ad8ff07}\label{group__libfs__msdos_ga5cff2b06372e5317de15ce5e8ad8ff07}} 
+\#define {\bfseries M\+S\+D\+O\+S\+\_\+\+D\+I\+R\+\_\+\+N\+A\+ME}(x)~(char     $\ast$)((x) + 0)
+\item 
+\mbox{\Hypertarget{group__libfs__msdos_ga9afb6cb315d9208ea1e5c3c140616a77}\label{group__libfs__msdos_ga9afb6cb315d9208ea1e5c3c140616a77}} 
+\#define {\bfseries M\+S\+D\+O\+S\+\_\+\+D\+I\+R\+\_\+\+E\+N\+T\+R\+Y\+\_\+\+T\+Y\+PE}(x)~(uint8\+\_\+t  $\ast$)((x) + 0)
+\item 
+\mbox{\Hypertarget{group__libfs__msdos_ga8b6a38b5143168086a77d185ebbc9b10}\label{group__libfs__msdos_ga8b6a38b5143168086a77d185ebbc9b10}} 
+\#define {\bfseries M\+S\+D\+O\+S\+\_\+\+D\+I\+R\+\_\+\+A\+T\+TR}(x)~(uint8\+\_\+t  $\ast$)((x) + 11)
+\item 
+\mbox{\Hypertarget{group__libfs__msdos_ga71393649e9d2b5d5ed7862036c23ec70}\label{group__libfs__msdos_ga71393649e9d2b5d5ed7862036c23ec70}} 
+\#define {\bfseries M\+S\+D\+O\+S\+\_\+\+D\+I\+R\+\_\+\+N\+T\+\_\+\+R\+ES}(x)~(uint8\+\_\+t  $\ast$)((x) + 12)
+\item 
+\mbox{\Hypertarget{group__libfs__msdos_gad8c658c6a3c0d6429b959a9d5587ac2d}\label{group__libfs__msdos_gad8c658c6a3c0d6429b959a9d5587ac2d}} 
+\#define {\bfseries M\+S\+D\+O\+S\+\_\+\+D\+I\+R\+\_\+\+L\+F\+N\+\_\+\+C\+H\+E\+C\+K\+S\+UM}(x)~(uint8\+\_\+t  $\ast$)((x) + 13)
+\item 
+\mbox{\Hypertarget{group__libfs__msdos_ga467f2394b4e036389f898fe1ff9fb530}\label{group__libfs__msdos_ga467f2394b4e036389f898fe1ff9fb530}} 
+\#define {\bfseries M\+S\+D\+O\+S\+\_\+\+D\+I\+R\+\_\+\+C\+R\+T\+\_\+\+T\+I\+M\+E\+\_\+\+T\+E\+N\+TH}(x)~(uint8\+\_\+t  $\ast$)((x) + 13)
+\item 
+\mbox{\Hypertarget{group__libfs__msdos_gaf43a4d2b8be38f25379c784fc7053f5b}\label{group__libfs__msdos_gaf43a4d2b8be38f25379c784fc7053f5b}} 
+\#define {\bfseries M\+S\+D\+O\+S\+\_\+\+D\+I\+R\+\_\+\+C\+R\+T\+\_\+\+T\+I\+ME}(x)~(uint16\+\_\+t $\ast$)((x) + 14)
+\item 
+\mbox{\Hypertarget{group__libfs__msdos_ga4ed6ae43d5ed2b7dc7f8efc8dca1d391}\label{group__libfs__msdos_ga4ed6ae43d5ed2b7dc7f8efc8dca1d391}} 
+\#define {\bfseries M\+S\+D\+O\+S\+\_\+\+D\+I\+R\+\_\+\+C\+R\+T\+\_\+\+D\+A\+TE}(x)~(uint16\+\_\+t $\ast$)((x) + 16)
+\item 
+\mbox{\Hypertarget{group__libfs__msdos_gaa9497c6001bdca68e888a10cb5211580}\label{group__libfs__msdos_gaa9497c6001bdca68e888a10cb5211580}} 
+\#define {\bfseries M\+S\+D\+O\+S\+\_\+\+D\+I\+R\+\_\+\+L\+A\+S\+T\+\_\+\+A\+C\+C\+E\+S\+S\+\_\+\+D\+A\+TE}(x)~(uint16\+\_\+t $\ast$)((x) + 18)
+\item 
+\mbox{\Hypertarget{group__libfs__msdos_ga628068a195851e87dae00cb22ae42910}\label{group__libfs__msdos_ga628068a195851e87dae00cb22ae42910}} 
+\#define {\bfseries M\+S\+D\+O\+S\+\_\+\+D\+I\+R\+\_\+\+F\+I\+R\+S\+T\+\_\+\+C\+L\+U\+S\+T\+E\+R\+\_\+\+HI}(x)~(uint16\+\_\+t $\ast$)((x) + 20)
+\item 
+\mbox{\Hypertarget{group__libfs__msdos_ga6f7f7f9d2fb2b244a57cc83b2275bccf}\label{group__libfs__msdos_ga6f7f7f9d2fb2b244a57cc83b2275bccf}} 
+\#define {\bfseries M\+S\+D\+O\+S\+\_\+\+D\+I\+R\+\_\+\+W\+R\+I\+T\+E\+\_\+\+T\+I\+ME}(x)~(uint16\+\_\+t $\ast$)((x) + 22)
+\item 
+\mbox{\Hypertarget{group__libfs__msdos_ga66584b5c68469200620486f34c2211c3}\label{group__libfs__msdos_ga66584b5c68469200620486f34c2211c3}} 
+\#define {\bfseries M\+S\+D\+O\+S\+\_\+\+D\+I\+R\+\_\+\+W\+R\+I\+T\+E\+\_\+\+D\+A\+TE}(x)~(uint16\+\_\+t $\ast$)((x) + 24)
+\item 
+\mbox{\Hypertarget{group__libfs__msdos_ga7113cd28188d2a5acff439b2127715d4}\label{group__libfs__msdos_ga7113cd28188d2a5acff439b2127715d4}} 
+\#define {\bfseries M\+S\+D\+O\+S\+\_\+\+D\+I\+R\+\_\+\+F\+I\+R\+S\+T\+\_\+\+C\+L\+U\+S\+T\+E\+R\+\_\+\+L\+OW}(x)~(uint16\+\_\+t $\ast$)((x) + 26)
+\item 
+\mbox{\Hypertarget{group__libfs__msdos_ga4877020a5e4cb5c8314d5309b3482fbb}\label{group__libfs__msdos_ga4877020a5e4cb5c8314d5309b3482fbb}} 
+\#define {\bfseries M\+S\+D\+O\+S\+\_\+\+D\+I\+R\+\_\+\+F\+I\+L\+E\+\_\+\+S\+I\+ZE}(x)~(uint32\+\_\+t $\ast$)((x) + 28)
+\item 
+\#define {\bfseries M\+S\+D\+O\+S\+\_\+\+E\+X\+T\+R\+A\+C\+T\+\_\+\+C\+L\+U\+S\+T\+E\+R\+\_\+\+N\+UM}(\mbox{\hyperlink{sun4u_2tte_8h_a27952ffc298d15b4fc0e7ee6b2a044ac}{p}})
+\item 
+\mbox{\Hypertarget{group__libfs__msdos_gaded0a5ddf9e53de8cdf08aba7f631a4b}\label{group__libfs__msdos_gaded0a5ddf9e53de8cdf08aba7f631a4b}} 
+\#define {\bfseries M\+S\+D\+O\+S\+\_\+\+F\+I\+L\+E\+\_\+\+S\+I\+Z\+E\+\_\+\+O\+F\+F\+S\+ET}~28
+\item 
+\mbox{\Hypertarget{group__libfs__msdos_gabe35c391d111366a2b8cd8a256b8599b}\label{group__libfs__msdos_gabe35c391d111366a2b8cd8a256b8599b}} 
+\#define {\bfseries M\+S\+D\+O\+S\+\_\+\+F\+I\+L\+E\+\_\+\+N\+A\+M\+E\+\_\+\+O\+F\+F\+S\+ET}~0
+\item 
+\mbox{\Hypertarget{group__libfs__msdos_ga7ff0b7f7ead8a3405360f06e9fecd139}\label{group__libfs__msdos_ga7ff0b7f7ead8a3405360f06e9fecd139}} 
+\#define {\bfseries M\+S\+D\+O\+S\+\_\+\+F\+I\+R\+S\+T\+\_\+\+C\+L\+U\+S\+T\+E\+R\+\_\+\+H\+I\+\_\+\+O\+F\+F\+S\+ET}~20
+\item 
+\mbox{\Hypertarget{group__libfs__msdos_gae9e55e8f5b225266703e1cc7335acb75}\label{group__libfs__msdos_gae9e55e8f5b225266703e1cc7335acb75}} 
+\#define {\bfseries M\+S\+D\+O\+S\+\_\+\+F\+I\+R\+S\+T\+\_\+\+C\+L\+U\+S\+T\+E\+R\+\_\+\+L\+O\+W\+\_\+\+O\+F\+F\+S\+ET}~26
+\item 
+\mbox{\Hypertarget{group__libfs__msdos_ga0f9b8cb3067ca3772c92e42beb7f18a2}\label{group__libfs__msdos_ga0f9b8cb3067ca3772c92e42beb7f18a2}} 
+\#define {\bfseries M\+S\+D\+O\+S\+\_\+\+F\+I\+L\+E\+\_\+\+W\+D\+A\+T\+E\+\_\+\+O\+F\+F\+S\+ET}~24
+\item 
+\mbox{\Hypertarget{group__libfs__msdos_gad28600705bd30ac9fcc45302d3071283}\label{group__libfs__msdos_gad28600705bd30ac9fcc45302d3071283}} 
+\#define {\bfseries M\+S\+D\+O\+S\+\_\+\+F\+I\+L\+E\+\_\+\+W\+T\+I\+M\+E\+\_\+\+O\+F\+F\+S\+ET}~22
+\item 
+\mbox{\Hypertarget{group__libfs__msdos_ga570051d6e10260f49dbe0f8c6e1ae9c8}\label{group__libfs__msdos_ga570051d6e10260f49dbe0f8c6e1ae9c8}} 
+\#define {\bfseries M\+S\+D\+O\+S\+\_\+\+F\+I\+L\+E\+\_\+\+A\+D\+A\+T\+E\+\_\+\+O\+F\+F\+S\+ET}~18
+\item 
+\mbox{\Hypertarget{group__libfs__msdos_gaad55c4a3b263443efab9778fe144cdb4}\label{group__libfs__msdos_gaad55c4a3b263443efab9778fe144cdb4}} 
+\#define {\bfseries M\+S\+D\+O\+S\+\_\+\+F\+I\+L\+E\+\_\+\+C\+D\+A\+T\+E\+\_\+\+O\+F\+F\+S\+ET}~16
+\item 
+\mbox{\Hypertarget{group__libfs__msdos_gabdbb7496eb891d654d72c5152abfb8ab}\label{group__libfs__msdos_gabdbb7496eb891d654d72c5152abfb8ab}} 
+\#define {\bfseries M\+S\+D\+O\+S\+\_\+\+F\+I\+L\+E\+\_\+\+C\+T\+I\+M\+E\+\_\+\+O\+F\+F\+S\+ET}~14
+\item 
+\mbox{\Hypertarget{group__libfs__msdos_ga1da79f8ab9a85f4c7ee130eac7ee9339}\label{group__libfs__msdos_ga1da79f8ab9a85f4c7ee130eac7ee9339}} 
+\#define {\bfseries M\+S\+D\+O\+S\+\_\+\+A\+T\+T\+R\+\_\+\+R\+E\+A\+D\+\_\+\+O\+N\+LY}~0x01
+\item 
+\mbox{\Hypertarget{group__libfs__msdos_ga3f236cf0b63e3f0d300daf6ea3bc688d}\label{group__libfs__msdos_ga3f236cf0b63e3f0d300daf6ea3bc688d}} 
+\#define {\bfseries M\+S\+D\+O\+S\+\_\+\+A\+T\+T\+R\+\_\+\+H\+I\+D\+D\+EN}~0x02
+\item 
+\mbox{\Hypertarget{group__libfs__msdos_ga8db299c188ab86a1c535efcafbb89099}\label{group__libfs__msdos_ga8db299c188ab86a1c535efcafbb89099}} 
+\#define {\bfseries M\+S\+D\+O\+S\+\_\+\+A\+T\+T\+R\+\_\+\+S\+Y\+S\+T\+EM}~0x04
+\item 
+\mbox{\Hypertarget{group__libfs__msdos_gae15ea95134a2db037278a29dd4f962f4}\label{group__libfs__msdos_gae15ea95134a2db037278a29dd4f962f4}} 
+\#define {\bfseries M\+S\+D\+O\+S\+\_\+\+A\+T\+T\+R\+\_\+\+V\+O\+L\+U\+M\+E\+\_\+\+ID}~0x08
+\item 
+\mbox{\Hypertarget{group__libfs__msdos_ga951d651838347595cd0cf6784cc7eca8}\label{group__libfs__msdos_ga951d651838347595cd0cf6784cc7eca8}} 
+\#define {\bfseries M\+S\+D\+O\+S\+\_\+\+A\+T\+T\+R\+\_\+\+D\+I\+R\+E\+C\+T\+O\+RY}~0x10
+\item 
+\mbox{\Hypertarget{group__libfs__msdos_gaea6c651350da91f1112f9ef472eba5af}\label{group__libfs__msdos_gaea6c651350da91f1112f9ef472eba5af}} 
+\#define {\bfseries M\+S\+D\+O\+S\+\_\+\+A\+T\+T\+R\+\_\+\+A\+R\+C\+H\+I\+VE}~0x20
+\item 
+\#define {\bfseries M\+S\+D\+O\+S\+\_\+\+A\+T\+T\+R\+\_\+\+L\+FN}
+\item 
+\#define {\bfseries M\+S\+D\+O\+S\+\_\+\+A\+T\+T\+R\+\_\+\+L\+F\+N\+\_\+\+M\+A\+SK}
+\item 
+\mbox{\Hypertarget{group__libfs__msdos_ga5f7c7d1fa3066889d4f23b799a3a5d31}\label{group__libfs__msdos_ga5f7c7d1fa3066889d4f23b799a3a5d31}} 
+\#define {\bfseries M\+S\+D\+O\+S\+\_\+\+L\+A\+S\+T\+\_\+\+L\+O\+N\+G\+\_\+\+E\+N\+T\+RY}~0x40
+\item 
+\mbox{\Hypertarget{group__libfs__msdos_gabbceae9e95096950a6c7c88212565651}\label{group__libfs__msdos_gabbceae9e95096950a6c7c88212565651}} 
+\#define {\bfseries M\+S\+D\+O\+S\+\_\+\+L\+A\+S\+T\+\_\+\+L\+O\+N\+G\+\_\+\+E\+N\+T\+R\+Y\+\_\+\+M\+A\+SK}~0x3F
+\item 
+\mbox{\Hypertarget{group__libfs__msdos_gad5988938352b7d2c787f3577fcb6df61}\label{group__libfs__msdos_gad5988938352b7d2c787f3577fcb6df61}} 
+\#define {\bfseries M\+S\+D\+O\+S\+\_\+\+D\+T\+\_\+2\+S\+E\+C\+O\+N\+D\+S\+\_\+\+M\+A\+SK}~0x1\+F    /$\ast$ seconds divided by 2 $\ast$/
+\item 
+\mbox{\Hypertarget{group__libfs__msdos_gabac2796e3b660ead4a33b23ba265ce22}\label{group__libfs__msdos_gabac2796e3b660ead4a33b23ba265ce22}} 
+\#define {\bfseries M\+S\+D\+O\+S\+\_\+\+D\+T\+\_\+2\+S\+E\+C\+O\+N\+D\+S\+\_\+\+S\+H\+I\+FT}~0
+\item 
+\mbox{\Hypertarget{group__libfs__msdos_ga11f183560022851924941342177be1e8}\label{group__libfs__msdos_ga11f183560022851924941342177be1e8}} 
+\#define {\bfseries M\+S\+D\+O\+S\+\_\+\+D\+T\+\_\+\+M\+I\+N\+U\+T\+E\+S\+\_\+\+M\+A\+SK}~0x7\+E0   /$\ast$ minutes $\ast$/
+\item 
+\mbox{\Hypertarget{group__libfs__msdos_ga69ce9c881177614237e8193a6c1c1d88}\label{group__libfs__msdos_ga69ce9c881177614237e8193a6c1c1d88}} 
+\#define {\bfseries M\+S\+D\+O\+S\+\_\+\+D\+T\+\_\+\+M\+I\+N\+U\+T\+E\+S\+\_\+\+S\+H\+I\+FT}~5
+\item 
+\mbox{\Hypertarget{group__libfs__msdos_gadcea95b93bbc3b5345711b19dc90758e}\label{group__libfs__msdos_gadcea95b93bbc3b5345711b19dc90758e}} 
+\#define {\bfseries M\+S\+D\+O\+S\+\_\+\+D\+T\+\_\+\+H\+O\+U\+R\+S\+\_\+\+M\+A\+SK}~0x\+F800  /$\ast$ hours $\ast$/
+\item 
+\mbox{\Hypertarget{group__libfs__msdos_ga354674c528b132811ab4fbb64c8bc038}\label{group__libfs__msdos_ga354674c528b132811ab4fbb64c8bc038}} 
+\#define {\bfseries M\+S\+D\+O\+S\+\_\+\+D\+T\+\_\+\+H\+O\+U\+R\+S\+\_\+\+S\+H\+I\+FT}~11
+\item 
+\mbox{\Hypertarget{group__libfs__msdos_ga3316a9374b66c9ed723a70a053d8fd58}\label{group__libfs__msdos_ga3316a9374b66c9ed723a70a053d8fd58}} 
+\#define {\bfseries M\+S\+D\+O\+S\+\_\+\+D\+D\+\_\+\+D\+A\+Y\+\_\+\+M\+A\+SK}~0x1\+F    /$\ast$ day of month $\ast$/
+\item 
+\mbox{\Hypertarget{group__libfs__msdos_ga26bbee6fb037d171465cadb8c611c97b}\label{group__libfs__msdos_ga26bbee6fb037d171465cadb8c611c97b}} 
+\#define {\bfseries M\+S\+D\+O\+S\+\_\+\+D\+D\+\_\+\+D\+A\+Y\+\_\+\+S\+H\+I\+FT}~0
+\item 
+\mbox{\Hypertarget{group__libfs__msdos_ga2fe99fc38a97a6d381c3d17dc0ae42eb}\label{group__libfs__msdos_ga2fe99fc38a97a6d381c3d17dc0ae42eb}} 
+\#define {\bfseries M\+S\+D\+O\+S\+\_\+\+D\+D\+\_\+\+M\+O\+N\+T\+H\+\_\+\+M\+A\+SK}~0x1\+E0   /$\ast$ month $\ast$/
+\item 
+\mbox{\Hypertarget{group__libfs__msdos_gaff82ed9a935295375dc0a042a138295c}\label{group__libfs__msdos_gaff82ed9a935295375dc0a042a138295c}} 
+\#define {\bfseries M\+S\+D\+O\+S\+\_\+\+D\+D\+\_\+\+M\+O\+N\+T\+H\+\_\+\+S\+H\+I\+FT}~5
+\item 
+\mbox{\Hypertarget{group__libfs__msdos_ga46de8a9ba3171029520c5d9230b413a9}\label{group__libfs__msdos_ga46de8a9ba3171029520c5d9230b413a9}} 
+\#define {\bfseries M\+S\+D\+O\+S\+\_\+\+D\+D\+\_\+\+Y\+E\+A\+R\+\_\+\+M\+A\+SK}~0x\+F\+E00  /$\ast$ year -\/ 1980 $\ast$/
+\item 
+\mbox{\Hypertarget{group__libfs__msdos_ga5918d41792cb1ca36fa15bf73b886bbd}\label{group__libfs__msdos_ga5918d41792cb1ca36fa15bf73b886bbd}} 
+\#define {\bfseries M\+S\+D\+O\+S\+\_\+\+D\+D\+\_\+\+Y\+E\+A\+R\+\_\+\+S\+H\+I\+FT}~9
+\item 
+\mbox{\Hypertarget{group__libfs__msdos_gaefd6f76828feb1f5c476f9d674aca179}\label{group__libfs__msdos_gaefd6f76828feb1f5c476f9d674aca179}} 
+\#define {\bfseries M\+S\+D\+O\+S\+\_\+\+T\+H\+I\+S\+\_\+\+D\+I\+R\+\_\+\+E\+N\+T\+R\+Y\+\_\+\+E\+M\+P\+TY}~0x\+E5
+\item 
+\mbox{\Hypertarget{group__libfs__msdos_ga08006a6642ca4f1161eb43d76754f2d3}\label{group__libfs__msdos_ga08006a6642ca4f1161eb43d76754f2d3}} 
+\#define {\bfseries M\+S\+D\+O\+S\+\_\+\+T\+H\+I\+S\+\_\+\+D\+I\+R\+\_\+\+E\+N\+T\+R\+Y\+\_\+\+A\+N\+D\+\_\+\+R\+E\+S\+T\+\_\+\+E\+M\+P\+TY}~0x00
+\item 
+\mbox{\Hypertarget{group__libfs__msdos_gad2ade12f9606b945f66262465fc4611a}\label{group__libfs__msdos_gad2ade12f9606b945f66262465fc4611a}} 
+\#define {\bfseries M\+S\+D\+O\+S\+\_\+\+L\+F\+N\+\_\+\+L\+E\+N\+\_\+\+P\+E\+R\+\_\+\+E\+N\+T\+RY}~(13)
+\item 
+\mbox{\Hypertarget{group__libfs__msdos_ga43ecb79b330c3cc79cb2759ee7b9d44d}\label{group__libfs__msdos_ga43ecb79b330c3cc79cb2759ee7b9d44d}} 
+\#define {\bfseries M\+S\+D\+O\+S\+\_\+\+N\+A\+M\+E\+\_\+\+M\+A\+X\+\_\+\+U\+T\+F8\+\_\+\+B\+Y\+T\+E\+S\+\_\+\+P\+E\+R\+\_\+\+C\+H\+AR}~4
+\item 
+\mbox{\Hypertarget{group__libfs__msdos_ga960e40ea7c62b0439fadb8e9bf368acb}\label{group__libfs__msdos_ga960e40ea7c62b0439fadb8e9bf368acb}} 
+\#define {\bfseries M\+S\+D\+O\+S\+\_\+\+N\+A\+M\+E\+\_\+\+M\+I\+N\+\_\+\+U\+T\+F8\+\_\+\+B\+Y\+T\+E\+S\+\_\+\+P\+E\+R\+\_\+\+C\+H\+AR}~1
+\item 
+\mbox{\Hypertarget{group__libfs__msdos_ga31fc2b031401ca743062948a1706d4e7}\label{group__libfs__msdos_ga31fc2b031401ca743062948a1706d4e7}} 
+\#define {\bfseries M\+S\+D\+O\+S\+\_\+\+S\+H\+O\+R\+T\+\_\+\+B\+A\+S\+E\+\_\+\+L\+EN}~8  /$\ast$ 8 characters $\ast$/
+\item 
+\mbox{\Hypertarget{group__libfs__msdos_ga93f19ad2f88c7577f0db8b7003d68d93}\label{group__libfs__msdos_ga93f19ad2f88c7577f0db8b7003d68d93}} 
+\#define {\bfseries M\+S\+D\+O\+S\+\_\+\+S\+H\+O\+R\+T\+\_\+\+E\+X\+T\+\_\+\+L\+EN}~3  /$\ast$ 3 characters $\ast$/
+\item 
+\#define {\bfseries M\+S\+D\+O\+S\+\_\+\+S\+H\+O\+R\+T\+\_\+\+N\+A\+M\+E\+\_\+\+L\+EN}
+\item 
+\mbox{\Hypertarget{group__libfs__msdos_ga8312a2eec667d577d540439fc00dba6f}\label{group__libfs__msdos_ga8312a2eec667d577d540439fc00dba6f}} 
+\#define {\bfseries M\+S\+D\+O\+S\+\_\+\+N\+A\+M\+E\+\_\+\+M\+A\+X\+\_\+\+L\+N\+F\+\_\+\+L\+EN}~(255)
+\item 
+\mbox{\Hypertarget{group__libfs__msdos_gae0ffc6a8962922624d758593497398bf}\label{group__libfs__msdos_gae0ffc6a8962922624d758593497398bf}} 
+\#define {\bfseries M\+S\+D\+O\+S\+\_\+\+N\+A\+M\+E\+\_\+\+M\+AX}~M\+S\+D\+O\+S\+\_\+\+S\+H\+O\+R\+T\+\_\+\+N\+A\+M\+E\+\_\+\+L\+EN
+\item 
+\#define {\bfseries M\+S\+D\+O\+S\+\_\+\+N\+A\+M\+E\+\_\+\+M\+A\+X\+\_\+\+U\+T\+F8\+\_\+\+S\+F\+N\+\_\+\+B\+Y\+T\+ES}
+\item 
+\mbox{\Hypertarget{group__libfs__msdos_gae4932b30b80186de749db45077de283f}\label{group__libfs__msdos_gae4932b30b80186de749db45077de283f}} 
+\#define {\bfseries M\+S\+D\+O\+S\+\_\+\+N\+A\+M\+E\+\_\+\+M\+A\+X\+\_\+\+W\+I\+T\+H\+\_\+\+D\+OT}~(M\+S\+D\+O\+S\+\_\+\+N\+A\+M\+E\+\_\+\+M\+AX + 1)
+\item 
+\#define {\bfseries M\+S\+D\+O\+S\+\_\+\+S\+F\+N\+\_\+\+M\+A\+X\+\_\+\+W\+I\+T\+H\+\_\+\+D\+O\+T\+\_\+\+U\+T\+F8\+\_\+\+B\+Y\+T\+ES}
+\item 
+\mbox{\Hypertarget{group__libfs__msdos_gaf960ba68111f252a1c0d899f1d1e27e0}\label{group__libfs__msdos_gaf960ba68111f252a1c0d899f1d1e27e0}} 
+\#define {\bfseries M\+S\+D\+O\+S\+\_\+\+N\+A\+M\+E\+\_\+\+M\+A\+X\+\_\+\+L\+F\+N\+\_\+\+W\+I\+T\+H\+\_\+\+D\+OT}~(260)
+\item 
+\mbox{\Hypertarget{group__libfs__msdos_ga895fdff1f0e91eb90a2239a8c2a0d6ee}\label{group__libfs__msdos_ga895fdff1f0e91eb90a2239a8c2a0d6ee}} 
+\#define {\bfseries M\+S\+D\+O\+S\+\_\+\+N\+A\+M\+E\+\_\+\+L\+F\+N\+\_\+\+B\+Y\+T\+E\+S\+\_\+\+P\+E\+R\+\_\+\+C\+H\+AR}~(2)
+\item 
+\#define {\bfseries M\+S\+D\+O\+S\+\_\+\+N\+A\+M\+E\+\_\+\+M\+A\+X\+\_\+\+L\+F\+N\+\_\+\+B\+Y\+T\+ES}
+\item 
+\#define {\bfseries M\+S\+D\+O\+S\+\_\+\+N\+A\+M\+E\+\_\+\+M\+A\+X\+\_\+\+U\+T\+F8\+\_\+\+L\+F\+N\+\_\+\+B\+Y\+T\+ES}
+\item 
+\#define {\bfseries M\+S\+D\+O\+S\+\_\+\+E\+N\+T\+R\+Y\+\_\+\+L\+F\+N\+\_\+\+U\+T\+F8\+\_\+\+B\+Y\+T\+ES}
+\item 
+\mbox{\Hypertarget{group__libfs__msdos_ga867c36f0ff47be1b6769a9f10ae51e18}\label{group__libfs__msdos_ga867c36f0ff47be1b6769a9f10ae51e18}} 
+\#define {\bfseries M\+S\+D\+O\+S\+\_\+\+R\+E\+S\+\_\+\+N\+T\+\_\+\+V\+A\+L\+UE}~0x00
+\item 
+\mbox{\Hypertarget{group__libfs__msdos_gaadafb99dbe8b7a7552298f5f17ff5f77}\label{group__libfs__msdos_gaadafb99dbe8b7a7552298f5f17ff5f77}} 
+\#define {\bfseries M\+S\+D\+O\+S\+\_\+\+I\+N\+I\+T\+\_\+\+D\+I\+R\+\_\+\+S\+I\+ZE}~0x00
+\item 
+\mbox{\Hypertarget{group__libfs__msdos_ga82c296911b7b12e3297c0acb31699965}\label{group__libfs__msdos_ga82c296911b7b12e3297c0acb31699965}} 
+\#define {\bfseries M\+S\+D\+O\+S\+\_\+\+D\+O\+T\+\_\+\+D\+I\+R\+\_\+\+E\+N\+T\+R\+Y\+\_\+\+O\+F\+F\+S\+ET}~0x00 /$\ast$ first entry in directory $\ast$/
+\item 
+\mbox{\Hypertarget{group__libfs__msdos_ga46681284a514d60b0c5517b5e43497c7}\label{group__libfs__msdos_ga46681284a514d60b0c5517b5e43497c7}} 
+\#define {\bfseries M\+S\+D\+O\+S\+\_\+\+D\+O\+T\+D\+O\+T\+\_\+\+D\+I\+R\+\_\+\+E\+N\+T\+R\+Y\+\_\+\+O\+F\+F\+S\+ET}~0x20 /$\ast$ second entry in directory $\ast$/
+\item 
+\mbox{\Hypertarget{group__libfs__msdos_ga7008ccebb0362432b88625d40d90246a}\label{group__libfs__msdos_ga7008ccebb0362432b88625d40d90246a}} 
+\#define {\bfseries D\+O\+T\+\_\+\+N\+O\+D\+E\+\_\+P}(\mbox{\hyperlink{sun4u_2tte_8h_a27952ffc298d15b4fc0e7ee6b2a044ac}{p}})~((char $\ast$)(\mbox{\hyperlink{sun4u_2tte_8h_a27952ffc298d15b4fc0e7ee6b2a044ac}{p}}))
+\item 
+\mbox{\Hypertarget{group__libfs__msdos_ga313499314e9771b4d129e016fc2c5500}\label{group__libfs__msdos_ga313499314e9771b4d129e016fc2c5500}} 
+\#define {\bfseries D\+O\+T\+D\+O\+T\+\_\+\+N\+O\+D\+E\+\_\+P}(\mbox{\hyperlink{sun4u_2tte_8h_a27952ffc298d15b4fc0e7ee6b2a044ac}{p}})~((char $\ast$)((\mbox{\hyperlink{sun4u_2tte_8h_a27952ffc298d15b4fc0e7ee6b2a044ac}{p}}) + M\+S\+D\+O\+S\+\_\+\+D\+I\+R\+E\+C\+T\+O\+R\+Y\+\_\+\+E\+N\+T\+R\+Y\+\_\+\+S\+T\+R\+U\+C\+T\+\_\+\+S\+I\+ZE))
+\item 
+\mbox{\Hypertarget{group__libfs__msdos_ga0514d040157aac28638dc935b15eb2bd}\label{group__libfs__msdos_ga0514d040157aac28638dc935b15eb2bd}} 
+\#define {\bfseries M\+S\+D\+O\+S\+\_\+\+M\+A\+X\+\_\+\+D\+I\+R\+\_\+\+L\+E\+N\+G\+TH}~0x200000   /$\ast$ 2,097,152 bytes $\ast$/
+\item 
+\mbox{\Hypertarget{group__libfs__msdos_gaba1909e643bab200cacf950cced01e69}\label{group__libfs__msdos_gaba1909e643bab200cacf950cced01e69}} 
+\#define {\bfseries M\+S\+D\+O\+S\+\_\+\+M\+A\+X\+\_\+\+F\+I\+L\+E\+\_\+\+S\+I\+ZE}~0x\+F\+F\+F\+F\+F\+F\+F\+F /$\ast$ 4 Gb $\ast$/
+\item 
+\mbox{\Hypertarget{group__libfs__msdos_gaaf3d2886b934112bc0e8b2f04022a767}\label{group__libfs__msdos_gaaf3d2886b934112bc0e8b2f04022a767}} 
+\#define {\bfseries M\+S\+D\+O\+S\+\_\+\+D\+P\+S512\+\_\+\+N\+UM}~16
+\item 
+\#define \mbox{\hyperlink{group__libfs__msdos_ga25647556e5128764fc5f155257e9aa64}{\+\_\+\+\_\+need\+\_\+getopt\+\_\+newlib}}
+\begin{DoxyCompactList}\small\item\em Obtain M\+S-\/\+D\+OS filesystem information. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{group__libfs__msdos_gadc8dca0c5156055bfb252b66575b5d97}\label{group__libfs__msdos_gadc8dca0c5156055bfb252b66575b5d97}} 
+typedef struct \mbox{\hyperlink{structmsdos__fs__info__s}{msdos\+\_\+fs\+\_\+info\+\_\+s}} {\bfseries msdos\+\_\+fs\+\_\+info\+\_\+t}
+\item 
+\mbox{\Hypertarget{group__libfs__msdos_ga2d7a24bac5bd0a80d6e644f983340866}\label{group__libfs__msdos_ga2d7a24bac5bd0a80d6e644f983340866}} 
+typedef enum msdos\+\_\+name\+\_\+types\+\_\+e {\bfseries msdos\+\_\+name\+\_\+type\+\_\+t}
+\item 
+\mbox{\Hypertarget{group__libfs__msdos_ga507c1c38af35ed9ca41d4558a51827ec}\label{group__libfs__msdos_ga507c1c38af35ed9ca41d4558a51827ec}} 
+typedef enum msdos\+\_\+token\+\_\+types\+\_\+e {\bfseries msdos\+\_\+token\+\_\+types\+\_\+t}
+\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{group__libfs__msdos_gae7b955639ba78aeac356ca8803ad79f8}\label{group__libfs__msdos_gae7b955639ba78aeac356ca8803ad79f8}} 
+enum {\bfseries msdos\+\_\+name\+\_\+types\+\_\+e} \{ {\bfseries M\+S\+D\+O\+S\+\_\+\+N\+A\+M\+E\+\_\+\+I\+N\+V\+A\+L\+ID} = 0, 
+{\bfseries M\+S\+D\+O\+S\+\_\+\+N\+A\+M\+E\+\_\+\+S\+H\+O\+RT}, 
+{\bfseries M\+S\+D\+O\+S\+\_\+\+N\+A\+M\+E\+\_\+\+L\+O\+NG}
+ \}
+\item 
+\mbox{\Hypertarget{group__libfs__msdos_ga1441e21e71f31da23d0edfc63609251c}\label{group__libfs__msdos_ga1441e21e71f31da23d0edfc63609251c}} 
+enum {\bfseries msdos\+\_\+token\+\_\+types\+\_\+e} \{ \newline
+{\bfseries M\+S\+D\+O\+S\+\_\+\+N\+O\+\_\+\+M\+O\+R\+E\+\_\+\+P\+A\+TH}, 
+{\bfseries M\+S\+D\+O\+S\+\_\+\+C\+U\+R\+R\+E\+N\+T\+\_\+\+D\+IR}, 
+{\bfseries M\+S\+D\+O\+S\+\_\+\+U\+P\+\_\+\+D\+IR}, 
+{\bfseries M\+S\+D\+O\+S\+\_\+\+N\+A\+ME}, 
+\newline
+{\bfseries M\+S\+D\+O\+S\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+T\+O\+K\+EN}
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{group__libfs__msdos_ga5ada83ed2349e74294be905d2cb5eda6}\label{group__libfs__msdos_ga5ada83ed2349e74294be905d2cb5eda6}} 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void {\bfseries msdos\+\_\+fs\+\_\+lock} (\mbox{\hyperlink{structmsdos__fs__info__s}{msdos\+\_\+fs\+\_\+info\+\_\+t}} $\ast$fs\+\_\+info)
+\item 
+\mbox{\Hypertarget{group__libfs__msdos_gae7fc9b8fc0d88be1404e3b9077a6f205}\label{group__libfs__msdos_gae7fc9b8fc0d88be1404e3b9077a6f205}} 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void {\bfseries msdos\+\_\+fs\+\_\+unlock} (\mbox{\hyperlink{structmsdos__fs__info__s}{msdos\+\_\+fs\+\_\+info\+\_\+t}} $\ast$fs\+\_\+info)
+\item 
+void \mbox{\hyperlink{group__libfs__msdos_gada4176631aabceb7071617611720a04a}{msdos\+\_\+shut\+\_\+down}} (\mbox{\hyperlink{structrtems__filesystem__mount__table__entry__tt}{rtems\+\_\+filesystem\+\_\+mount\+\_\+table\+\_\+entry\+\_\+t}} $\ast$temp\+\_\+mt\+\_\+entry)
+\begin{DoxyCompactList}\small\item\em Shut down the M\+S\+D\+OS filesystem. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__libfs__msdos_ga51e610d249bac67d4086b5f1fa515c49}\label{group__libfs__msdos_ga51e610d249bac67d4086b5f1fa515c49}} 
+void {\bfseries msdos\+\_\+eval\+\_\+path} (\mbox{\hyperlink{structrtems__filesystem__eval__path__context__t}{rtems\+\_\+filesystem\+\_\+eval\+\_\+path\+\_\+context\+\_\+t}} $\ast$ctx)
+\item 
+void \mbox{\hyperlink{group__libfs__msdos_gac3300c45043a2ca7b0ddac74eadf7606}{msdos\+\_\+free\+\_\+node\+\_\+info}} (const \mbox{\hyperlink{group__LibIO_ga3252b3d31ee3c49ffff0b7604a676864}{rtems\+\_\+filesystem\+\_\+location\+\_\+info\+\_\+t}} $\ast$pathloc)
+\begin{DoxyCompactList}\small\item\em Call the Fat-\/\+File close routine. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__libfs__msdos_gad2d321f559fc408da551e9b13adb5241}{msdos\+\_\+mknod}} (const \mbox{\hyperlink{group__LibIO_ga3252b3d31ee3c49ffff0b7604a676864}{rtems\+\_\+filesystem\+\_\+location\+\_\+info\+\_\+t}} $\ast$loc, const char $\ast$name, size\+\_\+t namelen, mode\+\_\+t mode, dev\+\_\+t dev)
+\begin{DoxyCompactList}\small\item\em Routine for node creation in a M\+S\+D\+OS filesystem. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__libfs__msdos_gadc2a558d9dd4a7b65b22cd0ec527c236}{msdos\+\_\+rmnod}} (const \mbox{\hyperlink{group__LibIO_ga3252b3d31ee3c49ffff0b7604a676864}{rtems\+\_\+filesystem\+\_\+location\+\_\+info\+\_\+t}} $\ast$parentloc, const \mbox{\hyperlink{group__LibIO_ga3252b3d31ee3c49ffff0b7604a676864}{rtems\+\_\+filesystem\+\_\+location\+\_\+info\+\_\+t}} $\ast$loc)
+\begin{DoxyCompactList}\small\item\em Remove node from M\+S\+D\+OS directory. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__libfs__msdos_ga8f13c780cd05667aef2b563ee03154c1}{msdos\+\_\+rename}} (const \mbox{\hyperlink{group__LibIO_ga3252b3d31ee3c49ffff0b7604a676864}{rtems\+\_\+filesystem\+\_\+location\+\_\+info\+\_\+t}} $\ast$old\+\_\+parent\+\_\+loc, const \mbox{\hyperlink{group__LibIO_ga3252b3d31ee3c49ffff0b7604a676864}{rtems\+\_\+filesystem\+\_\+location\+\_\+info\+\_\+t}} $\ast$old\+\_\+loc, const \mbox{\hyperlink{group__LibIO_ga3252b3d31ee3c49ffff0b7604a676864}{rtems\+\_\+filesystem\+\_\+location\+\_\+info\+\_\+t}} $\ast$new\+\_\+parent\+\_\+loc, const char $\ast$new\+\_\+name, size\+\_\+t new\+\_\+namelen)
+\begin{DoxyCompactList}\small\item\em Rename a M\+S\+D\+OS filesystem node. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__libfs__msdos_ga5471eb0531df259fec6703b9c0942dfa}\label{group__libfs__msdos_ga5471eb0531df259fec6703b9c0942dfa}} 
+int {\bfseries msdos\+\_\+statvfs} (const \mbox{\hyperlink{group__LibIO_ga3252b3d31ee3c49ffff0b7604a676864}{rtems\+\_\+filesystem\+\_\+location\+\_\+info\+\_\+t}} $\ast$root\+\_\+loc, struct \mbox{\hyperlink{structstatvfs}{statvfs}} $\ast$sb)
+\item 
+\mbox{\Hypertarget{group__libfs__msdos_gaf5022f9468caad21adc024aa37dc7767}\label{group__libfs__msdos_gaf5022f9468caad21adc024aa37dc7767}} 
+void {\bfseries msdos\+\_\+lock} (const \mbox{\hyperlink{structrtems__filesystem__mount__table__entry__tt}{rtems\+\_\+filesystem\+\_\+mount\+\_\+table\+\_\+entry\+\_\+t}} $\ast$mt\+\_\+entry)
+\item 
+\mbox{\Hypertarget{group__libfs__msdos_gaec07f325788ce0ea44d092687d7f3611}\label{group__libfs__msdos_gaec07f325788ce0ea44d092687d7f3611}} 
+void {\bfseries msdos\+\_\+unlock} (const \mbox{\hyperlink{structrtems__filesystem__mount__table__entry__tt}{rtems\+\_\+filesystem\+\_\+mount\+\_\+table\+\_\+entry\+\_\+t}} $\ast$mt\+\_\+entry)
+\item 
+int \mbox{\hyperlink{group__libfs__msdos_gab03ef344fdc3a391eea940b6fdd9da24}{msdos\+\_\+initialize\+\_\+support}} (\mbox{\hyperlink{structrtems__filesystem__mount__table__entry__tt}{rtems\+\_\+filesystem\+\_\+mount\+\_\+table\+\_\+entry\+\_\+t}} $\ast$temp\+\_\+mt\+\_\+entry, const \mbox{\hyperlink{struct__rtems__filesystem__operations__table}{rtems\+\_\+filesystem\+\_\+operations\+\_\+table}} $\ast$op\+\_\+table, const \mbox{\hyperlink{struct__rtems__filesystem__file__handlers__r}{rtems\+\_\+filesystem\+\_\+file\+\_\+handlers\+\_\+r}} $\ast$file\+\_\+handlers, const \mbox{\hyperlink{struct__rtems__filesystem__file__handlers__r}{rtems\+\_\+filesystem\+\_\+file\+\_\+handlers\+\_\+r}} $\ast$directory\+\_\+handlers, \mbox{\hyperlink{structrtems__dosfs__convert__control}{rtems\+\_\+dosfs\+\_\+convert\+\_\+control}} $\ast$converter)
+\begin{DoxyCompactList}\small\item\em M\+S\+D\+OS filesystem initialization routine. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__libfs__msdos_gac8a171fd6c8fae2c2d607c403eec039e}\label{group__libfs__msdos_gac8a171fd6c8fae2c2d607c403eec039e}} 
+ssize\+\_\+t {\bfseries msdos\+\_\+file\+\_\+read} (\mbox{\hyperlink{structrtems__libio__tt}{rtems\+\_\+libio\+\_\+t}} $\ast$iop, void $\ast$buffer, size\+\_\+t count)
+\item 
+\mbox{\Hypertarget{group__libfs__msdos_gacdd9376aba8d7069148dec54628d950d}\label{group__libfs__msdos_gacdd9376aba8d7069148dec54628d950d}} 
+ssize\+\_\+t {\bfseries msdos\+\_\+file\+\_\+write} (\mbox{\hyperlink{structrtems__libio__tt}{rtems\+\_\+libio\+\_\+t}} $\ast$iop, const void $\ast$buffer, size\+\_\+t count)
+\item 
+\mbox{\Hypertarget{group__libfs__msdos_gae69d38fe0dc76ea209057bb1d0722026}\label{group__libfs__msdos_gae69d38fe0dc76ea209057bb1d0722026}} 
+int {\bfseries msdos\+\_\+file\+\_\+stat} (const \mbox{\hyperlink{group__LibIO_ga3252b3d31ee3c49ffff0b7604a676864}{rtems\+\_\+filesystem\+\_\+location\+\_\+info\+\_\+t}} $\ast$loc, struct stat $\ast$buf)
+\item 
+\mbox{\Hypertarget{group__libfs__msdos_gab988027a698430053a983f08ba5f0afe}\label{group__libfs__msdos_gab988027a698430053a983f08ba5f0afe}} 
+int {\bfseries msdos\+\_\+file\+\_\+ftruncate} (\mbox{\hyperlink{structrtems__libio__tt}{rtems\+\_\+libio\+\_\+t}} $\ast$iop, off\+\_\+t length)
+\item 
+\mbox{\Hypertarget{group__libfs__msdos_ga2af016a74130f438806ae52c8efa9bd1}\label{group__libfs__msdos_ga2af016a74130f438806ae52c8efa9bd1}} 
+int {\bfseries msdos\+\_\+file\+\_\+sync} (\mbox{\hyperlink{structrtems__libio__tt}{rtems\+\_\+libio\+\_\+t}} $\ast$iop)
+\item 
+\mbox{\Hypertarget{group__libfs__msdos_ga865b9d4a0051fc770283f7744620b74e}\label{group__libfs__msdos_ga865b9d4a0051fc770283f7744620b74e}} 
+ssize\+\_\+t {\bfseries msdos\+\_\+dir\+\_\+read} (\mbox{\hyperlink{structrtems__libio__tt}{rtems\+\_\+libio\+\_\+t}} $\ast$iop, void $\ast$buffer, size\+\_\+t count)
+\item 
+\mbox{\Hypertarget{group__libfs__msdos_ga63b7829bebd2dc053d9c566be1446e32}\label{group__libfs__msdos_ga63b7829bebd2dc053d9c566be1446e32}} 
+int {\bfseries msdos\+\_\+dir\+\_\+sync} (\mbox{\hyperlink{structrtems__libio__tt}{rtems\+\_\+libio\+\_\+t}} $\ast$iop)
+\item 
+\mbox{\Hypertarget{group__libfs__msdos_ga1cbd4f374073d0a815260815e72b5800}\label{group__libfs__msdos_ga1cbd4f374073d0a815260815e72b5800}} 
+int {\bfseries msdos\+\_\+dir\+\_\+stat} (const \mbox{\hyperlink{group__LibIO_ga3252b3d31ee3c49ffff0b7604a676864}{rtems\+\_\+filesystem\+\_\+location\+\_\+info\+\_\+t}} $\ast$loc, struct stat $\ast$buf)
+\item 
+int \mbox{\hyperlink{group__libfs__msdos_gad3c1d9f2798d77cb8ec96f313e56a785}{msdos\+\_\+creat\+\_\+node}} (const \mbox{\hyperlink{group__LibIO_ga3252b3d31ee3c49ffff0b7604a676864}{rtems\+\_\+filesystem\+\_\+location\+\_\+info\+\_\+t}} $\ast$parent\+\_\+loc, fat\+\_\+file\+\_\+type\+\_\+t type, const char $\ast$name, int name\+\_\+len, mode\+\_\+t mode, const \mbox{\hyperlink{group__libfs__ff_gaa53f9c544914509505e3cfbd3796f877}{fat\+\_\+file\+\_\+fd\+\_\+t}} $\ast$link\+\_\+fd)
+\begin{DoxyCompactList}\small\item\em Implements wake up version of the \char`\"{}signal\char`\"{} operation. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__libfs__msdos_gaf96123d0753959b8074a6f794fc4f398}\label{group__libfs__msdos_gaf96123d0753959b8074a6f794fc4f398}} 
+int {\bfseries msdos\+\_\+find\+\_\+name} (\mbox{\hyperlink{group__LibIO_ga3252b3d31ee3c49ffff0b7604a676864}{rtems\+\_\+filesystem\+\_\+location\+\_\+info\+\_\+t}} $\ast$parent\+\_\+loc, const char $\ast$name, int name\+\_\+len)
+\item 
+\mbox{\Hypertarget{group__libfs__msdos_gadb25db33ce0607f51b7c5e8eb8bcd5f8}\label{group__libfs__msdos_gadb25db33ce0607f51b7c5e8eb8bcd5f8}} 
+int {\bfseries msdos\+\_\+get\+\_\+name\+\_\+node} (const \mbox{\hyperlink{group__LibIO_ga3252b3d31ee3c49ffff0b7604a676864}{rtems\+\_\+filesystem\+\_\+location\+\_\+info\+\_\+t}} $\ast$parent\+\_\+loc, bool create\+\_\+node, const char $\ast$name, int name\+\_\+len, msdos\+\_\+name\+\_\+type\+\_\+t name\+\_\+type, \mbox{\hyperlink{structfat__dir__pos__s}{fat\+\_\+dir\+\_\+pos\+\_\+t}} $\ast$dir\+\_\+pos, char $\ast$name\+\_\+dir\+\_\+entry)
+\item 
+\mbox{\Hypertarget{group__libfs__msdos_ga13bdebf80afd36c3702d1f91528f0161}\label{group__libfs__msdos_ga13bdebf80afd36c3702d1f91528f0161}} 
+int {\bfseries msdos\+\_\+dir\+\_\+info\+\_\+remove} (\mbox{\hyperlink{group__LibIO_ga3252b3d31ee3c49ffff0b7604a676864}{rtems\+\_\+filesystem\+\_\+location\+\_\+info\+\_\+t}} $\ast$pathloc)
+\item 
+\mbox{\Hypertarget{group__libfs__msdos_gaf58e3af09bbf1b5ff39fb8bc002b4dd5}\label{group__libfs__msdos_gaf58e3af09bbf1b5ff39fb8bc002b4dd5}} 
+ssize\+\_\+t {\bfseries msdos\+\_\+format\+\_\+dirent\+\_\+with\+\_\+dot} (char $\ast$dst, const char $\ast$src)
+\item 
+\mbox{\Hypertarget{group__libfs__msdos_gaf629d1323e36118a53f4924a0901ac65}\label{group__libfs__msdos_gaf629d1323e36118a53f4924a0901ac65}} 
+msdos\+\_\+name\+\_\+type\+\_\+t {\bfseries msdos\+\_\+long\+\_\+to\+\_\+short} (\mbox{\hyperlink{structrtems__dosfs__convert__control}{rtems\+\_\+dosfs\+\_\+convert\+\_\+control}} $\ast$converter, const char $\ast$lfn, int lfn\+\_\+len, char $\ast$sfn, int sfn\+\_\+len)
+\item 
+\mbox{\Hypertarget{group__libfs__msdos_ga09990f947865be1ec4b40bba5172c44b}\label{group__libfs__msdos_ga09990f947865be1ec4b40bba5172c44b}} 
+ssize\+\_\+t {\bfseries msdos\+\_\+filename\+\_\+utf8\+\_\+to\+\_\+short\+\_\+name\+\_\+for\+\_\+compare} (\mbox{\hyperlink{structrtems__dosfs__convert__control}{rtems\+\_\+dosfs\+\_\+convert\+\_\+control}} $\ast$converter, const uint8\+\_\+t $\ast$utf8\+\_\+name, const size\+\_\+t utf8\+\_\+name\+\_\+size, void $\ast$short\+\_\+name, const size\+\_\+t short\+\_\+name\+\_\+size)
+\item 
+\mbox{\Hypertarget{group__libfs__msdos_gabd701d211ae9d10b1beb960014870786}\label{group__libfs__msdos_gabd701d211ae9d10b1beb960014870786}} 
+ssize\+\_\+t {\bfseries msdos\+\_\+filename\+\_\+utf8\+\_\+to\+\_\+short\+\_\+name\+\_\+for\+\_\+save} (\mbox{\hyperlink{structrtems__dosfs__convert__control}{rtems\+\_\+dosfs\+\_\+convert\+\_\+control}} $\ast$converter, const uint8\+\_\+t $\ast$utf8\+\_\+name, const size\+\_\+t utf8\+\_\+name\+\_\+size, void $\ast$short\+\_\+name, const size\+\_\+t short\+\_\+name\+\_\+size)
+\item 
+\mbox{\Hypertarget{group__libfs__msdos_ga7dc0e6085105ee0308b99cf8f20ad11c}\label{group__libfs__msdos_ga7dc0e6085105ee0308b99cf8f20ad11c}} 
+ssize\+\_\+t {\bfseries msdos\+\_\+filename\+\_\+utf8\+\_\+to\+\_\+long\+\_\+name\+\_\+for\+\_\+compare} (\mbox{\hyperlink{structrtems__dosfs__convert__control}{rtems\+\_\+dosfs\+\_\+convert\+\_\+control}} $\ast$converter, const uint8\+\_\+t $\ast$utf8\+\_\+name, const size\+\_\+t utf8\+\_\+name\+\_\+size, uint8\+\_\+t $\ast$long\+\_\+name, const size\+\_\+t long\+\_\+name\+\_\+size)
+\item 
+\mbox{\Hypertarget{group__libfs__msdos_gaf04588367d204e045880a569b1433ada}\label{group__libfs__msdos_gaf04588367d204e045880a569b1433ada}} 
+ssize\+\_\+t {\bfseries msdos\+\_\+filename\+\_\+utf8\+\_\+to\+\_\+long\+\_\+name\+\_\+for\+\_\+save} (\mbox{\hyperlink{structrtems__dosfs__convert__control}{rtems\+\_\+dosfs\+\_\+convert\+\_\+control}} $\ast$converter, const uint8\+\_\+t $\ast$utf8\+\_\+name, const size\+\_\+t utf8\+\_\+name\+\_\+size, uint16\+\_\+t $\ast$long\+\_\+name, const size\+\_\+t long\+\_\+name\+\_\+size)
+\item 
+\mbox{\Hypertarget{group__libfs__msdos_ga86e51ac587dd834306f28a8f7a6f73b5}\label{group__libfs__msdos_ga86e51ac587dd834306f28a8f7a6f73b5}} 
+ssize\+\_\+t {\bfseries msdos\+\_\+get\+\_\+utf16\+\_\+string\+\_\+from\+\_\+long\+\_\+entry} (const char $\ast$\mbox{\hyperlink{structentry}{entry}}, uint16\+\_\+t $\ast$entry\+\_\+string\+\_\+buf, const size\+\_\+t buf\+\_\+size, bool is\+\_\+first\+\_\+entry)
+\item 
+\mbox{\Hypertarget{group__libfs__msdos_gad58f472e49d22af7c146272e92b4b7f3}\label{group__libfs__msdos_gad58f472e49d22af7c146272e92b4b7f3}} 
+void {\bfseries msdos\+\_\+date\+\_\+unix2dos} (unsigned int tsp, uint16\+\_\+t $\ast$ddp, uint16\+\_\+t $\ast$dtp)
+\item 
+\mbox{\Hypertarget{group__libfs__msdos_gabb497cce021a1aceef72b74e4a3acfda}\label{group__libfs__msdos_gabb497cce021a1aceef72b74e4a3acfda}} 
+unsigned int {\bfseries msdos\+\_\+date\+\_\+dos2unix} (unsigned int dd, unsigned int dt)
+\item 
+\mbox{\Hypertarget{group__libfs__msdos_gaa74c45d3431bbe097a3560181bddb318}\label{group__libfs__msdos_gaa74c45d3431bbe097a3560181bddb318}} 
+int {\bfseries msdos\+\_\+set\+\_\+first\+\_\+char4file\+\_\+name} (\mbox{\hyperlink{structrtems__filesystem__mount__table__entry__tt}{rtems\+\_\+filesystem\+\_\+mount\+\_\+table\+\_\+entry\+\_\+t}} $\ast$mt\+\_\+entry, \mbox{\hyperlink{structfat__dir__pos__s}{fat\+\_\+dir\+\_\+pos\+\_\+t}} $\ast$dir\+\_\+pos, unsigned char first\+\_\+char)
+\item 
+\mbox{\Hypertarget{group__libfs__msdos_gac3dc46157fcd31ec27896a893ee98222}\label{group__libfs__msdos_gac3dc46157fcd31ec27896a893ee98222}} 
+int {\bfseries msdos\+\_\+dir\+\_\+is\+\_\+empty} (\mbox{\hyperlink{structrtems__filesystem__mount__table__entry__tt}{rtems\+\_\+filesystem\+\_\+mount\+\_\+table\+\_\+entry\+\_\+t}} $\ast$mt\+\_\+entry, \mbox{\hyperlink{group__libfs__ff_gaa53f9c544914509505e3cfbd3796f877}{fat\+\_\+file\+\_\+fd\+\_\+t}} $\ast$fat\+\_\+fd, bool $\ast$ret\+\_\+val)
+\item 
+\mbox{\Hypertarget{group__libfs__msdos_ga34551eb61dc32e03c04dbe73b875bbbc}\label{group__libfs__msdos_ga34551eb61dc32e03c04dbe73b875bbbc}} 
+int {\bfseries msdos\+\_\+find\+\_\+name\+\_\+in\+\_\+fat\+\_\+file} (\mbox{\hyperlink{structrtems__filesystem__mount__table__entry__tt}{rtems\+\_\+filesystem\+\_\+mount\+\_\+table\+\_\+entry\+\_\+t}} $\ast$mt\+\_\+entry, \mbox{\hyperlink{group__libfs__ff_gaa53f9c544914509505e3cfbd3796f877}{fat\+\_\+file\+\_\+fd\+\_\+t}} $\ast$fat\+\_\+fd, bool create\+\_\+node, const uint8\+\_\+t $\ast$name\+\_\+utf8, int name\+\_\+len, msdos\+\_\+name\+\_\+type\+\_\+t name\+\_\+type, \mbox{\hyperlink{structfat__dir__pos__s}{fat\+\_\+dir\+\_\+pos\+\_\+t}} $\ast$dir\+\_\+pos, char $\ast$name\+\_\+dir\+\_\+entry)
+\item 
+\mbox{\Hypertarget{group__libfs__msdos_ga5dbde8f9c4e825bf5b3c37de4ffd271d}\label{group__libfs__msdos_ga5dbde8f9c4e825bf5b3c37de4ffd271d}} 
+int {\bfseries msdos\+\_\+find\+\_\+node\+\_\+by\+\_\+cluster\+\_\+num\+\_\+in\+\_\+fat\+\_\+file} (\mbox{\hyperlink{structrtems__filesystem__mount__table__entry__tt}{rtems\+\_\+filesystem\+\_\+mount\+\_\+table\+\_\+entry\+\_\+t}} $\ast$mt\+\_\+entry, \mbox{\hyperlink{group__libfs__ff_gaa53f9c544914509505e3cfbd3796f877}{fat\+\_\+file\+\_\+fd\+\_\+t}} $\ast$fat\+\_\+fd, uint32\+\_\+t cl4find, \mbox{\hyperlink{structfat__dir__pos__s}{fat\+\_\+dir\+\_\+pos\+\_\+t}} $\ast$dir\+\_\+pos, char $\ast$dir\+\_\+entry)
+\item 
+\mbox{\Hypertarget{group__libfs__msdos_ga78e4da8e660c1055805ddc0b8349520f}\label{group__libfs__msdos_ga78e4da8e660c1055805ddc0b8349520f}} 
+int {\bfseries msdos\+\_\+get\+\_\+dotdot\+\_\+dir\+\_\+info\+\_\+cluster\+\_\+num\+\_\+and\+\_\+offset} (\mbox{\hyperlink{structrtems__filesystem__mount__table__entry__tt}{rtems\+\_\+filesystem\+\_\+mount\+\_\+table\+\_\+entry\+\_\+t}} $\ast$mt\+\_\+entry, uint32\+\_\+t cln, \mbox{\hyperlink{structfat__dir__pos__s}{fat\+\_\+dir\+\_\+pos\+\_\+t}} $\ast$dir\+\_\+pos, char $\ast$dir\+\_\+entry)
+\item 
+\mbox{\Hypertarget{group__libfs__msdos_ga9bfc3368e01c8855f80bc403db71c9c6}\label{group__libfs__msdos_ga9bfc3368e01c8855f80bc403db71c9c6}} 
+int {\bfseries msdos\+\_\+sync} (\mbox{\hyperlink{structrtems__libio__tt}{rtems\+\_\+libio\+\_\+t}} $\ast$iop)
+\item 
+\mbox{\Hypertarget{group__libfs__msdos_gaa7a9edcd4e017a43dd77b87c9a2ee20a}\label{group__libfs__msdos_gaa7a9edcd4e017a43dd77b87c9a2ee20a}} 
+uint8\+\_\+t {\bfseries msdos\+\_\+lfn\+\_\+checksum} (const void $\ast$\mbox{\hyperlink{structentry}{entry}})
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{group__libfs__msdos_gaca3ce4eb8ca8b53339c77e942ba706bf}\label{group__libfs__msdos_gaca3ce4eb8ca8b53339c77e942ba706bf}} 
+const \mbox{\hyperlink{struct__rtems__filesystem__file__handlers__r}{rtems\+\_\+filesystem\+\_\+file\+\_\+handlers\+\_\+r}} {\bfseries msdos\+\_\+dir\+\_\+handlers}
+\item 
+\mbox{\Hypertarget{group__libfs__msdos_ga74495f8ab7bdaf5f7a3dd5b9eacd6657}\label{group__libfs__msdos_ga74495f8ab7bdaf5f7a3dd5b9eacd6657}} 
+const \mbox{\hyperlink{struct__rtems__filesystem__file__handlers__r}{rtems\+\_\+filesystem\+\_\+file\+\_\+handlers\+\_\+r}} {\bfseries msdos\+\_\+file\+\_\+handlers}
+\item 
+\mbox{\Hypertarget{group__libfs__msdos_ga00b8a5badf7efb86ceac735089227d3c}\label{group__libfs__msdos_ga00b8a5badf7efb86ceac735089227d3c}} 
+const char $\ast$const {\bfseries M\+S\+D\+O\+S\+\_\+\+D\+O\+T\+\_\+\+N\+A\+ME}
+\item 
+\mbox{\Hypertarget{group__libfs__msdos_gaf8c8c279aac6b14d10936db67f0830e5}\label{group__libfs__msdos_gaf8c8c279aac6b14d10936db67f0830e5}} 
+const char $\ast$const {\bfseries M\+S\+D\+O\+S\+\_\+\+D\+O\+T\+D\+O\+T\+\_\+\+N\+A\+ME}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{group__libfs__msdos_ga25647556e5128764fc5f155257e9aa64}\label{group__libfs__msdos_ga25647556e5128764fc5f155257e9aa64}} 
+\index{MSDOS FileSystem@{MSDOS FileSystem}!\_\_need\_getopt\_newlib@{\_\_need\_getopt\_newlib}}
+\index{\_\_need\_getopt\_newlib@{\_\_need\_getopt\_newlib}!MSDOS FileSystem@{MSDOS FileSystem}}
+\subsubsection{\texorpdfstring{\_\_need\_getopt\_newlib}{\_\_need\_getopt\_newlib}}
+{\footnotesize\ttfamily \#define \+\_\+\+\_\+need\+\_\+getopt\+\_\+newlib}
+
+
+
+Obtain M\+S-\/\+D\+OS filesystem information. 
+
+df Shell Command Implmentation \mbox{\Hypertarget{group__libfs__msdos_ga5b6f98f8a9d9ef7528071ff4d40a78d0}\label{group__libfs__msdos_ga5b6f98f8a9d9ef7528071ff4d40a78d0}} 
+\index{MSDOS FileSystem@{MSDOS FileSystem}!MSDOS\_ATTR\_LFN@{MSDOS\_ATTR\_LFN}}
+\index{MSDOS\_ATTR\_LFN@{MSDOS\_ATTR\_LFN}!MSDOS FileSystem@{MSDOS FileSystem}}
+\subsubsection{\texorpdfstring{MSDOS\_ATTR\_LFN}{MSDOS\_ATTR\_LFN}}
+{\footnotesize\ttfamily \#define M\+S\+D\+O\+S\+\_\+\+A\+T\+T\+R\+\_\+\+L\+FN}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(MSDOS\_ATTR\_READ\_ONLY | \(\backslash\)}
+\DoxyCodeLine{                                 MSDOS\_ATTR\_HIDDEN | \(\backslash\)}
+\DoxyCodeLine{                                 MSDOS\_ATTR\_SYSTEM | \(\backslash\)}
+\DoxyCodeLine{                                 MSDOS\_ATTR\_VOLUME\_ID)}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{group__libfs__msdos_gac0156fd17d51c5fa06913604e0e29d01}\label{group__libfs__msdos_gac0156fd17d51c5fa06913604e0e29d01}} 
+\index{MSDOS FileSystem@{MSDOS FileSystem}!MSDOS\_ATTR\_LFN\_MASK@{MSDOS\_ATTR\_LFN\_MASK}}
+\index{MSDOS\_ATTR\_LFN\_MASK@{MSDOS\_ATTR\_LFN\_MASK}!MSDOS FileSystem@{MSDOS FileSystem}}
+\subsubsection{\texorpdfstring{MSDOS\_ATTR\_LFN\_MASK}{MSDOS\_ATTR\_LFN\_MASK}}
+{\footnotesize\ttfamily \#define M\+S\+D\+O\+S\+\_\+\+A\+T\+T\+R\+\_\+\+L\+F\+N\+\_\+\+M\+A\+SK}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(MSDOS\_ATTR\_READ\_ONLY | \(\backslash\)}
+\DoxyCodeLine{                                 MSDOS\_ATTR\_HIDDEN | \(\backslash\)}
+\DoxyCodeLine{                                 MSDOS\_ATTR\_SYSTEM | \(\backslash\)}
+\DoxyCodeLine{                                 MSDOS\_ATTR\_VOLUME\_ID | \(\backslash\)}
+\DoxyCodeLine{                                 MSDOS\_ATTR\_DIRECTORY | \(\backslash\)}
+\DoxyCodeLine{                                 MSDOS\_ATTR\_ARCHIVE)}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{group__libfs__msdos_gafda58bdd91a84633eb0437d8255820fb}\label{group__libfs__msdos_gafda58bdd91a84633eb0437d8255820fb}} 
+\index{MSDOS FileSystem@{MSDOS FileSystem}!MSDOS\_ENTRY\_LFN\_UTF8\_BYTES@{MSDOS\_ENTRY\_LFN\_UTF8\_BYTES}}
+\index{MSDOS\_ENTRY\_LFN\_UTF8\_BYTES@{MSDOS\_ENTRY\_LFN\_UTF8\_BYTES}!MSDOS FileSystem@{MSDOS FileSystem}}
+\subsubsection{\texorpdfstring{MSDOS\_ENTRY\_LFN\_UTF8\_BYTES}{MSDOS\_ENTRY\_LFN\_UTF8\_BYTES}}
+{\footnotesize\ttfamily \#define M\+S\+D\+O\+S\+\_\+\+E\+N\+T\+R\+Y\+\_\+\+L\+F\+N\+\_\+\+U\+T\+F8\+\_\+\+B\+Y\+T\+ES}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(MSDOS\_LFN\_LEN\_PER\_ENTRY *\(\backslash\)}
+\DoxyCodeLine{                                          MSDOS\_NAME\_MAX\_UTF8\_BYTES\_PER\_CHAR)}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{group__libfs__msdos_ga0e9a85c26479f69196027a183884645b}\label{group__libfs__msdos_ga0e9a85c26479f69196027a183884645b}} 
+\index{MSDOS FileSystem@{MSDOS FileSystem}!MSDOS\_EXTRACT\_CLUSTER\_NUM@{MSDOS\_EXTRACT\_CLUSTER\_NUM}}
+\index{MSDOS\_EXTRACT\_CLUSTER\_NUM@{MSDOS\_EXTRACT\_CLUSTER\_NUM}!MSDOS FileSystem@{MSDOS FileSystem}}
+\subsubsection{\texorpdfstring{MSDOS\_EXTRACT\_CLUSTER\_NUM}{MSDOS\_EXTRACT\_CLUSTER\_NUM}}
+{\footnotesize\ttfamily \#define M\+S\+D\+O\+S\+\_\+\+E\+X\+T\+R\+A\+C\+T\+\_\+\+C\+L\+U\+S\+T\+E\+R\+\_\+\+N\+UM(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{sun4u_2tte_8h_a27952ffc298d15b4fc0e7ee6b2a044ac}{p}} }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(uint32\_t)( (CF\_LE\_W(*MSDOS\_DIR\_FIRST\_CLUSTER\_LOW(\mbox{\hyperlink{sun4u_2tte_8h_a27952ffc298d15b4fc0e7ee6b2a044ac}{p}}))) |       \(\backslash\)}
+\DoxyCodeLine{                          ((uint32\_t)(CF\_LE\_W((*MSDOS\_DIR\_FIRST\_CLUSTER\_HI(\mbox{\hyperlink{sun4u_2tte_8h_a27952ffc298d15b4fc0e7ee6b2a044ac}{p}}))))<<16) )}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{group__libfs__msdos_ga0e3692e9ec3ad9cb8e4a64306ca90ee7}\label{group__libfs__msdos_ga0e3692e9ec3ad9cb8e4a64306ca90ee7}} 
+\index{MSDOS FileSystem@{MSDOS FileSystem}!MSDOS\_NAME\_MAX\_LFN\_BYTES@{MSDOS\_NAME\_MAX\_LFN\_BYTES}}
+\index{MSDOS\_NAME\_MAX\_LFN\_BYTES@{MSDOS\_NAME\_MAX\_LFN\_BYTES}!MSDOS FileSystem@{MSDOS FileSystem}}
+\subsubsection{\texorpdfstring{MSDOS\_NAME\_MAX\_LFN\_BYTES}{MSDOS\_NAME\_MAX\_LFN\_BYTES}}
+{\footnotesize\ttfamily \#define M\+S\+D\+O\+S\+\_\+\+N\+A\+M\+E\+\_\+\+M\+A\+X\+\_\+\+L\+F\+N\+\_\+\+B\+Y\+T\+ES}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(MSDOS\_NAME\_MAX\_LFN\_WITH\_DOT *\(\backslash\)}
+\DoxyCodeLine{                                          MSDOS\_NAME\_LFN\_BYTES\_PER\_CHAR)}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{group__libfs__msdos_ga39a8a65db9f9aaa11e58e6d13571c731}\label{group__libfs__msdos_ga39a8a65db9f9aaa11e58e6d13571c731}} 
+\index{MSDOS FileSystem@{MSDOS FileSystem}!MSDOS\_NAME\_MAX\_UTF8\_LFN\_BYTES@{MSDOS\_NAME\_MAX\_UTF8\_LFN\_BYTES}}
+\index{MSDOS\_NAME\_MAX\_UTF8\_LFN\_BYTES@{MSDOS\_NAME\_MAX\_UTF8\_LFN\_BYTES}!MSDOS FileSystem@{MSDOS FileSystem}}
+\subsubsection{\texorpdfstring{MSDOS\_NAME\_MAX\_UTF8\_LFN\_BYTES}{MSDOS\_NAME\_MAX\_UTF8\_LFN\_BYTES}}
+{\footnotesize\ttfamily \#define M\+S\+D\+O\+S\+\_\+\+N\+A\+M\+E\+\_\+\+M\+A\+X\+\_\+\+U\+T\+F8\+\_\+\+L\+F\+N\+\_\+\+B\+Y\+T\+ES}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(MSDOS\_NAME\_MAX\_LFN\_WITH\_DOT *\(\backslash\)}
+\DoxyCodeLine{                                          MSDOS\_NAME\_MAX\_UTF8\_BYTES\_PER\_CHAR)}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{group__libfs__msdos_ga210ebb8511be72a6ef875a8eceac781e}\label{group__libfs__msdos_ga210ebb8511be72a6ef875a8eceac781e}} 
+\index{MSDOS FileSystem@{MSDOS FileSystem}!MSDOS\_NAME\_MAX\_UTF8\_SFN\_BYTES@{MSDOS\_NAME\_MAX\_UTF8\_SFN\_BYTES}}
+\index{MSDOS\_NAME\_MAX\_UTF8\_SFN\_BYTES@{MSDOS\_NAME\_MAX\_UTF8\_SFN\_BYTES}!MSDOS FileSystem@{MSDOS FileSystem}}
+\subsubsection{\texorpdfstring{MSDOS\_NAME\_MAX\_UTF8\_SFN\_BYTES}{MSDOS\_NAME\_MAX\_UTF8\_SFN\_BYTES}}
+{\footnotesize\ttfamily \#define M\+S\+D\+O\+S\+\_\+\+N\+A\+M\+E\+\_\+\+M\+A\+X\+\_\+\+U\+T\+F8\+\_\+\+S\+F\+N\+\_\+\+B\+Y\+T\+ES}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(MSDOS\_NAME\_MAX *\(\backslash\)}
+\DoxyCodeLine{                                         MSDOS\_NAME\_MAX\_UTF8\_BYTES\_PER\_CHAR)}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{group__libfs__msdos_gafce1cb3751ce3f67298268830032a6e3}\label{group__libfs__msdos_gafce1cb3751ce3f67298268830032a6e3}} 
+\index{MSDOS FileSystem@{MSDOS FileSystem}!MSDOS\_SFN\_MAX\_WITH\_DOT\_UTF8\_BYTES@{MSDOS\_SFN\_MAX\_WITH\_DOT\_UTF8\_BYTES}}
+\index{MSDOS\_SFN\_MAX\_WITH\_DOT\_UTF8\_BYTES@{MSDOS\_SFN\_MAX\_WITH\_DOT\_UTF8\_BYTES}!MSDOS FileSystem@{MSDOS FileSystem}}
+\subsubsection{\texorpdfstring{MSDOS\_SFN\_MAX\_WITH\_DOT\_UTF8\_BYTES}{MSDOS\_SFN\_MAX\_WITH\_DOT\_UTF8\_BYTES}}
+{\footnotesize\ttfamily \#define M\+S\+D\+O\+S\+\_\+\+S\+F\+N\+\_\+\+M\+A\+X\+\_\+\+W\+I\+T\+H\+\_\+\+D\+O\+T\+\_\+\+U\+T\+F8\+\_\+\+B\+Y\+T\+ES}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(MSDOS\_NAME\_MAX\_WITH\_DOT *\(\backslash\)}
+\DoxyCodeLine{                                           MSDOS\_NAME\_MAX\_UTF8\_BYTES\_PER\_CHAR)}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{group__libfs__msdos_ga24fd4e2075ca6671259ad8457934907b}\label{group__libfs__msdos_ga24fd4e2075ca6671259ad8457934907b}} 
+\index{MSDOS FileSystem@{MSDOS FileSystem}!MSDOS\_SHORT\_NAME\_LEN@{MSDOS\_SHORT\_NAME\_LEN}}
+\index{MSDOS\_SHORT\_NAME\_LEN@{MSDOS\_SHORT\_NAME\_LEN}!MSDOS FileSystem@{MSDOS FileSystem}}
+\subsubsection{\texorpdfstring{MSDOS\_SHORT\_NAME\_LEN}{MSDOS\_SHORT\_NAME\_LEN}}
+{\footnotesize\ttfamily \#define M\+S\+D\+O\+S\+\_\+\+S\+H\+O\+R\+T\+\_\+\+N\+A\+M\+E\+\_\+\+L\+EN}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(MSDOS\_SHORT\_BASE\_LEN+\(\backslash\)}
+\DoxyCodeLine{                                          MSDOS\_SHORT\_EXT\_LEN) \textcolor{comment}{/* 11 chars */}}
+
+\end{DoxyCode}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{group__libfs__msdos_gad3c1d9f2798d77cb8ec96f313e56a785}\label{group__libfs__msdos_gad3c1d9f2798d77cb8ec96f313e56a785}} 
+\index{MSDOS FileSystem@{MSDOS FileSystem}!msdos\_creat\_node@{msdos\_creat\_node}}
+\index{msdos\_creat\_node@{msdos\_creat\_node}!MSDOS FileSystem@{MSDOS FileSystem}}
+\subsubsection{\texorpdfstring{msdos\_creat\_node()}{msdos\_creat\_node()}}
+{\footnotesize\ttfamily int msdos\+\_\+creat\+\_\+node (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{group__LibIO_ga3252b3d31ee3c49ffff0b7604a676864}{rtems\+\_\+filesystem\+\_\+location\+\_\+info\+\_\+t}} $\ast$}]{parent\+\_\+loc,  }\item[{fat\+\_\+file\+\_\+type\+\_\+t}]{type,  }\item[{const char $\ast$}]{name,  }\item[{int}]{name\+\_\+len,  }\item[{mode\+\_\+t}]{mode,  }\item[{const \mbox{\hyperlink{group__libfs__ff_gaa53f9c544914509505e3cfbd3796f877}{fat\+\_\+file\+\_\+fd\+\_\+t}} $\ast$}]{link\+\_\+fd }\end{DoxyParamCaption})}
+
+
+
+Implements wake up version of the \char`\"{}signal\char`\"{} operation. 
+
+Routine to create a new M\+S\+D\+OS filesystem node \mbox{\Hypertarget{group__libfs__msdos_gac3300c45043a2ca7b0ddac74eadf7606}\label{group__libfs__msdos_gac3300c45043a2ca7b0ddac74eadf7606}} 
+\index{MSDOS FileSystem@{MSDOS FileSystem}!msdos\_free\_node\_info@{msdos\_free\_node\_info}}
+\index{msdos\_free\_node\_info@{msdos\_free\_node\_info}!MSDOS FileSystem@{MSDOS FileSystem}}
+\subsubsection{\texorpdfstring{msdos\_free\_node\_info()}{msdos\_free\_node\_info()}}
+{\footnotesize\ttfamily void msdos\+\_\+free\+\_\+node\+\_\+info (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{group__LibIO_ga3252b3d31ee3c49ffff0b7604a676864}{rtems\+\_\+filesystem\+\_\+location\+\_\+info\+\_\+t}} $\ast$}]{pathloc }\end{DoxyParamCaption})}
+
+
+
+Call the Fat-\/\+File close routine. 
+
+Free node handler implementation for the filesystem operations table. \mbox{\Hypertarget{group__libfs__msdos_gab03ef344fdc3a391eea940b6fdd9da24}\label{group__libfs__msdos_gab03ef344fdc3a391eea940b6fdd9da24}} 
+\index{MSDOS FileSystem@{MSDOS FileSystem}!msdos\_initialize\_support@{msdos\_initialize\_support}}
+\index{msdos\_initialize\_support@{msdos\_initialize\_support}!MSDOS FileSystem@{MSDOS FileSystem}}
+\subsubsection{\texorpdfstring{msdos\_initialize\_support()}{msdos\_initialize\_support()}}
+{\footnotesize\ttfamily int msdos\+\_\+initialize\+\_\+support (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structrtems__filesystem__mount__table__entry__tt}{rtems\+\_\+filesystem\+\_\+mount\+\_\+table\+\_\+entry\+\_\+t}} $\ast$}]{temp\+\_\+mt\+\_\+entry,  }\item[{const \mbox{\hyperlink{struct__rtems__filesystem__operations__table}{rtems\+\_\+filesystem\+\_\+operations\+\_\+table}} $\ast$}]{op\+\_\+table,  }\item[{const \mbox{\hyperlink{struct__rtems__filesystem__file__handlers__r}{rtems\+\_\+filesystem\+\_\+file\+\_\+handlers\+\_\+r}} $\ast$}]{file\+\_\+handlers,  }\item[{const \mbox{\hyperlink{struct__rtems__filesystem__file__handlers__r}{rtems\+\_\+filesystem\+\_\+file\+\_\+handlers\+\_\+r}} $\ast$}]{directory\+\_\+handlers,  }\item[{\mbox{\hyperlink{structrtems__dosfs__convert__control}{rtems\+\_\+dosfs\+\_\+convert\+\_\+control}} $\ast$}]{converter }\end{DoxyParamCaption})}
+
+
+
+M\+S\+D\+OS filesystem initialization routine. 
+
+M\+S\+D\+OS Initialization support routine implementation \mbox{\Hypertarget{group__libfs__msdos_gad2d321f559fc408da551e9b13adb5241}\label{group__libfs__msdos_gad2d321f559fc408da551e9b13adb5241}} 
+\index{MSDOS FileSystem@{MSDOS FileSystem}!msdos\_mknod@{msdos\_mknod}}
+\index{msdos\_mknod@{msdos\_mknod}!MSDOS FileSystem@{MSDOS FileSystem}}
+\subsubsection{\texorpdfstring{msdos\_mknod()}{msdos\_mknod()}}
+{\footnotesize\ttfamily int msdos\+\_\+mknod (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{group__LibIO_ga3252b3d31ee3c49ffff0b7604a676864}{rtems\+\_\+filesystem\+\_\+location\+\_\+info\+\_\+t}} $\ast$}]{loc,  }\item[{const char $\ast$}]{name,  }\item[{size\+\_\+t}]{namelen,  }\item[{mode\+\_\+t}]{mode,  }\item[{dev\+\_\+t}]{dev }\end{DoxyParamCaption})}
+
+
+
+Routine for node creation in a M\+S\+D\+OS filesystem. 
+
+M\+S\+D\+OS Directory Handlers Implementation \mbox{\Hypertarget{group__libfs__msdos_ga8f13c780cd05667aef2b563ee03154c1}\label{group__libfs__msdos_ga8f13c780cd05667aef2b563ee03154c1}} 
+\index{MSDOS FileSystem@{MSDOS FileSystem}!msdos\_rename@{msdos\_rename}}
+\index{msdos\_rename@{msdos\_rename}!MSDOS FileSystem@{MSDOS FileSystem}}
+\subsubsection{\texorpdfstring{msdos\_rename()}{msdos\_rename()}}
+{\footnotesize\ttfamily int msdos\+\_\+rename (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{group__LibIO_ga3252b3d31ee3c49ffff0b7604a676864}{rtems\+\_\+filesystem\+\_\+location\+\_\+info\+\_\+t}} $\ast$}]{old\+\_\+parent\+\_\+loc,  }\item[{const \mbox{\hyperlink{group__LibIO_ga3252b3d31ee3c49ffff0b7604a676864}{rtems\+\_\+filesystem\+\_\+location\+\_\+info\+\_\+t}} $\ast$}]{old\+\_\+loc,  }\item[{const \mbox{\hyperlink{group__LibIO_ga3252b3d31ee3c49ffff0b7604a676864}{rtems\+\_\+filesystem\+\_\+location\+\_\+info\+\_\+t}} $\ast$}]{new\+\_\+parent\+\_\+loc,  }\item[{const char $\ast$}]{new\+\_\+name,  }\item[{size\+\_\+t}]{new\+\_\+namelen }\end{DoxyParamCaption})}
+
+
+
+Rename a M\+S\+D\+OS filesystem node. 
+
+Routine to rename a M\+S\+D\+OS filesystem node \mbox{\Hypertarget{group__libfs__msdos_gadc2a558d9dd4a7b65b22cd0ec527c236}\label{group__libfs__msdos_gadc2a558d9dd4a7b65b22cd0ec527c236}} 
+\index{MSDOS FileSystem@{MSDOS FileSystem}!msdos\_rmnod@{msdos\_rmnod}}
+\index{msdos\_rmnod@{msdos\_rmnod}!MSDOS FileSystem@{MSDOS FileSystem}}
+\subsubsection{\texorpdfstring{msdos\_rmnod()}{msdos\_rmnod()}}
+{\footnotesize\ttfamily int msdos\+\_\+rmnod (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{group__LibIO_ga3252b3d31ee3c49ffff0b7604a676864}{rtems\+\_\+filesystem\+\_\+location\+\_\+info\+\_\+t}} $\ast$}]{parentloc,  }\item[{const \mbox{\hyperlink{group__LibIO_ga3252b3d31ee3c49ffff0b7604a676864}{rtems\+\_\+filesystem\+\_\+location\+\_\+info\+\_\+t}} $\ast$}]{loc }\end{DoxyParamCaption})}
+
+
+
+Remove node from M\+S\+D\+OS directory. 
+
+M\+S\+D\+OS Directory Handlers Implementation \mbox{\Hypertarget{group__libfs__msdos_gada4176631aabceb7071617611720a04a}\label{group__libfs__msdos_gada4176631aabceb7071617611720a04a}} 
+\index{MSDOS FileSystem@{MSDOS FileSystem}!msdos\_shut\_down@{msdos\_shut\_down}}
+\index{msdos\_shut\_down@{msdos\_shut\_down}!MSDOS FileSystem@{MSDOS FileSystem}}
+\subsubsection{\texorpdfstring{msdos\_shut\_down()}{msdos\_shut\_down()}}
+{\footnotesize\ttfamily void msdos\+\_\+shut\+\_\+down (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structrtems__filesystem__mount__table__entry__tt}{rtems\+\_\+filesystem\+\_\+mount\+\_\+table\+\_\+entry\+\_\+t}} $\ast$}]{temp\+\_\+mt\+\_\+entry }\end{DoxyParamCaption})}
+
+
+
+Shut down the M\+S\+D\+OS filesystem. 
+
+M\+S\+D\+OS shut down handler implementation 

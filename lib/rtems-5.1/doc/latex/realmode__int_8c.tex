@@ -1,0 +1,185 @@
+\hypertarget{realmode__int_8c}{}\section{bsps/i386/pc386/start/realmode\+\_\+int.c File Reference}
+\label{realmode__int_8c}\index{bsps/i386/pc386/start/realmode\_int.c@{bsps/i386/pc386/start/realmode\_int.c}}
+
+
+Real mode interrupt call implementation.  
+
+
+{\ttfamily \#include $<$bsp/realmode\+\_\+int.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/score/cpu.\+h$>$}\newline
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structRTEMS__PACKED}{R\+T\+E\+M\+S\+\_\+\+P\+A\+C\+K\+ED}}
+\begin{DoxyCompactList}\small\item\em Used for passing and retrieving registers content to/from real mode interrupt call. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structRTEMS__PACKED}{R\+T\+E\+M\+S\+\_\+\+P\+A\+C\+K\+ED}}
+\begin{DoxyCompactList}\small\item\em Used for passing and retrieving registers content to/from real mode interrupt call. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{realmode__int_8c_aba5caa0f9f7f87dad126f0eadfdea569}\label{realmode__int_8c_aba5caa0f9f7f87dad126f0eadfdea569}} 
+\#define {\bfseries I\+R\+\_\+\+E\+A\+X\+\_\+\+O\+FF}~\char`\"{}0x00\char`\"{}
+\item 
+\mbox{\Hypertarget{realmode__int_8c_ab5883beffd2616525fd154649b334857}\label{realmode__int_8c_ab5883beffd2616525fd154649b334857}} 
+\#define {\bfseries I\+R\+\_\+\+E\+B\+X\+\_\+\+O\+FF}~\char`\"{}0x04\char`\"{}
+\item 
+\mbox{\Hypertarget{realmode__int_8c_a8e046fa133060b7393023c0ef94ac3a2}\label{realmode__int_8c_a8e046fa133060b7393023c0ef94ac3a2}} 
+\#define {\bfseries I\+R\+\_\+\+E\+C\+X\+\_\+\+O\+FF}~\char`\"{}0x08\char`\"{}
+\item 
+\mbox{\Hypertarget{realmode__int_8c_a48bb54551eb4212652d7089f33f9ab84}\label{realmode__int_8c_a48bb54551eb4212652d7089f33f9ab84}} 
+\#define {\bfseries I\+R\+\_\+\+E\+D\+X\+\_\+\+O\+FF}~\char`\"{}0x0\+C\char`\"{}
+\item 
+\mbox{\Hypertarget{realmode__int_8c_af1676ddbec80668b9af47ff8afe816cd}\label{realmode__int_8c_af1676ddbec80668b9af47ff8afe816cd}} 
+\#define {\bfseries I\+R\+\_\+\+E\+S\+I\+\_\+\+O\+FF}~\char`\"{}0x10\char`\"{}
+\item 
+\mbox{\Hypertarget{realmode__int_8c_ab39933b3f868f2e2930726139da2af39}\label{realmode__int_8c_ab39933b3f868f2e2930726139da2af39}} 
+\#define {\bfseries I\+R\+\_\+\+E\+D\+I\+\_\+\+O\+FF}~\char`\"{}0x14\char`\"{}
+\item 
+\mbox{\Hypertarget{realmode__int_8c_a23993c2bb4b8dabd5c9778d7d407c374}\label{realmode__int_8c_a23993c2bb4b8dabd5c9778d7d407c374}} 
+\#define {\bfseries I\+R\+\_\+\+D\+S\+\_\+\+O\+FF}~\char`\"{}0x18\char`\"{}
+\item 
+\mbox{\Hypertarget{realmode__int_8c_ac0f8fa5191da3efe83d55c872783ddd5}\label{realmode__int_8c_ac0f8fa5191da3efe83d55c872783ddd5}} 
+\#define {\bfseries I\+R\+\_\+\+E\+S\+\_\+\+O\+FF}~\char`\"{}0x1\+A\char`\"{}
+\item 
+\mbox{\Hypertarget{realmode__int_8c_aacfcf230e686f2c47c4728f90ebc287b}\label{realmode__int_8c_aacfcf230e686f2c47c4728f90ebc287b}} 
+\#define {\bfseries I\+R\+\_\+\+F\+S\+\_\+\+O\+FF}~\char`\"{}0x1\+C\char`\"{}
+\item 
+\mbox{\Hypertarget{realmode__int_8c_af39bbba63f65899aec01e5301de09cb9}\label{realmode__int_8c_af39bbba63f65899aec01e5301de09cb9}} 
+\#define {\bfseries I\+R\+\_\+\+G\+S\+\_\+\+O\+FF}~\char`\"{}0x1\+E\char`\"{}
+\item 
+\mbox{\Hypertarget{realmode__int_8c_a64b32fba712f6bdf4d3f97b5c1397922}\label{realmode__int_8c_a64b32fba712f6bdf4d3f97b5c1397922}} 
+\#define {\bfseries B\+K\+P\+\_\+\+E\+S\+P\+\_\+\+O\+FF}~\char`\"{}0x20\char`\"{}
+\item 
+\mbox{\Hypertarget{realmode__int_8c_a81c370847806fbf569049bfba478c490}\label{realmode__int_8c_a81c370847806fbf569049bfba478c490}} 
+\#define {\bfseries B\+K\+P\+\_\+\+S\+S\+\_\+\+O\+FF}~\char`\"{}0x24\char`\"{}
+\item 
+\mbox{\Hypertarget{realmode__int_8c_adf7a04911fd87cd4a471d67ffce39bce}\label{realmode__int_8c_adf7a04911fd87cd4a471d67ffce39bce}} 
+\#define {\bfseries B\+K\+P\+\_\+\+D\+S\+\_\+\+O\+FF}~\char`\"{}0x26\char`\"{}
+\item 
+\mbox{\Hypertarget{realmode__int_8c_ac6212aabe748a61ddc01d578a232dc0a}\label{realmode__int_8c_ac6212aabe748a61ddc01d578a232dc0a}} 
+\#define {\bfseries R\+M\+\_\+\+E\+N\+T\+RY}~\char`\"{}0x28\char`\"{}
+\item 
+\mbox{\Hypertarget{realmode__int_8c_a005b3c2b4a709fc4dfb07516e8a4bc95}\label{realmode__int_8c_a005b3c2b4a709fc4dfb07516e8a4bc95}} 
+\#define {\bfseries P\+M\+\_\+\+E\+N\+T\+RY}~\char`\"{}0x2\+C\char`\"{}
+\item 
+\mbox{\Hypertarget{realmode__int_8c_a80792208001bce68f5ceee314963501f}\label{realmode__int_8c_a80792208001bce68f5ceee314963501f}} 
+\#define {\bfseries B\+K\+P\+\_\+\+I\+D\+T\+R\+\_\+\+L\+IM}~\char`\"{}0x00\char`\"{}
+\item 
+\mbox{\Hypertarget{realmode__int_8c_ac4b34cf1a6756b1cacddfaa2eb5d842f}\label{realmode__int_8c_ac4b34cf1a6756b1cacddfaa2eb5d842f}} 
+\#define {\bfseries B\+K\+P\+\_\+\+I\+D\+T\+R\+\_\+\+B\+A\+SE}~\char`\"{}0x02\char`\"{}
+\item 
+\mbox{\Hypertarget{realmode__int_8c_a59c65c8bd3c0c8b7ea985a882919a86a}\label{realmode__int_8c_a59c65c8bd3c0c8b7ea985a882919a86a}} 
+\#define {\bfseries B\+K\+P\+\_\+\+E\+S\+\_\+\+O\+FF}~\char`\"{}0x06\char`\"{}
+\item 
+\mbox{\Hypertarget{realmode__int_8c_a80b843b5b8f91f010a78d7534a2ac552}\label{realmode__int_8c_a80b843b5b8f91f010a78d7534a2ac552}} 
+\#define {\bfseries B\+K\+P\+\_\+\+F\+S\+\_\+\+O\+FF}~\char`\"{}0x08\char`\"{}
+\item 
+\mbox{\Hypertarget{realmode__int_8c_a5e44f096a1310bd7acc82fe717bdf1e0}\label{realmode__int_8c_a5e44f096a1310bd7acc82fe717bdf1e0}} 
+\#define {\bfseries B\+K\+P\+\_\+\+G\+S\+\_\+\+O\+FF}~\char`\"{}0x0\+A\char`\"{}
+\item 
+\mbox{\Hypertarget{realmode__int_8c_ac605febdd844ad062ed212e5c7489dad}\label{realmode__int_8c_ac605febdd844ad062ed212e5c7489dad}} 
+\#define {\bfseries R\+M\+L\+\_\+\+E\+N\+T\+RY}~\char`\"{}0x0\+C\char`\"{}
+\item 
+\mbox{\Hypertarget{realmode__int_8c_a932c8e67288a05b811c21f3aa5412583}\label{realmode__int_8c_a932c8e67288a05b811c21f3aa5412583}} 
+\#define {\bfseries R\+M\+L\+\_\+\+D\+\_\+\+S\+EL}~\char`\"{}0x12\char`\"{}
+\item 
+\mbox{\Hypertarget{realmode__int_8c_ab309b1bd377e9ae612f019d1c9ff7e3b}\label{realmode__int_8c_ab309b1bd377e9ae612f019d1c9ff7e3b}} 
+\#define {\bfseries R\+M\+\_\+\+SS}~\char`\"{}0x14\char`\"{}
+\item 
+\mbox{\Hypertarget{realmode__int_8c_a53c1b60c0aa5e76adad38576a9763648}\label{realmode__int_8c_a53c1b60c0aa5e76adad38576a9763648}} 
+\#define {\bfseries R\+M\+\_\+\+SP}~\char`\"{}0x16\char`\"{}
+\item 
+\mbox{\Hypertarget{realmode__int_8c_a27f19fc7f2737adf9eebc8508d1ec363}\label{realmode__int_8c_a27f19fc7f2737adf9eebc8508d1ec363}} 
+\#define {\bfseries R\+M\+\_\+\+DS}~\char`\"{}0x18\char`\"{}
+\item 
+\mbox{\Hypertarget{realmode__int_8c_ae9098b7b4c3c98600ee791300113ab92}\label{realmode__int_8c_ae9098b7b4c3c98600ee791300113ab92}} 
+\#define {\bfseries R\+E\+A\+L\+\_\+\+M\+O\+D\+E\+\_\+\+S\+P\+OT}~0x12000
+\item 
+\mbox{\Hypertarget{realmode__int_8c_a6e576a3c6530636d68b7a220480bcd32}\label{realmode__int_8c_a6e576a3c6530636d68b7a220480bcd32}} 
+\#define {\bfseries D\+E\+F\+A\+U\+L\+T\+\_\+\+B\+U\+F\+F\+E\+R\+\_\+\+S\+I\+ZE}~512
+\item 
+\mbox{\Hypertarget{realmode__int_8c_a6423a880df59733d2d9b509c7718d3a9}\label{realmode__int_8c_a6423a880df59733d2d9b509c7718d3a9}} 
+\#define {\bfseries S\+T\+A\+C\+K\+\_\+\+S\+I\+ZE}~8192
+\item 
+\mbox{\Hypertarget{realmode__int_8c_a2061a5285683e971bfaee3b205d637d3}\label{realmode__int_8c_a2061a5285683e971bfaee3b205d637d3}} 
+\#define {\bfseries I\+N\+T\+\_\+\+S\+T\+A\+C\+K\+\_\+\+T\+OP}~R\+E\+A\+L\+\_\+\+M\+O\+D\+E\+\_\+\+S\+P\+OT
+\item 
+\mbox{\Hypertarget{realmode__int_8c_affc9f778d5e809ff2280ddf9ea5b93f5}\label{realmode__int_8c_affc9f778d5e809ff2280ddf9ea5b93f5}} 
+\#define {\bfseries \+\_\+\+\_\+\+D\+P\+\_\+\+T\+Y\+PE}~uint8\+\_\+t
+\item 
+\mbox{\Hypertarget{realmode__int_8c_a9bd2ed3aabe0e4a494068f8de85674fd}\label{realmode__int_8c_a9bd2ed3aabe0e4a494068f8de85674fd}} 
+\#define {\bfseries \+\_\+\+\_\+\+D\+P\+\_\+\+Y\+ES}~((\+\_\+\+\_\+\+D\+P\+\_\+\+T\+Y\+PE)1)
+\item 
+\mbox{\Hypertarget{realmode__int_8c_a226652ad2285cb05863f554e27ab91d2}\label{realmode__int_8c_a226652ad2285cb05863f554e27ab91d2}} 
+\#define {\bfseries \+\_\+\+\_\+\+D\+P\+\_\+\+NO}~((\+\_\+\+\_\+\+D\+P\+\_\+\+T\+Y\+PE)-\/1)
+\item 
+\mbox{\Hypertarget{realmode__int_8c_a91ffedda803f8ec149ef50e5a48bdbef}\label{realmode__int_8c_a91ffedda803f8ec149ef50e5a48bdbef}} 
+\#define {\bfseries \+\_\+\+\_\+\+D\+P\+\_\+\+F\+A\+IL}~((\+\_\+\+\_\+\+D\+P\+\_\+\+T\+Y\+PE)0)
+\item 
+\mbox{\Hypertarget{realmode__int_8c_ad6ef8394743cc6cee19a1d418d222e46}\label{realmode__int_8c_ad6ef8394743cc6cee19a1d418d222e46}} 
+\#define {\bfseries rml\+\_\+limit}~0x\+F\+F\+FF
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void $\ast$ \mbox{\hyperlink{realmode__int_8c_a0971c9c582ca7ed6c973370d8d2ddcf2}{i386\+\_\+get\+\_\+default\+\_\+rm\+\_\+buffer}} (uint16\+\_\+t $\ast$\mbox{\hyperlink{sun4u_2tte_8h_a245260f6f74972558f61b85227df5aae}{size}})
+\begin{DoxyCompactList}\small\item\em Returns buffer and its size usable with real mode interrupt call. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{realmode__int_8c_a1541b4af8720ed12dd8b966a7db9b100}{i386\+\_\+real\+\_\+interrupt\+\_\+call}} (uint8\+\_\+t interrupt\+\_\+number, i386\+\_\+realmode\+\_\+interrupt\+\_\+registers $\ast$ir)
+\begin{DoxyCompactList}\small\item\em Call to real mode interrupt with specified int NO and processor registers. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Real mode interrupt call implementation. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{realmode__int_8c_a0971c9c582ca7ed6c973370d8d2ddcf2}\label{realmode__int_8c_a0971c9c582ca7ed6c973370d8d2ddcf2}} 
+\index{realmode\_int.c@{realmode\_int.c}!i386\_get\_default\_rm\_buffer@{i386\_get\_default\_rm\_buffer}}
+\index{i386\_get\_default\_rm\_buffer@{i386\_get\_default\_rm\_buffer}!realmode\_int.c@{realmode\_int.c}}
+\subsubsection{\texorpdfstring{i386\_get\_default\_rm\_buffer()}{i386\_get\_default\_rm\_buffer()}}
+{\footnotesize\ttfamily void$\ast$ i386\+\_\+get\+\_\+default\+\_\+rm\+\_\+buffer (\begin{DoxyParamCaption}\item[{uint16\+\_\+t $\ast$}]{size }\end{DoxyParamCaption})}
+
+
+
+Returns buffer and its size usable with real mode interrupt call. 
+
+Provides position to real mode buffer. It is buffer accessible from real mode context -\/ it is located below address $\sim$0x100000 in order for it to be accessible This buffer is meant to be pointed to by seg\+Reg\+:Gen\+Purp\+Reg and through this get bigger portion of an information to/from interrupt service routine than just by using register.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em size} & pointer to variable, where the size of buffer will be filled \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em pointer} & to buffer \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{realmode__int_8c_a1541b4af8720ed12dd8b966a7db9b100}\label{realmode__int_8c_a1541b4af8720ed12dd8b966a7db9b100}} 
+\index{realmode\_int.c@{realmode\_int.c}!i386\_real\_interrupt\_call@{i386\_real\_interrupt\_call}}
+\index{i386\_real\_interrupt\_call@{i386\_real\_interrupt\_call}!realmode\_int.c@{realmode\_int.c}}
+\subsubsection{\texorpdfstring{i386\_real\_interrupt\_call()}{i386\_real\_interrupt\_call()}}
+{\footnotesize\ttfamily int i386\+\_\+real\+\_\+interrupt\+\_\+call (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{interrupt\+\_\+number,  }\item[{i386\+\_\+realmode\+\_\+interrupt\+\_\+registers $\ast$}]{ir }\end{DoxyParamCaption})}
+
+
+
+Call to real mode interrupt with specified int NO and processor registers. 
+
+This function allows calling interrupts in real mode and to set processor registers as desired before interrupt call is made and to retrieve the registers content after call was made.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em interrupt\+\_\+number} & interrupt number to be called \\
+\hline
+\mbox{\texttt{ in}}  & {\em ir} & pointer to structure containing registers to be passed to interrupt and to retrieve register content after call was made. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em 0} & call failed (G\+DT too small or pagin is on) \\
+\hline
+{\em 1} & call successful \\
+\hline
+\end{DoxyRetVals}

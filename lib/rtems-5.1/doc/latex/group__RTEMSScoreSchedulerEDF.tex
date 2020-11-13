@@ -1,0 +1,512 @@
+\hypertarget{group__RTEMSScoreSchedulerEDF}{}\section{E\+DF Scheduler}
+\label{group__RTEMSScoreSchedulerEDF}\index{EDF Scheduler@{EDF Scheduler}}
+
+
+E\+DF Scheduler.  
+
+
+\subsection*{Files}
+\begin{DoxyCompactItemize}
+\item 
+file \mbox{\hyperlink{scheduleredf_8h}{scheduleredf.\+h}}
+\begin{DoxyCompactList}\small\item\em Data Related to the Manipulation of Threads for the E\+DF Scheduler. \end{DoxyCompactList}\item 
+file \mbox{\hyperlink{scheduleredfimpl_8h}{scheduleredfimpl.\+h}}
+\begin{DoxyCompactList}\small\item\em E\+DF Scheduler Implementation. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structScheduler__EDF__Context}{Scheduler\+\_\+\+E\+D\+F\+\_\+\+Context}}
+\item 
+struct \mbox{\hyperlink{structScheduler__EDF__Node}{Scheduler\+\_\+\+E\+D\+F\+\_\+\+Node}}
+\begin{DoxyCompactList}\small\item\em Scheduler node specialization for E\+DF schedulers. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{group__RTEMSScoreSchedulerEDF_ga0f176d651f1b6fd8de1a269ebe3bf208}\label{group__RTEMSScoreSchedulerEDF_ga0f176d651f1b6fd8de1a269ebe3bf208}} 
+\#define {\bfseries S\+C\+H\+E\+D\+U\+L\+E\+R\+\_\+\+E\+D\+F\+\_\+\+M\+A\+X\+I\+M\+U\+M\+\_\+\+P\+R\+I\+O\+R\+I\+TY}~I\+N\+T\+\_\+\+M\+AX
+\item 
+\#define \mbox{\hyperlink{group__RTEMSScoreSchedulerEDF_ga348e7e95a0d6fd2e7c3e657a812a8c18}{S\+C\+H\+E\+D\+U\+L\+E\+R\+\_\+\+E\+D\+F\+\_\+\+E\+N\+T\+R\+Y\+\_\+\+P\+O\+I\+N\+TS}}
+\item 
+\#define \mbox{\hyperlink{group__RTEMSScoreSchedulerEDF_ga576b01a08743b7a0f261b145c890dbd2}{S\+C\+H\+E\+D\+U\+L\+E\+R\+\_\+\+E\+D\+F\+\_\+\+P\+R\+I\+O\+\_\+\+M\+SB}}~0x8000000000000000
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{group__RTEMSScoreSchedulerEDF_ga8648861ae22830f1cfcddf7132b6163a}{\+\_\+\+Scheduler\+\_\+\+E\+D\+F\+\_\+\+Initialize}} (const \mbox{\hyperlink{struct__Scheduler__Control}{Scheduler\+\_\+\+Control}} $\ast$scheduler)
+\begin{DoxyCompactList}\small\item\em Initializes E\+DF scheduler. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__RTEMSScoreSchedulerEDF_gac26bbc49f94fa506fd0bdea7c1f09066}{\+\_\+\+Scheduler\+\_\+\+E\+D\+F\+\_\+\+Block}} (const \mbox{\hyperlink{struct__Scheduler__Control}{Scheduler\+\_\+\+Control}} $\ast$scheduler, \mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$the\+\_\+thread, \mbox{\hyperlink{structScheduler__Node}{Scheduler\+\_\+\+Node}} $\ast$node)
+\begin{DoxyCompactList}\small\item\em Removes the blocking thread from the ready queue and schedules is only again if the thread is executing or the heir thread. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__RTEMSScoreSchedulerEDF_gaffeb1173b847e46074a4f8b2e39e6b81}{\+\_\+\+Scheduler\+\_\+\+E\+D\+F\+\_\+\+Schedule}} (const \mbox{\hyperlink{struct__Scheduler__Control}{Scheduler\+\_\+\+Control}} $\ast$scheduler, \mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$the\+\_\+thread)
+\begin{DoxyCompactList}\small\item\em Sets the heir thread to be the next ready thread in the rbtree ready queue. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__RTEMSScoreSchedulerEDF_ga465fd54ce1c8c0633424db0933856c67}{\+\_\+\+Scheduler\+\_\+\+E\+D\+F\+\_\+\+Node\+\_\+initialize}} (const \mbox{\hyperlink{struct__Scheduler__Control}{Scheduler\+\_\+\+Control}} $\ast$scheduler, \mbox{\hyperlink{structScheduler__Node}{Scheduler\+\_\+\+Node}} $\ast$node, \mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$the\+\_\+thread, \mbox{\hyperlink{group__RTEMSScorePriority_ga59d02b58072d31a9a1cfe644557aefe2}{Priority\+\_\+\+Control}} priority)
+\begin{DoxyCompactList}\small\item\em Initializes an E\+DF specific scheduler node of {\itshape the\+\_\+thread}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__RTEMSScoreSchedulerEDF_ga1c6a885d1cbf890d31be7c539db7c12e}{\+\_\+\+Scheduler\+\_\+\+E\+D\+F\+\_\+\+Unblock}} (const \mbox{\hyperlink{struct__Scheduler__Control}{Scheduler\+\_\+\+Control}} $\ast$scheduler, \mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$the\+\_\+thread, \mbox{\hyperlink{structScheduler__Node}{Scheduler\+\_\+\+Node}} $\ast$node)
+\begin{DoxyCompactList}\small\item\em Performs an unblocking of the thread. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__RTEMSScoreSchedulerEDF_gaf8da2ab5519218b6509eeecb90f4f1d7}{\+\_\+\+Scheduler\+\_\+\+E\+D\+F\+\_\+\+Update\+\_\+priority}} (const \mbox{\hyperlink{struct__Scheduler__Control}{Scheduler\+\_\+\+Control}} $\ast$scheduler, \mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$the\+\_\+thread, \mbox{\hyperlink{structScheduler__Node}{Scheduler\+\_\+\+Node}} $\ast$node)
+\begin{DoxyCompactList}\small\item\em Updates the priority of the scheduler node. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScorePriority_ga59d02b58072d31a9a1cfe644557aefe2}{Priority\+\_\+\+Control}} \mbox{\hyperlink{group__RTEMSScoreSchedulerEDF_gac55915800e708341eac29411a6cecc63}{\+\_\+\+Scheduler\+\_\+\+E\+D\+F\+\_\+\+Map\+\_\+priority}} (const \mbox{\hyperlink{struct__Scheduler__Control}{Scheduler\+\_\+\+Control}} $\ast$scheduler, \mbox{\hyperlink{group__RTEMSScorePriority_ga59d02b58072d31a9a1cfe644557aefe2}{Priority\+\_\+\+Control}} priority)
+\begin{DoxyCompactList}\small\item\em Gets the mapped priority map of the priority control. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScorePriority_ga59d02b58072d31a9a1cfe644557aefe2}{Priority\+\_\+\+Control}} \mbox{\hyperlink{group__RTEMSScoreSchedulerEDF_gad84ae7d48af80b7310fb64741fcfe324}{\+\_\+\+Scheduler\+\_\+\+E\+D\+F\+\_\+\+Unmap\+\_\+priority}} (const \mbox{\hyperlink{struct__Scheduler__Control}{Scheduler\+\_\+\+Control}} $\ast$scheduler, \mbox{\hyperlink{group__RTEMSScorePriority_ga59d02b58072d31a9a1cfe644557aefe2}{Priority\+\_\+\+Control}} priority)
+\begin{DoxyCompactList}\small\item\em Gets the unmapped priority map of the priority control. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__RTEMSScoreSchedulerEDF_ga1e56a56a016ef9317cae0090f846ceb6}{\+\_\+\+Scheduler\+\_\+\+E\+D\+F\+\_\+\+Yield}} (const \mbox{\hyperlink{struct__Scheduler__Control}{Scheduler\+\_\+\+Control}} $\ast$scheduler, \mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$the\+\_\+thread, \mbox{\hyperlink{structScheduler__Node}{Scheduler\+\_\+\+Node}} $\ast$node)
+\begin{DoxyCompactList}\small\item\em Executes a thread yield for the thread. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__RTEMSScoreSchedulerEDF_gac0692f99a480bf873298367ffd5ec6a1}{\+\_\+\+Scheduler\+\_\+\+E\+D\+F\+\_\+\+Release\+\_\+job}} (const \mbox{\hyperlink{struct__Scheduler__Control}{Scheduler\+\_\+\+Control}} $\ast$scheduler, \mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$the\+\_\+thread, \mbox{\hyperlink{structPriority__Node}{Priority\+\_\+\+Node}} $\ast$priority\+\_\+node, uint64\+\_\+t deadline, \mbox{\hyperlink{structThread__queue__Context}{Thread\+\_\+queue\+\_\+\+Context}} $\ast$queue\+\_\+context)
+\begin{DoxyCompactList}\small\item\em Releases a E\+DF job. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__RTEMSScoreSchedulerEDF_ga616d8e664dde0dc44953c47fa76aa65f}{\+\_\+\+Scheduler\+\_\+\+E\+D\+F\+\_\+\+Cancel\+\_\+job}} (const \mbox{\hyperlink{struct__Scheduler__Control}{Scheduler\+\_\+\+Control}} $\ast$scheduler, \mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$the\+\_\+thread, \mbox{\hyperlink{structPriority__Node}{Priority\+\_\+\+Node}} $\ast$priority\+\_\+node, \mbox{\hyperlink{structThread__queue__Context}{Thread\+\_\+queue\+\_\+\+Context}} $\ast$queue\+\_\+context)
+\begin{DoxyCompactList}\small\item\em Cancels a job and removes the thread from the queue context. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} \mbox{\hyperlink{structScheduler__EDF__Context}{Scheduler\+\_\+\+E\+D\+F\+\_\+\+Context}} $\ast$ \mbox{\hyperlink{group__RTEMSScoreSchedulerEDF_ga8f7bd3ea1cd129951cf3246eb4c31b1f}{\+\_\+\+Scheduler\+\_\+\+E\+D\+F\+\_\+\+Get\+\_\+context}} (const \mbox{\hyperlink{struct__Scheduler__Control}{Scheduler\+\_\+\+Control}} $\ast$scheduler)
+\begin{DoxyCompactList}\small\item\em Gets the context of the scheduler. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} \mbox{\hyperlink{structScheduler__EDF__Node}{Scheduler\+\_\+\+E\+D\+F\+\_\+\+Node}} $\ast$ \mbox{\hyperlink{group__RTEMSScoreSchedulerEDF_gae2e85339fc623dca9d51dd8ae3826f4a}{\+\_\+\+Scheduler\+\_\+\+E\+D\+F\+\_\+\+Thread\+\_\+get\+\_\+node}} (\mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$the\+\_\+thread)
+\begin{DoxyCompactList}\small\item\em Gets the scheduler E\+DF node of the thread. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} \mbox{\hyperlink{structScheduler__EDF__Node}{Scheduler\+\_\+\+E\+D\+F\+\_\+\+Node}} $\ast$ \mbox{\hyperlink{group__RTEMSScoreSchedulerEDF_gaea9b538d93951ca5e84d203fc274b8db}{\+\_\+\+Scheduler\+\_\+\+E\+D\+F\+\_\+\+Node\+\_\+downcast}} (\mbox{\hyperlink{structScheduler__Node}{Scheduler\+\_\+\+Node}} $\ast$node)
+\begin{DoxyCompactList}\small\item\em Returns the scheduler E\+DF node for the scheduler node. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} bool \mbox{\hyperlink{group__RTEMSScoreSchedulerEDF_gaab4da8d09d44a461c48bfa4132784f71}{\+\_\+\+Scheduler\+\_\+\+E\+D\+F\+\_\+\+Less}} (const void $\ast$left, const \mbox{\hyperlink{structRBTree__Node}{R\+B\+Tree\+\_\+\+Node}} $\ast$right)
+\begin{DoxyCompactList}\small\item\em Checks if {\itshape left} is less than the priority of the node {\itshape right}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} bool \mbox{\hyperlink{group__RTEMSScoreSchedulerEDF_ga4ca8e1bd12d09d46e7f7838c6aebe004}{\+\_\+\+Scheduler\+\_\+\+E\+D\+F\+\_\+\+Priority\+\_\+less\+\_\+equal}} (const void $\ast$left, const \mbox{\hyperlink{structRBTree__Node}{R\+B\+Tree\+\_\+\+Node}} $\ast$right)
+\begin{DoxyCompactList}\small\item\em Checks if {\itshape left} is less or equal than the priority of the node {\itshape right}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \mbox{\hyperlink{group__RTEMSScoreSchedulerEDF_gad3aeb60cde6231ec6baee6649b09d9b5}{\+\_\+\+Scheduler\+\_\+\+E\+D\+F\+\_\+\+Enqueue}} (\mbox{\hyperlink{structScheduler__EDF__Context}{Scheduler\+\_\+\+E\+D\+F\+\_\+\+Context}} $\ast$\mbox{\hyperlink{sun4u_2tte_8h_a9b4a99475e2709333b8e5d70483173f1}{context}}, \mbox{\hyperlink{structScheduler__EDF__Node}{Scheduler\+\_\+\+E\+D\+F\+\_\+\+Node}} $\ast$node, \mbox{\hyperlink{group__RTEMSScorePriority_ga59d02b58072d31a9a1cfe644557aefe2}{Priority\+\_\+\+Control}} insert\+\_\+priority)
+\begin{DoxyCompactList}\small\item\em Inserts the scheduler node with the given priority in the ready queue of the context. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \mbox{\hyperlink{group__RTEMSScoreSchedulerEDF_ga3b25999c8ed803d5e2cebce7ad1b2060}{\+\_\+\+Scheduler\+\_\+\+E\+D\+F\+\_\+\+Extract}} (\mbox{\hyperlink{structScheduler__EDF__Context}{Scheduler\+\_\+\+E\+D\+F\+\_\+\+Context}} $\ast$\mbox{\hyperlink{sun4u_2tte_8h_a9b4a99475e2709333b8e5d70483173f1}{context}}, \mbox{\hyperlink{structScheduler__EDF__Node}{Scheduler\+\_\+\+E\+D\+F\+\_\+\+Node}} $\ast$node)
+\begin{DoxyCompactList}\small\item\em Extracts the scheduler node from the ready queue of the context. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \mbox{\hyperlink{group__RTEMSScoreSchedulerEDF_ga0daebfc9b131bd097db9899942bb0926}{\+\_\+\+Scheduler\+\_\+\+E\+D\+F\+\_\+\+Extract\+\_\+body}} (const \mbox{\hyperlink{struct__Scheduler__Control}{Scheduler\+\_\+\+Control}} $\ast$scheduler, \mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$the\+\_\+thread, \mbox{\hyperlink{structScheduler__Node}{Scheduler\+\_\+\+Node}} $\ast$node)
+\begin{DoxyCompactList}\small\item\em Extracts the node from the context of the given scheduler. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \mbox{\hyperlink{group__RTEMSScoreSchedulerEDF_gacacc0195101c7c177c6bce307de1699a}{\+\_\+\+Scheduler\+\_\+\+E\+D\+F\+\_\+\+Schedule\+\_\+body}} (const \mbox{\hyperlink{struct__Scheduler__Control}{Scheduler\+\_\+\+Control}} $\ast$scheduler, \mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$the\+\_\+thread, bool force\+\_\+dispatch)
+\begin{DoxyCompactList}\small\item\em Schedules the next ready thread as the heir. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+E\+DF Scheduler. 
+
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{group__RTEMSScoreSchedulerEDF_ga348e7e95a0d6fd2e7c3e657a812a8c18}\label{group__RTEMSScoreSchedulerEDF_ga348e7e95a0d6fd2e7c3e657a812a8c18}} 
+\index{EDF Scheduler@{EDF Scheduler}!SCHEDULER\_EDF\_ENTRY\_POINTS@{SCHEDULER\_EDF\_ENTRY\_POINTS}}
+\index{SCHEDULER\_EDF\_ENTRY\_POINTS@{SCHEDULER\_EDF\_ENTRY\_POINTS}!EDF Scheduler@{EDF Scheduler}}
+\subsubsection{\texorpdfstring{SCHEDULER\_EDF\_ENTRY\_POINTS}{SCHEDULER\_EDF\_ENTRY\_POINTS}}
+{\footnotesize\ttfamily \#define S\+C\+H\+E\+D\+U\+L\+E\+R\+\_\+\+E\+D\+F\+\_\+\+E\+N\+T\+R\+Y\+\_\+\+P\+O\+I\+N\+TS}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{ \(\backslash\)}
+\DoxyCodeLine{    \_Scheduler\_EDF\_Initialize,       \textcolor{comment}{/* initialize entry point */} \(\backslash\)}
+\DoxyCodeLine{    \_Scheduler\_EDF\_Schedule,         \textcolor{comment}{/* schedule entry point */} \(\backslash\)}
+\DoxyCodeLine{    \_Scheduler\_EDF\_Yield,            \textcolor{comment}{/* yield entry point */} \(\backslash\)}
+\DoxyCodeLine{    \_Scheduler\_EDF\_Block,            \textcolor{comment}{/* block entry point */} \(\backslash\)}
+\DoxyCodeLine{    \_Scheduler\_EDF\_Unblock,          \textcolor{comment}{/* unblock entry point */} \(\backslash\)}
+\DoxyCodeLine{    \_Scheduler\_EDF\_Update\_priority,  \textcolor{comment}{/* update priority entry point */} \(\backslash\)}
+\DoxyCodeLine{    \_Scheduler\_EDF\_Map\_priority,     \textcolor{comment}{/* map priority entry point */} \(\backslash\)}
+\DoxyCodeLine{    \_Scheduler\_EDF\_Unmap\_priority,   \textcolor{comment}{/* unmap priority entry point */} \mbox{\hyperlink{group__RTEMSScoreSchedulerEDF_ga465fd54ce1c8c0633424db0933856c67}{\(\backslash\)}}}
+\DoxyCodeLine{\mbox{\hyperlink{group__RTEMSScoreSchedulerEDF_ga465fd54ce1c8c0633424db0933856c67}{    SCHEDULER\_OPERATION\_DEFAULT\_ASK\_FOR\_HELP \(\backslash\)}}}
+\DoxyCodeLine{\mbox{\hyperlink{group__RTEMSScoreSchedulerEDF_ga465fd54ce1c8c0633424db0933856c67}{    \_Scheduler\_EDF\_Node\_initialize}},  \textcolor{comment}{/* node initialize entry point */} \(\backslash\)}
+\DoxyCodeLine{    \_Scheduler\_default\_Node\_destroy, \textcolor{comment}{/* node destroy entry point */} \(\backslash\)}
+\DoxyCodeLine{    \_Scheduler\_EDF\_Release\_job,      \textcolor{comment}{/* new period of task */} \(\backslash\)}
+\DoxyCodeLine{    \_Scheduler\_EDF\_Cancel\_job,       \textcolor{comment}{/* cancel period of task */} \(\backslash\)}
+\DoxyCodeLine{    \_Scheduler\_default\_Tick,         \textcolor{comment}{/* tick entry point */} \(\backslash\)}
+\DoxyCodeLine{    \_Scheduler\_default\_Start\_idle    \textcolor{comment}{/* start idle entry point */} \(\backslash\)}
+\DoxyCodeLine{    SCHEDULER\_OPERATION\_DEFAULT\_GET\_SET\_AFFINITY \(\backslash\)}
+\DoxyCodeLine{  \}}
+
+\end{DoxyCode}
+Entry points for the Earliest Deadline First Scheduler. \mbox{\Hypertarget{group__RTEMSScoreSchedulerEDF_ga576b01a08743b7a0f261b145c890dbd2}\label{group__RTEMSScoreSchedulerEDF_ga576b01a08743b7a0f261b145c890dbd2}} 
+\index{EDF Scheduler@{EDF Scheduler}!SCHEDULER\_EDF\_PRIO\_MSB@{SCHEDULER\_EDF\_PRIO\_MSB}}
+\index{SCHEDULER\_EDF\_PRIO\_MSB@{SCHEDULER\_EDF\_PRIO\_MSB}!EDF Scheduler@{EDF Scheduler}}
+\subsubsection{\texorpdfstring{SCHEDULER\_EDF\_PRIO\_MSB}{SCHEDULER\_EDF\_PRIO\_MSB}}
+{\footnotesize\ttfamily \#define S\+C\+H\+E\+D\+U\+L\+E\+R\+\_\+\+E\+D\+F\+\_\+\+P\+R\+I\+O\+\_\+\+M\+SB~0x8000000000000000}
+
+This is just a most significant bit of Priority\+\_\+\+Control type. It distinguishes threads which are deadline driven (priority represented by a lower number than {\itshape S\+C\+H\+E\+D\+U\+L\+E\+R\+\_\+\+E\+D\+F\+\_\+\+P\+R\+I\+O\+\_\+\+M\+SB}) from those ones who do not have any deadlines and thus are considered background tasks. 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{group__RTEMSScoreSchedulerEDF_gac26bbc49f94fa506fd0bdea7c1f09066}\label{group__RTEMSScoreSchedulerEDF_gac26bbc49f94fa506fd0bdea7c1f09066}} 
+\index{EDF Scheduler@{EDF Scheduler}!\_Scheduler\_EDF\_Block@{\_Scheduler\_EDF\_Block}}
+\index{\_Scheduler\_EDF\_Block@{\_Scheduler\_EDF\_Block}!EDF Scheduler@{EDF Scheduler}}
+\subsubsection{\texorpdfstring{\_Scheduler\_EDF\_Block()}{\_Scheduler\_EDF\_Block()}}
+{\footnotesize\ttfamily void \+\_\+\+Scheduler\+\_\+\+E\+D\+F\+\_\+\+Block (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct__Scheduler__Control}{Scheduler\+\_\+\+Control}} $\ast$}]{scheduler,  }\item[{\mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$}]{the\+\_\+thread,  }\item[{\mbox{\hyperlink{structScheduler__Node}{Scheduler\+\_\+\+Node}} $\ast$}]{node }\end{DoxyParamCaption})}
+
+
+
+Removes the blocking thread from the ready queue and schedules is only again if the thread is executing or the heir thread. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em scheduler} & The scheduler for the operation. \\
+\hline
+ & {\em the\+\_\+thread} & The thread to operate upon. \\
+\hline
+\mbox{\texttt{ in,out}}  & {\em node} & The scheduler node for this thread. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__RTEMSScoreSchedulerEDF_ga616d8e664dde0dc44953c47fa76aa65f}\label{group__RTEMSScoreSchedulerEDF_ga616d8e664dde0dc44953c47fa76aa65f}} 
+\index{EDF Scheduler@{EDF Scheduler}!\_Scheduler\_EDF\_Cancel\_job@{\_Scheduler\_EDF\_Cancel\_job}}
+\index{\_Scheduler\_EDF\_Cancel\_job@{\_Scheduler\_EDF\_Cancel\_job}!EDF Scheduler@{EDF Scheduler}}
+\subsubsection{\texorpdfstring{\_Scheduler\_EDF\_Cancel\_job()}{\_Scheduler\_EDF\_Cancel\_job()}}
+{\footnotesize\ttfamily void \+\_\+\+Scheduler\+\_\+\+E\+D\+F\+\_\+\+Cancel\+\_\+job (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct__Scheduler__Control}{Scheduler\+\_\+\+Control}} $\ast$}]{scheduler,  }\item[{\mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$}]{the\+\_\+thread,  }\item[{\mbox{\hyperlink{structPriority__Node}{Priority\+\_\+\+Node}} $\ast$}]{priority\+\_\+node,  }\item[{\mbox{\hyperlink{structThread__queue__Context}{Thread\+\_\+queue\+\_\+\+Context}} $\ast$}]{queue\+\_\+context }\end{DoxyParamCaption})}
+
+
+
+Cancels a job and removes the thread from the queue context. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+ & {\em scheduler} & The scheduler instance. \\
+\hline
+ & {\em the\+\_\+thread} & The thread for the operation. \\
+\hline
+\mbox{\texttt{ in,out}}  & {\em priority\+\_\+node} & The corresponding priority node. \\
+\hline
+\mbox{\texttt{ in,out}}  & {\em queue\+\_\+context} & The thread queue context. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__RTEMSScoreSchedulerEDF_gad3aeb60cde6231ec6baee6649b09d9b5}\label{group__RTEMSScoreSchedulerEDF_gad3aeb60cde6231ec6baee6649b09d9b5}} 
+\index{EDF Scheduler@{EDF Scheduler}!\_Scheduler\_EDF\_Enqueue@{\_Scheduler\_EDF\_Enqueue}}
+\index{\_Scheduler\_EDF\_Enqueue@{\_Scheduler\_EDF\_Enqueue}!EDF Scheduler@{EDF Scheduler}}
+\subsubsection{\texorpdfstring{\_Scheduler\_EDF\_Enqueue()}{\_Scheduler\_EDF\_Enqueue()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \+\_\+\+Scheduler\+\_\+\+E\+D\+F\+\_\+\+Enqueue (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structScheduler__EDF__Context}{Scheduler\+\_\+\+E\+D\+F\+\_\+\+Context}} $\ast$}]{context,  }\item[{\mbox{\hyperlink{structScheduler__EDF__Node}{Scheduler\+\_\+\+E\+D\+F\+\_\+\+Node}} $\ast$}]{node,  }\item[{\mbox{\hyperlink{group__RTEMSScorePriority_ga59d02b58072d31a9a1cfe644557aefe2}{Priority\+\_\+\+Control}}}]{insert\+\_\+priority }\end{DoxyParamCaption})}
+
+
+
+Inserts the scheduler node with the given priority in the ready queue of the context. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em context} & The context to insert the node in. \\
+\hline
+ & {\em node} & The node to be inserted. \\
+\hline
+ & {\em insert\+\_\+priority} & The priority with which the node will be inserted. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__RTEMSScoreSchedulerEDF_ga3b25999c8ed803d5e2cebce7ad1b2060}\label{group__RTEMSScoreSchedulerEDF_ga3b25999c8ed803d5e2cebce7ad1b2060}} 
+\index{EDF Scheduler@{EDF Scheduler}!\_Scheduler\_EDF\_Extract@{\_Scheduler\_EDF\_Extract}}
+\index{\_Scheduler\_EDF\_Extract@{\_Scheduler\_EDF\_Extract}!EDF Scheduler@{EDF Scheduler}}
+\subsubsection{\texorpdfstring{\_Scheduler\_EDF\_Extract()}{\_Scheduler\_EDF\_Extract()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \+\_\+\+Scheduler\+\_\+\+E\+D\+F\+\_\+\+Extract (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structScheduler__EDF__Context}{Scheduler\+\_\+\+E\+D\+F\+\_\+\+Context}} $\ast$}]{context,  }\item[{\mbox{\hyperlink{structScheduler__EDF__Node}{Scheduler\+\_\+\+E\+D\+F\+\_\+\+Node}} $\ast$}]{node }\end{DoxyParamCaption})}
+
+
+
+Extracts the scheduler node from the ready queue of the context. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em context} & The context to extract the node from. \\
+\hline
+\mbox{\texttt{ in,out}}  & {\em node} & The node to extract. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__RTEMSScoreSchedulerEDF_ga0daebfc9b131bd097db9899942bb0926}\label{group__RTEMSScoreSchedulerEDF_ga0daebfc9b131bd097db9899942bb0926}} 
+\index{EDF Scheduler@{EDF Scheduler}!\_Scheduler\_EDF\_Extract\_body@{\_Scheduler\_EDF\_Extract\_body}}
+\index{\_Scheduler\_EDF\_Extract\_body@{\_Scheduler\_EDF\_Extract\_body}!EDF Scheduler@{EDF Scheduler}}
+\subsubsection{\texorpdfstring{\_Scheduler\_EDF\_Extract\_body()}{\_Scheduler\_EDF\_Extract\_body()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \+\_\+\+Scheduler\+\_\+\+E\+D\+F\+\_\+\+Extract\+\_\+body (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct__Scheduler__Control}{Scheduler\+\_\+\+Control}} $\ast$}]{scheduler,  }\item[{\mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$}]{the\+\_\+thread,  }\item[{\mbox{\hyperlink{structScheduler__Node}{Scheduler\+\_\+\+Node}} $\ast$}]{node }\end{DoxyParamCaption})}
+
+
+
+Extracts the node from the context of the given scheduler. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+ & {\em scheduler} & The scheduler instance. \\
+\hline
+ & {\em the\+\_\+thread} & The thread is not used in this method. \\
+\hline
+\mbox{\texttt{ in,out}}  & {\em node} & The node to be extracted. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__RTEMSScoreSchedulerEDF_ga8f7bd3ea1cd129951cf3246eb4c31b1f}\label{group__RTEMSScoreSchedulerEDF_ga8f7bd3ea1cd129951cf3246eb4c31b1f}} 
+\index{EDF Scheduler@{EDF Scheduler}!\_Scheduler\_EDF\_Get\_context@{\_Scheduler\_EDF\_Get\_context}}
+\index{\_Scheduler\_EDF\_Get\_context@{\_Scheduler\_EDF\_Get\_context}!EDF Scheduler@{EDF Scheduler}}
+\subsubsection{\texorpdfstring{\_Scheduler\_EDF\_Get\_context()}{\_Scheduler\_EDF\_Get\_context()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} \mbox{\hyperlink{structScheduler__EDF__Context}{Scheduler\+\_\+\+E\+D\+F\+\_\+\+Context}}$\ast$ \+\_\+\+Scheduler\+\_\+\+E\+D\+F\+\_\+\+Get\+\_\+context (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct__Scheduler__Control}{Scheduler\+\_\+\+Control}} $\ast$}]{scheduler }\end{DoxyParamCaption})}
+
+
+
+Gets the context of the scheduler. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em scheduler} & The scheduler instance.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The scheduler context of {\itshape scheduler}. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{group__RTEMSScoreSchedulerEDF_ga8648861ae22830f1cfcddf7132b6163a}\label{group__RTEMSScoreSchedulerEDF_ga8648861ae22830f1cfcddf7132b6163a}} 
+\index{EDF Scheduler@{EDF Scheduler}!\_Scheduler\_EDF\_Initialize@{\_Scheduler\_EDF\_Initialize}}
+\index{\_Scheduler\_EDF\_Initialize@{\_Scheduler\_EDF\_Initialize}!EDF Scheduler@{EDF Scheduler}}
+\subsubsection{\texorpdfstring{\_Scheduler\_EDF\_Initialize()}{\_Scheduler\_EDF\_Initialize()}}
+{\footnotesize\ttfamily void \+\_\+\+Scheduler\+\_\+\+E\+D\+F\+\_\+\+Initialize (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct__Scheduler__Control}{Scheduler\+\_\+\+Control}} $\ast$}]{scheduler }\end{DoxyParamCaption})}
+
+
+
+Initializes E\+DF scheduler. 
+
+This routine initializes the E\+DF scheduler.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em scheduler} & The scheduler instance. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__RTEMSScoreSchedulerEDF_gaab4da8d09d44a461c48bfa4132784f71}\label{group__RTEMSScoreSchedulerEDF_gaab4da8d09d44a461c48bfa4132784f71}} 
+\index{EDF Scheduler@{EDF Scheduler}!\_Scheduler\_EDF\_Less@{\_Scheduler\_EDF\_Less}}
+\index{\_Scheduler\_EDF\_Less@{\_Scheduler\_EDF\_Less}!EDF Scheduler@{EDF Scheduler}}
+\subsubsection{\texorpdfstring{\_Scheduler\_EDF\_Less()}{\_Scheduler\_EDF\_Less()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} bool \+\_\+\+Scheduler\+\_\+\+E\+D\+F\+\_\+\+Less (\begin{DoxyParamCaption}\item[{const void $\ast$}]{left,  }\item[{const \mbox{\hyperlink{structRBTree__Node}{R\+B\+Tree\+\_\+\+Node}} $\ast$}]{right }\end{DoxyParamCaption})}
+
+
+
+Checks if {\itshape left} is less than the priority of the node {\itshape right}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em left} & The priority on the left hand side of the comparison. \\
+\hline
+{\em right} & The node of which the priority is compared to left.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em true} & {\itshape left} is less than the priority of {\itshape right}. \\
+\hline
+{\em false} & {\itshape left} is greater or equal than the priority of {\itshape right}. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{group__RTEMSScoreSchedulerEDF_gac55915800e708341eac29411a6cecc63}\label{group__RTEMSScoreSchedulerEDF_gac55915800e708341eac29411a6cecc63}} 
+\index{EDF Scheduler@{EDF Scheduler}!\_Scheduler\_EDF\_Map\_priority@{\_Scheduler\_EDF\_Map\_priority}}
+\index{\_Scheduler\_EDF\_Map\_priority@{\_Scheduler\_EDF\_Map\_priority}!EDF Scheduler@{EDF Scheduler}}
+\subsubsection{\texorpdfstring{\_Scheduler\_EDF\_Map\_priority()}{\_Scheduler\_EDF\_Map\_priority()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScorePriority_ga59d02b58072d31a9a1cfe644557aefe2}{Priority\+\_\+\+Control}} \+\_\+\+Scheduler\+\_\+\+E\+D\+F\+\_\+\+Map\+\_\+priority (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct__Scheduler__Control}{Scheduler\+\_\+\+Control}} $\ast$}]{scheduler,  }\item[{\mbox{\hyperlink{group__RTEMSScorePriority_ga59d02b58072d31a9a1cfe644557aefe2}{Priority\+\_\+\+Control}}}]{priority }\end{DoxyParamCaption})}
+
+
+
+Gets the mapped priority map of the priority control. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em scheduler} & Not used in this operation. \\
+\hline
+{\em priority} & The priority control to get the priority map of.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The mapped priority map of {\itshape priority}. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{group__RTEMSScoreSchedulerEDF_gaea9b538d93951ca5e84d203fc274b8db}\label{group__RTEMSScoreSchedulerEDF_gaea9b538d93951ca5e84d203fc274b8db}} 
+\index{EDF Scheduler@{EDF Scheduler}!\_Scheduler\_EDF\_Node\_downcast@{\_Scheduler\_EDF\_Node\_downcast}}
+\index{\_Scheduler\_EDF\_Node\_downcast@{\_Scheduler\_EDF\_Node\_downcast}!EDF Scheduler@{EDF Scheduler}}
+\subsubsection{\texorpdfstring{\_Scheduler\_EDF\_Node\_downcast()}{\_Scheduler\_EDF\_Node\_downcast()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} \mbox{\hyperlink{structScheduler__EDF__Node}{Scheduler\+\_\+\+E\+D\+F\+\_\+\+Node}}$\ast$ \+\_\+\+Scheduler\+\_\+\+E\+D\+F\+\_\+\+Node\+\_\+downcast (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structScheduler__Node}{Scheduler\+\_\+\+Node}} $\ast$}]{node }\end{DoxyParamCaption})}
+
+
+
+Returns the scheduler E\+DF node for the scheduler node. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em node} & The scheduler node of which the scheduler E\+DF node is returned.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The corresponding scheduler E\+DF node. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{group__RTEMSScoreSchedulerEDF_ga465fd54ce1c8c0633424db0933856c67}\label{group__RTEMSScoreSchedulerEDF_ga465fd54ce1c8c0633424db0933856c67}} 
+\index{EDF Scheduler@{EDF Scheduler}!\_Scheduler\_EDF\_Node\_initialize@{\_Scheduler\_EDF\_Node\_initialize}}
+\index{\_Scheduler\_EDF\_Node\_initialize@{\_Scheduler\_EDF\_Node\_initialize}!EDF Scheduler@{EDF Scheduler}}
+\subsubsection{\texorpdfstring{\_Scheduler\_EDF\_Node\_initialize()}{\_Scheduler\_EDF\_Node\_initialize()}}
+{\footnotesize\ttfamily void \+\_\+\+Scheduler\+\_\+\+E\+D\+F\+\_\+\+Node\+\_\+initialize (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct__Scheduler__Control}{Scheduler\+\_\+\+Control}} $\ast$}]{scheduler,  }\item[{\mbox{\hyperlink{structScheduler__Node}{Scheduler\+\_\+\+Node}} $\ast$}]{node,  }\item[{\mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$}]{the\+\_\+thread,  }\item[{\mbox{\hyperlink{group__RTEMSScorePriority_ga59d02b58072d31a9a1cfe644557aefe2}{Priority\+\_\+\+Control}}}]{priority }\end{DoxyParamCaption})}
+
+
+
+Initializes an E\+DF specific scheduler node of {\itshape the\+\_\+thread}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em scheduler} & The scheduler instance. \\
+\hline
+{\em node} & The node being initialized. \\
+\hline
+{\em the\+\_\+thread} & The thread of the node. \\
+\hline
+{\em priority} & The thread priority. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__RTEMSScoreSchedulerEDF_ga4ca8e1bd12d09d46e7f7838c6aebe004}\label{group__RTEMSScoreSchedulerEDF_ga4ca8e1bd12d09d46e7f7838c6aebe004}} 
+\index{EDF Scheduler@{EDF Scheduler}!\_Scheduler\_EDF\_Priority\_less\_equal@{\_Scheduler\_EDF\_Priority\_less\_equal}}
+\index{\_Scheduler\_EDF\_Priority\_less\_equal@{\_Scheduler\_EDF\_Priority\_less\_equal}!EDF Scheduler@{EDF Scheduler}}
+\subsubsection{\texorpdfstring{\_Scheduler\_EDF\_Priority\_less\_equal()}{\_Scheduler\_EDF\_Priority\_less\_equal()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} bool \+\_\+\+Scheduler\+\_\+\+E\+D\+F\+\_\+\+Priority\+\_\+less\+\_\+equal (\begin{DoxyParamCaption}\item[{const void $\ast$}]{left,  }\item[{const \mbox{\hyperlink{structRBTree__Node}{R\+B\+Tree\+\_\+\+Node}} $\ast$}]{right }\end{DoxyParamCaption})}
+
+
+
+Checks if {\itshape left} is less or equal than the priority of the node {\itshape right}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em left} & The priority on the left hand side of the comparison. \\
+\hline
+{\em right} & The node of which the priority is compared to left.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em true} & {\itshape left} is less or equal than the priority of {\itshape right}. \\
+\hline
+{\em false} & {\itshape left} is greater than the priority of {\itshape right}. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{group__RTEMSScoreSchedulerEDF_gac0692f99a480bf873298367ffd5ec6a1}\label{group__RTEMSScoreSchedulerEDF_gac0692f99a480bf873298367ffd5ec6a1}} 
+\index{EDF Scheduler@{EDF Scheduler}!\_Scheduler\_EDF\_Release\_job@{\_Scheduler\_EDF\_Release\_job}}
+\index{\_Scheduler\_EDF\_Release\_job@{\_Scheduler\_EDF\_Release\_job}!EDF Scheduler@{EDF Scheduler}}
+\subsubsection{\texorpdfstring{\_Scheduler\_EDF\_Release\_job()}{\_Scheduler\_EDF\_Release\_job()}}
+{\footnotesize\ttfamily void \+\_\+\+Scheduler\+\_\+\+E\+D\+F\+\_\+\+Release\+\_\+job (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct__Scheduler__Control}{Scheduler\+\_\+\+Control}} $\ast$}]{scheduler,  }\item[{\mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$}]{the\+\_\+thread,  }\item[{\mbox{\hyperlink{structPriority__Node}{Priority\+\_\+\+Node}} $\ast$}]{priority\+\_\+node,  }\item[{uint64\+\_\+t}]{deadline,  }\item[{\mbox{\hyperlink{structThread__queue__Context}{Thread\+\_\+queue\+\_\+\+Context}} $\ast$}]{queue\+\_\+context }\end{DoxyParamCaption})}
+
+
+
+Releases a E\+DF job. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+ & {\em scheduler} & The scheduler instance \\
+\hline
+ & {\em the\+\_\+thread} & The thread \\
+\hline
+\mbox{\texttt{ in,out}}  & {\em priority\+\_\+node} & The priority node for the operation. \\
+\hline
+ & {\em deadline} & The deadline for the job. \\
+\hline
+\mbox{\texttt{ in,out}}  & {\em queue\+\_\+context} & The thread queue context. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__RTEMSScoreSchedulerEDF_gaffeb1173b847e46074a4f8b2e39e6b81}\label{group__RTEMSScoreSchedulerEDF_gaffeb1173b847e46074a4f8b2e39e6b81}} 
+\index{EDF Scheduler@{EDF Scheduler}!\_Scheduler\_EDF\_Schedule@{\_Scheduler\_EDF\_Schedule}}
+\index{\_Scheduler\_EDF\_Schedule@{\_Scheduler\_EDF\_Schedule}!EDF Scheduler@{EDF Scheduler}}
+\subsubsection{\texorpdfstring{\_Scheduler\_EDF\_Schedule()}{\_Scheduler\_EDF\_Schedule()}}
+{\footnotesize\ttfamily void \+\_\+\+Scheduler\+\_\+\+E\+D\+F\+\_\+\+Schedule (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct__Scheduler__Control}{Scheduler\+\_\+\+Control}} $\ast$}]{scheduler,  }\item[{\mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$}]{the\+\_\+thread }\end{DoxyParamCaption})}
+
+
+
+Sets the heir thread to be the next ready thread in the rbtree ready queue. 
+
+This kernel routine sets the heir thread to be the next ready thread in the rbtree ready queue.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em scheduler} & The scheduler instance. \\
+\hline
+ & {\em the\+\_\+thread} & The thread being scheduled. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__RTEMSScoreSchedulerEDF_gacacc0195101c7c177c6bce307de1699a}\label{group__RTEMSScoreSchedulerEDF_gacacc0195101c7c177c6bce307de1699a}} 
+\index{EDF Scheduler@{EDF Scheduler}!\_Scheduler\_EDF\_Schedule\_body@{\_Scheduler\_EDF\_Schedule\_body}}
+\index{\_Scheduler\_EDF\_Schedule\_body@{\_Scheduler\_EDF\_Schedule\_body}!EDF Scheduler@{EDF Scheduler}}
+\subsubsection{\texorpdfstring{\_Scheduler\_EDF\_Schedule\_body()}{\_Scheduler\_EDF\_Schedule\_body()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \+\_\+\+Scheduler\+\_\+\+E\+D\+F\+\_\+\+Schedule\+\_\+body (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct__Scheduler__Control}{Scheduler\+\_\+\+Control}} $\ast$}]{scheduler,  }\item[{\mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$}]{the\+\_\+thread,  }\item[{bool}]{force\+\_\+dispatch }\end{DoxyParamCaption})}
+
+
+
+Schedules the next ready thread as the heir. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em scheduler} & The scheduler instance to schedule the minimum of the context of. \\
+\hline
+{\em the\+\_\+thread} & This parameter is not used. \\
+\hline
+{\em force\+\_\+dispatch} & Indicates whether the current heir is blocked even if it is not set as preemptible. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__RTEMSScoreSchedulerEDF_gae2e85339fc623dca9d51dd8ae3826f4a}\label{group__RTEMSScoreSchedulerEDF_gae2e85339fc623dca9d51dd8ae3826f4a}} 
+\index{EDF Scheduler@{EDF Scheduler}!\_Scheduler\_EDF\_Thread\_get\_node@{\_Scheduler\_EDF\_Thread\_get\_node}}
+\index{\_Scheduler\_EDF\_Thread\_get\_node@{\_Scheduler\_EDF\_Thread\_get\_node}!EDF Scheduler@{EDF Scheduler}}
+\subsubsection{\texorpdfstring{\_Scheduler\_EDF\_Thread\_get\_node()}{\_Scheduler\_EDF\_Thread\_get\_node()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} \mbox{\hyperlink{structScheduler__EDF__Node}{Scheduler\+\_\+\+E\+D\+F\+\_\+\+Node}}$\ast$ \+\_\+\+Scheduler\+\_\+\+E\+D\+F\+\_\+\+Thread\+\_\+get\+\_\+node (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$}]{the\+\_\+thread }\end{DoxyParamCaption})}
+
+
+
+Gets the scheduler E\+DF node of the thread. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em the\+\_\+thread} & The thread to get the scheduler node of.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The E\+DF scheduler node of {\itshape the\+\_\+thread}. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{group__RTEMSScoreSchedulerEDF_ga1c6a885d1cbf890d31be7c539db7c12e}\label{group__RTEMSScoreSchedulerEDF_ga1c6a885d1cbf890d31be7c539db7c12e}} 
+\index{EDF Scheduler@{EDF Scheduler}!\_Scheduler\_EDF\_Unblock@{\_Scheduler\_EDF\_Unblock}}
+\index{\_Scheduler\_EDF\_Unblock@{\_Scheduler\_EDF\_Unblock}!EDF Scheduler@{EDF Scheduler}}
+\subsubsection{\texorpdfstring{\_Scheduler\_EDF\_Unblock()}{\_Scheduler\_EDF\_Unblock()}}
+{\footnotesize\ttfamily void \+\_\+\+Scheduler\+\_\+\+E\+D\+F\+\_\+\+Unblock (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct__Scheduler__Control}{Scheduler\+\_\+\+Control}} $\ast$}]{scheduler,  }\item[{\mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$}]{the\+\_\+thread,  }\item[{\mbox{\hyperlink{structScheduler__Node}{Scheduler\+\_\+\+Node}} $\ast$}]{node }\end{DoxyParamCaption})}
+
+
+
+Performs an unblocking of the thread. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em scheduler} & The scheduler instance. \\
+\hline
+ & {\em the\+\_\+thread} & The unblocking thread. May be set as new heir. \\
+\hline
+\mbox{\texttt{ in,out}}  & {\em node} & The scheduler node for the thread. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__RTEMSScoreSchedulerEDF_gad84ae7d48af80b7310fb64741fcfe324}\label{group__RTEMSScoreSchedulerEDF_gad84ae7d48af80b7310fb64741fcfe324}} 
+\index{EDF Scheduler@{EDF Scheduler}!\_Scheduler\_EDF\_Unmap\_priority@{\_Scheduler\_EDF\_Unmap\_priority}}
+\index{\_Scheduler\_EDF\_Unmap\_priority@{\_Scheduler\_EDF\_Unmap\_priority}!EDF Scheduler@{EDF Scheduler}}
+\subsubsection{\texorpdfstring{\_Scheduler\_EDF\_Unmap\_priority()}{\_Scheduler\_EDF\_Unmap\_priority()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScorePriority_ga59d02b58072d31a9a1cfe644557aefe2}{Priority\+\_\+\+Control}} \+\_\+\+Scheduler\+\_\+\+E\+D\+F\+\_\+\+Unmap\+\_\+priority (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct__Scheduler__Control}{Scheduler\+\_\+\+Control}} $\ast$}]{scheduler,  }\item[{\mbox{\hyperlink{group__RTEMSScorePriority_ga59d02b58072d31a9a1cfe644557aefe2}{Priority\+\_\+\+Control}}}]{priority }\end{DoxyParamCaption})}
+
+
+
+Gets the unmapped priority map of the priority control. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em scheduler} & Not used in this operation. \\
+\hline
+{\em priority} & The priority control to get the priority map of.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The unmapped priority map of {\itshape priority}. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{group__RTEMSScoreSchedulerEDF_gaf8da2ab5519218b6509eeecb90f4f1d7}\label{group__RTEMSScoreSchedulerEDF_gaf8da2ab5519218b6509eeecb90f4f1d7}} 
+\index{EDF Scheduler@{EDF Scheduler}!\_Scheduler\_EDF\_Update\_priority@{\_Scheduler\_EDF\_Update\_priority}}
+\index{\_Scheduler\_EDF\_Update\_priority@{\_Scheduler\_EDF\_Update\_priority}!EDF Scheduler@{EDF Scheduler}}
+\subsubsection{\texorpdfstring{\_Scheduler\_EDF\_Update\_priority()}{\_Scheduler\_EDF\_Update\_priority()}}
+{\footnotesize\ttfamily void \+\_\+\+Scheduler\+\_\+\+E\+D\+F\+\_\+\+Update\+\_\+priority (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct__Scheduler__Control}{Scheduler\+\_\+\+Control}} $\ast$}]{scheduler,  }\item[{\mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$}]{the\+\_\+thread,  }\item[{\mbox{\hyperlink{structScheduler__Node}{Scheduler\+\_\+\+Node}} $\ast$}]{node }\end{DoxyParamCaption})}
+
+
+
+Updates the priority of the scheduler node. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+ & {\em scheduler} & The scheduler instance. \\
+\hline
+ & {\em the\+\_\+thread} & The thread for the operation. \\
+\hline
+\mbox{\texttt{ in,out}}  & {\em node} & The priority node to update the priority of. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__RTEMSScoreSchedulerEDF_ga1e56a56a016ef9317cae0090f846ceb6}\label{group__RTEMSScoreSchedulerEDF_ga1e56a56a016ef9317cae0090f846ceb6}} 
+\index{EDF Scheduler@{EDF Scheduler}!\_Scheduler\_EDF\_Yield@{\_Scheduler\_EDF\_Yield}}
+\index{\_Scheduler\_EDF\_Yield@{\_Scheduler\_EDF\_Yield}!EDF Scheduler@{EDF Scheduler}}
+\subsubsection{\texorpdfstring{\_Scheduler\_EDF\_Yield()}{\_Scheduler\_EDF\_Yield()}}
+{\footnotesize\ttfamily void \+\_\+\+Scheduler\+\_\+\+E\+D\+F\+\_\+\+Yield (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct__Scheduler__Control}{Scheduler\+\_\+\+Control}} $\ast$}]{scheduler,  }\item[{\mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$}]{the\+\_\+thread,  }\item[{\mbox{\hyperlink{structScheduler__Node}{Scheduler\+\_\+\+Node}} $\ast$}]{node }\end{DoxyParamCaption})}
+
+
+
+Executes a thread yield for the thread. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em scheduler} & The scheduler instance. \\
+\hline
+ & {\em the\+\_\+thread} & The thread that performs the yield. \\
+\hline
+\mbox{\texttt{ in,out}}  & {\em node} & The scheduler node for this thread. \\
+\hline
+\end{DoxyParams}

@@ -1,0 +1,148 @@
+\hypertarget{group__ClassicSemImpl}{}\section{Semaphore Manager Implementation}
+\label{group__ClassicSemImpl}\index{Semaphore Manager Implementation@{Semaphore Manager Implementation}}
+\subsection*{Files}
+\begin{DoxyCompactItemize}
+\item 
+file \mbox{\hyperlink{semdata_8h}{semdata.\+h}}
+\begin{DoxyCompactList}\small\item\em Classic Semaphore Manager Data Structures. \end{DoxyCompactList}\item 
+file \mbox{\hyperlink{semimpl_8h}{semimpl.\+h}}
+\begin{DoxyCompactList}\small\item\em Classic Semaphore Manager Implementation. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structSemaphore__Control}{Semaphore\+\_\+\+Control}}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__ClassicSemImpl_ga01b5e9375074423a86334974811e4028}{S\+E\+M\+A\+P\+H\+O\+R\+E\+\_\+\+I\+N\+F\+O\+R\+M\+A\+T\+I\+O\+N\+\_\+\+D\+E\+F\+I\+NE}}(max,  scheduler\+\_\+count)
+\begin{DoxyCompactList}\small\item\em Macro to define the objects information for the Classic Semaphore objects. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{group__ClassicSemImpl_gab9531c36f1845c14f2dfc5006fd3dee9}{Semaphore\+\_\+\+Variant}} \{ \newline
+{\bfseries S\+E\+M\+A\+P\+H\+O\+R\+E\+\_\+\+V\+A\+R\+I\+A\+N\+T\+\_\+\+M\+U\+T\+E\+X\+\_\+\+I\+N\+H\+E\+R\+I\+T\+\_\+\+P\+R\+I\+O\+R\+I\+TY}, 
+{\bfseries S\+E\+M\+A\+P\+H\+O\+R\+E\+\_\+\+V\+A\+R\+I\+A\+N\+T\+\_\+\+M\+U\+T\+E\+X\+\_\+\+P\+R\+I\+O\+R\+I\+T\+Y\+\_\+\+C\+E\+I\+L\+I\+NG}, 
+{\bfseries S\+E\+M\+A\+P\+H\+O\+R\+E\+\_\+\+V\+A\+R\+I\+A\+N\+T\+\_\+\+M\+U\+T\+E\+X\+\_\+\+N\+O\+\_\+\+P\+R\+O\+T\+O\+C\+OL}, 
+{\bfseries S\+E\+M\+A\+P\+H\+O\+R\+E\+\_\+\+V\+A\+R\+I\+A\+N\+T\+\_\+\+S\+I\+M\+P\+L\+E\+\_\+\+B\+I\+N\+A\+RY}, 
+\newline
+{\bfseries S\+E\+M\+A\+P\+H\+O\+R\+E\+\_\+\+V\+A\+R\+I\+A\+N\+T\+\_\+\+C\+O\+U\+N\+T\+I\+NG}
+ \}
+\begin{DoxyCompactList}\small\item\em Classic semaphore variants. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__ClassicSemImpl_ga6cf684e3f96371bcf89732c68adf1ef0}\label{group__ClassicSemImpl_ga6cf684e3f96371bcf89732c68adf1ef0}} 
+enum {\bfseries Semaphore\+\_\+\+Discipline} \{ {\bfseries S\+E\+M\+A\+P\+H\+O\+R\+E\+\_\+\+D\+I\+S\+C\+I\+P\+L\+I\+N\+E\+\_\+\+P\+R\+I\+O\+R\+I\+TY}, 
+{\bfseries S\+E\+M\+A\+P\+H\+O\+R\+E\+\_\+\+D\+I\+S\+C\+I\+P\+L\+I\+N\+E\+\_\+\+F\+I\+FO}
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{group__ClassicSemImpl_ga552f636ae3156648534235dea223413c}\label{group__ClassicSemImpl_ga552f636ae3156648534235dea223413c}} 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} uintptr\+\_\+t {\bfseries \+\_\+\+Semaphore\+\_\+\+Get\+\_\+flags} (const \mbox{\hyperlink{structSemaphore__Control}{Semaphore\+\_\+\+Control}} $\ast$the\+\_\+semaphore)
+\item 
+\mbox{\Hypertarget{group__ClassicSemImpl_gae8dddecd1e6a752610cdfe57d63d103c}\label{group__ClassicSemImpl_gae8dddecd1e6a752610cdfe57d63d103c}} 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void {\bfseries \+\_\+\+Semaphore\+\_\+\+Set\+\_\+flags} (\mbox{\hyperlink{structSemaphore__Control}{Semaphore\+\_\+\+Control}} $\ast$the\+\_\+semaphore, uintptr\+\_\+t flags)
+\item 
+\mbox{\Hypertarget{group__ClassicSemImpl_ga7fc23711da0709752607f2dd1f2f8b52}\label{group__ClassicSemImpl_ga7fc23711da0709752607f2dd1f2f8b52}} 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} \mbox{\hyperlink{group__ClassicSemImpl_gab9531c36f1845c14f2dfc5006fd3dee9}{Semaphore\+\_\+\+Variant}} {\bfseries \+\_\+\+Semaphore\+\_\+\+Get\+\_\+variant} (uintptr\+\_\+t flags)
+\item 
+\mbox{\Hypertarget{group__ClassicSemImpl_ga2ece71843f72d81fea67dd04bb5ccd25}\label{group__ClassicSemImpl_ga2ece71843f72d81fea67dd04bb5ccd25}} 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} uintptr\+\_\+t {\bfseries \+\_\+\+Semaphore\+\_\+\+Set\+\_\+variant} (uintptr\+\_\+t flags, \mbox{\hyperlink{group__ClassicSemImpl_gab9531c36f1845c14f2dfc5006fd3dee9}{Semaphore\+\_\+\+Variant}} variant)
+\item 
+\mbox{\Hypertarget{group__ClassicSemImpl_gad28b669ee7b56ee7791c8a3037bc4f20}\label{group__ClassicSemImpl_gad28b669ee7b56ee7791c8a3037bc4f20}} 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} Semaphore\+\_\+\+Discipline {\bfseries \+\_\+\+Semaphore\+\_\+\+Get\+\_\+discipline} (uintptr\+\_\+t flags)
+\item 
+\mbox{\Hypertarget{group__ClassicSemImpl_ga7daf2d4c6ffca0ed33db941b7cb1f947}\label{group__ClassicSemImpl_ga7daf2d4c6ffca0ed33db941b7cb1f947}} 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} uintptr\+\_\+t {\bfseries \+\_\+\+Semaphore\+\_\+\+Set\+\_\+discipline} (uintptr\+\_\+t flags, Semaphore\+\_\+\+Discipline discipline)
+\item 
+\mbox{\Hypertarget{group__ClassicSemImpl_gad1217677403f3b51b5b61a546c542e72}\label{group__ClassicSemImpl_gad1217677403f3b51b5b61a546c542e72}} 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} const \mbox{\hyperlink{structThread__queue__Operations}{Thread\+\_\+queue\+\_\+\+Operations}} $\ast$ {\bfseries \+\_\+\+Semaphore\+\_\+\+Get\+\_\+operations} (uintptr\+\_\+t flags)
+\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} \mbox{\hyperlink{structSemaphore__Control}{Semaphore\+\_\+\+Control}} $\ast$ \mbox{\hyperlink{group__ClassicSemImpl_gad485fdb4409216acbb4e339c2fd57889}{\+\_\+\+Semaphore\+\_\+\+Allocate}} (void)
+\begin{DoxyCompactList}\small\item\em Allocates a semaphore control block from the inactive chain of free semaphore control blocks. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \mbox{\hyperlink{group__ClassicSemImpl_gaca8f9ddbc112fe16432cd255527af303}{\+\_\+\+Semaphore\+\_\+\+Free}} (\mbox{\hyperlink{structSemaphore__Control}{Semaphore\+\_\+\+Control}} $\ast$the\+\_\+semaphore)
+\begin{DoxyCompactList}\small\item\em Frees a semaphore control block to the inactive chain of free semaphore control blocks. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__ClassicSemImpl_gae6c81c48866b311568aeb67633d934ef}\label{group__ClassicSemImpl_gae6c81c48866b311568aeb67633d934ef}} 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} \mbox{\hyperlink{structSemaphore__Control}{Semaphore\+\_\+\+Control}} $\ast$ {\bfseries \+\_\+\+Semaphore\+\_\+\+Get} (\mbox{\hyperlink{group__RTEMSScoreObject_ga5821f52a51072941bdd603e542d0863e}{Objects\+\_\+\+Id}} id, \mbox{\hyperlink{structThread__queue__Context}{Thread\+\_\+queue\+\_\+\+Context}} $\ast$queue\+\_\+context)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{group__ClassicSemImpl_ga966d2a8232f5a74b079cc49b30dcdee2}\label{group__ClassicSemImpl_ga966d2a8232f5a74b079cc49b30dcdee2}} 
+\mbox{\hyperlink{structObjects__Information}{Objects\+\_\+\+Information}} \mbox{\hyperlink{group__ClassicSemImpl_ga966d2a8232f5a74b079cc49b30dcdee2}{\+\_\+\+Semaphore\+\_\+\+Information}}
+\begin{DoxyCompactList}\small\item\em The Classic Semaphore objects information. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{group__ClassicSemImpl_ga01b5e9375074423a86334974811e4028}\label{group__ClassicSemImpl_ga01b5e9375074423a86334974811e4028}} 
+\index{Semaphore Manager Implementation@{Semaphore Manager Implementation}!SEMAPHORE\_INFORMATION\_DEFINE@{SEMAPHORE\_INFORMATION\_DEFINE}}
+\index{SEMAPHORE\_INFORMATION\_DEFINE@{SEMAPHORE\_INFORMATION\_DEFINE}!Semaphore Manager Implementation@{Semaphore Manager Implementation}}
+\subsubsection{\texorpdfstring{SEMAPHORE\_INFORMATION\_DEFINE}{SEMAPHORE\_INFORMATION\_DEFINE}}
+{\footnotesize\ttfamily \#define S\+E\+M\+A\+P\+H\+O\+R\+E\+\_\+\+I\+N\+F\+O\+R\+M\+A\+T\+I\+O\+N\+\_\+\+D\+E\+F\+I\+NE(\begin{DoxyParamCaption}\item[{}]{max,  }\item[{}]{scheduler\+\_\+count }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{group__RTEMSScoreObject_gac485289406e4297a576a74f72a28f608}{OBJECTS\_INFORMATION\_DEFINE}}( \(\backslash\)}
+\DoxyCodeLine{    \_Semaphore, \(\backslash\)}
+\DoxyCodeLine{    OBJECTS\_CLASSIC\_API, \(\backslash\)}
+\DoxyCodeLine{    OBJECTS\_RTEMS\_SEMAPHORES, \(\backslash\)}
+\DoxyCodeLine{    \mbox{\hyperlink{structSemaphore__Control}{Semaphore\_Control}}, \(\backslash\)}
+\DoxyCodeLine{    max, \(\backslash\)}
+\DoxyCodeLine{    \mbox{\hyperlink{group__RTEMSScoreObject_gab28c254ca8b651021dff18d181e053f2}{OBJECTS\_NO\_STRING\_NAME}}, \(\backslash\)}
+\DoxyCodeLine{    \_Semaphore\_MP\_Send\_extract\_proxy \(\backslash\)}
+\DoxyCodeLine{  )}
+
+\end{DoxyCode}
+
+
+Macro to define the objects information for the Classic Semaphore objects. 
+
+This macro should only be used by $<$\mbox{\hyperlink{confdefs_8h}{rtems/confdefs.\+h}}$>$.
+
+
+\begin{DoxyParams}{Parameters}
+{\em max} & The configured object maximum (the O\+B\+J\+E\+C\+T\+S\+\_\+\+U\+N\+L\+I\+M\+I\+T\+E\+D\+\_\+\+O\+B\+J\+E\+C\+TS flag may be set). \\
+\hline
+{\em scheduler\+\_\+count} & The configured scheduler count (only used in S\+MP configurations). \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{group__ClassicSemImpl_gab9531c36f1845c14f2dfc5006fd3dee9}\label{group__ClassicSemImpl_gab9531c36f1845c14f2dfc5006fd3dee9}} 
+\index{Semaphore Manager Implementation@{Semaphore Manager Implementation}!Semaphore\_Variant@{Semaphore\_Variant}}
+\index{Semaphore\_Variant@{Semaphore\_Variant}!Semaphore Manager Implementation@{Semaphore Manager Implementation}}
+\subsubsection{\texorpdfstring{Semaphore\_Variant}{Semaphore\_Variant}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{group__ClassicSemImpl_gab9531c36f1845c14f2dfc5006fd3dee9}{Semaphore\+\_\+\+Variant}}}
+
+
+
+Classic semaphore variants. 
+
+Must be in synchronization with Semaphore\+\_\+\+Control\+::variant. 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{group__ClassicSemImpl_gad485fdb4409216acbb4e339c2fd57889}\label{group__ClassicSemImpl_gad485fdb4409216acbb4e339c2fd57889}} 
+\index{Semaphore Manager Implementation@{Semaphore Manager Implementation}!\_Semaphore\_Allocate@{\_Semaphore\_Allocate}}
+\index{\_Semaphore\_Allocate@{\_Semaphore\_Allocate}!Semaphore Manager Implementation@{Semaphore Manager Implementation}}
+\subsubsection{\texorpdfstring{\_Semaphore\_Allocate()}{\_Semaphore\_Allocate()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} \mbox{\hyperlink{structSemaphore__Control}{Semaphore\+\_\+\+Control}}$\ast$ \+\_\+\+Semaphore\+\_\+\+Allocate (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Allocates a semaphore control block from the inactive chain of free semaphore control blocks. 
+
+This function allocates a semaphore control block from the inactive chain of free semaphore control blocks. \mbox{\Hypertarget{group__ClassicSemImpl_gaca8f9ddbc112fe16432cd255527af303}\label{group__ClassicSemImpl_gaca8f9ddbc112fe16432cd255527af303}} 
+\index{Semaphore Manager Implementation@{Semaphore Manager Implementation}!\_Semaphore\_Free@{\_Semaphore\_Free}}
+\index{\_Semaphore\_Free@{\_Semaphore\_Free}!Semaphore Manager Implementation@{Semaphore Manager Implementation}}
+\subsubsection{\texorpdfstring{\_Semaphore\_Free()}{\_Semaphore\_Free()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \+\_\+\+Semaphore\+\_\+\+Free (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structSemaphore__Control}{Semaphore\+\_\+\+Control}} $\ast$}]{the\+\_\+semaphore }\end{DoxyParamCaption})}
+
+
+
+Frees a semaphore control block to the inactive chain of free semaphore control blocks. 
+
+This routine frees a semaphore control block to the inactive chain of free semaphore control blocks. 

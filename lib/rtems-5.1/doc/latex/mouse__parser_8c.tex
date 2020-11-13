@@ -1,0 +1,92 @@
+\hypertarget{mouse__parser_8c}{}\section{cpukit/libmisc/mouse/mouse\+\_\+parser.c File Reference}
+\label{mouse__parser_8c}\index{cpukit/libmisc/mouse/mouse\_parser.c@{cpukit/libmisc/mouse/mouse\_parser.c}}
+
+
+Opens a Serial Port Directly, and Interprets Serial Data.  
+
+
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include $<$fcntl.\+h$>$}\newline
+{\ttfamily \#include $<$errno.\+h$>$}\newline
+{\ttfamily \#include $<$rtems.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/bsp\+Io.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/mouse\+\_\+parser.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/mw\+\_\+uid.\+h$>$}\newline
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{mouse__parser_8c_a9c21a7caee326d7803b94ae1952b27ca}\label{mouse__parser_8c_a9c21a7caee326d7803b94ae1952b27ca}} 
+\#define {\bfseries I\+D\+LE}~0  /$\ast$ start of byte sequence $\ast$/
+\item 
+\mbox{\Hypertarget{mouse__parser_8c_a383dc3538e675659c7e4202f2162b69d}\label{mouse__parser_8c_a383dc3538e675659c7e4202f2162b69d}} 
+\#define {\bfseries X\+S\+ET}~1  /$\ast$ setting x delta $\ast$/
+\item 
+\mbox{\Hypertarget{mouse__parser_8c_a8a8dd0f0e5d6586baf2e563458b88507}\label{mouse__parser_8c_a8a8dd0f0e5d6586baf2e563458b88507}} 
+\#define {\bfseries Y\+S\+ET}~2  /$\ast$ setting y delta $\ast$/
+\item 
+\mbox{\Hypertarget{mouse__parser_8c_a1dab8153a1d3e2b89936aea3bd117c6d}\label{mouse__parser_8c_a1dab8153a1d3e2b89936aea3bd117c6d}} 
+\#define {\bfseries X\+A\+DD}~3  /$\ast$ adjusting x delta $\ast$/
+\item 
+\mbox{\Hypertarget{mouse__parser_8c_a3d0cfe50771a3a3912059066af2a1170}\label{mouse__parser_8c_a3d0cfe50771a3a3912059066af2a1170}} 
+\#define {\bfseries Y\+A\+DD}~4  /$\ast$ adjusting y delta $\ast$/
+\item 
+\mbox{\Hypertarget{mouse__parser_8c_afc308b8a5e911134e1bff4654dc9e622}\label{mouse__parser_8c_afc308b8a5e911134e1bff4654dc9e622}} 
+\#define {\bfseries P\+C\+\_\+\+L\+E\+F\+T\+\_\+\+B\+U\+T\+T\+ON}~4
+\item 
+\mbox{\Hypertarget{mouse__parser_8c_ab3b4f5d6d9ba1c497a48641df541453a}\label{mouse__parser_8c_ab3b4f5d6d9ba1c497a48641df541453a}} 
+\#define {\bfseries P\+C\+\_\+\+M\+I\+D\+D\+L\+E\+\_\+\+B\+U\+T\+T\+ON}~2
+\item 
+\mbox{\Hypertarget{mouse__parser_8c_a29207526a43c46640054a2640854afad}\label{mouse__parser_8c_a29207526a43c46640054a2640854afad}} 
+\#define {\bfseries P\+C\+\_\+\+R\+I\+G\+H\+T\+\_\+\+B\+U\+T\+T\+ON}~1
+\item 
+\mbox{\Hypertarget{mouse__parser_8c_a56a46868d59def0f90393d61085fb469}\label{mouse__parser_8c_a56a46868d59def0f90393d61085fb469}} 
+\#define {\bfseries M\+S\+\_\+\+L\+E\+F\+T\+\_\+\+B\+U\+T\+T\+ON}~2
+\item 
+\mbox{\Hypertarget{mouse__parser_8c_a1e0696e5a1b659f658b71852ed950e6b}\label{mouse__parser_8c_a1e0696e5a1b659f658b71852ed950e6b}} 
+\#define {\bfseries M\+S\+\_\+\+R\+I\+G\+H\+T\+\_\+\+B\+U\+T\+T\+ON}~1
+\item 
+\mbox{\Hypertarget{mouse__parser_8c_a8b4411e8c6a409aaa28c20a82c7f64d7}\label{mouse__parser_8c_a8b4411e8c6a409aaa28c20a82c7f64d7}} 
+\#define {\bfseries P\+S2\+\_\+\+C\+T\+R\+L\+\_\+\+B\+Y\+TE}~0x08
+\item 
+\mbox{\Hypertarget{mouse__parser_8c_ac5d4cdb9f98fbcdaa895efec9b8fb1fb}\label{mouse__parser_8c_ac5d4cdb9f98fbcdaa895efec9b8fb1fb}} 
+\#define {\bfseries P\+S2\+\_\+\+L\+E\+F\+T\+\_\+\+B\+U\+T\+T\+ON}~1
+\item 
+\mbox{\Hypertarget{mouse__parser_8c_ac0daefe5e8f61690a4ef4619c157f955}\label{mouse__parser_8c_ac0daefe5e8f61690a4ef4619c157f955}} 
+\#define {\bfseries P\+S2\+\_\+\+R\+I\+G\+H\+T\+\_\+\+B\+U\+T\+T\+ON}~2
+\item 
+\mbox{\Hypertarget{mouse__parser_8c_ae2d8991dd2736edf979463d91eb5e829}\label{mouse__parser_8c_ae2d8991dd2736edf979463d91eb5e829}} 
+\#define {\bfseries T\+O\+P\+\_\+\+F\+I\+V\+E\+\_\+\+B\+I\+TS}~0xf8
+\item 
+\mbox{\Hypertarget{mouse__parser_8c_a807a5762e39092062218fd7d3074baf4}\label{mouse__parser_8c_a807a5762e39092062218fd7d3074baf4}} 
+\#define {\bfseries B\+O\+T\+T\+O\+M\+\_\+\+T\+H\+R\+E\+E\+\_\+\+B\+I\+TS}~0x07
+\item 
+\mbox{\Hypertarget{mouse__parser_8c_a374a89ea463741f80c7e7b9978664bc9}\label{mouse__parser_8c_a374a89ea463741f80c7e7b9978664bc9}} 
+\#define {\bfseries T\+O\+P\+\_\+\+B\+IT}~0x80
+\item 
+\mbox{\Hypertarget{mouse__parser_8c_ad89e79ae257e82d8e5392a3d745f1609}\label{mouse__parser_8c_ad89e79ae257e82d8e5392a3d745f1609}} 
+\#define {\bfseries S\+I\+X\+T\+H\+\_\+\+B\+IT}~0x40
+\item 
+\mbox{\Hypertarget{mouse__parser_8c_ad2707b1e7929f318cc76cced7d6f549d}\label{mouse__parser_8c_ad2707b1e7929f318cc76cced7d6f549d}} 
+\#define {\bfseries B\+O\+T\+T\+O\+M\+\_\+\+T\+W\+O\+\_\+\+B\+I\+TS}~0x03
+\item 
+\mbox{\Hypertarget{mouse__parser_8c_a99bcd4544650acb1ec865ea9c9487843}\label{mouse__parser_8c_a99bcd4544650acb1ec865ea9c9487843}} 
+\#define {\bfseries T\+H\+I\+R\+D\+\_\+\+F\+O\+U\+R\+T\+H\+\_\+\+B\+I\+TS}~0x0c
+\item 
+\mbox{\Hypertarget{mouse__parser_8c_a198bc40d0dd50ca700cbb22e8440b956}\label{mouse__parser_8c_a198bc40d0dd50ca700cbb22e8440b956}} 
+\#define {\bfseries B\+O\+T\+T\+O\+M\+\_\+\+S\+I\+X\+\_\+\+B\+I\+TS}~0x3f
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{group__libmisc__mouseparser_ga8fecea0e5c8c28c77ce0b80a70827302}{mouse\+\_\+parser\+\_\+initialize}} (const char $\ast$type)
+\begin{DoxyCompactList}\small\item\em Initialize the mouse parser engine. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__libmisc__mouseparser_ga95a92fecbb5e07b8c34596d3f67bfefa}{mouse\+\_\+parser\+\_\+enqueue}} (unsigned char $\ast$buffer, size\+\_\+t \mbox{\hyperlink{sun4u_2tte_8h_a245260f6f74972558f61b85227df5aae}{size}})
+\begin{DoxyCompactList}\small\item\em Enqueue input to the mouse parser engine. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Opens a Serial Port Directly, and Interprets Serial Data. 
+

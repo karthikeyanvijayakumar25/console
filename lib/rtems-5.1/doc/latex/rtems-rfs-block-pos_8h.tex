@@ -1,0 +1,257 @@
+\hypertarget{rtems-rfs-block-pos_8h}{}\section{cpukit/include/rtems/rfs/rtems-\/rfs-\/block-\/pos.h File Reference}
+\label{rtems-rfs-block-pos_8h}\index{cpukit/include/rtems/rfs/rtems-\/rfs-\/block-\/pos.h@{cpukit/include/rtems/rfs/rtems-\/rfs-\/block-\/pos.h}}
+
+
+R\+T\+E\+MS File Systems Block Position and Size Management.  
+
+
+{\ttfamily \#include $<$rtems/rfs/rtems-\/rfs-\/file-\/system.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/rfs/rtems-\/rfs-\/inode.\+h$>$}\newline
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structrtems__rfs__block__pos__s}{rtems\+\_\+rfs\+\_\+block\+\_\+pos\+\_\+s}}
+\item 
+struct \mbox{\hyperlink{structrtems__rfs__block__size__s}{rtems\+\_\+rfs\+\_\+block\+\_\+size\+\_\+s}}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{rtems-rfs-block-pos_8h_a7b3e215af73a165107bb8b3f02d53fd4}{rtems\+\_\+rfs\+\_\+block\+\_\+copy\+\_\+bpos}}(\+\_\+lhs,  \+\_\+rhs)
+\item 
+\#define \mbox{\hyperlink{rtems-rfs-block-pos_8h_a13c2c5d74abc53cafa6495e1a6ba0ba6}{rtems\+\_\+rfs\+\_\+block\+\_\+copy\+\_\+size}}(\+\_\+lhs,  \+\_\+rhs)
+\item 
+\#define \mbox{\hyperlink{rtems-rfs-block-pos_8h_af9de1169214c5fbc1d5cbb8265e4b759}{rtems\+\_\+rfs\+\_\+block\+\_\+pos\+\_\+last\+\_\+block}}(\+\_\+p,  \+\_\+s)~((((\+\_\+p)-\/$>$bno == 0) \&\& ((\+\_\+s)-\/$>$count == 0)) $\vert$$\vert$ ((\+\_\+p)-\/$>$bno == ((\+\_\+s)-\/$>$count -\/ 1)))
+\item 
+\#define \mbox{\hyperlink{rtems-rfs-block-pos_8h_a7c9df0abcb57dfe35e4e18ae63356077}{rtems\+\_\+rfs\+\_\+block\+\_\+pos\+\_\+past\+\_\+end}}(\+\_\+p,  \+\_\+s)
+\item 
+\#define \mbox{\hyperlink{rtems-rfs-block-pos_8h_a297f50d2960d64bc7700cd41b504a614}{rtems\+\_\+rfs\+\_\+block\+\_\+pos\+\_\+block\+\_\+past\+\_\+end}}(\+\_\+p,  \+\_\+s)~(((\+\_\+p)-\/$>$bno \&\& ((\+\_\+s)-\/$>$count == 0)) $\vert$$\vert$ ((\+\_\+p)-\/$>$bno $>$= (\+\_\+s)-\/$>$count))
+\item 
+\#define \mbox{\hyperlink{rtems-rfs-block-pos_8h_ab5274e0b45785fdf7e7d403afb25ad99}{rtems\+\_\+rfs\+\_\+block\+\_\+size\+\_\+get\+\_\+bpos}}(\+\_\+s,  \+\_\+b)
+\item 
+\#define \mbox{\hyperlink{rtems-rfs-block-pos_8h_a5cacb1cecd9f6b85442e48a43f7a98a6}{rtems\+\_\+rfs\+\_\+block\+\_\+size\+\_\+equal}}(\+\_\+lhs,  \+\_\+rhs)~(((\+\_\+lhs)-\/$>$count == (\+\_\+rhs)-\/$>$count) \&\& ((\+\_\+lhs)-\/$>$offset == (\+\_\+rhs)-\/$>$offset))
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef \mbox{\hyperlink{rtems-rfs-inode_8h_aa30717f37e5238a8f6387b4d0dbb2ae3}{rtems\+\_\+rfs\+\_\+inode\+\_\+block}} \mbox{\hyperlink{rtems-rfs-block-pos_8h_abbf8bb95acf9bd16ed3291f7da518e9a}{rtems\+\_\+rfs\+\_\+block\+\_\+no}}
+\item 
+typedef uint32\+\_\+t \mbox{\hyperlink{rtems-rfs-block-pos_8h_ad32ba1f9be3b667fe3e778d0edfdfff3}{rtems\+\_\+rfs\+\_\+block\+\_\+off}}
+\item 
+typedef struct \mbox{\hyperlink{structrtems__rfs__block__pos__s}{rtems\+\_\+rfs\+\_\+block\+\_\+pos\+\_\+s}} \mbox{\hyperlink{rtems-rfs-block-pos_8h_a0d8bd7482333e584a03df45e60cda226}{rtems\+\_\+rfs\+\_\+block\+\_\+pos}}
+\item 
+typedef struct \mbox{\hyperlink{structrtems__rfs__block__size__s}{rtems\+\_\+rfs\+\_\+block\+\_\+size\+\_\+s}} \mbox{\hyperlink{rtems-rfs-block-pos_8h_aa72438eee22908110dc633ca6b89b390}{rtems\+\_\+rfs\+\_\+block\+\_\+size}}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{rtems-rfs-block-pos_8h_a35848429d41d99f4aab4be97b41a324e}{rtems\+\_\+rfs\+\_\+block\+\_\+get\+\_\+bpos}} (\mbox{\hyperlink{struct__rtems__rfs__file__system}{rtems\+\_\+rfs\+\_\+file\+\_\+system}} $\ast$fs, \mbox{\hyperlink{rtems-rfs-file-system_8h_ae6adc04fe673c46403605d64f16699bd}{rtems\+\_\+rfs\+\_\+pos}} pos, \mbox{\hyperlink{rtems-rfs-block-pos_8h_a0d8bd7482333e584a03df45e60cda226}{rtems\+\_\+rfs\+\_\+block\+\_\+pos}} $\ast$bpos)
+\item 
+\mbox{\hyperlink{rtems-rfs-file-system_8h_ae6adc04fe673c46403605d64f16699bd}{rtems\+\_\+rfs\+\_\+pos}} \mbox{\hyperlink{rtems-rfs-block-pos_8h_a76f70461e9f76aa1f6739a13a8f26735}{rtems\+\_\+rfs\+\_\+block\+\_\+get\+\_\+pos}} (\mbox{\hyperlink{struct__rtems__rfs__file__system}{rtems\+\_\+rfs\+\_\+file\+\_\+system}} $\ast$fs, \mbox{\hyperlink{rtems-rfs-block-pos_8h_a0d8bd7482333e584a03df45e60cda226}{rtems\+\_\+rfs\+\_\+block\+\_\+pos}} $\ast$bpos)
+\item 
+void \mbox{\hyperlink{rtems-rfs-block-pos_8h_a6982a30feb7426e107b0c899b80fbbe6}{rtems\+\_\+rfs\+\_\+block\+\_\+get\+\_\+block\+\_\+size}} (\mbox{\hyperlink{struct__rtems__rfs__file__system}{rtems\+\_\+rfs\+\_\+file\+\_\+system}} $\ast$fs, \mbox{\hyperlink{rtems-rfs-file-system_8h_ae6adc04fe673c46403605d64f16699bd}{rtems\+\_\+rfs\+\_\+pos}} pos, \mbox{\hyperlink{rtems-rfs-block-pos_8h_aa72438eee22908110dc633ca6b89b390}{rtems\+\_\+rfs\+\_\+block\+\_\+size}} $\ast$\mbox{\hyperlink{sun4u_2tte_8h_a245260f6f74972558f61b85227df5aae}{size}})
+\item 
+\mbox{\hyperlink{rtems-rfs-file-system_8h_ae6adc04fe673c46403605d64f16699bd}{rtems\+\_\+rfs\+\_\+pos}} \mbox{\hyperlink{rtems-rfs-block-pos_8h_a4420107003db9b6d34945a95ab14b520}{rtems\+\_\+rfs\+\_\+block\+\_\+get\+\_\+size}} (\mbox{\hyperlink{struct__rtems__rfs__file__system}{rtems\+\_\+rfs\+\_\+file\+\_\+system}} $\ast$fs, \mbox{\hyperlink{rtems-rfs-block-pos_8h_aa72438eee22908110dc633ca6b89b390}{rtems\+\_\+rfs\+\_\+block\+\_\+size}} $\ast$\mbox{\hyperlink{sun4u_2tte_8h_a245260f6f74972558f61b85227df5aae}{size}})
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+R\+T\+E\+MS File Systems Block Position and Size Management. 
+
+R\+T\+E\+MS File Systems Block Position and Size Management.
+
+These functions manage the position in a block map as well as a size of data held in a block map. The position is the block count plus the offset into the last block where a block position of 0 and an offset of 0 is the start of a map. The size has a block count plus an offset, but the offset into the last block gives the actual size of the data in the map. This means a size will always have a block count greater than 0 when the file is not empty. A size offset of 0 and a non-\/zero block count means the length if aligned to the end of the block. For this reason there are 2 similar types so we know which set of rules are in use and the reason for this file. 
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{rtems-rfs-block-pos_8h_a7b3e215af73a165107bb8b3f02d53fd4}\label{rtems-rfs-block-pos_8h_a7b3e215af73a165107bb8b3f02d53fd4}} 
+\index{rtems-\/rfs-\/block-\/pos.h@{rtems-\/rfs-\/block-\/pos.h}!rtems\_rfs\_block\_copy\_bpos@{rtems\_rfs\_block\_copy\_bpos}}
+\index{rtems\_rfs\_block\_copy\_bpos@{rtems\_rfs\_block\_copy\_bpos}!rtems-\/rfs-\/block-\/pos.h@{rtems-\/rfs-\/block-\/pos.h}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_block\_copy\_bpos}{rtems\_rfs\_block\_copy\_bpos}}
+{\footnotesize\ttfamily \#define rtems\+\_\+rfs\+\_\+block\+\_\+copy\+\_\+bpos(\begin{DoxyParamCaption}\item[{}]{\+\_\+lhs,  }\item[{}]{\+\_\+rhs }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do} \{ (\_lhs)->bno = (\_rhs)->bno; \(\backslash\)}
+\DoxyCodeLine{       (\_lhs)->boff = (\_rhs)->boff; \(\backslash\)}
+\DoxyCodeLine{       (\_lhs)->block = (\_rhs)->block; \} \textcolor{keywordflow}{while} (0)}
+
+\end{DoxyCode}
+Copy a block position.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+lhs} & is the left hand side. \\
+\hline
+\mbox{\texttt{ in}}  & {\em \+\_\+rhs} & is the right hand side. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{rtems-rfs-block-pos_8h_a13c2c5d74abc53cafa6495e1a6ba0ba6}\label{rtems-rfs-block-pos_8h_a13c2c5d74abc53cafa6495e1a6ba0ba6}} 
+\index{rtems-\/rfs-\/block-\/pos.h@{rtems-\/rfs-\/block-\/pos.h}!rtems\_rfs\_block\_copy\_size@{rtems\_rfs\_block\_copy\_size}}
+\index{rtems\_rfs\_block\_copy\_size@{rtems\_rfs\_block\_copy\_size}!rtems-\/rfs-\/block-\/pos.h@{rtems-\/rfs-\/block-\/pos.h}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_block\_copy\_size}{rtems\_rfs\_block\_copy\_size}}
+{\footnotesize\ttfamily \#define rtems\+\_\+rfs\+\_\+block\+\_\+copy\+\_\+size(\begin{DoxyParamCaption}\item[{}]{\+\_\+lhs,  }\item[{}]{\+\_\+rhs }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do} \{ (\_lhs)->count = (\_rhs)->count; \(\backslash\)}
+\DoxyCodeLine{       (\_lhs)->offset = (\_rhs)->offset; \} \textcolor{keywordflow}{while} (0)}
+
+\end{DoxyCode}
+Copy a block size.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+lhs} & is the left hand side. \\
+\hline
+\mbox{\texttt{ in}}  & {\em \+\_\+rhs} & is the right hand side. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{rtems-rfs-block-pos_8h_a297f50d2960d64bc7700cd41b504a614}\label{rtems-rfs-block-pos_8h_a297f50d2960d64bc7700cd41b504a614}} 
+\index{rtems-\/rfs-\/block-\/pos.h@{rtems-\/rfs-\/block-\/pos.h}!rtems\_rfs\_block\_pos\_block\_past\_end@{rtems\_rfs\_block\_pos\_block\_past\_end}}
+\index{rtems\_rfs\_block\_pos\_block\_past\_end@{rtems\_rfs\_block\_pos\_block\_past\_end}!rtems-\/rfs-\/block-\/pos.h@{rtems-\/rfs-\/block-\/pos.h}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_block\_pos\_block\_past\_end}{rtems\_rfs\_block\_pos\_block\_past\_end}}
+{\footnotesize\ttfamily \#define rtems\+\_\+rfs\+\_\+block\+\_\+pos\+\_\+block\+\_\+past\+\_\+end(\begin{DoxyParamCaption}\item[{}]{\+\_\+p,  }\item[{}]{\+\_\+s }\end{DoxyParamCaption})~(((\+\_\+p)-\/$>$bno \&\& ((\+\_\+s)-\/$>$count == 0)) $\vert$$\vert$ ((\+\_\+p)-\/$>$bno $>$= (\+\_\+s)-\/$>$count))}
+
+Is the block position past the end. \mbox{\Hypertarget{rtems-rfs-block-pos_8h_af9de1169214c5fbc1d5cbb8265e4b759}\label{rtems-rfs-block-pos_8h_af9de1169214c5fbc1d5cbb8265e4b759}} 
+\index{rtems-\/rfs-\/block-\/pos.h@{rtems-\/rfs-\/block-\/pos.h}!rtems\_rfs\_block\_pos\_last\_block@{rtems\_rfs\_block\_pos\_last\_block}}
+\index{rtems\_rfs\_block\_pos\_last\_block@{rtems\_rfs\_block\_pos\_last\_block}!rtems-\/rfs-\/block-\/pos.h@{rtems-\/rfs-\/block-\/pos.h}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_block\_pos\_last\_block}{rtems\_rfs\_block\_pos\_last\_block}}
+{\footnotesize\ttfamily \#define rtems\+\_\+rfs\+\_\+block\+\_\+pos\+\_\+last\+\_\+block(\begin{DoxyParamCaption}\item[{}]{\+\_\+p,  }\item[{}]{\+\_\+s }\end{DoxyParamCaption})~((((\+\_\+p)-\/$>$bno == 0) \&\& ((\+\_\+s)-\/$>$count == 0)) $\vert$$\vert$ ((\+\_\+p)-\/$>$bno == ((\+\_\+s)-\/$>$count -\/ 1)))}
+
+Last block ? \mbox{\Hypertarget{rtems-rfs-block-pos_8h_a7c9df0abcb57dfe35e4e18ae63356077}\label{rtems-rfs-block-pos_8h_a7c9df0abcb57dfe35e4e18ae63356077}} 
+\index{rtems-\/rfs-\/block-\/pos.h@{rtems-\/rfs-\/block-\/pos.h}!rtems\_rfs\_block\_pos\_past\_end@{rtems\_rfs\_block\_pos\_past\_end}}
+\index{rtems\_rfs\_block\_pos\_past\_end@{rtems\_rfs\_block\_pos\_past\_end}!rtems-\/rfs-\/block-\/pos.h@{rtems-\/rfs-\/block-\/pos.h}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_block\_pos\_past\_end}{rtems\_rfs\_block\_pos\_past\_end}}
+{\footnotesize\ttfamily \#define rtems\+\_\+rfs\+\_\+block\+\_\+pos\+\_\+past\+\_\+end(\begin{DoxyParamCaption}\item[{}]{\+\_\+p,  }\item[{}]{\+\_\+s }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(((\_p)->bno \&\& ((\_s)->count == 0)) || \(\backslash\)}
+\DoxyCodeLine{   ((\_p)->bno >= (\_s)->count) || \(\backslash\)}
+\DoxyCodeLine{   (((\_p)->bno == ((\_s)->count - 1)) \&\& ((\_p)->boff > (\_s)->offset)))}
+
+\end{DoxyCode}
+Last block ? \mbox{\Hypertarget{rtems-rfs-block-pos_8h_a5cacb1cecd9f6b85442e48a43f7a98a6}\label{rtems-rfs-block-pos_8h_a5cacb1cecd9f6b85442e48a43f7a98a6}} 
+\index{rtems-\/rfs-\/block-\/pos.h@{rtems-\/rfs-\/block-\/pos.h}!rtems\_rfs\_block\_size\_equal@{rtems\_rfs\_block\_size\_equal}}
+\index{rtems\_rfs\_block\_size\_equal@{rtems\_rfs\_block\_size\_equal}!rtems-\/rfs-\/block-\/pos.h@{rtems-\/rfs-\/block-\/pos.h}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_block\_size\_equal}{rtems\_rfs\_block\_size\_equal}}
+{\footnotesize\ttfamily \#define rtems\+\_\+rfs\+\_\+block\+\_\+size\+\_\+equal(\begin{DoxyParamCaption}\item[{}]{\+\_\+lhs,  }\item[{}]{\+\_\+rhs }\end{DoxyParamCaption})~(((\+\_\+lhs)-\/$>$count == (\+\_\+rhs)-\/$>$count) \&\& ((\+\_\+lhs)-\/$>$offset == (\+\_\+rhs)-\/$>$offset))}
+
+Do the sizes match ? \mbox{\Hypertarget{rtems-rfs-block-pos_8h_ab5274e0b45785fdf7e7d403afb25ad99}\label{rtems-rfs-block-pos_8h_ab5274e0b45785fdf7e7d403afb25ad99}} 
+\index{rtems-\/rfs-\/block-\/pos.h@{rtems-\/rfs-\/block-\/pos.h}!rtems\_rfs\_block\_size\_get\_bpos@{rtems\_rfs\_block\_size\_get\_bpos}}
+\index{rtems\_rfs\_block\_size\_get\_bpos@{rtems\_rfs\_block\_size\_get\_bpos}!rtems-\/rfs-\/block-\/pos.h@{rtems-\/rfs-\/block-\/pos.h}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_block\_size\_get\_bpos}{rtems\_rfs\_block\_size\_get\_bpos}}
+{\footnotesize\ttfamily \#define rtems\+\_\+rfs\+\_\+block\+\_\+size\+\_\+get\+\_\+bpos(\begin{DoxyParamCaption}\item[{}]{\+\_\+s,  }\item[{}]{\+\_\+b }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do} \{ (\_b)->bno = (\_s)->count; \(\backslash\)}
+\DoxyCodeLine{       (\_b)->boff = (\_s)->offset; \(\backslash\)}
+\DoxyCodeLine{       (\_b)->block = 0; \(\backslash\)}
+\DoxyCodeLine{       if ((\_b)->boff) --(\_b)->bno; \} \textcolor{keywordflow}{while} (0)}
+
+\end{DoxyCode}
+Copy the size to the block position. Note the block position and the size have different block counts. 
+
+\subsection{Typedef Documentation}
+\mbox{\Hypertarget{rtems-rfs-block-pos_8h_abbf8bb95acf9bd16ed3291f7da518e9a}\label{rtems-rfs-block-pos_8h_abbf8bb95acf9bd16ed3291f7da518e9a}} 
+\index{rtems-\/rfs-\/block-\/pos.h@{rtems-\/rfs-\/block-\/pos.h}!rtems\_rfs\_block\_no@{rtems\_rfs\_block\_no}}
+\index{rtems\_rfs\_block\_no@{rtems\_rfs\_block\_no}!rtems-\/rfs-\/block-\/pos.h@{rtems-\/rfs-\/block-\/pos.h}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_block\_no}{rtems\_rfs\_block\_no}}
+{\footnotesize\ttfamily typedef \mbox{\hyperlink{rtems-rfs-inode_8h_aa30717f37e5238a8f6387b4d0dbb2ae3}{rtems\+\_\+rfs\+\_\+inode\+\_\+block}} \mbox{\hyperlink{rtems-rfs-block-pos_8h_abbf8bb95acf9bd16ed3291f7da518e9a}{rtems\+\_\+rfs\+\_\+block\+\_\+no}}}
+
+The block number is the same type as the inode block number. This makes sure the sizes of the types match. \mbox{\Hypertarget{rtems-rfs-block-pos_8h_ad32ba1f9be3b667fe3e778d0edfdfff3}\label{rtems-rfs-block-pos_8h_ad32ba1f9be3b667fe3e778d0edfdfff3}} 
+\index{rtems-\/rfs-\/block-\/pos.h@{rtems-\/rfs-\/block-\/pos.h}!rtems\_rfs\_block\_off@{rtems\_rfs\_block\_off}}
+\index{rtems\_rfs\_block\_off@{rtems\_rfs\_block\_off}!rtems-\/rfs-\/block-\/pos.h@{rtems-\/rfs-\/block-\/pos.h}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_block\_off}{rtems\_rfs\_block\_off}}
+{\footnotesize\ttfamily typedef uint32\+\_\+t \mbox{\hyperlink{rtems-rfs-block-pos_8h_ad32ba1f9be3b667fe3e778d0edfdfff3}{rtems\+\_\+rfs\+\_\+block\+\_\+off}}}
+
+The offset into a block. \mbox{\Hypertarget{rtems-rfs-block-pos_8h_a0d8bd7482333e584a03df45e60cda226}\label{rtems-rfs-block-pos_8h_a0d8bd7482333e584a03df45e60cda226}} 
+\index{rtems-\/rfs-\/block-\/pos.h@{rtems-\/rfs-\/block-\/pos.h}!rtems\_rfs\_block\_pos@{rtems\_rfs\_block\_pos}}
+\index{rtems\_rfs\_block\_pos@{rtems\_rfs\_block\_pos}!rtems-\/rfs-\/block-\/pos.h@{rtems-\/rfs-\/block-\/pos.h}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_block\_pos}{rtems\_rfs\_block\_pos}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structrtems__rfs__block__pos__s}{rtems\+\_\+rfs\+\_\+block\+\_\+pos\+\_\+s}}  \mbox{\hyperlink{rtems-rfs-block-pos_8h_a0d8bd7482333e584a03df45e60cda226}{rtems\+\_\+rfs\+\_\+block\+\_\+pos}}}
+
+A block position is a block number times the block size plus the offset. The block field can be used hold a block number for the position as a look up cache. \mbox{\Hypertarget{rtems-rfs-block-pos_8h_aa72438eee22908110dc633ca6b89b390}\label{rtems-rfs-block-pos_8h_aa72438eee22908110dc633ca6b89b390}} 
+\index{rtems-\/rfs-\/block-\/pos.h@{rtems-\/rfs-\/block-\/pos.h}!rtems\_rfs\_block\_size@{rtems\_rfs\_block\_size}}
+\index{rtems\_rfs\_block\_size@{rtems\_rfs\_block\_size}!rtems-\/rfs-\/block-\/pos.h@{rtems-\/rfs-\/block-\/pos.h}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_block\_size}{rtems\_rfs\_block\_size}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structrtems__rfs__block__size__s}{rtems\+\_\+rfs\+\_\+block\+\_\+size\+\_\+s}}  \mbox{\hyperlink{rtems-rfs-block-pos_8h_aa72438eee22908110dc633ca6b89b390}{rtems\+\_\+rfs\+\_\+block\+\_\+size}}}
+
+A block size is the number of blocks less one plus the offset where the offset must be less than the block size. 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{rtems-rfs-block-pos_8h_a6982a30feb7426e107b0c899b80fbbe6}\label{rtems-rfs-block-pos_8h_a6982a30feb7426e107b0c899b80fbbe6}} 
+\index{rtems-\/rfs-\/block-\/pos.h@{rtems-\/rfs-\/block-\/pos.h}!rtems\_rfs\_block\_get\_block\_size@{rtems\_rfs\_block\_get\_block\_size}}
+\index{rtems\_rfs\_block\_get\_block\_size@{rtems\_rfs\_block\_get\_block\_size}!rtems-\/rfs-\/block-\/pos.h@{rtems-\/rfs-\/block-\/pos.h}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_block\_get\_block\_size()}{rtems\_rfs\_block\_get\_block\_size()}}
+{\footnotesize\ttfamily void rtems\+\_\+rfs\+\_\+block\+\_\+get\+\_\+block\+\_\+size (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__rtems__rfs__file__system}{rtems\+\_\+rfs\+\_\+file\+\_\+system}} $\ast$}]{fs,  }\item[{\mbox{\hyperlink{rtems-rfs-file-system_8h_ae6adc04fe673c46403605d64f16699bd}{rtems\+\_\+rfs\+\_\+pos}}}]{pos,  }\item[{\mbox{\hyperlink{rtems-rfs-block-pos_8h_aa72438eee22908110dc633ca6b89b390}{rtems\+\_\+rfs\+\_\+block\+\_\+size}} $\ast$}]{size }\end{DoxyParamCaption})}
+
+Set the size given a position.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em fs} & is the file system data. \\
+\hline
+\mbox{\texttt{ in}}  & {\em pos} & is the position as an absolute offset from the start. \\
+\hline
+\mbox{\texttt{ out}}  & {\em size} & is a pointer to the block size to fill in. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{rtems-rfs-block-pos_8h_a35848429d41d99f4aab4be97b41a324e}\label{rtems-rfs-block-pos_8h_a35848429d41d99f4aab4be97b41a324e}} 
+\index{rtems-\/rfs-\/block-\/pos.h@{rtems-\/rfs-\/block-\/pos.h}!rtems\_rfs\_block\_get\_bpos@{rtems\_rfs\_block\_get\_bpos}}
+\index{rtems\_rfs\_block\_get\_bpos@{rtems\_rfs\_block\_get\_bpos}!rtems-\/rfs-\/block-\/pos.h@{rtems-\/rfs-\/block-\/pos.h}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_block\_get\_bpos()}{rtems\_rfs\_block\_get\_bpos()}}
+{\footnotesize\ttfamily void rtems\+\_\+rfs\+\_\+block\+\_\+get\+\_\+bpos (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__rtems__rfs__file__system}{rtems\+\_\+rfs\+\_\+file\+\_\+system}} $\ast$}]{fs,  }\item[{\mbox{\hyperlink{rtems-rfs-file-system_8h_ae6adc04fe673c46403605d64f16699bd}{rtems\+\_\+rfs\+\_\+pos}}}]{pos,  }\item[{\mbox{\hyperlink{rtems-rfs-block-pos_8h_a0d8bd7482333e584a03df45e60cda226}{rtems\+\_\+rfs\+\_\+block\+\_\+pos}} $\ast$}]{bpos }\end{DoxyParamCaption})}
+
+Given a position compute the block number and block offset.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em fs} & is the file system data. \\
+\hline
+\mbox{\texttt{ in}}  & {\em pos} & is the position as an absolute offset from the start. \\
+\hline
+\mbox{\texttt{ out}}  & {\em bpos} & is a pointer to the block position to fill in. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{rtems-rfs-block-pos_8h_a76f70461e9f76aa1f6739a13a8f26735}\label{rtems-rfs-block-pos_8h_a76f70461e9f76aa1f6739a13a8f26735}} 
+\index{rtems-\/rfs-\/block-\/pos.h@{rtems-\/rfs-\/block-\/pos.h}!rtems\_rfs\_block\_get\_pos@{rtems\_rfs\_block\_get\_pos}}
+\index{rtems\_rfs\_block\_get\_pos@{rtems\_rfs\_block\_get\_pos}!rtems-\/rfs-\/block-\/pos.h@{rtems-\/rfs-\/block-\/pos.h}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_block\_get\_pos()}{rtems\_rfs\_block\_get\_pos()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{rtems-rfs-file-system_8h_ae6adc04fe673c46403605d64f16699bd}{rtems\+\_\+rfs\+\_\+pos}} rtems\+\_\+rfs\+\_\+block\+\_\+get\+\_\+pos (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__rtems__rfs__file__system}{rtems\+\_\+rfs\+\_\+file\+\_\+system}} $\ast$}]{fs,  }\item[{\mbox{\hyperlink{rtems-rfs-block-pos_8h_a0d8bd7482333e584a03df45e60cda226}{rtems\+\_\+rfs\+\_\+block\+\_\+pos}} $\ast$}]{bpos }\end{DoxyParamCaption})}
+
+Given a block position compute the absolute offset.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em fs} & is the file system data. \\
+\hline
+\mbox{\texttt{ out}}  & {\em bpos} & is a pointer to the block position to fill in.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em offset} & The absolute offset. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{rtems-rfs-block-pos_8h_a4420107003db9b6d34945a95ab14b520}\label{rtems-rfs-block-pos_8h_a4420107003db9b6d34945a95ab14b520}} 
+\index{rtems-\/rfs-\/block-\/pos.h@{rtems-\/rfs-\/block-\/pos.h}!rtems\_rfs\_block\_get\_size@{rtems\_rfs\_block\_get\_size}}
+\index{rtems\_rfs\_block\_get\_size@{rtems\_rfs\_block\_get\_size}!rtems-\/rfs-\/block-\/pos.h@{rtems-\/rfs-\/block-\/pos.h}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_block\_get\_size()}{rtems\_rfs\_block\_get\_size()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{rtems-rfs-file-system_8h_ae6adc04fe673c46403605d64f16699bd}{rtems\+\_\+rfs\+\_\+pos}} rtems\+\_\+rfs\+\_\+block\+\_\+get\+\_\+size (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__rtems__rfs__file__system}{rtems\+\_\+rfs\+\_\+file\+\_\+system}} $\ast$}]{fs,  }\item[{\mbox{\hyperlink{rtems-rfs-block-pos_8h_aa72438eee22908110dc633ca6b89b390}{rtems\+\_\+rfs\+\_\+block\+\_\+size}} $\ast$}]{size }\end{DoxyParamCaption})}
+
+Calculate the position given the number of blocks and the offset. If the block count is 0 the size is 0. If the block is greater than 0 and the offset is 0 the size is number of blocks multipled by the block size and if the offset is not 0 it is the offset into the last block. For example if blocks is 1 and offset is 0 the size is the block size. If the block count is 1 and size is 100 the size is 100.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em fs} & is the file system data. \\
+\hline
+\mbox{\texttt{ in}}  & {\em size} & The size in blocks and offset.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em size} & The size in bytes. \\
+\hline
+\end{DoxyRetVals}

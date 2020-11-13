@@ -1,0 +1,230 @@
+\hypertarget{raspberrypi_2console_2fb_8c}{}\section{bsps/arm/raspberrypi/console/fb.c File Reference}
+\label{raspberrypi_2console_2fb_8c}\index{bsps/arm/raspberrypi/console/fb.c@{bsps/arm/raspberrypi/console/fb.c}}
+
+
+framebuffer support.  
+
+
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$errno.\+h$>$}\newline
+{\ttfamily \#include $<$sys/types.\+h$>$}\newline
+{\ttfamily \#include $<$bsp.\+h$>$}\newline
+{\ttfamily \#include $<$bsp/raspberrypi.\+h$>$}\newline
+{\ttfamily \#include $<$bsp/mailbox.\+h$>$}\newline
+{\ttfamily \#include $<$bsp/vc.\+h$>$}\newline
+{\ttfamily \#include $<$bsp/rpi-\/fb.\+h$>$}\newline
+{\ttfamily \#include $<$libcpu/arm-\/cp15.\+h$>$}\newline
+{\ttfamily \#include $<$rtems.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/libio.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/fb.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/framebuffer.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/score/atomic.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/bsp\+Io.\+h$>$}\newline
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{raspberrypi_2console_2fb_8c_a2cd109632a6dcccaa80b43561b1ab700}\label{raspberrypi_2console_2fb_8c_a2cd109632a6dcccaa80b43561b1ab700}} 
+\#define {\bfseries S\+C\+R\+E\+E\+N\+\_\+\+W\+I\+D\+TH}~1024
+\item 
+\mbox{\Hypertarget{raspberrypi_2console_2fb_8c_a6974d08a74da681b3957b2fead2608b8}\label{raspberrypi_2console_2fb_8c_a6974d08a74da681b3957b2fead2608b8}} 
+\#define {\bfseries S\+C\+R\+E\+E\+N\+\_\+\+H\+E\+I\+G\+HT}~768
+\item 
+\mbox{\Hypertarget{raspberrypi_2console_2fb_8c_a8f40226da14df1fe52cd78fcda4ec5cb}\label{raspberrypi_2console_2fb_8c_a8f40226da14df1fe52cd78fcda4ec5cb}} 
+\#define {\bfseries B\+PP}~32
+\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{raspberrypi_2console_2fb_8c_aa1c3d7ad13bc494292330e4dd2d60d6b}\label{raspberrypi_2console_2fb_8c_aa1c3d7ad13bc494292330e4dd2d60d6b}} 
+enum {\bfseries mode\+\_\+err\+\_\+ret\+\_\+val} \{ \newline
+{\bfseries N\+O\+\_\+\+S\+U\+I\+T\+A\+B\+L\+E\+\_\+\+M\+O\+DE} = -\/1, 
+{\bfseries B\+A\+D\+\_\+\+F\+O\+R\+M\+AT} = -\/2, 
+{\bfseries A\+U\+T\+O\+\_\+\+S\+E\+L\+E\+CT} = -\/3, 
+{\bfseries D\+O\+N\+T\+\_\+\+I\+N\+IT} = -\/4, 
+\newline
+{\bfseries N\+O\+\_\+\+M\+O\+D\+E\+\_\+\+R\+EQ} = -\/5, 
+{\bfseries N\+O\+\_\+\+S\+U\+I\+T\+A\+B\+L\+E\+\_\+\+M\+O\+DE} = -\/1, 
+{\bfseries B\+A\+D\+\_\+\+F\+O\+R\+M\+AT} = -\/2, 
+{\bfseries A\+U\+T\+O\+\_\+\+S\+E\+L\+E\+CT} = -\/3, 
+\newline
+{\bfseries D\+O\+N\+T\+\_\+\+I\+N\+IT} = -\/4, 
+{\bfseries N\+O\+\_\+\+M\+O\+D\+E\+\_\+\+R\+EQ} = -\/5
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int {\bfseries rpi\+\_\+get\+\_\+fix\+\_\+screen\+\_\+info} (struct \mbox{\hyperlink{structfb__fix__screeninfo}{fb\+\_\+fix\+\_\+screeninfo}} $\ast$info)
+\item 
+int {\bfseries rpi\+\_\+get\+\_\+var\+\_\+screen\+\_\+info} (struct \mbox{\hyperlink{structfb__var__screeninfo}{fb\+\_\+var\+\_\+screeninfo}} $\ast$info)
+\item 
+bool {\bfseries rpi\+\_\+fb\+\_\+hdmi\+\_\+is\+\_\+present} (void)
+\item 
+int {\bfseries rpi\+\_\+fb\+\_\+init} (void)
+\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+device\+\_\+driver}} \mbox{\hyperlink{raspberrypi_2console_2fb_8c_aa2a4a319a3e9853e688c96116a088743}{frame\+\_\+buffer\+\_\+initialize}} (rtems\+\_\+device\+\_\+major\+\_\+number major, rtems\+\_\+device\+\_\+minor\+\_\+number minor, void $\ast$arg)
+\begin{DoxyCompactList}\small\item\em Frame Buffer Initialization Entry Point. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+device\+\_\+driver}} \mbox{\hyperlink{raspberrypi_2console_2fb_8c_a82e568b33aca35a724b8d71a4d0dac3c}{frame\+\_\+buffer\+\_\+open}} (rtems\+\_\+device\+\_\+major\+\_\+number major, rtems\+\_\+device\+\_\+minor\+\_\+number minor, void $\ast$arg)
+\begin{DoxyCompactList}\small\item\em Frame Buffer Open Entry Point. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+device\+\_\+driver}} \mbox{\hyperlink{raspberrypi_2console_2fb_8c_aa1f239cfe02b6fe70d7be3e0f7d96c63}{frame\+\_\+buffer\+\_\+close}} (rtems\+\_\+device\+\_\+major\+\_\+number major, rtems\+\_\+device\+\_\+minor\+\_\+number minor, void $\ast$arg)
+\begin{DoxyCompactList}\small\item\em Frame Buffer Close Entry Point. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+device\+\_\+driver}} \mbox{\hyperlink{raspberrypi_2console_2fb_8c_a2bb1e09cf325cedeade812912e9bd7d4}{frame\+\_\+buffer\+\_\+read}} (rtems\+\_\+device\+\_\+major\+\_\+number major, rtems\+\_\+device\+\_\+minor\+\_\+number minor, void $\ast$arg)
+\begin{DoxyCompactList}\small\item\em Frame Buffer Read Entry Point. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+device\+\_\+driver}} \mbox{\hyperlink{raspberrypi_2console_2fb_8c_a012f6bdeaf8e460385cc2ca86b7ad9f7}{frame\+\_\+buffer\+\_\+write}} (rtems\+\_\+device\+\_\+major\+\_\+number major, rtems\+\_\+device\+\_\+minor\+\_\+number minor, void $\ast$arg)
+\begin{DoxyCompactList}\small\item\em Frame Buffer Write Entry Point. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+device\+\_\+driver}} \mbox{\hyperlink{raspberrypi_2console_2fb_8c_a5d2c8a2dcd579aece42342ba0405c87d}{frame\+\_\+buffer\+\_\+control}} (rtems\+\_\+device\+\_\+major\+\_\+number major, rtems\+\_\+device\+\_\+minor\+\_\+number minor, void $\ast$arg)
+\begin{DoxyCompactList}\small\item\em Frame Buffer \mbox{\hyperlink{structIO}{IO}} Control Entry Point. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+framebuffer support. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{raspberrypi_2console_2fb_8c_aa1f239cfe02b6fe70d7be3e0f7d96c63}\label{raspberrypi_2console_2fb_8c_aa1f239cfe02b6fe70d7be3e0f7d96c63}} 
+\index{fb.c@{fb.c}!frame\_buffer\_close@{frame\_buffer\_close}}
+\index{frame\_buffer\_close@{frame\_buffer\_close}!fb.c@{fb.c}}
+\subsubsection{\texorpdfstring{frame\_buffer\_close()}{frame\_buffer\_close()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+device\+\_\+driver}} frame\+\_\+buffer\+\_\+close (\begin{DoxyParamCaption}\item[{rtems\+\_\+device\+\_\+major\+\_\+number}]{major,  }\item[{rtems\+\_\+device\+\_\+minor\+\_\+number}]{minor,  }\item[{void $\ast$}]{arg }\end{DoxyParamCaption})}
+
+
+
+Frame Buffer Close Entry Point. 
+
+This method closes a specific device supported by the frame buffer device driver.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em major} & is the device driver major number \\
+\hline
+\mbox{\texttt{ in}}  & {\em minor} & is the device driver minor number \\
+\hline
+\mbox{\texttt{ in}}  & {\em arg} & is the parameters to this call\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+This method returns R\+T\+E\+M\+S\+\_\+\+S\+U\+C\+C\+E\+S\+S\+F\+UL when the device is successfully closed. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{raspberrypi_2console_2fb_8c_a5d2c8a2dcd579aece42342ba0405c87d}\label{raspberrypi_2console_2fb_8c_a5d2c8a2dcd579aece42342ba0405c87d}} 
+\index{fb.c@{fb.c}!frame\_buffer\_control@{frame\_buffer\_control}}
+\index{frame\_buffer\_control@{frame\_buffer\_control}!fb.c@{fb.c}}
+\subsubsection{\texorpdfstring{frame\_buffer\_control()}{frame\_buffer\_control()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+device\+\_\+driver}} frame\+\_\+buffer\+\_\+control (\begin{DoxyParamCaption}\item[{rtems\+\_\+device\+\_\+major\+\_\+number}]{major,  }\item[{rtems\+\_\+device\+\_\+minor\+\_\+number}]{minor,  }\item[{void $\ast$}]{arg }\end{DoxyParamCaption})}
+
+
+
+Frame Buffer \mbox{\hyperlink{structIO}{IO}} Control Entry Point. 
+
+This method performs an \mbox{\hyperlink{structIO}{IO}} Control operation on a specific device supported by the frame buffer device driver.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em major} & is the device driver major number \\
+\hline
+\mbox{\texttt{ in}}  & {\em minor} & is the device driver minor number \\
+\hline
+\mbox{\texttt{ in}}  & {\em arg} & is the parameters to this call\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+This method returns R\+T\+E\+M\+S\+\_\+\+S\+U\+C\+C\+E\+S\+S\+F\+UL when the device driver \mbox{\hyperlink{structIO}{IO}} control operation is successfully performed. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{raspberrypi_2console_2fb_8c_aa2a4a319a3e9853e688c96116a088743}\label{raspberrypi_2console_2fb_8c_aa2a4a319a3e9853e688c96116a088743}} 
+\index{fb.c@{fb.c}!frame\_buffer\_initialize@{frame\_buffer\_initialize}}
+\index{frame\_buffer\_initialize@{frame\_buffer\_initialize}!fb.c@{fb.c}}
+\subsubsection{\texorpdfstring{frame\_buffer\_initialize()}{frame\_buffer\_initialize()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+device\+\_\+driver}} frame\+\_\+buffer\+\_\+initialize (\begin{DoxyParamCaption}\item[{rtems\+\_\+device\+\_\+major\+\_\+number}]{major,  }\item[{rtems\+\_\+device\+\_\+minor\+\_\+number}]{minor,  }\item[{void $\ast$}]{arg }\end{DoxyParamCaption})}
+
+
+
+Frame Buffer Initialization Entry Point. 
+
+This method initializes the frame buffer device driver.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em major} & is the device driver major number \\
+\hline
+\mbox{\texttt{ in}}  & {\em minor} & is the device driver minor number \\
+\hline
+\mbox{\texttt{ in}}  & {\em arg} & is the parameters to this call\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+This method returns R\+T\+E\+M\+S\+\_\+\+S\+U\+C\+C\+E\+S\+S\+F\+UL when the device driver is successfully initialized. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{raspberrypi_2console_2fb_8c_a82e568b33aca35a724b8d71a4d0dac3c}\label{raspberrypi_2console_2fb_8c_a82e568b33aca35a724b8d71a4d0dac3c}} 
+\index{fb.c@{fb.c}!frame\_buffer\_open@{frame\_buffer\_open}}
+\index{frame\_buffer\_open@{frame\_buffer\_open}!fb.c@{fb.c}}
+\subsubsection{\texorpdfstring{frame\_buffer\_open()}{frame\_buffer\_open()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+device\+\_\+driver}} frame\+\_\+buffer\+\_\+open (\begin{DoxyParamCaption}\item[{rtems\+\_\+device\+\_\+major\+\_\+number}]{major,  }\item[{rtems\+\_\+device\+\_\+minor\+\_\+number}]{minor,  }\item[{void $\ast$}]{arg }\end{DoxyParamCaption})}
+
+
+
+Frame Buffer Open Entry Point. 
+
+This method opens a specific device supported by the frame buffer device driver.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em major} & is the device driver major number \\
+\hline
+\mbox{\texttt{ in}}  & {\em minor} & is the device driver minor number \\
+\hline
+\mbox{\texttt{ in}}  & {\em arg} & is the parameters to this call\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+This method returns R\+T\+E\+M\+S\+\_\+\+S\+U\+C\+C\+E\+S\+S\+F\+UL when the device driver is successfully opened. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{raspberrypi_2console_2fb_8c_a2bb1e09cf325cedeade812912e9bd7d4}\label{raspberrypi_2console_2fb_8c_a2bb1e09cf325cedeade812912e9bd7d4}} 
+\index{fb.c@{fb.c}!frame\_buffer\_read@{frame\_buffer\_read}}
+\index{frame\_buffer\_read@{frame\_buffer\_read}!fb.c@{fb.c}}
+\subsubsection{\texorpdfstring{frame\_buffer\_read()}{frame\_buffer\_read()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+device\+\_\+driver}} frame\+\_\+buffer\+\_\+read (\begin{DoxyParamCaption}\item[{rtems\+\_\+device\+\_\+major\+\_\+number}]{major,  }\item[{rtems\+\_\+device\+\_\+minor\+\_\+number}]{minor,  }\item[{void $\ast$}]{arg }\end{DoxyParamCaption})}
+
+
+
+Frame Buffer Read Entry Point. 
+
+This method reads from a specific device supported by the frame buffer device driver.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em major} & is the device driver major number \\
+\hline
+\mbox{\texttt{ in}}  & {\em minor} & is the device driver minor number \\
+\hline
+\mbox{\texttt{ in}}  & {\em arg} & is the parameters to this call\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+This method returns R\+T\+E\+M\+S\+\_\+\+S\+U\+C\+C\+E\+S\+S\+F\+UL when the device is successfully read from. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{raspberrypi_2console_2fb_8c_a012f6bdeaf8e460385cc2ca86b7ad9f7}\label{raspberrypi_2console_2fb_8c_a012f6bdeaf8e460385cc2ca86b7ad9f7}} 
+\index{fb.c@{fb.c}!frame\_buffer\_write@{frame\_buffer\_write}}
+\index{frame\_buffer\_write@{frame\_buffer\_write}!fb.c@{fb.c}}
+\subsubsection{\texorpdfstring{frame\_buffer\_write()}{frame\_buffer\_write()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+device\+\_\+driver}} frame\+\_\+buffer\+\_\+write (\begin{DoxyParamCaption}\item[{rtems\+\_\+device\+\_\+major\+\_\+number}]{major,  }\item[{rtems\+\_\+device\+\_\+minor\+\_\+number}]{minor,  }\item[{void $\ast$}]{arg }\end{DoxyParamCaption})}
+
+
+
+Frame Buffer Write Entry Point. 
+
+This method writes to a specific device supported by the frame buffer device driver.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em major} & is the device driver major number \\
+\hline
+\mbox{\texttt{ in}}  & {\em minor} & is the device driver minor number \\
+\hline
+\mbox{\texttt{ in}}  & {\em arg} & is the parameters to this call\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+This method returns R\+T\+E\+M\+S\+\_\+\+S\+U\+C\+C\+E\+S\+S\+F\+UL when the device is successfully written. 
+\end{DoxyReturn}

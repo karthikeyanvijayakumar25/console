@@ -1,0 +1,591 @@
+\hypertarget{group__libfs__dosfs}{}\section{F\+AT File\+System}
+\label{group__libfs__dosfs}\index{FAT FileSystem@{FAT FileSystem}}
+\subsection*{Modules}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{group__libfs__ffo}{Fat Fat Operations}}
+\item 
+\mbox{\hyperlink{group__libfs__ff}{Fat File}}
+\end{DoxyCompactItemize}
+\subsection*{Files}
+\begin{DoxyCompactItemize}
+\item 
+file \mbox{\hyperlink{fat_8h}{fat.\+h}}
+\begin{DoxyCompactList}\small\item\em Constants/\+Data Structures/\+Prototypes on a Volume with F\+AT Filesystem. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structfat__vol__s}{fat\+\_\+vol\+\_\+s}}
+\item 
+struct \mbox{\hyperlink{structfat__cache__s}{fat\+\_\+cache\+\_\+s}}
+\item 
+struct \mbox{\hyperlink{structfat__fs__info__s}{fat\+\_\+fs\+\_\+info\+\_\+s}}
+\item 
+struct \mbox{\hyperlink{structfat__pos__s}{fat\+\_\+pos\+\_\+s}}
+\item 
+struct \mbox{\hyperlink{structfat__dir__pos__s}{fat\+\_\+dir\+\_\+pos\+\_\+s}}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{group__libfs__dosfs_gac96a9e3f6c17299d532eb572ef0ea415}\label{group__libfs__dosfs_gac96a9e3f6c17299d532eb572ef0ea415}} 
+\#define {\bfseries R\+C\+\_\+\+OK}~0
+\item 
+\mbox{\Hypertarget{group__libfs__dosfs_ga15415f034502aee5ff19a393fa7a1a35}\label{group__libfs__dosfs_ga15415f034502aee5ff19a393fa7a1a35}} 
+\#define {\bfseries C\+F\+\_\+\+L\+E\+\_\+W}(\mbox{\hyperlink{sun4u_2tte_8h_a0b943bd7a9fc74d6635879a38dc16894}{v}})~le16toh(\mbox{\hyperlink{sun4u_2tte_8h_a0b943bd7a9fc74d6635879a38dc16894}{v}})
+\item 
+\mbox{\Hypertarget{group__libfs__dosfs_ga82062bd82ec1bd80334617c60f280ac7}\label{group__libfs__dosfs_ga82062bd82ec1bd80334617c60f280ac7}} 
+\#define {\bfseries C\+F\+\_\+\+L\+E\+\_\+L}(\mbox{\hyperlink{sun4u_2tte_8h_a0b943bd7a9fc74d6635879a38dc16894}{v}})~le32toh(\mbox{\hyperlink{sun4u_2tte_8h_a0b943bd7a9fc74d6635879a38dc16894}{v}})
+\item 
+\mbox{\Hypertarget{group__libfs__dosfs_gad2d1bd64b87aa5b53b6f9706f21520d2}\label{group__libfs__dosfs_gad2d1bd64b87aa5b53b6f9706f21520d2}} 
+\#define {\bfseries C\+T\+\_\+\+L\+E\+\_\+W}(\mbox{\hyperlink{sun4u_2tte_8h_a0b943bd7a9fc74d6635879a38dc16894}{v}})~htole16(\mbox{\hyperlink{sun4u_2tte_8h_a0b943bd7a9fc74d6635879a38dc16894}{v}})
+\item 
+\mbox{\Hypertarget{group__libfs__dosfs_ga3ccf480b114859cf0bedfa0bb9eefe7a}\label{group__libfs__dosfs_ga3ccf480b114859cf0bedfa0bb9eefe7a}} 
+\#define {\bfseries C\+T\+\_\+\+L\+E\+\_\+L}(\mbox{\hyperlink{sun4u_2tte_8h_a0b943bd7a9fc74d6635879a38dc16894}{v}})~htole32(\mbox{\hyperlink{sun4u_2tte_8h_a0b943bd7a9fc74d6635879a38dc16894}{v}})
+\item 
+\mbox{\Hypertarget{group__libfs__dosfs_gaf820d903caa27071bbb37009a60d4e36}\label{group__libfs__dosfs_gaf820d903caa27071bbb37009a60d4e36}} 
+\#define {\bfseries F\+A\+T\+\_\+\+H\+A\+S\+H\+\_\+\+S\+I\+ZE}~2
+\item 
+\mbox{\Hypertarget{group__libfs__dosfs_gaff065675727d23f73e39f498bd534010}\label{group__libfs__dosfs_gaff065675727d23f73e39f498bd534010}} 
+\#define {\bfseries F\+A\+T\+\_\+\+H\+A\+S\+H\+\_\+\+M\+O\+D\+U\+LE}~F\+A\+T\+\_\+\+H\+A\+S\+H\+\_\+\+S\+I\+ZE
+\item 
+\mbox{\Hypertarget{group__libfs__dosfs_ga0a7ab4839b78f7a31567a9b0577dd33c}\label{group__libfs__dosfs_ga0a7ab4839b78f7a31567a9b0577dd33c}} 
+\#define {\bfseries F\+A\+T\+\_\+\+S\+E\+C\+T\+O\+R512\+\_\+\+S\+I\+ZE}~512 /$\ast$ sector \mbox{\hyperlink{sun4u_2tte_8h_a245260f6f74972558f61b85227df5aae}{size}} (bytes) $\ast$/
+\item 
+\mbox{\Hypertarget{group__libfs__dosfs_ga2bce9b40afd79972b83ddf109d6fff11}\label{group__libfs__dosfs_ga2bce9b40afd79972b83ddf109d6fff11}} 
+\#define {\bfseries F\+A\+T\+\_\+\+S\+E\+C\+T\+O\+R512\+\_\+\+B\+I\+TS}~9 /$\ast$ log2(S\+E\+C\+T\+O\+R\+\_\+\+S\+I\+ZE) $\ast$/
+\item 
+\mbox{\Hypertarget{group__libfs__dosfs_gafd6306ac9e83d58956b396864203730a}\label{group__libfs__dosfs_gafd6306ac9e83d58956b396864203730a}} 
+\#define {\bfseries F\+A\+T\+\_\+\+F\+A\+T12\+\_\+\+M\+A\+X\+\_\+\+C\+LN}~4085
+\item 
+\mbox{\Hypertarget{group__libfs__dosfs_ga96b2a2f4dd14491925f264c1caf82297}\label{group__libfs__dosfs_ga96b2a2f4dd14491925f264c1caf82297}} 
+\#define {\bfseries F\+A\+T\+\_\+\+F\+A\+T16\+\_\+\+M\+A\+X\+\_\+\+C\+LN}~65525
+\item 
+\mbox{\Hypertarget{group__libfs__dosfs_ga80efde762abb9e87baebbaf12f5657d1}\label{group__libfs__dosfs_ga80efde762abb9e87baebbaf12f5657d1}} 
+\#define {\bfseries F\+A\+T\+\_\+\+F\+A\+T12}~0x01
+\item 
+\mbox{\Hypertarget{group__libfs__dosfs_ga6ba0116017ef2f79ffeaa9491ea8b8f1}\label{group__libfs__dosfs_ga6ba0116017ef2f79ffeaa9491ea8b8f1}} 
+\#define {\bfseries F\+A\+T\+\_\+\+F\+A\+T16}~0x02
+\item 
+\mbox{\Hypertarget{group__libfs__dosfs_ga38016c050f179b4470d8edd144c52582}\label{group__libfs__dosfs_ga38016c050f179b4470d8edd144c52582}} 
+\#define {\bfseries F\+A\+T\+\_\+\+F\+A\+T32}~0x04
+\item 
+\mbox{\Hypertarget{group__libfs__dosfs_gaf8a24255ed2d6b97315dad0dd396578c}\label{group__libfs__dosfs_gaf8a24255ed2d6b97315dad0dd396578c}} 
+\#define {\bfseries F\+A\+T\+\_\+\+U\+N\+D\+E\+F\+I\+N\+E\+D\+\_\+\+V\+A\+L\+UE}~(uint32\+\_\+t)0x\+F\+F\+F\+F\+F\+F\+FF
+\item 
+\mbox{\Hypertarget{group__libfs__dosfs_gaf62680c6724dc3813dda78a23d42853d}\label{group__libfs__dosfs_gaf62680c6724dc3813dda78a23d42853d}} 
+\#define {\bfseries F\+A\+T\+\_\+\+F\+A\+T12\+\_\+\+E\+OC}~0x0\+F\+F8
+\item 
+\mbox{\Hypertarget{group__libfs__dosfs_ga2b9be963d679ae409b49c3944c5a9dc2}\label{group__libfs__dosfs_ga2b9be963d679ae409b49c3944c5a9dc2}} 
+\#define {\bfseries F\+A\+T\+\_\+\+F\+A\+T16\+\_\+\+E\+OC}~0x\+F\+F\+F8
+\item 
+\mbox{\Hypertarget{group__libfs__dosfs_ga22095ef98d7b4e78b81700bef1129ad7}\label{group__libfs__dosfs_ga22095ef98d7b4e78b81700bef1129ad7}} 
+\#define {\bfseries F\+A\+T\+\_\+\+F\+A\+T32\+\_\+\+E\+OC}~(uint32\+\_\+t)0x0\+F\+F\+F\+F\+F\+F8
+\item 
+\mbox{\Hypertarget{group__libfs__dosfs_ga1297a55f8c3d15e1e25a27837014a351}\label{group__libfs__dosfs_ga1297a55f8c3d15e1e25a27837014a351}} 
+\#define {\bfseries F\+A\+T\+\_\+\+F\+A\+T12\+\_\+\+F\+R\+EE}~0x0000
+\item 
+\mbox{\Hypertarget{group__libfs__dosfs_ga708a4827de3958bcbc0e9caa561e2bb8}\label{group__libfs__dosfs_ga708a4827de3958bcbc0e9caa561e2bb8}} 
+\#define {\bfseries F\+A\+T\+\_\+\+F\+A\+T16\+\_\+\+F\+R\+EE}~0x0000
+\item 
+\mbox{\Hypertarget{group__libfs__dosfs_ga5f4507f12edba5f54c170f6011be23bf}\label{group__libfs__dosfs_ga5f4507f12edba5f54c170f6011be23bf}} 
+\#define {\bfseries F\+A\+T\+\_\+\+F\+A\+T32\+\_\+\+F\+R\+EE}~0x00000000
+\item 
+\mbox{\Hypertarget{group__libfs__dosfs_ga850e11a49aa2fb5b3c97cef4b7d155f0}\label{group__libfs__dosfs_ga850e11a49aa2fb5b3c97cef4b7d155f0}} 
+\#define {\bfseries F\+A\+T\+\_\+\+G\+E\+N\+F\+A\+T\+\_\+\+E\+OC}~(uint32\+\_\+t)0x\+F\+F\+F\+F\+F\+F\+FF
+\item 
+\mbox{\Hypertarget{group__libfs__dosfs_ga4e1b2522fcb184294fbf9f2712543925}\label{group__libfs__dosfs_ga4e1b2522fcb184294fbf9f2712543925}} 
+\#define {\bfseries F\+A\+T\+\_\+\+G\+E\+N\+F\+A\+T\+\_\+\+F\+R\+EE}~(uint32\+\_\+t)0x00000000
+\item 
+\mbox{\Hypertarget{group__libfs__dosfs_ga7b1047ab96ed3ffe433cd1c18447db05}\label{group__libfs__dosfs_ga7b1047ab96ed3ffe433cd1c18447db05}} 
+\#define {\bfseries F\+A\+T\+\_\+\+F\+A\+T12\+\_\+\+S\+H\+I\+FT}~0x04
+\item 
+\mbox{\Hypertarget{group__libfs__dosfs_ga8ca5c63fedb03b94123edc27282a2ad2}\label{group__libfs__dosfs_ga8ca5c63fedb03b94123edc27282a2ad2}} 
+\#define {\bfseries F\+A\+T\+\_\+\+F\+A\+T12\+\_\+\+M\+A\+SK}~0x00000\+F\+FF
+\item 
+\mbox{\Hypertarget{group__libfs__dosfs_ga98005a54f900e0126dd26a8dcb35805f}\label{group__libfs__dosfs_ga98005a54f900e0126dd26a8dcb35805f}} 
+\#define {\bfseries F\+A\+T\+\_\+\+F\+A\+T16\+\_\+\+M\+A\+SK}~0x0000\+F\+F\+FF
+\item 
+\mbox{\Hypertarget{group__libfs__dosfs_ga37ebeeacd3f93bf90061b635e2098621}\label{group__libfs__dosfs_ga37ebeeacd3f93bf90061b635e2098621}} 
+\#define {\bfseries F\+A\+T\+\_\+\+F\+A\+T32\+\_\+\+M\+A\+SK}~(uint32\+\_\+t)0x0\+F\+F\+F\+F\+F\+FF
+\item 
+\mbox{\Hypertarget{group__libfs__dosfs_ga8aab12683f2f9d7a2a52a6df7c556ff9}\label{group__libfs__dosfs_ga8aab12683f2f9d7a2a52a6df7c556ff9}} 
+\#define {\bfseries F\+A\+T\+\_\+\+M\+A\+X\+\_\+\+B\+P\+B\+\_\+\+S\+I\+ZE}~90
+\item 
+\mbox{\Hypertarget{group__libfs__dosfs_ga66e3e08fcebc85ddcd8e86becd67a2d4}\label{group__libfs__dosfs_ga66e3e08fcebc85ddcd8e86becd67a2d4}} 
+\#define {\bfseries F\+A\+T\+\_\+\+T\+O\+T\+A\+L\+\_\+\+M\+B\+R\+\_\+\+S\+I\+ZE}~512
+\item 
+\mbox{\Hypertarget{group__libfs__dosfs_gacb24648473e17767b45d3a70f47a5e8e}\label{group__libfs__dosfs_gacb24648473e17767b45d3a70f47a5e8e}} 
+\#define {\bfseries F\+A\+T\+\_\+\+U\+S\+E\+F\+U\+L\+\_\+\+I\+N\+F\+O\+\_\+\+S\+I\+ZE}~12
+\item 
+\mbox{\Hypertarget{group__libfs__dosfs_ga222331e1a844be62c6333d25c2b03ac8}\label{group__libfs__dosfs_ga222331e1a844be62c6333d25c2b03ac8}} 
+\#define {\bfseries F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+A\+D\+DR}(x,  ofs)~((uint8\+\_\+t $\ast$)(x) + (ofs))
+\item 
+\mbox{\Hypertarget{group__libfs__dosfs_gaf088436ff277645c3414b049d6110825}\label{group__libfs__dosfs_gaf088436ff277645c3414b049d6110825}} 
+\#define {\bfseries F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+V\+A\+L8}(x,  ofs)~(uint8\+\_\+t)($\ast$((uint8\+\_\+t $\ast$)(x) + (ofs)))
+\item 
+\#define {\bfseries F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+V\+A\+L16}(x,  ofs)
+\item 
+\#define {\bfseries F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+V\+A\+L32}(x,  ofs)
+\item 
+\mbox{\Hypertarget{group__libfs__dosfs_ga217dc99bab976ca766b35e8dc052a418}\label{group__libfs__dosfs_ga217dc99bab976ca766b35e8dc052a418}} 
+\#define {\bfseries F\+A\+T\+\_\+\+S\+E\+T\+\_\+\+V\+A\+L8}(x,  ofs,  val)~($\ast$((uint8\+\_\+t $\ast$)(x)+(ofs))=(uint8\+\_\+t)(val))
+\item 
+\#define {\bfseries F\+A\+T\+\_\+\+S\+E\+T\+\_\+\+V\+A\+L16}(x,  ofs,  val)
+\item 
+\#define {\bfseries F\+A\+T\+\_\+\+S\+E\+T\+\_\+\+V\+A\+L32}(x,  ofs,  val)
+\item 
+\mbox{\Hypertarget{group__libfs__dosfs_ga1acee5ef998e54a703d99bc50b620b89}\label{group__libfs__dosfs_ga1acee5ef998e54a703d99bc50b620b89}} 
+\#define {\bfseries F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+B\+R\+\_\+\+J\+M\+P\+B\+O\+OT}(x)~F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+V\+A\+L8( x,  0)
+\item 
+\mbox{\Hypertarget{group__libfs__dosfs_ga1d9e074a5885e05876a689d731b353c4}\label{group__libfs__dosfs_ga1d9e074a5885e05876a689d731b353c4}} 
+\#define {\bfseries F\+A\+T\+\_\+\+S\+E\+T\+\_\+\+B\+R\+\_\+\+J\+M\+P\+B\+O\+OT}(x,  val)~F\+A\+T\+\_\+\+S\+E\+T\+\_\+\+V\+A\+L8( x,  0,val)
+\item 
+\mbox{\Hypertarget{group__libfs__dosfs_gaa3019323df2c8ea4230d229762a80d2b}\label{group__libfs__dosfs_gaa3019323df2c8ea4230d229762a80d2b}} 
+\#define {\bfseries F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+A\+D\+D\+R\+\_\+\+B\+R\+\_\+\+O\+E\+M\+N\+A\+ME}(x)~F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+A\+D\+DR( x,  3)
+\item 
+\mbox{\Hypertarget{group__libfs__dosfs_gaa1ec1227ee12f116834429b3e8fd8180}\label{group__libfs__dosfs_gaa1ec1227ee12f116834429b3e8fd8180}} 
+\#define {\bfseries F\+A\+T\+\_\+\+B\+R\+\_\+\+O\+E\+M\+N\+A\+M\+E\+\_\+\+S\+I\+ZE}~(8)
+\item 
+\mbox{\Hypertarget{group__libfs__dosfs_ga23eb994887d55a14418f2d47abdce90f}\label{group__libfs__dosfs_ga23eb994887d55a14418f2d47abdce90f}} 
+\#define {\bfseries F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+B\+R\+\_\+\+B\+Y\+T\+E\+S\+\_\+\+P\+E\+R\+\_\+\+S\+E\+C\+T\+OR}(x)~F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+V\+A\+L16(x, 11)
+\item 
+\mbox{\Hypertarget{group__libfs__dosfs_ga359d43cd36ae0c344274daa7e3c8928a}\label{group__libfs__dosfs_ga359d43cd36ae0c344274daa7e3c8928a}} 
+\#define {\bfseries F\+A\+T\+\_\+\+S\+E\+T\+\_\+\+B\+R\+\_\+\+B\+Y\+T\+E\+S\+\_\+\+P\+E\+R\+\_\+\+S\+E\+C\+T\+OR}(x,  val)~F\+A\+T\+\_\+\+S\+E\+T\+\_\+\+V\+A\+L16(x, 11,val)
+\item 
+\mbox{\Hypertarget{group__libfs__dosfs_ga55e371424388870b430d279793fd1455}\label{group__libfs__dosfs_ga55e371424388870b430d279793fd1455}} 
+\#define {\bfseries F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+B\+R\+\_\+\+S\+E\+C\+T\+O\+R\+S\+\_\+\+P\+E\+R\+\_\+\+C\+L\+U\+S\+T\+ER}(x)~F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+V\+A\+L8( x, 13)
+\item 
+\mbox{\Hypertarget{group__libfs__dosfs_ga8e4c02ee9c3a5a74a0bba427daedbcd9}\label{group__libfs__dosfs_ga8e4c02ee9c3a5a74a0bba427daedbcd9}} 
+\#define {\bfseries F\+A\+T\+\_\+\+S\+E\+T\+\_\+\+B\+R\+\_\+\+S\+E\+C\+T\+O\+R\+S\+\_\+\+P\+E\+R\+\_\+\+C\+L\+U\+S\+T\+ER}(x,  val)~F\+A\+T\+\_\+\+S\+E\+T\+\_\+\+V\+A\+L8( x, 13,val)
+\item 
+\mbox{\Hypertarget{group__libfs__dosfs_ga468d1ef50b317cb345ee7729cb8164a5}\label{group__libfs__dosfs_ga468d1ef50b317cb345ee7729cb8164a5}} 
+\#define {\bfseries F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+B\+R\+\_\+\+R\+E\+S\+E\+R\+V\+E\+D\+\_\+\+S\+E\+C\+T\+O\+R\+S\+\_\+\+N\+UM}(x)~F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+V\+A\+L16(x, 14)
+\item 
+\mbox{\Hypertarget{group__libfs__dosfs_gab24a360049f4860e12b779885bf6a009}\label{group__libfs__dosfs_gab24a360049f4860e12b779885bf6a009}} 
+\#define {\bfseries F\+A\+T\+\_\+\+S\+E\+T\+\_\+\+B\+R\+\_\+\+R\+E\+S\+E\+R\+V\+E\+D\+\_\+\+S\+E\+C\+T\+O\+R\+S\+\_\+\+N\+UM}(x,  val)~F\+A\+T\+\_\+\+S\+E\+T\+\_\+\+V\+A\+L16(x, 14,val)
+\item 
+\mbox{\Hypertarget{group__libfs__dosfs_ga50b1dbdf4c11d9a9f2dd5f552bd92458}\label{group__libfs__dosfs_ga50b1dbdf4c11d9a9f2dd5f552bd92458}} 
+\#define {\bfseries F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+B\+R\+\_\+\+F\+A\+T\+\_\+\+N\+UM}(x)~F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+V\+A\+L8( x, 16)
+\item 
+\mbox{\Hypertarget{group__libfs__dosfs_ga76eef22ce59a0f78046fc90bef136283}\label{group__libfs__dosfs_ga76eef22ce59a0f78046fc90bef136283}} 
+\#define {\bfseries F\+A\+T\+\_\+\+S\+E\+T\+\_\+\+B\+R\+\_\+\+F\+A\+T\+\_\+\+N\+UM}(x,  val)~F\+A\+T\+\_\+\+S\+E\+T\+\_\+\+V\+A\+L8( x, 16,val)
+\item 
+\mbox{\Hypertarget{group__libfs__dosfs_ga8997c14e650901a36fd9686c26b02599}\label{group__libfs__dosfs_ga8997c14e650901a36fd9686c26b02599}} 
+\#define {\bfseries F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+B\+R\+\_\+\+F\+I\+L\+E\+S\+\_\+\+P\+E\+R\+\_\+\+R\+O\+O\+T\+\_\+\+D\+IR}(x)~F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+V\+A\+L16(x, 17)
+\item 
+\mbox{\Hypertarget{group__libfs__dosfs_ga4590a4a2030ab17d1a91e9553b407e92}\label{group__libfs__dosfs_ga4590a4a2030ab17d1a91e9553b407e92}} 
+\#define {\bfseries F\+A\+T\+\_\+\+S\+E\+T\+\_\+\+B\+R\+\_\+\+F\+I\+L\+E\+S\+\_\+\+P\+E\+R\+\_\+\+R\+O\+O\+T\+\_\+\+D\+IR}(x,  val)~F\+A\+T\+\_\+\+S\+E\+T\+\_\+\+V\+A\+L16(x, 17,val)
+\item 
+\mbox{\Hypertarget{group__libfs__dosfs_gaacf178504ba88d8e213c5c27b53905dc}\label{group__libfs__dosfs_gaacf178504ba88d8e213c5c27b53905dc}} 
+\#define {\bfseries F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+B\+R\+\_\+\+T\+O\+T\+A\+L\+\_\+\+S\+E\+C\+T\+O\+R\+S\+\_\+\+N\+U\+M16}(x)~F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+V\+A\+L16(x, 19)
+\item 
+\mbox{\Hypertarget{group__libfs__dosfs_gafafc39dfabb4e8013f2f73347ff277e1}\label{group__libfs__dosfs_gafafc39dfabb4e8013f2f73347ff277e1}} 
+\#define {\bfseries F\+A\+T\+\_\+\+S\+E\+T\+\_\+\+B\+R\+\_\+\+T\+O\+T\+A\+L\+\_\+\+S\+E\+C\+T\+O\+R\+S\+\_\+\+N\+U\+M16}(x,  val)~F\+A\+T\+\_\+\+S\+E\+T\+\_\+\+V\+A\+L16(x, 19,val)
+\item 
+\mbox{\Hypertarget{group__libfs__dosfs_ga0e1d4aba0cf83b1398f331995ec321e8}\label{group__libfs__dosfs_ga0e1d4aba0cf83b1398f331995ec321e8}} 
+\#define {\bfseries F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+B\+R\+\_\+\+M\+E\+D\+IA}(x)~F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+V\+A\+L8( x, 21)
+\item 
+\mbox{\Hypertarget{group__libfs__dosfs_ga933025efc69d76caf43be7721f5d338f}\label{group__libfs__dosfs_ga933025efc69d76caf43be7721f5d338f}} 
+\#define {\bfseries F\+A\+T\+\_\+\+S\+E\+T\+\_\+\+B\+R\+\_\+\+M\+E\+D\+IA}(x,  val)~F\+A\+T\+\_\+\+S\+E\+T\+\_\+\+V\+A\+L8( x, 21,val)
+\item 
+\mbox{\Hypertarget{group__libfs__dosfs_ga71e2398ee3b3cfe75d9b97d7461c4ca5}\label{group__libfs__dosfs_ga71e2398ee3b3cfe75d9b97d7461c4ca5}} 
+\#define {\bfseries F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+B\+R\+\_\+\+S\+E\+C\+T\+O\+R\+S\+\_\+\+P\+E\+R\+\_\+\+F\+AT}(x)~F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+V\+A\+L16(x, 22)
+\item 
+\mbox{\Hypertarget{group__libfs__dosfs_ga7c6fc950ba14874b087f05bc7c1a0e51}\label{group__libfs__dosfs_ga7c6fc950ba14874b087f05bc7c1a0e51}} 
+\#define {\bfseries F\+A\+T\+\_\+\+S\+E\+T\+\_\+\+B\+R\+\_\+\+S\+E\+C\+T\+O\+R\+S\+\_\+\+P\+E\+R\+\_\+\+F\+AT}(x,  val)~F\+A\+T\+\_\+\+S\+E\+T\+\_\+\+V\+A\+L16(x, 22,val)
+\item 
+\mbox{\Hypertarget{group__libfs__dosfs_ga690bafc06007daa14709b8cc0c6224fc}\label{group__libfs__dosfs_ga690bafc06007daa14709b8cc0c6224fc}} 
+\#define {\bfseries F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+B\+R\+\_\+\+S\+E\+C\+T\+O\+R\+S\+\_\+\+P\+E\+R\+\_\+\+T\+R\+A\+CK}(x)~F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+V\+A\+L16(x, 24)
+\item 
+\mbox{\Hypertarget{group__libfs__dosfs_ga8ef6997d32436365ded9e9bb4a080d8b}\label{group__libfs__dosfs_ga8ef6997d32436365ded9e9bb4a080d8b}} 
+\#define {\bfseries F\+A\+T\+\_\+\+S\+E\+T\+\_\+\+B\+R\+\_\+\+S\+E\+C\+T\+O\+R\+S\+\_\+\+P\+E\+R\+\_\+\+T\+R\+A\+CK}(x,  val)~F\+A\+T\+\_\+\+S\+E\+T\+\_\+\+V\+A\+L16(x, 24,val)
+\item 
+\mbox{\Hypertarget{group__libfs__dosfs_gadb57819c92b0138543f1a3d52bb05714}\label{group__libfs__dosfs_gadb57819c92b0138543f1a3d52bb05714}} 
+\#define {\bfseries F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+B\+R\+\_\+\+N\+U\+M\+B\+E\+R\+\_\+\+O\+F\+\_\+\+H\+E\+A\+DS}(x)~F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+V\+A\+L16(x, 26)
+\item 
+\mbox{\Hypertarget{group__libfs__dosfs_gaf2d68480350f459b99f8712814b30d2c}\label{group__libfs__dosfs_gaf2d68480350f459b99f8712814b30d2c}} 
+\#define {\bfseries F\+A\+T\+\_\+\+S\+E\+T\+\_\+\+B\+R\+\_\+\+N\+U\+M\+B\+E\+R\+\_\+\+O\+F\+\_\+\+H\+E\+A\+DS}(x,  val)~F\+A\+T\+\_\+\+S\+E\+T\+\_\+\+V\+A\+L16(x, 26,val)
+\item 
+\mbox{\Hypertarget{group__libfs__dosfs_ga3f1b4468012decac55b2d2780ca1f993}\label{group__libfs__dosfs_ga3f1b4468012decac55b2d2780ca1f993}} 
+\#define {\bfseries F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+B\+R\+\_\+\+H\+I\+D\+D\+E\+N\+\_\+\+S\+E\+C\+T\+O\+RS}(x)~F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+V\+A\+L32(x, 28)
+\item 
+\mbox{\Hypertarget{group__libfs__dosfs_ga399ba010df43291d1ebb049820c9b16e}\label{group__libfs__dosfs_ga399ba010df43291d1ebb049820c9b16e}} 
+\#define {\bfseries F\+A\+T\+\_\+\+S\+E\+T\+\_\+\+B\+R\+\_\+\+H\+I\+D\+D\+E\+N\+\_\+\+S\+E\+C\+T\+O\+RS}(x,  val)~F\+A\+T\+\_\+\+S\+E\+T\+\_\+\+V\+A\+L32(x, 28,val)
+\item 
+\mbox{\Hypertarget{group__libfs__dosfs_gabc650ac299df8b6e3430a94b85b1fb28}\label{group__libfs__dosfs_gabc650ac299df8b6e3430a94b85b1fb28}} 
+\#define {\bfseries F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+B\+R\+\_\+\+T\+O\+T\+A\+L\+\_\+\+S\+E\+C\+T\+O\+R\+S\+\_\+\+N\+U\+M32}(x)~F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+V\+A\+L32(x, 32)
+\item 
+\mbox{\Hypertarget{group__libfs__dosfs_gab596185dbb9976ba5fd4960858eec6bb}\label{group__libfs__dosfs_gab596185dbb9976ba5fd4960858eec6bb}} 
+\#define {\bfseries F\+A\+T\+\_\+\+S\+E\+T\+\_\+\+B\+R\+\_\+\+T\+O\+T\+A\+L\+\_\+\+S\+E\+C\+T\+O\+R\+S\+\_\+\+N\+U\+M32}(x,  val)~F\+A\+T\+\_\+\+S\+E\+T\+\_\+\+V\+A\+L32(x, 32,val)
+\item 
+\mbox{\Hypertarget{group__libfs__dosfs_gaeb305022bbc9f2cd47edcf43cc4402e5}\label{group__libfs__dosfs_gaeb305022bbc9f2cd47edcf43cc4402e5}} 
+\#define {\bfseries F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+B\+R\+\_\+\+D\+R\+V\+N\+UM}(x)~F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+V\+A\+L8( x, 36)
+\item 
+\mbox{\Hypertarget{group__libfs__dosfs_gaf1ef72992d36a2d455d60205a220cf06}\label{group__libfs__dosfs_gaf1ef72992d36a2d455d60205a220cf06}} 
+\#define {\bfseries F\+A\+T\+\_\+\+S\+E\+T\+\_\+\+B\+R\+\_\+\+D\+R\+V\+N\+UM}(x,  val)~F\+A\+T\+\_\+\+S\+E\+T\+\_\+\+V\+A\+L8( x, 36,val)
+\item 
+\mbox{\Hypertarget{group__libfs__dosfs_gab1db55806df8d736a1a6e5a340ffe563}\label{group__libfs__dosfs_gab1db55806df8d736a1a6e5a340ffe563}} 
+\#define {\bfseries F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+B\+R\+\_\+\+R\+S\+V\+D1}(x)~F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+V\+A\+L8( x, 37)
+\item 
+\mbox{\Hypertarget{group__libfs__dosfs_ga6735fb3c88d34e78e335db22d146c400}\label{group__libfs__dosfs_ga6735fb3c88d34e78e335db22d146c400}} 
+\#define {\bfseries F\+A\+T\+\_\+\+S\+E\+T\+\_\+\+B\+R\+\_\+\+R\+S\+V\+D1}(x,  val)~F\+A\+T\+\_\+\+S\+E\+T\+\_\+\+V\+A\+L8( x, 37,val)
+\item 
+\mbox{\Hypertarget{group__libfs__dosfs_ga67c27e439c472939a54585751a86392b}\label{group__libfs__dosfs_ga67c27e439c472939a54585751a86392b}} 
+\#define {\bfseries F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+B\+R\+\_\+\+B\+O\+O\+T\+S\+IG}(x)~F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+V\+A\+L8( x, 38)
+\item 
+\mbox{\Hypertarget{group__libfs__dosfs_gab6f7a3cfb82931ecb008051dd56179cf}\label{group__libfs__dosfs_gab6f7a3cfb82931ecb008051dd56179cf}} 
+\#define {\bfseries F\+A\+T\+\_\+\+S\+E\+T\+\_\+\+B\+R\+\_\+\+B\+O\+O\+T\+S\+IG}(x,  val)~F\+A\+T\+\_\+\+S\+E\+T\+\_\+\+V\+A\+L8( x, 38,val)
+\item 
+\mbox{\Hypertarget{group__libfs__dosfs_ga1bab3d7f3ca1e4b75de0ccceb5ce33bd}\label{group__libfs__dosfs_ga1bab3d7f3ca1e4b75de0ccceb5ce33bd}} 
+\#define {\bfseries F\+A\+T\+\_\+\+B\+R\+\_\+\+B\+O\+O\+T\+S\+I\+G\+\_\+\+V\+AL}~(0x29)
+\item 
+\mbox{\Hypertarget{group__libfs__dosfs_ga62552b72a3937e82137c76fa6a480abf}\label{group__libfs__dosfs_ga62552b72a3937e82137c76fa6a480abf}} 
+\#define {\bfseries F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+B\+R\+\_\+\+V\+O\+L\+ID}(x)~F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+V\+A\+L32(x, 39)
+\item 
+\mbox{\Hypertarget{group__libfs__dosfs_gab1c126409acc4bde4cf1a77bc445432e}\label{group__libfs__dosfs_gab1c126409acc4bde4cf1a77bc445432e}} 
+\#define {\bfseries F\+A\+T\+\_\+\+S\+E\+T\+\_\+\+B\+R\+\_\+\+V\+O\+L\+ID}(x,  val)~F\+A\+T\+\_\+\+S\+E\+T\+\_\+\+V\+A\+L32(x, 39,val)
+\item 
+\mbox{\Hypertarget{group__libfs__dosfs_ga47729ef14edf1445264f1ac10f80e4ef}\label{group__libfs__dosfs_ga47729ef14edf1445264f1ac10f80e4ef}} 
+\#define {\bfseries F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+A\+D\+D\+R\+\_\+\+B\+R\+\_\+\+V\+O\+L\+L\+AB}(x)~F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+A\+D\+DR (x, 43)
+\item 
+\mbox{\Hypertarget{group__libfs__dosfs_ga08748b874293e24d7b4645dc041b1263}\label{group__libfs__dosfs_ga08748b874293e24d7b4645dc041b1263}} 
+\#define {\bfseries F\+A\+T\+\_\+\+B\+R\+\_\+\+V\+O\+L\+L\+A\+B\+\_\+\+S\+I\+ZE}~(11)
+\item 
+\mbox{\Hypertarget{group__libfs__dosfs_ga60eb7bc37b554a1e04988a89dea7168f}\label{group__libfs__dosfs_ga60eb7bc37b554a1e04988a89dea7168f}} 
+\#define {\bfseries F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+A\+D\+D\+R\+\_\+\+B\+R\+\_\+\+F\+I\+L\+S\+Y\+S\+T\+Y\+PE}(x)~F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+A\+D\+DR (x, 54)
+\item 
+\mbox{\Hypertarget{group__libfs__dosfs_ga3d0b6deb34097aa912637a4eead0bca0}\label{group__libfs__dosfs_ga3d0b6deb34097aa912637a4eead0bca0}} 
+\#define {\bfseries F\+A\+T\+\_\+\+B\+R\+\_\+\+F\+I\+L\+S\+Y\+S\+T\+Y\+P\+E\+\_\+\+S\+I\+ZE}~(8)
+\item 
+\mbox{\Hypertarget{group__libfs__dosfs_ga07bed4c79d1017dc46adf62cbf92e9bf}\label{group__libfs__dosfs_ga07bed4c79d1017dc46adf62cbf92e9bf}} 
+\#define {\bfseries F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+B\+R\+\_\+\+S\+E\+C\+T\+O\+R\+S\+\_\+\+P\+E\+R\+\_\+\+F\+A\+T32}(x)~F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+V\+A\+L32(x, 36)
+\item 
+\mbox{\Hypertarget{group__libfs__dosfs_ga78c9048c3c288e5bf0c090256c26a7f0}\label{group__libfs__dosfs_ga78c9048c3c288e5bf0c090256c26a7f0}} 
+\#define {\bfseries F\+A\+T\+\_\+\+S\+E\+T\+\_\+\+B\+R\+\_\+\+S\+E\+C\+T\+O\+R\+S\+\_\+\+P\+E\+R\+\_\+\+F\+A\+T32}(x,  val)~F\+A\+T\+\_\+\+S\+E\+T\+\_\+\+V\+A\+L32(x, 36,val)
+\item 
+\mbox{\Hypertarget{group__libfs__dosfs_gabedd94ab6d4ac4982527e15265a6e9f0}\label{group__libfs__dosfs_gabedd94ab6d4ac4982527e15265a6e9f0}} 
+\#define {\bfseries F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+B\+R\+\_\+\+E\+X\+T\+\_\+\+F\+L\+A\+GS}(x)~F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+V\+A\+L16(x, 40)
+\item 
+\mbox{\Hypertarget{group__libfs__dosfs_ga8d972d5c07f7b143873fd460353644c1}\label{group__libfs__dosfs_ga8d972d5c07f7b143873fd460353644c1}} 
+\#define {\bfseries F\+A\+T\+\_\+\+S\+E\+T\+\_\+\+B\+R\+\_\+\+E\+X\+T\+\_\+\+F\+L\+A\+GS}(x,  val)~F\+A\+T\+\_\+\+S\+E\+T\+\_\+\+V\+A\+L16(x, 40,val)
+\item 
+\mbox{\Hypertarget{group__libfs__dosfs_gaad367c0b2e0dc825aefbf997d8a750f3}\label{group__libfs__dosfs_gaad367c0b2e0dc825aefbf997d8a750f3}} 
+\#define {\bfseries F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+B\+R\+\_\+\+F\+S\+V\+ER}(x)~F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+V\+A\+L16(x, 42)
+\item 
+\mbox{\Hypertarget{group__libfs__dosfs_gab57ef629d7c48d2ad7d589ea4e9652dc}\label{group__libfs__dosfs_gab57ef629d7c48d2ad7d589ea4e9652dc}} 
+\#define {\bfseries F\+A\+T\+\_\+\+S\+E\+T\+\_\+\+B\+R\+\_\+\+F\+S\+V\+ER}(x,  val)~F\+A\+T\+\_\+\+S\+E\+T\+\_\+\+V\+A\+L16(x, 42,val)
+\item 
+\mbox{\Hypertarget{group__libfs__dosfs_ga4c886ed5605e26bc33cedf0e7b85d9be}\label{group__libfs__dosfs_ga4c886ed5605e26bc33cedf0e7b85d9be}} 
+\#define {\bfseries F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+B\+R\+\_\+\+F\+A\+T32\+\_\+\+R\+O\+O\+T\+\_\+\+C\+L\+U\+S\+T\+ER}(x)~F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+V\+A\+L32(x, 44)
+\item 
+\mbox{\Hypertarget{group__libfs__dosfs_ga2cde695988de5c26403941b2a715b1fa}\label{group__libfs__dosfs_ga2cde695988de5c26403941b2a715b1fa}} 
+\#define {\bfseries F\+A\+T\+\_\+\+S\+E\+T\+\_\+\+B\+R\+\_\+\+F\+A\+T32\+\_\+\+R\+O\+O\+T\+\_\+\+C\+L\+U\+S\+T\+ER}(x,  val)~F\+A\+T\+\_\+\+S\+E\+T\+\_\+\+V\+A\+L32(x, 44,val)
+\item 
+\mbox{\Hypertarget{group__libfs__dosfs_gab3017271fb8ce0c21a7be9f72a9d4d82}\label{group__libfs__dosfs_gab3017271fb8ce0c21a7be9f72a9d4d82}} 
+\#define {\bfseries F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+B\+R\+\_\+\+F\+A\+T32\+\_\+\+F\+S\+\_\+\+I\+N\+F\+O\+\_\+\+S\+E\+C\+T\+OR}(x)~F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+V\+A\+L16(x, 48)
+\item 
+\mbox{\Hypertarget{group__libfs__dosfs_gaca05a761c38009f6dad0411d82c50bdc}\label{group__libfs__dosfs_gaca05a761c38009f6dad0411d82c50bdc}} 
+\#define {\bfseries F\+A\+T\+\_\+\+S\+E\+T\+\_\+\+B\+R\+\_\+\+F\+A\+T32\+\_\+\+F\+S\+\_\+\+I\+N\+F\+O\+\_\+\+S\+E\+C\+T\+OR}(x,  val)~F\+A\+T\+\_\+\+S\+E\+T\+\_\+\+V\+A\+L16(x, 48,val)
+\item 
+\mbox{\Hypertarget{group__libfs__dosfs_ga5b1fda79cb09d795ccd135477d042593}\label{group__libfs__dosfs_ga5b1fda79cb09d795ccd135477d042593}} 
+\#define {\bfseries F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+B\+R\+\_\+\+F\+A\+T32\+\_\+\+B\+K\+\_\+\+B\+O\+O\+T\+\_\+\+S\+E\+C\+T\+OR}(x)~F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+V\+A\+L16(x, 50)
+\item 
+\mbox{\Hypertarget{group__libfs__dosfs_ga0eed37919eca7310454f7f586d9ca9bf}\label{group__libfs__dosfs_ga0eed37919eca7310454f7f586d9ca9bf}} 
+\#define {\bfseries F\+A\+T\+\_\+\+S\+E\+T\+\_\+\+B\+R\+\_\+\+F\+A\+T32\+\_\+\+B\+K\+\_\+\+B\+O\+O\+T\+\_\+\+S\+E\+C\+T\+OR}(x,  val)~F\+A\+T\+\_\+\+S\+E\+T\+\_\+\+V\+A\+L16(x, 50,val)
+\item 
+\mbox{\Hypertarget{group__libfs__dosfs_gaa3bce14aad61e577fa08b88522e4fe19}\label{group__libfs__dosfs_gaa3bce14aad61e577fa08b88522e4fe19}} 
+\#define {\bfseries F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+A\+D\+D\+R\+\_\+\+B\+R\+\_\+\+F\+A\+T32\+\_\+\+R\+E\+S\+E\+R\+V\+ED}(x)~F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+A\+D\+DR (x, 52)
+\item 
+\mbox{\Hypertarget{group__libfs__dosfs_gac70d66a80e6e3fa729ef3755fcaa51e6}\label{group__libfs__dosfs_gac70d66a80e6e3fa729ef3755fcaa51e6}} 
+\#define {\bfseries F\+A\+T\+\_\+\+B\+R\+\_\+\+F\+A\+T32\+\_\+\+R\+E\+S\+E\+R\+V\+E\+D\+\_\+\+S\+I\+ZE}~(12)
+\item 
+\mbox{\Hypertarget{group__libfs__dosfs_ga739a28132d6439788f32c9a1b6c2e4eb}\label{group__libfs__dosfs_ga739a28132d6439788f32c9a1b6c2e4eb}} 
+\#define {\bfseries F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+B\+R\+\_\+\+F\+A\+T32\+\_\+\+D\+R\+V\+N\+UM}(x)~F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+V\+A\+L8( x, 64)
+\item 
+\mbox{\Hypertarget{group__libfs__dosfs_ga84fc453b605811fe714f1b0051fe05bb}\label{group__libfs__dosfs_ga84fc453b605811fe714f1b0051fe05bb}} 
+\#define {\bfseries F\+A\+T\+\_\+\+S\+E\+T\+\_\+\+B\+R\+\_\+\+F\+A\+T32\+\_\+\+D\+R\+V\+N\+UM}(x,  val)~F\+A\+T\+\_\+\+S\+E\+T\+\_\+\+V\+A\+L8( x, 64,val)
+\item 
+\mbox{\Hypertarget{group__libfs__dosfs_ga9be3391f5f70431423c124ffc66ed921}\label{group__libfs__dosfs_ga9be3391f5f70431423c124ffc66ed921}} 
+\#define {\bfseries F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+B\+R\+\_\+\+F\+A\+T32\+\_\+\+R\+S\+V\+D1}(x)~F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+V\+A\+L8( x, 65)
+\item 
+\mbox{\Hypertarget{group__libfs__dosfs_gaa5bdf4b8ebbbff77c0890e86092e4200}\label{group__libfs__dosfs_gaa5bdf4b8ebbbff77c0890e86092e4200}} 
+\#define {\bfseries F\+A\+T\+\_\+\+S\+E\+T\+\_\+\+B\+R\+\_\+\+F\+A\+T32\+\_\+\+R\+S\+V\+D1}(x,  val)~F\+A\+T\+\_\+\+S\+E\+T\+\_\+\+V\+A\+L8( x, 65,val)
+\item 
+\mbox{\Hypertarget{group__libfs__dosfs_gad2a94c64543168f8643e4396868a5018}\label{group__libfs__dosfs_gad2a94c64543168f8643e4396868a5018}} 
+\#define {\bfseries F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+B\+R\+\_\+\+F\+A\+T32\+\_\+\+B\+O\+O\+T\+S\+IG}(x)~F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+V\+A\+L8( x, 66)
+\item 
+\mbox{\Hypertarget{group__libfs__dosfs_ga181c21c01c347330271ee63e05942fe1}\label{group__libfs__dosfs_ga181c21c01c347330271ee63e05942fe1}} 
+\#define {\bfseries F\+A\+T\+\_\+\+S\+E\+T\+\_\+\+B\+R\+\_\+\+F\+A\+T32\+\_\+\+B\+O\+O\+T\+S\+IG}(x,  val)~F\+A\+T\+\_\+\+S\+E\+T\+\_\+\+V\+A\+L8( x, 66,val)
+\item 
+\mbox{\Hypertarget{group__libfs__dosfs_ga4fc6b6542efc6f4b3e93022b228e6687}\label{group__libfs__dosfs_ga4fc6b6542efc6f4b3e93022b228e6687}} 
+\#define {\bfseries F\+A\+T\+\_\+\+B\+R\+\_\+\+F\+A\+T32\+\_\+\+B\+O\+O\+T\+S\+I\+G\+\_\+\+V\+AL}~(0x29)
+\item 
+\mbox{\Hypertarget{group__libfs__dosfs_ga5fcb70b68856b9cd711440026602e96e}\label{group__libfs__dosfs_ga5fcb70b68856b9cd711440026602e96e}} 
+\#define {\bfseries F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+B\+R\+\_\+\+F\+A\+T32\+\_\+\+V\+O\+L\+ID}(x)~F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+V\+A\+L32(x, 67)
+\item 
+\mbox{\Hypertarget{group__libfs__dosfs_ga221804c2383be0248455908cfccbab61}\label{group__libfs__dosfs_ga221804c2383be0248455908cfccbab61}} 
+\#define {\bfseries F\+A\+T\+\_\+\+S\+E\+T\+\_\+\+B\+R\+\_\+\+F\+A\+T32\+\_\+\+V\+O\+L\+ID}(x,  val)~F\+A\+T\+\_\+\+S\+E\+T\+\_\+\+V\+A\+L32(x, 67,val)
+\item 
+\mbox{\Hypertarget{group__libfs__dosfs_ga921f769ddd5b2f6864864ed4e527952b}\label{group__libfs__dosfs_ga921f769ddd5b2f6864864ed4e527952b}} 
+\#define {\bfseries F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+A\+D\+D\+R\+\_\+\+B\+R\+\_\+\+F\+A\+T32\+\_\+\+V\+O\+L\+L\+AB}(x)~F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+A\+D\+DR (x, 71)
+\item 
+\mbox{\Hypertarget{group__libfs__dosfs_ga8eeeb68c63d199c875a61223e57c18c2}\label{group__libfs__dosfs_ga8eeeb68c63d199c875a61223e57c18c2}} 
+\#define {\bfseries F\+A\+T\+\_\+\+B\+R\+\_\+\+F\+A\+T32\+\_\+\+V\+O\+L\+L\+A\+B\+\_\+\+S\+I\+ZE}~(11)
+\item 
+\mbox{\Hypertarget{group__libfs__dosfs_ga9277ca0aea1c172bad484243dea60e4b}\label{group__libfs__dosfs_ga9277ca0aea1c172bad484243dea60e4b}} 
+\#define {\bfseries F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+A\+D\+D\+R\+\_\+\+B\+R\+\_\+\+F\+A\+T32\+\_\+\+F\+I\+L\+S\+Y\+S\+T\+Y\+PE}(x)~F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+A\+D\+DR (x, 82)
+\item 
+\mbox{\Hypertarget{group__libfs__dosfs_gada50bdb7da82d2c6438a0ddaa2aced2d}\label{group__libfs__dosfs_gada50bdb7da82d2c6438a0ddaa2aced2d}} 
+\#define {\bfseries F\+A\+T\+\_\+\+B\+R\+\_\+\+F\+A\+T32\+\_\+\+F\+I\+L\+S\+Y\+S\+T\+Y\+P\+E\+\_\+\+S\+I\+ZE}~(8)
+\item 
+\mbox{\Hypertarget{group__libfs__dosfs_ga0d9ea41126e4cb3db9796364138fc4df}\label{group__libfs__dosfs_ga0d9ea41126e4cb3db9796364138fc4df}} 
+\#define {\bfseries F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+B\+R\+\_\+\+S\+I\+G\+N\+A\+T\+U\+RE}(x)~F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+V\+A\+L16(x,510)
+\item 
+\mbox{\Hypertarget{group__libfs__dosfs_gaf32aec185e026c5c5145204efb348ba9}\label{group__libfs__dosfs_gaf32aec185e026c5c5145204efb348ba9}} 
+\#define {\bfseries F\+A\+T\+\_\+\+S\+E\+T\+\_\+\+B\+R\+\_\+\+S\+I\+G\+N\+A\+T\+U\+RE}(x,  val)~F\+A\+T\+\_\+\+S\+E\+T\+\_\+\+V\+A\+L16(x,510,val)
+\item 
+\mbox{\Hypertarget{group__libfs__dosfs_ga19b0f75edb97b1db27cb4845edfdba17}\label{group__libfs__dosfs_ga19b0f75edb97b1db27cb4845edfdba17}} 
+\#define {\bfseries F\+A\+T\+\_\+\+B\+R\+\_\+\+S\+I\+G\+N\+A\+T\+U\+R\+E\+\_\+\+V\+AL}~(0x\+A\+A55)
+\item 
+\mbox{\Hypertarget{group__libfs__dosfs_gae892a363bc9d1f09bf4006d9dba4886c}\label{group__libfs__dosfs_gae892a363bc9d1f09bf4006d9dba4886c}} 
+\#define {\bfseries F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+F\+S\+I\+N\+F\+O\+\_\+\+L\+E\+A\+D\+\_\+\+S\+I\+G\+N\+A\+T\+U\+RE}(x)~F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+V\+A\+L32(x,  0)
+\item 
+\mbox{\Hypertarget{group__libfs__dosfs_gad159c76e804b8e99378c20db37ec10ca}\label{group__libfs__dosfs_gad159c76e804b8e99378c20db37ec10ca}} 
+\#define {\bfseries F\+A\+T\+\_\+\+S\+E\+T\+\_\+\+F\+S\+I\+N\+F\+O\+\_\+\+L\+E\+A\+D\+\_\+\+S\+I\+G\+N\+A\+T\+U\+RE}(x,  val)~F\+A\+T\+\_\+\+S\+E\+T\+\_\+\+V\+A\+L32(x,  0,val)
+\item 
+\mbox{\Hypertarget{group__libfs__dosfs_ga80a4440d5e0e86b68c51e96f8c13e6e1}\label{group__libfs__dosfs_ga80a4440d5e0e86b68c51e96f8c13e6e1}} 
+\#define {\bfseries F\+A\+T\+\_\+\+F\+S\+I\+N\+F\+O\+\_\+\+L\+E\+A\+D\+\_\+\+S\+I\+G\+N\+A\+T\+U\+R\+E\+\_\+\+V\+A\+L\+UE}~(0x41615252)
+\item 
+\mbox{\Hypertarget{group__libfs__dosfs_gaae2b3c3fb2c5b133e444ea4414aa84f7}\label{group__libfs__dosfs_gaae2b3c3fb2c5b133e444ea4414aa84f7}} 
+\#define {\bfseries F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+F\+S\+I\+N\+F\+O\+\_\+\+S\+T\+R\+U\+C\+\_\+\+S\+I\+G\+N\+A\+T\+U\+RE}(x)~F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+V\+A\+L32(x,484)
+\item 
+\mbox{\Hypertarget{group__libfs__dosfs_gabc6b347870302168fd30f8bc0fdab332}\label{group__libfs__dosfs_gabc6b347870302168fd30f8bc0fdab332}} 
+\#define {\bfseries F\+A\+T\+\_\+\+S\+E\+T\+\_\+\+F\+S\+I\+N\+F\+O\+\_\+\+S\+T\+R\+U\+C\+\_\+\+S\+I\+G\+N\+A\+T\+U\+RE}(x,  val)~F\+A\+T\+\_\+\+S\+E\+T\+\_\+\+V\+A\+L32(x,484,val)
+\item 
+\mbox{\Hypertarget{group__libfs__dosfs_gaf1397978bc742ffe017ce142155c60c1}\label{group__libfs__dosfs_gaf1397978bc742ffe017ce142155c60c1}} 
+\#define {\bfseries F\+A\+T\+\_\+\+F\+S\+I\+N\+F\+O\+\_\+\+S\+T\+R\+U\+C\+\_\+\+S\+I\+G\+N\+A\+T\+U\+R\+E\+\_\+\+V\+A\+L\+UE}~(0x61417272)
+\item 
+\mbox{\Hypertarget{group__libfs__dosfs_gab33a45bc1083dc96564a0558f6c96bb6}\label{group__libfs__dosfs_gab33a45bc1083dc96564a0558f6c96bb6}} 
+\#define {\bfseries F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+F\+S\+I\+N\+F\+O\+\_\+\+T\+R\+A\+I\+L\+\_\+\+S\+I\+G\+N\+A\+T\+U\+RE}(x)~F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+V\+A\+L32(x,508)
+\item 
+\mbox{\Hypertarget{group__libfs__dosfs_ga15f7cbf49ae9763e32a23786146f165a}\label{group__libfs__dosfs_ga15f7cbf49ae9763e32a23786146f165a}} 
+\#define {\bfseries F\+A\+T\+\_\+\+S\+E\+T\+\_\+\+F\+S\+I\+N\+F\+O\+\_\+\+T\+R\+A\+I\+L\+\_\+\+S\+I\+G\+N\+A\+T\+U\+RE}(x,  val)~F\+A\+T\+\_\+\+S\+E\+T\+\_\+\+V\+A\+L32(x,508,val)
+\item 
+\mbox{\Hypertarget{group__libfs__dosfs_ga9cabeeb58b89af0fb72ae41f486d2f0e}\label{group__libfs__dosfs_ga9cabeeb58b89af0fb72ae41f486d2f0e}} 
+\#define {\bfseries F\+A\+T\+\_\+\+F\+S\+I\+N\+F\+O\+\_\+\+T\+R\+A\+I\+L\+\_\+\+S\+I\+G\+N\+A\+T\+U\+R\+E\+\_\+\+V\+A\+L\+UE}~(0x\+A\+A550000)
+\item 
+\mbox{\Hypertarget{group__libfs__dosfs_gaf1deb7e7ce57d374164aa914b46d4bac}\label{group__libfs__dosfs_gaf1deb7e7ce57d374164aa914b46d4bac}} 
+\#define {\bfseries F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+F\+S\+I\+N\+F\+O\+\_\+\+F\+R\+E\+E\+\_\+\+C\+L\+U\+S\+T\+E\+R\+\_\+\+C\+O\+U\+NT}(x)~F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+V\+A\+L32(x, 4)
+\item 
+\mbox{\Hypertarget{group__libfs__dosfs_gadf17dfca2b92802b91e5dc910670335c}\label{group__libfs__dosfs_gadf17dfca2b92802b91e5dc910670335c}} 
+\#define {\bfseries F\+A\+T\+\_\+\+S\+E\+T\+\_\+\+F\+S\+I\+N\+F\+O\+\_\+\+F\+R\+E\+E\+\_\+\+C\+L\+U\+S\+T\+E\+R\+\_\+\+C\+O\+U\+NT}(x,  val)~F\+A\+T\+\_\+\+S\+E\+T\+\_\+\+V\+A\+L32(x, 4,val)
+\item 
+\mbox{\Hypertarget{group__libfs__dosfs_gad551d0037a7e72b808e6e8adf8563581}\label{group__libfs__dosfs_gad551d0037a7e72b808e6e8adf8563581}} 
+\#define {\bfseries F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+F\+S\+I\+N\+F\+O\+\_\+\+N\+E\+X\+T\+\_\+\+F\+R\+E\+E\+\_\+\+C\+L\+U\+S\+T\+ER}(x)~F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+V\+A\+L32(x, 8)
+\item 
+\mbox{\Hypertarget{group__libfs__dosfs_ga46f45d3b82e52253e287549bdf78b798}\label{group__libfs__dosfs_ga46f45d3b82e52253e287549bdf78b798}} 
+\#define {\bfseries F\+A\+T\+\_\+\+S\+E\+T\+\_\+\+F\+S\+I\+N\+F\+O\+\_\+\+N\+E\+X\+T\+\_\+\+F\+R\+E\+E\+\_\+\+C\+L\+U\+S\+T\+ER}(x,  val)~F\+A\+T\+\_\+\+S\+E\+T\+\_\+\+V\+A\+L32(x, 8,val)
+\item 
+\mbox{\Hypertarget{group__libfs__dosfs_gac58ca27a2c127122e12c5de5b2b5db53}\label{group__libfs__dosfs_gac58ca27a2c127122e12c5de5b2b5db53}} 
+\#define {\bfseries F\+A\+T\+\_\+\+F\+S\+I\+\_\+\+I\+N\+FO}~484
+\item 
+\mbox{\Hypertarget{group__libfs__dosfs_ga96b884a9e4f7cfb4ca9e4ce0017b4b4f}\label{group__libfs__dosfs_ga96b884a9e4f7cfb4ca9e4ce0017b4b4f}} 
+\#define {\bfseries F\+A\+T\+\_\+\+F\+S\+I\+N\+F\+O\+\_\+\+S\+T\+R\+U\+C\+T\+\_\+\+O\+F\+F\+S\+ET}~488
+\item 
+\mbox{\Hypertarget{group__libfs__dosfs_gad2fb3adfd1250885a200cb3ab3537501}\label{group__libfs__dosfs_gad2fb3adfd1250885a200cb3ab3537501}} 
+\#define {\bfseries F\+A\+T\+\_\+\+F\+S\+I\+N\+F\+O\+\_\+\+F\+R\+E\+E\+\_\+\+C\+L\+U\+S\+T\+E\+R\+\_\+\+C\+O\+U\+N\+T\+\_\+\+O\+F\+F\+S\+ET}~(F\+A\+T\+\_\+\+F\+S\+I\+N\+F\+O\+\_\+\+S\+T\+R\+U\+C\+T\+\_\+\+O\+F\+F\+S\+ET+0)
+\item 
+\mbox{\Hypertarget{group__libfs__dosfs_ga00514fbe10d98c8b4b6dadf602b3bad8}\label{group__libfs__dosfs_ga00514fbe10d98c8b4b6dadf602b3bad8}} 
+\#define {\bfseries F\+A\+T\+\_\+\+F\+S\+I\+N\+F\+O\+\_\+\+N\+E\+X\+T\+\_\+\+F\+R\+E\+E\+\_\+\+C\+L\+U\+S\+T\+E\+R\+\_\+\+O\+F\+F\+S\+ET}~(F\+A\+T\+\_\+\+F\+S\+I\+N\+F\+O\+\_\+\+S\+T\+R\+U\+C\+T\+\_\+\+O\+F\+F\+S\+ET+4)
+\item 
+\mbox{\Hypertarget{group__libfs__dosfs_ga59e649d1c1fbc60e87d53316703ade9f}\label{group__libfs__dosfs_ga59e649d1c1fbc60e87d53316703ade9f}} 
+\#define {\bfseries F\+A\+T\+\_\+\+R\+S\+R\+V\+D\+\_\+\+C\+LN}~0x02
+\item 
+\mbox{\Hypertarget{group__libfs__dosfs_gabd53206ac9c0dcbaf52bb113ec943642}\label{group__libfs__dosfs_gabd53206ac9c0dcbaf52bb113ec943642}} 
+\#define {\bfseries F\+A\+T\+\_\+\+F\+S\+I\+\_\+\+L\+E\+A\+D\+S\+I\+G\+\_\+\+S\+I\+ZE}~0x04
+\item 
+\mbox{\Hypertarget{group__libfs__dosfs_ga5a68dc92abb2d92fbf64239be3f54655}\label{group__libfs__dosfs_ga5a68dc92abb2d92fbf64239be3f54655}} 
+\#define {\bfseries F\+A\+T\+\_\+\+T\+O\+T\+A\+L\+\_\+\+F\+S\+I\+N\+F\+O\+\_\+\+S\+I\+ZE}~512
+\item 
+\mbox{\Hypertarget{group__libfs__dosfs_ga99473c3880e15f66ca2b592c8a561c0d}\label{group__libfs__dosfs_ga99473c3880e15f66ca2b592c8a561c0d}} 
+\#define {\bfseries M\+S\+\_\+\+B\+Y\+T\+E\+S\+\_\+\+P\+E\+R\+\_\+\+C\+L\+U\+S\+T\+E\+R\+\_\+\+L\+I\+M\+IT}~0x10000    /$\ast$ 64\+K $\ast$/
+\item 
+\mbox{\Hypertarget{group__libfs__dosfs_gad9bc79cb57dfd9098878274e473b9d4f}\label{group__libfs__dosfs_gad9bc79cb57dfd9098878274e473b9d4f}} 
+\#define {\bfseries M\+S\+\_\+\+B\+Y\+T\+E\+S\+\_\+\+P\+E\+R\+\_\+\+C\+L\+U\+S\+T\+E\+R\+\_\+\+L\+I\+M\+I\+T\+\_\+\+F\+A\+T12}~0x1000     /$\ast$  4\+K $\ast$/
+\item 
+\mbox{\Hypertarget{group__libfs__dosfs_ga2f144eaae4ac0ee55075d7a3b3234802}\label{group__libfs__dosfs_ga2f144eaae4ac0ee55075d7a3b3234802}} 
+\#define {\bfseries F\+A\+T\+\_\+\+B\+R\+\_\+\+E\+X\+T\+\_\+\+F\+L\+A\+G\+S\+\_\+\+M\+I\+R\+R\+OR}~0x0080
+\item 
+\mbox{\Hypertarget{group__libfs__dosfs_gac3a28cbc27fabf3fdf73d7fc84f5b7f9}\label{group__libfs__dosfs_gac3a28cbc27fabf3fdf73d7fc84f5b7f9}} 
+\#define {\bfseries F\+A\+T\+\_\+\+B\+R\+\_\+\+E\+X\+T\+\_\+\+F\+L\+A\+G\+S\+\_\+\+F\+A\+T\+\_\+\+N\+UM}~0x000F
+\item 
+\mbox{\Hypertarget{group__libfs__dosfs_ga71986252278aac89dfb570883bf0c16b}\label{group__libfs__dosfs_ga71986252278aac89dfb570883bf0c16b}} 
+\#define {\bfseries F\+A\+T\+\_\+\+B\+R\+\_\+\+M\+E\+D\+I\+A\+\_\+\+F\+I\+X\+ED}~0xf8
+\item 
+\mbox{\Hypertarget{group__libfs__dosfs_ga816e74b186b16153e4294fc9630e8999}\label{group__libfs__dosfs_ga816e74b186b16153e4294fc9630e8999}} 
+\#define {\bfseries F\+A\+T\+\_\+\+D\+I\+R\+E\+N\+T\+R\+Y\+\_\+\+S\+I\+ZE}~32
+\item 
+\mbox{\Hypertarget{group__libfs__dosfs_gaaa60c4d9b0d53c33754e9440d120d3e7}\label{group__libfs__dosfs_gaaa60c4d9b0d53c33754e9440d120d3e7}} 
+\#define {\bfseries F\+A\+T\+\_\+\+D\+I\+R\+E\+N\+T\+R\+I\+E\+S\+\_\+\+P\+E\+R\+\_\+\+S\+E\+C512}~16
+\item 
+\mbox{\Hypertarget{group__libfs__dosfs_ga8a57dc923415765b6be7183cbd069384}\label{group__libfs__dosfs_ga8a57dc923415765b6be7183cbd069384}} 
+\#define {\bfseries F\+A\+T\+\_\+\+F\+I\+L\+E\+\_\+\+S\+H\+O\+R\+T\+\_\+\+N\+A\+ME}~(0xffffffff)
+\item 
+\#define {\bfseries F\+A\+T\+\_\+\+F\+A\+T\+\_\+\+O\+F\+F\+S\+ET}(fat\+\_\+type,  cln)
+\item 
+\mbox{\Hypertarget{group__libfs__dosfs_gaf6cc74f51521ad910ff8645857c56bfc}\label{group__libfs__dosfs_gaf6cc74f51521ad910ff8645857c56bfc}} 
+\#define {\bfseries F\+A\+T\+\_\+\+C\+L\+U\+S\+T\+E\+R\+\_\+\+I\+S\+\_\+\+O\+DD}(n)~((n) \& 0x0001)
+\item 
+\mbox{\Hypertarget{group__libfs__dosfs_ga7640d4d317a687884bfd02c9cc78071a}\label{group__libfs__dosfs_ga7640d4d317a687884bfd02c9cc78071a}} 
+\#define {\bfseries F\+A\+T12\+\_\+\+S\+H\+I\+FT}~0x4    /$\ast$ half of a byte $\ast$/
+\item 
+\mbox{\Hypertarget{group__libfs__dosfs_gaa0e7780c904442f120d152ddf88096db}\label{group__libfs__dosfs_gaa0e7780c904442f120d152ddf88096db}} 
+\#define {\bfseries F\+A\+T\+\_\+\+U\+I\+N\+O\+\_\+\+P\+O\+O\+L\+\_\+\+I\+N\+I\+T\+\_\+\+S\+I\+ZE}~0x100
+\item 
+\mbox{\Hypertarget{group__libfs__dosfs_gaef5f7ddb2d0246a03a6fef70a7a06607}\label{group__libfs__dosfs_gaef5f7ddb2d0246a03a6fef70a7a06607}} 
+\#define {\bfseries F\+A\+T\+\_\+\+C\+A\+C\+H\+E\+\_\+\+E\+M\+P\+TY}~0x0
+\item 
+\mbox{\Hypertarget{group__libfs__dosfs_ga55b107f68f8547851eb2eaa1b669b986}\label{group__libfs__dosfs_ga55b107f68f8547851eb2eaa1b669b986}} 
+\#define {\bfseries F\+A\+T\+\_\+\+C\+A\+C\+H\+E\+\_\+\+A\+C\+T\+U\+AL}~0x1
+\item 
+\mbox{\Hypertarget{group__libfs__dosfs_ga64f5954ceca9821d010428fe1c73f43e}\label{group__libfs__dosfs_ga64f5954ceca9821d010428fe1c73f43e}} 
+\#define {\bfseries F\+A\+T\+\_\+\+O\+P\+\_\+\+T\+Y\+P\+E\+\_\+\+R\+E\+AD}~0x1
+\item 
+\mbox{\Hypertarget{group__libfs__dosfs_ga3d278adefa76ce48842088e2755fc6b6}\label{group__libfs__dosfs_ga3d278adefa76ce48842088e2755fc6b6}} 
+\#define {\bfseries F\+A\+T\+\_\+\+O\+P\+\_\+\+T\+Y\+P\+E\+\_\+\+G\+ET}~0x2
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{group__libfs__dosfs_ga0f1a4474c2b1ba87ce8961a0f403e1b7}\label{group__libfs__dosfs_ga0f1a4474c2b1ba87ce8961a0f403e1b7}} 
+typedef struct \mbox{\hyperlink{structfat__vol__s}{fat\+\_\+vol\+\_\+s}} {\bfseries fat\+\_\+vol\+\_\+t}
+\item 
+\mbox{\Hypertarget{group__libfs__dosfs_ga9d5534f5f90b2ca41d2c1b3c1ae96270}\label{group__libfs__dosfs_ga9d5534f5f90b2ca41d2c1b3c1ae96270}} 
+typedef struct \mbox{\hyperlink{structfat__cache__s}{fat\+\_\+cache\+\_\+s}} {\bfseries fat\+\_\+cache\+\_\+t}
+\item 
+\mbox{\Hypertarget{group__libfs__dosfs_ga81d14d68a13fcf50d4f58c91cc8c7ff8}\label{group__libfs__dosfs_ga81d14d68a13fcf50d4f58c91cc8c7ff8}} 
+typedef struct \mbox{\hyperlink{structfat__fs__info__s}{fat\+\_\+fs\+\_\+info\+\_\+s}} {\bfseries fat\+\_\+fs\+\_\+info\+\_\+t}
+\item 
+\mbox{\Hypertarget{group__libfs__dosfs_ga7b61bc6d313ed61d13ef9d6ae20b93c8}\label{group__libfs__dosfs_ga7b61bc6d313ed61d13ef9d6ae20b93c8}} 
+typedef struct \mbox{\hyperlink{structfat__pos__s}{fat\+\_\+pos\+\_\+s}} {\bfseries fat\+\_\+pos\+\_\+t}
+\item 
+\mbox{\Hypertarget{group__libfs__dosfs_ga7824dbd3145259c660963084f10da95d}\label{group__libfs__dosfs_ga7824dbd3145259c660963084f10da95d}} 
+typedef struct \mbox{\hyperlink{structfat__dir__pos__s}{fat\+\_\+dir\+\_\+pos\+\_\+s}} {\bfseries fat\+\_\+dir\+\_\+pos\+\_\+t}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{group__libfs__dosfs_ga669988205eb1272951a456f56a48f303}\label{group__libfs__dosfs_ga669988205eb1272951a456f56a48f303}} 
+int {\bfseries fat\+\_\+buf\+\_\+access} (\mbox{\hyperlink{structfat__fs__info__s}{fat\+\_\+fs\+\_\+info\+\_\+t}} $\ast$fs\+\_\+info, uint32\+\_\+t sec\+\_\+num, int op\+\_\+type, uint8\+\_\+t $\ast$$\ast$sec\+\_\+buf)
+\item 
+\mbox{\Hypertarget{group__libfs__dosfs_gaff6a2d4c121c756651e1a03404d7ee4c}\label{group__libfs__dosfs_gaff6a2d4c121c756651e1a03404d7ee4c}} 
+int {\bfseries fat\+\_\+buf\+\_\+release} (\mbox{\hyperlink{structfat__fs__info__s}{fat\+\_\+fs\+\_\+info\+\_\+t}} $\ast$fs\+\_\+info)
+\item 
+\mbox{\Hypertarget{group__libfs__dosfs_ga46ddcd1849e8bbb5e40ace3e14c11e3d}\label{group__libfs__dosfs_ga46ddcd1849e8bbb5e40ace3e14c11e3d}} 
+ssize\+\_\+t {\bfseries \+\_\+fat\+\_\+block\+\_\+read} (\mbox{\hyperlink{structfat__fs__info__s}{fat\+\_\+fs\+\_\+info\+\_\+t}} $\ast$fs\+\_\+info, uint32\+\_\+t start, uint32\+\_\+t offset, uint32\+\_\+t count, void $\ast$buff)
+\item 
+\mbox{\Hypertarget{group__libfs__dosfs_ga003406faf6db30550b09078a77738b13}\label{group__libfs__dosfs_ga003406faf6db30550b09078a77738b13}} 
+ssize\+\_\+t {\bfseries fat\+\_\+cluster\+\_\+write} (\mbox{\hyperlink{structfat__fs__info__s}{fat\+\_\+fs\+\_\+info\+\_\+t}} $\ast$fs\+\_\+info, uint32\+\_\+t start\+\_\+cln, uint32\+\_\+t offset, uint32\+\_\+t count, const void $\ast$buff)
+\item 
+\mbox{\Hypertarget{group__libfs__dosfs_ga634cceef830b5bf08d1c317cd8f09cba}\label{group__libfs__dosfs_ga634cceef830b5bf08d1c317cd8f09cba}} 
+ssize\+\_\+t {\bfseries fat\+\_\+sector\+\_\+write} (\mbox{\hyperlink{structfat__fs__info__s}{fat\+\_\+fs\+\_\+info\+\_\+t}} $\ast$fs\+\_\+info, uint32\+\_\+t start, uint32\+\_\+t offset, uint32\+\_\+t count, const void $\ast$buff)
+\item 
+\mbox{\Hypertarget{group__libfs__dosfs_gaad61914265a74a24c7f1ac3a65294445}\label{group__libfs__dosfs_gaad61914265a74a24c7f1ac3a65294445}} 
+ssize\+\_\+t {\bfseries fat\+\_\+cluster\+\_\+set} (\mbox{\hyperlink{structfat__fs__info__s}{fat\+\_\+fs\+\_\+info\+\_\+t}} $\ast$fs\+\_\+info, uint32\+\_\+t start, uint32\+\_\+t offset, uint32\+\_\+t count, uint8\+\_\+t pattern)
+\item 
+\mbox{\Hypertarget{group__libfs__dosfs_ga31e2a90dd7fbc52e7de6b74ec8df762c}\label{group__libfs__dosfs_ga31e2a90dd7fbc52e7de6b74ec8df762c}} 
+int {\bfseries fat\+\_\+init\+\_\+volume\+\_\+info} (\mbox{\hyperlink{structfat__fs__info__s}{fat\+\_\+fs\+\_\+info\+\_\+t}} $\ast$fs\+\_\+info, const char $\ast$\mbox{\hyperlink{structdevice}{device}})
+\item 
+\mbox{\Hypertarget{group__libfs__dosfs_ga65cdcb6e1d80a6b7bc64a916a3e57695}\label{group__libfs__dosfs_ga65cdcb6e1d80a6b7bc64a916a3e57695}} 
+int {\bfseries fat\+\_\+init\+\_\+clusters\+\_\+chain} (\mbox{\hyperlink{structfat__fs__info__s}{fat\+\_\+fs\+\_\+info\+\_\+t}} $\ast$fs\+\_\+info, uint32\+\_\+t start\+\_\+cln)
+\item 
+\mbox{\Hypertarget{group__libfs__dosfs_gafcbc03144ef1bb7641220813468de7de}\label{group__libfs__dosfs_gafcbc03144ef1bb7641220813468de7de}} 
+int {\bfseries fat\+\_\+shutdown\+\_\+drive} (\mbox{\hyperlink{structfat__fs__info__s}{fat\+\_\+fs\+\_\+info\+\_\+t}} $\ast$fs\+\_\+info)
+\item 
+\mbox{\Hypertarget{group__libfs__dosfs_ga521e1baf7a72b774bf3c186acc5c0337}\label{group__libfs__dosfs_ga521e1baf7a72b774bf3c186acc5c0337}} 
+uint32\+\_\+t {\bfseries fat\+\_\+get\+\_\+unique\+\_\+ino} (\mbox{\hyperlink{structfat__fs__info__s}{fat\+\_\+fs\+\_\+info\+\_\+t}} $\ast$fs\+\_\+info)
+\item 
+\mbox{\Hypertarget{group__libfs__dosfs_gacd0dd82546bb6194af652818f7bc8ad3}\label{group__libfs__dosfs_gacd0dd82546bb6194af652818f7bc8ad3}} 
+bool {\bfseries fat\+\_\+ino\+\_\+is\+\_\+unique} (\mbox{\hyperlink{structfat__fs__info__s}{fat\+\_\+fs\+\_\+info\+\_\+t}} $\ast$fs\+\_\+info, uint32\+\_\+t ino)
+\item 
+\mbox{\Hypertarget{group__libfs__dosfs_gac4a40740491001fd46ce804bb844d27c}\label{group__libfs__dosfs_gac4a40740491001fd46ce804bb844d27c}} 
+void {\bfseries fat\+\_\+free\+\_\+unique\+\_\+ino} (\mbox{\hyperlink{structfat__fs__info__s}{fat\+\_\+fs\+\_\+info\+\_\+t}} $\ast$fs\+\_\+info, uint32\+\_\+t ino)
+\item 
+\mbox{\Hypertarget{group__libfs__dosfs_ga516b23edd8edac58e4f52f253dd49dcd}\label{group__libfs__dosfs_ga516b23edd8edac58e4f52f253dd49dcd}} 
+int {\bfseries fat\+\_\+sync} (\mbox{\hyperlink{structfat__fs__info__s}{fat\+\_\+fs\+\_\+info\+\_\+t}} $\ast$fs\+\_\+info)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{group__libfs__dosfs_ga968c29d05065e9f5eb5d65008ed84b7e}\label{group__libfs__dosfs_ga968c29d05065e9f5eb5d65008ed84b7e}} 
+\index{FAT FileSystem@{FAT FileSystem}!FAT\_FAT\_OFFSET@{FAT\_FAT\_OFFSET}}
+\index{FAT\_FAT\_OFFSET@{FAT\_FAT\_OFFSET}!FAT FileSystem@{FAT FileSystem}}
+\subsubsection{\texorpdfstring{FAT\_FAT\_OFFSET}{FAT\_FAT\_OFFSET}}
+{\footnotesize\ttfamily \#define F\+A\+T\+\_\+\+F\+A\+T\+\_\+\+O\+F\+F\+S\+ET(\begin{DoxyParamCaption}\item[{}]{fat\+\_\+type,  }\item[{}]{cln }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{((fat\_type) \& FAT\_FAT12 ? ((cln) + ((cln) >> 1)) : \(\backslash\)}
+\DoxyCodeLine{     (fat\_type) \& FAT\_FAT16 ? ((cln) << 1)           : \(\backslash\)}
+\DoxyCodeLine{     ((cln) << 2))}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{group__libfs__dosfs_gaf28314f59e01086cca001f355ac8c2a3}\label{group__libfs__dosfs_gaf28314f59e01086cca001f355ac8c2a3}} 
+\index{FAT FileSystem@{FAT FileSystem}!FAT\_GET\_VAL16@{FAT\_GET\_VAL16}}
+\index{FAT\_GET\_VAL16@{FAT\_GET\_VAL16}!FAT FileSystem@{FAT FileSystem}}
+\subsubsection{\texorpdfstring{FAT\_GET\_VAL16}{FAT\_GET\_VAL16}}
+{\footnotesize\ttfamily \#define F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+V\+A\+L16(\begin{DoxyParamCaption}\item[{}]{x,  }\item[{}]{ofs }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(uint16\_t)( (*((uint8\_t *)(x) + (ofs))) |           \(\backslash\)}
+\DoxyCodeLine{                  ((*((uint8\_t *)(x) + (ofs) + 1)) << 8) )}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{group__libfs__dosfs_ga4d4935075a58c5e53d14ff819440979d}\label{group__libfs__dosfs_ga4d4935075a58c5e53d14ff819440979d}} 
+\index{FAT FileSystem@{FAT FileSystem}!FAT\_GET\_VAL32@{FAT\_GET\_VAL32}}
+\index{FAT\_GET\_VAL32@{FAT\_GET\_VAL32}!FAT FileSystem@{FAT FileSystem}}
+\subsubsection{\texorpdfstring{FAT\_GET\_VAL32}{FAT\_GET\_VAL32}}
+{\footnotesize\ttfamily \#define F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+V\+A\+L32(\begin{DoxyParamCaption}\item[{}]{x,  }\item[{}]{ofs }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(uint32\_t)( (uint32\_t)(*((uint8\_t *)(x) + (ofs))) |             \(\backslash\)}
+\DoxyCodeLine{                  ((uint32\_t)(*((uint8\_t *)(x) + (ofs) + 1)) << 8)  | \(\backslash\)}
+\DoxyCodeLine{                  ((uint32\_t)(*((uint8\_t *)(x) + (ofs) + 2)) << 16) | \(\backslash\)}
+\DoxyCodeLine{                  ((uint32\_t)(*((uint8\_t *)(x) + (ofs) + 3)) << 24) )}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{group__libfs__dosfs_ga4c57ac85478d44c01e38804d0a0f1d1a}\label{group__libfs__dosfs_ga4c57ac85478d44c01e38804d0a0f1d1a}} 
+\index{FAT FileSystem@{FAT FileSystem}!FAT\_SET\_VAL16@{FAT\_SET\_VAL16}}
+\index{FAT\_SET\_VAL16@{FAT\_SET\_VAL16}!FAT FileSystem@{FAT FileSystem}}
+\subsubsection{\texorpdfstring{FAT\_SET\_VAL16}{FAT\_SET\_VAL16}}
+{\footnotesize\ttfamily \#define F\+A\+T\+\_\+\+S\+E\+T\+\_\+\+V\+A\+L16(\begin{DoxyParamCaption}\item[{}]{x,  }\item[{}]{ofs,  }\item[{}]{val }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do} \{              \(\backslash\)}
+\DoxyCodeLine{                 FAT\_SET\_VAL8((x),(ofs),(val));     \(\backslash\)}
+\DoxyCodeLine{                 FAT\_SET\_VAL8((x),(ofs)+1,(val)>>8);\(\backslash\)}
+\DoxyCodeLine{                 \} \textcolor{keywordflow}{while} (0)}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{group__libfs__dosfs_ga9e60795e096207a53501951603f23997}\label{group__libfs__dosfs_ga9e60795e096207a53501951603f23997}} 
+\index{FAT FileSystem@{FAT FileSystem}!FAT\_SET\_VAL32@{FAT\_SET\_VAL32}}
+\index{FAT\_SET\_VAL32@{FAT\_SET\_VAL32}!FAT FileSystem@{FAT FileSystem}}
+\subsubsection{\texorpdfstring{FAT\_SET\_VAL32}{FAT\_SET\_VAL32}}
+{\footnotesize\ttfamily \#define F\+A\+T\+\_\+\+S\+E\+T\+\_\+\+V\+A\+L32(\begin{DoxyParamCaption}\item[{}]{x,  }\item[{}]{ofs,  }\item[{}]{val }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do} \{               \(\backslash\)}
+\DoxyCodeLine{                 uint32\_t val1 = val;                \(\backslash\)}
+\DoxyCodeLine{                 FAT\_SET\_VAL16((x),(ofs),(val1)\&0xffff);\(\backslash\)}
+\DoxyCodeLine{                 FAT\_SET\_VAL16((x),(ofs)+2,(val1)>>16);\(\backslash\)}
+\DoxyCodeLine{                 \} \textcolor{keywordflow}{while} (0)}
+
+\end{DoxyCode}

@@ -1,0 +1,781 @@
+\hypertarget{sparc_2include_2rtems_2score_2cpu_8h}{}\section{cpukit/score/cpu/sparc/include/rtems/score/cpu.h File Reference}
+\label{sparc_2include_2rtems_2score_2cpu_8h}\index{cpukit/score/cpu/sparc/include/rtems/score/cpu.h@{cpukit/score/cpu/sparc/include/rtems/score/cpu.h}}
+
+
+S\+P\+A\+RC C\+PU Department Source.  
+
+
+{\ttfamily \#include $<$rtems/score/basedefs.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/score/sparc.\+h$>$}\newline
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structSPARC__Minimum__stack__frame}{S\+P\+A\+R\+C\+\_\+\+Minimum\+\_\+stack\+\_\+frame}}
+\item 
+struct \mbox{\hyperlink{structContext__Control}{Context\+\_\+\+Control}}
+\begin{DoxyCompactList}\small\item\em Thread register context. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structContext__Control__fp}{Context\+\_\+\+Control\+\_\+fp}}
+\begin{DoxyCompactList}\small\item\em S\+P\+A\+RC basic context. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structCPU__Interrupt__frame}{C\+P\+U\+\_\+\+Interrupt\+\_\+frame}}
+\begin{DoxyCompactList}\small\item\em Interrupt stack frame (I\+SF). \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structCPU__Trap__table__entry}{C\+P\+U\+\_\+\+Trap\+\_\+table\+\_\+entry}}
+\item 
+struct \mbox{\hyperlink{structCPU__Exception__frame}{C\+P\+U\+\_\+\+Exception\+\_\+frame}}
+\begin{DoxyCompactList}\small\item\em The set of registers that specifies the complete processor state. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structSPARC__Counter}{S\+P\+A\+R\+C\+\_\+\+Counter}}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{sparc_2include_2rtems_2score_2cpu_8h_a1eca01dbb1ef2873349cc4e222509f0a}{C\+P\+U\+\_\+\+S\+I\+M\+P\+L\+E\+\_\+\+V\+E\+C\+T\+O\+R\+E\+D\+\_\+\+I\+N\+T\+E\+R\+R\+U\+P\+TS}}~\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gaa8cecfc5c5c054d2875c03e77b7be15d}{T\+R\+UE}}
+\item 
+\#define \mbox{\hyperlink{sparc_2include_2rtems_2score_2cpu_8h_a30c4d320f85b1383c5059da5b19b164a}{C\+P\+U\+\_\+\+I\+S\+R\+\_\+\+P\+A\+S\+S\+E\+S\+\_\+\+F\+R\+A\+M\+E\+\_\+\+P\+O\+I\+N\+T\+ER}}~\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gaa93f0eb578d23995850d61f7d61c55c1}{F\+A\+L\+SE}}
+\item 
+\#define \mbox{\hyperlink{sparc_2include_2rtems_2score_2cpu_8h_a112f88f13afe8bb8f1b13f1ca7e09b8d}{C\+P\+U\+\_\+\+H\+A\+R\+D\+W\+A\+R\+E\+\_\+\+FP}}~\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gaa93f0eb578d23995850d61f7d61c55c1}{F\+A\+L\+SE}}
+\item 
+\#define \mbox{\hyperlink{sparc_2include_2rtems_2score_2cpu_8h_a304f78c61edce38bb88e909f90a326dc}{C\+P\+U\+\_\+\+S\+O\+F\+T\+W\+A\+R\+E\+\_\+\+FP}}~\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gaa93f0eb578d23995850d61f7d61c55c1}{F\+A\+L\+SE}}
+\item 
+\#define \mbox{\hyperlink{sparc_2include_2rtems_2score_2cpu_8h_a225de03a8647bf307a73cf907969778d}{C\+P\+U\+\_\+\+A\+L\+L\+\_\+\+T\+A\+S\+K\+S\+\_\+\+A\+R\+E\+\_\+\+FP}}~\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gaa93f0eb578d23995850d61f7d61c55c1}{F\+A\+L\+SE}}
+\item 
+\#define \mbox{\hyperlink{sparc_2include_2rtems_2score_2cpu_8h_af1c906c8ee4c3d012dc456285e42d3ee}{C\+P\+U\+\_\+\+I\+D\+L\+E\+\_\+\+T\+A\+S\+K\+\_\+\+I\+S\+\_\+\+FP}}~\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gaa93f0eb578d23995850d61f7d61c55c1}{F\+A\+L\+SE}}
+\item 
+\mbox{\Hypertarget{sparc_2include_2rtems_2score_2cpu_8h_a155bcf88149016c6c58f30eeab9f1598}\label{sparc_2include_2rtems_2score_2cpu_8h_a155bcf88149016c6c58f30eeab9f1598}} 
+\#define {\bfseries C\+P\+U\+\_\+\+U\+S\+E\+\_\+\+D\+E\+F\+E\+R\+R\+E\+D\+\_\+\+F\+P\+\_\+\+S\+W\+I\+T\+CH}~\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gaa93f0eb578d23995850d61f7d61c55c1}{F\+A\+L\+SE}}
+\item 
+\mbox{\Hypertarget{sparc_2include_2rtems_2score_2cpu_8h_a0c634f4a6bc9236bcacafc9b6119e011}\label{sparc_2include_2rtems_2score_2cpu_8h_a0c634f4a6bc9236bcacafc9b6119e011}} 
+\#define {\bfseries C\+P\+U\+\_\+\+E\+N\+A\+B\+L\+E\+\_\+\+R\+O\+B\+U\+S\+T\+\_\+\+T\+H\+R\+E\+A\+D\+\_\+\+D\+I\+S\+P\+A\+T\+CH}~\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gaa93f0eb578d23995850d61f7d61c55c1}{F\+A\+L\+SE}}
+\item 
+\#define \mbox{\hyperlink{sparc_2include_2rtems_2score_2cpu_8h_ac40d98a563f63934a5775f1366ba1b67}{C\+P\+U\+\_\+\+S\+T\+A\+C\+K\+\_\+\+G\+R\+O\+W\+S\+\_\+\+UP}}~\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gaa93f0eb578d23995850d61f7d61c55c1}{F\+A\+L\+SE}}
+\item 
+\mbox{\Hypertarget{sparc_2include_2rtems_2score_2cpu_8h_aafa1399e268a9ae6adf6d6aad4371688}\label{sparc_2include_2rtems_2score_2cpu_8h_aafa1399e268a9ae6adf6d6aad4371688}} 
+\#define {\bfseries C\+P\+U\+\_\+\+C\+A\+C\+H\+E\+\_\+\+L\+I\+N\+E\+\_\+\+B\+Y\+T\+ES}~64
+\item 
+\mbox{\Hypertarget{sparc_2include_2rtems_2score_2cpu_8h_acd43704c7821a2c042d212801156584e}\label{sparc_2include_2rtems_2score_2cpu_8h_acd43704c7821a2c042d212801156584e}} 
+\#define {\bfseries C\+P\+U\+\_\+\+S\+T\+R\+U\+C\+T\+U\+R\+E\+\_\+\+A\+L\+I\+G\+N\+M\+E\+NT}~\mbox{\hyperlink{structRTEMS__ALIGNED}{R\+T\+E\+M\+S\+\_\+\+A\+L\+I\+G\+N\+ED}}( \mbox{\hyperlink{no__cpu_2include_2rtems_2score_2cpu_8h_aafa1399e268a9ae6adf6d6aad4371688}{C\+P\+U\+\_\+\+C\+A\+C\+H\+E\+\_\+\+L\+I\+N\+E\+\_\+\+B\+Y\+T\+ES}} )
+\item 
+\#define \mbox{\hyperlink{sparc_2include_2rtems_2score_2cpu_8h_af8823e651e33b9683e0d89e5a8054ee6}{C\+P\+U\+\_\+\+M\+O\+D\+E\+S\+\_\+\+I\+N\+T\+E\+R\+R\+U\+P\+T\+\_\+\+M\+A\+SK}}~0x0000000F
+\item 
+\#define \mbox{\hyperlink{sparc_2include_2rtems_2score_2cpu_8h_a575f62ed7aed84f7552ec3ef1bf6a7bb}{C\+P\+U\+\_\+\+S\+T\+A\+C\+K\+\_\+\+F\+R\+A\+M\+E\+\_\+\+L0\+\_\+\+O\+F\+F\+S\+ET}}~0x00
+\item 
+\#define \mbox{\hyperlink{sparc_2include_2rtems_2score_2cpu_8h_aa6eb407b793bb7907dcaa32f94c519b3}{C\+P\+U\+\_\+\+S\+T\+A\+C\+K\+\_\+\+F\+R\+A\+M\+E\+\_\+\+L1\+\_\+\+O\+F\+F\+S\+ET}}~0x04
+\item 
+\#define \mbox{\hyperlink{sparc_2include_2rtems_2score_2cpu_8h_aa30adc37edabd087be7e9a0a6df51514}{C\+P\+U\+\_\+\+S\+T\+A\+C\+K\+\_\+\+F\+R\+A\+M\+E\+\_\+\+L2\+\_\+\+O\+F\+F\+S\+ET}}~0x08
+\item 
+\#define \mbox{\hyperlink{sparc_2include_2rtems_2score_2cpu_8h_a81bd26d0f67f142516b6f9050d167787}{C\+P\+U\+\_\+\+S\+T\+A\+C\+K\+\_\+\+F\+R\+A\+M\+E\+\_\+\+L3\+\_\+\+O\+F\+F\+S\+ET}}~0x0c
+\item 
+\#define \mbox{\hyperlink{sparc_2include_2rtems_2score_2cpu_8h_af2cbaf050a7a90a2e1f193c3f13cd7e7}{C\+P\+U\+\_\+\+S\+T\+A\+C\+K\+\_\+\+F\+R\+A\+M\+E\+\_\+\+L4\+\_\+\+O\+F\+F\+S\+ET}}~0x10
+\item 
+\#define \mbox{\hyperlink{sparc_2include_2rtems_2score_2cpu_8h_aa75cc6154a548abc54be904726f06193}{C\+P\+U\+\_\+\+S\+T\+A\+C\+K\+\_\+\+F\+R\+A\+M\+E\+\_\+\+L5\+\_\+\+O\+F\+F\+S\+ET}}~0x14
+\item 
+\#define \mbox{\hyperlink{sparc_2include_2rtems_2score_2cpu_8h_af86368584fed0f70f4ea2928c9849531}{C\+P\+U\+\_\+\+S\+T\+A\+C\+K\+\_\+\+F\+R\+A\+M\+E\+\_\+\+L6\+\_\+\+O\+F\+F\+S\+ET}}~0x18
+\item 
+\#define \mbox{\hyperlink{sparc_2include_2rtems_2score_2cpu_8h_a8cf7d947f0bdb16ba4490c328efae48f}{C\+P\+U\+\_\+\+S\+T\+A\+C\+K\+\_\+\+F\+R\+A\+M\+E\+\_\+\+L7\+\_\+\+O\+F\+F\+S\+ET}}~0x1c
+\item 
+\#define \mbox{\hyperlink{sparc_2include_2rtems_2score_2cpu_8h_a83e4c35c5ed6801e9fe865fa0e0083fb}{C\+P\+U\+\_\+\+S\+T\+A\+C\+K\+\_\+\+F\+R\+A\+M\+E\+\_\+\+I0\+\_\+\+O\+F\+F\+S\+ET}}~0x20
+\item 
+\#define \mbox{\hyperlink{sparc_2include_2rtems_2score_2cpu_8h_ab62b81366df72b65984d34c6b1e6b632}{C\+P\+U\+\_\+\+S\+T\+A\+C\+K\+\_\+\+F\+R\+A\+M\+E\+\_\+\+I1\+\_\+\+O\+F\+F\+S\+ET}}~0x24
+\item 
+\#define \mbox{\hyperlink{sparc_2include_2rtems_2score_2cpu_8h_a1daf51a3417acc33bdc9bd26bd1f6e22}{C\+P\+U\+\_\+\+S\+T\+A\+C\+K\+\_\+\+F\+R\+A\+M\+E\+\_\+\+I2\+\_\+\+O\+F\+F\+S\+ET}}~0x28
+\item 
+\#define \mbox{\hyperlink{sparc_2include_2rtems_2score_2cpu_8h_a37af459858e70e9bad53ef8fa15cf904}{C\+P\+U\+\_\+\+S\+T\+A\+C\+K\+\_\+\+F\+R\+A\+M\+E\+\_\+\+I3\+\_\+\+O\+F\+F\+S\+ET}}~0x2c
+\item 
+\#define \mbox{\hyperlink{sparc_2include_2rtems_2score_2cpu_8h_a3633f9b64501f0d4f47bc0caa6de3d3d}{C\+P\+U\+\_\+\+S\+T\+A\+C\+K\+\_\+\+F\+R\+A\+M\+E\+\_\+\+I4\+\_\+\+O\+F\+F\+S\+ET}}~0x30
+\item 
+\#define \mbox{\hyperlink{sparc_2include_2rtems_2score_2cpu_8h_a0be5e3d1ca73080dd038623dbed8f687}{C\+P\+U\+\_\+\+S\+T\+A\+C\+K\+\_\+\+F\+R\+A\+M\+E\+\_\+\+I5\+\_\+\+O\+F\+F\+S\+ET}}~0x34
+\item 
+\#define \mbox{\hyperlink{sparc_2include_2rtems_2score_2cpu_8h_a930d5f24902abf5f300f0e97aa4cdeaf}{C\+P\+U\+\_\+\+S\+T\+A\+C\+K\+\_\+\+F\+R\+A\+M\+E\+\_\+\+I6\+\_\+\+F\+P\+\_\+\+O\+F\+F\+S\+ET}}~0x38
+\item 
+\#define \mbox{\hyperlink{sparc_2include_2rtems_2score_2cpu_8h_a21c680e8b657f5dbfbe9377e24c3fb74}{C\+P\+U\+\_\+\+S\+T\+A\+C\+K\+\_\+\+F\+R\+A\+M\+E\+\_\+\+I7\+\_\+\+O\+F\+F\+S\+ET}}~0x3c
+\item 
+\#define \mbox{\hyperlink{sparc_2include_2rtems_2score_2cpu_8h_a308a86e7d62e608b0f2b5595cd0fdc6e}{C\+P\+U\+\_\+\+S\+T\+R\+U\+C\+T\+U\+R\+E\+\_\+\+R\+E\+T\+U\+R\+N\+\_\+\+A\+D\+D\+R\+E\+S\+S\+\_\+\+O\+F\+F\+S\+ET}}~0x40
+\item 
+\#define \mbox{\hyperlink{sparc_2include_2rtems_2score_2cpu_8h_a083d79bd687c3712c74f96e5db95f81a}{C\+P\+U\+\_\+\+S\+T\+A\+C\+K\+\_\+\+F\+R\+A\+M\+E\+\_\+\+S\+A\+V\+E\+D\+\_\+\+A\+R\+G0\+\_\+\+O\+F\+F\+S\+ET}}~0x44
+\item 
+\#define \mbox{\hyperlink{sparc_2include_2rtems_2score_2cpu_8h_a3b8b755c656e8fdebfa133c5c3f5871d}{C\+P\+U\+\_\+\+S\+T\+A\+C\+K\+\_\+\+F\+R\+A\+M\+E\+\_\+\+S\+A\+V\+E\+D\+\_\+\+A\+R\+G1\+\_\+\+O\+F\+F\+S\+ET}}~0x48
+\item 
+\#define \mbox{\hyperlink{sparc_2include_2rtems_2score_2cpu_8h_ae32ed54740ae621cc8cfb50704bf4cf4}{C\+P\+U\+\_\+\+S\+T\+A\+C\+K\+\_\+\+F\+R\+A\+M\+E\+\_\+\+S\+A\+V\+E\+D\+\_\+\+A\+R\+G2\+\_\+\+O\+F\+F\+S\+ET}}~0x4c
+\item 
+\#define \mbox{\hyperlink{sparc_2include_2rtems_2score_2cpu_8h_a42b2ded2c750923f0212593e30328507}{C\+P\+U\+\_\+\+S\+T\+A\+C\+K\+\_\+\+F\+R\+A\+M\+E\+\_\+\+S\+A\+V\+E\+D\+\_\+\+A\+R\+G3\+\_\+\+O\+F\+F\+S\+ET}}~0x50
+\item 
+\#define \mbox{\hyperlink{sparc_2include_2rtems_2score_2cpu_8h_a2edd72af2496a05109268c607c07db15}{C\+P\+U\+\_\+\+S\+T\+A\+C\+K\+\_\+\+F\+R\+A\+M\+E\+\_\+\+S\+A\+V\+E\+D\+\_\+\+A\+R\+G4\+\_\+\+O\+F\+F\+S\+ET}}~0x54
+\item 
+\#define \mbox{\hyperlink{sparc_2include_2rtems_2score_2cpu_8h_a92993a124a97f17a5a4794fd4c0424f4}{C\+P\+U\+\_\+\+S\+T\+A\+C\+K\+\_\+\+F\+R\+A\+M\+E\+\_\+\+S\+A\+V\+E\+D\+\_\+\+A\+R\+G5\+\_\+\+O\+F\+F\+S\+ET}}~0x58
+\item 
+\#define \mbox{\hyperlink{sparc_2include_2rtems_2score_2cpu_8h_aa09f0e7e0b5f905bd0dbcd5901b4f07f}{C\+P\+U\+\_\+\+S\+T\+A\+C\+K\+\_\+\+F\+R\+A\+M\+E\+\_\+\+P\+A\+D0\+\_\+\+O\+F\+F\+S\+ET}}~0x5c
+\item 
+\mbox{\Hypertarget{sparc_2include_2rtems_2score_2cpu_8h_adea68a7fa02909edcebee08748f94223}\label{sparc_2include_2rtems_2score_2cpu_8h_adea68a7fa02909edcebee08748f94223}} 
+\#define {\bfseries C\+P\+U\+\_\+\+M\+A\+X\+I\+M\+U\+M\+\_\+\+P\+R\+O\+C\+E\+S\+S\+O\+RS}~32
+\item 
+\#define \mbox{\hyperlink{group__RTEMSScoreCPUSPARCContext_ga896055157b72692a6141f7c0039eabdf}{\+\_\+\+C\+P\+U\+\_\+\+Context\+\_\+\+Get\+\_\+\+SP}}(\+\_\+context)~(\+\_\+context)-\/$>$o6\+\_\+sp
+\item 
+\#define \mbox{\hyperlink{group__RTEMSScoreCPUSPARCContext_gaacf8d8cd4c57d17ca53d43081656bfbe}{G5\+\_\+\+O\+F\+F\+S\+ET}}~0x00
+\item 
+\#define \mbox{\hyperlink{group__RTEMSScoreCPUSPARCContext_ga9cf33dbd23363f125419f6fbf4f1ea28}{G7\+\_\+\+O\+F\+F\+S\+ET}}~0x04
+\item 
+\#define \mbox{\hyperlink{group__RTEMSScoreCPUSPARCContext_ga2aa8381a55d2c725ac07d78ede350ea8}{L0\+\_\+\+O\+F\+F\+S\+ET}}~0x08
+\item 
+\#define \mbox{\hyperlink{group__RTEMSScoreCPUSPARCContext_ga7e0044af98788804b7e01283a931753a}{L1\+\_\+\+O\+F\+F\+S\+ET}}~0x0C
+\item 
+\#define \mbox{\hyperlink{group__RTEMSScoreCPUSPARCContext_ga7fdcfc866446c76c90a964133b733c65}{L2\+\_\+\+O\+F\+F\+S\+ET}}~0x10
+\item 
+\#define \mbox{\hyperlink{group__RTEMSScoreCPUSPARCContext_ga001d65789e1ed126aa2084f4bb1dd7f2}{L3\+\_\+\+O\+F\+F\+S\+ET}}~0x14
+\item 
+\#define \mbox{\hyperlink{group__RTEMSScoreCPUSPARCContext_gab8ac89039868966d5931b1053cf5f8e5}{L4\+\_\+\+O\+F\+F\+S\+ET}}~0x18
+\item 
+\#define \mbox{\hyperlink{group__RTEMSScoreCPUSPARCContext_gab727930f92faa1ede90a2becdfb5a5ce}{L5\+\_\+\+O\+F\+F\+S\+ET}}~0x1C
+\item 
+\#define \mbox{\hyperlink{group__RTEMSScoreCPUSPARCContext_ga0f28989f9c9df5f4e9300b6e8fa7a46d}{L6\+\_\+\+O\+F\+F\+S\+ET}}~0x20
+\item 
+\#define \mbox{\hyperlink{group__RTEMSScoreCPUSPARCContext_ga9ed383ce2f38f0aea53914620608700f}{L7\+\_\+\+O\+F\+F\+S\+ET}}~0x24
+\item 
+\#define \mbox{\hyperlink{group__RTEMSScoreCPUSPARCContext_gab7e98875dfbe6ad4b8130e5acf103d64}{I0\+\_\+\+O\+F\+F\+S\+ET}}~0x28
+\item 
+\#define \mbox{\hyperlink{group__RTEMSScoreCPUSPARCContext_gabc8b2a000280c14e700f2b6149a270cd}{I1\+\_\+\+O\+F\+F\+S\+ET}}~0x2C
+\item 
+\#define \mbox{\hyperlink{group__RTEMSScoreCPUSPARCContext_ga99fecfd868fd9e17e066dd8af10c15d2}{I2\+\_\+\+O\+F\+F\+S\+ET}}~0x30
+\item 
+\#define \mbox{\hyperlink{group__RTEMSScoreCPUSPARCContext_gafb303f9d9dd81b5721a2c645b1a08984}{I3\+\_\+\+O\+F\+F\+S\+ET}}~0x34
+\item 
+\#define \mbox{\hyperlink{group__RTEMSScoreCPUSPARCContext_ga466f4de4266c7166c9577e2cbbd297ea}{I4\+\_\+\+O\+F\+F\+S\+ET}}~0x38
+\item 
+\#define \mbox{\hyperlink{group__RTEMSScoreCPUSPARCContext_gadcfaa9c9eceb787a2a3b3402d0dd3474}{I5\+\_\+\+O\+F\+F\+S\+ET}}~0x3C
+\item 
+\#define \mbox{\hyperlink{group__RTEMSScoreCPUSPARCContext_gafdd0fc2345b7aa2cc6b92f97a14a3d2d}{I6\+\_\+\+F\+P\+\_\+\+O\+F\+F\+S\+ET}}~0x40
+\item 
+\#define \mbox{\hyperlink{group__RTEMSScoreCPUSPARCContext_gac7108380e581fae532b795693e1247fb}{I7\+\_\+\+O\+F\+F\+S\+ET}}~0x44
+\item 
+\#define \mbox{\hyperlink{group__RTEMSScoreCPUSPARCContext_gade171714128eb94279ae25990e74e11f}{O6\+\_\+\+S\+P\+\_\+\+O\+F\+F\+S\+ET}}~0x48
+\item 
+\#define \mbox{\hyperlink{group__RTEMSScoreCPUSPARCContext_ga67520ea6e8b67a9019cfc4d5efca010f}{O7\+\_\+\+O\+F\+F\+S\+ET}}~0x4C
+\item 
+\#define \mbox{\hyperlink{group__RTEMSScoreCPUSPARCContext_ga0637b00e9795d211424ca2b03e0c3183}{P\+S\+R\+\_\+\+O\+F\+F\+S\+ET}}~0x50
+\item 
+\#define \mbox{\hyperlink{group__RTEMSScoreCPUSPARCContext_ga1d8b44870defefae2396681b9532226a}{I\+S\+R\+\_\+\+D\+I\+S\+P\+A\+T\+C\+H\+\_\+\+D\+I\+S\+A\+B\+L\+E\+\_\+\+S\+T\+A\+C\+K\+\_\+\+O\+F\+F\+S\+ET}}~0x54
+\item 
+\#define \mbox{\hyperlink{group__RTEMSScoreCPUSPARCContext_ga1c954ccb66fecec2e79790c8a07e8e53}{F\+O\+\_\+\+F1\+\_\+\+O\+F\+F\+S\+ET}}~0x00
+\item 
+\#define \mbox{\hyperlink{group__RTEMSScoreCPUSPARCContext_ga129a289ca8286590f4ac24729438dff4}{F2\+\_\+\+F3\+\_\+\+O\+F\+F\+S\+ET}}~0x08
+\item 
+\#define \mbox{\hyperlink{group__RTEMSScoreCPUSPARCContext_gad0595daf571b74cecb00e2faacded1e2}{F4\+\_\+\+F5\+\_\+\+O\+F\+F\+S\+ET}}~0x10
+\item 
+\#define \mbox{\hyperlink{group__RTEMSScoreCPUSPARCContext_ga2e3b5d6f57581dfd11df52e313b24e95}{F6\+\_\+\+F7\+\_\+\+O\+F\+F\+S\+ET}}~0x18
+\item 
+\#define \mbox{\hyperlink{group__RTEMSScoreCPUSPARCContext_ga7c6536f596d1caee379a306cd0e860f9}{F8\+\_\+\+F9\+\_\+\+O\+F\+F\+S\+ET}}~0x20
+\item 
+\#define \mbox{\hyperlink{group__RTEMSScoreCPUSPARCContext_ga00a371479d5f5fc729ceaa4426896a8c}{F1\+O\+\_\+\+F11\+\_\+\+O\+F\+F\+S\+ET}}~0x28
+\item 
+\#define \mbox{\hyperlink{group__RTEMSScoreCPUSPARCContext_gac6d8bfb0dfc29be5765ecd649a073fe0}{F12\+\_\+\+F13\+\_\+\+O\+F\+F\+S\+ET}}~0x30
+\item 
+\#define \mbox{\hyperlink{group__RTEMSScoreCPUSPARCContext_gaf84133f541f71bd597b7921f71e573dc}{F14\+\_\+\+F15\+\_\+\+O\+F\+F\+S\+ET}}~0x38
+\item 
+\#define \mbox{\hyperlink{group__RTEMSScoreCPUSPARCContext_gaf95c2c9c2db89e4b60d44e972ec1eac5}{F16\+\_\+\+F17\+\_\+\+O\+F\+F\+S\+ET}}~0x40
+\item 
+\#define \mbox{\hyperlink{group__RTEMSScoreCPUSPARCContext_ga121cc8834609b99833c42495eb1a40f6}{F18\+\_\+\+F19\+\_\+\+O\+F\+F\+S\+ET}}~0x48
+\item 
+\#define \mbox{\hyperlink{group__RTEMSScoreCPUSPARCContext_ga209d606e99c0bdf7c38f546eb68cbbe6}{F2\+O\+\_\+\+F21\+\_\+\+O\+F\+F\+S\+ET}}~0x50
+\item 
+\#define \mbox{\hyperlink{group__RTEMSScoreCPUSPARCContext_ga58b835ae7666415c53fb4588047c4967}{F22\+\_\+\+F23\+\_\+\+O\+F\+F\+S\+ET}}~0x58
+\item 
+\#define \mbox{\hyperlink{group__RTEMSScoreCPUSPARCContext_ga06165d099fc181bf805ec356a7010b56}{F24\+\_\+\+F25\+\_\+\+O\+F\+F\+S\+ET}}~0x60
+\item 
+\#define \mbox{\hyperlink{group__RTEMSScoreCPUSPARCContext_gaf48244f68545d2f42726b1ffd8591593}{F26\+\_\+\+F27\+\_\+\+O\+F\+F\+S\+ET}}~0x68
+\item 
+\#define \mbox{\hyperlink{group__RTEMSScoreCPUSPARCContext_ga3da30fdb70ea0d87df1352782f7a4e51}{F28\+\_\+\+F29\+\_\+\+O\+F\+F\+S\+ET}}~0x70
+\item 
+\#define \mbox{\hyperlink{group__RTEMSScoreCPUSPARCContext_ga82794a528425acdb1d6e877192617472}{F3\+O\+\_\+\+F31\+\_\+\+O\+F\+F\+S\+ET}}~0x78
+\item 
+\#define \mbox{\hyperlink{group__RTEMSScoreCPUSPARCContext_ga777b2902214ca25795b2f0903878fc9f}{F\+S\+R\+\_\+\+O\+F\+F\+S\+ET}}~0x80
+\item 
+\#define \mbox{\hyperlink{group__RTEMSScoreCPUSPARCContext_gabef2b557b9c181976d7c5938b09f22f8}{C\+O\+N\+T\+E\+X\+T\+\_\+\+C\+O\+N\+T\+R\+O\+L\+\_\+\+F\+P\+\_\+\+S\+I\+ZE}}~0x84
+\item 
+\#define \mbox{\hyperlink{sparc_2include_2rtems_2score_2cpu_8h_af58e4ff1f7e1c85fc5c0b80cbd0672c5}{C\+P\+U\+\_\+\+C\+O\+N\+T\+E\+X\+T\+\_\+\+F\+P\+\_\+\+S\+I\+ZE}}~sizeof( \mbox{\hyperlink{structContext__Control__fp}{Context\+\_\+\+Control\+\_\+fp}} )
+\item 
+\#define \mbox{\hyperlink{sparc_2include_2rtems_2score_2cpu_8h_ab94869be93a41da88a10fa59771ce2c9}{C\+P\+U\+\_\+\+M\+P\+C\+I\+\_\+\+R\+E\+C\+E\+I\+V\+E\+\_\+\+S\+E\+R\+V\+E\+R\+\_\+\+E\+X\+T\+R\+A\+\_\+\+S\+T\+A\+CK}}~1024
+\item 
+\#define \mbox{\hyperlink{sparc_2include_2rtems_2score_2cpu_8h_a937007b12441849696a0462fee2b8d3e}{C\+P\+U\+\_\+\+I\+N\+T\+E\+R\+R\+U\+P\+T\+\_\+\+N\+U\+M\+B\+E\+R\+\_\+\+O\+F\+\_\+\+V\+E\+C\+T\+O\+RS}}~256
+\item 
+\#define \mbox{\hyperlink{sparc_2include_2rtems_2score_2cpu_8h_a3c2363ae6ca6575fc9147b1b7585b3b4}{C\+P\+U\+\_\+\+I\+N\+T\+E\+R\+R\+U\+P\+T\+\_\+\+M\+A\+X\+I\+M\+U\+M\+\_\+\+V\+E\+C\+T\+O\+R\+\_\+\+N\+U\+M\+B\+ER}}~511
+\item 
+\#define \mbox{\hyperlink{sparc_2include_2rtems_2score_2cpu_8h_aea20dc5c02e2c656b641a4ba3e1a373c}{S\+P\+A\+R\+C\+\_\+\+S\+Y\+N\+C\+H\+R\+O\+N\+O\+U\+S\+\_\+\+T\+R\+A\+P\+\_\+\+B\+I\+T\+\_\+\+M\+A\+SK}}~0x100
+\item 
+\#define \mbox{\hyperlink{sparc_2include_2rtems_2score_2cpu_8h_a780b03287cf121306041f01f3ffa1d51}{S\+P\+A\+R\+C\+\_\+\+A\+S\+Y\+N\+C\+H\+R\+O\+N\+O\+U\+S\+\_\+\+T\+R\+AP}}(\+\_\+trap)~(\+\_\+trap)
+\item 
+\#define \mbox{\hyperlink{sparc_2include_2rtems_2score_2cpu_8h_ad0496f088948afae531822fe4f2bfae8}{S\+P\+A\+R\+C\+\_\+\+S\+Y\+N\+C\+H\+R\+O\+N\+O\+U\+S\+\_\+\+T\+R\+AP}}(\+\_\+trap)~((\+\_\+trap) + 256 )
+\item 
+\#define \mbox{\hyperlink{sparc_2include_2rtems_2score_2cpu_8h_ab0ea1ad8d5fbf48af9e3448110d158cf}{S\+P\+A\+R\+C\+\_\+\+R\+E\+A\+L\+\_\+\+T\+R\+A\+P\+\_\+\+N\+U\+M\+B\+ER}}(\+\_\+trap)~((\+\_\+trap) \% 256)
+\item 
+\#define \mbox{\hyperlink{sparc_2include_2rtems_2score_2cpu_8h_a47f6e4d60c72b5f65fc775b0b5dd14ec}{C\+P\+U\+\_\+\+P\+R\+O\+V\+I\+D\+E\+S\+\_\+\+I\+S\+R\+\_\+\+I\+S\+\_\+\+I\+N\+\_\+\+P\+R\+O\+G\+R\+E\+SS}}~\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gaa93f0eb578d23995850d61f7d61c55c1}{F\+A\+L\+SE}}
+\item 
+\#define \mbox{\hyperlink{sparc_2include_2rtems_2score_2cpu_8h_a4c92ceea7549cc7b21db2c466916b733}{C\+P\+U\+\_\+\+S\+T\+A\+C\+K\+\_\+\+M\+I\+N\+I\+M\+U\+M\+\_\+\+S\+I\+ZE}}~(1024$\ast$4)
+\item 
+\#define \mbox{\hyperlink{sparc_2include_2rtems_2score_2cpu_8h_aea4bd2905092d69bc92fbff6103ced8b}{C\+P\+U\+\_\+\+S\+I\+Z\+E\+O\+F\+\_\+\+P\+O\+I\+N\+T\+ER}}~4
+\item 
+\#define \mbox{\hyperlink{sparc_2include_2rtems_2score_2cpu_8h_ae526a309e32001688261048b19cdb7d8}{C\+P\+U\+\_\+\+A\+L\+I\+G\+N\+M\+E\+NT}}~8
+\item 
+\#define \mbox{\hyperlink{sparc_2include_2rtems_2score_2cpu_8h_ac71c1e0159c32144a04f18646ede252b}{C\+P\+U\+\_\+\+H\+E\+A\+P\+\_\+\+A\+L\+I\+G\+N\+M\+E\+NT}}~\mbox{\hyperlink{v850_2include_2rtems_2score_2cpu_8h_ae526a309e32001688261048b19cdb7d8}{C\+P\+U\+\_\+\+A\+L\+I\+G\+N\+M\+E\+NT}}
+\item 
+\#define \mbox{\hyperlink{sparc_2include_2rtems_2score_2cpu_8h_a8aed43eb1b3c346772c127482b4b5372}{C\+P\+U\+\_\+\+S\+T\+A\+C\+K\+\_\+\+A\+L\+I\+G\+N\+M\+E\+NT}}~\mbox{\hyperlink{v850_2include_2rtems_2score_2cpu_8h_ae526a309e32001688261048b19cdb7d8}{C\+P\+U\+\_\+\+A\+L\+I\+G\+N\+M\+E\+NT}}
+\item 
+\mbox{\Hypertarget{sparc_2include_2rtems_2score_2cpu_8h_a6a578627686e1020a28f5a295703ca74}\label{sparc_2include_2rtems_2score_2cpu_8h_a6a578627686e1020a28f5a295703ca74}} 
+\#define {\bfseries C\+P\+U\+\_\+\+I\+N\+T\+E\+R\+R\+U\+P\+T\+\_\+\+S\+T\+A\+C\+K\+\_\+\+A\+L\+I\+G\+N\+M\+E\+NT}~\mbox{\hyperlink{no__cpu_2include_2rtems_2score_2cpu_8h_aafa1399e268a9ae6adf6d6aad4371688}{C\+P\+U\+\_\+\+C\+A\+C\+H\+E\+\_\+\+L\+I\+N\+E\+\_\+\+B\+Y\+T\+ES}}
+\item 
+\#define \mbox{\hyperlink{sparc_2include_2rtems_2score_2cpu_8h_ad1ef5062849284d81496e1e6d33fb7ff}{\+\_\+\+C\+P\+U\+\_\+\+Initialize\+\_\+vectors}}()
+\item 
+\#define \mbox{\hyperlink{sparc_2include_2rtems_2score_2cpu_8h_abc05c31eff429870b8564553d9eae054}{\+\_\+\+C\+P\+U\+\_\+\+I\+S\+R\+\_\+\+Disable}}(\+\_\+level)~(\+\_\+level) = sparc\+\_\+disable\+\_\+interrupts()
+\item 
+\#define \mbox{\hyperlink{sparc_2include_2rtems_2score_2cpu_8h_a01f5da058924ecbc4c84ceb8613145a0}{\+\_\+\+C\+P\+U\+\_\+\+I\+S\+R\+\_\+\+Enable}}(\+\_\+level)~sparc\+\_\+enable\+\_\+interrupts( \+\_\+level )
+\item 
+\#define \mbox{\hyperlink{sparc_2include_2rtems_2score_2cpu_8h_ab06bc7d1751ca97bbe1f4c50d14c4453}{\+\_\+\+C\+P\+U\+\_\+\+I\+S\+R\+\_\+\+Flash}}(\+\_\+level)~\mbox{\hyperlink{sparc_8h_a4f4e4ca9d3079df0075b429e30da502c}{sparc\+\_\+flash\+\_\+interrupts}}( \+\_\+level )
+\item 
+\mbox{\Hypertarget{sparc_2include_2rtems_2score_2cpu_8h_ae19599eb8d7666f92f7b2ca07c2be7b7}\label{sparc_2include_2rtems_2score_2cpu_8h_ae19599eb8d7666f92f7b2ca07c2be7b7}} 
+\#define {\bfseries \+\_\+\+C\+P\+U\+\_\+\+I\+S\+R\+\_\+\+Is\+\_\+enabled}(\+\_\+isr\+\_\+cookie)~sparc\+\_\+interrupt\+\_\+is\+\_\+enabled( \+\_\+isr\+\_\+cookie )
+\item 
+\#define \mbox{\hyperlink{sparc_2include_2rtems_2score_2cpu_8h_a2816884d065bb3450ad66cec83a2c5d8}{\+\_\+\+C\+P\+U\+\_\+\+I\+S\+R\+\_\+\+Set\+\_\+level}}(\+\_\+newlevel)~sparc\+\_\+enable\+\_\+interrupts( \+\_\+newlevel $<$$<$ 8)
+\item 
+\#define \mbox{\hyperlink{sparc_2include_2rtems_2score_2cpu_8h_ad5b5e39c7afc4de1a850c8a794fed54b}{\+\_\+\+C\+P\+U\+\_\+\+Context\+\_\+\+Initialization\+\_\+at\+\_\+thread\+\_\+begin}}()
+\item 
+\#define \mbox{\hyperlink{sparc_2include_2rtems_2score_2cpu_8h_a3fb67e174d7b61251322cd32126acd1a}{\+\_\+\+C\+P\+U\+\_\+\+Context\+\_\+\+Restart\+\_\+self}}(\+\_\+the\+\_\+context)~\mbox{\hyperlink{group__RTEMSScoreCPUARM_ga80726ebfe00f31a88b086cc4474c472f}{\+\_\+\+C\+P\+U\+\_\+\+Context\+\_\+restore}}( (\+\_\+the\+\_\+context) );
+\item 
+\mbox{\Hypertarget{sparc_2include_2rtems_2score_2cpu_8h_ac34a28abe9b31559d4096b2c942860a6}\label{sparc_2include_2rtems_2score_2cpu_8h_ac34a28abe9b31559d4096b2c942860a6}} 
+\#define \mbox{\hyperlink{sparc_2include_2rtems_2score_2cpu_8h_ac34a28abe9b31559d4096b2c942860a6}{\+\_\+\+C\+P\+U\+\_\+\+Context\+\_\+\+Initialize\+\_\+fp}}(\+\_\+destination)~do \{ \} while ( 0 )
+\begin{DoxyCompactList}\small\item\em Nothing to do due to the synchronous or lazy floating point switch. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{sparc_2include_2rtems_2score_2cpu_8h_ae8d9251a320d6920e3c8d6e45eb38fad}\label{sparc_2include_2rtems_2score_2cpu_8h_ae8d9251a320d6920e3c8d6e45eb38fad}} 
+\#define \mbox{\hyperlink{sparc_2include_2rtems_2score_2cpu_8h_ae8d9251a320d6920e3c8d6e45eb38fad}{\+\_\+\+C\+P\+U\+\_\+\+Context\+\_\+save\+\_\+fp}}(\+\_\+fp\+\_\+context\+\_\+ptr)~do \{ \} while ( 0 )
+\begin{DoxyCompactList}\small\item\em Nothing to do due to the synchronous or lazy floating point switch. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{sparc_2include_2rtems_2score_2cpu_8h_a8d77a957f827a9250794f9ad754acbf5}\label{sparc_2include_2rtems_2score_2cpu_8h_a8d77a957f827a9250794f9ad754acbf5}} 
+\#define \mbox{\hyperlink{sparc_2include_2rtems_2score_2cpu_8h_a8d77a957f827a9250794f9ad754acbf5}{\+\_\+\+C\+P\+U\+\_\+\+Context\+\_\+restore\+\_\+fp}}(\+\_\+fp\+\_\+context\+\_\+ptr)~do \{ \} while ( 0 )
+\begin{DoxyCompactList}\small\item\em Nothing to do due to the synchronous or lazy floating point switch. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{sparc_2include_2rtems_2score_2cpu_8h_ab0aff7a561b9c030a4d88eff201f4688}{C\+P\+U\+\_\+\+U\+S\+E\+\_\+\+G\+E\+N\+E\+R\+I\+C\+\_\+\+B\+I\+T\+F\+I\+E\+L\+D\+\_\+\+C\+O\+DE}}~\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gaa8cecfc5c5c054d2875c03e77b7be15d}{T\+R\+UE}}
+\item 
+\#define \mbox{\hyperlink{sparc_2include_2rtems_2score_2cpu_8h_a1936ecb0107e5875a7b538374c1f621d}{C\+P\+U\+\_\+swap\+\_\+u16}}(value)~(((value\&0xff) $<$$<$ 8) $\vert$ ((value $>$$>$ 8)\&0xff))
+\begin{DoxyCompactList}\small\item\em S\+P\+A\+RC specific method to endian swap an uint16\+\_\+t. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \mbox{\hyperlink{structContext__Control__fp}{Context\+\_\+\+Control\+\_\+fp}} {\bfseries Context\+\_\+\+Control\+\_\+fp}
+\item 
+\mbox{\Hypertarget{sparc_2include_2rtems_2score_2cpu_8h_addfaa82155a005077bfd1d41dc6e8cf5}\label{sparc_2include_2rtems_2score_2cpu_8h_addfaa82155a005077bfd1d41dc6e8cf5}} 
+typedef void($\ast$ {\bfseries C\+P\+U\+\_\+\+I\+S\+R\+\_\+raw\+\_\+handler}) (void)
+\item 
+\mbox{\Hypertarget{sparc_2include_2rtems_2score_2cpu_8h_a6d0204fc99c704f9f7c1e7b4e8b3657a}\label{sparc_2include_2rtems_2score_2cpu_8h_a6d0204fc99c704f9f7c1e7b4e8b3657a}} 
+typedef void($\ast$ {\bfseries C\+P\+U\+\_\+\+I\+S\+R\+\_\+handler}) (uint32\+\_\+t)
+\item 
+\mbox{\Hypertarget{sparc_2include_2rtems_2score_2cpu_8h_a67f8550aad58bccb6fcb4589894444ad}\label{sparc_2include_2rtems_2score_2cpu_8h_a67f8550aad58bccb6fcb4589894444ad}} 
+typedef uint32\+\_\+t {\bfseries C\+P\+U\+\_\+\+Counter\+\_\+ticks}
+\item 
+\mbox{\Hypertarget{sparc_2include_2rtems_2score_2cpu_8h_a5b5bca76985417ac071ac21bf98c2e23}\label{sparc_2include_2rtems_2score_2cpu_8h_a5b5bca76985417ac071ac21bf98c2e23}} 
+typedef \mbox{\hyperlink{no__cpu_2include_2rtems_2score_2cpu_8h_a67f8550aad58bccb6fcb4589894444ad}{C\+P\+U\+\_\+\+Counter\+\_\+ticks}}($\ast$ {\bfseries S\+P\+A\+R\+C\+\_\+\+Counter\+\_\+read}) (void)
+\item 
+typedef uintptr\+\_\+t \mbox{\hyperlink{sparc_2include_2rtems_2score_2cpu_8h_a9fca17f81f850e128fcc8ed5b87ff2ab}{C\+P\+U\+\_\+\+Uint32ptr}}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} bool \mbox{\hyperlink{group__RTEMSScoreCPUARM_ga5254669b54a06e96ebb585fd50a02c4d}{\+\_\+\+C\+P\+U\+\_\+\+I\+S\+R\+\_\+\+Is\+\_\+enabled}} (uint32\+\_\+t level)
+\begin{DoxyCompactList}\small\item\em Returns true if interrupts are enabled in the specified I\+SR level, otherwise returns false. \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{group__RTEMSScoreCPUARM_ga1d9dcab9170d532b6634a5620385adbd}{\+\_\+\+C\+P\+U\+\_\+\+I\+S\+R\+\_\+\+Get\+\_\+level}} (void)
+\begin{DoxyCompactList}\small\item\em Obtain the current interrupt disable level. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{sparc_2include_2rtems_2score_2cpu_8h_aff386644c2f5a1d6e8b57fd8f290cadc}{\+\_\+\+C\+P\+U\+\_\+\+Context\+\_\+\+Initialize}} (\mbox{\hyperlink{structContext__Control}{Context\+\_\+\+Control}} $\ast$the\+\_\+context, uint32\+\_\+t $\ast$stack\+\_\+base, uint32\+\_\+t \mbox{\hyperlink{sun4u_2tte_8h_a245260f6f74972558f61b85227df5aae}{size}}, uint32\+\_\+t new\+\_\+level, void $\ast$entry\+\_\+point, bool is\+\_\+fp, void $\ast$tls\+\_\+area)
+\item 
+void \mbox{\hyperlink{group__RTEMSScoreCPUi386_ga254ab76f1c02812babdb3d5028f59178}{\+\_\+\+C\+P\+U\+\_\+\+Fatal\+\_\+halt}} (uint32\+\_\+t source, uint32\+\_\+t error) \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gaa2f0ed67aa174f684bb31b7e8bdb386f}{R\+T\+E\+M\+S\+\_\+\+N\+O\+\_\+\+R\+E\+T\+U\+RN}}
+\item 
+void \mbox{\hyperlink{group__RTEMSScoreCPUARM_ga869484e3d851b032fd826c69ff21fc72}{\+\_\+\+C\+P\+U\+\_\+\+Initialize}} (void)
+\begin{DoxyCompactList}\small\item\em S\+P\+A\+RC specific initialization. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__RTEMSScoreCPUlm32Interrupt_gaa993b7752d5db306f85586ac400432ab}{\+\_\+\+C\+P\+U\+\_\+\+I\+S\+R\+\_\+install\+\_\+raw\+\_\+handler}} (uint32\+\_\+t vector, C\+P\+U\+\_\+\+I\+S\+R\+\_\+raw\+\_\+handler new\+\_\+handler, C\+P\+U\+\_\+\+I\+S\+R\+\_\+raw\+\_\+handler $\ast$old\+\_\+handler)
+\begin{DoxyCompactList}\small\item\em S\+P\+A\+RC specific raw I\+SR installer. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__RTEMSScoreCPUARM_gaa3480454768ad843ce97909111a48a1f}{\+\_\+\+C\+P\+U\+\_\+\+I\+S\+R\+\_\+install\+\_\+vector}} (uint32\+\_\+t vector, C\+P\+U\+\_\+\+I\+S\+R\+\_\+handler new\+\_\+handler, C\+P\+U\+\_\+\+I\+S\+R\+\_\+handler $\ast$old\+\_\+handler)
+\begin{DoxyCompactList}\small\item\em S\+P\+A\+RC specific R\+T\+E\+MS I\+SR installer. \end{DoxyCompactList}\item 
+void $\ast$ \mbox{\hyperlink{group__RTEMSScoreCPUARM_ga903a802003c95d6ef5206cb330424a1b}{\+\_\+\+C\+P\+U\+\_\+\+Thread\+\_\+\+Idle\+\_\+body}} (uintptr\+\_\+t ignored)
+\item 
+void \mbox{\hyperlink{group__RTEMSScoreCPUARM_gaa9f8cc989454b28232e5375e30c90970}{\+\_\+\+C\+P\+U\+\_\+\+Context\+\_\+switch}} (\mbox{\hyperlink{structContext__Control}{Context\+\_\+\+Control}} $\ast$run, \mbox{\hyperlink{structContext__Control}{Context\+\_\+\+Control}} $\ast$heir)
+\begin{DoxyCompactList}\small\item\em S\+P\+A\+RC specific context switch. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__RTEMSScoreCPUARM_ga80726ebfe00f31a88b086cc4474c472f}{\+\_\+\+C\+P\+U\+\_\+\+Context\+\_\+restore}} (\mbox{\hyperlink{structContext__Control}{Context\+\_\+\+Control}} $\ast$new\+\_\+context) \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gaa2f0ed67aa174f684bb31b7e8bdb386f}{R\+T\+E\+M\+S\+\_\+\+N\+O\+\_\+\+R\+E\+T\+U\+RN}}
+\begin{DoxyCompactList}\small\item\em S\+P\+A\+RC specific context restore. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__RTEMSScoreCPUARM_gaa34a35de496258577c1454ba1ee07ce0}{\+\_\+\+C\+P\+U\+\_\+\+Exception\+\_\+frame\+\_\+print}} (const \mbox{\hyperlink{structCPU__Exception__frame}{C\+P\+U\+\_\+\+Exception\+\_\+frame}} $\ast$frame)
+\begin{DoxyCompactList}\small\item\em Prints the exception frame via \mbox{\hyperlink{bspIo_8h_a380cfecc8035cec8a13b68c0cb90f32f}{printk()}}. \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{group__RTEMSScoreCPUARM_gaa675150e5d00169c99410a82011b6117}{\+\_\+\+C\+P\+U\+\_\+\+Counter\+\_\+frequency}} (void)
+\begin{DoxyCompactList}\small\item\em Returns the current C\+PU counter frequency in Hz. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const \mbox{\hyperlink{structCPU__Trap__table__entry}{C\+P\+U\+\_\+\+Trap\+\_\+table\+\_\+entry}} \mbox{\hyperlink{sparc_2include_2rtems_2score_2cpu_8h_a379cc535ebfbfead96c7914b3f1de861}{\+\_\+\+C\+P\+U\+\_\+\+Trap\+\_\+slot\+\_\+template}}
+\item 
+\mbox{\Hypertarget{sparc_2include_2rtems_2score_2cpu_8h_ab227d0068b2513f5100af2fee4f1293d}\label{sparc_2include_2rtems_2score_2cpu_8h_ab227d0068b2513f5100af2fee4f1293d}} 
+const \mbox{\hyperlink{structSPARC__Counter}{S\+P\+A\+R\+C\+\_\+\+Counter}} {\bfseries \+\_\+\+S\+P\+A\+R\+C\+\_\+\+Counter}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+S\+P\+A\+RC C\+PU Department Source. 
+
+This include file contains information pertaining to the port of the executive to the S\+P\+A\+RC processor. 
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{sparc_2include_2rtems_2score_2cpu_8h_ad5b5e39c7afc4de1a850c8a794fed54b}\label{sparc_2include_2rtems_2score_2cpu_8h_ad5b5e39c7afc4de1a850c8a794fed54b}} 
+\index{cpu.h@{cpu.h}!\_CPU\_Context\_Initialization\_at\_thread\_begin@{\_CPU\_Context\_Initialization\_at\_thread\_begin}}
+\index{\_CPU\_Context\_Initialization\_at\_thread\_begin@{\_CPU\_Context\_Initialization\_at\_thread\_begin}!cpu.h@{cpu.h}}
+\subsubsection{\texorpdfstring{\_CPU\_Context\_Initialization\_at\_thread\_begin}{\_CPU\_Context\_Initialization\_at\_thread\_begin}}
+{\footnotesize\ttfamily \#define \+\_\+\+C\+P\+U\+\_\+\+Context\+\_\+\+Initialization\+\_\+at\+\_\+thread\+\_\+begin(\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do} \{ \(\backslash\)}
+\DoxyCodeLine{    \_\_asm\_\_ \textcolor{keyword}{volatile} (\textcolor{stringliteral}{"set \_Thread\_Handler,\%\%i7\(\backslash\)n"}::); \(\backslash\)}
+\DoxyCodeLine{  \} \textcolor{keywordflow}{while} (0)}
+
+\end{DoxyCode}
+This macro is invoked from \+\_\+\+Thread\+\_\+\+Handler to do whatever C\+PU specific magic is required that must be done in the context of the thread when it starts.
+
+On the S\+P\+A\+RC, this is setting the frame pointer so G\+DB is happy. Make G\+DB stop unwinding at \+\_\+\+Thread\+\_\+\+Handler, previous register window Frame pointer is 0 and calling address must be a function with starting with a S\+A\+VE instruction. If return address is leaf-\/function (no S\+A\+VE) G\+DB will not look at prev reg window fp.
+
+\+\_\+\+Thread\+\_\+\+Handler is known to start with S\+A\+VE. \mbox{\Hypertarget{sparc_2include_2rtems_2score_2cpu_8h_a3fb67e174d7b61251322cd32126acd1a}\label{sparc_2include_2rtems_2score_2cpu_8h_a3fb67e174d7b61251322cd32126acd1a}} 
+\index{cpu.h@{cpu.h}!\_CPU\_Context\_Restart\_self@{\_CPU\_Context\_Restart\_self}}
+\index{\_CPU\_Context\_Restart\_self@{\_CPU\_Context\_Restart\_self}!cpu.h@{cpu.h}}
+\subsubsection{\texorpdfstring{\_CPU\_Context\_Restart\_self}{\_CPU\_Context\_Restart\_self}}
+{\footnotesize\ttfamily \#define \+\_\+\+C\+P\+U\+\_\+\+Context\+\_\+\+Restart\+\_\+self(\begin{DoxyParamCaption}\item[{}]{\+\_\+the\+\_\+context }\end{DoxyParamCaption})~\mbox{\hyperlink{group__RTEMSScoreCPUARM_ga80726ebfe00f31a88b086cc4474c472f}{\+\_\+\+C\+P\+U\+\_\+\+Context\+\_\+restore}}( (\+\_\+the\+\_\+context) );}
+
+This routine is responsible for somehow restarting the currently executing task.
+
+On the S\+P\+A\+RC, this is is relatively painless but requires a small amount of wrapper code before using the regular restore code in of the context switch. \mbox{\Hypertarget{sparc_2include_2rtems_2score_2cpu_8h_ad1ef5062849284d81496e1e6d33fb7ff}\label{sparc_2include_2rtems_2score_2cpu_8h_ad1ef5062849284d81496e1e6d33fb7ff}} 
+\index{cpu.h@{cpu.h}!\_CPU\_Initialize\_vectors@{\_CPU\_Initialize\_vectors}}
+\index{\_CPU\_Initialize\_vectors@{\_CPU\_Initialize\_vectors}!cpu.h@{cpu.h}}
+\subsubsection{\texorpdfstring{\_CPU\_Initialize\_vectors}{\_CPU\_Initialize\_vectors}}
+{\footnotesize\ttfamily \#define \+\_\+\+C\+P\+U\+\_\+\+Initialize\+\_\+vectors(\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Support routine to initialize the R\+T\+E\+MS vector table after it is allocated. \mbox{\Hypertarget{sparc_2include_2rtems_2score_2cpu_8h_abc05c31eff429870b8564553d9eae054}\label{sparc_2include_2rtems_2score_2cpu_8h_abc05c31eff429870b8564553d9eae054}} 
+\index{cpu.h@{cpu.h}!\_CPU\_ISR\_Disable@{\_CPU\_ISR\_Disable}}
+\index{\_CPU\_ISR\_Disable@{\_CPU\_ISR\_Disable}!cpu.h@{cpu.h}}
+\subsubsection{\texorpdfstring{\_CPU\_ISR\_Disable}{\_CPU\_ISR\_Disable}}
+{\footnotesize\ttfamily \#define \+\_\+\+C\+P\+U\+\_\+\+I\+S\+R\+\_\+\+Disable(\begin{DoxyParamCaption}\item[{}]{\+\_\+level }\end{DoxyParamCaption})~(\+\_\+level) = sparc\+\_\+disable\+\_\+interrupts()}
+
+Disable all interrupts for a critical section. The previous level is returned in \+\_\+level. \mbox{\Hypertarget{sparc_2include_2rtems_2score_2cpu_8h_a01f5da058924ecbc4c84ceb8613145a0}\label{sparc_2include_2rtems_2score_2cpu_8h_a01f5da058924ecbc4c84ceb8613145a0}} 
+\index{cpu.h@{cpu.h}!\_CPU\_ISR\_Enable@{\_CPU\_ISR\_Enable}}
+\index{\_CPU\_ISR\_Enable@{\_CPU\_ISR\_Enable}!cpu.h@{cpu.h}}
+\subsubsection{\texorpdfstring{\_CPU\_ISR\_Enable}{\_CPU\_ISR\_Enable}}
+{\footnotesize\ttfamily \#define \+\_\+\+C\+P\+U\+\_\+\+I\+S\+R\+\_\+\+Enable(\begin{DoxyParamCaption}\item[{}]{\+\_\+level }\end{DoxyParamCaption})~sparc\+\_\+enable\+\_\+interrupts( \+\_\+level )}
+
+Enable interrupts to the previous level (returned by \+\_\+\+C\+P\+U\+\_\+\+I\+S\+R\+\_\+\+Disable). This indicates the end of a critical section. The parameter \+\_\+level is not modified. \mbox{\Hypertarget{sparc_2include_2rtems_2score_2cpu_8h_ab06bc7d1751ca97bbe1f4c50d14c4453}\label{sparc_2include_2rtems_2score_2cpu_8h_ab06bc7d1751ca97bbe1f4c50d14c4453}} 
+\index{cpu.h@{cpu.h}!\_CPU\_ISR\_Flash@{\_CPU\_ISR\_Flash}}
+\index{\_CPU\_ISR\_Flash@{\_CPU\_ISR\_Flash}!cpu.h@{cpu.h}}
+\subsubsection{\texorpdfstring{\_CPU\_ISR\_Flash}{\_CPU\_ISR\_Flash}}
+{\footnotesize\ttfamily \#define \+\_\+\+C\+P\+U\+\_\+\+I\+S\+R\+\_\+\+Flash(\begin{DoxyParamCaption}\item[{}]{\+\_\+level }\end{DoxyParamCaption})~\mbox{\hyperlink{sparc_8h_a4f4e4ca9d3079df0075b429e30da502c}{sparc\+\_\+flash\+\_\+interrupts}}( \+\_\+level )}
+
+This temporarily restores the interrupt to \+\_\+level before immediately disabling them again. This is used to divide long critical sections into two or more parts. The parameter \+\_\+level is not modified. \mbox{\Hypertarget{sparc_2include_2rtems_2score_2cpu_8h_a2816884d065bb3450ad66cec83a2c5d8}\label{sparc_2include_2rtems_2score_2cpu_8h_a2816884d065bb3450ad66cec83a2c5d8}} 
+\index{cpu.h@{cpu.h}!\_CPU\_ISR\_Set\_level@{\_CPU\_ISR\_Set\_level}}
+\index{\_CPU\_ISR\_Set\_level@{\_CPU\_ISR\_Set\_level}!cpu.h@{cpu.h}}
+\subsubsection{\texorpdfstring{\_CPU\_ISR\_Set\_level}{\_CPU\_ISR\_Set\_level}}
+{\footnotesize\ttfamily \#define \+\_\+\+C\+P\+U\+\_\+\+I\+S\+R\+\_\+\+Set\+\_\+level(\begin{DoxyParamCaption}\item[{}]{\+\_\+newlevel }\end{DoxyParamCaption})~sparc\+\_\+enable\+\_\+interrupts( \+\_\+newlevel $<$$<$ 8)}
+
+Map interrupt level in task mode onto the hardware that the C\+PU actually provides. Currently, interrupt levels which do not map onto the C\+PU in a straight fashion are undefined. \mbox{\Hypertarget{sparc_2include_2rtems_2score_2cpu_8h_ae526a309e32001688261048b19cdb7d8}\label{sparc_2include_2rtems_2score_2cpu_8h_ae526a309e32001688261048b19cdb7d8}} 
+\index{cpu.h@{cpu.h}!CPU\_ALIGNMENT@{CPU\_ALIGNMENT}}
+\index{CPU\_ALIGNMENT@{CPU\_ALIGNMENT}!cpu.h@{cpu.h}}
+\subsubsection{\texorpdfstring{CPU\_ALIGNMENT}{CPU\_ALIGNMENT}}
+{\footnotesize\ttfamily \#define C\+P\+U\+\_\+\+A\+L\+I\+G\+N\+M\+E\+NT~8}
+
+C\+PU\textquotesingle{}s worst alignment requirement for data types on a byte boundary. This alignment does not take into account the requirements for the stack.
+
+On the S\+P\+A\+RC, this is required for double word loads and stores. \mbox{\Hypertarget{sparc_2include_2rtems_2score_2cpu_8h_a225de03a8647bf307a73cf907969778d}\label{sparc_2include_2rtems_2score_2cpu_8h_a225de03a8647bf307a73cf907969778d}} 
+\index{cpu.h@{cpu.h}!CPU\_ALL\_TASKS\_ARE\_FP@{CPU\_ALL\_TASKS\_ARE\_FP}}
+\index{CPU\_ALL\_TASKS\_ARE\_FP@{CPU\_ALL\_TASKS\_ARE\_FP}!cpu.h@{cpu.h}}
+\subsubsection{\texorpdfstring{CPU\_ALL\_TASKS\_ARE\_FP}{CPU\_ALL\_TASKS\_ARE\_FP}}
+{\footnotesize\ttfamily \#define C\+P\+U\+\_\+\+A\+L\+L\+\_\+\+T\+A\+S\+K\+S\+\_\+\+A\+R\+E\+\_\+\+FP~\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gaa93f0eb578d23995850d61f7d61c55c1}{F\+A\+L\+SE}}}
+
+Are all tasks F\+L\+O\+A\+T\+I\+N\+G\+\_\+\+P\+O\+I\+NT tasks implicitly?
+
+
+\begin{DoxyItemize}
+\item If T\+R\+UE, then the F\+L\+O\+A\+T\+I\+N\+G\+\_\+\+P\+O\+I\+NT task attribute is assumed.
+\item If F\+A\+L\+SE, then the F\+L\+O\+A\+T\+I\+N\+G\+\_\+\+P\+O\+I\+NT task attribute is followed.
+\end{DoxyItemize}
+
+The S\+P\+A\+RC G\+CC port does not implicitly use floating point registers. \mbox{\Hypertarget{sparc_2include_2rtems_2score_2cpu_8h_af58e4ff1f7e1c85fc5c0b80cbd0672c5}\label{sparc_2include_2rtems_2score_2cpu_8h_af58e4ff1f7e1c85fc5c0b80cbd0672c5}} 
+\index{cpu.h@{cpu.h}!CPU\_CONTEXT\_FP\_SIZE@{CPU\_CONTEXT\_FP\_SIZE}}
+\index{CPU\_CONTEXT\_FP\_SIZE@{CPU\_CONTEXT\_FP\_SIZE}!cpu.h@{cpu.h}}
+\subsubsection{\texorpdfstring{CPU\_CONTEXT\_FP\_SIZE}{CPU\_CONTEXT\_FP\_SIZE}}
+{\footnotesize\ttfamily \#define C\+P\+U\+\_\+\+C\+O\+N\+T\+E\+X\+T\+\_\+\+F\+P\+\_\+\+S\+I\+ZE~sizeof( \mbox{\hyperlink{structContext__Control__fp}{Context\+\_\+\+Control\+\_\+fp}} )}
+
+The size of the floating point context area. \mbox{\Hypertarget{sparc_2include_2rtems_2score_2cpu_8h_a112f88f13afe8bb8f1b13f1ca7e09b8d}\label{sparc_2include_2rtems_2score_2cpu_8h_a112f88f13afe8bb8f1b13f1ca7e09b8d}} 
+\index{cpu.h@{cpu.h}!CPU\_HARDWARE\_FP@{CPU\_HARDWARE\_FP}}
+\index{CPU\_HARDWARE\_FP@{CPU\_HARDWARE\_FP}!cpu.h@{cpu.h}}
+\subsubsection{\texorpdfstring{CPU\_HARDWARE\_FP}{CPU\_HARDWARE\_FP}}
+{\footnotesize\ttfamily \#define C\+P\+U\+\_\+\+H\+A\+R\+D\+W\+A\+R\+E\+\_\+\+FP~\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gaa93f0eb578d23995850d61f7d61c55c1}{F\+A\+L\+SE}}}
+
+Does the C\+PU have hardware floating point?
+
+
+\begin{DoxyItemize}
+\item If T\+R\+UE, then the F\+L\+O\+A\+T\+I\+N\+G\+\_\+\+P\+O\+I\+NT task attribute is supported.
+\item If F\+A\+L\+SE, then the F\+L\+O\+A\+T\+I\+N\+G\+\_\+\+P\+O\+I\+NT task attribute is ignored.
+\end{DoxyItemize}
+
+This is set based upon the multilib settings. \mbox{\Hypertarget{sparc_2include_2rtems_2score_2cpu_8h_ac71c1e0159c32144a04f18646ede252b}\label{sparc_2include_2rtems_2score_2cpu_8h_ac71c1e0159c32144a04f18646ede252b}} 
+\index{cpu.h@{cpu.h}!CPU\_HEAP\_ALIGNMENT@{CPU\_HEAP\_ALIGNMENT}}
+\index{CPU\_HEAP\_ALIGNMENT@{CPU\_HEAP\_ALIGNMENT}!cpu.h@{cpu.h}}
+\subsubsection{\texorpdfstring{CPU\_HEAP\_ALIGNMENT}{CPU\_HEAP\_ALIGNMENT}}
+{\footnotesize\ttfamily \#define C\+P\+U\+\_\+\+H\+E\+A\+P\+\_\+\+A\+L\+I\+G\+N\+M\+E\+NT~\mbox{\hyperlink{v850_2include_2rtems_2score_2cpu_8h_ae526a309e32001688261048b19cdb7d8}{C\+P\+U\+\_\+\+A\+L\+I\+G\+N\+M\+E\+NT}}}
+
+This number corresponds to the byte alignment requirement for the heap handler. This alignment requirement may be stricter than that for the data types alignment specified by C\+P\+U\+\_\+\+A\+L\+I\+G\+N\+M\+E\+NT. It is common for the heap to follow the same alignment requirement as C\+P\+U\+\_\+\+A\+L\+I\+G\+N\+M\+E\+NT. If the C\+P\+U\+\_\+\+A\+L\+I\+G\+N\+M\+E\+NT is strict enough for the heap, then this should be set to C\+P\+U\+\_\+\+A\+L\+I\+G\+N\+M\+E\+NT.
+
+N\+O\+TE\+: This does not have to be a power of 2. It does have to be greater or equal to than C\+P\+U\+\_\+\+A\+L\+I\+G\+N\+M\+E\+NT. \mbox{\Hypertarget{sparc_2include_2rtems_2score_2cpu_8h_af1c906c8ee4c3d012dc456285e42d3ee}\label{sparc_2include_2rtems_2score_2cpu_8h_af1c906c8ee4c3d012dc456285e42d3ee}} 
+\index{cpu.h@{cpu.h}!CPU\_IDLE\_TASK\_IS\_FP@{CPU\_IDLE\_TASK\_IS\_FP}}
+\index{CPU\_IDLE\_TASK\_IS\_FP@{CPU\_IDLE\_TASK\_IS\_FP}!cpu.h@{cpu.h}}
+\subsubsection{\texorpdfstring{CPU\_IDLE\_TASK\_IS\_FP}{CPU\_IDLE\_TASK\_IS\_FP}}
+{\footnotesize\ttfamily \#define C\+P\+U\+\_\+\+I\+D\+L\+E\+\_\+\+T\+A\+S\+K\+\_\+\+I\+S\+\_\+\+FP~\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gaa93f0eb578d23995850d61f7d61c55c1}{F\+A\+L\+SE}}}
+
+Should the I\+D\+LE task have a floating point context?
+
+
+\begin{DoxyItemize}
+\item If T\+R\+UE, then the I\+D\+LE task is created as a F\+L\+O\+A\+T\+I\+N\+G\+\_\+\+P\+O\+I\+NT task and it has a floating point context which is switched in and out.
+\item If F\+A\+L\+SE, then the I\+D\+LE task does not have a floating point context.
+\end{DoxyItemize}
+
+The I\+D\+LE task does not have to be floating point on the S\+P\+A\+RC. \mbox{\Hypertarget{sparc_2include_2rtems_2score_2cpu_8h_a3c2363ae6ca6575fc9147b1b7585b3b4}\label{sparc_2include_2rtems_2score_2cpu_8h_a3c2363ae6ca6575fc9147b1b7585b3b4}} 
+\index{cpu.h@{cpu.h}!CPU\_INTERRUPT\_MAXIMUM\_VECTOR\_NUMBER@{CPU\_INTERRUPT\_MAXIMUM\_VECTOR\_NUMBER}}
+\index{CPU\_INTERRUPT\_MAXIMUM\_VECTOR\_NUMBER@{CPU\_INTERRUPT\_MAXIMUM\_VECTOR\_NUMBER}!cpu.h@{cpu.h}}
+\subsubsection{\texorpdfstring{CPU\_INTERRUPT\_MAXIMUM\_VECTOR\_NUMBER}{CPU\_INTERRUPT\_MAXIMUM\_VECTOR\_NUMBER}}
+{\footnotesize\ttfamily \#define C\+P\+U\+\_\+\+I\+N\+T\+E\+R\+R\+U\+P\+T\+\_\+\+M\+A\+X\+I\+M\+U\+M\+\_\+\+V\+E\+C\+T\+O\+R\+\_\+\+N\+U\+M\+B\+ER~511}
+
+The S\+P\+A\+RC has 256 vectors but the port treats 256-\/512 as synchronous traps. \mbox{\Hypertarget{sparc_2include_2rtems_2score_2cpu_8h_a937007b12441849696a0462fee2b8d3e}\label{sparc_2include_2rtems_2score_2cpu_8h_a937007b12441849696a0462fee2b8d3e}} 
+\index{cpu.h@{cpu.h}!CPU\_INTERRUPT\_NUMBER\_OF\_VECTORS@{CPU\_INTERRUPT\_NUMBER\_OF\_VECTORS}}
+\index{CPU\_INTERRUPT\_NUMBER\_OF\_VECTORS@{CPU\_INTERRUPT\_NUMBER\_OF\_VECTORS}!cpu.h@{cpu.h}}
+\subsubsection{\texorpdfstring{CPU\_INTERRUPT\_NUMBER\_OF\_VECTORS}{CPU\_INTERRUPT\_NUMBER\_OF\_VECTORS}}
+{\footnotesize\ttfamily \#define C\+P\+U\+\_\+\+I\+N\+T\+E\+R\+R\+U\+P\+T\+\_\+\+N\+U\+M\+B\+E\+R\+\_\+\+O\+F\+\_\+\+V\+E\+C\+T\+O\+RS~256}
+
+This defines the number of entries in the I\+S\+R\+\_\+\+Vector\+\_\+table managed by the executive.
+
+On the S\+P\+A\+RC, there are really only 256 vectors. However, the executive has no easy, fast, reliable way to determine which traps are synchronous and which are asynchronous. By default, synchronous traps return to the instruction which caused the interrupt. So if you install a software trap handler as an executive interrupt handler (which is desirable since R\+T\+E\+MS takes care of window and register issues), then the executive needs to know that the return address is to the trap rather than the instruction following the trap.
+
+So vectors 0 through 255 are treated as regular asynchronous traps which provide the \char`\"{}correct\char`\"{} return address. Vectors 256 through 512 are assumed by the executive to be synchronous and to require that the return address be fudged.
+
+If you use this mechanism to install a trap handler which must reexecute the instruction which caused the trap, then it should be installed as an asynchronous trap. This will avoid the executive changing the return address. \mbox{\Hypertarget{sparc_2include_2rtems_2score_2cpu_8h_a30c4d320f85b1383c5059da5b19b164a}\label{sparc_2include_2rtems_2score_2cpu_8h_a30c4d320f85b1383c5059da5b19b164a}} 
+\index{cpu.h@{cpu.h}!CPU\_ISR\_PASSES\_FRAME\_POINTER@{CPU\_ISR\_PASSES\_FRAME\_POINTER}}
+\index{CPU\_ISR\_PASSES\_FRAME\_POINTER@{CPU\_ISR\_PASSES\_FRAME\_POINTER}!cpu.h@{cpu.h}}
+\subsubsection{\texorpdfstring{CPU\_ISR\_PASSES\_FRAME\_POINTER}{CPU\_ISR\_PASSES\_FRAME\_POINTER}}
+{\footnotesize\ttfamily \#define C\+P\+U\+\_\+\+I\+S\+R\+\_\+\+P\+A\+S\+S\+E\+S\+\_\+\+F\+R\+A\+M\+E\+\_\+\+P\+O\+I\+N\+T\+ER~\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gaa93f0eb578d23995850d61f7d61c55c1}{F\+A\+L\+SE}}}
+
+Does the R\+T\+E\+MS invoke the user\textquotesingle{}s I\+SR with the vector number and a pointer to the saved interrupt frame (1) or just the vector number (0)?
+
+The S\+P\+A\+RC port does not pass an Interrupt Stack Frame pointer to interrupt handlers. \mbox{\Hypertarget{sparc_2include_2rtems_2score_2cpu_8h_af8823e651e33b9683e0d89e5a8054ee6}\label{sparc_2include_2rtems_2score_2cpu_8h_af8823e651e33b9683e0d89e5a8054ee6}} 
+\index{cpu.h@{cpu.h}!CPU\_MODES\_INTERRUPT\_MASK@{CPU\_MODES\_INTERRUPT\_MASK}}
+\index{CPU\_MODES\_INTERRUPT\_MASK@{CPU\_MODES\_INTERRUPT\_MASK}!cpu.h@{cpu.h}}
+\subsubsection{\texorpdfstring{CPU\_MODES\_INTERRUPT\_MASK}{CPU\_MODES\_INTERRUPT\_MASK}}
+{\footnotesize\ttfamily \#define C\+P\+U\+\_\+\+M\+O\+D\+E\+S\+\_\+\+I\+N\+T\+E\+R\+R\+U\+P\+T\+\_\+\+M\+A\+SK~0x0000000F}
+
+The following defines the number of bits actually used in the interrupt field of the task mode. How those bits map to the C\+PU interrupt levels is defined by the routine \mbox{\hyperlink{sparc_2include_2rtems_2score_2cpu_8h_a2816884d065bb3450ad66cec83a2c5d8}{\+\_\+\+C\+P\+U\+\_\+\+I\+S\+R\+\_\+\+Set\+\_\+level()}}.
+
+The S\+P\+A\+RC has 16 interrupt levels in the P\+IL field of the P\+SR. \mbox{\Hypertarget{sparc_2include_2rtems_2score_2cpu_8h_ab94869be93a41da88a10fa59771ce2c9}\label{sparc_2include_2rtems_2score_2cpu_8h_ab94869be93a41da88a10fa59771ce2c9}} 
+\index{cpu.h@{cpu.h}!CPU\_MPCI\_RECEIVE\_SERVER\_EXTRA\_STACK@{CPU\_MPCI\_RECEIVE\_SERVER\_EXTRA\_STACK}}
+\index{CPU\_MPCI\_RECEIVE\_SERVER\_EXTRA\_STACK@{CPU\_MPCI\_RECEIVE\_SERVER\_EXTRA\_STACK}!cpu.h@{cpu.h}}
+\subsubsection{\texorpdfstring{CPU\_MPCI\_RECEIVE\_SERVER\_EXTRA\_STACK}{CPU\_MPCI\_RECEIVE\_SERVER\_EXTRA\_STACK}}
+{\footnotesize\ttfamily \#define C\+P\+U\+\_\+\+M\+P\+C\+I\+\_\+\+R\+E\+C\+E\+I\+V\+E\+\_\+\+S\+E\+R\+V\+E\+R\+\_\+\+E\+X\+T\+R\+A\+\_\+\+S\+T\+A\+CK~1024}
+
+Amount of extra stack (above minimum stack size) required by M\+P\+CI receive server thread. Remember that in a multiprocessor system this thread must exist and be able to process all directives. \mbox{\Hypertarget{sparc_2include_2rtems_2score_2cpu_8h_a47f6e4d60c72b5f65fc775b0b5dd14ec}\label{sparc_2include_2rtems_2score_2cpu_8h_a47f6e4d60c72b5f65fc775b0b5dd14ec}} 
+\index{cpu.h@{cpu.h}!CPU\_PROVIDES\_ISR\_IS\_IN\_PROGRESS@{CPU\_PROVIDES\_ISR\_IS\_IN\_PROGRESS}}
+\index{CPU\_PROVIDES\_ISR\_IS\_IN\_PROGRESS@{CPU\_PROVIDES\_ISR\_IS\_IN\_PROGRESS}!cpu.h@{cpu.h}}
+\subsubsection{\texorpdfstring{CPU\_PROVIDES\_ISR\_IS\_IN\_PROGRESS}{CPU\_PROVIDES\_ISR\_IS\_IN\_PROGRESS}}
+{\footnotesize\ttfamily \#define C\+P\+U\+\_\+\+P\+R\+O\+V\+I\+D\+E\+S\+\_\+\+I\+S\+R\+\_\+\+I\+S\+\_\+\+I\+N\+\_\+\+P\+R\+O\+G\+R\+E\+SS~\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gaa93f0eb578d23995850d61f7d61c55c1}{F\+A\+L\+SE}}}
+
+This is defined if the port has a special way to report the I\+SR nesting level. Most ports maintain the variable \+\_\+\+I\+S\+R\+\_\+\+Nest\+\_\+level. \mbox{\Hypertarget{sparc_2include_2rtems_2score_2cpu_8h_a1eca01dbb1ef2873349cc4e222509f0a}\label{sparc_2include_2rtems_2score_2cpu_8h_a1eca01dbb1ef2873349cc4e222509f0a}} 
+\index{cpu.h@{cpu.h}!CPU\_SIMPLE\_VECTORED\_INTERRUPTS@{CPU\_SIMPLE\_VECTORED\_INTERRUPTS}}
+\index{CPU\_SIMPLE\_VECTORED\_INTERRUPTS@{CPU\_SIMPLE\_VECTORED\_INTERRUPTS}!cpu.h@{cpu.h}}
+\subsubsection{\texorpdfstring{CPU\_SIMPLE\_VECTORED\_INTERRUPTS}{CPU\_SIMPLE\_VECTORED\_INTERRUPTS}}
+{\footnotesize\ttfamily \#define C\+P\+U\+\_\+\+S\+I\+M\+P\+L\+E\+\_\+\+V\+E\+C\+T\+O\+R\+E\+D\+\_\+\+I\+N\+T\+E\+R\+R\+U\+P\+TS~\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gaa8cecfc5c5c054d2875c03e77b7be15d}{T\+R\+UE}}}
+
+Does the C\+PU follow the simple vectored interrupt model?
+
+
+\begin{DoxyItemize}
+\item If T\+R\+UE, then R\+T\+E\+MS allocates the vector table it internally manages.
+\item If F\+A\+L\+SE, then the B\+SP is assumed to allocate and manage the vector table
+\end{DoxyItemize}
+
+T\+He S\+P\+A\+RC is a simple vectored architecture. Usually there is no P\+IC and the C\+PU directly vectors the interrupts. \mbox{\Hypertarget{sparc_2include_2rtems_2score_2cpu_8h_aea4bd2905092d69bc92fbff6103ced8b}\label{sparc_2include_2rtems_2score_2cpu_8h_aea4bd2905092d69bc92fbff6103ced8b}} 
+\index{cpu.h@{cpu.h}!CPU\_SIZEOF\_POINTER@{CPU\_SIZEOF\_POINTER}}
+\index{CPU\_SIZEOF\_POINTER@{CPU\_SIZEOF\_POINTER}!cpu.h@{cpu.h}}
+\subsubsection{\texorpdfstring{CPU\_SIZEOF\_POINTER}{CPU\_SIZEOF\_POINTER}}
+{\footnotesize\ttfamily \#define C\+P\+U\+\_\+\+S\+I\+Z\+E\+O\+F\+\_\+\+P\+O\+I\+N\+T\+ER~4}
+
+What is the size of a pointer on this architecture? \mbox{\Hypertarget{sparc_2include_2rtems_2score_2cpu_8h_a304f78c61edce38bb88e909f90a326dc}\label{sparc_2include_2rtems_2score_2cpu_8h_a304f78c61edce38bb88e909f90a326dc}} 
+\index{cpu.h@{cpu.h}!CPU\_SOFTWARE\_FP@{CPU\_SOFTWARE\_FP}}
+\index{CPU\_SOFTWARE\_FP@{CPU\_SOFTWARE\_FP}!cpu.h@{cpu.h}}
+\subsubsection{\texorpdfstring{CPU\_SOFTWARE\_FP}{CPU\_SOFTWARE\_FP}}
+{\footnotesize\ttfamily \#define C\+P\+U\+\_\+\+S\+O\+F\+T\+W\+A\+R\+E\+\_\+\+FP~\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gaa93f0eb578d23995850d61f7d61c55c1}{F\+A\+L\+SE}}}
+
+The S\+P\+A\+RC G\+CC port does not have a software floating point library that requires R\+T\+E\+MS assistance. \mbox{\Hypertarget{sparc_2include_2rtems_2score_2cpu_8h_a8aed43eb1b3c346772c127482b4b5372}\label{sparc_2include_2rtems_2score_2cpu_8h_a8aed43eb1b3c346772c127482b4b5372}} 
+\index{cpu.h@{cpu.h}!CPU\_STACK\_ALIGNMENT@{CPU\_STACK\_ALIGNMENT}}
+\index{CPU\_STACK\_ALIGNMENT@{CPU\_STACK\_ALIGNMENT}!cpu.h@{cpu.h}}
+\subsubsection{\texorpdfstring{CPU\_STACK\_ALIGNMENT}{CPU\_STACK\_ALIGNMENT}}
+{\footnotesize\ttfamily \#define C\+P\+U\+\_\+\+S\+T\+A\+C\+K\+\_\+\+A\+L\+I\+G\+N\+M\+E\+NT~\mbox{\hyperlink{v850_2include_2rtems_2score_2cpu_8h_ae526a309e32001688261048b19cdb7d8}{C\+P\+U\+\_\+\+A\+L\+I\+G\+N\+M\+E\+NT}}}
+
+Stack frames must be doubleword aligned according to the System V A\+BI for S\+P\+A\+RC. \mbox{\Hypertarget{sparc_2include_2rtems_2score_2cpu_8h_a83e4c35c5ed6801e9fe865fa0e0083fb}\label{sparc_2include_2rtems_2score_2cpu_8h_a83e4c35c5ed6801e9fe865fa0e0083fb}} 
+\index{cpu.h@{cpu.h}!CPU\_STACK\_FRAME\_I0\_OFFSET@{CPU\_STACK\_FRAME\_I0\_OFFSET}}
+\index{CPU\_STACK\_FRAME\_I0\_OFFSET@{CPU\_STACK\_FRAME\_I0\_OFFSET}!cpu.h@{cpu.h}}
+\subsubsection{\texorpdfstring{CPU\_STACK\_FRAME\_I0\_OFFSET}{CPU\_STACK\_FRAME\_I0\_OFFSET}}
+{\footnotesize\ttfamily \#define C\+P\+U\+\_\+\+S\+T\+A\+C\+K\+\_\+\+F\+R\+A\+M\+E\+\_\+\+I0\+\_\+\+O\+F\+F\+S\+ET~0x20}
+
+This macro defines an offset into the stack frame for use in assembly. \mbox{\Hypertarget{sparc_2include_2rtems_2score_2cpu_8h_ab62b81366df72b65984d34c6b1e6b632}\label{sparc_2include_2rtems_2score_2cpu_8h_ab62b81366df72b65984d34c6b1e6b632}} 
+\index{cpu.h@{cpu.h}!CPU\_STACK\_FRAME\_I1\_OFFSET@{CPU\_STACK\_FRAME\_I1\_OFFSET}}
+\index{CPU\_STACK\_FRAME\_I1\_OFFSET@{CPU\_STACK\_FRAME\_I1\_OFFSET}!cpu.h@{cpu.h}}
+\subsubsection{\texorpdfstring{CPU\_STACK\_FRAME\_I1\_OFFSET}{CPU\_STACK\_FRAME\_I1\_OFFSET}}
+{\footnotesize\ttfamily \#define C\+P\+U\+\_\+\+S\+T\+A\+C\+K\+\_\+\+F\+R\+A\+M\+E\+\_\+\+I1\+\_\+\+O\+F\+F\+S\+ET~0x24}
+
+This macro defines an offset into the stack frame for use in assembly. \mbox{\Hypertarget{sparc_2include_2rtems_2score_2cpu_8h_a1daf51a3417acc33bdc9bd26bd1f6e22}\label{sparc_2include_2rtems_2score_2cpu_8h_a1daf51a3417acc33bdc9bd26bd1f6e22}} 
+\index{cpu.h@{cpu.h}!CPU\_STACK\_FRAME\_I2\_OFFSET@{CPU\_STACK\_FRAME\_I2\_OFFSET}}
+\index{CPU\_STACK\_FRAME\_I2\_OFFSET@{CPU\_STACK\_FRAME\_I2\_OFFSET}!cpu.h@{cpu.h}}
+\subsubsection{\texorpdfstring{CPU\_STACK\_FRAME\_I2\_OFFSET}{CPU\_STACK\_FRAME\_I2\_OFFSET}}
+{\footnotesize\ttfamily \#define C\+P\+U\+\_\+\+S\+T\+A\+C\+K\+\_\+\+F\+R\+A\+M\+E\+\_\+\+I2\+\_\+\+O\+F\+F\+S\+ET~0x28}
+
+This macro defines an offset into the stack frame for use in assembly. \mbox{\Hypertarget{sparc_2include_2rtems_2score_2cpu_8h_a37af459858e70e9bad53ef8fa15cf904}\label{sparc_2include_2rtems_2score_2cpu_8h_a37af459858e70e9bad53ef8fa15cf904}} 
+\index{cpu.h@{cpu.h}!CPU\_STACK\_FRAME\_I3\_OFFSET@{CPU\_STACK\_FRAME\_I3\_OFFSET}}
+\index{CPU\_STACK\_FRAME\_I3\_OFFSET@{CPU\_STACK\_FRAME\_I3\_OFFSET}!cpu.h@{cpu.h}}
+\subsubsection{\texorpdfstring{CPU\_STACK\_FRAME\_I3\_OFFSET}{CPU\_STACK\_FRAME\_I3\_OFFSET}}
+{\footnotesize\ttfamily \#define C\+P\+U\+\_\+\+S\+T\+A\+C\+K\+\_\+\+F\+R\+A\+M\+E\+\_\+\+I3\+\_\+\+O\+F\+F\+S\+ET~0x2c}
+
+This macro defines an offset into the stack frame for use in assembly. \mbox{\Hypertarget{sparc_2include_2rtems_2score_2cpu_8h_a3633f9b64501f0d4f47bc0caa6de3d3d}\label{sparc_2include_2rtems_2score_2cpu_8h_a3633f9b64501f0d4f47bc0caa6de3d3d}} 
+\index{cpu.h@{cpu.h}!CPU\_STACK\_FRAME\_I4\_OFFSET@{CPU\_STACK\_FRAME\_I4\_OFFSET}}
+\index{CPU\_STACK\_FRAME\_I4\_OFFSET@{CPU\_STACK\_FRAME\_I4\_OFFSET}!cpu.h@{cpu.h}}
+\subsubsection{\texorpdfstring{CPU\_STACK\_FRAME\_I4\_OFFSET}{CPU\_STACK\_FRAME\_I4\_OFFSET}}
+{\footnotesize\ttfamily \#define C\+P\+U\+\_\+\+S\+T\+A\+C\+K\+\_\+\+F\+R\+A\+M\+E\+\_\+\+I4\+\_\+\+O\+F\+F\+S\+ET~0x30}
+
+This macro defines an offset into the stack frame for use in assembly. \mbox{\Hypertarget{sparc_2include_2rtems_2score_2cpu_8h_a0be5e3d1ca73080dd038623dbed8f687}\label{sparc_2include_2rtems_2score_2cpu_8h_a0be5e3d1ca73080dd038623dbed8f687}} 
+\index{cpu.h@{cpu.h}!CPU\_STACK\_FRAME\_I5\_OFFSET@{CPU\_STACK\_FRAME\_I5\_OFFSET}}
+\index{CPU\_STACK\_FRAME\_I5\_OFFSET@{CPU\_STACK\_FRAME\_I5\_OFFSET}!cpu.h@{cpu.h}}
+\subsubsection{\texorpdfstring{CPU\_STACK\_FRAME\_I5\_OFFSET}{CPU\_STACK\_FRAME\_I5\_OFFSET}}
+{\footnotesize\ttfamily \#define C\+P\+U\+\_\+\+S\+T\+A\+C\+K\+\_\+\+F\+R\+A\+M\+E\+\_\+\+I5\+\_\+\+O\+F\+F\+S\+ET~0x34}
+
+This macro defines an offset into the stack frame for use in assembly. \mbox{\Hypertarget{sparc_2include_2rtems_2score_2cpu_8h_a930d5f24902abf5f300f0e97aa4cdeaf}\label{sparc_2include_2rtems_2score_2cpu_8h_a930d5f24902abf5f300f0e97aa4cdeaf}} 
+\index{cpu.h@{cpu.h}!CPU\_STACK\_FRAME\_I6\_FP\_OFFSET@{CPU\_STACK\_FRAME\_I6\_FP\_OFFSET}}
+\index{CPU\_STACK\_FRAME\_I6\_FP\_OFFSET@{CPU\_STACK\_FRAME\_I6\_FP\_OFFSET}!cpu.h@{cpu.h}}
+\subsubsection{\texorpdfstring{CPU\_STACK\_FRAME\_I6\_FP\_OFFSET}{CPU\_STACK\_FRAME\_I6\_FP\_OFFSET}}
+{\footnotesize\ttfamily \#define C\+P\+U\+\_\+\+S\+T\+A\+C\+K\+\_\+\+F\+R\+A\+M\+E\+\_\+\+I6\+\_\+\+F\+P\+\_\+\+O\+F\+F\+S\+ET~0x38}
+
+This macro defines an offset into the stack frame for use in assembly. \mbox{\Hypertarget{sparc_2include_2rtems_2score_2cpu_8h_a21c680e8b657f5dbfbe9377e24c3fb74}\label{sparc_2include_2rtems_2score_2cpu_8h_a21c680e8b657f5dbfbe9377e24c3fb74}} 
+\index{cpu.h@{cpu.h}!CPU\_STACK\_FRAME\_I7\_OFFSET@{CPU\_STACK\_FRAME\_I7\_OFFSET}}
+\index{CPU\_STACK\_FRAME\_I7\_OFFSET@{CPU\_STACK\_FRAME\_I7\_OFFSET}!cpu.h@{cpu.h}}
+\subsubsection{\texorpdfstring{CPU\_STACK\_FRAME\_I7\_OFFSET}{CPU\_STACK\_FRAME\_I7\_OFFSET}}
+{\footnotesize\ttfamily \#define C\+P\+U\+\_\+\+S\+T\+A\+C\+K\+\_\+\+F\+R\+A\+M\+E\+\_\+\+I7\+\_\+\+O\+F\+F\+S\+ET~0x3c}
+
+This macro defines an offset into the stack frame for use in assembly. \mbox{\Hypertarget{sparc_2include_2rtems_2score_2cpu_8h_a575f62ed7aed84f7552ec3ef1bf6a7bb}\label{sparc_2include_2rtems_2score_2cpu_8h_a575f62ed7aed84f7552ec3ef1bf6a7bb}} 
+\index{cpu.h@{cpu.h}!CPU\_STACK\_FRAME\_L0\_OFFSET@{CPU\_STACK\_FRAME\_L0\_OFFSET}}
+\index{CPU\_STACK\_FRAME\_L0\_OFFSET@{CPU\_STACK\_FRAME\_L0\_OFFSET}!cpu.h@{cpu.h}}
+\subsubsection{\texorpdfstring{CPU\_STACK\_FRAME\_L0\_OFFSET}{CPU\_STACK\_FRAME\_L0\_OFFSET}}
+{\footnotesize\ttfamily \#define C\+P\+U\+\_\+\+S\+T\+A\+C\+K\+\_\+\+F\+R\+A\+M\+E\+\_\+\+L0\+\_\+\+O\+F\+F\+S\+ET~0x00}
+
+This macro defines an offset into the stack frame for use in assembly. \mbox{\Hypertarget{sparc_2include_2rtems_2score_2cpu_8h_aa6eb407b793bb7907dcaa32f94c519b3}\label{sparc_2include_2rtems_2score_2cpu_8h_aa6eb407b793bb7907dcaa32f94c519b3}} 
+\index{cpu.h@{cpu.h}!CPU\_STACK\_FRAME\_L1\_OFFSET@{CPU\_STACK\_FRAME\_L1\_OFFSET}}
+\index{CPU\_STACK\_FRAME\_L1\_OFFSET@{CPU\_STACK\_FRAME\_L1\_OFFSET}!cpu.h@{cpu.h}}
+\subsubsection{\texorpdfstring{CPU\_STACK\_FRAME\_L1\_OFFSET}{CPU\_STACK\_FRAME\_L1\_OFFSET}}
+{\footnotesize\ttfamily \#define C\+P\+U\+\_\+\+S\+T\+A\+C\+K\+\_\+\+F\+R\+A\+M\+E\+\_\+\+L1\+\_\+\+O\+F\+F\+S\+ET~0x04}
+
+This macro defines an offset into the stack frame for use in assembly. \mbox{\Hypertarget{sparc_2include_2rtems_2score_2cpu_8h_aa30adc37edabd087be7e9a0a6df51514}\label{sparc_2include_2rtems_2score_2cpu_8h_aa30adc37edabd087be7e9a0a6df51514}} 
+\index{cpu.h@{cpu.h}!CPU\_STACK\_FRAME\_L2\_OFFSET@{CPU\_STACK\_FRAME\_L2\_OFFSET}}
+\index{CPU\_STACK\_FRAME\_L2\_OFFSET@{CPU\_STACK\_FRAME\_L2\_OFFSET}!cpu.h@{cpu.h}}
+\subsubsection{\texorpdfstring{CPU\_STACK\_FRAME\_L2\_OFFSET}{CPU\_STACK\_FRAME\_L2\_OFFSET}}
+{\footnotesize\ttfamily \#define C\+P\+U\+\_\+\+S\+T\+A\+C\+K\+\_\+\+F\+R\+A\+M\+E\+\_\+\+L2\+\_\+\+O\+F\+F\+S\+ET~0x08}
+
+This macro defines an offset into the stack frame for use in assembly. \mbox{\Hypertarget{sparc_2include_2rtems_2score_2cpu_8h_a81bd26d0f67f142516b6f9050d167787}\label{sparc_2include_2rtems_2score_2cpu_8h_a81bd26d0f67f142516b6f9050d167787}} 
+\index{cpu.h@{cpu.h}!CPU\_STACK\_FRAME\_L3\_OFFSET@{CPU\_STACK\_FRAME\_L3\_OFFSET}}
+\index{CPU\_STACK\_FRAME\_L3\_OFFSET@{CPU\_STACK\_FRAME\_L3\_OFFSET}!cpu.h@{cpu.h}}
+\subsubsection{\texorpdfstring{CPU\_STACK\_FRAME\_L3\_OFFSET}{CPU\_STACK\_FRAME\_L3\_OFFSET}}
+{\footnotesize\ttfamily \#define C\+P\+U\+\_\+\+S\+T\+A\+C\+K\+\_\+\+F\+R\+A\+M\+E\+\_\+\+L3\+\_\+\+O\+F\+F\+S\+ET~0x0c}
+
+This macro defines an offset into the stack frame for use in assembly. \mbox{\Hypertarget{sparc_2include_2rtems_2score_2cpu_8h_af2cbaf050a7a90a2e1f193c3f13cd7e7}\label{sparc_2include_2rtems_2score_2cpu_8h_af2cbaf050a7a90a2e1f193c3f13cd7e7}} 
+\index{cpu.h@{cpu.h}!CPU\_STACK\_FRAME\_L4\_OFFSET@{CPU\_STACK\_FRAME\_L4\_OFFSET}}
+\index{CPU\_STACK\_FRAME\_L4\_OFFSET@{CPU\_STACK\_FRAME\_L4\_OFFSET}!cpu.h@{cpu.h}}
+\subsubsection{\texorpdfstring{CPU\_STACK\_FRAME\_L4\_OFFSET}{CPU\_STACK\_FRAME\_L4\_OFFSET}}
+{\footnotesize\ttfamily \#define C\+P\+U\+\_\+\+S\+T\+A\+C\+K\+\_\+\+F\+R\+A\+M\+E\+\_\+\+L4\+\_\+\+O\+F\+F\+S\+ET~0x10}
+
+This macro defines an offset into the stack frame for use in assembly. \mbox{\Hypertarget{sparc_2include_2rtems_2score_2cpu_8h_aa75cc6154a548abc54be904726f06193}\label{sparc_2include_2rtems_2score_2cpu_8h_aa75cc6154a548abc54be904726f06193}} 
+\index{cpu.h@{cpu.h}!CPU\_STACK\_FRAME\_L5\_OFFSET@{CPU\_STACK\_FRAME\_L5\_OFFSET}}
+\index{CPU\_STACK\_FRAME\_L5\_OFFSET@{CPU\_STACK\_FRAME\_L5\_OFFSET}!cpu.h@{cpu.h}}
+\subsubsection{\texorpdfstring{CPU\_STACK\_FRAME\_L5\_OFFSET}{CPU\_STACK\_FRAME\_L5\_OFFSET}}
+{\footnotesize\ttfamily \#define C\+P\+U\+\_\+\+S\+T\+A\+C\+K\+\_\+\+F\+R\+A\+M\+E\+\_\+\+L5\+\_\+\+O\+F\+F\+S\+ET~0x14}
+
+This macro defines an offset into the stack frame for use in assembly. \mbox{\Hypertarget{sparc_2include_2rtems_2score_2cpu_8h_af86368584fed0f70f4ea2928c9849531}\label{sparc_2include_2rtems_2score_2cpu_8h_af86368584fed0f70f4ea2928c9849531}} 
+\index{cpu.h@{cpu.h}!CPU\_STACK\_FRAME\_L6\_OFFSET@{CPU\_STACK\_FRAME\_L6\_OFFSET}}
+\index{CPU\_STACK\_FRAME\_L6\_OFFSET@{CPU\_STACK\_FRAME\_L6\_OFFSET}!cpu.h@{cpu.h}}
+\subsubsection{\texorpdfstring{CPU\_STACK\_FRAME\_L6\_OFFSET}{CPU\_STACK\_FRAME\_L6\_OFFSET}}
+{\footnotesize\ttfamily \#define C\+P\+U\+\_\+\+S\+T\+A\+C\+K\+\_\+\+F\+R\+A\+M\+E\+\_\+\+L6\+\_\+\+O\+F\+F\+S\+ET~0x18}
+
+This macro defines an offset into the stack frame for use in assembly. \mbox{\Hypertarget{sparc_2include_2rtems_2score_2cpu_8h_a8cf7d947f0bdb16ba4490c328efae48f}\label{sparc_2include_2rtems_2score_2cpu_8h_a8cf7d947f0bdb16ba4490c328efae48f}} 
+\index{cpu.h@{cpu.h}!CPU\_STACK\_FRAME\_L7\_OFFSET@{CPU\_STACK\_FRAME\_L7\_OFFSET}}
+\index{CPU\_STACK\_FRAME\_L7\_OFFSET@{CPU\_STACK\_FRAME\_L7\_OFFSET}!cpu.h@{cpu.h}}
+\subsubsection{\texorpdfstring{CPU\_STACK\_FRAME\_L7\_OFFSET}{CPU\_STACK\_FRAME\_L7\_OFFSET}}
+{\footnotesize\ttfamily \#define C\+P\+U\+\_\+\+S\+T\+A\+C\+K\+\_\+\+F\+R\+A\+M\+E\+\_\+\+L7\+\_\+\+O\+F\+F\+S\+ET~0x1c}
+
+This macro defines an offset into the stack frame for use in assembly. \mbox{\Hypertarget{sparc_2include_2rtems_2score_2cpu_8h_aa09f0e7e0b5f905bd0dbcd5901b4f07f}\label{sparc_2include_2rtems_2score_2cpu_8h_aa09f0e7e0b5f905bd0dbcd5901b4f07f}} 
+\index{cpu.h@{cpu.h}!CPU\_STACK\_FRAME\_PAD0\_OFFSET@{CPU\_STACK\_FRAME\_PAD0\_OFFSET}}
+\index{CPU\_STACK\_FRAME\_PAD0\_OFFSET@{CPU\_STACK\_FRAME\_PAD0\_OFFSET}!cpu.h@{cpu.h}}
+\subsubsection{\texorpdfstring{CPU\_STACK\_FRAME\_PAD0\_OFFSET}{CPU\_STACK\_FRAME\_PAD0\_OFFSET}}
+{\footnotesize\ttfamily \#define C\+P\+U\+\_\+\+S\+T\+A\+C\+K\+\_\+\+F\+R\+A\+M\+E\+\_\+\+P\+A\+D0\+\_\+\+O\+F\+F\+S\+ET~0x5c}
+
+This macro defines an offset into the stack frame for use in assembly. \mbox{\Hypertarget{sparc_2include_2rtems_2score_2cpu_8h_a083d79bd687c3712c74f96e5db95f81a}\label{sparc_2include_2rtems_2score_2cpu_8h_a083d79bd687c3712c74f96e5db95f81a}} 
+\index{cpu.h@{cpu.h}!CPU\_STACK\_FRAME\_SAVED\_ARG0\_OFFSET@{CPU\_STACK\_FRAME\_SAVED\_ARG0\_OFFSET}}
+\index{CPU\_STACK\_FRAME\_SAVED\_ARG0\_OFFSET@{CPU\_STACK\_FRAME\_SAVED\_ARG0\_OFFSET}!cpu.h@{cpu.h}}
+\subsubsection{\texorpdfstring{CPU\_STACK\_FRAME\_SAVED\_ARG0\_OFFSET}{CPU\_STACK\_FRAME\_SAVED\_ARG0\_OFFSET}}
+{\footnotesize\ttfamily \#define C\+P\+U\+\_\+\+S\+T\+A\+C\+K\+\_\+\+F\+R\+A\+M\+E\+\_\+\+S\+A\+V\+E\+D\+\_\+\+A\+R\+G0\+\_\+\+O\+F\+F\+S\+ET~0x44}
+
+This macro defines an offset into the stack frame for use in assembly. \mbox{\Hypertarget{sparc_2include_2rtems_2score_2cpu_8h_a3b8b755c656e8fdebfa133c5c3f5871d}\label{sparc_2include_2rtems_2score_2cpu_8h_a3b8b755c656e8fdebfa133c5c3f5871d}} 
+\index{cpu.h@{cpu.h}!CPU\_STACK\_FRAME\_SAVED\_ARG1\_OFFSET@{CPU\_STACK\_FRAME\_SAVED\_ARG1\_OFFSET}}
+\index{CPU\_STACK\_FRAME\_SAVED\_ARG1\_OFFSET@{CPU\_STACK\_FRAME\_SAVED\_ARG1\_OFFSET}!cpu.h@{cpu.h}}
+\subsubsection{\texorpdfstring{CPU\_STACK\_FRAME\_SAVED\_ARG1\_OFFSET}{CPU\_STACK\_FRAME\_SAVED\_ARG1\_OFFSET}}
+{\footnotesize\ttfamily \#define C\+P\+U\+\_\+\+S\+T\+A\+C\+K\+\_\+\+F\+R\+A\+M\+E\+\_\+\+S\+A\+V\+E\+D\+\_\+\+A\+R\+G1\+\_\+\+O\+F\+F\+S\+ET~0x48}
+
+This macro defines an offset into the stack frame for use in assembly. \mbox{\Hypertarget{sparc_2include_2rtems_2score_2cpu_8h_ae32ed54740ae621cc8cfb50704bf4cf4}\label{sparc_2include_2rtems_2score_2cpu_8h_ae32ed54740ae621cc8cfb50704bf4cf4}} 
+\index{cpu.h@{cpu.h}!CPU\_STACK\_FRAME\_SAVED\_ARG2\_OFFSET@{CPU\_STACK\_FRAME\_SAVED\_ARG2\_OFFSET}}
+\index{CPU\_STACK\_FRAME\_SAVED\_ARG2\_OFFSET@{CPU\_STACK\_FRAME\_SAVED\_ARG2\_OFFSET}!cpu.h@{cpu.h}}
+\subsubsection{\texorpdfstring{CPU\_STACK\_FRAME\_SAVED\_ARG2\_OFFSET}{CPU\_STACK\_FRAME\_SAVED\_ARG2\_OFFSET}}
+{\footnotesize\ttfamily \#define C\+P\+U\+\_\+\+S\+T\+A\+C\+K\+\_\+\+F\+R\+A\+M\+E\+\_\+\+S\+A\+V\+E\+D\+\_\+\+A\+R\+G2\+\_\+\+O\+F\+F\+S\+ET~0x4c}
+
+This macro defines an offset into the stack frame for use in assembly. \mbox{\Hypertarget{sparc_2include_2rtems_2score_2cpu_8h_a42b2ded2c750923f0212593e30328507}\label{sparc_2include_2rtems_2score_2cpu_8h_a42b2ded2c750923f0212593e30328507}} 
+\index{cpu.h@{cpu.h}!CPU\_STACK\_FRAME\_SAVED\_ARG3\_OFFSET@{CPU\_STACK\_FRAME\_SAVED\_ARG3\_OFFSET}}
+\index{CPU\_STACK\_FRAME\_SAVED\_ARG3\_OFFSET@{CPU\_STACK\_FRAME\_SAVED\_ARG3\_OFFSET}!cpu.h@{cpu.h}}
+\subsubsection{\texorpdfstring{CPU\_STACK\_FRAME\_SAVED\_ARG3\_OFFSET}{CPU\_STACK\_FRAME\_SAVED\_ARG3\_OFFSET}}
+{\footnotesize\ttfamily \#define C\+P\+U\+\_\+\+S\+T\+A\+C\+K\+\_\+\+F\+R\+A\+M\+E\+\_\+\+S\+A\+V\+E\+D\+\_\+\+A\+R\+G3\+\_\+\+O\+F\+F\+S\+ET~0x50}
+
+This macro defines an offset into the stack frame for use in assembly. \mbox{\Hypertarget{sparc_2include_2rtems_2score_2cpu_8h_a2edd72af2496a05109268c607c07db15}\label{sparc_2include_2rtems_2score_2cpu_8h_a2edd72af2496a05109268c607c07db15}} 
+\index{cpu.h@{cpu.h}!CPU\_STACK\_FRAME\_SAVED\_ARG4\_OFFSET@{CPU\_STACK\_FRAME\_SAVED\_ARG4\_OFFSET}}
+\index{CPU\_STACK\_FRAME\_SAVED\_ARG4\_OFFSET@{CPU\_STACK\_FRAME\_SAVED\_ARG4\_OFFSET}!cpu.h@{cpu.h}}
+\subsubsection{\texorpdfstring{CPU\_STACK\_FRAME\_SAVED\_ARG4\_OFFSET}{CPU\_STACK\_FRAME\_SAVED\_ARG4\_OFFSET}}
+{\footnotesize\ttfamily \#define C\+P\+U\+\_\+\+S\+T\+A\+C\+K\+\_\+\+F\+R\+A\+M\+E\+\_\+\+S\+A\+V\+E\+D\+\_\+\+A\+R\+G4\+\_\+\+O\+F\+F\+S\+ET~0x54}
+
+This macro defines an offset into the stack frame for use in assembly. \mbox{\Hypertarget{sparc_2include_2rtems_2score_2cpu_8h_a92993a124a97f17a5a4794fd4c0424f4}\label{sparc_2include_2rtems_2score_2cpu_8h_a92993a124a97f17a5a4794fd4c0424f4}} 
+\index{cpu.h@{cpu.h}!CPU\_STACK\_FRAME\_SAVED\_ARG5\_OFFSET@{CPU\_STACK\_FRAME\_SAVED\_ARG5\_OFFSET}}
+\index{CPU\_STACK\_FRAME\_SAVED\_ARG5\_OFFSET@{CPU\_STACK\_FRAME\_SAVED\_ARG5\_OFFSET}!cpu.h@{cpu.h}}
+\subsubsection{\texorpdfstring{CPU\_STACK\_FRAME\_SAVED\_ARG5\_OFFSET}{CPU\_STACK\_FRAME\_SAVED\_ARG5\_OFFSET}}
+{\footnotesize\ttfamily \#define C\+P\+U\+\_\+\+S\+T\+A\+C\+K\+\_\+\+F\+R\+A\+M\+E\+\_\+\+S\+A\+V\+E\+D\+\_\+\+A\+R\+G5\+\_\+\+O\+F\+F\+S\+ET~0x58}
+
+This macro defines an offset into the stack frame for use in assembly. \mbox{\Hypertarget{sparc_2include_2rtems_2score_2cpu_8h_ac40d98a563f63934a5775f1366ba1b67}\label{sparc_2include_2rtems_2score_2cpu_8h_ac40d98a563f63934a5775f1366ba1b67}} 
+\index{cpu.h@{cpu.h}!CPU\_STACK\_GROWS\_UP@{CPU\_STACK\_GROWS\_UP}}
+\index{CPU\_STACK\_GROWS\_UP@{CPU\_STACK\_GROWS\_UP}!cpu.h@{cpu.h}}
+\subsubsection{\texorpdfstring{CPU\_STACK\_GROWS\_UP}{CPU\_STACK\_GROWS\_UP}}
+{\footnotesize\ttfamily \#define C\+P\+U\+\_\+\+S\+T\+A\+C\+K\+\_\+\+G\+R\+O\+W\+S\+\_\+\+UP~\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gaa93f0eb578d23995850d61f7d61c55c1}{F\+A\+L\+SE}}}
+
+Does the stack grow up (toward higher addresses) or down (toward lower addresses)?
+
+
+\begin{DoxyItemize}
+\item If T\+R\+UE, then the grows upward.
+\item If F\+A\+L\+SE, then the grows toward smaller addresses.
+\end{DoxyItemize}
+
+The stack grows to lower addresses on the S\+P\+A\+RC. \mbox{\Hypertarget{sparc_2include_2rtems_2score_2cpu_8h_a4c92ceea7549cc7b21db2c466916b733}\label{sparc_2include_2rtems_2score_2cpu_8h_a4c92ceea7549cc7b21db2c466916b733}} 
+\index{cpu.h@{cpu.h}!CPU\_STACK\_MINIMUM\_SIZE@{CPU\_STACK\_MINIMUM\_SIZE}}
+\index{CPU\_STACK\_MINIMUM\_SIZE@{CPU\_STACK\_MINIMUM\_SIZE}!cpu.h@{cpu.h}}
+\subsubsection{\texorpdfstring{CPU\_STACK\_MINIMUM\_SIZE}{CPU\_STACK\_MINIMUM\_SIZE}}
+{\footnotesize\ttfamily \#define C\+P\+U\+\_\+\+S\+T\+A\+C\+K\+\_\+\+M\+I\+N\+I\+M\+U\+M\+\_\+\+S\+I\+ZE~(1024$\ast$4)}
+
+Should be large enough to run all tests. This ensures that a \char`\"{}reasonable\char`\"{} small application should not have any problems.
+
+This appears to be a fairly generous number for the S\+P\+A\+RC since represents a call depth of about 20 routines based on the minimum stack frame. \mbox{\Hypertarget{sparc_2include_2rtems_2score_2cpu_8h_a308a86e7d62e608b0f2b5595cd0fdc6e}\label{sparc_2include_2rtems_2score_2cpu_8h_a308a86e7d62e608b0f2b5595cd0fdc6e}} 
+\index{cpu.h@{cpu.h}!CPU\_STRUCTURE\_RETURN\_ADDRESS\_OFFSET@{CPU\_STRUCTURE\_RETURN\_ADDRESS\_OFFSET}}
+\index{CPU\_STRUCTURE\_RETURN\_ADDRESS\_OFFSET@{CPU\_STRUCTURE\_RETURN\_ADDRESS\_OFFSET}!cpu.h@{cpu.h}}
+\subsubsection{\texorpdfstring{CPU\_STRUCTURE\_RETURN\_ADDRESS\_OFFSET}{CPU\_STRUCTURE\_RETURN\_ADDRESS\_OFFSET}}
+{\footnotesize\ttfamily \#define C\+P\+U\+\_\+\+S\+T\+R\+U\+C\+T\+U\+R\+E\+\_\+\+R\+E\+T\+U\+R\+N\+\_\+\+A\+D\+D\+R\+E\+S\+S\+\_\+\+O\+F\+F\+S\+ET~0x40}
+
+This macro defines an offset into the stack frame for use in assembly. \mbox{\Hypertarget{sparc_2include_2rtems_2score_2cpu_8h_a1936ecb0107e5875a7b538374c1f621d}\label{sparc_2include_2rtems_2score_2cpu_8h_a1936ecb0107e5875a7b538374c1f621d}} 
+\index{cpu.h@{cpu.h}!CPU\_swap\_u16@{CPU\_swap\_u16}}
+\index{CPU\_swap\_u16@{CPU\_swap\_u16}!cpu.h@{cpu.h}}
+\subsubsection{\texorpdfstring{CPU\_swap\_u16}{CPU\_swap\_u16}}
+{\footnotesize\ttfamily \#define C\+P\+U\+\_\+swap\+\_\+u16(\begin{DoxyParamCaption}\item[{}]{value }\end{DoxyParamCaption})~(((value\&0xff) $<$$<$ 8) $\vert$ ((value $>$$>$ 8)\&0xff))}
+
+
+
+S\+P\+A\+RC specific method to endian swap an uint16\+\_\+t. 
+
+The following routine swaps the endian format of a uint16\+\_\+t.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em value} & is the value to endian swap \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{sparc_2include_2rtems_2score_2cpu_8h_ab0aff7a561b9c030a4d88eff201f4688}\label{sparc_2include_2rtems_2score_2cpu_8h_ab0aff7a561b9c030a4d88eff201f4688}} 
+\index{cpu.h@{cpu.h}!CPU\_USE\_GENERIC\_BITFIELD\_CODE@{CPU\_USE\_GENERIC\_BITFIELD\_CODE}}
+\index{CPU\_USE\_GENERIC\_BITFIELD\_CODE@{CPU\_USE\_GENERIC\_BITFIELD\_CODE}!cpu.h@{cpu.h}}
+\subsubsection{\texorpdfstring{CPU\_USE\_GENERIC\_BITFIELD\_CODE}{CPU\_USE\_GENERIC\_BITFIELD\_CODE}}
+{\footnotesize\ttfamily \#define C\+P\+U\+\_\+\+U\+S\+E\+\_\+\+G\+E\+N\+E\+R\+I\+C\+\_\+\+B\+I\+T\+F\+I\+E\+L\+D\+\_\+\+C\+O\+DE~\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gaa8cecfc5c5c054d2875c03e77b7be15d}{T\+R\+UE}}}
+
+The S\+P\+A\+RC port uses the generic C algorithm for bitfield scan if the C\+PU model does not have a scan instruction. \mbox{\Hypertarget{sparc_2include_2rtems_2score_2cpu_8h_a780b03287cf121306041f01f3ffa1d51}\label{sparc_2include_2rtems_2score_2cpu_8h_a780b03287cf121306041f01f3ffa1d51}} 
+\index{cpu.h@{cpu.h}!SPARC\_ASYNCHRONOUS\_TRAP@{SPARC\_ASYNCHRONOUS\_TRAP}}
+\index{SPARC\_ASYNCHRONOUS\_TRAP@{SPARC\_ASYNCHRONOUS\_TRAP}!cpu.h@{cpu.h}}
+\subsubsection{\texorpdfstring{SPARC\_ASYNCHRONOUS\_TRAP}{SPARC\_ASYNCHRONOUS\_TRAP}}
+{\footnotesize\ttfamily \#define S\+P\+A\+R\+C\+\_\+\+A\+S\+Y\+N\+C\+H\+R\+O\+N\+O\+U\+S\+\_\+\+T\+R\+AP(\begin{DoxyParamCaption}\item[{}]{\+\_\+trap }\end{DoxyParamCaption})~(\+\_\+trap)}
+
+This macro indicates that {\itshape \+\_\+trap} as an asynchronous trap. \mbox{\Hypertarget{sparc_2include_2rtems_2score_2cpu_8h_ab0ea1ad8d5fbf48af9e3448110d158cf}\label{sparc_2include_2rtems_2score_2cpu_8h_ab0ea1ad8d5fbf48af9e3448110d158cf}} 
+\index{cpu.h@{cpu.h}!SPARC\_REAL\_TRAP\_NUMBER@{SPARC\_REAL\_TRAP\_NUMBER}}
+\index{SPARC\_REAL\_TRAP\_NUMBER@{SPARC\_REAL\_TRAP\_NUMBER}!cpu.h@{cpu.h}}
+\subsubsection{\texorpdfstring{SPARC\_REAL\_TRAP\_NUMBER}{SPARC\_REAL\_TRAP\_NUMBER}}
+{\footnotesize\ttfamily \#define S\+P\+A\+R\+C\+\_\+\+R\+E\+A\+L\+\_\+\+T\+R\+A\+P\+\_\+\+N\+U\+M\+B\+ER(\begin{DoxyParamCaption}\item[{}]{\+\_\+trap }\end{DoxyParamCaption})~((\+\_\+trap) \% 256)}
+
+This macro returns the real hardware vector number associated with {\itshape \+\_\+trap}. \mbox{\Hypertarget{sparc_2include_2rtems_2score_2cpu_8h_ad0496f088948afae531822fe4f2bfae8}\label{sparc_2include_2rtems_2score_2cpu_8h_ad0496f088948afae531822fe4f2bfae8}} 
+\index{cpu.h@{cpu.h}!SPARC\_SYNCHRONOUS\_TRAP@{SPARC\_SYNCHRONOUS\_TRAP}}
+\index{SPARC\_SYNCHRONOUS\_TRAP@{SPARC\_SYNCHRONOUS\_TRAP}!cpu.h@{cpu.h}}
+\subsubsection{\texorpdfstring{SPARC\_SYNCHRONOUS\_TRAP}{SPARC\_SYNCHRONOUS\_TRAP}}
+{\footnotesize\ttfamily \#define S\+P\+A\+R\+C\+\_\+\+S\+Y\+N\+C\+H\+R\+O\+N\+O\+U\+S\+\_\+\+T\+R\+AP(\begin{DoxyParamCaption}\item[{}]{\+\_\+trap }\end{DoxyParamCaption})~((\+\_\+trap) + 256 )}
+
+This macro indicates that {\itshape \+\_\+trap} as a synchronous trap. \mbox{\Hypertarget{sparc_2include_2rtems_2score_2cpu_8h_aea20dc5c02e2c656b641a4ba3e1a373c}\label{sparc_2include_2rtems_2score_2cpu_8h_aea20dc5c02e2c656b641a4ba3e1a373c}} 
+\index{cpu.h@{cpu.h}!SPARC\_SYNCHRONOUS\_TRAP\_BIT\_MASK@{SPARC\_SYNCHRONOUS\_TRAP\_BIT\_MASK}}
+\index{SPARC\_SYNCHRONOUS\_TRAP\_BIT\_MASK@{SPARC\_SYNCHRONOUS\_TRAP\_BIT\_MASK}!cpu.h@{cpu.h}}
+\subsubsection{\texorpdfstring{SPARC\_SYNCHRONOUS\_TRAP\_BIT\_MASK}{SPARC\_SYNCHRONOUS\_TRAP\_BIT\_MASK}}
+{\footnotesize\ttfamily \#define S\+P\+A\+R\+C\+\_\+\+S\+Y\+N\+C\+H\+R\+O\+N\+O\+U\+S\+\_\+\+T\+R\+A\+P\+\_\+\+B\+I\+T\+\_\+\+M\+A\+SK~0x100}
+
+This is the bit step in a vector number to indicate it is being installed as a synchronous trap. 
+
+\subsection{Typedef Documentation}
+\mbox{\Hypertarget{sparc_2include_2rtems_2score_2cpu_8h_a9fca17f81f850e128fcc8ed5b87ff2ab}\label{sparc_2include_2rtems_2score_2cpu_8h_a9fca17f81f850e128fcc8ed5b87ff2ab}} 
+\index{cpu.h@{cpu.h}!CPU\_Uint32ptr@{CPU\_Uint32ptr}}
+\index{CPU\_Uint32ptr@{CPU\_Uint32ptr}!cpu.h@{cpu.h}}
+\subsubsection{\texorpdfstring{CPU\_Uint32ptr}{CPU\_Uint32ptr}}
+{\footnotesize\ttfamily typedef uintptr\+\_\+t \mbox{\hyperlink{group__RTEMSScoreCPUARM_ga9fca17f81f850e128fcc8ed5b87ff2ab}{C\+P\+U\+\_\+\+Uint32ptr}}}
+
+Type that can store a 32-\/bit integer or a pointer. 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{sparc_2include_2rtems_2score_2cpu_8h_aff386644c2f5a1d6e8b57fd8f290cadc}\label{sparc_2include_2rtems_2score_2cpu_8h_aff386644c2f5a1d6e8b57fd8f290cadc}} 
+\index{cpu.h@{cpu.h}!\_CPU\_Context\_Initialize@{\_CPU\_Context\_Initialize}}
+\index{\_CPU\_Context\_Initialize@{\_CPU\_Context\_Initialize}!cpu.h@{cpu.h}}
+\subsubsection{\texorpdfstring{\_CPU\_Context\_Initialize()}{\_CPU\_Context\_Initialize()}}
+{\footnotesize\ttfamily void \+\_\+\+C\+P\+U\+\_\+\+Context\+\_\+\+Initialize (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structContext__Control}{Context\+\_\+\+Control}} $\ast$}]{the\+\_\+context,  }\item[{uint32\+\_\+t $\ast$}]{stack\+\_\+base,  }\item[{uint32\+\_\+t}]{size,  }\item[{uint32\+\_\+t}]{new\+\_\+level,  }\item[{void $\ast$}]{entry\+\_\+point,  }\item[{bool}]{is\+\_\+fp,  }\item[{void $\ast$}]{tls\+\_\+area }\end{DoxyParamCaption})}
+
+Initialize the context to a state suitable for starting a task after a context restore operation. Generally, this involves\+:
+
+
+\begin{DoxyItemize}
+\item setting a starting address
+\item preparing the stack
+\item preparing the stack and frame pointers
+\item setting the proper interrupt level in the context
+\item initializing the floating point context
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em the\+\_\+context} & points to the context area \\
+\hline
+\mbox{\texttt{ in}}  & {\em stack\+\_\+base} & is the low address of the allocated stack area \\
+\hline
+\mbox{\texttt{ in}}  & {\em size} & is the size of the stack area in bytes \\
+\hline
+\mbox{\texttt{ in}}  & {\em new\+\_\+level} & is the interrupt level for the task \\
+\hline
+\mbox{\texttt{ in}}  & {\em entry\+\_\+point} & is the task\textquotesingle{}s entry point \\
+\hline
+\mbox{\texttt{ in}}  & {\em is\+\_\+fp} & is set to T\+R\+UE if the task is a floating point task \\
+\hline
+\mbox{\texttt{ in}}  & {\em tls\+\_\+area} & is the thread-\/local storage (T\+LS) area\\
+\hline
+\end{DoxyParams}
+N\+O\+TE\+: Implemented as a subroutine for the S\+P\+A\+RC port. 
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{sparc_2include_2rtems_2score_2cpu_8h_a379cc535ebfbfead96c7914b3f1de861}\label{sparc_2include_2rtems_2score_2cpu_8h_a379cc535ebfbfead96c7914b3f1de861}} 
+\index{cpu.h@{cpu.h}!\_CPU\_Trap\_slot\_template@{\_CPU\_Trap\_slot\_template}}
+\index{\_CPU\_Trap\_slot\_template@{\_CPU\_Trap\_slot\_template}!cpu.h@{cpu.h}}
+\subsubsection{\texorpdfstring{\_CPU\_Trap\_slot\_template}{\_CPU\_Trap\_slot\_template}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{structCPU__Trap__table__entry}{C\+P\+U\+\_\+\+Trap\+\_\+table\+\_\+entry}} \+\_\+\+C\+P\+U\+\_\+\+Trap\+\_\+slot\+\_\+template}
+
+This is the set of opcodes for the instructions loaded into a trap table entry. The routine which installs a handler is responsible for filling in the fields for the \+\_\+handler address and the \+\_\+vector trap type.
+
+The constants following this structure are masks for the fields which must be filled in when the handler is installed. 

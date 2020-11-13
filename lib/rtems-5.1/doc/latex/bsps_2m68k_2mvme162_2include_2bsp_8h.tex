@@ -1,0 +1,76 @@
+\hypertarget{bsps_2m68k_2mvme162_2include_2bsp_8h}{}\section{bsps/m68k/mvme162/include/bsp.h File Reference}
+\label{bsps_2m68k_2mvme162_2include_2bsp_8h}\index{bsps/m68k/mvme162/include/bsp.h@{bsps/m68k/mvme162/include/bsp.h}}
+
+
+Global B\+SP definitions.  
+
+
+{\ttfamily \#include $<$bspopts.\+h$>$}\newline
+{\ttfamily \#include $<$bsp/default-\/initial-\/extension.\+h$>$}\newline
+{\ttfamily \#include $<$rtems.\+h$>$}\newline
+{\ttfamily \#include $<$mvme16x\+\_\+hw.\+h$>$}\newline
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structmcchip__regs}{mcchip\+\_\+regs}}
+\item 
+struct \mbox{\hyperlink{structscc__regs}{scc\+\_\+regs}}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bfseries mcchip}~((\mbox{\hyperlink{structmcchip__regs}{mcchip\+\_\+regs}} $\ast$ const) 0x\+F\+F\+F42000)
+\item 
+\#define {\bfseries T\+X\+\_\+\+B\+U\+F\+F\+E\+R\+\_\+\+E\+M\+P\+TY}~0x04
+\item 
+\#define {\bfseries R\+X\+\_\+\+D\+A\+T\+A\+\_\+\+A\+V\+A\+I\+L\+A\+B\+LE}~0x01
+\item 
+\#define {\bfseries S\+C\+C\+\_\+\+V\+E\+C\+T\+OR}~0x40
+\item 
+\#define {\bfseries scc}~((\mbox{\hyperlink{structscc__regs}{scc\+\_\+regs}} $\ast$ const) 0x\+F\+F\+F45000)
+\item 
+\#define {\bfseries Z\+W\+R\+I\+T\+E0}(port,  \mbox{\hyperlink{sun4u_2tte_8h_a0b943bd7a9fc74d6635879a38dc16894}{v}})~(\mbox{\hyperlink{structscc}{scc}}\mbox{[}port\mbox{]}.csr = (unsigned char)(\mbox{\hyperlink{sun4u_2tte_8h_a0b943bd7a9fc74d6635879a38dc16894}{v}}))
+\item 
+\#define {\bfseries Z\+R\+E\+A\+D0}(port)~(\mbox{\hyperlink{structscc}{scc}}\mbox{[}port\mbox{]}.csr)
+\item 
+\#define {\bfseries Z\+R\+E\+AD}(port,  n)~(Z\+W\+R\+I\+T\+E0(port, n), (\mbox{\hyperlink{structscc}{scc}}\mbox{[}port\mbox{]}.csr))
+\item 
+\#define {\bfseries Z\+R\+E\+A\+DD}(port)~(\mbox{\hyperlink{structscc}{scc}}\mbox{[}port\mbox{]}.csr=0x08, scc\mbox{[}port\mbox{]}.\+csr )
+\item 
+\#define {\bfseries Z\+W\+R\+I\+TE}(port,  n,  \mbox{\hyperlink{sun4u_2tte_8h_a0b943bd7a9fc74d6635879a38dc16894}{v}})~(Z\+W\+R\+I\+T\+E0(port, n), Z\+W\+R\+I\+T\+E0(port, \mbox{\hyperlink{sun4u_2tte_8h_a0b943bd7a9fc74d6635879a38dc16894}{v}}))
+\item 
+\#define {\bfseries Z\+W\+R\+I\+T\+ED}(port,  \mbox{\hyperlink{sun4u_2tte_8h_a0b943bd7a9fc74d6635879a38dc16894}{v}})
+\item 
+\#define {\bfseries E\+X\+T\+E\+RN}~extern
+\item 
+\#define {\bfseries M\+O\+T\+\_\+162\+B\+U\+G\+\_\+\+V\+E\+C\+\_\+\+A\+D\+D\+R\+E\+SS}~0x00000000
+\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{group__RTEMSBSPsM68kMVME162_ga34df7cc7f69a8ec535eec8a524dcbaf9}\label{group__RTEMSBSPsM68kMVME162_ga34df7cc7f69a8ec535eec8a524dcbaf9}} 
+enum \{ {\bfseries portB}, 
+{\bfseries portA}
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool {\bfseries char\+\_\+ready} (int port, char $\ast$ch)
+\item 
+char {\bfseries char\+\_\+wait} (int port)
+\item 
+void {\bfseries char\+\_\+put} (int port, char ch)
+\item 
+rtems\+\_\+isr\+\_\+entry \mbox{\hyperlink{group__RTEMSBSPsM68kMVME162_gab3388042c56b34c40be81fd5f028d97e}{set\+\_\+vector}} (rtems\+\_\+isr\+\_\+entry handler, \mbox{\hyperlink{group__ClassicINTR_ga3e434c197d99f128e78cae4d9358bd8b}{rtems\+\_\+vector\+\_\+number}} vector, int type)
+\begin{DoxyCompactList}\small\item\em Install an interrupt handler. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+rtems\+\_\+isr\+\_\+entry {\bfseries M68\+Kvec} \mbox{[}$\,$\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Global B\+SP definitions. 
+

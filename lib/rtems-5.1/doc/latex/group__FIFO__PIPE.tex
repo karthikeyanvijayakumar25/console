@@ -1,0 +1,99 @@
+\hypertarget{group__FIFO__PIPE}{}\section{F\+I\+F\+O/\+Pipe File System Support}
+\label{group__FIFO__PIPE}\index{FIFO/Pipe File System Support@{FIFO/Pipe File System Support}}
+
+
+Interface to the P\+O\+S\+IX F\+I\+F\+O/\+Pipe File System.  
+
+
+\subsection*{Files}
+\begin{DoxyCompactItemize}
+\item 
+file \mbox{\hyperlink{fifo_8c}{fifo.\+c}}
+\begin{DoxyCompactList}\small\item\em F\+I\+F\+O/\+Pipe Support. \end{DoxyCompactList}\item 
+file \mbox{\hyperlink{pipe_8c}{pipe.\+c}}
+\begin{DoxyCompactList}\small\item\em Create an Anonymous Pipe. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structpipe__control}{pipe\+\_\+control}}
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{group__FIFO__PIPE_gacbca1a97159b267819012ee31b73722d}\label{group__FIFO__PIPE_gacbca1a97159b267819012ee31b73722d}} 
+typedef struct \mbox{\hyperlink{structpipe__control}{pipe\+\_\+control}} {\bfseries pipe\+\_\+control\+\_\+t}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{group__FIFO__PIPE_gaeaf913514f36620744271f4c5581d29b}{pipe\+\_\+release}} (\mbox{\hyperlink{structpipe__control}{pipe\+\_\+control\+\_\+t}} $\ast$$\ast$pipep, \mbox{\hyperlink{structrtems__libio__tt}{rtems\+\_\+libio\+\_\+t}} $\ast$iop)
+\begin{DoxyCompactList}\small\item\em Release a pipe. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__FIFO__PIPE_ga15eb64a7cda614759d385c8f38296ea6}{fifo\+\_\+open}} (\mbox{\hyperlink{structpipe__control}{pipe\+\_\+control\+\_\+t}} $\ast$$\ast$pipep, \mbox{\hyperlink{structrtems__libio__tt}{rtems\+\_\+libio\+\_\+t}} $\ast$iop)
+\begin{DoxyCompactList}\small\item\em File system open. Interface to file system open. \end{DoxyCompactList}\item 
+ssize\+\_\+t \mbox{\hyperlink{group__FIFO__PIPE_gafac00fefe4986e2357ffdd01a20b6f2e}{pipe\+\_\+read}} (\mbox{\hyperlink{structpipe__control}{pipe\+\_\+control\+\_\+t}} $\ast$pipe, void $\ast$buffer, size\+\_\+t count, \mbox{\hyperlink{structrtems__libio__tt}{rtems\+\_\+libio\+\_\+t}} $\ast$iop)
+\begin{DoxyCompactList}\small\item\em File system read. \end{DoxyCompactList}\item 
+ssize\+\_\+t \mbox{\hyperlink{group__FIFO__PIPE_gaa3c5b709d15ee5abdfff8552a8052a67}{pipe\+\_\+write}} (\mbox{\hyperlink{structpipe__control}{pipe\+\_\+control\+\_\+t}} $\ast$pipe, const void $\ast$buffer, size\+\_\+t count, \mbox{\hyperlink{structrtems__libio__tt}{rtems\+\_\+libio\+\_\+t}} $\ast$iop)
+\begin{DoxyCompactList}\small\item\em File system write. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__FIFO__PIPE_ga9b1bcd47d18b2adaeb414e2936a86f70}{pipe\+\_\+ioctl}} (\mbox{\hyperlink{structpipe__control}{pipe\+\_\+control\+\_\+t}} $\ast$pipe, ioctl\+\_\+command\+\_\+t cmd, void $\ast$buffer, \mbox{\hyperlink{structrtems__libio__tt}{rtems\+\_\+libio\+\_\+t}} $\ast$iop)
+\begin{DoxyCompactList}\small\item\em File system Input/\+Output control. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Interface to the P\+O\+S\+IX F\+I\+F\+O/\+Pipe File System. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{group__FIFO__PIPE_ga15eb64a7cda614759d385c8f38296ea6}\label{group__FIFO__PIPE_ga15eb64a7cda614759d385c8f38296ea6}} 
+\index{FIFO/Pipe File System Support@{FIFO/Pipe File System Support}!fifo\_open@{fifo\_open}}
+\index{fifo\_open@{fifo\_open}!FIFO/Pipe File System Support@{FIFO/Pipe File System Support}}
+\subsubsection{\texorpdfstring{fifo\_open()}{fifo\_open()}}
+{\footnotesize\ttfamily int fifo\+\_\+open (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structpipe__control}{pipe\+\_\+control\+\_\+t}} $\ast$$\ast$}]{pipep,  }\item[{\mbox{\hyperlink{structrtems__libio__tt}{rtems\+\_\+libio\+\_\+t}} $\ast$}]{iop }\end{DoxyParamCaption})}
+
+
+
+File system open. Interface to file system open. 
+
+$\ast$pipep points to pipe control structure. If called with $\ast$pipep = N\+U\+LL, fifo\+\_\+open will try allocating and initializing a control structure. If the call succeeds, $\ast$pipep will be set to address of new control structure. \mbox{\Hypertarget{group__FIFO__PIPE_ga9b1bcd47d18b2adaeb414e2936a86f70}\label{group__FIFO__PIPE_ga9b1bcd47d18b2adaeb414e2936a86f70}} 
+\index{FIFO/Pipe File System Support@{FIFO/Pipe File System Support}!pipe\_ioctl@{pipe\_ioctl}}
+\index{pipe\_ioctl@{pipe\_ioctl}!FIFO/Pipe File System Support@{FIFO/Pipe File System Support}}
+\subsubsection{\texorpdfstring{pipe\_ioctl()}{pipe\_ioctl()}}
+{\footnotesize\ttfamily int pipe\+\_\+ioctl (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structpipe__control}{pipe\+\_\+control\+\_\+t}} $\ast$}]{pipe,  }\item[{ioctl\+\_\+command\+\_\+t}]{cmd,  }\item[{void $\ast$}]{buffer,  }\item[{\mbox{\hyperlink{structrtems__libio__tt}{rtems\+\_\+libio\+\_\+t}} $\ast$}]{iop }\end{DoxyParamCaption})}
+
+
+
+File system Input/\+Output control. 
+
+Interface to file system ioctl. \mbox{\Hypertarget{group__FIFO__PIPE_gafac00fefe4986e2357ffdd01a20b6f2e}\label{group__FIFO__PIPE_gafac00fefe4986e2357ffdd01a20b6f2e}} 
+\index{FIFO/Pipe File System Support@{FIFO/Pipe File System Support}!pipe\_read@{pipe\_read}}
+\index{pipe\_read@{pipe\_read}!FIFO/Pipe File System Support@{FIFO/Pipe File System Support}}
+\subsubsection{\texorpdfstring{pipe\_read()}{pipe\_read()}}
+{\footnotesize\ttfamily ssize\+\_\+t pipe\+\_\+read (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structpipe__control}{pipe\+\_\+control\+\_\+t}} $\ast$}]{pipe,  }\item[{void $\ast$}]{buffer,  }\item[{size\+\_\+t}]{count,  }\item[{\mbox{\hyperlink{structrtems__libio__tt}{rtems\+\_\+libio\+\_\+t}} $\ast$}]{iop }\end{DoxyParamCaption})}
+
+
+
+File system read. 
+
+Interface to file system read. \mbox{\Hypertarget{group__FIFO__PIPE_gaeaf913514f36620744271f4c5581d29b}\label{group__FIFO__PIPE_gaeaf913514f36620744271f4c5581d29b}} 
+\index{FIFO/Pipe File System Support@{FIFO/Pipe File System Support}!pipe\_release@{pipe\_release}}
+\index{pipe\_release@{pipe\_release}!FIFO/Pipe File System Support@{FIFO/Pipe File System Support}}
+\subsubsection{\texorpdfstring{pipe\_release()}{pipe\_release()}}
+{\footnotesize\ttfamily void pipe\+\_\+release (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structpipe__control}{pipe\+\_\+control\+\_\+t}} $\ast$$\ast$}]{pipep,  }\item[{\mbox{\hyperlink{structrtems__libio__tt}{rtems\+\_\+libio\+\_\+t}} $\ast$}]{iop }\end{DoxyParamCaption})}
+
+
+
+Release a pipe. 
+
+Interface to file system close.
+
+$\ast$pipep points to pipe control structure. When the last user releases pipe, it will be set to N\+U\+LL. \mbox{\Hypertarget{group__FIFO__PIPE_gaa3c5b709d15ee5abdfff8552a8052a67}\label{group__FIFO__PIPE_gaa3c5b709d15ee5abdfff8552a8052a67}} 
+\index{FIFO/Pipe File System Support@{FIFO/Pipe File System Support}!pipe\_write@{pipe\_write}}
+\index{pipe\_write@{pipe\_write}!FIFO/Pipe File System Support@{FIFO/Pipe File System Support}}
+\subsubsection{\texorpdfstring{pipe\_write()}{pipe\_write()}}
+{\footnotesize\ttfamily ssize\+\_\+t pipe\+\_\+write (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structpipe__control}{pipe\+\_\+control\+\_\+t}} $\ast$}]{pipe,  }\item[{const void $\ast$}]{buffer,  }\item[{size\+\_\+t}]{count,  }\item[{\mbox{\hyperlink{structrtems__libio__tt}{rtems\+\_\+libio\+\_\+t}} $\ast$}]{iop }\end{DoxyParamCaption})}
+
+
+
+File system write. 
+
+Interface to file system write. 

@@ -1,0 +1,119 @@
+\hypertarget{rtems-rfs-file-system_8c}{}\section{cpukit/libfs/src/rfs/rtems-\/rfs-\/file-\/system.c File Reference}
+\label{rtems-rfs-file-system_8c}\index{cpukit/libfs/src/rfs/rtems-\/rfs-\/file-\/system.c@{cpukit/libfs/src/rfs/rtems-\/rfs-\/file-\/system.c}}
+
+
+R\+T\+E\+MS File Systems Open.  
+
+
+{\ttfamily \#include $<$inttypes.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/rfs/rtems-\/rfs-\/data.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/rfs/rtems-\/rfs-\/file-\/system.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/rfs/rtems-\/rfs-\/inode.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/rfs/rtems-\/rfs-\/trace.\+h$>$}\newline
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{rtems-rfs-file-system_8c_a456b6fc7e0dbd380975ac8d10b4e5014}\label{rtems-rfs-file-system_8c_a456b6fc7e0dbd380975ac8d10b4e5014}} 
+\#define {\bfseries read\+\_\+sb}(\+\_\+o)~\mbox{\hyperlink{rtems-rfs-data_8h_ae061f1784ebeef490293e0080740041a}{rtems\+\_\+rfs\+\_\+read\+\_\+u32}} (sb + (\+\_\+o))
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+uint64\+\_\+t \mbox{\hyperlink{rtems-rfs-file-system_8c_a0c8274793080a83d483e966475ccc2a5}{rtems\+\_\+rfs\+\_\+fs\+\_\+size}} (\mbox{\hyperlink{struct__rtems__rfs__file__system}{rtems\+\_\+rfs\+\_\+file\+\_\+system}} $\ast$fs)
+\item 
+uint64\+\_\+t \mbox{\hyperlink{rtems-rfs-file-system_8c_a8380bd35ff8e755dc1fe18f2de156f3c}{rtems\+\_\+rfs\+\_\+fs\+\_\+media\+\_\+size}} (\mbox{\hyperlink{struct__rtems__rfs__file__system}{rtems\+\_\+rfs\+\_\+file\+\_\+system}} $\ast$fs)
+\item 
+int \mbox{\hyperlink{rtems-rfs-file-system_8c_a33a063dea6be2f3fe7c5f4f9de07dd0c}{rtems\+\_\+rfs\+\_\+fs\+\_\+open}} (const char $\ast$name, void $\ast$user, uint32\+\_\+t flags, uint32\+\_\+t max\+\_\+held\+\_\+buffers, \mbox{\hyperlink{struct__rtems__rfs__file__system}{rtems\+\_\+rfs\+\_\+file\+\_\+system}} $\ast$$\ast$fs)
+\item 
+int \mbox{\hyperlink{rtems-rfs-file-system_8c_af161538fcc5d88a33ec4b74ce530ae93}{rtems\+\_\+rfs\+\_\+fs\+\_\+close}} (\mbox{\hyperlink{struct__rtems__rfs__file__system}{rtems\+\_\+rfs\+\_\+file\+\_\+system}} $\ast$fs)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+R\+T\+E\+MS File Systems Open. 
+
+Open the file system by reading the superblock and then the group data. 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{rtems-rfs-file-system_8c_af161538fcc5d88a33ec4b74ce530ae93}\label{rtems-rfs-file-system_8c_af161538fcc5d88a33ec4b74ce530ae93}} 
+\index{rtems-\/rfs-\/file-\/system.c@{rtems-\/rfs-\/file-\/system.c}!rtems\_rfs\_fs\_close@{rtems\_rfs\_fs\_close}}
+\index{rtems\_rfs\_fs\_close@{rtems\_rfs\_fs\_close}!rtems-\/rfs-\/file-\/system.c@{rtems-\/rfs-\/file-\/system.c}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_fs\_close()}{rtems\_rfs\_fs\_close()}}
+{\footnotesize\ttfamily int rtems\+\_\+rfs\+\_\+fs\+\_\+close (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__rtems__rfs__file__system}{rtems\+\_\+rfs\+\_\+file\+\_\+system}} $\ast$}]{fs }\end{DoxyParamCaption})}
+
+Close the file system.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em fs} & is the file system data.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em 0} & Successful operation. \\
+\hline
+{\em -\/1} & Error. See errno \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{rtems-rfs-file-system_8c_a8380bd35ff8e755dc1fe18f2de156f3c}\label{rtems-rfs-file-system_8c_a8380bd35ff8e755dc1fe18f2de156f3c}} 
+\index{rtems-\/rfs-\/file-\/system.c@{rtems-\/rfs-\/file-\/system.c}!rtems\_rfs\_fs\_media\_size@{rtems\_rfs\_fs\_media\_size}}
+\index{rtems\_rfs\_fs\_media\_size@{rtems\_rfs\_fs\_media\_size}!rtems-\/rfs-\/file-\/system.c@{rtems-\/rfs-\/file-\/system.c}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_fs\_media\_size()}{rtems\_rfs\_fs\_media\_size()}}
+{\footnotesize\ttfamily uint64\+\_\+t rtems\+\_\+rfs\+\_\+fs\+\_\+media\+\_\+size (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__rtems__rfs__file__system}{rtems\+\_\+rfs\+\_\+file\+\_\+system}} $\ast$}]{fs }\end{DoxyParamCaption})}
+
+The size of the disk in bytes calculated from the media parameters..
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em fs} & is a pointer to the file system. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+uint64\+\_\+t The size of the disk in bytes. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{rtems-rfs-file-system_8c_a33a063dea6be2f3fe7c5f4f9de07dd0c}\label{rtems-rfs-file-system_8c_a33a063dea6be2f3fe7c5f4f9de07dd0c}} 
+\index{rtems-\/rfs-\/file-\/system.c@{rtems-\/rfs-\/file-\/system.c}!rtems\_rfs\_fs\_open@{rtems\_rfs\_fs\_open}}
+\index{rtems\_rfs\_fs\_open@{rtems\_rfs\_fs\_open}!rtems-\/rfs-\/file-\/system.c@{rtems-\/rfs-\/file-\/system.c}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_fs\_open()}{rtems\_rfs\_fs\_open()}}
+{\footnotesize\ttfamily int rtems\+\_\+rfs\+\_\+fs\+\_\+open (\begin{DoxyParamCaption}\item[{const char $\ast$}]{name,  }\item[{void $\ast$}]{user,  }\item[{uint32\+\_\+t}]{flags,  }\item[{uint32\+\_\+t}]{max\+\_\+held\+\_\+buffers,  }\item[{\mbox{\hyperlink{struct__rtems__rfs__file__system}{rtems\+\_\+rfs\+\_\+file\+\_\+system}} $\ast$$\ast$}]{fs }\end{DoxyParamCaption})}
+
+Open the file system given a file path.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em name} & is a pointer to the device to open. \\
+\hline
+\mbox{\texttt{ in}}  & {\em fs} & is the file system data filled in by this call. \\
+\hline
+\mbox{\texttt{ in}}  & {\em user} & is a pointer to the user data. \\
+\hline
+\mbox{\texttt{ in}}  & {\em flags} & is a initial set of user flags for the file system. \\
+\hline
+\mbox{\texttt{ in}}  & {\em max\+\_\+held\+\_\+buffers} & is the maximum number of buffers the R\+FS holds.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em 0} & Successful operation. \\
+\hline
+{\em -\/1} & Error. See errno \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{rtems-rfs-file-system_8c_a0c8274793080a83d483e966475ccc2a5}\label{rtems-rfs-file-system_8c_a0c8274793080a83d483e966475ccc2a5}} 
+\index{rtems-\/rfs-\/file-\/system.c@{rtems-\/rfs-\/file-\/system.c}!rtems\_rfs\_fs\_size@{rtems\_rfs\_fs\_size}}
+\index{rtems\_rfs\_fs\_size@{rtems\_rfs\_fs\_size}!rtems-\/rfs-\/file-\/system.c@{rtems-\/rfs-\/file-\/system.c}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_fs\_size()}{rtems\_rfs\_fs\_size()}}
+{\footnotesize\ttfamily uint64\+\_\+t rtems\+\_\+rfs\+\_\+fs\+\_\+size (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__rtems__rfs__file__system}{rtems\+\_\+rfs\+\_\+file\+\_\+system}} $\ast$}]{fs }\end{DoxyParamCaption})}
+
+Return the size of the disk in bytes.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em fs} & is a pointer to the file system. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+uint64\+\_\+t The size of the disk in bytes. 
+\end{DoxyReturn}

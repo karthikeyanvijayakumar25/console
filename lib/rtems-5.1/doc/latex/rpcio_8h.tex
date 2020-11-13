@@ -1,0 +1,80 @@
+\hypertarget{rpcio_8h}{}\section{cpukit/libfs/src/nfsclient/src/rpcio.h File Reference}
+\label{rpcio_8h}\index{cpukit/libfs/src/nfsclient/src/rpcio.h@{cpukit/libfs/src/nfsclient/src/rpcio.h}}
+
+
+A Multithreaded R\+P\+C/\+U\+DP Multiplexor.  
+
+
+{\ttfamily \#include $<$rpc/rpc.\+h$>$}\newline
+{\ttfamily \#include $<$errno.\+h$>$}\newline
+{\ttfamily \#include $<$sys/ioctl.\+h$>$}\newline
+{\ttfamily \#include $<$sys/param.\+h$>$}\newline
+{\ttfamily \#include $<$stdarg.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}librtems\+Nfs.\+h\char`\"{}}\newline
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bfseries R\+P\+C\+I\+O\+D\+\_\+\+D\+E\+F\+A\+U\+L\+T\+\_\+\+ID}~0xdef10000
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \mbox{\hyperlink{structRpcUdpServerRec__}{Rpc\+Udp\+Server\+Rec\+\_\+}} $\ast$ {\bfseries Rpc\+Udp\+Server}
+\item 
+typedef struct \mbox{\hyperlink{structRpcUdpXactRec__}{Rpc\+Udp\+Xact\+Rec\+\_\+}} $\ast$ {\bfseries Rpc\+Udp\+Xact}
+\item 
+typedef \mbox{\hyperlink{structRpcUdpXactRec__}{Rpc\+Udp\+Xact}} {\bfseries Rpc\+Udp\+Clnt}
+\item 
+typedef void $\ast$ \mbox{\hyperlink{group__rtems-nfsclient_gac22c99bf609cf4f3e1b601de1c157275}{Xdr\+ProcT}}
+\begin{DoxyCompactList}\small\item\em Mute compiler warnings. \end{DoxyCompactList}\item 
+typedef void $\ast$ {\bfseries CaddrT}
+\item 
+typedef struct \mbox{\hyperlink{structRpcUdpXactPoolRec__}{Rpc\+Udp\+Xact\+Pool\+Rec\+\_\+}} $\ast$ {\bfseries Rpc\+Udp\+Xact\+Pool}
+\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{group__rtems-nfsclient_ga0c5907286d3ddad475819bbc42ed1b7a}\label{group__rtems-nfsclient_ga0c5907286d3ddad475819bbc42ed1b7a}} 
+enum {\bfseries Xact\+Pool\+Get\+Mode} \{ {\bfseries Xact\+Get\+Fail}, 
+{\bfseries Xact\+Get\+Wait}, 
+{\bfseries Xact\+Get\+Create}
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+enum clnt\+\_\+stat {\bfseries rpc\+Udp\+Server\+Create} (struct sockaddr\+\_\+in $\ast$paddr, rpcprog\+\_\+t prog, rpcvers\+\_\+t vers, u\+\_\+long uid, u\+\_\+long gid, \mbox{\hyperlink{structRpcUdpServerRec__}{Rpc\+Udp\+Server}} $\ast$pclnt)
+\item 
+void {\bfseries rpc\+Udp\+Server\+Destroy} (\mbox{\hyperlink{structRpcUdpServerRec__}{Rpc\+Udp\+Server}} s)
+\item 
+int \mbox{\hyperlink{group__rtems-nfsclient_ga25eec2b7dd88494b276528b6d765ba40}{rpc\+Udp\+Stats}} (F\+I\+LE $\ast$f)
+\begin{DoxyCompactList}\small\item\em Dump statistics to a file (stdout if N\+U\+LL);. \end{DoxyCompactList}\item 
+enum clnt\+\_\+stat {\bfseries rpc\+Udp\+Clnt\+Create} (struct sockaddr\+\_\+in $\ast$psaddr, rpcprog\+\_\+t prog, rpcvers\+\_\+t vers, u\+\_\+long uid, u\+\_\+long gid, \mbox{\hyperlink{structRpcUdpXactRec__}{Rpc\+Udp\+Clnt}} $\ast$pclnt)
+\item 
+void {\bfseries Rpc\+Udp\+Clnt\+Destroy} (\mbox{\hyperlink{structRpcUdpXactRec__}{Rpc\+Udp\+Clnt}} clnt)
+\item 
+enum clnt\+\_\+stat {\bfseries rpc\+Udp\+Clnt\+Call} (\mbox{\hyperlink{structRpcUdpXactRec__}{Rpc\+Udp\+Clnt}} clnt, u\+\_\+long proc, \mbox{\hyperlink{group__rtems-nfsclient_gac22c99bf609cf4f3e1b601de1c157275}{Xdr\+ProcT}} xargs, CaddrT pargs, \mbox{\hyperlink{group__rtems-nfsclient_gac22c99bf609cf4f3e1b601de1c157275}{Xdr\+ProcT}} xres, CaddrT pres, struct timeval $\ast$timeout)
+\item 
+\mbox{\hyperlink{structRpcUdpXactRec__}{Rpc\+Udp\+Xact}} {\bfseries rpc\+Udp\+Xact\+Create} (u\+\_\+long program, u\+\_\+long version, u\+\_\+long \mbox{\hyperlink{sun4u_2tte_8h_a245260f6f74972558f61b85227df5aae}{size}})
+\item 
+void {\bfseries rpc\+Udp\+Xact\+Destroy} (\mbox{\hyperlink{structRpcUdpXactRec__}{Rpc\+Udp\+Xact}} xact)
+\item 
+enum clnt\+\_\+stat \mbox{\hyperlink{group__rtems-nfsclient_ga00b3bdde30fc2fd22e2682893a894b25}{rpc\+Udp\+Send}} (\mbox{\hyperlink{structRpcUdpXactRec__}{Rpc\+Udp\+Xact}} xact, \mbox{\hyperlink{structRpcUdpServerRec__}{Rpc\+Udp\+Server}} srvr, struct timeval $\ast$timeout, u\+\_\+long proc, xdrproc\+\_\+t xres, caddr\+\_\+t pres, xdrproc\+\_\+t xargs, caddr\+\_\+t pargs,...)
+\item 
+enum clnt\+\_\+stat \mbox{\hyperlink{group__rtems-nfsclient_ga4490140cfcdd8411b086baa573d44ca6}{rpc\+Udp\+Rcv}} (\mbox{\hyperlink{structRpcUdpXactRec__}{Rpc\+Udp\+Xact}} xact)
+\begin{DoxyCompactList}\small\item\em Wait for a transaction to complete. \end{DoxyCompactList}\item 
+enum clnt\+\_\+stat {\bfseries rpc\+Udp\+Call\+Rp} (struct sockaddr\+\_\+in $\ast$pserver\+\_\+addr, u\+\_\+long prog, u\+\_\+long vers, u\+\_\+long proc, \mbox{\hyperlink{group__rtems-nfsclient_gac22c99bf609cf4f3e1b601de1c157275}{Xdr\+ProcT}} xargs, CaddrT pargs, \mbox{\hyperlink{group__rtems-nfsclient_gac22c99bf609cf4f3e1b601de1c157275}{Xdr\+ProcT}} xres, CaddrT pres, u\+\_\+long uid, u\+\_\+long gid, struct timeval $\ast$timeout)
+\item 
+\mbox{\hyperlink{structRpcUdpXactPoolRec__}{Rpc\+Udp\+Xact\+Pool}} {\bfseries rpc\+Udp\+Xact\+Pool\+Create} (rpcprog\+\_\+t prog, rpcvers\+\_\+t version, int xactsize, int poolsize)
+\item 
+void {\bfseries rpc\+Udp\+Xact\+Pool\+Destroy} (\mbox{\hyperlink{structRpcUdpXactPoolRec__}{Rpc\+Udp\+Xact\+Pool}} pool)
+\item 
+\mbox{\hyperlink{structRpcUdpXactRec__}{Rpc\+Udp\+Xact}} {\bfseries rpc\+Udp\+Xact\+Pool\+Get} (\mbox{\hyperlink{structRpcUdpXactPoolRec__}{Rpc\+Udp\+Xact\+Pool}} pool, Xact\+Pool\+Get\+Mode mode)
+\item 
+void {\bfseries rpc\+Udp\+Xact\+Pool\+Put} (\mbox{\hyperlink{structRpcUdpXactRec__}{Rpc\+Udp\+Xact}} xact)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A Multithreaded R\+P\+C/\+U\+DP Multiplexor. 
+

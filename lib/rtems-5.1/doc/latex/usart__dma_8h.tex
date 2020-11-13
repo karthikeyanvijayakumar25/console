@@ -1,0 +1,208 @@
+\hypertarget{usart__dma_8h}{}\section{bsps/arm/atsam/include/libchip/include/usart\+\_\+dma.h File Reference}
+\label{usart__dma_8h}\index{bsps/arm/atsam/include/libchip/include/usart\_dma.h@{bsps/arm/atsam/include/libchip/include/usart\_dma.h}}
+{\ttfamily \#include \char`\"{}chip.\+h\char`\"{}}\newline
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structUsartChannel}{Usart\+Channel}}
+\begin{DoxyCompactList}\small\item\em usart Transfer Request prepared by the application upper layer. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structUsartDma}{Usart\+Dma}}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{usart__dma_8h_afaa37d48d11d39ad75f982e5f5c27956}{U\+S\+A\+R\+T\+D\+\_\+\+E\+R\+R\+OR}}~1
+\item 
+\#define \mbox{\hyperlink{usart__dma_8h_a302c69fc5faf085b125f01f7cc33e49f}{U\+S\+A\+R\+T\+D\+\_\+\+E\+R\+R\+O\+R\+\_\+\+L\+O\+CK}}~2
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef void($\ast$ \mbox{\hyperlink{usart__dma_8h_a8a7d4dd5c8ed169acfb5acad786dcc43}{Usartd\+Callback}}) (uint8\+\_\+t, void $\ast$)
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{usart__dma_8h_a3327e28c21222fe643b4533c203976f0}{U\+S\+A\+R\+T\+D\+\_\+\+Configure}} (\mbox{\hyperlink{structUsartDma}{Usart\+Dma}} $\ast$p\+Usartd, uint8\+\_\+t U\+S\+A\+R\+T\+Id, uint32\+\_\+t Usart\+Mode, uint32\+\_\+t Baud\+Rate, uint32\+\_\+t Usart\+Clk)
+\begin{DoxyCompactList}\small\item\em Initializes the U\+S\+A\+R\+T\+Dma structure and the corresponding U\+S\+A\+RT \& D\+MA . hardware select value. The driver will uses D\+MA channel 0 for RX and D\+MA channel 1 for TX. The D\+MA channels are freed automatically when no U\+S\+A\+RT command processing. \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{usart__dma_8h_add65a720aa37b5f7d95df156b3fb06e7}{U\+S\+A\+R\+T\+D\+\_\+\+Enable\+Tx\+Channels}} (\mbox{\hyperlink{structUsartDma}{Usart\+Dma}} $\ast$p\+Usartd, \mbox{\hyperlink{structUsartChannel}{Usart\+Channel}} $\ast$p\+Tx\+Ch)
+\begin{DoxyCompactList}\small\item\em This function initialize the appropriate D\+MA channel for Tx channel of U\+S\+A\+RT. \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{usart__dma_8h_a7714e0765368904f8f43f1fc0ccb63fd}{U\+S\+A\+R\+T\+D\+\_\+\+Enable\+Rx\+Channels}} (\mbox{\hyperlink{structUsartDma}{Usart\+Dma}} $\ast$p\+Usartd, \mbox{\hyperlink{structUsartChannel}{Usart\+Channel}} $\ast$p\+Rx\+Ch)
+\begin{DoxyCompactList}\small\item\em This function initialize the appropriate D\+MA channel for Rx channel of U\+S\+A\+RT. \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{usart__dma_8h_a10da1227ede3bfae0413010a0c77975f}{U\+S\+A\+R\+T\+D\+\_\+\+Disable\+Tx\+Channels}} (\mbox{\hyperlink{structUsartDma}{Usart\+Dma}} $\ast$p\+Usartd, \mbox{\hyperlink{structUsartChannel}{Usart\+Channel}} $\ast$p\+Tx\+Ch)
+\begin{DoxyCompactList}\small\item\em This function disables the appropriate D\+MA channel for Tx channel of U\+S\+A\+RT. \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{usart__dma_8h_afb7444a9ad29e0ea8ce539a8e3c2f68f}{U\+S\+A\+R\+T\+D\+\_\+\+Disable\+Rx\+Channels}} (\mbox{\hyperlink{structUsartDma}{Usart\+Dma}} $\ast$p\+Usartd, \mbox{\hyperlink{structUsartChannel}{Usart\+Channel}} $\ast$p\+Tx\+Ch)
+\begin{DoxyCompactList}\small\item\em This function disables the appropriate D\+MA channel for Rx channel of U\+S\+A\+RT. \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{usart__dma_8h_a898156572b03a6af7edcb27940d79148}{U\+S\+A\+R\+T\+D\+\_\+\+Send\+Data}} (\mbox{\hyperlink{structUsartDma}{Usart\+Dma}} $\ast$p\+Usartd)
+\begin{DoxyCompactList}\small\item\em Starts a U\+S\+A\+RT master transfer. This is a non blocking function. It will return as soon as the transfer is started. \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{usart__dma_8h_a3cc9923a38b9031b81e01637630712dd}{U\+S\+A\+R\+T\+D\+\_\+\+Rcv\+Data}} (\mbox{\hyperlink{structUsartDma}{Usart\+Dma}} $\ast$p\+Usartd)
+\begin{DoxyCompactList}\small\item\em Starts a U\+S\+A\+RT master transfer. This is a non blocking function. It will return as soon as the transfer is started. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Implementation of U\+S\+A\+RT driver, transfer data through D\+MA. 
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{usart__dma_8h_afaa37d48d11d39ad75f982e5f5c27956}\label{usart__dma_8h_afaa37d48d11d39ad75f982e5f5c27956}} 
+\index{usart\_dma.h@{usart\_dma.h}!USARTD\_ERROR@{USARTD\_ERROR}}
+\index{USARTD\_ERROR@{USARTD\_ERROR}!usart\_dma.h@{usart\_dma.h}}
+\subsubsection{\texorpdfstring{USARTD\_ERROR}{USARTD\_ERROR}}
+{\footnotesize\ttfamily \#define U\+S\+A\+R\+T\+D\+\_\+\+E\+R\+R\+OR~1}
+
+An unspecified error has occurred. \mbox{\Hypertarget{usart__dma_8h_a302c69fc5faf085b125f01f7cc33e49f}\label{usart__dma_8h_a302c69fc5faf085b125f01f7cc33e49f}} 
+\index{usart\_dma.h@{usart\_dma.h}!USARTD\_ERROR\_LOCK@{USARTD\_ERROR\_LOCK}}
+\index{USARTD\_ERROR\_LOCK@{USARTD\_ERROR\_LOCK}!usart\_dma.h@{usart\_dma.h}}
+\subsubsection{\texorpdfstring{USARTD\_ERROR\_LOCK}{USARTD\_ERROR\_LOCK}}
+{\footnotesize\ttfamily \#define U\+S\+A\+R\+T\+D\+\_\+\+E\+R\+R\+O\+R\+\_\+\+L\+O\+CK~2}
+
+U\+S\+A\+RT driver is currently in use. 
+
+\subsection{Typedef Documentation}
+\mbox{\Hypertarget{usart__dma_8h_a8a7d4dd5c8ed169acfb5acad786dcc43}\label{usart__dma_8h_a8a7d4dd5c8ed169acfb5acad786dcc43}} 
+\index{usart\_dma.h@{usart\_dma.h}!UsartdCallback@{UsartdCallback}}
+\index{UsartdCallback@{UsartdCallback}!usart\_dma.h@{usart\_dma.h}}
+\subsubsection{\texorpdfstring{UsartdCallback}{UsartdCallback}}
+{\footnotesize\ttfamily typedef void($\ast$ Usartd\+Callback) (uint8\+\_\+t, void $\ast$)}
+
+U\+S\+A\+RT transfer complete callback. 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{usart__dma_8h_a3327e28c21222fe643b4533c203976f0}\label{usart__dma_8h_a3327e28c21222fe643b4533c203976f0}} 
+\index{usart\_dma.h@{usart\_dma.h}!USARTD\_Configure@{USARTD\_Configure}}
+\index{USARTD\_Configure@{USARTD\_Configure}!usart\_dma.h@{usart\_dma.h}}
+\subsubsection{\texorpdfstring{USARTD\_Configure()}{USARTD\_Configure()}}
+{\footnotesize\ttfamily uint32\+\_\+t U\+S\+A\+R\+T\+D\+\_\+\+Configure (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structUsartDma}{Usart\+Dma}} $\ast$}]{p\+Usartd,  }\item[{uint8\+\_\+t}]{usart\+Id,  }\item[{uint32\+\_\+t}]{Usart\+Mode,  }\item[{uint32\+\_\+t}]{Baud\+Rate,  }\item[{uint32\+\_\+t}]{Usart\+Clk }\end{DoxyParamCaption})}
+
+
+
+Initializes the U\+S\+A\+R\+T\+Dma structure and the corresponding U\+S\+A\+RT \& D\+MA . hardware select value. The driver will uses D\+MA channel 0 for RX and D\+MA channel 1 for TX. The D\+MA channels are freed automatically when no U\+S\+A\+RT command processing. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+U\+S\+A\+R\+TD} & Pointer to a \mbox{\hyperlink{structUsartDma}{Usart\+Dma}} instance. \\
+\hline
+{\em p\+Usart\+Hw} & Associated U\+S\+A\+RT peripheral. \\
+\hline
+{\em usart\+Id} & U\+S\+A\+RT peripheral identifier. \\
+\hline
+{\em Usart\+Clk} & U\+S\+A\+RT clock. \\
+\hline
+{\em p\+Xdmad} & Pointer to a Dmad instance. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{usart__dma_8h_afb7444a9ad29e0ea8ce539a8e3c2f68f}\label{usart__dma_8h_afb7444a9ad29e0ea8ce539a8e3c2f68f}} 
+\index{usart\_dma.h@{usart\_dma.h}!USARTD\_DisableRxChannels@{USARTD\_DisableRxChannels}}
+\index{USARTD\_DisableRxChannels@{USARTD\_DisableRxChannels}!usart\_dma.h@{usart\_dma.h}}
+\subsubsection{\texorpdfstring{USARTD\_DisableRxChannels()}{USARTD\_DisableRxChannels()}}
+{\footnotesize\ttfamily uint32\+\_\+t U\+S\+A\+R\+T\+D\+\_\+\+Disable\+Rx\+Channels (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structUsartDma}{Usart\+Dma}} $\ast$}]{p\+Usartd,  }\item[{\mbox{\hyperlink{structUsartChannel}{Usart\+Channel}} $\ast$}]{p\+Rx\+Ch }\end{DoxyParamCaption})}
+
+
+
+This function disables the appropriate D\+MA channel for Rx channel of U\+S\+A\+RT. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Usartd} & Pointer to a \mbox{\hyperlink{structUsartDma}{Usart\+Dma}} instance. \\
+\hline
+{\em p\+Rx\+Ch} & Pointer to Tx\+Channel configuration \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if the transfer has been started successfully; otherwise returns U\+S\+A\+R\+T\+D\+\_\+\+E\+R\+R\+O\+R\+\_\+\+L\+O\+CK is the driver is in use, or U\+S\+A\+R\+T\+D\+\_\+\+E\+R\+R\+OR if the command is not valid. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{usart__dma_8h_a10da1227ede3bfae0413010a0c77975f}\label{usart__dma_8h_a10da1227ede3bfae0413010a0c77975f}} 
+\index{usart\_dma.h@{usart\_dma.h}!USARTD\_DisableTxChannels@{USARTD\_DisableTxChannels}}
+\index{USARTD\_DisableTxChannels@{USARTD\_DisableTxChannels}!usart\_dma.h@{usart\_dma.h}}
+\subsubsection{\texorpdfstring{USARTD\_DisableTxChannels()}{USARTD\_DisableTxChannels()}}
+{\footnotesize\ttfamily uint32\+\_\+t U\+S\+A\+R\+T\+D\+\_\+\+Disable\+Tx\+Channels (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structUsartDma}{Usart\+Dma}} $\ast$}]{p\+Usartd,  }\item[{\mbox{\hyperlink{structUsartChannel}{Usart\+Channel}} $\ast$}]{p\+Tx\+Ch }\end{DoxyParamCaption})}
+
+
+
+This function disables the appropriate D\+MA channel for Tx channel of U\+S\+A\+RT. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Usartd} & Pointer to a U\+S\+A\+R\+T\+Dma instance. \\
+\hline
+{\em p\+Tx\+Ch} & Pointer to Tx\+Channel configuration \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if the transfer has been started successfully; otherwise returns U\+S\+A\+R\+T\+D\+\_\+\+E\+R\+R\+O\+R\+\_\+\+L\+O\+CK is the driver is in use, or U\+S\+A\+R\+T\+D\+\_\+\+E\+R\+R\+OR if the command is not valid. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{usart__dma_8h_a7714e0765368904f8f43f1fc0ccb63fd}\label{usart__dma_8h_a7714e0765368904f8f43f1fc0ccb63fd}} 
+\index{usart\_dma.h@{usart\_dma.h}!USARTD\_EnableRxChannels@{USARTD\_EnableRxChannels}}
+\index{USARTD\_EnableRxChannels@{USARTD\_EnableRxChannels}!usart\_dma.h@{usart\_dma.h}}
+\subsubsection{\texorpdfstring{USARTD\_EnableRxChannels()}{USARTD\_EnableRxChannels()}}
+{\footnotesize\ttfamily uint32\+\_\+t U\+S\+A\+R\+T\+D\+\_\+\+Enable\+Rx\+Channels (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structUsartDma}{Usart\+Dma}} $\ast$}]{p\+Usartd,  }\item[{\mbox{\hyperlink{structUsartChannel}{Usart\+Channel}} $\ast$}]{p\+Rx\+Ch }\end{DoxyParamCaption})}
+
+
+
+This function initialize the appropriate D\+MA channel for Rx channel of U\+S\+A\+RT. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Usartd} & Pointer to a \mbox{\hyperlink{structUsartDma}{Usart\+Dma}} instance. \\
+\hline
+{\em p\+Rx\+Ch} & Pointer to Tx\+Channel configuration \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if the transfer has been started successfully; otherwise returns U\+S\+A\+R\+T\+D\+\_\+\+E\+R\+R\+O\+R\+\_\+\+L\+O\+CK is the driver is in use, or U\+S\+A\+R\+T\+D\+\_\+\+E\+R\+R\+OR if the command is not valid. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{usart__dma_8h_add65a720aa37b5f7d95df156b3fb06e7}\label{usart__dma_8h_add65a720aa37b5f7d95df156b3fb06e7}} 
+\index{usart\_dma.h@{usart\_dma.h}!USARTD\_EnableTxChannels@{USARTD\_EnableTxChannels}}
+\index{USARTD\_EnableTxChannels@{USARTD\_EnableTxChannels}!usart\_dma.h@{usart\_dma.h}}
+\subsubsection{\texorpdfstring{USARTD\_EnableTxChannels()}{USARTD\_EnableTxChannels()}}
+{\footnotesize\ttfamily uint32\+\_\+t U\+S\+A\+R\+T\+D\+\_\+\+Enable\+Tx\+Channels (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structUsartDma}{Usart\+Dma}} $\ast$}]{p\+Usartd,  }\item[{\mbox{\hyperlink{structUsartChannel}{Usart\+Channel}} $\ast$}]{p\+Tx\+Ch }\end{DoxyParamCaption})}
+
+
+
+This function initialize the appropriate D\+MA channel for Tx channel of U\+S\+A\+RT. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Usartd} & Pointer to a U\+S\+A\+R\+T\+Dma instance. \\
+\hline
+{\em p\+Tx\+Ch} & Pointer to Tx\+Channel configuration \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if the transfer has been started successfully; otherwise returns U\+S\+A\+R\+T\+D\+\_\+\+E\+R\+R\+O\+R\+\_\+\+L\+O\+CK is the driver is in use, or U\+S\+A\+R\+T\+D\+\_\+\+E\+R\+R\+OR if the command is not valid. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{usart__dma_8h_a3cc9923a38b9031b81e01637630712dd}\label{usart__dma_8h_a3cc9923a38b9031b81e01637630712dd}} 
+\index{usart\_dma.h@{usart\_dma.h}!USARTD\_RcvData@{USARTD\_RcvData}}
+\index{USARTD\_RcvData@{USARTD\_RcvData}!usart\_dma.h@{usart\_dma.h}}
+\subsubsection{\texorpdfstring{USARTD\_RcvData()}{USARTD\_RcvData()}}
+{\footnotesize\ttfamily uint32\+\_\+t U\+S\+A\+R\+T\+D\+\_\+\+Rcv\+Data (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structUsartDma}{Usart\+Dma}} $\ast$}]{p\+Usartd }\end{DoxyParamCaption})}
+
+
+
+Starts a U\+S\+A\+RT master transfer. This is a non blocking function. It will return as soon as the transfer is started. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+U\+S\+A\+R\+TD} & Pointer to a U\+S\+A\+R\+T\+Dma instance. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if the transfer has been started successfully; otherwise returns U\+S\+A\+R\+T\+D\+\_\+\+E\+R\+R\+O\+R\+\_\+\+L\+O\+CK is the driver is in use, or U\+S\+A\+R\+T\+D\+\_\+\+E\+R\+R\+OR if the command is not valid. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{usart__dma_8h_a898156572b03a6af7edcb27940d79148}\label{usart__dma_8h_a898156572b03a6af7edcb27940d79148}} 
+\index{usart\_dma.h@{usart\_dma.h}!USARTD\_SendData@{USARTD\_SendData}}
+\index{USARTD\_SendData@{USARTD\_SendData}!usart\_dma.h@{usart\_dma.h}}
+\subsubsection{\texorpdfstring{USARTD\_SendData()}{USARTD\_SendData()}}
+{\footnotesize\ttfamily uint32\+\_\+t U\+S\+A\+R\+T\+D\+\_\+\+Send\+Data (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structUsartDma}{Usart\+Dma}} $\ast$}]{p\+Usartd }\end{DoxyParamCaption})}
+
+
+
+Starts a U\+S\+A\+RT master transfer. This is a non blocking function. It will return as soon as the transfer is started. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+U\+S\+A\+R\+TD} & Pointer to a U\+S\+A\+R\+T\+Dma instance. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if the transfer has been started successfully; otherwise returns U\+S\+A\+R\+T\+D\+\_\+\+E\+R\+R\+O\+R\+\_\+\+L\+O\+CK is the driver is in use, or U\+S\+A\+R\+T\+D\+\_\+\+E\+R\+R\+OR if the command is not valid. 
+\end{DoxyReturn}

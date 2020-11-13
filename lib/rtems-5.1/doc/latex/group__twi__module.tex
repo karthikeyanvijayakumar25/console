@@ -1,0 +1,20 @@
+\hypertarget{group__twi__module}{}\section{Working with T\+WI}
+\label{group__twi__module}\index{Working with TWI@{Working with TWI}}
+The T\+WI driver provides the interface to configure and use the T\+WI peripheral.\hypertarget{group__RTEMSBSPsARM_Usage}{}\subsection{Usage}\label{group__RTEMSBSPsARM_Usage}
+
+\begin{DoxyItemize}
+\item Configures a T\+WI peripheral to operate in master mode, at the given frequency (in Hz) using T\+W\+I\+\_\+\+Configure().  
+\item Sends a S\+T\+OP condition on the T\+WI using \mbox{\hyperlink{arm_2atsam_2contrib_2libraries_2libchip_2source_2twi_8c_ab6f6a89c7dbb1075f904386273252977}{T\+W\+I\+\_\+\+Stop()}}. 
+\item Starts a read operation on the T\+WI bus with the specified slave using \mbox{\hyperlink{arm_2atsam_2contrib_2libraries_2libchip_2source_2twi_8c_a806d1ace472ce5f4e2fe2de6f5a425ff}{T\+W\+I\+\_\+\+Start\+Read()}}. Data must then be read using \mbox{\hyperlink{arm_2atsam_2contrib_2libraries_2libchip_2source_2twi_8c_a8b4e96e6ce1126921517147b048fde51}{T\+W\+I\+\_\+\+Read\+Byte()}} whenever a byte is available (poll using \mbox{\hyperlink{arm_2atsam_2contrib_2libraries_2libchip_2source_2twi_8c_a2bb399b4984df2fdaabf741326636de2}{T\+W\+I\+\_\+\+Byte\+Received()}}). 
+\item Starts a write operation on the T\+WI to access the selected slave using \mbox{\hyperlink{arm_2atsam_2contrib_2libraries_2libchip_2source_2twi_8c_a933fafb0a0d430f7feb10d01138b0466}{T\+W\+I\+\_\+\+Start\+Write()}}. A byte of data must be provided to start the write; other bytes are written next. 
+\item Sends a byte of data to one of the T\+WI slaves on the bus using \mbox{\hyperlink{arm_2atsam_2contrib_2libraries_2libchip_2source_2twi_8c_ad728b448499f0b4d4633dfe0cc4a5ee7}{T\+W\+I\+\_\+\+Write\+Byte()}}. This function must be called once before \mbox{\hyperlink{arm_2atsam_2contrib_2libraries_2libchip_2source_2twi_8c_a933fafb0a0d430f7feb10d01138b0466}{T\+W\+I\+\_\+\+Start\+Write()}} with the first byte of data to send, then it shall be called repeatedly after that to send the remaining bytes. 
+\item Check if a byte has been received and can be read on the given T\+WI peripheral using \mbox{\hyperlink{arm_2atsam_2contrib_2libraries_2libchip_2source_2twi_8c_a2bb399b4984df2fdaabf741326636de2}{T\+W\+I\+\_\+\+Byte\+Received()}}.$<$ Check if a byte has been sent using \mbox{\hyperlink{arm_2atsam_2contrib_2libraries_2libchip_2source_2twi_8c_a908535df2873ebeaa63f6fda73ea6708}{T\+W\+I\+\_\+\+Byte\+Sent()}}. 
+\item Check if the current transmission is complete (the S\+T\+OP has been sent) using \mbox{\hyperlink{arm_2atsam_2contrib_2libraries_2libchip_2source_2twi_8c_a8d8a0d10a7d128428c350f7337191fbd}{T\+W\+I\+\_\+\+Transfer\+Complete()}}. 
+\item Enables \& disable the selected interrupts sources on a T\+WI peripheral using \mbox{\hyperlink{arm_2atsam_2contrib_2libraries_2libchip_2source_2twi_8c_ab3bf1b5df694229af5fae34ca569ab7b}{T\+W\+I\+\_\+\+Enable\+It()}} and \mbox{\hyperlink{arm_2atsam_2contrib_2libraries_2libchip_2source_2twi_8c_ac976e61b9b9d4488753f960d3df80c63}{T\+W\+I\+\_\+\+Disable\+It()}}. 
+\item Get current status register of the given T\+WI peripheral using \mbox{\hyperlink{arm_2atsam_2contrib_2libraries_2libchip_2source_2twi_8c_a316b5d5ffbfa49a8d6517a061b92a4a6}{T\+W\+I\+\_\+\+Get\+Status()}}. Get current status register of the given T\+WI peripheral, but masking interrupt sources which are not currently enabled using \mbox{\hyperlink{arm_2atsam_2contrib_2libraries_2libchip_2source_2twi_8c_aee8c3520f24c54aedbad6cee6ab2eeaa}{T\+W\+I\+\_\+\+Get\+Masked\+Status()}}. 
+\end{DoxyItemize}For more accurate information, please look at the T\+WI section of the Datasheet.
+
+Related files \+:~\newline
+twi.\+c~\newline
+ twi.\+h.~\newline
+ 

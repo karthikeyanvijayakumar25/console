@@ -1,0 +1,222 @@
+\hypertarget{group__RTEMSFDisk}{}\section{Flash Disk Device}
+\label{group__RTEMSFDisk}\index{Flash Disk Device@{Flash Disk Device}}
+\subsection*{Files}
+\begin{DoxyCompactItemize}
+\item 
+file \mbox{\hyperlink{flashdisk_8h}{flashdisk.\+h}}
+\begin{DoxyCompactList}\small\item\em Interface to a Flash Disk Block Device. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structrtems__fdisk__monitor__data}{rtems\+\_\+fdisk\+\_\+monitor\+\_\+data}}
+\begin{DoxyCompactList}\small\item\em Flash Disk Monitoring Data allows a user to obtain the current status of the disk. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structrtems__fdisk__segment__desc}{rtems\+\_\+fdisk\+\_\+segment\+\_\+desc}}
+\begin{DoxyCompactList}\small\item\em Flash Segment Descriptor holds, number of continuous segments in the device of this type, the base segment number in the device, the address offset of the base segment in the device, and the size of segment. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structrtems__fdisk__driver__handlers}{rtems\+\_\+fdisk\+\_\+driver\+\_\+handlers}}
+\begin{DoxyCompactList}\small\item\em Flash Low Level driver handlers. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structrtems__fdisk__device__desc}{rtems\+\_\+fdisk\+\_\+device\+\_\+desc}}
+\begin{DoxyCompactList}\small\item\em Flash Device Descriptor holds the segments in a device. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structrtems__flashdisk__config}{rtems\+\_\+flashdisk\+\_\+config}}
+\begin{DoxyCompactList}\small\item\em R\+T\+E\+MS Flash Disk configuration table used to initialise the driver. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{group__RTEMSFDisk_gaae3e325729c8176e749bb3cee3f253b7}\label{group__RTEMSFDisk_gaae3e325729c8176e749bb3cee3f253b7}} 
+\#define \mbox{\hyperlink{group__RTEMSFDisk_gaae3e325729c8176e749bb3cee3f253b7}{R\+T\+E\+M\+S\+\_\+\+F\+L\+A\+S\+H\+D\+I\+S\+K\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+B\+A\+S\+E\+\_\+\+N\+A\+ME}}~\char`\"{}/dev/fdd\char`\"{}
+\begin{DoxyCompactList}\small\item\em The base name of the flash disks. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__RTEMSFDisk_gab70a76e49bc92d0459c36e251ac7995d}\label{group__RTEMSFDisk_gab70a76e49bc92d0459c36e251ac7995d}} 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+F\+D\+I\+S\+K\+\_\+\+I\+O\+C\+T\+L\+\_\+\+E\+R\+A\+S\+E\+\_\+\+D\+I\+SK}~\+\_\+\+IO(\textquotesingle{}B\textquotesingle{}, 128)
+\item 
+\mbox{\Hypertarget{group__RTEMSFDisk_gad44667818efd4cdd28a2c7f79d9db666}\label{group__RTEMSFDisk_gad44667818efd4cdd28a2c7f79d9db666}} 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+F\+D\+I\+S\+K\+\_\+\+I\+O\+C\+T\+L\+\_\+\+C\+O\+M\+P\+A\+CT}~\+\_\+\+IO(\textquotesingle{}B\textquotesingle{}, 129)
+\item 
+\mbox{\Hypertarget{group__RTEMSFDisk_ga480317177518e814f871a5e4eba798cf}\label{group__RTEMSFDisk_ga480317177518e814f871a5e4eba798cf}} 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+F\+D\+I\+S\+K\+\_\+\+I\+O\+C\+T\+L\+\_\+\+E\+R\+A\+S\+E\+\_\+\+U\+S\+ED}~\+\_\+\+IO(\textquotesingle{}B\textquotesingle{}, 130)
+\item 
+\mbox{\Hypertarget{group__RTEMSFDisk_ga95b6cf04a54c5435797366bede6588a0}\label{group__RTEMSFDisk_ga95b6cf04a54c5435797366bede6588a0}} 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+F\+D\+I\+S\+K\+\_\+\+I\+O\+C\+T\+L\+\_\+\+M\+O\+N\+I\+T\+O\+R\+I\+NG}~\+\_\+\+IO(\textquotesingle{}B\textquotesingle{}, 131)
+\item 
+\mbox{\Hypertarget{group__RTEMSFDisk_gaa45cdadec4be77c208d69008ad7f1c32}\label{group__RTEMSFDisk_gaa45cdadec4be77c208d69008ad7f1c32}} 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+F\+D\+I\+S\+K\+\_\+\+I\+O\+C\+T\+L\+\_\+\+I\+N\+F\+O\+\_\+\+L\+E\+V\+EL}~\+\_\+\+IO(\textquotesingle{}B\textquotesingle{}, 132)
+\item 
+\mbox{\Hypertarget{group__RTEMSFDisk_gab389f3a22fcfe84cb92842c328dcefcc}\label{group__RTEMSFDisk_gab389f3a22fcfe84cb92842c328dcefcc}} 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+F\+D\+I\+S\+K\+\_\+\+I\+O\+C\+T\+L\+\_\+\+P\+R\+I\+N\+T\+\_\+\+S\+T\+A\+T\+US}~\+\_\+\+IO(\textquotesingle{}B\textquotesingle{}, 133)
+\item 
+\mbox{\Hypertarget{group__RTEMSFDisk_ga907c65153df83bedad2668cbe3d8d120}\label{group__RTEMSFDisk_ga907c65153df83bedad2668cbe3d8d120}} 
+\#define \mbox{\hyperlink{group__RTEMSFDisk_ga907c65153df83bedad2668cbe3d8d120}{R\+T\+E\+M\+S\+\_\+\+F\+D\+I\+S\+K\+\_\+\+K\+B\+Y\+T\+ES}}(\+\_\+k)~(U\+I\+N\+T32\+\_\+C(1024) $\ast$ (\+\_\+k))
+\begin{DoxyCompactList}\small\item\em Return the number of kilo-\/bytes. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTEMSFDisk_ga73e85fdb0656e7ab09e8a63d48d8becf}{R\+T\+E\+M\+S\+\_\+\+F\+D\+I\+S\+K\+\_\+\+B\+A\+C\+K\+G\+R\+O\+U\+N\+D\+\_\+\+E\+R\+A\+SE}}~(1 $<$$<$ 0)
+\item 
+\#define \mbox{\hyperlink{group__RTEMSFDisk_ga6a5bec45cf7f7ada226478f09256bd1c}{R\+T\+E\+M\+S\+\_\+\+F\+D\+I\+S\+K\+\_\+\+B\+A\+C\+K\+G\+R\+O\+U\+N\+D\+\_\+\+C\+O\+M\+P\+A\+CT}}~(1 $<$$<$ 1)
+\item 
+\#define \mbox{\hyperlink{group__RTEMSFDisk_ga4d81d60c676b7ad742f0a51b193c15b8}{R\+T\+E\+M\+S\+\_\+\+F\+D\+I\+S\+K\+\_\+\+C\+H\+E\+C\+K\+\_\+\+P\+A\+G\+ES}}~(1 $<$$<$ 2)
+\item 
+\#define \mbox{\hyperlink{group__RTEMSFDisk_ga47c3c0239203378502183004b56be45e}{R\+T\+E\+M\+S\+\_\+\+F\+D\+I\+S\+K\+\_\+\+B\+L\+A\+N\+K\+\_\+\+C\+H\+E\+C\+K\+\_\+\+B\+E\+F\+O\+R\+E\+\_\+\+W\+R\+I\+TE}}~(1 $<$$<$ 3)
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{group__RTEMSFDisk_ga3cbff7dffdac7250af3b513a24601f91}\label{group__RTEMSFDisk_ga3cbff7dffdac7250af3b513a24601f91}} 
+typedef struct \mbox{\hyperlink{structrtems__fdisk__monitor__data}{rtems\+\_\+fdisk\+\_\+monitor\+\_\+data}} \mbox{\hyperlink{group__RTEMSFDisk_ga3cbff7dffdac7250af3b513a24601f91}{rtems\+\_\+fdisk\+\_\+monitor\+\_\+data}}
+\begin{DoxyCompactList}\small\item\em Flash Disk Monitoring Data allows a user to obtain the current status of the disk. \end{DoxyCompactList}\item 
+typedef struct \mbox{\hyperlink{structrtems__fdisk__segment__desc}{rtems\+\_\+fdisk\+\_\+segment\+\_\+desc}} \mbox{\hyperlink{group__RTEMSFDisk_ga0af0a297f5876583c22f099ac54688c7}{rtems\+\_\+fdisk\+\_\+segment\+\_\+desc}}
+\begin{DoxyCompactList}\small\item\em Flash Segment Descriptor holds, number of continuous segments in the device of this type, the base segment number in the device, the address offset of the base segment in the device, and the size of segment. \end{DoxyCompactList}\item 
+typedef struct \mbox{\hyperlink{structrtems__fdisk__driver__handlers}{rtems\+\_\+fdisk\+\_\+driver\+\_\+handlers}} \mbox{\hyperlink{group__RTEMSFDisk_ga3e36a0fb2b70165104f1d988f33cd029}{rtems\+\_\+fdisk\+\_\+driver\+\_\+handlers}}
+\begin{DoxyCompactList}\small\item\em Flash Low Level driver handlers. \end{DoxyCompactList}\item 
+typedef struct \mbox{\hyperlink{structrtems__fdisk__device__desc}{rtems\+\_\+fdisk\+\_\+device\+\_\+desc}} \mbox{\hyperlink{group__RTEMSFDisk_ga4e1cf210089a66216e739c7ccd3ea84e}{rtems\+\_\+fdisk\+\_\+device\+\_\+desc}}
+\begin{DoxyCompactList}\small\item\em Flash Device Descriptor holds the segments in a device. \end{DoxyCompactList}\item 
+typedef struct \mbox{\hyperlink{structrtems__flashdisk__config}{rtems\+\_\+flashdisk\+\_\+config}} \mbox{\hyperlink{group__RTEMSFDisk_ga8d4fff797358538766b3bb13be596811}{rtems\+\_\+flashdisk\+\_\+config}}
+\begin{DoxyCompactList}\small\item\em R\+T\+E\+MS Flash Disk configuration table used to initialise the driver. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+device\+\_\+driver}} \mbox{\hyperlink{group__RTEMSFDisk_ga38fc68a069082118de0f8b389fcd004b}{rtems\+\_\+fdisk\+\_\+initialize}} (rtems\+\_\+device\+\_\+major\+\_\+number major, rtems\+\_\+device\+\_\+minor\+\_\+number minor, void $\ast$arg)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{group__RTEMSFDisk_ga68b00046a3d3c3b702ae52bcb3286651}\label{group__RTEMSFDisk_ga68b00046a3d3c3b702ae52bcb3286651}} 
+const \mbox{\hyperlink{structrtems__flashdisk__config}{rtems\+\_\+flashdisk\+\_\+config}} \mbox{\hyperlink{group__RTEMSFDisk_ga68b00046a3d3c3b702ae52bcb3286651}{rtems\+\_\+flashdisk\+\_\+configuration}} \mbox{[}$\,$\mbox{]}
+\begin{DoxyCompactList}\small\item\em External reference to the configuration. Please supply. Support is present in \mbox{\hyperlink{confdefs_8h}{confdefs.\+h}} for providing this variable. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__RTEMSFDisk_ga6bc9f00bbbd031f76f3024fc91a4d0b0}\label{group__RTEMSFDisk_ga6bc9f00bbbd031f76f3024fc91a4d0b0}} 
+uint32\+\_\+t \mbox{\hyperlink{group__RTEMSFDisk_ga6bc9f00bbbd031f76f3024fc91a4d0b0}{rtems\+\_\+flashdisk\+\_\+configuration\+\_\+size}}
+\begin{DoxyCompactList}\small\item\em External reference to the number of configurations. Please supply. Support is present in \mbox{\hyperlink{confdefs_8h}{confdefs.\+h}} for providing this variable. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Flash disk driver for R\+T\+E\+MS provides support for block based file systems on flash devices. The driver is not a flash file system nor does it try to compete with flash file systems. It currently does not journal how-\/ever block sequence numbering could be added to allow recovery of a past positions if a power down occurred while being updated.
+
+This flash driver provides block device support for most flash devices. The driver has been tested on N\+OR type devices such as the A\+M\+L\+V160 or M28\+W160. Support for N\+A\+ND type devices may require driver changes to allow speedy recover of the block mapping data and to also handle the current use of word programming. Currently the page descriptors are stored in the first few pages of each segment.
+
+The driver supports devices, segments and pages. You provide to the driver the device descriptions as a table of device descriptors. Each device descriptor contain a table of segment descriptions or segment descriptors. The driver uses this information to manage the devices.
+
+A device is made up of segments. These are also called sectors or blocks. It is the smallest erasable part of a device. A device can have differing size segments at different offsets in the device. The segment descriptors support repeating segments that are continuous in the device. The driver breaks the segments up into pages. The first pages of a segment contain the page descriptors. A page descriptor hold the page flags, a C\+RC for the page of data and the block number the page holds. The block can appear in any order in the devices. A page is active if it hold a current block of data. If the used bit is set the page is counted as used. A page moves from erased to active to used then back to erased. If a block is written that is already in a page, the block is written to a new page the old page is flagged as used.
+
+At initialization time each segment\textquotesingle{}s page descriptors are read into memory and scanned to determine the active pages, the used pages and the bad pages. If a segment has any erased pages it is queue on the available queue. If the segment has no erased pages it is queue on the used queue.
+
+The available queue is sorted from the least number available to the most number of available pages. A segment that has just been erased will placed at the end of the queue. A segment that has only a few available pages will be used sooner and once there are no available pages it is queued on the used queue. The used queue hold segments that have no available pages and is sorted from the least number of active pages to the most number of active pages.
+
+The driver is required to compact segments. Compacting takes the segment with the most number of available pages from the available queue then takes segments with the least number of active pages from the used queue until it has enough pages to fill the empty segment. As the active pages are moved they flagged as used and once the segment has only used pages it is erased.
+
+A flash block driver like this never knows if a page is not being used by the file-\/system. A typical file system is not design with the idea of erasing a block on a disk once it is not being used. The file-\/system will normally use a flag or a location as a marker to say that part of the disk is no longer in use. This means a number of blocks could be held in active pages but are no in use by the file system. The file system may also read blocks that have never been written to disk. This complicates the driver and may make the wear, usage and erase patterns harsher than a flash file system. The driver may also suffer from problems if power is lost.
+
+There are some flash disk specific \mbox{\hyperlink{structIO}{IO}} control request types. To use open the device and issue the ioctl() call.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{int} fd = \mbox{\hyperlink{open_8c_a62e93eb794fed24c0f46c6acda6ea510}{open}} (\textcolor{stringliteral}{"/dev/flashdisk0"}, O\_WRONLY, 0);}
+\DoxyCodeLine{\textcolor{keywordflow}{if} (fd < 0)}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{  printf (\textcolor{stringliteral}{"driver open failed: \%s\(\backslash\)n"}, strerror (errno));}
+\DoxyCodeLine{  exit (1);}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{\textcolor{keywordflow}{if} (ioctl (fd, RTEMS\_FDISK\_IOCTL\_ERASE\_DISK) < 0)}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{  printf (\textcolor{stringliteral}{"driver erase failed: \%s\(\backslash\)n"}, strerror (errno));}
+\DoxyCodeLine{  exit (1);}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{close (fd);}
+\end{DoxyCode}
+ 
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{group__RTEMSFDisk_ga6a5bec45cf7f7ada226478f09256bd1c}\label{group__RTEMSFDisk_ga6a5bec45cf7f7ada226478f09256bd1c}} 
+\index{Flash Disk Device@{Flash Disk Device}!RTEMS\_FDISK\_BACKGROUND\_COMPACT@{RTEMS\_FDISK\_BACKGROUND\_COMPACT}}
+\index{RTEMS\_FDISK\_BACKGROUND\_COMPACT@{RTEMS\_FDISK\_BACKGROUND\_COMPACT}!Flash Disk Device@{Flash Disk Device}}
+\subsubsection{\texorpdfstring{RTEMS\_FDISK\_BACKGROUND\_COMPACT}{RTEMS\_FDISK\_BACKGROUND\_COMPACT}}
+{\footnotesize\ttfamily \#define R\+T\+E\+M\+S\+\_\+\+F\+D\+I\+S\+K\+\_\+\+B\+A\+C\+K\+G\+R\+O\+U\+N\+D\+\_\+\+C\+O\+M\+P\+A\+CT~(1 $<$$<$ 1)}
+
+Leave the compacting of of used segment to the background handler. \mbox{\Hypertarget{group__RTEMSFDisk_ga73e85fdb0656e7ab09e8a63d48d8becf}\label{group__RTEMSFDisk_ga73e85fdb0656e7ab09e8a63d48d8becf}} 
+\index{Flash Disk Device@{Flash Disk Device}!RTEMS\_FDISK\_BACKGROUND\_ERASE@{RTEMS\_FDISK\_BACKGROUND\_ERASE}}
+\index{RTEMS\_FDISK\_BACKGROUND\_ERASE@{RTEMS\_FDISK\_BACKGROUND\_ERASE}!Flash Disk Device@{Flash Disk Device}}
+\subsubsection{\texorpdfstring{RTEMS\_FDISK\_BACKGROUND\_ERASE}{RTEMS\_FDISK\_BACKGROUND\_ERASE}}
+{\footnotesize\ttfamily \#define R\+T\+E\+M\+S\+\_\+\+F\+D\+I\+S\+K\+\_\+\+B\+A\+C\+K\+G\+R\+O\+U\+N\+D\+\_\+\+E\+R\+A\+SE~(1 $<$$<$ 0)}
+
+Leave the erasing of used segment to the background handler. \mbox{\Hypertarget{group__RTEMSFDisk_ga47c3c0239203378502183004b56be45e}\label{group__RTEMSFDisk_ga47c3c0239203378502183004b56be45e}} 
+\index{Flash Disk Device@{Flash Disk Device}!RTEMS\_FDISK\_BLANK\_CHECK\_BEFORE\_WRITE@{RTEMS\_FDISK\_BLANK\_CHECK\_BEFORE\_WRITE}}
+\index{RTEMS\_FDISK\_BLANK\_CHECK\_BEFORE\_WRITE@{RTEMS\_FDISK\_BLANK\_CHECK\_BEFORE\_WRITE}!Flash Disk Device@{Flash Disk Device}}
+\subsubsection{\texorpdfstring{RTEMS\_FDISK\_BLANK\_CHECK\_BEFORE\_WRITE}{RTEMS\_FDISK\_BLANK\_CHECK\_BEFORE\_WRITE}}
+{\footnotesize\ttfamily \#define R\+T\+E\+M\+S\+\_\+\+F\+D\+I\+S\+K\+\_\+\+B\+L\+A\+N\+K\+\_\+\+C\+H\+E\+C\+K\+\_\+\+B\+E\+F\+O\+R\+E\+\_\+\+W\+R\+I\+TE~(1 $<$$<$ 3)}
+
+Blank check the flash device before writing to them. This is needed if you think you have a driver or device problem. \mbox{\Hypertarget{group__RTEMSFDisk_ga4d81d60c676b7ad742f0a51b193c15b8}\label{group__RTEMSFDisk_ga4d81d60c676b7ad742f0a51b193c15b8}} 
+\index{Flash Disk Device@{Flash Disk Device}!RTEMS\_FDISK\_CHECK\_PAGES@{RTEMS\_FDISK\_CHECK\_PAGES}}
+\index{RTEMS\_FDISK\_CHECK\_PAGES@{RTEMS\_FDISK\_CHECK\_PAGES}!Flash Disk Device@{Flash Disk Device}}
+\subsubsection{\texorpdfstring{RTEMS\_FDISK\_CHECK\_PAGES}{RTEMS\_FDISK\_CHECK\_PAGES}}
+{\footnotesize\ttfamily \#define R\+T\+E\+M\+S\+\_\+\+F\+D\+I\+S\+K\+\_\+\+C\+H\+E\+C\+K\+\_\+\+P\+A\+G\+ES~(1 $<$$<$ 2)}
+
+Check the pages during initialisation to see which pages are valid and which are not. This could slow down initialising the disk driver. 
+
+\subsection{Typedef Documentation}
+\mbox{\Hypertarget{group__RTEMSFDisk_ga4e1cf210089a66216e739c7ccd3ea84e}\label{group__RTEMSFDisk_ga4e1cf210089a66216e739c7ccd3ea84e}} 
+\index{Flash Disk Device@{Flash Disk Device}!rtems\_fdisk\_device\_desc@{rtems\_fdisk\_device\_desc}}
+\index{rtems\_fdisk\_device\_desc@{rtems\_fdisk\_device\_desc}!Flash Disk Device@{Flash Disk Device}}
+\subsubsection{\texorpdfstring{rtems\_fdisk\_device\_desc}{rtems\_fdisk\_device\_desc}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structrtems__fdisk__device__desc}{rtems\+\_\+fdisk\+\_\+device\+\_\+desc}}  \mbox{\hyperlink{structrtems__fdisk__device__desc}{rtems\+\_\+fdisk\+\_\+device\+\_\+desc}}}
+
+
+
+Flash Device Descriptor holds the segments in a device. 
+
+The placing of the segments in a device decriptor allows the low level driver to share the segment descriptors for a number of devices.
+
+Typically this structure is part of a table of segments in the device which is referenced in the flash disk configuration table. The reference is kept in the driver and used all the time to manage the flash device, therefore it must always exist. \mbox{\Hypertarget{group__RTEMSFDisk_ga3e36a0fb2b70165104f1d988f33cd029}\label{group__RTEMSFDisk_ga3e36a0fb2b70165104f1d988f33cd029}} 
+\index{Flash Disk Device@{Flash Disk Device}!rtems\_fdisk\_driver\_handlers@{rtems\_fdisk\_driver\_handlers}}
+\index{rtems\_fdisk\_driver\_handlers@{rtems\_fdisk\_driver\_handlers}!Flash Disk Device@{Flash Disk Device}}
+\subsubsection{\texorpdfstring{rtems\_fdisk\_driver\_handlers}{rtems\_fdisk\_driver\_handlers}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structrtems__fdisk__driver__handlers}{rtems\+\_\+fdisk\+\_\+driver\+\_\+handlers}}  \mbox{\hyperlink{structrtems__fdisk__driver__handlers}{rtems\+\_\+fdisk\+\_\+driver\+\_\+handlers}}}
+
+
+
+Flash Low Level driver handlers. 
+
+Typically this structure is part of a table of handlers in the device which is referenced in the flash disk configuration table. The reference is kept in the driver and used all the time to manage the flash device, therefore it must always exist. \mbox{\Hypertarget{group__RTEMSFDisk_ga0af0a297f5876583c22f099ac54688c7}\label{group__RTEMSFDisk_ga0af0a297f5876583c22f099ac54688c7}} 
+\index{Flash Disk Device@{Flash Disk Device}!rtems\_fdisk\_segment\_desc@{rtems\_fdisk\_segment\_desc}}
+\index{rtems\_fdisk\_segment\_desc@{rtems\_fdisk\_segment\_desc}!Flash Disk Device@{Flash Disk Device}}
+\subsubsection{\texorpdfstring{rtems\_fdisk\_segment\_desc}{rtems\_fdisk\_segment\_desc}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structrtems__fdisk__segment__desc}{rtems\+\_\+fdisk\+\_\+segment\+\_\+desc}}  \mbox{\hyperlink{structrtems__fdisk__segment__desc}{rtems\+\_\+fdisk\+\_\+segment\+\_\+desc}}}
+
+
+
+Flash Segment Descriptor holds, number of continuous segments in the device of this type, the base segment number in the device, the address offset of the base segment in the device, and the size of segment. 
+
+Typically this structure is part of a table of segments in the device which is referenced in the flash disk configuration table. The reference is kept in the driver and used all the time to manage the flash device, therefore it must always exist. \mbox{\Hypertarget{group__RTEMSFDisk_ga8d4fff797358538766b3bb13be596811}\label{group__RTEMSFDisk_ga8d4fff797358538766b3bb13be596811}} 
+\index{Flash Disk Device@{Flash Disk Device}!rtems\_flashdisk\_config@{rtems\_flashdisk\_config}}
+\index{rtems\_flashdisk\_config@{rtems\_flashdisk\_config}!Flash Disk Device@{Flash Disk Device}}
+\subsubsection{\texorpdfstring{rtems\_flashdisk\_config}{rtems\_flashdisk\_config}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structrtems__flashdisk__config}{rtems\+\_\+flashdisk\+\_\+config}}  \mbox{\hyperlink{structrtems__flashdisk__config}{rtems\+\_\+flashdisk\+\_\+config}}}
+
+
+
+R\+T\+E\+MS Flash Disk configuration table used to initialise the driver. 
+
+The unavailable blocks count is the number of blocks less than the available number of blocks the file system is given. This means there will always be that number of blocks available when the file system thinks the disk is full. The compaction code needs blocks to compact with so you will never be able to have all the blocks allocated to the file system and be able to full the disk.
+
+The compacting segment count is the number of segments that are moved into a new segment. A high number will mean more segments with low active page counts and high used page counts will be moved into avaliable pages how-\/ever this extends the compaction time due to time it takes the erase the pages. There is no pont making this number greater than the maximum number of pages in a segment.
+
+The available compacting segment count is the level when compaction occurs when writing. If you set this to 0 then compaction will fail because there will be no segments to compact into.
+
+The info level can be 0 for off with error, and abort messages allowed. Level 1 is warning messages, level 1 is informational messages, and level 3 is debugging type prints. The info level can be turned off with a compile time directive on the command line to the compiler of\+: \begin{DoxyVerb}-DRTEMS_FDISK_TRACE=0
+\end{DoxyVerb}
+ 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{group__RTEMSFDisk_ga38fc68a069082118de0f8b389fcd004b}\label{group__RTEMSFDisk_ga38fc68a069082118de0f8b389fcd004b}} 
+\index{Flash Disk Device@{Flash Disk Device}!rtems\_fdisk\_initialize@{rtems\_fdisk\_initialize}}
+\index{rtems\_fdisk\_initialize@{rtems\_fdisk\_initialize}!Flash Disk Device@{Flash Disk Device}}
+\subsubsection{\texorpdfstring{rtems\_fdisk\_initialize()}{rtems\_fdisk\_initialize()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+device\+\_\+driver}} rtems\+\_\+fdisk\+\_\+initialize (\begin{DoxyParamCaption}\item[{rtems\+\_\+device\+\_\+major\+\_\+number}]{major,  }\item[{rtems\+\_\+device\+\_\+minor\+\_\+number}]{minor,  }\item[{void $\ast$}]{arg }\end{DoxyParamCaption})}
+
+Flash disk device driver initialization. Place in a table as the initialisation entry and remainder of the entries are the R\+T\+E\+MS block device generic handlers.
+
+
+\begin{DoxyParams}{Parameters}
+{\em major} & Flash disk major device number. \\
+\hline
+{\em minor} & Minor device number, not applicable. \\
+\hline
+{\em arg} & Initialization argument, not applicable. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The rtems\+\_\+device\+\_\+driver is actually just rtems\+\_\+status\+\_\+code. 
+\end{DoxyReturn}

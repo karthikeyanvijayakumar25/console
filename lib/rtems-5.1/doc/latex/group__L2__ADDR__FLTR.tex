@@ -1,0 +1,77 @@
+\hypertarget{group__L2__ADDR__FLTR}{}\section{L2 Cache Address Filter}
+\label{group__L2__ADDR__FLTR}\index{L2 Cache Address Filter@{L2 Cache Address Filter}}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__L2__ADDR__FLTR_gac72535f2c4ed0dce395ef787a8ab47da}{alt\+\_\+l2\+\_\+addr\+\_\+filter\+\_\+cfg\+\_\+get}} (uint32\+\_\+t $\ast$addr\+\_\+filt\+\_\+start, uint32\+\_\+t $\ast$addr\+\_\+filt\+\_\+end)
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__L2__ADDR__FLTR_gab10c756a2e9990462a127066c015610c}{alt\+\_\+l2\+\_\+addr\+\_\+filter\+\_\+cfg\+\_\+set}} (uint32\+\_\+t addr\+\_\+filt\+\_\+start, uint32\+\_\+t addr\+\_\+filt\+\_\+end)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+The L2 cache address filter controls where physical addresses within certain ranges of the M\+PU address space are directed.
+
+The L2 cache has master port connections to the L3 interconnect and the S\+D\+R\+AM controller. A programmable address filter controls which portions of the 32-\/bit physical address space use each master.
+
+When l2 address filtering is configured and enabled, a physical address will be redirected to one master or the other based upon the address filter configuration.
+
+If {\bfseries{address\+\_\+filter\+\_\+start}} $<$= {\itshape physical\+\_\+address} $<$ {\bfseries{address\+\_\+filter\+\_\+end\+:}} 
+\begin{DoxyItemize}
+\item then redirect {\itshape physical\+\_\+address} to A\+XI Master Port M1 (S\+D\+R\+AM controller)
+\item else redirect {\itshape physical\+\_\+address} to A\+XI Master Port M0 (L3 interconnect)
+\end{DoxyItemize}
+
+See\+: {\itshape A\+RM D\+DI 0246F, Core\+Link Level 2 Cache Controller L2\+C-\/310 Technical Reference Manual, Section 3.\+3.\+12 Address Filtering } for more information. 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{group__L2__ADDR__FLTR_gac72535f2c4ed0dce395ef787a8ab47da}\label{group__L2__ADDR__FLTR_gac72535f2c4ed0dce395ef787a8ab47da}} 
+\index{L2 Cache Address Filter@{L2 Cache Address Filter}!alt\_l2\_addr\_filter\_cfg\_get@{alt\_l2\_addr\_filter\_cfg\_get}}
+\index{alt\_l2\_addr\_filter\_cfg\_get@{alt\_l2\_addr\_filter\_cfg\_get}!L2 Cache Address Filter@{L2 Cache Address Filter}}
+\subsubsection{\texorpdfstring{alt\_l2\_addr\_filter\_cfg\_get()}{alt\_l2\_addr\_filter\_cfg\_get()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} alt\+\_\+l2\+\_\+addr\+\_\+filter\+\_\+cfg\+\_\+get (\begin{DoxyParamCaption}\item[{uint32\+\_\+t $\ast$}]{addr\+\_\+filt\+\_\+start,  }\item[{uint32\+\_\+t $\ast$}]{addr\+\_\+filt\+\_\+end }\end{DoxyParamCaption})}
+
+Get the L2 cache address filtering configuration settings.
+
+
+\begin{DoxyParams}{Parameters}
+{\em addr\+\_\+filt\+\_\+start} & \mbox{[}out\mbox{]} An output parameter variable for the address filtering start address for the range of physical addresses redirected to the S\+D\+R\+AM A\+XI master port. The value returned is always a 1 MiB aligned address.\\
+\hline
+{\em addr\+\_\+filt\+\_\+end} & \mbox{[}out\mbox{]} An output parameter variable for the address filtering end address for the range of physical addresses redirected to the S\+D\+R\+AM A\+XI master port. The value returned is always a 1 MiB aligned address.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em A\+L\+T\+\_\+\+E\+\_\+\+S\+U\+C\+C\+E\+SS} & The operation was successful. \\
+\hline
+{\em A\+L\+T\+\_\+\+E\+\_\+\+E\+R\+R\+OR} & The operation failed. \\
+\hline
+{\em A\+L\+T\+\_\+\+E\+\_\+\+B\+A\+D\+\_\+\+A\+RG} & An bad argument was passed. Either {\itshape addr\+\_\+filt\+\_\+start} or {\itshape addr\+\_\+filt\+\_\+end} or both are invalid addresses. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{group__L2__ADDR__FLTR_gab10c756a2e9990462a127066c015610c}\label{group__L2__ADDR__FLTR_gab10c756a2e9990462a127066c015610c}} 
+\index{L2 Cache Address Filter@{L2 Cache Address Filter}!alt\_l2\_addr\_filter\_cfg\_set@{alt\_l2\_addr\_filter\_cfg\_set}}
+\index{alt\_l2\_addr\_filter\_cfg\_set@{alt\_l2\_addr\_filter\_cfg\_set}!L2 Cache Address Filter@{L2 Cache Address Filter}}
+\subsubsection{\texorpdfstring{alt\_l2\_addr\_filter\_cfg\_set()}{alt\_l2\_addr\_filter\_cfg\_set()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} alt\+\_\+l2\+\_\+addr\+\_\+filter\+\_\+cfg\+\_\+set (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{addr\+\_\+filt\+\_\+start,  }\item[{uint32\+\_\+t}]{addr\+\_\+filt\+\_\+end }\end{DoxyParamCaption})}
+
+Set the L2 cache address filtering configuration settings.
+
+Address filtering start and end values must be 1 MiB aligned.
+
+
+\begin{DoxyParams}{Parameters}
+{\em addr\+\_\+filt\+\_\+start} & The address filtering start address for the range of physical addresses redirected to the S\+D\+R\+AM A\+XI master port. Only bits \mbox{[}31\+:20\mbox{]} of the address are valid. Any bits outside the range \mbox{[}31\+:20\mbox{]} are invalid and will cause an error status to be returned.\\
+\hline
+{\em addr\+\_\+filt\+\_\+end} & The address filtering end address for the range of physical addresses redirected to the S\+D\+R\+AM A\+XI master port. Only bits \mbox{[}31\+:20\mbox{]} of the address are valid. Any bits outside the range \mbox{[}31\+:20\mbox{]} are invalid and will cause an error status to be returned.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em A\+L\+T\+\_\+\+E\+\_\+\+S\+U\+C\+C\+E\+SS} & The operation was succesful. \\
+\hline
+{\em A\+L\+T\+\_\+\+E\+\_\+\+E\+R\+R\+OR} & The operation failed. \\
+\hline
+{\em A\+L\+T\+\_\+\+E\+\_\+\+A\+R\+G\+\_\+\+R\+A\+N\+GE} & An argument violates a range constraint. One or more address arguments do not satisfy the argument constraints. \\
+\hline
+\end{DoxyRetVals}

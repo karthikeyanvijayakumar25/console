@@ -1,0 +1,517 @@
+\hypertarget{group__RTEMSScoreMutex}{}\section{Mutex Handler}
+\label{group__RTEMSScoreMutex}\index{Mutex Handler@{Mutex Handler}}
+
+
+Mutex Handler.  
+
+
+\subsection*{Files}
+\begin{DoxyCompactItemize}
+\item 
+file \mbox{\hyperlink{coremutex_8h}{coremutex.\+h}}
+\begin{DoxyCompactList}\small\item\em C\+O\+RE Mutex A\+PI. \end{DoxyCompactList}\item 
+file \mbox{\hyperlink{coremuteximpl_8h}{coremuteximpl.\+h}}
+\begin{DoxyCompactList}\small\item\em C\+O\+RE Mutex Implementation. \end{DoxyCompactList}\item 
+file \mbox{\hyperlink{coremutexseize_8c}{coremutexseize.\+c}}
+\begin{DoxyCompactList}\small\item\em Seize Mutex with Blocking. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structCORE__mutex__Control}{C\+O\+R\+E\+\_\+mutex\+\_\+\+Control}}
+\begin{DoxyCompactList}\small\item\em Control block used to manage each mutex. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structCORE__recursive__mutex__Control}{C\+O\+R\+E\+\_\+recursive\+\_\+mutex\+\_\+\+Control}}
+\begin{DoxyCompactList}\small\item\em The recursive mutex control. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structCORE__ceiling__mutex__Control}{C\+O\+R\+E\+\_\+ceiling\+\_\+mutex\+\_\+\+Control}}
+\begin{DoxyCompactList}\small\item\em The recursive mutex control with priority ceiling protocol support. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{group__RTEMSScoreMutex_ga996ff26ad1e938f70e6255b6e1688958}\label{group__RTEMSScoreMutex_ga996ff26ad1e938f70e6255b6e1688958}} 
+\#define {\bfseries C\+O\+R\+E\+\_\+\+M\+U\+T\+E\+X\+\_\+\+T\+Q\+\_\+\+O\+P\+E\+R\+A\+T\+I\+O\+NS}~\&\+\_\+\+Thread\+\_\+queue\+\_\+\+Operations\+\_\+priority
+\item 
+\mbox{\Hypertarget{group__RTEMSScoreMutex_gabab3a68a08cbcbe569f91ec7de3e14bc}\label{group__RTEMSScoreMutex_gabab3a68a08cbcbe569f91ec7de3e14bc}} 
+\#define {\bfseries C\+O\+R\+E\+\_\+\+M\+U\+T\+E\+X\+\_\+\+T\+Q\+\_\+\+P\+R\+I\+O\+R\+I\+T\+Y\+\_\+\+I\+N\+H\+E\+R\+I\+T\+\_\+\+O\+P\+E\+R\+A\+T\+I\+O\+NS}~\&\+\_\+\+Thread\+\_\+queue\+\_\+\+Operations\+\_\+priority\+\_\+inherit
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \mbox{\hyperlink{group__RTEMSScoreMutex_ga8bc3af4c8e28f7e9090ca1571a0aead6}{\+\_\+\+C\+O\+R\+E\+\_\+mutex\+\_\+\+Initialize}} (\mbox{\hyperlink{structCORE__mutex__Control}{C\+O\+R\+E\+\_\+mutex\+\_\+\+Control}} $\ast$the\+\_\+mutex)
+\begin{DoxyCompactList}\small\item\em Initializes the mutex. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \mbox{\hyperlink{group__RTEMSScoreMutex_ga09492f67618d359ba936a14bbd29b98d}{\+\_\+\+C\+O\+R\+E\+\_\+mutex\+\_\+\+Destroy}} (\mbox{\hyperlink{structCORE__mutex__Control}{C\+O\+R\+E\+\_\+mutex\+\_\+\+Control}} $\ast$the\+\_\+mutex)
+\begin{DoxyCompactList}\small\item\em Destroys the mutex. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \mbox{\hyperlink{group__RTEMSScoreMutex_ga7efc39f335c242812ebe84999e526db4}{\+\_\+\+C\+O\+R\+E\+\_\+mutex\+\_\+\+Acquire\+\_\+critical}} (\mbox{\hyperlink{structCORE__mutex__Control}{C\+O\+R\+E\+\_\+mutex\+\_\+\+Control}} $\ast$the\+\_\+mutex, \mbox{\hyperlink{structThread__queue__Context}{Thread\+\_\+queue\+\_\+\+Context}} $\ast$queue\+\_\+context)
+\begin{DoxyCompactList}\small\item\em Acquires the mutex critical. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \mbox{\hyperlink{group__RTEMSScoreMutex_ga0bb76a8a25cab71b0fdaa1f7b215f809}{\+\_\+\+C\+O\+R\+E\+\_\+mutex\+\_\+\+Release}} (\mbox{\hyperlink{structCORE__mutex__Control}{C\+O\+R\+E\+\_\+mutex\+\_\+\+Control}} $\ast$the\+\_\+mutex, \mbox{\hyperlink{structThread__queue__Context}{Thread\+\_\+queue\+\_\+\+Context}} $\ast$queue\+\_\+context)
+\begin{DoxyCompactList}\small\item\em Releases the mutex. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} \mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$ \mbox{\hyperlink{group__RTEMSScoreMutex_gac97696832bb6ad43d333541536040ec3}{\+\_\+\+C\+O\+R\+E\+\_\+mutex\+\_\+\+Get\+\_\+owner}} (const \mbox{\hyperlink{structCORE__mutex__Control}{C\+O\+R\+E\+\_\+mutex\+\_\+\+Control}} $\ast$the\+\_\+mutex)
+\begin{DoxyCompactList}\small\item\em Gets the owner of the mutex. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} bool \mbox{\hyperlink{group__RTEMSScoreMutex_ga1e56fcf89e62b1f78bd7453ad6ee95fc}{\+\_\+\+C\+O\+R\+E\+\_\+mutex\+\_\+\+Is\+\_\+locked}} (const \mbox{\hyperlink{structCORE__mutex__Control}{C\+O\+R\+E\+\_\+mutex\+\_\+\+Control}} $\ast$the\+\_\+mutex)
+\begin{DoxyCompactList}\small\item\em Checks if the mutex is locked. \end{DoxyCompactList}\item 
+Status\+\_\+\+Control \mbox{\hyperlink{group__RTEMSScoreMutex_ga89693ae813a53c8984a6e40c6c228322}{\+\_\+\+C\+O\+R\+E\+\_\+mutex\+\_\+\+Seize\+\_\+slow}} (\mbox{\hyperlink{structCORE__mutex__Control}{C\+O\+R\+E\+\_\+mutex\+\_\+\+Control}} $\ast$the\+\_\+mutex, const \mbox{\hyperlink{structThread__queue__Operations}{Thread\+\_\+queue\+\_\+\+Operations}} $\ast$operations, \mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$executing, bool wait, \mbox{\hyperlink{structThread__queue__Context}{Thread\+\_\+queue\+\_\+\+Context}} $\ast$queue\+\_\+context)
+\begin{DoxyCompactList}\small\item\em Seize the mutex slowly. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \mbox{\hyperlink{group__RTEMSScoreMutex_gaf6d95e3bb9f3ebb168fa67f3731740dc}{\+\_\+\+C\+O\+R\+E\+\_\+mutex\+\_\+\+Set\+\_\+owner}} (\mbox{\hyperlink{structCORE__mutex__Control}{C\+O\+R\+E\+\_\+mutex\+\_\+\+Control}} $\ast$the\+\_\+mutex, \mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$owner)
+\begin{DoxyCompactList}\small\item\em Sets the owner of the mutex. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} bool \mbox{\hyperlink{group__RTEMSScoreMutex_gabe046b730388df1b060c700dc17a142d}{\+\_\+\+C\+O\+R\+E\+\_\+mutex\+\_\+\+Is\+\_\+owner}} (const \mbox{\hyperlink{structCORE__mutex__Control}{C\+O\+R\+E\+\_\+mutex\+\_\+\+Control}} $\ast$the\+\_\+mutex, const \mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$the\+\_\+thread)
+\begin{DoxyCompactList}\small\item\em Checks if the the thread is the owner of the mutex. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \mbox{\hyperlink{group__RTEMSScoreMutex_ga479a63bb7147291650bd7d69c24dc3fd}{\+\_\+\+C\+O\+R\+E\+\_\+recursive\+\_\+mutex\+\_\+\+Initialize}} (\mbox{\hyperlink{structCORE__recursive__mutex__Control}{C\+O\+R\+E\+\_\+recursive\+\_\+mutex\+\_\+\+Control}} $\ast$the\+\_\+mutex)
+\begin{DoxyCompactList}\small\item\em Initializes a recursive mutex. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} Status\+\_\+\+Control \mbox{\hyperlink{group__RTEMSScoreMutex_ga683ddf1a8f11e05a5c97af56d1dfe856}{\+\_\+\+C\+O\+R\+E\+\_\+recursive\+\_\+mutex\+\_\+\+Seize\+\_\+nested}} (\mbox{\hyperlink{structCORE__recursive__mutex__Control}{C\+O\+R\+E\+\_\+recursive\+\_\+mutex\+\_\+\+Control}} $\ast$the\+\_\+mutex)
+\begin{DoxyCompactList}\small\item\em Seizes the recursive mutex nested. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} Status\+\_\+\+Control \mbox{\hyperlink{group__RTEMSScoreMutex_gaacb95bc0bdba9fb365d01dfe2623665d}{\+\_\+\+C\+O\+R\+E\+\_\+recursive\+\_\+mutex\+\_\+\+Seize}} (\mbox{\hyperlink{structCORE__recursive__mutex__Control}{C\+O\+R\+E\+\_\+recursive\+\_\+mutex\+\_\+\+Control}} $\ast$the\+\_\+mutex, const \mbox{\hyperlink{structThread__queue__Operations}{Thread\+\_\+queue\+\_\+\+Operations}} $\ast$operations, \mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$executing, bool wait, Status\+\_\+\+Control($\ast$nested)(\mbox{\hyperlink{structCORE__recursive__mutex__Control}{C\+O\+R\+E\+\_\+recursive\+\_\+mutex\+\_\+\+Control}} $\ast$), \mbox{\hyperlink{structThread__queue__Context}{Thread\+\_\+queue\+\_\+\+Context}} $\ast$queue\+\_\+context)
+\begin{DoxyCompactList}\small\item\em Seizes the recursive mutex. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} Status\+\_\+\+Control \mbox{\hyperlink{group__RTEMSScoreMutex_ga5096e2975fb3918dafc94ee7d1fc2c06}{\+\_\+\+C\+O\+R\+E\+\_\+recursive\+\_\+mutex\+\_\+\+Surrender}} (\mbox{\hyperlink{structCORE__recursive__mutex__Control}{C\+O\+R\+E\+\_\+recursive\+\_\+mutex\+\_\+\+Control}} $\ast$the\+\_\+mutex, const \mbox{\hyperlink{structThread__queue__Operations}{Thread\+\_\+queue\+\_\+\+Operations}} $\ast$operations, \mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$executing, \mbox{\hyperlink{structThread__queue__Context}{Thread\+\_\+queue\+\_\+\+Context}} $\ast$queue\+\_\+context)
+\begin{DoxyCompactList}\small\item\em Surrenders the recursive mutex. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \mbox{\hyperlink{group__RTEMSScoreMutex_gace1e18f3458f6bd2b21d66efdb26b417}{\+\_\+\+C\+O\+R\+E\+\_\+ceiling\+\_\+mutex\+\_\+\+Initialize}} (\mbox{\hyperlink{structCORE__ceiling__mutex__Control}{C\+O\+R\+E\+\_\+ceiling\+\_\+mutex\+\_\+\+Control}} $\ast$the\+\_\+mutex, const \mbox{\hyperlink{struct__Scheduler__Control}{Scheduler\+\_\+\+Control}} $\ast$scheduler, \mbox{\hyperlink{group__RTEMSScorePriority_ga59d02b58072d31a9a1cfe644557aefe2}{Priority\+\_\+\+Control}} priority\+\_\+ceiling)
+\begin{DoxyCompactList}\small\item\em initializes a ceiling mutex. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} const \mbox{\hyperlink{struct__Scheduler__Control}{Scheduler\+\_\+\+Control}} $\ast$ \mbox{\hyperlink{group__RTEMSScoreMutex_gac9a59aa3067426552a8180c362ffcf3c}{\+\_\+\+C\+O\+R\+E\+\_\+ceiling\+\_\+mutex\+\_\+\+Get\+\_\+scheduler}} (const \mbox{\hyperlink{structCORE__ceiling__mutex__Control}{C\+O\+R\+E\+\_\+ceiling\+\_\+mutex\+\_\+\+Control}} $\ast$the\+\_\+mutex)
+\begin{DoxyCompactList}\small\item\em Gets the scheduler of the ceiling mutex. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \mbox{\hyperlink{group__RTEMSScoreMutex_gae13f723fc5cdac5a7f9b5f910b284bf6}{\+\_\+\+C\+O\+R\+E\+\_\+ceiling\+\_\+mutex\+\_\+\+Set\+\_\+priority}} (\mbox{\hyperlink{structCORE__ceiling__mutex__Control}{C\+O\+R\+E\+\_\+ceiling\+\_\+mutex\+\_\+\+Control}} $\ast$the\+\_\+mutex, \mbox{\hyperlink{group__RTEMSScorePriority_ga59d02b58072d31a9a1cfe644557aefe2}{Priority\+\_\+\+Control}} priority\+\_\+ceiling, \mbox{\hyperlink{structThread__queue__Context}{Thread\+\_\+queue\+\_\+\+Context}} $\ast$queue\+\_\+context)
+\begin{DoxyCompactList}\small\item\em Sets the priority of the ceiling mutex. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} \mbox{\hyperlink{group__RTEMSScorePriority_ga59d02b58072d31a9a1cfe644557aefe2}{Priority\+\_\+\+Control}} \mbox{\hyperlink{group__RTEMSScoreMutex_gaba91517faca7018478e83a8ace073303}{\+\_\+\+C\+O\+R\+E\+\_\+ceiling\+\_\+mutex\+\_\+\+Get\+\_\+priority}} (const \mbox{\hyperlink{structCORE__ceiling__mutex__Control}{C\+O\+R\+E\+\_\+ceiling\+\_\+mutex\+\_\+\+Control}} $\ast$the\+\_\+mutex)
+\begin{DoxyCompactList}\small\item\em Gets the priority of the ceiling mutex. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} Status\+\_\+\+Control \mbox{\hyperlink{group__RTEMSScoreMutex_ga3c9beab408f6eaae8af2a29d962b08f3}{\+\_\+\+C\+O\+R\+E\+\_\+ceiling\+\_\+mutex\+\_\+\+Set\+\_\+owner}} (\mbox{\hyperlink{structCORE__ceiling__mutex__Control}{C\+O\+R\+E\+\_\+ceiling\+\_\+mutex\+\_\+\+Control}} $\ast$the\+\_\+mutex, \mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$owner, \mbox{\hyperlink{structThread__queue__Context}{Thread\+\_\+queue\+\_\+\+Context}} $\ast$queue\+\_\+context)
+\begin{DoxyCompactList}\small\item\em Sets the owner of the ceiling mutex. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} Status\+\_\+\+Control \mbox{\hyperlink{group__RTEMSScoreMutex_gae40030a2c780f0da5839deee9387f340}{\+\_\+\+C\+O\+R\+E\+\_\+ceiling\+\_\+mutex\+\_\+\+Seize}} (\mbox{\hyperlink{structCORE__ceiling__mutex__Control}{C\+O\+R\+E\+\_\+ceiling\+\_\+mutex\+\_\+\+Control}} $\ast$the\+\_\+mutex, \mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$executing, bool wait, Status\+\_\+\+Control($\ast$nested)(\mbox{\hyperlink{structCORE__recursive__mutex__Control}{C\+O\+R\+E\+\_\+recursive\+\_\+mutex\+\_\+\+Control}} $\ast$), \mbox{\hyperlink{structThread__queue__Context}{Thread\+\_\+queue\+\_\+\+Context}} $\ast$queue\+\_\+context)
+\begin{DoxyCompactList}\small\item\em Seizes the ceiling mutex. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} Status\+\_\+\+Control \mbox{\hyperlink{group__RTEMSScoreMutex_gac76286dab6594ca0499aa20861f69fb8}{\+\_\+\+C\+O\+R\+E\+\_\+ceiling\+\_\+mutex\+\_\+\+Surrender}} (\mbox{\hyperlink{structCORE__ceiling__mutex__Control}{C\+O\+R\+E\+\_\+ceiling\+\_\+mutex\+\_\+\+Control}} $\ast$the\+\_\+mutex, \mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$executing, \mbox{\hyperlink{structThread__queue__Context}{Thread\+\_\+queue\+\_\+\+Context}} $\ast$queue\+\_\+context)
+\begin{DoxyCompactList}\small\item\em Surrenders the ceiling mutex. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Mutex Handler. 
+
+This handler encapsulates functionality which provides the foundation Mutex services used in all of the A\+P\+Is supported by R\+T\+E\+MS. 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{group__RTEMSScoreMutex_gaba91517faca7018478e83a8ace073303}\label{group__RTEMSScoreMutex_gaba91517faca7018478e83a8ace073303}} 
+\index{Mutex Handler@{Mutex Handler}!\_CORE\_ceiling\_mutex\_Get\_priority@{\_CORE\_ceiling\_mutex\_Get\_priority}}
+\index{\_CORE\_ceiling\_mutex\_Get\_priority@{\_CORE\_ceiling\_mutex\_Get\_priority}!Mutex Handler@{Mutex Handler}}
+\subsubsection{\texorpdfstring{\_CORE\_ceiling\_mutex\_Get\_priority()}{\_CORE\_ceiling\_mutex\_Get\_priority()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} \mbox{\hyperlink{group__RTEMSScorePriority_ga59d02b58072d31a9a1cfe644557aefe2}{Priority\+\_\+\+Control}} \+\_\+\+C\+O\+R\+E\+\_\+ceiling\+\_\+mutex\+\_\+\+Get\+\_\+priority (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structCORE__ceiling__mutex__Control}{C\+O\+R\+E\+\_\+ceiling\+\_\+mutex\+\_\+\+Control}} $\ast$}]{the\+\_\+mutex }\end{DoxyParamCaption})}
+
+
+
+Gets the priority of the ceiling mutex. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em the\+\_\+mutex} & The mutex to get the priority from.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The priority ceiling of {\itshape the\+\_\+mutex}. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{group__RTEMSScoreMutex_gac9a59aa3067426552a8180c362ffcf3c}\label{group__RTEMSScoreMutex_gac9a59aa3067426552a8180c362ffcf3c}} 
+\index{Mutex Handler@{Mutex Handler}!\_CORE\_ceiling\_mutex\_Get\_scheduler@{\_CORE\_ceiling\_mutex\_Get\_scheduler}}
+\index{\_CORE\_ceiling\_mutex\_Get\_scheduler@{\_CORE\_ceiling\_mutex\_Get\_scheduler}!Mutex Handler@{Mutex Handler}}
+\subsubsection{\texorpdfstring{\_CORE\_ceiling\_mutex\_Get\_scheduler()}{\_CORE\_ceiling\_mutex\_Get\_scheduler()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} const \mbox{\hyperlink{struct__Scheduler__Control}{Scheduler\+\_\+\+Control}}$\ast$ \+\_\+\+C\+O\+R\+E\+\_\+ceiling\+\_\+mutex\+\_\+\+Get\+\_\+scheduler (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structCORE__ceiling__mutex__Control}{C\+O\+R\+E\+\_\+ceiling\+\_\+mutex\+\_\+\+Control}} $\ast$}]{the\+\_\+mutex }\end{DoxyParamCaption})}
+
+
+
+Gets the scheduler of the ceiling mutex. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em the\+\_\+mutex} & The ceiling mutex to get the scheduler from.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The scheduler of the mutex. If R\+T\+E\+M\+S\+\_\+\+S\+MP is not defined, the first entry of the \+\_\+\+Scheduler\+\_\+\+Table is returned. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{group__RTEMSScoreMutex_gace1e18f3458f6bd2b21d66efdb26b417}\label{group__RTEMSScoreMutex_gace1e18f3458f6bd2b21d66efdb26b417}} 
+\index{Mutex Handler@{Mutex Handler}!\_CORE\_ceiling\_mutex\_Initialize@{\_CORE\_ceiling\_mutex\_Initialize}}
+\index{\_CORE\_ceiling\_mutex\_Initialize@{\_CORE\_ceiling\_mutex\_Initialize}!Mutex Handler@{Mutex Handler}}
+\subsubsection{\texorpdfstring{\_CORE\_ceiling\_mutex\_Initialize()}{\_CORE\_ceiling\_mutex\_Initialize()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \+\_\+\+C\+O\+R\+E\+\_\+ceiling\+\_\+mutex\+\_\+\+Initialize (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCORE__ceiling__mutex__Control}{C\+O\+R\+E\+\_\+ceiling\+\_\+mutex\+\_\+\+Control}} $\ast$}]{the\+\_\+mutex,  }\item[{const \mbox{\hyperlink{struct__Scheduler__Control}{Scheduler\+\_\+\+Control}} $\ast$}]{scheduler,  }\item[{\mbox{\hyperlink{group__RTEMSScorePriority_ga59d02b58072d31a9a1cfe644557aefe2}{Priority\+\_\+\+Control}}}]{priority\+\_\+ceiling }\end{DoxyParamCaption})}
+
+
+
+initializes a ceiling mutex. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em the\+\_\+mutex} & The ceiling mutex to initialize. \\
+\hline
+ & {\em scheduler} & The scheduler for the new ceiling mutex. Only needed if R\+T\+E\+M\+S\+\_\+\+S\+MP is defined \\
+\hline
+ & {\em priority\+\_\+ceiling} & The priority ceiling for the initialized mutex. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__RTEMSScoreMutex_gae40030a2c780f0da5839deee9387f340}\label{group__RTEMSScoreMutex_gae40030a2c780f0da5839deee9387f340}} 
+\index{Mutex Handler@{Mutex Handler}!\_CORE\_ceiling\_mutex\_Seize@{\_CORE\_ceiling\_mutex\_Seize}}
+\index{\_CORE\_ceiling\_mutex\_Seize@{\_CORE\_ceiling\_mutex\_Seize}!Mutex Handler@{Mutex Handler}}
+\subsubsection{\texorpdfstring{\_CORE\_ceiling\_mutex\_Seize()}{\_CORE\_ceiling\_mutex\_Seize()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} Status\+\_\+\+Control \+\_\+\+C\+O\+R\+E\+\_\+ceiling\+\_\+mutex\+\_\+\+Seize (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCORE__ceiling__mutex__Control}{C\+O\+R\+E\+\_\+ceiling\+\_\+mutex\+\_\+\+Control}} $\ast$}]{the\+\_\+mutex,  }\item[{\mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$}]{executing,  }\item[{bool}]{wait,  }\item[{Status\+\_\+\+Control($\ast$)(\mbox{\hyperlink{structCORE__recursive__mutex__Control}{C\+O\+R\+E\+\_\+recursive\+\_\+mutex\+\_\+\+Control}} $\ast$)}]{nested,  }\item[{\mbox{\hyperlink{structThread__queue__Context}{Thread\+\_\+queue\+\_\+\+Context}} $\ast$}]{queue\+\_\+context }\end{DoxyParamCaption})}
+
+
+
+Seizes the ceiling mutex. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em the\+\_\+mutex} & The mutex to seize. \\
+\hline
+ & {\em executing} & The executing thread. \\
+\hline
+ & {\em wait} & Indicates whether the calling thread is willing to wait. \\
+\hline
+ & {\em nested} & Function that returns the status of the recursive mutex \\
+\hline
+ & {\em queue\+\_\+context} & The thread queue context.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em S\+T\+A\+T\+U\+S\+\_\+\+S\+U\+C\+C\+E\+S\+S\+F\+UL} & The owner of the mutex was changed successfully. \\
+\hline
+{\em S\+T\+A\+T\+U\+S\+\_\+\+N\+O\+T\+\_\+\+D\+E\+F\+I\+N\+ED} & If the scheduler of the executing thread is not equal to the owner of {\itshape the\+\_\+mutex} . \\
+\hline
+{\em S\+T\+A\+T\+U\+S\+\_\+\+M\+U\+T\+E\+X\+\_\+\+C\+E\+I\+L\+I\+N\+G\+\_\+\+V\+I\+O\+L\+A\+T\+ED} & The owners wait priority is smaller than the priority of the ceiling mutex. \\
+\hline
+{\em other} & Return value of {\itshape nested}. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{group__RTEMSScoreMutex_ga3c9beab408f6eaae8af2a29d962b08f3}\label{group__RTEMSScoreMutex_ga3c9beab408f6eaae8af2a29d962b08f3}} 
+\index{Mutex Handler@{Mutex Handler}!\_CORE\_ceiling\_mutex\_Set\_owner@{\_CORE\_ceiling\_mutex\_Set\_owner}}
+\index{\_CORE\_ceiling\_mutex\_Set\_owner@{\_CORE\_ceiling\_mutex\_Set\_owner}!Mutex Handler@{Mutex Handler}}
+\subsubsection{\texorpdfstring{\_CORE\_ceiling\_mutex\_Set\_owner()}{\_CORE\_ceiling\_mutex\_Set\_owner()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} Status\+\_\+\+Control \+\_\+\+C\+O\+R\+E\+\_\+ceiling\+\_\+mutex\+\_\+\+Set\+\_\+owner (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCORE__ceiling__mutex__Control}{C\+O\+R\+E\+\_\+ceiling\+\_\+mutex\+\_\+\+Control}} $\ast$}]{the\+\_\+mutex,  }\item[{\mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$}]{owner,  }\item[{\mbox{\hyperlink{structThread__queue__Context}{Thread\+\_\+queue\+\_\+\+Context}} $\ast$}]{queue\+\_\+context }\end{DoxyParamCaption})}
+
+
+
+Sets the owner of the ceiling mutex. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em the\+\_\+mutex} & The mutex to set the owner of. \\
+\hline
+ & {\em owner} & The new owner of {\itshape the\+\_\+mutex}. \\
+\hline
+ & {\em queue\+\_\+context} & The thread queue context.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em S\+T\+A\+T\+U\+S\+\_\+\+S\+U\+C\+C\+E\+S\+S\+F\+UL} & The owner of the mutex was changed successfully. \\
+\hline
+{\em S\+T\+A\+T\+U\+S\+\_\+\+M\+U\+T\+E\+X\+\_\+\+C\+E\+I\+L\+I\+N\+G\+\_\+\+V\+I\+O\+L\+A\+T\+ED} & The owners wait priority is smaller than the priority of the ceiling mutex. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{group__RTEMSScoreMutex_gae13f723fc5cdac5a7f9b5f910b284bf6}\label{group__RTEMSScoreMutex_gae13f723fc5cdac5a7f9b5f910b284bf6}} 
+\index{Mutex Handler@{Mutex Handler}!\_CORE\_ceiling\_mutex\_Set\_priority@{\_CORE\_ceiling\_mutex\_Set\_priority}}
+\index{\_CORE\_ceiling\_mutex\_Set\_priority@{\_CORE\_ceiling\_mutex\_Set\_priority}!Mutex Handler@{Mutex Handler}}
+\subsubsection{\texorpdfstring{\_CORE\_ceiling\_mutex\_Set\_priority()}{\_CORE\_ceiling\_mutex\_Set\_priority()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \+\_\+\+C\+O\+R\+E\+\_\+ceiling\+\_\+mutex\+\_\+\+Set\+\_\+priority (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCORE__ceiling__mutex__Control}{C\+O\+R\+E\+\_\+ceiling\+\_\+mutex\+\_\+\+Control}} $\ast$}]{the\+\_\+mutex,  }\item[{\mbox{\hyperlink{group__RTEMSScorePriority_ga59d02b58072d31a9a1cfe644557aefe2}{Priority\+\_\+\+Control}}}]{priority\+\_\+ceiling,  }\item[{\mbox{\hyperlink{structThread__queue__Context}{Thread\+\_\+queue\+\_\+\+Context}} $\ast$}]{queue\+\_\+context }\end{DoxyParamCaption})}
+
+
+
+Sets the priority of the ceiling mutex. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em the\+\_\+mutex} & The ceiling mutex to set the priority of. \\
+\hline
+ & {\em priority\+\_\+ceiling} & The new priority ceiling of the mutex. \\
+\hline
+ & {\em queue\+\_\+context} & The thread queue context. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__RTEMSScoreMutex_gac76286dab6594ca0499aa20861f69fb8}\label{group__RTEMSScoreMutex_gac76286dab6594ca0499aa20861f69fb8}} 
+\index{Mutex Handler@{Mutex Handler}!\_CORE\_ceiling\_mutex\_Surrender@{\_CORE\_ceiling\_mutex\_Surrender}}
+\index{\_CORE\_ceiling\_mutex\_Surrender@{\_CORE\_ceiling\_mutex\_Surrender}!Mutex Handler@{Mutex Handler}}
+\subsubsection{\texorpdfstring{\_CORE\_ceiling\_mutex\_Surrender()}{\_CORE\_ceiling\_mutex\_Surrender()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} Status\+\_\+\+Control \+\_\+\+C\+O\+R\+E\+\_\+ceiling\+\_\+mutex\+\_\+\+Surrender (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCORE__ceiling__mutex__Control}{C\+O\+R\+E\+\_\+ceiling\+\_\+mutex\+\_\+\+Control}} $\ast$}]{the\+\_\+mutex,  }\item[{\mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$}]{executing,  }\item[{\mbox{\hyperlink{structThread__queue__Context}{Thread\+\_\+queue\+\_\+\+Context}} $\ast$}]{queue\+\_\+context }\end{DoxyParamCaption})}
+
+
+
+Surrenders the ceiling mutex. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em the\+\_\+mutex} & The ceiling mutex to surrender. \\
+\hline
+ & {\em executing} & The executing thread. \\
+\hline
+ & {\em queue\+\_\+context} & The thread queue context.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em S\+T\+A\+T\+U\+S\+\_\+\+S\+U\+C\+C\+E\+S\+S\+F\+UL} & The ceiling mutex was successfullysurrendered. \\
+\hline
+{\em S\+T\+A\+T\+U\+S\+\_\+\+N\+O\+T\+\_\+\+O\+W\+N\+ER} & The executing thread is not the owner of {\itshape the\+\_\+mutex}. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{group__RTEMSScoreMutex_ga7efc39f335c242812ebe84999e526db4}\label{group__RTEMSScoreMutex_ga7efc39f335c242812ebe84999e526db4}} 
+\index{Mutex Handler@{Mutex Handler}!\_CORE\_mutex\_Acquire\_critical@{\_CORE\_mutex\_Acquire\_critical}}
+\index{\_CORE\_mutex\_Acquire\_critical@{\_CORE\_mutex\_Acquire\_critical}!Mutex Handler@{Mutex Handler}}
+\subsubsection{\texorpdfstring{\_CORE\_mutex\_Acquire\_critical()}{\_CORE\_mutex\_Acquire\_critical()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \+\_\+\+C\+O\+R\+E\+\_\+mutex\+\_\+\+Acquire\+\_\+critical (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCORE__mutex__Control}{C\+O\+R\+E\+\_\+mutex\+\_\+\+Control}} $\ast$}]{the\+\_\+mutex,  }\item[{\mbox{\hyperlink{structThread__queue__Context}{Thread\+\_\+queue\+\_\+\+Context}} $\ast$}]{queue\+\_\+context }\end{DoxyParamCaption})}
+
+
+
+Acquires the mutex critical. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em the\+\_\+mutex} & The mutex to acquire critical. \\
+\hline
+ & {\em queue\+\_\+context} & The queue context. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__RTEMSScoreMutex_ga09492f67618d359ba936a14bbd29b98d}\label{group__RTEMSScoreMutex_ga09492f67618d359ba936a14bbd29b98d}} 
+\index{Mutex Handler@{Mutex Handler}!\_CORE\_mutex\_Destroy@{\_CORE\_mutex\_Destroy}}
+\index{\_CORE\_mutex\_Destroy@{\_CORE\_mutex\_Destroy}!Mutex Handler@{Mutex Handler}}
+\subsubsection{\texorpdfstring{\_CORE\_mutex\_Destroy()}{\_CORE\_mutex\_Destroy()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \+\_\+\+C\+O\+R\+E\+\_\+mutex\+\_\+\+Destroy (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCORE__mutex__Control}{C\+O\+R\+E\+\_\+mutex\+\_\+\+Control}} $\ast$}]{the\+\_\+mutex }\end{DoxyParamCaption})}
+
+
+
+Destroys the mutex. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em the\+\_\+mutex} & the mutex to destroy. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__RTEMSScoreMutex_gac97696832bb6ad43d333541536040ec3}\label{group__RTEMSScoreMutex_gac97696832bb6ad43d333541536040ec3}} 
+\index{Mutex Handler@{Mutex Handler}!\_CORE\_mutex\_Get\_owner@{\_CORE\_mutex\_Get\_owner}}
+\index{\_CORE\_mutex\_Get\_owner@{\_CORE\_mutex\_Get\_owner}!Mutex Handler@{Mutex Handler}}
+\subsubsection{\texorpdfstring{\_CORE\_mutex\_Get\_owner()}{\_CORE\_mutex\_Get\_owner()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} \mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}}$\ast$ \+\_\+\+C\+O\+R\+E\+\_\+mutex\+\_\+\+Get\+\_\+owner (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structCORE__mutex__Control}{C\+O\+R\+E\+\_\+mutex\+\_\+\+Control}} $\ast$}]{the\+\_\+mutex }\end{DoxyParamCaption})}
+
+
+
+Gets the owner of the mutex. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em the\+\_\+mutex} & The mutex to get the owner from.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The owner of the mutex. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{group__RTEMSScoreMutex_ga8bc3af4c8e28f7e9090ca1571a0aead6}\label{group__RTEMSScoreMutex_ga8bc3af4c8e28f7e9090ca1571a0aead6}} 
+\index{Mutex Handler@{Mutex Handler}!\_CORE\_mutex\_Initialize@{\_CORE\_mutex\_Initialize}}
+\index{\_CORE\_mutex\_Initialize@{\_CORE\_mutex\_Initialize}!Mutex Handler@{Mutex Handler}}
+\subsubsection{\texorpdfstring{\_CORE\_mutex\_Initialize()}{\_CORE\_mutex\_Initialize()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \+\_\+\+C\+O\+R\+E\+\_\+mutex\+\_\+\+Initialize (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCORE__mutex__Control}{C\+O\+R\+E\+\_\+mutex\+\_\+\+Control}} $\ast$}]{the\+\_\+mutex }\end{DoxyParamCaption})}
+
+
+
+Initializes the mutex. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em the\+\_\+mutex} & The mutex to initialize. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__RTEMSScoreMutex_ga1e56fcf89e62b1f78bd7453ad6ee95fc}\label{group__RTEMSScoreMutex_ga1e56fcf89e62b1f78bd7453ad6ee95fc}} 
+\index{Mutex Handler@{Mutex Handler}!\_CORE\_mutex\_Is\_locked@{\_CORE\_mutex\_Is\_locked}}
+\index{\_CORE\_mutex\_Is\_locked@{\_CORE\_mutex\_Is\_locked}!Mutex Handler@{Mutex Handler}}
+\subsubsection{\texorpdfstring{\_CORE\_mutex\_Is\_locked()}{\_CORE\_mutex\_Is\_locked()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} bool \+\_\+\+C\+O\+R\+E\+\_\+mutex\+\_\+\+Is\+\_\+locked (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structCORE__mutex__Control}{C\+O\+R\+E\+\_\+mutex\+\_\+\+Control}} $\ast$}]{the\+\_\+mutex }\end{DoxyParamCaption})}
+
+
+
+Checks if the mutex is locked. 
+
+This routine returns true if the specified mutex is locked and false otherwise.
+
+
+\begin{DoxyParams}{Parameters}
+{\em the\+\_\+mutex} & The mutex to check if it is locked.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em true} & The mutex is locked. \\
+\hline
+{\em false} & The mutex is not locked. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{group__RTEMSScoreMutex_gabe046b730388df1b060c700dc17a142d}\label{group__RTEMSScoreMutex_gabe046b730388df1b060c700dc17a142d}} 
+\index{Mutex Handler@{Mutex Handler}!\_CORE\_mutex\_Is\_owner@{\_CORE\_mutex\_Is\_owner}}
+\index{\_CORE\_mutex\_Is\_owner@{\_CORE\_mutex\_Is\_owner}!Mutex Handler@{Mutex Handler}}
+\subsubsection{\texorpdfstring{\_CORE\_mutex\_Is\_owner()}{\_CORE\_mutex\_Is\_owner()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} bool \+\_\+\+C\+O\+R\+E\+\_\+mutex\+\_\+\+Is\+\_\+owner (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structCORE__mutex__Control}{C\+O\+R\+E\+\_\+mutex\+\_\+\+Control}} $\ast$}]{the\+\_\+mutex,  }\item[{const \mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$}]{the\+\_\+thread }\end{DoxyParamCaption})}
+
+
+
+Checks if the the thread is the owner of the mutex. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em the\+\_\+mutex} & The mutex to check the owner of. \\
+\hline
+{\em the\+\_\+thread} & The thread to check if it is the owner of {\itshape the\+\_\+mutex}.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em true} & {\itshape the\+\_\+thread} is the owner of {\itshape the\+\_\+mutex}. \\
+\hline
+{\em false} & {\itshape the\+\_\+thread} is not the owner of {\itshape the\+\_\+mutex}. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{group__RTEMSScoreMutex_ga0bb76a8a25cab71b0fdaa1f7b215f809}\label{group__RTEMSScoreMutex_ga0bb76a8a25cab71b0fdaa1f7b215f809}} 
+\index{Mutex Handler@{Mutex Handler}!\_CORE\_mutex\_Release@{\_CORE\_mutex\_Release}}
+\index{\_CORE\_mutex\_Release@{\_CORE\_mutex\_Release}!Mutex Handler@{Mutex Handler}}
+\subsubsection{\texorpdfstring{\_CORE\_mutex\_Release()}{\_CORE\_mutex\_Release()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \+\_\+\+C\+O\+R\+E\+\_\+mutex\+\_\+\+Release (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCORE__mutex__Control}{C\+O\+R\+E\+\_\+mutex\+\_\+\+Control}} $\ast$}]{the\+\_\+mutex,  }\item[{\mbox{\hyperlink{structThread__queue__Context}{Thread\+\_\+queue\+\_\+\+Context}} $\ast$}]{queue\+\_\+context }\end{DoxyParamCaption})}
+
+
+
+Releases the mutex. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em the\+\_\+mutex} & The mutex to release. \\
+\hline
+ & {\em queue\+\_\+context} & The queue context. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__RTEMSScoreMutex_ga89693ae813a53c8984a6e40c6c228322}\label{group__RTEMSScoreMutex_ga89693ae813a53c8984a6e40c6c228322}} 
+\index{Mutex Handler@{Mutex Handler}!\_CORE\_mutex\_Seize\_slow@{\_CORE\_mutex\_Seize\_slow}}
+\index{\_CORE\_mutex\_Seize\_slow@{\_CORE\_mutex\_Seize\_slow}!Mutex Handler@{Mutex Handler}}
+\subsubsection{\texorpdfstring{\_CORE\_mutex\_Seize\_slow()}{\_CORE\_mutex\_Seize\_slow()}}
+{\footnotesize\ttfamily Status\+\_\+\+Control \+\_\+\+C\+O\+R\+E\+\_\+mutex\+\_\+\+Seize\+\_\+slow (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCORE__mutex__Control}{C\+O\+R\+E\+\_\+mutex\+\_\+\+Control}} $\ast$}]{the\+\_\+mutex,  }\item[{const \mbox{\hyperlink{structThread__queue__Operations}{Thread\+\_\+queue\+\_\+\+Operations}} $\ast$}]{operations,  }\item[{\mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$}]{executing,  }\item[{bool}]{wait,  }\item[{\mbox{\hyperlink{structThread__queue__Context}{Thread\+\_\+queue\+\_\+\+Context}} $\ast$}]{queue\+\_\+context }\end{DoxyParamCaption})}
+
+
+
+Seize the mutex slowly. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em the\+\_\+mutex} & The mutex to seize. \\
+\hline
+ & {\em operations} & The thread queue operations. \\
+\hline
+ & {\em executing} & The calling thread. \\
+\hline
+ & {\em wait} & Indicates whether the calling thread is willing to wait. \\
+\hline
+ & {\em queue\+\_\+context} & The thread queue context.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em \+\_\+\+Thread\+\_\+\+Wait\+\_\+get\+\_\+status} & The status of the executing thread. \\
+\hline
+{\em S\+T\+A\+T\+U\+S\+\_\+\+U\+N\+A\+V\+A\+I\+L\+A\+B\+LE} & The calling thread is not willing to wait. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{group__RTEMSScoreMutex_gaf6d95e3bb9f3ebb168fa67f3731740dc}\label{group__RTEMSScoreMutex_gaf6d95e3bb9f3ebb168fa67f3731740dc}} 
+\index{Mutex Handler@{Mutex Handler}!\_CORE\_mutex\_Set\_owner@{\_CORE\_mutex\_Set\_owner}}
+\index{\_CORE\_mutex\_Set\_owner@{\_CORE\_mutex\_Set\_owner}!Mutex Handler@{Mutex Handler}}
+\subsubsection{\texorpdfstring{\_CORE\_mutex\_Set\_owner()}{\_CORE\_mutex\_Set\_owner()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \+\_\+\+C\+O\+R\+E\+\_\+mutex\+\_\+\+Set\+\_\+owner (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCORE__mutex__Control}{C\+O\+R\+E\+\_\+mutex\+\_\+\+Control}} $\ast$}]{the\+\_\+mutex,  }\item[{\mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$}]{owner }\end{DoxyParamCaption})}
+
+
+
+Sets the owner of the mutex. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em the\+\_\+mutex} & The mutex to set the owner from. \\
+\hline
+ & {\em owner} & The new owner of the mutex. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__RTEMSScoreMutex_ga479a63bb7147291650bd7d69c24dc3fd}\label{group__RTEMSScoreMutex_ga479a63bb7147291650bd7d69c24dc3fd}} 
+\index{Mutex Handler@{Mutex Handler}!\_CORE\_recursive\_mutex\_Initialize@{\_CORE\_recursive\_mutex\_Initialize}}
+\index{\_CORE\_recursive\_mutex\_Initialize@{\_CORE\_recursive\_mutex\_Initialize}!Mutex Handler@{Mutex Handler}}
+\subsubsection{\texorpdfstring{\_CORE\_recursive\_mutex\_Initialize()}{\_CORE\_recursive\_mutex\_Initialize()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \+\_\+\+C\+O\+R\+E\+\_\+recursive\+\_\+mutex\+\_\+\+Initialize (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCORE__recursive__mutex__Control}{C\+O\+R\+E\+\_\+recursive\+\_\+mutex\+\_\+\+Control}} $\ast$}]{the\+\_\+mutex }\end{DoxyParamCaption})}
+
+
+
+Initializes a recursive mutex. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em the\+\_\+mutex} & The recursive mutex to initialize. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__RTEMSScoreMutex_gaacb95bc0bdba9fb365d01dfe2623665d}\label{group__RTEMSScoreMutex_gaacb95bc0bdba9fb365d01dfe2623665d}} 
+\index{Mutex Handler@{Mutex Handler}!\_CORE\_recursive\_mutex\_Seize@{\_CORE\_recursive\_mutex\_Seize}}
+\index{\_CORE\_recursive\_mutex\_Seize@{\_CORE\_recursive\_mutex\_Seize}!Mutex Handler@{Mutex Handler}}
+\subsubsection{\texorpdfstring{\_CORE\_recursive\_mutex\_Seize()}{\_CORE\_recursive\_mutex\_Seize()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} Status\+\_\+\+Control \+\_\+\+C\+O\+R\+E\+\_\+recursive\+\_\+mutex\+\_\+\+Seize (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCORE__recursive__mutex__Control}{C\+O\+R\+E\+\_\+recursive\+\_\+mutex\+\_\+\+Control}} $\ast$}]{the\+\_\+mutex,  }\item[{const \mbox{\hyperlink{structThread__queue__Operations}{Thread\+\_\+queue\+\_\+\+Operations}} $\ast$}]{operations,  }\item[{\mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$}]{executing,  }\item[{bool}]{wait,  }\item[{Status\+\_\+\+Control($\ast$)(\mbox{\hyperlink{structCORE__recursive__mutex__Control}{C\+O\+R\+E\+\_\+recursive\+\_\+mutex\+\_\+\+Control}} $\ast$)}]{nested,  }\item[{\mbox{\hyperlink{structThread__queue__Context}{Thread\+\_\+queue\+\_\+\+Context}} $\ast$}]{queue\+\_\+context }\end{DoxyParamCaption})}
+
+
+
+Seizes the recursive mutex. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em the\+\_\+mutex} & The recursive mutex to seize. \\
+\hline
+ & {\em operations} & The thread queue operations. \\
+\hline
+\mbox{\texttt{ out}}  & {\em executing} & The executing thread. \\
+\hline
+ & {\em wait} & Indicates whether the calling thread is willing to wait. \\
+\hline
+ & {\em nested} & Returns the status of a recursive mutex. \\
+\hline
+ & {\em queue\+\_\+context} & The thread queue context.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em S\+T\+A\+T\+U\+S\+\_\+\+S\+U\+C\+C\+E\+S\+S\+F\+UL} & The owner of the mutex was N\+U\+LL, successful seizing of the mutex. \\
+\hline
+{\em \+\_\+\+Thread\+\_\+\+Wait\+\_\+get\+\_\+status} & The status of the executing thread. \\
+\hline
+{\em S\+T\+A\+T\+U\+S\+\_\+\+U\+N\+A\+V\+A\+I\+L\+A\+B\+LE} & The calling thread is not willing to wait. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{group__RTEMSScoreMutex_ga683ddf1a8f11e05a5c97af56d1dfe856}\label{group__RTEMSScoreMutex_ga683ddf1a8f11e05a5c97af56d1dfe856}} 
+\index{Mutex Handler@{Mutex Handler}!\_CORE\_recursive\_mutex\_Seize\_nested@{\_CORE\_recursive\_mutex\_Seize\_nested}}
+\index{\_CORE\_recursive\_mutex\_Seize\_nested@{\_CORE\_recursive\_mutex\_Seize\_nested}!Mutex Handler@{Mutex Handler}}
+\subsubsection{\texorpdfstring{\_CORE\_recursive\_mutex\_Seize\_nested()}{\_CORE\_recursive\_mutex\_Seize\_nested()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} Status\+\_\+\+Control \+\_\+\+C\+O\+R\+E\+\_\+recursive\+\_\+mutex\+\_\+\+Seize\+\_\+nested (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCORE__recursive__mutex__Control}{C\+O\+R\+E\+\_\+recursive\+\_\+mutex\+\_\+\+Control}} $\ast$}]{the\+\_\+mutex }\end{DoxyParamCaption})}
+
+
+
+Seizes the recursive mutex nested. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em the\+\_\+mutex} & The recursive mutex to seize nested.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+S\+T\+A\+T\+U\+S\+\_\+\+S\+U\+C\+C\+E\+S\+S\+F\+UL, this method is always successful. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{group__RTEMSScoreMutex_ga5096e2975fb3918dafc94ee7d1fc2c06}\label{group__RTEMSScoreMutex_ga5096e2975fb3918dafc94ee7d1fc2c06}} 
+\index{Mutex Handler@{Mutex Handler}!\_CORE\_recursive\_mutex\_Surrender@{\_CORE\_recursive\_mutex\_Surrender}}
+\index{\_CORE\_recursive\_mutex\_Surrender@{\_CORE\_recursive\_mutex\_Surrender}!Mutex Handler@{Mutex Handler}}
+\subsubsection{\texorpdfstring{\_CORE\_recursive\_mutex\_Surrender()}{\_CORE\_recursive\_mutex\_Surrender()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} Status\+\_\+\+Control \+\_\+\+C\+O\+R\+E\+\_\+recursive\+\_\+mutex\+\_\+\+Surrender (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCORE__recursive__mutex__Control}{C\+O\+R\+E\+\_\+recursive\+\_\+mutex\+\_\+\+Control}} $\ast$}]{the\+\_\+mutex,  }\item[{const \mbox{\hyperlink{structThread__queue__Operations}{Thread\+\_\+queue\+\_\+\+Operations}} $\ast$}]{operations,  }\item[{\mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$}]{executing,  }\item[{\mbox{\hyperlink{structThread__queue__Context}{Thread\+\_\+queue\+\_\+\+Context}} $\ast$}]{queue\+\_\+context }\end{DoxyParamCaption})}
+
+
+
+Surrenders the recursive mutex. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em the\+\_\+mutex} & The recursive mutex to surrender. \\
+\hline
+ & {\em operations} & The thread queue operations. \\
+\hline
+ & {\em executing} & The executing thread. \\
+\hline
+ & {\em queue\+\_\+context} & the thread queue context.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em S\+T\+A\+T\+U\+S\+\_\+\+S\+U\+C\+C\+E\+S\+S\+F\+UL} & {\itshape the\+\_\+mutex} is successfully surrendered. \\
+\hline
+{\em S\+T\+A\+T\+U\+S\+\_\+\+N\+O\+T\+\_\+\+O\+W\+N\+ER} & The executing thread does not own {\itshape the\+\_\+mutex}. \\
+\hline
+\end{DoxyRetVals}

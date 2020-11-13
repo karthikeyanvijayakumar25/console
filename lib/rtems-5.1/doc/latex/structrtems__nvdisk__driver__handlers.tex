@@ -1,0 +1,118 @@
+\hypertarget{structrtems__nvdisk__driver__handlers}{}\section{rtems\+\_\+nvdisk\+\_\+driver\+\_\+handlers Struct Reference}
+\label{structrtems__nvdisk__driver__handlers}\index{rtems\_nvdisk\_driver\_handlers@{rtems\_nvdisk\_driver\_handlers}}
+
+
+{\ttfamily \#include $<$nvdisk.\+h$>$}
+
+\subsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+int($\ast$ \mbox{\hyperlink{structrtems__nvdisk__driver__handlers_a314418826d3970966452a2d6bfcd2361}{read}} )(uint32\+\_\+t \mbox{\hyperlink{structdevice}{device}}, uint32\+\_\+t flags, void $\ast$base, uint32\+\_\+t offset, void $\ast$buffer, size\+\_\+t \mbox{\hyperlink{sun4u_2tte_8h_a245260f6f74972558f61b85227df5aae}{size}})
+\item 
+int($\ast$ \mbox{\hyperlink{structrtems__nvdisk__driver__handlers_af7a21d161ca6091f211fa5ec327c117e}{write}} )(uint32\+\_\+t \mbox{\hyperlink{structdevice}{device}}, uint32\+\_\+t flags, void $\ast$base, uint32\+\_\+t offset, const void $\ast$buffer, size\+\_\+t \mbox{\hyperlink{sun4u_2tte_8h_a245260f6f74972558f61b85227df5aae}{size}})
+\item 
+int($\ast$ \mbox{\hyperlink{structrtems__nvdisk__driver__handlers_ad5d4fe32f4e817ed04f6577fe7f832a0}{verify}} )(uint32\+\_\+t \mbox{\hyperlink{structdevice}{device}}, uint32\+\_\+t flags, void $\ast$base, uint32\+\_\+t offset, const void $\ast$buffer, size\+\_\+t \mbox{\hyperlink{sun4u_2tte_8h_a245260f6f74972558f61b85227df5aae}{size}})
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+NV Low Level driver handlers.
+
+Typically this structure is part of a table of handlers in the device which is referenced in the nvdisk configuration table. The reference is kept in the driver and used all the time to manage the nv device, therefore it must always exist. 
+
+\subsection{Field Documentation}
+\mbox{\Hypertarget{structrtems__nvdisk__driver__handlers_a314418826d3970966452a2d6bfcd2361}\label{structrtems__nvdisk__driver__handlers_a314418826d3970966452a2d6bfcd2361}} 
+\index{rtems\_nvdisk\_driver\_handlers@{rtems\_nvdisk\_driver\_handlers}!read@{read}}
+\index{read@{read}!rtems\_nvdisk\_driver\_handlers@{rtems\_nvdisk\_driver\_handlers}}
+\subsubsection{\texorpdfstring{read}{read}}
+{\footnotesize\ttfamily int($\ast$ rtems\+\_\+nvdisk\+\_\+driver\+\_\+handlers\+::read) (uint32\+\_\+t \mbox{\hyperlink{structdevice}{device}}, uint32\+\_\+t flags, void $\ast$base, uint32\+\_\+t offset, void $\ast$buffer, size\+\_\+t \mbox{\hyperlink{sun4u_2tte_8h_a245260f6f74972558f61b85227df5aae}{size}})}
+
+Read data from the device into the buffer. Return an errno error number if the data cannot be read.
+
+
+\begin{DoxyParams}{Parameters}
+{\em device} & The device to read data from. \\
+\hline
+{\em flags} & Device specific flags for the driver. \\
+\hline
+{\em base} & The base address of the device. \\
+\hline
+{\em offset} & The offset in the segment to read. \\
+\hline
+{\em buffer} & The buffer to read the data into. \\
+\hline
+{\em size} & The amount of data to read. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em 0} & No error. \\
+\hline
+{\em E\+IO} & The read did not complete. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{structrtems__nvdisk__driver__handlers_ad5d4fe32f4e817ed04f6577fe7f832a0}\label{structrtems__nvdisk__driver__handlers_ad5d4fe32f4e817ed04f6577fe7f832a0}} 
+\index{rtems\_nvdisk\_driver\_handlers@{rtems\_nvdisk\_driver\_handlers}!verify@{verify}}
+\index{verify@{verify}!rtems\_nvdisk\_driver\_handlers@{rtems\_nvdisk\_driver\_handlers}}
+\subsubsection{\texorpdfstring{verify}{verify}}
+{\footnotesize\ttfamily int($\ast$ rtems\+\_\+nvdisk\+\_\+driver\+\_\+handlers\+::verify) (uint32\+\_\+t \mbox{\hyperlink{structdevice}{device}}, uint32\+\_\+t flags, void $\ast$base, uint32\+\_\+t offset, const void $\ast$buffer, size\+\_\+t \mbox{\hyperlink{sun4u_2tte_8h_a245260f6f74972558f61b85227df5aae}{size}})}
+
+Verify data in the buffer to the data in the device. Return an errno error number if the device cannot be read or the data verified.
+
+
+\begin{DoxyParams}{Parameters}
+{\em device} & The device to verify the data with. \\
+\hline
+{\em flags} & Device specific flags for the driver. \\
+\hline
+{\em base} & The base address of the device. \\
+\hline
+{\em offset} & The offset in the device to verify. \\
+\hline
+{\em buffer} & The buffer to verify the data in the device with. \\
+\hline
+{\em size} & The amount of data to verify. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em 0} & No error. \\
+\hline
+{\em E\+IO} & The data did not verify. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{structrtems__nvdisk__driver__handlers_af7a21d161ca6091f211fa5ec327c117e}\label{structrtems__nvdisk__driver__handlers_af7a21d161ca6091f211fa5ec327c117e}} 
+\index{rtems\_nvdisk\_driver\_handlers@{rtems\_nvdisk\_driver\_handlers}!write@{write}}
+\index{write@{write}!rtems\_nvdisk\_driver\_handlers@{rtems\_nvdisk\_driver\_handlers}}
+\subsubsection{\texorpdfstring{write}{write}}
+{\footnotesize\ttfamily int($\ast$ rtems\+\_\+nvdisk\+\_\+driver\+\_\+handlers\+::write) (uint32\+\_\+t \mbox{\hyperlink{structdevice}{device}}, uint32\+\_\+t flags, void $\ast$base, uint32\+\_\+t offset, const void $\ast$buffer, size\+\_\+t \mbox{\hyperlink{sun4u_2tte_8h_a245260f6f74972558f61b85227df5aae}{size}})}
+
+Write data from the buffer to the device. Return an errno error number if the device cannot be written to.
+
+
+\begin{DoxyParams}{Parameters}
+{\em device} & The device to write data to. \\
+\hline
+{\em flags} & Device specific flags for the driver. \\
+\hline
+{\em base} & The base address of the device. \\
+\hline
+{\em offset} & The offset in the device to write to. \\
+\hline
+{\em buffer} & The buffer to write the data from. \\
+\hline
+{\em size} & The amount of data to write. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em 0} & No error. \\
+\hline
+{\em E\+IO} & The write did not complete or verify. \\
+\hline
+\end{DoxyRetVals}
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+cpukit/include/rtems/\mbox{\hyperlink{nvdisk_8h}{nvdisk.\+h}}\end{DoxyCompactItemize}

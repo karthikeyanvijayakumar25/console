@@ -1,0 +1,68 @@
+\hypertarget{mips_2jmr3904_2include_2tm27_8h}{}\section{bsps/mips/jmr3904/include/tm27.h File Reference}
+\label{mips_2jmr3904_2include_2tm27_8h}\index{bsps/mips/jmr3904/include/tm27.h@{bsps/mips/jmr3904/include/tm27.h}}
+{\ttfamily \#include $<$bsp/irq.\+h$>$}\newline
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{mips_2jmr3904_2include_2tm27_8h_a00a44436eb28b5b03d1cba2dcdf7382f}\label{mips_2jmr3904_2include_2tm27_8h_a00a44436eb28b5b03d1cba2dcdf7382f}} 
+\#define {\bfseries M\+U\+S\+T\+\_\+\+W\+A\+I\+T\+\_\+\+F\+O\+R\+\_\+\+I\+N\+T\+E\+R\+R\+U\+PT}~1
+\item 
+\#define {\bfseries Install\+\_\+tm27\+\_\+vector}(handler)
+\item 
+\#define {\bfseries Cause\+\_\+tm27\+\_\+intr}()
+\item 
+\#define {\bfseries Clear\+\_\+tm27\+\_\+intr}()
+\item 
+\mbox{\Hypertarget{mips_2jmr3904_2include_2tm27_8h_abe0ac599b1a9198602fa3bab0ddc7576}\label{mips_2jmr3904_2include_2tm27_8h_abe0ac599b1a9198602fa3bab0ddc7576}} 
+\#define {\bfseries Lower\+\_\+tm27\+\_\+intr}()~mips\+\_\+enable\+\_\+in\+\_\+interrupt\+\_\+mask( 0xff01 );
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{mips_2jmr3904_2include_2tm27_8h_a31c3068f1561630ef247cc984a25990b}\label{mips_2jmr3904_2include_2tm27_8h_a31c3068f1561630ef247cc984a25990b}} 
+\index{tm27.h@{tm27.h}!Cause\_tm27\_intr@{Cause\_tm27\_intr}}
+\index{Cause\_tm27\_intr@{Cause\_tm27\_intr}!tm27.h@{tm27.h}}
+\subsubsection{\texorpdfstring{Cause\_tm27\_intr}{Cause\_tm27\_intr}}
+{\footnotesize\ttfamily \#define Cause\+\_\+tm27\+\_\+intr(\begin{DoxyParamCaption}\item[{}]{void }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do} \{ \(\backslash\)}
+\DoxyCodeLine{    uint32\_t   \_clicks = 20; \(\backslash\)}
+\DoxyCodeLine{    TX3904\_TIMER\_WRITE( TX3904\_TIMER0\_BASE, TX3904\_TIMER\_CCDR, 0x3 ); \(\backslash\)}
+\DoxyCodeLine{    TX3904\_TIMER\_WRITE( TX3904\_TIMER0\_BASE, TX3904\_TIMER\_CPRA, \_clicks ); \(\backslash\)}
+\DoxyCodeLine{    TX3904\_TIMER\_WRITE( TX3904\_TIMER0\_BASE, TX3904\_TIMER\_TISR, 0x00 ); \(\backslash\)}
+\DoxyCodeLine{    TX3904\_TIMER\_WRITE( TX3904\_TIMER0\_BASE, TX3904\_TIMER\_ITMR, 0x8001 ); \(\backslash\)}
+\DoxyCodeLine{    TX3904\_TIMER\_WRITE( TX3904\_TIMER0\_BASE, TX3904\_TIMER\_TCR,   0xC0 ); \(\backslash\)}
+\DoxyCodeLine{    *((\textcolor{keyword}{volatile} uint32\_t*) 0xFFFFC01C) = 0x00000700; \(\backslash\)}
+\DoxyCodeLine{  \} \textcolor{keywordflow}{while}(0)}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{mips_2jmr3904_2include_2tm27_8h_a3eab10f81fe142df22f52661408b5513}\label{mips_2jmr3904_2include_2tm27_8h_a3eab10f81fe142df22f52661408b5513}} 
+\index{tm27.h@{tm27.h}!Clear\_tm27\_intr@{Clear\_tm27\_intr}}
+\index{Clear\_tm27\_intr@{Clear\_tm27\_intr}!tm27.h@{tm27.h}}
+\subsubsection{\texorpdfstring{Clear\_tm27\_intr}{Clear\_tm27\_intr}}
+{\footnotesize\ttfamily \#define Clear\+\_\+tm27\+\_\+intr(\begin{DoxyParamCaption}\item[{}]{void }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do} \{ \(\backslash\)}
+\DoxyCodeLine{    TX3904\_TIMER\_WRITE( TX3904\_TIMER0\_BASE, TX3904\_TIMER\_ITMR, 0x0001 ); \(\backslash\)}
+\DoxyCodeLine{    TX3904\_TIMER\_WRITE( TX3904\_TIMER0\_BASE, TX3904\_TIMER\_CCDR, 0x3 ); \(\backslash\)}
+\DoxyCodeLine{    TX3904\_TIMER\_WRITE( TX3904\_TIMER0\_BASE, TX3904\_TIMER\_TISR,   0x00 ); \(\backslash\)}
+\DoxyCodeLine{  \} \textcolor{keywordflow}{while}(0)}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{mips_2jmr3904_2include_2tm27_8h_afb2d35f87c2bc11dcc6c700e9abbc183}\label{mips_2jmr3904_2include_2tm27_8h_afb2d35f87c2bc11dcc6c700e9abbc183}} 
+\index{tm27.h@{tm27.h}!Install\_tm27\_vector@{Install\_tm27\_vector}}
+\index{Install\_tm27\_vector@{Install\_tm27\_vector}!tm27.h@{tm27.h}}
+\subsubsection{\texorpdfstring{Install\_tm27\_vector}{Install\_tm27\_vector}}
+{\footnotesize\ttfamily \#define Install\+\_\+tm27\+\_\+vector(\begin{DoxyParamCaption}\item[{}]{handler }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{group__rtems__interrupt__extension_ga086cc450fcdc9e37bfd0744a763dbfd4}{rtems\_interrupt\_handler\_install}}( \(\backslash\)}
+\DoxyCodeLine{      TX3904\_IRQ\_TMR0, \textcolor{stringliteral}{"benchmark"}, 0, \(\backslash\)}
+\DoxyCodeLine{      (\mbox{\hyperlink{group__rtems__interrupt__extension_gab39bd096ab2c3b41d03dace0e9777b08}{rtems\_interrupt\_handler}})handler, \mbox{\hyperlink{bestcomm__api_8h_a872bb74de61c3689ccd5b41873fce42c}{NULL}} );}
+
+\end{DoxyCode}

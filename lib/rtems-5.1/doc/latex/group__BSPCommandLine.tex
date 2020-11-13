@@ -1,0 +1,124 @@
+\hypertarget{group__BSPCommandLine}{}\section{B\+SP Command Line Helpers}
+\label{group__BSPCommandLine}\index{BSP Command Line Helpers@{BSP Command Line Helpers}}
+\subsection*{Files}
+\begin{DoxyCompactItemize}
+\item 
+file \mbox{\hyperlink{bspcmdline_8h}{bspcmdline.\+h}}
+\begin{DoxyCompactList}\small\item\em B\+SP Command Line Handler. \end{DoxyCompactList}\item 
+file \mbox{\hyperlink{bspcmdline__get_8c}{bspcmdline\+\_\+get.\+c}}
+\begin{DoxyCompactList}\small\item\em Obtain Pointer to B\+SP Boot Command String. \end{DoxyCompactList}\item 
+file \mbox{\hyperlink{bspcmdline__getparam_8c}{bspcmdline\+\_\+getparam.\+c}}
+\begin{DoxyCompactList}\small\item\em Obtain C\+O\+PY of the Entire Matching Argument. \end{DoxyCompactList}\item 
+file \mbox{\hyperlink{bspcmdline__getparamraw_8c}{bspcmdline\+\_\+getparamraw.\+c}}
+\begin{DoxyCompactList}\small\item\em Obtain Pointer to the Entire Matching Argument. \end{DoxyCompactList}\item 
+file \mbox{\hyperlink{bspcmdline__getparamrhs_8c}{bspcmdline\+\_\+getparamrhs.\+c}}
+\begin{DoxyCompactList}\small\item\em Obtain C\+O\+PY of the Right Hand Side of the Matching Argument. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+const char $\ast$ \mbox{\hyperlink{group__BSPCommandLine_ga6471bcde516df5d407041611984bbe87}{rtems\+\_\+bsp\+\_\+cmdline\+\_\+get}} (void)
+\begin{DoxyCompactList}\small\item\em Obtain Pointer to B\+SP Boot Command String. \end{DoxyCompactList}\item 
+const char $\ast$ \mbox{\hyperlink{group__BSPCommandLine_gad7c20e3e7204c22bbbf8fed563f70d44}{rtems\+\_\+bsp\+\_\+cmdline\+\_\+get\+\_\+param}} (const char $\ast$name, char $\ast$value, size\+\_\+t length)
+\begin{DoxyCompactList}\small\item\em Obtain C\+O\+PY of the Entire Matching Argument. \end{DoxyCompactList}\item 
+const char $\ast$ \mbox{\hyperlink{group__BSPCommandLine_ga0f3547afb380c3faef9165ae8e9f08cf}{rtems\+\_\+bsp\+\_\+cmdline\+\_\+get\+\_\+param\+\_\+rhs}} (const char $\ast$name, char $\ast$value, size\+\_\+t length)
+\begin{DoxyCompactList}\small\item\em Obtain C\+O\+PY of the Right Hand Side of the Matching Argument. \end{DoxyCompactList}\item 
+const char $\ast$ \mbox{\hyperlink{group__BSPCommandLine_gaccb3ff954c27dda66c8a9cd65a50cd54}{rtems\+\_\+bsp\+\_\+cmdline\+\_\+get\+\_\+param\+\_\+raw}} (const char $\ast$name)
+\begin{DoxyCompactList}\small\item\em Obtain Pointer to the Entire Matching Argument. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+The B\+SP Command Line Handler provides a set of routines which assist in examining and decoding the Command Line String passed to the B\+SP at boot time. 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{group__BSPCommandLine_ga6471bcde516df5d407041611984bbe87}\label{group__BSPCommandLine_ga6471bcde516df5d407041611984bbe87}} 
+\index{BSP Command Line Helpers@{BSP Command Line Helpers}!rtems\_bsp\_cmdline\_get@{rtems\_bsp\_cmdline\_get}}
+\index{rtems\_bsp\_cmdline\_get@{rtems\_bsp\_cmdline\_get}!BSP Command Line Helpers@{BSP Command Line Helpers}}
+\subsubsection{\texorpdfstring{rtems\_bsp\_cmdline\_get()}{rtems\_bsp\_cmdline\_get()}}
+{\footnotesize\ttfamily const char$\ast$ rtems\+\_\+bsp\+\_\+cmdline\+\_\+get (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Obtain Pointer to B\+SP Boot Command String. 
+
+This method returns a pointer to the B\+SP Boot Command String. It is as likely to be N\+U\+LL as point to a string as most B\+S\+Ps do not have a start environment that provides a boot string.
+
+
+\begin{DoxyRetVals}{Return values}
+{\em This} & method returns the pointer to the B\+SP Boot Command String. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{group__BSPCommandLine_gad7c20e3e7204c22bbbf8fed563f70d44}\label{group__BSPCommandLine_gad7c20e3e7204c22bbbf8fed563f70d44}} 
+\index{BSP Command Line Helpers@{BSP Command Line Helpers}!rtems\_bsp\_cmdline\_get\_param@{rtems\_bsp\_cmdline\_get\_param}}
+\index{rtems\_bsp\_cmdline\_get\_param@{rtems\_bsp\_cmdline\_get\_param}!BSP Command Line Helpers@{BSP Command Line Helpers}}
+\subsubsection{\texorpdfstring{rtems\_bsp\_cmdline\_get\_param()}{rtems\_bsp\_cmdline\_get\_param()}}
+{\footnotesize\ttfamily const char$\ast$ rtems\+\_\+bsp\+\_\+cmdline\+\_\+get\+\_\+param (\begin{DoxyParamCaption}\item[{const char $\ast$}]{name,  }\item[{char $\ast$}]{value,  }\item[{size\+\_\+t}]{length }\end{DoxyParamCaption})}
+
+
+
+Obtain C\+O\+PY of the Entire Matching Argument. 
+
+This method searches for the argument {\itshape name} in the B\+SP Boot Command String and returns a copy of the entire string associated with it in {\itshape value} up to a string of {\itshape length}. This will include the argument and any right hand side portion of the string. For example, one might be returned --mode=F\+A\+ST if searching for --mode.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em name} & is the arugment to search for \\
+\hline
+\mbox{\texttt{ in}}  & {\em value} & points to where the contents will be placed if located. \\
+\hline
+\mbox{\texttt{ in}}  & {\em length} & is the maximum length to copy\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+This method returns N\+U\+LL if not found and {\itshape value} if found. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{group__BSPCommandLine_gaccb3ff954c27dda66c8a9cd65a50cd54}\label{group__BSPCommandLine_gaccb3ff954c27dda66c8a9cd65a50cd54}} 
+\index{BSP Command Line Helpers@{BSP Command Line Helpers}!rtems\_bsp\_cmdline\_get\_param\_raw@{rtems\_bsp\_cmdline\_get\_param\_raw}}
+\index{rtems\_bsp\_cmdline\_get\_param\_raw@{rtems\_bsp\_cmdline\_get\_param\_raw}!BSP Command Line Helpers@{BSP Command Line Helpers}}
+\subsubsection{\texorpdfstring{rtems\_bsp\_cmdline\_get\_param\_raw()}{rtems\_bsp\_cmdline\_get\_param\_raw()}}
+{\footnotesize\ttfamily const char$\ast$ rtems\+\_\+bsp\+\_\+cmdline\+\_\+get\+\_\+param\+\_\+raw (\begin{DoxyParamCaption}\item[{const char $\ast$}]{name }\end{DoxyParamCaption})}
+
+
+
+Obtain Pointer to the Entire Matching Argument. 
+
+This method searches for the argument {\itshape name} in the B\+SP Boot Command String and returns a pointer to the entire string associated with it. This will include the argument and any right hand side portion of the string. For example, one might be returned --mode=F\+A\+ST if searching for --mode.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em name} & is the arugment to search for\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em This} & method returns N\+U\+LL if not found and a pointer into the B\+SP Boot Command String if found.\\
+\hline
+\end{DoxyRetVals}
+\begin{DoxyNote}{Note}
+The pointer will be to the original B\+SP Command Line string. Exercise caution when using this. 
+\end{DoxyNote}
+\mbox{\Hypertarget{group__BSPCommandLine_ga0f3547afb380c3faef9165ae8e9f08cf}\label{group__BSPCommandLine_ga0f3547afb380c3faef9165ae8e9f08cf}} 
+\index{BSP Command Line Helpers@{BSP Command Line Helpers}!rtems\_bsp\_cmdline\_get\_param\_rhs@{rtems\_bsp\_cmdline\_get\_param\_rhs}}
+\index{rtems\_bsp\_cmdline\_get\_param\_rhs@{rtems\_bsp\_cmdline\_get\_param\_rhs}!BSP Command Line Helpers@{BSP Command Line Helpers}}
+\subsubsection{\texorpdfstring{rtems\_bsp\_cmdline\_get\_param\_rhs()}{rtems\_bsp\_cmdline\_get\_param\_rhs()}}
+{\footnotesize\ttfamily const char$\ast$ rtems\+\_\+bsp\+\_\+cmdline\+\_\+get\+\_\+param\+\_\+rhs (\begin{DoxyParamCaption}\item[{const char $\ast$}]{name,  }\item[{char $\ast$}]{value,  }\item[{size\+\_\+t}]{length }\end{DoxyParamCaption})}
+
+
+
+Obtain C\+O\+PY of the Right Hand Side of the Matching Argument. 
+
+This method searches for the argument {\itshape name} in the B\+SP Boot Command String and returns the right hand side associated with it in {\itshape value} up to a maximum string {\itshape length}. This will N\+OT include the argument but only any right hand side portion of the string. $\ast$ For example, one might be returned F\+A\+ST if searching for --mode.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em name} & is the arugment to search for \\
+\hline
+\mbox{\texttt{ in}}  & {\em value} & points to where the contents will be placed if located. \\
+\hline
+\mbox{\texttt{ in}}  & {\em length} & is the maximum length to copy\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em This} & method returns N\+U\+LL if not found and {\itshape value} if found. \\
+\hline
+\end{DoxyRetVals}

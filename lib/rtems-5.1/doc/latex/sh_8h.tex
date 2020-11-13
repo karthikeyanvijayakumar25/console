@@ -1,0 +1,137 @@
+\hypertarget{sh_8h}{}\section{cpukit/score/cpu/sh/include/rtems/score/sh.h File Reference}
+\label{sh_8h}\index{cpukit/score/cpu/sh/include/rtems/score/sh.h@{cpukit/score/cpu/sh/include/rtems/score/sh.h}}
+
+
+Hitachi SH C\+PU Department Source.  
+
+
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{sh_8h_a2086ecd07853a8ecc54c179e8b0c4c35}\label{sh_8h_a2086ecd07853a8ecc54c179e8b0c4c35}} 
+\#define {\bfseries S\+H\+\_\+\+H\+A\+S\+\_\+\+F\+PU}~0
+\item 
+\mbox{\Hypertarget{sh_8h_a6161655f251417659ec80a3023bb0ec9}\label{sh_8h_a6161655f251417659ec80a3023bb0ec9}} 
+\#define {\bfseries C\+P\+U\+\_\+\+M\+O\+D\+E\+L\+\_\+\+N\+A\+ME}~\char`\"{}SH-\/Multilib\char`\"{}
+\item 
+\mbox{\Hypertarget{sh_8h_af57c3e551fa8d1a0ab7d9041da39ae44}\label{sh_8h_af57c3e551fa8d1a0ab7d9041da39ae44}} 
+\#define {\bfseries S\+H\+\_\+\+H\+A\+S\+\_\+\+S\+E\+P\+A\+R\+A\+T\+E\+\_\+\+S\+T\+A\+C\+KS}~1
+\item 
+\mbox{\Hypertarget{sh_8h_a65a2f3e765349445fd8ad6a44d7e498a}\label{sh_8h_a65a2f3e765349445fd8ad6a44d7e498a}} 
+\#define {\bfseries C\+P\+U\+\_\+\+N\+A\+ME}~\char`\"{}Hitachi SH\char`\"{}
+\item 
+\mbox{\Hypertarget{sh_8h_a831ea0ed0d5a0ddcd02fb97484c29601}\label{sh_8h_a831ea0ed0d5a0ddcd02fb97484c29601}} 
+\#define {\bfseries S\+H\+\_\+\+I\+R\+Q\+D\+I\+S\+\_\+\+M\+A\+SK}~0xf0
+\item 
+\#define {\bfseries sh\+\_\+disable\+\_\+interrupts}(\+\_\+level)
+\item 
+\#define {\bfseries sh\+\_\+enable\+\_\+interrupts}(\+\_\+level)
+\item 
+\#define {\bfseries sh\+\_\+flash\+\_\+interrupts}(\+\_\+level)
+\item 
+\#define {\bfseries sh\+\_\+get\+\_\+interrupt\+\_\+level}(\+\_\+level)
+\item 
+\#define {\bfseries sh\+\_\+set\+\_\+interrupt\+\_\+level}(\+\_\+newlevel)
+\item 
+\mbox{\Hypertarget{sh_8h_a7cc20ecf5f7bec6a79a54cfc3c12da87}\label{sh_8h_a7cc20ecf5f7bec6a79a54cfc3c12da87}} 
+\#define {\bfseries C\+P\+U\+\_\+swap\+\_\+u32}(value)~sh\+\_\+swap\+\_\+u32( value )
+\item 
+\mbox{\Hypertarget{sh_8h_a1936ecb0107e5875a7b538374c1f621d}\label{sh_8h_a1936ecb0107e5875a7b538374c1f621d}} 
+\#define {\bfseries C\+P\+U\+\_\+swap\+\_\+u16}(value)~sh\+\_\+swap\+\_\+u16( value )
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{sh_8h_a02934e3a1c0c4aef4fabe06e135a874c}\label{sh_8h_a02934e3a1c0c4aef4fabe06e135a874c}} 
+unsigned int {\bfseries sh\+\_\+set\+\_\+irq\+\_\+priority} (unsigned int irq, unsigned int prio)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Hitachi SH C\+PU Department Source. 
+
+This include file contains information pertaining to the Hitachi SH processor. 
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{sh_8h_a9777251707e77a8bc3acfdc26b59af8f}\label{sh_8h_a9777251707e77a8bc3acfdc26b59af8f}} 
+\index{sh.h@{sh.h}!sh\_disable\_interrupts@{sh\_disable\_interrupts}}
+\index{sh\_disable\_interrupts@{sh\_disable\_interrupts}!sh.h@{sh.h}}
+\subsubsection{\texorpdfstring{sh\_disable\_interrupts}{sh\_disable\_interrupts}}
+{\footnotesize\ttfamily \#define sh\+\_\+disable\+\_\+interrupts(\begin{DoxyParamCaption}\item[{}]{\+\_\+level }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{group__RTEMSScoreCPUSPARC_ga82257d4fc068f4b21b029dd69d276839}{\_\_asm\_\_}} \textcolor{keyword}{volatile} ( \(\backslash\)}
+\DoxyCodeLine{    \textcolor{stringliteral}{"stc sr,\%0\(\backslash\)n\(\backslash\)t"} \(\backslash\)}
+\DoxyCodeLine{    \textcolor{stringliteral}{"mov \%0,r5\(\backslash\)n\(\backslash\)t"} \(\backslash\)}
+\DoxyCodeLine{    \textcolor{stringliteral}{"or \%1,r5\(\backslash\)n\(\backslash\)t"} \(\backslash\)}
+\DoxyCodeLine{    \textcolor{stringliteral}{"ldc r5,sr\(\backslash\)n\(\backslash\)t"}\(\backslash\)}
+\DoxyCodeLine{  : \textcolor{stringliteral}{"=\&r"} (\_level ) \(\backslash\)}
+\DoxyCodeLine{  : \textcolor{stringliteral}{"r"} (SH\_IRQDIS\_MASK) \(\backslash\)}
+\DoxyCodeLine{  : \textcolor{stringliteral}{"r5"} );}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{sh_8h_aa27fadc0db7652b96c0c1c21371e4d22}\label{sh_8h_aa27fadc0db7652b96c0c1c21371e4d22}} 
+\index{sh.h@{sh.h}!sh\_enable\_interrupts@{sh\_enable\_interrupts}}
+\index{sh\_enable\_interrupts@{sh\_enable\_interrupts}!sh.h@{sh.h}}
+\subsubsection{\texorpdfstring{sh\_enable\_interrupts}{sh\_enable\_interrupts}}
+{\footnotesize\ttfamily \#define sh\+\_\+enable\+\_\+interrupts(\begin{DoxyParamCaption}\item[{}]{\+\_\+level }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{group__RTEMSScoreCPUSPARC_ga82257d4fc068f4b21b029dd69d276839}{\_\_asm\_\_}} \textcolor{keyword}{volatile}( \textcolor{stringliteral}{"ldc \%0,sr\(\backslash\)n\(\backslash\)t"} \(\backslash\)}
+\DoxyCodeLine{    \textcolor{stringliteral}{"nop\(\backslash\)n\(\backslash\)t"} \(\backslash\)}
+\DoxyCodeLine{    :: \textcolor{stringliteral}{"r"} (\_level) );}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{sh_8h_a5d45034252c1bd6ab94fbcefd8b628af}\label{sh_8h_a5d45034252c1bd6ab94fbcefd8b628af}} 
+\index{sh.h@{sh.h}!sh\_flash\_interrupts@{sh\_flash\_interrupts}}
+\index{sh\_flash\_interrupts@{sh\_flash\_interrupts}!sh.h@{sh.h}}
+\subsubsection{\texorpdfstring{sh\_flash\_interrupts}{sh\_flash\_interrupts}}
+{\footnotesize\ttfamily \#define sh\+\_\+flash\+\_\+interrupts(\begin{DoxyParamCaption}\item[{}]{\+\_\+level }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{group__RTEMSScoreCPUSPARC_ga82257d4fc068f4b21b029dd69d276839}{\_\_asm\_\_}} \textcolor{keyword}{volatile}( \(\backslash\)}
+\DoxyCodeLine{    \textcolor{stringliteral}{"stc sr,r5\(\backslash\)n\(\backslash\)t"} \(\backslash\)}
+\DoxyCodeLine{    \textcolor{stringliteral}{"ldc \%1,sr\(\backslash\)n\(\backslash\)t"} \(\backslash\)}
+\DoxyCodeLine{    \textcolor{stringliteral}{"nop\(\backslash\)n\(\backslash\)t"} \(\backslash\)}
+\DoxyCodeLine{    \textcolor{stringliteral}{"or \%0,r5\(\backslash\)n\(\backslash\)t"} \(\backslash\)}
+\DoxyCodeLine{    \textcolor{stringliteral}{"ldc r5,sr\(\backslash\)n\(\backslash\)t"} \(\backslash\)}
+\DoxyCodeLine{    \textcolor{stringliteral}{"nop\(\backslash\)n\(\backslash\)t"} \(\backslash\)}
+\DoxyCodeLine{    : : \textcolor{stringliteral}{"r"} (SH\_IRQDIS\_MASK), \textcolor{stringliteral}{"r"} (\_level) : \textcolor{stringliteral}{"r5"});}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{sh_8h_abe75c6024e201dff1ed43f0b6258eae9}\label{sh_8h_abe75c6024e201dff1ed43f0b6258eae9}} 
+\index{sh.h@{sh.h}!sh\_get\_interrupt\_level@{sh\_get\_interrupt\_level}}
+\index{sh\_get\_interrupt\_level@{sh\_get\_interrupt\_level}!sh.h@{sh.h}}
+\subsubsection{\texorpdfstring{sh\_get\_interrupt\_level}{sh\_get\_interrupt\_level}}
+{\footnotesize\ttfamily \#define sh\+\_\+get\+\_\+interrupt\+\_\+level(\begin{DoxyParamCaption}\item[{}]{\+\_\+level }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{ \(\backslash\)}
+\DoxyCodeLine{  uint32\_t   \_tmpsr ; \(\backslash\)}
+\DoxyCodeLine{  \(\backslash\)}
+\DoxyCodeLine{  \_\_asm\_\_ \textcolor{keyword}{volatile}( \textcolor{stringliteral}{"stc sr, \%0"} : \textcolor{stringliteral}{"=r"} (\_tmpsr) ); \(\backslash\)}
+\DoxyCodeLine{  \_level = (\_tmpsr \& 0xf0) >> 4 ; \(\backslash\)}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{sh_8h_a6a6488a7f5fee9623f5bd7d76adbda4f}\label{sh_8h_a6a6488a7f5fee9623f5bd7d76adbda4f}} 
+\index{sh.h@{sh.h}!sh\_set\_interrupt\_level@{sh\_set\_interrupt\_level}}
+\index{sh\_set\_interrupt\_level@{sh\_set\_interrupt\_level}!sh.h@{sh.h}}
+\subsubsection{\texorpdfstring{sh\_set\_interrupt\_level}{sh\_set\_interrupt\_level}}
+{\footnotesize\ttfamily \#define sh\+\_\+set\+\_\+interrupt\+\_\+level(\begin{DoxyParamCaption}\item[{}]{\+\_\+newlevel }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{ \(\backslash\)}
+\DoxyCodeLine{  uint32\_t   \_tmpsr; \(\backslash\)}
+\DoxyCodeLine{  \(\backslash\)}
+\DoxyCodeLine{  \_\_asm\_\_ \textcolor{keyword}{volatile} ( \textcolor{stringliteral}{"stc sr, \%0"} : \textcolor{stringliteral}{"=r"} (\_tmpsr) ); \(\backslash\)}
+\DoxyCodeLine{  \_tmpsr = ( \_tmpsr \& ~0xf0 ) | ((\_newlevel) << 4) ; \(\backslash\)}
+\DoxyCodeLine{  \_\_asm\_\_  \textcolor{keyword}{volatile}( \textcolor{stringliteral}{"ldc \%0,sr"} :: \textcolor{stringliteral}{"r"} (\_tmpsr) ); \(\backslash\)}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}

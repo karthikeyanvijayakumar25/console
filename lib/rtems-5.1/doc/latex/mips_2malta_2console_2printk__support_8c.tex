@@ -1,0 +1,47 @@
+\hypertarget{mips_2malta_2console_2printk__support_8c}{}\section{bsps/mips/malta/console/printk\+\_\+support.c File Reference}
+\label{mips_2malta_2console_2printk__support_8c}\index{bsps/mips/malta/console/printk\_support.c@{bsps/mips/malta/console/printk\_support.c}}
+{\ttfamily \#include $<$rtems.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/bsp\+Io.\+h$>$}\newline
+{\ttfamily \#include $<$bsp.\+h$>$}\newline
+{\ttfamily \#include $<$libchip/serial.\+h$>$}\newline
+{\ttfamily \#include $<$libchip/ns16550.\+h$>$}\newline
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{mips_2malta_2console_2printk__support_8c_a3c32190c456fa435bdb3254f79d4f45e}\label{mips_2malta_2console_2printk__support_8c_a3c32190c456fa435bdb3254f79d4f45e}} 
+void {\bfseries B\+S\+P\+\_\+com\+\_\+outch} (char ch)
+\item 
+\mbox{\Hypertarget{mips_2malta_2console_2printk__support_8c_ac16e9d56aa0cd6d5aa39755f1f5c7bf1}\label{mips_2malta_2console_2printk__support_8c_ac16e9d56aa0cd6d5aa39755f1f5c7bf1}} 
+int {\bfseries B\+S\+P\+\_\+com\+\_\+inch} (void)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{mips_2malta_2console_2printk__support_8c_a70125f66faffeac3295b05585611bcdf}\label{mips_2malta_2console_2printk__support_8c_a70125f66faffeac3295b05585611bcdf}} 
+rtems\+\_\+device\+\_\+minor\+\_\+number {\bfseries B\+S\+P\+Printk\+Port} = 0
+\item 
+\mbox{\hyperlink{bspIo_8h_a0b0dff1c3d35110ae303b4098c60dc14}{B\+S\+P\+\_\+output\+\_\+char\+\_\+function\+\_\+type}} \mbox{\hyperlink{mips_2malta_2console_2printk__support_8c_a5fb8c9c4f076f0340b4a17ed432ced5c}{B\+S\+P\+\_\+output\+\_\+char}} = B\+S\+P\+\_\+com\+\_\+outch
+\item 
+\mbox{\hyperlink{bspIo_8h_a132b9ceff428a634ece5dfaac7ef1006}{B\+S\+P\+\_\+polling\+\_\+getchar\+\_\+function\+\_\+type}} \mbox{\hyperlink{mips_2malta_2console_2printk__support_8c_ae5846eecdfa8f2813504371bf01c29b0}{B\+S\+P\+\_\+poll\+\_\+char}} = B\+S\+P\+\_\+com\+\_\+inch
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This file contains a stub for the required printk support. 
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{mips_2malta_2console_2printk__support_8c_a5fb8c9c4f076f0340b4a17ed432ced5c}\label{mips_2malta_2console_2printk__support_8c_a5fb8c9c4f076f0340b4a17ed432ced5c}} 
+\index{printk\_support.c@{printk\_support.c}!BSP\_output\_char@{BSP\_output\_char}}
+\index{BSP\_output\_char@{BSP\_output\_char}!printk\_support.c@{printk\_support.c}}
+\subsubsection{\texorpdfstring{BSP\_output\_char}{BSP\_output\_char}}
+{\footnotesize\ttfamily \mbox{\hyperlink{bspIo_8h_a0b0dff1c3d35110ae303b4098c60dc14}{B\+S\+P\+\_\+output\+\_\+char\+\_\+function\+\_\+type}} B\+S\+P\+\_\+output\+\_\+char = B\+S\+P\+\_\+com\+\_\+outch}
+
+This variable points to the B\+SP provided method to output a character for the purposes of debug output.
+
+It must output only the specific character. It must not perform character translations, e.\+g. \char`\"{}\textbackslash{}n\char`\"{} to \char`\"{}\textbackslash{}r\textbackslash{}n\char`\"{}. \mbox{\Hypertarget{mips_2malta_2console_2printk__support_8c_ae5846eecdfa8f2813504371bf01c29b0}\label{mips_2malta_2console_2printk__support_8c_ae5846eecdfa8f2813504371bf01c29b0}} 
+\index{printk\_support.c@{printk\_support.c}!BSP\_poll\_char@{BSP\_poll\_char}}
+\index{BSP\_poll\_char@{BSP\_poll\_char}!printk\_support.c@{printk\_support.c}}
+\subsubsection{\texorpdfstring{BSP\_poll\_char}{BSP\_poll\_char}}
+{\footnotesize\ttfamily \mbox{\hyperlink{bspIo_8h_a132b9ceff428a634ece5dfaac7ef1006}{B\+S\+P\+\_\+polling\+\_\+getchar\+\_\+function\+\_\+type}} B\+S\+P\+\_\+poll\+\_\+char = B\+S\+P\+\_\+com\+\_\+inch}
+
+This variable points to the B\+SP provided method to input a character for the purposes of debug input. 

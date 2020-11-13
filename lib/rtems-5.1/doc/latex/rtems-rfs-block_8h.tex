@@ -1,0 +1,406 @@
+\hypertarget{rtems-rfs-block_8h}{}\section{cpukit/include/rtems/rfs/rtems-\/rfs-\/block.h File Reference}
+\label{rtems-rfs-block_8h}\index{cpukit/include/rtems/rfs/rtems-\/rfs-\/block.h@{cpukit/include/rtems/rfs/rtems-\/rfs-\/block.h}}
+
+
+R\+T\+E\+MS File Systems Block Management.  
+
+
+{\ttfamily \#include $<$rtems/rfs/rtems-\/rfs-\/block-\/pos.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/rfs/rtems-\/rfs-\/buffer.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/rfs/rtems-\/rfs-\/data.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/rfs/rtems-\/rfs-\/file-\/system.\+h$>$}\newline
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structrtems__rfs__block__map__s}{rtems\+\_\+rfs\+\_\+block\+\_\+map\+\_\+s}}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{rtems-rfs-block_8h_a1fae6583887a6e10a9fc10466aec4871}{rtems\+\_\+rfs\+\_\+block\+\_\+get\+\_\+number}}(\+\_\+h,  \+\_\+b)
+\item 
+\#define \mbox{\hyperlink{rtems-rfs-block_8h_a3106dad1324083f22f43e9f76a9e3c64}{rtems\+\_\+rfs\+\_\+block\+\_\+set\+\_\+number}}(\+\_\+h,  \+\_\+b,  \+\_\+n)
+\item 
+\#define \mbox{\hyperlink{rtems-rfs-block_8h_a549d6991e0ac178c6dd0df88778103ad}{rtems\+\_\+rfs\+\_\+block\+\_\+map\+\_\+is\+\_\+dirty}}(\+\_\+m)~((\+\_\+m)-\/$>$dirty)
+\item 
+\#define \mbox{\hyperlink{rtems-rfs-block_8h_a62eff0ebf3f1245d1b377c01bfc61e3a}{rtems\+\_\+rfs\+\_\+block\+\_\+map\+\_\+count}}(\+\_\+m)~((\+\_\+m)-\/$>$size.\+count)
+\item 
+\#define \mbox{\hyperlink{rtems-rfs-block_8h_ae3b8d48771938228784bb2a5edaff697}{rtems\+\_\+rfs\+\_\+block\+\_\+map\+\_\+size}}(\+\_\+m)~(\&((\+\_\+m)-\/$>$\mbox{\hyperlink{sun4u_2tte_8h_a245260f6f74972558f61b85227df5aae}{size}}))
+\item 
+\#define \mbox{\hyperlink{rtems-rfs-block_8h_a38a9929ea04e6dd7f761b7bb5013fcb8}{rtems\+\_\+rfs\+\_\+block\+\_\+map\+\_\+size\+\_\+offset}}(\+\_\+m)~((\+\_\+m)-\/$>$size.\+offset)
+\item 
+\#define \mbox{\hyperlink{rtems-rfs-block_8h_aa8c216119709425d653004badbdd112f}{rtems\+\_\+rfs\+\_\+block\+\_\+map\+\_\+last}}(\+\_\+m)~\mbox{\hyperlink{rtems-rfs-block-pos_8h_af9de1169214c5fbc1d5cbb8265e4b759}{rtems\+\_\+rfs\+\_\+block\+\_\+pos\+\_\+last\+\_\+block}} (\&(\+\_\+m)-\/$>$bpos, \&(\+\_\+m)-\/$>$\mbox{\hyperlink{sun4u_2tte_8h_a245260f6f74972558f61b85227df5aae}{size}})
+\item 
+\#define \mbox{\hyperlink{rtems-rfs-block_8h_ae63fea18cd527d6b6c5049d7f36196c4}{rtems\+\_\+rfs\+\_\+block\+\_\+map\+\_\+past\+\_\+end}}(\+\_\+m,  \+\_\+p)~\mbox{\hyperlink{rtems-rfs-block-pos_8h_a7c9df0abcb57dfe35e4e18ae63356077}{rtems\+\_\+rfs\+\_\+block\+\_\+pos\+\_\+past\+\_\+end}} (\+\_\+p, \&(\+\_\+m)-\/$>$\mbox{\hyperlink{sun4u_2tte_8h_a245260f6f74972558f61b85227df5aae}{size}})
+\item 
+\#define \mbox{\hyperlink{rtems-rfs-block_8h_a08acb6d8355c8533a760c9dffa3598fa}{rtems\+\_\+rfs\+\_\+block\+\_\+map\+\_\+pos}}(\+\_\+f,  \+\_\+m)~\mbox{\hyperlink{rtems-rfs-block_8c_a76f70461e9f76aa1f6739a13a8f26735}{rtems\+\_\+rfs\+\_\+block\+\_\+get\+\_\+pos}} (\+\_\+f, \&(\+\_\+m)-\/$>$bpos)
+\item 
+\#define \mbox{\hyperlink{rtems-rfs-block_8h_a3b2ba358af43eacc75bab0a43df635b4}{rtems\+\_\+rfs\+\_\+block\+\_\+map\+\_\+block}}(\+\_\+m)~((\+\_\+m)-\/$>$bpos.\+bno)
+\item 
+\#define \mbox{\hyperlink{rtems-rfs-block_8h_a2e08847a8a8a412af576b52464934461}{rtems\+\_\+rfs\+\_\+block\+\_\+map\+\_\+block\+\_\+offset}}(\+\_\+m)~((\+\_\+m)-\/$>$bpos.\+boff)
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \mbox{\hyperlink{structrtems__rfs__block__map__s}{rtems\+\_\+rfs\+\_\+block\+\_\+map\+\_\+s}} \mbox{\hyperlink{rtems-rfs-block_8h_af488270acef452a961e888bffdc3a7bf}{rtems\+\_\+rfs\+\_\+block\+\_\+map}}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{rtems-rfs-block_8h_a5a09f0d3d9d4e31367c51ceadb7dea31}{rtems\+\_\+rfs\+\_\+block\+\_\+map\+\_\+open}} (\mbox{\hyperlink{struct__rtems__rfs__file__system}{rtems\+\_\+rfs\+\_\+file\+\_\+system}} $\ast$fs, \mbox{\hyperlink{rtems-rfs-inode_8h_a91f02dac5a2d91e072d676f3266ab8d2}{rtems\+\_\+rfs\+\_\+inode\+\_\+handle}} $\ast$inode, \mbox{\hyperlink{rtems-rfs-block_8h_af488270acef452a961e888bffdc3a7bf}{rtems\+\_\+rfs\+\_\+block\+\_\+map}} $\ast$\mbox{\hyperlink{struct__map}{map}})
+\item 
+int \mbox{\hyperlink{rtems-rfs-block_8h_a9f3eaf881c5744fcfe5798cea33999a7}{rtems\+\_\+rfs\+\_\+block\+\_\+map\+\_\+close}} (\mbox{\hyperlink{struct__rtems__rfs__file__system}{rtems\+\_\+rfs\+\_\+file\+\_\+system}} $\ast$fs, \mbox{\hyperlink{rtems-rfs-block_8h_af488270acef452a961e888bffdc3a7bf}{rtems\+\_\+rfs\+\_\+block\+\_\+map}} $\ast$\mbox{\hyperlink{struct__map}{map}})
+\item 
+int \mbox{\hyperlink{rtems-rfs-block_8h_a28b8212558166f369beb68e4bd28d528}{rtems\+\_\+rfs\+\_\+block\+\_\+map\+\_\+find}} (\mbox{\hyperlink{struct__rtems__rfs__file__system}{rtems\+\_\+rfs\+\_\+file\+\_\+system}} $\ast$fs, \mbox{\hyperlink{rtems-rfs-block_8h_af488270acef452a961e888bffdc3a7bf}{rtems\+\_\+rfs\+\_\+block\+\_\+map}} $\ast$\mbox{\hyperlink{struct__map}{map}}, \mbox{\hyperlink{rtems-rfs-block-pos_8h_a0d8bd7482333e584a03df45e60cda226}{rtems\+\_\+rfs\+\_\+block\+\_\+pos}} $\ast$bpos, \mbox{\hyperlink{rtems-rfs-buffer_8h_a5650d53328a5af0a78198fe780aec043}{rtems\+\_\+rfs\+\_\+buffer\+\_\+block}} $\ast$block)
+\item 
+int \mbox{\hyperlink{rtems-rfs-block_8h_a0d34276d2ea32d86916a57cf34266c0f}{rtems\+\_\+rfs\+\_\+block\+\_\+map\+\_\+seek}} (\mbox{\hyperlink{struct__rtems__rfs__file__system}{rtems\+\_\+rfs\+\_\+file\+\_\+system}} $\ast$fs, \mbox{\hyperlink{rtems-rfs-block_8h_af488270acef452a961e888bffdc3a7bf}{rtems\+\_\+rfs\+\_\+block\+\_\+map}} $\ast$\mbox{\hyperlink{struct__map}{map}}, \mbox{\hyperlink{rtems-rfs-file-system_8h_af6bccb465dcd34c68e9f0c214950ef57}{rtems\+\_\+rfs\+\_\+pos\+\_\+rel}} offset, \mbox{\hyperlink{rtems-rfs-buffer_8h_a5650d53328a5af0a78198fe780aec043}{rtems\+\_\+rfs\+\_\+buffer\+\_\+block}} $\ast$block)
+\item 
+int \mbox{\hyperlink{rtems-rfs-block_8h_a94ad6a90dc3f322eb58926d8d78af9c2}{rtems\+\_\+rfs\+\_\+block\+\_\+map\+\_\+next\+\_\+block}} (\mbox{\hyperlink{struct__rtems__rfs__file__system}{rtems\+\_\+rfs\+\_\+file\+\_\+system}} $\ast$fs, \mbox{\hyperlink{rtems-rfs-block_8h_af488270acef452a961e888bffdc3a7bf}{rtems\+\_\+rfs\+\_\+block\+\_\+map}} $\ast$\mbox{\hyperlink{struct__map}{map}}, \mbox{\hyperlink{rtems-rfs-buffer_8h_a5650d53328a5af0a78198fe780aec043}{rtems\+\_\+rfs\+\_\+buffer\+\_\+block}} $\ast$block)
+\item 
+int \mbox{\hyperlink{rtems-rfs-block_8h_aa0041e23dc7269c746a5d198fda8426d}{rtems\+\_\+rfs\+\_\+block\+\_\+map\+\_\+grow}} (\mbox{\hyperlink{struct__rtems__rfs__file__system}{rtems\+\_\+rfs\+\_\+file\+\_\+system}} $\ast$fs, \mbox{\hyperlink{rtems-rfs-block_8h_af488270acef452a961e888bffdc3a7bf}{rtems\+\_\+rfs\+\_\+block\+\_\+map}} $\ast$\mbox{\hyperlink{struct__map}{map}}, size\+\_\+t blocks, \mbox{\hyperlink{rtems-rfs-block-pos_8h_abbf8bb95acf9bd16ed3291f7da518e9a}{rtems\+\_\+rfs\+\_\+block\+\_\+no}} $\ast$new\+\_\+block)
+\item 
+int \mbox{\hyperlink{rtems-rfs-block_8h_a1609f6d6ac4378a5df7935a69bb2884d}{rtems\+\_\+rfs\+\_\+block\+\_\+map\+\_\+shrink}} (\mbox{\hyperlink{struct__rtems__rfs__file__system}{rtems\+\_\+rfs\+\_\+file\+\_\+system}} $\ast$fs, \mbox{\hyperlink{rtems-rfs-block_8h_af488270acef452a961e888bffdc3a7bf}{rtems\+\_\+rfs\+\_\+block\+\_\+map}} $\ast$\mbox{\hyperlink{struct__map}{map}}, size\+\_\+t blocks)
+\item 
+int \mbox{\hyperlink{rtems-rfs-block_8h_a1918b1aa888c6545497402764528ef99}{rtems\+\_\+rfs\+\_\+block\+\_\+map\+\_\+free\+\_\+all}} (\mbox{\hyperlink{struct__rtems__rfs__file__system}{rtems\+\_\+rfs\+\_\+file\+\_\+system}} $\ast$fs, \mbox{\hyperlink{rtems-rfs-block_8h_af488270acef452a961e888bffdc3a7bf}{rtems\+\_\+rfs\+\_\+block\+\_\+map}} $\ast$\mbox{\hyperlink{struct__map}{map}})
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+R\+T\+E\+MS File Systems Block Management. 
+
+R\+T\+E\+MS File Systems Block Management.
+
+These functions manage the blocks used in the file system. 
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{rtems-rfs-block_8h_a1fae6583887a6e10a9fc10466aec4871}\label{rtems-rfs-block_8h_a1fae6583887a6e10a9fc10466aec4871}} 
+\index{rtems-\/rfs-\/block.h@{rtems-\/rfs-\/block.h}!rtems\_rfs\_block\_get\_number@{rtems\_rfs\_block\_get\_number}}
+\index{rtems\_rfs\_block\_get\_number@{rtems\_rfs\_block\_get\_number}!rtems-\/rfs-\/block.h@{rtems-\/rfs-\/block.h}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_block\_get\_number}{rtems\_rfs\_block\_get\_number}}
+{\footnotesize\ttfamily \#define rtems\+\_\+rfs\+\_\+block\+\_\+get\+\_\+number(\begin{DoxyParamCaption}\item[{}]{\+\_\+h,  }\item[{}]{\+\_\+b }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{((\mbox{\hyperlink{rtems-rfs-block-pos_8h_abbf8bb95acf9bd16ed3291f7da518e9a}{rtems\_rfs\_block\_no}}) \(\backslash\)}
+\DoxyCodeLine{   (\mbox{\hyperlink{rtems-rfs-data_8h_ae061f1784ebeef490293e0080740041a}{rtems\_rfs\_read\_u32}} (\mbox{\hyperlink{rtems-rfs-buffer_8h_aeb8816b42da7435346c907b381188402}{rtems\_rfs\_buffer\_data}} (\_h) + \(\backslash\)}
+\DoxyCodeLine{                        ((\_b) * \textcolor{keyword}{sizeof} (\mbox{\hyperlink{rtems-rfs-block-pos_8h_abbf8bb95acf9bd16ed3291f7da518e9a}{rtems\_rfs\_block\_no}})))))}
+
+\end{DoxyCode}
+Get a block number in the media format and return it in the host format.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+h} & is the buffer handle of the block. \\
+\hline
+\mbox{\texttt{ in}}  & {\em \+\_\+b} & is the block number index.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em block} & The block number. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{rtems-rfs-block_8h_a3b2ba358af43eacc75bab0a43df635b4}\label{rtems-rfs-block_8h_a3b2ba358af43eacc75bab0a43df635b4}} 
+\index{rtems-\/rfs-\/block.h@{rtems-\/rfs-\/block.h}!rtems\_rfs\_block\_map\_block@{rtems\_rfs\_block\_map\_block}}
+\index{rtems\_rfs\_block\_map\_block@{rtems\_rfs\_block\_map\_block}!rtems-\/rfs-\/block.h@{rtems-\/rfs-\/block.h}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_block\_map\_block}{rtems\_rfs\_block\_map\_block}}
+{\footnotesize\ttfamily \#define rtems\+\_\+rfs\+\_\+block\+\_\+map\+\_\+block(\begin{DoxyParamCaption}\item[{}]{\+\_\+m }\end{DoxyParamCaption})~((\+\_\+m)-\/$>$bpos.\+bno)}
+
+Return the map\textquotesingle{}s current block number. \mbox{\Hypertarget{rtems-rfs-block_8h_a2e08847a8a8a412af576b52464934461}\label{rtems-rfs-block_8h_a2e08847a8a8a412af576b52464934461}} 
+\index{rtems-\/rfs-\/block.h@{rtems-\/rfs-\/block.h}!rtems\_rfs\_block\_map\_block\_offset@{rtems\_rfs\_block\_map\_block\_offset}}
+\index{rtems\_rfs\_block\_map\_block\_offset@{rtems\_rfs\_block\_map\_block\_offset}!rtems-\/rfs-\/block.h@{rtems-\/rfs-\/block.h}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_block\_map\_block\_offset}{rtems\_rfs\_block\_map\_block\_offset}}
+{\footnotesize\ttfamily \#define rtems\+\_\+rfs\+\_\+block\+\_\+map\+\_\+block\+\_\+offset(\begin{DoxyParamCaption}\item[{}]{\+\_\+m }\end{DoxyParamCaption})~((\+\_\+m)-\/$>$bpos.\+boff)}
+
+Return the map\textquotesingle{}s current block offset. \mbox{\Hypertarget{rtems-rfs-block_8h_a62eff0ebf3f1245d1b377c01bfc61e3a}\label{rtems-rfs-block_8h_a62eff0ebf3f1245d1b377c01bfc61e3a}} 
+\index{rtems-\/rfs-\/block.h@{rtems-\/rfs-\/block.h}!rtems\_rfs\_block\_map\_count@{rtems\_rfs\_block\_map\_count}}
+\index{rtems\_rfs\_block\_map\_count@{rtems\_rfs\_block\_map\_count}!rtems-\/rfs-\/block.h@{rtems-\/rfs-\/block.h}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_block\_map\_count}{rtems\_rfs\_block\_map\_count}}
+{\footnotesize\ttfamily \#define rtems\+\_\+rfs\+\_\+block\+\_\+map\+\_\+count(\begin{DoxyParamCaption}\item[{}]{\+\_\+m }\end{DoxyParamCaption})~((\+\_\+m)-\/$>$size.\+count)}
+
+Return the block count in the map. \mbox{\Hypertarget{rtems-rfs-block_8h_a549d6991e0ac178c6dd0df88778103ad}\label{rtems-rfs-block_8h_a549d6991e0ac178c6dd0df88778103ad}} 
+\index{rtems-\/rfs-\/block.h@{rtems-\/rfs-\/block.h}!rtems\_rfs\_block\_map\_is\_dirty@{rtems\_rfs\_block\_map\_is\_dirty}}
+\index{rtems\_rfs\_block\_map\_is\_dirty@{rtems\_rfs\_block\_map\_is\_dirty}!rtems-\/rfs-\/block.h@{rtems-\/rfs-\/block.h}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_block\_map\_is\_dirty}{rtems\_rfs\_block\_map\_is\_dirty}}
+{\footnotesize\ttfamily \#define rtems\+\_\+rfs\+\_\+block\+\_\+map\+\_\+is\+\_\+dirty(\begin{DoxyParamCaption}\item[{}]{\+\_\+m }\end{DoxyParamCaption})~((\+\_\+m)-\/$>$dirty)}
+
+Is the map dirty ? \mbox{\Hypertarget{rtems-rfs-block_8h_aa8c216119709425d653004badbdd112f}\label{rtems-rfs-block_8h_aa8c216119709425d653004badbdd112f}} 
+\index{rtems-\/rfs-\/block.h@{rtems-\/rfs-\/block.h}!rtems\_rfs\_block\_map\_last@{rtems\_rfs\_block\_map\_last}}
+\index{rtems\_rfs\_block\_map\_last@{rtems\_rfs\_block\_map\_last}!rtems-\/rfs-\/block.h@{rtems-\/rfs-\/block.h}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_block\_map\_last}{rtems\_rfs\_block\_map\_last}}
+{\footnotesize\ttfamily \#define rtems\+\_\+rfs\+\_\+block\+\_\+map\+\_\+last(\begin{DoxyParamCaption}\item[{}]{\+\_\+m }\end{DoxyParamCaption})~\mbox{\hyperlink{rtems-rfs-block-pos_8h_af9de1169214c5fbc1d5cbb8265e4b759}{rtems\+\_\+rfs\+\_\+block\+\_\+pos\+\_\+last\+\_\+block}} (\&(\+\_\+m)-\/$>$bpos, \&(\+\_\+m)-\/$>$\mbox{\hyperlink{sun4u_2tte_8h_a245260f6f74972558f61b85227df5aae}{size}})}
+
+Are we at the last block in the map ? \mbox{\Hypertarget{rtems-rfs-block_8h_ae63fea18cd527d6b6c5049d7f36196c4}\label{rtems-rfs-block_8h_ae63fea18cd527d6b6c5049d7f36196c4}} 
+\index{rtems-\/rfs-\/block.h@{rtems-\/rfs-\/block.h}!rtems\_rfs\_block\_map\_past\_end@{rtems\_rfs\_block\_map\_past\_end}}
+\index{rtems\_rfs\_block\_map\_past\_end@{rtems\_rfs\_block\_map\_past\_end}!rtems-\/rfs-\/block.h@{rtems-\/rfs-\/block.h}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_block\_map\_past\_end}{rtems\_rfs\_block\_map\_past\_end}}
+{\footnotesize\ttfamily \#define rtems\+\_\+rfs\+\_\+block\+\_\+map\+\_\+past\+\_\+end(\begin{DoxyParamCaption}\item[{}]{\+\_\+m,  }\item[{}]{\+\_\+p }\end{DoxyParamCaption})~\mbox{\hyperlink{rtems-rfs-block-pos_8h_a7c9df0abcb57dfe35e4e18ae63356077}{rtems\+\_\+rfs\+\_\+block\+\_\+pos\+\_\+past\+\_\+end}} (\+\_\+p, \&(\+\_\+m)-\/$>$\mbox{\hyperlink{sun4u_2tte_8h_a245260f6f74972558f61b85227df5aae}{size}})}
+
+Is the position past the end of the block ? \mbox{\Hypertarget{rtems-rfs-block_8h_a08acb6d8355c8533a760c9dffa3598fa}\label{rtems-rfs-block_8h_a08acb6d8355c8533a760c9dffa3598fa}} 
+\index{rtems-\/rfs-\/block.h@{rtems-\/rfs-\/block.h}!rtems\_rfs\_block\_map\_pos@{rtems\_rfs\_block\_map\_pos}}
+\index{rtems\_rfs\_block\_map\_pos@{rtems\_rfs\_block\_map\_pos}!rtems-\/rfs-\/block.h@{rtems-\/rfs-\/block.h}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_block\_map\_pos}{rtems\_rfs\_block\_map\_pos}}
+{\footnotesize\ttfamily \#define rtems\+\_\+rfs\+\_\+block\+\_\+map\+\_\+pos(\begin{DoxyParamCaption}\item[{}]{\+\_\+f,  }\item[{}]{\+\_\+m }\end{DoxyParamCaption})~\mbox{\hyperlink{rtems-rfs-block_8c_a76f70461e9f76aa1f6739a13a8f26735}{rtems\+\_\+rfs\+\_\+block\+\_\+get\+\_\+pos}} (\+\_\+f, \&(\+\_\+m)-\/$>$bpos)}
+
+Return the current position in the map. \mbox{\Hypertarget{rtems-rfs-block_8h_ae3b8d48771938228784bb2a5edaff697}\label{rtems-rfs-block_8h_ae3b8d48771938228784bb2a5edaff697}} 
+\index{rtems-\/rfs-\/block.h@{rtems-\/rfs-\/block.h}!rtems\_rfs\_block\_map\_size@{rtems\_rfs\_block\_map\_size}}
+\index{rtems\_rfs\_block\_map\_size@{rtems\_rfs\_block\_map\_size}!rtems-\/rfs-\/block.h@{rtems-\/rfs-\/block.h}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_block\_map\_size}{rtems\_rfs\_block\_map\_size}}
+{\footnotesize\ttfamily \#define rtems\+\_\+rfs\+\_\+block\+\_\+map\+\_\+size(\begin{DoxyParamCaption}\item[{}]{\+\_\+m }\end{DoxyParamCaption})~(\&((\+\_\+m)-\/$>$\mbox{\hyperlink{sun4u_2tte_8h_a245260f6f74972558f61b85227df5aae}{size}}))}
+
+Return the map\textquotesingle{}s size element. \mbox{\Hypertarget{rtems-rfs-block_8h_a38a9929ea04e6dd7f761b7bb5013fcb8}\label{rtems-rfs-block_8h_a38a9929ea04e6dd7f761b7bb5013fcb8}} 
+\index{rtems-\/rfs-\/block.h@{rtems-\/rfs-\/block.h}!rtems\_rfs\_block\_map\_size\_offset@{rtems\_rfs\_block\_map\_size\_offset}}
+\index{rtems\_rfs\_block\_map\_size\_offset@{rtems\_rfs\_block\_map\_size\_offset}!rtems-\/rfs-\/block.h@{rtems-\/rfs-\/block.h}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_block\_map\_size\_offset}{rtems\_rfs\_block\_map\_size\_offset}}
+{\footnotesize\ttfamily \#define rtems\+\_\+rfs\+\_\+block\+\_\+map\+\_\+size\+\_\+offset(\begin{DoxyParamCaption}\item[{}]{\+\_\+m }\end{DoxyParamCaption})~((\+\_\+m)-\/$>$size.\+offset)}
+
+Return the size offset for the map. \mbox{\Hypertarget{rtems-rfs-block_8h_a3106dad1324083f22f43e9f76a9e3c64}\label{rtems-rfs-block_8h_a3106dad1324083f22f43e9f76a9e3c64}} 
+\index{rtems-\/rfs-\/block.h@{rtems-\/rfs-\/block.h}!rtems\_rfs\_block\_set\_number@{rtems\_rfs\_block\_set\_number}}
+\index{rtems\_rfs\_block\_set\_number@{rtems\_rfs\_block\_set\_number}!rtems-\/rfs-\/block.h@{rtems-\/rfs-\/block.h}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_block\_set\_number}{rtems\_rfs\_block\_set\_number}}
+{\footnotesize\ttfamily \#define rtems\+\_\+rfs\+\_\+block\+\_\+set\+\_\+number(\begin{DoxyParamCaption}\item[{}]{\+\_\+h,  }\item[{}]{\+\_\+b,  }\item[{}]{\+\_\+n }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do} \{ \(\backslash\)}
+\DoxyCodeLine{    rtems\_rfs\_write\_u32 (\mbox{\hyperlink{rtems-rfs-buffer_8h_aeb8816b42da7435346c907b381188402}{rtems\_rfs\_buffer\_data}} (\_h) + \(\backslash\)}
+\DoxyCodeLine{                         ((\_b) * \textcolor{keyword}{sizeof} (\mbox{\hyperlink{rtems-rfs-block-pos_8h_abbf8bb95acf9bd16ed3291f7da518e9a}{rtems\_rfs\_block\_no}})), (\_n)); \(\backslash\)}
+\DoxyCodeLine{    rtems\_rfs\_buffer\_mark\_dirty (\_h); \(\backslash\)}
+\DoxyCodeLine{  \} \textcolor{keywordflow}{while} (0)}
+
+\end{DoxyCode}
+Set a block number in the media format given a number in the host format.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+h} & is the buffer handle of the block. \\
+\hline
+\mbox{\texttt{ in}}  & {\em \+\_\+b} & is the block number index, ie the number of block number not the buffer offset. \\
+\hline
+\mbox{\texttt{ in}}  & {\em \+\_\+n} & is the block number. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Typedef Documentation}
+\mbox{\Hypertarget{rtems-rfs-block_8h_af488270acef452a961e888bffdc3a7bf}\label{rtems-rfs-block_8h_af488270acef452a961e888bffdc3a7bf}} 
+\index{rtems-\/rfs-\/block.h@{rtems-\/rfs-\/block.h}!rtems\_rfs\_block\_map@{rtems\_rfs\_block\_map}}
+\index{rtems\_rfs\_block\_map@{rtems\_rfs\_block\_map}!rtems-\/rfs-\/block.h@{rtems-\/rfs-\/block.h}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_block\_map}{rtems\_rfs\_block\_map}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structrtems__rfs__block__map__s}{rtems\+\_\+rfs\+\_\+block\+\_\+map\+\_\+s}}  \mbox{\hyperlink{rtems-rfs-block_8h_af488270acef452a961e888bffdc3a7bf}{rtems\+\_\+rfs\+\_\+block\+\_\+map}}}
+
+A block map manges the block lists that originate from an inode. The inode contains a number of block numbers. A block map takes those block numbers and manages them.
+
+The blocks cannot have all ones as a block number nor block 0. The block map is series of block numbers in a blocks. The size of the map determines the way the block numbers are stored. The map uses the following\+:
+
+\begin{DoxyItemize}
+\item {\itshape Direct} Access, \item {\itshape Single} Indirect Access, and \item {\itshape Double} Indirect Access.\end{DoxyItemize}
+Direct access has the blocks numbers in the inode slots. The Single Indirect Access has block numbers in the inode slots that pointer to a table of block numbers that point to data blocks. The Double Indirect Access has block numbers in the inode that point to Single Indirect block tables.
+
+The inode can hold a number of Direct, Single Indirect, and Double Indirect block tables. The move from Direct to Single occurs then the block count in the map is above the number of slots in the inode. The move from Single to Double occurs when the map block count is greated than the block numbers per block multipled by the slots in the inode. The move from Single to Double occurs when the map block count is over the block numbers per block squared multipled by the number of slots in the inode.
+
+The block map can managed files of the follow size verses block size with 5 inode slots\+:
+
+\begin{DoxyItemize}
+\item 41,943,040 bytes for a 512 byte block size, \item 335,544,320 bytes for a 1024 byte block size, \item 2,684,354,560 bytes for a 2048 byte block size, and \item 21,474,836,480 bytes for a 4096 byte block size. \end{DoxyItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{rtems-rfs-block_8h_a9f3eaf881c5744fcfe5798cea33999a7}\label{rtems-rfs-block_8h_a9f3eaf881c5744fcfe5798cea33999a7}} 
+\index{rtems-\/rfs-\/block.h@{rtems-\/rfs-\/block.h}!rtems\_rfs\_block\_map\_close@{rtems\_rfs\_block\_map\_close}}
+\index{rtems\_rfs\_block\_map\_close@{rtems\_rfs\_block\_map\_close}!rtems-\/rfs-\/block.h@{rtems-\/rfs-\/block.h}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_block\_map\_close()}{rtems\_rfs\_block\_map\_close()}}
+{\footnotesize\ttfamily int rtems\+\_\+rfs\+\_\+block\+\_\+map\+\_\+close (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__rtems__rfs__file__system}{rtems\+\_\+rfs\+\_\+file\+\_\+system}} $\ast$}]{fs,  }\item[{\mbox{\hyperlink{rtems-rfs-block_8h_af488270acef452a961e888bffdc3a7bf}{rtems\+\_\+rfs\+\_\+block\+\_\+map}} $\ast$}]{map }\end{DoxyParamCaption})}
+
+Close the map. The buffer handles are closed and any help buffers are released.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em fs} & is the file system data. \\
+\hline
+\mbox{\texttt{ in}}  & {\em map} & is a pointer to the map that is opened.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em 0} & Successful operation. \\
+\hline
+{\em error\+\_\+code} & An error occurred. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{rtems-rfs-block_8h_a28b8212558166f369beb68e4bd28d528}\label{rtems-rfs-block_8h_a28b8212558166f369beb68e4bd28d528}} 
+\index{rtems-\/rfs-\/block.h@{rtems-\/rfs-\/block.h}!rtems\_rfs\_block\_map\_find@{rtems\_rfs\_block\_map\_find}}
+\index{rtems\_rfs\_block\_map\_find@{rtems\_rfs\_block\_map\_find}!rtems-\/rfs-\/block.h@{rtems-\/rfs-\/block.h}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_block\_map\_find()}{rtems\_rfs\_block\_map\_find()}}
+{\footnotesize\ttfamily int rtems\+\_\+rfs\+\_\+block\+\_\+map\+\_\+find (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__rtems__rfs__file__system}{rtems\+\_\+rfs\+\_\+file\+\_\+system}} $\ast$}]{fs,  }\item[{\mbox{\hyperlink{rtems-rfs-block_8h_af488270acef452a961e888bffdc3a7bf}{rtems\+\_\+rfs\+\_\+block\+\_\+map}} $\ast$}]{map,  }\item[{\mbox{\hyperlink{rtems-rfs-block-pos_8h_a0d8bd7482333e584a03df45e60cda226}{rtems\+\_\+rfs\+\_\+block\+\_\+pos}} $\ast$}]{bpos,  }\item[{\mbox{\hyperlink{rtems-rfs-buffer_8h_a5650d53328a5af0a78198fe780aec043}{rtems\+\_\+rfs\+\_\+buffer\+\_\+block}} $\ast$}]{block }\end{DoxyParamCaption})}
+
+Find a block number in the map from the position provided.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em fs} & is the file system data. \\
+\hline
+\mbox{\texttt{ in}}  & {\em map} & is a pointer to the map to search. \\
+\hline
+\mbox{\texttt{ in}}  & {\em bpos} & is a pointer to the block position to find. \\
+\hline
+\mbox{\texttt{ out}}  & {\em block} & will contain the block in when found.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em 0} & Successful operation. \\
+\hline
+{\em error\+\_\+code} & An error occurred. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{rtems-rfs-block_8h_a1918b1aa888c6545497402764528ef99}\label{rtems-rfs-block_8h_a1918b1aa888c6545497402764528ef99}} 
+\index{rtems-\/rfs-\/block.h@{rtems-\/rfs-\/block.h}!rtems\_rfs\_block\_map\_free\_all@{rtems\_rfs\_block\_map\_free\_all}}
+\index{rtems\_rfs\_block\_map\_free\_all@{rtems\_rfs\_block\_map\_free\_all}!rtems-\/rfs-\/block.h@{rtems-\/rfs-\/block.h}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_block\_map\_free\_all()}{rtems\_rfs\_block\_map\_free\_all()}}
+{\footnotesize\ttfamily int rtems\+\_\+rfs\+\_\+block\+\_\+map\+\_\+free\+\_\+all (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__rtems__rfs__file__system}{rtems\+\_\+rfs\+\_\+file\+\_\+system}} $\ast$}]{fs,  }\item[{\mbox{\hyperlink{rtems-rfs-block_8h_af488270acef452a961e888bffdc3a7bf}{rtems\+\_\+rfs\+\_\+block\+\_\+map}} $\ast$}]{map }\end{DoxyParamCaption})}
+
+Free all blocks in the map.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em fs} & is the file system data. \\
+\hline
+\mbox{\texttt{ in}}  & {\em map} & is a pointer to the open map to free all blocks from.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em 0} & Successful operation. \\
+\hline
+{\em error\+\_\+code} & An error occurred. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{rtems-rfs-block_8h_aa0041e23dc7269c746a5d198fda8426d}\label{rtems-rfs-block_8h_aa0041e23dc7269c746a5d198fda8426d}} 
+\index{rtems-\/rfs-\/block.h@{rtems-\/rfs-\/block.h}!rtems\_rfs\_block\_map\_grow@{rtems\_rfs\_block\_map\_grow}}
+\index{rtems\_rfs\_block\_map\_grow@{rtems\_rfs\_block\_map\_grow}!rtems-\/rfs-\/block.h@{rtems-\/rfs-\/block.h}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_block\_map\_grow()}{rtems\_rfs\_block\_map\_grow()}}
+{\footnotesize\ttfamily int rtems\+\_\+rfs\+\_\+block\+\_\+map\+\_\+grow (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__rtems__rfs__file__system}{rtems\+\_\+rfs\+\_\+file\+\_\+system}} $\ast$}]{fs,  }\item[{\mbox{\hyperlink{rtems-rfs-block_8h_af488270acef452a961e888bffdc3a7bf}{rtems\+\_\+rfs\+\_\+block\+\_\+map}} $\ast$}]{map,  }\item[{size\+\_\+t}]{blocks,  }\item[{\mbox{\hyperlink{rtems-rfs-block-pos_8h_abbf8bb95acf9bd16ed3291f7da518e9a}{rtems\+\_\+rfs\+\_\+block\+\_\+no}} $\ast$}]{new\+\_\+block }\end{DoxyParamCaption})}
+
+Grow the block map by the specified number of blocks.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em fs} & is the file system data. \\
+\hline
+\mbox{\texttt{ in}}  & {\em map} & is a pointer to the open map to grow. \\
+\hline
+\mbox{\texttt{ in}}  & {\em blocks} & is the number of blocks to grow the map by. \\
+\hline
+\mbox{\texttt{ out}}  & {\em new\+\_\+block} & will contain first of the blocks allocated to the map.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em 0} & Successful operation. \\
+\hline
+{\em error\+\_\+code} & An error occurred. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{rtems-rfs-block_8h_a94ad6a90dc3f322eb58926d8d78af9c2}\label{rtems-rfs-block_8h_a94ad6a90dc3f322eb58926d8d78af9c2}} 
+\index{rtems-\/rfs-\/block.h@{rtems-\/rfs-\/block.h}!rtems\_rfs\_block\_map\_next\_block@{rtems\_rfs\_block\_map\_next\_block}}
+\index{rtems\_rfs\_block\_map\_next\_block@{rtems\_rfs\_block\_map\_next\_block}!rtems-\/rfs-\/block.h@{rtems-\/rfs-\/block.h}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_block\_map\_next\_block()}{rtems\_rfs\_block\_map\_next\_block()}}
+{\footnotesize\ttfamily int rtems\+\_\+rfs\+\_\+block\+\_\+map\+\_\+next\+\_\+block (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__rtems__rfs__file__system}{rtems\+\_\+rfs\+\_\+file\+\_\+system}} $\ast$}]{fs,  }\item[{\mbox{\hyperlink{rtems-rfs-block_8h_af488270acef452a961e888bffdc3a7bf}{rtems\+\_\+rfs\+\_\+block\+\_\+map}} $\ast$}]{map,  }\item[{\mbox{\hyperlink{rtems-rfs-buffer_8h_a5650d53328a5af0a78198fe780aec043}{rtems\+\_\+rfs\+\_\+buffer\+\_\+block}} $\ast$}]{block }\end{DoxyParamCaption})}
+
+Seek to the next block.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em fs} & is the file system data. \\
+\hline
+\mbox{\texttt{ in}}  & {\em map} & is a pointer to the map to search. \\
+\hline
+\mbox{\texttt{ out}}  & {\em block} & will contain the block in when found.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em 0} & Successful operation. \\
+\hline
+{\em E\+N\+X\+IO} & Failed to seek because it is outside the block map. \\
+\hline
+{\em error\+\_\+code} & An error occurred. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{rtems-rfs-block_8h_a5a09f0d3d9d4e31367c51ceadb7dea31}\label{rtems-rfs-block_8h_a5a09f0d3d9d4e31367c51ceadb7dea31}} 
+\index{rtems-\/rfs-\/block.h@{rtems-\/rfs-\/block.h}!rtems\_rfs\_block\_map\_open@{rtems\_rfs\_block\_map\_open}}
+\index{rtems\_rfs\_block\_map\_open@{rtems\_rfs\_block\_map\_open}!rtems-\/rfs-\/block.h@{rtems-\/rfs-\/block.h}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_block\_map\_open()}{rtems\_rfs\_block\_map\_open()}}
+{\footnotesize\ttfamily int rtems\+\_\+rfs\+\_\+block\+\_\+map\+\_\+open (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__rtems__rfs__file__system}{rtems\+\_\+rfs\+\_\+file\+\_\+system}} $\ast$}]{fs,  }\item[{\mbox{\hyperlink{rtems-rfs-inode_8h_a91f02dac5a2d91e072d676f3266ab8d2}{rtems\+\_\+rfs\+\_\+inode\+\_\+handle}} $\ast$}]{inode,  }\item[{\mbox{\hyperlink{rtems-rfs-block_8h_af488270acef452a961e888bffdc3a7bf}{rtems\+\_\+rfs\+\_\+block\+\_\+map}} $\ast$}]{map }\end{DoxyParamCaption})}
+
+Open a block map. The block map data in the inode is copied into the map. The buffer handles are opened. The block position is set to the start so a seek of offset 0 will return the first block.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em fs} & is the file system data. \\
+\hline
+\mbox{\texttt{ in}}  & {\em inode} & is a pointer to the inode the map belongs to. \\
+\hline
+\mbox{\texttt{ in}}  & {\em map} & is a pointer to the map that is opened.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em 0} & Successful operation. \\
+\hline
+{\em error\+\_\+code} & An error occurred. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{rtems-rfs-block_8h_a0d34276d2ea32d86916a57cf34266c0f}\label{rtems-rfs-block_8h_a0d34276d2ea32d86916a57cf34266c0f}} 
+\index{rtems-\/rfs-\/block.h@{rtems-\/rfs-\/block.h}!rtems\_rfs\_block\_map\_seek@{rtems\_rfs\_block\_map\_seek}}
+\index{rtems\_rfs\_block\_map\_seek@{rtems\_rfs\_block\_map\_seek}!rtems-\/rfs-\/block.h@{rtems-\/rfs-\/block.h}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_block\_map\_seek()}{rtems\_rfs\_block\_map\_seek()}}
+{\footnotesize\ttfamily int rtems\+\_\+rfs\+\_\+block\+\_\+map\+\_\+seek (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__rtems__rfs__file__system}{rtems\+\_\+rfs\+\_\+file\+\_\+system}} $\ast$}]{fs,  }\item[{\mbox{\hyperlink{rtems-rfs-block_8h_af488270acef452a961e888bffdc3a7bf}{rtems\+\_\+rfs\+\_\+block\+\_\+map}} $\ast$}]{map,  }\item[{\mbox{\hyperlink{rtems-rfs-file-system_8h_af6bccb465dcd34c68e9f0c214950ef57}{rtems\+\_\+rfs\+\_\+pos\+\_\+rel}}}]{offset,  }\item[{\mbox{\hyperlink{rtems-rfs-buffer_8h_a5650d53328a5af0a78198fe780aec043}{rtems\+\_\+rfs\+\_\+buffer\+\_\+block}} $\ast$}]{block }\end{DoxyParamCaption})}
+
+Seek around the map.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em fs} & is the file system data. \\
+\hline
+\mbox{\texttt{ in}}  & {\em map} & is a pointer to the map to search. \\
+\hline
+\mbox{\texttt{ in}}  & {\em offset} & is the distance to seek. It is signed. \\
+\hline
+\mbox{\texttt{ out}}  & {\em block} & will contain the block in when found.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em 0} & Successful operation. \\
+\hline
+{\em E\+N\+X\+IO} & Failed to seek because it is outside the block map. \\
+\hline
+{\em error\+\_\+code} & An error occurred. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{rtems-rfs-block_8h_a1609f6d6ac4378a5df7935a69bb2884d}\label{rtems-rfs-block_8h_a1609f6d6ac4378a5df7935a69bb2884d}} 
+\index{rtems-\/rfs-\/block.h@{rtems-\/rfs-\/block.h}!rtems\_rfs\_block\_map\_shrink@{rtems\_rfs\_block\_map\_shrink}}
+\index{rtems\_rfs\_block\_map\_shrink@{rtems\_rfs\_block\_map\_shrink}!rtems-\/rfs-\/block.h@{rtems-\/rfs-\/block.h}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_block\_map\_shrink()}{rtems\_rfs\_block\_map\_shrink()}}
+{\footnotesize\ttfamily int rtems\+\_\+rfs\+\_\+block\+\_\+map\+\_\+shrink (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__rtems__rfs__file__system}{rtems\+\_\+rfs\+\_\+file\+\_\+system}} $\ast$}]{fs,  }\item[{\mbox{\hyperlink{rtems-rfs-block_8h_af488270acef452a961e888bffdc3a7bf}{rtems\+\_\+rfs\+\_\+block\+\_\+map}} $\ast$}]{map,  }\item[{size\+\_\+t}]{blocks }\end{DoxyParamCaption})}
+
+Grow the block map by the specified number of blocks.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em fs} & is the file system data. \\
+\hline
+\mbox{\texttt{ in}}  & {\em map} & is a pointer to the open map to shrink. \\
+\hline
+\mbox{\texttt{ in}}  & {\em blocks} & is the number of blocks to shrink the map by. If more than the number of blocks the map is emptied.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em 0} & Successful operation. \\
+\hline
+{\em error\+\_\+code} & An error occurred. \\
+\hline
+\end{DoxyRetVals}

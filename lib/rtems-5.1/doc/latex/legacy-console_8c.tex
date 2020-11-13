@@ -1,0 +1,280 @@
+\hypertarget{legacy-console_8c}{}\section{bsps/shared/dev/serial/legacy-\/console.c File Reference}
+\label{legacy-console_8c}\index{bsps/shared/dev/serial/legacy-\/console.c@{bsps/shared/dev/serial/legacy-\/console.c}}
+
+
+Extension of the generic libchip console driver shell.  
+
+
+{\ttfamily \#include $<$bsp.\+h$>$}\newline
+{\ttfamily \#include $<$bsp/fatal.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/libio.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/console.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$assert.\+h$>$}\newline
+{\ttfamily \#include $<$termios.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/termiostypes.\+h$>$}\newline
+{\ttfamily \#include $<$libchip/serial.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}legacy-\/console.\+h\char`\"{}}\newline
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{struct__console__tbl}{console\+\_\+tbl}} $\ast$ \mbox{\hyperlink{legacy-console_8c_a504c826507edc4631251f6e2ccbeac8b}{console\+\_\+find\+\_\+console\+\_\+entry}} (const char $\ast$match, size\+\_\+t length, rtems\+\_\+device\+\_\+minor\+\_\+number $\ast$match\+\_\+minor)
+\begin{DoxyCompactList}\small\item\em console\+\_\+find\+\_\+console\+\_\+entry \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{legacy-console_8c_a876e108a27082ad7b2a68f26dd37b673}{console\+\_\+initialize\+\_\+data}} (void)
+\begin{DoxyCompactList}\small\item\em console\+\_\+initialize\+\_\+data \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{legacy-console_8c_ab7b7632a5db0bff08d69845c22ec1d56}{console\+\_\+register\+\_\+devices}} (\mbox{\hyperlink{struct__console__tbl}{console\+\_\+tbl}} $\ast$new\+\_\+ports, size\+\_\+t number\+\_\+of\+\_\+ports)
+\begin{DoxyCompactList}\small\item\em console\+\_\+register\+\_\+devices \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+device\+\_\+driver}} \mbox{\hyperlink{legacy-console_8c_a3f4320ff384009c3bdfa6ec4f1b79501}{console\+\_\+open}} (rtems\+\_\+device\+\_\+major\+\_\+number major, rtems\+\_\+device\+\_\+minor\+\_\+number minor, void $\ast$arg)
+\begin{DoxyCompactList}\small\item\em Console open entry point. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+device\+\_\+driver}} \mbox{\hyperlink{legacy-console_8c_a4efabb094608f8155b1a679e03f2eafc}{console\+\_\+close}} (rtems\+\_\+device\+\_\+major\+\_\+number major, rtems\+\_\+device\+\_\+minor\+\_\+number minor, void $\ast$arg)
+\begin{DoxyCompactList}\small\item\em Console close entry point. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+device\+\_\+driver}} \mbox{\hyperlink{legacy-console_8c_abeb4976a6a67f282ad2095cf9abb93c5}{console\+\_\+initialize}} (rtems\+\_\+device\+\_\+major\+\_\+number major, rtems\+\_\+device\+\_\+minor\+\_\+number minor\+\_\+arg, void $\ast$arg)
+\begin{DoxyCompactList}\small\item\em Console initialization entry point. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+device\+\_\+driver}} \mbox{\hyperlink{legacy-console_8c_affd7cbaa034887f37032640f39c74b0d}{console\+\_\+read}} (rtems\+\_\+device\+\_\+major\+\_\+number major, rtems\+\_\+device\+\_\+minor\+\_\+number minor, void $\ast$arg)
+\begin{DoxyCompactList}\small\item\em Console read entry point. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+device\+\_\+driver}} \mbox{\hyperlink{legacy-console_8c_a211cf468eb7aec89e37bc784a62753ce}{console\+\_\+write}} (rtems\+\_\+device\+\_\+major\+\_\+number major, rtems\+\_\+device\+\_\+minor\+\_\+number minor, void $\ast$arg)
+\begin{DoxyCompactList}\small\item\em Console write entry point. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+unsigned long \mbox{\hyperlink{legacy-console_8c_a0d8fd810e762900a25000b9acf34df35}{Console\+\_\+\+Port\+\_\+\+Count}} = 0
+\item 
+\mbox{\hyperlink{struct__console__tbl}{console\+\_\+tbl}} $\ast$$\ast$ \mbox{\hyperlink{legacy-console_8c_a47c39eaf13b8d9c87acba10c2d7fb688}{Console\+\_\+\+Port\+\_\+\+Tbl}} = \mbox{\hyperlink{bestcomm__api_8h_a872bb74de61c3689ccd5b41873fce42c}{N\+U\+LL}}
+\item 
+\mbox{\hyperlink{serial_8h_ae808572b81efa0deaf4057a9c3e0b5eb}{console\+\_\+data}} $\ast$ \mbox{\hyperlink{legacy-console_8c_a83dec721bc848c432ca3fd874ff7f6d5}{Console\+\_\+\+Port\+\_\+\+Data}} = \mbox{\hyperlink{bestcomm__api_8h_a872bb74de61c3689ccd5b41873fce42c}{N\+U\+LL}}
+\item 
+\mbox{\Hypertarget{legacy-console_8c_ac2b6e70e09cf51ece7b205338e419a71}\label{legacy-console_8c_ac2b6e70e09cf51ece7b205338e419a71}} 
+rtems\+\_\+device\+\_\+minor\+\_\+number {\bfseries Console\+\_\+\+Port\+\_\+\+Minor} = 0
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Extension of the generic libchip console driver shell. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{legacy-console_8c_a4efabb094608f8155b1a679e03f2eafc}\label{legacy-console_8c_a4efabb094608f8155b1a679e03f2eafc}} 
+\index{legacy-\/console.c@{legacy-\/console.c}!console\_close@{console\_close}}
+\index{console\_close@{console\_close}!legacy-\/console.c@{legacy-\/console.c}}
+\subsubsection{\texorpdfstring{console\_close()}{console\_close()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+device\+\_\+driver}} console\+\_\+close (\begin{DoxyParamCaption}\item[{rtems\+\_\+device\+\_\+major\+\_\+number}]{major,  }\item[{rtems\+\_\+device\+\_\+minor\+\_\+number}]{minor,  }\item[{void $\ast$}]{arg }\end{DoxyParamCaption})}
+
+
+
+Console close entry point. 
+
+This method closes a specific device supported by the console device driver.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em major} & is the device driver major number \\
+\hline
+\mbox{\texttt{ in}}  & {\em minor} & is the device driver minor number \\
+\hline
+\mbox{\texttt{ in}}  & {\em arg} & is the parameters to this call\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em R\+T\+E\+M\+S\+\_\+\+S\+U\+C\+C\+E\+S\+S\+F\+UL} & The device driver is successfully closed. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{legacy-console_8c_a504c826507edc4631251f6e2ccbeac8b}\label{legacy-console_8c_a504c826507edc4631251f6e2ccbeac8b}} 
+\index{legacy-\/console.c@{legacy-\/console.c}!console\_find\_console\_entry@{console\_find\_console\_entry}}
+\index{console\_find\_console\_entry@{console\_find\_console\_entry}!legacy-\/console.c@{legacy-\/console.c}}
+\subsubsection{\texorpdfstring{console\_find\_console\_entry()}{console\_find\_console\_entry()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct__console__tbl}{console\+\_\+tbl}}$\ast$ console\+\_\+find\+\_\+console\+\_\+entry (\begin{DoxyParamCaption}\item[{const char $\ast$}]{match,  }\item[{size\+\_\+t}]{length,  }\item[{rtems\+\_\+device\+\_\+minor\+\_\+number $\ast$}]{match\+\_\+minor }\end{DoxyParamCaption})}
+
+
+
+console\+\_\+find\+\_\+console\+\_\+entry 
+
+This method is used to search the console entries for a specific device entry and return it. If match is N\+U\+LL the minor number provided is matched. \mbox{\Hypertarget{legacy-console_8c_abeb4976a6a67f282ad2095cf9abb93c5}\label{legacy-console_8c_abeb4976a6a67f282ad2095cf9abb93c5}} 
+\index{legacy-\/console.c@{legacy-\/console.c}!console\_initialize@{console\_initialize}}
+\index{console\_initialize@{console\_initialize}!legacy-\/console.c@{legacy-\/console.c}}
+\subsubsection{\texorpdfstring{console\_initialize()}{console\_initialize()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+device\+\_\+driver}} console\+\_\+initialize (\begin{DoxyParamCaption}\item[{rtems\+\_\+device\+\_\+major\+\_\+number}]{major,  }\item[{rtems\+\_\+device\+\_\+minor\+\_\+number}]{minor\+\_\+arg,  }\item[{void $\ast$}]{arg }\end{DoxyParamCaption})}
+
+
+
+Console initialization entry point. 
+
+This method initializes the console device driver.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em major} & is the device driver major number. \\
+\hline
+\mbox{\texttt{ in}}  & {\em minor} & is the device driver minor number. \\
+\hline
+\mbox{\texttt{ in}}  & {\em arg} & is the parameters to this call.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em R\+T\+E\+M\+S\+\_\+\+S\+U\+C\+C\+E\+S\+S\+F\+UL} & The device driver is successfully initialized.\\
+\hline
+\end{DoxyRetVals}
+Console initialization entry point.
+
+Initialize all serial drivers specified in driver\+\_\+context\+\_\+table
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em major} & \\
+\hline
+\mbox{\texttt{ in}}  & {\em minor} & \\
+\hline
+\mbox{\texttt{ in}}  & {\em arg} & \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em R\+T\+E\+M\+S\+\_\+\+S\+U\+C\+C\+E\+S\+S\+F\+UL} & Initialization completed\\
+\hline
+\end{DoxyRetVals}
+This routine initializes the console \mbox{\hyperlink{structIO}{IO}} driver.
+
+Parameters 
+\begin{DoxyParams}{Parameters}
+{\em major} & major number \\
+\hline
+{\em minor} & minor number\\
+\hline
+\end{DoxyParams}
+Output parameters\+: N\+O\+NE
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\mbox{\Hypertarget{legacy-console_8c_a876e108a27082ad7b2a68f26dd37b673}\label{legacy-console_8c_a876e108a27082ad7b2a68f26dd37b673}} 
+\index{legacy-\/console.c@{legacy-\/console.c}!console\_initialize\_data@{console\_initialize\_data}}
+\index{console\_initialize\_data@{console\_initialize\_data}!legacy-\/console.c@{legacy-\/console.c}}
+\subsubsection{\texorpdfstring{console\_initialize\_data()}{console\_initialize\_data()}}
+{\footnotesize\ttfamily void console\+\_\+initialize\+\_\+data (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+console\+\_\+initialize\+\_\+data 
+
+This must be called before dynamic registration of devices can occur. It is normally called as a side-\/effect of {\itshape \mbox{\hyperlink{arm_2raspberrypi_2console_2console-config_8c_a4bdc321ef3ab62a261d77b5dbe075566}{console\+\_\+initialize()}}} but if a probe and dynamic registration occurs before that, then this method should be explicitly invoked. \mbox{\Hypertarget{legacy-console_8c_a3f4320ff384009c3bdfa6ec4f1b79501}\label{legacy-console_8c_a3f4320ff384009c3bdfa6ec4f1b79501}} 
+\index{legacy-\/console.c@{legacy-\/console.c}!console\_open@{console\_open}}
+\index{console\_open@{console\_open}!legacy-\/console.c@{legacy-\/console.c}}
+\subsubsection{\texorpdfstring{console\_open()}{console\_open()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+device\+\_\+driver}} console\+\_\+open (\begin{DoxyParamCaption}\item[{rtems\+\_\+device\+\_\+major\+\_\+number}]{major,  }\item[{rtems\+\_\+device\+\_\+minor\+\_\+number}]{minor,  }\item[{void $\ast$}]{arg }\end{DoxyParamCaption})}
+
+
+
+Console open entry point. 
+
+This method opens a specific device supported by the console device driver.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em major} & is the device driver major number \\
+\hline
+\mbox{\texttt{ in}}  & {\em minor} & is the device driver minor number \\
+\hline
+\mbox{\texttt{ in}}  & {\em arg} & is the parameters to this call\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em R\+T\+E\+M\+S\+\_\+\+S\+U\+C\+C\+E\+S\+S\+F\+UL} & The device driver is successfully opened. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{legacy-console_8c_affd7cbaa034887f37032640f39c74b0d}\label{legacy-console_8c_affd7cbaa034887f37032640f39c74b0d}} 
+\index{legacy-\/console.c@{legacy-\/console.c}!console\_read@{console\_read}}
+\index{console\_read@{console\_read}!legacy-\/console.c@{legacy-\/console.c}}
+\subsubsection{\texorpdfstring{console\_read()}{console\_read()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+device\+\_\+driver}} console\+\_\+read (\begin{DoxyParamCaption}\item[{rtems\+\_\+device\+\_\+major\+\_\+number}]{major,  }\item[{rtems\+\_\+device\+\_\+minor\+\_\+number}]{minor,  }\item[{void $\ast$}]{arg }\end{DoxyParamCaption})}
+
+
+
+Console read entry point. 
+
+This method reads from a specific device supported by the console device driver.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em major} & is the device driver major number \\
+\hline
+\mbox{\texttt{ in}}  & {\em minor} & is the device driver minor number \\
+\hline
+\mbox{\texttt{ in}}  & {\em arg} & is the parameters to this call\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em R\+T\+E\+M\+S\+\_\+\+S\+U\+C\+C\+E\+S\+S\+F\+UL} & The device is successfully read from. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{legacy-console_8c_ab7b7632a5db0bff08d69845c22ec1d56}\label{legacy-console_8c_ab7b7632a5db0bff08d69845c22ec1d56}} 
+\index{legacy-\/console.c@{legacy-\/console.c}!console\_register\_devices@{console\_register\_devices}}
+\index{console\_register\_devices@{console\_register\_devices}!legacy-\/console.c@{legacy-\/console.c}}
+\subsubsection{\texorpdfstring{console\_register\_devices()}{console\_register\_devices()}}
+{\footnotesize\ttfamily void console\+\_\+register\+\_\+devices (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__console__tbl}{console\+\_\+tbl}} $\ast$}]{new\+\_\+ports,  }\item[{size\+\_\+t}]{number\+\_\+of\+\_\+ports }\end{DoxyParamCaption})}
+
+
+
+console\+\_\+register\+\_\+devices 
+
+This function expands the console table to include previous ports and the array of new ports specified.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em new\+\_\+ports} & specifies an array of new ports to register \\
+\hline
+\mbox{\texttt{ in}}  & {\em number\+\_\+of\+\_\+ports} & specifies the number of elements in the new\+\_\+ports array \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{legacy-console_8c_a211cf468eb7aec89e37bc784a62753ce}\label{legacy-console_8c_a211cf468eb7aec89e37bc784a62753ce}} 
+\index{legacy-\/console.c@{legacy-\/console.c}!console\_write@{console\_write}}
+\index{console\_write@{console\_write}!legacy-\/console.c@{legacy-\/console.c}}
+\subsubsection{\texorpdfstring{console\_write()}{console\_write()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+device\+\_\+driver}} console\+\_\+write (\begin{DoxyParamCaption}\item[{rtems\+\_\+device\+\_\+major\+\_\+number}]{major,  }\item[{rtems\+\_\+device\+\_\+minor\+\_\+number}]{minor,  }\item[{void $\ast$}]{arg }\end{DoxyParamCaption})}
+
+
+
+Console write entry point. 
+
+This method writes to a specific device supported by the console device driver.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em major} & is the device driver major number \\
+\hline
+\mbox{\texttt{ in}}  & {\em minor} & is the device driver minor number \\
+\hline
+\mbox{\texttt{ in}}  & {\em arg} & is the parameters to this call\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em R\+T\+E\+M\+S\+\_\+\+S\+U\+C\+C\+E\+S\+S\+F\+UL} & The device is successfully written. \\
+\hline
+\end{DoxyRetVals}
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{legacy-console_8c_a0d8fd810e762900a25000b9acf34df35}\label{legacy-console_8c_a0d8fd810e762900a25000b9acf34df35}} 
+\index{legacy-\/console.c@{legacy-\/console.c}!Console\_Port\_Count@{Console\_Port\_Count}}
+\index{Console\_Port\_Count@{Console\_Port\_Count}!legacy-\/console.c@{legacy-\/console.c}}
+\subsubsection{\texorpdfstring{Console\_Port\_Count}{Console\_Port\_Count}}
+{\footnotesize\ttfamily unsigned long Console\+\_\+\+Port\+\_\+\+Count = 0}
+
+This is the number of serial ports defined in the Console\+\_\+\+Port\+\_\+\+Tbl. \mbox{\Hypertarget{legacy-console_8c_a83dec721bc848c432ca3fd874ff7f6d5}\label{legacy-console_8c_a83dec721bc848c432ca3fd874ff7f6d5}} 
+\index{legacy-\/console.c@{legacy-\/console.c}!Console\_Port\_Data@{Console\_Port\_Data}}
+\index{Console\_Port\_Data@{Console\_Port\_Data}!legacy-\/console.c@{legacy-\/console.c}}
+\subsubsection{\texorpdfstring{Console\_Port\_Data}{Console\_Port\_Data}}
+{\footnotesize\ttfamily \mbox{\hyperlink{serial_8h_ae808572b81efa0deaf4057a9c3e0b5eb}{console\+\_\+data}}$\ast$ Console\+\_\+\+Port\+\_\+\+Data = \mbox{\hyperlink{bestcomm__api_8h_a872bb74de61c3689ccd5b41873fce42c}{N\+U\+LL}}}
+
+This is an array of per port information. \mbox{\Hypertarget{legacy-console_8c_a47c39eaf13b8d9c87acba10c2d7fb688}\label{legacy-console_8c_a47c39eaf13b8d9c87acba10c2d7fb688}} 
+\index{legacy-\/console.c@{legacy-\/console.c}!Console\_Port\_Tbl@{Console\_Port\_Tbl}}
+\index{Console\_Port\_Tbl@{Console\_Port\_Tbl}!legacy-\/console.c@{legacy-\/console.c}}
+\subsubsection{\texorpdfstring{Console\_Port\_Tbl}{Console\_Port\_Tbl}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct__console__tbl}{console\+\_\+tbl}}$\ast$$\ast$ Console\+\_\+\+Port\+\_\+\+Tbl = \mbox{\hyperlink{bestcomm__api_8h_a872bb74de61c3689ccd5b41873fce42c}{N\+U\+LL}}}
+
+This is a dynamically sized set of tables containing the serial port information. 

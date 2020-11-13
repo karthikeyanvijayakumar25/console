@@ -1,0 +1,60 @@
+\hypertarget{riscv_2riscv_2clock_2clockdrv_8c}{}\section{bsps/riscv/riscv/clock/clockdrv.c File Reference}
+\label{riscv_2riscv_2clock_2clockdrv_8c}\index{bsps/riscv/riscv/clock/clockdrv.c@{bsps/riscv/riscv/clock/clockdrv.c}}
+
+
+riscv clock support.  
+
+
+{\ttfamily \#include $<$bsp/fatal.\+h$>$}\newline
+{\ttfamily \#include $<$bsp/fdt.\+h$>$}\newline
+{\ttfamily \#include $<$bsp/irq.\+h$>$}\newline
+{\ttfamily \#include $<$bsp/riscv.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/sysinit.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/timecounter.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/score/cpuimpl.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/score/riscv-\/utility.\+h$>$}\newline
+{\ttfamily \#include $<$libfdt.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}../../../shared/dev/clock/clockimpl.\+h\char`\"{}}\newline
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structriscv__timecounter}{riscv\+\_\+timecounter}}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{riscv_2riscv_2clock_2clockdrv_8c_ad0860321c2b7838ffea30059aebd26fa}\label{riscv_2riscv_2clock_2clockdrv_8c_ad0860321c2b7838ffea30059aebd26fa}} 
+\#define {\bfseries Clock\+\_\+driver\+\_\+support\+\_\+at\+\_\+tick}()~riscv\+\_\+clock\+\_\+at\+\_\+tick(\&riscv\+\_\+clock\+\_\+tc)
+\item 
+\mbox{\Hypertarget{riscv_2riscv_2clock_2clockdrv_8c_a37475981ff0420ed43474fb3bdde8cbf}\label{riscv_2riscv_2clock_2clockdrv_8c_a37475981ff0420ed43474fb3bdde8cbf}} 
+\#define {\bfseries Clock\+\_\+driver\+\_\+support\+\_\+initialize\+\_\+hardware}()~riscv\+\_\+clock\+\_\+initialize()
+\item 
+\mbox{\Hypertarget{riscv_2riscv_2clock_2clockdrv_8c_a9ceaea4d5c663943f1ee7da161c0c52e}\label{riscv_2riscv_2clock_2clockdrv_8c_a9ceaea4d5c663943f1ee7da161c0c52e}} 
+\#define {\bfseries Clock\+\_\+driver\+\_\+support\+\_\+install\+\_\+isr}(isr)~riscv\+\_\+clock\+\_\+handler\+\_\+install()
+\item 
+\mbox{\Hypertarget{riscv_2riscv_2clock_2clockdrv_8c_af31ceb3511a7735f39c8cd3107f43d02}\label{riscv_2riscv_2clock_2clockdrv_8c_af31ceb3511a7735f39c8cd3107f43d02}} 
+\#define {\bfseries C\+L\+O\+C\+K\+\_\+\+D\+R\+I\+V\+E\+R\+\_\+\+U\+S\+E\+\_\+\+O\+N\+L\+Y\+\_\+\+B\+O\+O\+T\+\_\+\+P\+R\+O\+C\+E\+S\+S\+OR}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{riscv_2riscv_2clock_2clockdrv_8c_ac430ca6732bedd57d4bd97f10a57702f}\label{riscv_2riscv_2clock_2clockdrv_8c_ac430ca6732bedd57d4bd97f10a57702f}} 
+void {\bfseries Clock\+\_\+isr} (void $\ast$arg)
+\item 
+uint32\+\_\+t \mbox{\hyperlink{group__RTEMSScoreCPUARM_gaa675150e5d00169c99410a82011b6117}{\+\_\+\+C\+P\+U\+\_\+\+Counter\+\_\+frequency}} (void)
+\begin{DoxyCompactList}\small\item\em Returns the current C\+PU counter frequency in Hz. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{no__cpu_2include_2rtems_2score_2cpu_8h_a67f8550aad58bccb6fcb4589894444ad}{C\+P\+U\+\_\+\+Counter\+\_\+ticks}} \mbox{\hyperlink{group__RTEMSScoreCPUARM_gac016ae4ed92ed2607bd65408a36d908b}{\+\_\+\+C\+P\+U\+\_\+\+Counter\+\_\+read}} (void)
+\begin{DoxyCompactList}\small\item\em Returns the current C\+PU counter value. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{riscv_2riscv_2clock_2clockdrv_8c_a43068834b9e1b6655c339d31849a2c02}\label{riscv_2riscv_2clock_2clockdrv_8c_a43068834b9e1b6655c339d31849a2c02}} 
+{\bfseries R\+T\+E\+M\+S\+\_\+\+S\+Y\+S\+I\+N\+I\+T\+\_\+\+I\+T\+EM} (riscv\+\_\+counter\+\_\+initialize, R\+T\+E\+M\+S\+\_\+\+S\+Y\+S\+I\+N\+I\+T\+\_\+\+C\+P\+U\+\_\+\+C\+O\+U\+N\+T\+ER, R\+T\+E\+M\+S\+\_\+\+S\+Y\+S\+I\+N\+I\+T\+\_\+\+O\+R\+D\+E\+R\+\_\+\+F\+I\+R\+ST)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+volatile uint32\+\_\+t {\bfseries \+\_\+\+R\+I\+S\+C\+V\+\_\+\+Counter\+\_\+register}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+riscv clock support. 
+

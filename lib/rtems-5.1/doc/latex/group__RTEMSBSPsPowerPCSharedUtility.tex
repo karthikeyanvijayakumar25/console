@@ -1,0 +1,414 @@
+\hypertarget{group__RTEMSBSPsPowerPCSharedUtility}{}\section{Power\+PC Utility Module}
+\label{group__RTEMSBSPsPowerPCSharedUtility}\index{PowerPC Utility Module@{PowerPC Utility Module}}
+
+
+Power\+PC Utility Module.  
+
+
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{group__RTEMSBSPsPowerPCSharedUtility_ga43e37a99d3603a193f318c1a2bb2edd9}\label{group__RTEMSBSPsPowerPCSharedUtility_ga43e37a99d3603a193f318c1a2bb2edd9}} 
+\#define {\bfseries L\+I\+N\+K\+E\+R\+\_\+\+S\+Y\+M\+B\+OL}(sym)~extern char sym \mbox{[}$\,$\mbox{]};
+\item 
+\mbox{\Hypertarget{group__RTEMSBSPsPowerPCSharedUtility_ga26622b57f530f3700ff6e9dca978a958}\label{group__RTEMSBSPsPowerPCSharedUtility_ga26622b57f530f3700ff6e9dca978a958}} 
+\#define {\bfseries C\+P\+U\+\_\+\+Get\+\_\+timebase\+\_\+low}(\+\_\+value)~\mbox{\hyperlink{group__RTEMSScoreCPUSPARC_ga82257d4fc068f4b21b029dd69d276839}{\+\_\+\+\_\+asm\+\_\+\+\_\+}} volatile( \char`\"{}mfspr \%0,268\char`\"{} \+: \char`\"{}=r\char`\"{} (\+\_\+value) )
+\item 
+\#define {\bfseries rtems\+\_\+bsp\+\_\+delay}(\+\_\+microseconds)
+\item 
+\#define {\bfseries rtems\+\_\+bsp\+\_\+delay\+\_\+in\+\_\+bus\+\_\+cycles}(\+\_\+cycles)
+\item 
+\#define {\bfseries P\+P\+C\+\_\+\+Set\+\_\+decrementer}(\+\_\+clicks)
+\item 
+\mbox{\Hypertarget{group__RTEMSBSPsPowerPCSharedUtility_gaec80a8f80a30f4b758882df0dfda7929}\label{group__RTEMSBSPsPowerPCSharedUtility_gaec80a8f80a30f4b758882df0dfda7929}} 
+\#define {\bfseries P\+P\+C\+\_\+\+Get\+\_\+decrementer}(\+\_\+clicks)~\mbox{\hyperlink{group__RTEMSScoreCPUSPARC_ga82257d4fc068f4b21b029dd69d276839}{\+\_\+\+\_\+asm\+\_\+\+\_\+}} volatile( \char`\"{}mfdec  \%0\char`\"{} \+: \char`\"{}=r\char`\"{} (\+\_\+clicks) )
+\item 
+\mbox{\Hypertarget{group__RTEMSBSPsPowerPCSharedUtility_ga82a438528227ca1a3c0236a75db36931}\label{group__RTEMSBSPsPowerPCSharedUtility_ga82a438528227ca1a3c0236a75db36931}} 
+\#define \mbox{\hyperlink{group__RTEMSBSPsPowerPCSharedUtility_ga82a438528227ca1a3c0236a75db36931}{P\+P\+C\+\_\+\+S\+T\+R\+I\+N\+G\+OF}}(x)~\#x
+\begin{DoxyCompactList}\small\item\em Preprocessor magic for stringification of {\itshape x}. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTEMSBSPsPowerPCSharedUtility_gaf2152a905a3a596e7fd4677e5b7fcbcf}{P\+P\+C\+\_\+\+S\+P\+E\+C\+I\+A\+L\+\_\+\+P\+U\+R\+P\+O\+S\+E\+\_\+\+R\+E\+G\+I\+S\+T\+ER}}(spr)
+\begin{DoxyCompactList}\small\item\em Returns the value of the Special Purpose Register with number {\itshape spr}. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTEMSBSPsPowerPCSharedUtility_ga13230983701d0de149fb74885ae2a9e8}{P\+P\+C\+\_\+\+S\+E\+T\+\_\+\+S\+P\+E\+C\+I\+A\+L\+\_\+\+P\+U\+R\+P\+O\+S\+E\+\_\+\+R\+E\+G\+I\+S\+T\+ER}}(spr,  val)
+\begin{DoxyCompactList}\small\item\em Sets the Special Purpose Register with number {\itshape spr} to the value in {\itshape val}. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTEMSBSPsPowerPCSharedUtility_ga3b8f65ba404c615d00c98d67c03a1240}{P\+P\+C\+\_\+\+S\+E\+T\+\_\+\+S\+P\+E\+C\+I\+A\+L\+\_\+\+P\+U\+R\+P\+O\+S\+E\+\_\+\+R\+E\+G\+I\+S\+T\+E\+R\+\_\+\+B\+I\+TS}}(spr,  bits)
+\begin{DoxyCompactList}\small\item\em Sets in the Special Purpose Register with number {\itshape spr} all bits which are set in {\itshape bits}. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTEMSBSPsPowerPCSharedUtility_gaabbe2ec03b9f2d8480196fbb227ce74d}{P\+P\+C\+\_\+\+S\+E\+T\+\_\+\+S\+P\+E\+C\+I\+A\+L\+\_\+\+P\+U\+R\+P\+O\+S\+E\+\_\+\+R\+E\+G\+I\+S\+T\+E\+R\+\_\+\+B\+I\+T\+S\+\_\+\+M\+A\+S\+K\+ED}}(spr,  bits,  mask)
+\begin{DoxyCompactList}\small\item\em Sets in the Special Purpose Register with number {\itshape spr} all bits which are set in {\itshape bits}. The previous register value will be masked with {\itshape mask}. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTEMSBSPsPowerPCSharedUtility_ga57428a23dfb8f42b7c7a4ff28cdfae4f}{P\+P\+C\+\_\+\+C\+L\+E\+A\+R\+\_\+\+S\+P\+E\+C\+I\+A\+L\+\_\+\+P\+U\+R\+P\+O\+S\+E\+\_\+\+R\+E\+G\+I\+S\+T\+E\+R\+\_\+\+B\+I\+TS}}(spr,  bits)
+\begin{DoxyCompactList}\small\item\em Clears in the Special Purpose Register with number {\itshape spr} all bits which are set in {\itshape bits}. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTEMSBSPsPowerPCSharedUtility_gafcbb61249c0713163c2c490cfa6b5766}{P\+P\+C\+\_\+\+T\+H\+R\+E\+A\+D\+\_\+\+M\+G\+M\+T\+\_\+\+R\+E\+G\+I\+S\+T\+ER}}(tmr)
+\begin{DoxyCompactList}\small\item\em Returns the value of the Thread Management Register with number {\itshape tmr}. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTEMSBSPsPowerPCSharedUtility_ga90d0f8d8c6839c36fdf3054d86ed04a8}{P\+P\+C\+\_\+\+S\+E\+T\+\_\+\+T\+H\+R\+E\+A\+D\+\_\+\+M\+G\+M\+T\+\_\+\+R\+E\+G\+I\+S\+T\+ER}}(tmr,  val)
+\begin{DoxyCompactList}\small\item\em Sets the Thread Management Register with number {\itshape tmr} to the value in {\itshape val}. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTEMSBSPsPowerPCSharedUtility_gaf9d70263b9f91ca4aae512e6d9ac29e3}{P\+P\+C\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+C\+O\+N\+T\+R\+O\+L\+\_\+\+R\+E\+G\+I\+S\+T\+ER}}(dcr)
+\begin{DoxyCompactList}\small\item\em Returns the value of the Device Control Register with number {\itshape dcr}. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTEMSBSPsPowerPCSharedUtility_ga22216346d9a84013ce035e303c09b9de}{P\+P\+C\+\_\+\+S\+E\+T\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+C\+O\+N\+T\+R\+O\+L\+\_\+\+R\+E\+G\+I\+S\+T\+ER}}(dcr,  val)
+\begin{DoxyCompactList}\small\item\em Sets the Device Control Register with number {\itshape dcr} to the value in {\itshape val}. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTEMSBSPsPowerPCSharedUtility_ga9ebd69cadb130d05089b0bd98a05a8a7}{P\+P\+C\+\_\+\+S\+E\+T\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+C\+O\+N\+T\+R\+O\+L\+\_\+\+R\+E\+G\+I\+S\+T\+E\+R\+\_\+\+B\+I\+TS}}(dcr,  bits)
+\begin{DoxyCompactList}\small\item\em Sets in the Device Control Register with number {\itshape dcr} all bits which are set in {\itshape bits}. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTEMSBSPsPowerPCSharedUtility_ga8fb9b2c1dc025622892b8c9532e11315}{P\+P\+C\+\_\+\+S\+E\+T\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+C\+O\+N\+T\+R\+O\+L\+\_\+\+R\+E\+G\+I\+S\+T\+E\+R\+\_\+\+B\+I\+T\+S\+\_\+\+M\+A\+S\+K\+ED}}(dcr,  bits,  mask)
+\begin{DoxyCompactList}\small\item\em Sets in the Device Control Register with number {\itshape dcr} all bits which are set in {\itshape bits}. The previous register value will be masked with {\itshape mask}. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTEMSBSPsPowerPCSharedUtility_ga086c9a32db91fc63f36fa127e3bd2c48}{P\+P\+C\+\_\+\+C\+L\+E\+A\+R\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+C\+O\+N\+T\+R\+O\+L\+\_\+\+R\+E\+G\+I\+S\+T\+E\+R\+\_\+\+B\+I\+TS}}(dcr,  bits)
+\begin{DoxyCompactList}\small\item\em Clears in the Device Control Register with number {\itshape dcr} all bits which are set in {\itshape bits}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{group__RTEMSBSPsPowerPCSharedUtility_ga2e14393cbb4fc737bc999816febc8228}\label{group__RTEMSBSPsPowerPCSharedUtility_ga2e14393cbb4fc737bc999816febc8228}} 
+void {\bfseries ppc\+\_\+code\+\_\+copy} (void $\ast$dest, const void $\ast$src, size\+\_\+t n)
+\item 
+\mbox{\Hypertarget{group__RTEMSBSPsPowerPCSharedUtility_ga4ee607d4a4b9a946dda2ef53c8b158d8}\label{group__RTEMSBSPsPowerPCSharedUtility_ga4ee607d4a4b9a946dda2ef53c8b158d8}} 
+void {\bfseries print\+B\+AT} (int bat, uint32\+\_\+t upper, uint32\+\_\+t lower)
+\item 
+\mbox{\Hypertarget{group__RTEMSBSPsPowerPCSharedUtility_ga19e46b6243047334a5f67ccd71b58989}\label{group__RTEMSBSPsPowerPCSharedUtility_ga19e46b6243047334a5f67ccd71b58989}} 
+void {\bfseries Show\+B\+A\+TS} (void)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{group__RTEMSBSPsPowerPCSharedUtility_gabfae404b02d5b3193b9420930d97d84a}\label{group__RTEMSBSPsPowerPCSharedUtility_gabfae404b02d5b3193b9420930d97d84a}} 
+uint32\+\_\+t {\bfseries bsp\+\_\+clicks\+\_\+per\+\_\+usec}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Power\+PC Utility Module. 
+
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{group__RTEMSBSPsPowerPCSharedUtility_ga086c9a32db91fc63f36fa127e3bd2c48}\label{group__RTEMSBSPsPowerPCSharedUtility_ga086c9a32db91fc63f36fa127e3bd2c48}} 
+\index{PowerPC Utility Module@{PowerPC Utility Module}!PPC\_CLEAR\_DEVICE\_CONTROL\_REGISTER\_BITS@{PPC\_CLEAR\_DEVICE\_CONTROL\_REGISTER\_BITS}}
+\index{PPC\_CLEAR\_DEVICE\_CONTROL\_REGISTER\_BITS@{PPC\_CLEAR\_DEVICE\_CONTROL\_REGISTER\_BITS}!PowerPC Utility Module@{PowerPC Utility Module}}
+\subsubsection{\texorpdfstring{PPC\_CLEAR\_DEVICE\_CONTROL\_REGISTER\_BITS}{PPC\_CLEAR\_DEVICE\_CONTROL\_REGISTER\_BITS}}
+{\footnotesize\ttfamily \#define P\+P\+C\+\_\+\+C\+L\+E\+A\+R\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+C\+O\+N\+T\+R\+O\+L\+\_\+\+R\+E\+G\+I\+S\+T\+E\+R\+\_\+\+B\+I\+TS(\begin{DoxyParamCaption}\item[{}]{dcr,  }\item[{}]{bits }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do} \{ \(\backslash\)}
+\DoxyCodeLine{    ISR\_Level level; \(\backslash\)}
+\DoxyCodeLine{    uint32\_t val; \(\backslash\)}
+\DoxyCodeLine{    uint32\_t mybits = bits; \(\backslash\)}
+\DoxyCodeLine{    \_ISR\_Local\_disable(level); \(\backslash\)}
+\DoxyCodeLine{    val = \mbox{\hyperlink{group__RTEMSBSPsPowerPCSharedUtility_gaf9d70263b9f91ca4aae512e6d9ac29e3}{PPC\_DEVICE\_CONTROL\_REGISTER}}(dcr); \(\backslash\)}
+\DoxyCodeLine{    val \&= ~mybits; \(\backslash\)}
+\DoxyCodeLine{    PPC\_SET\_DEVICE\_CONTROL\_REGISTER(dcr, val); \(\backslash\)}
+\DoxyCodeLine{    \_ISR\_Local\_enable(level); \(\backslash\)}
+\DoxyCodeLine{  \} \textcolor{keywordflow}{while} (0)}
+
+\end{DoxyCode}
+
+
+Clears in the Device Control Register with number {\itshape dcr} all bits which are set in {\itshape bits}. 
+
+Interrupts are disabled throughout this operation. \mbox{\Hypertarget{group__RTEMSBSPsPowerPCSharedUtility_ga57428a23dfb8f42b7c7a4ff28cdfae4f}\label{group__RTEMSBSPsPowerPCSharedUtility_ga57428a23dfb8f42b7c7a4ff28cdfae4f}} 
+\index{PowerPC Utility Module@{PowerPC Utility Module}!PPC\_CLEAR\_SPECIAL\_PURPOSE\_REGISTER\_BITS@{PPC\_CLEAR\_SPECIAL\_PURPOSE\_REGISTER\_BITS}}
+\index{PPC\_CLEAR\_SPECIAL\_PURPOSE\_REGISTER\_BITS@{PPC\_CLEAR\_SPECIAL\_PURPOSE\_REGISTER\_BITS}!PowerPC Utility Module@{PowerPC Utility Module}}
+\subsubsection{\texorpdfstring{PPC\_CLEAR\_SPECIAL\_PURPOSE\_REGISTER\_BITS}{PPC\_CLEAR\_SPECIAL\_PURPOSE\_REGISTER\_BITS}}
+{\footnotesize\ttfamily \#define P\+P\+C\+\_\+\+C\+L\+E\+A\+R\+\_\+\+S\+P\+E\+C\+I\+A\+L\+\_\+\+P\+U\+R\+P\+O\+S\+E\+\_\+\+R\+E\+G\+I\+S\+T\+E\+R\+\_\+\+B\+I\+TS(\begin{DoxyParamCaption}\item[{}]{spr,  }\item[{}]{bits }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do} \{ \(\backslash\)}
+\DoxyCodeLine{    ISR\_Level level; \(\backslash\)}
+\DoxyCodeLine{    uint32\_t val; \(\backslash\)}
+\DoxyCodeLine{    uint32\_t mybits = bits; \(\backslash\)}
+\DoxyCodeLine{    \_ISR\_Local\_disable(level); \(\backslash\)}
+\DoxyCodeLine{    val = \mbox{\hyperlink{group__RTEMSBSPsPowerPCSharedUtility_gaf2152a905a3a596e7fd4677e5b7fcbcf}{PPC\_SPECIAL\_PURPOSE\_REGISTER}}(spr); \(\backslash\)}
+\DoxyCodeLine{    val \&= ~mybits; \(\backslash\)}
+\DoxyCodeLine{    PPC\_SET\_SPECIAL\_PURPOSE\_REGISTER(spr, val); \(\backslash\)}
+\DoxyCodeLine{    \_ISR\_Local\_enable(level); \(\backslash\)}
+\DoxyCodeLine{  \} \textcolor{keywordflow}{while} (0)}
+
+\end{DoxyCode}
+
+
+Clears in the Special Purpose Register with number {\itshape spr} all bits which are set in {\itshape bits}. 
+
+Interrupts are disabled throughout this operation. \mbox{\Hypertarget{group__RTEMSBSPsPowerPCSharedUtility_gaf9d70263b9f91ca4aae512e6d9ac29e3}\label{group__RTEMSBSPsPowerPCSharedUtility_gaf9d70263b9f91ca4aae512e6d9ac29e3}} 
+\index{PowerPC Utility Module@{PowerPC Utility Module}!PPC\_DEVICE\_CONTROL\_REGISTER@{PPC\_DEVICE\_CONTROL\_REGISTER}}
+\index{PPC\_DEVICE\_CONTROL\_REGISTER@{PPC\_DEVICE\_CONTROL\_REGISTER}!PowerPC Utility Module@{PowerPC Utility Module}}
+\subsubsection{\texorpdfstring{PPC\_DEVICE\_CONTROL\_REGISTER}{PPC\_DEVICE\_CONTROL\_REGISTER}}
+{\footnotesize\ttfamily \#define P\+P\+C\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+C\+O\+N\+T\+R\+O\+L\+\_\+\+R\+E\+G\+I\+S\+T\+ER(\begin{DoxyParamCaption}\item[{}]{dcr }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(\{ \(\backslash\)}
+\DoxyCodeLine{    uint32\_t val; \(\backslash\)}
+\DoxyCodeLine{    \_\_asm\_\_ \textcolor{keyword}{volatile} (\(\backslash\)}
+\DoxyCodeLine{      \textcolor{stringliteral}{"mfdcr \%0, "} \mbox{\hyperlink{group__RTEMSBSPsPowerPCSharedUtility_ga82a438528227ca1a3c0236a75db36931}{PPC\_STRINGOF}}(dcr) \(\backslash\)}
+\DoxyCodeLine{      : \textcolor{stringliteral}{"=r"} (val) \(\backslash\)}
+\DoxyCodeLine{    ); \(\backslash\)}
+\DoxyCodeLine{    val;\(\backslash\)}
+\DoxyCodeLine{  \} )}
+
+\end{DoxyCode}
+
+
+Returns the value of the Device Control Register with number {\itshape dcr}. 
+
+The Power\+PC 4XX family has Device Control Registers.
+
+\begin{DoxyNote}{Note}
+This macro uses a G\+NU C extension. 
+\end{DoxyNote}
+\mbox{\Hypertarget{group__RTEMSBSPsPowerPCSharedUtility_gacda5f207b34a1bd67bcd917080d73e90}\label{group__RTEMSBSPsPowerPCSharedUtility_gacda5f207b34a1bd67bcd917080d73e90}} 
+\index{PowerPC Utility Module@{PowerPC Utility Module}!PPC\_Set\_decrementer@{PPC\_Set\_decrementer}}
+\index{PPC\_Set\_decrementer@{PPC\_Set\_decrementer}!PowerPC Utility Module@{PowerPC Utility Module}}
+\subsubsection{\texorpdfstring{PPC\_Set\_decrementer}{PPC\_Set\_decrementer}}
+{\footnotesize\ttfamily \#define P\+P\+C\+\_\+\+Set\+\_\+decrementer(\begin{DoxyParamCaption}\item[{}]{\+\_\+clicks }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do} \{ \(\backslash\)}
+\DoxyCodeLine{    \_\_asm\_\_ \textcolor{keyword}{volatile}( \textcolor{stringliteral}{"mtdec \%0"} : : \textcolor{stringliteral}{"r"} ((\_clicks)) ); \(\backslash\)}
+\DoxyCodeLine{  \} \textcolor{keywordflow}{while} (0)}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{group__RTEMSBSPsPowerPCSharedUtility_ga22216346d9a84013ce035e303c09b9de}\label{group__RTEMSBSPsPowerPCSharedUtility_ga22216346d9a84013ce035e303c09b9de}} 
+\index{PowerPC Utility Module@{PowerPC Utility Module}!PPC\_SET\_DEVICE\_CONTROL\_REGISTER@{PPC\_SET\_DEVICE\_CONTROL\_REGISTER}}
+\index{PPC\_SET\_DEVICE\_CONTROL\_REGISTER@{PPC\_SET\_DEVICE\_CONTROL\_REGISTER}!PowerPC Utility Module@{PowerPC Utility Module}}
+\subsubsection{\texorpdfstring{PPC\_SET\_DEVICE\_CONTROL\_REGISTER}{PPC\_SET\_DEVICE\_CONTROL\_REGISTER}}
+{\footnotesize\ttfamily \#define P\+P\+C\+\_\+\+S\+E\+T\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+C\+O\+N\+T\+R\+O\+L\+\_\+\+R\+E\+G\+I\+S\+T\+ER(\begin{DoxyParamCaption}\item[{}]{dcr,  }\item[{}]{val }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do} \{ \(\backslash\)}
+\DoxyCodeLine{    \_\_asm\_\_ \textcolor{keyword}{volatile} (\(\backslash\)}
+\DoxyCodeLine{      \textcolor{stringliteral}{"mtdcr "} \mbox{\hyperlink{group__RTEMSBSPsPowerPCSharedUtility_ga82a438528227ca1a3c0236a75db36931}{PPC\_STRINGOF}}(dcr) \textcolor{stringliteral}{", \%0"} \(\backslash\)}
+\DoxyCodeLine{      : \(\backslash\)}
+\DoxyCodeLine{      : \textcolor{stringliteral}{"r"} (val) \(\backslash\)}
+\DoxyCodeLine{    ); \(\backslash\)}
+\DoxyCodeLine{  \} \textcolor{keywordflow}{while} (0)}
+
+\end{DoxyCode}
+
+
+Sets the Device Control Register with number {\itshape dcr} to the value in {\itshape val}. 
+
+The Power\+PC 4XX family has Device Control Registers. \mbox{\Hypertarget{group__RTEMSBSPsPowerPCSharedUtility_ga9ebd69cadb130d05089b0bd98a05a8a7}\label{group__RTEMSBSPsPowerPCSharedUtility_ga9ebd69cadb130d05089b0bd98a05a8a7}} 
+\index{PowerPC Utility Module@{PowerPC Utility Module}!PPC\_SET\_DEVICE\_CONTROL\_REGISTER\_BITS@{PPC\_SET\_DEVICE\_CONTROL\_REGISTER\_BITS}}
+\index{PPC\_SET\_DEVICE\_CONTROL\_REGISTER\_BITS@{PPC\_SET\_DEVICE\_CONTROL\_REGISTER\_BITS}!PowerPC Utility Module@{PowerPC Utility Module}}
+\subsubsection{\texorpdfstring{PPC\_SET\_DEVICE\_CONTROL\_REGISTER\_BITS}{PPC\_SET\_DEVICE\_CONTROL\_REGISTER\_BITS}}
+{\footnotesize\ttfamily \#define P\+P\+C\+\_\+\+S\+E\+T\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+C\+O\+N\+T\+R\+O\+L\+\_\+\+R\+E\+G\+I\+S\+T\+E\+R\+\_\+\+B\+I\+TS(\begin{DoxyParamCaption}\item[{}]{dcr,  }\item[{}]{bits }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do} \{ \(\backslash\)}
+\DoxyCodeLine{    ISR\_Level level; \(\backslash\)}
+\DoxyCodeLine{    uint32\_t val; \(\backslash\)}
+\DoxyCodeLine{    uint32\_t mybits = bits; \(\backslash\)}
+\DoxyCodeLine{    \_ISR\_Local\_disable(level); \(\backslash\)}
+\DoxyCodeLine{    val = \mbox{\hyperlink{group__RTEMSBSPsPowerPCSharedUtility_gaf9d70263b9f91ca4aae512e6d9ac29e3}{PPC\_DEVICE\_CONTROL\_REGISTER}}(dcr); \(\backslash\)}
+\DoxyCodeLine{    val |= mybits; \(\backslash\)}
+\DoxyCodeLine{    PPC\_SET\_DEVICE\_CONTROL\_REGISTER(dcr, val); \(\backslash\)}
+\DoxyCodeLine{    \_ISR\_Local\_enable(level); \(\backslash\)}
+\DoxyCodeLine{  \} \textcolor{keywordflow}{while} (0)}
+
+\end{DoxyCode}
+
+
+Sets in the Device Control Register with number {\itshape dcr} all bits which are set in {\itshape bits}. 
+
+Interrupts are disabled throughout this operation. \mbox{\Hypertarget{group__RTEMSBSPsPowerPCSharedUtility_ga8fb9b2c1dc025622892b8c9532e11315}\label{group__RTEMSBSPsPowerPCSharedUtility_ga8fb9b2c1dc025622892b8c9532e11315}} 
+\index{PowerPC Utility Module@{PowerPC Utility Module}!PPC\_SET\_DEVICE\_CONTROL\_REGISTER\_BITS\_MASKED@{PPC\_SET\_DEVICE\_CONTROL\_REGISTER\_BITS\_MASKED}}
+\index{PPC\_SET\_DEVICE\_CONTROL\_REGISTER\_BITS\_MASKED@{PPC\_SET\_DEVICE\_CONTROL\_REGISTER\_BITS\_MASKED}!PowerPC Utility Module@{PowerPC Utility Module}}
+\subsubsection{\texorpdfstring{PPC\_SET\_DEVICE\_CONTROL\_REGISTER\_BITS\_MASKED}{PPC\_SET\_DEVICE\_CONTROL\_REGISTER\_BITS\_MASKED}}
+{\footnotesize\ttfamily \#define P\+P\+C\+\_\+\+S\+E\+T\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+C\+O\+N\+T\+R\+O\+L\+\_\+\+R\+E\+G\+I\+S\+T\+E\+R\+\_\+\+B\+I\+T\+S\+\_\+\+M\+A\+S\+K\+ED(\begin{DoxyParamCaption}\item[{}]{dcr,  }\item[{}]{bits,  }\item[{}]{mask }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do} \{ \(\backslash\)}
+\DoxyCodeLine{    ISR\_Level level; \(\backslash\)}
+\DoxyCodeLine{    uint32\_t val; \(\backslash\)}
+\DoxyCodeLine{    uint32\_t mybits = bits; \(\backslash\)}
+\DoxyCodeLine{    uint32\_t mymask = mask; \(\backslash\)}
+\DoxyCodeLine{    \_ISR\_Local\_disable(level); \(\backslash\)}
+\DoxyCodeLine{    val = \mbox{\hyperlink{group__RTEMSBSPsPowerPCSharedUtility_gaf9d70263b9f91ca4aae512e6d9ac29e3}{PPC\_DEVICE\_CONTROL\_REGISTER}}(dcr); \(\backslash\)}
+\DoxyCodeLine{    val \&= ~mymask; \(\backslash\)}
+\DoxyCodeLine{    val |= mybits; \(\backslash\)}
+\DoxyCodeLine{    PPC\_SET\_DEVICE\_CONTROL\_REGISTER(dcr, val); \(\backslash\)}
+\DoxyCodeLine{    \_ISR\_Local\_enable(level); \(\backslash\)}
+\DoxyCodeLine{  \} \textcolor{keywordflow}{while} (0)}
+
+\end{DoxyCode}
+
+
+Sets in the Device Control Register with number {\itshape dcr} all bits which are set in {\itshape bits}. The previous register value will be masked with {\itshape mask}. 
+
+Interrupts are disabled throughout this operation. \mbox{\Hypertarget{group__RTEMSBSPsPowerPCSharedUtility_ga13230983701d0de149fb74885ae2a9e8}\label{group__RTEMSBSPsPowerPCSharedUtility_ga13230983701d0de149fb74885ae2a9e8}} 
+\index{PowerPC Utility Module@{PowerPC Utility Module}!PPC\_SET\_SPECIAL\_PURPOSE\_REGISTER@{PPC\_SET\_SPECIAL\_PURPOSE\_REGISTER}}
+\index{PPC\_SET\_SPECIAL\_PURPOSE\_REGISTER@{PPC\_SET\_SPECIAL\_PURPOSE\_REGISTER}!PowerPC Utility Module@{PowerPC Utility Module}}
+\subsubsection{\texorpdfstring{PPC\_SET\_SPECIAL\_PURPOSE\_REGISTER}{PPC\_SET\_SPECIAL\_PURPOSE\_REGISTER}}
+{\footnotesize\ttfamily \#define P\+P\+C\+\_\+\+S\+E\+T\+\_\+\+S\+P\+E\+C\+I\+A\+L\+\_\+\+P\+U\+R\+P\+O\+S\+E\+\_\+\+R\+E\+G\+I\+S\+T\+ER(\begin{DoxyParamCaption}\item[{}]{spr,  }\item[{}]{val }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do} \{ \(\backslash\)}
+\DoxyCodeLine{    \_\_asm\_\_ \textcolor{keyword}{volatile} (\(\backslash\)}
+\DoxyCodeLine{      \textcolor{stringliteral}{"mtspr "} \mbox{\hyperlink{group__RTEMSBSPsPowerPCSharedUtility_ga82a438528227ca1a3c0236a75db36931}{PPC\_STRINGOF}}(spr) \textcolor{stringliteral}{", \%0"} \(\backslash\)}
+\DoxyCodeLine{      : \(\backslash\)}
+\DoxyCodeLine{      : \textcolor{stringliteral}{"r"} (val) \(\backslash\)}
+\DoxyCodeLine{    ); \(\backslash\)}
+\DoxyCodeLine{  \} \textcolor{keywordflow}{while} (0)}
+
+\end{DoxyCode}
+
+
+Sets the Special Purpose Register with number {\itshape spr} to the value in {\itshape val}. 
+
+\mbox{\Hypertarget{group__RTEMSBSPsPowerPCSharedUtility_ga3b8f65ba404c615d00c98d67c03a1240}\label{group__RTEMSBSPsPowerPCSharedUtility_ga3b8f65ba404c615d00c98d67c03a1240}} 
+\index{PowerPC Utility Module@{PowerPC Utility Module}!PPC\_SET\_SPECIAL\_PURPOSE\_REGISTER\_BITS@{PPC\_SET\_SPECIAL\_PURPOSE\_REGISTER\_BITS}}
+\index{PPC\_SET\_SPECIAL\_PURPOSE\_REGISTER\_BITS@{PPC\_SET\_SPECIAL\_PURPOSE\_REGISTER\_BITS}!PowerPC Utility Module@{PowerPC Utility Module}}
+\subsubsection{\texorpdfstring{PPC\_SET\_SPECIAL\_PURPOSE\_REGISTER\_BITS}{PPC\_SET\_SPECIAL\_PURPOSE\_REGISTER\_BITS}}
+{\footnotesize\ttfamily \#define P\+P\+C\+\_\+\+S\+E\+T\+\_\+\+S\+P\+E\+C\+I\+A\+L\+\_\+\+P\+U\+R\+P\+O\+S\+E\+\_\+\+R\+E\+G\+I\+S\+T\+E\+R\+\_\+\+B\+I\+TS(\begin{DoxyParamCaption}\item[{}]{spr,  }\item[{}]{bits }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do} \{ \(\backslash\)}
+\DoxyCodeLine{    ISR\_Level level; \(\backslash\)}
+\DoxyCodeLine{    uint32\_t val; \(\backslash\)}
+\DoxyCodeLine{    uint32\_t mybits = bits; \(\backslash\)}
+\DoxyCodeLine{    \_ISR\_Local\_disable(level); \(\backslash\)}
+\DoxyCodeLine{    val = \mbox{\hyperlink{group__RTEMSBSPsPowerPCSharedUtility_gaf2152a905a3a596e7fd4677e5b7fcbcf}{PPC\_SPECIAL\_PURPOSE\_REGISTER}}(spr); \(\backslash\)}
+\DoxyCodeLine{    val |= mybits; \(\backslash\)}
+\DoxyCodeLine{    PPC\_SET\_SPECIAL\_PURPOSE\_REGISTER(spr, val); \(\backslash\)}
+\DoxyCodeLine{    \_ISR\_Local\_enable(level); \(\backslash\)}
+\DoxyCodeLine{  \} \textcolor{keywordflow}{while} (0)}
+
+\end{DoxyCode}
+
+
+Sets in the Special Purpose Register with number {\itshape spr} all bits which are set in {\itshape bits}. 
+
+Interrupts are disabled throughout this operation. \mbox{\Hypertarget{group__RTEMSBSPsPowerPCSharedUtility_gaabbe2ec03b9f2d8480196fbb227ce74d}\label{group__RTEMSBSPsPowerPCSharedUtility_gaabbe2ec03b9f2d8480196fbb227ce74d}} 
+\index{PowerPC Utility Module@{PowerPC Utility Module}!PPC\_SET\_SPECIAL\_PURPOSE\_REGISTER\_BITS\_MASKED@{PPC\_SET\_SPECIAL\_PURPOSE\_REGISTER\_BITS\_MASKED}}
+\index{PPC\_SET\_SPECIAL\_PURPOSE\_REGISTER\_BITS\_MASKED@{PPC\_SET\_SPECIAL\_PURPOSE\_REGISTER\_BITS\_MASKED}!PowerPC Utility Module@{PowerPC Utility Module}}
+\subsubsection{\texorpdfstring{PPC\_SET\_SPECIAL\_PURPOSE\_REGISTER\_BITS\_MASKED}{PPC\_SET\_SPECIAL\_PURPOSE\_REGISTER\_BITS\_MASKED}}
+{\footnotesize\ttfamily \#define P\+P\+C\+\_\+\+S\+E\+T\+\_\+\+S\+P\+E\+C\+I\+A\+L\+\_\+\+P\+U\+R\+P\+O\+S\+E\+\_\+\+R\+E\+G\+I\+S\+T\+E\+R\+\_\+\+B\+I\+T\+S\+\_\+\+M\+A\+S\+K\+ED(\begin{DoxyParamCaption}\item[{}]{spr,  }\item[{}]{bits,  }\item[{}]{mask }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do} \{ \(\backslash\)}
+\DoxyCodeLine{    ISR\_Level level; \(\backslash\)}
+\DoxyCodeLine{    uint32\_t val; \(\backslash\)}
+\DoxyCodeLine{    uint32\_t mybits = bits; \(\backslash\)}
+\DoxyCodeLine{    uint32\_t mymask = mask; \(\backslash\)}
+\DoxyCodeLine{    \_ISR\_Local\_disable(level); \(\backslash\)}
+\DoxyCodeLine{    val = \mbox{\hyperlink{group__RTEMSBSPsPowerPCSharedUtility_gaf2152a905a3a596e7fd4677e5b7fcbcf}{PPC\_SPECIAL\_PURPOSE\_REGISTER}}(spr); \(\backslash\)}
+\DoxyCodeLine{    val \&= ~mymask; \(\backslash\)}
+\DoxyCodeLine{    val |= mybits; \(\backslash\)}
+\DoxyCodeLine{    PPC\_SET\_SPECIAL\_PURPOSE\_REGISTER(spr, val); \(\backslash\)}
+\DoxyCodeLine{    \_ISR\_Local\_enable(level); \(\backslash\)}
+\DoxyCodeLine{  \} \textcolor{keywordflow}{while} (0)}
+
+\end{DoxyCode}
+
+
+Sets in the Special Purpose Register with number {\itshape spr} all bits which are set in {\itshape bits}. The previous register value will be masked with {\itshape mask}. 
+
+Interrupts are disabled throughout this operation. \mbox{\Hypertarget{group__RTEMSBSPsPowerPCSharedUtility_ga90d0f8d8c6839c36fdf3054d86ed04a8}\label{group__RTEMSBSPsPowerPCSharedUtility_ga90d0f8d8c6839c36fdf3054d86ed04a8}} 
+\index{PowerPC Utility Module@{PowerPC Utility Module}!PPC\_SET\_THREAD\_MGMT\_REGISTER@{PPC\_SET\_THREAD\_MGMT\_REGISTER}}
+\index{PPC\_SET\_THREAD\_MGMT\_REGISTER@{PPC\_SET\_THREAD\_MGMT\_REGISTER}!PowerPC Utility Module@{PowerPC Utility Module}}
+\subsubsection{\texorpdfstring{PPC\_SET\_THREAD\_MGMT\_REGISTER}{PPC\_SET\_THREAD\_MGMT\_REGISTER}}
+{\footnotesize\ttfamily \#define P\+P\+C\+\_\+\+S\+E\+T\+\_\+\+T\+H\+R\+E\+A\+D\+\_\+\+M\+G\+M\+T\+\_\+\+R\+E\+G\+I\+S\+T\+ER(\begin{DoxyParamCaption}\item[{}]{tmr,  }\item[{}]{val }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do} \{ \(\backslash\)}
+\DoxyCodeLine{    \_\_asm\_\_ \textcolor{keyword}{volatile} (\(\backslash\)}
+\DoxyCodeLine{      \textcolor{stringliteral}{"mttmr "} \mbox{\hyperlink{group__RTEMSBSPsPowerPCSharedUtility_ga82a438528227ca1a3c0236a75db36931}{PPC\_STRINGOF}}(tmr) \textcolor{stringliteral}{", \%0"} \(\backslash\)}
+\DoxyCodeLine{      : \(\backslash\)}
+\DoxyCodeLine{      : \textcolor{stringliteral}{"r"} (val) \(\backslash\)}
+\DoxyCodeLine{    ); \(\backslash\)}
+\DoxyCodeLine{  \} \textcolor{keywordflow}{while} (0)}
+
+\end{DoxyCode}
+
+
+Sets the Thread Management Register with number {\itshape tmr} to the value in {\itshape val}. 
+
+\mbox{\Hypertarget{group__RTEMSBSPsPowerPCSharedUtility_gaf2152a905a3a596e7fd4677e5b7fcbcf}\label{group__RTEMSBSPsPowerPCSharedUtility_gaf2152a905a3a596e7fd4677e5b7fcbcf}} 
+\index{PowerPC Utility Module@{PowerPC Utility Module}!PPC\_SPECIAL\_PURPOSE\_REGISTER@{PPC\_SPECIAL\_PURPOSE\_REGISTER}}
+\index{PPC\_SPECIAL\_PURPOSE\_REGISTER@{PPC\_SPECIAL\_PURPOSE\_REGISTER}!PowerPC Utility Module@{PowerPC Utility Module}}
+\subsubsection{\texorpdfstring{PPC\_SPECIAL\_PURPOSE\_REGISTER}{PPC\_SPECIAL\_PURPOSE\_REGISTER}}
+{\footnotesize\ttfamily \#define P\+P\+C\+\_\+\+S\+P\+E\+C\+I\+A\+L\+\_\+\+P\+U\+R\+P\+O\+S\+E\+\_\+\+R\+E\+G\+I\+S\+T\+ER(\begin{DoxyParamCaption}\item[{}]{spr }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(\{ \(\backslash\)}
+\DoxyCodeLine{    uint32\_t val; \(\backslash\)}
+\DoxyCodeLine{    \_\_asm\_\_ \textcolor{keyword}{volatile} (\(\backslash\)}
+\DoxyCodeLine{      \textcolor{stringliteral}{"mfspr \%0, "} \mbox{\hyperlink{group__RTEMSBSPsPowerPCSharedUtility_ga82a438528227ca1a3c0236a75db36931}{PPC\_STRINGOF}}(spr) \(\backslash\)}
+\DoxyCodeLine{      : \textcolor{stringliteral}{"=r"} (val) \(\backslash\)}
+\DoxyCodeLine{    ); \(\backslash\)}
+\DoxyCodeLine{    val;\(\backslash\)}
+\DoxyCodeLine{  \} )}
+
+\end{DoxyCode}
+
+
+Returns the value of the Special Purpose Register with number {\itshape spr}. 
+
+\begin{DoxyNote}{Note}
+This macro uses a G\+NU C extension. 
+\end{DoxyNote}
+\mbox{\Hypertarget{group__RTEMSBSPsPowerPCSharedUtility_gafcbb61249c0713163c2c490cfa6b5766}\label{group__RTEMSBSPsPowerPCSharedUtility_gafcbb61249c0713163c2c490cfa6b5766}} 
+\index{PowerPC Utility Module@{PowerPC Utility Module}!PPC\_THREAD\_MGMT\_REGISTER@{PPC\_THREAD\_MGMT\_REGISTER}}
+\index{PPC\_THREAD\_MGMT\_REGISTER@{PPC\_THREAD\_MGMT\_REGISTER}!PowerPC Utility Module@{PowerPC Utility Module}}
+\subsubsection{\texorpdfstring{PPC\_THREAD\_MGMT\_REGISTER}{PPC\_THREAD\_MGMT\_REGISTER}}
+{\footnotesize\ttfamily \#define P\+P\+C\+\_\+\+T\+H\+R\+E\+A\+D\+\_\+\+M\+G\+M\+T\+\_\+\+R\+E\+G\+I\+S\+T\+ER(\begin{DoxyParamCaption}\item[{}]{tmr }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(\{ \(\backslash\)}
+\DoxyCodeLine{    uint32\_t val; \(\backslash\)}
+\DoxyCodeLine{    \_\_asm\_\_ \textcolor{keyword}{volatile} (\(\backslash\)}
+\DoxyCodeLine{      \textcolor{stringliteral}{"mftmr \%0, "} \mbox{\hyperlink{group__RTEMSBSPsPowerPCSharedUtility_ga82a438528227ca1a3c0236a75db36931}{PPC\_STRINGOF}}(tmr) \(\backslash\)}
+\DoxyCodeLine{      : \textcolor{stringliteral}{"=r"} (val) \(\backslash\)}
+\DoxyCodeLine{    ); \(\backslash\)}
+\DoxyCodeLine{    val;\(\backslash\)}
+\DoxyCodeLine{  \} )}
+
+\end{DoxyCode}
+
+
+Returns the value of the Thread Management Register with number {\itshape tmr}. 
+
+\begin{DoxyNote}{Note}
+This macro uses a G\+NU C extension. 
+\end{DoxyNote}
+\mbox{\Hypertarget{group__RTEMSBSPsPowerPCSharedUtility_gaa6e7f66cba394106f48952b736aa2d2e}\label{group__RTEMSBSPsPowerPCSharedUtility_gaa6e7f66cba394106f48952b736aa2d2e}} 
+\index{PowerPC Utility Module@{PowerPC Utility Module}!rtems\_bsp\_delay@{rtems\_bsp\_delay}}
+\index{rtems\_bsp\_delay@{rtems\_bsp\_delay}!PowerPC Utility Module@{PowerPC Utility Module}}
+\subsubsection{\texorpdfstring{rtems\_bsp\_delay}{rtems\_bsp\_delay}}
+{\footnotesize\ttfamily \#define rtems\+\_\+bsp\+\_\+delay(\begin{DoxyParamCaption}\item[{}]{\+\_\+microseconds }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do} \{ \(\backslash\)}
+\DoxyCodeLine{    uint32\_t   start, ticks, now; \(\backslash\)}
+\DoxyCodeLine{    CPU\_Get\_timebase\_low( start ) ; \(\backslash\)}
+\DoxyCodeLine{    ticks = (\_microseconds) * bsp\_clicks\_per\_usec; \(\backslash\)}
+\DoxyCodeLine{    do \(\backslash\)}
+\DoxyCodeLine{      CPU\_Get\_timebase\_low( now ) ; \(\backslash\)}
+\DoxyCodeLine{    while (now - start < ticks); \(\backslash\)}
+\DoxyCodeLine{  \} \textcolor{keywordflow}{while} (0)}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{group__RTEMSBSPsPowerPCSharedUtility_ga9fc2f14a5bd0862f128f0e1a8e60cce5}\label{group__RTEMSBSPsPowerPCSharedUtility_ga9fc2f14a5bd0862f128f0e1a8e60cce5}} 
+\index{PowerPC Utility Module@{PowerPC Utility Module}!rtems\_bsp\_delay\_in\_bus\_cycles@{rtems\_bsp\_delay\_in\_bus\_cycles}}
+\index{rtems\_bsp\_delay\_in\_bus\_cycles@{rtems\_bsp\_delay\_in\_bus\_cycles}!PowerPC Utility Module@{PowerPC Utility Module}}
+\subsubsection{\texorpdfstring{rtems\_bsp\_delay\_in\_bus\_cycles}{rtems\_bsp\_delay\_in\_bus\_cycles}}
+{\footnotesize\ttfamily \#define rtems\+\_\+bsp\+\_\+delay\+\_\+in\+\_\+bus\+\_\+cycles(\begin{DoxyParamCaption}\item[{}]{\+\_\+cycles }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do} \{ \(\backslash\)}
+\DoxyCodeLine{    uint32\_t   start, now; \(\backslash\)}
+\DoxyCodeLine{    CPU\_Get\_timebase\_low( start ); \(\backslash\)}
+\DoxyCodeLine{    do \(\backslash\)}
+\DoxyCodeLine{      CPU\_Get\_timebase\_low( now ); \(\backslash\)}
+\DoxyCodeLine{    while (now - start < (\_cycles)); \(\backslash\)}
+\DoxyCodeLine{  \} \textcolor{keywordflow}{while} (0)}
+
+\end{DoxyCode}

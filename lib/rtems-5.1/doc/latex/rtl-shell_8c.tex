@@ -1,0 +1,129 @@
+\hypertarget{rtl-shell_8c}{}\section{cpukit/libdl/rtl-\/shell.c File Reference}
+\label{rtl-shell_8c}\index{cpukit/libdl/rtl-\/shell.c@{cpukit/libdl/rtl-\/shell.c}}
+
+
+R\+T\+E\+MS Run-\/\+Time Link Editor Shell Commands.  
+
+
+{\ttfamily \#include $<$inttypes.\+h$>$}\newline
+{\ttfamily \#include $<$sys/stat.\+h$>$}\newline
+{\ttfamily \#include $<$regex.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$dlfcn.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/printer.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/rtl/rtl.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/rtl/rtl-\/archive.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/rtl/rtl-\/shell.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/rtl/rtl-\/trace.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}rtl-\/chain-\/iterator.\+h\char`\"{}}\newline
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structrtems__rtl__shell__cmd}{rtems\+\_\+rtl\+\_\+shell\+\_\+cmd}}
+\item 
+struct \mbox{\hyperlink{structrtems__rtl__obj__summary}{rtems\+\_\+rtl\+\_\+obj\+\_\+summary}}
+\item 
+struct \mbox{\hyperlink{structrtems__rtl__obj__print}{rtems\+\_\+rtl\+\_\+obj\+\_\+print}}
+\item 
+struct \mbox{\hyperlink{structrtems__rtl__dep__data}{rtems\+\_\+rtl\+\_\+dep\+\_\+data}}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{rtl-shell_8c_a3e1b05a78d09fb3550ca9da1cce25df1}\label{rtl-shell_8c_a3e1b05a78d09fb3550ca9da1cce25df1}} 
+\#define {\bfseries S\+Y\+M\+\_\+\+D\+U\+P\+L\+I\+C\+A\+TE}~(1 $<$$<$ ((8 $\ast$ sizeof (size\+\_\+t)) -\/ 1))
+\item 
+\mbox{\Hypertarget{rtl-shell_8c_a7ab06cdf6dd49a424299fcae011d5720}\label{rtl-shell_8c_a7ab06cdf6dd49a424299fcae011d5720}} 
+\#define {\bfseries C\+A\+L\+L\+\_\+\+A\+R\+G\+\_\+\+C\+O\+U\+NT}~(4)
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef int($\ast$ \mbox{\hyperlink{rtl-shell_8c_abdb8a1e1d10a86732342e0157986f7ff}{rtems\+\_\+rtl\+\_\+shell\+\_\+handler}}) (const \mbox{\hyperlink{structrtems__printer}{rtems\+\_\+printer}} $\ast$printer, int argc, char $\ast$argv\mbox{[}$\,$\mbox{]})
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{rtl-shell_8c_a1f9b3cb0aafe4ed009d797499b64e9e4}{rtems\+\_\+rtl\+\_\+shell\+\_\+list}} (const \mbox{\hyperlink{structrtems__printer}{rtems\+\_\+printer}} $\ast$printer, int argc, char $\ast$argv\mbox{[}$\,$\mbox{]})
+\item 
+int \mbox{\hyperlink{rtl-shell_8c_a50394981270941b025148ece371a0e5d}{rtems\+\_\+rtl\+\_\+shell\+\_\+sym}} (const \mbox{\hyperlink{structrtems__printer}{rtems\+\_\+printer}} $\ast$printer, int argc, char $\ast$argv\mbox{[}$\,$\mbox{]})
+\item 
+int \mbox{\hyperlink{rtl-shell_8c_ab9ed5fe1cd6d728c22f423a566b3ec1e}{rtems\+\_\+rtl\+\_\+shell\+\_\+object}} (const \mbox{\hyperlink{structrtems__printer}{rtems\+\_\+printer}} $\ast$printer, int argc, char $\ast$argv\mbox{[}$\,$\mbox{]})
+\item 
+int \mbox{\hyperlink{rtl-shell_8c_a6d62d1191b9362ec04fc2305eea21280}{rtems\+\_\+rtl\+\_\+shell\+\_\+archive}} (const \mbox{\hyperlink{structrtems__printer}{rtems\+\_\+printer}} $\ast$printer, int argc, char $\ast$argv\mbox{[}$\,$\mbox{]})
+\item 
+int \mbox{\hyperlink{rtl-shell_8c_a80ea92b004f787087876764852d994fd}{rtems\+\_\+rtl\+\_\+shell\+\_\+call}} (const \mbox{\hyperlink{structrtems__printer}{rtems\+\_\+printer}} $\ast$printer, int argc, char $\ast$argv\mbox{[}$\,$\mbox{]})
+\item 
+int \mbox{\hyperlink{rtl-shell_8c_aa548220d324834be6c5703605f7aa127}{rtems\+\_\+rtl\+\_\+shell\+\_\+command}} (int argc, char $\ast$argv\mbox{[}$\,$\mbox{]})
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+R\+T\+E\+MS Run-\/\+Time Link Editor Shell Commands. 
+
+A simple R\+TL command to aid using the R\+TL. 
+
+\subsection{Typedef Documentation}
+\mbox{\Hypertarget{rtl-shell_8c_abdb8a1e1d10a86732342e0157986f7ff}\label{rtl-shell_8c_abdb8a1e1d10a86732342e0157986f7ff}} 
+\index{rtl-\/shell.c@{rtl-\/shell.c}!rtems\_rtl\_shell\_handler@{rtems\_rtl\_shell\_handler}}
+\index{rtems\_rtl\_shell\_handler@{rtems\_rtl\_shell\_handler}!rtl-\/shell.c@{rtl-\/shell.c}}
+\subsubsection{\texorpdfstring{rtems\_rtl\_shell\_handler}{rtems\_rtl\_shell\_handler}}
+{\footnotesize\ttfamily typedef int($\ast$ rtems\+\_\+rtl\+\_\+shell\+\_\+handler) (const \mbox{\hyperlink{structrtems__printer}{rtems\+\_\+printer}} $\ast$printer, int argc, char $\ast$argv\mbox{[}$\,$\mbox{]})}
+
+The type of the shell handlers we have. 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{rtl-shell_8c_a6d62d1191b9362ec04fc2305eea21280}\label{rtl-shell_8c_a6d62d1191b9362ec04fc2305eea21280}} 
+\index{rtl-\/shell.c@{rtl-\/shell.c}!rtems\_rtl\_shell\_archive@{rtems\_rtl\_shell\_archive}}
+\index{rtems\_rtl\_shell\_archive@{rtems\_rtl\_shell\_archive}!rtl-\/shell.c@{rtl-\/shell.c}}
+\subsubsection{\texorpdfstring{rtems\_rtl\_shell\_archive()}{rtems\_rtl\_shell\_archive()}}
+{\footnotesize\ttfamily int rtems\+\_\+rtl\+\_\+shell\+\_\+archive (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structrtems__printer}{rtems\+\_\+printer}} $\ast$}]{printer,  }\item[{int}]{argc,  }\item[{char $\ast$}]{argv\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+Archive files. \mbox{\Hypertarget{rtl-shell_8c_a80ea92b004f787087876764852d994fd}\label{rtl-shell_8c_a80ea92b004f787087876764852d994fd}} 
+\index{rtl-\/shell.c@{rtl-\/shell.c}!rtems\_rtl\_shell\_call@{rtems\_rtl\_shell\_call}}
+\index{rtems\_rtl\_shell\_call@{rtems\_rtl\_shell\_call}!rtl-\/shell.c@{rtl-\/shell.c}}
+\subsubsection{\texorpdfstring{rtems\_rtl\_shell\_call()}{rtems\_rtl\_shell\_call()}}
+{\footnotesize\ttfamily int rtems\+\_\+rtl\+\_\+shell\+\_\+call (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structrtems__printer}{rtems\+\_\+printer}} $\ast$}]{printer,  }\item[{int}]{argc,  }\item[{char $\ast$}]{argv\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+Call text symbol. \mbox{\Hypertarget{rtl-shell_8c_aa548220d324834be6c5703605f7aa127}\label{rtl-shell_8c_aa548220d324834be6c5703605f7aa127}} 
+\index{rtl-\/shell.c@{rtl-\/shell.c}!rtems\_rtl\_shell\_command@{rtems\_rtl\_shell\_command}}
+\index{rtems\_rtl\_shell\_command@{rtems\_rtl\_shell\_command}!rtl-\/shell.c@{rtl-\/shell.c}}
+\subsubsection{\texorpdfstring{rtems\_rtl\_shell\_command()}{rtems\_rtl\_shell\_command()}}
+{\footnotesize\ttfamily int rtems\+\_\+rtl\+\_\+shell\+\_\+command (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$}]{argv\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+The R\+TL single shell command contains sub-\/commands.
+
+
+\begin{DoxyParams}{Parameters}
+{\em argc} & The argument count. \\
+\hline
+{\em argv} & Array of argument strings. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em 0} & No error. \\
+\hline
+\end{DoxyRetVals}
+\begin{DoxyReturn}{Returns}
+int The exit code. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{rtl-shell_8c_a1f9b3cb0aafe4ed009d797499b64e9e4}\label{rtl-shell_8c_a1f9b3cb0aafe4ed009d797499b64e9e4}} 
+\index{rtl-\/shell.c@{rtl-\/shell.c}!rtems\_rtl\_shell\_list@{rtems\_rtl\_shell\_list}}
+\index{rtems\_rtl\_shell\_list@{rtems\_rtl\_shell\_list}!rtl-\/shell.c@{rtl-\/shell.c}}
+\subsubsection{\texorpdfstring{rtems\_rtl\_shell\_list()}{rtems\_rtl\_shell\_list()}}
+{\footnotesize\ttfamily int rtems\+\_\+rtl\+\_\+shell\+\_\+list (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structrtems__printer}{rtems\+\_\+printer}} $\ast$}]{printer,  }\item[{int}]{argc,  }\item[{char $\ast$}]{argv\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+List object files. \mbox{\Hypertarget{rtl-shell_8c_ab9ed5fe1cd6d728c22f423a566b3ec1e}\label{rtl-shell_8c_ab9ed5fe1cd6d728c22f423a566b3ec1e}} 
+\index{rtl-\/shell.c@{rtl-\/shell.c}!rtems\_rtl\_shell\_object@{rtems\_rtl\_shell\_object}}
+\index{rtems\_rtl\_shell\_object@{rtems\_rtl\_shell\_object}!rtl-\/shell.c@{rtl-\/shell.c}}
+\subsubsection{\texorpdfstring{rtems\_rtl\_shell\_object()}{rtems\_rtl\_shell\_object()}}
+{\footnotesize\ttfamily int rtems\+\_\+rtl\+\_\+shell\+\_\+object (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structrtems__printer}{rtems\+\_\+printer}} $\ast$}]{printer,  }\item[{int}]{argc,  }\item[{char $\ast$}]{argv\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+Object files. \mbox{\Hypertarget{rtl-shell_8c_a50394981270941b025148ece371a0e5d}\label{rtl-shell_8c_a50394981270941b025148ece371a0e5d}} 
+\index{rtl-\/shell.c@{rtl-\/shell.c}!rtems\_rtl\_shell\_sym@{rtems\_rtl\_shell\_sym}}
+\index{rtems\_rtl\_shell\_sym@{rtems\_rtl\_shell\_sym}!rtl-\/shell.c@{rtl-\/shell.c}}
+\subsubsection{\texorpdfstring{rtems\_rtl\_shell\_sym()}{rtems\_rtl\_shell\_sym()}}
+{\footnotesize\ttfamily int rtems\+\_\+rtl\+\_\+shell\+\_\+sym (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structrtems__printer}{rtems\+\_\+printer}} $\ast$}]{printer,  }\item[{int}]{argc,  }\item[{char $\ast$}]{argv\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+Symbols. 

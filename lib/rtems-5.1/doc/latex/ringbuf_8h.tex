@@ -1,0 +1,104 @@
+\hypertarget{ringbuf_8h}{}\section{cpukit/include/rtems/ringbuf.h File Reference}
+\label{ringbuf_8h}\index{cpukit/include/rtems/ringbuf.h@{cpukit/include/rtems/ringbuf.h}}
+
+
+Simple Ring Buffer Functionality.  
+
+
+{\ttfamily \#include $<$rtems.\+h$>$}\newline
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structRing__buffer__t}{Ring\+\_\+buffer\+\_\+t}}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{ringbuf_8h_adfc44b98bfa33148ee478a053233dc75}\label{ringbuf_8h_adfc44b98bfa33148ee478a053233dc75}} 
+\#define {\bfseries R\+I\+N\+G\+B\+U\+F\+\_\+\+Q\+U\+E\+U\+E\+\_\+\+L\+E\+N\+G\+TH}~128
+\item 
+\#define {\bfseries Ring\+\_\+buffer\+\_\+\+Initialize}(\+\_\+buffer)
+\item 
+\#define {\bfseries Ring\+\_\+buffer\+\_\+\+Destory}(\+\_\+buffer)
+\item 
+\mbox{\Hypertarget{ringbuf_8h_a76d94f2bd215b80d0855e7c4a6010e8b}\label{ringbuf_8h_a76d94f2bd215b80d0855e7c4a6010e8b}} 
+\#define {\bfseries Ring\+\_\+buffer\+\_\+\+Is\+\_\+empty}(\+\_\+buffer)~( (\+\_\+buffer)-\/$>$head == (\+\_\+buffer)-\/$>$tail )
+\item 
+\mbox{\Hypertarget{ringbuf_8h_a093f75b78374d60c4a79ecde5eb102d1}\label{ringbuf_8h_a093f75b78374d60c4a79ecde5eb102d1}} 
+\#define {\bfseries Ring\+\_\+buffer\+\_\+\+Is\+\_\+full}(\+\_\+buffer)~( (\+\_\+buffer)-\/$>$head == ((\+\_\+buffer)-\/$>$tail + 1) \% R\+I\+N\+G\+B\+U\+F\+\_\+\+Q\+U\+E\+U\+E\+\_\+\+L\+E\+N\+G\+TH )
+\item 
+\#define {\bfseries Ring\+\_\+buffer\+\_\+\+Add\+\_\+character}(\+\_\+buffer,  \+\_\+ch)
+\item 
+\#define {\bfseries Ring\+\_\+buffer\+\_\+\+Remove\+\_\+character}(\+\_\+buffer,  \+\_\+ch)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Simple Ring Buffer Functionality. 
+
+This file provides simple ring buffer functionality. 
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{ringbuf_8h_a8f11a05a5594ff45f5af4523474584f0}\label{ringbuf_8h_a8f11a05a5594ff45f5af4523474584f0}} 
+\index{ringbuf.h@{ringbuf.h}!Ring\_buffer\_Add\_character@{Ring\_buffer\_Add\_character}}
+\index{Ring\_buffer\_Add\_character@{Ring\_buffer\_Add\_character}!ringbuf.h@{ringbuf.h}}
+\subsubsection{\texorpdfstring{Ring\_buffer\_Add\_character}{Ring\_buffer\_Add\_character}}
+{\footnotesize\ttfamily \#define Ring\+\_\+buffer\+\_\+\+Add\+\_\+character(\begin{DoxyParamCaption}\item[{}]{\+\_\+buffer,  }\item[{}]{\+\_\+ch }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do} \{ \(\backslash\)}
+\DoxyCodeLine{    rtems\_interrupt\_lock\_context lock\_context; \mbox{\hyperlink{group__ClassicINTRLocks_ga0eeb7f40f9ac9e9c7b092d5fd85b5b3c}{\(\backslash\)}}}
+\DoxyCodeLine{\mbox{\hyperlink{group__ClassicINTRLocks_ga0eeb7f40f9ac9e9c7b092d5fd85b5b3c}{    \(\backslash\)}}}
+\DoxyCodeLine{\mbox{\hyperlink{group__ClassicINTRLocks_ga0eeb7f40f9ac9e9c7b092d5fd85b5b3c}{    rtems\_interrupt\_lock\_acquire}}( \&(\_buffer)->lock, \&lock\_context ); \(\backslash\)}
+\DoxyCodeLine{      (\_buffer)->tail = ((\_buffer)->tail+1) \% RINGBUF\_QUEUE\_LENGTH; \(\backslash\)}
+\DoxyCodeLine{      (\_buffer)->buffer[ (\_buffer)->tail ] = (\_ch); \(\backslash\)}
+\DoxyCodeLine{    rtems\_interrupt\_lock\_release( \&(\_buffer)->lock, \&lock\_context ); \(\backslash\)}
+\DoxyCodeLine{  \} \textcolor{keywordflow}{while} ( 0 )}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{ringbuf_8h_a1893b063d514077b50fcb6e7e64e11af}\label{ringbuf_8h_a1893b063d514077b50fcb6e7e64e11af}} 
+\index{ringbuf.h@{ringbuf.h}!Ring\_buffer\_Destory@{Ring\_buffer\_Destory}}
+\index{Ring\_buffer\_Destory@{Ring\_buffer\_Destory}!ringbuf.h@{ringbuf.h}}
+\subsubsection{\texorpdfstring{Ring\_buffer\_Destory}{Ring\_buffer\_Destory}}
+{\footnotesize\ttfamily \#define Ring\+\_\+buffer\+\_\+\+Destory(\begin{DoxyParamCaption}\item[{}]{\+\_\+buffer }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do} \{ \(\backslash\)}
+\DoxyCodeLine{    rtems\_interrupt\_lock\_destroy(\&(\_buffer)->lock); \(\backslash\)}
+\DoxyCodeLine{  \} \textcolor{keywordflow}{while} ( 0 )}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{ringbuf_8h_aa38f6222b8e5373c8215c638db3a3e2d}\label{ringbuf_8h_aa38f6222b8e5373c8215c638db3a3e2d}} 
+\index{ringbuf.h@{ringbuf.h}!Ring\_buffer\_Initialize@{Ring\_buffer\_Initialize}}
+\index{Ring\_buffer\_Initialize@{Ring\_buffer\_Initialize}!ringbuf.h@{ringbuf.h}}
+\subsubsection{\texorpdfstring{Ring\_buffer\_Initialize}{Ring\_buffer\_Initialize}}
+{\footnotesize\ttfamily \#define Ring\+\_\+buffer\+\_\+\+Initialize(\begin{DoxyParamCaption}\item[{}]{\+\_\+buffer }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do} \{ \(\backslash\)}
+\DoxyCodeLine{    (\_buffer)->head = (\_buffer)->tail = 0; \(\backslash\)}
+\DoxyCodeLine{    rtems\_interrupt\_lock\_initialize(\&(\_buffer)->lock, \textcolor{stringliteral}{"ring buffer"}); \(\backslash\)}
+\DoxyCodeLine{  \} \textcolor{keywordflow}{while} ( 0 )}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{ringbuf_8h_a47512123d2ad1a65cb1caebf7ca2ca9a}\label{ringbuf_8h_a47512123d2ad1a65cb1caebf7ca2ca9a}} 
+\index{ringbuf.h@{ringbuf.h}!Ring\_buffer\_Remove\_character@{Ring\_buffer\_Remove\_character}}
+\index{Ring\_buffer\_Remove\_character@{Ring\_buffer\_Remove\_character}!ringbuf.h@{ringbuf.h}}
+\subsubsection{\texorpdfstring{Ring\_buffer\_Remove\_character}{Ring\_buffer\_Remove\_character}}
+{\footnotesize\ttfamily \#define Ring\+\_\+buffer\+\_\+\+Remove\+\_\+character(\begin{DoxyParamCaption}\item[{}]{\+\_\+buffer,  }\item[{}]{\+\_\+ch }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do} \{ \(\backslash\)}
+\DoxyCodeLine{    rtems\_interrupt\_lock\_context lock\_context; \mbox{\hyperlink{group__ClassicINTRLocks_ga0eeb7f40f9ac9e9c7b092d5fd85b5b3c}{\(\backslash\)}}}
+\DoxyCodeLine{\mbox{\hyperlink{group__ClassicINTRLocks_ga0eeb7f40f9ac9e9c7b092d5fd85b5b3c}{    \(\backslash\)}}}
+\DoxyCodeLine{\mbox{\hyperlink{group__ClassicINTRLocks_ga0eeb7f40f9ac9e9c7b092d5fd85b5b3c}{    rtems\_interrupt\_lock\_acquire}}( \&(\_buffer)->lock, \&lock\_context ); \(\backslash\)}
+\DoxyCodeLine{      (\_buffer)->head = ((\_buffer)->head+1) \% RINGBUF\_QUEUE\_LENGTH; \(\backslash\)}
+\DoxyCodeLine{      (\_ch) = (\_buffer)->buffer[ (\_buffer)->head ]; \(\backslash\)}
+\DoxyCodeLine{    rtems\_interrupt\_lock\_release( \&(\_buffer)->lock, \&lock\_context ); \(\backslash\)}
+\DoxyCodeLine{  \} \textcolor{keywordflow}{while} ( 0 )}
+
+\end{DoxyCode}

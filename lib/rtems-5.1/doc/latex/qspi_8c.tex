@@ -1,0 +1,593 @@
+\hypertarget{qspi_8c}{}\section{bsps/arm/atsam/contrib/libraries/libchip/source/qspi.c File Reference}
+\label{qspi_8c}\index{bsps/arm/atsam/contrib/libraries/libchip/source/qspi.c@{bsps/arm/atsam/contrib/libraries/libchip/source/qspi.c}}
+{\ttfamily \#include \char`\"{}chip.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}stdlib.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}string.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include $<$bsp/iocopy.\+h$>$}\newline
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{qspi_8c_aa3cf15ae72b13e572145f3d31e19b407}\label{qspi_8c_aa3cf15ae72b13e572145f3d31e19b407}} 
+\#define {\bfseries S\+C\+R\+A\+M\+B\+L\+E\+\_\+\+K\+EY}~0x0\+B\+A\+D\+D\+E\+AD
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void \mbox{\hyperlink{qspi_8c_afde6147001d6981039fdb672af9fe0d4}{Q\+S\+P\+I\+\_\+\+Configure\+Mode}} (\mbox{\hyperlink{structQspi}{Qspi}} $\ast$p\+Qspi, uint8\+\_\+t d\+Mode)
+\begin{DoxyCompactList}\small\item\em Configure Q\+S\+P\+I/\+S\+PI mode. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void \mbox{\hyperlink{qspi_8c_a540d57bb3a49cb62569937d3f54f7085}{Q\+S\+P\+I\+\_\+\+Configure}} (\mbox{\hyperlink{structQspi}{Qspi}} $\ast$p\+Qspi, uint32\+\_\+t dw\+Configuration)
+\begin{DoxyCompactList}\small\item\em Configure mode register of Q\+S\+PI. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void \mbox{\hyperlink{qspi_8c_ae03b55a11d8a50d01e87f7398caa413c}{Q\+S\+P\+I\+\_\+\+Set\+Inst\+Addr}} (\mbox{\hyperlink{structQspi}{Qspi}} $\ast$p\+Qspi, uint32\+\_\+t dw\+Addr)
+\begin{DoxyCompactList}\small\item\em Configures a instruction address for Q\+S\+PI in Q\+S\+PI mode. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void \mbox{\hyperlink{qspi_8c_afde5ea34d85fcecb4a538250325d3c6c}{Q\+S\+P\+I\+\_\+\+Set\+Inst}} (\mbox{\hyperlink{structQspi}{Qspi}} $\ast$p\+Qspi, uint8\+\_\+t dw\+Inst, uint8\+\_\+t dw\+Opt)
+\begin{DoxyCompactList}\small\item\em Configures instruction register with a given command for Q\+S\+PI. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void \mbox{\hyperlink{qspi_8c_ab6228d04866fe8947d7fafd5d04b65cf}{Q\+S\+P\+I\+\_\+\+Set\+Inst\+Frame}} (\mbox{\hyperlink{structQspi}{Qspi}} $\ast$p\+Qspi, \mbox{\hyperlink{structQspiInstFrame__t}{Qspi\+Inst\+Frame\+\_\+t}} $\ast$p\+Inst\+Frame)
+\begin{DoxyCompactList}\small\item\em Configures instruction frame register of Q\+S\+PI. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE uint32\+\_\+t \mbox{\hyperlink{qspi_8c_a15a99043cebbb701093d11a15f78a419}{Q\+S\+P\+I\+\_\+\+Get\+Inst\+Frame}} (\mbox{\hyperlink{structQspi}{Qspi}} $\ast$p\+Qspi)
+\begin{DoxyCompactList}\small\item\em Reads the Instruction frame of Q\+S\+PI. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE uint16\+\_\+t \mbox{\hyperlink{qspi_8c_a4788c3a05bb9fd76eb60f37331d8441c}{Q\+S\+P\+I\+\_\+\+Read\+S\+PI}} (\mbox{\hyperlink{structQspi}{Qspi}} $\ast$p\+Qspi)
+\begin{DoxyCompactList}\small\item\em Read Q\+S\+PI R\+DR register for S\+PI mode. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void \mbox{\hyperlink{qspi_8c_af19b4cbed1aa41039bb632daf84a515e}{Q\+S\+P\+I\+\_\+\+Write\+S\+PI}} (\mbox{\hyperlink{structQspi}{Qspi}} $\ast$p\+Qspi, uint16\+\_\+t w\+Data)
+\begin{DoxyCompactList}\small\item\em Write to Q\+S\+PI Tx register in S\+PI mode. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void \mbox{\hyperlink{qspi_8c_a83fd9cffbace976ad6222750adc942ef}{Q\+S\+P\+I\+\_\+\+Scramble\+Data}} (\mbox{\hyperlink{structQspi}{Qspi}} $\ast$p\+Qspi, uint32\+\_\+t w\+Key, uint8\+\_\+t Enable\+Flag, uint8\+\_\+t Random)
+\begin{DoxyCompactList}\small\item\em Configures Q\+S\+PI scrambling with a given Key. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{qspi_8c_a481f9cf7a40eb4de632cfef883abbafd}{Q\+S\+P\+I\+\_\+\+Enable}} (\mbox{\hyperlink{structQspi}{Qspi}} $\ast$p\+Qspi)
+\begin{DoxyCompactList}\small\item\em Enables a Q\+S\+PI peripheral. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{qspi_8c_a24e4ad68361409458213083438db8449}{Q\+S\+P\+I\+\_\+\+Disable}} (\mbox{\hyperlink{structQspi}{Qspi}} $\ast$p\+Qspi)
+\begin{DoxyCompactList}\small\item\em Disables a Q\+S\+PI peripheral. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{qspi_8c_ad41ddc810992fae62c42f245a989381a}{Q\+S\+P\+I\+\_\+\+Sw\+Reset}} (\mbox{\hyperlink{structQspi}{Qspi}} $\ast$p\+Qspi)
+\begin{DoxyCompactList}\small\item\em Resets a Q\+S\+PI peripheral. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{qspi_8h_a987c9d7d95a4e2fc7a2036950194dc73}{Qspid\+Status\+\_\+t}} \mbox{\hyperlink{qspi_8c_aace1bf311062b09e0d1a8015e44c3642}{Q\+S\+P\+I\+\_\+\+Enable\+It}} (\mbox{\hyperlink{structQspi}{Qspi}} $\ast$p\+Qspi, uint32\+\_\+t dw\+Sources)
+\begin{DoxyCompactList}\small\item\em Enables one or more interrupt sources of a Q\+S\+PI peripheral. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{qspi_8h_a987c9d7d95a4e2fc7a2036950194dc73}{Qspid\+Status\+\_\+t}} \mbox{\hyperlink{qspi_8c_a2ae8efc09afd108ffd081d8fb4afd9ea}{Q\+S\+P\+I\+\_\+\+Disable\+It}} (\mbox{\hyperlink{structQspi}{Qspi}} $\ast$p\+Qspi, uint32\+\_\+t dw\+Sources)
+\begin{DoxyCompactList}\small\item\em Disables one or more interrupt sources of a Q\+S\+PI peripheral. \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{qspi_8c_af53794fcaeb3a2b56c8d40e045129226}{Q\+S\+P\+I\+\_\+\+Get\+It\+Mask}} (\mbox{\hyperlink{structQspi}{Qspi}} $\ast$p\+Qspi)
+\begin{DoxyCompactList}\small\item\em Return the interrupt mask register. \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{qspi_8c_a6f2bf0afdcfd71a444a5d3fec654a96e}{Q\+S\+P\+I\+\_\+\+Get\+Enabled\+It\+Status}} (\mbox{\hyperlink{structQspi}{Qspi}} $\ast$p\+Qspi)
+\begin{DoxyCompactList}\small\item\em Returns enabled interrupt status. \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{qspi_8c_a84307d724b3e124e1d4cced163d3074d}{Q\+S\+P\+I\+\_\+\+Get\+Status}} (\mbox{\hyperlink{structQspi}{Qspi}} $\ast$p\+Qspi, const \mbox{\hyperlink{qspi_8h_ae37cb359fc4a6c363cb7f6f38986a2b1}{Qspi\+Status\+\_\+t}} r\+Status)
+\begin{DoxyCompactList}\small\item\em Get the current status register of the given Q\+S\+PI peripheral. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{qspi_8c_a97e1476d765491527f175aaf80b74fd3}{Q\+S\+P\+I\+\_\+\+Configure\+Clock}} (\mbox{\hyperlink{structQspi}{Qspi}} $\ast$p\+Qspi, \mbox{\hyperlink{qspi_8h_a86c09fb43bfc53b97def105d830fd07c}{Qspi\+Clock\+Mode\+\_\+t}} Clock\+Mode, uint32\+\_\+t dw\+Clock\+Cfg)
+\begin{DoxyCompactList}\small\item\em Configures peripheral clock of a Q\+S\+P\+I/\+S\+PI peripheral. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{qspi_8h_a987c9d7d95a4e2fc7a2036950194dc73}{Qspid\+Status\+\_\+t}} \mbox{\hyperlink{qspi_8c_ac6aebb1622380bf45bc83e7ca20a17f9}{Q\+S\+P\+I\+\_\+\+Configure\+Interface}} (\mbox{\hyperlink{structQspid__t}{Qspid\+\_\+t}} $\ast$p\+Qspid, \mbox{\hyperlink{qspi_8h_aca4d7775cab4dd1c0cd15e3049c00d11}{Qspi\+Mode\+\_\+t}} Mode, uint32\+\_\+t dw\+Configuration)
+\begin{DoxyCompactList}\small\item\em Configures Q\+S\+P\+I/\+S\+PI. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{qspi_8h_a987c9d7d95a4e2fc7a2036950194dc73}{Qspid\+Status\+\_\+t}} \mbox{\hyperlink{qspi_8c_a0cee5ee97a2b6575ccf9d56d3c5fce64}{Q\+S\+P\+I\+\_\+\+End\+Transfer}} (\mbox{\hyperlink{structQspi}{Qspi}} $\ast$p\+Qspi)
+\begin{DoxyCompactList}\small\item\em Ends ongoing transfer by releasing CS of Q\+S\+PI peripheral. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{qspi_8h_a987c9d7d95a4e2fc7a2036950194dc73}{Qspid\+Status\+\_\+t}} \mbox{\hyperlink{qspi_8c_aaa891e040401e77f8f68068c6751a558}{Q\+S\+P\+I\+\_\+\+Single\+Read\+S\+PI}} (\mbox{\hyperlink{structQspid__t}{Qspid\+\_\+t}} $\ast$p\+Qspid, uint16\+\_\+t $\ast$const p\+Data)
+\begin{DoxyCompactList}\small\item\em Reads the data received by a S\+PI peripheral. This method must be called after a successful S\+P\+I\+\_\+\+Write call. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{qspi_8h_a987c9d7d95a4e2fc7a2036950194dc73}{Qspid\+Status\+\_\+t}} \mbox{\hyperlink{qspi_8c_aa8e703416d8faf7e6ca68d18c1da6115}{Q\+S\+P\+I\+\_\+\+Multi\+Read\+S\+PI}} (\mbox{\hyperlink{structQspid__t}{Qspid\+\_\+t}} $\ast$p\+Qspid, uint16\+\_\+t $\ast$const p\+Data, uint32\+\_\+t Num\+Of\+Bytes)
+\begin{DoxyCompactList}\small\item\em Reads multiple data received by a S\+PI peripheral. This method must be called after a successful S\+P\+I\+\_\+\+Write call. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{qspi_8h_a987c9d7d95a4e2fc7a2036950194dc73}{Qspid\+Status\+\_\+t}} \mbox{\hyperlink{qspi_8c_a2e91dc0a09fbf99a27f36836807b1a60}{Q\+S\+P\+I\+\_\+\+Single\+Write\+S\+PI}} (\mbox{\hyperlink{structQspid__t}{Qspid\+\_\+t}} $\ast$p\+Qspid, uint16\+\_\+t const $\ast$p\+Data)
+\begin{DoxyCompactList}\small\item\em Sends a single data through a S\+PI peripheral. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{qspi_8h_a987c9d7d95a4e2fc7a2036950194dc73}{Qspid\+Status\+\_\+t}} \mbox{\hyperlink{qspi_8c_ade81d33cb14e6aa8701d4824de0656a2}{Q\+S\+P\+I\+\_\+\+Multi\+Write\+S\+PI}} (\mbox{\hyperlink{structQspid__t}{Qspid\+\_\+t}} $\ast$p\+Qspid, uint16\+\_\+t const $\ast$p\+Data, uint32\+\_\+t Num\+Of\+Bytes)
+\begin{DoxyCompactList}\small\item\em Sends multiple data through a S\+PI peripheral. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{qspi_8h_a987c9d7d95a4e2fc7a2036950194dc73}{Qspid\+Status\+\_\+t}} \mbox{\hyperlink{qspi_8c_ae9aace4e908d62c706f269d52ae9ed1e}{Q\+S\+P\+I\+\_\+\+Send\+Command}} (\mbox{\hyperlink{structQspid__t}{Qspid\+\_\+t}} $\ast$p\+Qspid, uint8\+\_\+t const Keep\+Cfg)
+\begin{DoxyCompactList}\small\item\em Send an instruction over Q\+S\+PI (oly a flash command no data) \end{DoxyCompactList}\item 
+\mbox{\hyperlink{qspi_8h_a987c9d7d95a4e2fc7a2036950194dc73}{Qspid\+Status\+\_\+t}} \mbox{\hyperlink{qspi_8c_a8308475d5d101aa49fc1442d33f01107}{Q\+S\+P\+I\+\_\+\+Send\+Command\+With\+Data}} (\mbox{\hyperlink{structQspid__t}{Qspid\+\_\+t}} $\ast$p\+Qspid, uint8\+\_\+t const Keep\+Cfg)
+\begin{DoxyCompactList}\small\item\em Send instruction over Q\+S\+PI with data. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{qspi_8h_a987c9d7d95a4e2fc7a2036950194dc73}{Qspid\+Status\+\_\+t}} \mbox{\hyperlink{qspi_8c_a1f39a599939fa64e6aca66a98e426499}{Q\+S\+P\+I\+\_\+\+Read\+Command}} (\mbox{\hyperlink{structQspid__t}{Qspid\+\_\+t}} $\ast$p\+Qspid, uint8\+\_\+t const Keep\+Cfg)
+\begin{DoxyCompactList}\small\item\em Send instruction over Q\+S\+PI to read data. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{qspi_8h_a987c9d7d95a4e2fc7a2036950194dc73}{Qspid\+Status\+\_\+t}} \mbox{\hyperlink{qspi_8c_a4427f3ba40c01107f0279447813757b4}{Q\+S\+P\+I\+\_\+\+Enable\+Mem\+Access}} (\mbox{\hyperlink{structQspid__t}{Qspid\+\_\+t}} $\ast$p\+Qspid, uint8\+\_\+t const Keep\+Cfg, uint8\+\_\+t Scramble\+Flag)
+\begin{DoxyCompactList}\small\item\em Sends an instruction over Q\+S\+PI and configures other related address like Addr , Frame and synchronise bus access before data read or write. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{qspi_8h_a987c9d7d95a4e2fc7a2036950194dc73}{Qspid\+Status\+\_\+t}} \mbox{\hyperlink{qspi_8c_a61a250e1df8fc3d9823aa8d0af159cff}{Q\+S\+P\+I\+\_\+\+Read\+Write\+Mem}} (\mbox{\hyperlink{structQspid__t}{Qspid\+\_\+t}} $\ast$p\+Qspid, \mbox{\hyperlink{qspi_8h_adf94e21942d0dff736d1e65a129be37f}{Access\+\_\+t}} const Read\+Write)
+\begin{DoxyCompactList}\small\item\em Writes or reads the Q\+S\+PI memory (0x80000000) to transmit or receive data from Flash memory. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Implementation of Serial Peripheral Interface (Q\+S\+PI) controller. 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{qspi_8c_a540d57bb3a49cb62569937d3f54f7085}\label{qspi_8c_a540d57bb3a49cb62569937d3f54f7085}} 
+\index{qspi.c@{qspi.c}!QSPI\_Configure@{QSPI\_Configure}}
+\index{QSPI\_Configure@{QSPI\_Configure}!qspi.c@{qspi.c}}
+\subsubsection{\texorpdfstring{QSPI\_Configure()}{QSPI\_Configure()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void Q\+S\+P\+I\+\_\+\+Configure (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structQspi}{Qspi}} $\ast$}]{p\+Qspi,  }\item[{uint32\+\_\+t}]{dw\+Configuration }\end{DoxyParamCaption})}
+
+
+
+Configure mode register of Q\+S\+PI. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Qspi} & Pointer to a \mbox{\hyperlink{structQspi}{Qspi}} instance. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{qspi_8c_a97e1476d765491527f175aaf80b74fd3}\label{qspi_8c_a97e1476d765491527f175aaf80b74fd3}} 
+\index{qspi.c@{qspi.c}!QSPI\_ConfigureClock@{QSPI\_ConfigureClock}}
+\index{QSPI\_ConfigureClock@{QSPI\_ConfigureClock}!qspi.c@{qspi.c}}
+\subsubsection{\texorpdfstring{QSPI\_ConfigureClock()}{QSPI\_ConfigureClock()}}
+{\footnotesize\ttfamily void Q\+S\+P\+I\+\_\+\+Configure\+Clock (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structQspi}{Qspi}} $\ast$}]{p\+Qspi,  }\item[{\mbox{\hyperlink{qspi_8h_a86c09fb43bfc53b97def105d830fd07c}{Qspi\+Clock\+Mode\+\_\+t}}}]{Clock\+Mode,  }\item[{uint32\+\_\+t}]{dw\+Clock\+Cfg }\end{DoxyParamCaption})}
+
+
+
+Configures peripheral clock of a Q\+S\+P\+I/\+S\+PI peripheral. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Qspi} & Pointer to an \mbox{\hyperlink{structQspi}{Qspi}} instance. \\
+\hline
+{\em dw\+Configuration} & Desired clock configuration. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{qspi_8c_ac6aebb1622380bf45bc83e7ca20a17f9}\label{qspi_8c_ac6aebb1622380bf45bc83e7ca20a17f9}} 
+\index{qspi.c@{qspi.c}!QSPI\_ConfigureInterface@{QSPI\_ConfigureInterface}}
+\index{QSPI\_ConfigureInterface@{QSPI\_ConfigureInterface}!qspi.c@{qspi.c}}
+\subsubsection{\texorpdfstring{QSPI\_ConfigureInterface()}{QSPI\_ConfigureInterface()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{qspi_8h_a987c9d7d95a4e2fc7a2036950194dc73}{Qspid\+Status\+\_\+t}} Q\+S\+P\+I\+\_\+\+Configure\+Interface (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structQspid__t}{Qspid\+\_\+t}} $\ast$}]{p\+Qspid,  }\item[{\mbox{\hyperlink{qspi_8h_aca4d7775cab4dd1c0cd15e3049c00d11}{Qspi\+Mode\+\_\+t}}}]{Mode,  }\item[{uint32\+\_\+t}]{dw\+Configuration }\end{DoxyParamCaption})}
+
+
+
+Configures Q\+S\+P\+I/\+S\+PI. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Qspi} & Pointer to an \mbox{\hyperlink{structQspi}{Qspi}} instance. \\
+\hline
+{\em Mode} & Mode for Q\+S\+PI or S\+PI \\
+\hline
+{\em dw\+Configuration} & Config of S\+PI or Q\+S\+PI mode \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{qspi_8c_afde6147001d6981039fdb672af9fe0d4}\label{qspi_8c_afde6147001d6981039fdb672af9fe0d4}} 
+\index{qspi.c@{qspi.c}!QSPI\_ConfigureMode@{QSPI\_ConfigureMode}}
+\index{QSPI\_ConfigureMode@{QSPI\_ConfigureMode}!qspi.c@{qspi.c}}
+\subsubsection{\texorpdfstring{QSPI\_ConfigureMode()}{QSPI\_ConfigureMode()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void Q\+S\+P\+I\+\_\+\+Configure\+Mode (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structQspi}{Qspi}} $\ast$}]{p\+Qspi,  }\item[{uint8\+\_\+t}]{d\+Mode }\end{DoxyParamCaption})}
+
+
+
+Configure Q\+S\+P\+I/\+S\+PI mode. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Qspi} & Pointer to a \mbox{\hyperlink{structQspi}{Qspi}} instance. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{qspi_8c_a24e4ad68361409458213083438db8449}\label{qspi_8c_a24e4ad68361409458213083438db8449}} 
+\index{qspi.c@{qspi.c}!QSPI\_Disable@{QSPI\_Disable}}
+\index{QSPI\_Disable@{QSPI\_Disable}!qspi.c@{qspi.c}}
+\subsubsection{\texorpdfstring{QSPI\_Disable()}{QSPI\_Disable()}}
+{\footnotesize\ttfamily void Q\+S\+P\+I\+\_\+\+Disable (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structQspi}{Qspi}} $\ast$}]{p\+Qspi }\end{DoxyParamCaption})}
+
+
+
+Disables a Q\+S\+PI peripheral. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Qspi} & Pointer to a \mbox{\hyperlink{structQspi}{Qspi}} instance. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{qspi_8c_a2ae8efc09afd108ffd081d8fb4afd9ea}\label{qspi_8c_a2ae8efc09afd108ffd081d8fb4afd9ea}} 
+\index{qspi.c@{qspi.c}!QSPI\_DisableIt@{QSPI\_DisableIt}}
+\index{QSPI\_DisableIt@{QSPI\_DisableIt}!qspi.c@{qspi.c}}
+\subsubsection{\texorpdfstring{QSPI\_DisableIt()}{QSPI\_DisableIt()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{qspi_8h_a987c9d7d95a4e2fc7a2036950194dc73}{Qspid\+Status\+\_\+t}} Q\+S\+P\+I\+\_\+\+Disable\+It (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structQspi}{Qspi}} $\ast$}]{p\+Qspi,  }\item[{uint32\+\_\+t}]{dw\+Sources }\end{DoxyParamCaption})}
+
+
+
+Disables one or more interrupt sources of a Q\+S\+PI peripheral. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Qspi} & Pointer to a \mbox{\hyperlink{structQspi}{Qspi}} instance. \\
+\hline
+{\em sources} & Bitwise OR of selected interrupt sources. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{qspi_8c_a481f9cf7a40eb4de632cfef883abbafd}\label{qspi_8c_a481f9cf7a40eb4de632cfef883abbafd}} 
+\index{qspi.c@{qspi.c}!QSPI\_Enable@{QSPI\_Enable}}
+\index{QSPI\_Enable@{QSPI\_Enable}!qspi.c@{qspi.c}}
+\subsubsection{\texorpdfstring{QSPI\_Enable()}{QSPI\_Enable()}}
+{\footnotesize\ttfamily void Q\+S\+P\+I\+\_\+\+Enable (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structQspi}{Qspi}} $\ast$}]{p\+Qspi }\end{DoxyParamCaption})}
+
+
+
+Enables a Q\+S\+PI peripheral. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Qspi} & Pointer to a \mbox{\hyperlink{structQspi}{Qspi}} instance. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{qspi_8c_aace1bf311062b09e0d1a8015e44c3642}\label{qspi_8c_aace1bf311062b09e0d1a8015e44c3642}} 
+\index{qspi.c@{qspi.c}!QSPI\_EnableIt@{QSPI\_EnableIt}}
+\index{QSPI\_EnableIt@{QSPI\_EnableIt}!qspi.c@{qspi.c}}
+\subsubsection{\texorpdfstring{QSPI\_EnableIt()}{QSPI\_EnableIt()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{qspi_8h_a987c9d7d95a4e2fc7a2036950194dc73}{Qspid\+Status\+\_\+t}} Q\+S\+P\+I\+\_\+\+Enable\+It (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structQspi}{Qspi}} $\ast$}]{p\+Qspi,  }\item[{uint32\+\_\+t}]{dw\+Sources }\end{DoxyParamCaption})}
+
+
+
+Enables one or more interrupt sources of a Q\+S\+PI peripheral. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Qspi} & Pointer to a \mbox{\hyperlink{structQspi}{Qspi}} instance. \\
+\hline
+{\em sources} & Bitwise OR of selected interrupt sources. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{qspi_8c_a4427f3ba40c01107f0279447813757b4}\label{qspi_8c_a4427f3ba40c01107f0279447813757b4}} 
+\index{qspi.c@{qspi.c}!QSPI\_EnableMemAccess@{QSPI\_EnableMemAccess}}
+\index{QSPI\_EnableMemAccess@{QSPI\_EnableMemAccess}!qspi.c@{qspi.c}}
+\subsubsection{\texorpdfstring{QSPI\_EnableMemAccess()}{QSPI\_EnableMemAccess()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{qspi_8h_a987c9d7d95a4e2fc7a2036950194dc73}{Qspid\+Status\+\_\+t}} Q\+S\+P\+I\+\_\+\+Enable\+Mem\+Access (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structQspid__t}{Qspid\+\_\+t}} $\ast$}]{p\+Qspid,  }\item[{uint8\+\_\+t const}]{Keep\+Cfg,  }\item[{uint8\+\_\+t}]{Scramble\+Flag }\end{DoxyParamCaption})}
+
+
+
+Sends an instruction over Q\+S\+PI and configures other related address like Addr , Frame and synchronise bus access before data read or write. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Qspi} & Pointer to an \mbox{\hyperlink{structQspi}{Qspi}} instance. \\
+\hline
+{\em Keep\+Cfg} & To keep Instruction from value or resets to zero \\
+\hline
+{\em Scramble\+Flag} & Enable or disable scramble on Q\+S\+PI\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns 1 if At least one instruction end has been detected since the last read of Q\+S\+P\+I\+\_\+\+SR.; otherwise returns 0. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{qspi_8c_a0cee5ee97a2b6575ccf9d56d3c5fce64}\label{qspi_8c_a0cee5ee97a2b6575ccf9d56d3c5fce64}} 
+\index{qspi.c@{qspi.c}!QSPI\_EndTransfer@{QSPI\_EndTransfer}}
+\index{QSPI\_EndTransfer@{QSPI\_EndTransfer}!qspi.c@{qspi.c}}
+\subsubsection{\texorpdfstring{QSPI\_EndTransfer()}{QSPI\_EndTransfer()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{qspi_8h_a987c9d7d95a4e2fc7a2036950194dc73}{Qspid\+Status\+\_\+t}} Q\+S\+P\+I\+\_\+\+End\+Transfer (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structQspi}{Qspi}} $\ast$}]{p\+Qspi }\end{DoxyParamCaption})}
+
+
+
+Ends ongoing transfer by releasing CS of Q\+S\+PI peripheral. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Qspi} & Pointer to an \mbox{\hyperlink{structQspi}{Qspi}} instance. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{qspi_8c_a6f2bf0afdcfd71a444a5d3fec654a96e}\label{qspi_8c_a6f2bf0afdcfd71a444a5d3fec654a96e}} 
+\index{qspi.c@{qspi.c}!QSPI\_GetEnabledItStatus@{QSPI\_GetEnabledItStatus}}
+\index{QSPI\_GetEnabledItStatus@{QSPI\_GetEnabledItStatus}!qspi.c@{qspi.c}}
+\subsubsection{\texorpdfstring{QSPI\_GetEnabledItStatus()}{QSPI\_GetEnabledItStatus()}}
+{\footnotesize\ttfamily uint32\+\_\+t Q\+S\+P\+I\+\_\+\+Get\+Enabled\+It\+Status (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structQspi}{Qspi}} $\ast$}]{p\+Qspi }\end{DoxyParamCaption})}
+
+
+
+Returns enabled interrupt status. 
+
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{structQspi}{Qspi}} interrupt mask register. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{qspi_8c_a15a99043cebbb701093d11a15f78a419}\label{qspi_8c_a15a99043cebbb701093d11a15f78a419}} 
+\index{qspi.c@{qspi.c}!QSPI\_GetInstFrame@{QSPI\_GetInstFrame}}
+\index{QSPI\_GetInstFrame@{QSPI\_GetInstFrame}!qspi.c@{qspi.c}}
+\subsubsection{\texorpdfstring{QSPI\_GetInstFrame()}{QSPI\_GetInstFrame()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE uint32\+\_\+t Q\+S\+P\+I\+\_\+\+Get\+Inst\+Frame (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structQspi}{Qspi}} $\ast$}]{p\+Qspi }\end{DoxyParamCaption})}
+
+
+
+Reads the Instruction frame of Q\+S\+PI. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Qspi} & Pointer to an \mbox{\hyperlink{structQspi}{Qspi}} instance. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{qspi_8c_af53794fcaeb3a2b56c8d40e045129226}\label{qspi_8c_af53794fcaeb3a2b56c8d40e045129226}} 
+\index{qspi.c@{qspi.c}!QSPI\_GetItMask@{QSPI\_GetItMask}}
+\index{QSPI\_GetItMask@{QSPI\_GetItMask}!qspi.c@{qspi.c}}
+\subsubsection{\texorpdfstring{QSPI\_GetItMask()}{QSPI\_GetItMask()}}
+{\footnotesize\ttfamily uint32\+\_\+t Q\+S\+P\+I\+\_\+\+Get\+It\+Mask (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structQspi}{Qspi}} $\ast$}]{p\+Qspi }\end{DoxyParamCaption})}
+
+
+
+Return the interrupt mask register. 
+
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{structQspi}{Qspi}} interrupt mask register. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{qspi_8c_a84307d724b3e124e1d4cced163d3074d}\label{qspi_8c_a84307d724b3e124e1d4cced163d3074d}} 
+\index{qspi.c@{qspi.c}!QSPI\_GetStatus@{QSPI\_GetStatus}}
+\index{QSPI\_GetStatus@{QSPI\_GetStatus}!qspi.c@{qspi.c}}
+\subsubsection{\texorpdfstring{QSPI\_GetStatus()}{QSPI\_GetStatus()}}
+{\footnotesize\ttfamily uint32\+\_\+t Q\+S\+P\+I\+\_\+\+Get\+Status (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structQspi}{Qspi}} $\ast$}]{p\+Qspi,  }\item[{const \mbox{\hyperlink{qspi_8h_ae37cb359fc4a6c363cb7f6f38986a2b1}{Qspi\+Status\+\_\+t}}}]{r\+Status }\end{DoxyParamCaption})}
+
+
+
+Get the current status register of the given Q\+S\+PI peripheral. 
+
+\begin{DoxyNote}{Note}
+This resets the internal value of the status register, so further read may yield different values. 
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Qspi} & Pointer to a \mbox{\hyperlink{structQspi}{Qspi}} instance. \\
+\hline
+{\em r\+Status} & Compare status with given status bit \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Q\+S\+PI status register. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{qspi_8c_aa8e703416d8faf7e6ca68d18c1da6115}\label{qspi_8c_aa8e703416d8faf7e6ca68d18c1da6115}} 
+\index{qspi.c@{qspi.c}!QSPI\_MultiReadSPI@{QSPI\_MultiReadSPI}}
+\index{QSPI\_MultiReadSPI@{QSPI\_MultiReadSPI}!qspi.c@{qspi.c}}
+\subsubsection{\texorpdfstring{QSPI\_MultiReadSPI()}{QSPI\_MultiReadSPI()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{qspi_8h_a987c9d7d95a4e2fc7a2036950194dc73}{Qspid\+Status\+\_\+t}} Q\+S\+P\+I\+\_\+\+Multi\+Read\+S\+PI (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structQspid__t}{Qspid\+\_\+t}} $\ast$}]{p\+Qspid,  }\item[{uint16\+\_\+t $\ast$const}]{p\+Data,  }\item[{uint32\+\_\+t}]{Num\+Of\+Bytes }\end{DoxyParamCaption})}
+
+
+
+Reads multiple data received by a S\+PI peripheral. This method must be called after a successful S\+P\+I\+\_\+\+Write call. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Qspid} & Pointer to a \mbox{\hyperlink{structQspi}{Qspi}} instance. \\
+\hline
+{\em p\+Data} & Pointer to read buffer \\
+\hline
+{\em Num\+Of\+Bytes} & Num of bytes to read\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{structQspi}{Qspi}} status 
+\end{DoxyReturn}
+\mbox{\Hypertarget{qspi_8c_ade81d33cb14e6aa8701d4824de0656a2}\label{qspi_8c_ade81d33cb14e6aa8701d4824de0656a2}} 
+\index{qspi.c@{qspi.c}!QSPI\_MultiWriteSPI@{QSPI\_MultiWriteSPI}}
+\index{QSPI\_MultiWriteSPI@{QSPI\_MultiWriteSPI}!qspi.c@{qspi.c}}
+\subsubsection{\texorpdfstring{QSPI\_MultiWriteSPI()}{QSPI\_MultiWriteSPI()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{qspi_8h_a987c9d7d95a4e2fc7a2036950194dc73}{Qspid\+Status\+\_\+t}} Q\+S\+P\+I\+\_\+\+Multi\+Write\+S\+PI (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structQspid__t}{Qspid\+\_\+t}} $\ast$}]{p\+Qspid,  }\item[{uint16\+\_\+t const $\ast$}]{p\+Data,  }\item[{uint32\+\_\+t}]{Num\+Of\+Bytes }\end{DoxyParamCaption})}
+
+
+
+Sends multiple data through a S\+PI peripheral. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Qspid} & Pointer to a \mbox{\hyperlink{structQspi}{Qspi}} instance. \\
+\hline
+{\em p\+Data} & Pointer to a Tx buffer \\
+\hline
+{\em Num\+Of\+Bytes} & Num of data to send. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{qspi_8c_a1f39a599939fa64e6aca66a98e426499}\label{qspi_8c_a1f39a599939fa64e6aca66a98e426499}} 
+\index{qspi.c@{qspi.c}!QSPI\_ReadCommand@{QSPI\_ReadCommand}}
+\index{QSPI\_ReadCommand@{QSPI\_ReadCommand}!qspi.c@{qspi.c}}
+\subsubsection{\texorpdfstring{QSPI\_ReadCommand()}{QSPI\_ReadCommand()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{qspi_8h_a987c9d7d95a4e2fc7a2036950194dc73}{Qspid\+Status\+\_\+t}} Q\+S\+P\+I\+\_\+\+Read\+Command (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structQspid__t}{Qspid\+\_\+t}} $\ast$}]{p\+Qspid,  }\item[{uint8\+\_\+t const}]{Keep\+Cfg }\end{DoxyParamCaption})}
+
+
+
+Send instruction over Q\+S\+PI to read data. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Qspi} & Pointer to an \mbox{\hyperlink{structQspi}{Qspi}} instance. \\
+\hline
+{\em Keep\+Cfg} & To keep Instruction from value or resets to zero\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns 1 if At least one instruction end has been detected since the last read of Q\+S\+P\+I\+\_\+\+SR.; otherwise returns 0. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{qspi_8c_a4788c3a05bb9fd76eb60f37331d8441c}\label{qspi_8c_a4788c3a05bb9fd76eb60f37331d8441c}} 
+\index{qspi.c@{qspi.c}!QSPI\_ReadSPI@{QSPI\_ReadSPI}}
+\index{QSPI\_ReadSPI@{QSPI\_ReadSPI}!qspi.c@{qspi.c}}
+\subsubsection{\texorpdfstring{QSPI\_ReadSPI()}{QSPI\_ReadSPI()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE uint16\+\_\+t Q\+S\+P\+I\+\_\+\+Read\+S\+PI (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structQspi}{Qspi}} $\ast$}]{p\+Qspi }\end{DoxyParamCaption})}
+
+
+
+Read Q\+S\+PI R\+DR register for S\+PI mode. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Qspi} & Pointer to an \mbox{\hyperlink{structQspi}{Qspi}} instance. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{qspi_8c_a61a250e1df8fc3d9823aa8d0af159cff}\label{qspi_8c_a61a250e1df8fc3d9823aa8d0af159cff}} 
+\index{qspi.c@{qspi.c}!QSPI\_ReadWriteMem@{QSPI\_ReadWriteMem}}
+\index{QSPI\_ReadWriteMem@{QSPI\_ReadWriteMem}!qspi.c@{qspi.c}}
+\subsubsection{\texorpdfstring{QSPI\_ReadWriteMem()}{QSPI\_ReadWriteMem()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{qspi_8h_a987c9d7d95a4e2fc7a2036950194dc73}{Qspid\+Status\+\_\+t}} Q\+S\+P\+I\+\_\+\+Read\+Write\+Mem (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structQspid__t}{Qspid\+\_\+t}} $\ast$}]{p\+Qspid,  }\item[{\mbox{\hyperlink{qspi_8h_adf94e21942d0dff736d1e65a129be37f}{Access\+\_\+t}} const}]{Read\+Write }\end{DoxyParamCaption})}
+
+
+
+Writes or reads the Q\+S\+PI memory (0x80000000) to transmit or receive data from Flash memory. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Qspi} & Pointer to an \mbox{\hyperlink{structQspi}{Qspi}} instance. \\
+\hline
+{\em Read\+Write} & Flag to indicate read/write Q\+S\+PI memory access\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns 1 if At least one instruction end has been detected since the last read of Q\+S\+P\+I\+\_\+\+SR.; otherwise returns 0. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{qspi_8c_a83fd9cffbace976ad6222750adc942ef}\label{qspi_8c_a83fd9cffbace976ad6222750adc942ef}} 
+\index{qspi.c@{qspi.c}!QSPI\_ScrambleData@{QSPI\_ScrambleData}}
+\index{QSPI\_ScrambleData@{QSPI\_ScrambleData}!qspi.c@{qspi.c}}
+\subsubsection{\texorpdfstring{QSPI\_ScrambleData()}{QSPI\_ScrambleData()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void Q\+S\+P\+I\+\_\+\+Scramble\+Data (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structQspi}{Qspi}} $\ast$}]{p\+Qspi,  }\item[{uint32\+\_\+t}]{w\+Key,  }\item[{uint8\+\_\+t}]{Enable\+Flag,  }\item[{uint8\+\_\+t}]{Random }\end{DoxyParamCaption})}
+
+
+
+Configures Q\+S\+PI scrambling with a given Key. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Qspi} & Pointer to an \mbox{\hyperlink{structQspi}{Qspi}} instance. \\
+\hline
+{\em w\+Key} & Key for scramble/unscramble \\
+\hline
+{\em Enable\+Flag} & Enable/disable scramble \\
+\hline
+{\em Random} & Add random value with given key \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{qspi_8c_ae9aace4e908d62c706f269d52ae9ed1e}\label{qspi_8c_ae9aace4e908d62c706f269d52ae9ed1e}} 
+\index{qspi.c@{qspi.c}!QSPI\_SendCommand@{QSPI\_SendCommand}}
+\index{QSPI\_SendCommand@{QSPI\_SendCommand}!qspi.c@{qspi.c}}
+\subsubsection{\texorpdfstring{QSPI\_SendCommand()}{QSPI\_SendCommand()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{qspi_8h_a987c9d7d95a4e2fc7a2036950194dc73}{Qspid\+Status\+\_\+t}} Q\+S\+P\+I\+\_\+\+Send\+Command (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structQspid__t}{Qspid\+\_\+t}} $\ast$}]{p\+Qspid,  }\item[{uint8\+\_\+t const}]{Keep\+Cfg }\end{DoxyParamCaption})}
+
+
+
+Send an instruction over Q\+S\+PI (oly a flash command no data) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Qspi} & Pointer to an \mbox{\hyperlink{structQspi}{Qspi}} instance. \\
+\hline
+{\em Keep\+Cfg} & To keep Instruction fram value or restes to zero\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns 1 if At least one instruction end has been detected since the last read of Q\+S\+P\+I\+\_\+\+SR.; otherwise returns 0. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{qspi_8c_a8308475d5d101aa49fc1442d33f01107}\label{qspi_8c_a8308475d5d101aa49fc1442d33f01107}} 
+\index{qspi.c@{qspi.c}!QSPI\_SendCommandWithData@{QSPI\_SendCommandWithData}}
+\index{QSPI\_SendCommandWithData@{QSPI\_SendCommandWithData}!qspi.c@{qspi.c}}
+\subsubsection{\texorpdfstring{QSPI\_SendCommandWithData()}{QSPI\_SendCommandWithData()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{qspi_8h_a987c9d7d95a4e2fc7a2036950194dc73}{Qspid\+Status\+\_\+t}} Q\+S\+P\+I\+\_\+\+Send\+Command\+With\+Data (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structQspid__t}{Qspid\+\_\+t}} $\ast$}]{p\+Qspid,  }\item[{uint8\+\_\+t const}]{Keep\+Cfg }\end{DoxyParamCaption})}
+
+
+
+Send instruction over Q\+S\+PI with data. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Qspi} & Pointer to an \mbox{\hyperlink{structQspi}{Qspi}} instance. \\
+\hline
+{\em Keep\+Cfg} & To keep Instruction fram value or restes to zero\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns 1 if At least one instruction end has been detected since the last read of Q\+S\+P\+I\+\_\+\+SR.; otherwise returns 0. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{qspi_8c_afde5ea34d85fcecb4a538250325d3c6c}\label{qspi_8c_afde5ea34d85fcecb4a538250325d3c6c}} 
+\index{qspi.c@{qspi.c}!QSPI\_SetInst@{QSPI\_SetInst}}
+\index{QSPI\_SetInst@{QSPI\_SetInst}!qspi.c@{qspi.c}}
+\subsubsection{\texorpdfstring{QSPI\_SetInst()}{QSPI\_SetInst()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void Q\+S\+P\+I\+\_\+\+Set\+Inst (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structQspi}{Qspi}} $\ast$}]{p\+Qspi,  }\item[{uint8\+\_\+t}]{dw\+Inst,  }\item[{uint8\+\_\+t}]{dw\+Opt }\end{DoxyParamCaption})}
+
+
+
+Configures instruction register with a given command for Q\+S\+PI. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Qspi} & Pointer to a \mbox{\hyperlink{structQspi}{Qspi}} instance. \\
+\hline
+{\em dw\+Inst} & Instruction Code \\
+\hline
+{\em dw\+Opt} & Instruction Code option \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{qspi_8c_ae03b55a11d8a50d01e87f7398caa413c}\label{qspi_8c_ae03b55a11d8a50d01e87f7398caa413c}} 
+\index{qspi.c@{qspi.c}!QSPI\_SetInstAddr@{QSPI\_SetInstAddr}}
+\index{QSPI\_SetInstAddr@{QSPI\_SetInstAddr}!qspi.c@{qspi.c}}
+\subsubsection{\texorpdfstring{QSPI\_SetInstAddr()}{QSPI\_SetInstAddr()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void Q\+S\+P\+I\+\_\+\+Set\+Inst\+Addr (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structQspi}{Qspi}} $\ast$}]{p\+Qspi,  }\item[{uint32\+\_\+t}]{dw\+Addr }\end{DoxyParamCaption})}
+
+
+
+Configures a instruction address for Q\+S\+PI in Q\+S\+PI mode. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Qspi} & Pointer to a \mbox{\hyperlink{structQspi}{Qspi}} instance. \\
+\hline
+{\em dw\+Addr} & Instruction Address \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{qspi_8c_ab6228d04866fe8947d7fafd5d04b65cf}\label{qspi_8c_ab6228d04866fe8947d7fafd5d04b65cf}} 
+\index{qspi.c@{qspi.c}!QSPI\_SetInstFrame@{QSPI\_SetInstFrame}}
+\index{QSPI\_SetInstFrame@{QSPI\_SetInstFrame}!qspi.c@{qspi.c}}
+\subsubsection{\texorpdfstring{QSPI\_SetInstFrame()}{QSPI\_SetInstFrame()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void Q\+S\+P\+I\+\_\+\+Set\+Inst\+Frame (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structQspi}{Qspi}} $\ast$}]{p\+Qspi,  }\item[{\mbox{\hyperlink{structQspiInstFrame__t}{Qspi\+Inst\+Frame\+\_\+t}} $\ast$}]{p\+Inst\+Frame }\end{DoxyParamCaption})}
+
+
+
+Configures instruction frame register of Q\+S\+PI. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Qspi} & Pointer to a \mbox{\hyperlink{structQspi}{Qspi}} instance. \\
+\hline
+{\em p\+Inst\+Frame} & Instruction Frame configuration \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{qspi_8c_aaa891e040401e77f8f68068c6751a558}\label{qspi_8c_aaa891e040401e77f8f68068c6751a558}} 
+\index{qspi.c@{qspi.c}!QSPI\_SingleReadSPI@{QSPI\_SingleReadSPI}}
+\index{QSPI\_SingleReadSPI@{QSPI\_SingleReadSPI}!qspi.c@{qspi.c}}
+\subsubsection{\texorpdfstring{QSPI\_SingleReadSPI()}{QSPI\_SingleReadSPI()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{qspi_8h_a987c9d7d95a4e2fc7a2036950194dc73}{Qspid\+Status\+\_\+t}} Q\+S\+P\+I\+\_\+\+Single\+Read\+S\+PI (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structQspid__t}{Qspid\+\_\+t}} $\ast$}]{p\+Qspid,  }\item[{uint16\+\_\+t $\ast$const}]{p\+Data }\end{DoxyParamCaption})}
+
+
+
+Reads the data received by a S\+PI peripheral. This method must be called after a successful S\+P\+I\+\_\+\+Write call. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Qspid} & Pointer to a \mbox{\hyperlink{structQspi}{Qspi}} instance. \\
+\hline
+{\em p\+Data} & Buffer to put read value \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{structQspi}{Qspi}} status 
+\end{DoxyReturn}
+\mbox{\Hypertarget{qspi_8c_a2e91dc0a09fbf99a27f36836807b1a60}\label{qspi_8c_a2e91dc0a09fbf99a27f36836807b1a60}} 
+\index{qspi.c@{qspi.c}!QSPI\_SingleWriteSPI@{QSPI\_SingleWriteSPI}}
+\index{QSPI\_SingleWriteSPI@{QSPI\_SingleWriteSPI}!qspi.c@{qspi.c}}
+\subsubsection{\texorpdfstring{QSPI\_SingleWriteSPI()}{QSPI\_SingleWriteSPI()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{qspi_8h_a987c9d7d95a4e2fc7a2036950194dc73}{Qspid\+Status\+\_\+t}} Q\+S\+P\+I\+\_\+\+Single\+Write\+S\+PI (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structQspid__t}{Qspid\+\_\+t}} $\ast$}]{p\+Qspid,  }\item[{uint16\+\_\+t const $\ast$}]{p\+Data }\end{DoxyParamCaption})}
+
+
+
+Sends a single data through a S\+PI peripheral. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Qspid} & Pointer to a \mbox{\hyperlink{structQspi}{Qspi}} instance. \\
+\hline
+{\em p\+Data} & Pointer to Tx data\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{structQspi}{Qspi}} status 
+\end{DoxyReturn}
+\mbox{\Hypertarget{qspi_8c_ad41ddc810992fae62c42f245a989381a}\label{qspi_8c_ad41ddc810992fae62c42f245a989381a}} 
+\index{qspi.c@{qspi.c}!QSPI\_SwReset@{QSPI\_SwReset}}
+\index{QSPI\_SwReset@{QSPI\_SwReset}!qspi.c@{qspi.c}}
+\subsubsection{\texorpdfstring{QSPI\_SwReset()}{QSPI\_SwReset()}}
+{\footnotesize\ttfamily void Q\+S\+P\+I\+\_\+\+Sw\+Reset (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structQspi}{Qspi}} $\ast$}]{p\+Qspi }\end{DoxyParamCaption})}
+
+
+
+Resets a Q\+S\+PI peripheral. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Qspi} & Pointer to a \mbox{\hyperlink{structQspi}{Qspi}} instance. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{qspi_8c_af19b4cbed1aa41039bb632daf84a515e}\label{qspi_8c_af19b4cbed1aa41039bb632daf84a515e}} 
+\index{qspi.c@{qspi.c}!QSPI\_WriteSPI@{QSPI\_WriteSPI}}
+\index{QSPI\_WriteSPI@{QSPI\_WriteSPI}!qspi.c@{qspi.c}}
+\subsubsection{\texorpdfstring{QSPI\_WriteSPI()}{QSPI\_WriteSPI()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+N\+L\+I\+NE void Q\+S\+P\+I\+\_\+\+Write\+S\+PI (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structQspi}{Qspi}} $\ast$}]{p\+Qspi,  }\item[{uint16\+\_\+t}]{w\+Data }\end{DoxyParamCaption})}
+
+
+
+Write to Q\+S\+PI Tx register in S\+PI mode. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Qspi} & Pointer to an \mbox{\hyperlink{structQspi}{Qspi}} instance. \\
+\hline
+{\em w\+Data} & Data to transmit \\
+\hline
+\end{DoxyParams}

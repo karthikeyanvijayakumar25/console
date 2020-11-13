@@ -1,0 +1,298 @@
+\hypertarget{msdos_8h}{}\section{cpukit/libfs/src/dosfs/msdos.h File Reference}
+\label{msdos_8h}\index{cpukit/libfs/src/dosfs/msdos.h@{cpukit/libfs/src/dosfs/msdos.h}}
+
+
+The M\+S\+D\+OS Filesystem Constants/\+Data Structures/\+Prototypes.  
+
+
+{\ttfamily \#include $<$rtems.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/libio\+\_\+.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/dosfs.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/thread.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}fat.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}fat\+\_\+file.\+h\char`\"{}}\newline
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structmsdos__fs__info__s}{msdos\+\_\+fs\+\_\+info\+\_\+s}}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bfseries M\+S\+D\+O\+S\+\_\+\+N\+A\+M\+E\+\_\+\+N\+O\+T\+\_\+\+F\+O\+U\+N\+D\+\_\+\+E\+RR}~0x7\+D01
+\item 
+\#define {\bfseries M\+S\+D\+O\+S\+\_\+\+D\+I\+R\+E\+C\+T\+O\+R\+Y\+\_\+\+E\+N\+T\+R\+Y\+\_\+\+S\+T\+R\+U\+C\+T\+\_\+\+S\+I\+ZE}~32 /$\ast$ 32 bytes $\ast$/
+\item 
+\#define {\bfseries M\+S\+D\+O\+S\+\_\+\+D\+I\+R\+\_\+\+N\+A\+ME}(x)~(char     $\ast$)((x) + 0)
+\item 
+\#define {\bfseries M\+S\+D\+O\+S\+\_\+\+D\+I\+R\+\_\+\+E\+N\+T\+R\+Y\+\_\+\+T\+Y\+PE}(x)~(uint8\+\_\+t  $\ast$)((x) + 0)
+\item 
+\#define {\bfseries M\+S\+D\+O\+S\+\_\+\+D\+I\+R\+\_\+\+A\+T\+TR}(x)~(uint8\+\_\+t  $\ast$)((x) + 11)
+\item 
+\#define {\bfseries M\+S\+D\+O\+S\+\_\+\+D\+I\+R\+\_\+\+N\+T\+\_\+\+R\+ES}(x)~(uint8\+\_\+t  $\ast$)((x) + 12)
+\item 
+\#define {\bfseries M\+S\+D\+O\+S\+\_\+\+D\+I\+R\+\_\+\+L\+F\+N\+\_\+\+C\+H\+E\+C\+K\+S\+UM}(x)~(uint8\+\_\+t  $\ast$)((x) + 13)
+\item 
+\#define {\bfseries M\+S\+D\+O\+S\+\_\+\+D\+I\+R\+\_\+\+C\+R\+T\+\_\+\+T\+I\+M\+E\+\_\+\+T\+E\+N\+TH}(x)~(uint8\+\_\+t  $\ast$)((x) + 13)
+\item 
+\#define {\bfseries M\+S\+D\+O\+S\+\_\+\+D\+I\+R\+\_\+\+C\+R\+T\+\_\+\+T\+I\+ME}(x)~(uint16\+\_\+t $\ast$)((x) + 14)
+\item 
+\#define {\bfseries M\+S\+D\+O\+S\+\_\+\+D\+I\+R\+\_\+\+C\+R\+T\+\_\+\+D\+A\+TE}(x)~(uint16\+\_\+t $\ast$)((x) + 16)
+\item 
+\#define {\bfseries M\+S\+D\+O\+S\+\_\+\+D\+I\+R\+\_\+\+L\+A\+S\+T\+\_\+\+A\+C\+C\+E\+S\+S\+\_\+\+D\+A\+TE}(x)~(uint16\+\_\+t $\ast$)((x) + 18)
+\item 
+\#define {\bfseries M\+S\+D\+O\+S\+\_\+\+D\+I\+R\+\_\+\+F\+I\+R\+S\+T\+\_\+\+C\+L\+U\+S\+T\+E\+R\+\_\+\+HI}(x)~(uint16\+\_\+t $\ast$)((x) + 20)
+\item 
+\#define {\bfseries M\+S\+D\+O\+S\+\_\+\+D\+I\+R\+\_\+\+W\+R\+I\+T\+E\+\_\+\+T\+I\+ME}(x)~(uint16\+\_\+t $\ast$)((x) + 22)
+\item 
+\#define {\bfseries M\+S\+D\+O\+S\+\_\+\+D\+I\+R\+\_\+\+W\+R\+I\+T\+E\+\_\+\+D\+A\+TE}(x)~(uint16\+\_\+t $\ast$)((x) + 24)
+\item 
+\#define {\bfseries M\+S\+D\+O\+S\+\_\+\+D\+I\+R\+\_\+\+F\+I\+R\+S\+T\+\_\+\+C\+L\+U\+S\+T\+E\+R\+\_\+\+L\+OW}(x)~(uint16\+\_\+t $\ast$)((x) + 26)
+\item 
+\#define {\bfseries M\+S\+D\+O\+S\+\_\+\+D\+I\+R\+\_\+\+F\+I\+L\+E\+\_\+\+S\+I\+ZE}(x)~(uint32\+\_\+t $\ast$)((x) + 28)
+\item 
+\#define {\bfseries M\+S\+D\+O\+S\+\_\+\+E\+X\+T\+R\+A\+C\+T\+\_\+\+C\+L\+U\+S\+T\+E\+R\+\_\+\+N\+UM}(\mbox{\hyperlink{sun4u_2tte_8h_a27952ffc298d15b4fc0e7ee6b2a044ac}{p}})
+\item 
+\#define {\bfseries M\+S\+D\+O\+S\+\_\+\+F\+I\+L\+E\+\_\+\+S\+I\+Z\+E\+\_\+\+O\+F\+F\+S\+ET}~28
+\item 
+\#define {\bfseries M\+S\+D\+O\+S\+\_\+\+F\+I\+L\+E\+\_\+\+N\+A\+M\+E\+\_\+\+O\+F\+F\+S\+ET}~0
+\item 
+\#define {\bfseries M\+S\+D\+O\+S\+\_\+\+F\+I\+R\+S\+T\+\_\+\+C\+L\+U\+S\+T\+E\+R\+\_\+\+H\+I\+\_\+\+O\+F\+F\+S\+ET}~20
+\item 
+\#define {\bfseries M\+S\+D\+O\+S\+\_\+\+F\+I\+R\+S\+T\+\_\+\+C\+L\+U\+S\+T\+E\+R\+\_\+\+L\+O\+W\+\_\+\+O\+F\+F\+S\+ET}~26
+\item 
+\#define {\bfseries M\+S\+D\+O\+S\+\_\+\+F\+I\+L\+E\+\_\+\+W\+D\+A\+T\+E\+\_\+\+O\+F\+F\+S\+ET}~24
+\item 
+\#define {\bfseries M\+S\+D\+O\+S\+\_\+\+F\+I\+L\+E\+\_\+\+W\+T\+I\+M\+E\+\_\+\+O\+F\+F\+S\+ET}~22
+\item 
+\#define {\bfseries M\+S\+D\+O\+S\+\_\+\+F\+I\+L\+E\+\_\+\+A\+D\+A\+T\+E\+\_\+\+O\+F\+F\+S\+ET}~18
+\item 
+\#define {\bfseries M\+S\+D\+O\+S\+\_\+\+F\+I\+L\+E\+\_\+\+C\+D\+A\+T\+E\+\_\+\+O\+F\+F\+S\+ET}~16
+\item 
+\#define {\bfseries M\+S\+D\+O\+S\+\_\+\+F\+I\+L\+E\+\_\+\+C\+T\+I\+M\+E\+\_\+\+O\+F\+F\+S\+ET}~14
+\item 
+\#define {\bfseries M\+S\+D\+O\+S\+\_\+\+A\+T\+T\+R\+\_\+\+R\+E\+A\+D\+\_\+\+O\+N\+LY}~0x01
+\item 
+\#define {\bfseries M\+S\+D\+O\+S\+\_\+\+A\+T\+T\+R\+\_\+\+H\+I\+D\+D\+EN}~0x02
+\item 
+\#define {\bfseries M\+S\+D\+O\+S\+\_\+\+A\+T\+T\+R\+\_\+\+S\+Y\+S\+T\+EM}~0x04
+\item 
+\#define {\bfseries M\+S\+D\+O\+S\+\_\+\+A\+T\+T\+R\+\_\+\+V\+O\+L\+U\+M\+E\+\_\+\+ID}~0x08
+\item 
+\#define {\bfseries M\+S\+D\+O\+S\+\_\+\+A\+T\+T\+R\+\_\+\+D\+I\+R\+E\+C\+T\+O\+RY}~0x10
+\item 
+\#define {\bfseries M\+S\+D\+O\+S\+\_\+\+A\+T\+T\+R\+\_\+\+A\+R\+C\+H\+I\+VE}~0x20
+\item 
+\#define {\bfseries M\+S\+D\+O\+S\+\_\+\+A\+T\+T\+R\+\_\+\+L\+FN}
+\item 
+\#define {\bfseries M\+S\+D\+O\+S\+\_\+\+A\+T\+T\+R\+\_\+\+L\+F\+N\+\_\+\+M\+A\+SK}
+\item 
+\#define {\bfseries M\+S\+D\+O\+S\+\_\+\+L\+A\+S\+T\+\_\+\+L\+O\+N\+G\+\_\+\+E\+N\+T\+RY}~0x40
+\item 
+\#define {\bfseries M\+S\+D\+O\+S\+\_\+\+L\+A\+S\+T\+\_\+\+L\+O\+N\+G\+\_\+\+E\+N\+T\+R\+Y\+\_\+\+M\+A\+SK}~0x3F
+\item 
+\#define {\bfseries M\+S\+D\+O\+S\+\_\+\+D\+T\+\_\+2\+S\+E\+C\+O\+N\+D\+S\+\_\+\+M\+A\+SK}~0x1\+F    /$\ast$ seconds divided by 2 $\ast$/
+\item 
+\#define {\bfseries M\+S\+D\+O\+S\+\_\+\+D\+T\+\_\+2\+S\+E\+C\+O\+N\+D\+S\+\_\+\+S\+H\+I\+FT}~0
+\item 
+\#define {\bfseries M\+S\+D\+O\+S\+\_\+\+D\+T\+\_\+\+M\+I\+N\+U\+T\+E\+S\+\_\+\+M\+A\+SK}~0x7\+E0   /$\ast$ minutes $\ast$/
+\item 
+\#define {\bfseries M\+S\+D\+O\+S\+\_\+\+D\+T\+\_\+\+M\+I\+N\+U\+T\+E\+S\+\_\+\+S\+H\+I\+FT}~5
+\item 
+\#define {\bfseries M\+S\+D\+O\+S\+\_\+\+D\+T\+\_\+\+H\+O\+U\+R\+S\+\_\+\+M\+A\+SK}~0x\+F800  /$\ast$ hours $\ast$/
+\item 
+\#define {\bfseries M\+S\+D\+O\+S\+\_\+\+D\+T\+\_\+\+H\+O\+U\+R\+S\+\_\+\+S\+H\+I\+FT}~11
+\item 
+\#define {\bfseries M\+S\+D\+O\+S\+\_\+\+D\+D\+\_\+\+D\+A\+Y\+\_\+\+M\+A\+SK}~0x1\+F    /$\ast$ day of month $\ast$/
+\item 
+\#define {\bfseries M\+S\+D\+O\+S\+\_\+\+D\+D\+\_\+\+D\+A\+Y\+\_\+\+S\+H\+I\+FT}~0
+\item 
+\#define {\bfseries M\+S\+D\+O\+S\+\_\+\+D\+D\+\_\+\+M\+O\+N\+T\+H\+\_\+\+M\+A\+SK}~0x1\+E0   /$\ast$ month $\ast$/
+\item 
+\#define {\bfseries M\+S\+D\+O\+S\+\_\+\+D\+D\+\_\+\+M\+O\+N\+T\+H\+\_\+\+S\+H\+I\+FT}~5
+\item 
+\#define {\bfseries M\+S\+D\+O\+S\+\_\+\+D\+D\+\_\+\+Y\+E\+A\+R\+\_\+\+M\+A\+SK}~0x\+F\+E00  /$\ast$ year -\/ 1980 $\ast$/
+\item 
+\#define {\bfseries M\+S\+D\+O\+S\+\_\+\+D\+D\+\_\+\+Y\+E\+A\+R\+\_\+\+S\+H\+I\+FT}~9
+\item 
+\#define {\bfseries M\+S\+D\+O\+S\+\_\+\+T\+H\+I\+S\+\_\+\+D\+I\+R\+\_\+\+E\+N\+T\+R\+Y\+\_\+\+E\+M\+P\+TY}~0x\+E5
+\item 
+\#define {\bfseries M\+S\+D\+O\+S\+\_\+\+T\+H\+I\+S\+\_\+\+D\+I\+R\+\_\+\+E\+N\+T\+R\+Y\+\_\+\+A\+N\+D\+\_\+\+R\+E\+S\+T\+\_\+\+E\+M\+P\+TY}~0x00
+\item 
+\#define {\bfseries M\+S\+D\+O\+S\+\_\+\+L\+F\+N\+\_\+\+L\+E\+N\+\_\+\+P\+E\+R\+\_\+\+E\+N\+T\+RY}~(13)
+\item 
+\#define {\bfseries M\+S\+D\+O\+S\+\_\+\+N\+A\+M\+E\+\_\+\+M\+A\+X\+\_\+\+U\+T\+F8\+\_\+\+B\+Y\+T\+E\+S\+\_\+\+P\+E\+R\+\_\+\+C\+H\+AR}~4
+\item 
+\#define {\bfseries M\+S\+D\+O\+S\+\_\+\+N\+A\+M\+E\+\_\+\+M\+I\+N\+\_\+\+U\+T\+F8\+\_\+\+B\+Y\+T\+E\+S\+\_\+\+P\+E\+R\+\_\+\+C\+H\+AR}~1
+\item 
+\#define {\bfseries M\+S\+D\+O\+S\+\_\+\+S\+H\+O\+R\+T\+\_\+\+B\+A\+S\+E\+\_\+\+L\+EN}~8  /$\ast$ 8 characters $\ast$/
+\item 
+\#define {\bfseries M\+S\+D\+O\+S\+\_\+\+S\+H\+O\+R\+T\+\_\+\+E\+X\+T\+\_\+\+L\+EN}~3  /$\ast$ 3 characters $\ast$/
+\item 
+\#define {\bfseries M\+S\+D\+O\+S\+\_\+\+S\+H\+O\+R\+T\+\_\+\+N\+A\+M\+E\+\_\+\+L\+EN}
+\item 
+\#define {\bfseries M\+S\+D\+O\+S\+\_\+\+N\+A\+M\+E\+\_\+\+M\+A\+X\+\_\+\+L\+N\+F\+\_\+\+L\+EN}~(255)
+\item 
+\#define {\bfseries M\+S\+D\+O\+S\+\_\+\+N\+A\+M\+E\+\_\+\+M\+AX}~M\+S\+D\+O\+S\+\_\+\+S\+H\+O\+R\+T\+\_\+\+N\+A\+M\+E\+\_\+\+L\+EN
+\item 
+\#define {\bfseries M\+S\+D\+O\+S\+\_\+\+N\+A\+M\+E\+\_\+\+M\+A\+X\+\_\+\+U\+T\+F8\+\_\+\+S\+F\+N\+\_\+\+B\+Y\+T\+ES}
+\item 
+\#define {\bfseries M\+S\+D\+O\+S\+\_\+\+N\+A\+M\+E\+\_\+\+M\+A\+X\+\_\+\+W\+I\+T\+H\+\_\+\+D\+OT}~(M\+S\+D\+O\+S\+\_\+\+N\+A\+M\+E\+\_\+\+M\+AX + 1)
+\item 
+\#define {\bfseries M\+S\+D\+O\+S\+\_\+\+S\+F\+N\+\_\+\+M\+A\+X\+\_\+\+W\+I\+T\+H\+\_\+\+D\+O\+T\+\_\+\+U\+T\+F8\+\_\+\+B\+Y\+T\+ES}
+\item 
+\#define {\bfseries M\+S\+D\+O\+S\+\_\+\+N\+A\+M\+E\+\_\+\+M\+A\+X\+\_\+\+L\+F\+N\+\_\+\+W\+I\+T\+H\+\_\+\+D\+OT}~(260)
+\item 
+\#define {\bfseries M\+S\+D\+O\+S\+\_\+\+N\+A\+M\+E\+\_\+\+L\+F\+N\+\_\+\+B\+Y\+T\+E\+S\+\_\+\+P\+E\+R\+\_\+\+C\+H\+AR}~(2)
+\item 
+\#define {\bfseries M\+S\+D\+O\+S\+\_\+\+N\+A\+M\+E\+\_\+\+M\+A\+X\+\_\+\+L\+F\+N\+\_\+\+B\+Y\+T\+ES}
+\item 
+\#define {\bfseries M\+S\+D\+O\+S\+\_\+\+N\+A\+M\+E\+\_\+\+M\+A\+X\+\_\+\+U\+T\+F8\+\_\+\+L\+F\+N\+\_\+\+B\+Y\+T\+ES}
+\item 
+\#define {\bfseries M\+S\+D\+O\+S\+\_\+\+E\+N\+T\+R\+Y\+\_\+\+L\+F\+N\+\_\+\+U\+T\+F8\+\_\+\+B\+Y\+T\+ES}
+\item 
+\#define {\bfseries M\+S\+D\+O\+S\+\_\+\+R\+E\+S\+\_\+\+N\+T\+\_\+\+V\+A\+L\+UE}~0x00
+\item 
+\#define {\bfseries M\+S\+D\+O\+S\+\_\+\+I\+N\+I\+T\+\_\+\+D\+I\+R\+\_\+\+S\+I\+ZE}~0x00
+\item 
+\#define {\bfseries M\+S\+D\+O\+S\+\_\+\+D\+O\+T\+\_\+\+D\+I\+R\+\_\+\+E\+N\+T\+R\+Y\+\_\+\+O\+F\+F\+S\+ET}~0x00 /$\ast$ first entry in directory $\ast$/
+\item 
+\#define {\bfseries M\+S\+D\+O\+S\+\_\+\+D\+O\+T\+D\+O\+T\+\_\+\+D\+I\+R\+\_\+\+E\+N\+T\+R\+Y\+\_\+\+O\+F\+F\+S\+ET}~0x20 /$\ast$ second entry in directory $\ast$/
+\item 
+\#define {\bfseries D\+O\+T\+\_\+\+N\+O\+D\+E\+\_\+P}(\mbox{\hyperlink{sun4u_2tte_8h_a27952ffc298d15b4fc0e7ee6b2a044ac}{p}})~((char $\ast$)(\mbox{\hyperlink{sun4u_2tte_8h_a27952ffc298d15b4fc0e7ee6b2a044ac}{p}}))
+\item 
+\#define {\bfseries D\+O\+T\+D\+O\+T\+\_\+\+N\+O\+D\+E\+\_\+P}(\mbox{\hyperlink{sun4u_2tte_8h_a27952ffc298d15b4fc0e7ee6b2a044ac}{p}})~((char $\ast$)((\mbox{\hyperlink{sun4u_2tte_8h_a27952ffc298d15b4fc0e7ee6b2a044ac}{p}}) + M\+S\+D\+O\+S\+\_\+\+D\+I\+R\+E\+C\+T\+O\+R\+Y\+\_\+\+E\+N\+T\+R\+Y\+\_\+\+S\+T\+R\+U\+C\+T\+\_\+\+S\+I\+ZE))
+\item 
+\#define {\bfseries M\+S\+D\+O\+S\+\_\+\+M\+A\+X\+\_\+\+D\+I\+R\+\_\+\+L\+E\+N\+G\+TH}~0x200000   /$\ast$ 2,097,152 bytes $\ast$/
+\item 
+\#define {\bfseries M\+S\+D\+O\+S\+\_\+\+M\+A\+X\+\_\+\+F\+I\+L\+E\+\_\+\+S\+I\+ZE}~0x\+F\+F\+F\+F\+F\+F\+F\+F /$\ast$ 4 Gb $\ast$/
+\item 
+\#define {\bfseries M\+S\+D\+O\+S\+\_\+\+D\+P\+S512\+\_\+\+N\+UM}~16
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \mbox{\hyperlink{structmsdos__fs__info__s}{msdos\+\_\+fs\+\_\+info\+\_\+s}} {\bfseries msdos\+\_\+fs\+\_\+info\+\_\+t}
+\item 
+typedef enum msdos\+\_\+name\+\_\+types\+\_\+e {\bfseries msdos\+\_\+name\+\_\+type\+\_\+t}
+\item 
+typedef enum msdos\+\_\+token\+\_\+types\+\_\+e {\bfseries msdos\+\_\+token\+\_\+types\+\_\+t}
+\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{group__libfs__msdos_gae7b955639ba78aeac356ca8803ad79f8}\label{group__libfs__msdos_gae7b955639ba78aeac356ca8803ad79f8}} 
+enum {\bfseries msdos\+\_\+name\+\_\+types\+\_\+e} \{ {\bfseries M\+S\+D\+O\+S\+\_\+\+N\+A\+M\+E\+\_\+\+I\+N\+V\+A\+L\+ID} = 0, 
+{\bfseries M\+S\+D\+O\+S\+\_\+\+N\+A\+M\+E\+\_\+\+S\+H\+O\+RT}, 
+{\bfseries M\+S\+D\+O\+S\+\_\+\+N\+A\+M\+E\+\_\+\+L\+O\+NG}
+ \}
+\item 
+\mbox{\Hypertarget{group__libfs__msdos_ga1441e21e71f31da23d0edfc63609251c}\label{group__libfs__msdos_ga1441e21e71f31da23d0edfc63609251c}} 
+enum {\bfseries msdos\+\_\+token\+\_\+types\+\_\+e} \{ \newline
+{\bfseries M\+S\+D\+O\+S\+\_\+\+N\+O\+\_\+\+M\+O\+R\+E\+\_\+\+P\+A\+TH}, 
+{\bfseries M\+S\+D\+O\+S\+\_\+\+C\+U\+R\+R\+E\+N\+T\+\_\+\+D\+IR}, 
+{\bfseries M\+S\+D\+O\+S\+\_\+\+U\+P\+\_\+\+D\+IR}, 
+{\bfseries M\+S\+D\+O\+S\+\_\+\+N\+A\+ME}, 
+\newline
+{\bfseries M\+S\+D\+O\+S\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+T\+O\+K\+EN}
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void {\bfseries msdos\+\_\+fs\+\_\+lock} (\mbox{\hyperlink{structmsdos__fs__info__s}{msdos\+\_\+fs\+\_\+info\+\_\+t}} $\ast$fs\+\_\+info)
+\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void {\bfseries msdos\+\_\+fs\+\_\+unlock} (\mbox{\hyperlink{structmsdos__fs__info__s}{msdos\+\_\+fs\+\_\+info\+\_\+t}} $\ast$fs\+\_\+info)
+\item 
+void \mbox{\hyperlink{group__libfs__msdos_gada4176631aabceb7071617611720a04a}{msdos\+\_\+shut\+\_\+down}} (\mbox{\hyperlink{structrtems__filesystem__mount__table__entry__tt}{rtems\+\_\+filesystem\+\_\+mount\+\_\+table\+\_\+entry\+\_\+t}} $\ast$temp\+\_\+mt\+\_\+entry)
+\begin{DoxyCompactList}\small\item\em Shut down the M\+S\+D\+OS filesystem. \end{DoxyCompactList}\item 
+void {\bfseries msdos\+\_\+eval\+\_\+path} (\mbox{\hyperlink{structrtems__filesystem__eval__path__context__t}{rtems\+\_\+filesystem\+\_\+eval\+\_\+path\+\_\+context\+\_\+t}} $\ast$ctx)
+\item 
+void \mbox{\hyperlink{group__libfs__msdos_gac3300c45043a2ca7b0ddac74eadf7606}{msdos\+\_\+free\+\_\+node\+\_\+info}} (const \mbox{\hyperlink{group__LibIO_ga3252b3d31ee3c49ffff0b7604a676864}{rtems\+\_\+filesystem\+\_\+location\+\_\+info\+\_\+t}} $\ast$pathloc)
+\begin{DoxyCompactList}\small\item\em Call the Fat-\/\+File close routine. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__libfs__msdos_gad2d321f559fc408da551e9b13adb5241}{msdos\+\_\+mknod}} (const \mbox{\hyperlink{group__LibIO_ga3252b3d31ee3c49ffff0b7604a676864}{rtems\+\_\+filesystem\+\_\+location\+\_\+info\+\_\+t}} $\ast$loc, const char $\ast$name, size\+\_\+t namelen, mode\+\_\+t mode, dev\+\_\+t dev)
+\begin{DoxyCompactList}\small\item\em Routine for node creation in a M\+S\+D\+OS filesystem. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__libfs__msdos_gadc2a558d9dd4a7b65b22cd0ec527c236}{msdos\+\_\+rmnod}} (const \mbox{\hyperlink{group__LibIO_ga3252b3d31ee3c49ffff0b7604a676864}{rtems\+\_\+filesystem\+\_\+location\+\_\+info\+\_\+t}} $\ast$parentloc, const \mbox{\hyperlink{group__LibIO_ga3252b3d31ee3c49ffff0b7604a676864}{rtems\+\_\+filesystem\+\_\+location\+\_\+info\+\_\+t}} $\ast$loc)
+\begin{DoxyCompactList}\small\item\em Remove node from M\+S\+D\+OS directory. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__libfs__msdos_ga8f13c780cd05667aef2b563ee03154c1}{msdos\+\_\+rename}} (const \mbox{\hyperlink{group__LibIO_ga3252b3d31ee3c49ffff0b7604a676864}{rtems\+\_\+filesystem\+\_\+location\+\_\+info\+\_\+t}} $\ast$old\+\_\+parent\+\_\+loc, const \mbox{\hyperlink{group__LibIO_ga3252b3d31ee3c49ffff0b7604a676864}{rtems\+\_\+filesystem\+\_\+location\+\_\+info\+\_\+t}} $\ast$old\+\_\+loc, const \mbox{\hyperlink{group__LibIO_ga3252b3d31ee3c49ffff0b7604a676864}{rtems\+\_\+filesystem\+\_\+location\+\_\+info\+\_\+t}} $\ast$new\+\_\+parent\+\_\+loc, const char $\ast$new\+\_\+name, size\+\_\+t new\+\_\+namelen)
+\begin{DoxyCompactList}\small\item\em Rename a M\+S\+D\+OS filesystem node. \end{DoxyCompactList}\item 
+int {\bfseries msdos\+\_\+statvfs} (const \mbox{\hyperlink{group__LibIO_ga3252b3d31ee3c49ffff0b7604a676864}{rtems\+\_\+filesystem\+\_\+location\+\_\+info\+\_\+t}} $\ast$root\+\_\+loc, struct \mbox{\hyperlink{structstatvfs}{statvfs}} $\ast$sb)
+\item 
+void {\bfseries msdos\+\_\+lock} (const \mbox{\hyperlink{structrtems__filesystem__mount__table__entry__tt}{rtems\+\_\+filesystem\+\_\+mount\+\_\+table\+\_\+entry\+\_\+t}} $\ast$mt\+\_\+entry)
+\item 
+void {\bfseries msdos\+\_\+unlock} (const \mbox{\hyperlink{structrtems__filesystem__mount__table__entry__tt}{rtems\+\_\+filesystem\+\_\+mount\+\_\+table\+\_\+entry\+\_\+t}} $\ast$mt\+\_\+entry)
+\item 
+int \mbox{\hyperlink{group__libfs__msdos_gab03ef344fdc3a391eea940b6fdd9da24}{msdos\+\_\+initialize\+\_\+support}} (\mbox{\hyperlink{structrtems__filesystem__mount__table__entry__tt}{rtems\+\_\+filesystem\+\_\+mount\+\_\+table\+\_\+entry\+\_\+t}} $\ast$temp\+\_\+mt\+\_\+entry, const \mbox{\hyperlink{struct__rtems__filesystem__operations__table}{rtems\+\_\+filesystem\+\_\+operations\+\_\+table}} $\ast$op\+\_\+table, const \mbox{\hyperlink{struct__rtems__filesystem__file__handlers__r}{rtems\+\_\+filesystem\+\_\+file\+\_\+handlers\+\_\+r}} $\ast$file\+\_\+handlers, const \mbox{\hyperlink{struct__rtems__filesystem__file__handlers__r}{rtems\+\_\+filesystem\+\_\+file\+\_\+handlers\+\_\+r}} $\ast$directory\+\_\+handlers, \mbox{\hyperlink{structrtems__dosfs__convert__control}{rtems\+\_\+dosfs\+\_\+convert\+\_\+control}} $\ast$converter)
+\begin{DoxyCompactList}\small\item\em M\+S\+D\+OS filesystem initialization routine. \end{DoxyCompactList}\item 
+ssize\+\_\+t {\bfseries msdos\+\_\+file\+\_\+read} (\mbox{\hyperlink{structrtems__libio__tt}{rtems\+\_\+libio\+\_\+t}} $\ast$iop, void $\ast$buffer, size\+\_\+t count)
+\item 
+ssize\+\_\+t {\bfseries msdos\+\_\+file\+\_\+write} (\mbox{\hyperlink{structrtems__libio__tt}{rtems\+\_\+libio\+\_\+t}} $\ast$iop, const void $\ast$buffer, size\+\_\+t count)
+\item 
+int {\bfseries msdos\+\_\+file\+\_\+stat} (const \mbox{\hyperlink{group__LibIO_ga3252b3d31ee3c49ffff0b7604a676864}{rtems\+\_\+filesystem\+\_\+location\+\_\+info\+\_\+t}} $\ast$loc, struct stat $\ast$buf)
+\item 
+int {\bfseries msdos\+\_\+file\+\_\+ftruncate} (\mbox{\hyperlink{structrtems__libio__tt}{rtems\+\_\+libio\+\_\+t}} $\ast$iop, off\+\_\+t length)
+\item 
+int {\bfseries msdos\+\_\+file\+\_\+sync} (\mbox{\hyperlink{structrtems__libio__tt}{rtems\+\_\+libio\+\_\+t}} $\ast$iop)
+\item 
+ssize\+\_\+t {\bfseries msdos\+\_\+dir\+\_\+read} (\mbox{\hyperlink{structrtems__libio__tt}{rtems\+\_\+libio\+\_\+t}} $\ast$iop, void $\ast$buffer, size\+\_\+t count)
+\item 
+int {\bfseries msdos\+\_\+dir\+\_\+sync} (\mbox{\hyperlink{structrtems__libio__tt}{rtems\+\_\+libio\+\_\+t}} $\ast$iop)
+\item 
+int {\bfseries msdos\+\_\+dir\+\_\+stat} (const \mbox{\hyperlink{group__LibIO_ga3252b3d31ee3c49ffff0b7604a676864}{rtems\+\_\+filesystem\+\_\+location\+\_\+info\+\_\+t}} $\ast$loc, struct stat $\ast$buf)
+\item 
+int \mbox{\hyperlink{group__libfs__msdos_gad3c1d9f2798d77cb8ec96f313e56a785}{msdos\+\_\+creat\+\_\+node}} (const \mbox{\hyperlink{group__LibIO_ga3252b3d31ee3c49ffff0b7604a676864}{rtems\+\_\+filesystem\+\_\+location\+\_\+info\+\_\+t}} $\ast$parent\+\_\+loc, fat\+\_\+file\+\_\+type\+\_\+t type, const char $\ast$name, int name\+\_\+len, mode\+\_\+t mode, const \mbox{\hyperlink{group__libfs__ff_gaa53f9c544914509505e3cfbd3796f877}{fat\+\_\+file\+\_\+fd\+\_\+t}} $\ast$link\+\_\+fd)
+\begin{DoxyCompactList}\small\item\em Implements wake up version of the \char`\"{}signal\char`\"{} operation. \end{DoxyCompactList}\item 
+int {\bfseries msdos\+\_\+find\+\_\+name} (\mbox{\hyperlink{group__LibIO_ga3252b3d31ee3c49ffff0b7604a676864}{rtems\+\_\+filesystem\+\_\+location\+\_\+info\+\_\+t}} $\ast$parent\+\_\+loc, const char $\ast$name, int name\+\_\+len)
+\item 
+int {\bfseries msdos\+\_\+get\+\_\+name\+\_\+node} (const \mbox{\hyperlink{group__LibIO_ga3252b3d31ee3c49ffff0b7604a676864}{rtems\+\_\+filesystem\+\_\+location\+\_\+info\+\_\+t}} $\ast$parent\+\_\+loc, bool create\+\_\+node, const char $\ast$name, int name\+\_\+len, msdos\+\_\+name\+\_\+type\+\_\+t name\+\_\+type, \mbox{\hyperlink{structfat__dir__pos__s}{fat\+\_\+dir\+\_\+pos\+\_\+t}} $\ast$dir\+\_\+pos, char $\ast$name\+\_\+dir\+\_\+entry)
+\item 
+int {\bfseries msdos\+\_\+dir\+\_\+info\+\_\+remove} (\mbox{\hyperlink{group__LibIO_ga3252b3d31ee3c49ffff0b7604a676864}{rtems\+\_\+filesystem\+\_\+location\+\_\+info\+\_\+t}} $\ast$pathloc)
+\item 
+ssize\+\_\+t {\bfseries msdos\+\_\+format\+\_\+dirent\+\_\+with\+\_\+dot} (char $\ast$dst, const char $\ast$src)
+\item 
+msdos\+\_\+name\+\_\+type\+\_\+t {\bfseries msdos\+\_\+long\+\_\+to\+\_\+short} (\mbox{\hyperlink{structrtems__dosfs__convert__control}{rtems\+\_\+dosfs\+\_\+convert\+\_\+control}} $\ast$converter, const char $\ast$lfn, int lfn\+\_\+len, char $\ast$sfn, int sfn\+\_\+len)
+\item 
+ssize\+\_\+t {\bfseries msdos\+\_\+filename\+\_\+utf8\+\_\+to\+\_\+short\+\_\+name\+\_\+for\+\_\+compare} (\mbox{\hyperlink{structrtems__dosfs__convert__control}{rtems\+\_\+dosfs\+\_\+convert\+\_\+control}} $\ast$converter, const uint8\+\_\+t $\ast$utf8\+\_\+name, const size\+\_\+t utf8\+\_\+name\+\_\+size, void $\ast$short\+\_\+name, const size\+\_\+t short\+\_\+name\+\_\+size)
+\item 
+ssize\+\_\+t {\bfseries msdos\+\_\+filename\+\_\+utf8\+\_\+to\+\_\+short\+\_\+name\+\_\+for\+\_\+save} (\mbox{\hyperlink{structrtems__dosfs__convert__control}{rtems\+\_\+dosfs\+\_\+convert\+\_\+control}} $\ast$converter, const uint8\+\_\+t $\ast$utf8\+\_\+name, const size\+\_\+t utf8\+\_\+name\+\_\+size, void $\ast$short\+\_\+name, const size\+\_\+t short\+\_\+name\+\_\+size)
+\item 
+ssize\+\_\+t {\bfseries msdos\+\_\+filename\+\_\+utf8\+\_\+to\+\_\+long\+\_\+name\+\_\+for\+\_\+compare} (\mbox{\hyperlink{structrtems__dosfs__convert__control}{rtems\+\_\+dosfs\+\_\+convert\+\_\+control}} $\ast$converter, const uint8\+\_\+t $\ast$utf8\+\_\+name, const size\+\_\+t utf8\+\_\+name\+\_\+size, uint8\+\_\+t $\ast$long\+\_\+name, const size\+\_\+t long\+\_\+name\+\_\+size)
+\item 
+ssize\+\_\+t {\bfseries msdos\+\_\+filename\+\_\+utf8\+\_\+to\+\_\+long\+\_\+name\+\_\+for\+\_\+save} (\mbox{\hyperlink{structrtems__dosfs__convert__control}{rtems\+\_\+dosfs\+\_\+convert\+\_\+control}} $\ast$converter, const uint8\+\_\+t $\ast$utf8\+\_\+name, const size\+\_\+t utf8\+\_\+name\+\_\+size, uint16\+\_\+t $\ast$long\+\_\+name, const size\+\_\+t long\+\_\+name\+\_\+size)
+\item 
+ssize\+\_\+t {\bfseries msdos\+\_\+get\+\_\+utf16\+\_\+string\+\_\+from\+\_\+long\+\_\+entry} (const char $\ast$\mbox{\hyperlink{structentry}{entry}}, uint16\+\_\+t $\ast$entry\+\_\+string\+\_\+buf, const size\+\_\+t buf\+\_\+size, bool is\+\_\+first\+\_\+entry)
+\item 
+void {\bfseries msdos\+\_\+date\+\_\+unix2dos} (unsigned int tsp, uint16\+\_\+t $\ast$ddp, uint16\+\_\+t $\ast$dtp)
+\item 
+unsigned int {\bfseries msdos\+\_\+date\+\_\+dos2unix} (unsigned int dd, unsigned int dt)
+\item 
+int {\bfseries msdos\+\_\+set\+\_\+first\+\_\+char4file\+\_\+name} (\mbox{\hyperlink{structrtems__filesystem__mount__table__entry__tt}{rtems\+\_\+filesystem\+\_\+mount\+\_\+table\+\_\+entry\+\_\+t}} $\ast$mt\+\_\+entry, \mbox{\hyperlink{structfat__dir__pos__s}{fat\+\_\+dir\+\_\+pos\+\_\+t}} $\ast$dir\+\_\+pos, unsigned char first\+\_\+char)
+\item 
+int {\bfseries msdos\+\_\+dir\+\_\+is\+\_\+empty} (\mbox{\hyperlink{structrtems__filesystem__mount__table__entry__tt}{rtems\+\_\+filesystem\+\_\+mount\+\_\+table\+\_\+entry\+\_\+t}} $\ast$mt\+\_\+entry, \mbox{\hyperlink{group__libfs__ff_gaa53f9c544914509505e3cfbd3796f877}{fat\+\_\+file\+\_\+fd\+\_\+t}} $\ast$fat\+\_\+fd, bool $\ast$ret\+\_\+val)
+\item 
+int {\bfseries msdos\+\_\+find\+\_\+name\+\_\+in\+\_\+fat\+\_\+file} (\mbox{\hyperlink{structrtems__filesystem__mount__table__entry__tt}{rtems\+\_\+filesystem\+\_\+mount\+\_\+table\+\_\+entry\+\_\+t}} $\ast$mt\+\_\+entry, \mbox{\hyperlink{group__libfs__ff_gaa53f9c544914509505e3cfbd3796f877}{fat\+\_\+file\+\_\+fd\+\_\+t}} $\ast$fat\+\_\+fd, bool create\+\_\+node, const uint8\+\_\+t $\ast$name\+\_\+utf8, int name\+\_\+len, msdos\+\_\+name\+\_\+type\+\_\+t name\+\_\+type, \mbox{\hyperlink{structfat__dir__pos__s}{fat\+\_\+dir\+\_\+pos\+\_\+t}} $\ast$dir\+\_\+pos, char $\ast$name\+\_\+dir\+\_\+entry)
+\item 
+int {\bfseries msdos\+\_\+find\+\_\+node\+\_\+by\+\_\+cluster\+\_\+num\+\_\+in\+\_\+fat\+\_\+file} (\mbox{\hyperlink{structrtems__filesystem__mount__table__entry__tt}{rtems\+\_\+filesystem\+\_\+mount\+\_\+table\+\_\+entry\+\_\+t}} $\ast$mt\+\_\+entry, \mbox{\hyperlink{group__libfs__ff_gaa53f9c544914509505e3cfbd3796f877}{fat\+\_\+file\+\_\+fd\+\_\+t}} $\ast$fat\+\_\+fd, uint32\+\_\+t cl4find, \mbox{\hyperlink{structfat__dir__pos__s}{fat\+\_\+dir\+\_\+pos\+\_\+t}} $\ast$dir\+\_\+pos, char $\ast$dir\+\_\+entry)
+\item 
+int {\bfseries msdos\+\_\+get\+\_\+dotdot\+\_\+dir\+\_\+info\+\_\+cluster\+\_\+num\+\_\+and\+\_\+offset} (\mbox{\hyperlink{structrtems__filesystem__mount__table__entry__tt}{rtems\+\_\+filesystem\+\_\+mount\+\_\+table\+\_\+entry\+\_\+t}} $\ast$mt\+\_\+entry, uint32\+\_\+t cln, \mbox{\hyperlink{structfat__dir__pos__s}{fat\+\_\+dir\+\_\+pos\+\_\+t}} $\ast$dir\+\_\+pos, char $\ast$dir\+\_\+entry)
+\item 
+int {\bfseries msdos\+\_\+sync} (\mbox{\hyperlink{structrtems__libio__tt}{rtems\+\_\+libio\+\_\+t}} $\ast$iop)
+\item 
+uint8\+\_\+t {\bfseries msdos\+\_\+lfn\+\_\+checksum} (const void $\ast$\mbox{\hyperlink{structentry}{entry}})
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const \mbox{\hyperlink{struct__rtems__filesystem__file__handlers__r}{rtems\+\_\+filesystem\+\_\+file\+\_\+handlers\+\_\+r}} {\bfseries msdos\+\_\+dir\+\_\+handlers}
+\item 
+const \mbox{\hyperlink{struct__rtems__filesystem__file__handlers__r}{rtems\+\_\+filesystem\+\_\+file\+\_\+handlers\+\_\+r}} {\bfseries msdos\+\_\+file\+\_\+handlers}
+\item 
+const char $\ast$const {\bfseries M\+S\+D\+O\+S\+\_\+\+D\+O\+T\+\_\+\+N\+A\+ME}
+\item 
+const char $\ast$const {\bfseries M\+S\+D\+O\+S\+\_\+\+D\+O\+T\+D\+O\+T\+\_\+\+N\+A\+ME}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+The M\+S\+D\+OS Filesystem Constants/\+Data Structures/\+Prototypes. 
+

@@ -1,0 +1,64 @@
+\hypertarget{structrtems__filesystem__global__location__t}{}\section{rtems\+\_\+filesystem\+\_\+global\+\_\+location\+\_\+t Struct Reference}
+\label{structrtems__filesystem__global__location__t}\index{rtems\_filesystem\_global\_location\_t@{rtems\_filesystem\_global\_location\_t}}
+
+
+Global file system location.  
+
+
+
+
+{\ttfamily \#include $<$fs.\+h$>$}
+
+\subsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structrtems__filesystem__global__location__t_a4ec431a2941e161198c566fb57ddac08}\label{structrtems__filesystem__global__location__t_a4ec431a2941e161198c566fb57ddac08}} 
+\mbox{\hyperlink{group__LibIO_ga3252b3d31ee3c49ffff0b7604a676864}{rtems\+\_\+filesystem\+\_\+location\+\_\+info\+\_\+t}} {\bfseries location}
+\item 
+\mbox{\Hypertarget{structrtems__filesystem__global__location__t_a886f0a240b776678d328a4b343324159}\label{structrtems__filesystem__global__location__t_a886f0a240b776678d328a4b343324159}} 
+int {\bfseries reference\+\_\+count}
+\item 
+struct \mbox{\hyperlink{structrtems__filesystem__global__location__t}{rtems\+\_\+filesystem\+\_\+global\+\_\+location\+\_\+t}} $\ast$ \mbox{\hyperlink{structrtems__filesystem__global__location__t_adc7c86bee7c1adeafb587459ce6afbd5}{deferred\+\_\+released\+\_\+next}}
+\item 
+int \mbox{\hyperlink{structrtems__filesystem__global__location__t_adee2683dd338a69847b0a5bd3ee12882}{deferred\+\_\+released\+\_\+count}}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Global file system location. 
+
+The global file system locations are used for
+\begin{DoxyItemize}
+\item the mount point location in the mount table entry,
+\item the file system root location in the mount table entry,
+\item the root directory location in the user environment, and
+\item the current directory location in the user environment.
+\end{DoxyItemize}
+
+During the path evaluation global start locations are obtained to ensure that the current file system will be not unmounted in the meantime.
+
+To support a release within critical sections of the operating system a deferred release is supported. This is similar to malloc() and free().
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{group__LibIOInternal_ga3df19d6d5f1f73b574478e7c4b42e643}{rtems\+\_\+filesystem\+\_\+global\+\_\+location\+\_\+obtain()}} and \mbox{\hyperlink{group__LibIOInternal_ga66aa5e6d0bbf4c03b533deac66fb328f}{rtems\+\_\+filesystem\+\_\+global\+\_\+location\+\_\+release()}}. 
+\end{DoxySeeAlso}
+
+
+\subsection{Field Documentation}
+\mbox{\Hypertarget{structrtems__filesystem__global__location__t_adee2683dd338a69847b0a5bd3ee12882}\label{structrtems__filesystem__global__location__t_adee2683dd338a69847b0a5bd3ee12882}} 
+\index{rtems\_filesystem\_global\_location\_t@{rtems\_filesystem\_global\_location\_t}!deferred\_released\_count@{deferred\_released\_count}}
+\index{deferred\_released\_count@{deferred\_released\_count}!rtems\_filesystem\_global\_location\_t@{rtems\_filesystem\_global\_location\_t}}
+\subsubsection{\texorpdfstring{deferred\_released\_count}{deferred\_released\_count}}
+{\footnotesize\ttfamily int rtems\+\_\+filesystem\+\_\+global\+\_\+location\+\_\+t\+::deferred\+\_\+released\+\_\+count}
+
+A release within a critical section can happen multiple times. This field counts the deferred releases. \mbox{\Hypertarget{structrtems__filesystem__global__location__t_adc7c86bee7c1adeafb587459ce6afbd5}\label{structrtems__filesystem__global__location__t_adc7c86bee7c1adeafb587459ce6afbd5}} 
+\index{rtems\_filesystem\_global\_location\_t@{rtems\_filesystem\_global\_location\_t}!deferred\_released\_next@{deferred\_released\_next}}
+\index{deferred\_released\_next@{deferred\_released\_next}!rtems\_filesystem\_global\_location\_t@{rtems\_filesystem\_global\_location\_t}}
+\subsubsection{\texorpdfstring{deferred\_released\_next}{deferred\_released\_next}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structrtems__filesystem__global__location__t}{rtems\+\_\+filesystem\+\_\+global\+\_\+location\+\_\+t}}$\ast$ rtems\+\_\+filesystem\+\_\+global\+\_\+location\+\_\+t\+::deferred\+\_\+released\+\_\+next}
+
+A release within a critical section of the operating system will add this location to a list of deferred released locations. This list is processed in the next \mbox{\hyperlink{group__LibIOInternal_ga3df19d6d5f1f73b574478e7c4b42e643}{rtems\+\_\+filesystem\+\_\+global\+\_\+location\+\_\+obtain()}} in F\+I\+FO order. 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+cpukit/include/rtems/\mbox{\hyperlink{include_2rtems_2fs_8h}{fs.\+h}}\end{DoxyCompactItemize}

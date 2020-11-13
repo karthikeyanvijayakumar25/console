@@ -1,0 +1,88 @@
+\hypertarget{structrtems__blkdev__request}{}\section{rtems\+\_\+blkdev\+\_\+request Struct Reference}
+\label{structrtems__blkdev__request}\index{rtems\_blkdev\_request@{rtems\_blkdev\_request}}
+
+
+The block device transfer request is used to read or write a number of blocks from or to the device.  
+
+
+
+
+{\ttfamily \#include $<$blkdev.\+h$>$}
+
+\subsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{group__rtems__blkdev_ga36465495f1b9e28347838751ca90f0fe}{rtems\+\_\+blkdev\+\_\+request\+\_\+op}} \mbox{\hyperlink{structrtems__blkdev__request_a757296b35fdc10cc08c49a555d2873f4}{req}}
+\item 
+\mbox{\hyperlink{group__rtems__blkdev_ga64a394fd9c40d7e2d1d22441741b6c83}{rtems\+\_\+blkdev\+\_\+request\+\_\+cb}} \mbox{\hyperlink{structrtems__blkdev__request_a765728a8a6a087b5b7f0edaefbf4e070}{done}}
+\item 
+void $\ast$ \mbox{\hyperlink{structrtems__blkdev__request_a6d5037a53d9c352883dc7f29880df301}{done\+\_\+arg}}
+\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{structrtems__blkdev__request_a7200280756d1db24e67d2ad0437a538b}{status}}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{structrtems__blkdev__request_a76d2f6b5d6bc71c8cdab127a3f969181}{bufnum}}
+\item 
+\mbox{\hyperlink{group__ClassicTasks_gab20892b814dced7dd4e5b9bf42becd57}{rtems\+\_\+id}} \mbox{\hyperlink{structrtems__blkdev__request_a53d6bb491e03e4282735168860723d2d}{io\+\_\+task}}
+\item 
+\mbox{\hyperlink{structrtems__blkdev__sg__buffer}{rtems\+\_\+blkdev\+\_\+sg\+\_\+buffer}} \mbox{\hyperlink{structrtems__blkdev__request_a76108e3fa44f35927541a19db1164016}{bufs}} \mbox{[}R\+T\+E\+M\+S\+\_\+\+Z\+E\+R\+O\+\_\+\+L\+E\+N\+G\+T\+H\+\_\+\+A\+R\+R\+AY\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+The block device transfer request is used to read or write a number of blocks from or to the device. 
+
+Transfer requests are issued to the disk device driver with the R\+T\+E\+M\+S\+\_\+\+B\+L\+K\+I\+O\+\_\+\+R\+E\+Q\+U\+E\+ST \mbox{\hyperlink{structIO}{IO}} control. The transfer request completion status must be signalled with rtems\+\_\+blkdev\+\_\+request\+\_\+done(). This function must be called exactly once per request. The return value of the \mbox{\hyperlink{structIO}{IO}} control will be ignored for transfer requests.
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{group__rtems__blkdev_gae2fe7e8c05fa9db0fa7c0ec4e8e4967d}{rtems\+\_\+blkdev\+\_\+create()}}. 
+\end{DoxySeeAlso}
+
+
+\subsection{Field Documentation}
+\mbox{\Hypertarget{structrtems__blkdev__request_a76d2f6b5d6bc71c8cdab127a3f969181}\label{structrtems__blkdev__request_a76d2f6b5d6bc71c8cdab127a3f969181}} 
+\index{rtems\_blkdev\_request@{rtems\_blkdev\_request}!bufnum@{bufnum}}
+\index{bufnum@{bufnum}!rtems\_blkdev\_request@{rtems\_blkdev\_request}}
+\subsubsection{\texorpdfstring{bufnum}{bufnum}}
+{\footnotesize\ttfamily uint32\+\_\+t rtems\+\_\+blkdev\+\_\+request\+::bufnum}
+
+Number of blocks for this request. \mbox{\Hypertarget{structrtems__blkdev__request_a76108e3fa44f35927541a19db1164016}\label{structrtems__blkdev__request_a76108e3fa44f35927541a19db1164016}} 
+\index{rtems\_blkdev\_request@{rtems\_blkdev\_request}!bufs@{bufs}}
+\index{bufs@{bufs}!rtems\_blkdev\_request@{rtems\_blkdev\_request}}
+\subsubsection{\texorpdfstring{bufs}{bufs}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structrtems__blkdev__sg__buffer}{rtems\+\_\+blkdev\+\_\+sg\+\_\+buffer}} rtems\+\_\+blkdev\+\_\+request\+::bufs\mbox{[}R\+T\+E\+M\+S\+\_\+\+Z\+E\+R\+O\+\_\+\+L\+E\+N\+G\+T\+H\+\_\+\+A\+R\+R\+AY\mbox{]}}
+
+List of scatter or gather buffers. \mbox{\Hypertarget{structrtems__blkdev__request_a765728a8a6a087b5b7f0edaefbf4e070}\label{structrtems__blkdev__request_a765728a8a6a087b5b7f0edaefbf4e070}} 
+\index{rtems\_blkdev\_request@{rtems\_blkdev\_request}!done@{done}}
+\index{done@{done}!rtems\_blkdev\_request@{rtems\_blkdev\_request}}
+\subsubsection{\texorpdfstring{done}{done}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__rtems__blkdev_ga64a394fd9c40d7e2d1d22441741b6c83}{rtems\+\_\+blkdev\+\_\+request\+\_\+cb}} rtems\+\_\+blkdev\+\_\+request\+::done}
+
+Request done callback function. \mbox{\Hypertarget{structrtems__blkdev__request_a6d5037a53d9c352883dc7f29880df301}\label{structrtems__blkdev__request_a6d5037a53d9c352883dc7f29880df301}} 
+\index{rtems\_blkdev\_request@{rtems\_blkdev\_request}!done\_arg@{done\_arg}}
+\index{done\_arg@{done\_arg}!rtems\_blkdev\_request@{rtems\_blkdev\_request}}
+\subsubsection{\texorpdfstring{done\_arg}{done\_arg}}
+{\footnotesize\ttfamily void$\ast$ rtems\+\_\+blkdev\+\_\+request\+::done\+\_\+arg}
+
+Argument to be passed to callback function. \mbox{\Hypertarget{structrtems__blkdev__request_a53d6bb491e03e4282735168860723d2d}\label{structrtems__blkdev__request_a53d6bb491e03e4282735168860723d2d}} 
+\index{rtems\_blkdev\_request@{rtems\_blkdev\_request}!io\_task@{io\_task}}
+\index{io\_task@{io\_task}!rtems\_blkdev\_request@{rtems\_blkdev\_request}}
+\subsubsection{\texorpdfstring{io\_task}{io\_task}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__ClassicTasks_gab20892b814dced7dd4e5b9bf42becd57}{rtems\+\_\+id}} rtems\+\_\+blkdev\+\_\+request\+::io\+\_\+task}
+
+The task requesting the \mbox{\hyperlink{structIO}{IO}} operation. \mbox{\Hypertarget{structrtems__blkdev__request_a757296b35fdc10cc08c49a555d2873f4}\label{structrtems__blkdev__request_a757296b35fdc10cc08c49a555d2873f4}} 
+\index{rtems\_blkdev\_request@{rtems\_blkdev\_request}!req@{req}}
+\index{req@{req}!rtems\_blkdev\_request@{rtems\_blkdev\_request}}
+\subsubsection{\texorpdfstring{req}{req}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__rtems__blkdev_ga36465495f1b9e28347838751ca90f0fe}{rtems\+\_\+blkdev\+\_\+request\+\_\+op}} rtems\+\_\+blkdev\+\_\+request\+::req}
+
+Block device operation (read or write). \mbox{\Hypertarget{structrtems__blkdev__request_a7200280756d1db24e67d2ad0437a538b}\label{structrtems__blkdev__request_a7200280756d1db24e67d2ad0437a538b}} 
+\index{rtems\_blkdev\_request@{rtems\_blkdev\_request}!status@{status}}
+\index{status@{status}!rtems\_blkdev\_request@{rtems\_blkdev\_request}}
+\subsubsection{\texorpdfstring{status}{status}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} rtems\+\_\+blkdev\+\_\+request\+::status}
+
+Last \mbox{\hyperlink{structIO}{IO}} operation completion status. 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+cpukit/include/rtems/\mbox{\hyperlink{blkdev_8h}{blkdev.\+h}}\end{DoxyCompactItemize}

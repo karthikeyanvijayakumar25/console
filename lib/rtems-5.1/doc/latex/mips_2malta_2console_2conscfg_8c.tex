@@ -1,0 +1,58 @@
+\hypertarget{mips_2malta_2console_2conscfg_8c}{}\section{bsps/mips/malta/console/conscfg.c File Reference}
+\label{mips_2malta_2console_2conscfg_8c}\index{bsps/mips/malta/console/conscfg.c@{bsps/mips/malta/console/conscfg.c}}
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include $<$bsp.\+h$>$}\newline
+{\ttfamily \#include $<$libchip/serial.\+h$>$}\newline
+{\ttfamily \#include $<$libchip/ns16550.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/pci.\+h$>$}\newline
+{\ttfamily \#include $<$bsp/irq.\+h$>$}\newline
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{mips_2malta_2console_2conscfg_8c_aca048433d3617eda719766ab5fa3d8f3}\label{mips_2malta_2console_2conscfg_8c_aca048433d3617eda719766ab5fa3d8f3}} 
+\#define {\bfseries C\+O\+M\+\_\+\+C\+O\+N\+S\+O\+L\+E\+\_\+\+F\+U\+N\+C\+T\+I\+O\+NS}~\&ns16550\+\_\+fns\+\_\+polled
+\item 
+\mbox{\Hypertarget{mips_2malta_2console_2conscfg_8c_a91063596cfb46c8b8d7f6eb289dd448e}\label{mips_2malta_2console_2conscfg_8c_a91063596cfb46c8b8d7f6eb289dd448e}} 
+\#define {\bfseries C\+O\+M1\+\_\+\+B\+A\+S\+E\+\_\+\+IO}~0x3\+F8
+\item 
+\mbox{\Hypertarget{mips_2malta_2console_2conscfg_8c_a38105c391711071ff7e61fe54f1d83fd}\label{mips_2malta_2console_2conscfg_8c_a38105c391711071ff7e61fe54f1d83fd}} 
+\#define {\bfseries C\+O\+M2\+\_\+\+B\+A\+S\+E\+\_\+\+IO}~0x3\+E8
+\item 
+\mbox{\Hypertarget{mips_2malta_2console_2conscfg_8c_a786991ae07f83c0d85b617bb5a47119e}\label{mips_2malta_2console_2conscfg_8c_a786991ae07f83c0d85b617bb5a47119e}} 
+\#define {\bfseries C\+L\+O\+C\+K\+\_\+\+R\+A\+TE}~(115200 $\ast$ 16)
+\item 
+\mbox{\Hypertarget{mips_2malta_2console_2conscfg_8c_a6c4ba97db751203dbccc46b57da0d3fd}\label{mips_2malta_2console_2conscfg_8c_a6c4ba97db751203dbccc46b57da0d3fd}} 
+\#define {\bfseries C\+O\+M\+\_\+\+I\+O\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+D\+R\+E\+SS}~(0xa0000000\+U\+L $\vert$ 0x18000000\+U\+L)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{struct__console__tbl}{console\+\_\+tbl}} \mbox{\hyperlink{mips_2malta_2console_2conscfg_8c_a8d1404b49209c3692a3dc1433710e550}{Console\+\_\+\+Configuration\+\_\+\+Ports}} \mbox{[}$\,$\mbox{]}
+\item 
+unsigned long \mbox{\hyperlink{mips_2malta_2console_2conscfg_8c_a59f0ae8f9904bd193825ccfc2c99aeb6}{Console\+\_\+\+Configuration\+\_\+\+Count}}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This file contains the libchip configuration information to instantiate the libchip driver for the serial ports. 
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{mips_2malta_2console_2conscfg_8c_a59f0ae8f9904bd193825ccfc2c99aeb6}\label{mips_2malta_2console_2conscfg_8c_a59f0ae8f9904bd193825ccfc2c99aeb6}} 
+\index{conscfg.c@{conscfg.c}!Console\_Configuration\_Count@{Console\_Configuration\_Count}}
+\index{Console\_Configuration\_Count@{Console\_Configuration\_Count}!conscfg.c@{conscfg.c}}
+\subsubsection{\texorpdfstring{Console\_Configuration\_Count}{Console\_Configuration\_Count}}
+{\footnotesize\ttfamily unsigned long Console\+\_\+\+Configuration\+\_\+\+Count}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= }
+\DoxyCodeLine{    (\textcolor{keyword}{sizeof}(\mbox{\hyperlink{i386_2pc386_2console_2conscfg_8c_a8d1404b49209c3692a3dc1433710e550}{Console\_Configuration\_Ports}})/\textcolor{keyword}{sizeof}(\mbox{\hyperlink{struct__console__tbl}{console\_tbl}}))}
+
+\end{DoxyCode}
+The number of serial ports defined in Console\+\_\+\+Configuration\+\_\+\+Ports \mbox{\Hypertarget{mips_2malta_2console_2conscfg_8c_a8d1404b49209c3692a3dc1433710e550}\label{mips_2malta_2console_2conscfg_8c_a8d1404b49209c3692a3dc1433710e550}} 
+\index{conscfg.c@{conscfg.c}!Console\_Configuration\_Ports@{Console\_Configuration\_Ports}}
+\index{Console\_Configuration\_Ports@{Console\_Configuration\_Ports}!conscfg.c@{conscfg.c}}
+\subsubsection{\texorpdfstring{Console\_Configuration\_Ports}{Console\_Configuration\_Ports}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct__console__tbl}{console\+\_\+tbl}} Console\+\_\+\+Configuration\+\_\+\+Ports\mbox{[}$\,$\mbox{]}}
+
+The statically configured serial port information tables which are used to initially populate the dynamic tables. 

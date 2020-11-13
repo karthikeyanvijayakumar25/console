@@ -1,0 +1,23 @@
+\hypertarget{flash__support_8c}{}\section{bsps/powerpc/mpc55xxevb/start/flash\+\_\+support.c File Reference}
+\label{flash__support_8c}\index{bsps/powerpc/mpc55xxevb/start/flash\_support.c@{bsps/powerpc/mpc55xxevb/start/flash\_support.c}}
+
+
+M\+P\+C55\+XX flash memory support.  
+
+
+{\ttfamily \#include $<$errno.\+h$>$}\newline
+{\ttfamily \#include $<$sys/types.\+h$>$}\newline
+{\ttfamily \#include $<$mpc55xx/regs.\+h$>$}\newline
+{\ttfamily \#include $<$mpc55xx/mpc55xx.\+h$>$}\newline
+{\ttfamily \#include $<$libcpu/powerpc-\/utility.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/powerpc/registers.\+h$>$}\newline
+
+
+\subsection{Detailed Description}
+M\+P\+C55\+XX flash memory support. 
+
+I set my M\+MU up to map what will finally be in flash into R\+AM and at the same time I map the flash to a different location. When the software is tested I can use this to copy the R\+AM version of the program into the flash and when I reboot I\textquotesingle{}m running out of flash.
+
+I use a flag word located after the boot configuration half-\/word to indicate that the M\+MU should be left alone, and I don\textquotesingle{}t include the R\+C\+HW or that flag in my call to this routine.
+
+There are obviously other uses for this. 

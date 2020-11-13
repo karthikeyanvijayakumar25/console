@@ -1,0 +1,153 @@
+\hypertarget{group__Profiling}{}\section{Profiling Support}
+\label{group__Profiling}\index{Profiling Support@{Profiling Support}}
+
+
+The profiling support offers functions to report profiling information available in the system.  
+
+
+\subsection*{Files}
+\begin{DoxyCompactItemize}
+\item 
+file \mbox{\hyperlink{profiling_8h}{profiling.\+h}}
+\begin{DoxyCompactList}\small\item\em Profiling A\+PI. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structrtems__profiling__header}{rtems\+\_\+profiling\+\_\+header}}
+\begin{DoxyCompactList}\small\item\em The profiling data header. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structrtems__profiling__per__cpu}{rtems\+\_\+profiling\+\_\+per\+\_\+cpu}}
+\begin{DoxyCompactList}\small\item\em Per-\/\+C\+PU profiling data. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structrtems__profiling__smp__lock}{rtems\+\_\+profiling\+\_\+smp\+\_\+lock}}
+\begin{DoxyCompactList}\small\item\em S\+MP lock profiling data. \end{DoxyCompactList}\item 
+union \mbox{\hyperlink{unionrtems__profiling__data}{rtems\+\_\+profiling\+\_\+data}}
+\begin{DoxyCompactList}\small\item\em Collection of profiling data. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{group__Profiling_gaa982fd0b6f3e7e29927a4efa146eb7ad}\label{group__Profiling_gaa982fd0b6f3e7e29927a4efa146eb7ad}} 
+\#define \mbox{\hyperlink{group__Profiling_gaa982fd0b6f3e7e29927a4efa146eb7ad}{R\+T\+E\+M\+S\+\_\+\+P\+R\+O\+F\+I\+L\+I\+N\+G\+\_\+\+S\+M\+P\+\_\+\+L\+O\+C\+K\+\_\+\+C\+O\+N\+T\+E\+N\+T\+I\+O\+N\+\_\+\+C\+O\+U\+N\+TS}}~4
+\begin{DoxyCompactList}\small\item\em Count of lock contention counters for S\+MP lock profiling. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef void($\ast$ \mbox{\hyperlink{group__Profiling_gabc727db53114f2f1bedd000b4d8b38ba}{rtems\+\_\+profiling\+\_\+visitor}}) (void $\ast$arg, const \mbox{\hyperlink{unionrtems__profiling__data}{rtems\+\_\+profiling\+\_\+data}} $\ast$data)
+\begin{DoxyCompactList}\small\item\em Visitor function for the profiling iteration. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{group__Profiling_ga8e677119cdafc1bfb0cecbb6b8f48eb2}{rtems\+\_\+profiling\+\_\+type}} \{ \mbox{\hyperlink{group__Profiling_gga8e677119cdafc1bfb0cecbb6b8f48eb2a8076886829cc3752389f1db9ff73c279}{R\+T\+E\+M\+S\+\_\+\+P\+R\+O\+F\+I\+L\+I\+N\+G\+\_\+\+P\+E\+R\+\_\+\+C\+PU}}, 
+\mbox{\hyperlink{group__Profiling_gga8e677119cdafc1bfb0cecbb6b8f48eb2afb2b94efa250f957d42bda049179d8ee}{R\+T\+E\+M\+S\+\_\+\+P\+R\+O\+F\+I\+L\+I\+N\+G\+\_\+\+S\+M\+P\+\_\+\+L\+O\+CK}}
+ \}
+\begin{DoxyCompactList}\small\item\em Type of profiling data. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{group__Profiling_ga4edc3fa059af092c478bdd95ffbb177e}{rtems\+\_\+profiling\+\_\+iterate}} (\mbox{\hyperlink{group__Profiling_gabc727db53114f2f1bedd000b4d8b38ba}{rtems\+\_\+profiling\+\_\+visitor}} visitor, void $\ast$visitor\+\_\+arg)
+\begin{DoxyCompactList}\small\item\em Iterates through all profiling data of the system. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__Profiling_gae1d3b285861598637ed453b7084896ed}{rtems\+\_\+profiling\+\_\+report\+\_\+xml}} (const char $\ast$name, const \mbox{\hyperlink{structrtems__printer}{rtems\+\_\+printer}} $\ast$printer, uint32\+\_\+t indentation\+\_\+level, const char $\ast$indentation)
+\begin{DoxyCompactList}\small\item\em Reports profiling data as X\+ML. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+The profiling support offers functions to report profiling information available in the system. 
+
+Profiling support is by default disabled. It must be enabled via the configure command line with the {\ttfamily --enable-\/profiling} option. In this case the R\+T\+E\+M\+S\+\_\+\+P\+R\+O\+F\+I\+L\+I\+NG pre-\/processor symbol is defined and profiling statistics will be gathered during system run-\/time. The profiling support increases the time of critical sections and has some memory overhead. The overhead should be acceptable for most applications. The aim of the profiling implementation is to be available even for production systems so that verification is simplified.
+
+Profiling information includes critical timing values such as the maximum time of disabled thread dispatching which is a measure for the thread dispatch latency. On S\+MP configurations statistics of all S\+MP locks in the system are available.
+
+Profiling information can be retrieved via \mbox{\hyperlink{group__Profiling_ga4edc3fa059af092c478bdd95ffbb177e}{rtems\+\_\+profiling\+\_\+iterate()}} and reported as an X\+ML dump via \mbox{\hyperlink{group__Profiling_gae1d3b285861598637ed453b7084896ed}{rtems\+\_\+profiling\+\_\+report\+\_\+xml()}}. These functions are always available, but actual profiling data is only available if enabled at build configuration time. 
+
+\subsection{Typedef Documentation}
+\mbox{\Hypertarget{group__Profiling_gabc727db53114f2f1bedd000b4d8b38ba}\label{group__Profiling_gabc727db53114f2f1bedd000b4d8b38ba}} 
+\index{Profiling Support@{Profiling Support}!rtems\_profiling\_visitor@{rtems\_profiling\_visitor}}
+\index{rtems\_profiling\_visitor@{rtems\_profiling\_visitor}!Profiling Support@{Profiling Support}}
+\subsubsection{\texorpdfstring{rtems\_profiling\_visitor}{rtems\_profiling\_visitor}}
+{\footnotesize\ttfamily typedef void($\ast$ rtems\+\_\+profiling\+\_\+visitor) (void $\ast$arg, const \mbox{\hyperlink{unionrtems__profiling__data}{rtems\+\_\+profiling\+\_\+data}} $\ast$data)}
+
+
+
+Visitor function for the profiling iteration. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em arg} & The visitor argument. \\
+\hline
+\mbox{\texttt{ in}}  & {\em data} & The current profiling data.\\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{group__Profiling_ga4edc3fa059af092c478bdd95ffbb177e}{rtems\+\_\+profiling\+\_\+iterate()}}. 
+\end{DoxySeeAlso}
+
+
+\subsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{group__Profiling_ga8e677119cdafc1bfb0cecbb6b8f48eb2}\label{group__Profiling_ga8e677119cdafc1bfb0cecbb6b8f48eb2}} 
+\index{Profiling Support@{Profiling Support}!rtems\_profiling\_type@{rtems\_profiling\_type}}
+\index{rtems\_profiling\_type@{rtems\_profiling\_type}!Profiling Support@{Profiling Support}}
+\subsubsection{\texorpdfstring{rtems\_profiling\_type}{rtems\_profiling\_type}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{group__Profiling_ga8e677119cdafc1bfb0cecbb6b8f48eb2}{rtems\+\_\+profiling\+\_\+type}}}
+
+
+
+Type of profiling data. 
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{RTEMS\_PROFILING\_PER\_CPU@{RTEMS\_PROFILING\_PER\_CPU}!Profiling Support@{Profiling Support}}\index{Profiling Support@{Profiling Support}!RTEMS\_PROFILING\_PER\_CPU@{RTEMS\_PROFILING\_PER\_CPU}}}\mbox{\Hypertarget{group__Profiling_gga8e677119cdafc1bfb0cecbb6b8f48eb2a8076886829cc3752389f1db9ff73c279}\label{group__Profiling_gga8e677119cdafc1bfb0cecbb6b8f48eb2a8076886829cc3752389f1db9ff73c279}} 
+R\+T\+E\+M\+S\+\_\+\+P\+R\+O\+F\+I\+L\+I\+N\+G\+\_\+\+P\+E\+R\+\_\+\+C\+PU&Type of per-\/\+C\+PU profiling data. \begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{structrtems__profiling__per__cpu}{rtems\+\_\+profiling\+\_\+per\+\_\+cpu}}. 
+\end{DoxySeeAlso}
+\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{RTEMS\_PROFILING\_SMP\_LOCK@{RTEMS\_PROFILING\_SMP\_LOCK}!Profiling Support@{Profiling Support}}\index{Profiling Support@{Profiling Support}!RTEMS\_PROFILING\_SMP\_LOCK@{RTEMS\_PROFILING\_SMP\_LOCK}}}\mbox{\Hypertarget{group__Profiling_gga8e677119cdafc1bfb0cecbb6b8f48eb2afb2b94efa250f957d42bda049179d8ee}\label{group__Profiling_gga8e677119cdafc1bfb0cecbb6b8f48eb2afb2b94efa250f957d42bda049179d8ee}} 
+R\+T\+E\+M\+S\+\_\+\+P\+R\+O\+F\+I\+L\+I\+N\+G\+\_\+\+S\+M\+P\+\_\+\+L\+O\+CK&Type of S\+MP lock profiling data. \begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{structrtems__profiling__smp__lock}{rtems\+\_\+profiling\+\_\+smp\+\_\+lock}}. 
+\end{DoxySeeAlso}
+\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{group__Profiling_ga4edc3fa059af092c478bdd95ffbb177e}\label{group__Profiling_ga4edc3fa059af092c478bdd95ffbb177e}} 
+\index{Profiling Support@{Profiling Support}!rtems\_profiling\_iterate@{rtems\_profiling\_iterate}}
+\index{rtems\_profiling\_iterate@{rtems\_profiling\_iterate}!Profiling Support@{Profiling Support}}
+\subsubsection{\texorpdfstring{rtems\_profiling\_iterate()}{rtems\_profiling\_iterate()}}
+{\footnotesize\ttfamily void rtems\+\_\+profiling\+\_\+iterate (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__Profiling_gabc727db53114f2f1bedd000b4d8b38ba}{rtems\+\_\+profiling\+\_\+visitor}}}]{visitor,  }\item[{void $\ast$}]{visitor\+\_\+arg }\end{DoxyParamCaption})}
+
+
+
+Iterates through all profiling data of the system. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em visitor} & The visitor. \\
+\hline
+\mbox{\texttt{ in,out}}  & {\em visitor\+\_\+arg} & The visitor argument. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__Profiling_gae1d3b285861598637ed453b7084896ed}\label{group__Profiling_gae1d3b285861598637ed453b7084896ed}} 
+\index{Profiling Support@{Profiling Support}!rtems\_profiling\_report\_xml@{rtems\_profiling\_report\_xml}}
+\index{rtems\_profiling\_report\_xml@{rtems\_profiling\_report\_xml}!Profiling Support@{Profiling Support}}
+\subsubsection{\texorpdfstring{rtems\_profiling\_report\_xml()}{rtems\_profiling\_report\_xml()}}
+{\footnotesize\ttfamily int rtems\+\_\+profiling\+\_\+report\+\_\+xml (\begin{DoxyParamCaption}\item[{const char $\ast$}]{name,  }\item[{const \mbox{\hyperlink{structrtems__printer}{rtems\+\_\+printer}} $\ast$}]{printer,  }\item[{uint32\+\_\+t}]{indentation\+\_\+level,  }\item[{const char $\ast$}]{indentation }\end{DoxyParamCaption})}
+
+
+
+Reports profiling data as X\+ML. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em name} & The name of the profiling report. \\
+\hline
+\mbox{\texttt{ in}}  & {\em printer} & The R\+T\+E\+MS printer to send the output too. \\
+\hline
+\mbox{\texttt{ in}}  & {\em indentation\+\_\+level} & The current indentation level. \\
+\hline
+\mbox{\texttt{ in}}  & {\em indentation} & The string used for indentation.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+As specified by printf(). 
+\end{DoxyReturn}

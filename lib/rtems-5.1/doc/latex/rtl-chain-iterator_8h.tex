@@ -1,0 +1,79 @@
+\hypertarget{rtl-chain-iterator_8h}{}\section{cpukit/libdl/rtl-\/chain-\/iterator.h File Reference}
+\label{rtl-chain-iterator_8h}\index{cpukit/libdl/rtl-\/chain-\/iterator.h@{cpukit/libdl/rtl-\/chain-\/iterator.h}}
+
+
+R\+T\+E\+MS Run-\/\+Time Linker Chain Iterator.  
+
+
+{\ttfamily \#include $<$rtems/chain.\+h$>$}\newline
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef bool($\ast$ \mbox{\hyperlink{rtl-chain-iterator_8h_a4a6076e3f99c2cd93d4cec1b50199f45}{rtems\+\_\+chain\+\_\+iterator}}) (\mbox{\hyperlink{structChain__Node__struct}{rtems\+\_\+chain\+\_\+node}} $\ast$node, void $\ast$data)
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{rtl-chain-iterator_8h_aa16454dff4035ca37c6a6f68c4b4ce6b}{rtems\+\_\+rtl\+\_\+chain\+\_\+iterate}} (\mbox{\hyperlink{unionChain__Control}{rtems\+\_\+chain\+\_\+control}} $\ast$chain, \mbox{\hyperlink{rtl-chain-iterator_8h_a4a6076e3f99c2cd93d4cec1b50199f45}{rtems\+\_\+chain\+\_\+iterator}} iterator, void $\ast$data)
+\item 
+int \mbox{\hyperlink{rtl-chain-iterator_8h_abba44d4b003ea714cc986e27e454f76e}{rtems\+\_\+rtl\+\_\+chain\+\_\+count}} (\mbox{\hyperlink{unionChain__Control}{rtems\+\_\+chain\+\_\+control}} $\ast$chain)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+R\+T\+E\+MS Run-\/\+Time Linker Chain Iterator. 
+
+
+
+\subsection{Typedef Documentation}
+\mbox{\Hypertarget{rtl-chain-iterator_8h_a4a6076e3f99c2cd93d4cec1b50199f45}\label{rtl-chain-iterator_8h_a4a6076e3f99c2cd93d4cec1b50199f45}} 
+\index{rtl-\/chain-\/iterator.h@{rtl-\/chain-\/iterator.h}!rtems\_chain\_iterator@{rtems\_chain\_iterator}}
+\index{rtems\_chain\_iterator@{rtems\_chain\_iterator}!rtl-\/chain-\/iterator.h@{rtl-\/chain-\/iterator.h}}
+\subsubsection{\texorpdfstring{rtems\_chain\_iterator}{rtems\_chain\_iterator}}
+{\footnotesize\ttfamily typedef bool($\ast$ rtems\+\_\+chain\+\_\+iterator) (\mbox{\hyperlink{structChain__Node__struct}{rtems\+\_\+chain\+\_\+node}} $\ast$node, void $\ast$data)}
+
+Chain iterator handler. 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{rtl-chain-iterator_8h_abba44d4b003ea714cc986e27e454f76e}\label{rtl-chain-iterator_8h_abba44d4b003ea714cc986e27e454f76e}} 
+\index{rtl-\/chain-\/iterator.h@{rtl-\/chain-\/iterator.h}!rtems\_rtl\_chain\_count@{rtems\_rtl\_chain\_count}}
+\index{rtems\_rtl\_chain\_count@{rtems\_rtl\_chain\_count}!rtl-\/chain-\/iterator.h@{rtl-\/chain-\/iterator.h}}
+\subsubsection{\texorpdfstring{rtems\_rtl\_chain\_count()}{rtems\_rtl\_chain\_count()}}
+{\footnotesize\ttfamily int rtems\+\_\+rtl\+\_\+chain\+\_\+count (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{unionChain__Control}{rtems\+\_\+chain\+\_\+control}} $\ast$}]{chain }\end{DoxyParamCaption})}
+
+Count the number of nodes on the chain.
+
+
+\begin{DoxyParams}{Parameters}
+{\em chain} & The chain to count the nodes of. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int The number of nodes. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{rtl-chain-iterator_8h_aa16454dff4035ca37c6a6f68c4b4ce6b}\label{rtl-chain-iterator_8h_aa16454dff4035ca37c6a6f68c4b4ce6b}} 
+\index{rtl-\/chain-\/iterator.h@{rtl-\/chain-\/iterator.h}!rtems\_rtl\_chain\_iterate@{rtems\_rtl\_chain\_iterate}}
+\index{rtems\_rtl\_chain\_iterate@{rtems\_rtl\_chain\_iterate}!rtl-\/chain-\/iterator.h@{rtl-\/chain-\/iterator.h}}
+\subsubsection{\texorpdfstring{rtems\_rtl\_chain\_iterate()}{rtems\_rtl\_chain\_iterate()}}
+{\footnotesize\ttfamily bool rtems\+\_\+rtl\+\_\+chain\+\_\+iterate (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{unionChain__Control}{rtems\+\_\+chain\+\_\+control}} $\ast$}]{chain,  }\item[{\mbox{\hyperlink{rtl-chain-iterator_8h_a4a6076e3f99c2cd93d4cec1b50199f45}{rtems\+\_\+chain\+\_\+iterator}}}]{iterator,  }\item[{void $\ast$}]{data }\end{DoxyParamCaption})}
+
+Iterate a chain of nodes invoking the iterator handler. Supply a data pointer the iterator moves data between the invoker and the iterator.
+
+The iterator allows removal of the node from the chain.
+
+
+\begin{DoxyParams}{Parameters}
+{\em chain} & The chain of nodes to iterator over. \\
+\hline
+{\em iterator} & The iterator handler called once for each node. \\
+\hline
+{\em data} & Pointer to the data used by the iterator. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em true} & The whole chain was iterated over. \\
+\hline
+{\em false} & The iterator returned false. \\
+\hline
+\end{DoxyRetVals}

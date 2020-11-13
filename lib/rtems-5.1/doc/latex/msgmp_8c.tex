@@ -1,0 +1,91 @@
+\hypertarget{msgmp_8c}{}\section{cpukit/rtems/src/msgmp.c File Reference}
+\label{msgmp_8c}\index{cpukit/rtems/src/msgmp.c@{cpukit/rtems/src/msgmp.c}}
+
+
+Multiprocessing Support for the Message Queue Manager.  
+
+
+{\ttfamily \#include $<$rtems/rtems/messageimpl.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/rtems/optionsimpl.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/rtems/statusimpl.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/score/coremsgimpl.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/score/statesimpl.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/score/threadimpl.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/sysinit.\+h$>$}\newline
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{msgmp_8c_a92a6aba6fc5c0c4b4f8c386f6b03ce16}\label{msgmp_8c_a92a6aba6fc5c0c4b4f8c386f6b03ce16}} 
+{\bfseries R\+T\+E\+M\+S\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+A\+S\+S\+E\+RT} (M\+E\+S\+S\+A\+G\+E\+\_\+\+Q\+U\+E\+U\+E\+\_\+\+M\+P\+\_\+\+P\+A\+C\+K\+E\+T\+\_\+\+S\+I\+ZE$<$=\mbox{\hyperlink{group__RTEMSScoreMPPacket_gadb26ef7629e08a46b4d1caa3a61a6788}{M\+P\+\_\+\+P\+A\+C\+K\+E\+T\+\_\+\+M\+I\+N\+I\+M\+U\+M\+\_\+\+P\+A\+C\+K\+E\+T\+\_\+\+S\+I\+ZE}}, \mbox{\hyperlink{structMessage__queue__MP__Packet}{Message\+\_\+queue\+\_\+\+M\+P\+\_\+\+Packet}})
+\item 
+void \mbox{\hyperlink{msgmp_8c_a4985f5bb2bf91feb98d7755aa270535e}{\+\_\+\+Message\+\_\+queue\+\_\+\+M\+P\+\_\+\+Send\+\_\+process\+\_\+packet}} (\mbox{\hyperlink{msgmp_8h_ab00c9ba4b610c712affa6f7cd7e85399}{Message\+\_\+queue\+\_\+\+M\+P\+\_\+\+Remote\+\_\+operations}} operation, \mbox{\hyperlink{group__RTEMSScoreObject_ga5821f52a51072941bdd603e542d0863e}{Objects\+\_\+\+Id}} message\+\_\+queue\+\_\+id, \mbox{\hyperlink{group__ClassicTasks_ga55fb63c49f68c0cbd9bee004da15b1fd}{rtems\+\_\+name}} name, \mbox{\hyperlink{group__RTEMSScoreObject_ga5821f52a51072941bdd603e542d0863e}{Objects\+\_\+\+Id}} proxy\+\_\+id)
+\begin{DoxyCompactList}\small\item\em \+\_\+\+Message\+\_\+queue\+\_\+\+M\+P\+\_\+\+Send\+\_\+process\+\_\+packet \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{msgmp_8c_a659c786bcd070bca539e8f76711494ee}\label{msgmp_8c_a659c786bcd070bca539e8f76711494ee}} 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{msgmp_8c_a659c786bcd070bca539e8f76711494ee}{\+\_\+\+Message\+\_\+queue\+\_\+\+M\+P\+\_\+\+Broadcast}} (\mbox{\hyperlink{group__ClassicTasks_gab20892b814dced7dd4e5b9bf42becd57}{rtems\+\_\+id}} id, const void $\ast$buffer, size\+\_\+t \mbox{\hyperlink{sun4u_2tte_8h_a245260f6f74972558f61b85227df5aae}{size}}, uint32\+\_\+t $\ast$count)
+\begin{DoxyCompactList}\small\item\em Issues a remote \mbox{\hyperlink{group__ClassicMessageQueue_ga5759faf0197e089163a1005f343d8713}{rtems\+\_\+message\+\_\+queue\+\_\+broadcast()}} request. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{msgmp_8c_a9bac7845e0fec9614833a8efb9e2eee8}\label{msgmp_8c_a9bac7845e0fec9614833a8efb9e2eee8}} 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{msgmp_8c_a9bac7845e0fec9614833a8efb9e2eee8}{\+\_\+\+Message\+\_\+queue\+\_\+\+M\+P\+\_\+\+Flush}} (\mbox{\hyperlink{group__ClassicTasks_gab20892b814dced7dd4e5b9bf42becd57}{rtems\+\_\+id}} id, uint32\+\_\+t $\ast$count)
+\begin{DoxyCompactList}\small\item\em Issues a remote \mbox{\hyperlink{group__ClassicMessageQueue_ga8b97ede3b5602d6f5cca6229f96f27ee}{rtems\+\_\+message\+\_\+queue\+\_\+flush()}} request. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{msgmp_8c_af749a4807a607f70a53e582e62599b9e}\label{msgmp_8c_af749a4807a607f70a53e582e62599b9e}} 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{msgmp_8c_af749a4807a607f70a53e582e62599b9e}{\+\_\+\+Message\+\_\+queue\+\_\+\+M\+P\+\_\+\+Get\+\_\+number\+\_\+pending}} (\mbox{\hyperlink{group__ClassicTasks_gab20892b814dced7dd4e5b9bf42becd57}{rtems\+\_\+id}} id, uint32\+\_\+t $\ast$count)
+\begin{DoxyCompactList}\small\item\em Issues a remote \mbox{\hyperlink{group__ClassicMessageQueue_gacee875342933dcff59f9ed66232cdce8}{rtems\+\_\+message\+\_\+queue\+\_\+get\+\_\+number\+\_\+pending()}} request. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{msgmp_8c_a3ccb41517aa56020876eb9cd576b98b3}\label{msgmp_8c_a3ccb41517aa56020876eb9cd576b98b3}} 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{msgmp_8c_a3ccb41517aa56020876eb9cd576b98b3}{\+\_\+\+Message\+\_\+queue\+\_\+\+M\+P\+\_\+\+Receive}} (\mbox{\hyperlink{group__ClassicTasks_gab20892b814dced7dd4e5b9bf42becd57}{rtems\+\_\+id}} id, void $\ast$buffer, size\+\_\+t $\ast$\mbox{\hyperlink{sun4u_2tte_8h_a245260f6f74972558f61b85227df5aae}{size}}, \mbox{\hyperlink{group__ClassicOptions_gad26685eb0e60a9650082935c31920e29}{rtems\+\_\+option}} option\+\_\+set, \mbox{\hyperlink{group__ClassicTasks_gad39c43f949683d46874e3a5586b93aee}{rtems\+\_\+interval}} timeout)
+\begin{DoxyCompactList}\small\item\em Issues a remote \mbox{\hyperlink{group__ClassicMessageQueue_ga98cd2c142b9a2d7d58625d1ad4db5a15}{rtems\+\_\+message\+\_\+queue\+\_\+receive()}} request. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{msgmp_8c_a48bacc358ed0b5848a33992fccee8f1f}\label{msgmp_8c_a48bacc358ed0b5848a33992fccee8f1f}} 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{msgmp_8c_a48bacc358ed0b5848a33992fccee8f1f}{\+\_\+\+Message\+\_\+queue\+\_\+\+M\+P\+\_\+\+Send}} (\mbox{\hyperlink{group__ClassicTasks_gab20892b814dced7dd4e5b9bf42becd57}{rtems\+\_\+id}} id, const void $\ast$buffer, size\+\_\+t \mbox{\hyperlink{sun4u_2tte_8h_a245260f6f74972558f61b85227df5aae}{size}})
+\begin{DoxyCompactList}\small\item\em Issues a remote \mbox{\hyperlink{group__ClassicMessageQueue_ga24f00538a0bb3a18bc34f18824b34a09}{rtems\+\_\+message\+\_\+queue\+\_\+send()}} request. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{msgmp_8c_aa7294b81f5700dd858fb6ec31cb7893d}\label{msgmp_8c_aa7294b81f5700dd858fb6ec31cb7893d}} 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{msgmp_8c_aa7294b81f5700dd858fb6ec31cb7893d}{\+\_\+\+Message\+\_\+queue\+\_\+\+M\+P\+\_\+\+Urgent}} (\mbox{\hyperlink{group__ClassicTasks_gab20892b814dced7dd4e5b9bf42becd57}{rtems\+\_\+id}} id, const void $\ast$buffer, size\+\_\+t \mbox{\hyperlink{sun4u_2tte_8h_a245260f6f74972558f61b85227df5aae}{size}})
+\begin{DoxyCompactList}\small\item\em Issues a remote \mbox{\hyperlink{group__ClassicMessageQueue_gadd7dd2cc192e6a9384f1b9aed9501e8c}{rtems\+\_\+message\+\_\+queue\+\_\+urgent()}} request. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{msgmp_8c_a05f61e0f9029e612b490d480bc68b68b}{\+\_\+\+Message\+\_\+queue\+\_\+\+M\+P\+\_\+\+Send\+\_\+object\+\_\+was\+\_\+deleted}} (\mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$the\+\_\+proxy, \mbox{\hyperlink{group__RTEMSScoreObject_ga5821f52a51072941bdd603e542d0863e}{Objects\+\_\+\+Id}} mp\+\_\+id)
+\begin{DoxyCompactList}\small\item\em \+\_\+\+Message\+\_\+queue\+\_\+\+M\+P\+\_\+\+Send\+\_\+object\+\_\+was\+\_\+deleted \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{msgmp_8c_a57066eaaa984f51ee732b7d07f702a26}\label{msgmp_8c_a57066eaaa984f51ee732b7d07f702a26}} 
+void {\bfseries \+\_\+\+Message\+\_\+queue\+\_\+\+M\+P\+\_\+\+Send\+\_\+extract\+\_\+proxy} (\mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$the\+\_\+thread, \mbox{\hyperlink{group__RTEMSScoreObject_ga5821f52a51072941bdd603e542d0863e}{Objects\+\_\+\+Id}} id)
+\item 
+void \mbox{\hyperlink{msgmp_8c_a4eb0889bfec16ade7ef1299055cb71c3}{\+\_\+\+Message\+\_\+queue\+\_\+\+Core\+\_\+message\+\_\+queue\+\_\+mp\+\_\+support}} (\mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$the\+\_\+thread, \mbox{\hyperlink{group__RTEMSScoreObject_ga5821f52a51072941bdd603e542d0863e}{Objects\+\_\+\+Id}} id)
+\begin{DoxyCompactList}\small\item\em Message\+\_\+queue\+\_\+\+Core\+\_\+message\+\_\+queue\+\_\+mp\+\_\+support. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{msgmp_8c_a06e085b640532fee64c2cac85c955eb5}\label{msgmp_8c_a06e085b640532fee64c2cac85c955eb5}} 
+{\bfseries R\+T\+E\+M\+S\+\_\+\+S\+Y\+S\+I\+N\+I\+T\+\_\+\+I\+T\+EM} (\+\_\+\+Message\+\_\+queue\+\_\+\+M\+P\+\_\+\+Initialize, R\+T\+E\+M\+S\+\_\+\+S\+Y\+S\+I\+N\+I\+T\+\_\+\+C\+L\+A\+S\+S\+I\+C\+\_\+\+M\+E\+S\+S\+A\+G\+E\+\_\+\+Q\+U\+E\+U\+E\+\_\+\+MP, R\+T\+E\+M\+S\+\_\+\+S\+Y\+S\+I\+N\+I\+T\+\_\+\+O\+R\+D\+E\+R\+\_\+\+M\+I\+D\+D\+LE)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Multiprocessing Support for the Message Queue Manager. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{msgmp_8c_a4eb0889bfec16ade7ef1299055cb71c3}\label{msgmp_8c_a4eb0889bfec16ade7ef1299055cb71c3}} 
+\index{msgmp.c@{msgmp.c}!\_Message\_queue\_Core\_message\_queue\_mp\_support@{\_Message\_queue\_Core\_message\_queue\_mp\_support}}
+\index{\_Message\_queue\_Core\_message\_queue\_mp\_support@{\_Message\_queue\_Core\_message\_queue\_mp\_support}!msgmp.c@{msgmp.c}}
+\subsubsection{\texorpdfstring{\_Message\_queue\_Core\_message\_queue\_mp\_support()}{\_Message\_queue\_Core\_message\_queue\_mp\_support()}}
+{\footnotesize\ttfamily void \+\_\+\+Message\+\_\+queue\+\_\+\+Core\+\_\+message\+\_\+queue\+\_\+mp\+\_\+support (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$}]{the\+\_\+thread,  }\item[{\mbox{\hyperlink{group__ClassicTasks_gab20892b814dced7dd4e5b9bf42becd57}{rtems\+\_\+id}}}]{id }\end{DoxyParamCaption})}
+
+
+
+Message\+\_\+queue\+\_\+\+Core\+\_\+message\+\_\+queue\+\_\+mp\+\_\+support. 
+
+Input parameters\+: the\+\_\+thread -\/ the remote thread the message was submitted to id -\/ id of the message queue
+
+Output parameters\+: N\+O\+NE \mbox{\Hypertarget{msgmp_8c_a05f61e0f9029e612b490d480bc68b68b}\label{msgmp_8c_a05f61e0f9029e612b490d480bc68b68b}} 
+\index{msgmp.c@{msgmp.c}!\_Message\_queue\_MP\_Send\_object\_was\_deleted@{\_Message\_queue\_MP\_Send\_object\_was\_deleted}}
+\index{\_Message\_queue\_MP\_Send\_object\_was\_deleted@{\_Message\_queue\_MP\_Send\_object\_was\_deleted}!msgmp.c@{msgmp.c}}
+\subsubsection{\texorpdfstring{\_Message\_queue\_MP\_Send\_object\_was\_deleted()}{\_Message\_queue\_MP\_Send\_object\_was\_deleted()}}
+{\footnotesize\ttfamily void \+\_\+\+Message\+\_\+queue\+\_\+\+M\+P\+\_\+\+Send\+\_\+object\+\_\+was\+\_\+deleted (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$}]{the\+\_\+proxy,  }\item[{\mbox{\hyperlink{group__RTEMSScoreObject_ga5821f52a51072941bdd603e542d0863e}{Objects\+\_\+\+Id}}}]{mp\+\_\+id }\end{DoxyParamCaption})}
+
+
+
+\+\_\+\+Message\+\_\+queue\+\_\+\+M\+P\+\_\+\+Send\+\_\+object\+\_\+was\+\_\+deleted 
+
+This routine is invoked indirectly by the thread queue when a proxy has been removed from the thread queue and the remote node must be informed of this. \mbox{\Hypertarget{msgmp_8c_a4985f5bb2bf91feb98d7755aa270535e}\label{msgmp_8c_a4985f5bb2bf91feb98d7755aa270535e}} 
+\index{msgmp.c@{msgmp.c}!\_Message\_queue\_MP\_Send\_process\_packet@{\_Message\_queue\_MP\_Send\_process\_packet}}
+\index{\_Message\_queue\_MP\_Send\_process\_packet@{\_Message\_queue\_MP\_Send\_process\_packet}!msgmp.c@{msgmp.c}}
+\subsubsection{\texorpdfstring{\_Message\_queue\_MP\_Send\_process\_packet()}{\_Message\_queue\_MP\_Send\_process\_packet()}}
+{\footnotesize\ttfamily void \+\_\+\+Message\+\_\+queue\+\_\+\+M\+P\+\_\+\+Send\+\_\+process\+\_\+packet (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{msgmp_8h_ab00c9ba4b610c712affa6f7cd7e85399}{Message\+\_\+queue\+\_\+\+M\+P\+\_\+\+Remote\+\_\+operations}}}]{operation,  }\item[{\mbox{\hyperlink{group__RTEMSScoreObject_ga5821f52a51072941bdd603e542d0863e}{Objects\+\_\+\+Id}}}]{message\+\_\+queue\+\_\+id,  }\item[{\mbox{\hyperlink{group__ClassicTasks_ga55fb63c49f68c0cbd9bee004da15b1fd}{rtems\+\_\+name}}}]{name,  }\item[{\mbox{\hyperlink{group__RTEMSScoreObject_ga5821f52a51072941bdd603e542d0863e}{Objects\+\_\+\+Id}}}]{proxy\+\_\+id }\end{DoxyParamCaption})}
+
+
+
+\+\_\+\+Message\+\_\+queue\+\_\+\+M\+P\+\_\+\+Send\+\_\+process\+\_\+packet 
+
+This routine performs a remote procedure call so that a process operation can be performed on another node. 

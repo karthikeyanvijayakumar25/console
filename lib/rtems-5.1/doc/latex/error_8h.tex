@@ -1,0 +1,130 @@
+\hypertarget{error_8h}{}\section{cpukit/include/rtems/error.h File Reference}
+\label{error_8h}\index{cpukit/include/rtems/error.h@{cpukit/include/rtems/error.h}}
+
+
+R\+T\+E\+MS Error Reporting.  
+
+
+{\ttfamily \#include $<$rtems/rtems/status.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/fatal.\+h$>$}\newline
+{\ttfamily \#include $<$stdarg.\+h$>$}\newline
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{error_8h_a17e91358d206dda4c63e104fe6def401}\label{error_8h_a17e91358d206dda4c63e104fe6def401}} 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+E\+R\+R\+O\+R\+\_\+\+E\+R\+R\+NO}~(0x40000000) /$\ast$ hi bit; use \textquotesingle{}errno\textquotesingle{} $\ast$/
+\item 
+\mbox{\Hypertarget{error_8h_ad56cbc038e54483b26df94319f673157}\label{error_8h_ad56cbc038e54483b26df94319f673157}} 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+E\+R\+R\+O\+R\+\_\+\+P\+A\+N\+IC}~(0x20000000) /$\ast$ err fatal; no return $\ast$/
+\item 
+\mbox{\Hypertarget{error_8h_a0d02f4b1f8beae741410723a1065676c}\label{error_8h_a0d02f4b1f8beae741410723a1065676c}} 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+E\+R\+R\+O\+R\+\_\+\+A\+B\+O\+RT}~(0x10000000) /$\ast$ err is fatal; panic $\ast$/
+\item 
+\mbox{\Hypertarget{error_8h_a49bdafd31cacf1e9782ea11cb5dc172d}\label{error_8h_a49bdafd31cacf1e9782ea11cb5dc172d}} 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+E\+R\+R\+O\+R\+\_\+\+M\+A\+SK}~(R\+T\+E\+M\+S\+\_\+\+E\+R\+R\+O\+R\+\_\+\+E\+R\+R\+NO $\vert$ R\+T\+E\+M\+S\+\_\+\+E\+R\+R\+O\+R\+\_\+\+A\+B\+O\+RT $\vert$ R\+T\+E\+M\+S\+\_\+\+E\+R\+R\+O\+R\+\_\+\+P\+A\+N\+IC) /$\ast$ all $\ast$/
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{error_8h_a39b9f5189a751cd6bdb04d82ee505729}\label{error_8h_a39b9f5189a751cd6bdb04d82ee505729}} 
+typedef Internal\+\_\+errors\+\_\+t {\bfseries rtems\+\_\+error\+\_\+code\+\_\+t}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{error_8h_ab40b8b96628d3433d76c22be55194d0e}{rtems\+\_\+error}} (rtems\+\_\+error\+\_\+code\+\_\+t error\+\_\+code, const char $\ast$printf\+\_\+format,...)
+\begin{DoxyCompactList}\small\item\em Report an Error. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{error_8h_a35b38794d399a404ea06c798af5f68ee}{rtems\+\_\+verror}} (rtems\+\_\+error\+\_\+code\+\_\+t error\+\_\+code, const char $\ast$printf\+\_\+format, va\+\_\+list arglist)
+\begin{DoxyCompactList}\small\item\em Report an Error. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{error_8h_a81c87d4a85e540eea1a030e602c61ac1}\label{error_8h_a81c87d4a85e540eea1a030e602c61ac1}} 
+int {\bfseries rtems\+\_\+panic\+\_\+in\+\_\+progress}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+R\+T\+E\+MS Error Reporting. 
+
+Defines and externs for rtems error reporting
+
+These routines provide general purpose error reporting. rtems\+\_\+error reports an error to stderr and allows use of printf style formatting. A newline is appended to all messages.
+
+error\+\_\+flag can be specified as any of the following\+:
+
+R\+T\+E\+M\+S\+\_\+\+E\+R\+R\+O\+R\+\_\+\+E\+R\+R\+NO -- include errno text in output R\+T\+E\+M\+S\+\_\+\+E\+R\+R\+O\+R\+\_\+\+P\+A\+N\+IC -- halts local system after output R\+T\+E\+M\+S\+\_\+\+E\+R\+R\+O\+R\+\_\+\+A\+B\+O\+RT -- abort after output
+
+It can also include a rtems\+\_\+status value which can be OR\textquotesingle{}d with the above flags. $\ast$
+
+Example 1\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include <\mbox{\hyperlink{rtems_8h}{rtems.h}}>}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include <\mbox{\hyperlink{error_8h}{rtems/error.h}}>}}
+\DoxyCodeLine{\mbox{\hyperlink{error_8h_ab40b8b96628d3433d76c22be55194d0e}{rtems\_error}}(0, \textcolor{stringliteral}{"stray interrupt \%d"}, intr);}
+\end{DoxyCode}
+
+
+Example 2\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{if} ((status = \mbox{\hyperlink{group__ClassicTasks_gabffda1c2301962f0ae5af042ac0bba62}{rtems\_task\_create}}(...)) != RTEMS\_SUCCCESSFUL)}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{    \mbox{\hyperlink{error_8h_ab40b8b96628d3433d76c22be55194d0e}{rtems\_error}}(status | RTEMS\_ERROR\_ABORT,}
+\DoxyCodeLine{                \textcolor{stringliteral}{"could not create task"});}
+\DoxyCodeLine{\}}
+\end{DoxyCode}
+
+
+Example 3\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{if} ((fd = \mbox{\hyperlink{open_8c_a62e93eb794fed24c0f46c6acda6ea510}{open}}(pathname, O\_RDNLY)) < 0)}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{    \mbox{\hyperlink{error_8h_ab40b8b96628d3433d76c22be55194d0e}{rtems\_error}}(RTEMS\_ERROR\_ERRNO, \textcolor{stringliteral}{"open of '\%s' failed"}, pathname);}
+\DoxyCodeLine{    \textcolor{keywordflow}{goto} failed;}
+\DoxyCodeLine{\}}
+\end{DoxyCode}
+ 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{error_8h_ab40b8b96628d3433d76c22be55194d0e}\label{error_8h_ab40b8b96628d3433d76c22be55194d0e}} 
+\index{error.h@{error.h}!rtems\_error@{rtems\_error}}
+\index{rtems\_error@{rtems\_error}!error.h@{error.h}}
+\subsubsection{\texorpdfstring{rtems\_error()}{rtems\_error()}}
+{\footnotesize\ttfamily int rtems\+\_\+error (\begin{DoxyParamCaption}\item[{rtems\+\_\+error\+\_\+code\+\_\+t}]{error\+\_\+code,  }\item[{const char $\ast$}]{printf\+\_\+format,  }\item[{}]{... }\end{DoxyParamCaption})}
+
+
+
+Report an Error. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em error\+\_\+code} & can be specified as any of the following\+: R\+T\+E\+M\+S\+\_\+\+E\+R\+R\+O\+R\+\_\+\+E\+R\+R\+NO -- include errno text in output R\+T\+E\+M\+S\+\_\+\+E\+R\+R\+O\+R\+\_\+\+P\+A\+N\+IC -- halts local system after output R\+T\+E\+M\+S\+\_\+\+E\+R\+R\+O\+R\+\_\+\+A\+B\+O\+RT -- abort after output\\
+\hline
+\mbox{\texttt{ in}}  & {\em printf\+\_\+format} & is a normal printf(3) format string, with its concommitant arguments\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the number of characters written. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{error_8h_a35b38794d399a404ea06c798af5f68ee}\label{error_8h_a35b38794d399a404ea06c798af5f68ee}} 
+\index{error.h@{error.h}!rtems\_verror@{rtems\_verror}}
+\index{rtems\_verror@{rtems\_verror}!error.h@{error.h}}
+\subsubsection{\texorpdfstring{rtems\_verror()}{rtems\_verror()}}
+{\footnotesize\ttfamily int rtems\+\_\+verror (\begin{DoxyParamCaption}\item[{rtems\+\_\+error\+\_\+code\+\_\+t}]{error\+\_\+code,  }\item[{const char $\ast$}]{printf\+\_\+format,  }\item[{va\+\_\+list}]{arglist }\end{DoxyParamCaption})}
+
+
+
+Report an Error. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em error\+\_\+code} & can be specified as any of the following\+: R\+T\+E\+M\+S\+\_\+\+E\+R\+R\+O\+R\+\_\+\+E\+R\+R\+NO -- include errno text in output R\+T\+E\+M\+S\+\_\+\+E\+R\+R\+O\+R\+\_\+\+P\+A\+N\+IC -- halts local system after output R\+T\+E\+M\+S\+\_\+\+E\+R\+R\+O\+R\+\_\+\+A\+B\+O\+RT -- abort after output\\
+\hline
+\mbox{\texttt{ in}}  & {\em printf\+\_\+format} & is a normal printf(3) format string, with its concommitant arguments \\
+\hline
+\mbox{\texttt{ in}}  & {\em arglist} & is a varargs list corresponding to printf\+\_\+format\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the number of characters written. 
+\end{DoxyReturn}

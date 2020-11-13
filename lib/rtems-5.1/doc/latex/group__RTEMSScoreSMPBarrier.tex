@@ -1,0 +1,67 @@
+\hypertarget{group__RTEMSScoreSMPBarrier}{}\section{S\+MP Barriers}
+\label{group__RTEMSScoreSMPBarrier}\index{SMP Barriers@{SMP Barriers}}
+
+
+The S\+MP barrier provides barrier synchronization for S\+MP systems at the lowest level.  
+
+
+\subsection*{Files}
+\begin{DoxyCompactItemize}
+\item 
+file \mbox{\hyperlink{smpbarrier_8h}{smpbarrier.\+h}}
+\begin{DoxyCompactList}\small\item\em S\+MP Barrier A\+PI. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structSMP__barrier__Control}{S\+M\+P\+\_\+barrier\+\_\+\+Control}}
+\begin{DoxyCompactList}\small\item\em S\+MP barrier control. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structSMP__barrier__State}{S\+M\+P\+\_\+barrier\+\_\+\+State}}
+\begin{DoxyCompactList}\small\item\em S\+MP barrier per-\/thread state. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{group__RTEMSScoreSMPBarrier_gaf39e68ef5020db42cd1556e97147a1ce}\label{group__RTEMSScoreSMPBarrier_gaf39e68ef5020db42cd1556e97147a1ce}} 
+\#define \mbox{\hyperlink{group__RTEMSScoreSMPBarrier_gaf39e68ef5020db42cd1556e97147a1ce}{S\+M\+P\+\_\+\+B\+A\+R\+R\+I\+E\+R\+\_\+\+C\+O\+N\+T\+R\+O\+L\+\_\+\+I\+N\+I\+T\+I\+A\+L\+I\+Z\+ER}}~\{ A\+T\+O\+M\+I\+C\+\_\+\+I\+N\+I\+T\+I\+A\+L\+I\+Z\+E\+R\+\_\+\+U\+I\+NT( 0\+U ), A\+T\+O\+M\+I\+C\+\_\+\+I\+N\+I\+T\+I\+A\+L\+I\+Z\+E\+R\+\_\+\+U\+I\+N\+T( 0\+U ) \}
+\begin{DoxyCompactList}\small\item\em S\+MP barrier control initializer for static initialization. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__RTEMSScoreSMPBarrier_gafea025be33ce25ee0a6343956087604f}\label{group__RTEMSScoreSMPBarrier_gafea025be33ce25ee0a6343956087604f}} 
+\#define \mbox{\hyperlink{group__RTEMSScoreSMPBarrier_gafea025be33ce25ee0a6343956087604f}{S\+M\+P\+\_\+\+B\+A\+R\+R\+I\+E\+R\+\_\+\+S\+T\+A\+T\+E\+\_\+\+I\+N\+I\+T\+I\+A\+L\+I\+Z\+ER}}~\{ 0\+U \}
+\begin{DoxyCompactList}\small\item\em S\+MP barrier per-\/thread state initializer for static initialization. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{group__RTEMSScoreSMPBarrier_ga329273596615cb2e6bdaaf6f5278d54f}{\+\_\+\+S\+M\+P\+\_\+barrier\+\_\+\+Wait}} (\mbox{\hyperlink{structSMP__barrier__Control}{S\+M\+P\+\_\+barrier\+\_\+\+Control}} $\ast$\mbox{\hyperlink{structcontrol}{control}}, \mbox{\hyperlink{structSMP__barrier__State}{S\+M\+P\+\_\+barrier\+\_\+\+State}} $\ast$state, unsigned int count)
+\begin{DoxyCompactList}\small\item\em Waits on the S\+MP barrier until count threads rendezvoused. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+The S\+MP barrier provides barrier synchronization for S\+MP systems at the lowest level. 
+
+The S\+MP barrier is implemented as a sense barrier, see also Herlihy and Shavit, \char`\"{}\+The Art of Multiprocessor Programming\char`\"{}, 17.\+3 Sense-\/\+Reversing Barrier. 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{group__RTEMSScoreSMPBarrier_ga329273596615cb2e6bdaaf6f5278d54f}\label{group__RTEMSScoreSMPBarrier_ga329273596615cb2e6bdaaf6f5278d54f}} 
+\index{SMP Barriers@{SMP Barriers}!\_SMP\_barrier\_Wait@{\_SMP\_barrier\_Wait}}
+\index{\_SMP\_barrier\_Wait@{\_SMP\_barrier\_Wait}!SMP Barriers@{SMP Barriers}}
+\subsubsection{\texorpdfstring{\_SMP\_barrier\_Wait()}{\_SMP\_barrier\_Wait()}}
+{\footnotesize\ttfamily bool \+\_\+\+S\+M\+P\+\_\+barrier\+\_\+\+Wait (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structSMP__barrier__Control}{S\+M\+P\+\_\+barrier\+\_\+\+Control}} $\ast$}]{control,  }\item[{\mbox{\hyperlink{structSMP__barrier__State}{S\+M\+P\+\_\+barrier\+\_\+\+State}} $\ast$}]{state,  }\item[{unsigned int}]{count }\end{DoxyParamCaption})}
+
+
+
+Waits on the S\+MP barrier until count threads rendezvoused. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em control} & The S\+MP barrier control. \\
+\hline
+\mbox{\texttt{ in,out}}  & {\em state} & The S\+MP barrier per-\/thread state. \\
+\hline
+ & {\em count} & The thread count bound to rendezvous.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em true} & This processor performed the barrier release. \\
+\hline
+{\em false} & This processor did not performe the barrier release. \\
+\hline
+\end{DoxyRetVals}

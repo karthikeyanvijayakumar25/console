@@ -1,0 +1,288 @@
+\hypertarget{rpcio_8c}{}\section{cpukit/libfs/src/nfsclient/src/rpcio.c File Reference}
+\label{rpcio_8c}\index{cpukit/libfs/src/nfsclient/src/rpcio.c@{cpukit/libfs/src/nfsclient/src/rpcio.c}}
+
+
+R\+PC Multiplexor for a Multitasking Environment.  
+
+
+{\ttfamily \#include $<$inttypes.\+h$>$}\newline
+{\ttfamily \#include $<$rtems.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/error.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/rtems\+\_\+bsdnet.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/thread.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$time.\+h$>$}\newline
+{\ttfamily \#include $<$rpc/rpc.\+h$>$}\newline
+{\ttfamily \#include $<$rpc/pmap\+\_\+prot.\+h$>$}\newline
+{\ttfamily \#include $<$errno.\+h$>$}\newline
+{\ttfamily \#include $<$sys/ioctl.\+h$>$}\newline
+{\ttfamily \#include $<$assert.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$netinet/in.\+h$>$}\newline
+{\ttfamily \#include $<$arpa/inet.\+h$>$}\newline
+{\ttfamily \#include $<$sys/cpuset.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}rpcio.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}nfsclient-\/private.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$sys/mbuf.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/rtems\+\_\+bsdnet\+\_\+internal.\+h$>$}\newline
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structListNodeRec__}{List\+Node\+Rec\+\_\+}}
+\item 
+struct \mbox{\hyperlink{structRpcUdpServerRec__}{Rpc\+Udp\+Server\+Rec\+\_\+}}
+\item 
+union \mbox{\hyperlink{unionRpcBufU__}{Rpc\+Buf\+U\+\_\+}}
+\item 
+struct \mbox{\hyperlink{structRpcUdpXactRec__}{Rpc\+Udp\+Xact\+Rec\+\_\+}}
+\item 
+struct \mbox{\hyperlink{structRpcUdpXactPoolRec__}{Rpc\+Udp\+Xact\+Pool\+Rec\+\_\+}}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bfseries M\+B\+U\+F\+\_\+\+RX}
+\item 
+\#define {\bfseries M\+B\+U\+F\+\_\+\+TX}
+\item 
+\mbox{\Hypertarget{rpcio_8c_ace0258f92e80a3400268db61eaef572f}\label{rpcio_8c_ace0258f92e80a3400268db61eaef572f}} 
+\#define {\bfseries R\+P\+C\+I\+O\+D\+\_\+\+S\+T\+A\+CK}~10000
+\item 
+\mbox{\Hypertarget{rpcio_8c_aa269c0ddbac81855025c0ad5c73c40d9}\label{rpcio_8c_aa269c0ddbac81855025c0ad5c73c40d9}} 
+\#define {\bfseries R\+P\+C\+I\+O\+D\+\_\+\+P\+R\+IO}~100	/$\ast$ $\ast$fallback$\ast$ priority $\ast$/
+\item 
+\mbox{\Hypertarget{rpcio_8c_a4419b22acc6b4c107104f5d19dbe4e98}\label{rpcio_8c_a4419b22acc6b4c107104f5d19dbe4e98}} 
+\#define {\bfseries R\+P\+C\+I\+O\+D\+\_\+\+Q\+D\+E\+P\+TH}~20
+\item 
+\mbox{\Hypertarget{rpcio_8c_a1e74c71f221f8a514c3cf12ee7658175}\label{rpcio_8c_a1e74c71f221f8a514c3cf12ee7658175}} 
+\#define {\bfseries R\+P\+C\+I\+O\+D\+\_\+\+R\+E\+T\+X\+\_\+\+C\+A\+P\+\_\+S}~3 /$\ast$ seconds $\ast$/
+\item 
+\mbox{\Hypertarget{rpcio_8c_ad93a3076cac261d3be21502abb782b0e}\label{rpcio_8c_ad93a3076cac261d3be21502abb782b0e}} 
+\#define {\bfseries R\+P\+C\+I\+O\+D\+\_\+\+D\+E\+F\+A\+U\+L\+T\+\_\+\+T\+I\+M\+E\+O\+UT}~(\&\+\_\+rpc\+\_\+default\+\_\+timeout)
+\item 
+\mbox{\Hypertarget{rpcio_8c_a1f16fd10c6b2471794fb7a66114fe45f}\label{rpcio_8c_a1f16fd10c6b2471794fb7a66114fe45f}} 
+\#define {\bfseries R\+P\+C\+I\+O\+D\+\_\+\+R\+E\+F\+R\+E\+SH}~2
+\item 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+R\+P\+C\+\_\+\+E\+V\+E\+NT}
+\item 
+\mbox{\Hypertarget{rpcio_8c_a2128f765af9d2f11d5c5bc036227c4ba}\label{rpcio_8c_a2128f765af9d2f11d5c5bc036227c4ba}} 
+\#define {\bfseries R\+P\+C\+I\+O\+D\+\_\+\+R\+X\+\_\+\+E\+V\+E\+NT}~\mbox{\hyperlink{group__ClassicEventSet_ga9f027021d0070d4f9e35cccb41029e2d}{R\+T\+E\+M\+S\+\_\+\+E\+V\+E\+N\+T\+\_\+1}}	/$\ast$ Events the R\+P\+C\+I\+OD is using/waiting for $\ast$/
+\item 
+\mbox{\Hypertarget{rpcio_8c_a9325e6767cb853e3fcd447819e752b4e}\label{rpcio_8c_a9325e6767cb853e3fcd447819e752b4e}} 
+\#define {\bfseries R\+P\+C\+I\+O\+D\+\_\+\+T\+X\+\_\+\+E\+V\+E\+NT}~\mbox{\hyperlink{group__ClassicEventSet_gabe43c4a86241e31321b3cfe70045dca6}{R\+T\+E\+M\+S\+\_\+\+E\+V\+E\+N\+T\+\_\+2}}
+\item 
+\mbox{\Hypertarget{rpcio_8c_a896916c90799f6b1484000983c5027fe}\label{rpcio_8c_a896916c90799f6b1484000983c5027fe}} 
+\#define {\bfseries R\+P\+C\+I\+O\+D\+\_\+\+K\+I\+L\+L\+\_\+\+E\+V\+E\+NT}~\mbox{\hyperlink{group__ClassicEventSet_ga59fb1c14abb8996e91c0cbf3276be503}{R\+T\+E\+M\+S\+\_\+\+E\+V\+E\+N\+T\+\_\+3}}	/$\ast$ send to the daemon to kill it          $\ast$/
+\item 
+\mbox{\Hypertarget{rpcio_8c_af68984ddab866d32557a47026e4a2f5c}\label{rpcio_8c_af68984ddab866d32557a47026e4a2f5c}} 
+\#define {\bfseries L\+D\+\_\+\+X\+A\+C\+T\+\_\+\+H\+A\+SH}~8				/$\ast$ ld of the \mbox{\hyperlink{sun4u_2tte_8h_a245260f6f74972558f61b85227df5aae}{size}} of the transaction hash table  $\ast$/
+\item 
+\mbox{\Hypertarget{rpcio_8c_a7999e5413c19653295c138ced8c8eb8e}\label{rpcio_8c_a7999e5413c19653295c138ced8c8eb8e}} 
+\#define {\bfseries D\+E\+B\+U\+G\+\_\+\+T\+R\+A\+C\+E\+\_\+\+X\+A\+CT}~(1$<$$<$0)
+\item 
+\mbox{\Hypertarget{rpcio_8c_a133d8993848d3fa2c41270511f133eb7}\label{rpcio_8c_a133d8993848d3fa2c41270511f133eb7}} 
+\#define {\bfseries D\+E\+B\+U\+G\+\_\+\+E\+V\+E\+N\+TS}~(1$<$$<$1)
+\item 
+\mbox{\Hypertarget{rpcio_8c_abba9671b92b29e61edd8101571604c94}\label{rpcio_8c_abba9671b92b29e61edd8101571604c94}} 
+\#define {\bfseries D\+E\+B\+U\+G\+\_\+\+M\+A\+L\+L\+OC}~(1$<$$<$2)
+\item 
+\mbox{\Hypertarget{rpcio_8c_a907f05192f20345402ba2d5ca1e475e6}\label{rpcio_8c_a907f05192f20345402ba2d5ca1e475e6}} 
+\#define {\bfseries D\+E\+B\+U\+G\+\_\+\+T\+I\+M\+E\+O\+UT}~(1$<$$<$3)
+\item 
+\mbox{\Hypertarget{rpcio_8c_a52e7ee5cb5102b4fce31ac5ac5179c17}\label{rpcio_8c_a52e7ee5cb5102b4fce31ac5ac5179c17}} 
+\#define {\bfseries D\+E\+B\+U\+G\+\_\+\+P\+A\+C\+K\+L\+O\+SS}~(1$<$$<$4)	/$\ast$ This introduces random, artificial \mbox{\hyperlink{structpacket}{packet}} losses to test retransmission $\ast$/
+\item 
+\mbox{\Hypertarget{rpcio_8c_a54d49c6700b09dc0dacf1dd836001ce9}\label{rpcio_8c_a54d49c6700b09dc0dacf1dd836001ce9}} 
+\#define {\bfseries D\+E\+B\+U\+G\+\_\+\+P\+A\+C\+K\+L\+O\+S\+S\+\_\+\+F\+R\+A\+CT}~(0xffffffff/10)
+\item 
+\mbox{\Hypertarget{rpcio_8c_ad72dbcf6d0153db1b8d8a58001feed83}\label{rpcio_8c_ad72dbcf6d0153db1b8d8a58001feed83}} 
+\#define {\bfseries D\+E\+B\+UG}~(0)
+\item 
+\mbox{\Hypertarget{rpcio_8c_a0b2290f47ac596fa24e320d2cc32c9e0}\label{rpcio_8c_a0b2290f47ac596fa24e320d2cc32c9e0}} 
+\#define {\bfseries R\+P\+C\+I\+O\+D\+\_\+\+E\+P\+O\+C\+H\+\_\+\+S\+E\+CS}~10000
+\item 
+\mbox{\Hypertarget{rpcio_8c_a2207e97d8d90434d1fc63a6501f8bba0}\label{rpcio_8c_a2207e97d8d90434d1fc63a6501f8bba0}} 
+\#define {\bfseries A\+S\+S\+E\+RT}(arg)~assert(arg)
+\item 
+\mbox{\Hypertarget{rpcio_8c_aec17f4b15ebbf96c4732ea62dd3d519a}\label{rpcio_8c_aec17f4b15ebbf96c4732ea62dd3d519a}} 
+\#define {\bfseries X\+A\+C\+T\+\_\+\+H\+A\+S\+HS}~(1$<$$<$(L\+D\+\_\+\+X\+A\+C\+T\+\_\+\+H\+A\+SH))	/$\ast$ the hash table \mbox{\hyperlink{sun4u_2tte_8h_a245260f6f74972558f61b85227df5aae}{size}} derived from the ld       $\ast$/
+\item 
+\mbox{\Hypertarget{rpcio_8c_a85ce4f42ce25ce91e51502bd9e65dc6e}\label{rpcio_8c_a85ce4f42ce25ce91e51502bd9e65dc6e}} 
+\#define {\bfseries X\+A\+C\+T\+\_\+\+H\+A\+S\+H\+\_\+\+M\+SK}~((X\+A\+C\+T\+\_\+\+H\+A\+S\+HS)-\/1)	/$\ast$ mask to extract the hash index from a R\+PC-\/X\+ID $\ast$/
+\item 
+\mbox{\Hypertarget{rpcio_8c_ada0590f72b2ef7684484488e130919f7}\label{rpcio_8c_ada0590f72b2ef7684484488e130919f7}} 
+\#define {\bfseries M\+U\+\_\+\+L\+O\+CK}(\mbox{\hyperlink{structmutex}{mutex}})~rtems\+\_\+recursive\+\_\+mutex\+\_\+lock(\&(\mbox{\hyperlink{structmutex}{mutex}}))
+\item 
+\mbox{\Hypertarget{rpcio_8c_aa8892b8020c216e40e3e457e728e515a}\label{rpcio_8c_aa8892b8020c216e40e3e457e728e515a}} 
+\#define {\bfseries M\+U\+\_\+\+U\+N\+L\+O\+CK}(\mbox{\hyperlink{structmutex}{mutex}})~rtems\+\_\+recursive\+\_\+mutex\+\_\+unlock(\&(\mbox{\hyperlink{structmutex}{mutex}}))
+\item 
+\mbox{\Hypertarget{rpcio_8c_a02ef5cb8a9596c54b387293763f04eab}\label{rpcio_8c_a02ef5cb8a9596c54b387293763f04eab}} 
+\#define {\bfseries M\+U\+\_\+\+C\+R\+E\+AT}(pmutex)~rtems\+\_\+recursive\+\_\+mutex\+\_\+init((pmutex), \char`\"{}R\+P\+Cl\char`\"{})
+\item 
+\mbox{\Hypertarget{rpcio_8c_a4bf4dc32f05726e0e304f97b132adbf6}\label{rpcio_8c_a4bf4dc32f05726e0e304f97b132adbf6}} 
+\#define {\bfseries M\+U\+\_\+\+D\+E\+S\+T\+R\+OY}(\mbox{\hyperlink{structmutex}{mutex}})~rtems\+\_\+recursive\+\_\+mutex\+\_\+destroy(\&(\mbox{\hyperlink{structmutex}{mutex}}))
+\item 
+\mbox{\Hypertarget{rpcio_8c_a90ca6a65c7291e92f43aa0c688df4a3a}\label{rpcio_8c_a90ca6a65c7291e92f43aa0c688df4a3a}} 
+\#define {\bfseries F\+I\+R\+S\+T\+\_\+\+A\+T\+T\+E\+M\+PT}~0x88888888 /$\ast$ some time that is never reached $\ast$/
+\item 
+\mbox{\Hypertarget{rpcio_8c_a3b4559b8bc5d902d9c0235faba241a14}\label{rpcio_8c_a3b4559b8bc5d902d9c0235faba241a14}} 
+\#define {\bfseries X\+ID}(ibuf)~($\ast$(mtod((ibuf), u\+\_\+long $\ast$)))
+\item 
+\mbox{\Hypertarget{rpcio_8c_a7f03a70efc51383417c9b87355aefd96}\label{rpcio_8c_a7f03a70efc51383417c9b87355aefd96}} 
+\#define {\bfseries S\+E\+N\+D\+TO}~sendto\+\_\+nocpy
+\item 
+\mbox{\Hypertarget{rpcio_8c_ae20430f0b0494725e5c8e05c4fe18f57}\label{rpcio_8c_ae20430f0b0494725e5c8e05c4fe18f57}} 
+\#define {\bfseries M\+Y\+\_\+\+M\+A\+L\+L\+OC}~malloc
+\item 
+\mbox{\Hypertarget{rpcio_8c_a874c698053bc153b85b9fb63774cb73b}\label{rpcio_8c_a874c698053bc153b85b9fb63774cb73b}} 
+\#define {\bfseries M\+Y\+\_\+\+C\+A\+L\+L\+OC}~calloc
+\item 
+\mbox{\Hypertarget{rpcio_8c_aee236fc01ac3fa7aaecc64a84ae32554}\label{rpcio_8c_aee236fc01ac3fa7aaecc64a84ae32554}} 
+\#define {\bfseries M\+Y\+\_\+\+F\+R\+EE}~free
+\item 
+\mbox{\Hypertarget{rpcio_8c_a05139054c407de0f99b730567609cb34}\label{rpcio_8c_a05139054c407de0f99b730567609cb34}} 
+\#define {\bfseries \+\_\+\+K\+E\+R\+N\+EL}
+\item 
+\mbox{\Hypertarget{rpcio_8c_a6292975819fd02d4262e0a40c53cd5ef}\label{rpcio_8c_a6292975819fd02d4262e0a40c53cd5ef}} 
+\#define {\bfseries R\+P\+C\+I\+O\+D\+\_\+\+R\+X\+B\+U\+F\+SZ}~U\+D\+P\+M\+S\+G\+S\+I\+ZE
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{rpcio_8c_a54fe1b1f3f1953d20ceb413d1a9febfa}\label{rpcio_8c_a54fe1b1f3f1953d20ceb413d1a9febfa}} 
+typedef \mbox{\hyperlink{group__ClassicTasks_gad39c43f949683d46874e3a5586b93aee}{rtems\+\_\+interval}} {\bfseries TimeoutT}
+\item 
+\mbox{\Hypertarget{rpcio_8c_a875bc7f72bfd31c305485a69bf295f40}\label{rpcio_8c_a875bc7f72bfd31c305485a69bf295f40}} 
+typedef struct \mbox{\hyperlink{structListNodeRec__}{List\+Node\+Rec\+\_\+}} {\bfseries List\+Node\+Rec}
+\item 
+\mbox{\Hypertarget{rpcio_8c_a05fe453d95d9e967c4b56c4d7a830dc9}\label{rpcio_8c_a05fe453d95d9e967c4b56c4d7a830dc9}} 
+typedef struct \mbox{\hyperlink{structListNodeRec__}{List\+Node\+Rec\+\_\+}} $\ast$ {\bfseries List\+Node}
+\item 
+\mbox{\Hypertarget{rpcio_8c_a309842fec371e8e28b3934f7ccd99cca}\label{rpcio_8c_a309842fec371e8e28b3934f7ccd99cca}} 
+typedef struct \mbox{\hyperlink{structRpcUdpServerRec__}{Rpc\+Udp\+Server\+Rec\+\_\+}} {\bfseries Rpc\+Udp\+Server\+Rec}
+\item 
+\mbox{\Hypertarget{rpcio_8c_a189ec2a181c5e8df1f949e1f41794bea}\label{rpcio_8c_a189ec2a181c5e8df1f949e1f41794bea}} 
+typedef union \mbox{\hyperlink{unionRpcBufU__}{Rpc\+Buf\+U\+\_\+}} {\bfseries Rpc\+BufU}
+\item 
+\mbox{\Hypertarget{rpcio_8c_acb3c0e5549e140e71b9c1e3a2ac7c6ce}\label{rpcio_8c_acb3c0e5549e140e71b9c1e3a2ac7c6ce}} 
+typedef union \mbox{\hyperlink{unionRpcBufU__}{Rpc\+Buf\+U\+\_\+}} $\ast$ {\bfseries Rpc\+Buf}
+\item 
+\mbox{\Hypertarget{rpcio_8c_ae39fb2a68fdd590947d322f5a3ed0eae}\label{rpcio_8c_ae39fb2a68fdd590947d322f5a3ed0eae}} 
+typedef struct mbuf $\ast$ {\bfseries Rx\+Buf}
+\item 
+\mbox{\Hypertarget{rpcio_8c_a374b5ffdbd42b5317c0f723a0ccb0620}\label{rpcio_8c_a374b5ffdbd42b5317c0f723a0ccb0620}} 
+typedef struct \mbox{\hyperlink{structRpcUdpXactRec__}{Rpc\+Udp\+Xact\+Rec\+\_\+}} {\bfseries Rpc\+Udp\+Xact\+Rec}
+\item 
+\mbox{\Hypertarget{rpcio_8c_abbdff1ff9f6b51bcde8175d70614794e}\label{rpcio_8c_abbdff1ff9f6b51bcde8175d70614794e}} 
+typedef struct \mbox{\hyperlink{structRpcUdpXactPoolRec__}{Rpc\+Udp\+Xact\+Pool\+Rec\+\_\+}} {\bfseries Rpc\+Udp\+Xact\+Pool\+Rec}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{rpcio_8c_af8f03a2f09e539e4af9d930c1f0fb554}\label{rpcio_8c_af8f03a2f09e539e4af9d930c1f0fb554}} 
+ssize\+\_\+t {\bfseries sendto\+\_\+nocpy} (int s, const void $\ast$buf, size\+\_\+t buflen, int flags, const struct sockaddr $\ast$toaddr, int tolen, void $\ast$closure, void($\ast$freeproc)(caddr\+\_\+t, u\+\_\+int), void($\ast$refproc)(caddr\+\_\+t, u\+\_\+int))
+\item 
+enum clnt\+\_\+stat {\bfseries rpc\+Udp\+Server\+Create} (struct sockaddr\+\_\+in $\ast$paddr, rpcprog\+\_\+t prog, rpcvers\+\_\+t vers, u\+\_\+long uid, u\+\_\+long gid, \mbox{\hyperlink{structRpcUdpServerRec__}{Rpc\+Udp\+Server}} $\ast$psrv)
+\item 
+void {\bfseries rpc\+Udp\+Server\+Destroy} (\mbox{\hyperlink{structRpcUdpServerRec__}{Rpc\+Udp\+Server}} s)
+\item 
+int \mbox{\hyperlink{group__rtems-nfsclient_ga25eec2b7dd88494b276528b6d765ba40}{rpc\+Udp\+Stats}} (F\+I\+LE $\ast$f)
+\begin{DoxyCompactList}\small\item\em Dump statistics to a file (stdout if N\+U\+LL);. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structRpcUdpXactRec__}{Rpc\+Udp\+Xact}} {\bfseries rpc\+Udp\+Xact\+Create} (u\+\_\+long program, u\+\_\+long version, u\+\_\+long \mbox{\hyperlink{sun4u_2tte_8h_a245260f6f74972558f61b85227df5aae}{size}})
+\item 
+void {\bfseries rpc\+Udp\+Xact\+Destroy} (\mbox{\hyperlink{structRpcUdpXactRec__}{Rpc\+Udp\+Xact}} xact)
+\item 
+enum clnt\+\_\+stat \mbox{\hyperlink{group__rtems-nfsclient_ga00b3bdde30fc2fd22e2682893a894b25}{rpc\+Udp\+Send}} (\mbox{\hyperlink{structRpcUdpXactRec__}{Rpc\+Udp\+Xact}} xact, \mbox{\hyperlink{structRpcUdpServerRec__}{Rpc\+Udp\+Server}} srvr, struct timeval $\ast$timeout, u\+\_\+long proc, xdrproc\+\_\+t xres, caddr\+\_\+t pres, xdrproc\+\_\+t xargs, caddr\+\_\+t pargs,...)
+\item 
+enum clnt\+\_\+stat \mbox{\hyperlink{group__rtems-nfsclient_ga4490140cfcdd8411b086baa573d44ca6}{rpc\+Udp\+Rcv}} (\mbox{\hyperlink{structRpcUdpXactRec__}{Rpc\+Udp\+Xact}} xact)
+\begin{DoxyCompactList}\small\item\em Wait for a transaction to complete. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{rpcio_8c_a53299c25dc1cfc41acf1580bd2cb0063}\label{rpcio_8c_a53299c25dc1cfc41acf1580bd2cb0063}} 
+void {\bfseries rpc\+Set\+X\+I\+Ds} (uint32\+\_\+t xid)
+\item 
+\mbox{\Hypertarget{rpcio_8c_a504f9b29d65792939b879804a4f0a2c8}\label{rpcio_8c_a504f9b29d65792939b879804a4f0a2c8}} 
+int {\bfseries rpc\+Udp\+Init} (void)
+\item 
+\mbox{\Hypertarget{rpcio_8c_af17464fff7cb6855147ab74eafe3b989}\label{rpcio_8c_af17464fff7cb6855147ab74eafe3b989}} 
+int {\bfseries rpc\+Udp\+Cleanup} (void)
+\item 
+enum clnt\+\_\+stat {\bfseries rpc\+Udp\+Clnt\+Create} (struct sockaddr\+\_\+in $\ast$psaddr, rpcprog\+\_\+t prog, rpcvers\+\_\+t vers, u\+\_\+long uid, u\+\_\+long gid, \mbox{\hyperlink{structRpcUdpXactRec__}{Rpc\+Udp\+Clnt}} $\ast$pclnt)
+\item 
+enum clnt\+\_\+stat {\bfseries rpc\+Udp\+Clnt\+Call} (\mbox{\hyperlink{structRpcUdpXactRec__}{Rpc\+Udp\+Clnt}} xact, u\+\_\+long proc, \mbox{\hyperlink{group__rtems-nfsclient_gac22c99bf609cf4f3e1b601de1c157275}{Xdr\+ProcT}} xargs, CaddrT pargs, \mbox{\hyperlink{group__rtems-nfsclient_gac22c99bf609cf4f3e1b601de1c157275}{Xdr\+ProcT}} xres, CaddrT pres, struct timeval $\ast$timeout)
+\item 
+enum clnt\+\_\+stat {\bfseries rpc\+Udp\+Call\+Rp} (struct sockaddr\+\_\+in $\ast$psrvr, u\+\_\+long prog, u\+\_\+long vers, u\+\_\+long proc, \mbox{\hyperlink{group__rtems-nfsclient_gac22c99bf609cf4f3e1b601de1c157275}{Xdr\+ProcT}} xargs, CaddrT pargs, \mbox{\hyperlink{group__rtems-nfsclient_gac22c99bf609cf4f3e1b601de1c157275}{Xdr\+ProcT}} xres, CaddrT pres, u\+\_\+long uid, u\+\_\+long gid, struct timeval $\ast$timeout)
+\item 
+\mbox{\hyperlink{structRpcUdpXactPoolRec__}{Rpc\+Udp\+Xact\+Pool}} {\bfseries rpc\+Udp\+Xact\+Pool\+Create} (rpcprog\+\_\+t prog, rpcvers\+\_\+t version, int xactsize, int poolsize)
+\item 
+void {\bfseries rpc\+Udp\+Xact\+Pool\+Destroy} (\mbox{\hyperlink{structRpcUdpXactPoolRec__}{Rpc\+Udp\+Xact\+Pool}} pool)
+\item 
+\mbox{\hyperlink{structRpcUdpXactRec__}{Rpc\+Udp\+Xact}} {\bfseries rpc\+Udp\+Xact\+Pool\+Get} (\mbox{\hyperlink{structRpcUdpXactPoolRec__}{Rpc\+Udp\+Xact\+Pool}} pool, Xact\+Pool\+Get\+Mode mode)
+\item 
+void {\bfseries rpc\+Udp\+Xact\+Pool\+Put} (\mbox{\hyperlink{structRpcUdpXactRec__}{Rpc\+Udp\+Xact}} xact)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{rpcio_8c_a6868a4de133baafb51999c55d22d5bd1}\label{rpcio_8c_a6868a4de133baafb51999c55d22d5bd1}} 
+\mbox{\hyperlink{group__ClassicTasks_gaa80a0c0938307d1e99d0eb5fee765b47}{rtems\+\_\+task\+\_\+priority}} {\bfseries rpciod\+Priority} = 0
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+R\+PC Multiplexor for a Multitasking Environment. 
+
+This code funnels arbitrary task\textquotesingle{}s U\+D\+P/\+R\+PC requests through one socket to arbitrary servers. The replies are gathered and dispatched to the requestors. One task handles all the sending and receiving work including retries. It is up to the requestor, however, to do the X\+DR encoding of the arguments / decoding of the results (except for the R\+PC header which is handled by the daemon). 
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{rpcio_8c_a53ba365ce30cceed87b7c5bdfe57fbe6}\label{rpcio_8c_a53ba365ce30cceed87b7c5bdfe57fbe6}} 
+\index{rpcio.c@{rpcio.c}!MBUF\_RX@{MBUF\_RX}}
+\index{MBUF\_RX@{MBUF\_RX}!rpcio.c@{rpcio.c}}
+\subsubsection{\texorpdfstring{MBUF\_RX}{MBUF\_RX}}
+{\footnotesize\ttfamily \#define M\+B\+U\+F\+\_\+\+RX}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{/* If defined: use mbuf XDR stream for}}
+\DoxyCodeLine{\textcolor{comment}{                         *  decoding directly out of mbufs}}
+\DoxyCodeLine{\textcolor{comment}{                         *  Otherwise, the regular 'recvfrom()'}}
+\DoxyCodeLine{\textcolor{comment}{                         *  interface will be used involving an}}
+\DoxyCodeLine{\textcolor{comment}{                         *  extra buffer allocation + copy step.}}
+\DoxyCodeLine{\textcolor{comment}{                         */}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{rpcio_8c_a1d02da1b0a83f5915b0ce7c38fcde0a2}\label{rpcio_8c_a1d02da1b0a83f5915b0ce7c38fcde0a2}} 
+\index{rpcio.c@{rpcio.c}!MBUF\_TX@{MBUF\_TX}}
+\index{MBUF\_TX@{MBUF\_TX}!rpcio.c@{rpcio.c}}
+\subsubsection{\texorpdfstring{MBUF\_TX}{MBUF\_TX}}
+{\footnotesize\ttfamily \#define M\+B\+U\+F\+\_\+\+TX}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{/* If defined: avoid copying data when}}
+\DoxyCodeLine{\textcolor{comment}{                         *  sending. Instead, use a wrapper to}}
+\DoxyCodeLine{\textcolor{comment}{                         *  'sosend()' which will point an MBUF}}
+\DoxyCodeLine{\textcolor{comment}{                         *  directly to our buffer space.}}
+\DoxyCodeLine{\textcolor{comment}{                         *  Note that the BSD stack does not copy}}
+\DoxyCodeLine{\textcolor{comment}{                         *  data when fragmenting packets - it}}
+\DoxyCodeLine{\textcolor{comment}{                         *  merely uses an mbuf chain pointing}}
+\DoxyCodeLine{\textcolor{comment}{                         *  into different areas of the data.}}
+\DoxyCodeLine{\textcolor{comment}{                         *}}
+\DoxyCodeLine{\textcolor{comment}{                         * If undefined, the regular 'sendto()'}}
+\DoxyCodeLine{\textcolor{comment}{                         *  interface is used.}}
+\DoxyCodeLine{\textcolor{comment}{                         */}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{rpcio_8c_af9bc913d7e754e4a45b6de34dfb21a19}\label{rpcio_8c_af9bc913d7e754e4a45b6de34dfb21a19}} 
+\index{rpcio.c@{rpcio.c}!RTEMS\_RPC\_EVENT@{RTEMS\_RPC\_EVENT}}
+\index{RTEMS\_RPC\_EVENT@{RTEMS\_RPC\_EVENT}!rpcio.c@{rpcio.c}}
+\subsubsection{\texorpdfstring{RTEMS\_RPC\_EVENT}{RTEMS\_RPC\_EVENT}}
+{\footnotesize\ttfamily \#define R\+T\+E\+M\+S\+\_\+\+R\+P\+C\+\_\+\+E\+V\+E\+NT}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{group__ClassicEventSet_ga9b0618f3eab8b9fb4b1d0fb7f0d1cd7a}{RTEMS\_EVENT\_30}}    \textcolor{comment}{/* THE event used by RPCIO. Every task doing}}
+\DoxyCodeLine{\textcolor{comment}{                                             * RPC IO will receive this - hence it is}}
+\DoxyCodeLine{\textcolor{comment}{                                             * RESERVED}}
+\DoxyCodeLine{\textcolor{comment}{                                             */}}
+
+\end{DoxyCode}

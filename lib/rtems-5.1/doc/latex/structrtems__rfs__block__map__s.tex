@@ -1,0 +1,106 @@
+\hypertarget{structrtems__rfs__block__map__s}{}\section{rtems\+\_\+rfs\+\_\+block\+\_\+map\+\_\+s Struct Reference}
+\label{structrtems__rfs__block__map__s}\index{rtems\_rfs\_block\_map\_s@{rtems\_rfs\_block\_map\_s}}
+
+
+{\ttfamily \#include $<$rtems-\/rfs-\/block.\+h$>$}
+
+\subsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{structrtems__rfs__block__map__s_aa99bf6b6620b00c0bdd84a8703275437}{dirty}}
+\item 
+\mbox{\hyperlink{rtems-rfs-inode_8h_a91f02dac5a2d91e072d676f3266ab8d2}{rtems\+\_\+rfs\+\_\+inode\+\_\+handle}} $\ast$ \mbox{\hyperlink{structrtems__rfs__block__map__s_a74f7b66eec17822aa175f0c19d61c28a}{inode}}
+\item 
+\mbox{\hyperlink{rtems-rfs-block-pos_8h_aa72438eee22908110dc633ca6b89b390}{rtems\+\_\+rfs\+\_\+block\+\_\+size}} \mbox{\hyperlink{structrtems__rfs__block__map__s_a6c5f3d804cf4bdf7dee7a6a93e85175b}{size}}
+\item 
+\mbox{\hyperlink{rtems-rfs-block-pos_8h_a0d8bd7482333e584a03df45e60cda226}{rtems\+\_\+rfs\+\_\+block\+\_\+pos}} \mbox{\hyperlink{structrtems__rfs__block__map__s_a5699833603dca58333e9d7f92d60cb86}{bpos}}
+\item 
+\mbox{\hyperlink{rtems-rfs-block-pos_8h_abbf8bb95acf9bd16ed3291f7da518e9a}{rtems\+\_\+rfs\+\_\+block\+\_\+no}} \mbox{\hyperlink{structrtems__rfs__block__map__s_a982fb2a5ea76eb2dbb21dd76dca259e3}{last\+\_\+map\+\_\+block}}
+\item 
+\mbox{\hyperlink{rtems-rfs-block-pos_8h_abbf8bb95acf9bd16ed3291f7da518e9a}{rtems\+\_\+rfs\+\_\+block\+\_\+no}} \mbox{\hyperlink{structrtems__rfs__block__map__s_ac8e110de9402ef2f75263c6a4244a5d8}{last\+\_\+data\+\_\+block}}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{structrtems__rfs__block__map__s_a8358418370ab17c66051ee0d3f2abce2}{blocks}} \mbox{[}\mbox{\hyperlink{rtems-rfs-file-system_8h_a89ff31e716c58b51c65d688662acb012}{R\+T\+E\+M\+S\+\_\+\+R\+F\+S\+\_\+\+I\+N\+O\+D\+E\+\_\+\+B\+L\+O\+C\+KS}}\mbox{]}
+\item 
+\mbox{\hyperlink{rtems-rfs-buffer_8h_a17f97c37c5273ad28d413dfd2d175e23}{rtems\+\_\+rfs\+\_\+buffer\+\_\+handle}} \mbox{\hyperlink{structrtems__rfs__block__map__s_a406b38e6ceda414438ea3cea917a20b6}{singly\+\_\+buffer}}
+\item 
+\mbox{\hyperlink{rtems-rfs-buffer_8h_a17f97c37c5273ad28d413dfd2d175e23}{rtems\+\_\+rfs\+\_\+buffer\+\_\+handle}} \mbox{\hyperlink{structrtems__rfs__block__map__s_aef2105d20cc64f7465a68a9c98c40413}{doubly\+\_\+buffer}}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A block map manges the block lists that originate from an inode. The inode contains a number of block numbers. A block map takes those block numbers and manages them.
+
+The blocks cannot have all ones as a block number nor block 0. The block map is series of block numbers in a blocks. The size of the map determines the way the block numbers are stored. The map uses the following\+:
+
+\begin{DoxyItemize}
+\item {\itshape Direct} Access, \item {\itshape Single} Indirect Access, and \item {\itshape Double} Indirect Access.\end{DoxyItemize}
+Direct access has the blocks numbers in the inode slots. The Single Indirect Access has block numbers in the inode slots that pointer to a table of block numbers that point to data blocks. The Double Indirect Access has block numbers in the inode that point to Single Indirect block tables.
+
+The inode can hold a number of Direct, Single Indirect, and Double Indirect block tables. The move from Direct to Single occurs then the block count in the map is above the number of slots in the inode. The move from Single to Double occurs when the map block count is greated than the block numbers per block multipled by the slots in the inode. The move from Single to Double occurs when the map block count is over the block numbers per block squared multipled by the number of slots in the inode.
+
+The block map can managed files of the follow size verses block size with 5 inode slots\+:
+
+\begin{DoxyItemize}
+\item 41,943,040 bytes for a 512 byte block size, \item 335,544,320 bytes for a 1024 byte block size, \item 2,684,354,560 bytes for a 2048 byte block size, and \item 21,474,836,480 bytes for a 4096 byte block size. \end{DoxyItemize}
+
+
+\subsection{Field Documentation}
+\mbox{\Hypertarget{structrtems__rfs__block__map__s_a8358418370ab17c66051ee0d3f2abce2}\label{structrtems__rfs__block__map__s_a8358418370ab17c66051ee0d3f2abce2}} 
+\index{rtems\_rfs\_block\_map\_s@{rtems\_rfs\_block\_map\_s}!blocks@{blocks}}
+\index{blocks@{blocks}!rtems\_rfs\_block\_map\_s@{rtems\_rfs\_block\_map\_s}}
+\subsubsection{\texorpdfstring{blocks}{blocks}}
+{\footnotesize\ttfamily uint32\+\_\+t rtems\+\_\+rfs\+\_\+block\+\_\+map\+\_\+s\+::blocks\mbox{[}\mbox{\hyperlink{rtems-rfs-file-system_8h_a89ff31e716c58b51c65d688662acb012}{R\+T\+E\+M\+S\+\_\+\+R\+F\+S\+\_\+\+I\+N\+O\+D\+E\+\_\+\+B\+L\+O\+C\+KS}}\mbox{]}}
+
+The block map. \mbox{\Hypertarget{structrtems__rfs__block__map__s_a5699833603dca58333e9d7f92d60cb86}\label{structrtems__rfs__block__map__s_a5699833603dca58333e9d7f92d60cb86}} 
+\index{rtems\_rfs\_block\_map\_s@{rtems\_rfs\_block\_map\_s}!bpos@{bpos}}
+\index{bpos@{bpos}!rtems\_rfs\_block\_map\_s@{rtems\_rfs\_block\_map\_s}}
+\subsubsection{\texorpdfstring{bpos}{bpos}}
+{\footnotesize\ttfamily \mbox{\hyperlink{rtems-rfs-block-pos_8h_a0d8bd7482333e584a03df45e60cda226}{rtems\+\_\+rfs\+\_\+block\+\_\+pos}} rtems\+\_\+rfs\+\_\+block\+\_\+map\+\_\+s\+::bpos}
+
+The block map position. Used to navigate the map when seeking. The find call is to a position in the file/directory and is a block number plus offset. The block find only needs to locate a block and not worry about the offset while a seek can be less than a block size yet move across a block boundary. Therefore the position a block map has to maintain must include the offset so seeks work. \mbox{\Hypertarget{structrtems__rfs__block__map__s_aa99bf6b6620b00c0bdd84a8703275437}\label{structrtems__rfs__block__map__s_aa99bf6b6620b00c0bdd84a8703275437}} 
+\index{rtems\_rfs\_block\_map\_s@{rtems\_rfs\_block\_map\_s}!dirty@{dirty}}
+\index{dirty@{dirty}!rtems\_rfs\_block\_map\_s@{rtems\_rfs\_block\_map\_s}}
+\subsubsection{\texorpdfstring{dirty}{dirty}}
+{\footnotesize\ttfamily bool rtems\+\_\+rfs\+\_\+block\+\_\+map\+\_\+s\+::dirty}
+
+Is the map dirty ? \mbox{\Hypertarget{structrtems__rfs__block__map__s_aef2105d20cc64f7465a68a9c98c40413}\label{structrtems__rfs__block__map__s_aef2105d20cc64f7465a68a9c98c40413}} 
+\index{rtems\_rfs\_block\_map\_s@{rtems\_rfs\_block\_map\_s}!doubly\_buffer@{doubly\_buffer}}
+\index{doubly\_buffer@{doubly\_buffer}!rtems\_rfs\_block\_map\_s@{rtems\_rfs\_block\_map\_s}}
+\subsubsection{\texorpdfstring{doubly\_buffer}{doubly\_buffer}}
+{\footnotesize\ttfamily \mbox{\hyperlink{rtems-rfs-buffer_8h_a17f97c37c5273ad28d413dfd2d175e23}{rtems\+\_\+rfs\+\_\+buffer\+\_\+handle}} rtems\+\_\+rfs\+\_\+block\+\_\+map\+\_\+s\+::doubly\+\_\+buffer}
+
+Doubly Buffer handle. \mbox{\Hypertarget{structrtems__rfs__block__map__s_a74f7b66eec17822aa175f0c19d61c28a}\label{structrtems__rfs__block__map__s_a74f7b66eec17822aa175f0c19d61c28a}} 
+\index{rtems\_rfs\_block\_map\_s@{rtems\_rfs\_block\_map\_s}!inode@{inode}}
+\index{inode@{inode}!rtems\_rfs\_block\_map\_s@{rtems\_rfs\_block\_map\_s}}
+\subsubsection{\texorpdfstring{inode}{inode}}
+{\footnotesize\ttfamily \mbox{\hyperlink{rtems-rfs-inode_8h_a91f02dac5a2d91e072d676f3266ab8d2}{rtems\+\_\+rfs\+\_\+inode\+\_\+handle}}$\ast$ rtems\+\_\+rfs\+\_\+block\+\_\+map\+\_\+s\+::inode}
+
+The inode this map is attached to. \mbox{\Hypertarget{structrtems__rfs__block__map__s_ac8e110de9402ef2f75263c6a4244a5d8}\label{structrtems__rfs__block__map__s_ac8e110de9402ef2f75263c6a4244a5d8}} 
+\index{rtems\_rfs\_block\_map\_s@{rtems\_rfs\_block\_map\_s}!last\_data\_block@{last\_data\_block}}
+\index{last\_data\_block@{last\_data\_block}!rtems\_rfs\_block\_map\_s@{rtems\_rfs\_block\_map\_s}}
+\subsubsection{\texorpdfstring{last\_data\_block}{last\_data\_block}}
+{\footnotesize\ttfamily \mbox{\hyperlink{rtems-rfs-block-pos_8h_abbf8bb95acf9bd16ed3291f7da518e9a}{rtems\+\_\+rfs\+\_\+block\+\_\+no}} rtems\+\_\+rfs\+\_\+block\+\_\+map\+\_\+s\+::last\+\_\+data\+\_\+block}
+
+The last data block allocated. This is used as the goal when allocating a new data block. \mbox{\Hypertarget{structrtems__rfs__block__map__s_a982fb2a5ea76eb2dbb21dd76dca259e3}\label{structrtems__rfs__block__map__s_a982fb2a5ea76eb2dbb21dd76dca259e3}} 
+\index{rtems\_rfs\_block\_map\_s@{rtems\_rfs\_block\_map\_s}!last\_map\_block@{last\_map\_block}}
+\index{last\_map\_block@{last\_map\_block}!rtems\_rfs\_block\_map\_s@{rtems\_rfs\_block\_map\_s}}
+\subsubsection{\texorpdfstring{last\_map\_block}{last\_map\_block}}
+{\footnotesize\ttfamily \mbox{\hyperlink{rtems-rfs-block-pos_8h_abbf8bb95acf9bd16ed3291f7da518e9a}{rtems\+\_\+rfs\+\_\+block\+\_\+no}} rtems\+\_\+rfs\+\_\+block\+\_\+map\+\_\+s\+::last\+\_\+map\+\_\+block}
+
+The last map block allocated. This is used as the goal when allocating a new map block. \mbox{\Hypertarget{structrtems__rfs__block__map__s_a406b38e6ceda414438ea3cea917a20b6}\label{structrtems__rfs__block__map__s_a406b38e6ceda414438ea3cea917a20b6}} 
+\index{rtems\_rfs\_block\_map\_s@{rtems\_rfs\_block\_map\_s}!singly\_buffer@{singly\_buffer}}
+\index{singly\_buffer@{singly\_buffer}!rtems\_rfs\_block\_map\_s@{rtems\_rfs\_block\_map\_s}}
+\subsubsection{\texorpdfstring{singly\_buffer}{singly\_buffer}}
+{\footnotesize\ttfamily \mbox{\hyperlink{rtems-rfs-buffer_8h_a17f97c37c5273ad28d413dfd2d175e23}{rtems\+\_\+rfs\+\_\+buffer\+\_\+handle}} rtems\+\_\+rfs\+\_\+block\+\_\+map\+\_\+s\+::singly\+\_\+buffer}
+
+Singly Buffer handle. \mbox{\Hypertarget{structrtems__rfs__block__map__s_a6c5f3d804cf4bdf7dee7a6a93e85175b}\label{structrtems__rfs__block__map__s_a6c5f3d804cf4bdf7dee7a6a93e85175b}} 
+\index{rtems\_rfs\_block\_map\_s@{rtems\_rfs\_block\_map\_s}!size@{size}}
+\index{size@{size}!rtems\_rfs\_block\_map\_s@{rtems\_rfs\_block\_map\_s}}
+\subsubsection{\texorpdfstring{size}{size}}
+{\footnotesize\ttfamily \mbox{\hyperlink{rtems-rfs-block-pos_8h_aa72438eee22908110dc633ca6b89b390}{rtems\+\_\+rfs\+\_\+block\+\_\+size}} rtems\+\_\+rfs\+\_\+block\+\_\+map\+\_\+s\+::size}
+
+The size of the map. 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+cpukit/include/rtems/rfs/\mbox{\hyperlink{rtems-rfs-block_8h}{rtems-\/rfs-\/block.\+h}}\end{DoxyCompactItemize}

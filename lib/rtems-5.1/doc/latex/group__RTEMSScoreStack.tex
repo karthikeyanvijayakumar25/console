@@ -1,0 +1,346 @@
+\hypertarget{group__RTEMSScoreStack}{}\section{Stack Handler}
+\label{group__RTEMSScoreStack}\index{Stack Handler@{Stack Handler}}
+
+
+Stack Handler.  
+
+
+\subsection*{Files}
+\begin{DoxyCompactItemize}
+\item 
+file \mbox{\hyperlink{cpukit_2include_2rtems_2score_2stack_8h}{stack.\+h}}
+\begin{DoxyCompactList}\small\item\em Information About the Thread Stack Handler. \end{DoxyCompactList}\item 
+file \mbox{\hyperlink{stackimpl_8h}{stackimpl.\+h}}
+\begin{DoxyCompactList}\small\item\em Inlined Routines from the Stack Handler. \end{DoxyCompactList}\item 
+file \mbox{\hyperlink{threadstackallocate_8c}{threadstackallocate.\+c}}
+\begin{DoxyCompactList}\small\item\em Stack Allocate Helper. \end{DoxyCompactList}\item 
+file \mbox{\hyperlink{threadstackfree_8c}{threadstackfree.\+c}}
+\begin{DoxyCompactList}\small\item\em Deallocate Thread Stack. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structStack__Control}{Stack\+\_\+\+Control}}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__RTEMSScoreStack_gaef3654e2c6c9afbd5dbe22b84fc22fc5}{S\+T\+A\+C\+K\+\_\+\+M\+I\+N\+I\+M\+U\+M\+\_\+\+S\+I\+ZE}}~\mbox{\hyperlink{sparc_2include_2rtems_2score_2cpu_8h_a4c92ceea7549cc7b21db2c466916b733}{C\+P\+U\+\_\+\+S\+T\+A\+C\+K\+\_\+\+M\+I\+N\+I\+M\+U\+M\+\_\+\+S\+I\+ZE}}
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef void($\ast$ \mbox{\hyperlink{group__RTEMSScoreStack_ga0b4e6be94e46e4f0a9e862e1f818d28b}{Stack\+\_\+\+Allocator\+\_\+initialize}}) (size\+\_\+t stack\+\_\+space\+\_\+size)
+\begin{DoxyCompactList}\small\item\em The stack allocator initialization handler. \end{DoxyCompactList}\item 
+typedef void $\ast$($\ast$ \mbox{\hyperlink{group__RTEMSScoreStack_ga1e4edf42aa30aeab80fefb866e892a3d}{Stack\+\_\+\+Allocator\+\_\+allocate}}) (size\+\_\+t stack\+\_\+size)
+\begin{DoxyCompactList}\small\item\em Stack allocator allocate handler. \end{DoxyCompactList}\item 
+typedef void($\ast$ \mbox{\hyperlink{group__RTEMSScoreStack_ga2bc90d7062b3eba257c6e2e3836deb8b}{Stack\+\_\+\+Allocator\+\_\+free}}) (void $\ast$addr)
+\begin{DoxyCompactList}\small\item\em Stack allocator free handler. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \mbox{\hyperlink{group__RTEMSScoreStack_gacac0f0f9105a47a592e8d215a29c58a4}{\+\_\+\+Stack\+\_\+\+Initialize}} (\mbox{\hyperlink{structStack__Control}{Stack\+\_\+\+Control}} $\ast$the\+\_\+stack, void $\ast$starting\+\_\+address, size\+\_\+t \mbox{\hyperlink{sun4u_2tte_8h_a245260f6f74972558f61b85227df5aae}{size}})
+\begin{DoxyCompactList}\small\item\em Initializes stack with the given starting address and size. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} uint32\+\_\+t \mbox{\hyperlink{group__RTEMSScoreStack_ga3363a134ab99ea804a61cad0eb9c971b}{\+\_\+\+Stack\+\_\+\+Minimum}} (void)
+\begin{DoxyCompactList}\small\item\em Returns the minimum stack size. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} bool \mbox{\hyperlink{group__RTEMSScoreStack_gaf7041341c804491731396adcbb0506cf}{\+\_\+\+Stack\+\_\+\+Is\+\_\+enough}} (size\+\_\+t \mbox{\hyperlink{sun4u_2tte_8h_a245260f6f74972558f61b85227df5aae}{size}}, bool is\+\_\+fp)
+\begin{DoxyCompactList}\small\item\em Checks if the size is enough for a valid stack area on this processor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} size\+\_\+t \mbox{\hyperlink{group__RTEMSScoreStack_gaa4d28f2b60601a0713925707f4379743}{\+\_\+\+Stack\+\_\+\+Ensure\+\_\+minimum}} (size\+\_\+t \mbox{\hyperlink{sun4u_2tte_8h_a245260f6f74972558f61b85227df5aae}{size}})
+\begin{DoxyCompactList}\small\item\em Returns the appropriate stack size for the requested size. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} size\+\_\+t \mbox{\hyperlink{group__RTEMSScoreStack_gaa7306251dbd0baec560422cbfc02b4ab}{\+\_\+\+Stack\+\_\+\+Extend\+\_\+size}} (size\+\_\+t stack\+\_\+size, bool is\+\_\+fp)
+\begin{DoxyCompactList}\small\item\em Extend the stack size to account for additional data structures allocated in the stack area of a thread. \end{DoxyCompactList}\item 
+void $\ast$ \mbox{\hyperlink{group__RTEMSScoreStack_gaa75b0bd2f7d99098ec726dbaa343cebe}{\+\_\+\+Stack\+\_\+\+Allocate}} (size\+\_\+t stack\+\_\+size)
+\begin{DoxyCompactList}\small\item\em Allocate the requested stack space. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__RTEMSScoreStack_ga66b144669f2508254620147bedd9baaa}{\+\_\+\+Stack\+\_\+\+Free}} (void $\ast$stack\+\_\+area)
+\begin{DoxyCompactList}\small\item\em Free the stack area allocated by \mbox{\hyperlink{group__RTEMSScoreStack_gaa75b0bd2f7d99098ec726dbaa343cebe}{\+\_\+\+Stack\+\_\+\+Allocate()}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{group__RTEMSScoreStack_gae18af1b30b702cd1f139f7df0d54acf4}{rtems\+\_\+minimum\+\_\+stack\+\_\+size}}
+\begin{DoxyCompactList}\small\item\em The minimum stack size. \end{DoxyCompactList}\item 
+const uintptr\+\_\+t \mbox{\hyperlink{group__RTEMSScoreStack_ga8c5d8c7c95443b50e9503b2d91db5ae9}{\+\_\+\+Stack\+\_\+\+Space\+\_\+size}}
+\begin{DoxyCompactList}\small\item\em The configured stack space size. \end{DoxyCompactList}\item 
+const bool \mbox{\hyperlink{group__RTEMSScoreStack_ga3ad1e88117c7fed8908bfe98c6da30c3}{\+\_\+\+Stack\+\_\+\+Allocator\+\_\+avoids\+\_\+workspace}}
+\begin{DoxyCompactList}\small\item\em Indicates if the stack allocator avoids the workspace. \end{DoxyCompactList}\item 
+const \mbox{\hyperlink{group__RTEMSScoreStack_ga0b4e6be94e46e4f0a9e862e1f818d28b}{Stack\+\_\+\+Allocator\+\_\+initialize}} \mbox{\hyperlink{group__RTEMSScoreStack_gac8c437cd523908b2f03d1015af97dce0}{\+\_\+\+Stack\+\_\+\+Allocator\+\_\+initialize}}
+\begin{DoxyCompactList}\small\item\em The stack allocator initialization handler. \end{DoxyCompactList}\item 
+const \mbox{\hyperlink{group__RTEMSScoreStack_ga1e4edf42aa30aeab80fefb866e892a3d}{Stack\+\_\+\+Allocator\+\_\+allocate}} \mbox{\hyperlink{group__RTEMSScoreStack_ga990e004f5df8e25208220ffb1efcf7f6}{\+\_\+\+Stack\+\_\+\+Allocator\+\_\+allocate}}
+\begin{DoxyCompactList}\small\item\em The stack allocator allocate handler. \end{DoxyCompactList}\item 
+const \mbox{\hyperlink{group__RTEMSScoreStack_ga2bc90d7062b3eba257c6e2e3836deb8b}{Stack\+\_\+\+Allocator\+\_\+free}} \mbox{\hyperlink{group__RTEMSScoreStack_gac6757ab9b463b2ac5c47a7e43e6da309}{\+\_\+\+Stack\+\_\+\+Allocator\+\_\+free}}
+\begin{DoxyCompactList}\small\item\em The stack allocator free handler. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Stack Handler. 
+
+This handler encapsulates functionality which is used in the management of thread stacks. 
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{group__RTEMSScoreStack_gaef3654e2c6c9afbd5dbe22b84fc22fc5}\label{group__RTEMSScoreStack_gaef3654e2c6c9afbd5dbe22b84fc22fc5}} 
+\index{Stack Handler@{Stack Handler}!STACK\_MINIMUM\_SIZE@{STACK\_MINIMUM\_SIZE}}
+\index{STACK\_MINIMUM\_SIZE@{STACK\_MINIMUM\_SIZE}!Stack Handler@{Stack Handler}}
+\subsubsection{\texorpdfstring{STACK\_MINIMUM\_SIZE}{STACK\_MINIMUM\_SIZE}}
+{\footnotesize\ttfamily \#define S\+T\+A\+C\+K\+\_\+\+M\+I\+N\+I\+M\+U\+M\+\_\+\+S\+I\+ZE~\mbox{\hyperlink{sparc_2include_2rtems_2score_2cpu_8h_a4c92ceea7549cc7b21db2c466916b733}{C\+P\+U\+\_\+\+S\+T\+A\+C\+K\+\_\+\+M\+I\+N\+I\+M\+U\+M\+\_\+\+S\+I\+ZE}}}
+
+The following constant defines the minimum stack size which every thread must exceed. 
+
+\subsection{Typedef Documentation}
+\mbox{\Hypertarget{group__RTEMSScoreStack_ga1e4edf42aa30aeab80fefb866e892a3d}\label{group__RTEMSScoreStack_ga1e4edf42aa30aeab80fefb866e892a3d}} 
+\index{Stack Handler@{Stack Handler}!Stack\_Allocator\_allocate@{Stack\_Allocator\_allocate}}
+\index{Stack\_Allocator\_allocate@{Stack\_Allocator\_allocate}!Stack Handler@{Stack Handler}}
+\subsubsection{\texorpdfstring{Stack\_Allocator\_allocate}{Stack\_Allocator\_allocate}}
+{\footnotesize\ttfamily typedef void$\ast$( $\ast$ Stack\+\_\+\+Allocator\+\_\+allocate) (size\+\_\+t stack\+\_\+size)}
+
+
+
+Stack allocator allocate handler. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em stack\+\_\+size} & The size of the stack area to allocate in bytes.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em N\+U\+LL} & Not enough memory. \\
+\hline
+{\em other} & Pointer to begin of stack area. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{group__RTEMSScoreStack_ga2bc90d7062b3eba257c6e2e3836deb8b}\label{group__RTEMSScoreStack_ga2bc90d7062b3eba257c6e2e3836deb8b}} 
+\index{Stack Handler@{Stack Handler}!Stack\_Allocator\_free@{Stack\_Allocator\_free}}
+\index{Stack\_Allocator\_free@{Stack\_Allocator\_free}!Stack Handler@{Stack Handler}}
+\subsubsection{\texorpdfstring{Stack\_Allocator\_free}{Stack\_Allocator\_free}}
+{\footnotesize\ttfamily typedef void( $\ast$ Stack\+\_\+\+Allocator\+\_\+free) (void $\ast$addr)}
+
+
+
+Stack allocator free handler. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \mbox{]}} & addr A pointer to previously allocated stack area or N\+U\+LL. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__RTEMSScoreStack_ga0b4e6be94e46e4f0a9e862e1f818d28b}\label{group__RTEMSScoreStack_ga0b4e6be94e46e4f0a9e862e1f818d28b}} 
+\index{Stack Handler@{Stack Handler}!Stack\_Allocator\_initialize@{Stack\_Allocator\_initialize}}
+\index{Stack\_Allocator\_initialize@{Stack\_Allocator\_initialize}!Stack Handler@{Stack Handler}}
+\subsubsection{\texorpdfstring{Stack\_Allocator\_initialize}{Stack\_Allocator\_initialize}}
+{\footnotesize\ttfamily typedef void( $\ast$ Stack\+\_\+\+Allocator\+\_\+initialize) (size\+\_\+t stack\+\_\+space\+\_\+size)}
+
+
+
+The stack allocator initialization handler. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em stack\+\_\+space\+\_\+size} & The size of the stack space in bytes. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{group__RTEMSScoreStack_gaa75b0bd2f7d99098ec726dbaa343cebe}\label{group__RTEMSScoreStack_gaa75b0bd2f7d99098ec726dbaa343cebe}} 
+\index{Stack Handler@{Stack Handler}!\_Stack\_Allocate@{\_Stack\_Allocate}}
+\index{\_Stack\_Allocate@{\_Stack\_Allocate}!Stack Handler@{Stack Handler}}
+\subsubsection{\texorpdfstring{\_Stack\_Allocate()}{\_Stack\_Allocate()}}
+{\footnotesize\ttfamily void$\ast$ \+\_\+\+Stack\+\_\+\+Allocate (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{stack\+\_\+size }\end{DoxyParamCaption})}
+
+
+
+Allocate the requested stack space. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em stack\+\_\+size} & The stack space that is requested.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em stack\+\_\+area} & The allocated stack area. \\
+\hline
+{\em N\+U\+LL} & The allocation failed. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{group__RTEMSScoreStack_gaa4d28f2b60601a0713925707f4379743}\label{group__RTEMSScoreStack_gaa4d28f2b60601a0713925707f4379743}} 
+\index{Stack Handler@{Stack Handler}!\_Stack\_Ensure\_minimum@{\_Stack\_Ensure\_minimum}}
+\index{\_Stack\_Ensure\_minimum@{\_Stack\_Ensure\_minimum}!Stack Handler@{Stack Handler}}
+\subsubsection{\texorpdfstring{\_Stack\_Ensure\_minimum()}{\_Stack\_Ensure\_minimum()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} size\+\_\+t \+\_\+\+Stack\+\_\+\+Ensure\+\_\+minimum (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{size }\end{DoxyParamCaption})}
+
+
+
+Returns the appropriate stack size for the requested size. 
+
+This function returns the appropriate stack size given the requested size. If the requested size is below the minimum, then the minimum configured stack size is returned.
+
+
+\begin{DoxyParams}{Parameters}
+{\em size} & The stack size to check.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The appropriate stack size. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{group__RTEMSScoreStack_gaa7306251dbd0baec560422cbfc02b4ab}\label{group__RTEMSScoreStack_gaa7306251dbd0baec560422cbfc02b4ab}} 
+\index{Stack Handler@{Stack Handler}!\_Stack\_Extend\_size@{\_Stack\_Extend\_size}}
+\index{\_Stack\_Extend\_size@{\_Stack\_Extend\_size}!Stack Handler@{Stack Handler}}
+\subsubsection{\texorpdfstring{\_Stack\_Extend\_size()}{\_Stack\_Extend\_size()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} size\+\_\+t \+\_\+\+Stack\+\_\+\+Extend\+\_\+size (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{stack\+\_\+size,  }\item[{bool}]{is\+\_\+fp }\end{DoxyParamCaption})}
+
+
+
+Extend the stack size to account for additional data structures allocated in the stack area of a thread. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em stack\+\_\+size} & The stack size. \\
+\hline
+{\em is\+\_\+fp} & Indicates if the stack is for a floating-\/point thread.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The extended stack size. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{group__RTEMSScoreStack_ga66b144669f2508254620147bedd9baaa}\label{group__RTEMSScoreStack_ga66b144669f2508254620147bedd9baaa}} 
+\index{Stack Handler@{Stack Handler}!\_Stack\_Free@{\_Stack\_Free}}
+\index{\_Stack\_Free@{\_Stack\_Free}!Stack Handler@{Stack Handler}}
+\subsubsection{\texorpdfstring{\_Stack\_Free()}{\_Stack\_Free()}}
+{\footnotesize\ttfamily void \+\_\+\+Stack\+\_\+\+Free (\begin{DoxyParamCaption}\item[{void $\ast$}]{stack\+\_\+area }\end{DoxyParamCaption})}
+
+
+
+Free the stack area allocated by \mbox{\hyperlink{group__RTEMSScoreStack_gaa75b0bd2f7d99098ec726dbaa343cebe}{\+\_\+\+Stack\+\_\+\+Allocate()}}. 
+
+Do nothing if the stack area is N\+U\+LL.
+
+
+\begin{DoxyParams}{Parameters}
+{\em stack\+\_\+area} & The stack area to free, or N\+U\+LL. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__RTEMSScoreStack_gacac0f0f9105a47a592e8d215a29c58a4}\label{group__RTEMSScoreStack_gacac0f0f9105a47a592e8d215a29c58a4}} 
+\index{Stack Handler@{Stack Handler}!\_Stack\_Initialize@{\_Stack\_Initialize}}
+\index{\_Stack\_Initialize@{\_Stack\_Initialize}!Stack Handler@{Stack Handler}}
+\subsubsection{\texorpdfstring{\_Stack\_Initialize()}{\_Stack\_Initialize()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \+\_\+\+Stack\+\_\+\+Initialize (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structStack__Control}{Stack\+\_\+\+Control}} $\ast$}]{the\+\_\+stack,  }\item[{void $\ast$}]{starting\+\_\+address,  }\item[{size\+\_\+t}]{size }\end{DoxyParamCaption})}
+
+
+
+Initializes stack with the given starting address and size. 
+
+This routine initializes the\+\_\+stack record to indicate that size bytes of memory starting at starting\+\_\+address have been reserved for a stack.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em the\+\_\+stack} & The stack to initialize. \\
+\hline
+ & {\em starting\+\_\+address} & The starting\+\_\+address for the new stack. \\
+\hline
+ & {\em size} & The size of the stack in bytes. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__RTEMSScoreStack_gaf7041341c804491731396adcbb0506cf}\label{group__RTEMSScoreStack_gaf7041341c804491731396adcbb0506cf}} 
+\index{Stack Handler@{Stack Handler}!\_Stack\_Is\_enough@{\_Stack\_Is\_enough}}
+\index{\_Stack\_Is\_enough@{\_Stack\_Is\_enough}!Stack Handler@{Stack Handler}}
+\subsubsection{\texorpdfstring{\_Stack\_Is\_enough()}{\_Stack\_Is\_enough()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} bool \+\_\+\+Stack\+\_\+\+Is\+\_\+enough (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{size,  }\item[{bool}]{is\+\_\+fp }\end{DoxyParamCaption})}
+
+
+
+Checks if the size is enough for a valid stack area on this processor. 
+
+This function returns true if size bytes is enough memory for a valid stack area on this processor, and false otherwise.
+
+
+\begin{DoxyParams}{Parameters}
+{\em size} & The stack size to check. \\
+\hline
+{\em is\+\_\+fp} & Indicates if the stack is for a floating-\/point thread.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em true} & {\itshape size} is large enough. \\
+\hline
+{\em false} & {\itshape size} is not large enough. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{group__RTEMSScoreStack_ga3363a134ab99ea804a61cad0eb9c971b}\label{group__RTEMSScoreStack_ga3363a134ab99ea804a61cad0eb9c971b}} 
+\index{Stack Handler@{Stack Handler}!\_Stack\_Minimum@{\_Stack\_Minimum}}
+\index{\_Stack\_Minimum@{\_Stack\_Minimum}!Stack Handler@{Stack Handler}}
+\subsubsection{\texorpdfstring{\_Stack\_Minimum()}{\_Stack\_Minimum()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} uint32\+\_\+t \+\_\+\+Stack\+\_\+\+Minimum (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Returns the minimum stack size. 
+
+This function returns the minimum stack size configured for this application.
+
+\begin{DoxyReturn}{Returns}
+The minimum stack size. 
+\end{DoxyReturn}
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{group__RTEMSScoreStack_ga990e004f5df8e25208220ffb1efcf7f6}\label{group__RTEMSScoreStack_ga990e004f5df8e25208220ffb1efcf7f6}} 
+\index{Stack Handler@{Stack Handler}!\_Stack\_Allocator\_allocate@{\_Stack\_Allocator\_allocate}}
+\index{\_Stack\_Allocator\_allocate@{\_Stack\_Allocator\_allocate}!Stack Handler@{Stack Handler}}
+\subsubsection{\texorpdfstring{\_Stack\_Allocator\_allocate}{\_Stack\_Allocator\_allocate}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{group__RTEMSScoreStack_ga1e4edf42aa30aeab80fefb866e892a3d}{Stack\+\_\+\+Allocator\+\_\+allocate}} \+\_\+\+Stack\+\_\+\+Allocator\+\_\+allocate}
+
+
+
+The stack allocator allocate handler. 
+
+Application provided via $<$\mbox{\hyperlink{confdefs_8h}{rtems/confdefs.\+h}}$>$. \mbox{\Hypertarget{group__RTEMSScoreStack_ga3ad1e88117c7fed8908bfe98c6da30c3}\label{group__RTEMSScoreStack_ga3ad1e88117c7fed8908bfe98c6da30c3}} 
+\index{Stack Handler@{Stack Handler}!\_Stack\_Allocator\_avoids\_workspace@{\_Stack\_Allocator\_avoids\_workspace}}
+\index{\_Stack\_Allocator\_avoids\_workspace@{\_Stack\_Allocator\_avoids\_workspace}!Stack Handler@{Stack Handler}}
+\subsubsection{\texorpdfstring{\_Stack\_Allocator\_avoids\_workspace}{\_Stack\_Allocator\_avoids\_workspace}}
+{\footnotesize\ttfamily const bool \+\_\+\+Stack\+\_\+\+Allocator\+\_\+avoids\+\_\+workspace}
+
+
+
+Indicates if the stack allocator avoids the workspace. 
+
+Application provided via $<$\mbox{\hyperlink{confdefs_8h}{rtems/confdefs.\+h}}$>$. \mbox{\Hypertarget{group__RTEMSScoreStack_gac6757ab9b463b2ac5c47a7e43e6da309}\label{group__RTEMSScoreStack_gac6757ab9b463b2ac5c47a7e43e6da309}} 
+\index{Stack Handler@{Stack Handler}!\_Stack\_Allocator\_free@{\_Stack\_Allocator\_free}}
+\index{\_Stack\_Allocator\_free@{\_Stack\_Allocator\_free}!Stack Handler@{Stack Handler}}
+\subsubsection{\texorpdfstring{\_Stack\_Allocator\_free}{\_Stack\_Allocator\_free}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{group__RTEMSScoreStack_ga2bc90d7062b3eba257c6e2e3836deb8b}{Stack\+\_\+\+Allocator\+\_\+free}} \+\_\+\+Stack\+\_\+\+Allocator\+\_\+free}
+
+
+
+The stack allocator free handler. 
+
+Application provided via $<$\mbox{\hyperlink{confdefs_8h}{rtems/confdefs.\+h}}$>$. \mbox{\Hypertarget{group__RTEMSScoreStack_gac8c437cd523908b2f03d1015af97dce0}\label{group__RTEMSScoreStack_gac8c437cd523908b2f03d1015af97dce0}} 
+\index{Stack Handler@{Stack Handler}!\_Stack\_Allocator\_initialize@{\_Stack\_Allocator\_initialize}}
+\index{\_Stack\_Allocator\_initialize@{\_Stack\_Allocator\_initialize}!Stack Handler@{Stack Handler}}
+\subsubsection{\texorpdfstring{\_Stack\_Allocator\_initialize}{\_Stack\_Allocator\_initialize}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{group__RTEMSScoreStack_ga0b4e6be94e46e4f0a9e862e1f818d28b}{Stack\+\_\+\+Allocator\+\_\+initialize}} \+\_\+\+Stack\+\_\+\+Allocator\+\_\+initialize}
+
+
+
+The stack allocator initialization handler. 
+
+Application provided via $<$\mbox{\hyperlink{confdefs_8h}{rtems/confdefs.\+h}}$>$. \mbox{\Hypertarget{group__RTEMSScoreStack_ga8c5d8c7c95443b50e9503b2d91db5ae9}\label{group__RTEMSScoreStack_ga8c5d8c7c95443b50e9503b2d91db5ae9}} 
+\index{Stack Handler@{Stack Handler}!\_Stack\_Space\_size@{\_Stack\_Space\_size}}
+\index{\_Stack\_Space\_size@{\_Stack\_Space\_size}!Stack Handler@{Stack Handler}}
+\subsubsection{\texorpdfstring{\_Stack\_Space\_size}{\_Stack\_Space\_size}}
+{\footnotesize\ttfamily const uintptr\+\_\+t \+\_\+\+Stack\+\_\+\+Space\+\_\+size}
+
+
+
+The configured stack space size. 
+
+Application provided via $<$\mbox{\hyperlink{confdefs_8h}{rtems/confdefs.\+h}}$>$. \mbox{\Hypertarget{group__RTEMSScoreStack_gae18af1b30b702cd1f139f7df0d54acf4}\label{group__RTEMSScoreStack_gae18af1b30b702cd1f139f7df0d54acf4}} 
+\index{Stack Handler@{Stack Handler}!rtems\_minimum\_stack\_size@{rtems\_minimum\_stack\_size}}
+\index{rtems\_minimum\_stack\_size@{rtems\_minimum\_stack\_size}!Stack Handler@{Stack Handler}}
+\subsubsection{\texorpdfstring{rtems\_minimum\_stack\_size}{rtems\_minimum\_stack\_size}}
+{\footnotesize\ttfamily uint32\+\_\+t rtems\+\_\+minimum\+\_\+stack\+\_\+size}
+
+
+
+The minimum stack size. 
+
+Application provided via $<$\mbox{\hyperlink{confdefs_8h}{rtems/confdefs.\+h}}$>$. 

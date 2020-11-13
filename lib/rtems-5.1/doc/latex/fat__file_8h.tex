@@ -1,0 +1,85 @@
+\hypertarget{fat__file_8h}{}\section{cpukit/libfs/src/dosfs/fat\+\_\+file.h File Reference}
+\label{fat__file_8h}\index{cpukit/libfs/src/dosfs/fat\_file.h@{cpukit/libfs/src/dosfs/fat\_file.h}}
+
+
+Constants/\+Data Structures/\+Prototypes for Operations on \char`\"{}fat-\/file\char`\"{}.  
+
+
+{\ttfamily \#include $<$rtems.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/libio\+\_\+.\+h$>$}\newline
+{\ttfamily \#include $<$time.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}fat.\+h\char`\"{}}\newline
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structfat__file__map__s}{fat\+\_\+file\+\_\+map\+\_\+s}}
+\begin{DoxyCompactList}\small\item\em The \char`\"{}fat-\/file\char`\"{} representation. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structfat__file__fd__s}{fat\+\_\+file\+\_\+fd\+\_\+s}}
+\begin{DoxyCompactList}\small\item\em Descriptor of a fat-\/file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bfseries F\+A\+T\+\_\+\+F\+I\+L\+E\+\_\+\+R\+E\+M\+O\+V\+ED}~0x01
+\item 
+\#define {\bfseries F\+A\+T\+\_\+\+F\+I\+L\+E\+\_\+\+M\+E\+T\+A\+\_\+\+D\+A\+T\+A\+\_\+\+C\+H\+A\+N\+G\+ED}~0x02
+\item 
+\#define {\bfseries F\+\_\+\+C\+L\+U\+\_\+\+N\+UM}~0x01
+\item 
+\#define {\bfseries F\+A\+T\+\_\+\+R\+O\+O\+T\+D\+I\+R\+\_\+\+C\+L\+U\+S\+T\+E\+R\+\_\+\+N\+UM}~0x01
+\item 
+\#define {\bfseries F\+A\+T\+\_\+\+F\+D\+\_\+\+O\+F\+\_\+\+R\+O\+O\+T\+\_\+\+D\+IR}(fat\+\_\+fd)
+\item 
+\#define {\bfseries F\+A\+T\+\_\+\+E\+OF}~0x00
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \mbox{\hyperlink{structfat__file__map__s}{fat\+\_\+file\+\_\+map\+\_\+s}} \mbox{\hyperlink{group__libfs__ff_gab16eea01f8ddea275cd616cc28082ff8}{fat\+\_\+file\+\_\+map\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em The \char`\"{}fat-\/file\char`\"{} representation. \end{DoxyCompactList}\item 
+typedef struct \mbox{\hyperlink{structfat__file__fd__s}{fat\+\_\+file\+\_\+fd\+\_\+s}} \mbox{\hyperlink{group__libfs__ff_gaa53f9c544914509505e3cfbd3796f877}{fat\+\_\+file\+\_\+fd\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Descriptor of a fat-\/file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{group__libfs__ff_gac74c41b0ee6699afd65a52107ac492ee}\label{group__libfs__ff_gac74c41b0ee6699afd65a52107ac492ee}} 
+enum {\bfseries fat\+\_\+file\+\_\+type\+\_\+t} \{ {\bfseries F\+A\+T\+\_\+\+D\+I\+R\+E\+C\+T\+O\+RY} = 0, 
+{\bfseries F\+A\+T\+\_\+\+H\+A\+R\+D\+\_\+\+L\+I\+NK} = 2, 
+{\bfseries F\+A\+T\+\_\+\+F\+I\+LE} = 4
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int {\bfseries fat\+\_\+file\+\_\+open} (\mbox{\hyperlink{structfat__fs__info__s}{fat\+\_\+fs\+\_\+info\+\_\+t}} $\ast$fs\+\_\+info, \mbox{\hyperlink{structfat__dir__pos__s}{fat\+\_\+dir\+\_\+pos\+\_\+t}} $\ast$dir\+\_\+pos, \mbox{\hyperlink{group__libfs__ff_gaa53f9c544914509505e3cfbd3796f877}{fat\+\_\+file\+\_\+fd\+\_\+t}} $\ast$$\ast$fat\+\_\+fd)
+\item 
+int {\bfseries fat\+\_\+file\+\_\+reopen} (\mbox{\hyperlink{group__libfs__ff_gaa53f9c544914509505e3cfbd3796f877}{fat\+\_\+file\+\_\+fd\+\_\+t}} $\ast$fat\+\_\+fd)
+\item 
+int {\bfseries fat\+\_\+file\+\_\+close} (\mbox{\hyperlink{structfat__fs__info__s}{fat\+\_\+fs\+\_\+info\+\_\+t}} $\ast$fs\+\_\+info, \mbox{\hyperlink{group__libfs__ff_gaa53f9c544914509505e3cfbd3796f877}{fat\+\_\+file\+\_\+fd\+\_\+t}} $\ast$fat\+\_\+fd)
+\item 
+ssize\+\_\+t {\bfseries fat\+\_\+file\+\_\+read} (\mbox{\hyperlink{structfat__fs__info__s}{fat\+\_\+fs\+\_\+info\+\_\+t}} $\ast$fs\+\_\+info, \mbox{\hyperlink{group__libfs__ff_gaa53f9c544914509505e3cfbd3796f877}{fat\+\_\+file\+\_\+fd\+\_\+t}} $\ast$fat\+\_\+fd, uint32\+\_\+t start, uint32\+\_\+t count, uint8\+\_\+t $\ast$buf)
+\item 
+ssize\+\_\+t {\bfseries fat\+\_\+file\+\_\+write} (\mbox{\hyperlink{structfat__fs__info__s}{fat\+\_\+fs\+\_\+info\+\_\+t}} $\ast$fs\+\_\+info, \mbox{\hyperlink{group__libfs__ff_gaa53f9c544914509505e3cfbd3796f877}{fat\+\_\+file\+\_\+fd\+\_\+t}} $\ast$fat\+\_\+fd, uint32\+\_\+t start, uint32\+\_\+t count, const uint8\+\_\+t $\ast$buf)
+\item 
+int {\bfseries fat\+\_\+file\+\_\+extend} (\mbox{\hyperlink{structfat__fs__info__s}{fat\+\_\+fs\+\_\+info\+\_\+t}} $\ast$fs\+\_\+info, \mbox{\hyperlink{group__libfs__ff_gaa53f9c544914509505e3cfbd3796f877}{fat\+\_\+file\+\_\+fd\+\_\+t}} $\ast$fat\+\_\+fd, bool zero\+\_\+fill, uint32\+\_\+t new\+\_\+length, uint32\+\_\+t $\ast$a\+\_\+length)
+\item 
+int {\bfseries fat\+\_\+file\+\_\+truncate} (\mbox{\hyperlink{structfat__fs__info__s}{fat\+\_\+fs\+\_\+info\+\_\+t}} $\ast$fs\+\_\+info, \mbox{\hyperlink{group__libfs__ff_gaa53f9c544914509505e3cfbd3796f877}{fat\+\_\+file\+\_\+fd\+\_\+t}} $\ast$fat\+\_\+fd, uint32\+\_\+t new\+\_\+length)
+\item 
+int {\bfseries fat\+\_\+file\+\_\+ioctl} (\mbox{\hyperlink{structfat__fs__info__s}{fat\+\_\+fs\+\_\+info\+\_\+t}} $\ast$fs\+\_\+info, \mbox{\hyperlink{group__libfs__ff_gaa53f9c544914509505e3cfbd3796f877}{fat\+\_\+file\+\_\+fd\+\_\+t}} $\ast$fat\+\_\+fd, int cmd,...)
+\item 
+int {\bfseries fat\+\_\+file\+\_\+size} (\mbox{\hyperlink{structfat__fs__info__s}{fat\+\_\+fs\+\_\+info\+\_\+t}} $\ast$fs\+\_\+info, \mbox{\hyperlink{group__libfs__ff_gaa53f9c544914509505e3cfbd3796f877}{fat\+\_\+file\+\_\+fd\+\_\+t}} $\ast$fat\+\_\+fd)
+\item 
+void {\bfseries fat\+\_\+file\+\_\+mark\+\_\+removed} (\mbox{\hyperlink{structfat__fs__info__s}{fat\+\_\+fs\+\_\+info\+\_\+t}} $\ast$fs\+\_\+info, \mbox{\hyperlink{group__libfs__ff_gaa53f9c544914509505e3cfbd3796f877}{fat\+\_\+file\+\_\+fd\+\_\+t}} $\ast$fat\+\_\+fd)
+\item 
+int {\bfseries fat\+\_\+file\+\_\+write\+\_\+first\+\_\+cluster\+\_\+num} (\mbox{\hyperlink{structfat__fs__info__s}{fat\+\_\+fs\+\_\+info\+\_\+t}} $\ast$fs\+\_\+info, \mbox{\hyperlink{group__libfs__ff_gaa53f9c544914509505e3cfbd3796f877}{fat\+\_\+file\+\_\+fd\+\_\+t}} $\ast$fat\+\_\+fd)
+\item 
+int {\bfseries fat\+\_\+file\+\_\+write\+\_\+file\+\_\+size} (\mbox{\hyperlink{structfat__fs__info__s}{fat\+\_\+fs\+\_\+info\+\_\+t}} $\ast$fs\+\_\+info, \mbox{\hyperlink{group__libfs__ff_gaa53f9c544914509505e3cfbd3796f877}{fat\+\_\+file\+\_\+fd\+\_\+t}} $\ast$fat\+\_\+fd)
+\item 
+int {\bfseries fat\+\_\+file\+\_\+write\+\_\+time\+\_\+and\+\_\+date} (\mbox{\hyperlink{structfat__fs__info__s}{fat\+\_\+fs\+\_\+info\+\_\+t}} $\ast$fs\+\_\+info, \mbox{\hyperlink{group__libfs__ff_gaa53f9c544914509505e3cfbd3796f877}{fat\+\_\+file\+\_\+fd\+\_\+t}} $\ast$fat\+\_\+fd)
+\item 
+int {\bfseries fat\+\_\+file\+\_\+update} (\mbox{\hyperlink{structfat__fs__info__s}{fat\+\_\+fs\+\_\+info\+\_\+t}} $\ast$fs\+\_\+info, \mbox{\hyperlink{group__libfs__ff_gaa53f9c544914509505e3cfbd3796f877}{fat\+\_\+file\+\_\+fd\+\_\+t}} $\ast$fat\+\_\+fd)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Constants/\+Data Structures/\+Prototypes for Operations on \char`\"{}fat-\/file\char`\"{}. 
+

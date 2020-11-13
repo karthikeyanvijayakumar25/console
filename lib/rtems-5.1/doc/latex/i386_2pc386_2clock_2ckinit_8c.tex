@@ -1,0 +1,107 @@
+\hypertarget{i386_2pc386_2clock_2ckinit_8c}{}\section{bsps/i386/pc386/clock/ckinit.c File Reference}
+\label{i386_2pc386_2clock_2ckinit_8c}\index{bsps/i386/pc386/clock/ckinit.c@{bsps/i386/pc386/clock/ckinit.c}}
+{\ttfamily \#include $<$bsp.\+h$>$}\newline
+{\ttfamily \#include $<$bsp/irq-\/generic.\+h$>$}\newline
+{\ttfamily \#include $<$bspopts.\+h$>$}\newline
+{\ttfamily \#include $<$libcpu/cpu\+Model.\+h$>$}\newline
+{\ttfamily \#include $<$assert.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/timecounter.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}../../../shared/dev/clock/clockimpl.\+h\char`\"{}}\newline
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{i386_2pc386_2clock_2ckinit_8c_a4edae1f7872fdace9eb64c197b3f952d}\label{i386_2pc386_2clock_2ckinit_8c_a4edae1f7872fdace9eb64c197b3f952d}} 
+\#define {\bfseries C\+L\+O\+C\+K\+\_\+\+V\+E\+C\+T\+OR}~0
+\item 
+\mbox{\Hypertarget{i386_2pc386_2clock_2ckinit_8c_a6775dc114db9332a0fc70afaca8d9323}\label{i386_2pc386_2clock_2ckinit_8c_a6775dc114db9332a0fc70afaca8d9323}} 
+\#define {\bfseries C\+L\+O\+C\+K\+\_\+\+D\+R\+I\+V\+E\+R\+\_\+\+I\+S\+R\+S\+\_\+\+P\+E\+R\+\_\+\+T\+I\+CK}~1
+\item 
+\mbox{\Hypertarget{i386_2pc386_2clock_2ckinit_8c_a2b972e21386f2b6392a59f1159661400}\label{i386_2pc386_2clock_2ckinit_8c_a2b972e21386f2b6392a59f1159661400}} 
+\#define {\bfseries C\+L\+O\+C\+K\+\_\+\+D\+R\+I\+V\+E\+R\+\_\+\+I\+S\+R\+S\+\_\+\+P\+E\+R\+\_\+\+T\+I\+C\+K\+\_\+\+V\+A\+L\+UE}~pc386\+\_\+isrs\+\_\+per\+\_\+tick
+\item 
+\#define {\bfseries R\+E\+A\+D\+\_\+8254}(\+\_\+lsb,  \+\_\+msb)
+\item 
+\#define {\bfseries Clock\+\_\+driver\+\_\+support\+\_\+set\+\_\+interrupt\+\_\+affinity}(online\+\_\+processors)
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{i386_2pc386_2clock_2ckinit_8c_a8e85e57f25eed7b096195295604e69e5}\label{i386_2pc386_2clock_2ckinit_8c_a8e85e57f25eed7b096195295604e69e5}} 
+void {\bfseries Clock\+\_\+isr} (void $\ast$param)
+\item 
+void {\bfseries Clock\+\_\+driver\+\_\+install\+\_\+handler} (void)
+\item 
+void {\bfseries Clock\+\_\+driver\+\_\+support\+\_\+initialize\+\_\+hardware} (void)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{i386_2pc386_2clock_2ckinit_8c_a64df988b7838bdbfc8f6b284dac11ade}\label{i386_2pc386_2clock_2ckinit_8c_a64df988b7838bdbfc8f6b284dac11ade}} 
+volatile uint32\+\_\+t {\bfseries pc386\+\_\+microseconds\+\_\+per\+\_\+isr}
+\item 
+\mbox{\Hypertarget{i386_2pc386_2clock_2ckinit_8c_aed7501b3a1ea37050b5f727798135592}\label{i386_2pc386_2clock_2ckinit_8c_aed7501b3a1ea37050b5f727798135592}} 
+volatile uint32\+\_\+t {\bfseries pc386\+\_\+isrs\+\_\+per\+\_\+tick}
+\item 
+\mbox{\Hypertarget{i386_2pc386_2clock_2ckinit_8c_a25047151579fc338ff9ad2623a68c020}\label{i386_2pc386_2clock_2ckinit_8c_a25047151579fc338ff9ad2623a68c020}} 
+uint32\+\_\+t {\bfseries pc386\+\_\+clock\+\_\+click\+\_\+count}
+\item 
+volatile uint32\+\_\+t \mbox{\hyperlink{i386_2pc386_2clock_2ckinit_8c_a154adab6b69d3a14e921cfe8b2649d20}{Clock\+\_\+driver\+\_\+ticks}}
+\begin{DoxyCompactList}\small\item\em I\+S\+Rs until next clock tick. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{i386_2pc386_2clock_2ckinit_8c_a40e446ae9d8f9a864b7bb5918833e64e}\label{i386_2pc386_2clock_2ckinit_8c_a40e446ae9d8f9a864b7bb5918833e64e}} 
+bool {\bfseries Clock\+\_\+isr\+\_\+enabled} = false
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Clock Tick Device Driver
+
+History\+:
+\begin{DoxyItemize}
+\item Original driver was go32 clock by Joel Sherrill
+\item go32 clock driver hardware code was inserted into new boilerplate when the pc386 B\+SP by\+: Pedro Miguel Da Cruz Neto Romano \href{mailto:pmcnr@camoes.rnl.ist.utl.pt}{\texttt{ pmcnr@camoes.\+rnl.\+ist.\+utl.\+pt}} Jose Rufino \href{mailto:ruf@asterix.ist.utl.pt}{\texttt{ ruf@asterix.\+ist.\+utl.\+pt}}
+\item Reworked by Joel Sherrill to use clock driver template. This removes all boilerplate and leave original hardware code I developed for the go32 B\+SP. 
+\end{DoxyItemize}
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{i386_2pc386_2clock_2ckinit_8c_a6d50e63577472e1a7899c19f75dc54b8}\label{i386_2pc386_2clock_2ckinit_8c_a6d50e63577472e1a7899c19f75dc54b8}} 
+\index{ckinit.c@{ckinit.c}!Clock\_driver\_support\_set\_interrupt\_affinity@{Clock\_driver\_support\_set\_interrupt\_affinity}}
+\index{Clock\_driver\_support\_set\_interrupt\_affinity@{Clock\_driver\_support\_set\_interrupt\_affinity}!ckinit.c@{ckinit.c}}
+\subsubsection{\texorpdfstring{Clock\_driver\_support\_set\_interrupt\_affinity}{Clock\_driver\_support\_set\_interrupt\_affinity}}
+{\footnotesize\ttfamily \#define Clock\+\_\+driver\+\_\+support\+\_\+set\+\_\+interrupt\+\_\+affinity(\begin{DoxyParamCaption}\item[{}]{online\+\_\+processors }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do} \{ \(\backslash\)}
+\DoxyCodeLine{    \textcolor{comment}{/* FIXME: Is there a way to do this on x86? */} \(\backslash\)}
+\DoxyCodeLine{    (void) online\_processors; \(\backslash\)}
+\DoxyCodeLine{  \} \textcolor{keywordflow}{while} (0)}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{i386_2pc386_2clock_2ckinit_8c_a8cd0c7a0c20682efb3f50f5913c9a889}\label{i386_2pc386_2clock_2ckinit_8c_a8cd0c7a0c20682efb3f50f5913c9a889}} 
+\index{ckinit.c@{ckinit.c}!READ\_8254@{READ\_8254}}
+\index{READ\_8254@{READ\_8254}!ckinit.c@{ckinit.c}}
+\subsubsection{\texorpdfstring{READ\_8254}{READ\_8254}}
+{\footnotesize\ttfamily \#define R\+E\+A\+D\+\_\+8254(\begin{DoxyParamCaption}\item[{}]{\+\_\+lsb,  }\item[{}]{\+\_\+msb }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do} \{ outport\_byte(TIMER\_MODE, TIMER\_SEL0|TIMER\_LATCH);      \(\backslash\)}
+\DoxyCodeLine{     inport\_byte(TIMER\_CNTR0, \_lsb);                          \(\backslash\)}
+\DoxyCodeLine{     inport\_byte(TIMER\_CNTR0, \_msb);                          \(\backslash\)}
+\DoxyCodeLine{  \} \textcolor{keywordflow}{while} (0)}
+
+\end{DoxyCode}
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{i386_2pc386_2clock_2ckinit_8c_a154adab6b69d3a14e921cfe8b2649d20}\label{i386_2pc386_2clock_2ckinit_8c_a154adab6b69d3a14e921cfe8b2649d20}} 
+\index{ckinit.c@{ckinit.c}!Clock\_driver\_ticks@{Clock\_driver\_ticks}}
+\index{Clock\_driver\_ticks@{Clock\_driver\_ticks}!ckinit.c@{ckinit.c}}
+\subsubsection{\texorpdfstring{Clock\_driver\_ticks}{Clock\_driver\_ticks}}
+{\footnotesize\ttfamily volatile uint32\+\_\+t Clock\+\_\+driver\+\_\+ticks}
+
+
+
+I\+S\+Rs until next clock tick. 
+
+Clock ticks since initialization 

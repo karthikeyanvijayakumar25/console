@@ -1,0 +1,224 @@
+\hypertarget{imfs_8h}{}\section{cpukit/include/rtems/imfs.h File Reference}
+\label{imfs_8h}\index{cpukit/include/rtems/imfs.h@{cpukit/include/rtems/imfs.h}}
+
+
+Header File for the In-\/\+Memory File System.  
+
+
+{\ttfamily \#include $<$sys/time.\+h$>$}\newline
+{\ttfamily \#include $<$limits.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/libio\+\_\+.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/pipe.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/score/timecounter.\+h$>$}\newline
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structIMFS__node__control}{I\+M\+F\+S\+\_\+node\+\_\+control}}
+\begin{DoxyCompactList}\small\item\em I\+M\+FS node control. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structIMFS__mknod__control}{I\+M\+F\+S\+\_\+mknod\+\_\+control}}
+\item 
+struct \mbox{\hyperlink{structIMFS__jnode__tt}{I\+M\+F\+S\+\_\+jnode\+\_\+tt}}
+\item 
+struct \mbox{\hyperlink{structIMFS__directory__t}{I\+M\+F\+S\+\_\+directory\+\_\+t}}
+\item 
+struct \mbox{\hyperlink{structIMFS__device__t}{I\+M\+F\+S\+\_\+device\+\_\+t}}
+\item 
+struct \mbox{\hyperlink{structIMFS__link__t}{I\+M\+F\+S\+\_\+link\+\_\+t}}
+\item 
+struct \mbox{\hyperlink{structIMFS__sym__link__t}{I\+M\+F\+S\+\_\+sym\+\_\+link\+\_\+t}}
+\item 
+struct \mbox{\hyperlink{structIMFS__filebase__t}{I\+M\+F\+S\+\_\+filebase\+\_\+t}}
+\item 
+struct \mbox{\hyperlink{structIMFS__memfile__t}{I\+M\+F\+S\+\_\+memfile\+\_\+t}}
+\item 
+struct \mbox{\hyperlink{structIMFS__linearfile__t}{I\+M\+F\+S\+\_\+linearfile\+\_\+t}}
+\item 
+union \mbox{\hyperlink{unionIMFS__file__t}{I\+M\+F\+S\+\_\+file\+\_\+t}}
+\item 
+struct \mbox{\hyperlink{structIMFS__fifo__t}{I\+M\+F\+S\+\_\+fifo\+\_\+t}}
+\item 
+struct \mbox{\hyperlink{structIMFS__generic__t}{I\+M\+F\+S\+\_\+generic\+\_\+t}}
+\item 
+struct \mbox{\hyperlink{structIMFS__linearfile__context}{I\+M\+F\+S\+\_\+linearfile\+\_\+context}}
+\item 
+struct \mbox{\hyperlink{structIMFS__mknod__controls}{I\+M\+F\+S\+\_\+mknod\+\_\+controls}}
+\item 
+struct \mbox{\hyperlink{structIMFS__fs__info__t}{I\+M\+F\+S\+\_\+fs\+\_\+info\+\_\+t}}
+\item 
+struct \mbox{\hyperlink{structIMFS__mount__data}{I\+M\+F\+S\+\_\+mount\+\_\+data}}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__IMFS_gae516a81a3c6a2b16c5063c2885be9dc5}{I\+M\+F\+S\+\_\+\+M\+E\+M\+F\+I\+L\+E\+\_\+\+D\+E\+F\+A\+U\+L\+T\+\_\+\+B\+Y\+T\+E\+S\+\_\+\+P\+E\+R\+\_\+\+B\+L\+O\+CK}}~128
+\item 
+\#define {\bfseries I\+M\+F\+S\+\_\+\+M\+E\+M\+F\+I\+L\+E\+\_\+\+B\+Y\+T\+E\+S\+\_\+\+P\+E\+R\+\_\+\+B\+L\+O\+CK}~imfs\+\_\+memfile\+\_\+bytes\+\_\+per\+\_\+block
+\item 
+\#define {\bfseries I\+M\+F\+S\+\_\+\+M\+E\+M\+F\+I\+L\+E\+\_\+\+B\+L\+O\+C\+K\+\_\+\+S\+L\+O\+TS}~(I\+M\+F\+S\+\_\+\+M\+E\+M\+F\+I\+L\+E\+\_\+\+B\+Y\+T\+E\+S\+\_\+\+P\+E\+R\+\_\+\+B\+L\+O\+CK / sizeof(void $\ast$))
+\item 
+\#define {\bfseries F\+I\+R\+S\+T\+\_\+\+I\+N\+D\+I\+R\+E\+CT}~(0)
+\item 
+\#define {\bfseries L\+A\+S\+T\+\_\+\+I\+N\+D\+I\+R\+E\+CT}~(I\+M\+F\+S\+\_\+\+M\+E\+M\+F\+I\+L\+E\+\_\+\+B\+L\+O\+C\+K\+\_\+\+S\+L\+O\+TS -\/ 1)
+\item 
+\#define {\bfseries F\+I\+R\+S\+T\+\_\+\+D\+O\+U\+B\+L\+Y\+\_\+\+I\+N\+D\+I\+R\+E\+CT}~(L\+A\+S\+T\+\_\+\+I\+N\+D\+I\+R\+E\+CT + 1)
+\item 
+\#define {\bfseries L\+A\+S\+T\+\_\+\+D\+O\+U\+B\+L\+Y\+\_\+\+I\+N\+D\+I\+R\+E\+CT}
+\item 
+\#define {\bfseries F\+I\+R\+S\+T\+\_\+\+T\+R\+I\+P\+L\+Y\+\_\+\+I\+N\+D\+I\+R\+E\+CT}~(L\+A\+S\+T\+\_\+\+D\+O\+U\+B\+L\+Y\+\_\+\+I\+N\+D\+I\+R\+E\+CT + 1)
+\item 
+\#define {\bfseries L\+A\+S\+T\+\_\+\+T\+R\+I\+P\+L\+Y\+\_\+\+I\+N\+D\+I\+R\+E\+CT}
+\item 
+\#define {\bfseries I\+M\+F\+S\+\_\+\+M\+E\+M\+F\+I\+L\+E\+\_\+\+M\+A\+X\+I\+M\+U\+M\+\_\+\+S\+I\+ZE}~(L\+A\+S\+T\+\_\+\+T\+R\+I\+P\+L\+Y\+\_\+\+I\+N\+D\+I\+R\+E\+CT $\ast$ I\+M\+F\+S\+\_\+\+M\+E\+M\+F\+I\+L\+E\+\_\+\+B\+Y\+T\+E\+S\+\_\+\+P\+E\+R\+\_\+\+B\+L\+O\+CK)
+\item 
+\#define {\bfseries I\+M\+F\+S\+\_\+\+N\+A\+M\+E\+\_\+\+M\+AX}~\+\_\+\+P\+O\+S\+I\+X\+\_\+\+N\+A\+M\+E\+\_\+\+M\+AX
+\item 
+\#define \mbox{\hyperlink{group__IMFS_ga3003884652843bc2a52af880d6accf4f}{I\+M\+F\+S\+\_\+\+N\+O\+D\+E\+\_\+\+C\+O\+N\+T\+R\+O\+L\+\_\+\+I\+N\+I\+T\+I\+A\+L\+I\+Z\+ER}}(handlers,  init,  destroy)
+\begin{DoxyCompactList}\small\item\em Initializer for an I\+M\+FS node control. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__IMFS_gadf395ed2a459636e9554349d7227da6d}{I\+M\+F\+S\+\_\+\+N\+O\+D\+E\+\_\+\+I\+N\+I\+T\+I\+A\+L\+I\+Z\+ER}}(node\+\_\+control,  name,  namelen,  mode)
+\begin{DoxyCompactList}\small\item\em Initializer for an I\+M\+FS node. \end{DoxyCompactList}\item 
+\#define {\bfseries I\+M\+F\+S\+\_\+\+G\+E\+N\+E\+R\+I\+C\+\_\+\+I\+N\+I\+T\+I\+A\+L\+I\+Z\+ER}(handlers,  init,  destroy)~\mbox{\hyperlink{group__IMFS_ga3003884652843bc2a52af880d6accf4f}{I\+M\+F\+S\+\_\+\+N\+O\+D\+E\+\_\+\+C\+O\+N\+T\+R\+O\+L\+\_\+\+I\+N\+I\+T\+I\+A\+L\+I\+Z\+ER}}( handlers, init, destroy )
+\item 
+\#define \mbox{\hyperlink{group__IMFSGenericNodes_ga8764e226d4483098ea7e5dee061927f3}{I\+M\+F\+S\+\_\+\+G\+E\+N\+E\+R\+I\+C\+\_\+\+C\+O\+N\+T\+R\+O\+L\+\_\+\+I\+N\+I\+T\+I\+A\+L\+I\+Z\+ER}}(handlers,  init,  destroy)~\mbox{\hyperlink{group__IMFS_ga3003884652843bc2a52af880d6accf4f}{I\+M\+F\+S\+\_\+\+N\+O\+D\+E\+\_\+\+C\+O\+N\+T\+R\+O\+L\+\_\+\+I\+N\+I\+T\+I\+A\+L\+I\+Z\+ER}}( handlers, init, destroy )
+\begin{DoxyCompactList}\small\item\em Initializer for a generic node control. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__IMFSGenericNodes_gaa92e5380e1b89f2b97f03f2f47ec5302}{I\+M\+F\+S\+\_\+\+G\+E\+N\+E\+R\+I\+C\+\_\+\+N\+O\+D\+E\+\_\+\+I\+N\+I\+T\+I\+A\+L\+I\+Z\+ER}}(node\+\_\+control,  name,  namelen,  mode)~\{ \mbox{\hyperlink{group__IMFS_gadf395ed2a459636e9554349d7227da6d}{I\+M\+F\+S\+\_\+\+N\+O\+D\+E\+\_\+\+I\+N\+I\+T\+I\+A\+L\+I\+Z\+ER}}( node\+\_\+control, name, namelen, mode ), \mbox{\hyperlink{bestcomm__api_8h_a872bb74de61c3689ccd5b41873fce42c}{N\+U\+LL}} \}
+\begin{DoxyCompactList}\small\item\em Initializer for a generic node. \end{DoxyCompactList}\item 
+\#define {\bfseries I\+M\+F\+S\+\_\+assert}(\+\_\+x)
+\item 
+\#define {\bfseries I\+M\+F\+S\+\_\+\+S\+T\+A\+T\+\_\+\+F\+M\+T\+\_\+\+H\+A\+R\+D\+\_\+\+L\+I\+NK}~0
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \mbox{\hyperlink{structIMFS__jnode__tt}{I\+M\+F\+S\+\_\+jnode\+\_\+tt}} {\bfseries I\+M\+F\+S\+\_\+jnode\+\_\+t}
+\item 
+typedef uint8\+\_\+t $\ast$ {\bfseries block\+\_\+p}
+\item 
+typedef block\+\_\+p $\ast$ {\bfseries block\+\_\+ptr}
+\item 
+typedef \mbox{\hyperlink{structIMFS__jnode__tt}{I\+M\+F\+S\+\_\+jnode\+\_\+t}} $\ast$($\ast$ \mbox{\hyperlink{group__IMFSGenericNodes_gaa17eaae581fd5703b3bd1a3b5e95b054}{I\+M\+F\+S\+\_\+node\+\_\+control\+\_\+initialize}}) (\mbox{\hyperlink{structIMFS__jnode__tt}{I\+M\+F\+S\+\_\+jnode\+\_\+t}} $\ast$node, void $\ast$arg)
+\begin{DoxyCompactList}\small\item\em Initializes an I\+M\+FS node. \end{DoxyCompactList}\item 
+typedef \mbox{\hyperlink{structIMFS__jnode__tt}{I\+M\+F\+S\+\_\+jnode\+\_\+t}} $\ast$($\ast$ \mbox{\hyperlink{group__IMFSGenericNodes_gab8e5f3c5eb8c39d46a5cc865cf90125c}{I\+M\+F\+S\+\_\+node\+\_\+control\+\_\+remove}}) (\mbox{\hyperlink{structIMFS__jnode__tt}{I\+M\+F\+S\+\_\+jnode\+\_\+t}} $\ast$node)
+\begin{DoxyCompactList}\small\item\em Prepares the removal of an I\+M\+FS node from its parent directory. \end{DoxyCompactList}\item 
+typedef void($\ast$ \mbox{\hyperlink{group__IMFSGenericNodes_ga9b01d3df01e1e6c71cd242336fe2a793}{I\+M\+F\+S\+\_\+node\+\_\+control\+\_\+destroy}}) (\mbox{\hyperlink{structIMFS__jnode__tt}{I\+M\+F\+S\+\_\+jnode\+\_\+t}} $\ast$node)
+\begin{DoxyCompactList}\small\item\em Destroys an I\+M\+FS node. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structIMFS__jnode__tt}{I\+M\+F\+S\+\_\+jnode\+\_\+t}} $\ast$ \mbox{\hyperlink{group__IMFSGenericNodes_gab52e16c2a7d9bac5234d44954a044f24}{I\+M\+F\+S\+\_\+node\+\_\+initialize\+\_\+default}} (\mbox{\hyperlink{structIMFS__jnode__tt}{I\+M\+F\+S\+\_\+jnode\+\_\+t}} $\ast$node, void $\ast$arg)
+\begin{DoxyCompactList}\small\item\em Returns the node and does nothing else. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structIMFS__jnode__tt}{I\+M\+F\+S\+\_\+jnode\+\_\+t}} $\ast$ {\bfseries I\+M\+F\+S\+\_\+node\+\_\+initialize\+\_\+directory} (\mbox{\hyperlink{structIMFS__jnode__tt}{I\+M\+F\+S\+\_\+jnode\+\_\+t}} $\ast$node, void $\ast$arg)
+\item 
+\mbox{\hyperlink{structIMFS__jnode__tt}{I\+M\+F\+S\+\_\+jnode\+\_\+t}} $\ast$ \mbox{\hyperlink{group__IMFSGenericNodes_gadf9e23718e6c6b5d811c498fa1212e6d}{I\+M\+F\+S\+\_\+node\+\_\+initialize\+\_\+generic}} (\mbox{\hyperlink{structIMFS__jnode__tt}{I\+M\+F\+S\+\_\+jnode\+\_\+t}} $\ast$node, void $\ast$arg)
+\begin{DoxyCompactList}\small\item\em Returns the node and sets the generic node context. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structIMFS__jnode__tt}{I\+M\+F\+S\+\_\+jnode\+\_\+t}} $\ast$ \mbox{\hyperlink{group__IMFSGenericNodes_gadea493725f5f86786783f83d3c8d23db}{I\+M\+F\+S\+\_\+node\+\_\+remove\+\_\+default}} (\mbox{\hyperlink{structIMFS__jnode__tt}{I\+M\+F\+S\+\_\+jnode\+\_\+t}} $\ast$node)
+\begin{DoxyCompactList}\small\item\em Returns the node and does nothing else. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structIMFS__jnode__tt}{I\+M\+F\+S\+\_\+jnode\+\_\+t}} $\ast$ {\bfseries I\+M\+F\+S\+\_\+node\+\_\+remove\+\_\+directory} (\mbox{\hyperlink{structIMFS__jnode__tt}{I\+M\+F\+S\+\_\+jnode\+\_\+t}} $\ast$node)
+\item 
+void \mbox{\hyperlink{group__IMFSGenericNodes_gaec999106a1cb28b45a46896fce71f320}{I\+M\+F\+S\+\_\+node\+\_\+destroy\+\_\+default}} (\mbox{\hyperlink{structIMFS__jnode__tt}{I\+M\+F\+S\+\_\+jnode\+\_\+t}} $\ast$node)
+\begin{DoxyCompactList}\small\item\em Frees the node. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__IMFSGenericNodes_ga1b73262616b2acec68486a12229f1553}{I\+M\+F\+S\+\_\+do\+\_\+nothing\+\_\+destroy}} (\mbox{\hyperlink{structIMFS__jnode__tt}{I\+M\+F\+S\+\_\+jnode\+\_\+t}} $\ast$node)
+\begin{DoxyCompactList}\small\item\em Does nothing. \end{DoxyCompactList}\item 
+int {\bfseries I\+M\+F\+S\+\_\+initialize} (\mbox{\hyperlink{structrtems__filesystem__mount__table__entry__tt}{rtems\+\_\+filesystem\+\_\+mount\+\_\+table\+\_\+entry\+\_\+t}} $\ast$mt\+\_\+entry, const void $\ast$data)
+\item 
+int {\bfseries I\+M\+F\+S\+\_\+initialize\+\_\+support} (\mbox{\hyperlink{structrtems__filesystem__mount__table__entry__tt}{rtems\+\_\+filesystem\+\_\+mount\+\_\+table\+\_\+entry\+\_\+t}} $\ast$mt\+\_\+entry, const void $\ast$data)
+\item 
+void \mbox{\hyperlink{group__IMFS_ga44e2e006596907d606161a36ffb26af7}{I\+M\+F\+S\+\_\+fsunmount}} (\mbox{\hyperlink{structrtems__filesystem__mount__table__entry__tt}{rtems\+\_\+filesystem\+\_\+mount\+\_\+table\+\_\+entry\+\_\+t}} $\ast$mt\+\_\+entry)
+\begin{DoxyCompactList}\small\item\em Unmount this instance of I\+M\+FS. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__IMFS_gace6a5eba738dd15b05c48b605e2b0baa}{rtems\+\_\+tarfs\+\_\+load}} (const char $\ast$mountpoint, uint8\+\_\+t $\ast$tar\+\_\+image, size\+\_\+t tar\+\_\+size)
+\begin{DoxyCompactList}\small\item\em R\+T\+E\+MS load tarfs. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__IMFS_ga73b1c2fd935799bbb4119bfcd4ac6e4a}{I\+M\+F\+S\+\_\+node\+\_\+destroy}} (\mbox{\hyperlink{structIMFS__jnode__tt}{I\+M\+F\+S\+\_\+jnode\+\_\+t}} $\ast$node)
+\begin{DoxyCompactList}\small\item\em Destroy an I\+M\+FS node. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__IMFS_ga7f8170e23a6017454964698feff3fe9d}{I\+M\+F\+S\+\_\+node\+\_\+clone}} (\mbox{\hyperlink{group__LibIO_ga3252b3d31ee3c49ffff0b7604a676864}{rtems\+\_\+filesystem\+\_\+location\+\_\+info\+\_\+t}} $\ast$loc)
+\begin{DoxyCompactList}\small\item\em Clone an I\+M\+FS node. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__IMFS_ga685f93659fedfbabd0ddaa68d14ffc49}{I\+M\+F\+S\+\_\+node\+\_\+free}} (const \mbox{\hyperlink{group__LibIO_ga3252b3d31ee3c49ffff0b7604a676864}{rtems\+\_\+filesystem\+\_\+location\+\_\+info\+\_\+t}} $\ast$loc)
+\begin{DoxyCompactList}\small\item\em Free an I\+M\+FS node. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__IMFS_gae973c8964e50b22d9c1171ef38d4eaa7}{I\+M\+F\+S\+\_\+stat}} (const \mbox{\hyperlink{group__LibIO_ga3252b3d31ee3c49ffff0b7604a676864}{rtems\+\_\+filesystem\+\_\+location\+\_\+info\+\_\+t}} $\ast$loc, struct stat $\ast$buf)
+\begin{DoxyCompactList}\small\item\em Perform a status processing for the I\+M\+FS. \end{DoxyCompactList}\item 
+int {\bfseries I\+M\+F\+S\+\_\+stat\+\_\+file} (const \mbox{\hyperlink{group__LibIO_ga3252b3d31ee3c49ffff0b7604a676864}{rtems\+\_\+filesystem\+\_\+location\+\_\+info\+\_\+t}} $\ast$loc, struct stat $\ast$buf)
+\item 
+void \mbox{\hyperlink{group__IMFS_gad019933cd11e323f19e12d64cd28d0ac}{I\+M\+F\+S\+\_\+eval\+\_\+path}} (\mbox{\hyperlink{structrtems__filesystem__eval__path__context__t}{rtems\+\_\+filesystem\+\_\+eval\+\_\+path\+\_\+context\+\_\+t}} $\ast$ctx)
+\begin{DoxyCompactList}\small\item\em I\+M\+FS evaluation node support. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__IMFS_gafb8a8a9bc61bdf27523823e624dbdd35}{I\+M\+F\+S\+\_\+eval\+\_\+path\+\_\+devfs}} (\mbox{\hyperlink{structrtems__filesystem__eval__path__context__t}{rtems\+\_\+filesystem\+\_\+eval\+\_\+path\+\_\+context\+\_\+t}} $\ast$ctx)
+\begin{DoxyCompactList}\small\item\em I\+M\+FS device filesystem evaluation node support. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__IMFS_ga201e8fee9c1188bd9ded438a4a649a4e}{I\+M\+F\+S\+\_\+link}} (const \mbox{\hyperlink{group__LibIO_ga3252b3d31ee3c49ffff0b7604a676864}{rtems\+\_\+filesystem\+\_\+location\+\_\+info\+\_\+t}} $\ast$parentloc, const \mbox{\hyperlink{group__LibIO_ga3252b3d31ee3c49ffff0b7604a676864}{rtems\+\_\+filesystem\+\_\+location\+\_\+info\+\_\+t}} $\ast$targetloc, const char $\ast$name, size\+\_\+t namelen)
+\begin{DoxyCompactList}\small\item\em Create a new I\+M\+FS link node. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__IMFS_ga13f1b78c84bdc39e27b775df74dc000b}{I\+M\+F\+S\+\_\+chown}} (const \mbox{\hyperlink{group__LibIO_ga3252b3d31ee3c49ffff0b7604a676864}{rtems\+\_\+filesystem\+\_\+location\+\_\+info\+\_\+t}} $\ast$loc, uid\+\_\+t owner, gid\+\_\+t group)
+\begin{DoxyCompactList}\small\item\em Change the owner of I\+M\+FS. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__IMFS_gac77df9c3b3212bd349c35e278dd00e64}{I\+M\+F\+S\+\_\+mknod}} (const \mbox{\hyperlink{group__LibIO_ga3252b3d31ee3c49ffff0b7604a676864}{rtems\+\_\+filesystem\+\_\+location\+\_\+info\+\_\+t}} $\ast$parentloc, const char $\ast$name, size\+\_\+t namelen, mode\+\_\+t mode, dev\+\_\+t dev)
+\begin{DoxyCompactList}\small\item\em Create an I\+M\+FS node. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structIMFS__jnode__tt}{I\+M\+F\+S\+\_\+jnode\+\_\+t}} $\ast$ {\bfseries I\+M\+F\+S\+\_\+initialize\+\_\+node} (\mbox{\hyperlink{structIMFS__jnode__tt}{I\+M\+F\+S\+\_\+jnode\+\_\+t}} $\ast$node, const \mbox{\hyperlink{structIMFS__node__control}{I\+M\+F\+S\+\_\+node\+\_\+control}} $\ast$node\+\_\+control, const char $\ast$name, size\+\_\+t namelen, mode\+\_\+t mode, void $\ast$arg)
+\item 
+\mbox{\hyperlink{structIMFS__jnode__tt}{I\+M\+F\+S\+\_\+jnode\+\_\+t}} $\ast$ \mbox{\hyperlink{group__IMFS_ga2f5483a637716c1d4f0e10ad01e99d05}{I\+M\+F\+S\+\_\+create\+\_\+node}} (const \mbox{\hyperlink{group__LibIO_ga3252b3d31ee3c49ffff0b7604a676864}{rtems\+\_\+filesystem\+\_\+location\+\_\+info\+\_\+t}} $\ast$parentloc, const \mbox{\hyperlink{structIMFS__node__control}{I\+M\+F\+S\+\_\+node\+\_\+control}} $\ast$node\+\_\+control, size\+\_\+t node\+\_\+size, const char $\ast$name, size\+\_\+t namelen, mode\+\_\+t mode, void $\ast$arg)
+\begin{DoxyCompactList}\small\item\em Create an I\+M\+FS node. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__IMFS_ga7a9823043f3d3c052fdd0b01c5b86a67}{I\+M\+F\+S\+\_\+add\+\_\+node}} (const char $\ast$path, \mbox{\hyperlink{structIMFS__jnode__tt}{I\+M\+F\+S\+\_\+jnode\+\_\+t}} $\ast$node, void $\ast$arg)
+\begin{DoxyCompactList}\small\item\em Adds an I\+M\+FS node. \end{DoxyCompactList}\item 
+int {\bfseries I\+M\+F\+S\+\_\+make\+\_\+node} (const char $\ast$path, mode\+\_\+t mode, const \mbox{\hyperlink{structIMFS__node__control}{I\+M\+F\+S\+\_\+node\+\_\+control}} $\ast$node\+\_\+control, size\+\_\+t node\+\_\+size, void $\ast$\mbox{\hyperlink{sun4u_2tte_8h_a9b4a99475e2709333b8e5d70483173f1}{context}})
+\item 
+int \mbox{\hyperlink{group__IMFS_ga5ea4b21f4f7767f36b21c146b972124b}{I\+M\+F\+S\+\_\+make\+\_\+linearfile}} (const char $\ast$path, mode\+\_\+t mode, const void $\ast$data, size\+\_\+t \mbox{\hyperlink{sun4u_2tte_8h_a245260f6f74972558f61b85227df5aae}{size}})
+\begin{DoxyCompactList}\small\item\em Makes a linear I\+M\+FS file. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__IMFSGenericNodes_gae7bc195be301f29ac87799edab608076}{I\+M\+F\+S\+\_\+make\+\_\+generic\+\_\+node}} (const char $\ast$path, mode\+\_\+t mode, const \mbox{\hyperlink{structIMFS__node__control}{I\+M\+F\+S\+\_\+node\+\_\+control}} $\ast$node\+\_\+control, void $\ast$\mbox{\hyperlink{sun4u_2tte_8h_a9b4a99475e2709333b8e5d70483173f1}{context}})
+\begin{DoxyCompactList}\small\item\em Makes a generic I\+M\+FS node. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__IMFS_ga9e4a2ee4cb144bd1e3dc7dda8b6b549b}{I\+M\+F\+S\+\_\+mount}} (\mbox{\hyperlink{structrtems__filesystem__mount__table__entry__tt}{rtems\+\_\+filesystem\+\_\+mount\+\_\+table\+\_\+entry\+\_\+t}} $\ast$mt\+\_\+entry)
+\begin{DoxyCompactList}\small\item\em Mount an I\+M\+FS. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__IMFS_ga6ed73e68fddfb2d2f38dfe8d0d7b84a5}{I\+M\+F\+S\+\_\+unmount}} (\mbox{\hyperlink{structrtems__filesystem__mount__table__entry__tt}{rtems\+\_\+filesystem\+\_\+mount\+\_\+table\+\_\+entry\+\_\+t}} $\ast$mt\+\_\+entry)
+\begin{DoxyCompactList}\small\item\em Unmount an I\+M\+FS. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__IMFS_ga97e0148e68fe08d9dae38257016416c7}{I\+M\+F\+S\+\_\+utime}} (const \mbox{\hyperlink{group__LibIO_ga3252b3d31ee3c49ffff0b7604a676864}{rtems\+\_\+filesystem\+\_\+location\+\_\+info\+\_\+t}} $\ast$loc, time\+\_\+t actime, time\+\_\+t modtime)
+\begin{DoxyCompactList}\small\item\em Set I\+M\+FS file access and modification times. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__IMFS_gaf8c9fc49f2cc54393013c9958e93e0f1}{I\+M\+F\+S\+\_\+fchmod}} (const \mbox{\hyperlink{group__LibIO_ga3252b3d31ee3c49ffff0b7604a676864}{rtems\+\_\+filesystem\+\_\+location\+\_\+info\+\_\+t}} $\ast$loc, mode\+\_\+t mode)
+\begin{DoxyCompactList}\small\item\em Change the I\+M\+FS file mode. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__IMFS_ga7a51f947488c9d574dfb8da0a9e295bd}{I\+M\+F\+S\+\_\+symlink}} (const \mbox{\hyperlink{group__LibIO_ga3252b3d31ee3c49ffff0b7604a676864}{rtems\+\_\+filesystem\+\_\+location\+\_\+info\+\_\+t}} $\ast$parentloc, const char $\ast$name, size\+\_\+t namelen, const char $\ast$target)
+\begin{DoxyCompactList}\small\item\em Create a new I\+M\+FS symbolic link node. \end{DoxyCompactList}\item 
+ssize\+\_\+t \mbox{\hyperlink{group__IMFS_gaf65f51402a7c595b2308e1fbc0f1c9f0}{I\+M\+F\+S\+\_\+readlink}} (const \mbox{\hyperlink{group__LibIO_ga3252b3d31ee3c49ffff0b7604a676864}{rtems\+\_\+filesystem\+\_\+location\+\_\+info\+\_\+t}} $\ast$loc, char $\ast$buf, size\+\_\+t bufsize)
+\begin{DoxyCompactList}\small\item\em Put I\+M\+FS symbolic link into buffer. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__IMFS_ga36af606732f5f7b5695c9608816f5a39}{I\+M\+F\+S\+\_\+rename}} (const \mbox{\hyperlink{group__LibIO_ga3252b3d31ee3c49ffff0b7604a676864}{rtems\+\_\+filesystem\+\_\+location\+\_\+info\+\_\+t}} $\ast$oldparentloc, const \mbox{\hyperlink{group__LibIO_ga3252b3d31ee3c49ffff0b7604a676864}{rtems\+\_\+filesystem\+\_\+location\+\_\+info\+\_\+t}} $\ast$oldloc, const \mbox{\hyperlink{group__LibIO_ga3252b3d31ee3c49ffff0b7604a676864}{rtems\+\_\+filesystem\+\_\+location\+\_\+info\+\_\+t}} $\ast$newparentloc, const char $\ast$name, size\+\_\+t namelen)
+\begin{DoxyCompactList}\small\item\em Rename the I\+M\+FS. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__IMFS_ga1d854875d4ebede5e6497809b647dec1}{I\+M\+F\+S\+\_\+rmnod}} (const \mbox{\hyperlink{group__LibIO_ga3252b3d31ee3c49ffff0b7604a676864}{rtems\+\_\+filesystem\+\_\+location\+\_\+info\+\_\+t}} $\ast$parentloc, const \mbox{\hyperlink{group__LibIO_ga3252b3d31ee3c49ffff0b7604a676864}{rtems\+\_\+filesystem\+\_\+location\+\_\+info\+\_\+t}} $\ast$loc)
+\begin{DoxyCompactList}\small\item\em I\+M\+FS node removal handler. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{Indent}\textbf{ I\+M\+FS Memory File Handlers}\par
+{\em This section contains the set of handlers used to process operations on I\+M\+FS memory file nodes. The memory files are created in memory using malloc\textquotesingle{}ed memory. Thus any data stored in one of these files is lost at system shutdown unless special arrangements to copy the data to some type of non-\/volailte storage are made by the application. }\begin{DoxyCompactItemize}
+\item 
+ssize\+\_\+t {\bfseries I\+M\+F\+S\+\_\+memfile\+\_\+write} (\mbox{\hyperlink{structIMFS__memfile__t}{I\+M\+F\+S\+\_\+memfile\+\_\+t}} $\ast$memfile, off\+\_\+t start, const unsigned char $\ast$source, unsigned int length)
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ I\+M\+FS Device Node Handlers}\par
+{\em This section contains the set of handlers used to map operations on I\+M\+FS device nodes onto calls to the R\+T\+E\+MS Classic A\+PI \mbox{\hyperlink{structIO}{IO}} Manager. }\begin{DoxyCompactItemize}
+\item 
+int {\bfseries device\+\_\+open} (\mbox{\hyperlink{structrtems__libio__tt}{rtems\+\_\+libio\+\_\+t}} $\ast$iop, const char $\ast$pathname, int oflag, mode\+\_\+t mode)
+\item 
+int {\bfseries device\+\_\+close} (\mbox{\hyperlink{structrtems__libio__tt}{rtems\+\_\+libio\+\_\+t}} $\ast$iop)
+\item 
+ssize\+\_\+t {\bfseries device\+\_\+read} (\mbox{\hyperlink{structrtems__libio__tt}{rtems\+\_\+libio\+\_\+t}} $\ast$iop, void $\ast$buffer, size\+\_\+t count)
+\item 
+ssize\+\_\+t {\bfseries device\+\_\+write} (\mbox{\hyperlink{structrtems__libio__tt}{rtems\+\_\+libio\+\_\+t}} $\ast$iop, const void $\ast$buffer, size\+\_\+t count)
+\item 
+int {\bfseries device\+\_\+ioctl} (\mbox{\hyperlink{structrtems__libio__tt}{rtems\+\_\+libio\+\_\+t}} $\ast$iop, ioctl\+\_\+command\+\_\+t command, void $\ast$buffer)
+\item 
+int {\bfseries device\+\_\+ftruncate} (\mbox{\hyperlink{structrtems__libio__tt}{rtems\+\_\+libio\+\_\+t}} $\ast$iop, off\+\_\+t length)
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const int {\bfseries imfs\+\_\+memfile\+\_\+bytes\+\_\+per\+\_\+block}
+\item 
+const \mbox{\hyperlink{structIMFS__mknod__control}{I\+M\+F\+S\+\_\+mknod\+\_\+control}} {\bfseries I\+M\+F\+S\+\_\+mknod\+\_\+control\+\_\+dir\+\_\+default}
+\item 
+const \mbox{\hyperlink{structIMFS__mknod__control}{I\+M\+F\+S\+\_\+mknod\+\_\+control}} {\bfseries I\+M\+F\+S\+\_\+mknod\+\_\+control\+\_\+dir\+\_\+minimal}
+\item 
+const \mbox{\hyperlink{structIMFS__mknod__control}{I\+M\+F\+S\+\_\+mknod\+\_\+control}} {\bfseries I\+M\+F\+S\+\_\+mknod\+\_\+control\+\_\+device}
+\item 
+const \mbox{\hyperlink{structIMFS__mknod__control}{I\+M\+F\+S\+\_\+mknod\+\_\+control}} {\bfseries I\+M\+F\+S\+\_\+mknod\+\_\+control\+\_\+memfile}
+\item 
+const \mbox{\hyperlink{structIMFS__node__control}{I\+M\+F\+S\+\_\+node\+\_\+control}} {\bfseries I\+M\+F\+S\+\_\+node\+\_\+control\+\_\+linfile}
+\item 
+const \mbox{\hyperlink{structIMFS__mknod__control}{I\+M\+F\+S\+\_\+mknod\+\_\+control}} {\bfseries I\+M\+F\+S\+\_\+mknod\+\_\+control\+\_\+fifo}
+\item 
+const \mbox{\hyperlink{structIMFS__mknod__control}{I\+M\+F\+S\+\_\+mknod\+\_\+control}} {\bfseries I\+M\+F\+S\+\_\+mknod\+\_\+control\+\_\+enosys}
+\item 
+const \mbox{\hyperlink{structrtems__filesystem__limits__and__options__t}{rtems\+\_\+filesystem\+\_\+limits\+\_\+and\+\_\+options\+\_\+t}} {\bfseries I\+M\+F\+S\+\_\+\+L\+I\+M\+I\+T\+S\+\_\+\+A\+N\+D\+\_\+\+O\+P\+T\+I\+O\+NS}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Header File for the In-\/\+Memory File System. 
+

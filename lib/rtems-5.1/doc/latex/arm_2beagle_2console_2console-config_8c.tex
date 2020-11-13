@@ -1,0 +1,110 @@
+\hypertarget{arm_2beagle_2console_2console-config_8c}{}\section{bsps/arm/beagle/console/console-\/config.c File Reference}
+\label{arm_2beagle_2console_2console-config_8c}\index{bsps/arm/beagle/console/console-\/config.c@{bsps/arm/beagle/console/console-\/config.c}}
+
+
+Console configuration.  
+
+
+{\ttfamily \#include $<$libchip/serial.\+h$>$}\newline
+{\ttfamily \#include $<$libchip/ns16550.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/bsp\+Io.\+h$>$}\newline
+{\ttfamily \#include $<$bsp.\+h$>$}\newline
+{\ttfamily \#include $<$bsp/irq.\+h$>$}\newline
+{\ttfamily \#include $<$bsp/uart-\/output-\/char.\+h$>$}\newline
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{arm_2beagle_2console_2console-config_8c_a59b5144457a70efc490f603d64f8d78f}\label{arm_2beagle_2console_2console-config_8c_a59b5144457a70efc490f603d64f8d78f}} 
+\#define {\bfseries C\+O\+N\+S\+O\+L\+E\+\_\+\+U\+A\+R\+T\+\_\+\+T\+HR}~($\ast$(volatile unsigned int $\ast$)B\+S\+P\+\_\+\+C\+O\+N\+S\+O\+L\+E\+\_\+\+U\+A\+R\+T\+\_\+\+B\+A\+SE)
+\item 
+\mbox{\Hypertarget{arm_2beagle_2console_2console-config_8c_ab28a49019a4763bda42adc16b2c2a86b}\label{arm_2beagle_2console_2console-config_8c_ab28a49019a4763bda42adc16b2c2a86b}} 
+\#define {\bfseries C\+O\+N\+S\+O\+L\+E\+\_\+\+U\+A\+R\+T\+\_\+\+R\+HR}~($\ast$(volatile unsigned int $\ast$)B\+S\+P\+\_\+\+C\+O\+N\+S\+O\+L\+E\+\_\+\+U\+A\+R\+T\+\_\+\+B\+A\+SE)
+\item 
+\mbox{\Hypertarget{arm_2beagle_2console_2console-config_8c_af6259f175c48e42a086f8b5cf322cce3}\label{arm_2beagle_2console_2console-config_8c_af6259f175c48e42a086f8b5cf322cce3}} 
+\#define {\bfseries C\+O\+N\+S\+O\+L\+E\+\_\+\+U\+A\+R\+T\+\_\+\+L\+SR}~($\ast$(volatile unsigned int $\ast$)(B\+S\+P\+\_\+\+C\+O\+N\+S\+O\+L\+E\+\_\+\+U\+A\+R\+T\+\_\+\+B\+A\+SE+0x14))
+\item 
+\mbox{\Hypertarget{arm_2beagle_2console_2console-config_8c_a55fd28bbf1b696533665d306605ff1f0}\label{arm_2beagle_2console_2console-config_8c_a55fd28bbf1b696533665d306605ff1f0}} 
+\#define {\bfseries C\+O\+N\+S\+O\+L\+E\+\_\+\+S\+Y\+SC}~($\ast$(volatile uint32\+\_\+t $\ast$) (B\+S\+P\+\_\+\+C\+O\+N\+S\+O\+L\+E\+\_\+\+U\+A\+R\+T\+\_\+\+B\+A\+SE + 0x54))
+\item 
+\mbox{\Hypertarget{arm_2beagle_2console_2console-config_8c_a9cdea9d916e65071e7ea12bb227a03da}\label{arm_2beagle_2console_2console-config_8c_a9cdea9d916e65071e7ea12bb227a03da}} 
+\#define {\bfseries C\+O\+N\+S\+O\+L\+E\+\_\+\+S\+Y\+SS}~($\ast$(volatile uint32\+\_\+t $\ast$) (B\+S\+P\+\_\+\+C\+O\+N\+S\+O\+L\+E\+\_\+\+U\+A\+R\+T\+\_\+\+B\+A\+SE + 0x58))
+\item 
+\mbox{\Hypertarget{arm_2beagle_2console_2console-config_8c_aeac3120aa961715b258f782d4ca2fae1}\label{arm_2beagle_2console_2console-config_8c_aeac3120aa961715b258f782d4ca2fae1}} 
+\#define {\bfseries T\+X\+\_\+\+F\+I\+F\+O\+\_\+E}~(1$<$$<$5)
+\item 
+\mbox{\Hypertarget{arm_2beagle_2console_2console-config_8c_a3fff9c7b0d8c1a5c0b64937e08cba175}\label{arm_2beagle_2console_2console-config_8c_a3fff9c7b0d8c1a5c0b64937e08cba175}} 
+\#define {\bfseries R\+X\+\_\+\+F\+I\+F\+O\+\_\+E}~(1$<$$<$0)
+\item 
+\mbox{\Hypertarget{arm_2beagle_2console_2console-config_8c_ab917fea2c7ffeecec47523da366ecf62}\label{arm_2beagle_2console_2console-config_8c_ab917fea2c7ffeecec47523da366ecf62}} 
+\#define {\bfseries C\+O\+N\+S\+O\+L\+E\+\_\+\+T\+H\+R8}~($\ast$(volatile uint8\+\_\+t $\ast$) (B\+S\+P\+\_\+\+C\+O\+N\+S\+O\+L\+E\+\_\+\+U\+A\+R\+T\+\_\+\+B\+A\+SE + 0x00))
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{struct__console__tbl}{console\+\_\+tbl}} \mbox{\hyperlink{arm_2beagle_2console_2console-config_8c_a8d1404b49209c3692a3dc1433710e550}{Console\+\_\+\+Configuration\+\_\+\+Ports}} \mbox{[}$\,$\mbox{]}
+\item 
+unsigned long \mbox{\hyperlink{arm_2beagle_2console_2console-config_8c_a59f0ae8f9904bd193825ccfc2c99aeb6}{Console\+\_\+\+Configuration\+\_\+\+Count}} = 1
+\item 
+\mbox{\hyperlink{bspIo_8h_a0b0dff1c3d35110ae303b4098c60dc14}{B\+S\+P\+\_\+output\+\_\+char\+\_\+function\+\_\+type}} \mbox{\hyperlink{arm_2beagle_2console_2console-config_8c_a5fb8c9c4f076f0340b4a17ed432ced5c}{B\+S\+P\+\_\+output\+\_\+char}} = \+\_\+\+B\+S\+P\+\_\+put\+\_\+char
+\item 
+\mbox{\hyperlink{bspIo_8h_a132b9ceff428a634ece5dfaac7ef1006}{B\+S\+P\+\_\+polling\+\_\+getchar\+\_\+function\+\_\+type}} \mbox{\hyperlink{arm_2beagle_2console_2console-config_8c_ae5846eecdfa8f2813504371bf01c29b0}{B\+S\+P\+\_\+poll\+\_\+char}} = \+\_\+\+B\+S\+P\+\_\+get\+\_\+char
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Console configuration. 
+
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{arm_2beagle_2console_2console-config_8c_a5fb8c9c4f076f0340b4a17ed432ced5c}\label{arm_2beagle_2console_2console-config_8c_a5fb8c9c4f076f0340b4a17ed432ced5c}} 
+\index{console-\/config.c@{console-\/config.c}!BSP\_output\_char@{BSP\_output\_char}}
+\index{BSP\_output\_char@{BSP\_output\_char}!console-\/config.c@{console-\/config.c}}
+\subsubsection{\texorpdfstring{BSP\_output\_char}{BSP\_output\_char}}
+{\footnotesize\ttfamily \mbox{\hyperlink{bspIo_8h_a0b0dff1c3d35110ae303b4098c60dc14}{B\+S\+P\+\_\+output\+\_\+char\+\_\+function\+\_\+type}} B\+S\+P\+\_\+output\+\_\+char = \+\_\+\+B\+S\+P\+\_\+put\+\_\+char}
+
+This variable points to the B\+SP provided method to output a character for the purposes of debug output.
+
+It must output only the specific character. It must not perform character translations, e.\+g. \char`\"{}\textbackslash{}n\char`\"{} to \char`\"{}\textbackslash{}r\textbackslash{}n\char`\"{}. \mbox{\Hypertarget{arm_2beagle_2console_2console-config_8c_ae5846eecdfa8f2813504371bf01c29b0}\label{arm_2beagle_2console_2console-config_8c_ae5846eecdfa8f2813504371bf01c29b0}} 
+\index{console-\/config.c@{console-\/config.c}!BSP\_poll\_char@{BSP\_poll\_char}}
+\index{BSP\_poll\_char@{BSP\_poll\_char}!console-\/config.c@{console-\/config.c}}
+\subsubsection{\texorpdfstring{BSP\_poll\_char}{BSP\_poll\_char}}
+{\footnotesize\ttfamily \mbox{\hyperlink{bspIo_8h_a132b9ceff428a634ece5dfaac7ef1006}{B\+S\+P\+\_\+polling\+\_\+getchar\+\_\+function\+\_\+type}} B\+S\+P\+\_\+poll\+\_\+char = \+\_\+\+B\+S\+P\+\_\+get\+\_\+char}
+
+This variable points to the B\+SP provided method to input a character for the purposes of debug input. \mbox{\Hypertarget{arm_2beagle_2console_2console-config_8c_a59f0ae8f9904bd193825ccfc2c99aeb6}\label{arm_2beagle_2console_2console-config_8c_a59f0ae8f9904bd193825ccfc2c99aeb6}} 
+\index{console-\/config.c@{console-\/config.c}!Console\_Configuration\_Count@{Console\_Configuration\_Count}}
+\index{Console\_Configuration\_Count@{Console\_Configuration\_Count}!console-\/config.c@{console-\/config.c}}
+\subsubsection{\texorpdfstring{Console\_Configuration\_Count}{Console\_Configuration\_Count}}
+{\footnotesize\ttfamily unsigned long Console\+\_\+\+Configuration\+\_\+\+Count = 1}
+
+The number of serial ports defined in Console\+\_\+\+Configuration\+\_\+\+Ports \mbox{\Hypertarget{arm_2beagle_2console_2console-config_8c_a8d1404b49209c3692a3dc1433710e550}\label{arm_2beagle_2console_2console-config_8c_a8d1404b49209c3692a3dc1433710e550}} 
+\index{console-\/config.c@{console-\/config.c}!Console\_Configuration\_Ports@{Console\_Configuration\_Ports}}
+\index{Console\_Configuration\_Ports@{Console\_Configuration\_Ports}!console-\/config.c@{console-\/config.c}}
+\subsubsection{\texorpdfstring{Console\_Configuration\_Ports}{Console\_Configuration\_Ports}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct__console__tbl}{console\+\_\+tbl}} Console\+\_\+\+Configuration\+\_\+\+Ports\mbox{[}$\,$\mbox{]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{    \{}
+\DoxyCodeLine{      .sDeviceName = \textcolor{stringliteral}{"/dev/ttyS0"},}
+\DoxyCodeLine{      .deviceType = SERIAL\_NS16550,}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{      .pDeviceFns = \&ns16550\_fns,}
+\DoxyCodeLine{}
+\DoxyCodeLine{      .ulMargin = 16,}
+\DoxyCodeLine{      .ulHysteresis = 8,}
+\DoxyCodeLine{      .pDeviceParams = (\textcolor{keywordtype}{void} *) CONSOLE\_BAUD,}
+\DoxyCodeLine{      .ulCtrlPort1 = BSP\_CONSOLE\_UART\_BASE,}
+\DoxyCodeLine{      .ulDataPort = BSP\_CONSOLE\_UART\_BASE,}
+\DoxyCodeLine{      .ulIntVector = BSP\_CONSOLE\_UART\_IRQ,}
+\DoxyCodeLine{      .getRegister = beagle\_uart\_get\_register,}
+\DoxyCodeLine{      .setRegister = beagle\_uart\_set\_register,}
+\DoxyCodeLine{      .ulClock = UART\_CLOCK,  }
+\DoxyCodeLine{    \},}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+The statically configured serial port information tables which are used to initially populate the dynamic tables. 

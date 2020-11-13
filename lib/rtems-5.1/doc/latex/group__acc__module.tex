@@ -1,0 +1,24 @@
+\hypertarget{group__acc__module}{}\section{Working with A\+CC}
+\label{group__acc__module}\index{Working with ACC@{Working with ACC}}
+The A\+CC driver provides the interface to configure and use the A\+CC peripheral.~\newline
+ It applies comparison on two inputs and gives a compare output.
+
+To Enable a A\+CC Comparison,the user has to follow these few steps\+: 
+\begin{DoxyItemize}
+\item Enable A\+CC peripheral clock by setting the corresponding bit in P\+M\+C\+\_\+\+P\+C\+E\+R1 (P\+MC Peripheral Clock Enable Register 1)  
+\item Reset the controller by asserting A\+C\+C\+\_\+\+C\+R\+\_\+\+S\+W\+R\+ST in A\+C\+C\+\_\+\+CR(A\+CC Control Register)  
+\item Configure the mode as following steps\+: 
+\begin{DoxyEnumerate}
+\item Select inputs for S\+E\+L\+M\+I\+N\+US and S\+E\+L\+P\+L\+US in A\+C\+C\+\_\+\+MR (A\+CC Mode Register).
+\item Enable Analog Comparator by setting A\+C\+EN in A\+C\+C\+\_\+\+MR.
+\item Configure Edge Type to detect different compare output.  
+\end{DoxyEnumerate}
+\item Wait until the automatic mask period expires by polling M\+A\+SK bit in A\+C\+C\+\_\+\+I\+SR. 
+\end{DoxyItemize}
+
+For more accurate information, please look at the A\+CC section of the Datasheet.
+
+Related files \+:~\newline
+acc.\+c~\newline
+ acc.\+h~\newline
+ 

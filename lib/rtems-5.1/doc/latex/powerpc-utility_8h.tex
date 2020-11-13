@@ -1,0 +1,73 @@
+\hypertarget{powerpc-utility_8h}{}\section{bsps/powerpc/include/libcpu/powerpc-\/utility.h File Reference}
+\label{powerpc-utility_8h}\index{bsps/powerpc/include/libcpu/powerpc-\/utility.h@{bsps/powerpc/include/libcpu/powerpc-\/utility.h}}
+
+
+General purpose assembler macros, linker command file support and some inline functions for direct register access.  
+
+
+{\ttfamily \#include $<$rtems.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/score/cpu.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/powerpc/registers.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/powerpc/powerpc.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/bsp\+Io.\+h$>$}\newline
+{\ttfamily \#include $<$libcpu/cpu\+Ident.\+h$>$}\newline
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bfseries L\+I\+N\+K\+E\+R\+\_\+\+S\+Y\+M\+B\+OL}(sym)~extern char sym \mbox{[}$\,$\mbox{]};
+\item 
+\#define {\bfseries C\+P\+U\+\_\+\+Get\+\_\+timebase\+\_\+low}(\+\_\+value)~\mbox{\hyperlink{group__RTEMSScoreCPUSPARC_ga82257d4fc068f4b21b029dd69d276839}{\+\_\+\+\_\+asm\+\_\+\+\_\+}} volatile( \char`\"{}mfspr \%0,268\char`\"{} \+: \char`\"{}=r\char`\"{} (\+\_\+value) )
+\item 
+\#define {\bfseries rtems\+\_\+bsp\+\_\+delay}(\+\_\+microseconds)
+\item 
+\#define {\bfseries rtems\+\_\+bsp\+\_\+delay\+\_\+in\+\_\+bus\+\_\+cycles}(\+\_\+cycles)
+\item 
+\#define {\bfseries P\+P\+C\+\_\+\+Set\+\_\+decrementer}(\+\_\+clicks)
+\item 
+\#define {\bfseries P\+P\+C\+\_\+\+Get\+\_\+decrementer}(\+\_\+clicks)~\mbox{\hyperlink{group__RTEMSScoreCPUSPARC_ga82257d4fc068f4b21b029dd69d276839}{\+\_\+\+\_\+asm\+\_\+\+\_\+}} volatile( \char`\"{}mfdec  \%0\char`\"{} \+: \char`\"{}=r\char`\"{} (\+\_\+clicks) )
+\item 
+\#define \mbox{\hyperlink{group__RTEMSBSPsPowerPCSharedUtility_ga82a438528227ca1a3c0236a75db36931}{P\+P\+C\+\_\+\+S\+T\+R\+I\+N\+G\+OF}}(x)~\#x
+\begin{DoxyCompactList}\small\item\em Preprocessor magic for stringification of {\itshape x}. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTEMSBSPsPowerPCSharedUtility_gaf2152a905a3a596e7fd4677e5b7fcbcf}{P\+P\+C\+\_\+\+S\+P\+E\+C\+I\+A\+L\+\_\+\+P\+U\+R\+P\+O\+S\+E\+\_\+\+R\+E\+G\+I\+S\+T\+ER}}(spr)
+\begin{DoxyCompactList}\small\item\em Returns the value of the Special Purpose Register with number {\itshape spr}. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTEMSBSPsPowerPCSharedUtility_ga13230983701d0de149fb74885ae2a9e8}{P\+P\+C\+\_\+\+S\+E\+T\+\_\+\+S\+P\+E\+C\+I\+A\+L\+\_\+\+P\+U\+R\+P\+O\+S\+E\+\_\+\+R\+E\+G\+I\+S\+T\+ER}}(spr,  val)
+\begin{DoxyCompactList}\small\item\em Sets the Special Purpose Register with number {\itshape spr} to the value in {\itshape val}. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTEMSBSPsPowerPCSharedUtility_ga3b8f65ba404c615d00c98d67c03a1240}{P\+P\+C\+\_\+\+S\+E\+T\+\_\+\+S\+P\+E\+C\+I\+A\+L\+\_\+\+P\+U\+R\+P\+O\+S\+E\+\_\+\+R\+E\+G\+I\+S\+T\+E\+R\+\_\+\+B\+I\+TS}}(spr,  bits)
+\begin{DoxyCompactList}\small\item\em Sets in the Special Purpose Register with number {\itshape spr} all bits which are set in {\itshape bits}. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTEMSBSPsPowerPCSharedUtility_gaabbe2ec03b9f2d8480196fbb227ce74d}{P\+P\+C\+\_\+\+S\+E\+T\+\_\+\+S\+P\+E\+C\+I\+A\+L\+\_\+\+P\+U\+R\+P\+O\+S\+E\+\_\+\+R\+E\+G\+I\+S\+T\+E\+R\+\_\+\+B\+I\+T\+S\+\_\+\+M\+A\+S\+K\+ED}}(spr,  bits,  mask)
+\begin{DoxyCompactList}\small\item\em Sets in the Special Purpose Register with number {\itshape spr} all bits which are set in {\itshape bits}. The previous register value will be masked with {\itshape mask}. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTEMSBSPsPowerPCSharedUtility_ga57428a23dfb8f42b7c7a4ff28cdfae4f}{P\+P\+C\+\_\+\+C\+L\+E\+A\+R\+\_\+\+S\+P\+E\+C\+I\+A\+L\+\_\+\+P\+U\+R\+P\+O\+S\+E\+\_\+\+R\+E\+G\+I\+S\+T\+E\+R\+\_\+\+B\+I\+TS}}(spr,  bits)
+\begin{DoxyCompactList}\small\item\em Clears in the Special Purpose Register with number {\itshape spr} all bits which are set in {\itshape bits}. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTEMSBSPsPowerPCSharedUtility_gafcbb61249c0713163c2c490cfa6b5766}{P\+P\+C\+\_\+\+T\+H\+R\+E\+A\+D\+\_\+\+M\+G\+M\+T\+\_\+\+R\+E\+G\+I\+S\+T\+ER}}(tmr)
+\begin{DoxyCompactList}\small\item\em Returns the value of the Thread Management Register with number {\itshape tmr}. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTEMSBSPsPowerPCSharedUtility_ga90d0f8d8c6839c36fdf3054d86ed04a8}{P\+P\+C\+\_\+\+S\+E\+T\+\_\+\+T\+H\+R\+E\+A\+D\+\_\+\+M\+G\+M\+T\+\_\+\+R\+E\+G\+I\+S\+T\+ER}}(tmr,  val)
+\begin{DoxyCompactList}\small\item\em Sets the Thread Management Register with number {\itshape tmr} to the value in {\itshape val}. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTEMSBSPsPowerPCSharedUtility_gaf9d70263b9f91ca4aae512e6d9ac29e3}{P\+P\+C\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+C\+O\+N\+T\+R\+O\+L\+\_\+\+R\+E\+G\+I\+S\+T\+ER}}(dcr)
+\begin{DoxyCompactList}\small\item\em Returns the value of the Device Control Register with number {\itshape dcr}. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTEMSBSPsPowerPCSharedUtility_ga22216346d9a84013ce035e303c09b9de}{P\+P\+C\+\_\+\+S\+E\+T\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+C\+O\+N\+T\+R\+O\+L\+\_\+\+R\+E\+G\+I\+S\+T\+ER}}(dcr,  val)
+\begin{DoxyCompactList}\small\item\em Sets the Device Control Register with number {\itshape dcr} to the value in {\itshape val}. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTEMSBSPsPowerPCSharedUtility_ga9ebd69cadb130d05089b0bd98a05a8a7}{P\+P\+C\+\_\+\+S\+E\+T\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+C\+O\+N\+T\+R\+O\+L\+\_\+\+R\+E\+G\+I\+S\+T\+E\+R\+\_\+\+B\+I\+TS}}(dcr,  bits)
+\begin{DoxyCompactList}\small\item\em Sets in the Device Control Register with number {\itshape dcr} all bits which are set in {\itshape bits}. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTEMSBSPsPowerPCSharedUtility_ga8fb9b2c1dc025622892b8c9532e11315}{P\+P\+C\+\_\+\+S\+E\+T\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+C\+O\+N\+T\+R\+O\+L\+\_\+\+R\+E\+G\+I\+S\+T\+E\+R\+\_\+\+B\+I\+T\+S\+\_\+\+M\+A\+S\+K\+ED}}(dcr,  bits,  mask)
+\begin{DoxyCompactList}\small\item\em Sets in the Device Control Register with number {\itshape dcr} all bits which are set in {\itshape bits}. The previous register value will be masked with {\itshape mask}. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTEMSBSPsPowerPCSharedUtility_ga086c9a32db91fc63f36fa127e3bd2c48}{P\+P\+C\+\_\+\+C\+L\+E\+A\+R\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+C\+O\+N\+T\+R\+O\+L\+\_\+\+R\+E\+G\+I\+S\+T\+E\+R\+\_\+\+B\+I\+TS}}(dcr,  bits)
+\begin{DoxyCompactList}\small\item\em Clears in the Device Control Register with number {\itshape dcr} all bits which are set in {\itshape bits}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void {\bfseries ppc\+\_\+code\+\_\+copy} (void $\ast$dest, const void $\ast$src, size\+\_\+t n)
+\item 
+void {\bfseries print\+B\+AT} (int bat, uint32\+\_\+t upper, uint32\+\_\+t lower)
+\item 
+void {\bfseries Show\+B\+A\+TS} (void)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+uint32\+\_\+t {\bfseries bsp\+\_\+clicks\+\_\+per\+\_\+usec}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+General purpose assembler macros, linker command file support and some inline functions for direct register access. 
+

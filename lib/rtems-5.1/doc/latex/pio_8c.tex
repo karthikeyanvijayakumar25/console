@@ -1,0 +1,213 @@
+\hypertarget{pio_8c}{}\section{bsps/arm/atsam/contrib/libraries/libchip/source/pio.c File Reference}
+\label{pio_8c}\index{bsps/arm/atsam/contrib/libraries/libchip/source/pio.c@{bsps/arm/atsam/contrib/libraries/libchip/source/pio.c}}
+{\ttfamily \#include \char`\"{}chip.\+h\char`\"{}}\newline
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{pio_8c_a1bb66b931fa38004c2178936c269fa76}{P\+I\+O\+\_\+\+Configure}} (const \mbox{\hyperlink{struct__Pin}{Pin}} $\ast$list, uint32\+\_\+t \mbox{\hyperlink{sun4u_2tte_8h_a245260f6f74972558f61b85227df5aae}{size}})
+\begin{DoxyCompactList}\small\item\em Configures a list of Pin instances, each of which can either hold a single pin or a group of pins, depending on the mask value; all pins are configured by this function. The size of the array must also be provided and is easily computed using P\+I\+O\+\_\+\+L\+I\+S\+T\+S\+I\+ZE whenever its length is not known in advance. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{pio_8c_aac9a3cac1a51b45f82b30bd7a29826a6}{P\+I\+O\+\_\+\+Set}} (const \mbox{\hyperlink{struct__Pin}{Pin}} $\ast$pin)
+\begin{DoxyCompactList}\small\item\em Sets a high output level on all the P\+I\+Os defined in the given Pin instance. This has no immediate effects on P\+I\+Os that are not output, but the P\+IO controller will memorize the value they are changed to outputs. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{pio_8c_a2d4d88110e7ab4fc0732df6d35289e06}{P\+I\+O\+\_\+\+Clear}} (const \mbox{\hyperlink{struct__Pin}{Pin}} $\ast$pin)
+\begin{DoxyCompactList}\small\item\em Sets a low output level on all the P\+I\+Os defined in the given Pin instance. This has no immediate effects on P\+I\+Os that are not output, but the P\+IO controller will memorize the value they are changed to outputs. \end{DoxyCompactList}\item 
+unsigned char \mbox{\hyperlink{pio_8c_abc8386fb7bfde5682b4a5c630374f0ce}{P\+I\+O\+\_\+\+Get}} (const \mbox{\hyperlink{struct__Pin}{Pin}} $\ast$pin)
+\begin{DoxyCompactList}\small\item\em Returns 1 if one or more P\+IO of the given Pin instance currently have a high level; otherwise returns 0. This method returns the actual value that is being read on the pin. To return the supposed output value of a pin, use \mbox{\hyperlink{pio_8c_a52f7b46a88ef308a90e741e31abab1c7}{P\+I\+O\+\_\+\+Get\+Output\+Data\+Status()}} instead. \end{DoxyCompactList}\item 
+unsigned char \mbox{\hyperlink{pio_8c_a52f7b46a88ef308a90e741e31abab1c7}{P\+I\+O\+\_\+\+Get\+Output\+Data\+Status}} (const \mbox{\hyperlink{struct__Pin}{Pin}} $\ast$pin)
+\begin{DoxyCompactList}\small\item\em Returns 1 if one or more P\+IO of the given Pin are configured to output a high level (even if they are not output). To get the actual value of the pin, use \mbox{\hyperlink{pio_8c_abc8386fb7bfde5682b4a5c630374f0ce}{P\+I\+O\+\_\+\+Get()}} instead. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{pio_8c_a61cee3d7257283e8de25c35bc8de1bc7}{P\+I\+O\+\_\+\+Set\+Debounce\+Filter}} (const \mbox{\hyperlink{struct__Pin}{Pin}} $\ast$pin, uint32\+\_\+t cuttoff)
+\begin{DoxyCompactList}\small\item\em Configures Glitch or Denouncing filter for input. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{pio_8c_a4e47e43bceb652ba7853c685d2966771}{P\+I\+O\+\_\+\+Enable\+Write\+Protect}} (const \mbox{\hyperlink{struct__Pin}{Pin}} $\ast$pin)
+\begin{DoxyCompactList}\small\item\em Enable write protect. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{pio_8c_a22dd59a2b50e6593e036164c2a1664ad}{P\+I\+O\+\_\+\+Disable\+Write\+Protect}} (const \mbox{\hyperlink{struct__Pin}{Pin}} $\ast$pin)
+\begin{DoxyCompactList}\small\item\em Disable write protect. \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{pio_8c_a86aa6c1a7ef50f8adaaf76c70ee4f5f6}{P\+I\+O\+\_\+\+Get\+Write\+Protect\+Violation\+Info}} (const \mbox{\hyperlink{struct__Pin}{Pin}} $\ast$pin)
+\begin{DoxyCompactList}\small\item\em Get write protect violation information. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{pio_8c_a52178fe898c46d0a59a125d2f8da5c20}{P\+I\+O\+\_\+\+Set\+Pin\+Type}} (\mbox{\hyperlink{struct__Pin}{Pin}} $\ast$pin, uint8\+\_\+t pin\+Type)
+\begin{DoxyCompactList}\small\item\em Set pin type the pin is controlled by the corresponding peripheral (A, B, C, D,E) \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{pio_8c_aae63fc52e3894bf60eb17794ee193ccb}{P\+I\+O\+\_\+\+Set\+Drive\+Strength}} (const \mbox{\hyperlink{struct__Pin}{Pin}} $\ast$pin, uint8\+\_\+t strength)
+\begin{DoxyCompactList}\small\item\em Set the drive strength of the pin. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{pio_8c_a2d4d88110e7ab4fc0732df6d35289e06}\label{pio_8c_a2d4d88110e7ab4fc0732df6d35289e06}} 
+\index{pio.c@{pio.c}!PIO\_Clear@{PIO\_Clear}}
+\index{PIO\_Clear@{PIO\_Clear}!pio.c@{pio.c}}
+\subsubsection{\texorpdfstring{PIO\_Clear()}{PIO\_Clear()}}
+{\footnotesize\ttfamily void P\+I\+O\+\_\+\+Clear (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct__Pin}{Pin}} $\ast$}]{pin }\end{DoxyParamCaption})}
+
+
+
+Sets a low output level on all the P\+I\+Os defined in the given Pin instance. This has no immediate effects on P\+I\+Os that are not output, but the P\+IO controller will memorize the value they are changed to outputs. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pin} & Pointer to a Pin instance describing one or more pins. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{pio_8c_a1bb66b931fa38004c2178936c269fa76}\label{pio_8c_a1bb66b931fa38004c2178936c269fa76}} 
+\index{pio.c@{pio.c}!PIO\_Configure@{PIO\_Configure}}
+\index{PIO\_Configure@{PIO\_Configure}!pio.c@{pio.c}}
+\subsubsection{\texorpdfstring{PIO\_Configure()}{PIO\_Configure()}}
+{\footnotesize\ttfamily uint8\+\_\+t P\+I\+O\+\_\+\+Configure (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct__Pin}{Pin}} $\ast$}]{list,  }\item[{uint32\+\_\+t}]{size }\end{DoxyParamCaption})}
+
+
+
+Configures a list of Pin instances, each of which can either hold a single pin or a group of pins, depending on the mask value; all pins are configured by this function. The size of the array must also be provided and is easily computed using P\+I\+O\+\_\+\+L\+I\+S\+T\+S\+I\+ZE whenever its length is not known in advance. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em list} & Pointer to a list of Pin instances. \\
+\hline
+{\em size} & Size of the Pin list (calculated using P\+I\+O\+\_\+\+L\+I\+S\+T\+S\+I\+ZE).\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if the pins have been configured properly; otherwise 0. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{pio_8c_a22dd59a2b50e6593e036164c2a1664ad}\label{pio_8c_a22dd59a2b50e6593e036164c2a1664ad}} 
+\index{pio.c@{pio.c}!PIO\_DisableWriteProtect@{PIO\_DisableWriteProtect}}
+\index{PIO\_DisableWriteProtect@{PIO\_DisableWriteProtect}!pio.c@{pio.c}}
+\subsubsection{\texorpdfstring{PIO\_DisableWriteProtect()}{PIO\_DisableWriteProtect()}}
+{\footnotesize\ttfamily void P\+I\+O\+\_\+\+Disable\+Write\+Protect (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct__Pin}{Pin}} $\ast$}]{pin }\end{DoxyParamCaption})}
+
+
+
+Disable write protect. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pin} & Pointer to a Pin instance describing one or more pins. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{pio_8c_a4e47e43bceb652ba7853c685d2966771}\label{pio_8c_a4e47e43bceb652ba7853c685d2966771}} 
+\index{pio.c@{pio.c}!PIO\_EnableWriteProtect@{PIO\_EnableWriteProtect}}
+\index{PIO\_EnableWriteProtect@{PIO\_EnableWriteProtect}!pio.c@{pio.c}}
+\subsubsection{\texorpdfstring{PIO\_EnableWriteProtect()}{PIO\_EnableWriteProtect()}}
+{\footnotesize\ttfamily void P\+I\+O\+\_\+\+Enable\+Write\+Protect (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct__Pin}{Pin}} $\ast$}]{pin }\end{DoxyParamCaption})}
+
+
+
+Enable write protect. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pin} & Pointer to a Pin instance describing one or more pins. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{pio_8c_abc8386fb7bfde5682b4a5c630374f0ce}\label{pio_8c_abc8386fb7bfde5682b4a5c630374f0ce}} 
+\index{pio.c@{pio.c}!PIO\_Get@{PIO\_Get}}
+\index{PIO\_Get@{PIO\_Get}!pio.c@{pio.c}}
+\subsubsection{\texorpdfstring{PIO\_Get()}{PIO\_Get()}}
+{\footnotesize\ttfamily unsigned char P\+I\+O\+\_\+\+Get (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct__Pin}{Pin}} $\ast$}]{pin }\end{DoxyParamCaption})}
+
+
+
+Returns 1 if one or more P\+IO of the given Pin instance currently have a high level; otherwise returns 0. This method returns the actual value that is being read on the pin. To return the supposed output value of a pin, use \mbox{\hyperlink{pio_8c_a52f7b46a88ef308a90e741e31abab1c7}{P\+I\+O\+\_\+\+Get\+Output\+Data\+Status()}} instead. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pin} & Pointer to a Pin instance describing one or more pins.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if the Pin instance contains at least one P\+IO that currently has a high level; otherwise 0. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{pio_8c_a52f7b46a88ef308a90e741e31abab1c7}\label{pio_8c_a52f7b46a88ef308a90e741e31abab1c7}} 
+\index{pio.c@{pio.c}!PIO\_GetOutputDataStatus@{PIO\_GetOutputDataStatus}}
+\index{PIO\_GetOutputDataStatus@{PIO\_GetOutputDataStatus}!pio.c@{pio.c}}
+\subsubsection{\texorpdfstring{PIO\_GetOutputDataStatus()}{PIO\_GetOutputDataStatus()}}
+{\footnotesize\ttfamily unsigned char P\+I\+O\+\_\+\+Get\+Output\+Data\+Status (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct__Pin}{Pin}} $\ast$}]{pin }\end{DoxyParamCaption})}
+
+
+
+Returns 1 if one or more P\+IO of the given Pin are configured to output a high level (even if they are not output). To get the actual value of the pin, use \mbox{\hyperlink{pio_8c_abc8386fb7bfde5682b4a5c630374f0ce}{P\+I\+O\+\_\+\+Get()}} instead. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pin} & Pointer to a Pin instance describing one or more pins.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if the Pin instance contains at least one P\+IO that is configured to output a high level; otherwise 0. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{pio_8c_a86aa6c1a7ef50f8adaaf76c70ee4f5f6}\label{pio_8c_a86aa6c1a7ef50f8adaaf76c70ee4f5f6}} 
+\index{pio.c@{pio.c}!PIO\_GetWriteProtectViolationInfo@{PIO\_GetWriteProtectViolationInfo}}
+\index{PIO\_GetWriteProtectViolationInfo@{PIO\_GetWriteProtectViolationInfo}!pio.c@{pio.c}}
+\subsubsection{\texorpdfstring{PIO\_GetWriteProtectViolationInfo()}{PIO\_GetWriteProtectViolationInfo()}}
+{\footnotesize\ttfamily uint32\+\_\+t P\+I\+O\+\_\+\+Get\+Write\+Protect\+Violation\+Info (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct__Pin}{Pin}} $\ast$}]{pin }\end{DoxyParamCaption})}
+
+
+
+Get write protect violation information. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pin} & Pointer to a Pin instance describing one or more pins. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{pio_8c_aac9a3cac1a51b45f82b30bd7a29826a6}\label{pio_8c_aac9a3cac1a51b45f82b30bd7a29826a6}} 
+\index{pio.c@{pio.c}!PIO\_Set@{PIO\_Set}}
+\index{PIO\_Set@{PIO\_Set}!pio.c@{pio.c}}
+\subsubsection{\texorpdfstring{PIO\_Set()}{PIO\_Set()}}
+{\footnotesize\ttfamily void P\+I\+O\+\_\+\+Set (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct__Pin}{Pin}} $\ast$}]{pin }\end{DoxyParamCaption})}
+
+
+
+Sets a high output level on all the P\+I\+Os defined in the given Pin instance. This has no immediate effects on P\+I\+Os that are not output, but the P\+IO controller will memorize the value they are changed to outputs. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pin} & Pointer to a Pin instance describing one or more pins. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{pio_8c_a61cee3d7257283e8de25c35bc8de1bc7}\label{pio_8c_a61cee3d7257283e8de25c35bc8de1bc7}} 
+\index{pio.c@{pio.c}!PIO\_SetDebounceFilter@{PIO\_SetDebounceFilter}}
+\index{PIO\_SetDebounceFilter@{PIO\_SetDebounceFilter}!pio.c@{pio.c}}
+\subsubsection{\texorpdfstring{PIO\_SetDebounceFilter()}{PIO\_SetDebounceFilter()}}
+{\footnotesize\ttfamily void P\+I\+O\+\_\+\+Set\+Debounce\+Filter (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct__Pin}{Pin}} $\ast$}]{pin,  }\item[{uint32\+\_\+t}]{cuttoff }\end{DoxyParamCaption})}
+
+
+
+Configures Glitch or Denouncing filter for input. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pin} & Pointer to a Pin instance describing one or more pins. \\
+\hline
+{\em cuttoff} & Cut off frequency for denounce filter. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{pio_8c_aae63fc52e3894bf60eb17794ee193ccb}\label{pio_8c_aae63fc52e3894bf60eb17794ee193ccb}} 
+\index{pio.c@{pio.c}!PIO\_SetDriveStrength@{PIO\_SetDriveStrength}}
+\index{PIO\_SetDriveStrength@{PIO\_SetDriveStrength}!pio.c@{pio.c}}
+\subsubsection{\texorpdfstring{PIO\_SetDriveStrength()}{PIO\_SetDriveStrength()}}
+{\footnotesize\ttfamily void P\+I\+O\+\_\+\+Set\+Drive\+Strength (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct__Pin}{Pin}} $\ast$}]{pin,  }\item[{uint8\+\_\+t}]{strength }\end{DoxyParamCaption})}
+
+
+
+Set the drive strength of the pin. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pin} & Pointer to a Pin instance describing one or more pins. \\
+\hline
+{\em strength} & 0 for low drive strength or 1 for high drive strength. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{pio_8c_a52178fe898c46d0a59a125d2f8da5c20}\label{pio_8c_a52178fe898c46d0a59a125d2f8da5c20}} 
+\index{pio.c@{pio.c}!PIO\_SetPinType@{PIO\_SetPinType}}
+\index{PIO\_SetPinType@{PIO\_SetPinType}!pio.c@{pio.c}}
+\subsubsection{\texorpdfstring{PIO\_SetPinType()}{PIO\_SetPinType()}}
+{\footnotesize\ttfamily void P\+I\+O\+\_\+\+Set\+Pin\+Type (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__Pin}{Pin}} $\ast$}]{pin,  }\item[{uint8\+\_\+t}]{pin\+Type }\end{DoxyParamCaption})}
+
+
+
+Set pin type the pin is controlled by the corresponding peripheral (A, B, C, D,E) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pin} & Pointer to a Pin instance describing one or more pins. \\
+\hline
+{\em pin\+Type} & P\+I\+O\+\_\+\+P\+E\+R\+I\+P\+H\+\_\+A, P\+I\+O\+\_\+\+P\+E\+R\+I\+P\+H\+\_\+B, ... \\
+\hline
+\end{DoxyParams}

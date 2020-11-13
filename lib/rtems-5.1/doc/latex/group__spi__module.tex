@@ -1,0 +1,22 @@
+\hypertarget{group__spi__module}{}\section{Working with S\+PI}
+\label{group__spi__module}\index{Working with SPI@{Working with SPI}}
+The S\+PI driver provides the interface to configure and use the S\+PI peripheral.
+
+The Serial Peripheral Interface (S\+PI) circuit is a synchronous serial data link that provides communication with external devices in Master or Slave Mode.
+
+To use the S\+PI, the user has to follow these few steps\+:
+\begin{DoxyEnumerate}
+\item Enable the S\+PI pins required by the application (see \mbox{\hyperlink{pio_8h}{pio.\+h}}).
+\item Configure the S\+PI using the \mbox{\hyperlink{arm_2atsam_2contrib_2libraries_2libchip_2source_2spi_8c_a0ebb1d25f8889b00a9dd846059456175}{S\+P\+I\+\_\+\+Configure()}}. This enables the peripheral clock. The mode register is loaded with the given value.
+\item Configure all the necessary chip selects with \mbox{\hyperlink{arm_2atsam_2contrib_2libraries_2libchip_2source_2spi_8c_a3f06d5a5d0d4475c4a2a46657235ac92}{S\+P\+I\+\_\+\+Configure\+N\+P\+C\+S()}}.
+\item Enable the S\+PI by calling \mbox{\hyperlink{arm_2atsam_2contrib_2libraries_2libchip_2source_2spi_8c_ad983db901253eb7cc58874a4d495a106}{S\+P\+I\+\_\+\+Enable()}}.
+\item Send/receive data using \mbox{\hyperlink{arm_2atsam_2contrib_2libraries_2libchip_2source_2spi_8c_a564ab3c6c710a126ae9fc731e46c1294}{S\+P\+I\+\_\+\+Write()}} and \mbox{\hyperlink{arm_2atsam_2contrib_2libraries_2libchip_2source_2spi_8c_a3e757f48d1ee59e6027ac4c4319556ca}{S\+P\+I\+\_\+\+Read()}}. Note that \mbox{\hyperlink{arm_2atsam_2contrib_2libraries_2libchip_2source_2spi_8c_a3e757f48d1ee59e6027ac4c4319556ca}{S\+P\+I\+\_\+\+Read()}} must be called after \mbox{\hyperlink{arm_2atsam_2contrib_2libraries_2libchip_2source_2spi_8c_a564ab3c6c710a126ae9fc731e46c1294}{S\+P\+I\+\_\+\+Write()}} to retrieve the last value read.
+\item Disable the S\+PI by calling \mbox{\hyperlink{arm_2atsam_2contrib_2libraries_2libchip_2source_2spi_8c_aa8212f6819071a9ca247a0236b109e98}{S\+P\+I\+\_\+\+Disable()}}.
+\end{DoxyEnumerate}
+
+For more accurate information, please look at the S\+PI section of the Datasheet.
+
+Related files \+:~\newline
+spi.\+c~\newline
+ spi.\+h.~\newline
+ 

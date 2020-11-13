@@ -1,0 +1,101 @@
+\hypertarget{structrtems__dosfs__mount__options}{}\section{rtems\+\_\+dosfs\+\_\+mount\+\_\+options Struct Reference}
+\label{structrtems__dosfs__mount__options}\index{rtems\_dosfs\_mount\_options@{rtems\_dosfs\_mount\_options}}
+
+
+F\+AT filesystem mount options.  
+
+
+
+
+{\ttfamily \#include $<$dosfs.\+h$>$}
+
+\subsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structrtems__dosfs__convert__control}{rtems\+\_\+dosfs\+\_\+convert\+\_\+control}} $\ast$ \mbox{\hyperlink{structrtems__dosfs__mount__options_af0fbb8805427b51c70d8637703af62d1}{converter}}
+\begin{DoxyCompactList}\small\item\em Converter implementation for new file system instance. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+F\+AT filesystem mount options. 
+
+\subsection{Field Documentation}
+\mbox{\Hypertarget{structrtems__dosfs__mount__options_af0fbb8805427b51c70d8637703af62d1}\label{structrtems__dosfs__mount__options_af0fbb8805427b51c70d8637703af62d1}} 
+\index{rtems\_dosfs\_mount\_options@{rtems\_dosfs\_mount\_options}!converter@{converter}}
+\index{converter@{converter}!rtems\_dosfs\_mount\_options@{rtems\_dosfs\_mount\_options}}
+\subsubsection{\texorpdfstring{converter}{converter}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structrtems__dosfs__convert__control}{rtems\+\_\+dosfs\+\_\+convert\+\_\+control}}$\ast$ rtems\+\_\+dosfs\+\_\+mount\+\_\+options\+::converter}
+
+
+
+Converter implementation for new file system instance. 
+
+Note\+: If you pass a converter to mount, you have to destroy it yourself if mount failed. In a good case it is destroyed at unmount.
+
+Before converters have been added to the R\+T\+E\+MS implementation of the F\+AT file system, the implementation was\+:
+\begin{DoxyItemize}
+\item Short names were saved in code page format (as is still the case).
+\item Long names were not saved in U\+T\+F-\/16 format as mandated by the F\+AT file system specification. Instead the character in the local encoding was stored to the low byte directly and the high byte was set to zero.
+\end{DoxyItemize}
+
+There are a few compatibility issues due to a non-\/standard conform implementation of the F\+AT file system before the U\+T\+F-\/8 support was added. These following issues affect the default converter and the U\+T\+F-\/8 converter\+:
+\begin{DoxyItemize}
+\item Before U\+T\+F-\/8 support was added, it was possible to create files with the the same short name in single case and mixed case in a directory. It was for example possible to have files \char`\"{}\+A\+B\+C\char`\"{} and \char`\"{}a\+Bc\char`\"{} in a single directory. Now this bug is fixed.
+\item Before U\+T\+F-\/8 support was added, it was possible to create files with a name length of slightly more than 255 characters. Now the implementation adheres exactly to the 255 character limit.
+\item Long file names saved before U\+T\+F-\/8 support was added could contain non-\/\+A\+S\+C\+II characters in the low byte which was saved for a long name character. With the default converter this means such files can be read only by their short file name. With the U\+T\+F-\/8 converter file names will be read correctly as long as the characters written with the old implementation were Latin-\/1 characters.
+\end{DoxyItemize}
+
+The following sample code demonstrates how to mount a file system with U\+T\+F-\/8 support\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include <errno.h>}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include <\mbox{\hyperlink{assert_8h}{assert.h}}>}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include <\mbox{\hyperlink{dosfs_8h}{rtems/dosfs.h}}>}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include <\mbox{\hyperlink{libio_8h}{rtems/libio.h}}>}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keyword}{static} \textcolor{keywordtype}{int} mount\_with\_utf8(}
+\DoxyCodeLine{  \textcolor{keyword}{const} \textcolor{keywordtype}{char} *device\_file,}
+\DoxyCodeLine{  \textcolor{keyword}{const} \textcolor{keywordtype}{char} *mount\_point}
+\DoxyCodeLine{)}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{  \mbox{\hyperlink{structrtems__dosfs__convert__control}{rtems\_dosfs\_convert\_control}} *convert\_ctrl;}
+\DoxyCodeLine{  \textcolor{keywordtype}{int}                          rv;}
+\DoxyCodeLine{}
+\DoxyCodeLine{  convert\_ctrl = \mbox{\hyperlink{group__DOSFS_ga47cec61b81f7868a5b821709246a8509}{rtems\_dosfs\_create\_utf8\_converter}}( \textcolor{stringliteral}{"CP850"} );}
+\DoxyCodeLine{}
+\DoxyCodeLine{  \textcolor{keywordflow}{if} ( convert\_ctrl != \mbox{\hyperlink{bestcomm__api_8h_a872bb74de61c3689ccd5b41873fce42c}{NULL}} ) \{}
+\DoxyCodeLine{    \mbox{\hyperlink{structrtems__dosfs__mount__options}{rtems\_dosfs\_mount\_options}} mount\_opts;}
+\DoxyCodeLine{}
+\DoxyCodeLine{    memset( \&mount\_opts, 0, \textcolor{keyword}{sizeof}( mount\_opts ) );}
+\DoxyCodeLine{    mount\_opts.\mbox{\hyperlink{structrtems__dosfs__mount__options_af0fbb8805427b51c70d8637703af62d1}{converter}} = convert\_ctrl;}
+\DoxyCodeLine{}
+\DoxyCodeLine{    rv = \mbox{\hyperlink{group__FileSystemTypesAndMount_ga27af6440b4ef795576c94e870c5d997f}{mount\_and\_make\_target\_path}}(}
+\DoxyCodeLine{      device\_file,}
+\DoxyCodeLine{      mount\_point,}
+\DoxyCodeLine{      RTEMS\_FILESYSTEM\_TYPE\_DOSFS,}
+\DoxyCodeLine{      RTEMS\_FILESYSTEM\_READ\_WRITE,}
+\DoxyCodeLine{      \&mount\_opts}
+\DoxyCodeLine{    );}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keywordflow}{if} (rv != 0) \{}
+\DoxyCodeLine{      (*mount\_opts.\mbox{\hyperlink{structrtems__dosfs__mount__options_af0fbb8805427b51c70d8637703af62d1}{converter}}->handler->destroy)(mount\_opts.\mbox{\hyperlink{structrtems__dosfs__mount__options_af0fbb8805427b51c70d8637703af62d1}{converter}});}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{  \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{    rv = -1;}
+\DoxyCodeLine{    errno = ENOMEM;}
+\DoxyCodeLine{  \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{  \textcolor{keywordflow}{return} rv;}
+\DoxyCodeLine{\}}
+\end{DoxyCode}
+
+
+In case you do not want U\+T\+F-\/8 support, you can simply pass a N\+U\+LL pointer to \mbox{\hyperlink{group__FileSystemTypesAndMount_ga27af6440b4ef795576c94e870c5d997f}{mount\+\_\+and\+\_\+make\+\_\+target\+\_\+path()}} respectively to \mbox{\hyperlink{group__FileSystemTypesAndMount_gaf3c1bed49bb0f3dec88d330b4f88d48b}{mount()}} instead of the mount\+\_\+opts address.
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{group__DOSFS_ga9dc28ad698d4946c7bf691fa0b0a6c78}{rtems\+\_\+dosfs\+\_\+create\+\_\+default\+\_\+converter()}} and \mbox{\hyperlink{group__DOSFS_ga47cec61b81f7868a5b821709246a8509}{rtems\+\_\+dosfs\+\_\+create\+\_\+utf8\+\_\+converter()}}. 
+\end{DoxySeeAlso}
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+cpukit/include/rtems/\mbox{\hyperlink{dosfs_8h}{dosfs.\+h}}\end{DoxyCompactItemize}

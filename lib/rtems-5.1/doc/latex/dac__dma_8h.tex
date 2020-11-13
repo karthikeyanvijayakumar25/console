@@ -1,0 +1,141 @@
+\hypertarget{dac__dma_8h}{}\section{bsps/arm/atsam/include/libchip/include/dac\+\_\+dma.h File Reference}
+\label{dac__dma_8h}\index{bsps/arm/atsam/include/libchip/include/dac\_dma.h@{bsps/arm/atsam/include/libchip/include/dac\_dma.h}}
+{\ttfamily \#include \char`\"{}chip.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include $<$assert.\+h$>$}\newline
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structDacCmd}{Dac\+Cmd}}
+\begin{DoxyCompactList}\small\item\em Dac Transfer Request prepared by the application upper layer. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structDacDma}{Dac\+Dma}}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{dac__dma_8h_a9dc18761e710094675186d2bc25b26f4}\label{dac__dma_8h_a9dc18761e710094675186d2bc25b26f4}} 
+\#define {\bfseries D\+A\+C\+\_\+\+OK}~0
+\item 
+\mbox{\Hypertarget{dac__dma_8h_abb6f9cfe873e69422f9e8ee9ff39b768}\label{dac__dma_8h_abb6f9cfe873e69422f9e8ee9ff39b768}} 
+\#define {\bfseries D\+A\+C\+\_\+\+E\+R\+R\+OR}~1
+\item 
+\mbox{\Hypertarget{dac__dma_8h_a512f0ca1799ff3d57c99ac65f9338b8f}\label{dac__dma_8h_a512f0ca1799ff3d57c99ac65f9338b8f}} 
+\#define {\bfseries D\+A\+C\+\_\+\+E\+R\+R\+O\+R\+\_\+\+L\+O\+CK}~2
+\item 
+\mbox{\Hypertarget{dac__dma_8h_ae4b4ba63528086d9ce4cb1fbfe1298c2}\label{dac__dma_8h_ae4b4ba63528086d9ce4cb1fbfe1298c2}} 
+\#define {\bfseries D\+A\+C\+C\+\_\+\+C\+H\+A\+N\+N\+E\+L\+\_\+0}~0
+\item 
+\mbox{\Hypertarget{dac__dma_8h_a522be47c6117094e87b21a1c01d216cb}\label{dac__dma_8h_a522be47c6117094e87b21a1c01d216cb}} 
+\#define {\bfseries D\+A\+C\+C\+\_\+\+C\+H\+A\+N\+N\+E\+L\+\_\+1}~1
+\item 
+\mbox{\Hypertarget{dac__dma_8h_a4dc83e22d9c4b12cd2e1c9ea9690b90d}\label{dac__dma_8h_a4dc83e22d9c4b12cd2e1c9ea9690b90d}} 
+\#define {\bfseries D\+A\+C\+C\+\_\+\+Soft\+Reset}(p\+D\+A\+CC)~((p\+D\+A\+CC)-\/$>$D\+A\+C\+C\+\_\+\+CR = \mbox{\hyperlink{group__SAMV71__DACC_gaa8176bc1ae37b9ba55f9033d46d79fa5}{D\+A\+C\+C\+\_\+\+C\+R\+\_\+\+S\+W\+R\+ST}})
+\item 
+\mbox{\Hypertarget{dac__dma_8h_a3f03b1290416e1662bf9ff9edd29d21e}\label{dac__dma_8h_a3f03b1290416e1662bf9ff9edd29d21e}} 
+\#define {\bfseries D\+A\+C\+C\+\_\+\+Cfg\+Mode\+Reg}(p\+D\+A\+CC,  mode)~\{ (p\+D\+A\+CC)-\/$>$D\+A\+C\+C\+\_\+\+MR = (mode); \}
+\item 
+\mbox{\Hypertarget{dac__dma_8h_a3643c7add790a3992e3319866479d7a3}\label{dac__dma_8h_a3643c7add790a3992e3319866479d7a3}} 
+\#define {\bfseries D\+A\+C\+C\+\_\+\+Get\+Mode\+Reg}(p\+D\+A\+CC)~((p\+D\+A\+CC)-\/$>$D\+A\+C\+C\+\_\+\+MR)
+\item 
+\mbox{\Hypertarget{dac__dma_8h_ae5eebe4a1e5d6783143a689dc145a682}\label{dac__dma_8h_ae5eebe4a1e5d6783143a689dc145a682}} 
+\#define {\bfseries D\+A\+C\+C\+\_\+\+Cfg\+Trigger}(p\+D\+A\+CC,  mode)~\{ (p\+D\+A\+CC)-\/$>$D\+A\+C\+C\+\_\+\+T\+R\+I\+GR = (mode); \}
+\item 
+\mbox{\Hypertarget{dac__dma_8h_af2bd0795332c566cd78d2cd5140d202e}\label{dac__dma_8h_af2bd0795332c566cd78d2cd5140d202e}} 
+\#define {\bfseries D\+A\+C\+C\+\_\+\+Enable\+Channel}(p\+D\+A\+CC,  channel)~\{(p\+D\+A\+CC)-\/$>$D\+A\+C\+C\+\_\+\+C\+H\+ER = (1 $<$$<$ (channel));\}
+\item 
+\mbox{\Hypertarget{dac__dma_8h_afe3d3a7982eba5f896b5a7376f07a41e}\label{dac__dma_8h_afe3d3a7982eba5f896b5a7376f07a41e}} 
+\#define {\bfseries D\+A\+C\+C\+\_\+\+Disable\+Channel}(p\+D\+A\+CC,  channel)~\{(p\+D\+A\+CC)-\/$>$D\+A\+C\+C\+\_\+\+C\+H\+DR = (1 $<$$<$ (channel));\}
+\item 
+\mbox{\Hypertarget{dac__dma_8h_acb68aae8be5f8cdde1bef3a8c4693fb5}\label{dac__dma_8h_acb68aae8be5f8cdde1bef3a8c4693fb5}} 
+\#define {\bfseries D\+A\+C\+C\+\_\+\+Enable\+It}(p\+D\+A\+CC,  mode)~\{(p\+D\+A\+CC)-\/$>$D\+A\+C\+C\+\_\+\+I\+ER = (mode);\}
+\item 
+\mbox{\Hypertarget{dac__dma_8h_a1f172019a0fc6440ba6664517cbf330b}\label{dac__dma_8h_a1f172019a0fc6440ba6664517cbf330b}} 
+\#define {\bfseries D\+A\+C\+C\+\_\+\+Disable\+It}(p\+D\+A\+CC,  mode)~\{(p\+D\+A\+CC)-\/$>$D\+A\+C\+C\+\_\+\+I\+DR = (mode);\}
+\item 
+\mbox{\Hypertarget{dac__dma_8h_a9fde37eb03f79231d388b70e4debef7f}\label{dac__dma_8h_a9fde37eb03f79231d388b70e4debef7f}} 
+\#define {\bfseries D\+A\+C\+C\+\_\+\+Get\+Status}(p\+D\+A\+CC)~((p\+D\+A\+CC)-\/$>$D\+A\+C\+C\+\_\+\+I\+SR)
+\item 
+\mbox{\Hypertarget{dac__dma_8h_aa31056e14cc3054cd73ae6d783c5417f}\label{dac__dma_8h_aa31056e14cc3054cd73ae6d783c5417f}} 
+\#define {\bfseries D\+A\+C\+C\+\_\+\+Get\+Channel\+Status}(p\+D\+A\+CC)~((p\+D\+A\+CC)-\/$>$D\+A\+C\+C\+\_\+\+C\+H\+SR)
+\item 
+\mbox{\Hypertarget{dac__dma_8h_a258db7ff12c82c57d40fcd03dc907d58}\label{dac__dma_8h_a258db7ff12c82c57d40fcd03dc907d58}} 
+\#define {\bfseries D\+A\+C\+C\+\_\+\+Get\+Interrupt\+Mask\+Status}(p\+D\+A\+CC)~((p\+D\+A\+CC)-\/$>$D\+A\+C\+C\+\_\+\+I\+MR)
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef void($\ast$ \mbox{\hyperlink{dac__dma_8h_af9a1c1e4392c0aa064b7f6b6dfd0d75e}{Dac\+Callback}}) (uint8\+\_\+t, void $\ast$)
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{dac__dma_8h_a7e1d0cb187e4384e431128b4a748c542}{Dac\+\_\+\+Configure\+Dma}} (\mbox{\hyperlink{structDacDma}{Dac\+Dma}} $\ast$p\+Dacd, \mbox{\hyperlink{structDacc}{Dacc}} $\ast$p\+Dac\+Hw, uint8\+\_\+t Dac\+Id, \mbox{\hyperlink{group__dmad__structs_gaf2c13151514615a6beb35c0d868a5053}{s\+Xdmad}} $\ast$p\+Xdmad)
+\begin{DoxyCompactList}\small\item\em Initializes the \mbox{\hyperlink{structDacDma}{Dac\+Dma}} structure and the corresponding D\+AC \& D\+MA . hardware select value. The driver will uses D\+MA channel 0 for RX . The D\+MA channels are freed automatically when no D\+MA command processing. \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{dac__dma_8h_a06fc7a9dafb44c7434b2f28a79d0b5ca}{Dac\+\_\+\+Send\+Data}} (\mbox{\hyperlink{structDacDma}{Dac\+Dma}} $\ast$p\+Dacd, \mbox{\hyperlink{structDacCmd}{Dac\+Cmd}} $\ast$p\+Command)
+\begin{DoxyCompactList}\small\item\em Starts a D\+AC transfer. This is a non blocking function. It will return as soon as the transfer is started. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\hypertarget{group__RTEMSBSPsARM_Purpose}{}\subsection{Purpose}\label{group__RTEMSBSPsARM_Purpose}
+Interface for configuration the Analog-\/to-\/\+Digital Converter (D\+A\+CC) peripheral.\hypertarget{group__RTEMSBSPsARM_Usage}{}\subsection{Usage}\label{group__RTEMSBSPsARM_Usage}
+
+\begin{DoxyEnumerate}
+\item Configurate the pins for D\+A\+CC
+\item Initialize the D\+A\+CC with D\+A\+C\+C\+\_\+\+Initialize().
+\item Select the active channel using D\+A\+C\+C\+\_\+\+Enable\+Channel()
+\item Start the conversion with D\+A\+C\+C\+\_\+\+Start\+Conversion()
+\item Wait the end of the conversion by polling status with D\+A\+C\+C\+\_\+\+Get\+Status()
+\item Finally, get the converted data using D\+A\+C\+C\+\_\+\+Get\+Converted\+Data() 
+\end{DoxyEnumerate}
+
+\subsection{Typedef Documentation}
+\mbox{\Hypertarget{dac__dma_8h_af9a1c1e4392c0aa064b7f6b6dfd0d75e}\label{dac__dma_8h_af9a1c1e4392c0aa064b7f6b6dfd0d75e}} 
+\index{dac\_dma.h@{dac\_dma.h}!DacCallback@{DacCallback}}
+\index{DacCallback@{DacCallback}!dac\_dma.h@{dac\_dma.h}}
+\subsubsection{\texorpdfstring{DacCallback}{DacCallback}}
+{\footnotesize\ttfamily typedef void($\ast$ Dac\+Callback) (uint8\+\_\+t, void $\ast$)}
+
+D\+AC transfer complete callback. 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{dac__dma_8h_a7e1d0cb187e4384e431128b4a748c542}\label{dac__dma_8h_a7e1d0cb187e4384e431128b4a748c542}} 
+\index{dac\_dma.h@{dac\_dma.h}!Dac\_ConfigureDma@{Dac\_ConfigureDma}}
+\index{Dac\_ConfigureDma@{Dac\_ConfigureDma}!dac\_dma.h@{dac\_dma.h}}
+\subsubsection{\texorpdfstring{Dac\_ConfigureDma()}{Dac\_ConfigureDma()}}
+{\footnotesize\ttfamily uint32\+\_\+t Dac\+\_\+\+Configure\+Dma (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structDacDma}{Dac\+Dma}} $\ast$}]{p\+Dacd,  }\item[{\mbox{\hyperlink{structDacc}{Dacc}} $\ast$}]{p\+Dac\+Hw,  }\item[{uint8\+\_\+t}]{Dac\+Id,  }\item[{\mbox{\hyperlink{group__dmad__structs_gaf2c13151514615a6beb35c0d868a5053}{s\+Xdmad}} $\ast$}]{p\+Xdmad }\end{DoxyParamCaption})}
+
+
+
+Initializes the \mbox{\hyperlink{structDacDma}{Dac\+Dma}} structure and the corresponding D\+AC \& D\+MA . hardware select value. The driver will uses D\+MA channel 0 for RX . The D\+MA channels are freed automatically when no D\+MA command processing. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Dacd} & Pointer to a \mbox{\hyperlink{structDacDma}{Dac\+Dma}} instance. \\
+\hline
+{\em p\+Dac\+Hw} & Associated Dac peripheral. \\
+\hline
+{\em Dac\+Id} & Dac peripheral identifier. \\
+\hline
+{\em p\+Dmad} & Pointer to a Dmad instance. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{dac__dma_8h_a06fc7a9dafb44c7434b2f28a79d0b5ca}\label{dac__dma_8h_a06fc7a9dafb44c7434b2f28a79d0b5ca}} 
+\index{dac\_dma.h@{dac\_dma.h}!Dac\_SendData@{Dac\_SendData}}
+\index{Dac\_SendData@{Dac\_SendData}!dac\_dma.h@{dac\_dma.h}}
+\subsubsection{\texorpdfstring{Dac\_SendData()}{Dac\_SendData()}}
+{\footnotesize\ttfamily uint32\+\_\+t Dac\+\_\+\+Send\+Data (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structDacDma}{Dac\+Dma}} $\ast$}]{p\+Dacd,  }\item[{\mbox{\hyperlink{structDacCmd}{Dac\+Cmd}} $\ast$}]{p\+Command }\end{DoxyParamCaption})}
+
+
+
+Starts a D\+AC transfer. This is a non blocking function. It will return as soon as the transfer is started. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Dacd} & Pointer to a \mbox{\hyperlink{structDacDma}{Dac\+Dma}} instance. \\
+\hline
+{\em p\+Command} & Pointer to the Dac command to execute. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if the transfer has been started successfully; otherwise returns D\+A\+C\+\_\+\+E\+R\+R\+O\+R\+\_\+\+L\+O\+CK is the driver is in use, or D\+A\+C\+\_\+\+E\+R\+R\+OR if the command is not valid. 
+\end{DoxyReturn}

@@ -1,0 +1,22 @@
+\hypertarget{group__dacc__module}{}\section{Working with D\+A\+CC}
+\label{group__dacc__module}\index{Working with DACC@{Working with DACC}}
+The D\+A\+CC driver provides the interface to configure and use the D\+A\+CC peripheral.~\newline
+ The D\+A\+CC(Digital-\/to-\/\+Analog Converter Controller) converts digital code to analog output. The data to be converted are sent in a common register for all channels. It offers up to 2 analog outputs.\+The output voltage ranges from (1/6)A\+D\+V\+R\+EF to (5/6)A\+D\+V\+R\+EF.
+
+To Enable a D\+A\+CC conversion,the user has to follow these few steps\+: 
+\begin{DoxyItemize}
+\item Select an appropriate reference voltage on A\+D\+V\+R\+EF  
+\item Configure the D\+A\+CC according to its requirements and special needs, which could be broken down into several parts\+:
+\begin{DoxyEnumerate}
+\item Enable D\+A\+CC in free running mode by clearing T\+R\+G\+EN in D\+A\+C\+C\+\_\+\+MR;
+\item Configure Refresh Period through setting R\+E\+F\+R\+E\+SH fields in D\+A\+C\+C\+\_\+\+MR; The refresh mechanism is used to protect the output analog value from decreasing.
+\item Enable channels and write digital code to D\+A\+C\+C\+\_\+\+C\+DR,in free running mode, the conversion is started right after at least one channel is enabled and data is written .  
+\end{DoxyEnumerate}
+\end{DoxyItemize}
+
+For more accurate information, please look at the D\+A\+CC section of the Datasheet.
+
+Related files \+:~\newline
+ dac\+\_\+dma.\+c~\newline
+ dac\+\_\+dma.\+h~\newline
+ 

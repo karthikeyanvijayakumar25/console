@@ -1,0 +1,129 @@
+\hypertarget{heapimpl_8h}{}\section{cpukit/include/rtems/score/heapimpl.h File Reference}
+\label{heapimpl_8h}\index{cpukit/include/rtems/score/heapimpl.h@{cpukit/include/rtems/score/heapimpl.h}}
+
+
+Heap Handler Implementation.  
+
+
+{\ttfamily \#include $<$rtems/score/heap.\+h$>$}\newline
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__RTEMSScoreHeap_gad70ff8f1aa0b373fc4d677f43486bc98}{H\+E\+A\+P\+\_\+\+P\+R\+E\+V\+\_\+\+B\+L\+O\+C\+K\+\_\+\+U\+S\+ED}}~((uintptr\+\_\+t) 1)
+\begin{DoxyCompactList}\small\item\em See also \mbox{\hyperlink{structHeap__Block_ae6f771ed25f18d98146417d7cf38d69c}{Heap\+\_\+\+Block\+::size\+\_\+and\+\_\+flag}}. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTEMSScoreHeap_ga7cfb70eb561f94b43e4271829bebab99}{H\+E\+A\+P\+\_\+\+A\+L\+L\+O\+C\+\_\+\+B\+O\+N\+US}}~sizeof(uintptr\+\_\+t)
+\begin{DoxyCompactList}\small\item\em Size of the part at the block begin which may be used for allocation in charge of the previous block. \end{DoxyCompactList}\item 
+\#define {\bfseries \+\_\+\+Heap\+\_\+\+Protection\+\_\+block\+\_\+initialize}(heap,  block)~((void) 0)
+\item 
+\#define {\bfseries \+\_\+\+Heap\+\_\+\+Protection\+\_\+block\+\_\+check}(heap,  block)~((void) 0)
+\item 
+\#define {\bfseries \+\_\+\+Heap\+\_\+\+Protection\+\_\+block\+\_\+error}(heap,  block,  reason)~((void) 0)
+\item 
+\#define {\bfseries \+\_\+\+Heap\+\_\+\+Protection\+\_\+free\+\_\+all\+\_\+delayed\+\_\+blocks}(heap)~((void) 0)
+\item 
+\#define {\bfseries \+\_\+\+H\+Assert}(cond)~((void) 0)
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef bool($\ast$ \mbox{\hyperlink{group__RTEMSScoreHeap_gab5fc026bfabc31c620545e574d579b64}{Heap\+\_\+\+Block\+\_\+visitor}}) (const \mbox{\hyperlink{structHeap__Block}{Heap\+\_\+\+Block}} $\ast$block, uintptr\+\_\+t block\+\_\+size, bool block\+\_\+is\+\_\+used, void $\ast$visitor\+\_\+arg)
+\begin{DoxyCompactList}\small\item\em Heap block visitor. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{group__RTEMSScoreHeap_gac2cffc99d60d783b92e79fd412d1cbdc}\label{group__RTEMSScoreHeap_gac2cffc99d60d783b92e79fd412d1cbdc}} 
+enum \mbox{\hyperlink{group__RTEMSScoreHeap_gac2cffc99d60d783b92e79fd412d1cbdc}{Heap\+\_\+\+Resize\+\_\+status}} \{ {\bfseries H\+E\+A\+P\+\_\+\+R\+E\+S\+I\+Z\+E\+\_\+\+S\+U\+C\+C\+E\+S\+S\+F\+UL}, 
+{\bfseries H\+E\+A\+P\+\_\+\+R\+E\+S\+I\+Z\+E\+\_\+\+U\+N\+S\+A\+T\+I\+S\+F\+I\+ED}, 
+{\bfseries H\+E\+A\+P\+\_\+\+R\+E\+S\+I\+Z\+E\+\_\+\+F\+A\+T\+A\+L\+\_\+\+E\+R\+R\+OR}
+ \}
+\begin{DoxyCompactList}\small\item\em See \mbox{\hyperlink{group__RTEMSScoreHeap_ga89495f3d0b1206d098d2733d37c1610e}{\+\_\+\+Heap\+\_\+\+Resize\+\_\+block()}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{group__RTEMSScoreHeap_ga31ce1fc13ec844eaccf67486e290324b}{\+\_\+\+Heap\+\_\+\+Get\+\_\+first\+\_\+and\+\_\+last\+\_\+block}} (uintptr\+\_\+t heap\+\_\+area\+\_\+begin, uintptr\+\_\+t heap\+\_\+area\+\_\+size, uintptr\+\_\+t page\+\_\+size, uintptr\+\_\+t min\+\_\+block\+\_\+size, \mbox{\hyperlink{structHeap__Block}{Heap\+\_\+\+Block}} $\ast$$\ast$first\+\_\+block\+\_\+ptr, \mbox{\hyperlink{structHeap__Block}{Heap\+\_\+\+Block}} $\ast$$\ast$last\+\_\+block\+\_\+ptr)
+\begin{DoxyCompactList}\small\item\em Gets the first and last block for the heap area. \end{DoxyCompactList}\item 
+uintptr\+\_\+t \mbox{\hyperlink{group__RTEMSScoreHeap_gac5974c7ccf84c152ba6c8e17bea3ca5f}{\+\_\+\+Heap\+\_\+\+Initialize}} (\mbox{\hyperlink{structHeap__Control}{Heap\+\_\+\+Control}} $\ast$heap, void $\ast$area\+\_\+begin, uintptr\+\_\+t area\+\_\+size, uintptr\+\_\+t page\+\_\+size)
+\begin{DoxyCompactList}\small\item\em Initializes the heap control block. \end{DoxyCompactList}\item 
+void $\ast$ \mbox{\hyperlink{group__RTEMSScoreHeap_ga15167f1ad5eb93d85f15adb5e5524ff5}{\+\_\+\+Heap\+\_\+\+Allocate\+\_\+aligned\+\_\+with\+\_\+boundary}} (\mbox{\hyperlink{structHeap__Control}{Heap\+\_\+\+Control}} $\ast$heap, uintptr\+\_\+t \mbox{\hyperlink{sun4u_2tte_8h_a245260f6f74972558f61b85227df5aae}{size}}, uintptr\+\_\+t alignment, uintptr\+\_\+t boundary)
+\begin{DoxyCompactList}\small\item\em Allocates an aligned memory area with boundary constraint. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void $\ast$ \mbox{\hyperlink{group__RTEMSScoreHeap_ga951f109f2bfe07c7a769714f97b96a35}{\+\_\+\+Heap\+\_\+\+Allocate\+\_\+aligned}} (\mbox{\hyperlink{structHeap__Control}{Heap\+\_\+\+Control}} $\ast$heap, uintptr\+\_\+t \mbox{\hyperlink{sun4u_2tte_8h_a245260f6f74972558f61b85227df5aae}{size}}, uintptr\+\_\+t alignment)
+\begin{DoxyCompactList}\small\item\em Allocates an aligned memory area. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void $\ast$ \mbox{\hyperlink{group__RTEMSScoreHeap_gad26c02ca60b04b7e5845ec959f6d4330}{\+\_\+\+Heap\+\_\+\+Allocate}} (\mbox{\hyperlink{structHeap__Control}{Heap\+\_\+\+Control}} $\ast$heap, uintptr\+\_\+t \mbox{\hyperlink{sun4u_2tte_8h_a245260f6f74972558f61b85227df5aae}{size}})
+\begin{DoxyCompactList}\small\item\em Allocates a memory area. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__RTEMSScoreHeap_gab9a1cc19751295ceb71d1d495fa56b39}{\+\_\+\+Heap\+\_\+\+Free}} (\mbox{\hyperlink{structHeap__Control}{Heap\+\_\+\+Control}} $\ast$heap, void $\ast$addr)
+\begin{DoxyCompactList}\small\item\em Frees the allocated memory area. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__RTEMSScoreHeap_ga914249a9e285bdbd75ea1699a5771a7a}{\+\_\+\+Heap\+\_\+\+Walk}} (\mbox{\hyperlink{structHeap__Control}{Heap\+\_\+\+Control}} $\ast$heap, int source, bool dump)
+\begin{DoxyCompactList}\small\item\em Verifies the integrity of the heap. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__RTEMSScoreHeap_ga568d8a3b62e8b4b060940770bdeee254}{\+\_\+\+Heap\+\_\+\+Iterate}} (\mbox{\hyperlink{structHeap__Control}{Heap\+\_\+\+Control}} $\ast$heap, \mbox{\hyperlink{group__RTEMSScoreHeap_gab5fc026bfabc31c620545e574d579b64}{Heap\+\_\+\+Block\+\_\+visitor}} visitor, void $\ast$visitor\+\_\+arg)
+\begin{DoxyCompactList}\small\item\em Iterates over all blocks of the heap. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structHeap__Block}{Heap\+\_\+\+Block}} $\ast$ \mbox{\hyperlink{group__RTEMSScoreHeap_gae3e5154cbd4e707d42fb39b2e9c565ff}{\+\_\+\+Heap\+\_\+\+Greedy\+\_\+allocate}} (\mbox{\hyperlink{structHeap__Control}{Heap\+\_\+\+Control}} $\ast$heap, const uintptr\+\_\+t $\ast$block\+\_\+sizes, size\+\_\+t block\+\_\+count)
+\begin{DoxyCompactList}\small\item\em Greedily allocates and empties the heap. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structHeap__Block}{Heap\+\_\+\+Block}} $\ast$ \mbox{\hyperlink{group__RTEMSScoreHeap_ga7822352d7403927196f2403ec48fc882}{\+\_\+\+Heap\+\_\+\+Greedy\+\_\+allocate\+\_\+all\+\_\+except\+\_\+largest}} (\mbox{\hyperlink{structHeap__Control}{Heap\+\_\+\+Control}} $\ast$heap, uintptr\+\_\+t $\ast$allocatable\+\_\+size)
+\begin{DoxyCompactList}\small\item\em Greedily allocates all blocks except the largest free block. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__RTEMSScoreHeap_ga01401364d81dc07728aea35aac06e84d}{\+\_\+\+Heap\+\_\+\+Greedy\+\_\+free}} (\mbox{\hyperlink{structHeap__Control}{Heap\+\_\+\+Control}} $\ast$heap, \mbox{\hyperlink{structHeap__Block}{Heap\+\_\+\+Block}} $\ast$blocks)
+\begin{DoxyCompactList}\small\item\em Frees blocks of a greedy allocation. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__RTEMSScoreHeap_ga5ee6c8f0dfa456002f117bb202b5c9a6}{\+\_\+\+Heap\+\_\+\+Get\+\_\+information}} (\mbox{\hyperlink{structHeap__Control}{Heap\+\_\+\+Control}} $\ast$heap, \mbox{\hyperlink{structHeap__Information__block}{Heap\+\_\+\+Information\+\_\+block}} $\ast$info)
+\begin{DoxyCompactList}\small\item\em Returns information about used and free blocks for the heap. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__RTEMSScoreHeap_gaf7bc4e8658d953f8b178f4ff6453ec6e}{\+\_\+\+Heap\+\_\+\+Get\+\_\+free\+\_\+information}} (\mbox{\hyperlink{structHeap__Control}{Heap\+\_\+\+Control}} $\ast$heap, \mbox{\hyperlink{structHeap__Information}{Heap\+\_\+\+Information}} $\ast$info)
+\begin{DoxyCompactList}\small\item\em Returns information about free blocks for the heap. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__RTEMSScoreHeap_ga8985839270f72039581fb4ddc44d433a}{\+\_\+\+Heap\+\_\+\+Size\+\_\+of\+\_\+alloc\+\_\+area}} (\mbox{\hyperlink{structHeap__Control}{Heap\+\_\+\+Control}} $\ast$heap, void $\ast$addr, uintptr\+\_\+t $\ast$\mbox{\hyperlink{sun4u_2tte_8h_a245260f6f74972558f61b85227df5aae}{size}})
+\begin{DoxyCompactList}\small\item\em Returns the size of the allocatable memory area. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreHeap_gac2cffc99d60d783b92e79fd412d1cbdc}{Heap\+\_\+\+Resize\+\_\+status}} \mbox{\hyperlink{group__RTEMSScoreHeap_ga89495f3d0b1206d098d2733d37c1610e}{\+\_\+\+Heap\+\_\+\+Resize\+\_\+block}} (\mbox{\hyperlink{structHeap__Control}{Heap\+\_\+\+Control}} $\ast$heap, void $\ast$addr, uintptr\+\_\+t \mbox{\hyperlink{sun4u_2tte_8h_a245260f6f74972558f61b85227df5aae}{size}}, uintptr\+\_\+t $\ast$old\+\_\+size, uintptr\+\_\+t $\ast$new\+\_\+size)
+\begin{DoxyCompactList}\small\item\em Resizes the block of the allocated memory area. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structHeap__Block}{Heap\+\_\+\+Block}} $\ast$ \mbox{\hyperlink{group__RTEMSScoreHeap_ga4e78547be096281a6f5189402e639cd8}{\+\_\+\+Heap\+\_\+\+Block\+\_\+allocate}} (\mbox{\hyperlink{structHeap__Control}{Heap\+\_\+\+Control}} $\ast$heap, \mbox{\hyperlink{structHeap__Block}{Heap\+\_\+\+Block}} $\ast$block, uintptr\+\_\+t alloc\+\_\+begin, uintptr\+\_\+t alloc\+\_\+size)
+\begin{DoxyCompactList}\small\item\em Allocates the memory area. starting at {\itshape alloc\+\_\+begin} of size {\itshape alloc\+\_\+size} bytes in the block {\itshape block}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \mbox{\hyperlink{group__RTEMSScoreHeap_gad616af34405ce4473f9ff3050ce39d90}{\+\_\+\+Heap\+\_\+\+Protection\+\_\+set\+\_\+delayed\+\_\+free\+\_\+fraction}} (\mbox{\hyperlink{structHeap__Control}{Heap\+\_\+\+Control}} $\ast$heap, uintptr\+\_\+t fraction)
+\begin{DoxyCompactList}\small\item\em Sets the fraction of delayed free blocks that is actually freed during memory shortage. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} \mbox{\hyperlink{structHeap__Block}{Heap\+\_\+\+Block}} $\ast$ \mbox{\hyperlink{group__RTEMSScoreHeap_ga860e7959de03ba830d0ebe1b4cca8273}{\+\_\+\+Heap\+\_\+\+Free\+\_\+list\+\_\+head}} (\mbox{\hyperlink{structHeap__Control}{Heap\+\_\+\+Control}} $\ast$heap)
+\begin{DoxyCompactList}\small\item\em Returns the head of the free list of the heap. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} \mbox{\hyperlink{structHeap__Block}{Heap\+\_\+\+Block}} $\ast$ \mbox{\hyperlink{group__RTEMSScoreHeap_gad25276de4aa987568f1bfc66a0c66700}{\+\_\+\+Heap\+\_\+\+Free\+\_\+list\+\_\+tail}} (\mbox{\hyperlink{structHeap__Control}{Heap\+\_\+\+Control}} $\ast$heap)
+\begin{DoxyCompactList}\small\item\em Returns the tail of the free list of the heap. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} \mbox{\hyperlink{structHeap__Block}{Heap\+\_\+\+Block}} $\ast$ \mbox{\hyperlink{group__RTEMSScoreHeap_ga0299809a91130b3da718ee889f4fe43d}{\+\_\+\+Heap\+\_\+\+Free\+\_\+list\+\_\+first}} (\mbox{\hyperlink{structHeap__Control}{Heap\+\_\+\+Control}} $\ast$heap)
+\begin{DoxyCompactList}\small\item\em Returns the first block of the free list of the heap. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} \mbox{\hyperlink{structHeap__Block}{Heap\+\_\+\+Block}} $\ast$ \mbox{\hyperlink{group__RTEMSScoreHeap_ga26aaa1feb8cf3773e5e38a13afcc4efe}{\+\_\+\+Heap\+\_\+\+Free\+\_\+list\+\_\+last}} (\mbox{\hyperlink{structHeap__Control}{Heap\+\_\+\+Control}} $\ast$heap)
+\begin{DoxyCompactList}\small\item\em Returns the last block of the free list of the heap. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \mbox{\hyperlink{group__RTEMSScoreHeap_ga73da7f4190c5ae1af555374509a5e302}{\+\_\+\+Heap\+\_\+\+Free\+\_\+list\+\_\+remove}} (\mbox{\hyperlink{structHeap__Block}{Heap\+\_\+\+Block}} $\ast$block)
+\begin{DoxyCompactList}\small\item\em Removes the block from the free list. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \mbox{\hyperlink{group__RTEMSScoreHeap_gade52dd12ae2cb6570271313e8bd7fdf7}{\+\_\+\+Heap\+\_\+\+Free\+\_\+list\+\_\+replace}} (\mbox{\hyperlink{structHeap__Block}{Heap\+\_\+\+Block}} $\ast$old\+\_\+block, \mbox{\hyperlink{structHeap__Block}{Heap\+\_\+\+Block}} $\ast$new\+\_\+block)
+\begin{DoxyCompactList}\small\item\em Replaces one block in the free list by another. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \mbox{\hyperlink{group__RTEMSScoreHeap_ga7dd632ea52e7866d26cd025fb154387b}{\+\_\+\+Heap\+\_\+\+Free\+\_\+list\+\_\+insert\+\_\+after}} (\mbox{\hyperlink{structHeap__Block}{Heap\+\_\+\+Block}} $\ast$block\+\_\+before, \mbox{\hyperlink{structHeap__Block}{Heap\+\_\+\+Block}} $\ast$new\+\_\+block)
+\begin{DoxyCompactList}\small\item\em Inserts a block after an existing block in the free list. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \mbox{\hyperlink{group__RTEMSScoreHeap_ga5c27f15a2fb2b9e662eba8e023e02ce8}{\+\_\+\+Heap\+\_\+\+Free\+\_\+list\+\_\+insert\+\_\+before}} (\mbox{\hyperlink{structHeap__Block}{Heap\+\_\+\+Block}} $\ast$block\+\_\+next, \mbox{\hyperlink{structHeap__Block}{Heap\+\_\+\+Block}} $\ast$new\+\_\+block)
+\begin{DoxyCompactList}\small\item\em Inserts a block before an existing block in the free list. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} bool \mbox{\hyperlink{group__RTEMSScoreHeap_ga6a21a1797970a73dfe515f3defc5fe8d}{\+\_\+\+Heap\+\_\+\+Is\+\_\+aligned}} (uintptr\+\_\+t value, uintptr\+\_\+t alignment)
+\begin{DoxyCompactList}\small\item\em Checks if the value is aligned to the given alignment. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} uintptr\+\_\+t \mbox{\hyperlink{group__RTEMSScoreHeap_ga2b11e4f1b69d3f6197165e4fb7f2e956}{\+\_\+\+Heap\+\_\+\+Align\+\_\+down}} (uintptr\+\_\+t value, uintptr\+\_\+t alignment)
+\begin{DoxyCompactList}\small\item\em Returns the aligned value, truncating. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} \mbox{\hyperlink{structHeap__Block}{Heap\+\_\+\+Block}} $\ast$ \mbox{\hyperlink{group__RTEMSScoreHeap_ga231bdbf1ec3d6b82583d0cc3198fc00b}{\+\_\+\+Heap\+\_\+\+Block\+\_\+at}} (const \mbox{\hyperlink{structHeap__Block}{Heap\+\_\+\+Block}} $\ast$block, uintptr\+\_\+t offset)
+\begin{DoxyCompactList}\small\item\em Returns the block which is {\itshape offset} away from {\itshape block}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} \mbox{\hyperlink{structHeap__Block}{Heap\+\_\+\+Block}} $\ast$ \mbox{\hyperlink{group__RTEMSScoreHeap_ga1f927e073f140a91ccbd846879984de6}{\+\_\+\+Heap\+\_\+\+Prev\+\_\+block}} (const \mbox{\hyperlink{structHeap__Block}{Heap\+\_\+\+Block}} $\ast$block)
+\begin{DoxyCompactList}\small\item\em Returns the address of the previous block. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} uintptr\+\_\+t \mbox{\hyperlink{group__RTEMSScoreHeap_ga2563e03746d89148a8782b02f6159821}{\+\_\+\+Heap\+\_\+\+Alloc\+\_\+area\+\_\+of\+\_\+block}} (const \mbox{\hyperlink{structHeap__Block}{Heap\+\_\+\+Block}} $\ast$block)
+\begin{DoxyCompactList}\small\item\em Returns the first address in the block without the heap header. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} \mbox{\hyperlink{structHeap__Block}{Heap\+\_\+\+Block}} $\ast$ \mbox{\hyperlink{group__RTEMSScoreHeap_gafd70a7d05fc0c46a87ff68d759ab3af3}{\+\_\+\+Heap\+\_\+\+Block\+\_\+of\+\_\+alloc\+\_\+area}} (uintptr\+\_\+t alloc\+\_\+begin, uintptr\+\_\+t page\+\_\+size)
+\begin{DoxyCompactList}\small\item\em Returns the starting address of the block corresponding to the allocatable area. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} uintptr\+\_\+t \mbox{\hyperlink{group__RTEMSScoreHeap_ga161ac37dea0961191b2698abf0e61841}{\+\_\+\+Heap\+\_\+\+Block\+\_\+size}} (const \mbox{\hyperlink{structHeap__Block}{Heap\+\_\+\+Block}} $\ast$block)
+\begin{DoxyCompactList}\small\item\em Returns the block size. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \mbox{\hyperlink{group__RTEMSScoreHeap_gaf0c66d5f866002204674e2639575efc3}{\+\_\+\+Heap\+\_\+\+Block\+\_\+set\+\_\+size}} (\mbox{\hyperlink{structHeap__Block}{Heap\+\_\+\+Block}} $\ast$block, uintptr\+\_\+t \mbox{\hyperlink{sun4u_2tte_8h_a245260f6f74972558f61b85227df5aae}{size}})
+\begin{DoxyCompactList}\small\item\em Sets the block size. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} bool \mbox{\hyperlink{group__RTEMSScoreHeap_gad88e4681224e360888f3f4bd020c97a9}{\+\_\+\+Heap\+\_\+\+Is\+\_\+prev\+\_\+used}} (const \mbox{\hyperlink{structHeap__Block}{Heap\+\_\+\+Block}} $\ast$block)
+\begin{DoxyCompactList}\small\item\em Returns if the previous heap block is used. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} bool \mbox{\hyperlink{group__RTEMSScoreHeap_ga7108eed881e09dc3519e8a35220f0feb}{\+\_\+\+Heap\+\_\+\+Is\+\_\+used}} (const \mbox{\hyperlink{structHeap__Block}{Heap\+\_\+\+Block}} $\ast$block)
+\begin{DoxyCompactList}\small\item\em Returns if the heap block is used. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} bool \mbox{\hyperlink{group__RTEMSScoreHeap_gae9a216779de2fa37926f7cba5d8342dd}{\+\_\+\+Heap\+\_\+\+Is\+\_\+free}} (const \mbox{\hyperlink{structHeap__Block}{Heap\+\_\+\+Block}} $\ast$block)
+\begin{DoxyCompactList}\small\item\em Returns if the heap block is free. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} bool \mbox{\hyperlink{group__RTEMSScoreHeap_gabc511a89a627aea2d91fbc21b95a4ae7}{\+\_\+\+Heap\+\_\+\+Is\+\_\+block\+\_\+in\+\_\+heap}} (const \mbox{\hyperlink{structHeap__Control}{Heap\+\_\+\+Control}} $\ast$heap, const \mbox{\hyperlink{structHeap__Block}{Heap\+\_\+\+Block}} $\ast$block)
+\begin{DoxyCompactList}\small\item\em Returns if the block is part of the heap. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \mbox{\hyperlink{group__RTEMSScoreHeap_gaf95a9dbdca32f811e64b2bedf4f74ff3}{\+\_\+\+Heap\+\_\+\+Set\+\_\+last\+\_\+block\+\_\+size}} (\mbox{\hyperlink{structHeap__Control}{Heap\+\_\+\+Control}} $\ast$heap)
+\begin{DoxyCompactList}\small\item\em Sets the size of the last block for the heap. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} uintptr\+\_\+t \mbox{\hyperlink{group__RTEMSScoreHeap_ga4942bc8727061905343458c29ad01282}{\+\_\+\+Heap\+\_\+\+Get\+\_\+size}} (const \mbox{\hyperlink{structHeap__Control}{Heap\+\_\+\+Control}} $\ast$heap)
+\begin{DoxyCompactList}\small\item\em Returns the size of the allocatable area in bytes. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} uintptr\+\_\+t \mbox{\hyperlink{group__RTEMSScoreHeap_ga35ce876152e1f3a06b5caf377c92c9f3}{\+\_\+\+Heap\+\_\+\+Max}} (uintptr\+\_\+t a, uintptr\+\_\+t b)
+\begin{DoxyCompactList}\small\item\em Returns the bigger one of the two arguments. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} uintptr\+\_\+t \mbox{\hyperlink{group__RTEMSScoreHeap_ga09fb0b895f87524b8bf4e7fe7c1b41da}{\+\_\+\+Heap\+\_\+\+Min}} (uintptr\+\_\+t a, uintptr\+\_\+t b)
+\begin{DoxyCompactList}\small\item\em Returns the smaller one of the two arguments. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Heap Handler Implementation. 
+

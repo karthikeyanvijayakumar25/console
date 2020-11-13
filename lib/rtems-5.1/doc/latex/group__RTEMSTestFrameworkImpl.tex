@@ -1,0 +1,1125 @@
+\hypertarget{group__RTEMSTestFrameworkImpl}{}\section{R\+T\+E\+MS Test Framework Implementation}
+\label{group__RTEMSTestFrameworkImpl}\index{RTEMS Test Framework Implementation@{RTEMS Test Framework Implementation}}
+
+
+Implementation details.  
+
+
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structT__case__context}{T\+\_\+case\+\_\+context}}
+\item 
+struct \mbox{\hyperlink{structT__check__context}{T\+\_\+check\+\_\+context}}
+\item 
+struct \mbox{\hyperlink{structT__check__context__msg}{T\+\_\+check\+\_\+context\+\_\+msg}}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{group__RTEMSTestFrameworkImpl_gab1b61400c794eef6d3316e92bbe99b61}\label{group__RTEMSTestFrameworkImpl_gab1b61400c794eef6d3316e92bbe99b61}} 
+\#define {\bfseries T\+\_\+\+C\+H\+E\+C\+K\+\_\+\+S\+T\+OP}~1U
+\item 
+\mbox{\Hypertarget{group__RTEMSTestFrameworkImpl_ga3f7192b5061549e8f59457814b376889}\label{group__RTEMSTestFrameworkImpl_ga3f7192b5061549e8f59457814b376889}} 
+\#define {\bfseries T\+\_\+\+C\+H\+E\+C\+K\+\_\+\+Q\+U\+I\+ET}~2U
+\item 
+\mbox{\Hypertarget{group__RTEMSTestFrameworkImpl_gac8187f5d5b5e47c86e583ea962bf0d85}\label{group__RTEMSTestFrameworkImpl_gac8187f5d5b5e47c86e583ea962bf0d85}} 
+\#define {\bfseries T\+\_\+\+C\+H\+E\+C\+K\+\_\+\+S\+T\+E\+P\+\_\+\+F\+L\+AG}~4U
+\item 
+\mbox{\Hypertarget{group__RTEMSTestFrameworkImpl_ga6fa32d59f91a2dcb360edded621ac8de}\label{group__RTEMSTestFrameworkImpl_ga6fa32d59f91a2dcb360edded621ac8de}} 
+\#define {\bfseries T\+\_\+\+C\+H\+E\+C\+K\+\_\+\+S\+T\+E\+P\+\_\+\+T\+O\+\_\+\+F\+L\+A\+GS}(step)~((unsigned int)(step) $<$$<$ 8)
+\item 
+\mbox{\Hypertarget{group__RTEMSTestFrameworkImpl_ga3b3d9c6c9802d92170462f3135526510}\label{group__RTEMSTestFrameworkImpl_ga3b3d9c6c9802d92170462f3135526510}} 
+\#define {\bfseries T\+\_\+\+C\+H\+E\+C\+K\+\_\+\+S\+T\+E\+P\+\_\+\+F\+R\+O\+M\+\_\+\+F\+L\+A\+GS}(flags)~((flags) $>$$>$ 8)
+\item 
+\mbox{\Hypertarget{group__RTEMSTestFrameworkImpl_ga97f5f5a475d1f6baa27bb19c35c043e5}\label{group__RTEMSTestFrameworkImpl_ga97f5f5a475d1f6baa27bb19c35c043e5}} 
+\#define {\bfseries T\+\_\+\+C\+H\+E\+C\+K\+\_\+\+S\+T\+EP}(step)~(T\+\_\+\+C\+H\+E\+C\+K\+\_\+\+S\+T\+E\+P\+\_\+\+T\+O\+\_\+\+F\+L\+A\+GS(step) $\vert$ T\+\_\+\+C\+H\+E\+C\+K\+\_\+\+S\+T\+E\+P\+\_\+\+F\+L\+AG)
+\item 
+\#define {\bfseries T\+\_\+flags\+\_\+true}(a,  flags, ...)
+\item 
+\mbox{\Hypertarget{group__RTEMSTestFrameworkImpl_gac0a9c13eef9f99b614a6610101e0be98}\label{group__RTEMSTestFrameworkImpl_gac0a9c13eef9f99b614a6610101e0be98}} 
+\#define {\bfseries T\+\_\+flags\+\_\+eq}(a,  \mbox{\hyperlink{sun4u_2tte_8h_a8b0b9ed08e0e18920ec2682f48228c27}{e}},  flags, ...)~T\+\_\+flags\+\_\+true((a) == (\mbox{\hyperlink{sun4u_2tte_8h_a8b0b9ed08e0e18920ec2682f48228c27}{e}}), flags, \+\_\+\+\_\+\+V\+A\+\_\+\+A\+R\+G\+S\+\_\+\+\_\+)
+\item 
+\mbox{\Hypertarget{group__RTEMSTestFrameworkImpl_ga3f24577076edd3e1db39b474fe9c21a0}\label{group__RTEMSTestFrameworkImpl_ga3f24577076edd3e1db39b474fe9c21a0}} 
+\#define {\bfseries T\+\_\+flags\+\_\+ne}(a,  \mbox{\hyperlink{sun4u_2tte_8h_a8b0b9ed08e0e18920ec2682f48228c27}{e}},  flags, ...)~T\+\_\+flags\+\_\+true((a) != (\mbox{\hyperlink{sun4u_2tte_8h_a8b0b9ed08e0e18920ec2682f48228c27}{e}}), flags, \+\_\+\+\_\+\+V\+A\+\_\+\+A\+R\+G\+S\+\_\+\+\_\+)
+\item 
+\#define {\bfseries T\+\_\+flags\+\_\+eq\+\_\+ptr}(a,  \mbox{\hyperlink{sun4u_2tte_8h_a8b0b9ed08e0e18920ec2682f48228c27}{e}},  flags,  sa,  se)
+\item 
+\#define {\bfseries T\+\_\+flags\+\_\+ne\+\_\+ptr}(a,  \mbox{\hyperlink{sun4u_2tte_8h_a8b0b9ed08e0e18920ec2682f48228c27}{e}},  flags,  sa,  se)
+\item 
+\#define {\bfseries T\+\_\+flags\+\_\+null}(a,  flags,  sa)
+\item 
+\#define {\bfseries T\+\_\+flags\+\_\+not\+\_\+null}(a,  flags,  sa)
+\item 
+\#define {\bfseries T\+\_\+flags\+\_\+eq\+\_\+mem}(a,  \mbox{\hyperlink{sun4u_2tte_8h_a8b0b9ed08e0e18920ec2682f48228c27}{e}},  n,  flags,  sa,  se,  sn)
+\item 
+\#define {\bfseries T\+\_\+flags\+\_\+ne\+\_\+mem}(a,  \mbox{\hyperlink{sun4u_2tte_8h_a8b0b9ed08e0e18920ec2682f48228c27}{e}},  n,  flags,  sa,  se,  sn)
+\item 
+\#define {\bfseries T\+\_\+flags\+\_\+eq\+\_\+str}(a,  \mbox{\hyperlink{sun4u_2tte_8h_a8b0b9ed08e0e18920ec2682f48228c27}{e}},  flags)
+\item 
+\#define {\bfseries T\+\_\+flags\+\_\+ne\+\_\+str}(a,  \mbox{\hyperlink{sun4u_2tte_8h_a8b0b9ed08e0e18920ec2682f48228c27}{e}},  flags)
+\item 
+\#define {\bfseries T\+\_\+flags\+\_\+eq\+\_\+nstr}(a,  \mbox{\hyperlink{sun4u_2tte_8h_a8b0b9ed08e0e18920ec2682f48228c27}{e}},  n,  flags)
+\item 
+\#define {\bfseries T\+\_\+flags\+\_\+ne\+\_\+nstr}(a,  \mbox{\hyperlink{sun4u_2tte_8h_a8b0b9ed08e0e18920ec2682f48228c27}{e}},  n,  flags)
+\item 
+\#define {\bfseries T\+\_\+flags\+\_\+eq\+\_\+char}(a,  \mbox{\hyperlink{sun4u_2tte_8h_a8b0b9ed08e0e18920ec2682f48228c27}{e}},  flags)
+\item 
+\#define {\bfseries T\+\_\+flags\+\_\+ne\+\_\+char}(a,  \mbox{\hyperlink{sun4u_2tte_8h_a8b0b9ed08e0e18920ec2682f48228c27}{e}},  flags)
+\item 
+\#define {\bfseries T\+\_\+flags\+\_\+eq\+\_\+int}(a,  \mbox{\hyperlink{sun4u_2tte_8h_a8b0b9ed08e0e18920ec2682f48228c27}{e}},  flags)
+\item 
+\#define {\bfseries T\+\_\+flags\+\_\+ne\+\_\+int}(a,  \mbox{\hyperlink{sun4u_2tte_8h_a8b0b9ed08e0e18920ec2682f48228c27}{e}},  flags)
+\item 
+\#define {\bfseries T\+\_\+flags\+\_\+ge\+\_\+int}(a,  \mbox{\hyperlink{sun4u_2tte_8h_a8b0b9ed08e0e18920ec2682f48228c27}{e}},  flags)
+\item 
+\#define {\bfseries T\+\_\+flags\+\_\+gt\+\_\+int}(a,  \mbox{\hyperlink{sun4u_2tte_8h_a8b0b9ed08e0e18920ec2682f48228c27}{e}},  flags)
+\item 
+\#define {\bfseries T\+\_\+flags\+\_\+le\+\_\+int}(a,  \mbox{\hyperlink{sun4u_2tte_8h_a8b0b9ed08e0e18920ec2682f48228c27}{e}},  flags)
+\item 
+\#define {\bfseries T\+\_\+flags\+\_\+lt\+\_\+int}(a,  \mbox{\hyperlink{sun4u_2tte_8h_a8b0b9ed08e0e18920ec2682f48228c27}{e}},  flags)
+\item 
+\#define {\bfseries T\+\_\+flags\+\_\+eq\+\_\+uint}(a,  \mbox{\hyperlink{sun4u_2tte_8h_a8b0b9ed08e0e18920ec2682f48228c27}{e}},  flags)
+\item 
+\#define {\bfseries T\+\_\+flags\+\_\+ne\+\_\+uint}(a,  \mbox{\hyperlink{sun4u_2tte_8h_a8b0b9ed08e0e18920ec2682f48228c27}{e}},  flags)
+\item 
+\#define {\bfseries T\+\_\+flags\+\_\+ge\+\_\+uint}(a,  \mbox{\hyperlink{sun4u_2tte_8h_a8b0b9ed08e0e18920ec2682f48228c27}{e}},  flags)
+\item 
+\#define {\bfseries T\+\_\+flags\+\_\+gt\+\_\+uint}(a,  \mbox{\hyperlink{sun4u_2tte_8h_a8b0b9ed08e0e18920ec2682f48228c27}{e}},  flags)
+\item 
+\#define {\bfseries T\+\_\+flags\+\_\+le\+\_\+uint}(a,  \mbox{\hyperlink{sun4u_2tte_8h_a8b0b9ed08e0e18920ec2682f48228c27}{e}},  flags)
+\item 
+\#define {\bfseries T\+\_\+flags\+\_\+lt\+\_\+uint}(a,  \mbox{\hyperlink{sun4u_2tte_8h_a8b0b9ed08e0e18920ec2682f48228c27}{e}},  flags)
+\item 
+\#define {\bfseries T\+\_\+flags\+\_\+eq\+\_\+long}(a,  \mbox{\hyperlink{sun4u_2tte_8h_a8b0b9ed08e0e18920ec2682f48228c27}{e}},  flags)
+\item 
+\#define {\bfseries T\+\_\+flags\+\_\+ne\+\_\+long}(a,  \mbox{\hyperlink{sun4u_2tte_8h_a8b0b9ed08e0e18920ec2682f48228c27}{e}},  flags)
+\item 
+\#define {\bfseries T\+\_\+flags\+\_\+ge\+\_\+long}(a,  \mbox{\hyperlink{sun4u_2tte_8h_a8b0b9ed08e0e18920ec2682f48228c27}{e}},  flags)
+\item 
+\#define {\bfseries T\+\_\+flags\+\_\+gt\+\_\+long}(a,  \mbox{\hyperlink{sun4u_2tte_8h_a8b0b9ed08e0e18920ec2682f48228c27}{e}},  flags)
+\item 
+\#define {\bfseries T\+\_\+flags\+\_\+le\+\_\+long}(a,  \mbox{\hyperlink{sun4u_2tte_8h_a8b0b9ed08e0e18920ec2682f48228c27}{e}},  flags)
+\item 
+\#define {\bfseries T\+\_\+flags\+\_\+lt\+\_\+long}(a,  \mbox{\hyperlink{sun4u_2tte_8h_a8b0b9ed08e0e18920ec2682f48228c27}{e}},  flags)
+\item 
+\#define {\bfseries T\+\_\+flags\+\_\+eq\+\_\+ulong}(a,  \mbox{\hyperlink{sun4u_2tte_8h_a8b0b9ed08e0e18920ec2682f48228c27}{e}},  flags)
+\item 
+\#define {\bfseries T\+\_\+flags\+\_\+ne\+\_\+ulong}(a,  \mbox{\hyperlink{sun4u_2tte_8h_a8b0b9ed08e0e18920ec2682f48228c27}{e}},  flags)
+\item 
+\#define {\bfseries T\+\_\+flags\+\_\+ge\+\_\+ulong}(a,  \mbox{\hyperlink{sun4u_2tte_8h_a8b0b9ed08e0e18920ec2682f48228c27}{e}},  flags)
+\item 
+\#define {\bfseries T\+\_\+flags\+\_\+gt\+\_\+ulong}(a,  \mbox{\hyperlink{sun4u_2tte_8h_a8b0b9ed08e0e18920ec2682f48228c27}{e}},  flags)
+\item 
+\#define {\bfseries T\+\_\+flags\+\_\+le\+\_\+ulong}(a,  \mbox{\hyperlink{sun4u_2tte_8h_a8b0b9ed08e0e18920ec2682f48228c27}{e}},  flags)
+\item 
+\#define {\bfseries T\+\_\+flags\+\_\+lt\+\_\+ulong}(a,  \mbox{\hyperlink{sun4u_2tte_8h_a8b0b9ed08e0e18920ec2682f48228c27}{e}},  flags)
+\item 
+\#define {\bfseries T\+\_\+flags\+\_\+eq\+\_\+ll}(a,  \mbox{\hyperlink{sun4u_2tte_8h_a8b0b9ed08e0e18920ec2682f48228c27}{e}},  flags)
+\item 
+\#define {\bfseries T\+\_\+flags\+\_\+ne\+\_\+ll}(a,  \mbox{\hyperlink{sun4u_2tte_8h_a8b0b9ed08e0e18920ec2682f48228c27}{e}},  flags)
+\item 
+\#define {\bfseries T\+\_\+flags\+\_\+ge\+\_\+ll}(a,  \mbox{\hyperlink{sun4u_2tte_8h_a8b0b9ed08e0e18920ec2682f48228c27}{e}},  flags)
+\item 
+\#define {\bfseries T\+\_\+flags\+\_\+gt\+\_\+ll}(a,  \mbox{\hyperlink{sun4u_2tte_8h_a8b0b9ed08e0e18920ec2682f48228c27}{e}},  flags)
+\item 
+\#define {\bfseries T\+\_\+flags\+\_\+le\+\_\+ll}(a,  \mbox{\hyperlink{sun4u_2tte_8h_a8b0b9ed08e0e18920ec2682f48228c27}{e}},  flags)
+\item 
+\#define {\bfseries T\+\_\+flags\+\_\+lt\+\_\+ll}(a,  \mbox{\hyperlink{sun4u_2tte_8h_a8b0b9ed08e0e18920ec2682f48228c27}{e}},  flags)
+\item 
+\#define {\bfseries T\+\_\+flags\+\_\+eq\+\_\+ull}(a,  \mbox{\hyperlink{sun4u_2tte_8h_a8b0b9ed08e0e18920ec2682f48228c27}{e}},  flags)
+\item 
+\#define {\bfseries T\+\_\+flags\+\_\+ne\+\_\+ull}(a,  \mbox{\hyperlink{sun4u_2tte_8h_a8b0b9ed08e0e18920ec2682f48228c27}{e}},  flags)
+\item 
+\#define {\bfseries T\+\_\+flags\+\_\+ge\+\_\+ull}(a,  \mbox{\hyperlink{sun4u_2tte_8h_a8b0b9ed08e0e18920ec2682f48228c27}{e}},  flags)
+\item 
+\#define {\bfseries T\+\_\+flags\+\_\+gt\+\_\+ull}(a,  \mbox{\hyperlink{sun4u_2tte_8h_a8b0b9ed08e0e18920ec2682f48228c27}{e}},  flags)
+\item 
+\#define {\bfseries T\+\_\+flags\+\_\+le\+\_\+ull}(a,  \mbox{\hyperlink{sun4u_2tte_8h_a8b0b9ed08e0e18920ec2682f48228c27}{e}},  flags)
+\item 
+\#define {\bfseries T\+\_\+flags\+\_\+lt\+\_\+ull}(a,  \mbox{\hyperlink{sun4u_2tte_8h_a8b0b9ed08e0e18920ec2682f48228c27}{e}},  flags)
+\item 
+\#define {\bfseries T\+\_\+flags\+\_\+eno}(a,  \mbox{\hyperlink{sun4u_2tte_8h_a8b0b9ed08e0e18920ec2682f48228c27}{e}},  flags)
+\item 
+\#define {\bfseries T\+\_\+flags\+\_\+eno\+\_\+success}(a,  flags)
+\item 
+\#define {\bfseries T\+\_\+flags\+\_\+psx\+\_\+error}(a,  eno,  flags)
+\item 
+\#define {\bfseries T\+\_\+flags\+\_\+psx\+\_\+success}(a,  flags)
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{group__RTEMSTestFrameworkImpl_ga3e23508b3d587e17d236a371a37f261b}\label{group__RTEMSTestFrameworkImpl_ga3e23508b3d587e17d236a371a37f261b}} 
+typedef struct \mbox{\hyperlink{structT__case__context}{T\+\_\+case\+\_\+context}} {\bfseries T\+\_\+case\+\_\+context}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{group__RTEMSTestFrameworkImpl_ga4116bd2e85404d088eef9cb0f568515e}\label{group__RTEMSTestFrameworkImpl_ga4116bd2e85404d088eef9cb0f568515e}} 
+void {\bfseries T\+\_\+case\+\_\+register} (\mbox{\hyperlink{structT__case__context}{T\+\_\+case\+\_\+context}} $\ast$)
+\item 
+\mbox{\Hypertarget{group__RTEMSTestFrameworkImpl_ga06702d3f81470cb8ca4e202ddd3f8366}\label{group__RTEMSTestFrameworkImpl_ga06702d3f81470cb8ca4e202ddd3f8366}} 
+void {\bfseries T\+\_\+check\+\_\+true} (bool, const \mbox{\hyperlink{structT__check__context}{T\+\_\+check\+\_\+context}} $\ast$, const char $\ast$,...)
+\item 
+\mbox{\Hypertarget{group__RTEMSTestFrameworkImpl_ga6655dcdac461f459e39c8a7d226314eb}\label{group__RTEMSTestFrameworkImpl_ga6655dcdac461f459e39c8a7d226314eb}} 
+void {\bfseries T\+\_\+check\+\_\+eq\+\_\+ptr} (const void $\ast$, const \mbox{\hyperlink{structT__check__context__msg}{T\+\_\+check\+\_\+context\+\_\+msg}} $\ast$, const void $\ast$)
+\item 
+\mbox{\Hypertarget{group__RTEMSTestFrameworkImpl_ga07fa4713b2891307ef8a5017b97ec3b8}\label{group__RTEMSTestFrameworkImpl_ga07fa4713b2891307ef8a5017b97ec3b8}} 
+void {\bfseries T\+\_\+check\+\_\+ne\+\_\+ptr} (const void $\ast$, const \mbox{\hyperlink{structT__check__context__msg}{T\+\_\+check\+\_\+context\+\_\+msg}} $\ast$, const void $\ast$)
+\item 
+\mbox{\Hypertarget{group__RTEMSTestFrameworkImpl_gaee148030715a07628d4f196c0222a8da}\label{group__RTEMSTestFrameworkImpl_gaee148030715a07628d4f196c0222a8da}} 
+void {\bfseries T\+\_\+check\+\_\+null} (const void $\ast$, const \mbox{\hyperlink{structT__check__context__msg}{T\+\_\+check\+\_\+context\+\_\+msg}} $\ast$)
+\item 
+\mbox{\Hypertarget{group__RTEMSTestFrameworkImpl_ga6a777cda7bd0b15af008ac7d9bed021e}\label{group__RTEMSTestFrameworkImpl_ga6a777cda7bd0b15af008ac7d9bed021e}} 
+void {\bfseries T\+\_\+check\+\_\+not\+\_\+null} (const void $\ast$, const \mbox{\hyperlink{structT__check__context__msg}{T\+\_\+check\+\_\+context\+\_\+msg}} $\ast$)
+\item 
+\mbox{\Hypertarget{group__RTEMSTestFrameworkImpl_gaea9d57248f9bf727e94f05c4088a167a}\label{group__RTEMSTestFrameworkImpl_gaea9d57248f9bf727e94f05c4088a167a}} 
+void {\bfseries T\+\_\+check\+\_\+eq\+\_\+mem} (const void $\ast$, const \mbox{\hyperlink{structT__check__context__msg}{T\+\_\+check\+\_\+context\+\_\+msg}} $\ast$, const void $\ast$, size\+\_\+t)
+\item 
+\mbox{\Hypertarget{group__RTEMSTestFrameworkImpl_gabab770906ede6c161cef959cdf7ebf78}\label{group__RTEMSTestFrameworkImpl_gabab770906ede6c161cef959cdf7ebf78}} 
+void {\bfseries T\+\_\+check\+\_\+ne\+\_\+mem} (const void $\ast$, const \mbox{\hyperlink{structT__check__context__msg}{T\+\_\+check\+\_\+context\+\_\+msg}} $\ast$, const void $\ast$, size\+\_\+t)
+\item 
+\mbox{\Hypertarget{group__RTEMSTestFrameworkImpl_gac758fa0ef84461eb63916c268cc29443}\label{group__RTEMSTestFrameworkImpl_gac758fa0ef84461eb63916c268cc29443}} 
+void {\bfseries T\+\_\+check\+\_\+eq\+\_\+str} (const char $\ast$, const \mbox{\hyperlink{structT__check__context}{T\+\_\+check\+\_\+context}} $\ast$, const char $\ast$)
+\item 
+\mbox{\Hypertarget{group__RTEMSTestFrameworkImpl_gae342180c6c10078d3a2141485112f560}\label{group__RTEMSTestFrameworkImpl_gae342180c6c10078d3a2141485112f560}} 
+void {\bfseries T\+\_\+check\+\_\+ne\+\_\+str} (const char $\ast$, const \mbox{\hyperlink{structT__check__context}{T\+\_\+check\+\_\+context}} $\ast$, const char $\ast$)
+\item 
+\mbox{\Hypertarget{group__RTEMSTestFrameworkImpl_ga070904ecf9361fb52452aaa453b8fb18}\label{group__RTEMSTestFrameworkImpl_ga070904ecf9361fb52452aaa453b8fb18}} 
+void {\bfseries T\+\_\+check\+\_\+eq\+\_\+nstr} (const char $\ast$, const \mbox{\hyperlink{structT__check__context}{T\+\_\+check\+\_\+context}} $\ast$, const char $\ast$, size\+\_\+t)
+\item 
+\mbox{\Hypertarget{group__RTEMSTestFrameworkImpl_ga395049baccb7c171029c85a44346f2ed}\label{group__RTEMSTestFrameworkImpl_ga395049baccb7c171029c85a44346f2ed}} 
+void {\bfseries T\+\_\+check\+\_\+ne\+\_\+nstr} (const char $\ast$, const \mbox{\hyperlink{structT__check__context}{T\+\_\+check\+\_\+context}} $\ast$, const char $\ast$, size\+\_\+t)
+\item 
+\mbox{\Hypertarget{group__RTEMSTestFrameworkImpl_ga6350102e15a302c4b8a947d810f6c232}\label{group__RTEMSTestFrameworkImpl_ga6350102e15a302c4b8a947d810f6c232}} 
+void {\bfseries T\+\_\+check\+\_\+eq\+\_\+char} (char, const \mbox{\hyperlink{structT__check__context}{T\+\_\+check\+\_\+context}} $\ast$, char)
+\item 
+\mbox{\Hypertarget{group__RTEMSTestFrameworkImpl_gabbad80708d8e9ba4756914b052ab7948}\label{group__RTEMSTestFrameworkImpl_gabbad80708d8e9ba4756914b052ab7948}} 
+void {\bfseries T\+\_\+check\+\_\+ne\+\_\+char} (char, const \mbox{\hyperlink{structT__check__context}{T\+\_\+check\+\_\+context}} $\ast$, char)
+\item 
+\mbox{\Hypertarget{group__RTEMSTestFrameworkImpl_gadfb32ef29feceafece6b0db1dec02e5e}\label{group__RTEMSTestFrameworkImpl_gadfb32ef29feceafece6b0db1dec02e5e}} 
+void {\bfseries T\+\_\+check\+\_\+eq\+\_\+int} (int, const \mbox{\hyperlink{structT__check__context}{T\+\_\+check\+\_\+context}} $\ast$, int)
+\item 
+\mbox{\Hypertarget{group__RTEMSTestFrameworkImpl_ga5d7509d03082822a9609aff8aab476e6}\label{group__RTEMSTestFrameworkImpl_ga5d7509d03082822a9609aff8aab476e6}} 
+void {\bfseries T\+\_\+check\+\_\+ne\+\_\+int} (int, const \mbox{\hyperlink{structT__check__context}{T\+\_\+check\+\_\+context}} $\ast$, int)
+\item 
+\mbox{\Hypertarget{group__RTEMSTestFrameworkImpl_ga9fb48043b3c0b07b7fba70b7ef8f32f1}\label{group__RTEMSTestFrameworkImpl_ga9fb48043b3c0b07b7fba70b7ef8f32f1}} 
+void {\bfseries T\+\_\+check\+\_\+ge\+\_\+int} (int, const \mbox{\hyperlink{structT__check__context}{T\+\_\+check\+\_\+context}} $\ast$, int)
+\item 
+\mbox{\Hypertarget{group__RTEMSTestFrameworkImpl_gacc8e1d9dd5b55b67d5f6a61eacd09d24}\label{group__RTEMSTestFrameworkImpl_gacc8e1d9dd5b55b67d5f6a61eacd09d24}} 
+void {\bfseries T\+\_\+check\+\_\+gt\+\_\+int} (int, const \mbox{\hyperlink{structT__check__context}{T\+\_\+check\+\_\+context}} $\ast$, int)
+\item 
+\mbox{\Hypertarget{group__RTEMSTestFrameworkImpl_ga46f5fb9ed5c2e3894990754644be9f12}\label{group__RTEMSTestFrameworkImpl_ga46f5fb9ed5c2e3894990754644be9f12}} 
+void {\bfseries T\+\_\+check\+\_\+le\+\_\+int} (int, const \mbox{\hyperlink{structT__check__context}{T\+\_\+check\+\_\+context}} $\ast$, int)
+\item 
+\mbox{\Hypertarget{group__RTEMSTestFrameworkImpl_gacec91ba1e7f68d87e8a1171efd500ab4}\label{group__RTEMSTestFrameworkImpl_gacec91ba1e7f68d87e8a1171efd500ab4}} 
+void {\bfseries T\+\_\+check\+\_\+lt\+\_\+int} (int, const \mbox{\hyperlink{structT__check__context}{T\+\_\+check\+\_\+context}} $\ast$, int)
+\item 
+\mbox{\Hypertarget{group__RTEMSTestFrameworkImpl_gafc4b649e334d44f9a9acfd24cf4c779d}\label{group__RTEMSTestFrameworkImpl_gafc4b649e334d44f9a9acfd24cf4c779d}} 
+void {\bfseries T\+\_\+check\+\_\+eq\+\_\+uint} (unsigned int, const \mbox{\hyperlink{structT__check__context}{T\+\_\+check\+\_\+context}} $\ast$, unsigned int)
+\item 
+\mbox{\Hypertarget{group__RTEMSTestFrameworkImpl_gac78b1ea5b97578b1e5d302563b6621ae}\label{group__RTEMSTestFrameworkImpl_gac78b1ea5b97578b1e5d302563b6621ae}} 
+void {\bfseries T\+\_\+check\+\_\+ne\+\_\+uint} (unsigned int, const \mbox{\hyperlink{structT__check__context}{T\+\_\+check\+\_\+context}} $\ast$, unsigned int)
+\item 
+\mbox{\Hypertarget{group__RTEMSTestFrameworkImpl_ga34fa0bb867e853af3aeef0ac8e3d14df}\label{group__RTEMSTestFrameworkImpl_ga34fa0bb867e853af3aeef0ac8e3d14df}} 
+void {\bfseries T\+\_\+check\+\_\+ge\+\_\+uint} (unsigned int, const \mbox{\hyperlink{structT__check__context}{T\+\_\+check\+\_\+context}} $\ast$, unsigned int)
+\item 
+\mbox{\Hypertarget{group__RTEMSTestFrameworkImpl_gaf315c23ec9a23fbd805584573324a35a}\label{group__RTEMSTestFrameworkImpl_gaf315c23ec9a23fbd805584573324a35a}} 
+void {\bfseries T\+\_\+check\+\_\+gt\+\_\+uint} (unsigned int, const \mbox{\hyperlink{structT__check__context}{T\+\_\+check\+\_\+context}} $\ast$, unsigned int)
+\item 
+\mbox{\Hypertarget{group__RTEMSTestFrameworkImpl_ga32f43657b88f1672f0f2fabe9368a64e}\label{group__RTEMSTestFrameworkImpl_ga32f43657b88f1672f0f2fabe9368a64e}} 
+void {\bfseries T\+\_\+check\+\_\+le\+\_\+uint} (unsigned int, const \mbox{\hyperlink{structT__check__context}{T\+\_\+check\+\_\+context}} $\ast$, unsigned int)
+\item 
+\mbox{\Hypertarget{group__RTEMSTestFrameworkImpl_ga2289690b5ed6c10872619eaa7207b8c5}\label{group__RTEMSTestFrameworkImpl_ga2289690b5ed6c10872619eaa7207b8c5}} 
+void {\bfseries T\+\_\+check\+\_\+lt\+\_\+uint} (unsigned int, const \mbox{\hyperlink{structT__check__context}{T\+\_\+check\+\_\+context}} $\ast$, unsigned int)
+\item 
+\mbox{\Hypertarget{group__RTEMSTestFrameworkImpl_gaad34b0afc3f5d211d2a6e2771b11188f}\label{group__RTEMSTestFrameworkImpl_gaad34b0afc3f5d211d2a6e2771b11188f}} 
+void {\bfseries T\+\_\+check\+\_\+eq\+\_\+long} (long, const \mbox{\hyperlink{structT__check__context}{T\+\_\+check\+\_\+context}} $\ast$, long)
+\item 
+\mbox{\Hypertarget{group__RTEMSTestFrameworkImpl_ga6cb6f91b4990112179fd901ab53bfe6f}\label{group__RTEMSTestFrameworkImpl_ga6cb6f91b4990112179fd901ab53bfe6f}} 
+void {\bfseries T\+\_\+check\+\_\+ne\+\_\+long} (long, const \mbox{\hyperlink{structT__check__context}{T\+\_\+check\+\_\+context}} $\ast$, long)
+\item 
+\mbox{\Hypertarget{group__RTEMSTestFrameworkImpl_ga9483f63082998c5cf5aa2758b85c57b8}\label{group__RTEMSTestFrameworkImpl_ga9483f63082998c5cf5aa2758b85c57b8}} 
+void {\bfseries T\+\_\+check\+\_\+ge\+\_\+long} (long, const \mbox{\hyperlink{structT__check__context}{T\+\_\+check\+\_\+context}} $\ast$, long)
+\item 
+\mbox{\Hypertarget{group__RTEMSTestFrameworkImpl_ga2fcdd38b84428445d0c1d33d8bebb972}\label{group__RTEMSTestFrameworkImpl_ga2fcdd38b84428445d0c1d33d8bebb972}} 
+void {\bfseries T\+\_\+check\+\_\+gt\+\_\+long} (long, const \mbox{\hyperlink{structT__check__context}{T\+\_\+check\+\_\+context}} $\ast$, long)
+\item 
+\mbox{\Hypertarget{group__RTEMSTestFrameworkImpl_ga871b71584c62680a30be0fd6ccfa5e5a}\label{group__RTEMSTestFrameworkImpl_ga871b71584c62680a30be0fd6ccfa5e5a}} 
+void {\bfseries T\+\_\+check\+\_\+le\+\_\+long} (long, const \mbox{\hyperlink{structT__check__context}{T\+\_\+check\+\_\+context}} $\ast$, long)
+\item 
+\mbox{\Hypertarget{group__RTEMSTestFrameworkImpl_ga1632db405e35040860f37172e2248ad1}\label{group__RTEMSTestFrameworkImpl_ga1632db405e35040860f37172e2248ad1}} 
+void {\bfseries T\+\_\+check\+\_\+lt\+\_\+long} (long, const \mbox{\hyperlink{structT__check__context}{T\+\_\+check\+\_\+context}} $\ast$, long)
+\item 
+\mbox{\Hypertarget{group__RTEMSTestFrameworkImpl_ga1cda256b394a6b18e47110592fcbc817}\label{group__RTEMSTestFrameworkImpl_ga1cda256b394a6b18e47110592fcbc817}} 
+void {\bfseries T\+\_\+check\+\_\+eq\+\_\+ulong} (unsigned long, const \mbox{\hyperlink{structT__check__context}{T\+\_\+check\+\_\+context}} $\ast$, unsigned long)
+\item 
+\mbox{\Hypertarget{group__RTEMSTestFrameworkImpl_ga642d7e789ecbc8059eb9337b517b53a1}\label{group__RTEMSTestFrameworkImpl_ga642d7e789ecbc8059eb9337b517b53a1}} 
+void {\bfseries T\+\_\+check\+\_\+ne\+\_\+ulong} (unsigned long, const \mbox{\hyperlink{structT__check__context}{T\+\_\+check\+\_\+context}} $\ast$, unsigned long)
+\item 
+\mbox{\Hypertarget{group__RTEMSTestFrameworkImpl_ga177536c322db709a8e2c153fe48d587c}\label{group__RTEMSTestFrameworkImpl_ga177536c322db709a8e2c153fe48d587c}} 
+void {\bfseries T\+\_\+check\+\_\+ge\+\_\+ulong} (unsigned long, const \mbox{\hyperlink{structT__check__context}{T\+\_\+check\+\_\+context}} $\ast$, unsigned long)
+\item 
+\mbox{\Hypertarget{group__RTEMSTestFrameworkImpl_ga8260040e8de979a77b338bfe58a2ec8e}\label{group__RTEMSTestFrameworkImpl_ga8260040e8de979a77b338bfe58a2ec8e}} 
+void {\bfseries T\+\_\+check\+\_\+gt\+\_\+ulong} (unsigned long, const \mbox{\hyperlink{structT__check__context}{T\+\_\+check\+\_\+context}} $\ast$, unsigned long)
+\item 
+\mbox{\Hypertarget{group__RTEMSTestFrameworkImpl_ga879a761ba51bbb406d6b51eb0975d16d}\label{group__RTEMSTestFrameworkImpl_ga879a761ba51bbb406d6b51eb0975d16d}} 
+void {\bfseries T\+\_\+check\+\_\+le\+\_\+ulong} (unsigned long, const \mbox{\hyperlink{structT__check__context}{T\+\_\+check\+\_\+context}} $\ast$, unsigned long)
+\item 
+\mbox{\Hypertarget{group__RTEMSTestFrameworkImpl_gaa719f83c1a85cc2d1281169797f848d9}\label{group__RTEMSTestFrameworkImpl_gaa719f83c1a85cc2d1281169797f848d9}} 
+void {\bfseries T\+\_\+check\+\_\+lt\+\_\+ulong} (unsigned long, const \mbox{\hyperlink{structT__check__context}{T\+\_\+check\+\_\+context}} $\ast$, unsigned long)
+\item 
+\mbox{\Hypertarget{group__RTEMSTestFrameworkImpl_ga0946150d98131c6009562d0453ecfa3e}\label{group__RTEMSTestFrameworkImpl_ga0946150d98131c6009562d0453ecfa3e}} 
+void {\bfseries T\+\_\+check\+\_\+eq\+\_\+ll} (long long, const \mbox{\hyperlink{structT__check__context}{T\+\_\+check\+\_\+context}} $\ast$, long long)
+\item 
+\mbox{\Hypertarget{group__RTEMSTestFrameworkImpl_ga31a8c664abbbc6bff4ed7e7db9f2ac9f}\label{group__RTEMSTestFrameworkImpl_ga31a8c664abbbc6bff4ed7e7db9f2ac9f}} 
+void {\bfseries T\+\_\+check\+\_\+ne\+\_\+ll} (long long, const \mbox{\hyperlink{structT__check__context}{T\+\_\+check\+\_\+context}} $\ast$, long long)
+\item 
+\mbox{\Hypertarget{group__RTEMSTestFrameworkImpl_ga937d19d3da6948d01b4ab43973ade1ef}\label{group__RTEMSTestFrameworkImpl_ga937d19d3da6948d01b4ab43973ade1ef}} 
+void {\bfseries T\+\_\+check\+\_\+ge\+\_\+ll} (long long, const \mbox{\hyperlink{structT__check__context}{T\+\_\+check\+\_\+context}} $\ast$, long long)
+\item 
+\mbox{\Hypertarget{group__RTEMSTestFrameworkImpl_ga9777cc1289dd333b3a63593c8db876bf}\label{group__RTEMSTestFrameworkImpl_ga9777cc1289dd333b3a63593c8db876bf}} 
+void {\bfseries T\+\_\+check\+\_\+gt\+\_\+ll} (long long, const \mbox{\hyperlink{structT__check__context}{T\+\_\+check\+\_\+context}} $\ast$, long long)
+\item 
+\mbox{\Hypertarget{group__RTEMSTestFrameworkImpl_ga1e8d408b56993bb48edc15c3ac847cb5}\label{group__RTEMSTestFrameworkImpl_ga1e8d408b56993bb48edc15c3ac847cb5}} 
+void {\bfseries T\+\_\+check\+\_\+le\+\_\+ll} (long long, const \mbox{\hyperlink{structT__check__context}{T\+\_\+check\+\_\+context}} $\ast$, long long)
+\item 
+\mbox{\Hypertarget{group__RTEMSTestFrameworkImpl_ga4446cbde739ce0ea6e6a740a2cdb216e}\label{group__RTEMSTestFrameworkImpl_ga4446cbde739ce0ea6e6a740a2cdb216e}} 
+void {\bfseries T\+\_\+check\+\_\+lt\+\_\+ll} (long long, const \mbox{\hyperlink{structT__check__context}{T\+\_\+check\+\_\+context}} $\ast$, long long)
+\item 
+\mbox{\Hypertarget{group__RTEMSTestFrameworkImpl_ga8207c55da3fb16cb84e2ee66baa3bdc6}\label{group__RTEMSTestFrameworkImpl_ga8207c55da3fb16cb84e2ee66baa3bdc6}} 
+void {\bfseries T\+\_\+check\+\_\+eq\+\_\+ull} (unsigned long long, const \mbox{\hyperlink{structT__check__context}{T\+\_\+check\+\_\+context}} $\ast$, unsigned long long)
+\item 
+\mbox{\Hypertarget{group__RTEMSTestFrameworkImpl_ga6bb031af67b63247fc2d5a1cf287b3ee}\label{group__RTEMSTestFrameworkImpl_ga6bb031af67b63247fc2d5a1cf287b3ee}} 
+void {\bfseries T\+\_\+check\+\_\+ne\+\_\+ull} (unsigned long long, const \mbox{\hyperlink{structT__check__context}{T\+\_\+check\+\_\+context}} $\ast$, unsigned long long)
+\item 
+\mbox{\Hypertarget{group__RTEMSTestFrameworkImpl_ga0a42cfbd2fbc8d3aca39ccc67d9962e1}\label{group__RTEMSTestFrameworkImpl_ga0a42cfbd2fbc8d3aca39ccc67d9962e1}} 
+void {\bfseries T\+\_\+check\+\_\+ge\+\_\+ull} (unsigned long long, const \mbox{\hyperlink{structT__check__context}{T\+\_\+check\+\_\+context}} $\ast$, unsigned long long)
+\item 
+\mbox{\Hypertarget{group__RTEMSTestFrameworkImpl_ga1499a9fd10433e9ab8941ef85a9305f5}\label{group__RTEMSTestFrameworkImpl_ga1499a9fd10433e9ab8941ef85a9305f5}} 
+void {\bfseries T\+\_\+check\+\_\+gt\+\_\+ull} (unsigned long long, const \mbox{\hyperlink{structT__check__context}{T\+\_\+check\+\_\+context}} $\ast$, unsigned long long)
+\item 
+\mbox{\Hypertarget{group__RTEMSTestFrameworkImpl_gabdedf981f625a0c92f2b405447349443}\label{group__RTEMSTestFrameworkImpl_gabdedf981f625a0c92f2b405447349443}} 
+void {\bfseries T\+\_\+check\+\_\+le\+\_\+ull} (unsigned long long, const \mbox{\hyperlink{structT__check__context}{T\+\_\+check\+\_\+context}} $\ast$, unsigned long long)
+\item 
+\mbox{\Hypertarget{group__RTEMSTestFrameworkImpl_ga5af6bd65e277dfd91a222f5cb88d1519}\label{group__RTEMSTestFrameworkImpl_ga5af6bd65e277dfd91a222f5cb88d1519}} 
+void {\bfseries T\+\_\+check\+\_\+lt\+\_\+ull} (unsigned long long, const \mbox{\hyperlink{structT__check__context}{T\+\_\+check\+\_\+context}} $\ast$, unsigned long long)
+\item 
+\mbox{\Hypertarget{group__RTEMSTestFrameworkImpl_ga7e7b2be2a21891c39c8bd4a6015aa229}\label{group__RTEMSTestFrameworkImpl_ga7e7b2be2a21891c39c8bd4a6015aa229}} 
+void {\bfseries T\+\_\+check\+\_\+eno} (int, const \mbox{\hyperlink{structT__check__context}{T\+\_\+check\+\_\+context}} $\ast$, int)
+\item 
+\mbox{\Hypertarget{group__RTEMSTestFrameworkImpl_gaa48512d42454324e3ffe04131307c7e2}\label{group__RTEMSTestFrameworkImpl_gaa48512d42454324e3ffe04131307c7e2}} 
+void {\bfseries T\+\_\+check\+\_\+eno\+\_\+success} (int, const \mbox{\hyperlink{structT__check__context}{T\+\_\+check\+\_\+context}} $\ast$)
+\item 
+\mbox{\Hypertarget{group__RTEMSTestFrameworkImpl_ga6b47c47c92506cfbd93c4fde44d79c82}\label{group__RTEMSTestFrameworkImpl_ga6b47c47c92506cfbd93c4fde44d79c82}} 
+void {\bfseries T\+\_\+check\+\_\+psx\+\_\+error} (int, const \mbox{\hyperlink{structT__check__context}{T\+\_\+check\+\_\+context}} $\ast$, int)
+\item 
+\mbox{\Hypertarget{group__RTEMSTestFrameworkImpl_gadca2ab4d997ed698f5e70227f75615c5}\label{group__RTEMSTestFrameworkImpl_gadca2ab4d997ed698f5e70227f75615c5}} 
+void {\bfseries T\+\_\+check\+\_\+psx\+\_\+success} (int, const \mbox{\hyperlink{structT__check__context}{T\+\_\+check\+\_\+context}} $\ast$)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Implementation details. 
+
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{group__RTEMSTestFrameworkImpl_ga691e72afcd49bca460b7e37bc3bba62c}\label{group__RTEMSTestFrameworkImpl_ga691e72afcd49bca460b7e37bc3bba62c}} 
+\index{RTEMS Test Framework Implementation@{RTEMS Test Framework Implementation}!T\_flags\_eno@{T\_flags\_eno}}
+\index{T\_flags\_eno@{T\_flags\_eno}!RTEMS Test Framework Implementation@{RTEMS Test Framework Implementation}}
+\subsubsection{\texorpdfstring{T\_flags\_eno}{T\_flags\_eno}}
+{\footnotesize\ttfamily \#define T\+\_\+flags\+\_\+eno(\begin{DoxyParamCaption}\item[{}]{a,  }\item[{}]{\mbox{\hyperlink{sun4u_2tte_8h_a8b0b9ed08e0e18920ec2682f48228c27}{e}},  }\item[{}]{flags }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{                                   \(\backslash\)}
+\DoxyCodeLine{    static \textcolor{keyword}{const} \mbox{\hyperlink{structT__check__context}{T\_check\_context}} T\_check\_instance = \{        \(\backslash\)}
+\DoxyCodeLine{        T\_FILE\_NAME, \_\_LINE\_\_, flags \};             \(\backslash\)}
+\DoxyCodeLine{    T\_check\_eno(a, \&T\_check\_instance, \mbox{\hyperlink{sun4u_2tlb_8h_a8b0b9ed08e0e18920ec2682f48228c27}{e}});              \(\backslash\)}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{group__RTEMSTestFrameworkImpl_ga475439af3e8dc4952ac8f25c72f5d6da}\label{group__RTEMSTestFrameworkImpl_ga475439af3e8dc4952ac8f25c72f5d6da}} 
+\index{RTEMS Test Framework Implementation@{RTEMS Test Framework Implementation}!T\_flags\_eno\_success@{T\_flags\_eno\_success}}
+\index{T\_flags\_eno\_success@{T\_flags\_eno\_success}!RTEMS Test Framework Implementation@{RTEMS Test Framework Implementation}}
+\subsubsection{\texorpdfstring{T\_flags\_eno\_success}{T\_flags\_eno\_success}}
+{\footnotesize\ttfamily \#define T\+\_\+flags\+\_\+eno\+\_\+success(\begin{DoxyParamCaption}\item[{}]{a,  }\item[{}]{flags }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{                                   \(\backslash\)}
+\DoxyCodeLine{    static \textcolor{keyword}{const} \mbox{\hyperlink{structT__check__context}{T\_check\_context}} T\_check\_instance = \{        \(\backslash\)}
+\DoxyCodeLine{        T\_FILE\_NAME, \_\_LINE\_\_, flags \};             \(\backslash\)}
+\DoxyCodeLine{    T\_check\_eno\_success(a, \&T\_check\_instance);          \(\backslash\)}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{group__RTEMSTestFrameworkImpl_gad0f9955471eca8d4a4c39870e06ca253}\label{group__RTEMSTestFrameworkImpl_gad0f9955471eca8d4a4c39870e06ca253}} 
+\index{RTEMS Test Framework Implementation@{RTEMS Test Framework Implementation}!T\_flags\_eq\_char@{T\_flags\_eq\_char}}
+\index{T\_flags\_eq\_char@{T\_flags\_eq\_char}!RTEMS Test Framework Implementation@{RTEMS Test Framework Implementation}}
+\subsubsection{\texorpdfstring{T\_flags\_eq\_char}{T\_flags\_eq\_char}}
+{\footnotesize\ttfamily \#define T\+\_\+flags\+\_\+eq\+\_\+char(\begin{DoxyParamCaption}\item[{}]{a,  }\item[{}]{\mbox{\hyperlink{sun4u_2tte_8h_a8b0b9ed08e0e18920ec2682f48228c27}{e}},  }\item[{}]{flags }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{                                   \(\backslash\)}
+\DoxyCodeLine{    static \textcolor{keyword}{const} \mbox{\hyperlink{structT__check__context}{T\_check\_context}} T\_check\_instance = \{        \(\backslash\)}
+\DoxyCodeLine{        T\_FILE\_NAME, \_\_LINE\_\_, flags \};             \(\backslash\)}
+\DoxyCodeLine{    T\_check\_eq\_char(a, \&T\_check\_instance, \mbox{\hyperlink{sun4u_2tlb_8h_a8b0b9ed08e0e18920ec2682f48228c27}{e}});          \(\backslash\)}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{group__RTEMSTestFrameworkImpl_gadaad789b0541a8e540d32c7acf953c17}\label{group__RTEMSTestFrameworkImpl_gadaad789b0541a8e540d32c7acf953c17}} 
+\index{RTEMS Test Framework Implementation@{RTEMS Test Framework Implementation}!T\_flags\_eq\_int@{T\_flags\_eq\_int}}
+\index{T\_flags\_eq\_int@{T\_flags\_eq\_int}!RTEMS Test Framework Implementation@{RTEMS Test Framework Implementation}}
+\subsubsection{\texorpdfstring{T\_flags\_eq\_int}{T\_flags\_eq\_int}}
+{\footnotesize\ttfamily \#define T\+\_\+flags\+\_\+eq\+\_\+int(\begin{DoxyParamCaption}\item[{}]{a,  }\item[{}]{\mbox{\hyperlink{sun4u_2tte_8h_a8b0b9ed08e0e18920ec2682f48228c27}{e}},  }\item[{}]{flags }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{                                   \(\backslash\)}
+\DoxyCodeLine{    static \textcolor{keyword}{const} \mbox{\hyperlink{structT__check__context}{T\_check\_context}} T\_check\_instance = \{        \(\backslash\)}
+\DoxyCodeLine{        T\_FILE\_NAME, \_\_LINE\_\_, flags \};             \(\backslash\)}
+\DoxyCodeLine{    T\_check\_eq\_int(a, \&T\_check\_instance, \mbox{\hyperlink{sun4u_2tlb_8h_a8b0b9ed08e0e18920ec2682f48228c27}{e}});           \(\backslash\)}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{group__RTEMSTestFrameworkImpl_ga78661d69db331159940bbfb49c08ba97}\label{group__RTEMSTestFrameworkImpl_ga78661d69db331159940bbfb49c08ba97}} 
+\index{RTEMS Test Framework Implementation@{RTEMS Test Framework Implementation}!T\_flags\_eq\_ll@{T\_flags\_eq\_ll}}
+\index{T\_flags\_eq\_ll@{T\_flags\_eq\_ll}!RTEMS Test Framework Implementation@{RTEMS Test Framework Implementation}}
+\subsubsection{\texorpdfstring{T\_flags\_eq\_ll}{T\_flags\_eq\_ll}}
+{\footnotesize\ttfamily \#define T\+\_\+flags\+\_\+eq\+\_\+ll(\begin{DoxyParamCaption}\item[{}]{a,  }\item[{}]{\mbox{\hyperlink{sun4u_2tte_8h_a8b0b9ed08e0e18920ec2682f48228c27}{e}},  }\item[{}]{flags }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{                                   \(\backslash\)}
+\DoxyCodeLine{    static \textcolor{keyword}{const} \mbox{\hyperlink{structT__check__context}{T\_check\_context}} T\_check\_instance = \{        \(\backslash\)}
+\DoxyCodeLine{        T\_FILE\_NAME, \_\_LINE\_\_, flags \};             \(\backslash\)}
+\DoxyCodeLine{    T\_check\_eq\_ll(a, \&T\_check\_instance, \mbox{\hyperlink{sun4u_2tlb_8h_a8b0b9ed08e0e18920ec2682f48228c27}{e}});                \(\backslash\)}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{group__RTEMSTestFrameworkImpl_gae2681d77337c52837add3855c01f3d59}\label{group__RTEMSTestFrameworkImpl_gae2681d77337c52837add3855c01f3d59}} 
+\index{RTEMS Test Framework Implementation@{RTEMS Test Framework Implementation}!T\_flags\_eq\_long@{T\_flags\_eq\_long}}
+\index{T\_flags\_eq\_long@{T\_flags\_eq\_long}!RTEMS Test Framework Implementation@{RTEMS Test Framework Implementation}}
+\subsubsection{\texorpdfstring{T\_flags\_eq\_long}{T\_flags\_eq\_long}}
+{\footnotesize\ttfamily \#define T\+\_\+flags\+\_\+eq\+\_\+long(\begin{DoxyParamCaption}\item[{}]{a,  }\item[{}]{\mbox{\hyperlink{sun4u_2tte_8h_a8b0b9ed08e0e18920ec2682f48228c27}{e}},  }\item[{}]{flags }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{                                   \(\backslash\)}
+\DoxyCodeLine{    static \textcolor{keyword}{const} \mbox{\hyperlink{structT__check__context}{T\_check\_context}} T\_check\_instance = \{        \(\backslash\)}
+\DoxyCodeLine{        T\_FILE\_NAME, \_\_LINE\_\_, flags \};             \(\backslash\)}
+\DoxyCodeLine{    T\_check\_eq\_long(a, \&T\_check\_instance, \mbox{\hyperlink{sun4u_2tlb_8h_a8b0b9ed08e0e18920ec2682f48228c27}{e}});          \(\backslash\)}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{group__RTEMSTestFrameworkImpl_ga01ea90c5853b9457f02fae4385e55529}\label{group__RTEMSTestFrameworkImpl_ga01ea90c5853b9457f02fae4385e55529}} 
+\index{RTEMS Test Framework Implementation@{RTEMS Test Framework Implementation}!T\_flags\_eq\_mem@{T\_flags\_eq\_mem}}
+\index{T\_flags\_eq\_mem@{T\_flags\_eq\_mem}!RTEMS Test Framework Implementation@{RTEMS Test Framework Implementation}}
+\subsubsection{\texorpdfstring{T\_flags\_eq\_mem}{T\_flags\_eq\_mem}}
+{\footnotesize\ttfamily \#define T\+\_\+flags\+\_\+eq\+\_\+mem(\begin{DoxyParamCaption}\item[{}]{a,  }\item[{}]{\mbox{\hyperlink{sun4u_2tte_8h_a8b0b9ed08e0e18920ec2682f48228c27}{e}},  }\item[{}]{n,  }\item[{}]{flags,  }\item[{}]{sa,  }\item[{}]{se,  }\item[{}]{sn }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{                                   \(\backslash\)}
+\DoxyCodeLine{    static \textcolor{keyword}{const} \mbox{\hyperlink{structT__check__context__msg}{T\_check\_context\_msg}} T\_check\_instance = \{        \(\backslash\)}
+\DoxyCodeLine{        \{ T\_FILE\_NAME, \_\_LINE\_\_, flags \},               \(\backslash\)}
+\DoxyCodeLine{        \textcolor{stringliteral}{"memcmp("} sa \textcolor{stringliteral}{", "} se \textcolor{stringliteral}{", "} sn \textcolor{stringliteral}{") == 0"} \};            \(\backslash\)}
+\DoxyCodeLine{    T\_check\_eq\_mem(a, \&T\_check\_instance, \mbox{\hyperlink{sun4u_2tlb_8h_a8b0b9ed08e0e18920ec2682f48228c27}{e}}, n);            \(\backslash\)}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{group__RTEMSTestFrameworkImpl_gaf39ca658e5bee5e591b86dcf416431c8}\label{group__RTEMSTestFrameworkImpl_gaf39ca658e5bee5e591b86dcf416431c8}} 
+\index{RTEMS Test Framework Implementation@{RTEMS Test Framework Implementation}!T\_flags\_eq\_nstr@{T\_flags\_eq\_nstr}}
+\index{T\_flags\_eq\_nstr@{T\_flags\_eq\_nstr}!RTEMS Test Framework Implementation@{RTEMS Test Framework Implementation}}
+\subsubsection{\texorpdfstring{T\_flags\_eq\_nstr}{T\_flags\_eq\_nstr}}
+{\footnotesize\ttfamily \#define T\+\_\+flags\+\_\+eq\+\_\+nstr(\begin{DoxyParamCaption}\item[{}]{a,  }\item[{}]{\mbox{\hyperlink{sun4u_2tte_8h_a8b0b9ed08e0e18920ec2682f48228c27}{e}},  }\item[{}]{n,  }\item[{}]{flags }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{                                   \(\backslash\)}
+\DoxyCodeLine{    static \textcolor{keyword}{const} \mbox{\hyperlink{structT__check__context}{T\_check\_context}} T\_check\_instance = \{        \(\backslash\)}
+\DoxyCodeLine{        T\_FILE\_NAME, \_\_LINE\_\_, flags \};             \(\backslash\)}
+\DoxyCodeLine{    T\_check\_eq\_nstr(a, \&T\_check\_instance, \mbox{\hyperlink{sun4u_2tlb_8h_a8b0b9ed08e0e18920ec2682f48228c27}{e}}, n);           \(\backslash\)}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{group__RTEMSTestFrameworkImpl_ga5c7a4408510bbe12c957f0d4d5ec8fe6}\label{group__RTEMSTestFrameworkImpl_ga5c7a4408510bbe12c957f0d4d5ec8fe6}} 
+\index{RTEMS Test Framework Implementation@{RTEMS Test Framework Implementation}!T\_flags\_eq\_ptr@{T\_flags\_eq\_ptr}}
+\index{T\_flags\_eq\_ptr@{T\_flags\_eq\_ptr}!RTEMS Test Framework Implementation@{RTEMS Test Framework Implementation}}
+\subsubsection{\texorpdfstring{T\_flags\_eq\_ptr}{T\_flags\_eq\_ptr}}
+{\footnotesize\ttfamily \#define T\+\_\+flags\+\_\+eq\+\_\+ptr(\begin{DoxyParamCaption}\item[{}]{a,  }\item[{}]{\mbox{\hyperlink{sun4u_2tte_8h_a8b0b9ed08e0e18920ec2682f48228c27}{e}},  }\item[{}]{flags,  }\item[{}]{sa,  }\item[{}]{se }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{                                   \(\backslash\)}
+\DoxyCodeLine{    static \textcolor{keyword}{const} \mbox{\hyperlink{structT__check__context__msg}{T\_check\_context\_msg}} T\_check\_instance = \{        \(\backslash\)}
+\DoxyCodeLine{        \{ T\_FILE\_NAME, \_\_LINE\_\_, flags \}, sa \textcolor{stringliteral}{" == "} se \};       \(\backslash\)}
+\DoxyCodeLine{    T\_check\_eq\_ptr(a, \&T\_check\_instance, \mbox{\hyperlink{sun4u_2tlb_8h_a8b0b9ed08e0e18920ec2682f48228c27}{e}});           \(\backslash\)}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{group__RTEMSTestFrameworkImpl_ga5dd6f6e6364ebd34cecfd6df32db21a9}\label{group__RTEMSTestFrameworkImpl_ga5dd6f6e6364ebd34cecfd6df32db21a9}} 
+\index{RTEMS Test Framework Implementation@{RTEMS Test Framework Implementation}!T\_flags\_eq\_str@{T\_flags\_eq\_str}}
+\index{T\_flags\_eq\_str@{T\_flags\_eq\_str}!RTEMS Test Framework Implementation@{RTEMS Test Framework Implementation}}
+\subsubsection{\texorpdfstring{T\_flags\_eq\_str}{T\_flags\_eq\_str}}
+{\footnotesize\ttfamily \#define T\+\_\+flags\+\_\+eq\+\_\+str(\begin{DoxyParamCaption}\item[{}]{a,  }\item[{}]{\mbox{\hyperlink{sun4u_2tte_8h_a8b0b9ed08e0e18920ec2682f48228c27}{e}},  }\item[{}]{flags }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{                                   \(\backslash\)}
+\DoxyCodeLine{    static \textcolor{keyword}{const} \mbox{\hyperlink{structT__check__context}{T\_check\_context}} T\_check\_instance = \{        \(\backslash\)}
+\DoxyCodeLine{        T\_FILE\_NAME, \_\_LINE\_\_, flags \};             \(\backslash\)}
+\DoxyCodeLine{    T\_check\_eq\_str(a, \&T\_check\_instance, \mbox{\hyperlink{sun4u_2tlb_8h_a8b0b9ed08e0e18920ec2682f48228c27}{e}});           \(\backslash\)}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{group__RTEMSTestFrameworkImpl_ga710cdfd3a57383843891c4813b296991}\label{group__RTEMSTestFrameworkImpl_ga710cdfd3a57383843891c4813b296991}} 
+\index{RTEMS Test Framework Implementation@{RTEMS Test Framework Implementation}!T\_flags\_eq\_uint@{T\_flags\_eq\_uint}}
+\index{T\_flags\_eq\_uint@{T\_flags\_eq\_uint}!RTEMS Test Framework Implementation@{RTEMS Test Framework Implementation}}
+\subsubsection{\texorpdfstring{T\_flags\_eq\_uint}{T\_flags\_eq\_uint}}
+{\footnotesize\ttfamily \#define T\+\_\+flags\+\_\+eq\+\_\+uint(\begin{DoxyParamCaption}\item[{}]{a,  }\item[{}]{\mbox{\hyperlink{sun4u_2tte_8h_a8b0b9ed08e0e18920ec2682f48228c27}{e}},  }\item[{}]{flags }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{                                   \(\backslash\)}
+\DoxyCodeLine{    static \textcolor{keyword}{const} \mbox{\hyperlink{structT__check__context}{T\_check\_context}} T\_check\_instance = \{        \(\backslash\)}
+\DoxyCodeLine{        T\_FILE\_NAME, \_\_LINE\_\_, flags \};             \(\backslash\)}
+\DoxyCodeLine{    T\_check\_eq\_uint(a, \&T\_check\_instance, \mbox{\hyperlink{sun4u_2tlb_8h_a8b0b9ed08e0e18920ec2682f48228c27}{e}});          \(\backslash\)}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{group__RTEMSTestFrameworkImpl_ga2c3669b0afeccfe895d936fe61ae5cff}\label{group__RTEMSTestFrameworkImpl_ga2c3669b0afeccfe895d936fe61ae5cff}} 
+\index{RTEMS Test Framework Implementation@{RTEMS Test Framework Implementation}!T\_flags\_eq\_ull@{T\_flags\_eq\_ull}}
+\index{T\_flags\_eq\_ull@{T\_flags\_eq\_ull}!RTEMS Test Framework Implementation@{RTEMS Test Framework Implementation}}
+\subsubsection{\texorpdfstring{T\_flags\_eq\_ull}{T\_flags\_eq\_ull}}
+{\footnotesize\ttfamily \#define T\+\_\+flags\+\_\+eq\+\_\+ull(\begin{DoxyParamCaption}\item[{}]{a,  }\item[{}]{\mbox{\hyperlink{sun4u_2tte_8h_a8b0b9ed08e0e18920ec2682f48228c27}{e}},  }\item[{}]{flags }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{                                   \(\backslash\)}
+\DoxyCodeLine{    static \textcolor{keyword}{const} \mbox{\hyperlink{structT__check__context}{T\_check\_context}} T\_check\_instance = \{        \(\backslash\)}
+\DoxyCodeLine{        T\_FILE\_NAME, \_\_LINE\_\_, flags \};             \(\backslash\)}
+\DoxyCodeLine{    T\_check\_eq\_ull(a, \&T\_check\_instance, \mbox{\hyperlink{sun4u_2tlb_8h_a8b0b9ed08e0e18920ec2682f48228c27}{e}});           \(\backslash\)}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{group__RTEMSTestFrameworkImpl_gad984a53c5cd6aadd3a69d3c5d2ee9640}\label{group__RTEMSTestFrameworkImpl_gad984a53c5cd6aadd3a69d3c5d2ee9640}} 
+\index{RTEMS Test Framework Implementation@{RTEMS Test Framework Implementation}!T\_flags\_eq\_ulong@{T\_flags\_eq\_ulong}}
+\index{T\_flags\_eq\_ulong@{T\_flags\_eq\_ulong}!RTEMS Test Framework Implementation@{RTEMS Test Framework Implementation}}
+\subsubsection{\texorpdfstring{T\_flags\_eq\_ulong}{T\_flags\_eq\_ulong}}
+{\footnotesize\ttfamily \#define T\+\_\+flags\+\_\+eq\+\_\+ulong(\begin{DoxyParamCaption}\item[{}]{a,  }\item[{}]{\mbox{\hyperlink{sun4u_2tte_8h_a8b0b9ed08e0e18920ec2682f48228c27}{e}},  }\item[{}]{flags }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{                                   \(\backslash\)}
+\DoxyCodeLine{    static \textcolor{keyword}{const} \mbox{\hyperlink{structT__check__context}{T\_check\_context}} T\_check\_instance = \{        \(\backslash\)}
+\DoxyCodeLine{        T\_FILE\_NAME, \_\_LINE\_\_, flags \};             \(\backslash\)}
+\DoxyCodeLine{    T\_check\_eq\_ulong(a, \&T\_check\_instance, \mbox{\hyperlink{sun4u_2tlb_8h_a8b0b9ed08e0e18920ec2682f48228c27}{e}});         \(\backslash\)}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{group__RTEMSTestFrameworkImpl_gaae5572cb778af85f69a06b3769765e93}\label{group__RTEMSTestFrameworkImpl_gaae5572cb778af85f69a06b3769765e93}} 
+\index{RTEMS Test Framework Implementation@{RTEMS Test Framework Implementation}!T\_flags\_ge\_int@{T\_flags\_ge\_int}}
+\index{T\_flags\_ge\_int@{T\_flags\_ge\_int}!RTEMS Test Framework Implementation@{RTEMS Test Framework Implementation}}
+\subsubsection{\texorpdfstring{T\_flags\_ge\_int}{T\_flags\_ge\_int}}
+{\footnotesize\ttfamily \#define T\+\_\+flags\+\_\+ge\+\_\+int(\begin{DoxyParamCaption}\item[{}]{a,  }\item[{}]{\mbox{\hyperlink{sun4u_2tte_8h_a8b0b9ed08e0e18920ec2682f48228c27}{e}},  }\item[{}]{flags }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{                                   \(\backslash\)}
+\DoxyCodeLine{    static \textcolor{keyword}{const} \mbox{\hyperlink{structT__check__context}{T\_check\_context}} T\_check\_instance = \{        \(\backslash\)}
+\DoxyCodeLine{        T\_FILE\_NAME, \_\_LINE\_\_, flags \};             \(\backslash\)}
+\DoxyCodeLine{    T\_check\_ge\_int(a, \&T\_check\_instance, \mbox{\hyperlink{sun4u_2tlb_8h_a8b0b9ed08e0e18920ec2682f48228c27}{e}});           \(\backslash\)}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{group__RTEMSTestFrameworkImpl_ga2a0161a7c2e164f340291b519ec71380}\label{group__RTEMSTestFrameworkImpl_ga2a0161a7c2e164f340291b519ec71380}} 
+\index{RTEMS Test Framework Implementation@{RTEMS Test Framework Implementation}!T\_flags\_ge\_ll@{T\_flags\_ge\_ll}}
+\index{T\_flags\_ge\_ll@{T\_flags\_ge\_ll}!RTEMS Test Framework Implementation@{RTEMS Test Framework Implementation}}
+\subsubsection{\texorpdfstring{T\_flags\_ge\_ll}{T\_flags\_ge\_ll}}
+{\footnotesize\ttfamily \#define T\+\_\+flags\+\_\+ge\+\_\+ll(\begin{DoxyParamCaption}\item[{}]{a,  }\item[{}]{\mbox{\hyperlink{sun4u_2tte_8h_a8b0b9ed08e0e18920ec2682f48228c27}{e}},  }\item[{}]{flags }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{                                   \(\backslash\)}
+\DoxyCodeLine{    static \textcolor{keyword}{const} \mbox{\hyperlink{structT__check__context}{T\_check\_context}} T\_check\_instance = \{        \(\backslash\)}
+\DoxyCodeLine{        T\_FILE\_NAME, \_\_LINE\_\_, flags \};             \(\backslash\)}
+\DoxyCodeLine{    T\_check\_ge\_ll(a, \&T\_check\_instance, \mbox{\hyperlink{sun4u_2tlb_8h_a8b0b9ed08e0e18920ec2682f48228c27}{e}});                \(\backslash\)}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{group__RTEMSTestFrameworkImpl_gace7c73a4929758a6af2b66e215f60968}\label{group__RTEMSTestFrameworkImpl_gace7c73a4929758a6af2b66e215f60968}} 
+\index{RTEMS Test Framework Implementation@{RTEMS Test Framework Implementation}!T\_flags\_ge\_long@{T\_flags\_ge\_long}}
+\index{T\_flags\_ge\_long@{T\_flags\_ge\_long}!RTEMS Test Framework Implementation@{RTEMS Test Framework Implementation}}
+\subsubsection{\texorpdfstring{T\_flags\_ge\_long}{T\_flags\_ge\_long}}
+{\footnotesize\ttfamily \#define T\+\_\+flags\+\_\+ge\+\_\+long(\begin{DoxyParamCaption}\item[{}]{a,  }\item[{}]{\mbox{\hyperlink{sun4u_2tte_8h_a8b0b9ed08e0e18920ec2682f48228c27}{e}},  }\item[{}]{flags }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{                                   \(\backslash\)}
+\DoxyCodeLine{    static \textcolor{keyword}{const} \mbox{\hyperlink{structT__check__context}{T\_check\_context}} T\_check\_instance = \{        \(\backslash\)}
+\DoxyCodeLine{        T\_FILE\_NAME, \_\_LINE\_\_, flags \};             \(\backslash\)}
+\DoxyCodeLine{    T\_check\_ge\_long(a, \&T\_check\_instance, \mbox{\hyperlink{sun4u_2tlb_8h_a8b0b9ed08e0e18920ec2682f48228c27}{e}});          \(\backslash\)}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{group__RTEMSTestFrameworkImpl_ga90062391769b98867e69685448d557ff}\label{group__RTEMSTestFrameworkImpl_ga90062391769b98867e69685448d557ff}} 
+\index{RTEMS Test Framework Implementation@{RTEMS Test Framework Implementation}!T\_flags\_ge\_uint@{T\_flags\_ge\_uint}}
+\index{T\_flags\_ge\_uint@{T\_flags\_ge\_uint}!RTEMS Test Framework Implementation@{RTEMS Test Framework Implementation}}
+\subsubsection{\texorpdfstring{T\_flags\_ge\_uint}{T\_flags\_ge\_uint}}
+{\footnotesize\ttfamily \#define T\+\_\+flags\+\_\+ge\+\_\+uint(\begin{DoxyParamCaption}\item[{}]{a,  }\item[{}]{\mbox{\hyperlink{sun4u_2tte_8h_a8b0b9ed08e0e18920ec2682f48228c27}{e}},  }\item[{}]{flags }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{                                   \(\backslash\)}
+\DoxyCodeLine{    static \textcolor{keyword}{const} \mbox{\hyperlink{structT__check__context}{T\_check\_context}} T\_check\_instance = \{        \(\backslash\)}
+\DoxyCodeLine{        T\_FILE\_NAME, \_\_LINE\_\_, flags \};             \(\backslash\)}
+\DoxyCodeLine{    T\_check\_ge\_uint(a, \&T\_check\_instance, \mbox{\hyperlink{sun4u_2tlb_8h_a8b0b9ed08e0e18920ec2682f48228c27}{e}});          \(\backslash\)}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{group__RTEMSTestFrameworkImpl_ga78cec860aab0a0c6a4e6a7f31b8088fb}\label{group__RTEMSTestFrameworkImpl_ga78cec860aab0a0c6a4e6a7f31b8088fb}} 
+\index{RTEMS Test Framework Implementation@{RTEMS Test Framework Implementation}!T\_flags\_ge\_ull@{T\_flags\_ge\_ull}}
+\index{T\_flags\_ge\_ull@{T\_flags\_ge\_ull}!RTEMS Test Framework Implementation@{RTEMS Test Framework Implementation}}
+\subsubsection{\texorpdfstring{T\_flags\_ge\_ull}{T\_flags\_ge\_ull}}
+{\footnotesize\ttfamily \#define T\+\_\+flags\+\_\+ge\+\_\+ull(\begin{DoxyParamCaption}\item[{}]{a,  }\item[{}]{\mbox{\hyperlink{sun4u_2tte_8h_a8b0b9ed08e0e18920ec2682f48228c27}{e}},  }\item[{}]{flags }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{                                   \(\backslash\)}
+\DoxyCodeLine{    static \textcolor{keyword}{const} \mbox{\hyperlink{structT__check__context}{T\_check\_context}} T\_check\_instance = \{        \(\backslash\)}
+\DoxyCodeLine{        T\_FILE\_NAME, \_\_LINE\_\_, flags \};             \(\backslash\)}
+\DoxyCodeLine{    T\_check\_ge\_ull(a, \&T\_check\_instance, \mbox{\hyperlink{sun4u_2tlb_8h_a8b0b9ed08e0e18920ec2682f48228c27}{e}});           \(\backslash\)}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{group__RTEMSTestFrameworkImpl_ga20dedbe716e3d78a071de87290aa3937}\label{group__RTEMSTestFrameworkImpl_ga20dedbe716e3d78a071de87290aa3937}} 
+\index{RTEMS Test Framework Implementation@{RTEMS Test Framework Implementation}!T\_flags\_ge\_ulong@{T\_flags\_ge\_ulong}}
+\index{T\_flags\_ge\_ulong@{T\_flags\_ge\_ulong}!RTEMS Test Framework Implementation@{RTEMS Test Framework Implementation}}
+\subsubsection{\texorpdfstring{T\_flags\_ge\_ulong}{T\_flags\_ge\_ulong}}
+{\footnotesize\ttfamily \#define T\+\_\+flags\+\_\+ge\+\_\+ulong(\begin{DoxyParamCaption}\item[{}]{a,  }\item[{}]{\mbox{\hyperlink{sun4u_2tte_8h_a8b0b9ed08e0e18920ec2682f48228c27}{e}},  }\item[{}]{flags }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{                                   \(\backslash\)}
+\DoxyCodeLine{    static \textcolor{keyword}{const} \mbox{\hyperlink{structT__check__context}{T\_check\_context}} T\_check\_instance = \{        \(\backslash\)}
+\DoxyCodeLine{        T\_FILE\_NAME, \_\_LINE\_\_, flags \};             \(\backslash\)}
+\DoxyCodeLine{    T\_check\_ge\_ulong(a, \&T\_check\_instance, \mbox{\hyperlink{sun4u_2tlb_8h_a8b0b9ed08e0e18920ec2682f48228c27}{e}});         \(\backslash\)}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{group__RTEMSTestFrameworkImpl_ga2b6ae544cf72ed89db248f5d4275542a}\label{group__RTEMSTestFrameworkImpl_ga2b6ae544cf72ed89db248f5d4275542a}} 
+\index{RTEMS Test Framework Implementation@{RTEMS Test Framework Implementation}!T\_flags\_gt\_int@{T\_flags\_gt\_int}}
+\index{T\_flags\_gt\_int@{T\_flags\_gt\_int}!RTEMS Test Framework Implementation@{RTEMS Test Framework Implementation}}
+\subsubsection{\texorpdfstring{T\_flags\_gt\_int}{T\_flags\_gt\_int}}
+{\footnotesize\ttfamily \#define T\+\_\+flags\+\_\+gt\+\_\+int(\begin{DoxyParamCaption}\item[{}]{a,  }\item[{}]{\mbox{\hyperlink{sun4u_2tte_8h_a8b0b9ed08e0e18920ec2682f48228c27}{e}},  }\item[{}]{flags }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{                                   \(\backslash\)}
+\DoxyCodeLine{    static \textcolor{keyword}{const} \mbox{\hyperlink{structT__check__context}{T\_check\_context}} T\_check\_instance = \{        \(\backslash\)}
+\DoxyCodeLine{        T\_FILE\_NAME, \_\_LINE\_\_, flags \};             \(\backslash\)}
+\DoxyCodeLine{    T\_check\_gt\_int(a, \&T\_check\_instance, \mbox{\hyperlink{sun4u_2tlb_8h_a8b0b9ed08e0e18920ec2682f48228c27}{e}});           \(\backslash\)}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{group__RTEMSTestFrameworkImpl_ga0e33a4112f0e5425bc157b5e7f1a2979}\label{group__RTEMSTestFrameworkImpl_ga0e33a4112f0e5425bc157b5e7f1a2979}} 
+\index{RTEMS Test Framework Implementation@{RTEMS Test Framework Implementation}!T\_flags\_gt\_ll@{T\_flags\_gt\_ll}}
+\index{T\_flags\_gt\_ll@{T\_flags\_gt\_ll}!RTEMS Test Framework Implementation@{RTEMS Test Framework Implementation}}
+\subsubsection{\texorpdfstring{T\_flags\_gt\_ll}{T\_flags\_gt\_ll}}
+{\footnotesize\ttfamily \#define T\+\_\+flags\+\_\+gt\+\_\+ll(\begin{DoxyParamCaption}\item[{}]{a,  }\item[{}]{\mbox{\hyperlink{sun4u_2tte_8h_a8b0b9ed08e0e18920ec2682f48228c27}{e}},  }\item[{}]{flags }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{                                   \(\backslash\)}
+\DoxyCodeLine{    static \textcolor{keyword}{const} \mbox{\hyperlink{structT__check__context}{T\_check\_context}} T\_check\_instance = \{        \(\backslash\)}
+\DoxyCodeLine{        T\_FILE\_NAME, \_\_LINE\_\_, flags \};             \(\backslash\)}
+\DoxyCodeLine{    T\_check\_gt\_ll(a, \&T\_check\_instance, \mbox{\hyperlink{sun4u_2tlb_8h_a8b0b9ed08e0e18920ec2682f48228c27}{e}});                \(\backslash\)}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{group__RTEMSTestFrameworkImpl_ga4ed491f8883fef2338ad61632dd00fee}\label{group__RTEMSTestFrameworkImpl_ga4ed491f8883fef2338ad61632dd00fee}} 
+\index{RTEMS Test Framework Implementation@{RTEMS Test Framework Implementation}!T\_flags\_gt\_long@{T\_flags\_gt\_long}}
+\index{T\_flags\_gt\_long@{T\_flags\_gt\_long}!RTEMS Test Framework Implementation@{RTEMS Test Framework Implementation}}
+\subsubsection{\texorpdfstring{T\_flags\_gt\_long}{T\_flags\_gt\_long}}
+{\footnotesize\ttfamily \#define T\+\_\+flags\+\_\+gt\+\_\+long(\begin{DoxyParamCaption}\item[{}]{a,  }\item[{}]{\mbox{\hyperlink{sun4u_2tte_8h_a8b0b9ed08e0e18920ec2682f48228c27}{e}},  }\item[{}]{flags }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{                                   \(\backslash\)}
+\DoxyCodeLine{    static \textcolor{keyword}{const} \mbox{\hyperlink{structT__check__context}{T\_check\_context}} T\_check\_instance = \{        \(\backslash\)}
+\DoxyCodeLine{        T\_FILE\_NAME, \_\_LINE\_\_, flags \};             \(\backslash\)}
+\DoxyCodeLine{    T\_check\_gt\_long(a, \&T\_check\_instance, \mbox{\hyperlink{sun4u_2tlb_8h_a8b0b9ed08e0e18920ec2682f48228c27}{e}});          \(\backslash\)}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{group__RTEMSTestFrameworkImpl_ga520c8bf83ff805555fe6f75cc2eb285e}\label{group__RTEMSTestFrameworkImpl_ga520c8bf83ff805555fe6f75cc2eb285e}} 
+\index{RTEMS Test Framework Implementation@{RTEMS Test Framework Implementation}!T\_flags\_gt\_uint@{T\_flags\_gt\_uint}}
+\index{T\_flags\_gt\_uint@{T\_flags\_gt\_uint}!RTEMS Test Framework Implementation@{RTEMS Test Framework Implementation}}
+\subsubsection{\texorpdfstring{T\_flags\_gt\_uint}{T\_flags\_gt\_uint}}
+{\footnotesize\ttfamily \#define T\+\_\+flags\+\_\+gt\+\_\+uint(\begin{DoxyParamCaption}\item[{}]{a,  }\item[{}]{\mbox{\hyperlink{sun4u_2tte_8h_a8b0b9ed08e0e18920ec2682f48228c27}{e}},  }\item[{}]{flags }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{                                   \(\backslash\)}
+\DoxyCodeLine{    static \textcolor{keyword}{const} \mbox{\hyperlink{structT__check__context}{T\_check\_context}} T\_check\_instance = \{        \(\backslash\)}
+\DoxyCodeLine{        T\_FILE\_NAME, \_\_LINE\_\_, flags \};             \(\backslash\)}
+\DoxyCodeLine{    T\_check\_gt\_uint(a, \&T\_check\_instance, \mbox{\hyperlink{sun4u_2tlb_8h_a8b0b9ed08e0e18920ec2682f48228c27}{e}});          \(\backslash\)}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{group__RTEMSTestFrameworkImpl_ga6792cbd6c0565d33a9c3df9486ad307d}\label{group__RTEMSTestFrameworkImpl_ga6792cbd6c0565d33a9c3df9486ad307d}} 
+\index{RTEMS Test Framework Implementation@{RTEMS Test Framework Implementation}!T\_flags\_gt\_ull@{T\_flags\_gt\_ull}}
+\index{T\_flags\_gt\_ull@{T\_flags\_gt\_ull}!RTEMS Test Framework Implementation@{RTEMS Test Framework Implementation}}
+\subsubsection{\texorpdfstring{T\_flags\_gt\_ull}{T\_flags\_gt\_ull}}
+{\footnotesize\ttfamily \#define T\+\_\+flags\+\_\+gt\+\_\+ull(\begin{DoxyParamCaption}\item[{}]{a,  }\item[{}]{\mbox{\hyperlink{sun4u_2tte_8h_a8b0b9ed08e0e18920ec2682f48228c27}{e}},  }\item[{}]{flags }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{                                   \(\backslash\)}
+\DoxyCodeLine{    static \textcolor{keyword}{const} \mbox{\hyperlink{structT__check__context}{T\_check\_context}} T\_check\_instance = \{        \(\backslash\)}
+\DoxyCodeLine{        T\_FILE\_NAME, \_\_LINE\_\_, flags \};             \(\backslash\)}
+\DoxyCodeLine{    T\_check\_gt\_ull(a, \&T\_check\_instance, \mbox{\hyperlink{sun4u_2tlb_8h_a8b0b9ed08e0e18920ec2682f48228c27}{e}});           \(\backslash\)}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{group__RTEMSTestFrameworkImpl_ga444eb3083b776a10e0a92727c9e5705b}\label{group__RTEMSTestFrameworkImpl_ga444eb3083b776a10e0a92727c9e5705b}} 
+\index{RTEMS Test Framework Implementation@{RTEMS Test Framework Implementation}!T\_flags\_gt\_ulong@{T\_flags\_gt\_ulong}}
+\index{T\_flags\_gt\_ulong@{T\_flags\_gt\_ulong}!RTEMS Test Framework Implementation@{RTEMS Test Framework Implementation}}
+\subsubsection{\texorpdfstring{T\_flags\_gt\_ulong}{T\_flags\_gt\_ulong}}
+{\footnotesize\ttfamily \#define T\+\_\+flags\+\_\+gt\+\_\+ulong(\begin{DoxyParamCaption}\item[{}]{a,  }\item[{}]{\mbox{\hyperlink{sun4u_2tte_8h_a8b0b9ed08e0e18920ec2682f48228c27}{e}},  }\item[{}]{flags }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{                                   \(\backslash\)}
+\DoxyCodeLine{    static \textcolor{keyword}{const} \mbox{\hyperlink{structT__check__context}{T\_check\_context}} T\_check\_instance = \{        \(\backslash\)}
+\DoxyCodeLine{        T\_FILE\_NAME, \_\_LINE\_\_, flags \};             \(\backslash\)}
+\DoxyCodeLine{    T\_check\_gt\_ulong(a, \&T\_check\_instance, \mbox{\hyperlink{sun4u_2tlb_8h_a8b0b9ed08e0e18920ec2682f48228c27}{e}});         \(\backslash\)}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{group__RTEMSTestFrameworkImpl_ga39955006e0aa0174140743ca75d52fdd}\label{group__RTEMSTestFrameworkImpl_ga39955006e0aa0174140743ca75d52fdd}} 
+\index{RTEMS Test Framework Implementation@{RTEMS Test Framework Implementation}!T\_flags\_le\_int@{T\_flags\_le\_int}}
+\index{T\_flags\_le\_int@{T\_flags\_le\_int}!RTEMS Test Framework Implementation@{RTEMS Test Framework Implementation}}
+\subsubsection{\texorpdfstring{T\_flags\_le\_int}{T\_flags\_le\_int}}
+{\footnotesize\ttfamily \#define T\+\_\+flags\+\_\+le\+\_\+int(\begin{DoxyParamCaption}\item[{}]{a,  }\item[{}]{\mbox{\hyperlink{sun4u_2tte_8h_a8b0b9ed08e0e18920ec2682f48228c27}{e}},  }\item[{}]{flags }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{                                   \(\backslash\)}
+\DoxyCodeLine{    static \textcolor{keyword}{const} \mbox{\hyperlink{structT__check__context}{T\_check\_context}} T\_check\_instance = \{        \(\backslash\)}
+\DoxyCodeLine{        T\_FILE\_NAME, \_\_LINE\_\_, flags \};             \(\backslash\)}
+\DoxyCodeLine{    T\_check\_le\_int(a, \&T\_check\_instance, \mbox{\hyperlink{sun4u_2tlb_8h_a8b0b9ed08e0e18920ec2682f48228c27}{e}});           \(\backslash\)}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{group__RTEMSTestFrameworkImpl_gad0990e5dfbb517da4090133ffaa3095a}\label{group__RTEMSTestFrameworkImpl_gad0990e5dfbb517da4090133ffaa3095a}} 
+\index{RTEMS Test Framework Implementation@{RTEMS Test Framework Implementation}!T\_flags\_le\_ll@{T\_flags\_le\_ll}}
+\index{T\_flags\_le\_ll@{T\_flags\_le\_ll}!RTEMS Test Framework Implementation@{RTEMS Test Framework Implementation}}
+\subsubsection{\texorpdfstring{T\_flags\_le\_ll}{T\_flags\_le\_ll}}
+{\footnotesize\ttfamily \#define T\+\_\+flags\+\_\+le\+\_\+ll(\begin{DoxyParamCaption}\item[{}]{a,  }\item[{}]{\mbox{\hyperlink{sun4u_2tte_8h_a8b0b9ed08e0e18920ec2682f48228c27}{e}},  }\item[{}]{flags }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{                                   \(\backslash\)}
+\DoxyCodeLine{    static \textcolor{keyword}{const} \mbox{\hyperlink{structT__check__context}{T\_check\_context}} T\_check\_instance = \{        \(\backslash\)}
+\DoxyCodeLine{        T\_FILE\_NAME, \_\_LINE\_\_, flags \};             \(\backslash\)}
+\DoxyCodeLine{    T\_check\_le\_ll(a, \&T\_check\_instance, \mbox{\hyperlink{sun4u_2tlb_8h_a8b0b9ed08e0e18920ec2682f48228c27}{e}});                \(\backslash\)}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{group__RTEMSTestFrameworkImpl_gac6a247f2c3fec74469f094537c3d2280}\label{group__RTEMSTestFrameworkImpl_gac6a247f2c3fec74469f094537c3d2280}} 
+\index{RTEMS Test Framework Implementation@{RTEMS Test Framework Implementation}!T\_flags\_le\_long@{T\_flags\_le\_long}}
+\index{T\_flags\_le\_long@{T\_flags\_le\_long}!RTEMS Test Framework Implementation@{RTEMS Test Framework Implementation}}
+\subsubsection{\texorpdfstring{T\_flags\_le\_long}{T\_flags\_le\_long}}
+{\footnotesize\ttfamily \#define T\+\_\+flags\+\_\+le\+\_\+long(\begin{DoxyParamCaption}\item[{}]{a,  }\item[{}]{\mbox{\hyperlink{sun4u_2tte_8h_a8b0b9ed08e0e18920ec2682f48228c27}{e}},  }\item[{}]{flags }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{                                   \(\backslash\)}
+\DoxyCodeLine{    static \textcolor{keyword}{const} \mbox{\hyperlink{structT__check__context}{T\_check\_context}} T\_check\_instance = \{        \(\backslash\)}
+\DoxyCodeLine{        T\_FILE\_NAME, \_\_LINE\_\_, flags \};             \(\backslash\)}
+\DoxyCodeLine{    T\_check\_le\_long(a, \&T\_check\_instance, \mbox{\hyperlink{sun4u_2tlb_8h_a8b0b9ed08e0e18920ec2682f48228c27}{e}});          \(\backslash\)}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{group__RTEMSTestFrameworkImpl_ga3c15c6f4bd213e17707d6aecbc31d91e}\label{group__RTEMSTestFrameworkImpl_ga3c15c6f4bd213e17707d6aecbc31d91e}} 
+\index{RTEMS Test Framework Implementation@{RTEMS Test Framework Implementation}!T\_flags\_le\_uint@{T\_flags\_le\_uint}}
+\index{T\_flags\_le\_uint@{T\_flags\_le\_uint}!RTEMS Test Framework Implementation@{RTEMS Test Framework Implementation}}
+\subsubsection{\texorpdfstring{T\_flags\_le\_uint}{T\_flags\_le\_uint}}
+{\footnotesize\ttfamily \#define T\+\_\+flags\+\_\+le\+\_\+uint(\begin{DoxyParamCaption}\item[{}]{a,  }\item[{}]{\mbox{\hyperlink{sun4u_2tte_8h_a8b0b9ed08e0e18920ec2682f48228c27}{e}},  }\item[{}]{flags }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{                                   \(\backslash\)}
+\DoxyCodeLine{    static \textcolor{keyword}{const} \mbox{\hyperlink{structT__check__context}{T\_check\_context}} T\_check\_instance = \{        \(\backslash\)}
+\DoxyCodeLine{        T\_FILE\_NAME, \_\_LINE\_\_, flags \};             \(\backslash\)}
+\DoxyCodeLine{    T\_check\_le\_uint(a, \&T\_check\_instance, \mbox{\hyperlink{sun4u_2tlb_8h_a8b0b9ed08e0e18920ec2682f48228c27}{e}});          \(\backslash\)}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{group__RTEMSTestFrameworkImpl_ga6b39cf2928fc4065b7d57e7e079c2785}\label{group__RTEMSTestFrameworkImpl_ga6b39cf2928fc4065b7d57e7e079c2785}} 
+\index{RTEMS Test Framework Implementation@{RTEMS Test Framework Implementation}!T\_flags\_le\_ull@{T\_flags\_le\_ull}}
+\index{T\_flags\_le\_ull@{T\_flags\_le\_ull}!RTEMS Test Framework Implementation@{RTEMS Test Framework Implementation}}
+\subsubsection{\texorpdfstring{T\_flags\_le\_ull}{T\_flags\_le\_ull}}
+{\footnotesize\ttfamily \#define T\+\_\+flags\+\_\+le\+\_\+ull(\begin{DoxyParamCaption}\item[{}]{a,  }\item[{}]{\mbox{\hyperlink{sun4u_2tte_8h_a8b0b9ed08e0e18920ec2682f48228c27}{e}},  }\item[{}]{flags }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{                                   \(\backslash\)}
+\DoxyCodeLine{    static \textcolor{keyword}{const} \mbox{\hyperlink{structT__check__context}{T\_check\_context}} T\_check\_instance = \{        \(\backslash\)}
+\DoxyCodeLine{        T\_FILE\_NAME, \_\_LINE\_\_, flags \};             \(\backslash\)}
+\DoxyCodeLine{    T\_check\_le\_ull(a, \&T\_check\_instance, \mbox{\hyperlink{sun4u_2tlb_8h_a8b0b9ed08e0e18920ec2682f48228c27}{e}});           \(\backslash\)}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{group__RTEMSTestFrameworkImpl_ga9e909e07de532a6c62fbfb5741033a86}\label{group__RTEMSTestFrameworkImpl_ga9e909e07de532a6c62fbfb5741033a86}} 
+\index{RTEMS Test Framework Implementation@{RTEMS Test Framework Implementation}!T\_flags\_le\_ulong@{T\_flags\_le\_ulong}}
+\index{T\_flags\_le\_ulong@{T\_flags\_le\_ulong}!RTEMS Test Framework Implementation@{RTEMS Test Framework Implementation}}
+\subsubsection{\texorpdfstring{T\_flags\_le\_ulong}{T\_flags\_le\_ulong}}
+{\footnotesize\ttfamily \#define T\+\_\+flags\+\_\+le\+\_\+ulong(\begin{DoxyParamCaption}\item[{}]{a,  }\item[{}]{\mbox{\hyperlink{sun4u_2tte_8h_a8b0b9ed08e0e18920ec2682f48228c27}{e}},  }\item[{}]{flags }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{                                   \(\backslash\)}
+\DoxyCodeLine{    static \textcolor{keyword}{const} \mbox{\hyperlink{structT__check__context}{T\_check\_context}} T\_check\_instance = \{        \(\backslash\)}
+\DoxyCodeLine{        T\_FILE\_NAME, \_\_LINE\_\_, flags \};             \(\backslash\)}
+\DoxyCodeLine{    T\_check\_le\_ulong(a, \&T\_check\_instance, \mbox{\hyperlink{sun4u_2tlb_8h_a8b0b9ed08e0e18920ec2682f48228c27}{e}});         \(\backslash\)}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{group__RTEMSTestFrameworkImpl_ga215d855a209606b196a374ad60a70eb6}\label{group__RTEMSTestFrameworkImpl_ga215d855a209606b196a374ad60a70eb6}} 
+\index{RTEMS Test Framework Implementation@{RTEMS Test Framework Implementation}!T\_flags\_lt\_int@{T\_flags\_lt\_int}}
+\index{T\_flags\_lt\_int@{T\_flags\_lt\_int}!RTEMS Test Framework Implementation@{RTEMS Test Framework Implementation}}
+\subsubsection{\texorpdfstring{T\_flags\_lt\_int}{T\_flags\_lt\_int}}
+{\footnotesize\ttfamily \#define T\+\_\+flags\+\_\+lt\+\_\+int(\begin{DoxyParamCaption}\item[{}]{a,  }\item[{}]{\mbox{\hyperlink{sun4u_2tte_8h_a8b0b9ed08e0e18920ec2682f48228c27}{e}},  }\item[{}]{flags }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{                                   \(\backslash\)}
+\DoxyCodeLine{    static \textcolor{keyword}{const} \mbox{\hyperlink{structT__check__context}{T\_check\_context}} T\_check\_instance = \{        \(\backslash\)}
+\DoxyCodeLine{        T\_FILE\_NAME, \_\_LINE\_\_, flags \};             \(\backslash\)}
+\DoxyCodeLine{    T\_check\_lt\_int(a, \&T\_check\_instance, \mbox{\hyperlink{sun4u_2tlb_8h_a8b0b9ed08e0e18920ec2682f48228c27}{e}});           \(\backslash\)}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{group__RTEMSTestFrameworkImpl_ga1d0acecb2bcd02031b42a5fa0cd01d32}\label{group__RTEMSTestFrameworkImpl_ga1d0acecb2bcd02031b42a5fa0cd01d32}} 
+\index{RTEMS Test Framework Implementation@{RTEMS Test Framework Implementation}!T\_flags\_lt\_ll@{T\_flags\_lt\_ll}}
+\index{T\_flags\_lt\_ll@{T\_flags\_lt\_ll}!RTEMS Test Framework Implementation@{RTEMS Test Framework Implementation}}
+\subsubsection{\texorpdfstring{T\_flags\_lt\_ll}{T\_flags\_lt\_ll}}
+{\footnotesize\ttfamily \#define T\+\_\+flags\+\_\+lt\+\_\+ll(\begin{DoxyParamCaption}\item[{}]{a,  }\item[{}]{\mbox{\hyperlink{sun4u_2tte_8h_a8b0b9ed08e0e18920ec2682f48228c27}{e}},  }\item[{}]{flags }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{                                   \(\backslash\)}
+\DoxyCodeLine{    static \textcolor{keyword}{const} \mbox{\hyperlink{structT__check__context}{T\_check\_context}} T\_check\_instance = \{        \(\backslash\)}
+\DoxyCodeLine{        T\_FILE\_NAME, \_\_LINE\_\_, flags \};             \(\backslash\)}
+\DoxyCodeLine{    T\_check\_lt\_ll(a, \&T\_check\_instance, \mbox{\hyperlink{sun4u_2tlb_8h_a8b0b9ed08e0e18920ec2682f48228c27}{e}});                \(\backslash\)}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{group__RTEMSTestFrameworkImpl_gac874ece3d7a9cae6f37965fa0dca9719}\label{group__RTEMSTestFrameworkImpl_gac874ece3d7a9cae6f37965fa0dca9719}} 
+\index{RTEMS Test Framework Implementation@{RTEMS Test Framework Implementation}!T\_flags\_lt\_long@{T\_flags\_lt\_long}}
+\index{T\_flags\_lt\_long@{T\_flags\_lt\_long}!RTEMS Test Framework Implementation@{RTEMS Test Framework Implementation}}
+\subsubsection{\texorpdfstring{T\_flags\_lt\_long}{T\_flags\_lt\_long}}
+{\footnotesize\ttfamily \#define T\+\_\+flags\+\_\+lt\+\_\+long(\begin{DoxyParamCaption}\item[{}]{a,  }\item[{}]{\mbox{\hyperlink{sun4u_2tte_8h_a8b0b9ed08e0e18920ec2682f48228c27}{e}},  }\item[{}]{flags }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{                                   \(\backslash\)}
+\DoxyCodeLine{    static \textcolor{keyword}{const} \mbox{\hyperlink{structT__check__context}{T\_check\_context}} T\_check\_instance = \{        \(\backslash\)}
+\DoxyCodeLine{        T\_FILE\_NAME, \_\_LINE\_\_, flags \};             \(\backslash\)}
+\DoxyCodeLine{    T\_check\_lt\_long(a, \&T\_check\_instance, \mbox{\hyperlink{sun4u_2tlb_8h_a8b0b9ed08e0e18920ec2682f48228c27}{e}});          \(\backslash\)}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{group__RTEMSTestFrameworkImpl_ga0ef5917bf016c545236ce4f7c11fcf96}\label{group__RTEMSTestFrameworkImpl_ga0ef5917bf016c545236ce4f7c11fcf96}} 
+\index{RTEMS Test Framework Implementation@{RTEMS Test Framework Implementation}!T\_flags\_lt\_uint@{T\_flags\_lt\_uint}}
+\index{T\_flags\_lt\_uint@{T\_flags\_lt\_uint}!RTEMS Test Framework Implementation@{RTEMS Test Framework Implementation}}
+\subsubsection{\texorpdfstring{T\_flags\_lt\_uint}{T\_flags\_lt\_uint}}
+{\footnotesize\ttfamily \#define T\+\_\+flags\+\_\+lt\+\_\+uint(\begin{DoxyParamCaption}\item[{}]{a,  }\item[{}]{\mbox{\hyperlink{sun4u_2tte_8h_a8b0b9ed08e0e18920ec2682f48228c27}{e}},  }\item[{}]{flags }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{                                   \(\backslash\)}
+\DoxyCodeLine{    static \textcolor{keyword}{const} \mbox{\hyperlink{structT__check__context}{T\_check\_context}} T\_check\_instance = \{        \(\backslash\)}
+\DoxyCodeLine{        T\_FILE\_NAME, \_\_LINE\_\_, flags \};             \(\backslash\)}
+\DoxyCodeLine{    T\_check\_lt\_uint(a, \&T\_check\_instance, \mbox{\hyperlink{sun4u_2tlb_8h_a8b0b9ed08e0e18920ec2682f48228c27}{e}});          \(\backslash\)}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{group__RTEMSTestFrameworkImpl_ga48f35a793ffac24ae4651b1e293c7698}\label{group__RTEMSTestFrameworkImpl_ga48f35a793ffac24ae4651b1e293c7698}} 
+\index{RTEMS Test Framework Implementation@{RTEMS Test Framework Implementation}!T\_flags\_lt\_ull@{T\_flags\_lt\_ull}}
+\index{T\_flags\_lt\_ull@{T\_flags\_lt\_ull}!RTEMS Test Framework Implementation@{RTEMS Test Framework Implementation}}
+\subsubsection{\texorpdfstring{T\_flags\_lt\_ull}{T\_flags\_lt\_ull}}
+{\footnotesize\ttfamily \#define T\+\_\+flags\+\_\+lt\+\_\+ull(\begin{DoxyParamCaption}\item[{}]{a,  }\item[{}]{\mbox{\hyperlink{sun4u_2tte_8h_a8b0b9ed08e0e18920ec2682f48228c27}{e}},  }\item[{}]{flags }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{                                   \(\backslash\)}
+\DoxyCodeLine{    static \textcolor{keyword}{const} \mbox{\hyperlink{structT__check__context}{T\_check\_context}} T\_check\_instance = \{        \(\backslash\)}
+\DoxyCodeLine{        T\_FILE\_NAME, \_\_LINE\_\_, flags \};             \(\backslash\)}
+\DoxyCodeLine{    T\_check\_lt\_ull(a, \&T\_check\_instance, \mbox{\hyperlink{sun4u_2tlb_8h_a8b0b9ed08e0e18920ec2682f48228c27}{e}});           \(\backslash\)}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{group__RTEMSTestFrameworkImpl_gadf74871cf81b8cf75970e28d75cd47f3}\label{group__RTEMSTestFrameworkImpl_gadf74871cf81b8cf75970e28d75cd47f3}} 
+\index{RTEMS Test Framework Implementation@{RTEMS Test Framework Implementation}!T\_flags\_lt\_ulong@{T\_flags\_lt\_ulong}}
+\index{T\_flags\_lt\_ulong@{T\_flags\_lt\_ulong}!RTEMS Test Framework Implementation@{RTEMS Test Framework Implementation}}
+\subsubsection{\texorpdfstring{T\_flags\_lt\_ulong}{T\_flags\_lt\_ulong}}
+{\footnotesize\ttfamily \#define T\+\_\+flags\+\_\+lt\+\_\+ulong(\begin{DoxyParamCaption}\item[{}]{a,  }\item[{}]{\mbox{\hyperlink{sun4u_2tte_8h_a8b0b9ed08e0e18920ec2682f48228c27}{e}},  }\item[{}]{flags }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{                                   \(\backslash\)}
+\DoxyCodeLine{    static \textcolor{keyword}{const} \mbox{\hyperlink{structT__check__context}{T\_check\_context}} T\_check\_instance = \{        \(\backslash\)}
+\DoxyCodeLine{        T\_FILE\_NAME, \_\_LINE\_\_, flags \};             \(\backslash\)}
+\DoxyCodeLine{    T\_check\_lt\_ulong(a, \&T\_check\_instance, \mbox{\hyperlink{sun4u_2tlb_8h_a8b0b9ed08e0e18920ec2682f48228c27}{e}});         \(\backslash\)}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{group__RTEMSTestFrameworkImpl_gaf6c305b4834575c26af18ef63425bed7}\label{group__RTEMSTestFrameworkImpl_gaf6c305b4834575c26af18ef63425bed7}} 
+\index{RTEMS Test Framework Implementation@{RTEMS Test Framework Implementation}!T\_flags\_ne\_char@{T\_flags\_ne\_char}}
+\index{T\_flags\_ne\_char@{T\_flags\_ne\_char}!RTEMS Test Framework Implementation@{RTEMS Test Framework Implementation}}
+\subsubsection{\texorpdfstring{T\_flags\_ne\_char}{T\_flags\_ne\_char}}
+{\footnotesize\ttfamily \#define T\+\_\+flags\+\_\+ne\+\_\+char(\begin{DoxyParamCaption}\item[{}]{a,  }\item[{}]{\mbox{\hyperlink{sun4u_2tte_8h_a8b0b9ed08e0e18920ec2682f48228c27}{e}},  }\item[{}]{flags }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{                                   \(\backslash\)}
+\DoxyCodeLine{    static \textcolor{keyword}{const} \mbox{\hyperlink{structT__check__context}{T\_check\_context}} T\_check\_instance = \{        \(\backslash\)}
+\DoxyCodeLine{        T\_FILE\_NAME, \_\_LINE\_\_, flags \};             \(\backslash\)}
+\DoxyCodeLine{    T\_check\_ne\_char(a, \&T\_check\_instance, \mbox{\hyperlink{sun4u_2tlb_8h_a8b0b9ed08e0e18920ec2682f48228c27}{e}});          \(\backslash\)}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{group__RTEMSTestFrameworkImpl_ga7d0b28f07f28051e4b99bb6c25446a30}\label{group__RTEMSTestFrameworkImpl_ga7d0b28f07f28051e4b99bb6c25446a30}} 
+\index{RTEMS Test Framework Implementation@{RTEMS Test Framework Implementation}!T\_flags\_ne\_int@{T\_flags\_ne\_int}}
+\index{T\_flags\_ne\_int@{T\_flags\_ne\_int}!RTEMS Test Framework Implementation@{RTEMS Test Framework Implementation}}
+\subsubsection{\texorpdfstring{T\_flags\_ne\_int}{T\_flags\_ne\_int}}
+{\footnotesize\ttfamily \#define T\+\_\+flags\+\_\+ne\+\_\+int(\begin{DoxyParamCaption}\item[{}]{a,  }\item[{}]{\mbox{\hyperlink{sun4u_2tte_8h_a8b0b9ed08e0e18920ec2682f48228c27}{e}},  }\item[{}]{flags }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{                                   \(\backslash\)}
+\DoxyCodeLine{    static \textcolor{keyword}{const} \mbox{\hyperlink{structT__check__context}{T\_check\_context}} T\_check\_instance = \{        \(\backslash\)}
+\DoxyCodeLine{        T\_FILE\_NAME, \_\_LINE\_\_, flags \};             \(\backslash\)}
+\DoxyCodeLine{    T\_check\_ne\_int(a, \&T\_check\_instance, \mbox{\hyperlink{sun4u_2tlb_8h_a8b0b9ed08e0e18920ec2682f48228c27}{e}});           \(\backslash\)}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{group__RTEMSTestFrameworkImpl_ga212bf2c2b03aef498c2e0373e718b0cd}\label{group__RTEMSTestFrameworkImpl_ga212bf2c2b03aef498c2e0373e718b0cd}} 
+\index{RTEMS Test Framework Implementation@{RTEMS Test Framework Implementation}!T\_flags\_ne\_ll@{T\_flags\_ne\_ll}}
+\index{T\_flags\_ne\_ll@{T\_flags\_ne\_ll}!RTEMS Test Framework Implementation@{RTEMS Test Framework Implementation}}
+\subsubsection{\texorpdfstring{T\_flags\_ne\_ll}{T\_flags\_ne\_ll}}
+{\footnotesize\ttfamily \#define T\+\_\+flags\+\_\+ne\+\_\+ll(\begin{DoxyParamCaption}\item[{}]{a,  }\item[{}]{\mbox{\hyperlink{sun4u_2tte_8h_a8b0b9ed08e0e18920ec2682f48228c27}{e}},  }\item[{}]{flags }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{                                   \(\backslash\)}
+\DoxyCodeLine{    static \textcolor{keyword}{const} \mbox{\hyperlink{structT__check__context}{T\_check\_context}} T\_check\_instance = \{        \(\backslash\)}
+\DoxyCodeLine{        T\_FILE\_NAME, \_\_LINE\_\_, flags \};             \(\backslash\)}
+\DoxyCodeLine{    T\_check\_ne\_ll(a, \&T\_check\_instance, \mbox{\hyperlink{sun4u_2tlb_8h_a8b0b9ed08e0e18920ec2682f48228c27}{e}});                \(\backslash\)}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{group__RTEMSTestFrameworkImpl_gab94ed133f0977e0278f9e59e83f36db7}\label{group__RTEMSTestFrameworkImpl_gab94ed133f0977e0278f9e59e83f36db7}} 
+\index{RTEMS Test Framework Implementation@{RTEMS Test Framework Implementation}!T\_flags\_ne\_long@{T\_flags\_ne\_long}}
+\index{T\_flags\_ne\_long@{T\_flags\_ne\_long}!RTEMS Test Framework Implementation@{RTEMS Test Framework Implementation}}
+\subsubsection{\texorpdfstring{T\_flags\_ne\_long}{T\_flags\_ne\_long}}
+{\footnotesize\ttfamily \#define T\+\_\+flags\+\_\+ne\+\_\+long(\begin{DoxyParamCaption}\item[{}]{a,  }\item[{}]{\mbox{\hyperlink{sun4u_2tte_8h_a8b0b9ed08e0e18920ec2682f48228c27}{e}},  }\item[{}]{flags }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{                                   \(\backslash\)}
+\DoxyCodeLine{    static \textcolor{keyword}{const} \mbox{\hyperlink{structT__check__context}{T\_check\_context}} T\_check\_instance = \{        \(\backslash\)}
+\DoxyCodeLine{        T\_FILE\_NAME, \_\_LINE\_\_, flags \};             \(\backslash\)}
+\DoxyCodeLine{    T\_check\_ne\_long(a, \&T\_check\_instance, \mbox{\hyperlink{sun4u_2tlb_8h_a8b0b9ed08e0e18920ec2682f48228c27}{e}});          \(\backslash\)}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{group__RTEMSTestFrameworkImpl_ga54ee2cfb4254e81235d7f4cc8e56d5ed}\label{group__RTEMSTestFrameworkImpl_ga54ee2cfb4254e81235d7f4cc8e56d5ed}} 
+\index{RTEMS Test Framework Implementation@{RTEMS Test Framework Implementation}!T\_flags\_ne\_mem@{T\_flags\_ne\_mem}}
+\index{T\_flags\_ne\_mem@{T\_flags\_ne\_mem}!RTEMS Test Framework Implementation@{RTEMS Test Framework Implementation}}
+\subsubsection{\texorpdfstring{T\_flags\_ne\_mem}{T\_flags\_ne\_mem}}
+{\footnotesize\ttfamily \#define T\+\_\+flags\+\_\+ne\+\_\+mem(\begin{DoxyParamCaption}\item[{}]{a,  }\item[{}]{\mbox{\hyperlink{sun4u_2tte_8h_a8b0b9ed08e0e18920ec2682f48228c27}{e}},  }\item[{}]{n,  }\item[{}]{flags,  }\item[{}]{sa,  }\item[{}]{se,  }\item[{}]{sn }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{                                   \(\backslash\)}
+\DoxyCodeLine{    static \textcolor{keyword}{const} \mbox{\hyperlink{structT__check__context__msg}{T\_check\_context\_msg}} T\_check\_instance = \{        \(\backslash\)}
+\DoxyCodeLine{        \{ T\_FILE\_NAME, \_\_LINE\_\_, flags \},               \(\backslash\)}
+\DoxyCodeLine{        \textcolor{stringliteral}{"memcmp("} sa \textcolor{stringliteral}{", "} se \textcolor{stringliteral}{", "} sn \textcolor{stringliteral}{") != 0"} \};            \(\backslash\)}
+\DoxyCodeLine{    T\_check\_ne\_mem(a, \&T\_check\_instance, \mbox{\hyperlink{sun4u_2tlb_8h_a8b0b9ed08e0e18920ec2682f48228c27}{e}}, n);            \(\backslash\)}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{group__RTEMSTestFrameworkImpl_gab3e0cb9ce4ab37e737a5de24a9794ce0}\label{group__RTEMSTestFrameworkImpl_gab3e0cb9ce4ab37e737a5de24a9794ce0}} 
+\index{RTEMS Test Framework Implementation@{RTEMS Test Framework Implementation}!T\_flags\_ne\_nstr@{T\_flags\_ne\_nstr}}
+\index{T\_flags\_ne\_nstr@{T\_flags\_ne\_nstr}!RTEMS Test Framework Implementation@{RTEMS Test Framework Implementation}}
+\subsubsection{\texorpdfstring{T\_flags\_ne\_nstr}{T\_flags\_ne\_nstr}}
+{\footnotesize\ttfamily \#define T\+\_\+flags\+\_\+ne\+\_\+nstr(\begin{DoxyParamCaption}\item[{}]{a,  }\item[{}]{\mbox{\hyperlink{sun4u_2tte_8h_a8b0b9ed08e0e18920ec2682f48228c27}{e}},  }\item[{}]{n,  }\item[{}]{flags }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{                                   \(\backslash\)}
+\DoxyCodeLine{    static \textcolor{keyword}{const} \mbox{\hyperlink{structT__check__context}{T\_check\_context}} T\_check\_instance = \{        \(\backslash\)}
+\DoxyCodeLine{        T\_FILE\_NAME, \_\_LINE\_\_, flags \};             \(\backslash\)}
+\DoxyCodeLine{    T\_check\_ne\_nstr(a, \&T\_check\_instance, \mbox{\hyperlink{sun4u_2tlb_8h_a8b0b9ed08e0e18920ec2682f48228c27}{e}}, n);           \(\backslash\)}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{group__RTEMSTestFrameworkImpl_gaee32d2dee7bc9c11bf60096aba130c95}\label{group__RTEMSTestFrameworkImpl_gaee32d2dee7bc9c11bf60096aba130c95}} 
+\index{RTEMS Test Framework Implementation@{RTEMS Test Framework Implementation}!T\_flags\_ne\_ptr@{T\_flags\_ne\_ptr}}
+\index{T\_flags\_ne\_ptr@{T\_flags\_ne\_ptr}!RTEMS Test Framework Implementation@{RTEMS Test Framework Implementation}}
+\subsubsection{\texorpdfstring{T\_flags\_ne\_ptr}{T\_flags\_ne\_ptr}}
+{\footnotesize\ttfamily \#define T\+\_\+flags\+\_\+ne\+\_\+ptr(\begin{DoxyParamCaption}\item[{}]{a,  }\item[{}]{\mbox{\hyperlink{sun4u_2tte_8h_a8b0b9ed08e0e18920ec2682f48228c27}{e}},  }\item[{}]{flags,  }\item[{}]{sa,  }\item[{}]{se }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{                                   \(\backslash\)}
+\DoxyCodeLine{    static \textcolor{keyword}{const} \mbox{\hyperlink{structT__check__context__msg}{T\_check\_context\_msg}} T\_check\_instance = \{        \(\backslash\)}
+\DoxyCodeLine{        \{ T\_FILE\_NAME, \_\_LINE\_\_, flags \}, sa \textcolor{stringliteral}{" != "} se \};       \(\backslash\)}
+\DoxyCodeLine{    T\_check\_ne\_ptr(a, \&T\_check\_instance, \mbox{\hyperlink{sun4u_2tlb_8h_a8b0b9ed08e0e18920ec2682f48228c27}{e}});           \(\backslash\)}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{group__RTEMSTestFrameworkImpl_ga78bd0c4e18f36f7d7ba45fa54686d86b}\label{group__RTEMSTestFrameworkImpl_ga78bd0c4e18f36f7d7ba45fa54686d86b}} 
+\index{RTEMS Test Framework Implementation@{RTEMS Test Framework Implementation}!T\_flags\_ne\_str@{T\_flags\_ne\_str}}
+\index{T\_flags\_ne\_str@{T\_flags\_ne\_str}!RTEMS Test Framework Implementation@{RTEMS Test Framework Implementation}}
+\subsubsection{\texorpdfstring{T\_flags\_ne\_str}{T\_flags\_ne\_str}}
+{\footnotesize\ttfamily \#define T\+\_\+flags\+\_\+ne\+\_\+str(\begin{DoxyParamCaption}\item[{}]{a,  }\item[{}]{\mbox{\hyperlink{sun4u_2tte_8h_a8b0b9ed08e0e18920ec2682f48228c27}{e}},  }\item[{}]{flags }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{                                   \(\backslash\)}
+\DoxyCodeLine{    static \textcolor{keyword}{const} \mbox{\hyperlink{structT__check__context}{T\_check\_context}} T\_check\_instance = \{        \(\backslash\)}
+\DoxyCodeLine{        T\_FILE\_NAME, \_\_LINE\_\_, flags \};             \(\backslash\)}
+\DoxyCodeLine{    T\_check\_ne\_str(a, \&T\_check\_instance, \mbox{\hyperlink{sun4u_2tlb_8h_a8b0b9ed08e0e18920ec2682f48228c27}{e}});           \(\backslash\)}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{group__RTEMSTestFrameworkImpl_ga3eab9c512228017f3fb2124537f83613}\label{group__RTEMSTestFrameworkImpl_ga3eab9c512228017f3fb2124537f83613}} 
+\index{RTEMS Test Framework Implementation@{RTEMS Test Framework Implementation}!T\_flags\_ne\_uint@{T\_flags\_ne\_uint}}
+\index{T\_flags\_ne\_uint@{T\_flags\_ne\_uint}!RTEMS Test Framework Implementation@{RTEMS Test Framework Implementation}}
+\subsubsection{\texorpdfstring{T\_flags\_ne\_uint}{T\_flags\_ne\_uint}}
+{\footnotesize\ttfamily \#define T\+\_\+flags\+\_\+ne\+\_\+uint(\begin{DoxyParamCaption}\item[{}]{a,  }\item[{}]{\mbox{\hyperlink{sun4u_2tte_8h_a8b0b9ed08e0e18920ec2682f48228c27}{e}},  }\item[{}]{flags }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{                                   \(\backslash\)}
+\DoxyCodeLine{    static \textcolor{keyword}{const} \mbox{\hyperlink{structT__check__context}{T\_check\_context}} T\_check\_instance = \{        \(\backslash\)}
+\DoxyCodeLine{        T\_FILE\_NAME, \_\_LINE\_\_, flags \};             \(\backslash\)}
+\DoxyCodeLine{    T\_check\_ne\_uint(a, \&T\_check\_instance, \mbox{\hyperlink{sun4u_2tlb_8h_a8b0b9ed08e0e18920ec2682f48228c27}{e}});          \(\backslash\)}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{group__RTEMSTestFrameworkImpl_gad49d7ac642fa1d5e757fcb086ec60fd0}\label{group__RTEMSTestFrameworkImpl_gad49d7ac642fa1d5e757fcb086ec60fd0}} 
+\index{RTEMS Test Framework Implementation@{RTEMS Test Framework Implementation}!T\_flags\_ne\_ull@{T\_flags\_ne\_ull}}
+\index{T\_flags\_ne\_ull@{T\_flags\_ne\_ull}!RTEMS Test Framework Implementation@{RTEMS Test Framework Implementation}}
+\subsubsection{\texorpdfstring{T\_flags\_ne\_ull}{T\_flags\_ne\_ull}}
+{\footnotesize\ttfamily \#define T\+\_\+flags\+\_\+ne\+\_\+ull(\begin{DoxyParamCaption}\item[{}]{a,  }\item[{}]{\mbox{\hyperlink{sun4u_2tte_8h_a8b0b9ed08e0e18920ec2682f48228c27}{e}},  }\item[{}]{flags }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{                                   \(\backslash\)}
+\DoxyCodeLine{    static \textcolor{keyword}{const} \mbox{\hyperlink{structT__check__context}{T\_check\_context}} T\_check\_instance = \{        \(\backslash\)}
+\DoxyCodeLine{        T\_FILE\_NAME, \_\_LINE\_\_, flags \};             \(\backslash\)}
+\DoxyCodeLine{    T\_check\_ne\_ull(a, \&T\_check\_instance, \mbox{\hyperlink{sun4u_2tlb_8h_a8b0b9ed08e0e18920ec2682f48228c27}{e}});           \(\backslash\)}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{group__RTEMSTestFrameworkImpl_ga02a802a52c40878025b764b36d4f342f}\label{group__RTEMSTestFrameworkImpl_ga02a802a52c40878025b764b36d4f342f}} 
+\index{RTEMS Test Framework Implementation@{RTEMS Test Framework Implementation}!T\_flags\_ne\_ulong@{T\_flags\_ne\_ulong}}
+\index{T\_flags\_ne\_ulong@{T\_flags\_ne\_ulong}!RTEMS Test Framework Implementation@{RTEMS Test Framework Implementation}}
+\subsubsection{\texorpdfstring{T\_flags\_ne\_ulong}{T\_flags\_ne\_ulong}}
+{\footnotesize\ttfamily \#define T\+\_\+flags\+\_\+ne\+\_\+ulong(\begin{DoxyParamCaption}\item[{}]{a,  }\item[{}]{\mbox{\hyperlink{sun4u_2tte_8h_a8b0b9ed08e0e18920ec2682f48228c27}{e}},  }\item[{}]{flags }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{                                   \(\backslash\)}
+\DoxyCodeLine{    static \textcolor{keyword}{const} \mbox{\hyperlink{structT__check__context}{T\_check\_context}} T\_check\_instance = \{        \(\backslash\)}
+\DoxyCodeLine{        T\_FILE\_NAME, \_\_LINE\_\_, flags \};             \(\backslash\)}
+\DoxyCodeLine{    T\_check\_ne\_ulong(a, \&T\_check\_instance, \mbox{\hyperlink{sun4u_2tlb_8h_a8b0b9ed08e0e18920ec2682f48228c27}{e}});         \(\backslash\)}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{group__RTEMSTestFrameworkImpl_gab4cc2e4650fc8ee1a5b08edadec8b3b8}\label{group__RTEMSTestFrameworkImpl_gab4cc2e4650fc8ee1a5b08edadec8b3b8}} 
+\index{RTEMS Test Framework Implementation@{RTEMS Test Framework Implementation}!T\_flags\_not\_null@{T\_flags\_not\_null}}
+\index{T\_flags\_not\_null@{T\_flags\_not\_null}!RTEMS Test Framework Implementation@{RTEMS Test Framework Implementation}}
+\subsubsection{\texorpdfstring{T\_flags\_not\_null}{T\_flags\_not\_null}}
+{\footnotesize\ttfamily \#define T\+\_\+flags\+\_\+not\+\_\+null(\begin{DoxyParamCaption}\item[{}]{a,  }\item[{}]{flags,  }\item[{}]{sa }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{                                   \(\backslash\)}
+\DoxyCodeLine{    static \textcolor{keyword}{const} \mbox{\hyperlink{structT__check__context__msg}{T\_check\_context\_msg}} T\_check\_instance = \{        \(\backslash\)}
+\DoxyCodeLine{        \{ T\_FILE\_NAME, \_\_LINE\_\_, flags \}, sa \};         \(\backslash\)}
+\DoxyCodeLine{    T\_check\_not\_null(a, \&T\_check\_instance);             \(\backslash\)}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{group__RTEMSTestFrameworkImpl_gaa4918e831d7507eb1d4ed796301f3b28}\label{group__RTEMSTestFrameworkImpl_gaa4918e831d7507eb1d4ed796301f3b28}} 
+\index{RTEMS Test Framework Implementation@{RTEMS Test Framework Implementation}!T\_flags\_null@{T\_flags\_null}}
+\index{T\_flags\_null@{T\_flags\_null}!RTEMS Test Framework Implementation@{RTEMS Test Framework Implementation}}
+\subsubsection{\texorpdfstring{T\_flags\_null}{T\_flags\_null}}
+{\footnotesize\ttfamily \#define T\+\_\+flags\+\_\+null(\begin{DoxyParamCaption}\item[{}]{a,  }\item[{}]{flags,  }\item[{}]{sa }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{                                   \(\backslash\)}
+\DoxyCodeLine{    static \textcolor{keyword}{const} \mbox{\hyperlink{structT__check__context__msg}{T\_check\_context\_msg}} T\_check\_instance = \{        \(\backslash\)}
+\DoxyCodeLine{        \{ T\_FILE\_NAME, \_\_LINE\_\_, flags \}, sa \};         \(\backslash\)}
+\DoxyCodeLine{    T\_check\_null(a, \&T\_check\_instance);             \(\backslash\)}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{group__RTEMSTestFrameworkImpl_ga9c01d948908f45d1748b7e25cfd65de1}\label{group__RTEMSTestFrameworkImpl_ga9c01d948908f45d1748b7e25cfd65de1}} 
+\index{RTEMS Test Framework Implementation@{RTEMS Test Framework Implementation}!T\_flags\_psx\_error@{T\_flags\_psx\_error}}
+\index{T\_flags\_psx\_error@{T\_flags\_psx\_error}!RTEMS Test Framework Implementation@{RTEMS Test Framework Implementation}}
+\subsubsection{\texorpdfstring{T\_flags\_psx\_error}{T\_flags\_psx\_error}}
+{\footnotesize\ttfamily \#define T\+\_\+flags\+\_\+psx\+\_\+error(\begin{DoxyParamCaption}\item[{}]{a,  }\item[{}]{eno,  }\item[{}]{flags }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{                                   \(\backslash\)}
+\DoxyCodeLine{    static \textcolor{keyword}{const} \mbox{\hyperlink{structT__check__context}{T\_check\_context}} T\_check\_instance = \{        \(\backslash\)}
+\DoxyCodeLine{        T\_FILE\_NAME, \_\_LINE\_\_, flags \};             \(\backslash\)}
+\DoxyCodeLine{    T\_check\_psx\_error(a, \&T\_check\_instance, eno);           \(\backslash\)}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{group__RTEMSTestFrameworkImpl_gaacaf198502e4ca5b533f22c78e004234}\label{group__RTEMSTestFrameworkImpl_gaacaf198502e4ca5b533f22c78e004234}} 
+\index{RTEMS Test Framework Implementation@{RTEMS Test Framework Implementation}!T\_flags\_psx\_success@{T\_flags\_psx\_success}}
+\index{T\_flags\_psx\_success@{T\_flags\_psx\_success}!RTEMS Test Framework Implementation@{RTEMS Test Framework Implementation}}
+\subsubsection{\texorpdfstring{T\_flags\_psx\_success}{T\_flags\_psx\_success}}
+{\footnotesize\ttfamily \#define T\+\_\+flags\+\_\+psx\+\_\+success(\begin{DoxyParamCaption}\item[{}]{a,  }\item[{}]{flags }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{                                   \(\backslash\)}
+\DoxyCodeLine{    static \textcolor{keyword}{const} \mbox{\hyperlink{structT__check__context}{T\_check\_context}} T\_check\_instance = \{        \(\backslash\)}
+\DoxyCodeLine{        T\_FILE\_NAME, \_\_LINE\_\_, flags \};             \(\backslash\)}
+\DoxyCodeLine{    T\_check\_psx\_success(a, \&T\_check\_instance);          \(\backslash\)}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{group__RTEMSTestFrameworkImpl_ga9536e4fe2d83f2432118f96bbca3ec04}\label{group__RTEMSTestFrameworkImpl_ga9536e4fe2d83f2432118f96bbca3ec04}} 
+\index{RTEMS Test Framework Implementation@{RTEMS Test Framework Implementation}!T\_flags\_true@{T\_flags\_true}}
+\index{T\_flags\_true@{T\_flags\_true}!RTEMS Test Framework Implementation@{RTEMS Test Framework Implementation}}
+\subsubsection{\texorpdfstring{T\_flags\_true}{T\_flags\_true}}
+{\footnotesize\ttfamily \#define T\+\_\+flags\+\_\+true(\begin{DoxyParamCaption}\item[{}]{a,  }\item[{}]{flags,  }\item[{}]{... }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{                                   \(\backslash\)}
+\DoxyCodeLine{    static \textcolor{keyword}{const} \mbox{\hyperlink{structT__check__context}{T\_check\_context}} T\_check\_instance = \{        \(\backslash\)}
+\DoxyCodeLine{        T\_FILE\_NAME, \_\_LINE\_\_, flags \};             \(\backslash\)}
+\DoxyCodeLine{    T\_check\_true(a, \&T\_check\_instance, \_\_VA\_ARGS\_\_);        \(\backslash\)}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}

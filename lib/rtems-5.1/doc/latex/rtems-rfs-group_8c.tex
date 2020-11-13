@@ -1,0 +1,188 @@
+\hypertarget{rtems-rfs-group_8c}{}\section{cpukit/libfs/src/rfs/rtems-\/rfs-\/group.c File Reference}
+\label{rtems-rfs-group_8c}\index{cpukit/libfs/src/rfs/rtems-\/rfs-\/group.c@{cpukit/libfs/src/rfs/rtems-\/rfs-\/group.c}}
+
+
+R\+T\+E\+MS File Systems Group Routines.  
+
+
+{\ttfamily \#include $<$inttypes.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/rfs/rtems-\/rfs-\/file-\/system.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/rfs/rtems-\/rfs-\/group.\+h$>$}\newline
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{rtems-rfs-group_8c_ac8ab81ba00e5100d7f755ff951b28a83}{rtems\+\_\+rfs\+\_\+group\+\_\+open}} (\mbox{\hyperlink{struct__rtems__rfs__file__system}{rtems\+\_\+rfs\+\_\+file\+\_\+system}} $\ast$fs, \mbox{\hyperlink{rtems-rfs-buffer_8h_a5650d53328a5af0a78198fe780aec043}{rtems\+\_\+rfs\+\_\+buffer\+\_\+block}} base, size\+\_\+t \mbox{\hyperlink{sun4u_2tte_8h_a245260f6f74972558f61b85227df5aae}{size}}, size\+\_\+t inodes, \mbox{\hyperlink{group__rtems__rfs_ga0e7b27c60e21039ef07a8c843fa8a3e5}{rtems\+\_\+rfs\+\_\+group}} $\ast$group)
+\begin{DoxyCompactList}\small\item\em Open a group. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{rtems-rfs-group_8c_a5f2a47d06d6a8209b182348b7b38f91d}{rtems\+\_\+rfs\+\_\+group\+\_\+close}} (\mbox{\hyperlink{struct__rtems__rfs__file__system}{rtems\+\_\+rfs\+\_\+file\+\_\+system}} $\ast$fs, \mbox{\hyperlink{group__rtems__rfs_ga0e7b27c60e21039ef07a8c843fa8a3e5}{rtems\+\_\+rfs\+\_\+group}} $\ast$group)
+\begin{DoxyCompactList}\small\item\em Close a group. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{rtems-rfs-group_8c_a41c38f1d939cf04cad27dde05f52c394}{rtems\+\_\+rfs\+\_\+group\+\_\+bitmap\+\_\+alloc}} (\mbox{\hyperlink{struct__rtems__rfs__file__system}{rtems\+\_\+rfs\+\_\+file\+\_\+system}} $\ast$fs, \mbox{\hyperlink{rtems-rfs-bitmaps_8h_acc1b0aefe1b090890ccbc1b05279a78e}{rtems\+\_\+rfs\+\_\+bitmap\+\_\+bit}} goal, bool inode, \mbox{\hyperlink{rtems-rfs-bitmaps_8h_acc1b0aefe1b090890ccbc1b05279a78e}{rtems\+\_\+rfs\+\_\+bitmap\+\_\+bit}} $\ast$result)
+\begin{DoxyCompactList}\small\item\em Allocate an inode or block. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{rtems-rfs-group_8c_a00a3fb9f49f96fbef91adf13ae1622b7}{rtems\+\_\+rfs\+\_\+group\+\_\+bitmap\+\_\+free}} (\mbox{\hyperlink{struct__rtems__rfs__file__system}{rtems\+\_\+rfs\+\_\+file\+\_\+system}} $\ast$fs, bool inode, \mbox{\hyperlink{rtems-rfs-bitmaps_8h_acc1b0aefe1b090890ccbc1b05279a78e}{rtems\+\_\+rfs\+\_\+bitmap\+\_\+bit}} no)
+\begin{DoxyCompactList}\small\item\em Free the group allocated bit. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{rtems-rfs-group_8c_a5d4dab0178595df6610b29601dd67a01}{rtems\+\_\+rfs\+\_\+group\+\_\+bitmap\+\_\+test}} (\mbox{\hyperlink{struct__rtems__rfs__file__system}{rtems\+\_\+rfs\+\_\+file\+\_\+system}} $\ast$fs, bool inode, \mbox{\hyperlink{rtems-rfs-bitmaps_8h_acc1b0aefe1b090890ccbc1b05279a78e}{rtems\+\_\+rfs\+\_\+bitmap\+\_\+bit}} no, bool $\ast$state)
+\begin{DoxyCompactList}\small\item\em Test the group allocated bit. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{rtems-rfs-group_8c_a6f33253a6d629c7c2300b82fb21c4558}{rtems\+\_\+rfs\+\_\+group\+\_\+usage}} (\mbox{\hyperlink{struct__rtems__rfs__file__system}{rtems\+\_\+rfs\+\_\+file\+\_\+system}} $\ast$fs, size\+\_\+t $\ast$blocks, size\+\_\+t $\ast$inodes)
+\begin{DoxyCompactList}\small\item\em Determine the number of blocks and inodes used. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+R\+T\+E\+MS File Systems Group Routines. 
+
+These functions open and close a group as well as manage bit allocations within a group. 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{rtems-rfs-group_8c_a41c38f1d939cf04cad27dde05f52c394}\label{rtems-rfs-group_8c_a41c38f1d939cf04cad27dde05f52c394}} 
+\index{rtems-\/rfs-\/group.c@{rtems-\/rfs-\/group.c}!rtems\_rfs\_group\_bitmap\_alloc@{rtems\_rfs\_group\_bitmap\_alloc}}
+\index{rtems\_rfs\_group\_bitmap\_alloc@{rtems\_rfs\_group\_bitmap\_alloc}!rtems-\/rfs-\/group.c@{rtems-\/rfs-\/group.c}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_group\_bitmap\_alloc()}{rtems\_rfs\_group\_bitmap\_alloc()}}
+{\footnotesize\ttfamily int rtems\+\_\+rfs\+\_\+group\+\_\+bitmap\+\_\+alloc (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__rtems__rfs__file__system}{rtems\+\_\+rfs\+\_\+file\+\_\+system}} $\ast$}]{fs,  }\item[{\mbox{\hyperlink{rtems-rfs-bitmaps_8h_acc1b0aefe1b090890ccbc1b05279a78e}{rtems\+\_\+rfs\+\_\+bitmap\+\_\+bit}}}]{goal,  }\item[{bool}]{inode,  }\item[{\mbox{\hyperlink{rtems-rfs-bitmaps_8h_acc1b0aefe1b090890ccbc1b05279a78e}{rtems\+\_\+rfs\+\_\+bitmap\+\_\+bit}} $\ast$}]{result }\end{DoxyParamCaption})}
+
+
+
+Allocate an inode or block. 
+
+The groups are searched to find the next available inode or block.
+
+
+\begin{DoxyParams}{Parameters}
+{\em fs} & The file system data. \\
+\hline
+{\em goal} & The goal to seed the bitmap search. \\
+\hline
+{\em inode} & If true allocate an inode else allocate a block. \\
+\hline
+{\em result} & The allocated bit in the bitmap. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em int} & The error number (errno). No error if 0. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{rtems-rfs-group_8c_a00a3fb9f49f96fbef91adf13ae1622b7}\label{rtems-rfs-group_8c_a00a3fb9f49f96fbef91adf13ae1622b7}} 
+\index{rtems-\/rfs-\/group.c@{rtems-\/rfs-\/group.c}!rtems\_rfs\_group\_bitmap\_free@{rtems\_rfs\_group\_bitmap\_free}}
+\index{rtems\_rfs\_group\_bitmap\_free@{rtems\_rfs\_group\_bitmap\_free}!rtems-\/rfs-\/group.c@{rtems-\/rfs-\/group.c}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_group\_bitmap\_free()}{rtems\_rfs\_group\_bitmap\_free()}}
+{\footnotesize\ttfamily int rtems\+\_\+rfs\+\_\+group\+\_\+bitmap\+\_\+free (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__rtems__rfs__file__system}{rtems\+\_\+rfs\+\_\+file\+\_\+system}} $\ast$}]{fs,  }\item[{bool}]{inode,  }\item[{\mbox{\hyperlink{rtems-rfs-bitmaps_8h_acc1b0aefe1b090890ccbc1b05279a78e}{rtems\+\_\+rfs\+\_\+bitmap\+\_\+bit}}}]{no }\end{DoxyParamCaption})}
+
+
+
+Free the group allocated bit. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em fs} & The file system data. \\
+\hline
+{\em inode} & If true the number to free is an inode else it is a block. \\
+\hline
+{\em block} & The inode or block number to free. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em int} & The error number (errno). No error if 0. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{rtems-rfs-group_8c_a5d4dab0178595df6610b29601dd67a01}\label{rtems-rfs-group_8c_a5d4dab0178595df6610b29601dd67a01}} 
+\index{rtems-\/rfs-\/group.c@{rtems-\/rfs-\/group.c}!rtems\_rfs\_group\_bitmap\_test@{rtems\_rfs\_group\_bitmap\_test}}
+\index{rtems\_rfs\_group\_bitmap\_test@{rtems\_rfs\_group\_bitmap\_test}!rtems-\/rfs-\/group.c@{rtems-\/rfs-\/group.c}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_group\_bitmap\_test()}{rtems\_rfs\_group\_bitmap\_test()}}
+{\footnotesize\ttfamily int rtems\+\_\+rfs\+\_\+group\+\_\+bitmap\+\_\+test (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__rtems__rfs__file__system}{rtems\+\_\+rfs\+\_\+file\+\_\+system}} $\ast$}]{fs,  }\item[{bool}]{inode,  }\item[{\mbox{\hyperlink{rtems-rfs-bitmaps_8h_acc1b0aefe1b090890ccbc1b05279a78e}{rtems\+\_\+rfs\+\_\+bitmap\+\_\+bit}}}]{no,  }\item[{bool $\ast$}]{state }\end{DoxyParamCaption})}
+
+
+
+Test the group allocated bit. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em fs} & The file system data. \\
+\hline
+{\em inode} & If true the number to free is an inode else it is a block. \\
+\hline
+{\em block} & The inode or block number to free. \\
+\hline
+{\em state} & Return the state of the bit. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em int} & The error number (errno). No error if 0. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{rtems-rfs-group_8c_a5f2a47d06d6a8209b182348b7b38f91d}\label{rtems-rfs-group_8c_a5f2a47d06d6a8209b182348b7b38f91d}} 
+\index{rtems-\/rfs-\/group.c@{rtems-\/rfs-\/group.c}!rtems\_rfs\_group\_close@{rtems\_rfs\_group\_close}}
+\index{rtems\_rfs\_group\_close@{rtems\_rfs\_group\_close}!rtems-\/rfs-\/group.c@{rtems-\/rfs-\/group.c}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_group\_close()}{rtems\_rfs\_group\_close()}}
+{\footnotesize\ttfamily int rtems\+\_\+rfs\+\_\+group\+\_\+close (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__rtems__rfs__file__system}{rtems\+\_\+rfs\+\_\+file\+\_\+system}} $\ast$}]{fs,  }\item[{\mbox{\hyperlink{group__rtems__rfs_ga0e7b27c60e21039ef07a8c843fa8a3e5}{rtems\+\_\+rfs\+\_\+group}} $\ast$}]{group }\end{DoxyParamCaption})}
+
+
+
+Close a group. 
+
+Release all resources the group holds.
+
+
+\begin{DoxyParams}{Parameters}
+{\em fs} & The file system. \\
+\hline
+{\em group} & The group to close. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em int} & The error number (errno). No error if 0. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{rtems-rfs-group_8c_ac8ab81ba00e5100d7f755ff951b28a83}\label{rtems-rfs-group_8c_ac8ab81ba00e5100d7f755ff951b28a83}} 
+\index{rtems-\/rfs-\/group.c@{rtems-\/rfs-\/group.c}!rtems\_rfs\_group\_open@{rtems\_rfs\_group\_open}}
+\index{rtems\_rfs\_group\_open@{rtems\_rfs\_group\_open}!rtems-\/rfs-\/group.c@{rtems-\/rfs-\/group.c}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_group\_open()}{rtems\_rfs\_group\_open()}}
+{\footnotesize\ttfamily int rtems\+\_\+rfs\+\_\+group\+\_\+open (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__rtems__rfs__file__system}{rtems\+\_\+rfs\+\_\+file\+\_\+system}} $\ast$}]{fs,  }\item[{\mbox{\hyperlink{rtems-rfs-buffer_8h_a5650d53328a5af0a78198fe780aec043}{rtems\+\_\+rfs\+\_\+buffer\+\_\+block}}}]{base,  }\item[{size\+\_\+t}]{size,  }\item[{size\+\_\+t}]{inodes,  }\item[{\mbox{\hyperlink{group__rtems__rfs_ga0e7b27c60e21039ef07a8c843fa8a3e5}{rtems\+\_\+rfs\+\_\+group}} $\ast$}]{group }\end{DoxyParamCaption})}
+
+
+
+Open a group. 
+
+Allocate all the resources including the bitmaps.
+
+
+\begin{DoxyParams}{Parameters}
+{\em fs} & The file system. \\
+\hline
+{\em base} & The base block number. \\
+\hline
+{\em size} & The number of blocks in the group. \\
+\hline
+{\em group} & Reference to the group to open. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em int} & The error number (errno). No error if 0. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{rtems-rfs-group_8c_a6f33253a6d629c7c2300b82fb21c4558}\label{rtems-rfs-group_8c_a6f33253a6d629c7c2300b82fb21c4558}} 
+\index{rtems-\/rfs-\/group.c@{rtems-\/rfs-\/group.c}!rtems\_rfs\_group\_usage@{rtems\_rfs\_group\_usage}}
+\index{rtems\_rfs\_group\_usage@{rtems\_rfs\_group\_usage}!rtems-\/rfs-\/group.c@{rtems-\/rfs-\/group.c}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_group\_usage()}{rtems\_rfs\_group\_usage()}}
+{\footnotesize\ttfamily int rtems\+\_\+rfs\+\_\+group\+\_\+usage (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__rtems__rfs__file__system}{rtems\+\_\+rfs\+\_\+file\+\_\+system}} $\ast$}]{fs,  }\item[{size\+\_\+t $\ast$}]{blocks,  }\item[{size\+\_\+t $\ast$}]{inodes }\end{DoxyParamCaption})}
+
+
+
+Determine the number of blocks and inodes used. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em fs} & The file system data. \\
+\hline
+{\em blocks} & The number of blocks used. \\
+\hline
+{\em inodes} & The number of inodes used. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em int} & The error number (errno). No error if 0. \\
+\hline
+\end{DoxyRetVals}

@@ -1,0 +1,261 @@
+\hypertarget{arm_2altera-cyclone-v_2rtc_2rtc_8c}{}\section{bsps/arm/altera-\/cyclone-\/v/rtc/rtc.c File Reference}
+\label{arm_2altera-cyclone-v_2rtc_2rtc_8c}\index{bsps/arm/altera-\/cyclone-\/v/rtc/rtc.c@{bsps/arm/altera-\/cyclone-\/v/rtc/rtc.c}}
+{\ttfamily \#include $<$libchip/rtc.\+h$>$}\newline
+{\ttfamily \#include $<$assert.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/score/todimpl.\+h$>$}\newline
+{\ttfamily \#include $<$sys/filio.\+h$>$}\newline
+{\ttfamily \#include $<$fcntl.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include $<$bsp/i2cdrv.\+h$>$}\newline
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structds1339__time__t}{ds1339\+\_\+time\+\_\+t}}
+\item 
+struct \mbox{\hyperlink{structm41st87__time__t}{m41st87\+\_\+time\+\_\+t}}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{arm_2altera-cyclone-v_2rtc_2rtc_8c_a931161e479bd6482a59a1457700a0d03}\label{arm_2altera-cyclone-v_2rtc_2rtc_8c_a931161e479bd6482a59a1457700a0d03}} 
+\#define {\bfseries A\+L\+T\+E\+R\+A\+\_\+\+C\+Y\+C\+L\+O\+N\+E\+\_\+\+V\+\_\+\+R\+T\+C\+\_\+\+N\+U\+M\+B\+ER}~2
+\item 
+\mbox{\Hypertarget{arm_2altera-cyclone-v_2rtc_2rtc_8c_ab18ff61c373e51f7310df5c7705c37b4}\label{arm_2altera-cyclone-v_2rtc_2rtc_8c_ab18ff61c373e51f7310df5c7705c37b4}} 
+\#define {\bfseries D\+S1339\+\_\+\+I2\+C\+\_\+\+A\+D\+D\+R\+E\+SS}~(0x\+D0 $>$$>$ 1)  /$\ast$ 7-\/bit addressing! $\ast$/
+\item 
+\mbox{\Hypertarget{arm_2altera-cyclone-v_2rtc_2rtc_8c_ab72b803ea5e582784bcbd4b18c8db807}\label{arm_2altera-cyclone-v_2rtc_2rtc_8c_ab72b803ea5e582784bcbd4b18c8db807}} 
+\#define {\bfseries D\+S1339\+\_\+\+I2\+C\+\_\+\+B\+U\+S\+\_\+\+D\+E\+V\+I\+CE}~\char`\"{}/dev/i2c0\char`\"{}
+\item 
+\mbox{\Hypertarget{arm_2altera-cyclone-v_2rtc_2rtc_8c_a7c12d4af639bd2e5f5f50ae3d5fcaca7}\label{arm_2altera-cyclone-v_2rtc_2rtc_8c_a7c12d4af639bd2e5f5f50ae3d5fcaca7}} 
+\#define {\bfseries D\+S1339\+\_\+\+A\+D\+D\+R\+\_\+\+T\+I\+ME}~0x00
+\item 
+\mbox{\Hypertarget{arm_2altera-cyclone-v_2rtc_2rtc_8c_ae7e39bedf440aa44d298c6fc975e3e2a}\label{arm_2altera-cyclone-v_2rtc_2rtc_8c_ae7e39bedf440aa44d298c6fc975e3e2a}} 
+\#define {\bfseries D\+S1339\+\_\+\+A\+D\+D\+R\+\_\+\+C\+T\+RL}~0x0E
+\item 
+\mbox{\Hypertarget{arm_2altera-cyclone-v_2rtc_2rtc_8c_a00d2b832af35bcb5cfc1d689d5a5fae9}\label{arm_2altera-cyclone-v_2rtc_2rtc_8c_a00d2b832af35bcb5cfc1d689d5a5fae9}} 
+\#define {\bfseries D\+S1339\+\_\+\+C\+T\+R\+L\+\_\+\+E\+O\+SC}~0x80
+\item 
+\mbox{\Hypertarget{arm_2altera-cyclone-v_2rtc_2rtc_8c_ab727ed75cb39e703785b9b875d6cf3ea}\label{arm_2altera-cyclone-v_2rtc_2rtc_8c_ab727ed75cb39e703785b9b875d6cf3ea}} 
+\#define {\bfseries D\+S1339\+\_\+\+C\+T\+R\+L\+\_\+\+B\+B\+S\+QI}~0x20
+\item 
+\mbox{\Hypertarget{arm_2altera-cyclone-v_2rtc_2rtc_8c_ac72e73467bb1ba9120eec51a916b730d}\label{arm_2altera-cyclone-v_2rtc_2rtc_8c_ac72e73467bb1ba9120eec51a916b730d}} 
+\#define {\bfseries D\+S1339\+\_\+\+C\+T\+R\+L\+\_\+\+R\+S2}~0x10
+\item 
+\mbox{\Hypertarget{arm_2altera-cyclone-v_2rtc_2rtc_8c_ad20d9cf46ec3c0c0b302f9fa9858dfe1}\label{arm_2altera-cyclone-v_2rtc_2rtc_8c_ad20d9cf46ec3c0c0b302f9fa9858dfe1}} 
+\#define {\bfseries D\+S1339\+\_\+\+C\+T\+R\+L\+\_\+\+R\+S1}~0x08
+\item 
+\mbox{\Hypertarget{arm_2altera-cyclone-v_2rtc_2rtc_8c_a5c121ca3a1062e7ca8d76e380c4d9907}\label{arm_2altera-cyclone-v_2rtc_2rtc_8c_a5c121ca3a1062e7ca8d76e380c4d9907}} 
+\#define {\bfseries D\+S1339\+\_\+\+C\+T\+R\+L\+\_\+\+I\+N\+T\+CN}~0x04
+\item 
+\mbox{\Hypertarget{arm_2altera-cyclone-v_2rtc_2rtc_8c_a0ce25bdb6d370ac8c8274194499e4d20}\label{arm_2altera-cyclone-v_2rtc_2rtc_8c_a0ce25bdb6d370ac8c8274194499e4d20}} 
+\#define {\bfseries D\+S1339\+\_\+\+C\+T\+R\+L\+\_\+\+A2\+IE}~0x02
+\item 
+\mbox{\Hypertarget{arm_2altera-cyclone-v_2rtc_2rtc_8c_a12f20c813d2c670646c08bb2b4ae98f8}\label{arm_2altera-cyclone-v_2rtc_2rtc_8c_a12f20c813d2c670646c08bb2b4ae98f8}} 
+\#define {\bfseries D\+S1339\+\_\+\+C\+T\+R\+L\+\_\+\+A1\+IE}~0x01
+\item 
+\mbox{\Hypertarget{arm_2altera-cyclone-v_2rtc_2rtc_8c_a5fc5e3a91ac9d7b0d87441c0f06a84a1}\label{arm_2altera-cyclone-v_2rtc_2rtc_8c_a5fc5e3a91ac9d7b0d87441c0f06a84a1}} 
+\#define {\bfseries D\+S1339\+\_\+\+C\+T\+R\+L\+\_\+\+D\+E\+F\+A\+U\+LT}~(0x00)
+\item 
+\mbox{\Hypertarget{arm_2altera-cyclone-v_2rtc_2rtc_8c_aa1ceba277d419b08d3b2c674c9e519f5}\label{arm_2altera-cyclone-v_2rtc_2rtc_8c_aa1ceba277d419b08d3b2c674c9e519f5}} 
+\#define {\bfseries D\+S1339\+\_\+\+A\+D\+D\+R\+\_\+\+S\+T\+A\+T\+US}~0x0F
+\item 
+\mbox{\Hypertarget{arm_2altera-cyclone-v_2rtc_2rtc_8c_adbead720f2aaac693c2c08900a733ca2}\label{arm_2altera-cyclone-v_2rtc_2rtc_8c_adbead720f2aaac693c2c08900a733ca2}} 
+\#define {\bfseries D\+S1339\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+O\+SF}~0x80
+\item 
+\mbox{\Hypertarget{arm_2altera-cyclone-v_2rtc_2rtc_8c_af9b1e9b3e549b1f355d0a5356a0790b9}\label{arm_2altera-cyclone-v_2rtc_2rtc_8c_af9b1e9b3e549b1f355d0a5356a0790b9}} 
+\#define {\bfseries D\+S1339\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+A2F}~0x02
+\item 
+\mbox{\Hypertarget{arm_2altera-cyclone-v_2rtc_2rtc_8c_aaef9056d62e524120416f0be4e8d46cd}\label{arm_2altera-cyclone-v_2rtc_2rtc_8c_aaef9056d62e524120416f0be4e8d46cd}} 
+\#define {\bfseries D\+S1339\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+A1F}~0x01
+\item 
+\mbox{\Hypertarget{arm_2altera-cyclone-v_2rtc_2rtc_8c_a6090882024641e94b4cc17df23cde127}\label{arm_2altera-cyclone-v_2rtc_2rtc_8c_a6090882024641e94b4cc17df23cde127}} 
+\#define {\bfseries D\+S1339\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+L\+E\+AR}~(0x00)
+\item 
+\mbox{\Hypertarget{arm_2altera-cyclone-v_2rtc_2rtc_8c_a527a3764804aa8f965cdccba025a6e61}\label{arm_2altera-cyclone-v_2rtc_2rtc_8c_a527a3764804aa8f965cdccba025a6e61}} 
+\#define {\bfseries D\+S1339\+\_\+\+A\+D\+D\+R\+\_\+\+T\+R\+I\+C\+K\+L\+E\+\_\+\+C\+H\+A\+R\+GE}~0x10
+\item 
+\mbox{\Hypertarget{arm_2altera-cyclone-v_2rtc_2rtc_8c_a36ac5e003c857f0c9287e9f4e54013c4}\label{arm_2altera-cyclone-v_2rtc_2rtc_8c_a36ac5e003c857f0c9287e9f4e54013c4}} 
+\#define {\bfseries D\+S1339\+\_\+\+H\+O\+U\+R\+S\+\_\+12\+\_\+24\+\_\+\+F\+L\+AG}~0x40
+\item 
+\mbox{\Hypertarget{arm_2altera-cyclone-v_2rtc_2rtc_8c_aada38af81fa07fff209d2d94beaeaae0}\label{arm_2altera-cyclone-v_2rtc_2rtc_8c_aada38af81fa07fff209d2d94beaeaae0}} 
+\#define {\bfseries D\+S1339\+\_\+\+H\+O\+U\+R\+S\+\_\+\+A\+M\+\_\+\+P\+M\+\_\+\+F\+L\+A\+G\+\_\+\+O\+R\+\_\+20\+\_\+\+H\+O\+U\+RS}~0x20
+\item 
+\mbox{\Hypertarget{arm_2altera-cyclone-v_2rtc_2rtc_8c_a303047a4e51029c7ca94bafad53d79c8}\label{arm_2altera-cyclone-v_2rtc_2rtc_8c_a303047a4e51029c7ca94bafad53d79c8}} 
+\#define {\bfseries D\+S1339\+\_\+\+H\+O\+U\+R\+S\+\_\+10\+\_\+\+H\+O\+U\+RS}~0x10
+\item 
+\mbox{\Hypertarget{arm_2altera-cyclone-v_2rtc_2rtc_8c_adb807752d71584f211daee4db36929b5}\label{arm_2altera-cyclone-v_2rtc_2rtc_8c_adb807752d71584f211daee4db36929b5}} 
+\#define {\bfseries D\+S1339\+\_\+\+M\+O\+N\+T\+H\+\_\+\+C\+E\+N\+T\+U\+RY}~0x80
+\item 
+\mbox{\Hypertarget{arm_2altera-cyclone-v_2rtc_2rtc_8c_af980b729a522f7089482666836dd7ef5}\label{arm_2altera-cyclone-v_2rtc_2rtc_8c_af980b729a522f7089482666836dd7ef5}} 
+\#define {\bfseries D\+S1339\+\_\+\+M\+A\+X\+\_\+\+W\+R\+I\+T\+E\+\_\+\+S\+I\+ZE}~(sizeof(\mbox{\hyperlink{structds1339__time__t}{ds1339\+\_\+time\+\_\+t}}) + 1)
+\item 
+\mbox{\Hypertarget{arm_2altera-cyclone-v_2rtc_2rtc_8c_a5aaba00167e96745a2639341b262b76f}\label{arm_2altera-cyclone-v_2rtc_2rtc_8c_a5aaba00167e96745a2639341b262b76f}} 
+\#define {\bfseries M41\+S\+T87\+\_\+\+I2\+C\+\_\+\+A\+D\+D\+R\+E\+SS}~(0x\+D0 $>$$>$ 1)  /$\ast$ 7-\/bit addressing! $\ast$/
+\item 
+\mbox{\Hypertarget{arm_2altera-cyclone-v_2rtc_2rtc_8c_aeb3b85afa6ed4b95469c639a55eb73ec}\label{arm_2altera-cyclone-v_2rtc_2rtc_8c_aeb3b85afa6ed4b95469c639a55eb73ec}} 
+\#define {\bfseries M41\+S\+T87\+\_\+\+I2\+C\+\_\+\+B\+U\+S\+\_\+\+D\+E\+V\+I\+CE}~\char`\"{}/dev/i2c0\char`\"{}
+\item 
+\mbox{\Hypertarget{arm_2altera-cyclone-v_2rtc_2rtc_8c_a1190fa94b6b86032226ec83f10cf14a8}\label{arm_2altera-cyclone-v_2rtc_2rtc_8c_a1190fa94b6b86032226ec83f10cf14a8}} 
+\#define {\bfseries M41\+S\+T87\+\_\+\+A\+D\+D\+R\+\_\+\+T\+I\+ME}~0x00
+\item 
+\mbox{\Hypertarget{arm_2altera-cyclone-v_2rtc_2rtc_8c_ab11c330fd9a73794450b548927dffac7}\label{arm_2altera-cyclone-v_2rtc_2rtc_8c_ab11c330fd9a73794450b548927dffac7}} 
+\#define {\bfseries M41\+S\+T87\+\_\+\+A\+D\+D\+R\+\_\+\+C\+T\+RL}~0x08
+\item 
+\mbox{\Hypertarget{arm_2altera-cyclone-v_2rtc_2rtc_8c_aa99830945a329afe52c5ac53ee02154a}\label{arm_2altera-cyclone-v_2rtc_2rtc_8c_aa99830945a329afe52c5ac53ee02154a}} 
+\#define {\bfseries M41\+S\+T87\+\_\+\+C\+T\+R\+L\+\_\+\+O\+UT}~0x80
+\item 
+\mbox{\Hypertarget{arm_2altera-cyclone-v_2rtc_2rtc_8c_a0afa172a301634d86e3ec9327185ceaf}\label{arm_2altera-cyclone-v_2rtc_2rtc_8c_a0afa172a301634d86e3ec9327185ceaf}} 
+\#define {\bfseries M41\+S\+T87\+\_\+\+C\+T\+R\+L\+\_\+\+FT}~0x40
+\item 
+\mbox{\Hypertarget{arm_2altera-cyclone-v_2rtc_2rtc_8c_a7ffdfe4eed013081addace4d9050ed57}\label{arm_2altera-cyclone-v_2rtc_2rtc_8c_a7ffdfe4eed013081addace4d9050ed57}} 
+\#define {\bfseries M41\+S\+T87\+\_\+\+C\+T\+R\+L\+\_\+S}~0x20
+\item 
+\mbox{\Hypertarget{arm_2altera-cyclone-v_2rtc_2rtc_8c_a40eab6a893c434621c7faf238a8a5b52}\label{arm_2altera-cyclone-v_2rtc_2rtc_8c_a40eab6a893c434621c7faf238a8a5b52}} 
+\#define {\bfseries M41\+S\+T87\+\_\+\+C\+T\+R\+L\+\_\+\+C\+AL}~0x1F
+\item 
+\mbox{\Hypertarget{arm_2altera-cyclone-v_2rtc_2rtc_8c_a5883f5a9b5b4cb6a33bbd5e2978c753a}\label{arm_2altera-cyclone-v_2rtc_2rtc_8c_a5883f5a9b5b4cb6a33bbd5e2978c753a}} 
+\#define {\bfseries M41\+S\+T87\+\_\+\+A\+D\+D\+R\+\_\+\+A\+L\+A\+R\+M\+\_\+\+H\+O\+UR}~0x0C
+\item 
+\mbox{\Hypertarget{arm_2altera-cyclone-v_2rtc_2rtc_8c_a7bf7413831954db32cca60fcec9c7903}\label{arm_2altera-cyclone-v_2rtc_2rtc_8c_a7bf7413831954db32cca60fcec9c7903}} 
+\#define {\bfseries M41\+S\+T87\+\_\+\+B\+I\+T\+\_\+\+HT}~0x40
+\item 
+\mbox{\Hypertarget{arm_2altera-cyclone-v_2rtc_2rtc_8c_a962ebade5d5043f76ba37cdd1a83924d}\label{arm_2altera-cyclone-v_2rtc_2rtc_8c_a962ebade5d5043f76ba37cdd1a83924d}} 
+\#define {\bfseries M41\+S\+T87\+\_\+\+A\+D\+D\+R\+\_\+\+F\+L\+A\+GS}~0x0F
+\item 
+\mbox{\Hypertarget{arm_2altera-cyclone-v_2rtc_2rtc_8c_aca4b3ccbb36475775b3c5fb83fc79f94}\label{arm_2altera-cyclone-v_2rtc_2rtc_8c_aca4b3ccbb36475775b3c5fb83fc79f94}} 
+\#define {\bfseries M41\+S\+T87\+\_\+\+F\+L\+A\+G\+\_\+\+W\+DF}~0x80
+\item 
+\mbox{\Hypertarget{arm_2altera-cyclone-v_2rtc_2rtc_8c_a1d7852f89b0cd614c002f7607ea44a75}\label{arm_2altera-cyclone-v_2rtc_2rtc_8c_a1d7852f89b0cd614c002f7607ea44a75}} 
+\#define {\bfseries M41\+S\+T87\+\_\+\+F\+L\+A\+G\+\_\+\+AF}~0x40
+\item 
+\mbox{\Hypertarget{arm_2altera-cyclone-v_2rtc_2rtc_8c_a6b326138b3596a5c16cd249ddf387ad8}\label{arm_2altera-cyclone-v_2rtc_2rtc_8c_a6b326138b3596a5c16cd249ddf387ad8}} 
+\#define {\bfseries M41\+S\+T87\+\_\+\+F\+L\+A\+G\+\_\+\+BL}~0x10
+\item 
+\mbox{\Hypertarget{arm_2altera-cyclone-v_2rtc_2rtc_8c_ae7469910407d9a1506f202049a5a2f95}\label{arm_2altera-cyclone-v_2rtc_2rtc_8c_ae7469910407d9a1506f202049a5a2f95}} 
+\#define {\bfseries M41\+S\+T87\+\_\+\+F\+L\+A\+G\+\_\+\+OF}~0x04
+\item 
+\mbox{\Hypertarget{arm_2altera-cyclone-v_2rtc_2rtc_8c_aee244490a7265802b609d1ed9d0a3c64}\label{arm_2altera-cyclone-v_2rtc_2rtc_8c_aee244490a7265802b609d1ed9d0a3c64}} 
+\#define {\bfseries M41\+S\+T87\+\_\+\+F\+L\+A\+G\+\_\+\+T\+B1}~0x02
+\item 
+\mbox{\Hypertarget{arm_2altera-cyclone-v_2rtc_2rtc_8c_ac24dd4f3332520a1271d6613d01b6cb7}\label{arm_2altera-cyclone-v_2rtc_2rtc_8c_ac24dd4f3332520a1271d6613d01b6cb7}} 
+\#define {\bfseries M41\+S\+T87\+\_\+\+F\+L\+A\+G\+\_\+\+T\+B2}~0x01
+\item 
+\mbox{\Hypertarget{arm_2altera-cyclone-v_2rtc_2rtc_8c_a1f32e3e74507321488bb42fb3592e7dd}\label{arm_2altera-cyclone-v_2rtc_2rtc_8c_a1f32e3e74507321488bb42fb3592e7dd}} 
+\#define {\bfseries M41\+S\+T87\+\_\+\+A\+D\+D\+R\+\_\+\+U\+S\+E\+R\+\_\+\+R\+AM}~0x20
+\item 
+\mbox{\Hypertarget{arm_2altera-cyclone-v_2rtc_2rtc_8c_a5e1f56a78c5a016c2614ae5c67a1feb3}\label{arm_2altera-cyclone-v_2rtc_2rtc_8c_a5e1f56a78c5a016c2614ae5c67a1feb3}} 
+\#define {\bfseries M41\+S\+T87\+\_\+\+B\+I\+T\+\_\+\+ST}~0x80
+\item 
+\mbox{\Hypertarget{arm_2altera-cyclone-v_2rtc_2rtc_8c_ab21dbfb0505c2f6a7c897598b66a5298}\label{arm_2altera-cyclone-v_2rtc_2rtc_8c_ab21dbfb0505c2f6a7c897598b66a5298}} 
+\#define {\bfseries M41\+S\+T87\+\_\+\+B\+I\+T\+\_\+\+O\+F\+IE}~0x80
+\item 
+\mbox{\Hypertarget{arm_2altera-cyclone-v_2rtc_2rtc_8c_a92ccea83ed766ef43b80e487cd87d425}\label{arm_2altera-cyclone-v_2rtc_2rtc_8c_a92ccea83ed766ef43b80e487cd87d425}} 
+\#define {\bfseries M41\+S\+T87\+\_\+\+B\+I\+T\+\_\+\+C\+B1}~0x80
+\item 
+\mbox{\Hypertarget{arm_2altera-cyclone-v_2rtc_2rtc_8c_a911d5ed55de705a2c7a6b873b28bf722}\label{arm_2altera-cyclone-v_2rtc_2rtc_8c_a911d5ed55de705a2c7a6b873b28bf722}} 
+\#define {\bfseries M41\+S\+T87\+\_\+\+B\+I\+T\+\_\+\+C\+B0}~0x40
+\item 
+\mbox{\Hypertarget{arm_2altera-cyclone-v_2rtc_2rtc_8c_abd985da5bc78e957ab22d0bcc0c7a190}\label{arm_2altera-cyclone-v_2rtc_2rtc_8c_abd985da5bc78e957ab22d0bcc0c7a190}} 
+\#define {\bfseries M41\+S\+T87\+\_\+\+B\+I\+T\+\_\+\+TR}~0x80
+\item 
+\mbox{\Hypertarget{arm_2altera-cyclone-v_2rtc_2rtc_8c_af50184597b496879c761c7970e4f04f3}\label{arm_2altera-cyclone-v_2rtc_2rtc_8c_af50184597b496879c761c7970e4f04f3}} 
+\#define {\bfseries M41\+S\+T87\+\_\+\+B\+I\+T\+\_\+\+T\+HS}~0x40
+\item 
+\mbox{\Hypertarget{arm_2altera-cyclone-v_2rtc_2rtc_8c_a55942be154cf45560c42f30e097d40e8}\label{arm_2altera-cyclone-v_2rtc_2rtc_8c_a55942be154cf45560c42f30e097d40e8}} 
+\#define {\bfseries M41\+S\+T87\+\_\+\+B\+I\+T\+\_\+\+C\+L\+R\+P\+W1}~0x20
+\item 
+\mbox{\Hypertarget{arm_2altera-cyclone-v_2rtc_2rtc_8c_aa0941938d99a9512d32b5dd6a17a64de}\label{arm_2altera-cyclone-v_2rtc_2rtc_8c_aa0941938d99a9512d32b5dd6a17a64de}} 
+\#define {\bfseries M41\+S\+T87\+\_\+\+B\+I\+T\+\_\+\+C\+L\+R\+P\+W0}~0x10
+\item 
+\mbox{\Hypertarget{arm_2altera-cyclone-v_2rtc_2rtc_8c_abd72549b9ee73e6c4fd2327965333154}\label{arm_2altera-cyclone-v_2rtc_2rtc_8c_abd72549b9ee73e6c4fd2327965333154}} 
+\#define {\bfseries M41\+S\+T87\+\_\+\+B\+I\+T\+\_\+32\+KE}~0x08
+\item 
+\mbox{\Hypertarget{arm_2altera-cyclone-v_2rtc_2rtc_8c_a741c1010b1fd8f6945741e71be3ab299}\label{arm_2altera-cyclone-v_2rtc_2rtc_8c_a741c1010b1fd8f6945741e71be3ab299}} 
+\#define {\bfseries M41\+S\+T87\+\_\+\+B\+I\+T\+\_\+\+P\+F\+OD}~0x80
+\item 
+\mbox{\Hypertarget{arm_2altera-cyclone-v_2rtc_2rtc_8c_a9e99cbb861d57a5971436e707138827e}\label{arm_2altera-cyclone-v_2rtc_2rtc_8c_a9e99cbb861d57a5971436e707138827e}} 
+\#define {\bfseries M41\+S\+T87\+\_\+\+M\+A\+X\+\_\+\+W\+R\+I\+T\+E\+\_\+\+S\+I\+ZE}~(sizeof(\mbox{\hyperlink{structm41st87__time__t}{m41st87\+\_\+time\+\_\+t}}) + 1)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const \mbox{\hyperlink{struct__rtc__fns}{rtc\+\_\+fns}} {\bfseries altera\+\_\+cyclone\+\_\+v\+\_\+ds1339\+\_\+ops}
+\item 
+const \mbox{\hyperlink{struct__rtc__fns}{rtc\+\_\+fns}} {\bfseries altera\+\_\+cyclone\+\_\+v\+\_\+m41st87\+\_\+ops}
+\item 
+\mbox{\Hypertarget{arm_2altera-cyclone-v_2rtc_2rtc_8c_a7b04b3ddbc07be0bcfcd73fde9a9f399}\label{arm_2altera-cyclone-v_2rtc_2rtc_8c_a7b04b3ddbc07be0bcfcd73fde9a9f399}} 
+size\+\_\+t {\bfseries R\+T\+C\+\_\+\+Count} = A\+L\+T\+E\+R\+A\+\_\+\+C\+Y\+C\+L\+O\+N\+E\+\_\+\+V\+\_\+\+R\+T\+C\+\_\+\+N\+U\+M\+B\+ER
+\item 
+\mbox{\hyperlink{struct__rtc__tbl}{rtc\+\_\+tbl}} {\bfseries R\+T\+C\+\_\+\+Table} \mbox{[}A\+L\+T\+E\+R\+A\+\_\+\+C\+Y\+C\+L\+O\+N\+E\+\_\+\+V\+\_\+\+R\+T\+C\+\_\+\+N\+U\+M\+B\+ER\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{arm_2altera-cyclone-v_2rtc_2rtc_8c_ac3925b804649bc47bc9619290f3a541a}\label{arm_2altera-cyclone-v_2rtc_2rtc_8c_ac3925b804649bc47bc9619290f3a541a}} 
+\index{rtc.c@{rtc.c}!altera\_cyclone\_v\_ds1339\_ops@{altera\_cyclone\_v\_ds1339\_ops}}
+\index{altera\_cyclone\_v\_ds1339\_ops@{altera\_cyclone\_v\_ds1339\_ops}!rtc.c@{rtc.c}}
+\subsubsection{\texorpdfstring{altera\_cyclone\_v\_ds1339\_ops}{altera\_cyclone\_v\_ds1339\_ops}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{struct__rtc__fns}{rtc\+\_\+fns}} altera\+\_\+cyclone\+\_\+v\+\_\+ds1339\+\_\+ops}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{  .deviceInitialize = altera\_cyclone\_v\_ds1339\_initialize,}
+\DoxyCodeLine{  .deviceGetTime = altera\_cyclone\_v\_ds1339\_get\_time,}
+\DoxyCodeLine{  .deviceSetTime = altera\_cyclone\_v\_ds1339\_set\_time}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{arm_2altera-cyclone-v_2rtc_2rtc_8c_af7acaf589084d397cc88ec5647bd2f4d}\label{arm_2altera-cyclone-v_2rtc_2rtc_8c_af7acaf589084d397cc88ec5647bd2f4d}} 
+\index{rtc.c@{rtc.c}!altera\_cyclone\_v\_m41st87\_ops@{altera\_cyclone\_v\_m41st87\_ops}}
+\index{altera\_cyclone\_v\_m41st87\_ops@{altera\_cyclone\_v\_m41st87\_ops}!rtc.c@{rtc.c}}
+\subsubsection{\texorpdfstring{altera\_cyclone\_v\_m41st87\_ops}{altera\_cyclone\_v\_m41st87\_ops}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{struct__rtc__fns}{rtc\+\_\+fns}} altera\+\_\+cyclone\+\_\+v\+\_\+m41st87\+\_\+ops}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{  .deviceInitialize = altera\_cyclone\_v\_m41st87\_initialize,}
+\DoxyCodeLine{  .deviceGetTime = altera\_cyclone\_v\_m41st87\_get\_time,}
+\DoxyCodeLine{  .deviceSetTime = altera\_cyclone\_v\_m41st87\_set\_time}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{arm_2altera-cyclone-v_2rtc_2rtc_8c_aba8bf24ba208a4f6e4e040549cae7f3f}\label{arm_2altera-cyclone-v_2rtc_2rtc_8c_aba8bf24ba208a4f6e4e040549cae7f3f}} 
+\index{rtc.c@{rtc.c}!RTC\_Table@{RTC\_Table}}
+\index{RTC\_Table@{RTC\_Table}!rtc.c@{rtc.c}}
+\subsubsection{\texorpdfstring{RTC\_Table}{RTC\_Table}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct__rtc__tbl}{rtc\+\_\+tbl}} R\+T\+C\+\_\+\+Table\mbox{[}A\+L\+T\+E\+R\+A\+\_\+\+C\+Y\+C\+L\+O\+N\+E\+\_\+\+V\+\_\+\+R\+T\+C\+\_\+\+N\+U\+M\+B\+ER\mbox{]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{  \{}
+\DoxyCodeLine{    .sDeviceName = \textcolor{stringliteral}{"/dev/rtc"},}
+\DoxyCodeLine{    .deviceType = RTC\_CUSTOM,}
+\DoxyCodeLine{    .pDeviceFns = \&altera\_cyclone\_v\_ds1339\_ops,}
+\DoxyCodeLine{    .deviceProbe = altera\_cyclone\_v\_ds1339\_probe,}
+\DoxyCodeLine{    .pDeviceParams = \mbox{\hyperlink{bestcomm__api_8h_a872bb74de61c3689ccd5b41873fce42c}{NULL}},}
+\DoxyCodeLine{    .ulCtrlPort1 = 0,}
+\DoxyCodeLine{    .ulDataPort = 0,}
+\DoxyCodeLine{    .getRegister = \mbox{\hyperlink{bestcomm__api_8h_a872bb74de61c3689ccd5b41873fce42c}{NULL}},}
+\DoxyCodeLine{    .setRegister = \mbox{\hyperlink{bestcomm__api_8h_a872bb74de61c3689ccd5b41873fce42c}{NULL}}}
+\DoxyCodeLine{  \},}
+\DoxyCodeLine{  \{}
+\DoxyCodeLine{    .sDeviceName = \textcolor{stringliteral}{"/dev/rtc"},}
+\DoxyCodeLine{    .deviceType = RTC\_CUSTOM,}
+\DoxyCodeLine{    .pDeviceFns = \&altera\_cyclone\_v\_m41st87\_ops,}
+\DoxyCodeLine{    .deviceProbe = altera\_cyclone\_v\_m41st87\_probe,}
+\DoxyCodeLine{    .pDeviceParams = \mbox{\hyperlink{bestcomm__api_8h_a872bb74de61c3689ccd5b41873fce42c}{NULL}},}
+\DoxyCodeLine{    .ulCtrlPort1 = 0,}
+\DoxyCodeLine{    .ulDataPort = 0,}
+\DoxyCodeLine{    .getRegister = \mbox{\hyperlink{bestcomm__api_8h_a872bb74de61c3689ccd5b41873fce42c}{NULL}},}
+\DoxyCodeLine{    .setRegister = \mbox{\hyperlink{bestcomm__api_8h_a872bb74de61c3689ccd5b41873fce42c}{NULL}}}
+\DoxyCodeLine{  \}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}

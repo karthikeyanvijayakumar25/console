@@ -1,0 +1,1665 @@
+\hypertarget{group__RTEMSScoreThreadQueue}{}\section{Thread Queue Handler}
+\label{group__RTEMSScoreThreadQueue}\index{Thread Queue Handler@{Thread Queue Handler}}
+
+
+Thread Queue Handler.  
+
+
+\subsection*{Files}
+\begin{DoxyCompactItemize}
+\item 
+file \mbox{\hyperlink{threadq_8h}{threadq.\+h}}
+\begin{DoxyCompactList}\small\item\em Constants and Structures Needed to Declare a Thread Queue. \end{DoxyCompactList}\item 
+file \mbox{\hyperlink{threadqimpl_8h}{threadqimpl.\+h}}
+\begin{DoxyCompactList}\small\item\em Constants and Structures Associated with the Manipulation of Objects. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structThread__queue__Lock__context}{Thread\+\_\+queue\+\_\+\+Lock\+\_\+context}}
+\item 
+struct \mbox{\hyperlink{structThread__queue__Context}{Thread\+\_\+queue\+\_\+\+Context}}
+\begin{DoxyCompactList}\small\item\em Thread queue context for the thread queue methods. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structThread__queue__Priority__queue}{Thread\+\_\+queue\+\_\+\+Priority\+\_\+queue}}
+\begin{DoxyCompactList}\small\item\em Thread priority queue. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{struct__Thread__queue__Heads}{\+\_\+\+Thread\+\_\+queue\+\_\+\+Heads}}
+\begin{DoxyCompactList}\small\item\em Thread queue heads. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structThread__queue__Queue}{Thread\+\_\+queue\+\_\+\+Queue}}
+\item 
+struct \mbox{\hyperlink{structThread__queue__Operations}{Thread\+\_\+queue\+\_\+\+Operations}}
+\begin{DoxyCompactList}\small\item\em Thread queue operations. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structThread__queue__Control}{Thread\+\_\+queue\+\_\+\+Control}}
+\item 
+struct \mbox{\hyperlink{structThread__queue__Syslock__queue}{Thread\+\_\+queue\+\_\+\+Syslock\+\_\+queue}}
+\begin{DoxyCompactList}\small\item\em Thread queue with a layout compatible to struct \+\_\+\+Thread\+\_\+queue\+\_\+\+Queue defined in Newlib $<$sys/lock.\+h$>$. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structThread__queue__Object}{Thread\+\_\+queue\+\_\+\+Object}}
+\begin{DoxyCompactList}\small\item\em Does nothing. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{group__RTEMSScoreThreadQueue_ga754cc407a9c97408595f94d5577a5996}\label{group__RTEMSScoreThreadQueue_ga754cc407a9c97408595f94d5577a5996}} 
+\#define {\bfseries T\+H\+R\+E\+A\+D\+\_\+\+Q\+U\+E\+U\+E\+\_\+\+L\+I\+N\+K\+\_\+\+O\+F\+\_\+\+P\+A\+T\+H\+\_\+\+N\+O\+DE}(node)~\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gab2e7a0141fd898ae358fa9b134aa2610}{R\+T\+E\+M\+S\+\_\+\+C\+O\+N\+T\+A\+I\+N\+E\+R\+\_\+\+OF}}( node, Thread\+\_\+queue\+\_\+\+Link, Path\+\_\+node );
+\item 
+\#define {\bfseries \+\_\+\+Thread\+\_\+queue\+\_\+\+Context\+\_\+\+I\+S\+R\+\_\+disable}(queue\+\_\+context,  level)
+\item 
+\#define \mbox{\hyperlink{group__RTEMSScoreThreadQueue_ga18b0ec8fb4243c787a3c5de92fa5d87a}{\+\_\+\+Thread\+\_\+queue\+\_\+\+Context\+\_\+set\+\_\+\+M\+P\+\_\+callout}}(queue\+\_\+context,  mp\+\_\+callout)
+\begin{DoxyCompactList}\small\item\em Sets the MP callout in the thread queue context. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__RTEMSScoreThreadQueue_ga7efaa6e5152ffe2478cdc74018c759af}\label{group__RTEMSScoreThreadQueue_ga7efaa6e5152ffe2478cdc74018c759af}} 
+\#define {\bfseries \+\_\+\+Thread\+\_\+queue\+\_\+\+Queue\+\_\+acquire\+\_\+critical}(queue,  lock\+\_\+stats,  lock\+\_\+context)~\mbox{\hyperlink{group__RTEMSScoreThreadQueue_gaca9472b4bf5091cab34d1a4099e4cfa6}{\+\_\+\+Thread\+\_\+queue\+\_\+\+Queue\+\_\+do\+\_\+acquire\+\_\+critical}}( queue, lock\+\_\+context )
+\item 
+\#define \mbox{\hyperlink{group__RTEMSScoreThreadQueue_ga4e17044b2e16d3d927c52a4d4ecb0ec9}{\+\_\+\+Thread\+\_\+queue\+\_\+\+Dequeue}}(the\+\_\+thread\+\_\+queue,  operations,  mp\+\_\+callout)
+\begin{DoxyCompactList}\small\item\em Gets a pointer to a thread waiting on the\+\_\+thread\+\_\+queue. \end{DoxyCompactList}\item 
+\#define {\bfseries T\+H\+R\+E\+A\+D\+\_\+\+Q\+U\+E\+U\+E\+\_\+\+I\+N\+I\+T\+I\+A\+L\+I\+Z\+ER}(\+\_\+name)
+\item 
+\#define {\bfseries T\+H\+R\+E\+A\+D\+\_\+\+Q\+U\+E\+U\+E\+\_\+\+O\+B\+J\+E\+C\+T\+\_\+\+A\+S\+S\+E\+RT}(object\+\_\+type,  wait\+\_\+queue\+\_\+member,  \mbox{\hyperlink{structmsg}{msg}})
+\item 
+\#define {\bfseries T\+H\+R\+E\+A\+D\+\_\+\+Q\+U\+E\+U\+E\+\_\+\+Q\+U\+E\+U\+E\+\_\+\+T\+O\+\_\+\+O\+B\+J\+E\+CT}(queue)
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{group__RTEMSScoreThreadQueue_ga42c67428d17dc0b977ffee7463d1cd76}\label{group__RTEMSScoreThreadQueue_ga42c67428d17dc0b977ffee7463d1cd76}} 
+typedef struct \mbox{\hyperlink{struct__Thread__Control}{\+\_\+\+Thread\+\_\+\+Control}} {\bfseries Thread\+\_\+\+Control}
+\item 
+\mbox{\Hypertarget{group__RTEMSScoreThreadQueue_ga2958d2fbd0e3f5a34ded9e43f4579993}\label{group__RTEMSScoreThreadQueue_ga2958d2fbd0e3f5a34ded9e43f4579993}} 
+typedef struct \mbox{\hyperlink{structThread__queue__Context}{Thread\+\_\+queue\+\_\+\+Context}} {\bfseries Thread\+\_\+queue\+\_\+\+Context}
+\item 
+\mbox{\Hypertarget{group__RTEMSScoreThreadQueue_ga474795b5f7cfc1e2c9e6f5411667eb92}\label{group__RTEMSScoreThreadQueue_ga474795b5f7cfc1e2c9e6f5411667eb92}} 
+typedef struct \mbox{\hyperlink{structThread__queue__Queue}{Thread\+\_\+queue\+\_\+\+Queue}} {\bfseries Thread\+\_\+queue\+\_\+\+Queue}
+\item 
+\mbox{\Hypertarget{group__RTEMSScoreThreadQueue_gaf4251ab019ecbfdfea77fd1363282775}\label{group__RTEMSScoreThreadQueue_gaf4251ab019ecbfdfea77fd1363282775}} 
+typedef struct \mbox{\hyperlink{structThread__queue__Operations}{Thread\+\_\+queue\+\_\+\+Operations}} {\bfseries Thread\+\_\+queue\+\_\+\+Operations}
+\item 
+typedef void($\ast$ \mbox{\hyperlink{group__RTEMSScoreThreadQueue_ga3dd59055cd68c42978de9cd8e007ce1d}{Thread\+\_\+queue\+\_\+\+Enqueue\+\_\+callout}}) (\mbox{\hyperlink{structThread__queue__Queue}{Thread\+\_\+queue\+\_\+\+Queue}} $\ast$queue, \mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$the\+\_\+thread, struct \mbox{\hyperlink{structPer__CPU__Control}{Per\+\_\+\+C\+P\+U\+\_\+\+Control}} $\ast$cpu\+\_\+self, \mbox{\hyperlink{structThread__queue__Context}{Thread\+\_\+queue\+\_\+\+Context}} $\ast$queue\+\_\+context)
+\begin{DoxyCompactList}\small\item\em Thread queue enqueue callout. \end{DoxyCompactList}\item 
+typedef void($\ast$ \mbox{\hyperlink{group__RTEMSScoreThreadQueue_gab2878c08655ad0911fe6540a1adaf3a3}{Thread\+\_\+queue\+\_\+\+Deadlock\+\_\+callout}}) (\mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$the\+\_\+thread)
+\begin{DoxyCompactList}\small\item\em Thread queue deadlock callout. \end{DoxyCompactList}\item 
+typedef struct \mbox{\hyperlink{struct__Thread__queue__Heads}{\+\_\+\+Thread\+\_\+queue\+\_\+\+Heads}} \mbox{\hyperlink{group__RTEMSScoreThreadQueue_gaebac32033b009cc8f606a90bd389f8e9}{Thread\+\_\+queue\+\_\+\+Heads}}
+\begin{DoxyCompactList}\small\item\em Thread queue heads. \end{DoxyCompactList}\item 
+typedef void($\ast$ \mbox{\hyperlink{group__RTEMSScoreThreadQueue_gacdacb1750c6bbc43f99e9c60bd1beba9}{Thread\+\_\+queue\+\_\+\+Priority\+\_\+actions\+\_\+operation}}) (\mbox{\hyperlink{structThread__queue__Queue}{Thread\+\_\+queue\+\_\+\+Queue}} $\ast$queue, \mbox{\hyperlink{structPriority__Actions}{Priority\+\_\+\+Actions}} $\ast$priority\+\_\+actions)
+\begin{DoxyCompactList}\small\item\em Thread queue action operation. \end{DoxyCompactList}\item 
+typedef void($\ast$ \mbox{\hyperlink{group__RTEMSScoreThreadQueue_ga1d111ef0f5c9457f7e17a217fc7558cd}{Thread\+\_\+queue\+\_\+\+Enqueue\+\_\+operation}}) (\mbox{\hyperlink{structThread__queue__Queue}{Thread\+\_\+queue\+\_\+\+Queue}} $\ast$queue, \mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$the\+\_\+thread, \mbox{\hyperlink{structThread__queue__Context}{Thread\+\_\+queue\+\_\+\+Context}} $\ast$queue\+\_\+context)
+\begin{DoxyCompactList}\small\item\em Thread queue enqueue operation. \end{DoxyCompactList}\item 
+typedef void($\ast$ \mbox{\hyperlink{group__RTEMSScoreThreadQueue_ga7fdee2ebb4fe9f9dae612be0ecce85db}{Thread\+\_\+queue\+\_\+\+Extract\+\_\+operation}}) (\mbox{\hyperlink{structThread__queue__Queue}{Thread\+\_\+queue\+\_\+\+Queue}} $\ast$queue, \mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$the\+\_\+thread, \mbox{\hyperlink{structThread__queue__Context}{Thread\+\_\+queue\+\_\+\+Context}} $\ast$queue\+\_\+context)
+\begin{DoxyCompactList}\small\item\em Thread queue extract operation. \end{DoxyCompactList}\item 
+typedef \mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$($\ast$ \mbox{\hyperlink{group__RTEMSScoreThreadQueue_ga42e805a4c313faaddf8dc08592696574}{Thread\+\_\+queue\+\_\+\+Surrender\+\_\+operation}}) (\mbox{\hyperlink{structThread__queue__Queue}{Thread\+\_\+queue\+\_\+\+Queue}} $\ast$queue, \mbox{\hyperlink{group__RTEMSScoreThreadQueue_gaebac32033b009cc8f606a90bd389f8e9}{Thread\+\_\+queue\+\_\+\+Heads}} $\ast$heads, \mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$previous\+\_\+owner, \mbox{\hyperlink{structThread__queue__Context}{Thread\+\_\+queue\+\_\+\+Context}} $\ast$queue\+\_\+context)
+\begin{DoxyCompactList}\small\item\em Thread queue surrender operation. \end{DoxyCompactList}\item 
+typedef \mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$($\ast$ \mbox{\hyperlink{group__RTEMSScoreThreadQueue_gacd3bee122e35cf14e0ed8680256db439}{Thread\+\_\+queue\+\_\+\+First\+\_\+operation}}) (\mbox{\hyperlink{group__RTEMSScoreThreadQueue_gaebac32033b009cc8f606a90bd389f8e9}{Thread\+\_\+queue\+\_\+\+Heads}} $\ast$heads)
+\begin{DoxyCompactList}\small\item\em Thread queue first operation. \end{DoxyCompactList}\item 
+typedef \mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$($\ast$ \mbox{\hyperlink{group__RTEMSScoreThreadQueue_ga66aee78bfdca4bd829cdedf18e7c2451}{Thread\+\_\+queue\+\_\+\+Flush\+\_\+filter}}) (\mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$the\+\_\+thread, \mbox{\hyperlink{structThread__queue__Queue}{Thread\+\_\+queue\+\_\+\+Queue}} $\ast$queue, \mbox{\hyperlink{structThread__queue__Context}{Thread\+\_\+queue\+\_\+\+Context}} $\ast$queue\+\_\+context)
+\begin{DoxyCompactList}\small\item\em Thread queue flush filter function. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{group__RTEMSScoreThreadQueue_ga6a087492df4bba9c56d8e8018339a84e}{\+\_\+\+Thread\+\_\+queue\+\_\+\+Enqueue\+\_\+do\+\_\+nothing\+\_\+extra}} (\mbox{\hyperlink{structThread__queue__Queue}{Thread\+\_\+queue\+\_\+\+Queue}} $\ast$queue, \mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$the\+\_\+thread, \mbox{\hyperlink{structPer__CPU__Control}{Per\+\_\+\+C\+P\+U\+\_\+\+Control}} $\ast$cpu\+\_\+self, \mbox{\hyperlink{structThread__queue__Context}{Thread\+\_\+queue\+\_\+\+Context}} $\ast$queue\+\_\+context)
+\begin{DoxyCompactList}\small\item\em Does nothing. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__RTEMSScoreThreadQueue_gae6191fb5cd1e33990f9b505f12c39734}{\+\_\+\+Thread\+\_\+queue\+\_\+\+Add\+\_\+timeout\+\_\+ticks}} (\mbox{\hyperlink{structThread__queue__Queue}{Thread\+\_\+queue\+\_\+\+Queue}} $\ast$queue, \mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$the\+\_\+thread, \mbox{\hyperlink{structPer__CPU__Control}{Per\+\_\+\+C\+P\+U\+\_\+\+Control}} $\ast$cpu\+\_\+self, \mbox{\hyperlink{structThread__queue__Context}{Thread\+\_\+queue\+\_\+\+Context}} $\ast$queue\+\_\+context)
+\begin{DoxyCompactList}\small\item\em Adds timeout ticks of the queue to the thread. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__RTEMSScoreThreadQueue_ga4ec75c62ea3aad333b84e577a2bb09a4}{\+\_\+\+Thread\+\_\+queue\+\_\+\+Add\+\_\+timeout\+\_\+monotonic\+\_\+timespec}} (\mbox{\hyperlink{structThread__queue__Queue}{Thread\+\_\+queue\+\_\+\+Queue}} $\ast$queue, \mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$the\+\_\+thread, \mbox{\hyperlink{structPer__CPU__Control}{Per\+\_\+\+C\+P\+U\+\_\+\+Control}} $\ast$cpu\+\_\+self, \mbox{\hyperlink{structThread__queue__Context}{Thread\+\_\+queue\+\_\+\+Context}} $\ast$queue\+\_\+context)
+\begin{DoxyCompactList}\small\item\em Adds a monotonic timespec to the thread and sets the watchdog header to monotonic. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__RTEMSScoreThreadQueue_ga14552dcef85b4627e1b2d150f7245f81}{\+\_\+\+Thread\+\_\+queue\+\_\+\+Add\+\_\+timeout\+\_\+realtime\+\_\+timespec}} (\mbox{\hyperlink{structThread__queue__Queue}{Thread\+\_\+queue\+\_\+\+Queue}} $\ast$queue, \mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$the\+\_\+thread, \mbox{\hyperlink{structPer__CPU__Control}{Per\+\_\+\+C\+P\+U\+\_\+\+Control}} $\ast$cpu\+\_\+self, \mbox{\hyperlink{structThread__queue__Context}{Thread\+\_\+queue\+\_\+\+Context}} $\ast$queue\+\_\+context)
+\begin{DoxyCompactList}\small\item\em Adds a monotonic timespec to the thread and sets the watchdog header to realtime. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__RTEMSScoreThreadQueue_gaca11db0fbad98d6b0ee9a41139aa7d54}{\+\_\+\+Thread\+\_\+queue\+\_\+\+Deadlock\+\_\+status}} (\mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$the\+\_\+thread)
+\begin{DoxyCompactList}\small\item\em Sets the thread wait return code to S\+T\+A\+T\+U\+S\+\_\+\+D\+E\+A\+D\+L\+O\+CK. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__RTEMSScoreThreadQueue_ga673681292c0f047b02c6dbb6819e0ad7}{\+\_\+\+Thread\+\_\+queue\+\_\+\+Deadlock\+\_\+fatal}} (\mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$the\+\_\+thread)
+\begin{DoxyCompactList}\small\item\em Results in an I\+N\+T\+E\+R\+N\+A\+L\+\_\+\+E\+R\+R\+O\+R\+\_\+\+T\+H\+R\+E\+A\+D\+\_\+\+Q\+U\+E\+U\+E\+\_\+\+D\+E\+A\+D\+L\+O\+CK fatal error. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \mbox{\hyperlink{group__RTEMSScoreThreadQueue_gae18ee06777084a67d286d743355d47ac}{\+\_\+\+Thread\+\_\+queue\+\_\+\+Context\+\_\+initialize}} (\mbox{\hyperlink{structThread__queue__Context}{Thread\+\_\+queue\+\_\+\+Context}} $\ast$queue\+\_\+context)
+\begin{DoxyCompactList}\small\item\em Initializes a thread queue context. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \mbox{\hyperlink{group__RTEMSScoreThreadQueue_gab31678d367077d484797bc9c4d97574e}{\+\_\+\+Thread\+\_\+queue\+\_\+\+Context\+\_\+set\+\_\+thread\+\_\+state}} (\mbox{\hyperlink{structThread__queue__Context}{Thread\+\_\+queue\+\_\+\+Context}} $\ast$queue\+\_\+context, \mbox{\hyperlink{group__RTEMSScoreStates_gaeebbea0bfca162709b124fd519cf99d3}{States\+\_\+\+Control}} thread\+\_\+state)
+\begin{DoxyCompactList}\small\item\em Sets the thread state for the thread to enqueue in the thread queue context. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \mbox{\hyperlink{group__RTEMSScoreThreadQueue_ga3c130c25dcaf90625f3787a31821c935}{\+\_\+\+Thread\+\_\+queue\+\_\+\+Context\+\_\+set\+\_\+timeout\+\_\+ticks}} (\mbox{\hyperlink{structThread__queue__Context}{Thread\+\_\+queue\+\_\+\+Context}} $\ast$queue\+\_\+context, \mbox{\hyperlink{group__RTEMSScoreWatchdog_gaa1834fd7531ca9bb5c4ca6fd990388d5}{Watchdog\+\_\+\+Interval}} ticks)
+\begin{DoxyCompactList}\small\item\em Sets the timeout ticks in the thread queue context. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \mbox{\hyperlink{group__RTEMSScoreThreadQueue_gaacc8878446de7eef0f3c3f309fafe88c}{\+\_\+\+Thread\+\_\+queue\+\_\+\+Context\+\_\+set\+\_\+timeout\+\_\+argument}} (\mbox{\hyperlink{structThread__queue__Context}{Thread\+\_\+queue\+\_\+\+Context}} $\ast$queue\+\_\+context, const void $\ast$arg)
+\begin{DoxyCompactList}\small\item\em Sets the timeout argument in the thread queue context. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \mbox{\hyperlink{group__RTEMSScoreThreadQueue_gae3eded5964733b953ab0a461a9d82f5d}{\+\_\+\+Thread\+\_\+queue\+\_\+\+Context\+\_\+set\+\_\+enqueue\+\_\+callout}} (\mbox{\hyperlink{structThread__queue__Context}{Thread\+\_\+queue\+\_\+\+Context}} $\ast$queue\+\_\+context, \mbox{\hyperlink{group__RTEMSScoreThreadQueue_ga3dd59055cd68c42978de9cd8e007ce1d}{Thread\+\_\+queue\+\_\+\+Enqueue\+\_\+callout}} enqueue\+\_\+callout)
+\begin{DoxyCompactList}\small\item\em Sets the enqueue callout in the thread queue context. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \mbox{\hyperlink{group__RTEMSScoreThreadQueue_gaa7142c86d5677c5c5b0f993beecdc712}{\+\_\+\+Thread\+\_\+queue\+\_\+\+Context\+\_\+set\+\_\+enqueue\+\_\+do\+\_\+nothing\+\_\+extra}} (\mbox{\hyperlink{structThread__queue__Context}{Thread\+\_\+queue\+\_\+\+Context}} $\ast$queue\+\_\+context)
+\begin{DoxyCompactList}\small\item\em Sets the do nothing enqueue callout in the thread queue context. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \mbox{\hyperlink{group__RTEMSScoreThreadQueue_ga539935c21bc9e51bd27d64eb8f2ea26c}{\+\_\+\+Thread\+\_\+queue\+\_\+\+Context\+\_\+set\+\_\+enqueue\+\_\+timeout\+\_\+ticks}} (\mbox{\hyperlink{structThread__queue__Context}{Thread\+\_\+queue\+\_\+\+Context}} $\ast$queue\+\_\+context, \mbox{\hyperlink{group__RTEMSScoreWatchdog_gaa1834fd7531ca9bb5c4ca6fd990388d5}{Watchdog\+\_\+\+Interval}} ticks)
+\begin{DoxyCompactList}\small\item\em Sets the enqueue callout to add a relative monotonic timeout in ticks. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \mbox{\hyperlink{group__RTEMSScoreThreadQueue_ga3094c6721a6db2468884cfb502263d36}{\+\_\+\+Thread\+\_\+queue\+\_\+\+Context\+\_\+set\+\_\+enqueue\+\_\+timeout\+\_\+monotonic\+\_\+timespec}} (\mbox{\hyperlink{structThread__queue__Context}{Thread\+\_\+queue\+\_\+\+Context}} $\ast$queue\+\_\+context, const struct timespec $\ast$abstime)
+\begin{DoxyCompactList}\small\item\em Sets the enqueue callout to add an absolute monotonic timeout in timespec format. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \mbox{\hyperlink{group__RTEMSScoreThreadQueue_gab148af32965cdef1887db52409f7ee86}{\+\_\+\+Thread\+\_\+queue\+\_\+\+Context\+\_\+set\+\_\+enqueue\+\_\+timeout\+\_\+realtime\+\_\+timespec}} (\mbox{\hyperlink{structThread__queue__Context}{Thread\+\_\+queue\+\_\+\+Context}} $\ast$queue\+\_\+context, const struct timespec $\ast$abstime)
+\begin{DoxyCompactList}\small\item\em Sets the enqueue callout to add an absolute realtime timeout in timespec format. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \mbox{\hyperlink{group__RTEMSScoreThreadQueue_gab024e7369bc091e53e7bb04ed8ebfb61}{\+\_\+\+Thread\+\_\+queue\+\_\+\+Context\+\_\+set\+\_\+deadlock\+\_\+callout}} (\mbox{\hyperlink{structThread__queue__Context}{Thread\+\_\+queue\+\_\+\+Context}} $\ast$queue\+\_\+context, \mbox{\hyperlink{group__RTEMSScoreThreadQueue_gab2878c08655ad0911fe6540a1adaf3a3}{Thread\+\_\+queue\+\_\+\+Deadlock\+\_\+callout}} deadlock\+\_\+callout)
+\begin{DoxyCompactList}\small\item\em Sets the deadlock callout in the thread queue context. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \mbox{\hyperlink{group__RTEMSScoreThreadQueue_gab84f558bc470437d43ce863f8024534e}{\+\_\+\+Thread\+\_\+queue\+\_\+\+Context\+\_\+clear\+\_\+priority\+\_\+updates}} (\mbox{\hyperlink{structThread__queue__Context}{Thread\+\_\+queue\+\_\+\+Context}} $\ast$queue\+\_\+context)
+\begin{DoxyCompactList}\small\item\em Clears the priority update count of the thread queue context. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} size\+\_\+t \mbox{\hyperlink{group__RTEMSScoreThreadQueue_gae87ba650367cd3744e08ce9a0a23c8a0}{\+\_\+\+Thread\+\_\+queue\+\_\+\+Context\+\_\+save\+\_\+priority\+\_\+updates}} (\mbox{\hyperlink{structThread__queue__Context}{Thread\+\_\+queue\+\_\+\+Context}} $\ast$queue\+\_\+context)
+\begin{DoxyCompactList}\small\item\em Returns the priority update count of the thread queue context. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \mbox{\hyperlink{group__RTEMSScoreThreadQueue_ga0adb6adf8dfbbf4836b243b805cdcf51}{\+\_\+\+Thread\+\_\+queue\+\_\+\+Context\+\_\+restore\+\_\+priority\+\_\+updates}} (\mbox{\hyperlink{structThread__queue__Context}{Thread\+\_\+queue\+\_\+\+Context}} $\ast$queue\+\_\+context, size\+\_\+t update\+\_\+count)
+\begin{DoxyCompactList}\small\item\em Sets the priority update count of the thread queue context. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \mbox{\hyperlink{group__RTEMSScoreThreadQueue_ga5a5f1fcac92cc64364be93f2f5c131f6}{\+\_\+\+Thread\+\_\+queue\+\_\+\+Context\+\_\+add\+\_\+priority\+\_\+update}} (\mbox{\hyperlink{structThread__queue__Context}{Thread\+\_\+queue\+\_\+\+Context}} $\ast$queue\+\_\+context, \mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$the\+\_\+thread)
+\begin{DoxyCompactList}\small\item\em Adds a priority update of the thread to the thread queue context. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \mbox{\hyperlink{group__RTEMSScoreThreadQueue_ga076b043e2ddbb7500429a733cac31f1f}{\+\_\+\+Thread\+\_\+queue\+\_\+\+Context\+\_\+set\+\_\+\+I\+S\+R\+\_\+level}} (\mbox{\hyperlink{structThread__queue__Context}{Thread\+\_\+queue\+\_\+\+Context}} $\ast$queue\+\_\+context, \mbox{\hyperlink{group__RTEMSScoreISR_gad1af728587ebcefec5b5cf94fc7909b9}{I\+S\+R\+\_\+\+Level}} level)
+\begin{DoxyCompactList}\small\item\em Sets the thread queue context I\+SR level. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} \mbox{\hyperlink{structPer__CPU__Control}{Per\+\_\+\+C\+P\+U\+\_\+\+Control}} $\ast$ \mbox{\hyperlink{group__RTEMSScoreThreadQueue_ga8dcef3658d8266b9f66015474e2c88bd}{\+\_\+\+Thread\+\_\+queue\+\_\+\+Dispatch\+\_\+disable}} (\mbox{\hyperlink{structThread__queue__Context}{Thread\+\_\+queue\+\_\+\+Context}} $\ast$queue\+\_\+context)
+\begin{DoxyCompactList}\small\item\em Disables dispatching in a critical section. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \mbox{\hyperlink{group__RTEMSScoreThreadQueue_gaed8b973ae28379dbf863c01f10c993f3}{\+\_\+\+Thread\+\_\+queue\+\_\+\+Heads\+\_\+initialize}} (\mbox{\hyperlink{group__RTEMSScoreThreadQueue_gaebac32033b009cc8f606a90bd389f8e9}{Thread\+\_\+queue\+\_\+\+Heads}} $\ast$heads)
+\begin{DoxyCompactList}\small\item\em Initializes the thread queue heads. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \mbox{\hyperlink{group__RTEMSScoreThreadQueue_ga9bf4b585322581d70c742c7292bc8435}{\+\_\+\+Thread\+\_\+queue\+\_\+\+Queue\+\_\+initialize}} (\mbox{\hyperlink{structThread__queue__Queue}{Thread\+\_\+queue\+\_\+\+Queue}} $\ast$queue, const char $\ast$name)
+\begin{DoxyCompactList}\small\item\em Initializes the thread queue queue with the given name. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \mbox{\hyperlink{group__RTEMSScoreThreadQueue_gaca9472b4bf5091cab34d1a4099e4cfa6}{\+\_\+\+Thread\+\_\+queue\+\_\+\+Queue\+\_\+do\+\_\+acquire\+\_\+critical}} (\mbox{\hyperlink{structThread__queue__Queue}{Thread\+\_\+queue\+\_\+\+Queue}} $\ast$queue, \mbox{\hyperlink{structISR__lock__Context}{I\+S\+R\+\_\+lock\+\_\+\+Context}} $\ast$lock\+\_\+context)
+\begin{DoxyCompactList}\small\item\em Acquires the thread queue queue in a critical section. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \mbox{\hyperlink{group__RTEMSScoreThreadQueue_gaf210496afecfdf44064e41e8a83950ea}{\+\_\+\+Thread\+\_\+queue\+\_\+\+Queue\+\_\+release\+\_\+critical}} (\mbox{\hyperlink{structThread__queue__Queue}{Thread\+\_\+queue\+\_\+\+Queue}} $\ast$queue, \mbox{\hyperlink{structISR__lock__Context}{I\+S\+R\+\_\+lock\+\_\+\+Context}} $\ast$lock\+\_\+context)
+\begin{DoxyCompactList}\small\item\em Releases the thread queue queue in a critical section. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \mbox{\hyperlink{group__RTEMSScoreThreadQueue_ga5074d780cc6e486c858a564e0406f647}{\+\_\+\+Thread\+\_\+queue\+\_\+\+Queue\+\_\+release}} (\mbox{\hyperlink{structThread__queue__Queue}{Thread\+\_\+queue\+\_\+\+Queue}} $\ast$queue, \mbox{\hyperlink{structISR__lock__Context}{I\+S\+R\+\_\+lock\+\_\+\+Context}} $\ast$lock\+\_\+context)
+\begin{DoxyCompactList}\small\item\em Releases the thread queue queue and enables interrupts. \end{DoxyCompactList}\item 
+size\+\_\+t \mbox{\hyperlink{group__RTEMSScoreThreadQueue_gac17ae1a1c80b80869cac13c6c8bb9ade}{\+\_\+\+Thread\+\_\+queue\+\_\+\+Queue\+\_\+get\+\_\+name\+\_\+and\+\_\+id}} (const \mbox{\hyperlink{structThread__queue__Queue}{Thread\+\_\+queue\+\_\+\+Queue}} $\ast$queue, char $\ast$buffer, size\+\_\+t buffer\+\_\+size, \mbox{\hyperlink{group__RTEMSScoreObject_ga5821f52a51072941bdd603e542d0863e}{Objects\+\_\+\+Id}} $\ast$id)
+\begin{DoxyCompactList}\small\item\em Copies the thread queue name to the specified buffer. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \mbox{\hyperlink{group__RTEMSScoreThreadQueue_gaf1488e09cc925566233f2f1fc76c4d81}{\+\_\+\+Thread\+\_\+queue\+\_\+\+Do\+\_\+acquire\+\_\+critical}} (\mbox{\hyperlink{structThread__queue__Control}{Thread\+\_\+queue\+\_\+\+Control}} $\ast$the\+\_\+thread\+\_\+queue, \mbox{\hyperlink{structISR__lock__Context}{I\+S\+R\+\_\+lock\+\_\+\+Context}} $\ast$lock\+\_\+context)
+\begin{DoxyCompactList}\small\item\em Acquires the thread queue control in a critical section. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \mbox{\hyperlink{group__RTEMSScoreThreadQueue_ga2bb5c604a28a636950cca7aa43a47869}{\+\_\+\+Thread\+\_\+queue\+\_\+\+Acquire\+\_\+critical}} (\mbox{\hyperlink{structThread__queue__Control}{Thread\+\_\+queue\+\_\+\+Control}} $\ast$the\+\_\+thread\+\_\+queue, \mbox{\hyperlink{structThread__queue__Context}{Thread\+\_\+queue\+\_\+\+Context}} $\ast$queue\+\_\+context)
+\begin{DoxyCompactList}\small\item\em Acquires the thread queue control in a critical section. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \mbox{\hyperlink{group__RTEMSScoreThreadQueue_ga40080175681761a842fe6ab4784735b9}{\+\_\+\+Thread\+\_\+queue\+\_\+\+Acquire}} (\mbox{\hyperlink{structThread__queue__Control}{Thread\+\_\+queue\+\_\+\+Control}} $\ast$the\+\_\+thread\+\_\+queue, \mbox{\hyperlink{structThread__queue__Context}{Thread\+\_\+queue\+\_\+\+Context}} $\ast$queue\+\_\+context)
+\begin{DoxyCompactList}\small\item\em Acquires the thread queue control in a critical section. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \mbox{\hyperlink{group__RTEMSScoreThreadQueue_ga923d39f206f389ae8a8293e22bae8fbf}{\+\_\+\+Thread\+\_\+queue\+\_\+\+Do\+\_\+release\+\_\+critical}} (\mbox{\hyperlink{structThread__queue__Control}{Thread\+\_\+queue\+\_\+\+Control}} $\ast$the\+\_\+thread\+\_\+queue, \mbox{\hyperlink{structISR__lock__Context}{I\+S\+R\+\_\+lock\+\_\+\+Context}} $\ast$lock\+\_\+context)
+\begin{DoxyCompactList}\small\item\em Checks if the thread queue control is the owner of the lock. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \mbox{\hyperlink{group__RTEMSScoreThreadQueue_ga5f0796c03f91beaa6caa842433122bab}{\+\_\+\+Thread\+\_\+queue\+\_\+\+Release\+\_\+critical}} (\mbox{\hyperlink{structThread__queue__Control}{Thread\+\_\+queue\+\_\+\+Control}} $\ast$the\+\_\+thread\+\_\+queue, \mbox{\hyperlink{structThread__queue__Context}{Thread\+\_\+queue\+\_\+\+Context}} $\ast$queue\+\_\+context)
+\begin{DoxyCompactList}\small\item\em Releases the thread queue control in a critical section. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \mbox{\hyperlink{group__RTEMSScoreThreadQueue_ga0a8881ef4106a0707b2751cdd3d18bef}{\+\_\+\+Thread\+\_\+queue\+\_\+\+Release}} (\mbox{\hyperlink{structThread__queue__Control}{Thread\+\_\+queue\+\_\+\+Control}} $\ast$the\+\_\+thread\+\_\+queue, \mbox{\hyperlink{structThread__queue__Context}{Thread\+\_\+queue\+\_\+\+Context}} $\ast$queue\+\_\+context)
+\begin{DoxyCompactList}\small\item\em Releases the thread queue control and enables interrupts. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$ \mbox{\hyperlink{group__RTEMSScoreThreadQueue_ga1671707d42e9a381c3737b58deed97d5}{\+\_\+\+Thread\+\_\+queue\+\_\+\+Do\+\_\+dequeue}} (\mbox{\hyperlink{structThread__queue__Control}{Thread\+\_\+queue\+\_\+\+Control}} $\ast$the\+\_\+thread\+\_\+queue, const \mbox{\hyperlink{structThread__queue__Operations}{Thread\+\_\+queue\+\_\+\+Operations}} $\ast$operations)
+\begin{DoxyCompactList}\small\item\em Dequeues the first thread waiting on the thread queue and returns it. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__RTEMSScoreThreadQueue_ga4992b40810f6d287c832bdad240dbc90}{\+\_\+\+Thread\+\_\+queue\+\_\+\+Enqueue}} (\mbox{\hyperlink{structThread__queue__Queue}{Thread\+\_\+queue\+\_\+\+Queue}} $\ast$queue, const \mbox{\hyperlink{structThread__queue__Operations}{Thread\+\_\+queue\+\_\+\+Operations}} $\ast$operations, \mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$the\+\_\+thread, \mbox{\hyperlink{structThread__queue__Context}{Thread\+\_\+queue\+\_\+\+Context}} $\ast$queue\+\_\+context)
+\begin{DoxyCompactList}\small\item\em Blocks the thread and places it on the thread queue. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__RTEMSScoreThreadQueue_ga91a4a052dcfd0db5df6ff9fa16bbfb4f}{\+\_\+\+Thread\+\_\+queue\+\_\+\+Extract\+\_\+locked}} (\mbox{\hyperlink{structThread__queue__Queue}{Thread\+\_\+queue\+\_\+\+Queue}} $\ast$queue, const \mbox{\hyperlink{structThread__queue__Operations}{Thread\+\_\+queue\+\_\+\+Operations}} $\ast$operations, \mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$the\+\_\+thread, \mbox{\hyperlink{structThread__queue__Context}{Thread\+\_\+queue\+\_\+\+Context}} $\ast$queue\+\_\+context)
+\begin{DoxyCompactList}\small\item\em Extracts the thread from the thread queue, restores the default wait operations and restores the default thread lock. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__RTEMSScoreThreadQueue_gae47a7180a4fc9e6e834ec4067e580296}{\+\_\+\+Thread\+\_\+queue\+\_\+\+Unblock\+\_\+critical}} (bool unblock, \mbox{\hyperlink{structThread__queue__Queue}{Thread\+\_\+queue\+\_\+\+Queue}} $\ast$queue, \mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$the\+\_\+thread, \mbox{\hyperlink{structISR__lock__Context}{I\+S\+R\+\_\+lock\+\_\+\+Context}} $\ast$lock\+\_\+context)
+\begin{DoxyCompactList}\small\item\em Unblocks the thread which was on the thread queue before. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__RTEMSScoreThreadQueue_gaf6ce2524fef09fe93a24196dd392093e}{\+\_\+\+Thread\+\_\+queue\+\_\+\+Extract\+\_\+critical}} (\mbox{\hyperlink{structThread__queue__Queue}{Thread\+\_\+queue\+\_\+\+Queue}} $\ast$queue, const \mbox{\hyperlink{structThread__queue__Operations}{Thread\+\_\+queue\+\_\+\+Operations}} $\ast$operations, \mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$the\+\_\+thread, \mbox{\hyperlink{structThread__queue__Context}{Thread\+\_\+queue\+\_\+\+Context}} $\ast$queue\+\_\+context)
+\begin{DoxyCompactList}\small\item\em Extracts the thread from the thread queue and unblocks it. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__RTEMSScoreThreadQueue_gade3d717e5bef36275e5abd5c9cb0795f}{\+\_\+\+Thread\+\_\+queue\+\_\+\+Extract}} (\mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$the\+\_\+thread)
+\begin{DoxyCompactList}\small\item\em Extracts thread from thread queue. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__RTEMSScoreThreadQueue_ga999731e7674266e35751c1afad5a10b3}{\+\_\+\+Thread\+\_\+queue\+\_\+\+Extract\+\_\+with\+\_\+proxy}} (\mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$the\+\_\+thread)
+\begin{DoxyCompactList}\small\item\em Extracts the\+\_\+thread from the\+\_\+thread\+\_\+queue. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__RTEMSScoreThreadQueue_ga2f163fd4e89b8ea38e05e2faf4b065cf}{\+\_\+\+Thread\+\_\+queue\+\_\+\+Surrender}} (\mbox{\hyperlink{structThread__queue__Queue}{Thread\+\_\+queue\+\_\+\+Queue}} $\ast$queue, \mbox{\hyperlink{group__RTEMSScoreThreadQueue_gaebac32033b009cc8f606a90bd389f8e9}{Thread\+\_\+queue\+\_\+\+Heads}} $\ast$heads, \mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$previous\+\_\+owner, \mbox{\hyperlink{structThread__queue__Context}{Thread\+\_\+queue\+\_\+\+Context}} $\ast$queue\+\_\+context, const \mbox{\hyperlink{structThread__queue__Operations}{Thread\+\_\+queue\+\_\+\+Operations}} $\ast$operations)
+\begin{DoxyCompactList}\small\item\em Surrenders the thread queue previously owned by the thread to the first enqueued thread. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} bool \mbox{\hyperlink{group__RTEMSScoreThreadQueue_ga35b6fa511ba7c3c55a3afb91cc7b0cfb}{\+\_\+\+Thread\+\_\+queue\+\_\+\+Is\+\_\+empty}} (const \mbox{\hyperlink{structThread__queue__Queue}{Thread\+\_\+queue\+\_\+\+Queue}} $\ast$queue)
+\begin{DoxyCompactList}\small\item\em Checks if the thread queue queue is empty. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} \mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$ \mbox{\hyperlink{group__RTEMSScoreThreadQueue_gac07672b4b41838966ddf124973f51451}{\+\_\+\+Thread\+\_\+queue\+\_\+\+First\+\_\+locked}} (\mbox{\hyperlink{structThread__queue__Control}{Thread\+\_\+queue\+\_\+\+Control}} $\ast$the\+\_\+thread\+\_\+queue, const \mbox{\hyperlink{structThread__queue__Operations}{Thread\+\_\+queue\+\_\+\+Operations}} $\ast$operations)
+\begin{DoxyCompactList}\small\item\em Returns the first thread on the thread queue if it exists, otherwise {\ttfamily N\+U\+LL}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$ \mbox{\hyperlink{group__RTEMSScoreThreadQueue_ga4408cda9750cde6b1d469759762ecb14}{\+\_\+\+Thread\+\_\+queue\+\_\+\+First}} (\mbox{\hyperlink{structThread__queue__Control}{Thread\+\_\+queue\+\_\+\+Control}} $\ast$the\+\_\+thread\+\_\+queue, const \mbox{\hyperlink{structThread__queue__Operations}{Thread\+\_\+queue\+\_\+\+Operations}} $\ast$operations)
+\begin{DoxyCompactList}\small\item\em Returns the first thread on the thread queue if it exists, otherwise {\ttfamily N\+U\+LL}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$ \mbox{\hyperlink{group__RTEMSScoreThreadQueue_gaf7ba9f035005918f0e5eca4a3cfc92a1}{\+\_\+\+Thread\+\_\+queue\+\_\+\+Flush\+\_\+default\+\_\+filter}} (\mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$the\+\_\+thread, \mbox{\hyperlink{structThread__queue__Queue}{Thread\+\_\+queue\+\_\+\+Queue}} $\ast$queue, \mbox{\hyperlink{structThread__queue__Context}{Thread\+\_\+queue\+\_\+\+Context}} $\ast$queue\+\_\+context)
+\begin{DoxyCompactList}\small\item\em Default thread queue flush filter function. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$ \mbox{\hyperlink{group__RTEMSScoreThreadQueue_gafffea388b0a89cc1ba6540a73477130c}{\+\_\+\+Thread\+\_\+queue\+\_\+\+Flush\+\_\+status\+\_\+unavailable}} (\mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$the\+\_\+thread, \mbox{\hyperlink{structThread__queue__Queue}{Thread\+\_\+queue\+\_\+\+Queue}} $\ast$queue, \mbox{\hyperlink{structThread__queue__Context}{Thread\+\_\+queue\+\_\+\+Context}} $\ast$queue\+\_\+context)
+\begin{DoxyCompactList}\small\item\em Status unavailable thread queue flush filter function. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$ \mbox{\hyperlink{group__RTEMSScoreThreadQueue_gac33b5b4a755484ecff2e1f72a56be373}{\+\_\+\+Thread\+\_\+queue\+\_\+\+Flush\+\_\+status\+\_\+object\+\_\+was\+\_\+deleted}} (\mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$the\+\_\+thread, \mbox{\hyperlink{structThread__queue__Queue}{Thread\+\_\+queue\+\_\+\+Queue}} $\ast$queue, \mbox{\hyperlink{structThread__queue__Context}{Thread\+\_\+queue\+\_\+\+Context}} $\ast$queue\+\_\+context)
+\begin{DoxyCompactList}\small\item\em Status object was deleted thread queue flush filter function. \end{DoxyCompactList}\item 
+size\+\_\+t \mbox{\hyperlink{group__RTEMSScoreThreadQueue_gac979e73bbbb59a3157ebd782ff70df0c}{\+\_\+\+Thread\+\_\+queue\+\_\+\+Flush\+\_\+critical}} (\mbox{\hyperlink{structThread__queue__Queue}{Thread\+\_\+queue\+\_\+\+Queue}} $\ast$queue, const \mbox{\hyperlink{structThread__queue__Operations}{Thread\+\_\+queue\+\_\+\+Operations}} $\ast$operations, \mbox{\hyperlink{group__RTEMSScoreThreadQueue_ga66aee78bfdca4bd829cdedf18e7c2451}{Thread\+\_\+queue\+\_\+\+Flush\+\_\+filter}} filter, \mbox{\hyperlink{structThread__queue__Context}{Thread\+\_\+queue\+\_\+\+Context}} $\ast$queue\+\_\+context)
+\begin{DoxyCompactList}\small\item\em Unblocks all threads enqueued on the thread queue. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__RTEMSScoreThreadQueue_gae839c93467db7f3bb1776323a17ac8ad}{\+\_\+\+Thread\+\_\+queue\+\_\+\+Initialize}} (\mbox{\hyperlink{structThread__queue__Control}{Thread\+\_\+queue\+\_\+\+Control}} $\ast$the\+\_\+thread\+\_\+queue, const char $\ast$name)
+\begin{DoxyCompactList}\small\item\em Initializes the thread queue control to the given name. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \mbox{\hyperlink{group__RTEMSScoreThreadQueue_gaa59fb38f22e409d05123df6627ead47a}{\+\_\+\+Thread\+\_\+queue\+\_\+\+Destroy}} (\mbox{\hyperlink{structThread__queue__Control}{Thread\+\_\+queue\+\_\+\+Control}} $\ast$the\+\_\+thread\+\_\+queue)
+\begin{DoxyCompactList}\small\item\em Destroys the thread queue. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__RTEMSScoreThreadQueue_gadff2605d33f07f210c22844f1ae71eaf}{\+\_\+\+Thread\+\_\+queue\+\_\+\+Object\+\_\+initialize}} (\mbox{\hyperlink{structThread__queue__Control}{Thread\+\_\+queue\+\_\+\+Control}} $\ast$the\+\_\+thread\+\_\+queue)
+\begin{DoxyCompactList}\small\item\em Initializes a thread queue embedded in an object with identifier. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{group__RTEMSScoreThreadQueue_ga8882291b516b6920d04dfbcc45faa443}\label{group__RTEMSScoreThreadQueue_ga8882291b516b6920d04dfbcc45faa443}} 
+const \mbox{\hyperlink{structThread__queue__Operations}{Thread\+\_\+queue\+\_\+\+Operations}} {\bfseries \+\_\+\+Thread\+\_\+queue\+\_\+\+Operations\+\_\+default}
+\item 
+\mbox{\Hypertarget{group__RTEMSScoreThreadQueue_ga330a81a2edf215fbfed2b82e39d43681}\label{group__RTEMSScoreThreadQueue_ga330a81a2edf215fbfed2b82e39d43681}} 
+const \mbox{\hyperlink{structThread__queue__Operations}{Thread\+\_\+queue\+\_\+\+Operations}} {\bfseries \+\_\+\+Thread\+\_\+queue\+\_\+\+Operations\+\_\+\+F\+I\+FO}
+\item 
+\mbox{\Hypertarget{group__RTEMSScoreThreadQueue_ga02d697e0f80325c9d1130798b428520e}\label{group__RTEMSScoreThreadQueue_ga02d697e0f80325c9d1130798b428520e}} 
+const \mbox{\hyperlink{structThread__queue__Operations}{Thread\+\_\+queue\+\_\+\+Operations}} {\bfseries \+\_\+\+Thread\+\_\+queue\+\_\+\+Operations\+\_\+priority}
+\item 
+\mbox{\Hypertarget{group__RTEMSScoreThreadQueue_ga872841276b9740c8b2358485795f2feb}\label{group__RTEMSScoreThreadQueue_ga872841276b9740c8b2358485795f2feb}} 
+const \mbox{\hyperlink{structThread__queue__Operations}{Thread\+\_\+queue\+\_\+\+Operations}} {\bfseries \+\_\+\+Thread\+\_\+queue\+\_\+\+Operations\+\_\+priority\+\_\+inherit}
+\item 
+const char \mbox{\hyperlink{group__RTEMSScoreThreadQueue_gaa050ed6bbc86ca717c26cd68b93a49b7}{\+\_\+\+Thread\+\_\+queue\+\_\+\+Object\+\_\+name}} \mbox{[}$\,$\mbox{]}
+\begin{DoxyCompactList}\small\item\em The special thread queue name to indicated that the thread queue is embedded in an object with identifier. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Thread Queue Handler. 
+
+This handler provides the capability to have threads block in ordered sets. The sets may be ordered using the F\+I\+FO or priority discipline. 
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{group__RTEMSScoreThreadQueue_gaafcdeab82abf0b3ebf08a40c39a32ee6}\label{group__RTEMSScoreThreadQueue_gaafcdeab82abf0b3ebf08a40c39a32ee6}} 
+\index{Thread Queue Handler@{Thread Queue Handler}!\_Thread\_queue\_Context\_ISR\_disable@{\_Thread\_queue\_Context\_ISR\_disable}}
+\index{\_Thread\_queue\_Context\_ISR\_disable@{\_Thread\_queue\_Context\_ISR\_disable}!Thread Queue Handler@{Thread Queue Handler}}
+\subsubsection{\texorpdfstring{\_Thread\_queue\_Context\_ISR\_disable}{\_Thread\_queue\_Context\_ISR\_disable}}
+{\footnotesize\ttfamily \#define \+\_\+\+Thread\+\_\+queue\+\_\+\+Context\+\_\+\+I\+S\+R\+\_\+disable(\begin{DoxyParamCaption}\item[{}]{queue\+\_\+context,  }\item[{}]{level }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do} \{ \(\backslash\)}
+\DoxyCodeLine{    \_ISR\_Local\_disable( level ); \(\backslash\)}
+\DoxyCodeLine{    \_ISR\_lock\_ISR\_disable\_profile( \(\backslash\)}
+\DoxyCodeLine{      \&( queue\_context )->Lock\_context.Lock\_context \(\backslash\)}
+\DoxyCodeLine{    ) \(\backslash\)}
+\DoxyCodeLine{  \} \textcolor{keywordflow}{while} ( 0 )}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{group__RTEMSScoreThreadQueue_ga18b0ec8fb4243c787a3c5de92fa5d87a}\label{group__RTEMSScoreThreadQueue_ga18b0ec8fb4243c787a3c5de92fa5d87a}} 
+\index{Thread Queue Handler@{Thread Queue Handler}!\_Thread\_queue\_Context\_set\_MP\_callout@{\_Thread\_queue\_Context\_set\_MP\_callout}}
+\index{\_Thread\_queue\_Context\_set\_MP\_callout@{\_Thread\_queue\_Context\_set\_MP\_callout}!Thread Queue Handler@{Thread Queue Handler}}
+\subsubsection{\texorpdfstring{\_Thread\_queue\_Context\_set\_MP\_callout}{\_Thread\_queue\_Context\_set\_MP\_callout}}
+{\footnotesize\ttfamily \#define \+\_\+\+Thread\+\_\+queue\+\_\+\+Context\+\_\+set\+\_\+\+M\+P\+\_\+callout(\begin{DoxyParamCaption}\item[{}]{queue\+\_\+context,  }\item[{}]{mp\+\_\+callout }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do} \{ \(\backslash\)}
+\DoxyCodeLine{    (void) queue\_context; \(\backslash\)}
+\DoxyCodeLine{  \} \textcolor{keywordflow}{while} ( 0 )}
+
+\end{DoxyCode}
+
+
+Sets the MP callout in the thread queue context. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em queue\+\_\+context} & The thread queue context. \\
+\hline
+ & {\em mp\+\_\+callout} & Callout to unblock the thread in case it is actually a thread proxy. This parameter is only used on multiprocessing configurations. Used by thread queue extract and unblock methods for objects with multiprocessing (MP) support. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__RTEMSScoreThreadQueue_ga4e17044b2e16d3d927c52a4d4ecb0ec9}\label{group__RTEMSScoreThreadQueue_ga4e17044b2e16d3d927c52a4d4ecb0ec9}} 
+\index{Thread Queue Handler@{Thread Queue Handler}!\_Thread\_queue\_Dequeue@{\_Thread\_queue\_Dequeue}}
+\index{\_Thread\_queue\_Dequeue@{\_Thread\_queue\_Dequeue}!Thread Queue Handler@{Thread Queue Handler}}
+\subsubsection{\texorpdfstring{\_Thread\_queue\_Dequeue}{\_Thread\_queue\_Dequeue}}
+{\footnotesize\ttfamily \#define \+\_\+\+Thread\+\_\+queue\+\_\+\+Dequeue(\begin{DoxyParamCaption}\item[{}]{the\+\_\+thread\+\_\+queue,  }\item[{}]{operations,  }\item[{}]{mp\+\_\+callout }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{group__RTEMSScoreThreadQueue_ga1671707d42e9a381c3737b58deed97d5}{\_Thread\_queue\_Do\_dequeue}}( \(\backslash\)}
+\DoxyCodeLine{      the\_thread\_queue, \(\backslash\)}
+\DoxyCodeLine{      operations \(\backslash\)}
+\DoxyCodeLine{    )}
+
+\end{DoxyCode}
+
+
+Gets a pointer to a thread waiting on the\+\_\+thread\+\_\+queue. 
+
+This function returns a pointer to a thread waiting on the\+\_\+thread\+\_\+queue. The selection of this thread is based on the discipline of the\+\_\+thread\+\_\+queue. If no threads are waiting on the\+\_\+thread\+\_\+queue, then N\+U\+LL is returned.
+
+
+\begin{DoxyItemize}
+\item I\+N\+T\+E\+R\+R\+U\+PT L\+A\+T\+E\+N\+CY\+:
+\begin{DoxyItemize}
+\item single case 
+\end{DoxyItemize}
+\end{DoxyItemize}\mbox{\Hypertarget{group__RTEMSScoreThreadQueue_ga4fd2316f8881e16a62f263e4114ae3cc}\label{group__RTEMSScoreThreadQueue_ga4fd2316f8881e16a62f263e4114ae3cc}} 
+\index{Thread Queue Handler@{Thread Queue Handler}!THREAD\_QUEUE\_INITIALIZER@{THREAD\_QUEUE\_INITIALIZER}}
+\index{THREAD\_QUEUE\_INITIALIZER@{THREAD\_QUEUE\_INITIALIZER}!Thread Queue Handler@{Thread Queue Handler}}
+\subsubsection{\texorpdfstring{THREAD\_QUEUE\_INITIALIZER}{THREAD\_QUEUE\_INITIALIZER}}
+{\footnotesize\ttfamily \#define T\+H\+R\+E\+A\+D\+\_\+\+Q\+U\+E\+U\+E\+\_\+\+I\+N\+I\+T\+I\+A\+L\+I\+Z\+ER(\begin{DoxyParamCaption}\item[{}]{\+\_\+name }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{ \(\backslash\)}
+\DoxyCodeLine{      .Queue = \{ \(\backslash\)}
+\DoxyCodeLine{        .heads = \mbox{\hyperlink{bestcomm__api_8h_a872bb74de61c3689ccd5b41873fce42c}{NULL}}, \(\backslash\)}
+\DoxyCodeLine{        .owner = \mbox{\hyperlink{bestcomm__api_8h_a872bb74de61c3689ccd5b41873fce42c}{NULL}}, \(\backslash\)}
+\DoxyCodeLine{        .name = \_name \(\backslash\)}
+\DoxyCodeLine{      \} \(\backslash\)}
+\DoxyCodeLine{    \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{group__RTEMSScoreThreadQueue_gad4954a62452db5b9437608875b84138f}\label{group__RTEMSScoreThreadQueue_gad4954a62452db5b9437608875b84138f}} 
+\index{Thread Queue Handler@{Thread Queue Handler}!THREAD\_QUEUE\_OBJECT\_ASSERT@{THREAD\_QUEUE\_OBJECT\_ASSERT}}
+\index{THREAD\_QUEUE\_OBJECT\_ASSERT@{THREAD\_QUEUE\_OBJECT\_ASSERT}!Thread Queue Handler@{Thread Queue Handler}}
+\subsubsection{\texorpdfstring{THREAD\_QUEUE\_OBJECT\_ASSERT}{THREAD\_QUEUE\_OBJECT\_ASSERT}}
+{\footnotesize\ttfamily \#define T\+H\+R\+E\+A\+D\+\_\+\+Q\+U\+E\+U\+E\+\_\+\+O\+B\+J\+E\+C\+T\+\_\+\+A\+S\+S\+E\+RT(\begin{DoxyParamCaption}\item[{}]{object\+\_\+type,  }\item[{}]{wait\+\_\+queue\+\_\+member,  }\item[{}]{\mbox{\hyperlink{structmsg}{msg}} }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{RTEMS\_STATIC\_ASSERT( \(\backslash\)}
+\DoxyCodeLine{    offsetof( object\_type, wait\_queue\_member ) \(\backslash\)}
+\DoxyCodeLine{      == offsetof( \mbox{\hyperlink{structThread__queue__Object}{Thread\_queue\_Object}}, Wait\_queue ) \(\backslash\)}
+\DoxyCodeLine{    \&\& \mbox{\hyperlink{group__RTEMSScoreBaseDefs_ga662d6f57a710150b48c8be4eb1fe9ff8}{RTEMS\_HAVE\_MEMBER\_SAME\_TYPE}}( \(\backslash\)}
+\DoxyCodeLine{      object\_type, \(\backslash\)}
+\DoxyCodeLine{      wait\_queue\_member, \(\backslash\)}
+\DoxyCodeLine{      \mbox{\hyperlink{structThread__queue__Object}{Thread\_queue\_Object}}, \(\backslash\)}
+\DoxyCodeLine{      Wait\_queue \(\backslash\)}
+\DoxyCodeLine{    ), \(\backslash\)}
+\DoxyCodeLine{    \mbox{\hyperlink{structmsg}{msg}} \(\backslash\)}
+\DoxyCodeLine{  )}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{group__RTEMSScoreThreadQueue_ga7336809162ffc7b964f9ee223e0d7045}\label{group__RTEMSScoreThreadQueue_ga7336809162ffc7b964f9ee223e0d7045}} 
+\index{Thread Queue Handler@{Thread Queue Handler}!THREAD\_QUEUE\_QUEUE\_TO\_OBJECT@{THREAD\_QUEUE\_QUEUE\_TO\_OBJECT}}
+\index{THREAD\_QUEUE\_QUEUE\_TO\_OBJECT@{THREAD\_QUEUE\_QUEUE\_TO\_OBJECT}!Thread Queue Handler@{Thread Queue Handler}}
+\subsubsection{\texorpdfstring{THREAD\_QUEUE\_QUEUE\_TO\_OBJECT}{THREAD\_QUEUE\_QUEUE\_TO\_OBJECT}}
+{\footnotesize\ttfamily \#define T\+H\+R\+E\+A\+D\+\_\+\+Q\+U\+E\+U\+E\+\_\+\+Q\+U\+E\+U\+E\+\_\+\+T\+O\+\_\+\+O\+B\+J\+E\+CT(\begin{DoxyParamCaption}\item[{}]{queue }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gab2e7a0141fd898ae358fa9b134aa2610}{RTEMS\_CONTAINER\_OF}}( \(\backslash\)}
+\DoxyCodeLine{    queue, \(\backslash\)}
+\DoxyCodeLine{    \mbox{\hyperlink{structThread__queue__Object}{Thread\_queue\_Object}}, \(\backslash\)}
+\DoxyCodeLine{    Wait\_queue.Queue \(\backslash\)}
+\DoxyCodeLine{  )}
+
+\end{DoxyCode}
+
+
+\subsection{Typedef Documentation}
+\mbox{\Hypertarget{group__RTEMSScoreThreadQueue_gab2878c08655ad0911fe6540a1adaf3a3}\label{group__RTEMSScoreThreadQueue_gab2878c08655ad0911fe6540a1adaf3a3}} 
+\index{Thread Queue Handler@{Thread Queue Handler}!Thread\_queue\_Deadlock\_callout@{Thread\_queue\_Deadlock\_callout}}
+\index{Thread\_queue\_Deadlock\_callout@{Thread\_queue\_Deadlock\_callout}!Thread Queue Handler@{Thread Queue Handler}}
+\subsubsection{\texorpdfstring{Thread\_queue\_Deadlock\_callout}{Thread\_queue\_Deadlock\_callout}}
+{\footnotesize\ttfamily typedef void( $\ast$ Thread\+\_\+queue\+\_\+\+Deadlock\+\_\+callout) (\mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$the\+\_\+thread)}
+
+
+
+Thread queue deadlock callout. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em the\+\_\+thread} & The thread that detected the deadlock.\\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{group__RTEMSScoreThreadQueue_gab024e7369bc091e53e7bb04ed8ebfb61}{\+\_\+\+Thread\+\_\+queue\+\_\+\+Context\+\_\+set\+\_\+deadlock\+\_\+callout()}}. 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{group__RTEMSScoreThreadQueue_ga3dd59055cd68c42978de9cd8e007ce1d}\label{group__RTEMSScoreThreadQueue_ga3dd59055cd68c42978de9cd8e007ce1d}} 
+\index{Thread Queue Handler@{Thread Queue Handler}!Thread\_queue\_Enqueue\_callout@{Thread\_queue\_Enqueue\_callout}}
+\index{Thread\_queue\_Enqueue\_callout@{Thread\_queue\_Enqueue\_callout}!Thread Queue Handler@{Thread Queue Handler}}
+\subsubsection{\texorpdfstring{Thread\_queue\_Enqueue\_callout}{Thread\_queue\_Enqueue\_callout}}
+{\footnotesize\ttfamily typedef void( $\ast$ Thread\+\_\+queue\+\_\+\+Enqueue\+\_\+callout) (\mbox{\hyperlink{structThread__queue__Queue}{Thread\+\_\+queue\+\_\+\+Queue}} $\ast$queue, \mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$the\+\_\+thread, struct \mbox{\hyperlink{structPer__CPU__Control}{Per\+\_\+\+C\+P\+U\+\_\+\+Control}} $\ast$cpu\+\_\+self, \mbox{\hyperlink{structThread__queue__Context}{Thread\+\_\+queue\+\_\+\+Context}} $\ast$queue\+\_\+context)}
+
+
+
+Thread queue enqueue callout. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em queue} & The actual thread queue. \\
+\hline
+\mbox{\texttt{ in}}  & {\em the\+\_\+thread} & The thread to enqueue. \\
+\hline
+\mbox{\texttt{ in}}  & {\em cpu\+\_\+self} & The current processor. \\
+\hline
+\mbox{\texttt{ in}}  & {\em queue\+\_\+context} & The thread queue context of the lock acquire.\\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{group__RTEMSScoreThreadQueue_gae3eded5964733b953ab0a461a9d82f5d}{\+\_\+\+Thread\+\_\+queue\+\_\+\+Context\+\_\+set\+\_\+enqueue\+\_\+callout()}}. 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{group__RTEMSScoreThreadQueue_ga1d111ef0f5c9457f7e17a217fc7558cd}\label{group__RTEMSScoreThreadQueue_ga1d111ef0f5c9457f7e17a217fc7558cd}} 
+\index{Thread Queue Handler@{Thread Queue Handler}!Thread\_queue\_Enqueue\_operation@{Thread\_queue\_Enqueue\_operation}}
+\index{Thread\_queue\_Enqueue\_operation@{Thread\_queue\_Enqueue\_operation}!Thread Queue Handler@{Thread Queue Handler}}
+\subsubsection{\texorpdfstring{Thread\_queue\_Enqueue\_operation}{Thread\_queue\_Enqueue\_operation}}
+{\footnotesize\ttfamily typedef void( $\ast$ Thread\+\_\+queue\+\_\+\+Enqueue\+\_\+operation) (\mbox{\hyperlink{structThread__queue__Queue}{Thread\+\_\+queue\+\_\+\+Queue}} $\ast$queue, \mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$the\+\_\+thread, \mbox{\hyperlink{structThread__queue__Context}{Thread\+\_\+queue\+\_\+\+Context}} $\ast$queue\+\_\+context)}
+
+
+
+Thread queue enqueue operation. 
+
+A potential thread to update the priority due to priority inheritance is returned via the thread queue context. This thread is handed over to \mbox{\hyperlink{group__RTEMSScoreThread_ga424ec96c6cbed5a748565333d5fd7d59}{\+\_\+\+Thread\+\_\+\+Priority\+\_\+update()}}.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em queue} & The actual thread queue. \\
+\hline
+\mbox{\texttt{ in}}  & {\em the\+\_\+thread} & The thread to enqueue on the queue. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__RTEMSScoreThreadQueue_ga7fdee2ebb4fe9f9dae612be0ecce85db}\label{group__RTEMSScoreThreadQueue_ga7fdee2ebb4fe9f9dae612be0ecce85db}} 
+\index{Thread Queue Handler@{Thread Queue Handler}!Thread\_queue\_Extract\_operation@{Thread\_queue\_Extract\_operation}}
+\index{Thread\_queue\_Extract\_operation@{Thread\_queue\_Extract\_operation}!Thread Queue Handler@{Thread Queue Handler}}
+\subsubsection{\texorpdfstring{Thread\_queue\_Extract\_operation}{Thread\_queue\_Extract\_operation}}
+{\footnotesize\ttfamily typedef void( $\ast$ Thread\+\_\+queue\+\_\+\+Extract\+\_\+operation) (\mbox{\hyperlink{structThread__queue__Queue}{Thread\+\_\+queue\+\_\+\+Queue}} $\ast$queue, \mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$the\+\_\+thread, \mbox{\hyperlink{structThread__queue__Context}{Thread\+\_\+queue\+\_\+\+Context}} $\ast$queue\+\_\+context)}
+
+
+
+Thread queue extract operation. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em queue} & The actual thread queue. \\
+\hline
+\mbox{\texttt{ in}}  & {\em the\+\_\+thread} & The thread to extract from the thread queue. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__RTEMSScoreThreadQueue_gacd3bee122e35cf14e0ed8680256db439}\label{group__RTEMSScoreThreadQueue_gacd3bee122e35cf14e0ed8680256db439}} 
+\index{Thread Queue Handler@{Thread Queue Handler}!Thread\_queue\_First\_operation@{Thread\_queue\_First\_operation}}
+\index{Thread\_queue\_First\_operation@{Thread\_queue\_First\_operation}!Thread Queue Handler@{Thread Queue Handler}}
+\subsubsection{\texorpdfstring{Thread\_queue\_First\_operation}{Thread\_queue\_First\_operation}}
+{\footnotesize\ttfamily typedef \mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}}$\ast$( $\ast$ Thread\+\_\+queue\+\_\+\+First\+\_\+operation) (\mbox{\hyperlink{group__RTEMSScoreThreadQueue_gaebac32033b009cc8f606a90bd389f8e9}{Thread\+\_\+queue\+\_\+\+Heads}} $\ast$heads)}
+
+
+
+Thread queue first operation. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em heads} & The thread queue heads.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em N\+U\+LL} & No thread is present on the thread queue. \\
+\hline
+{\em first} & The first thread of the thread queue according to the insert order. This thread remains on the thread queue. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{group__RTEMSScoreThreadQueue_ga66aee78bfdca4bd829cdedf18e7c2451}\label{group__RTEMSScoreThreadQueue_ga66aee78bfdca4bd829cdedf18e7c2451}} 
+\index{Thread Queue Handler@{Thread Queue Handler}!Thread\_queue\_Flush\_filter@{Thread\_queue\_Flush\_filter}}
+\index{Thread\_queue\_Flush\_filter@{Thread\_queue\_Flush\_filter}!Thread Queue Handler@{Thread Queue Handler}}
+\subsubsection{\texorpdfstring{Thread\_queue\_Flush\_filter}{Thread\_queue\_Flush\_filter}}
+{\footnotesize\ttfamily typedef \mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}}$\ast$( $\ast$ Thread\+\_\+queue\+\_\+\+Flush\+\_\+filter) (\mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$the\+\_\+thread, \mbox{\hyperlink{structThread__queue__Queue}{Thread\+\_\+queue\+\_\+\+Queue}} $\ast$queue, \mbox{\hyperlink{structThread__queue__Context}{Thread\+\_\+queue\+\_\+\+Context}} $\ast$queue\+\_\+context)}
+
+
+
+Thread queue flush filter function. 
+
+Called under protection of the thread queue lock by \mbox{\hyperlink{group__RTEMSScoreThreadQueue_gac979e73bbbb59a3157ebd782ff70df0c}{\+\_\+\+Thread\+\_\+queue\+\_\+\+Flush\+\_\+critical()}} to optionally alter the thread wait information and control the iteration.
+
+
+\begin{DoxyParams}{Parameters}
+{\em the\+\_\+thread} & The thread to extract. This is the first parameter to optimize for architectures that use the same register for the first parameter and the return value. \\
+\hline
+{\em queue} & The actual thread queue. \\
+\hline
+{\em queue\+\_\+context} & The thread queue context of the lock acquire. May be used to pass additional data to the filter function via an overlay structure. The filter function should not release or acquire the thread queue lock.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em the\+\_\+thread} & Extract this thread. \\
+\hline
+{\em N\+U\+LL} & Do not extract this thread and stop the thread queue flush operation. Threads that are already extracted will complete the flush operation. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{group__RTEMSScoreThreadQueue_gaebac32033b009cc8f606a90bd389f8e9}\label{group__RTEMSScoreThreadQueue_gaebac32033b009cc8f606a90bd389f8e9}} 
+\index{Thread Queue Handler@{Thread Queue Handler}!Thread\_queue\_Heads@{Thread\_queue\_Heads}}
+\index{Thread\_queue\_Heads@{Thread\_queue\_Heads}!Thread Queue Handler@{Thread Queue Handler}}
+\subsubsection{\texorpdfstring{Thread\_queue\_Heads}{Thread\_queue\_Heads}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{struct__Thread__queue__Heads}{\+\_\+\+Thread\+\_\+queue\+\_\+\+Heads}}  \mbox{\hyperlink{group__RTEMSScoreThreadQueue_gaebac32033b009cc8f606a90bd389f8e9}{Thread\+\_\+queue\+\_\+\+Heads}}}
+
+
+
+Thread queue heads. 
+
+Each thread is equipped with spare thread queue heads in case it is not enqueued on a thread queue. The first thread enqueued on a thread queue will give its spare thread queue heads to that thread queue. The threads arriving at the queue will add their thread queue heads to the free chain of the queue heads provided by the first thread enqueued. Once a thread is dequeued it use the free chain to get new spare thread queue heads.
+
+Uses a leading underscore in the structure name to allow forward declarations in standard header files provided by Newlib and G\+CC. \mbox{\Hypertarget{group__RTEMSScoreThreadQueue_gacdacb1750c6bbc43f99e9c60bd1beba9}\label{group__RTEMSScoreThreadQueue_gacdacb1750c6bbc43f99e9c60bd1beba9}} 
+\index{Thread Queue Handler@{Thread Queue Handler}!Thread\_queue\_Priority\_actions\_operation@{Thread\_queue\_Priority\_actions\_operation}}
+\index{Thread\_queue\_Priority\_actions\_operation@{Thread\_queue\_Priority\_actions\_operation}!Thread Queue Handler@{Thread Queue Handler}}
+\subsubsection{\texorpdfstring{Thread\_queue\_Priority\_actions\_operation}{Thread\_queue\_Priority\_actions\_operation}}
+{\footnotesize\ttfamily typedef void( $\ast$ Thread\+\_\+queue\+\_\+\+Priority\+\_\+actions\+\_\+operation) (\mbox{\hyperlink{structThread__queue__Queue}{Thread\+\_\+queue\+\_\+\+Queue}} $\ast$queue, \mbox{\hyperlink{structPriority__Actions}{Priority\+\_\+\+Actions}} $\ast$priority\+\_\+actions)}
+
+
+
+Thread queue action operation. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em queue} & The actual thread queue. \\
+\hline
+\mbox{\texttt{ in}}  & {\em the\+\_\+thread} & The thread. \\
+\hline
+\mbox{\texttt{ in}}  & {\em queue\+\_\+context} & The thread queue context providing the thread queue action set to perform. Returns the thread queue action set to perform on the thread queue owner or the empty set in case there is nothing to do. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__RTEMSScoreThreadQueue_ga42e805a4c313faaddf8dc08592696574}\label{group__RTEMSScoreThreadQueue_ga42e805a4c313faaddf8dc08592696574}} 
+\index{Thread Queue Handler@{Thread Queue Handler}!Thread\_queue\_Surrender\_operation@{Thread\_queue\_Surrender\_operation}}
+\index{Thread\_queue\_Surrender\_operation@{Thread\_queue\_Surrender\_operation}!Thread Queue Handler@{Thread Queue Handler}}
+\subsubsection{\texorpdfstring{Thread\_queue\_Surrender\_operation}{Thread\_queue\_Surrender\_operation}}
+{\footnotesize\ttfamily typedef \mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}}$\ast$( $\ast$ Thread\+\_\+queue\+\_\+\+Surrender\+\_\+operation) (\mbox{\hyperlink{structThread__queue__Queue}{Thread\+\_\+queue\+\_\+\+Queue}} $\ast$queue, \mbox{\hyperlink{group__RTEMSScoreThreadQueue_gaebac32033b009cc8f606a90bd389f8e9}{Thread\+\_\+queue\+\_\+\+Heads}} $\ast$heads, \mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$previous\+\_\+owner, \mbox{\hyperlink{structThread__queue__Context}{Thread\+\_\+queue\+\_\+\+Context}} $\ast$queue\+\_\+context)}
+
+
+
+Thread queue surrender operation. 
+
+This operation must dequeue and return the first thread on the queue.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em queue} & The actual thread queue. \\
+\hline
+\mbox{\texttt{ in}}  & {\em heads} & The thread queue heads. It must not be N\+U\+LL. \\
+\hline
+\mbox{\texttt{ in}}  & {\em previous\+\_\+owner} & The previous owner of the thread queue.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The previous first thread on the queue. 
+\end{DoxyReturn}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{group__RTEMSScoreThreadQueue_ga40080175681761a842fe6ab4784735b9}\label{group__RTEMSScoreThreadQueue_ga40080175681761a842fe6ab4784735b9}} 
+\index{Thread Queue Handler@{Thread Queue Handler}!\_Thread\_queue\_Acquire@{\_Thread\_queue\_Acquire}}
+\index{\_Thread\_queue\_Acquire@{\_Thread\_queue\_Acquire}!Thread Queue Handler@{Thread Queue Handler}}
+\subsubsection{\texorpdfstring{\_Thread\_queue\_Acquire()}{\_Thread\_queue\_Acquire()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \+\_\+\+Thread\+\_\+queue\+\_\+\+Acquire (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structThread__queue__Control}{Thread\+\_\+queue\+\_\+\+Control}} $\ast$}]{the\+\_\+thread\+\_\+queue,  }\item[{\mbox{\hyperlink{structThread__queue__Context}{Thread\+\_\+queue\+\_\+\+Context}} $\ast$}]{queue\+\_\+context }\end{DoxyParamCaption})}
+
+
+
+Acquires the thread queue control in a critical section. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+ & {\em the\+\_\+thread\+\_\+queue} & The thread queue control to acquire. \\
+\hline
+\mbox{\texttt{ out}}  & {\em queue\+\_\+context} & The thread queue context. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__RTEMSScoreThreadQueue_ga2bb5c604a28a636950cca7aa43a47869}\label{group__RTEMSScoreThreadQueue_ga2bb5c604a28a636950cca7aa43a47869}} 
+\index{Thread Queue Handler@{Thread Queue Handler}!\_Thread\_queue\_Acquire\_critical@{\_Thread\_queue\_Acquire\_critical}}
+\index{\_Thread\_queue\_Acquire\_critical@{\_Thread\_queue\_Acquire\_critical}!Thread Queue Handler@{Thread Queue Handler}}
+\subsubsection{\texorpdfstring{\_Thread\_queue\_Acquire\_critical()}{\_Thread\_queue\_Acquire\_critical()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \+\_\+\+Thread\+\_\+queue\+\_\+\+Acquire\+\_\+critical (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structThread__queue__Control}{Thread\+\_\+queue\+\_\+\+Control}} $\ast$}]{the\+\_\+thread\+\_\+queue,  }\item[{\mbox{\hyperlink{structThread__queue__Context}{Thread\+\_\+queue\+\_\+\+Context}} $\ast$}]{queue\+\_\+context }\end{DoxyParamCaption})}
+
+
+
+Acquires the thread queue control in a critical section. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+ & {\em the\+\_\+thread\+\_\+queue} & The thread queue control to acquire. \\
+\hline
+\mbox{\texttt{ out}}  & {\em lock\+\_\+context} & The interrupt lock context. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__RTEMSScoreThreadQueue_ga4ec75c62ea3aad333b84e577a2bb09a4}\label{group__RTEMSScoreThreadQueue_ga4ec75c62ea3aad333b84e577a2bb09a4}} 
+\index{Thread Queue Handler@{Thread Queue Handler}!\_Thread\_queue\_Add\_timeout\_monotonic\_timespec@{\_Thread\_queue\_Add\_timeout\_monotonic\_timespec}}
+\index{\_Thread\_queue\_Add\_timeout\_monotonic\_timespec@{\_Thread\_queue\_Add\_timeout\_monotonic\_timespec}!Thread Queue Handler@{Thread Queue Handler}}
+\subsubsection{\texorpdfstring{\_Thread\_queue\_Add\_timeout\_monotonic\_timespec()}{\_Thread\_queue\_Add\_timeout\_monotonic\_timespec()}}
+{\footnotesize\ttfamily void \+\_\+\+Thread\+\_\+queue\+\_\+\+Add\+\_\+timeout\+\_\+monotonic\+\_\+timespec (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structThread__queue__Queue}{Thread\+\_\+queue\+\_\+\+Queue}} $\ast$}]{queue,  }\item[{\mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$}]{the\+\_\+thread,  }\item[{\mbox{\hyperlink{structPer__CPU__Control}{Per\+\_\+\+C\+P\+U\+\_\+\+Control}} $\ast$}]{cpu\+\_\+self,  }\item[{\mbox{\hyperlink{structThread__queue__Context}{Thread\+\_\+queue\+\_\+\+Context}} $\ast$}]{queue\+\_\+context }\end{DoxyParamCaption})}
+
+
+
+Adds a monotonic timespec to the thread and sets the watchdog header to monotonic. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+ & {\em queue} & This parameter is unused. \\
+\hline
+\mbox{\texttt{ in,out}}  & {\em the\+\_\+thread} & The thread to add the timeout and set watchdog header to monotonic. \\
+\hline
+ & {\em cpu\+\_\+self} & The cpu to get the monotonic watchdog header from. \\
+\hline
+ & {\em queue\+\_\+context} & The thread queue context. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__RTEMSScoreThreadQueue_ga14552dcef85b4627e1b2d150f7245f81}\label{group__RTEMSScoreThreadQueue_ga14552dcef85b4627e1b2d150f7245f81}} 
+\index{Thread Queue Handler@{Thread Queue Handler}!\_Thread\_queue\_Add\_timeout\_realtime\_timespec@{\_Thread\_queue\_Add\_timeout\_realtime\_timespec}}
+\index{\_Thread\_queue\_Add\_timeout\_realtime\_timespec@{\_Thread\_queue\_Add\_timeout\_realtime\_timespec}!Thread Queue Handler@{Thread Queue Handler}}
+\subsubsection{\texorpdfstring{\_Thread\_queue\_Add\_timeout\_realtime\_timespec()}{\_Thread\_queue\_Add\_timeout\_realtime\_timespec()}}
+{\footnotesize\ttfamily void \+\_\+\+Thread\+\_\+queue\+\_\+\+Add\+\_\+timeout\+\_\+realtime\+\_\+timespec (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structThread__queue__Queue}{Thread\+\_\+queue\+\_\+\+Queue}} $\ast$}]{queue,  }\item[{\mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$}]{the\+\_\+thread,  }\item[{\mbox{\hyperlink{structPer__CPU__Control}{Per\+\_\+\+C\+P\+U\+\_\+\+Control}} $\ast$}]{cpu\+\_\+self,  }\item[{\mbox{\hyperlink{structThread__queue__Context}{Thread\+\_\+queue\+\_\+\+Context}} $\ast$}]{queue\+\_\+context }\end{DoxyParamCaption})}
+
+
+
+Adds a monotonic timespec to the thread and sets the watchdog header to realtime. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+ & {\em queue} & This parameter is unused. \\
+\hline
+\mbox{\texttt{ in,out}}  & {\em the\+\_\+thread} & The thread to add the timeout and set watchdog header to realtime. \\
+\hline
+ & {\em cpu\+\_\+self} & The cpu to get the realtime watchdog header from. \\
+\hline
+ & {\em queue\+\_\+context} & The thread queue context. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__RTEMSScoreThreadQueue_gae6191fb5cd1e33990f9b505f12c39734}\label{group__RTEMSScoreThreadQueue_gae6191fb5cd1e33990f9b505f12c39734}} 
+\index{Thread Queue Handler@{Thread Queue Handler}!\_Thread\_queue\_Add\_timeout\_ticks@{\_Thread\_queue\_Add\_timeout\_ticks}}
+\index{\_Thread\_queue\_Add\_timeout\_ticks@{\_Thread\_queue\_Add\_timeout\_ticks}!Thread Queue Handler@{Thread Queue Handler}}
+\subsubsection{\texorpdfstring{\_Thread\_queue\_Add\_timeout\_ticks()}{\_Thread\_queue\_Add\_timeout\_ticks()}}
+{\footnotesize\ttfamily void \+\_\+\+Thread\+\_\+queue\+\_\+\+Add\+\_\+timeout\+\_\+ticks (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structThread__queue__Queue}{Thread\+\_\+queue\+\_\+\+Queue}} $\ast$}]{queue,  }\item[{\mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$}]{the\+\_\+thread,  }\item[{\mbox{\hyperlink{structPer__CPU__Control}{Per\+\_\+\+C\+P\+U\+\_\+\+Control}} $\ast$}]{cpu\+\_\+self,  }\item[{\mbox{\hyperlink{structThread__queue__Context}{Thread\+\_\+queue\+\_\+\+Context}} $\ast$}]{queue\+\_\+context }\end{DoxyParamCaption})}
+
+
+
+Adds timeout ticks of the queue to the thread. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+ & {\em queue} & This parameter is unused. \\
+\hline
+\mbox{\texttt{ in,out}}  & {\em the\+\_\+thread} & The thread to add timeout ticks to. \\
+\hline
+ & {\em cpu\+\_\+self} & The cpu for the operation. \\
+\hline
+ & {\em queue\+\_\+context} & The thread queue context. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__RTEMSScoreThreadQueue_ga5a5f1fcac92cc64364be93f2f5c131f6}\label{group__RTEMSScoreThreadQueue_ga5a5f1fcac92cc64364be93f2f5c131f6}} 
+\index{Thread Queue Handler@{Thread Queue Handler}!\_Thread\_queue\_Context\_add\_priority\_update@{\_Thread\_queue\_Context\_add\_priority\_update}}
+\index{\_Thread\_queue\_Context\_add\_priority\_update@{\_Thread\_queue\_Context\_add\_priority\_update}!Thread Queue Handler@{Thread Queue Handler}}
+\subsubsection{\texorpdfstring{\_Thread\_queue\_Context\_add\_priority\_update()}{\_Thread\_queue\_Context\_add\_priority\_update()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \+\_\+\+Thread\+\_\+queue\+\_\+\+Context\+\_\+add\+\_\+priority\+\_\+update (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structThread__queue__Context}{Thread\+\_\+queue\+\_\+\+Context}} $\ast$}]{queue\+\_\+context,  }\item[{\mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$}]{the\+\_\+thread }\end{DoxyParamCaption})}
+
+
+
+Adds a priority update of the thread to the thread queue context. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em queue\+\_\+context} & The thread queue context to increase the priority update count of and set the\+\_\+thread in its Priority update array. \\
+\hline
+ & {\em the\+\_\+thread} & The thread for the priority update. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__RTEMSScoreThreadQueue_gab84f558bc470437d43ce863f8024534e}\label{group__RTEMSScoreThreadQueue_gab84f558bc470437d43ce863f8024534e}} 
+\index{Thread Queue Handler@{Thread Queue Handler}!\_Thread\_queue\_Context\_clear\_priority\_updates@{\_Thread\_queue\_Context\_clear\_priority\_updates}}
+\index{\_Thread\_queue\_Context\_clear\_priority\_updates@{\_Thread\_queue\_Context\_clear\_priority\_updates}!Thread Queue Handler@{Thread Queue Handler}}
+\subsubsection{\texorpdfstring{\_Thread\_queue\_Context\_clear\_priority\_updates()}{\_Thread\_queue\_Context\_clear\_priority\_updates()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \+\_\+\+Thread\+\_\+queue\+\_\+\+Context\+\_\+clear\+\_\+priority\+\_\+updates (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structThread__queue__Context}{Thread\+\_\+queue\+\_\+\+Context}} $\ast$}]{queue\+\_\+context }\end{DoxyParamCaption})}
+
+
+
+Clears the priority update count of the thread queue context. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em queue\+\_\+context} & The thread queue context to clear the priority update count. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__RTEMSScoreThreadQueue_gae18ee06777084a67d286d743355d47ac}\label{group__RTEMSScoreThreadQueue_gae18ee06777084a67d286d743355d47ac}} 
+\index{Thread Queue Handler@{Thread Queue Handler}!\_Thread\_queue\_Context\_initialize@{\_Thread\_queue\_Context\_initialize}}
+\index{\_Thread\_queue\_Context\_initialize@{\_Thread\_queue\_Context\_initialize}!Thread Queue Handler@{Thread Queue Handler}}
+\subsubsection{\texorpdfstring{\_Thread\_queue\_Context\_initialize()}{\_Thread\_queue\_Context\_initialize()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \+\_\+\+Thread\+\_\+queue\+\_\+\+Context\+\_\+initialize (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structThread__queue__Context}{Thread\+\_\+queue\+\_\+\+Context}} $\ast$}]{queue\+\_\+context }\end{DoxyParamCaption})}
+
+
+
+Initializes a thread queue context. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em queue\+\_\+context} & The thread queue context to initialize. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__RTEMSScoreThreadQueue_ga0adb6adf8dfbbf4836b243b805cdcf51}\label{group__RTEMSScoreThreadQueue_ga0adb6adf8dfbbf4836b243b805cdcf51}} 
+\index{Thread Queue Handler@{Thread Queue Handler}!\_Thread\_queue\_Context\_restore\_priority\_updates@{\_Thread\_queue\_Context\_restore\_priority\_updates}}
+\index{\_Thread\_queue\_Context\_restore\_priority\_updates@{\_Thread\_queue\_Context\_restore\_priority\_updates}!Thread Queue Handler@{Thread Queue Handler}}
+\subsubsection{\texorpdfstring{\_Thread\_queue\_Context\_restore\_priority\_updates()}{\_Thread\_queue\_Context\_restore\_priority\_updates()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \+\_\+\+Thread\+\_\+queue\+\_\+\+Context\+\_\+restore\+\_\+priority\+\_\+updates (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structThread__queue__Context}{Thread\+\_\+queue\+\_\+\+Context}} $\ast$}]{queue\+\_\+context,  }\item[{size\+\_\+t}]{update\+\_\+count }\end{DoxyParamCaption})}
+
+
+
+Sets the priority update count of the thread queue context. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em queue\+\_\+context} & The thread queue context to set the priority update count of. \\
+\hline
+ & {\em update\+\_\+count} & The priority update count. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__RTEMSScoreThreadQueue_gae87ba650367cd3744e08ce9a0a23c8a0}\label{group__RTEMSScoreThreadQueue_gae87ba650367cd3744e08ce9a0a23c8a0}} 
+\index{Thread Queue Handler@{Thread Queue Handler}!\_Thread\_queue\_Context\_save\_priority\_updates@{\_Thread\_queue\_Context\_save\_priority\_updates}}
+\index{\_Thread\_queue\_Context\_save\_priority\_updates@{\_Thread\_queue\_Context\_save\_priority\_updates}!Thread Queue Handler@{Thread Queue Handler}}
+\subsubsection{\texorpdfstring{\_Thread\_queue\_Context\_save\_priority\_updates()}{\_Thread\_queue\_Context\_save\_priority\_updates()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} size\+\_\+t \+\_\+\+Thread\+\_\+queue\+\_\+\+Context\+\_\+save\+\_\+priority\+\_\+updates (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structThread__queue__Context}{Thread\+\_\+queue\+\_\+\+Context}} $\ast$}]{queue\+\_\+context }\end{DoxyParamCaption})}
+
+
+
+Returns the priority update count of the thread queue context. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em queue\+\_\+context} & The thread queue context to get the priority update count of.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The priority update count of {\itshape queue\+\_\+context}. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{group__RTEMSScoreThreadQueue_gab024e7369bc091e53e7bb04ed8ebfb61}\label{group__RTEMSScoreThreadQueue_gab024e7369bc091e53e7bb04ed8ebfb61}} 
+\index{Thread Queue Handler@{Thread Queue Handler}!\_Thread\_queue\_Context\_set\_deadlock\_callout@{\_Thread\_queue\_Context\_set\_deadlock\_callout}}
+\index{\_Thread\_queue\_Context\_set\_deadlock\_callout@{\_Thread\_queue\_Context\_set\_deadlock\_callout}!Thread Queue Handler@{Thread Queue Handler}}
+\subsubsection{\texorpdfstring{\_Thread\_queue\_Context\_set\_deadlock\_callout()}{\_Thread\_queue\_Context\_set\_deadlock\_callout()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \+\_\+\+Thread\+\_\+queue\+\_\+\+Context\+\_\+set\+\_\+deadlock\+\_\+callout (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structThread__queue__Context}{Thread\+\_\+queue\+\_\+\+Context}} $\ast$}]{queue\+\_\+context,  }\item[{\mbox{\hyperlink{group__RTEMSScoreThreadQueue_gab2878c08655ad0911fe6540a1adaf3a3}{Thread\+\_\+queue\+\_\+\+Deadlock\+\_\+callout}}}]{deadlock\+\_\+callout }\end{DoxyParamCaption})}
+
+
+
+Sets the deadlock callout in the thread queue context. 
+
+A deadlock callout must be provided for \mbox{\hyperlink{group__RTEMSScoreThreadQueue_ga4992b40810f6d287c832bdad240dbc90}{\+\_\+\+Thread\+\_\+queue\+\_\+\+Enqueue()}} operations that operate on thread queues which may have an owner, e.\+g. mutex objects. Available deadlock callouts are \mbox{\hyperlink{group__RTEMSScoreThreadQueue_gaca11db0fbad98d6b0ee9a41139aa7d54}{\+\_\+\+Thread\+\_\+queue\+\_\+\+Deadlock\+\_\+status()}} and \mbox{\hyperlink{group__RTEMSScoreThreadQueue_ga673681292c0f047b02c6dbb6819e0ad7}{\+\_\+\+Thread\+\_\+queue\+\_\+\+Deadlock\+\_\+fatal()}}.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em queue\+\_\+context} & The thread queue context. \\
+\hline
+ & {\em deadlock\+\_\+callout} & The deadlock callout.\\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{group__RTEMSScoreThreadQueue_ga4992b40810f6d287c832bdad240dbc90}{\+\_\+\+Thread\+\_\+queue\+\_\+\+Enqueue()}}. 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{group__RTEMSScoreThreadQueue_gae3eded5964733b953ab0a461a9d82f5d}\label{group__RTEMSScoreThreadQueue_gae3eded5964733b953ab0a461a9d82f5d}} 
+\index{Thread Queue Handler@{Thread Queue Handler}!\_Thread\_queue\_Context\_set\_enqueue\_callout@{\_Thread\_queue\_Context\_set\_enqueue\_callout}}
+\index{\_Thread\_queue\_Context\_set\_enqueue\_callout@{\_Thread\_queue\_Context\_set\_enqueue\_callout}!Thread Queue Handler@{Thread Queue Handler}}
+\subsubsection{\texorpdfstring{\_Thread\_queue\_Context\_set\_enqueue\_callout()}{\_Thread\_queue\_Context\_set\_enqueue\_callout()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \+\_\+\+Thread\+\_\+queue\+\_\+\+Context\+\_\+set\+\_\+enqueue\+\_\+callout (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structThread__queue__Context}{Thread\+\_\+queue\+\_\+\+Context}} $\ast$}]{queue\+\_\+context,  }\item[{\mbox{\hyperlink{group__RTEMSScoreThreadQueue_ga3dd59055cd68c42978de9cd8e007ce1d}{Thread\+\_\+queue\+\_\+\+Enqueue\+\_\+callout}}}]{enqueue\+\_\+callout }\end{DoxyParamCaption})}
+
+
+
+Sets the enqueue callout in the thread queue context. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em queue\+\_\+context} & The thread queue context. \\
+\hline
+ & {\em enqueue\+\_\+callout} & The enqueue callout.\\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{group__RTEMSScoreThreadQueue_ga4992b40810f6d287c832bdad240dbc90}{\+\_\+\+Thread\+\_\+queue\+\_\+\+Enqueue()}}. 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{group__RTEMSScoreThreadQueue_gaa7142c86d5677c5c5b0f993beecdc712}\label{group__RTEMSScoreThreadQueue_gaa7142c86d5677c5c5b0f993beecdc712}} 
+\index{Thread Queue Handler@{Thread Queue Handler}!\_Thread\_queue\_Context\_set\_enqueue\_do\_nothing\_extra@{\_Thread\_queue\_Context\_set\_enqueue\_do\_nothing\_extra}}
+\index{\_Thread\_queue\_Context\_set\_enqueue\_do\_nothing\_extra@{\_Thread\_queue\_Context\_set\_enqueue\_do\_nothing\_extra}!Thread Queue Handler@{Thread Queue Handler}}
+\subsubsection{\texorpdfstring{\_Thread\_queue\_Context\_set\_enqueue\_do\_nothing\_extra()}{\_Thread\_queue\_Context\_set\_enqueue\_do\_nothing\_extra()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \+\_\+\+Thread\+\_\+queue\+\_\+\+Context\+\_\+set\+\_\+enqueue\+\_\+do\+\_\+nothing\+\_\+extra (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structThread__queue__Context}{Thread\+\_\+queue\+\_\+\+Context}} $\ast$}]{queue\+\_\+context }\end{DoxyParamCaption})}
+
+
+
+Sets the do nothing enqueue callout in the thread queue context. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em queue\+\_\+context} & The thread queue context.\\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{group__RTEMSScoreThreadQueue_ga4992b40810f6d287c832bdad240dbc90}{\+\_\+\+Thread\+\_\+queue\+\_\+\+Enqueue()}}. 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{group__RTEMSScoreThreadQueue_ga3094c6721a6db2468884cfb502263d36}\label{group__RTEMSScoreThreadQueue_ga3094c6721a6db2468884cfb502263d36}} 
+\index{Thread Queue Handler@{Thread Queue Handler}!\_Thread\_queue\_Context\_set\_enqueue\_timeout\_monotonic\_timespec@{\_Thread\_queue\_Context\_set\_enqueue\_timeout\_monotonic\_timespec}}
+\index{\_Thread\_queue\_Context\_set\_enqueue\_timeout\_monotonic\_timespec@{\_Thread\_queue\_Context\_set\_enqueue\_timeout\_monotonic\_timespec}!Thread Queue Handler@{Thread Queue Handler}}
+\subsubsection{\texorpdfstring{\_Thread\_queue\_Context\_set\_enqueue\_timeout\_monotonic\_timespec()}{\_Thread\_queue\_Context\_set\_enqueue\_timeout\_monotonic\_timespec()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \+\_\+\+Thread\+\_\+queue\+\_\+\+Context\+\_\+set\+\_\+enqueue\+\_\+timeout\+\_\+monotonic\+\_\+timespec (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structThread__queue__Context}{Thread\+\_\+queue\+\_\+\+Context}} $\ast$}]{queue\+\_\+context,  }\item[{const struct timespec $\ast$}]{abstime }\end{DoxyParamCaption})}
+
+
+
+Sets the enqueue callout to add an absolute monotonic timeout in timespec format. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em queue\+\_\+context} & The thread queue context. \\
+\hline
+ & {\em abstime} & The absolute monotonic timeout.\\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{group__RTEMSScoreThreadQueue_ga4992b40810f6d287c832bdad240dbc90}{\+\_\+\+Thread\+\_\+queue\+\_\+\+Enqueue()}}. 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{group__RTEMSScoreThreadQueue_gab148af32965cdef1887db52409f7ee86}\label{group__RTEMSScoreThreadQueue_gab148af32965cdef1887db52409f7ee86}} 
+\index{Thread Queue Handler@{Thread Queue Handler}!\_Thread\_queue\_Context\_set\_enqueue\_timeout\_realtime\_timespec@{\_Thread\_queue\_Context\_set\_enqueue\_timeout\_realtime\_timespec}}
+\index{\_Thread\_queue\_Context\_set\_enqueue\_timeout\_realtime\_timespec@{\_Thread\_queue\_Context\_set\_enqueue\_timeout\_realtime\_timespec}!Thread Queue Handler@{Thread Queue Handler}}
+\subsubsection{\texorpdfstring{\_Thread\_queue\_Context\_set\_enqueue\_timeout\_realtime\_timespec()}{\_Thread\_queue\_Context\_set\_enqueue\_timeout\_realtime\_timespec()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \+\_\+\+Thread\+\_\+queue\+\_\+\+Context\+\_\+set\+\_\+enqueue\+\_\+timeout\+\_\+realtime\+\_\+timespec (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structThread__queue__Context}{Thread\+\_\+queue\+\_\+\+Context}} $\ast$}]{queue\+\_\+context,  }\item[{const struct timespec $\ast$}]{abstime }\end{DoxyParamCaption})}
+
+
+
+Sets the enqueue callout to add an absolute realtime timeout in timespec format. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em queue\+\_\+context} & The thread queue context. \\
+\hline
+ & {\em abstime} & The absolute realtime timeout.\\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{group__RTEMSScoreThreadQueue_ga4992b40810f6d287c832bdad240dbc90}{\+\_\+\+Thread\+\_\+queue\+\_\+\+Enqueue()}}. 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{group__RTEMSScoreThreadQueue_ga539935c21bc9e51bd27d64eb8f2ea26c}\label{group__RTEMSScoreThreadQueue_ga539935c21bc9e51bd27d64eb8f2ea26c}} 
+\index{Thread Queue Handler@{Thread Queue Handler}!\_Thread\_queue\_Context\_set\_enqueue\_timeout\_ticks@{\_Thread\_queue\_Context\_set\_enqueue\_timeout\_ticks}}
+\index{\_Thread\_queue\_Context\_set\_enqueue\_timeout\_ticks@{\_Thread\_queue\_Context\_set\_enqueue\_timeout\_ticks}!Thread Queue Handler@{Thread Queue Handler}}
+\subsubsection{\texorpdfstring{\_Thread\_queue\_Context\_set\_enqueue\_timeout\_ticks()}{\_Thread\_queue\_Context\_set\_enqueue\_timeout\_ticks()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \+\_\+\+Thread\+\_\+queue\+\_\+\+Context\+\_\+set\+\_\+enqueue\+\_\+timeout\+\_\+ticks (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structThread__queue__Context}{Thread\+\_\+queue\+\_\+\+Context}} $\ast$}]{queue\+\_\+context,  }\item[{\mbox{\hyperlink{group__RTEMSScoreWatchdog_gaa1834fd7531ca9bb5c4ca6fd990388d5}{Watchdog\+\_\+\+Interval}}}]{ticks }\end{DoxyParamCaption})}
+
+
+
+Sets the enqueue callout to add a relative monotonic timeout in ticks. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em queue\+\_\+context} & The thread queue context. \\
+\hline
+ & {\em ticks} & The timeout in ticks.\\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{group__RTEMSScoreThreadQueue_ga4992b40810f6d287c832bdad240dbc90}{\+\_\+\+Thread\+\_\+queue\+\_\+\+Enqueue()}}. 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{group__RTEMSScoreThreadQueue_ga076b043e2ddbb7500429a733cac31f1f}\label{group__RTEMSScoreThreadQueue_ga076b043e2ddbb7500429a733cac31f1f}} 
+\index{Thread Queue Handler@{Thread Queue Handler}!\_Thread\_queue\_Context\_set\_ISR\_level@{\_Thread\_queue\_Context\_set\_ISR\_level}}
+\index{\_Thread\_queue\_Context\_set\_ISR\_level@{\_Thread\_queue\_Context\_set\_ISR\_level}!Thread Queue Handler@{Thread Queue Handler}}
+\subsubsection{\texorpdfstring{\_Thread\_queue\_Context\_set\_ISR\_level()}{\_Thread\_queue\_Context\_set\_ISR\_level()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \+\_\+\+Thread\+\_\+queue\+\_\+\+Context\+\_\+set\+\_\+\+I\+S\+R\+\_\+level (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structThread__queue__Context}{Thread\+\_\+queue\+\_\+\+Context}} $\ast$}]{queue\+\_\+context,  }\item[{\mbox{\hyperlink{group__RTEMSScoreISR_gad1af728587ebcefec5b5cf94fc7909b9}{I\+S\+R\+\_\+\+Level}}}]{level }\end{DoxyParamCaption})}
+
+
+
+Sets the thread queue context I\+SR level. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em queue\+\_\+context} & The thread queue context to set the I\+SR level of. \\
+\hline
+ & {\em level} & The I\+SR level to set {\itshape queue\+\_\+context} to. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__RTEMSScoreThreadQueue_gab31678d367077d484797bc9c4d97574e}\label{group__RTEMSScoreThreadQueue_gab31678d367077d484797bc9c4d97574e}} 
+\index{Thread Queue Handler@{Thread Queue Handler}!\_Thread\_queue\_Context\_set\_thread\_state@{\_Thread\_queue\_Context\_set\_thread\_state}}
+\index{\_Thread\_queue\_Context\_set\_thread\_state@{\_Thread\_queue\_Context\_set\_thread\_state}!Thread Queue Handler@{Thread Queue Handler}}
+\subsubsection{\texorpdfstring{\_Thread\_queue\_Context\_set\_thread\_state()}{\_Thread\_queue\_Context\_set\_thread\_state()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \+\_\+\+Thread\+\_\+queue\+\_\+\+Context\+\_\+set\+\_\+thread\+\_\+state (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structThread__queue__Context}{Thread\+\_\+queue\+\_\+\+Context}} $\ast$}]{queue\+\_\+context,  }\item[{\mbox{\hyperlink{group__RTEMSScoreStates_gaeebbea0bfca162709b124fd519cf99d3}{States\+\_\+\+Control}}}]{thread\+\_\+state }\end{DoxyParamCaption})}
+
+
+
+Sets the thread state for the thread to enqueue in the thread queue context. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em queue\+\_\+context} & The thread queue context. \\
+\hline
+ & {\em state} & The thread state.\\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{group__RTEMSScoreThreadQueue_ga4992b40810f6d287c832bdad240dbc90}{\+\_\+\+Thread\+\_\+queue\+\_\+\+Enqueue()}}. 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{group__RTEMSScoreThreadQueue_gaacc8878446de7eef0f3c3f309fafe88c}\label{group__RTEMSScoreThreadQueue_gaacc8878446de7eef0f3c3f309fafe88c}} 
+\index{Thread Queue Handler@{Thread Queue Handler}!\_Thread\_queue\_Context\_set\_timeout\_argument@{\_Thread\_queue\_Context\_set\_timeout\_argument}}
+\index{\_Thread\_queue\_Context\_set\_timeout\_argument@{\_Thread\_queue\_Context\_set\_timeout\_argument}!Thread Queue Handler@{Thread Queue Handler}}
+\subsubsection{\texorpdfstring{\_Thread\_queue\_Context\_set\_timeout\_argument()}{\_Thread\_queue\_Context\_set\_timeout\_argument()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \+\_\+\+Thread\+\_\+queue\+\_\+\+Context\+\_\+set\+\_\+timeout\+\_\+argument (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structThread__queue__Context}{Thread\+\_\+queue\+\_\+\+Context}} $\ast$}]{queue\+\_\+context,  }\item[{const void $\ast$}]{arg }\end{DoxyParamCaption})}
+
+
+
+Sets the timeout argument in the thread queue context. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em queue\+\_\+context} & The thread queue context. \\
+\hline
+ & {\em arg} & The timeout argument.\\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{group__RTEMSScoreThreadQueue_ga4992b40810f6d287c832bdad240dbc90}{\+\_\+\+Thread\+\_\+queue\+\_\+\+Enqueue()}}. 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{group__RTEMSScoreThreadQueue_ga3c130c25dcaf90625f3787a31821c935}\label{group__RTEMSScoreThreadQueue_ga3c130c25dcaf90625f3787a31821c935}} 
+\index{Thread Queue Handler@{Thread Queue Handler}!\_Thread\_queue\_Context\_set\_timeout\_ticks@{\_Thread\_queue\_Context\_set\_timeout\_ticks}}
+\index{\_Thread\_queue\_Context\_set\_timeout\_ticks@{\_Thread\_queue\_Context\_set\_timeout\_ticks}!Thread Queue Handler@{Thread Queue Handler}}
+\subsubsection{\texorpdfstring{\_Thread\_queue\_Context\_set\_timeout\_ticks()}{\_Thread\_queue\_Context\_set\_timeout\_ticks()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \+\_\+\+Thread\+\_\+queue\+\_\+\+Context\+\_\+set\+\_\+timeout\+\_\+ticks (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structThread__queue__Context}{Thread\+\_\+queue\+\_\+\+Context}} $\ast$}]{queue\+\_\+context,  }\item[{\mbox{\hyperlink{group__RTEMSScoreWatchdog_gaa1834fd7531ca9bb5c4ca6fd990388d5}{Watchdog\+\_\+\+Interval}}}]{ticks }\end{DoxyParamCaption})}
+
+
+
+Sets the timeout ticks in the thread queue context. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em queue\+\_\+context} & The thread queue context. \\
+\hline
+ & {\em ticks} & The timeout in ticks.\\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{group__RTEMSScoreThreadQueue_ga4992b40810f6d287c832bdad240dbc90}{\+\_\+\+Thread\+\_\+queue\+\_\+\+Enqueue()}}. 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{group__RTEMSScoreThreadQueue_ga673681292c0f047b02c6dbb6819e0ad7}\label{group__RTEMSScoreThreadQueue_ga673681292c0f047b02c6dbb6819e0ad7}} 
+\index{Thread Queue Handler@{Thread Queue Handler}!\_Thread\_queue\_Deadlock\_fatal@{\_Thread\_queue\_Deadlock\_fatal}}
+\index{\_Thread\_queue\_Deadlock\_fatal@{\_Thread\_queue\_Deadlock\_fatal}!Thread Queue Handler@{Thread Queue Handler}}
+\subsubsection{\texorpdfstring{\_Thread\_queue\_Deadlock\_fatal()}{\_Thread\_queue\_Deadlock\_fatal()}}
+{\footnotesize\ttfamily void \+\_\+\+Thread\+\_\+queue\+\_\+\+Deadlock\+\_\+fatal (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$}]{the\+\_\+thread }\end{DoxyParamCaption})}
+
+
+
+Results in an I\+N\+T\+E\+R\+N\+A\+L\+\_\+\+E\+R\+R\+O\+R\+\_\+\+T\+H\+R\+E\+A\+D\+\_\+\+Q\+U\+E\+U\+E\+\_\+\+D\+E\+A\+D\+L\+O\+CK fatal error. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em the\+\_\+thread} & The thread for the operation. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__RTEMSScoreThreadQueue_gaca11db0fbad98d6b0ee9a41139aa7d54}\label{group__RTEMSScoreThreadQueue_gaca11db0fbad98d6b0ee9a41139aa7d54}} 
+\index{Thread Queue Handler@{Thread Queue Handler}!\_Thread\_queue\_Deadlock\_status@{\_Thread\_queue\_Deadlock\_status}}
+\index{\_Thread\_queue\_Deadlock\_status@{\_Thread\_queue\_Deadlock\_status}!Thread Queue Handler@{Thread Queue Handler}}
+\subsubsection{\texorpdfstring{\_Thread\_queue\_Deadlock\_status()}{\_Thread\_queue\_Deadlock\_status()}}
+{\footnotesize\ttfamily void \+\_\+\+Thread\+\_\+queue\+\_\+\+Deadlock\+\_\+status (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$}]{the\+\_\+thread }\end{DoxyParamCaption})}
+
+
+
+Sets the thread wait return code to S\+T\+A\+T\+U\+S\+\_\+\+D\+E\+A\+D\+L\+O\+CK. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em the\+\_\+thread} & The thread to set the wait return code to S\+T\+A\+T\+U\+S\+\_\+\+D\+E\+A\+D\+L\+O\+CK. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__RTEMSScoreThreadQueue_gaa59fb38f22e409d05123df6627ead47a}\label{group__RTEMSScoreThreadQueue_gaa59fb38f22e409d05123df6627ead47a}} 
+\index{Thread Queue Handler@{Thread Queue Handler}!\_Thread\_queue\_Destroy@{\_Thread\_queue\_Destroy}}
+\index{\_Thread\_queue\_Destroy@{\_Thread\_queue\_Destroy}!Thread Queue Handler@{Thread Queue Handler}}
+\subsubsection{\texorpdfstring{\_Thread\_queue\_Destroy()}{\_Thread\_queue\_Destroy()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \+\_\+\+Thread\+\_\+queue\+\_\+\+Destroy (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structThread__queue__Control}{Thread\+\_\+queue\+\_\+\+Control}} $\ast$}]{the\+\_\+thread\+\_\+queue }\end{DoxyParamCaption})}
+
+
+
+Destroys the thread queue. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em the\+\_\+thread\+\_\+queue} & The thread queue to destroy. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__RTEMSScoreThreadQueue_ga8dcef3658d8266b9f66015474e2c88bd}\label{group__RTEMSScoreThreadQueue_ga8dcef3658d8266b9f66015474e2c88bd}} 
+\index{Thread Queue Handler@{Thread Queue Handler}!\_Thread\_queue\_Dispatch\_disable@{\_Thread\_queue\_Dispatch\_disable}}
+\index{\_Thread\_queue\_Dispatch\_disable@{\_Thread\_queue\_Dispatch\_disable}!Thread Queue Handler@{Thread Queue Handler}}
+\subsubsection{\texorpdfstring{\_Thread\_queue\_Dispatch\_disable()}{\_Thread\_queue\_Dispatch\_disable()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} \mbox{\hyperlink{structPer__CPU__Control}{Per\+\_\+\+C\+P\+U\+\_\+\+Control}}$\ast$ \+\_\+\+Thread\+\_\+queue\+\_\+\+Dispatch\+\_\+disable (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structThread__queue__Context}{Thread\+\_\+queue\+\_\+\+Context}} $\ast$}]{queue\+\_\+context }\end{DoxyParamCaption})}
+
+
+
+Disables dispatching in a critical section. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em queue\+\_\+context} & The thread queue context to get the lock context from.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The current processor. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{group__RTEMSScoreThreadQueue_gaf1488e09cc925566233f2f1fc76c4d81}\label{group__RTEMSScoreThreadQueue_gaf1488e09cc925566233f2f1fc76c4d81}} 
+\index{Thread Queue Handler@{Thread Queue Handler}!\_Thread\_queue\_Do\_acquire\_critical@{\_Thread\_queue\_Do\_acquire\_critical}}
+\index{\_Thread\_queue\_Do\_acquire\_critical@{\_Thread\_queue\_Do\_acquire\_critical}!Thread Queue Handler@{Thread Queue Handler}}
+\subsubsection{\texorpdfstring{\_Thread\_queue\_Do\_acquire\_critical()}{\_Thread\_queue\_Do\_acquire\_critical()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \+\_\+\+Thread\+\_\+queue\+\_\+\+Do\+\_\+acquire\+\_\+critical (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structThread__queue__Control}{Thread\+\_\+queue\+\_\+\+Control}} $\ast$}]{the\+\_\+thread\+\_\+queue,  }\item[{\mbox{\hyperlink{structISR__lock__Context}{I\+S\+R\+\_\+lock\+\_\+\+Context}} $\ast$}]{lock\+\_\+context }\end{DoxyParamCaption})}
+
+
+
+Acquires the thread queue control in a critical section. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+ & {\em the\+\_\+thread\+\_\+queue} & The thread queue control to acquire. \\
+\hline
+\mbox{\texttt{ out}}  & {\em lock\+\_\+context} & The interrupt lock context. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__RTEMSScoreThreadQueue_ga1671707d42e9a381c3737b58deed97d5}\label{group__RTEMSScoreThreadQueue_ga1671707d42e9a381c3737b58deed97d5}} 
+\index{Thread Queue Handler@{Thread Queue Handler}!\_Thread\_queue\_Do\_dequeue@{\_Thread\_queue\_Do\_dequeue}}
+\index{\_Thread\_queue\_Do\_dequeue@{\_Thread\_queue\_Do\_dequeue}!Thread Queue Handler@{Thread Queue Handler}}
+\subsubsection{\texorpdfstring{\_Thread\_queue\_Do\_dequeue()}{\_Thread\_queue\_Do\_dequeue()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}}$\ast$ \+\_\+\+Thread\+\_\+queue\+\_\+\+Do\+\_\+dequeue (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structThread__queue__Control}{Thread\+\_\+queue\+\_\+\+Control}} $\ast$}]{the\+\_\+thread\+\_\+queue,  }\item[{const \mbox{\hyperlink{structThread__queue__Operations}{Thread\+\_\+queue\+\_\+\+Operations}} $\ast$}]{operations }\end{DoxyParamCaption})}
+
+
+
+Dequeues the first thread waiting on the thread queue and returns it. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em the\+\_\+thread\+\_\+queue} & The thread queue for the operation. \\
+\hline
+{\em operations} & The thread queue operations.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The first locked thread. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{group__RTEMSScoreThreadQueue_ga923d39f206f389ae8a8293e22bae8fbf}\label{group__RTEMSScoreThreadQueue_ga923d39f206f389ae8a8293e22bae8fbf}} 
+\index{Thread Queue Handler@{Thread Queue Handler}!\_Thread\_queue\_Do\_release\_critical@{\_Thread\_queue\_Do\_release\_critical}}
+\index{\_Thread\_queue\_Do\_release\_critical@{\_Thread\_queue\_Do\_release\_critical}!Thread Queue Handler@{Thread Queue Handler}}
+\subsubsection{\texorpdfstring{\_Thread\_queue\_Do\_release\_critical()}{\_Thread\_queue\_Do\_release\_critical()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \+\_\+\+Thread\+\_\+queue\+\_\+\+Do\+\_\+release\+\_\+critical (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structThread__queue__Control}{Thread\+\_\+queue\+\_\+\+Control}} $\ast$}]{the\+\_\+thread\+\_\+queue,  }\item[{\mbox{\hyperlink{structISR__lock__Context}{I\+S\+R\+\_\+lock\+\_\+\+Context}} $\ast$}]{lock\+\_\+context }\end{DoxyParamCaption})}
+
+
+
+Checks if the thread queue control is the owner of the lock. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em the\+\_\+thread\+\_\+queue} & The thread queue control for the verification.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em true} & The thread queue control is the owner of the lock. \\
+\hline
+{\em false} & The thread queue control is not the owner of the lock.\+Releases the thread queue control in a critical section.\\
+\hline
+\end{DoxyRetVals}
+
+\begin{DoxyParams}[1]{Parameters}
+ & {\em the\+\_\+thread\+\_\+queue} & The thread queue control to release. \\
+\hline
+\mbox{\texttt{ out}}  & {\em lock\+\_\+context} & The interrupt lock context. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__RTEMSScoreThreadQueue_ga4992b40810f6d287c832bdad240dbc90}\label{group__RTEMSScoreThreadQueue_ga4992b40810f6d287c832bdad240dbc90}} 
+\index{Thread Queue Handler@{Thread Queue Handler}!\_Thread\_queue\_Enqueue@{\_Thread\_queue\_Enqueue}}
+\index{\_Thread\_queue\_Enqueue@{\_Thread\_queue\_Enqueue}!Thread Queue Handler@{Thread Queue Handler}}
+\subsubsection{\texorpdfstring{\_Thread\_queue\_Enqueue()}{\_Thread\_queue\_Enqueue()}}
+{\footnotesize\ttfamily void \+\_\+\+Thread\+\_\+queue\+\_\+\+Enqueue (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structThread__queue__Queue}{Thread\+\_\+queue\+\_\+\+Queue}} $\ast$}]{queue,  }\item[{const \mbox{\hyperlink{structThread__queue__Operations}{Thread\+\_\+queue\+\_\+\+Operations}} $\ast$}]{operations,  }\item[{\mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$}]{the\+\_\+thread,  }\item[{\mbox{\hyperlink{structThread__queue__Context}{Thread\+\_\+queue\+\_\+\+Context}} $\ast$}]{queue\+\_\+context }\end{DoxyParamCaption})}
+
+
+
+Blocks the thread and places it on the thread queue. 
+
+This enqueues the thread on the thread queue, blocks the thread, and optionally starts the thread timer in case the timeout discipline is not W\+A\+T\+C\+H\+D\+O\+G\+\_\+\+N\+O\+\_\+\+T\+I\+M\+E\+O\+UT. Timeout discipline and value are in the queue\+\_\+context.
+
+The caller must be the owner of the thread queue lock. This function will release the thread queue lock and register it as the new thread lock. Thread dispatching is disabled before the thread queue lock is released. Thread dispatching is enabled once the sequence to block the thread is complete. The operation to enqueue the thread on the queue is protected by the thread queue lock. This makes it possible to use the thread queue lock to protect the state of objects embedding the thread queue and directly enter \mbox{\hyperlink{group__RTEMSScoreThreadQueue_ga4992b40810f6d287c832bdad240dbc90}{\+\_\+\+Thread\+\_\+queue\+\_\+\+Enqueue()}} in case the thread must block.
+
+The thread queue context must be set up with the following functions, otherwise the behaviour is unpredictable
+
+
+\begin{DoxyItemize}
+\item \mbox{\hyperlink{group__RTEMSScoreThreadQueue_gab31678d367077d484797bc9c4d97574e}{\+\_\+\+Thread\+\_\+queue\+\_\+\+Context\+\_\+set\+\_\+thread\+\_\+state()}},
+\item \mbox{\hyperlink{group__RTEMSScoreThreadQueue_gae3eded5964733b953ab0a461a9d82f5d}{\+\_\+\+Thread\+\_\+queue\+\_\+\+Context\+\_\+set\+\_\+enqueue\+\_\+callout()}} or \mbox{\hyperlink{group__RTEMSScoreThreadQueue_gaa7142c86d5677c5c5b0f993beecdc712}{\+\_\+\+Thread\+\_\+queue\+\_\+\+Context\+\_\+set\+\_\+enqueue\+\_\+do\+\_\+nothing\+\_\+extra()}} or \mbox{\hyperlink{group__RTEMSScoreThreadQueue_ga539935c21bc9e51bd27d64eb8f2ea26c}{\+\_\+\+Thread\+\_\+queue\+\_\+\+Context\+\_\+set\+\_\+enqueue\+\_\+timeout\+\_\+ticks()}} or \mbox{\hyperlink{group__RTEMSScoreThreadQueue_ga3094c6721a6db2468884cfb502263d36}{\+\_\+\+Thread\+\_\+queue\+\_\+\+Context\+\_\+set\+\_\+enqueue\+\_\+timeout\+\_\+monotonic\+\_\+timespec()}} or \mbox{\hyperlink{group__RTEMSScoreThreadQueue_gab148af32965cdef1887db52409f7ee86}{\+\_\+\+Thread\+\_\+queue\+\_\+\+Context\+\_\+set\+\_\+enqueue\+\_\+timeout\+\_\+realtime\+\_\+timespec()}},
+\item \mbox{\hyperlink{group__RTEMSScoreThreadQueue_gab024e7369bc091e53e7bb04ed8ebfb61}{\+\_\+\+Thread\+\_\+queue\+\_\+\+Context\+\_\+set\+\_\+deadlock\+\_\+callout()}}.
+\end{DoxyItemize}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include <\mbox{\hyperlink{threadqimpl_8h}{rtems/score/threadqimpl.h}}>}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include <\mbox{\hyperlink{statesimpl_8h}{rtems/score/statesimpl.h}}>}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{preprocessor}{\#define MUTEX\_TQ\_OPERATIONS \&\_Thread\_queue\_Operations\_priority}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keyword}{typedef} \textcolor{keyword}{struct }\{}
+\DoxyCodeLine{  \mbox{\hyperlink{structThread__queue__Control}{Thread\_queue\_Control}} Queue;}
+\DoxyCodeLine{\} Mutex;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{void} \_Mutex\_Obtain( Mutex *\mbox{\hyperlink{structmutex}{mutex}} )}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{  \mbox{\hyperlink{structThread__queue__Context}{Thread\_queue\_Context}}  queue\_context;}
+\DoxyCodeLine{  \mbox{\hyperlink{struct__Thread__Control}{Thread\_Control}}       *executing;}
+\DoxyCodeLine{}
+\DoxyCodeLine{  \mbox{\hyperlink{group__RTEMSScoreThreadQueue_gae18ee06777084a67d286d743355d47ac}{\_Thread\_queue\_Context\_initialize}}( \&queue\_context );}
+\DoxyCodeLine{  \mbox{\hyperlink{group__RTEMSScoreThreadQueue_ga40080175681761a842fe6ab4784735b9}{\_Thread\_queue\_Acquire}}( \&\mbox{\hyperlink{structmutex}{mutex}}->Queue, queue\_context );}
+\DoxyCodeLine{}
+\DoxyCodeLine{  executing = \_Thread\_Executing;}
+\DoxyCodeLine{}
+\DoxyCodeLine{  \textcolor{keywordflow}{if} ( \mbox{\hyperlink{structmutex}{mutex}}->Queue.owner == \mbox{\hyperlink{bestcomm__api_8h_a872bb74de61c3689ccd5b41873fce42c}{NULL}} ) \{}
+\DoxyCodeLine{    \mbox{\hyperlink{structmutex}{mutex}}->Queue.owner = executing;}
+\DoxyCodeLine{    \mbox{\hyperlink{group__RTEMSScoreThreadQueue_ga0a8881ef4106a0707b2751cdd3d18bef}{\_Thread\_queue\_Release}}( \&\mbox{\hyperlink{structmutex}{mutex}}->Queue, queue\_context );}
+\DoxyCodeLine{  \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{    \mbox{\hyperlink{group__RTEMSScoreThreadQueue_gab31678d367077d484797bc9c4d97574e}{\_Thread\_queue\_Context\_set\_thread\_state}}(}
+\DoxyCodeLine{      \&queue\_context,}
+\DoxyCodeLine{      \mbox{\hyperlink{group__RTEMSScoreStates_gac728552c70b0e8b76c7f97e537346b6e}{STATES\_WAITING\_FOR\_MUTEX}}}
+\DoxyCodeLine{    );}
+\DoxyCodeLine{    \mbox{\hyperlink{group__RTEMSScoreThreadQueue_gaa7142c86d5677c5c5b0f993beecdc712}{\_Thread\_queue\_Context\_set\_enqueue\_do\_nothing\_extra}}( \&queue\_context );}
+\DoxyCodeLine{    \mbox{\hyperlink{group__RTEMSScoreThreadQueue_gab024e7369bc091e53e7bb04ed8ebfb61}{\_Thread\_queue\_Context\_set\_deadlock\_callout}}(}
+\DoxyCodeLine{      queue\_context,}
+\DoxyCodeLine{      \mbox{\hyperlink{group__RTEMSScoreThreadQueue_ga673681292c0f047b02c6dbb6819e0ad7}{\_Thread\_queue\_Deadlock\_fatal}}}
+\DoxyCodeLine{    );}
+\DoxyCodeLine{    \mbox{\hyperlink{group__RTEMSScoreThreadQueue_ga4992b40810f6d287c832bdad240dbc90}{\_Thread\_queue\_Enqueue}}(}
+\DoxyCodeLine{      \&\mbox{\hyperlink{structmutex}{mutex}}->Queue.Queue,}
+\DoxyCodeLine{      MUTEX\_TQ\_OPERATIONS,}
+\DoxyCodeLine{      executing,}
+\DoxyCodeLine{      \&queue\_context}
+\DoxyCodeLine{    );}
+\DoxyCodeLine{  \}}
+\DoxyCodeLine{\}}
+\end{DoxyCode}
+
+
+
+\begin{DoxyParams}[1]{Parameters}
+ & {\em queue} & The actual thread queue. \\
+\hline
+ & {\em operations} & The thread queue operations. \\
+\hline
+\mbox{\texttt{ in,out}}  & {\em the\+\_\+thread} & The thread to enqueue. \\
+\hline
+\mbox{\texttt{ in,out}}  & {\em queue\+\_\+context} & The thread queue context of the lock acquire. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__RTEMSScoreThreadQueue_ga6a087492df4bba9c56d8e8018339a84e}\label{group__RTEMSScoreThreadQueue_ga6a087492df4bba9c56d8e8018339a84e}} 
+\index{Thread Queue Handler@{Thread Queue Handler}!\_Thread\_queue\_Enqueue\_do\_nothing\_extra@{\_Thread\_queue\_Enqueue\_do\_nothing\_extra}}
+\index{\_Thread\_queue\_Enqueue\_do\_nothing\_extra@{\_Thread\_queue\_Enqueue\_do\_nothing\_extra}!Thread Queue Handler@{Thread Queue Handler}}
+\subsubsection{\texorpdfstring{\_Thread\_queue\_Enqueue\_do\_nothing\_extra()}{\_Thread\_queue\_Enqueue\_do\_nothing\_extra()}}
+{\footnotesize\ttfamily void \+\_\+\+Thread\+\_\+queue\+\_\+\+Enqueue\+\_\+do\+\_\+nothing\+\_\+extra (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structThread__queue__Queue}{Thread\+\_\+queue\+\_\+\+Queue}} $\ast$}]{queue,  }\item[{\mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$}]{the\+\_\+thread,  }\item[{\mbox{\hyperlink{structPer__CPU__Control}{Per\+\_\+\+C\+P\+U\+\_\+\+Control}} $\ast$}]{cpu\+\_\+self,  }\item[{\mbox{\hyperlink{structThread__queue__Context}{Thread\+\_\+queue\+\_\+\+Context}} $\ast$}]{queue\+\_\+context }\end{DoxyParamCaption})}
+
+
+
+Does nothing. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em queue} & This parameter is unused. \\
+\hline
+{\em the\+\_\+thread} & This parameter is unused. \\
+\hline
+{\em cpu\+\_\+self} & This parameter is unused. \\
+\hline
+{\em queue\+\_\+context} & This parameter is unused. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__RTEMSScoreThreadQueue_gade3d717e5bef36275e5abd5c9cb0795f}\label{group__RTEMSScoreThreadQueue_gade3d717e5bef36275e5abd5c9cb0795f}} 
+\index{Thread Queue Handler@{Thread Queue Handler}!\_Thread\_queue\_Extract@{\_Thread\_queue\_Extract}}
+\index{\_Thread\_queue\_Extract@{\_Thread\_queue\_Extract}!Thread Queue Handler@{Thread Queue Handler}}
+\subsubsection{\texorpdfstring{\_Thread\_queue\_Extract()}{\_Thread\_queue\_Extract()}}
+{\footnotesize\ttfamily void \+\_\+\+Thread\+\_\+queue\+\_\+\+Extract (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$}]{the\+\_\+thread }\end{DoxyParamCaption})}
+
+
+
+Extracts thread from thread queue. 
+
+This routine removes {\itshape the\+\_\+thread} its thread queue and cancels any timeouts associated with this blocking.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em the\+\_\+thread} & The pointer to a thread control block that is to be removed \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__RTEMSScoreThreadQueue_gaf6ce2524fef09fe93a24196dd392093e}\label{group__RTEMSScoreThreadQueue_gaf6ce2524fef09fe93a24196dd392093e}} 
+\index{Thread Queue Handler@{Thread Queue Handler}!\_Thread\_queue\_Extract\_critical@{\_Thread\_queue\_Extract\_critical}}
+\index{\_Thread\_queue\_Extract\_critical@{\_Thread\_queue\_Extract\_critical}!Thread Queue Handler@{Thread Queue Handler}}
+\subsubsection{\texorpdfstring{\_Thread\_queue\_Extract\_critical()}{\_Thread\_queue\_Extract\_critical()}}
+{\footnotesize\ttfamily void \+\_\+\+Thread\+\_\+queue\+\_\+\+Extract\+\_\+critical (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structThread__queue__Queue}{Thread\+\_\+queue\+\_\+\+Queue}} $\ast$}]{queue,  }\item[{const \mbox{\hyperlink{structThread__queue__Operations}{Thread\+\_\+queue\+\_\+\+Operations}} $\ast$}]{operations,  }\item[{\mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$}]{the\+\_\+thread,  }\item[{\mbox{\hyperlink{structThread__queue__Context}{Thread\+\_\+queue\+\_\+\+Context}} $\ast$}]{queue\+\_\+context }\end{DoxyParamCaption})}
+
+
+
+Extracts the thread from the thread queue and unblocks it. 
+
+The caller must be the owner of the thread queue lock. This function will release the thread queue lock and restore the default thread lock. Thread dispatching is disabled before the thread queue lock is released and an unblock is necessary. Thread dispatching is enabled once the sequence to unblock the thread is complete. This makes it possible to use the thread queue lock to protect the state of objects embedding the thread queue and directly enter \mbox{\hyperlink{group__RTEMSScoreThreadQueue_gaf6ce2524fef09fe93a24196dd392093e}{\+\_\+\+Thread\+\_\+queue\+\_\+\+Extract\+\_\+critical()}} to finalize an operation in case a waiting thread exists.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include <\mbox{\hyperlink{threadqimpl_8h}{rtems/score/threadqimpl.h}}>}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keyword}{typedef} \textcolor{keyword}{struct }\{}
+\DoxyCodeLine{  \mbox{\hyperlink{structThread__queue__Control}{Thread\_queue\_Control}}  Queue;}
+\DoxyCodeLine{  \mbox{\hyperlink{struct__Thread__Control}{Thread\_Control}}       *owner;}
+\DoxyCodeLine{\} Mutex;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{void} \_Mutex\_Release( Mutex *\mbox{\hyperlink{structmutex}{mutex}} )}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{  \mbox{\hyperlink{structThread__queue__Context}{Thread\_queue\_Context}}  queue\_context;}
+\DoxyCodeLine{  \mbox{\hyperlink{struct__Thread__Control}{Thread\_Control}}       *first;}
+\DoxyCodeLine{}
+\DoxyCodeLine{  \mbox{\hyperlink{group__RTEMSScoreThreadQueue_gae18ee06777084a67d286d743355d47ac}{\_Thread\_queue\_Context\_initialize}}( \&queue\_context, \mbox{\hyperlink{bestcomm__api_8h_a872bb74de61c3689ccd5b41873fce42c}{NULL}} );}
+\DoxyCodeLine{  \mbox{\hyperlink{group__RTEMSScoreThreadQueue_ga40080175681761a842fe6ab4784735b9}{\_Thread\_queue\_Acquire}}( \&\mbox{\hyperlink{structmutex}{mutex}}->Queue, queue\_context );}
+\DoxyCodeLine{}
+\DoxyCodeLine{  first = \mbox{\hyperlink{group__RTEMSScoreThreadQueue_gac07672b4b41838966ddf124973f51451}{\_Thread\_queue\_First\_locked}}( \&\mbox{\hyperlink{structmutex}{mutex}}->Queue );}
+\DoxyCodeLine{  \mbox{\hyperlink{structmutex}{mutex}}->owner = first;}
+\DoxyCodeLine{}
+\DoxyCodeLine{  \textcolor{keywordflow}{if} ( first != \mbox{\hyperlink{bestcomm__api_8h_a872bb74de61c3689ccd5b41873fce42c}{NULL}} ) \{}
+\DoxyCodeLine{    \mbox{\hyperlink{group__RTEMSScoreThreadQueue_gaf6ce2524fef09fe93a24196dd392093e}{\_Thread\_queue\_Extract\_critical}}(}
+\DoxyCodeLine{      \&\mbox{\hyperlink{structmutex}{mutex}}->Queue.Queue,}
+\DoxyCodeLine{      \mbox{\hyperlink{structmutex}{mutex}}->Queue.operations,}
+\DoxyCodeLine{      first,}
+\DoxyCodeLine{      \&queue\_context}
+\DoxyCodeLine{  );}
+\DoxyCodeLine{\}}
+\end{DoxyCode}
+
+
+
+\begin{DoxyParams}[1]{Parameters}
+ & {\em queue} & The actual thread queue. \\
+\hline
+ & {\em operations} & The thread queue operations. \\
+\hline
+\mbox{\texttt{ in,out}}  & {\em the\+\_\+thread} & The thread to extract. \\
+\hline
+\mbox{\texttt{ in,out}}  & {\em queue\+\_\+context} & The thread queue context of the lock acquire. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__RTEMSScoreThreadQueue_ga91a4a052dcfd0db5df6ff9fa16bbfb4f}\label{group__RTEMSScoreThreadQueue_ga91a4a052dcfd0db5df6ff9fa16bbfb4f}} 
+\index{Thread Queue Handler@{Thread Queue Handler}!\_Thread\_queue\_Extract\_locked@{\_Thread\_queue\_Extract\_locked}}
+\index{\_Thread\_queue\_Extract\_locked@{\_Thread\_queue\_Extract\_locked}!Thread Queue Handler@{Thread Queue Handler}}
+\subsubsection{\texorpdfstring{\_Thread\_queue\_Extract\_locked()}{\_Thread\_queue\_Extract\_locked()}}
+{\footnotesize\ttfamily bool \+\_\+\+Thread\+\_\+queue\+\_\+\+Extract\+\_\+locked (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structThread__queue__Queue}{Thread\+\_\+queue\+\_\+\+Queue}} $\ast$}]{queue,  }\item[{const \mbox{\hyperlink{structThread__queue__Operations}{Thread\+\_\+queue\+\_\+\+Operations}} $\ast$}]{operations,  }\item[{\mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$}]{the\+\_\+thread,  }\item[{\mbox{\hyperlink{structThread__queue__Context}{Thread\+\_\+queue\+\_\+\+Context}} $\ast$}]{queue\+\_\+context }\end{DoxyParamCaption})}
+
+
+
+Extracts the thread from the thread queue, restores the default wait operations and restores the default thread lock. 
+
+The caller must be the owner of the thread queue lock. The thread queue lock is not released.
+
+
+\begin{DoxyParams}[1]{Parameters}
+ & {\em queue} & The actual thread queue. \\
+\hline
+ & {\em operations} & The thread queue operations. \\
+\hline
+\mbox{\texttt{ in,out}}  & {\em the\+\_\+thread} & The thread to extract. \\
+\hline
+\mbox{\texttt{ in,out}}  & {\em queue\+\_\+context} & The thread queue context.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns the unblock indicator for \mbox{\hyperlink{group__RTEMSScoreThreadQueue_gae47a7180a4fc9e6e834ec4067e580296}{\+\_\+\+Thread\+\_\+queue\+\_\+\+Unblock\+\_\+critical()}}. True indicates, that this thread must be unblocked by the scheduler later in \mbox{\hyperlink{group__RTEMSScoreThreadQueue_gae47a7180a4fc9e6e834ec4067e580296}{\+\_\+\+Thread\+\_\+queue\+\_\+\+Unblock\+\_\+critical()}}, and false otherwise. In case false is returned, then the thread queue enqueue procedure was interrupted. Thus it will unblock itself and the thread wait information is no longer accessible, since this thread may already block on another resource in an S\+MP configuration. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{group__RTEMSScoreThreadQueue_ga999731e7674266e35751c1afad5a10b3}\label{group__RTEMSScoreThreadQueue_ga999731e7674266e35751c1afad5a10b3}} 
+\index{Thread Queue Handler@{Thread Queue Handler}!\_Thread\_queue\_Extract\_with\_proxy@{\_Thread\_queue\_Extract\_with\_proxy}}
+\index{\_Thread\_queue\_Extract\_with\_proxy@{\_Thread\_queue\_Extract\_with\_proxy}!Thread Queue Handler@{Thread Queue Handler}}
+\subsubsection{\texorpdfstring{\_Thread\_queue\_Extract\_with\_proxy()}{\_Thread\_queue\_Extract\_with\_proxy()}}
+{\footnotesize\ttfamily void \+\_\+\+Thread\+\_\+queue\+\_\+\+Extract\+\_\+with\+\_\+proxy (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$}]{the\+\_\+thread }\end{DoxyParamCaption})}
+
+
+
+Extracts the\+\_\+thread from the\+\_\+thread\+\_\+queue. 
+
+This routine extracts the\+\_\+thread from the\+\_\+thread\+\_\+queue and ensures that if there is a proxy for this task on another node, it is also dealt with.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em the\+\_\+thread} & The pointer to a thread control block that is to be removed\\
+\hline
+\end{DoxyParams}
+Extracts the\+\_\+thread from the\+\_\+thread\+\_\+queue.
+
+This routine extracts the\+\_\+thread from the\+\_\+thread\+\_\+queue and ensures that if there is a proxy for this task on another node, it is also dealt with. A proxy is a data data that is on the thread queue on the remote node and acts as a proxy for the local thread. If the local thread was waiting on a remote operation, then the remote side of the operation must be cleaned up. \mbox{\Hypertarget{group__RTEMSScoreThreadQueue_ga4408cda9750cde6b1d469759762ecb14}\label{group__RTEMSScoreThreadQueue_ga4408cda9750cde6b1d469759762ecb14}} 
+\index{Thread Queue Handler@{Thread Queue Handler}!\_Thread\_queue\_First@{\_Thread\_queue\_First}}
+\index{\_Thread\_queue\_First@{\_Thread\_queue\_First}!Thread Queue Handler@{Thread Queue Handler}}
+\subsubsection{\texorpdfstring{\_Thread\_queue\_First()}{\_Thread\_queue\_First()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}}$\ast$ \+\_\+\+Thread\+\_\+queue\+\_\+\+First (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structThread__queue__Control}{Thread\+\_\+queue\+\_\+\+Control}} $\ast$}]{the\+\_\+thread\+\_\+queue,  }\item[{const \mbox{\hyperlink{structThread__queue__Operations}{Thread\+\_\+queue\+\_\+\+Operations}} $\ast$}]{operations }\end{DoxyParamCaption})}
+
+
+
+Returns the first thread on the thread queue if it exists, otherwise {\ttfamily N\+U\+LL}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em the\+\_\+thread\+\_\+queue} & The thread queue.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em first} & The first thread on the thread queue according to the enqueue order. \\
+\hline
+{\em N\+U\+LL} & No thread is present on the thread queue. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{group__RTEMSScoreThreadQueue_gac07672b4b41838966ddf124973f51451}\label{group__RTEMSScoreThreadQueue_gac07672b4b41838966ddf124973f51451}} 
+\index{Thread Queue Handler@{Thread Queue Handler}!\_Thread\_queue\_First\_locked@{\_Thread\_queue\_First\_locked}}
+\index{\_Thread\_queue\_First\_locked@{\_Thread\_queue\_First\_locked}!Thread Queue Handler@{Thread Queue Handler}}
+\subsubsection{\texorpdfstring{\_Thread\_queue\_First\_locked()}{\_Thread\_queue\_First\_locked()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} \mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}}$\ast$ \+\_\+\+Thread\+\_\+queue\+\_\+\+First\+\_\+locked (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structThread__queue__Control}{Thread\+\_\+queue\+\_\+\+Control}} $\ast$}]{the\+\_\+thread\+\_\+queue,  }\item[{const \mbox{\hyperlink{structThread__queue__Operations}{Thread\+\_\+queue\+\_\+\+Operations}} $\ast$}]{operations }\end{DoxyParamCaption})}
+
+
+
+Returns the first thread on the thread queue if it exists, otherwise {\ttfamily N\+U\+LL}. 
+
+The caller must be the owner of the thread queue lock. The thread queue lock is not released.
+
+
+\begin{DoxyParams}{Parameters}
+{\em the\+\_\+thread\+\_\+queue} & The thread queue. \\
+\hline
+{\em operations} & The thread queue operations.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em first} & The first thread on the thread queue according to the enqueue order. \\
+\hline
+{\em N\+U\+LL} & No thread is present on the thread queue. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{group__RTEMSScoreThreadQueue_gac979e73bbbb59a3157ebd782ff70df0c}\label{group__RTEMSScoreThreadQueue_gac979e73bbbb59a3157ebd782ff70df0c}} 
+\index{Thread Queue Handler@{Thread Queue Handler}!\_Thread\_queue\_Flush\_critical@{\_Thread\_queue\_Flush\_critical}}
+\index{\_Thread\_queue\_Flush\_critical@{\_Thread\_queue\_Flush\_critical}!Thread Queue Handler@{Thread Queue Handler}}
+\subsubsection{\texorpdfstring{\_Thread\_queue\_Flush\_critical()}{\_Thread\_queue\_Flush\_critical()}}
+{\footnotesize\ttfamily size\+\_\+t \+\_\+\+Thread\+\_\+queue\+\_\+\+Flush\+\_\+critical (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structThread__queue__Queue}{Thread\+\_\+queue\+\_\+\+Queue}} $\ast$}]{queue,  }\item[{const \mbox{\hyperlink{structThread__queue__Operations}{Thread\+\_\+queue\+\_\+\+Operations}} $\ast$}]{operations,  }\item[{\mbox{\hyperlink{group__RTEMSScoreThreadQueue_ga66aee78bfdca4bd829cdedf18e7c2451}{Thread\+\_\+queue\+\_\+\+Flush\+\_\+filter}}}]{filter,  }\item[{\mbox{\hyperlink{structThread__queue__Context}{Thread\+\_\+queue\+\_\+\+Context}} $\ast$}]{queue\+\_\+context }\end{DoxyParamCaption})}
+
+
+
+Unblocks all threads enqueued on the thread queue. 
+
+This function iteratively extracts the first enqueued thread of the thread queue until the thread queue is empty or the filter function indicates a stop. The thread timers of the extracted threads are cancelled. The extracted threads are unblocked.
+
+
+\begin{DoxyParams}{Parameters}
+{\em queue} & The actual thread queue. \\
+\hline
+{\em operations} & The thread queue operations. \\
+\hline
+{\em filter} & The filter functions is called for each thread to extract from the thread queue. It may be used to alter the thread under protection of the thread queue lock, for example to set the thread wait return code. The return value of the filter function controls if the thread queue flush operation should stop or continue. \\
+\hline
+{\em queue\+\_\+context} & The thread queue context of the lock acquire. May be used to pass additional data to the filter function via an overlay structure. The filter function should not release or acquire the thread queue lock.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The count of extracted threads. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{group__RTEMSScoreThreadQueue_gaf7ba9f035005918f0e5eca4a3cfc92a1}\label{group__RTEMSScoreThreadQueue_gaf7ba9f035005918f0e5eca4a3cfc92a1}} 
+\index{Thread Queue Handler@{Thread Queue Handler}!\_Thread\_queue\_Flush\_default\_filter@{\_Thread\_queue\_Flush\_default\_filter}}
+\index{\_Thread\_queue\_Flush\_default\_filter@{\_Thread\_queue\_Flush\_default\_filter}!Thread Queue Handler@{Thread Queue Handler}}
+\subsubsection{\texorpdfstring{\_Thread\_queue\_Flush\_default\_filter()}{\_Thread\_queue\_Flush\_default\_filter()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}}$\ast$ \+\_\+\+Thread\+\_\+queue\+\_\+\+Flush\+\_\+default\+\_\+filter (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$}]{the\+\_\+thread,  }\item[{\mbox{\hyperlink{structThread__queue__Queue}{Thread\+\_\+queue\+\_\+\+Queue}} $\ast$}]{queue,  }\item[{\mbox{\hyperlink{structThread__queue__Context}{Thread\+\_\+queue\+\_\+\+Context}} $\ast$}]{queue\+\_\+context }\end{DoxyParamCaption})}
+
+
+
+Default thread queue flush filter function. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em the\+\_\+thread} & The thread to extract. \\
+\hline
+{\em queue} & This parameter is unused. \\
+\hline
+{\em queue\+\_\+context} & This parameter is unused.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em the\+\_\+thread} & Extract this thread. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{group__RTEMSScoreThreadQueue_gac33b5b4a755484ecff2e1f72a56be373}\label{group__RTEMSScoreThreadQueue_gac33b5b4a755484ecff2e1f72a56be373}} 
+\index{Thread Queue Handler@{Thread Queue Handler}!\_Thread\_queue\_Flush\_status\_object\_was\_deleted@{\_Thread\_queue\_Flush\_status\_object\_was\_deleted}}
+\index{\_Thread\_queue\_Flush\_status\_object\_was\_deleted@{\_Thread\_queue\_Flush\_status\_object\_was\_deleted}!Thread Queue Handler@{Thread Queue Handler}}
+\subsubsection{\texorpdfstring{\_Thread\_queue\_Flush\_status\_object\_was\_deleted()}{\_Thread\_queue\_Flush\_status\_object\_was\_deleted()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}}$\ast$ \+\_\+\+Thread\+\_\+queue\+\_\+\+Flush\+\_\+status\+\_\+object\+\_\+was\+\_\+deleted (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$}]{the\+\_\+thread,  }\item[{\mbox{\hyperlink{structThread__queue__Queue}{Thread\+\_\+queue\+\_\+\+Queue}} $\ast$}]{queue,  }\item[{\mbox{\hyperlink{structThread__queue__Context}{Thread\+\_\+queue\+\_\+\+Context}} $\ast$}]{queue\+\_\+context }\end{DoxyParamCaption})}
+
+
+
+Status object was deleted thread queue flush filter function. 
+
+Sets the thread wait return code of the thread to S\+T\+A\+T\+U\+S\+\_\+\+O\+B\+J\+E\+C\+T\+\_\+\+W\+A\+S\+\_\+\+D\+E\+L\+E\+T\+ED
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em the\+\_\+thread} & The thread to extract. \\
+\hline
+ & {\em queue} & This parameter is unused. \\
+\hline
+ & {\em queue\+\_\+context} & This parameter is unused.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em the\+\_\+thread} & Extract this thread. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{group__RTEMSScoreThreadQueue_gafffea388b0a89cc1ba6540a73477130c}\label{group__RTEMSScoreThreadQueue_gafffea388b0a89cc1ba6540a73477130c}} 
+\index{Thread Queue Handler@{Thread Queue Handler}!\_Thread\_queue\_Flush\_status\_unavailable@{\_Thread\_queue\_Flush\_status\_unavailable}}
+\index{\_Thread\_queue\_Flush\_status\_unavailable@{\_Thread\_queue\_Flush\_status\_unavailable}!Thread Queue Handler@{Thread Queue Handler}}
+\subsubsection{\texorpdfstring{\_Thread\_queue\_Flush\_status\_unavailable()}{\_Thread\_queue\_Flush\_status\_unavailable()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}}$\ast$ \+\_\+\+Thread\+\_\+queue\+\_\+\+Flush\+\_\+status\+\_\+unavailable (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$}]{the\+\_\+thread,  }\item[{\mbox{\hyperlink{structThread__queue__Queue}{Thread\+\_\+queue\+\_\+\+Queue}} $\ast$}]{queue,  }\item[{\mbox{\hyperlink{structThread__queue__Context}{Thread\+\_\+queue\+\_\+\+Context}} $\ast$}]{queue\+\_\+context }\end{DoxyParamCaption})}
+
+
+
+Status unavailable thread queue flush filter function. 
+
+Sets the thread wait return code of the thread to S\+T\+A\+T\+U\+S\+\_\+\+U\+N\+A\+V\+A\+I\+L\+A\+B\+LE.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em the\+\_\+thread} & The thread to extract. \\
+\hline
+ & {\em queue} & This parameter is unused. \\
+\hline
+ & {\em queue\+\_\+context} & This parameter is unused.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em the\+\_\+thread} & Extract this thread. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{group__RTEMSScoreThreadQueue_gaed8b973ae28379dbf863c01f10c993f3}\label{group__RTEMSScoreThreadQueue_gaed8b973ae28379dbf863c01f10c993f3}} 
+\index{Thread Queue Handler@{Thread Queue Handler}!\_Thread\_queue\_Heads\_initialize@{\_Thread\_queue\_Heads\_initialize}}
+\index{\_Thread\_queue\_Heads\_initialize@{\_Thread\_queue\_Heads\_initialize}!Thread Queue Handler@{Thread Queue Handler}}
+\subsubsection{\texorpdfstring{\_Thread\_queue\_Heads\_initialize()}{\_Thread\_queue\_Heads\_initialize()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \+\_\+\+Thread\+\_\+queue\+\_\+\+Heads\+\_\+initialize (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__RTEMSScoreThreadQueue_gaebac32033b009cc8f606a90bd389f8e9}{Thread\+\_\+queue\+\_\+\+Heads}} $\ast$}]{heads }\end{DoxyParamCaption})}
+
+
+
+Initializes the thread queue heads. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em heads} & The thread queue heads to initialize. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__RTEMSScoreThreadQueue_gae839c93467db7f3bb1776323a17ac8ad}\label{group__RTEMSScoreThreadQueue_gae839c93467db7f3bb1776323a17ac8ad}} 
+\index{Thread Queue Handler@{Thread Queue Handler}!\_Thread\_queue\_Initialize@{\_Thread\_queue\_Initialize}}
+\index{\_Thread\_queue\_Initialize@{\_Thread\_queue\_Initialize}!Thread Queue Handler@{Thread Queue Handler}}
+\subsubsection{\texorpdfstring{\_Thread\_queue\_Initialize()}{\_Thread\_queue\_Initialize()}}
+{\footnotesize\ttfamily void \+\_\+\+Thread\+\_\+queue\+\_\+\+Initialize (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structThread__queue__Control}{Thread\+\_\+queue\+\_\+\+Control}} $\ast$}]{the\+\_\+thread\+\_\+queue,  }\item[{const char $\ast$}]{name }\end{DoxyParamCaption})}
+
+
+
+Initializes the thread queue control to the given name. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em the\+\_\+thread\+\_\+queue} & The thread queue control to initialize. \\
+\hline
+ & {\em name} & The name for {\itshape the\+\_\+thread\+\_\+queue}. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__RTEMSScoreThreadQueue_ga35b6fa511ba7c3c55a3afb91cc7b0cfb}\label{group__RTEMSScoreThreadQueue_ga35b6fa511ba7c3c55a3afb91cc7b0cfb}} 
+\index{Thread Queue Handler@{Thread Queue Handler}!\_Thread\_queue\_Is\_empty@{\_Thread\_queue\_Is\_empty}}
+\index{\_Thread\_queue\_Is\_empty@{\_Thread\_queue\_Is\_empty}!Thread Queue Handler@{Thread Queue Handler}}
+\subsubsection{\texorpdfstring{\_Thread\_queue\_Is\_empty()}{\_Thread\_queue\_Is\_empty()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} bool \+\_\+\+Thread\+\_\+queue\+\_\+\+Is\+\_\+empty (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structThread__queue__Queue}{Thread\+\_\+queue\+\_\+\+Queue}} $\ast$}]{queue }\end{DoxyParamCaption})}
+
+
+
+Checks if the thread queue queue is empty. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em queue} & The thread queue for the verification.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em true} & {\itshape queue} is empty. \\
+\hline
+{\em false} & {\itshape queue} is not empty. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{group__RTEMSScoreThreadQueue_gadff2605d33f07f210c22844f1ae71eaf}\label{group__RTEMSScoreThreadQueue_gadff2605d33f07f210c22844f1ae71eaf}} 
+\index{Thread Queue Handler@{Thread Queue Handler}!\_Thread\_queue\_Object\_initialize@{\_Thread\_queue\_Object\_initialize}}
+\index{\_Thread\_queue\_Object\_initialize@{\_Thread\_queue\_Object\_initialize}!Thread Queue Handler@{Thread Queue Handler}}
+\subsubsection{\texorpdfstring{\_Thread\_queue\_Object\_initialize()}{\_Thread\_queue\_Object\_initialize()}}
+{\footnotesize\ttfamily void \+\_\+\+Thread\+\_\+queue\+\_\+\+Object\+\_\+initialize (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structThread__queue__Control}{Thread\+\_\+queue\+\_\+\+Control}} $\ast$}]{the\+\_\+thread\+\_\+queue }\end{DoxyParamCaption})}
+
+
+
+Initializes a thread queue embedded in an object with identifier. 
+
+The object must have the layout specified by \mbox{\hyperlink{structThread__queue__Object}{Thread\+\_\+queue\+\_\+\+Object}}. It should be ensured with the T\+H\+R\+E\+A\+D\+\_\+\+Q\+U\+E\+U\+E\+\_\+\+O\+B\+J\+E\+C\+T\+\_\+\+A\+S\+S\+E\+R\+T() static assertion.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em the\+\_\+thread\+\_\+queue} & The thread queue. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__RTEMSScoreThreadQueue_gaca9472b4bf5091cab34d1a4099e4cfa6}\label{group__RTEMSScoreThreadQueue_gaca9472b4bf5091cab34d1a4099e4cfa6}} 
+\index{Thread Queue Handler@{Thread Queue Handler}!\_Thread\_queue\_Queue\_do\_acquire\_critical@{\_Thread\_queue\_Queue\_do\_acquire\_critical}}
+\index{\_Thread\_queue\_Queue\_do\_acquire\_critical@{\_Thread\_queue\_Queue\_do\_acquire\_critical}!Thread Queue Handler@{Thread Queue Handler}}
+\subsubsection{\texorpdfstring{\_Thread\_queue\_Queue\_do\_acquire\_critical()}{\_Thread\_queue\_Queue\_do\_acquire\_critical()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \+\_\+\+Thread\+\_\+queue\+\_\+\+Queue\+\_\+do\+\_\+acquire\+\_\+critical (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structThread__queue__Queue}{Thread\+\_\+queue\+\_\+\+Queue}} $\ast$}]{queue,  }\item[{\mbox{\hyperlink{structISR__lock__Context}{I\+S\+R\+\_\+lock\+\_\+\+Context}} $\ast$}]{lock\+\_\+context }\end{DoxyParamCaption})}
+
+
+
+Acquires the thread queue queue in a critical section. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+ & {\em queue} & The thread queue queue to acquire in a critical section. \\
+\hline
+ & {\em lock\+\_\+stats} & The lock statistics. \\
+\hline
+\mbox{\texttt{ out}}  & {\em lock\+\_\+context} & The interrupt lock context. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__RTEMSScoreThreadQueue_gac17ae1a1c80b80869cac13c6c8bb9ade}\label{group__RTEMSScoreThreadQueue_gac17ae1a1c80b80869cac13c6c8bb9ade}} 
+\index{Thread Queue Handler@{Thread Queue Handler}!\_Thread\_queue\_Queue\_get\_name\_and\_id@{\_Thread\_queue\_Queue\_get\_name\_and\_id}}
+\index{\_Thread\_queue\_Queue\_get\_name\_and\_id@{\_Thread\_queue\_Queue\_get\_name\_and\_id}!Thread Queue Handler@{Thread Queue Handler}}
+\subsubsection{\texorpdfstring{\_Thread\_queue\_Queue\_get\_name\_and\_id()}{\_Thread\_queue\_Queue\_get\_name\_and\_id()}}
+{\footnotesize\ttfamily size\+\_\+t \+\_\+\+Thread\+\_\+queue\+\_\+\+Queue\+\_\+get\+\_\+name\+\_\+and\+\_\+id (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structThread__queue__Queue}{Thread\+\_\+queue\+\_\+\+Queue}} $\ast$}]{queue,  }\item[{char $\ast$}]{buffer,  }\item[{size\+\_\+t}]{buffer\+\_\+size,  }\item[{\mbox{\hyperlink{group__RTEMSScoreObject_ga5821f52a51072941bdd603e542d0863e}{Objects\+\_\+\+Id}} $\ast$}]{id }\end{DoxyParamCaption})}
+
+
+
+Copies the thread queue name to the specified buffer. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+ & {\em queue} & The actual thread queue. \\
+\hline
+\mbox{\texttt{ out}}  & {\em buffer} & The buffer for the thread queue name copy. \\
+\hline
+ & {\em buffer\+\_\+size} & The buffer size in characters. \\
+\hline
+ & {\em id} & The object identifier in case the thread queue is embedded in an object with identifier, otherwise it is set to 0.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The length of the thread queue name. May be greater than or equal to the buffer size if truncation occurred. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{group__RTEMSScoreThreadQueue_ga9bf4b585322581d70c742c7292bc8435}\label{group__RTEMSScoreThreadQueue_ga9bf4b585322581d70c742c7292bc8435}} 
+\index{Thread Queue Handler@{Thread Queue Handler}!\_Thread\_queue\_Queue\_initialize@{\_Thread\_queue\_Queue\_initialize}}
+\index{\_Thread\_queue\_Queue\_initialize@{\_Thread\_queue\_Queue\_initialize}!Thread Queue Handler@{Thread Queue Handler}}
+\subsubsection{\texorpdfstring{\_Thread\_queue\_Queue\_initialize()}{\_Thread\_queue\_Queue\_initialize()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \+\_\+\+Thread\+\_\+queue\+\_\+\+Queue\+\_\+initialize (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structThread__queue__Queue}{Thread\+\_\+queue\+\_\+\+Queue}} $\ast$}]{queue,  }\item[{const char $\ast$}]{name }\end{DoxyParamCaption})}
+
+
+
+Initializes the thread queue queue with the given name. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em queue} & The thread queue queue to initialize. \\
+\hline
+ & {\em name} & The name for the {\itshape queue}. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__RTEMSScoreThreadQueue_ga5074d780cc6e486c858a564e0406f647}\label{group__RTEMSScoreThreadQueue_ga5074d780cc6e486c858a564e0406f647}} 
+\index{Thread Queue Handler@{Thread Queue Handler}!\_Thread\_queue\_Queue\_release@{\_Thread\_queue\_Queue\_release}}
+\index{\_Thread\_queue\_Queue\_release@{\_Thread\_queue\_Queue\_release}!Thread Queue Handler@{Thread Queue Handler}}
+\subsubsection{\texorpdfstring{\_Thread\_queue\_Queue\_release()}{\_Thread\_queue\_Queue\_release()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \+\_\+\+Thread\+\_\+queue\+\_\+\+Queue\+\_\+release (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structThread__queue__Queue}{Thread\+\_\+queue\+\_\+\+Queue}} $\ast$}]{queue,  }\item[{\mbox{\hyperlink{structISR__lock__Context}{I\+S\+R\+\_\+lock\+\_\+\+Context}} $\ast$}]{lock\+\_\+context }\end{DoxyParamCaption})}
+
+
+
+Releases the thread queue queue and enables interrupts. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+ & {\em queue} & The thread queue queue to release. \\
+\hline
+\mbox{\texttt{ out}}  & {\em lock\+\_\+context} & The interrupt lock context to enable interrupts. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__RTEMSScoreThreadQueue_gaf210496afecfdf44064e41e8a83950ea}\label{group__RTEMSScoreThreadQueue_gaf210496afecfdf44064e41e8a83950ea}} 
+\index{Thread Queue Handler@{Thread Queue Handler}!\_Thread\_queue\_Queue\_release\_critical@{\_Thread\_queue\_Queue\_release\_critical}}
+\index{\_Thread\_queue\_Queue\_release\_critical@{\_Thread\_queue\_Queue\_release\_critical}!Thread Queue Handler@{Thread Queue Handler}}
+\subsubsection{\texorpdfstring{\_Thread\_queue\_Queue\_release\_critical()}{\_Thread\_queue\_Queue\_release\_critical()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \+\_\+\+Thread\+\_\+queue\+\_\+\+Queue\+\_\+release\+\_\+critical (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structThread__queue__Queue}{Thread\+\_\+queue\+\_\+\+Queue}} $\ast$}]{queue,  }\item[{\mbox{\hyperlink{structISR__lock__Context}{I\+S\+R\+\_\+lock\+\_\+\+Context}} $\ast$}]{lock\+\_\+context }\end{DoxyParamCaption})}
+
+
+
+Releases the thread queue queue in a critical section. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+ & {\em queue} & The thread queue queue to release in a critical section. \\
+\hline
+\mbox{\texttt{ out}}  & {\em lock\+\_\+context} & The interrupt lock context. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__RTEMSScoreThreadQueue_ga0a8881ef4106a0707b2751cdd3d18bef}\label{group__RTEMSScoreThreadQueue_ga0a8881ef4106a0707b2751cdd3d18bef}} 
+\index{Thread Queue Handler@{Thread Queue Handler}!\_Thread\_queue\_Release@{\_Thread\_queue\_Release}}
+\index{\_Thread\_queue\_Release@{\_Thread\_queue\_Release}!Thread Queue Handler@{Thread Queue Handler}}
+\subsubsection{\texorpdfstring{\_Thread\_queue\_Release()}{\_Thread\_queue\_Release()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \+\_\+\+Thread\+\_\+queue\+\_\+\+Release (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structThread__queue__Control}{Thread\+\_\+queue\+\_\+\+Control}} $\ast$}]{the\+\_\+thread\+\_\+queue,  }\item[{\mbox{\hyperlink{structThread__queue__Context}{Thread\+\_\+queue\+\_\+\+Context}} $\ast$}]{queue\+\_\+context }\end{DoxyParamCaption})}
+
+
+
+Releases the thread queue control and enables interrupts. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+ & {\em the\+\_\+thread\+\_\+queue} & The thread queue control to release. \\
+\hline
+\mbox{\texttt{ out}}  & {\em queue\+\_\+context} & The thread queue context. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__RTEMSScoreThreadQueue_ga5f0796c03f91beaa6caa842433122bab}\label{group__RTEMSScoreThreadQueue_ga5f0796c03f91beaa6caa842433122bab}} 
+\index{Thread Queue Handler@{Thread Queue Handler}!\_Thread\_queue\_Release\_critical@{\_Thread\_queue\_Release\_critical}}
+\index{\_Thread\_queue\_Release\_critical@{\_Thread\_queue\_Release\_critical}!Thread Queue Handler@{Thread Queue Handler}}
+\subsubsection{\texorpdfstring{\_Thread\_queue\_Release\_critical()}{\_Thread\_queue\_Release\_critical()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \+\_\+\+Thread\+\_\+queue\+\_\+\+Release\+\_\+critical (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structThread__queue__Control}{Thread\+\_\+queue\+\_\+\+Control}} $\ast$}]{the\+\_\+thread\+\_\+queue,  }\item[{\mbox{\hyperlink{structThread__queue__Context}{Thread\+\_\+queue\+\_\+\+Context}} $\ast$}]{queue\+\_\+context }\end{DoxyParamCaption})}
+
+
+
+Releases the thread queue control in a critical section. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+ & {\em the\+\_\+thread\+\_\+queue} & The thread queue control to release. \\
+\hline
+\mbox{\texttt{ out}}  & {\em queue\+\_\+context} & The thread queue context. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__RTEMSScoreThreadQueue_ga2f163fd4e89b8ea38e05e2faf4b065cf}\label{group__RTEMSScoreThreadQueue_ga2f163fd4e89b8ea38e05e2faf4b065cf}} 
+\index{Thread Queue Handler@{Thread Queue Handler}!\_Thread\_queue\_Surrender@{\_Thread\_queue\_Surrender}}
+\index{\_Thread\_queue\_Surrender@{\_Thread\_queue\_Surrender}!Thread Queue Handler@{Thread Queue Handler}}
+\subsubsection{\texorpdfstring{\_Thread\_queue\_Surrender()}{\_Thread\_queue\_Surrender()}}
+{\footnotesize\ttfamily void \+\_\+\+Thread\+\_\+queue\+\_\+\+Surrender (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structThread__queue__Queue}{Thread\+\_\+queue\+\_\+\+Queue}} $\ast$}]{queue,  }\item[{\mbox{\hyperlink{group__RTEMSScoreThreadQueue_gaebac32033b009cc8f606a90bd389f8e9}{Thread\+\_\+queue\+\_\+\+Heads}} $\ast$}]{heads,  }\item[{\mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$}]{previous\+\_\+owner,  }\item[{\mbox{\hyperlink{structThread__queue__Context}{Thread\+\_\+queue\+\_\+\+Context}} $\ast$}]{queue\+\_\+context,  }\item[{const \mbox{\hyperlink{structThread__queue__Operations}{Thread\+\_\+queue\+\_\+\+Operations}} $\ast$}]{operations }\end{DoxyParamCaption})}
+
+
+
+Surrenders the thread queue previously owned by the thread to the first enqueued thread. 
+
+The owner of the thread queue must be set to N\+U\+LL by the caller.
+
+This function releases the thread queue lock. In addition it performs a thread dispatch if necessary.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em queue} & The actual thread queue. \\
+\hline
+ & {\em heads} & The thread queue heads. It must not be N\+U\+LL. \\
+\hline
+ & {\em previous\+\_\+owner} & The previous owner thread surrendering the thread queue. \\
+\hline
+ & {\em queue\+\_\+context} & The thread queue context of the lock acquire. \\
+\hline
+ & {\em operations} & The thread queue operations. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__RTEMSScoreThreadQueue_gae47a7180a4fc9e6e834ec4067e580296}\label{group__RTEMSScoreThreadQueue_gae47a7180a4fc9e6e834ec4067e580296}} 
+\index{Thread Queue Handler@{Thread Queue Handler}!\_Thread\_queue\_Unblock\_critical@{\_Thread\_queue\_Unblock\_critical}}
+\index{\_Thread\_queue\_Unblock\_critical@{\_Thread\_queue\_Unblock\_critical}!Thread Queue Handler@{Thread Queue Handler}}
+\subsubsection{\texorpdfstring{\_Thread\_queue\_Unblock\_critical()}{\_Thread\_queue\_Unblock\_critical()}}
+{\footnotesize\ttfamily void \+\_\+\+Thread\+\_\+queue\+\_\+\+Unblock\+\_\+critical (\begin{DoxyParamCaption}\item[{bool}]{unblock,  }\item[{\mbox{\hyperlink{structThread__queue__Queue}{Thread\+\_\+queue\+\_\+\+Queue}} $\ast$}]{queue,  }\item[{\mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$}]{the\+\_\+thread,  }\item[{\mbox{\hyperlink{structISR__lock__Context}{I\+S\+R\+\_\+lock\+\_\+\+Context}} $\ast$}]{lock\+\_\+context }\end{DoxyParamCaption})}
+
+
+
+Unblocks the thread which was on the thread queue before. 
+
+The caller must be the owner of the thread queue lock. This function will release the thread queue lock. Thread dispatching is disabled before the thread queue lock is released and an unblock is necessary. Thread dispatching is enabled once the sequence to unblock the thread is complete.
+
+
+\begin{DoxyParams}[1]{Parameters}
+ & {\em unblock} & The unblock indicator returned by \mbox{\hyperlink{group__RTEMSScoreThreadQueue_ga91a4a052dcfd0db5df6ff9fa16bbfb4f}{\+\_\+\+Thread\+\_\+queue\+\_\+\+Extract\+\_\+locked()}}. \\
+\hline
+ & {\em queue} & The actual thread queue. \\
+\hline
+\mbox{\texttt{ in,out}}  & {\em the\+\_\+thread} & The thread to extract. \\
+\hline
+\mbox{\texttt{ in,out}}  & {\em lock\+\_\+context} & The lock context of the lock acquire. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{group__RTEMSScoreThreadQueue_gaa050ed6bbc86ca717c26cd68b93a49b7}\label{group__RTEMSScoreThreadQueue_gaa050ed6bbc86ca717c26cd68b93a49b7}} 
+\index{Thread Queue Handler@{Thread Queue Handler}!\_Thread\_queue\_Object\_name@{\_Thread\_queue\_Object\_name}}
+\index{\_Thread\_queue\_Object\_name@{\_Thread\_queue\_Object\_name}!Thread Queue Handler@{Thread Queue Handler}}
+\subsubsection{\texorpdfstring{\_Thread\_queue\_Object\_name}{\_Thread\_queue\_Object\_name}}
+{\footnotesize\ttfamily const char \+\_\+\+Thread\+\_\+queue\+\_\+\+Object\+\_\+name\mbox{[}$\,$\mbox{]}}
+
+
+
+The special thread queue name to indicated that the thread queue is embedded in an object with identifier. 
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{group__RTEMSScoreThreadQueue_gadff2605d33f07f210c22844f1ae71eaf}{\+\_\+\+Thread\+\_\+queue\+\_\+\+Object\+\_\+initialize()}}. 
+\end{DoxySeeAlso}

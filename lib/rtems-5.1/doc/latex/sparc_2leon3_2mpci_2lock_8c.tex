@@ -1,0 +1,29 @@
+\hypertarget{sparc_2leon3_2mpci_2lock_8c}{}\section{bsps/sparc/leon3/mpci/lock.c File Reference}
+\label{sparc_2leon3_2mpci_2lock_8c}\index{bsps/sparc/leon3/mpci/lock.c@{bsps/sparc/leon3/mpci/lock.c}}
+{\ttfamily \#include $<$rtems.\+h$>$}\newline
+{\ttfamily \#include $<$bsp.\+h$>$}\newline
+{\ttfamily \#include $<$shm\+\_\+driver.\+h$>$}\newline
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{sparc_2leon3_2mpci_2lock_8c_afa06e05686a8ff0f84246e0777a49710}\label{sparc_2leon3_2mpci_2lock_8c_afa06e05686a8ff0f84246e0777a49710}} 
+void {\bfseries Shm\+\_\+\+Initialize\+\_\+lock} (\mbox{\hyperlink{structShm__Locked__queue__Control}{Shm\+\_\+\+Locked\+\_\+queue\+\_\+\+Control}} $\ast$lq\+\_\+cb)
+\item 
+\mbox{\Hypertarget{sparc_2leon3_2mpci_2lock_8c_aeeb24f293baac4dafcd1d437c29d309e}\label{sparc_2leon3_2mpci_2lock_8c_aeeb24f293baac4dafcd1d437c29d309e}} 
+unsigned int {\bfseries L\+E\+O\+N3\+\_\+\+Atomic\+\_\+\+Swap} (uint32\+\_\+t value, uint32\+\_\+t $\ast$address)
+\item 
+\mbox{\Hypertarget{sparc_2leon3_2mpci_2lock_8c_a923ad73a48079fd40f477d6a76827c0c}\label{sparc_2leon3_2mpci_2lock_8c_a923ad73a48079fd40f477d6a76827c0c}} 
+{\bfseries \+\_\+\+\_\+asm\+\_\+\+\_\+} (\char`\"{}.text\textbackslash{}n\char`\"{} \char`\"{}.align 4\textbackslash{}n\char`\"{} \char`\"{}L\+E\+O\+N3\+\_\+\+Atomic\+\_\+\+Swap\+:\textbackslash{}n\char`\"{} \char`\"{}  retl\textbackslash{}n\char`\"{} \char`\"{}  swapa \mbox{[}\%o1\mbox{]} 1, \%o0\textbackslash{}n\char`\"{})
+\item 
+\mbox{\Hypertarget{sparc_2leon3_2mpci_2lock_8c_a87efd7432a8230eafbdb22158edb5471}\label{sparc_2leon3_2mpci_2lock_8c_a87efd7432a8230eafbdb22158edb5471}} 
+void {\bfseries Shm\+\_\+\+Lock} (\mbox{\hyperlink{structShm__Locked__queue__Control}{Shm\+\_\+\+Locked\+\_\+queue\+\_\+\+Control}} $\ast$lq\+\_\+cb)
+\item 
+\mbox{\Hypertarget{sparc_2leon3_2mpci_2lock_8c_a64d55a691a806a003c65d8cdadb85447}\label{sparc_2leon3_2mpci_2lock_8c_a64d55a691a806a003c65d8cdadb85447}} 
+void {\bfseries Shm\+\_\+\+Unlock} (\mbox{\hyperlink{structShm__Locked__queue__Control}{Shm\+\_\+\+Locked\+\_\+queue\+\_\+\+Control}} $\ast$lq\+\_\+cb)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+L\+E\+O\+N3 Shared Memory Lock Routines
+
+This shared memory locked queue support routine need to be able to lock the specified locked queue. Interrupts are disabled while the queue is locked to prevent preemption and deadlock when two tasks poll for the same lock. previous level. 

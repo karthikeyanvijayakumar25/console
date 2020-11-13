@@ -1,0 +1,40 @@
+\hypertarget{irq-generic_8c}{}\section{bsps/shared/irq/irq-\/generic.c File Reference}
+\label{irq-generic_8c}\index{bsps/shared/irq/irq-\/generic.c@{bsps/shared/irq/irq-\/generic.c}}
+
+
+Generic B\+SP interrupt support implementation.  
+
+
+{\ttfamily \#include $<$bsp/irq-\/generic.\+h$>$}\newline
+{\ttfamily \#include $<$bsp/fatal.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/score/processormask.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/malloc.\+h$>$}\newline
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{group__bsp__interrupt_gafccb8719531b51a8cf0163febeb42b29}{bsp\+\_\+interrupt\+\_\+initialize}} (void)
+\begin{DoxyCompactList}\small\item\em Initialize B\+SP interrupt support. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{group__rtems__interrupt__extension_ga086cc450fcdc9e37bfd0744a763dbfd4}{rtems\+\_\+interrupt\+\_\+handler\+\_\+install}} (\mbox{\hyperlink{group__ClassicINTR_ga3e434c197d99f128e78cae4d9358bd8b}{rtems\+\_\+vector\+\_\+number}} vector, const char $\ast$info, \mbox{\hyperlink{group__ClassicOptions_gad26685eb0e60a9650082935c31920e29}{rtems\+\_\+option}} options, \mbox{\hyperlink{group__rtems__interrupt__extension_gab39bd096ab2c3b41d03dace0e9777b08}{rtems\+\_\+interrupt\+\_\+handler}} handler, void $\ast$arg)
+\begin{DoxyCompactList}\small\item\em Installs the interrupt handler routine {\itshape handler} for the interrupt vector with number {\itshape vector}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{group__rtems__interrupt__extension_ga90011d3f7a1f614913fd6386f1725b9d}{rtems\+\_\+interrupt\+\_\+handler\+\_\+remove}} (\mbox{\hyperlink{group__ClassicINTR_ga3e434c197d99f128e78cae4d9358bd8b}{rtems\+\_\+vector\+\_\+number}} vector, \mbox{\hyperlink{group__rtems__interrupt__extension_gab39bd096ab2c3b41d03dace0e9777b08}{rtems\+\_\+interrupt\+\_\+handler}} handler, void $\ast$arg)
+\begin{DoxyCompactList}\small\item\em Removes the interrupt handler routine {\itshape handler} with argument {\itshape arg} for the interrupt vector with number {\itshape vector}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{group__rtems__interrupt__extension_ga31d23275b676018c06e13c7bedc87983}{rtems\+\_\+interrupt\+\_\+handler\+\_\+iterate}} (\mbox{\hyperlink{group__ClassicINTR_ga3e434c197d99f128e78cae4d9358bd8b}{rtems\+\_\+vector\+\_\+number}} vector, \mbox{\hyperlink{group__rtems__interrupt__extension_gad3e88a9acfac97a5021ff98471f5cd71}{rtems\+\_\+interrupt\+\_\+per\+\_\+handler\+\_\+routine}} routine, void $\ast$arg)
+\begin{DoxyCompactList}\small\item\em Iterates over all installed interrupt handler of the interrupt vector with number {\itshape vector}. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__bsp__interrupt_ga0ab406af223fad2abc336b84597c7008}{bsp\+\_\+interrupt\+\_\+handler\+\_\+is\+\_\+empty}} (\mbox{\hyperlink{group__ClassicINTR_ga3e434c197d99f128e78cae4d9358bd8b}{rtems\+\_\+vector\+\_\+number}} vector)
+\begin{DoxyCompactList}\small\item\em Is interrupt handler empty. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{group__rtems__interrupt__extension_ga29b0adc04eff6ae74fd02076a7f2eee6}{rtems\+\_\+interrupt\+\_\+set\+\_\+affinity}} (\mbox{\hyperlink{group__ClassicINTR_ga3e434c197d99f128e78cae4d9358bd8b}{rtems\+\_\+vector\+\_\+number}} vector, size\+\_\+t affinity\+\_\+size, const cpu\+\_\+set\+\_\+t $\ast$affinity)
+\begin{DoxyCompactList}\small\item\em Sets the processor affinity set of an interrupt vector. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{group__rtems__interrupt__extension_gaf99a316611a290b2e58d9caf48594838}{rtems\+\_\+interrupt\+\_\+get\+\_\+affinity}} (\mbox{\hyperlink{group__ClassicINTR_ga3e434c197d99f128e78cae4d9358bd8b}{rtems\+\_\+vector\+\_\+number}} vector, size\+\_\+t affinity\+\_\+size, cpu\+\_\+set\+\_\+t $\ast$affinity)
+\begin{DoxyCompactList}\small\item\em Gets the processor affinity set of an interrupt vector. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{irq-generic_8c_a5324bbc8bbf933da5137932e052bc2b1}\label{irq-generic_8c_a5324bbc8bbf933da5137932e052bc2b1}} 
+\mbox{\hyperlink{structbsp__interrupt__handler__entry}{bsp\+\_\+interrupt\+\_\+handler\+\_\+entry}} {\bfseries bsp\+\_\+interrupt\+\_\+handler\+\_\+table} \mbox{[}B\+S\+P\+\_\+\+I\+N\+T\+E\+R\+R\+U\+P\+T\+\_\+\+H\+A\+N\+D\+L\+E\+R\+\_\+\+T\+A\+B\+L\+E\+\_\+\+S\+I\+ZE\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Generic B\+SP interrupt support implementation. 
+

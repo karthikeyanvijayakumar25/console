@@ -1,0 +1,121 @@
+\hypertarget{show__bdbuf_8c}{}\section{cpukit/libblock/src/show\+\_\+bdbuf.c File Reference}
+\label{show__bdbuf_8c}\index{cpukit/libblock/src/show\_bdbuf.c@{cpukit/libblock/src/show\_bdbuf.c}}
+
+
+Enable the Monitor to Show bdbuf Information.  
+
+
+{\ttfamily \#include $<$rtems.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/monitor.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/bdbuf.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$ctype.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/libio.\+h$>$}\newline
+{\ttfamily \#include $<$inttypes.\+h$>$}\newline
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structshow__bdbuf__filter__t}{show\+\_\+bdbuf\+\_\+filter\+\_\+t}}
+\item 
+struct \mbox{\hyperlink{structshow__bdbuf__selector__t}{show\+\_\+bdbuf\+\_\+selector\+\_\+t}}
+\item 
+struct \mbox{\hyperlink{structshow__bdbuf__bdbuf__info__t}{show\+\_\+bdbuf\+\_\+bdbuf\+\_\+info\+\_\+t}}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bfseries D\+I\+S\+A\+B\+L\+E\+\_\+\+P\+R\+E\+E\+M\+P\+T\+I\+ON}(key)
+\item 
+\#define {\bfseries E\+N\+A\+B\+L\+E\+\_\+\+P\+R\+E\+E\+M\+P\+T\+I\+ON}(key)
+\item 
+\mbox{\Hypertarget{show__bdbuf_8c_a44e7f1038e2bb44747112693c72fb237}\label{show__bdbuf_8c_a44e7f1038e2bb44747112693c72fb237}} 
+\#define {\bfseries A\+R\+R\+A\+Y\+\_\+\+C\+NT}(arr)~(sizeof((arr))/sizeof((arr)\mbox{[}0\mbox{]}))
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{show__bdbuf_8c_a296a96d4a17ba4ef82b41fc690281fba}\label{show__bdbuf_8c_a296a96d4a17ba4ef82b41fc690281fba}} 
+typedef \mbox{\hyperlink{group__ClassicModes_ga8d46a41a837840dc97336fdcd20e4f68}{rtems\+\_\+mode}} {\bfseries preemption\+\_\+key\+\_\+t}
+\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{show__bdbuf_8c_a0b7c351d033bd607c21ab22a6029ecaf}\label{show__bdbuf_8c_a0b7c351d033bd607c21ab22a6029ecaf}} 
+enum {\bfseries bdbuf\+\_\+chain\+\_\+identifier\+\_\+t} \{ {\bfseries bdbuf\+\_\+chain\+\_\+ident\+\_\+none}, 
+{\bfseries bdbuf\+\_\+chain\+\_\+ident\+\_\+free}, 
+{\bfseries bdbuf\+\_\+chain\+\_\+ident\+\_\+lru}, 
+{\bfseries bdbuf\+\_\+chain\+\_\+ident\+\_\+mod}
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{show__bdbuf_8c_aee3a607a74614c866b1f44a63e22e202}\label{show__bdbuf_8c_aee3a607a74614c866b1f44a63e22e202}} 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} {\bfseries rtems\+\_\+bdbuf\+\_\+show\+\_\+follow\+\_\+chain\+\_\+node\+\_\+to\+\_\+head} (const \mbox{\hyperlink{group__RTEMSScoreChain_ga0dd4bfcca1ac7f90de2842e447846d3d}{Chain\+\_\+\+Node}} $\ast$the\+\_\+node, \mbox{\hyperlink{unionChain__Control}{Chain\+\_\+\+Control}} $\ast$$\ast$the\+\_\+head)
+\item 
+\mbox{\Hypertarget{show__bdbuf_8c_aaf45d536fec3a10290e8b32587c1c73e}\label{show__bdbuf_8c_aaf45d536fec3a10290e8b32587c1c73e}} 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} {\bfseries rtems\+\_\+bdbuf\+\_\+show\+\_\+determine\+\_\+chain\+\_\+of\+\_\+bdbuf} (const bdbuf\+\_\+buffer $\ast$the\+\_\+bdbuf, const bdbuf\+\_\+pool $\ast$curr\+\_\+pool, bdbuf\+\_\+chain\+\_\+identifier\+\_\+t $\ast$chn\+\_\+ident)
+\item 
+\mbox{\Hypertarget{show__bdbuf_8c_a6ec1c86120e68870da03fcf881f10832}\label{show__bdbuf_8c_a6ec1c86120e68870da03fcf881f10832}} 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} {\bfseries rtems\+\_\+bdbuf\+\_\+show\+\_\+getargs} (int argc, char $\ast$$\ast$argv, \mbox{\hyperlink{structshow__bdbuf__filter__t}{show\+\_\+bdbuf\+\_\+filter\+\_\+t}} $\ast$filter, \mbox{\hyperlink{structshow__bdbuf__selector__t}{show\+\_\+bdbuf\+\_\+selector\+\_\+t}} $\ast$selector)
+\item 
+\mbox{\Hypertarget{show__bdbuf_8c_a720bcad5c80590c630d76caccc51d2a3}\label{show__bdbuf_8c_a720bcad5c80590c630d76caccc51d2a3}} 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} {\bfseries rtems\+\_\+bdbuf\+\_\+show\+\_\+get\+\_\+bufpool} (struct bdbuf\+\_\+pool $\ast$$\ast$pool\+\_\+base\+\_\+pptr, int $\ast$pool\+\_\+cnt\+\_\+ptr)
+\item 
+\mbox{\Hypertarget{show__bdbuf_8c_a0446474e838a32f27f920b3f0bb35881}\label{show__bdbuf_8c_a0446474e838a32f27f920b3f0bb35881}} 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} {\bfseries rtems\+\_\+bdbuf\+\_\+show\+\_\+pool\+\_\+header} (int pool\+\_\+idx, bdbuf\+\_\+pool $\ast$pool\+\_\+ptr)
+\item 
+\mbox{\Hypertarget{show__bdbuf_8c_a381e1cc416d02d7763a7a6f106001bbf}\label{show__bdbuf_8c_a381e1cc416d02d7763a7a6f106001bbf}} 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} {\bfseries rtems\+\_\+show\+\_\+bdbuf\+\_\+get\+\_\+bdbuf\+\_\+info} (const bdbuf\+\_\+buffer $\ast$the\+\_\+bdbuf, int bdbuf\+\_\+idx, const bdbuf\+\_\+pool $\ast$curr\+\_\+pool, \mbox{\hyperlink{structshow__bdbuf__bdbuf__info__t}{show\+\_\+bdbuf\+\_\+bdbuf\+\_\+info\+\_\+t}} $\ast$bdbuf\+\_\+info)
+\item 
+\mbox{\Hypertarget{show__bdbuf_8c_a3e38cc2009643754213cbfd68ef0b91a}\label{show__bdbuf_8c_a3e38cc2009643754213cbfd68ef0b91a}} 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} {\bfseries rtems\+\_\+show\+\_\+bdbuf\+\_\+match\+\_\+filter} (const \mbox{\hyperlink{structshow__bdbuf__bdbuf__info__t}{show\+\_\+bdbuf\+\_\+bdbuf\+\_\+info\+\_\+t}} $\ast$bdbuf\+\_\+info, const \mbox{\hyperlink{structshow__bdbuf__filter__t}{show\+\_\+bdbuf\+\_\+filter\+\_\+t}} $\ast$filter, bool $\ast$is\+\_\+match)
+\item 
+\mbox{\Hypertarget{show__bdbuf_8c_a2d008c33e405d12cee7f060dd54f2c87}\label{show__bdbuf_8c_a2d008c33e405d12cee7f060dd54f2c87}} 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} {\bfseries rtems\+\_\+show\+\_\+bdbuf\+\_\+print\+\_\+wait\+\_\+chain} (bdbuf\+\_\+buffer $\ast$the\+\_\+bdbuf)
+\item 
+\mbox{\Hypertarget{show__bdbuf_8c_a72207edefae5d7c26e9a1a1d86774690}\label{show__bdbuf_8c_a72207edefae5d7c26e9a1a1d86774690}} 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} {\bfseries rtems\+\_\+show\+\_\+bdbuf\+\_\+print} (const \mbox{\hyperlink{structshow__bdbuf__bdbuf__info__t}{show\+\_\+bdbuf\+\_\+bdbuf\+\_\+info\+\_\+t}} $\ast$bdbuf\+\_\+info, \mbox{\hyperlink{structshow__bdbuf__selector__t}{show\+\_\+bdbuf\+\_\+selector\+\_\+t}} $\ast$selector, bool print\+\_\+header)
+\item 
+\mbox{\Hypertarget{show__bdbuf_8c_a50e58e2bdc3d1e361b5cc079227418e2}\label{show__bdbuf_8c_a50e58e2bdc3d1e361b5cc079227418e2}} 
+void {\bfseries rtems\+\_\+bdbuf\+\_\+show\+\_\+fnc} (int argc, char $\ast$$\ast$argv, \mbox{\hyperlink{union__rtems__monitor__command__arg__t}{rtems\+\_\+monitor\+\_\+command\+\_\+arg\+\_\+t}} $\ast$command\+\_\+arg, bool verbose)
+\item 
+\mbox{\Hypertarget{show__bdbuf_8c_afd5087c796fb2974c79ef0131ef71455}\label{show__bdbuf_8c_afd5087c796fb2974c79ef0131ef71455}} 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} {\bfseries rtems\+\_\+bdbuf\+\_\+show\+\_\+init} (void)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Enable the Monitor to Show bdbuf Information. 
+
+This module inspects the bdbuf data structures, assuming they are static, but in fact they are used very dynamically. Therefore the results show M\+AY BE I\+N\+C\+O\+R\+R\+E\+CT in some cases. And, to cure this a bit, this module may block preemption for a rather long time and therefore it may B\+R\+E\+AK T\+HE R\+E\+A\+L\+T\+I\+ME B\+E\+H\+A\+V\+I\+O\+UR OF Y\+O\+UR S\+Y\+S\+T\+EM (when in use) 
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{show__bdbuf_8c_ace4cdf89b745521f9199d06ea1a2c4bf}\label{show__bdbuf_8c_ace4cdf89b745521f9199d06ea1a2c4bf}} 
+\index{show\_bdbuf.c@{show\_bdbuf.c}!DISABLE\_PREEMPTION@{DISABLE\_PREEMPTION}}
+\index{DISABLE\_PREEMPTION@{DISABLE\_PREEMPTION}!show\_bdbuf.c@{show\_bdbuf.c}}
+\subsubsection{\texorpdfstring{DISABLE\_PREEMPTION}{DISABLE\_PREEMPTION}}
+{\footnotesize\ttfamily \#define D\+I\+S\+A\+B\+L\+E\+\_\+\+P\+R\+E\+E\+M\+P\+T\+I\+ON(\begin{DoxyParamCaption}\item[{}]{key }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do} \{                                                               \(\backslash\)}
+\DoxyCodeLine{        rtems\_task\_mode(\mbox{\hyperlink{group__ClassicModes_gaabb8ccb34ba1b5c0497f370781630c88}{RTEMS\_NO\_PREEMPT}}, \mbox{\hyperlink{group__ClassicModes_gadce57066cf804c77938d21a205c913ac}{RTEMS\_PREEMPT\_MASK}}, \&(key)); \(\backslash\)}
+\DoxyCodeLine{    \} \textcolor{keywordflow}{while} (0)}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{show__bdbuf_8c_a6ebc99d6195c1ff5aeff860b5a9d5dc7}\label{show__bdbuf_8c_a6ebc99d6195c1ff5aeff860b5a9d5dc7}} 
+\index{show\_bdbuf.c@{show\_bdbuf.c}!ENABLE\_PREEMPTION@{ENABLE\_PREEMPTION}}
+\index{ENABLE\_PREEMPTION@{ENABLE\_PREEMPTION}!show\_bdbuf.c@{show\_bdbuf.c}}
+\subsubsection{\texorpdfstring{ENABLE\_PREEMPTION}{ENABLE\_PREEMPTION}}
+{\footnotesize\ttfamily \#define E\+N\+A\+B\+L\+E\+\_\+\+P\+R\+E\+E\+M\+P\+T\+I\+ON(\begin{DoxyParamCaption}\item[{}]{key }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do} \{                                                        \(\backslash\)}
+\DoxyCodeLine{        rtems\_mode temp;                                        \(\backslash\)}
+\DoxyCodeLine{        rtems\_task\_mode((key), \mbox{\hyperlink{group__ClassicModes_gadce57066cf804c77938d21a205c913ac}{RTEMS\_PREEMPT\_MASK}}, \&temp);      \(\backslash\)}
+\DoxyCodeLine{    \} \textcolor{keywordflow}{while} (0)}
+
+\end{DoxyCode}

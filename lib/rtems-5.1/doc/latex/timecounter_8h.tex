@@ -1,0 +1,52 @@
+\hypertarget{timecounter_8h}{}\section{cpukit/include/rtems/timecounter.h File Reference}
+\label{timecounter_8h}\index{cpukit/include/rtems/timecounter.h@{cpukit/include/rtems/timecounter.h}}
+
+
+Timecounter A\+PI.  
+
+
+{\ttfamily \#include $<$rtems/score/timecounter.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/score/basedefs.\+h$>$}\newline
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structrtems__timecounter__simple}{rtems\+\_\+timecounter\+\_\+simple}}
+\begin{DoxyCompactList}\small\item\em Simple timecounter to support legacy clock drivers. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__SAPITimecounter_ga509ef767dcae10363b53e02b0205398c}{R\+T\+E\+M\+S\+\_\+\+T\+I\+M\+E\+C\+O\+U\+N\+T\+E\+R\+\_\+\+Q\+U\+A\+L\+I\+T\+Y\+\_\+\+C\+L\+O\+C\+K\+\_\+\+D\+R\+I\+V\+ER}}~100
+\begin{DoxyCompactList}\small\item\em Timecounter quality for the clock drivers. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef void \mbox{\hyperlink{group__SAPITimecounter_ga7d6fb7805c66742ad1e13ca1c2b0ec57}{rtems\+\_\+timecounter\+\_\+simple\+\_\+at\+\_\+tick}}(\mbox{\hyperlink{structrtems__timecounter__simple}{rtems\+\_\+timecounter\+\_\+simple}} $\ast$tc)
+\begin{DoxyCompactList}\small\item\em At tick handling done under protection of the timecounter lock. \end{DoxyCompactList}\item 
+typedef uint32\+\_\+t \mbox{\hyperlink{group__SAPITimecounter_gaf994ec0741af793766d17b42ee91a501}{rtems\+\_\+timecounter\+\_\+simple\+\_\+get}}(\mbox{\hyperlink{structrtems__timecounter__simple}{rtems\+\_\+timecounter\+\_\+simple}} $\ast$tc)
+\begin{DoxyCompactList}\small\item\em Returns the current value of a simple timecounter. \end{DoxyCompactList}\item 
+typedef bool \mbox{\hyperlink{group__SAPITimecounter_gaaa16abdeb0f4bea8e2d535187ba33589}{rtems\+\_\+timecounter\+\_\+simple\+\_\+is\+\_\+pending}}(\mbox{\hyperlink{structrtems__timecounter__simple}{rtems\+\_\+timecounter\+\_\+simple}} $\ast$tc)
+\begin{DoxyCompactList}\small\item\em Returns true if the interrupt of a simple timecounter is pending, and false otherwise. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \mbox{\hyperlink{group__SAPITimecounter_ga8ddad0a976e758ae165036b4399d1470}{rtems\+\_\+timecounter\+\_\+install}} (struct \mbox{\hyperlink{structtimecounter}{timecounter}} $\ast$tc)
+\begin{DoxyCompactList}\small\item\em Installs the timecounter. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \mbox{\hyperlink{group__SAPITimecounter_ga05c046fc04548ac47c081919184d6a05}{rtems\+\_\+timecounter\+\_\+tick}} (void)
+\begin{DoxyCompactList}\small\item\em Performs a timecounter tick. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__SAPITimecounter_ga45a47eaf24d71281a0e78edfec01aaf6}{rtems\+\_\+timecounter\+\_\+simple\+\_\+install}} (\mbox{\hyperlink{structrtems__timecounter__simple}{rtems\+\_\+timecounter\+\_\+simple}} $\ast$tc, uint32\+\_\+t counter\+\_\+frequency\+\_\+in\+\_\+hz, uint32\+\_\+t counter\+\_\+ticks\+\_\+per\+\_\+clock\+\_\+tick, timecounter\+\_\+get\+\_\+t $\ast$get\+\_\+timecount)
+\begin{DoxyCompactList}\small\item\em Initializes and installs a simple timecounter. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} uint32\+\_\+t \mbox{\hyperlink{group__SAPITimecounter_ga1b96b117973dd33c364e433d022048d9}{rtems\+\_\+timecounter\+\_\+simple\+\_\+scale}} (const \mbox{\hyperlink{structrtems__timecounter__simple}{rtems\+\_\+timecounter\+\_\+simple}} $\ast$tc, uint32\+\_\+t value)
+\begin{DoxyCompactList}\small\item\em Maps a simple timecounter value into its binary frequency domain. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \mbox{\hyperlink{group__SAPITimecounter_gaaf2269728a8f160afddd1c097cee60d9}{rtems\+\_\+timecounter\+\_\+simple\+\_\+downcounter\+\_\+tick}} (\mbox{\hyperlink{structrtems__timecounter__simple}{rtems\+\_\+timecounter\+\_\+simple}} $\ast$tc, \mbox{\hyperlink{group__SAPITimecounter_gaf994ec0741af793766d17b42ee91a501}{rtems\+\_\+timecounter\+\_\+simple\+\_\+get}} get, \mbox{\hyperlink{group__SAPITimecounter_ga7d6fb7805c66742ad1e13ca1c2b0ec57}{rtems\+\_\+timecounter\+\_\+simple\+\_\+at\+\_\+tick}} at\+\_\+tick)
+\begin{DoxyCompactList}\small\item\em Performs a simple timecounter tick for downcounters. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \mbox{\hyperlink{group__SAPITimecounter_ga1de2d1f9f303848bdf2642895035670c}{rtems\+\_\+timecounter\+\_\+simple\+\_\+upcounter\+\_\+tick}} (\mbox{\hyperlink{structrtems__timecounter__simple}{rtems\+\_\+timecounter\+\_\+simple}} $\ast$tc, \mbox{\hyperlink{group__SAPITimecounter_gaf994ec0741af793766d17b42ee91a501}{rtems\+\_\+timecounter\+\_\+simple\+\_\+get}} get, \mbox{\hyperlink{group__SAPITimecounter_ga7d6fb7805c66742ad1e13ca1c2b0ec57}{rtems\+\_\+timecounter\+\_\+simple\+\_\+at\+\_\+tick}} at\+\_\+tick)
+\begin{DoxyCompactList}\small\item\em Performs a simple timecounter tick for upcounters. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} uint32\+\_\+t \mbox{\hyperlink{group__SAPITimecounter_ga73145202e921ffdda990060007022c56}{rtems\+\_\+timecounter\+\_\+simple\+\_\+downcounter\+\_\+get}} (struct \mbox{\hyperlink{structtimecounter}{timecounter}} $\ast$tc\+\_\+base, \mbox{\hyperlink{group__SAPITimecounter_gaf994ec0741af793766d17b42ee91a501}{rtems\+\_\+timecounter\+\_\+simple\+\_\+get}} get, \mbox{\hyperlink{group__SAPITimecounter_gaaa16abdeb0f4bea8e2d535187ba33589}{rtems\+\_\+timecounter\+\_\+simple\+\_\+is\+\_\+pending}} is\+\_\+pending)
+\begin{DoxyCompactList}\small\item\em Gets the simple timecounter value mapped to its binary frequency domain for downcounters. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} uint32\+\_\+t \mbox{\hyperlink{group__SAPITimecounter_ga0f1dc14b096be72170ec9d854c8bb79d}{rtems\+\_\+timecounter\+\_\+simple\+\_\+upcounter\+\_\+get}} (struct \mbox{\hyperlink{structtimecounter}{timecounter}} $\ast$tc\+\_\+base, \mbox{\hyperlink{group__SAPITimecounter_gaf994ec0741af793766d17b42ee91a501}{rtems\+\_\+timecounter\+\_\+simple\+\_\+get}} get, \mbox{\hyperlink{group__SAPITimecounter_gaaa16abdeb0f4bea8e2d535187ba33589}{rtems\+\_\+timecounter\+\_\+simple\+\_\+is\+\_\+pending}} is\+\_\+pending)
+\begin{DoxyCompactList}\small\item\em Gets the simple timecounter value mapped to its binary frequency domain for upcounters. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Timecounter A\+PI. 
+

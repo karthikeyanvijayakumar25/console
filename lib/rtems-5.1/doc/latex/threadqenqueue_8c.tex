@@ -1,0 +1,53 @@
+\hypertarget{threadqenqueue_8c}{}\section{cpukit/score/src/threadqenqueue.c File Reference}
+\label{threadqenqueue_8c}\index{cpukit/score/src/threadqenqueue.c@{cpukit/score/src/threadqenqueue.c}}
+
+
+Thread Queue Operations.  
+
+
+{\ttfamily \#include $<$rtems/score/threadqimpl.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/score/assert.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/score/threaddispatch.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/score/threadimpl.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/score/status.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/score/watchdogimpl.\+h$>$}\newline
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{threadqenqueue_8c_abf1f8d329e0c418f8b87ada8b7e7e4d6}\label{threadqenqueue_8c_abf1f8d329e0c418f8b87ada8b7e7e4d6}} 
+\#define {\bfseries T\+H\+R\+E\+A\+D\+\_\+\+Q\+U\+E\+U\+E\+\_\+\+I\+N\+T\+E\+N\+D\+\_\+\+T\+O\+\_\+\+B\+L\+O\+CK}~(\mbox{\hyperlink{group__RTEMSScoreThread_ga8ad326b1eb2ad7ab1c74a69052aac37c}{T\+H\+R\+E\+A\+D\+\_\+\+W\+A\+I\+T\+\_\+\+C\+L\+A\+S\+S\+\_\+\+O\+B\+J\+E\+CT}} $\vert$ \mbox{\hyperlink{group__RTEMSScoreThread_ga82059fe7353c5129db4c812b7c82f6bf}{T\+H\+R\+E\+A\+D\+\_\+\+W\+A\+I\+T\+\_\+\+S\+T\+A\+T\+E\+\_\+\+I\+N\+T\+E\+N\+D\+\_\+\+T\+O\+\_\+\+B\+L\+O\+CK}})
+\item 
+\mbox{\Hypertarget{threadqenqueue_8c_afd6d80782b8dc5b9dc874a6b3e1f55a3}\label{threadqenqueue_8c_afd6d80782b8dc5b9dc874a6b3e1f55a3}} 
+\#define {\bfseries T\+H\+R\+E\+A\+D\+\_\+\+Q\+U\+E\+U\+E\+\_\+\+B\+L\+O\+C\+K\+ED}~(\mbox{\hyperlink{group__RTEMSScoreThread_ga8ad326b1eb2ad7ab1c74a69052aac37c}{T\+H\+R\+E\+A\+D\+\_\+\+W\+A\+I\+T\+\_\+\+C\+L\+A\+S\+S\+\_\+\+O\+B\+J\+E\+CT}} $\vert$ \mbox{\hyperlink{group__RTEMSScoreThread_gaa9487eb8db998d29cb1f712155769583}{T\+H\+R\+E\+A\+D\+\_\+\+W\+A\+I\+T\+\_\+\+S\+T\+A\+T\+E\+\_\+\+B\+L\+O\+C\+K\+ED}})
+\item 
+\mbox{\Hypertarget{threadqenqueue_8c_a3424b4860b711888648efa7e5758712d}\label{threadqenqueue_8c_a3424b4860b711888648efa7e5758712d}} 
+\#define {\bfseries T\+H\+R\+E\+A\+D\+\_\+\+Q\+U\+E\+U\+E\+\_\+\+R\+E\+A\+D\+Y\+\_\+\+A\+G\+A\+IN}~(\mbox{\hyperlink{group__RTEMSScoreThread_ga8ad326b1eb2ad7ab1c74a69052aac37c}{T\+H\+R\+E\+A\+D\+\_\+\+W\+A\+I\+T\+\_\+\+C\+L\+A\+S\+S\+\_\+\+O\+B\+J\+E\+CT}} $\vert$ \mbox{\hyperlink{group__RTEMSScoreThread_gac00cb9ccdda63a4731f4d80a89371ea0}{T\+H\+R\+E\+A\+D\+\_\+\+W\+A\+I\+T\+\_\+\+S\+T\+A\+T\+E\+\_\+\+R\+E\+A\+D\+Y\+\_\+\+A\+G\+A\+IN}})
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{group__RTEMSScoreThreadQueue_ga6a087492df4bba9c56d8e8018339a84e}{\+\_\+\+Thread\+\_\+queue\+\_\+\+Enqueue\+\_\+do\+\_\+nothing\+\_\+extra}} (\mbox{\hyperlink{structThread__queue__Queue}{Thread\+\_\+queue\+\_\+\+Queue}} $\ast$queue, \mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$the\+\_\+thread, \mbox{\hyperlink{structPer__CPU__Control}{Per\+\_\+\+C\+P\+U\+\_\+\+Control}} $\ast$cpu\+\_\+self, \mbox{\hyperlink{structThread__queue__Context}{Thread\+\_\+queue\+\_\+\+Context}} $\ast$queue\+\_\+context)
+\begin{DoxyCompactList}\small\item\em Does nothing. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__RTEMSScoreThreadQueue_gaca11db0fbad98d6b0ee9a41139aa7d54}{\+\_\+\+Thread\+\_\+queue\+\_\+\+Deadlock\+\_\+status}} (\mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$the\+\_\+thread)
+\begin{DoxyCompactList}\small\item\em Sets the thread wait return code to S\+T\+A\+T\+U\+S\+\_\+\+D\+E\+A\+D\+L\+O\+CK. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__RTEMSScoreThreadQueue_ga673681292c0f047b02c6dbb6819e0ad7}{\+\_\+\+Thread\+\_\+queue\+\_\+\+Deadlock\+\_\+fatal}} (\mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$the\+\_\+thread)
+\begin{DoxyCompactList}\small\item\em Results in an I\+N\+T\+E\+R\+N\+A\+L\+\_\+\+E\+R\+R\+O\+R\+\_\+\+T\+H\+R\+E\+A\+D\+\_\+\+Q\+U\+E\+U\+E\+\_\+\+D\+E\+A\+D\+L\+O\+CK fatal error. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__RTEMSScoreThreadQueue_ga4992b40810f6d287c832bdad240dbc90}{\+\_\+\+Thread\+\_\+queue\+\_\+\+Enqueue}} (\mbox{\hyperlink{structThread__queue__Queue}{Thread\+\_\+queue\+\_\+\+Queue}} $\ast$queue, const \mbox{\hyperlink{structThread__queue__Operations}{Thread\+\_\+queue\+\_\+\+Operations}} $\ast$operations, \mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$the\+\_\+thread, \mbox{\hyperlink{structThread__queue__Context}{Thread\+\_\+queue\+\_\+\+Context}} $\ast$queue\+\_\+context)
+\begin{DoxyCompactList}\small\item\em Blocks the thread and places it on the thread queue. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__RTEMSScoreThreadQueue_ga91a4a052dcfd0db5df6ff9fa16bbfb4f}{\+\_\+\+Thread\+\_\+queue\+\_\+\+Extract\+\_\+locked}} (\mbox{\hyperlink{structThread__queue__Queue}{Thread\+\_\+queue\+\_\+\+Queue}} $\ast$queue, const \mbox{\hyperlink{structThread__queue__Operations}{Thread\+\_\+queue\+\_\+\+Operations}} $\ast$operations, \mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$the\+\_\+thread, \mbox{\hyperlink{structThread__queue__Context}{Thread\+\_\+queue\+\_\+\+Context}} $\ast$queue\+\_\+context)
+\begin{DoxyCompactList}\small\item\em Extracts the thread from the thread queue, restores the default wait operations and restores the default thread lock. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__RTEMSScoreThreadQueue_gae47a7180a4fc9e6e834ec4067e580296}{\+\_\+\+Thread\+\_\+queue\+\_\+\+Unblock\+\_\+critical}} (bool unblock, \mbox{\hyperlink{structThread__queue__Queue}{Thread\+\_\+queue\+\_\+\+Queue}} $\ast$queue, \mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$the\+\_\+thread, \mbox{\hyperlink{structISR__lock__Context}{I\+S\+R\+\_\+lock\+\_\+\+Context}} $\ast$lock\+\_\+context)
+\begin{DoxyCompactList}\small\item\em Unblocks the thread which was on the thread queue before. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__RTEMSScoreThreadQueue_gaf6ce2524fef09fe93a24196dd392093e}{\+\_\+\+Thread\+\_\+queue\+\_\+\+Extract\+\_\+critical}} (\mbox{\hyperlink{structThread__queue__Queue}{Thread\+\_\+queue\+\_\+\+Queue}} $\ast$queue, const \mbox{\hyperlink{structThread__queue__Operations}{Thread\+\_\+queue\+\_\+\+Operations}} $\ast$operations, \mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$the\+\_\+thread, \mbox{\hyperlink{structThread__queue__Context}{Thread\+\_\+queue\+\_\+\+Context}} $\ast$queue\+\_\+context)
+\begin{DoxyCompactList}\small\item\em Extracts the thread from the thread queue and unblocks it. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__RTEMSScoreThreadQueue_gade3d717e5bef36275e5abd5c9cb0795f}{\+\_\+\+Thread\+\_\+queue\+\_\+\+Extract}} (\mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$the\+\_\+thread)
+\begin{DoxyCompactList}\small\item\em Extracts thread from thread queue. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__RTEMSScoreThreadQueue_ga2f163fd4e89b8ea38e05e2faf4b065cf}{\+\_\+\+Thread\+\_\+queue\+\_\+\+Surrender}} (\mbox{\hyperlink{structThread__queue__Queue}{Thread\+\_\+queue\+\_\+\+Queue}} $\ast$queue, \mbox{\hyperlink{group__RTEMSScoreThreadQueue_gaebac32033b009cc8f606a90bd389f8e9}{Thread\+\_\+queue\+\_\+\+Heads}} $\ast$heads, \mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$previous\+\_\+owner, \mbox{\hyperlink{structThread__queue__Context}{Thread\+\_\+queue\+\_\+\+Context}} $\ast$queue\+\_\+context, const \mbox{\hyperlink{structThread__queue__Operations}{Thread\+\_\+queue\+\_\+\+Operations}} $\ast$operations)
+\begin{DoxyCompactList}\small\item\em Surrenders the thread queue previously owned by the thread to the first enqueued thread. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$ \mbox{\hyperlink{group__RTEMSScoreThreadQueue_ga1671707d42e9a381c3737b58deed97d5}{\+\_\+\+Thread\+\_\+queue\+\_\+\+Do\+\_\+dequeue}} (\mbox{\hyperlink{structThread__queue__Control}{Thread\+\_\+queue\+\_\+\+Control}} $\ast$the\+\_\+thread\+\_\+queue, const \mbox{\hyperlink{structThread__queue__Operations}{Thread\+\_\+queue\+\_\+\+Operations}} $\ast$operations)
+\begin{DoxyCompactList}\small\item\em Dequeues the first thread waiting on the thread queue and returns it. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Thread Queue Operations. 
+

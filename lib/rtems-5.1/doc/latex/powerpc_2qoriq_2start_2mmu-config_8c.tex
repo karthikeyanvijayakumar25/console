@@ -1,0 +1,165 @@
+\hypertarget{powerpc_2qoriq_2start_2mmu-config_8c}{}\section{bsps/powerpc/qoriq/start/mmu-\/config.c File Reference}
+\label{powerpc_2qoriq_2start_2mmu-config_8c}\index{bsps/powerpc/qoriq/start/mmu-\/config.c@{bsps/powerpc/qoriq/start/mmu-\/config.c}}
+
+
+M\+MU implementation.  
+
+
+{\ttfamily \#include $<$bsp.\+h$>$}\newline
+{\ttfamily \#include $<$bsp/bootcard.\+h$>$}\newline
+{\ttfamily \#include $<$bsp/fdt.\+h$>$}\newline
+{\ttfamily \#include $<$bsp/linker-\/symbols.\+h$>$}\newline
+{\ttfamily \#include $<$bsp/mmu.\+h$>$}\newline
+{\ttfamily \#include $<$bsp/qoriq.\+h$>$}\newline
+{\ttfamily \#include $<$sys/param.\+h$>$}\newline
+{\ttfamily \#include $<$libfdt.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/config.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/sysinit.\+h$>$}\newline
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structentry}{entry}}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{powerpc_2qoriq_2start_2mmu-config_8c_a52e3db5a1724beab41ebbabe72460f12}\label{powerpc_2qoriq_2start_2mmu-config_8c_a52e3db5a1724beab41ebbabe72460f12}} 
+\#define {\bfseries T\+E\+XT}~\mbox{\hyperlink{struct____attribute____}{\+\_\+\+\_\+attribute\+\_\+\+\_\+}}((section(\char`\"{}.bsp\+\_\+start\+\_\+text\char`\"{})))
+\item 
+\mbox{\Hypertarget{powerpc_2qoriq_2start_2mmu-config_8c_aad9ae913bdfab20dd94ad04ee2d5b045}\label{powerpc_2qoriq_2start_2mmu-config_8c_aad9ae913bdfab20dd94ad04ee2d5b045}} 
+\#define {\bfseries D\+A\+TA}~\mbox{\hyperlink{struct____attribute____}{\+\_\+\+\_\+attribute\+\_\+\+\_\+}}((section(\char`\"{}.bsp\+\_\+start\+\_\+data\char`\"{})))
+\item 
+\#define {\bfseries E\+N\+T\+R\+Y\+\_\+X}(b,  s)
+\item 
+\#define {\bfseries E\+N\+T\+R\+Y\+\_\+R}(b,  s)
+\item 
+\mbox{\Hypertarget{powerpc_2qoriq_2start_2mmu-config_8c_ac796323842e883d77e12ff2a34d889f6}\label{powerpc_2qoriq_2start_2mmu-config_8c_ac796323842e883d77e12ff2a34d889f6}} 
+\#define {\bfseries E\+N\+T\+R\+Y\+\_\+\+R\+W\+\_\+\+M\+A\+S2}~0
+\item 
+\#define {\bfseries E\+N\+T\+R\+Y\+\_\+\+RW}(b,  s)
+\item 
+\#define {\bfseries E\+N\+T\+R\+Y\+\_\+\+IO}(b,  s)
+\item 
+\#define {\bfseries E\+N\+T\+R\+Y\+\_\+\+D\+EV}(b,  s)
+\item 
+\#define {\bfseries E\+N\+T\+R\+Y\+\_\+\+D\+E\+V\+\_\+\+C\+A\+C\+H\+ED}(b,  s)
+\item 
+\mbox{\Hypertarget{powerpc_2qoriq_2start_2mmu-config_8c_ac05a6e7a1861d55208af539ac3672b28}\label{powerpc_2qoriq_2start_2mmu-config_8c_ac05a6e7a1861d55208af539ac3672b28}} 
+\#define {\bfseries W\+O\+R\+K\+S\+P\+A\+C\+E\+\_\+\+E\+N\+T\+R\+Y\+\_\+\+I\+N\+D\+EX}~0
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void T\+E\+XT {\bfseries qoriq\+\_\+mmu\+\_\+config} (bool boot\+\_\+processor, int first\+\_\+tlb, int scratch\+\_\+tlb)
+\item 
+\mbox{\Hypertarget{powerpc_2qoriq_2start_2mmu-config_8c_ac37be686aea12354fe54d5fea6ad491d}\label{powerpc_2qoriq_2start_2mmu-config_8c_ac37be686aea12354fe54d5fea6ad491d}} 
+{\bfseries R\+T\+E\+M\+S\+\_\+\+S\+Y\+S\+I\+N\+I\+T\+\_\+\+I\+T\+EM} (bsp\+\_\+memory\+\_\+initialize, R\+T\+E\+M\+S\+\_\+\+S\+Y\+S\+I\+N\+I\+T\+\_\+\+M\+E\+M\+O\+RY, R\+T\+E\+M\+S\+\_\+\+S\+Y\+S\+I\+N\+I\+T\+\_\+\+O\+R\+D\+E\+R\+\_\+\+M\+I\+D\+D\+LE)
+\item 
+const \mbox{\hyperlink{structMemory__Information}{Memory\+\_\+\+Information}} $\ast$ \mbox{\hyperlink{group__RTEMSScoreMemory_gaec9f82588542ae89940517c48f0208f6}{\+\_\+\+Memory\+\_\+\+Get}} (void)
+\begin{DoxyCompactList}\small\item\em Return the memory information of this platform. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+M\+MU implementation. 
+
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{powerpc_2qoriq_2start_2mmu-config_8c_ac6cb1d2026e9c5f08f17d717ec9a12a9}\label{powerpc_2qoriq_2start_2mmu-config_8c_ac6cb1d2026e9c5f08f17d717ec9a12a9}} 
+\index{mmu-\/config.c@{mmu-\/config.c}!ENTRY\_DEV@{ENTRY\_DEV}}
+\index{ENTRY\_DEV@{ENTRY\_DEV}!mmu-\/config.c@{mmu-\/config.c}}
+\subsubsection{\texorpdfstring{ENTRY\_DEV}{ENTRY\_DEV}}
+{\footnotesize\ttfamily \#define E\+N\+T\+R\+Y\+\_\+\+D\+EV(\begin{DoxyParamCaption}\item[{}]{b,  }\item[{}]{s }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{ \(\backslash\)}
+\DoxyCodeLine{    .begin = (uintptr\_t) b, \(\backslash\)}
+\DoxyCodeLine{    .\mbox{\hyperlink{sun4u_2tte_8h_a245260f6f74972558f61b85227df5aae}{size}} = (uintptr\_t) s, \(\backslash\)}
+\DoxyCodeLine{    .mas2 = FSL\_EIS\_MAS2\_I | FSL\_EIS\_MAS2\_G, \(\backslash\)}
+\DoxyCodeLine{    .mas3 = FSL\_EIS\_MAS3\_SR | FSL\_EIS\_MAS3\_SW, \(\backslash\)}
+\DoxyCodeLine{    .mas7 = QORIQ\_MMU\_DEVICE\_MAS7 \(\backslash\)}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{powerpc_2qoriq_2start_2mmu-config_8c_a582e9a3cea1cc54129b0631b7f9c26af}\label{powerpc_2qoriq_2start_2mmu-config_8c_a582e9a3cea1cc54129b0631b7f9c26af}} 
+\index{mmu-\/config.c@{mmu-\/config.c}!ENTRY\_DEV\_CACHED@{ENTRY\_DEV\_CACHED}}
+\index{ENTRY\_DEV\_CACHED@{ENTRY\_DEV\_CACHED}!mmu-\/config.c@{mmu-\/config.c}}
+\subsubsection{\texorpdfstring{ENTRY\_DEV\_CACHED}{ENTRY\_DEV\_CACHED}}
+{\footnotesize\ttfamily \#define E\+N\+T\+R\+Y\+\_\+\+D\+E\+V\+\_\+\+C\+A\+C\+H\+ED(\begin{DoxyParamCaption}\item[{}]{b,  }\item[{}]{s }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{ \(\backslash\)}
+\DoxyCodeLine{    .begin = (uintptr\_t) b, \(\backslash\)}
+\DoxyCodeLine{    .\mbox{\hyperlink{sun4u_2tte_8h_a245260f6f74972558f61b85227df5aae}{size}} = (uintptr\_t) s, \(\backslash\)}
+\DoxyCodeLine{    .mas2 = FSL\_EIS\_MAS2\_M | FSL\_EIS\_MAS2\_G, \(\backslash\)}
+\DoxyCodeLine{    .mas3 = FSL\_EIS\_MAS3\_SR | FSL\_EIS\_MAS3\_SW, \(\backslash\)}
+\DoxyCodeLine{    .mas7 = QORIQ\_MMU\_DEVICE\_MAS7 \(\backslash\)}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{powerpc_2qoriq_2start_2mmu-config_8c_ab954103c2c720ab76ac5623ffa856aa1}\label{powerpc_2qoriq_2start_2mmu-config_8c_ab954103c2c720ab76ac5623ffa856aa1}} 
+\index{mmu-\/config.c@{mmu-\/config.c}!ENTRY\_IO@{ENTRY\_IO}}
+\index{ENTRY\_IO@{ENTRY\_IO}!mmu-\/config.c@{mmu-\/config.c}}
+\subsubsection{\texorpdfstring{ENTRY\_IO}{ENTRY\_IO}}
+{\footnotesize\ttfamily \#define E\+N\+T\+R\+Y\+\_\+\+IO(\begin{DoxyParamCaption}\item[{}]{b,  }\item[{}]{s }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{ \(\backslash\)}
+\DoxyCodeLine{    .begin = (uintptr\_t) b, \(\backslash\)}
+\DoxyCodeLine{    .\mbox{\hyperlink{sun4u_2tte_8h_a245260f6f74972558f61b85227df5aae}{size}} = (uintptr\_t) s, \(\backslash\)}
+\DoxyCodeLine{    .mas2 = FSL\_EIS\_MAS2\_I | FSL\_EIS\_MAS2\_G, \(\backslash\)}
+\DoxyCodeLine{    .mas3 = FSL\_EIS\_MAS3\_SR | FSL\_EIS\_MAS3\_SW \(\backslash\)}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{powerpc_2qoriq_2start_2mmu-config_8c_ac4f3d455d88b8f402c12e835cc9b1c3e}\label{powerpc_2qoriq_2start_2mmu-config_8c_ac4f3d455d88b8f402c12e835cc9b1c3e}} 
+\index{mmu-\/config.c@{mmu-\/config.c}!ENTRY\_R@{ENTRY\_R}}
+\index{ENTRY\_R@{ENTRY\_R}!mmu-\/config.c@{mmu-\/config.c}}
+\subsubsection{\texorpdfstring{ENTRY\_R}{ENTRY\_R}}
+{\footnotesize\ttfamily \#define E\+N\+T\+R\+Y\+\_\+R(\begin{DoxyParamCaption}\item[{}]{b,  }\item[{}]{s }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{ \(\backslash\)}
+\DoxyCodeLine{    .begin = (uintptr\_t) b, \(\backslash\)}
+\DoxyCodeLine{    .\mbox{\hyperlink{sun4u_2tte_8h_a245260f6f74972558f61b85227df5aae}{size}} = (uintptr\_t) s, \(\backslash\)}
+\DoxyCodeLine{    .mas2 = 0, \(\backslash\)}
+\DoxyCodeLine{    .mas3 = FSL\_EIS\_MAS3\_SR \(\backslash\)}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{powerpc_2qoriq_2start_2mmu-config_8c_aa177d44c7b56afd018a21696d59d20ee}\label{powerpc_2qoriq_2start_2mmu-config_8c_aa177d44c7b56afd018a21696d59d20ee}} 
+\index{mmu-\/config.c@{mmu-\/config.c}!ENTRY\_RW@{ENTRY\_RW}}
+\index{ENTRY\_RW@{ENTRY\_RW}!mmu-\/config.c@{mmu-\/config.c}}
+\subsubsection{\texorpdfstring{ENTRY\_RW}{ENTRY\_RW}}
+{\footnotesize\ttfamily \#define E\+N\+T\+R\+Y\+\_\+\+RW(\begin{DoxyParamCaption}\item[{}]{b,  }\item[{}]{s }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{ \(\backslash\)}
+\DoxyCodeLine{    .begin = (uintptr\_t) b, \(\backslash\)}
+\DoxyCodeLine{    .\mbox{\hyperlink{sun4u_2tte_8h_a245260f6f74972558f61b85227df5aae}{size}} = (uintptr\_t) s, \(\backslash\)}
+\DoxyCodeLine{    .mas2 = ENTRY\_RW\_MAS2, \(\backslash\)}
+\DoxyCodeLine{    .mas3 = FSL\_EIS\_MAS3\_SR | FSL\_EIS\_MAS3\_SW \(\backslash\)}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{powerpc_2qoriq_2start_2mmu-config_8c_ad9c82f3f682d35e5676dbbf257af64b2}\label{powerpc_2qoriq_2start_2mmu-config_8c_ad9c82f3f682d35e5676dbbf257af64b2}} 
+\index{mmu-\/config.c@{mmu-\/config.c}!ENTRY\_X@{ENTRY\_X}}
+\index{ENTRY\_X@{ENTRY\_X}!mmu-\/config.c@{mmu-\/config.c}}
+\subsubsection{\texorpdfstring{ENTRY\_X}{ENTRY\_X}}
+{\footnotesize\ttfamily \#define E\+N\+T\+R\+Y\+\_\+X(\begin{DoxyParamCaption}\item[{}]{b,  }\item[{}]{s }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{ \(\backslash\)}
+\DoxyCodeLine{    .begin = (uintptr\_t) b, \(\backslash\)}
+\DoxyCodeLine{    .\mbox{\hyperlink{sun4u_2tte_8h_a245260f6f74972558f61b85227df5aae}{size}} = (uintptr\_t) s, \(\backslash\)}
+\DoxyCodeLine{    .mas2 = 0, \(\backslash\)}
+\DoxyCodeLine{    .mas3 = FSL\_EIS\_MAS3\_SX \(\backslash\)}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}

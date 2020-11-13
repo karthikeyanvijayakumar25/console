@@ -1,0 +1,52 @@
+\hypertarget{powerpc_2virtex4_2start_2mmu_8c}{}\section{bsps/powerpc/virtex4/start/mmu.c File Reference}
+\label{powerpc_2virtex4_2start_2mmu_8c}\index{bsps/powerpc/virtex4/start/mmu.c@{bsps/powerpc/virtex4/start/mmu.c}}
+
+
+Implementation of routines to manipulate the P\+PC 405 mmu.  
+
+
+{\ttfamily \#include $<$rtems.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/bsp\+Io.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/powerpc/powerpc.\+h$>$}\newline
+{\ttfamily \#include $<$inttypes.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$bsp/mmu.\+h$>$}\newline
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{powerpc_2virtex4_2start_2mmu_8c_a10b2d890d871e1489bb02b7e70d9bdfb}\label{powerpc_2virtex4_2start_2mmu_8c_a10b2d890d871e1489bb02b7e70d9bdfb}} 
+\#define {\bfseries S\+T\+A\+T\+IC}~static
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void {\bfseries bsp\+\_\+mmu\+\_\+dump\+\_\+cache} (F\+I\+LE $\ast$f)
+\item 
+int {\bfseries bsp\+\_\+mmu\+\_\+update} (bsp\+\_\+tlb\+\_\+idx\+\_\+t key, bool quiet, F\+I\+LE $\ast$f)
+\item 
+int {\bfseries bsp\+\_\+mmu\+\_\+initialize} ()
+\item 
+bsp\+\_\+tlb\+\_\+idx\+\_\+t {\bfseries bsp\+\_\+mmu\+\_\+find\+\_\+first\+\_\+free} ()
+\item 
+bsp\+\_\+tlb\+\_\+idx\+\_\+t {\bfseries bsp\+\_\+mmu\+\_\+write} (bsp\+\_\+tlb\+\_\+idx\+\_\+t idx, uint32\+\_\+t ea, uint32\+\_\+t pa, uint sz, uint32\+\_\+t flgs, uint32\+\_\+t tid)
+\item 
+bsp\+\_\+tlb\+\_\+idx\+\_\+t {\bfseries bsp\+\_\+mmu\+\_\+match} (uint32\+\_\+t ea, int sz, uint32\+\_\+t tid)
+\item 
+bsp\+\_\+tlb\+\_\+idx\+\_\+t {\bfseries bsp\+\_\+mmu\+\_\+find} (uint32\+\_\+t ea, uint32\+\_\+t tid)
+\item 
+int {\bfseries bsp\+\_\+mmu\+\_\+invalidate} (bsp\+\_\+tlb\+\_\+idx\+\_\+t key)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structbsp__tlb__entry__t}{bsp\+\_\+tlb\+\_\+entry\+\_\+t}} $\ast$ {\bfseries bsp\+\_\+mmu\+\_\+cache} = 0
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Implementation of routines to manipulate the P\+PC 405 mmu. 
+
+\begin{DoxyVerb}   Since this is a real-time OS we want to stay away from
+   software TLB replacement.
+\end{DoxyVerb}
+ 

@@ -1,0 +1,323 @@
+\hypertarget{nfs_8c}{}\section{cpukit/libfs/src/nfsclient/src/nfs.c File Reference}
+\label{nfs_8c}\index{cpukit/libfs/src/nfsclient/src/nfs.c@{cpukit/libfs/src/nfsclient/src/nfs.c}}
+
+
+N\+FS Client Implementation for R\+T\+E\+MS.  
+
+
+{\ttfamily \#include $<$rtems.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/libio.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/libio\+\_\+.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/seterr.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/thread.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$assert.\+h$>$}\newline
+{\ttfamily \#include $<$sys/stat.\+h$>$}\newline
+{\ttfamily \#include $<$dirent.\+h$>$}\newline
+{\ttfamily \#include $<$netdb.\+h$>$}\newline
+{\ttfamily \#include $<$ctype.\+h$>$}\newline
+{\ttfamily \#include $<$netinet/in.\+h$>$}\newline
+{\ttfamily \#include $<$arpa/inet.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}../proto/nfs\+\_\+prot.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}../proto/mount\+\_\+prot.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}rpcio.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}librtems\+Nfs.\+h\char`\"{}}\newline
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structstrbuf}{strbuf}}
+\item 
+struct \mbox{\hyperlink{structreadlinkres__strbuf}{readlinkres\+\_\+strbuf}}
+\item 
+struct \mbox{\hyperlink{structDirInfoRec__}{Dir\+Info\+Rec\+\_\+}}
+\item 
+struct \mbox{\hyperlink{structserporidok}{serporidok}}
+\item 
+struct \mbox{\hyperlink{structserporid}{serporid}}
+\item 
+struct \mbox{\hyperlink{structNfsRec__}{Nfs\+Rec\+\_\+}}
+\item 
+struct \mbox{\hyperlink{structNfsNodeRec__}{Nfs\+Node\+Rec\+\_\+}}
+\item 
+struct {\bfseries nfsstats}
+\item 
+struct \mbox{\hyperlink{structResolvePathArgRec__}{Resolve\+Path\+Arg\+Rec\+\_\+}}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{nfs_8c_a9dc5ae7a4b52371d4edb794339d69d2b}\label{nfs_8c_a9dc5ae7a4b52371d4edb794339d69d2b}} 
+\#define {\bfseries C\+O\+N\+F\+I\+G\+\_\+\+A\+V\+G\+\_\+\+N\+A\+M\+L\+EN}~10
+\item 
+\mbox{\Hypertarget{nfs_8c_a55b8911cd5f5ce894011c2df31cc59cc}\label{nfs_8c_a55b8911cd5f5ce894011c2df31cc59cc}} 
+\#define {\bfseries C\+O\+N\+F\+I\+G\+\_\+\+N\+F\+S\+\_\+\+S\+M\+A\+L\+L\+\_\+\+X\+A\+C\+T\+\_\+\+S\+I\+ZE}~800			/$\ast$ \mbox{\hyperlink{sun4u_2tte_8h_a245260f6f74972558f61b85227df5aae}{size}} of R\+PC arguments for non-\/\mbox{\hyperlink{libcsupport_2src_2write_8c_a448dd253ee4c0e3d3b1275df845e7146}{write}} ops $\ast$/
+\item 
+\mbox{\Hypertarget{nfs_8c_ac5058e04e651e7026e9eea0f12c7f5b1}\label{nfs_8c_ac5058e04e651e7026e9eea0f12c7f5b1}} 
+\#define {\bfseries C\+O\+N\+F\+I\+G\+\_\+\+A\+T\+T\+R\+\_\+\+L\+I\+F\+E\+T\+I\+ME}~10/$\ast$secs$\ast$/
+\item 
+\mbox{\Hypertarget{nfs_8c_a07638ec67f40d9a8082f8f680ae30dfc}\label{nfs_8c_a07638ec67f40d9a8082f8f680ae30dfc}} 
+\#define {\bfseries D\+E\+F\+A\+U\+L\+T\+\_\+\+N\+F\+S\+\_\+\+S\+T\+\_\+\+B\+L\+K\+S\+I\+ZE}~N\+F\+S\+\_\+\+M\+A\+X\+D\+A\+TA
+\item 
+\mbox{\Hypertarget{nfs_8c_a25171b80017cbd4dbe6679fbfedf49a0}\label{nfs_8c_a25171b80017cbd4dbe6679fbfedf49a0}} 
+\#define {\bfseries C\+O\+N\+F\+I\+G\+\_\+\+N\+F\+S\+\_\+\+B\+I\+G\+\_\+\+X\+A\+C\+T\+\_\+\+S\+I\+ZE}~U\+D\+P\+M\+S\+G\+S\+I\+ZE	/$\ast$ dont change this $\ast$/
+\item 
+\mbox{\Hypertarget{nfs_8c_a37b557ed7fbe8147100d124c8eb17203}\label{nfs_8c_a37b557ed7fbe8147100d124c8eb17203}} 
+\#define {\bfseries N\+F\+S\+C\+A\+L\+L\+\_\+\+T\+I\+M\+E\+O\+UT}~(\&\+\_\+nfscalltimeout)
+\item 
+\mbox{\Hypertarget{nfs_8c_ab5f6ae4cc3fc116318904e1e8f1716b3}\label{nfs_8c_ab5f6ae4cc3fc116318904e1e8f1716b3}} 
+\#define {\bfseries M\+N\+T\+C\+A\+L\+L\+\_\+\+T\+I\+M\+E\+O\+UT}~(\&\+\_\+nfscalltimeout)
+\item 
+\mbox{\Hypertarget{nfs_8c_a1129d7e0bed7c31561c8664cfe73ad07}\label{nfs_8c_a1129d7e0bed7c31561c8664cfe73ad07}} 
+\#define {\bfseries D\+E\+L\+IM}~\textquotesingle{}/\textquotesingle{}
+\item 
+\mbox{\Hypertarget{nfs_8c_a9442114e6ba8895f2098db98331699f2}\label{nfs_8c_a9442114e6ba8895f2098db98331699f2}} 
+\#define {\bfseries H\+O\+S\+T\+D\+E\+L\+IM}~\textquotesingle{}\+:\textquotesingle{}
+\item 
+\mbox{\Hypertarget{nfs_8c_a9629700d8dfb290c79e01e5c8878c55b}\label{nfs_8c_a9629700d8dfb290c79e01e5c8878c55b}} 
+\#define {\bfseries U\+P\+D\+IR}~\char`\"{}..\char`\"{}
+\item 
+\mbox{\Hypertarget{nfs_8c_a807501b04fc1ffc5d54a6317e2404129}\label{nfs_8c_a807501b04fc1ffc5d54a6317e2404129}} 
+\#define {\bfseries U\+I\+D\+S\+EP}~\textquotesingle{}@\textquotesingle{}
+\item 
+\mbox{\Hypertarget{nfs_8c_a56f589ad61a9033d4cd4cf1d3c999075}\label{nfs_8c_a56f589ad61a9033d4cd4cf1d3c999075}} 
+\#define {\bfseries N\+F\+S\+\_\+\+V\+E\+R\+S\+I\+O\+N\+\_\+2}~N\+F\+S\+\_\+\+V\+E\+R\+S\+I\+ON
+\item 
+\mbox{\Hypertarget{nfs_8c_a58d4ed501259f5a86bde7e437ab1954d}\label{nfs_8c_a58d4ed501259f5a86bde7e437ab1954d}} 
+\#define {\bfseries N\+F\+S\+\_\+\+M\+A\+J\+OR}~(nfs\+Glob.\+nfs\+\_\+major)
+\item 
+\#define {\bfseries N\+F\+S\+\_\+\+M\+A\+K\+E\+\_\+\+D\+E\+V\+\_\+\+T\+\_\+\+I\+N\+O\+\_\+\+H\+A\+CK}(node)
+\item 
+\#define {\bfseries N\+F\+S\+\_\+\+M\+A\+K\+E\+\_\+\+D\+E\+V\+\_\+T}(node)
+\item 
+\#define {\bfseries D\+I\+R\+E\+N\+T\+\_\+\+H\+E\+A\+D\+E\+R\+\_\+\+S\+I\+ZE}
+\item 
+\mbox{\Hypertarget{nfs_8c_a2a3fe6c954d5cb32180f6a408268df44}\label{nfs_8c_a2a3fe6c954d5cb32180f6a408268df44}} 
+\#define {\bfseries D\+E\+B\+U\+G\+\_\+\+C\+O\+U\+N\+T\+\_\+\+N\+O\+D\+ES}~(1$<$$<$0)
+\item 
+\mbox{\Hypertarget{nfs_8c_a0d66aa237c5cdc0b5e22bef43cb68253}\label{nfs_8c_a0d66aa237c5cdc0b5e22bef43cb68253}} 
+\#define {\bfseries D\+E\+B\+U\+G\+\_\+\+T\+R\+A\+C\+K\+\_\+\+N\+O\+D\+ES}~(1$<$$<$1)
+\item 
+\mbox{\Hypertarget{nfs_8c_aa5d842b97e7197b8685a2feef8f8c355}\label{nfs_8c_aa5d842b97e7197b8685a2feef8f8c355}} 
+\#define {\bfseries D\+E\+B\+U\+G\+\_\+\+E\+V\+A\+L\+P\+A\+TH}~(1$<$$<$2)
+\item 
+\mbox{\Hypertarget{nfs_8c_ab3c91d60201460b2277e53abeedb0bea}\label{nfs_8c_ab3c91d60201460b2277e53abeedb0bea}} 
+\#define {\bfseries D\+E\+B\+U\+G\+\_\+\+R\+E\+A\+D\+D\+IR}~(1$<$$<$3)
+\item 
+\mbox{\Hypertarget{nfs_8c_ab2921a2dad36ff2b217cddbe1b9c3734}\label{nfs_8c_ab2921a2dad36ff2b217cddbe1b9c3734}} 
+\#define {\bfseries D\+E\+B\+U\+G\+\_\+\+S\+Y\+S\+C\+A\+L\+LS}~(1$<$$<$4)
+\item 
+\mbox{\Hypertarget{nfs_8c_a10b2d890d871e1489bb02b7e70d9bdfb}\label{nfs_8c_a10b2d890d871e1489bb02b7e70d9bdfb}} 
+\#define {\bfseries S\+T\+A\+T\+IC}~static
+\item 
+\mbox{\Hypertarget{nfs_8c_a068db44b7d2c63da030ca46700f04ba9}\label{nfs_8c_a068db44b7d2c63da030ca46700f04ba9}} 
+\#define {\bfseries L\+O\+CK}(s)~rtems\+\_\+recursive\+\_\+mutex\+\_\+lock(\&(s))
+\item 
+\mbox{\Hypertarget{nfs_8c_a3326cc348f056afb1cc96b1a7af63c47}\label{nfs_8c_a3326cc348f056afb1cc96b1a7af63c47}} 
+\#define {\bfseries U\+N\+L\+O\+CK}(s)~rtems\+\_\+recursive\+\_\+mutex\+\_\+unlock(\&(s))
+\item 
+\mbox{\Hypertarget{nfs_8c_a0e2517d6531a393e1dd941726c3a86dd}\label{nfs_8c_a0e2517d6531a393e1dd941726c3a86dd}} 
+\#define {\bfseries N\+F\+S\+\_\+\+G\+L\+O\+B\+A\+L\+\_\+\+A\+C\+Q\+U\+I\+RE}(lock\+\_\+context)~\mbox{\hyperlink{group__ClassicINTRLocks_ga0eeb7f40f9ac9e9c7b092d5fd85b5b3c}{rtems\+\_\+interrupt\+\_\+lock\+\_\+acquire}}(\&nfs\+\_\+global\+\_\+lock, lock\+\_\+context)
+\item 
+\mbox{\Hypertarget{nfs_8c_a5a0d02322a3662a811405f4734c08866}\label{nfs_8c_a5a0d02322a3662a811405f4734c08866}} 
+\#define {\bfseries N\+F\+S\+\_\+\+G\+L\+O\+B\+A\+L\+\_\+\+R\+E\+L\+E\+A\+SE}(lock\+\_\+context)~\mbox{\hyperlink{group__ClassicINTRLocks_gaefc0c78feded09af9fd5b3ed93262f97}{rtems\+\_\+interrupt\+\_\+lock\+\_\+release}}(\&nfs\+\_\+global\+\_\+lock, lock\+\_\+context)
+\item 
+\mbox{\Hypertarget{nfs_8c_aa2318fabdc0e66b66f73c6a9983271fb}\label{nfs_8c_aa2318fabdc0e66b66f73c6a9983271fb}} 
+\#define {\bfseries S\+E\+R\+P\+\_\+\+A\+R\+GS}(node)~((node)-\/$>$serporid.\+serporid\+\_\+u.\+serporid.\+arg\+\_\+u)
+\item 
+\mbox{\Hypertarget{nfs_8c_aad9398e00532057ccf930a73551abf12}\label{nfs_8c_aad9398e00532057ccf930a73551abf12}} 
+\#define {\bfseries S\+E\+R\+P\+\_\+\+A\+T\+TR}(node)~((node)-\/$>$serporid.\+serporid\+\_\+u.\+serporid.\+attributes)
+\item 
+\mbox{\Hypertarget{nfs_8c_a083e6d76a20e14e7fd6c61eb9e92d950}\label{nfs_8c_a083e6d76a20e14e7fd6c61eb9e92d950}} 
+\#define {\bfseries S\+E\+R\+P\+\_\+\+F\+I\+LE}(node)~((node)-\/$>$serporid.\+serporid\+\_\+u.\+serporid.\+file)
+\item 
+\mbox{\Hypertarget{nfs_8c_aaa01c018aebe92de7be24d7a48e19f95}\label{nfs_8c_aaa01c018aebe92de7be24d7a48e19f95}} 
+\#define {\bfseries R\+E\+A\+D\+\_\+\+L\+O\+N\+G\+\_\+\+I\+S\+\_\+\+A\+T\+O\+M\+IC}
+\item 
+\mbox{\Hypertarget{nfs_8c_a76278953362f2a1d0fd83e02e066cda4}\label{nfs_8c_a76278953362f2a1d0fd83e02e066cda4}} 
+\#define {\bfseries S\+A\+T\+T\+R\+\_\+\+M\+O\+DE}~(1$<$$<$0)
+\item 
+\mbox{\Hypertarget{nfs_8c_a848d0f121b1d84c7682c22af684fdf92}\label{nfs_8c_a848d0f121b1d84c7682c22af684fdf92}} 
+\#define {\bfseries S\+A\+T\+T\+R\+\_\+\+U\+ID}~(1$<$$<$1)
+\item 
+\mbox{\Hypertarget{nfs_8c_a375c3fc87abe1891ead77c53be550ae9}\label{nfs_8c_a375c3fc87abe1891ead77c53be550ae9}} 
+\#define {\bfseries S\+A\+T\+T\+R\+\_\+\+G\+ID}~(1$<$$<$2)
+\item 
+\mbox{\Hypertarget{nfs_8c_ac9c3fb609f75b1410ab9aaea66efb0a0}\label{nfs_8c_ac9c3fb609f75b1410ab9aaea66efb0a0}} 
+\#define {\bfseries S\+A\+T\+T\+R\+\_\+\+S\+I\+ZE}~(1$<$$<$3)
+\item 
+\mbox{\Hypertarget{nfs_8c_aa49acb1bc3de62eaab6e41fda64b9e9b}\label{nfs_8c_aa49acb1bc3de62eaab6e41fda64b9e9b}} 
+\#define {\bfseries S\+A\+T\+T\+R\+\_\+\+A\+T\+I\+ME}~(1$<$$<$4)
+\item 
+\mbox{\Hypertarget{nfs_8c_ad9a657659d8c67966916b5de159c89ff}\label{nfs_8c_ad9a657659d8c67966916b5de159c89ff}} 
+\#define {\bfseries S\+A\+T\+T\+R\+\_\+\+T\+O\+U\+C\+HA}~(1$<$$<$5)
+\item 
+\mbox{\Hypertarget{nfs_8c_acb102929f02c51dcd8d699eee11e3131}\label{nfs_8c_acb102929f02c51dcd8d699eee11e3131}} 
+\#define {\bfseries S\+A\+T\+T\+R\+\_\+\+M\+T\+I\+ME}~(1$<$$<$6)
+\item 
+\mbox{\Hypertarget{nfs_8c_a04639f624beb787b3cf0e014fc6fc2db}\label{nfs_8c_a04639f624beb787b3cf0e014fc6fc2db}} 
+\#define {\bfseries S\+A\+T\+T\+R\+\_\+\+T\+O\+U\+C\+HM}~(1$<$$<$7)
+\item 
+\mbox{\Hypertarget{nfs_8c_a1cc87f86e77638b038be18c5f4539226}\label{nfs_8c_a1cc87f86e77638b038be18c5f4539226}} 
+\#define {\bfseries S\+A\+T\+T\+R\+\_\+\+T\+O\+U\+CH}~(S\+A\+T\+T\+R\+\_\+\+T\+O\+U\+C\+HM $\vert$ S\+A\+T\+T\+R\+\_\+\+T\+O\+U\+C\+HA)
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{nfs_8c_aa12ec7eaae01e6b444387486b4df3642}\label{nfs_8c_aa12ec7eaae01e6b444387486b4df3642}} 
+typedef struct \mbox{\hyperlink{structstrbuf}{strbuf}} {\bfseries strbuf}
+\item 
+\mbox{\Hypertarget{nfs_8c_a6792538a09ed59520a6c2d7754c98594}\label{nfs_8c_a6792538a09ed59520a6c2d7754c98594}} 
+typedef struct \mbox{\hyperlink{structreadlinkres__strbuf}{readlinkres\+\_\+strbuf}} {\bfseries readlinkres\+\_\+strbuf}
+\item 
+\mbox{\Hypertarget{nfs_8c_a61e010ae7b71c90e3aececcb68c912a5}\label{nfs_8c_a61e010ae7b71c90e3aececcb68c912a5}} 
+typedef struct \mbox{\hyperlink{structDirInfoRec__}{Dir\+Info\+Rec\+\_\+}} {\bfseries Dir\+Info\+Rec}
+\item 
+\mbox{\Hypertarget{nfs_8c_a603559b6d72d8bcb143c19f261251bc1}\label{nfs_8c_a603559b6d72d8bcb143c19f261251bc1}} 
+typedef struct \mbox{\hyperlink{structDirInfoRec__}{Dir\+Info\+Rec\+\_\+}} $\ast$ {\bfseries Dir\+Info}
+\item 
+\mbox{\Hypertarget{nfs_8c_a3b1be7dee8795db22268ccb085ddc01d}\label{nfs_8c_a3b1be7dee8795db22268ccb085ddc01d}} 
+typedef struct \mbox{\hyperlink{structserporidok}{serporidok}} {\bfseries serporidok}
+\item 
+\mbox{\Hypertarget{nfs_8c_a65e2d571a56b952a7f11eec22a230507}\label{nfs_8c_a65e2d571a56b952a7f11eec22a230507}} 
+typedef struct \mbox{\hyperlink{structserporid}{serporid}} {\bfseries serporid}
+\item 
+\mbox{\Hypertarget{nfs_8c_a3279b3cab565e1ef4df9c196d3166cbe}\label{nfs_8c_a3279b3cab565e1ef4df9c196d3166cbe}} 
+typedef uint32\+\_\+t {\bfseries Time\+Stamp}
+\item 
+\mbox{\Hypertarget{nfs_8c_a861a8ba8eed07be999ac016696fa6673}\label{nfs_8c_a861a8ba8eed07be999ac016696fa6673}} 
+typedef struct \mbox{\hyperlink{structNfsRec__}{Nfs\+Rec\+\_\+}} {\bfseries Nfs\+Rec}
+\item 
+\mbox{\Hypertarget{nfs_8c_a4760f1a660405ebb5da3666ab13aeeaf}\label{nfs_8c_a4760f1a660405ebb5da3666ab13aeeaf}} 
+typedef struct \mbox{\hyperlink{structNfsRec__}{Nfs\+Rec\+\_\+}} $\ast$ {\bfseries Nfs}
+\item 
+\mbox{\Hypertarget{nfs_8c_ac3a7fea0da94026024589611c9bcebe2}\label{nfs_8c_ac3a7fea0da94026024589611c9bcebe2}} 
+typedef struct \mbox{\hyperlink{structNfsNodeRec__}{Nfs\+Node\+Rec\+\_\+}} {\bfseries Nfs\+Node\+Rec}
+\item 
+\mbox{\Hypertarget{nfs_8c_aeef5be22041a8695dd63c6a6ef7d64d0}\label{nfs_8c_aeef5be22041a8695dd63c6a6ef7d64d0}} 
+typedef struct \mbox{\hyperlink{structNfsNodeRec__}{Nfs\+Node\+Rec\+\_\+}} $\ast$ {\bfseries Nfs\+Node}
+\item 
+\mbox{\Hypertarget{nfs_8c_a5450e9e5a051e68130417695464016d2}\label{nfs_8c_a5450e9e5a051e68130417695464016d2}} 
+typedef struct \mbox{\hyperlink{structResolvePathArgRec__}{Resolve\+Path\+Arg\+Rec\+\_\+}} {\bfseries Resolve\+Path\+Arg\+Rec}
+\item 
+\mbox{\Hypertarget{nfs_8c_ae3c1f709110bc2d64095bc6c4974caa8}\label{nfs_8c_ae3c1f709110bc2d64095bc6c4974caa8}} 
+typedef struct \mbox{\hyperlink{structResolvePathArgRec__}{Resolve\+Path\+Arg\+Rec\+\_\+}} $\ast$ {\bfseries Resolve\+Path\+Arg}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{nfs_8c_a1185082cd83adb64a493857db498c660}\label{nfs_8c_a1185082cd83adb64a493857db498c660}} 
+int {\bfseries nfs\+Mounts\+Show} (F\+I\+LE $\ast$)
+\item 
+\mbox{\Hypertarget{nfs_8c_ad3dd72cb50ebec7114e8134fa65c460d}\label{nfs_8c_ad3dd72cb50ebec7114e8134fa65c460d}} 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} {\bfseries rtems\+\_\+filesystem\+\_\+resolve\+\_\+location} (char $\ast$buf, int len, \mbox{\hyperlink{group__LibIO_ga3252b3d31ee3c49ffff0b7604a676864}{rtems\+\_\+filesystem\+\_\+location\+\_\+info\+\_\+t}} $\ast$loc)
+\item 
+\mbox{\Hypertarget{nfs_8c_a8edad47b209a92732b9f0dff71c78d17}\label{nfs_8c_a8edad47b209a92732b9f0dff71c78d17}} 
+int {\bfseries nfs\+Init} (int small\+Pool\+Depth, int big\+Pool\+Depth)
+\item 
+\mbox{\Hypertarget{nfs_8c_ab787769d84ce4214fa18b8eed7312788}\label{nfs_8c_ab787769d84ce4214fa18b8eed7312788}} 
+int {\bfseries nfs\+Cleanup} (void)
+\item 
+\mbox{\Hypertarget{nfs_8c_a27ad7cf3fbe9b6f72c9fc0f2a88ae288}\label{nfs_8c_a27ad7cf3fbe9b6f72c9fc0f2a88ae288}} 
+S\+T\+A\+T\+IC int {\bfseries nfscall} (\mbox{\hyperlink{structRpcUdpServerRec__}{Rpc\+Udp\+Server}} srvr, int proc, xdrproc\+\_\+t xargs, void $\ast$pargs, xdrproc\+\_\+t xres, void $\ast$pres)
+\item 
+\mbox{\Hypertarget{nfs_8c_acbd7da3ece4705ca1b09af671a48553d}\label{nfs_8c_acbd7da3ece4705ca1b09af671a48553d}} 
+int {\bfseries rtems\+\_\+nfs\+\_\+initialize} (\mbox{\hyperlink{structrtems__filesystem__mount__table__entry__tt}{rtems\+\_\+filesystem\+\_\+mount\+\_\+table\+\_\+entry\+\_\+t}} $\ast$mt\+\_\+entry, const void $\ast$data)
+\item 
+\mbox{\Hypertarget{nfs_8c_ad80eb10620a5e5ab3cac603c27586b08}\label{nfs_8c_ad80eb10620a5e5ab3cac603c27586b08}} 
+S\+T\+A\+T\+IC void {\bfseries nfs\+\_\+fsunmount\+\_\+me} (\mbox{\hyperlink{structrtems__filesystem__mount__table__entry__tt}{rtems\+\_\+filesystem\+\_\+mount\+\_\+table\+\_\+entry\+\_\+t}} $\ast$mt\+\_\+entry)
+\item 
+\mbox{\Hypertarget{nfs_8c_afc132339f351ce2fc7eb510a43eb5bc1}\label{nfs_8c_afc132339f351ce2fc7eb510a43eb5bc1}} 
+int {\bfseries nfs\+Set\+Timeout} (uint32\+\_\+t timeout\+\_\+ms)
+\item 
+\mbox{\Hypertarget{nfs_8c_acc767941e706a1979ac022b7e8cc51fc}\label{nfs_8c_acc767941e706a1979ac022b7e8cc51fc}} 
+uint32\+\_\+t {\bfseries nfs\+Get\+Timeout} (void)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const struct \mbox{\hyperlink{struct__rtems__filesystem__operations__table}{\+\_\+rtems\+\_\+filesystem\+\_\+operations\+\_\+table}} {\bfseries nfs\+\_\+fs\+\_\+ops}
+\item 
+\mbox{\Hypertarget{nfs_8c_a54fd2b6efe4055e64dd28e3f06aad841}\label{nfs_8c_a54fd2b6efe4055e64dd28e3f06aad841}} 
+int {\bfseries nfs\+St\+Blksize} = D\+E\+F\+A\+U\+L\+T\+\_\+\+N\+F\+S\+\_\+\+S\+T\+\_\+\+B\+L\+K\+S\+I\+ZE
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+N\+FS Client Implementation for R\+T\+E\+MS. 
+
+Hooks Into the R\+T\+E\+MS N\+FS Filesystem 
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{nfs_8c_abdbe3ade30f30bfdb01f121eeae89c14}\label{nfs_8c_abdbe3ade30f30bfdb01f121eeae89c14}} 
+\index{nfs.c@{nfs.c}!DIRENT\_HEADER\_SIZE@{DIRENT\_HEADER\_SIZE}}
+\index{DIRENT\_HEADER\_SIZE@{DIRENT\_HEADER\_SIZE}!nfs.c@{nfs.c}}
+\subsubsection{\texorpdfstring{DIRENT\_HEADER\_SIZE}{DIRENT\_HEADER\_SIZE}}
+{\footnotesize\ttfamily \#define D\+I\+R\+E\+N\+T\+\_\+\+H\+E\+A\+D\+E\+R\+\_\+\+S\+I\+ZE}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{( \textcolor{keyword}{sizeof}(\textcolor{keyword}{struct }dirent) - \(\backslash\)}
+\DoxyCodeLine{            sizeof( ((struct dirent *)0)->d\_name ) )}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{nfs_8c_a3d396d139d33c55e06b62bd8e52ffd35}\label{nfs_8c_a3d396d139d33c55e06b62bd8e52ffd35}} 
+\index{nfs.c@{nfs.c}!NFS\_MAKE\_DEV\_T@{NFS\_MAKE\_DEV\_T}}
+\index{NFS\_MAKE\_DEV\_T@{NFS\_MAKE\_DEV\_T}!nfs.c@{nfs.c}}
+\subsubsection{\texorpdfstring{NFS\_MAKE\_DEV\_T}{NFS\_MAKE\_DEV\_T}}
+{\footnotesize\ttfamily \#define N\+F\+S\+\_\+\+M\+A\+K\+E\+\_\+\+D\+E\+V\+\_\+T(\begin{DoxyParamCaption}\item[{}]{node }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{rtems\_filesystem\_make\_dev\_t( NFS\_MAJOR, \(\backslash\)}
+\DoxyCodeLine{            (((rtems\_device\_minor\_number)((node)->nfs->id))<<16) | (SERP\_ATTR((node)).fsid \& (((rtems\_device\_minor\_number)1<<16)-1)) )}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{nfs_8c_a0f1ae7e159bf01a34bd2ad30b65a0ffa}\label{nfs_8c_a0f1ae7e159bf01a34bd2ad30b65a0ffa}} 
+\index{nfs.c@{nfs.c}!NFS\_MAKE\_DEV\_T\_INO\_HACK@{NFS\_MAKE\_DEV\_T\_INO\_HACK}}
+\index{NFS\_MAKE\_DEV\_T\_INO\_HACK@{NFS\_MAKE\_DEV\_T\_INO\_HACK}!nfs.c@{nfs.c}}
+\subsubsection{\texorpdfstring{NFS\_MAKE\_DEV\_T\_INO\_HACK}{NFS\_MAKE\_DEV\_T\_INO\_HACK}}
+{\footnotesize\ttfamily \#define N\+F\+S\+\_\+\+M\+A\+K\+E\+\_\+\+D\+E\+V\+\_\+\+T\+\_\+\+I\+N\+O\+\_\+\+H\+A\+CK(\begin{DoxyParamCaption}\item[{}]{node }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{rtems\_filesystem\_make\_dev\_t( NFS\_MAJOR, \(\backslash\)}
+\DoxyCodeLine{            (((rtems\_device\_minor\_number)((node)->nfs->id))<<16) | (((rtems\_device\_minor\_number)SERP\_ATTR((node)).fileid) >> 16) )}
+
+\end{DoxyCode}
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{nfs_8c_acb3ac0adda5a393332619855dd412765}\label{nfs_8c_acb3ac0adda5a393332619855dd412765}} 
+\index{nfs.c@{nfs.c}!nfs\_fs\_ops@{nfs\_fs\_ops}}
+\index{nfs\_fs\_ops@{nfs\_fs\_ops}!nfs.c@{nfs.c}}
+\subsubsection{\texorpdfstring{nfs\_fs\_ops}{nfs\_fs\_ops}}
+{\footnotesize\ttfamily const struct \mbox{\hyperlink{struct__rtems__filesystem__operations__table}{\+\_\+rtems\+\_\+filesystem\+\_\+operations\+\_\+table}} nfs\+\_\+fs\+\_\+ops}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{    .lock\_h         = nfs\_lock,}
+\DoxyCodeLine{    .unlock\_h       = nfs\_unlock,}
+\DoxyCodeLine{    .eval\_path\_h    = nfs\_eval\_path,}
+\DoxyCodeLine{    .link\_h         = nfs\_link,}
+\DoxyCodeLine{    .are\_nodes\_equal\_h = nfs\_are\_nodes\_equal,}
+\DoxyCodeLine{    .mknod\_h        = nfs\_mknod,}
+\DoxyCodeLine{    .rmnod\_h        = nfs\_rmnod,}
+\DoxyCodeLine{    .fchmod\_h       = nfs\_fchmod,}
+\DoxyCodeLine{    .chown\_h        = nfs\_chown,}
+\DoxyCodeLine{    .clonenod\_h     = nfs\_clonenode,}
+\DoxyCodeLine{    .freenod\_h      = nfs\_freenode,}
+\DoxyCodeLine{    .mount\_h        = \mbox{\hyperlink{group__LibIOFSOps_ga6c134a7f03171ac182a6430be97b1cef}{rtems\_filesystem\_default\_mount}},}
+\DoxyCodeLine{    .unmount\_h      = \mbox{\hyperlink{group__LibIOFSOps_ga0fe302d1177a5be4f6b69110240cb08a}{rtems\_filesystem\_default\_unmount}},}
+\DoxyCodeLine{    .fsunmount\_me\_h = nfs\_fsunmount\_me,}
+\DoxyCodeLine{    .utime\_h        = nfs\_utime,}
+\DoxyCodeLine{    .symlink\_h      = nfs\_symlink,}
+\DoxyCodeLine{    .readlink\_h     = nfs\_readlink,}
+\DoxyCodeLine{    .rename\_h       = nfs\_rename,}
+\DoxyCodeLine{    .statvfs\_h      = \mbox{\hyperlink{group__LibIOFSOps_gab61aa6a004147ff2c28fd3d0b105928c}{rtems\_filesystem\_default\_statvfs}}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}

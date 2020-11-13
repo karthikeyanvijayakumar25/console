@@ -1,0 +1,82 @@
+\hypertarget{group__i386__irq}{}\section{Interrupt handlers}
+\label{group__i386__irq}\index{Interrupt handlers@{Interrupt handlers}}
+
+
+Data structure and the functions to write interrupt handlers.  
+
+
+\subsection*{Files}
+\begin{DoxyCompactItemize}
+\item 
+file \mbox{\hyperlink{bsps_2i386_2include_2bsp_2irq_8h}{irq.\+h}}
+\begin{DoxyCompactList}\small\item\em Interrupt handlers. \end{DoxyCompactList}\item 
+file \mbox{\hyperlink{irq__asm_8h}{irq\+\_\+asm.\+h}}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{group__i386__irq_ga2fe5e739729e5756a04cc73da64cc8ee}\label{group__i386__irq_ga2fe5e739729e5756a04cc73da64cc8ee}} 
+\#define \mbox{\hyperlink{group__i386__irq_ga2fe5e739729e5756a04cc73da64cc8ee}{B\+S\+P\+\_\+\+S\+H\+A\+R\+E\+D\+\_\+\+H\+A\+N\+D\+L\+E\+R\+\_\+\+S\+U\+P\+P\+O\+RT}}~1
+\begin{DoxyCompactList}\small\item\em Include some preprocessor value also used by assember code. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__i386__irq_ga942062c30f3cc4be854047a61430cc31}\label{group__i386__irq_ga942062c30f3cc4be854047a61430cc31}} 
+\#define \mbox{\hyperlink{group__i386__irq_ga942062c30f3cc4be854047a61430cc31}{B\+S\+P\+\_\+\+I\+R\+Q\+\_\+\+V\+E\+C\+T\+O\+R\+\_\+\+B\+A\+SE}}~B\+S\+P\+\_\+\+A\+S\+M\+\_\+\+I\+R\+Q\+\_\+\+V\+E\+C\+T\+O\+R\+\_\+\+B\+A\+SE
+\begin{DoxyCompactList}\small\item\em Base vector for our I\+RQ handlers. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__i386__irq_ga5f59ae8121b39ac803bb26e804104f4a}\label{group__i386__irq_ga5f59ae8121b39ac803bb26e804104f4a}} 
+\#define {\bfseries B\+S\+P\+\_\+\+I\+R\+Q\+\_\+\+L\+I\+N\+E\+S\+\_\+\+N\+U\+M\+B\+ER}~16
+\item 
+\mbox{\Hypertarget{group__i386__irq_ga0c96f32ca5dc09b16dd3c4cac161e93d}\label{group__i386__irq_ga0c96f32ca5dc09b16dd3c4cac161e93d}} 
+\#define {\bfseries B\+S\+P\+\_\+\+I\+R\+Q\+\_\+\+M\+A\+X\+\_\+\+O\+N\+\_\+i8259A}~(B\+S\+P\+\_\+\+I\+R\+Q\+\_\+\+L\+I\+N\+E\+S\+\_\+\+N\+U\+M\+B\+ER -\/ 1)
+\item 
+\mbox{\Hypertarget{group__i386__irq_gae11237209615a14b12e0c16f5a24fc48}\label{group__i386__irq_gae11237209615a14b12e0c16f5a24fc48}} 
+\#define {\bfseries B\+S\+P\+\_\+\+I\+R\+Q\+\_\+\+V\+E\+C\+T\+O\+R\+\_\+\+N\+U\+M\+B\+ER}~17
+\item 
+\mbox{\Hypertarget{group__i386__irq_ga6c4c9bfcb18b041288e27f5b5b614421}\label{group__i386__irq_ga6c4c9bfcb18b041288e27f5b5b614421}} 
+\#define {\bfseries B\+S\+P\+\_\+\+I\+R\+Q\+\_\+\+V\+E\+C\+T\+O\+R\+\_\+\+L\+O\+W\+E\+S\+T\+\_\+\+O\+F\+F\+S\+ET}~0
+\item 
+\mbox{\Hypertarget{group__i386__irq_ga72af65b0443ca3562967f1808e596ef0}\label{group__i386__irq_ga72af65b0443ca3562967f1808e596ef0}} 
+\#define {\bfseries B\+S\+P\+\_\+\+I\+R\+Q\+\_\+\+V\+E\+C\+T\+O\+R\+\_\+\+M\+A\+X\+\_\+\+O\+F\+F\+S\+ET}~(B\+S\+P\+\_\+\+I\+R\+Q\+\_\+\+V\+E\+C\+T\+O\+R\+\_\+\+N\+U\+M\+B\+ER -\/ 1)
+\item 
+\mbox{\Hypertarget{group__i386__irq_ga70bcb445450b9fe20d8dfbc4d352a3bb}\label{group__i386__irq_ga70bcb445450b9fe20d8dfbc4d352a3bb}} 
+\#define \mbox{\hyperlink{group__i386__irq_ga70bcb445450b9fe20d8dfbc4d352a3bb}{B\+S\+P\+\_\+\+P\+E\+R\+I\+O\+D\+I\+C\+\_\+\+T\+I\+M\+ER}}~0 /$\ast$ fixed on all builds of PC $\ast$/
+\begin{DoxyCompactList}\small\item\em Interrupt offset in comparison to B\+S\+P\+\_\+\+A\+S\+M\+\_\+\+I\+R\+Q\+\_\+\+V\+E\+C\+T\+O\+R\+\_\+\+B\+A\+SE NB \+: 1) Interrupt vector number in I\+DT = offset + B\+S\+P\+\_\+\+A\+S\+M\+\_\+\+I\+R\+Q\+\_\+\+V\+E\+C\+T\+O\+R\+\_\+\+B\+A\+SE 2) The same name should be defined on all architecture so that handler connection can be unchanged. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__i386__irq_gaa58c4c8c6c58af33349e6de2f520b556}\label{group__i386__irq_gaa58c4c8c6c58af33349e6de2f520b556}} 
+\#define {\bfseries B\+S\+P\+\_\+\+K\+E\+Y\+B\+O\+A\+RD}~1 /$\ast$ fixed on all builds of PC $\ast$/
+\item 
+\mbox{\Hypertarget{group__i386__irq_ga70bc7d5e6fe1e9788d8cb8403ad054d0}\label{group__i386__irq_ga70bc7d5e6fe1e9788d8cb8403ad054d0}} 
+\#define {\bfseries B\+S\+P\+\_\+\+U\+A\+R\+T\+\_\+\+C\+O\+M2\+\_\+\+I\+RQ}~3 /$\ast$ fixed for I\+SA bus $\ast$/
+\item 
+\mbox{\Hypertarget{group__i386__irq_ga6931bf5865dd42b38a83e29eb782db60}\label{group__i386__irq_ga6931bf5865dd42b38a83e29eb782db60}} 
+\#define {\bfseries B\+S\+P\+\_\+\+U\+A\+R\+T\+\_\+\+C\+O\+M1\+\_\+\+I\+RQ}~4 /$\ast$ fixed for I\+SA bus $\ast$/
+\item 
+\mbox{\Hypertarget{group__i386__irq_ga1cbdf777ef42e6f88823bed37aa8f959}\label{group__i386__irq_ga1cbdf777ef42e6f88823bed37aa8f959}} 
+\#define {\bfseries B\+S\+P\+\_\+\+U\+A\+R\+T\+\_\+\+C\+O\+M3\+\_\+\+I\+RQ}~5
+\item 
+\mbox{\Hypertarget{group__i386__irq_ga53a47d06836545df860ae4a7c2b2d14c}\label{group__i386__irq_ga53a47d06836545df860ae4a7c2b2d14c}} 
+\#define {\bfseries B\+S\+P\+\_\+\+U\+A\+R\+T\+\_\+\+C\+O\+M4\+\_\+\+I\+RQ}~6
+\item 
+\mbox{\Hypertarget{group__i386__irq_ga8d8776b928d65277dce2e39000917860}\label{group__i386__irq_ga8d8776b928d65277dce2e39000917860}} 
+\#define {\bfseries B\+S\+P\+\_\+\+R\+T\+\_\+\+T\+I\+M\+E\+R1}~8
+\item 
+\mbox{\Hypertarget{group__i386__irq_ga73e64da8ddf7411307e2e412b611816c}\label{group__i386__irq_ga73e64da8ddf7411307e2e412b611816c}} 
+\#define {\bfseries B\+S\+P\+\_\+\+R\+T\+\_\+\+T\+I\+M\+E\+R3}~10
+\item 
+\mbox{\Hypertarget{group__i386__irq_gacfc7410ade5d5d938a09412347219bff}\label{group__i386__irq_gacfc7410ade5d5d938a09412347219bff}} 
+\#define {\bfseries B\+S\+P\+\_\+\+S\+M\+P\+\_\+\+I\+PI}~16 /$\ast$ not part of the A\+T\+P\+IC $\ast$/
+\item 
+\mbox{\Hypertarget{group__i386__irq_ga64cbb02dfea4d6923abccaa0087d2a0d}\label{group__i386__irq_ga64cbb02dfea4d6923abccaa0087d2a0d}} 
+\#define {\bfseries B\+S\+P\+\_\+\+I\+N\+T\+E\+R\+R\+U\+P\+T\+\_\+\+V\+E\+C\+T\+O\+R\+\_\+\+M\+IN}~B\+S\+P\+\_\+\+I\+R\+Q\+\_\+\+V\+E\+C\+T\+O\+R\+\_\+\+L\+O\+W\+E\+S\+T\+\_\+\+O\+F\+F\+S\+ET
+\item 
+\mbox{\Hypertarget{group__i386__irq_gae4a2cdda5816a4c83c2fac0a49880c6e}\label{group__i386__irq_gae4a2cdda5816a4c83c2fac0a49880c6e}} 
+\#define {\bfseries B\+S\+P\+\_\+\+I\+N\+T\+E\+R\+R\+U\+P\+T\+\_\+\+V\+E\+C\+T\+O\+R\+\_\+\+M\+AX}~B\+S\+P\+\_\+\+I\+R\+Q\+\_\+\+V\+E\+C\+T\+O\+R\+\_\+\+M\+A\+X\+\_\+\+O\+F\+F\+S\+ET
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{group__i386__irq_gabcb5f2200fea51d658c5ed728282ee77}\label{group__i386__irq_gabcb5f2200fea51d658c5ed728282ee77}} 
+typedef unsigned short \mbox{\hyperlink{group__i386__irq_gabcb5f2200fea51d658c5ed728282ee77}{rtems\+\_\+i8259\+\_\+masks}}
+\begin{DoxyCompactList}\small\item\em Type definition for R\+T\+E\+MS managed interrupts. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Data structure and the functions to write interrupt handlers. 
+

@@ -1,0 +1,110 @@
+\hypertarget{nvdisk_8c}{}\section{cpukit/libblock/src/nvdisk.c File Reference}
+\label{nvdisk_8c}\index{cpukit/libblock/src/nvdisk.c@{cpukit/libblock/src/nvdisk.c}}
+
+
+Non-\/\+Volatile Disk Block Device Implementation.  
+
+
+{\ttfamily \#include $<$rtems.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/libio.\+h$>$}\newline
+{\ttfamily \#include $<$errno.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$inttypes.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/blkdev.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/nvdisk.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/thread.\+h$>$}\newline
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structrtems__nvdisk__device__ctl}{rtems\+\_\+nvdisk\+\_\+device\+\_\+ctl}}
+\item 
+struct \mbox{\hyperlink{structrtems__nvdisk}{rtems\+\_\+nvdisk}}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{nvdisk_8c_a4b3a0935a9be5185c9ca1a47d366865e}{R\+T\+E\+M\+S\+\_\+\+N\+V\+D\+I\+S\+K\+\_\+\+T\+R\+A\+CE}}~0
+\item 
+\#define \mbox{\hyperlink{nvdisk_8c_ab83edf3d3a2e099da52f80914dd3e2ce}{rtems\+\_\+nvdisk\+\_\+calc\+\_\+crc16}}(\+\_\+b,  \+\_\+c)~rtems\+\_\+nvdisk\+\_\+crc16\+\_\+factor\mbox{[}((\+\_\+b) $^\wedge$ ((\+\_\+c) \& 0xff)) \& 0xff\mbox{]} $^\wedge$ (((\+\_\+c) $>$$>$ 8) \& 0xff)
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \mbox{\hyperlink{structrtems__nvdisk__device__ctl}{rtems\+\_\+nvdisk\+\_\+device\+\_\+ctl}} \mbox{\hyperlink{nvdisk_8c_ab2ae9603d8e6e37c35668bb139065271}{rtems\+\_\+nvdisk\+\_\+device\+\_\+ctl}}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+device\+\_\+driver}} \mbox{\hyperlink{nvdisk_8c_abe720bfb2bdbaffc6fa1f31520259505}{rtems\+\_\+nvdisk\+\_\+initialize}} (rtems\+\_\+device\+\_\+major\+\_\+number major \mbox{\hyperlink{group__RTEMSScoreBaseDefs_ga6794c0ff237a90e837e19f9bbcae4297}{R\+T\+E\+M\+S\+\_\+\+U\+N\+U\+S\+ED}}, rtems\+\_\+device\+\_\+minor\+\_\+number minor \mbox{\hyperlink{group__RTEMSScoreBaseDefs_ga6794c0ff237a90e837e19f9bbcae4297}{R\+T\+E\+M\+S\+\_\+\+U\+N\+U\+S\+ED}}, void $\ast$arg \mbox{\hyperlink{group__RTEMSScoreBaseDefs_ga6794c0ff237a90e837e19f9bbcae4297}{R\+T\+E\+M\+S\+\_\+\+U\+N\+U\+S\+ED}})
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Non-\/\+Volatile Disk Block Device Implementation. 
+
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{nvdisk_8c_ab83edf3d3a2e099da52f80914dd3e2ce}\label{nvdisk_8c_ab83edf3d3a2e099da52f80914dd3e2ce}} 
+\index{nvdisk.c@{nvdisk.c}!rtems\_nvdisk\_calc\_crc16@{rtems\_nvdisk\_calc\_crc16}}
+\index{rtems\_nvdisk\_calc\_crc16@{rtems\_nvdisk\_calc\_crc16}!nvdisk.c@{nvdisk.c}}
+\subsubsection{\texorpdfstring{rtems\_nvdisk\_calc\_crc16}{rtems\_nvdisk\_calc\_crc16}}
+{\footnotesize\ttfamily \#define rtems\+\_\+nvdisk\+\_\+calc\+\_\+crc16(\begin{DoxyParamCaption}\item[{}]{\+\_\+b,  }\item[{}]{\+\_\+c }\end{DoxyParamCaption})~rtems\+\_\+nvdisk\+\_\+crc16\+\_\+factor\mbox{[}((\+\_\+b) $^\wedge$ ((\+\_\+c) \& 0xff)) \& 0xff\mbox{]} $^\wedge$ (((\+\_\+c) $>$$>$ 8) \& 0xff)}
+
+Calculate the C\+R\+C16 checksum.
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+b} & The byte to checksum. \\
+\hline
+{\em \+\_\+c} & The current checksum. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{nvdisk_8c_a4b3a0935a9be5185c9ca1a47d366865e}\label{nvdisk_8c_a4b3a0935a9be5185c9ca1a47d366865e}} 
+\index{nvdisk.c@{nvdisk.c}!RTEMS\_NVDISK\_TRACE@{RTEMS\_NVDISK\_TRACE}}
+\index{RTEMS\_NVDISK\_TRACE@{RTEMS\_NVDISK\_TRACE}!nvdisk.c@{nvdisk.c}}
+\subsubsection{\texorpdfstring{RTEMS\_NVDISK\_TRACE}{RTEMS\_NVDISK\_TRACE}}
+{\footnotesize\ttfamily \#define R\+T\+E\+M\+S\+\_\+\+N\+V\+D\+I\+S\+K\+\_\+\+T\+R\+A\+CE~0}
+
+\begin{DoxyNote}{Note}
+
+\end{DoxyNote}
+The use of pages can vary. The rtems\+\_\+nvdisk\+\_\+$\ast$\+\_\+page set routines use an absolute page number relative to the segment while all other page numbera are relative to the number of page descriptor pages a segment has. You need to add the number of page descriptor pages (pages\+\_\+desc) to the page number when call the rtems\+\_\+nvdisk\+\_\+$\ast$\+\_\+page functions.
+
+You must always show the page number as relative in any trace or error message as device-\/page and if you have to the page number as absolute use device$\sim$page. This can be seen in the page copy routine.
+
+The code is like this to avoid needing the pass the pages\+\_\+desc value around. It is only used in selected places and so the extra parameter was avoided.\+Control tracing. It can be compiled out of the code for small footprint targets. Leave in by default. 
+
+\subsection{Typedef Documentation}
+\mbox{\Hypertarget{nvdisk_8c_ab2ae9603d8e6e37c35668bb139065271}\label{nvdisk_8c_ab2ae9603d8e6e37c35668bb139065271}} 
+\index{nvdisk.c@{nvdisk.c}!rtems\_nvdisk\_device\_ctl@{rtems\_nvdisk\_device\_ctl}}
+\index{rtems\_nvdisk\_device\_ctl@{rtems\_nvdisk\_device\_ctl}!nvdisk.c@{nvdisk.c}}
+\subsubsection{\texorpdfstring{rtems\_nvdisk\_device\_ctl}{rtems\_nvdisk\_device\_ctl}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structrtems__nvdisk__device__ctl}{rtems\+\_\+nvdisk\+\_\+device\+\_\+ctl}}  \mbox{\hyperlink{structrtems__nvdisk__device__ctl}{rtems\+\_\+nvdisk\+\_\+device\+\_\+ctl}}}
+
+NV Device Control holds the segment controls 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{nvdisk_8c_abe720bfb2bdbaffc6fa1f31520259505}\label{nvdisk_8c_abe720bfb2bdbaffc6fa1f31520259505}} 
+\index{nvdisk.c@{nvdisk.c}!rtems\_nvdisk\_initialize@{rtems\_nvdisk\_initialize}}
+\index{rtems\_nvdisk\_initialize@{rtems\_nvdisk\_initialize}!nvdisk.c@{nvdisk.c}}
+\subsubsection{\texorpdfstring{rtems\_nvdisk\_initialize()}{rtems\_nvdisk\_initialize()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+device\+\_\+driver}} rtems\+\_\+nvdisk\+\_\+initialize (\begin{DoxyParamCaption}\item[{rtems\+\_\+device\+\_\+major\+\_\+number major}]{R\+T\+E\+M\+S\+\_\+\+U\+N\+U\+S\+ED,  }\item[{rtems\+\_\+device\+\_\+minor\+\_\+number minor}]{R\+T\+E\+M\+S\+\_\+\+U\+N\+U\+S\+ED,  }\item[{void $\ast$arg}]{R\+T\+E\+M\+S\+\_\+\+U\+N\+U\+S\+ED }\end{DoxyParamCaption})}
+
+NV disk device driver initialization.
+
+\begin{DoxyRefDesc}{Todo}
+\item[\mbox{\hyperlink{todo__todo000013}{Todo}}]Memory clean up on error is really badly handled.\end{DoxyRefDesc}
+
+
+
+\begin{DoxyParams}{Parameters}
+{\em major} & NV disk major device number. \\
+\hline
+{\em minor} & Minor device number, not applicable. \\
+\hline
+{\em arg} & Initialization argument, not applicable. \\
+\hline
+\end{DoxyParams}

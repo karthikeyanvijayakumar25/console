@@ -1,0 +1,77 @@
+\hypertarget{mutexinit_8c}{}\section{cpukit/posix/src/mutexinit.c File Reference}
+\label{mutexinit_8c}\index{cpukit/posix/src/mutexinit.c@{cpukit/posix/src/mutexinit.c}}
+
+
+Initialize a Mutex.  
+
+
+{\ttfamily \#include $<$rtems/posix/muteximpl.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/posix/posixapi.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/posix/priorityimpl.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/score/schedulerimpl.\+h$>$}\newline
+{\ttfamily \#include $<$limits.\+h$>$}\newline
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{mutexinit_8c_acd8809030d68a5002ea8b3a07e93856a}\label{mutexinit_8c_acd8809030d68a5002ea8b3a07e93856a}} 
+{\bfseries R\+T\+E\+M\+S\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+A\+S\+S\+E\+RT} (offsetof(\mbox{\hyperlink{structPOSIX__Mutex__Control}{P\+O\+S\+I\+X\+\_\+\+Mutex\+\_\+\+Control}}, flags)==offsetof(pthread\+\_\+mutex\+\_\+t, \+\_\+flags), P\+O\+S\+I\+X\+\_\+\+M\+U\+T\+E\+X\+\_\+\+C\+O\+N\+T\+R\+O\+L\+\_\+\+F\+L\+A\+GS)
+\item 
+\mbox{\Hypertarget{mutexinit_8c_a25bce6a1a39b6fd1ba2ed911b5675469}\label{mutexinit_8c_a25bce6a1a39b6fd1ba2ed911b5675469}} 
+{\bfseries R\+T\+E\+M\+S\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+A\+S\+S\+E\+RT} (offsetof(\mbox{\hyperlink{structPOSIX__Mutex__Control}{P\+O\+S\+I\+X\+\_\+\+Mutex\+\_\+\+Control}}, Recursive)==offsetof(pthread\+\_\+mutex\+\_\+t, \+\_\+\+Recursive), P\+O\+S\+I\+X\+\_\+\+M\+U\+T\+E\+X\+\_\+\+C\+O\+N\+T\+R\+O\+L\+\_\+\+R\+E\+C\+U\+R\+S\+I\+VE)
+\item 
+\mbox{\Hypertarget{mutexinit_8c_ac320bad26ccf41b8c05cb476cf241426}\label{mutexinit_8c_ac320bad26ccf41b8c05cb476cf241426}} 
+{\bfseries R\+T\+E\+M\+S\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+A\+S\+S\+E\+RT} (offsetof(\mbox{\hyperlink{structPOSIX__Mutex__Control}{P\+O\+S\+I\+X\+\_\+\+Mutex\+\_\+\+Control}}, Priority\+\_\+ceiling)==offsetof(pthread\+\_\+mutex\+\_\+t, \+\_\+\+Priority\+\_\+ceiling), P\+O\+S\+I\+X\+\_\+\+M\+U\+T\+E\+X\+\_\+\+C\+O\+N\+T\+R\+O\+L\+\_\+\+P\+R\+I\+O\+R\+I\+T\+Y\+\_\+\+C\+E\+I\+L\+I\+NG)
+\item 
+\mbox{\Hypertarget{mutexinit_8c_a3c17772f72498c390aa26407bf6d15ff}\label{mutexinit_8c_a3c17772f72498c390aa26407bf6d15ff}} 
+{\bfseries R\+T\+E\+M\+S\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+A\+S\+S\+E\+RT} (offsetof(\mbox{\hyperlink{structPOSIX__Mutex__Control}{P\+O\+S\+I\+X\+\_\+\+Mutex\+\_\+\+Control}}, scheduler)==offsetof(pthread\+\_\+mutex\+\_\+t, \+\_\+scheduler), P\+O\+S\+I\+X\+\_\+\+M\+U\+T\+E\+X\+\_\+\+C\+O\+N\+T\+R\+O\+L\+\_\+\+S\+C\+H\+E\+D\+U\+L\+ER)
+\item 
+\mbox{\Hypertarget{mutexinit_8c_a24be7ab5c03e79ea1661cb1f54126881}\label{mutexinit_8c_a24be7ab5c03e79ea1661cb1f54126881}} 
+{\bfseries R\+T\+E\+M\+S\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+A\+S\+S\+E\+RT} (sizeof(\mbox{\hyperlink{structPOSIX__Mutex__Control}{P\+O\+S\+I\+X\+\_\+\+Mutex\+\_\+\+Control}})==sizeof(pthread\+\_\+mutex\+\_\+t), P\+O\+S\+I\+X\+\_\+\+M\+U\+T\+E\+X\+\_\+\+C\+O\+N\+T\+R\+O\+L\+\_\+\+S\+I\+ZE)
+\item 
+int \mbox{\hyperlink{mutexinit_8c_a7454d249ed94ad5d5e57ba1529d7a7f2}{pthread\+\_\+mutex\+\_\+init}} (pthread\+\_\+mutex\+\_\+t $\ast$\mbox{\hyperlink{structmutex}{mutex}}, const pthread\+\_\+mutexattr\+\_\+t $\ast$attr)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const pthread\+\_\+mutexattr\+\_\+t \mbox{\hyperlink{mutexinit_8c_acec046ad5dcc6810ba08aa0b91366424}{\+\_\+\+P\+O\+S\+I\+X\+\_\+\+Mutex\+\_\+\+Default\+\_\+attributes}}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Initialize a Mutex. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{mutexinit_8c_a7454d249ed94ad5d5e57ba1529d7a7f2}\label{mutexinit_8c_a7454d249ed94ad5d5e57ba1529d7a7f2}} 
+\index{mutexinit.c@{mutexinit.c}!pthread\_mutex\_init@{pthread\_mutex\_init}}
+\index{pthread\_mutex\_init@{pthread\_mutex\_init}!mutexinit.c@{mutexinit.c}}
+\subsubsection{\texorpdfstring{pthread\_mutex\_init()}{pthread\_mutex\_init()}}
+{\footnotesize\ttfamily int pthread\+\_\+mutex\+\_\+init (\begin{DoxyParamCaption}\item[{pthread\+\_\+mutex\+\_\+t $\ast$}]{mutex,  }\item[{const pthread\+\_\+mutexattr\+\_\+t $\ast$}]{attr }\end{DoxyParamCaption})}
+
+11.\+3.\+2 Initializing and Destroying a Mutex, P1003.\+1c/\+Draft 10, p. 87
+
+N\+O\+TE\+: X\+XX Could be optimized so all the attribute error checking is not performed when attr is N\+U\+LL. 
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{mutexinit_8c_acec046ad5dcc6810ba08aa0b91366424}\label{mutexinit_8c_acec046ad5dcc6810ba08aa0b91366424}} 
+\index{mutexinit.c@{mutexinit.c}!\_POSIX\_Mutex\_Default\_attributes@{\_POSIX\_Mutex\_Default\_attributes}}
+\index{\_POSIX\_Mutex\_Default\_attributes@{\_POSIX\_Mutex\_Default\_attributes}!mutexinit.c@{mutexinit.c}}
+\subsubsection{\texorpdfstring{\_POSIX\_Mutex\_Default\_attributes}{\_POSIX\_Mutex\_Default\_attributes}}
+{\footnotesize\ttfamily const pthread\+\_\+mutexattr\+\_\+t \+\_\+\+P\+O\+S\+I\+X\+\_\+\+Mutex\+\_\+\+Default\+\_\+attributes}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{  .is\_initialized = \textcolor{keyword}{true},}
+\DoxyCodeLine{  .process\_shared = PTHREAD\_PROCESS\_PRIVATE,}
+\DoxyCodeLine{  .prio\_ceiling   = INT\_MAX,}
+\DoxyCodeLine{  .protocol       = PTHREAD\_PRIO\_NONE,}
+\DoxyCodeLine{  .recursive      = \textcolor{keyword}{false}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+The default mutex attributes structure. 

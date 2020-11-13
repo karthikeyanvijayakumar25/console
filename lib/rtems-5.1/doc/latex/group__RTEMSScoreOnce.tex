@@ -1,0 +1,79 @@
+\hypertarget{group__RTEMSScoreOnce}{}\section{Once Functions.}
+\label{group__RTEMSScoreOnce}\index{Once Functions.@{Once Functions.}}
+
+
+The \mbox{\hyperlink{group__RTEMSScoreOnce_ga2db8aad33d5d118be8a81b4b32caea85}{\+\_\+\+Once()}} function for pthread\+\_\+once() and rtems\+\_\+gxx\+\_\+once().  
+
+
+\subsection*{Files}
+\begin{DoxyCompactItemize}
+\item 
+file \mbox{\hyperlink{onceimpl_8h}{onceimpl.\+h}}
+\begin{DoxyCompactList}\small\item\em Once A\+PI. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{group__RTEMSScoreOnce_ga2db8aad33d5d118be8a81b4b32caea85}{\+\_\+\+Once}} (unsigned char $\ast$once\+\_\+state, void($\ast$init\+\_\+routine)(void))
+\begin{DoxyCompactList}\small\item\em Reacts according to the state of once\+\_\+state. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreThread_ga0b4c61e432a0c21855e3122bb394583d}{Thread\+\_\+\+Life\+\_\+state}} \mbox{\hyperlink{group__RTEMSScoreOnce_ga0af2868af507faa6429f26441dbea13c}{\+\_\+\+Once\+\_\+\+Lock}} (void)
+\begin{DoxyCompactList}\small\item\em Locks the Once\+\_\+\+Information\+\_\+\+Mutex and returns the thread life state. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__RTEMSScoreOnce_ga740a7de5e233c0d39a774f93c5e27b6e}{\+\_\+\+Once\+\_\+\+Unlock}} (\mbox{\hyperlink{group__RTEMSScoreThread_ga0b4c61e432a0c21855e3122bb394583d}{Thread\+\_\+\+Life\+\_\+state}} thread\+\_\+life\+\_\+state)
+\begin{DoxyCompactList}\small\item\em Unlocks the Once\+\_\+\+Information\+\_\+\+Mutex and sets the thread life protection to thread\+\_\+life\+\_\+state. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+The \mbox{\hyperlink{group__RTEMSScoreOnce_ga2db8aad33d5d118be8a81b4b32caea85}{\+\_\+\+Once()}} function for pthread\+\_\+once() and rtems\+\_\+gxx\+\_\+once(). 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{group__RTEMSScoreOnce_ga2db8aad33d5d118be8a81b4b32caea85}\label{group__RTEMSScoreOnce_ga2db8aad33d5d118be8a81b4b32caea85}} 
+\index{Once Functions.@{Once Functions.}!\_Once@{\_Once}}
+\index{\_Once@{\_Once}!Once Functions.@{Once Functions.}}
+\subsubsection{\texorpdfstring{\_Once()}{\_Once()}}
+{\footnotesize\ttfamily int \+\_\+\+Once (\begin{DoxyParamCaption}\item[{unsigned char $\ast$}]{once\+\_\+state,  }\item[{void($\ast$)(void)}]{init\+\_\+routine }\end{DoxyParamCaption})}
+
+
+
+Reacts according to the state of once\+\_\+state. 
+
+If once\+\_\+state is O\+N\+C\+E\+\_\+\+S\+T\+A\+T\+E\+\_\+\+I\+N\+IT, then the once state is set first to O\+N\+C\+E\+\_\+\+S\+T\+A\+T\+E\+\_\+\+R\+U\+N\+N\+I\+NG and after calling the init routine it is set to O\+N\+C\+E\+\_\+\+S\+T\+A\+T\+E\+\_\+\+C\+O\+M\+P\+L\+E\+T\+ED. If once\+\_\+state is O\+N\+C\+E\+\_\+\+S\+T\+A\+T\+E\+\_\+\+C\+O\+M\+P\+L\+E\+T\+ED, nothing happens. If once\+\_\+state is not either one, this method waits for the Once\+\_\+\+Information\+\_\+\+Mutex.
+
+
+\begin{DoxyParams}{Parameters}
+{\em once\+\_\+state} & The once state. \\
+\hline
+{\em init\+\_\+routine} & The initialization routine called if {\itshape once\+\_\+state} is O\+N\+C\+E\+\_\+\+S\+T\+A\+T\+E\+\_\+\+I\+N\+IT.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+This method always returns zero upon termination. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{group__RTEMSScoreOnce_ga0af2868af507faa6429f26441dbea13c}\label{group__RTEMSScoreOnce_ga0af2868af507faa6429f26441dbea13c}} 
+\index{Once Functions.@{Once Functions.}!\_Once\_Lock@{\_Once\_Lock}}
+\index{\_Once\_Lock@{\_Once\_Lock}!Once Functions.@{Once Functions.}}
+\subsubsection{\texorpdfstring{\_Once\_Lock()}{\_Once\_Lock()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreThread_ga0b4c61e432a0c21855e3122bb394583d}{Thread\+\_\+\+Life\+\_\+state}} \+\_\+\+Once\+\_\+\+Lock (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Locks the Once\+\_\+\+Information\+\_\+\+Mutex and returns the thread life state. 
+
+\begin{DoxyReturn}{Returns}
+The thread life state (T\+H\+R\+E\+A\+D\+\_\+\+L\+I\+F\+E\+\_\+\+P\+R\+O\+T\+E\+C\+T\+ED). 
+\end{DoxyReturn}
+\mbox{\Hypertarget{group__RTEMSScoreOnce_ga740a7de5e233c0d39a774f93c5e27b6e}\label{group__RTEMSScoreOnce_ga740a7de5e233c0d39a774f93c5e27b6e}} 
+\index{Once Functions.@{Once Functions.}!\_Once\_Unlock@{\_Once\_Unlock}}
+\index{\_Once\_Unlock@{\_Once\_Unlock}!Once Functions.@{Once Functions.}}
+\subsubsection{\texorpdfstring{\_Once\_Unlock()}{\_Once\_Unlock()}}
+{\footnotesize\ttfamily void \+\_\+\+Once\+\_\+\+Unlock (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__RTEMSScoreThread_ga0b4c61e432a0c21855e3122bb394583d}{Thread\+\_\+\+Life\+\_\+state}}}]{thread\+\_\+life\+\_\+state }\end{DoxyParamCaption})}
+
+
+
+Unlocks the Once\+\_\+\+Information\+\_\+\+Mutex and sets the thread life protection to thread\+\_\+life\+\_\+state. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em thread\+\_\+life\+\_\+state} & The thread life state to set the thread life protection to. \\
+\hline
+\end{DoxyParams}

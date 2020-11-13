@@ -1,0 +1,76 @@
+\hypertarget{arm_2lpc24xx_2start_2timer_8c}{}\section{bsps/arm/lpc24xx/start/timer.c File Reference}
+\label{arm_2lpc24xx_2start_2timer_8c}\index{bsps/arm/lpc24xx/start/timer.c@{bsps/arm/lpc24xx/start/timer.c}}
+
+
+Benchmark timer support.  
+
+
+{\ttfamily \#include $<$rtems.\+h$>$}\newline
+{\ttfamily \#include $<$bsp.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/btimer.\+h$>$}\newline
+{\ttfamily \#include $<$bsp/system-\/clocks.\+h$>$}\newline
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{arm_2lpc24xx_2start_2timer_8c_a9ba0ae2fd8880801fb86979a16cd3b2b}{benchmark\+\_\+timer\+\_\+initialize}} (void)
+\begin{DoxyCompactList}\small\item\em Initialize the Benchmark Timer. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{btimer_8h_ac0f944fe3193b01df09c3d3a5a677e5a}{benchmark\+\_\+timer\+\_\+t}} \mbox{\hyperlink{arm_2lpc24xx_2start_2timer_8c_ab8dc8517e97918d293d78e85b9454855}{benchmark\+\_\+timer\+\_\+read}} (void)
+\begin{DoxyCompactList}\small\item\em Read the Benchmark Timer. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{arm_2lpc24xx_2start_2timer_8c_a1403cf551f66233dee7b01524260206f}{benchmark\+\_\+timer\+\_\+disable\+\_\+subtracting\+\_\+average\+\_\+overhead}} (bool find\+\_\+average\+\_\+overhead)
+\begin{DoxyCompactList}\small\item\em Disable Average Overhead Removal from the Benchmark Timer. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{arm_2lpc24xx_2start_2timer_8c_aff7592371a0cc40ceba40a1adf11bbc0}\label{arm_2lpc24xx_2start_2timer_8c_aff7592371a0cc40ceba40a1adf11bbc0}} 
+bool {\bfseries benchmark\+\_\+timer\+\_\+find\+\_\+average\+\_\+overhead} = false
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Benchmark timer support. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{arm_2lpc24xx_2start_2timer_8c_a1403cf551f66233dee7b01524260206f}\label{arm_2lpc24xx_2start_2timer_8c_a1403cf551f66233dee7b01524260206f}} 
+\index{timer.c@{timer.c}!benchmark\_timer\_disable\_subtracting\_average\_overhead@{benchmark\_timer\_disable\_subtracting\_average\_overhead}}
+\index{benchmark\_timer\_disable\_subtracting\_average\_overhead@{benchmark\_timer\_disable\_subtracting\_average\_overhead}!timer.c@{timer.c}}
+\subsubsection{\texorpdfstring{benchmark\_timer\_disable\_subtracting\_average\_overhead()}{benchmark\_timer\_disable\_subtracting\_average\_overhead()}}
+{\footnotesize\ttfamily void benchmark\+\_\+timer\+\_\+disable\+\_\+subtracting\+\_\+average\+\_\+overhead (\begin{DoxyParamCaption}\item[{bool}]{find\+\_\+flag }\end{DoxyParamCaption})}
+
+
+
+Disable Average Overhead Removal from the Benchmark Timer. 
+
+This method places the benchmark timer in a \char`\"{}raw\char`\"{} mode where it returns the actual number of units which have passed between calls to {\itshape benchmark\+\_\+timer\+\_\+initialize} and {\itshape benchmark\+\_\+timer\+\_\+read} counting.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em find\+\_\+flag} & indicates to enable or disable the mode \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{arm_2lpc24xx_2start_2timer_8c_a9ba0ae2fd8880801fb86979a16cd3b2b}\label{arm_2lpc24xx_2start_2timer_8c_a9ba0ae2fd8880801fb86979a16cd3b2b}} 
+\index{timer.c@{timer.c}!benchmark\_timer\_initialize@{benchmark\_timer\_initialize}}
+\index{benchmark\_timer\_initialize@{benchmark\_timer\_initialize}!timer.c@{timer.c}}
+\subsubsection{\texorpdfstring{benchmark\_timer\_initialize()}{benchmark\_timer\_initialize()}}
+{\footnotesize\ttfamily void benchmark\+\_\+timer\+\_\+initialize (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Initialize the Benchmark Timer. 
+
+This method initializes the benchmark timer and resets it to begin counting. \mbox{\Hypertarget{arm_2lpc24xx_2start_2timer_8c_ab8dc8517e97918d293d78e85b9454855}\label{arm_2lpc24xx_2start_2timer_8c_ab8dc8517e97918d293d78e85b9454855}} 
+\index{timer.c@{timer.c}!benchmark\_timer\_read@{benchmark\_timer\_read}}
+\index{benchmark\_timer\_read@{benchmark\_timer\_read}!timer.c@{timer.c}}
+\subsubsection{\texorpdfstring{benchmark\_timer\_read()}{benchmark\_timer\_read()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{btimer_8h_ac0f944fe3193b01df09c3d3a5a677e5a}{benchmark\+\_\+timer\+\_\+t}} benchmark\+\_\+timer\+\_\+read (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Read the Benchmark Timer. 
+
+This method stops the benchmark timer and returns the number of units that have passed since {\itshape benchmark\+\_\+timer\+\_\+initialize} was invoked.
+
+\begin{DoxyReturn}{Returns}
+This method returns the number of units with the average overhead removed. If the value is below the minimum trusted value, zero is returned. 
+\end{DoxyReturn}

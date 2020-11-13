@@ -1,0 +1,87 @@
+\hypertarget{TLL6527M_2start_2interrupt_8c}{}\section{bsps/bfin/\+T\+L\+L6527\+M/start/interrupt.c File Reference}
+\label{TLL6527M_2start_2interrupt_8c}\index{bsps/bfin/TLL6527M/start/interrupt.c@{bsps/bfin/TLL6527M/start/interrupt.c}}
+{\ttfamily \#include $<$rtems.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/libio.\+h$>$}\newline
+{\ttfamily \#include $<$bsp.\+h$>$}\newline
+{\ttfamily \#include $<$libcpu/cec\+Regs.\+h$>$}\newline
+{\ttfamily \#include $<$libcpu/sic\+Regs.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$bsp/interrupt.\+h$>$}\newline
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{TLL6527M_2start_2interrupt_8c_a72042721b58d8893bb022a5b86553440}\label{TLL6527M_2start_2interrupt_8c_a72042721b58d8893bb022a5b86553440}} 
+\#define {\bfseries S\+I\+C\+\_\+\+I\+A\+R\+\_\+\+C\+O\+U\+N\+T\+\_\+\+S\+E\+T0}~4
+\item 
+\mbox{\Hypertarget{TLL6527M_2start_2interrupt_8c_a6bb7116043ad9cd9cc85f7e6d9019a24}\label{TLL6527M_2start_2interrupt_8c_a6bb7116043ad9cd9cc85f7e6d9019a24}} 
+\#define {\bfseries S\+I\+C\+\_\+\+I\+A\+R\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+D\+R\+E\+S\+S\+\_\+0}~0x\+F\+F\+C00150
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{TLL6527M_2start_2interrupt_8c_a3b3c4a2b17f67d9fdfbec0d1661343e3}{bfin\+\_\+interrupt\+\_\+init}} (void)
+\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{TLL6527M_2start_2interrupt_8c_a62360f617682526a248c4c0c5575bcb2}{bfin\+\_\+interrupt\+\_\+register}} (\mbox{\hyperlink{structbfin__isr__s}{bfin\+\_\+isr\+\_\+t}} $\ast$isr)
+\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{TLL6527M_2start_2interrupt_8c_ad54189e81a7a3ab2a4b81af78602d2f4}{bfin\+\_\+interrupt\+\_\+unregister}} (\mbox{\hyperlink{structbfin__isr__s}{bfin\+\_\+isr\+\_\+t}} $\ast$isr)
+\item 
+\mbox{\Hypertarget{TLL6527M_2start_2interrupt_8c_aadaa1740ca07de95cb1cf5ec45f53cbd}\label{TLL6527M_2start_2interrupt_8c_aadaa1740ca07de95cb1cf5ec45f53cbd}} 
+void {\bfseries bfin\+\_\+interrupt\+\_\+enable} (\mbox{\hyperlink{structbfin__isr__s}{bfin\+\_\+isr\+\_\+t}} $\ast$isr, bool enable)
+\item 
+\mbox{\Hypertarget{TLL6527M_2start_2interrupt_8c_a473a7a295c83e931ac0c23ba9eb8ba4b}\label{TLL6527M_2start_2interrupt_8c_a473a7a295c83e931ac0c23ba9eb8ba4b}} 
+void {\bfseries bfin\+\_\+interrupt\+\_\+enable\+\_\+all} (int source, bool enable)
+\item 
+\mbox{\Hypertarget{TLL6527M_2start_2interrupt_8c_a6a100c70e21044ab1051eb59f2120c36}\label{TLL6527M_2start_2interrupt_8c_a6a100c70e21044ab1051eb59f2120c36}} 
+void {\bfseries bfin\+\_\+interrupt\+\_\+enable\+\_\+global} (int source, bool enable)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+\begin{DoxyItemize}
+\item This file implements interrupt dispatcher. Most of the code is taken from the 533 implementation for blackfin. Since 52X supports 56 line and 2 I\+SR registers some portion is written twice.
+\end{DoxyItemize}
+
+Target\+: T\+L\+L6527v1-\/0 Compiler\+:
+
+C\+O\+P\+Y\+R\+I\+G\+HT (c) 2010 by E\+CE Northeastern University.
+
+The license and distribution terms for this file may be found in the file L\+I\+C\+E\+N\+SE in this distribution or at \href{http://www.rtems.org/license}{\texttt{ http\+://www.\+rtems.\+org/license}}
+
+\begin{DoxyAuthor}{Author}
+Rohan Kangralkar, E\+CE, Northeastern University (\href{mailto:kangralkar.r@husky.neu.edu}{\texttt{ kangralkar.\+r@husky.\+neu.\+edu}})
+\end{DoxyAuthor}
+Last\+Change\+: 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{TLL6527M_2start_2interrupt_8c_a3b3c4a2b17f67d9fdfbec0d1661343e3}\label{TLL6527M_2start_2interrupt_8c_a3b3c4a2b17f67d9fdfbec0d1661343e3}} 
+\index{interrupt.c@{interrupt.c}!bfin\_interrupt\_init@{bfin\_interrupt\_init}}
+\index{bfin\_interrupt\_init@{bfin\_interrupt\_init}!interrupt.c@{interrupt.c}}
+\subsubsection{\texorpdfstring{bfin\_interrupt\_init()}{bfin\_interrupt\_init()}}
+{\footnotesize\ttfamily void bfin\+\_\+interrupt\+\_\+init (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+Initializes the interrupt module The bf52x has 8 I\+AR registers but they do not have a constant pitch.\mbox{\Hypertarget{TLL6527M_2start_2interrupt_8c_a62360f617682526a248c4c0c5575bcb2}\label{TLL6527M_2start_2interrupt_8c_a62360f617682526a248c4c0c5575bcb2}} 
+\index{interrupt.c@{interrupt.c}!bfin\_interrupt\_register@{bfin\_interrupt\_register}}
+\index{bfin\_interrupt\_register@{bfin\_interrupt\_register}!interrupt.c@{interrupt.c}}
+\subsubsection{\texorpdfstring{bfin\_interrupt\_register()}{bfin\_interrupt\_register()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} bfin\+\_\+interrupt\+\_\+register (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structbfin__isr__s}{bfin\+\_\+isr\+\_\+t}} $\ast$}]{isr }\end{DoxyParamCaption})}
+
+This routine registers a new I\+SR. It will write a new entry to the I\+VT table 
+\begin{DoxyParams}{Parameters}
+{\em isr} & contains a callback function and source \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+rtems status code 
+\end{DoxyReturn}
+\mbox{\Hypertarget{TLL6527M_2start_2interrupt_8c_ad54189e81a7a3ab2a4b81af78602d2f4}\label{TLL6527M_2start_2interrupt_8c_ad54189e81a7a3ab2a4b81af78602d2f4}} 
+\index{interrupt.c@{interrupt.c}!bfin\_interrupt\_unregister@{bfin\_interrupt\_unregister}}
+\index{bfin\_interrupt\_unregister@{bfin\_interrupt\_unregister}!interrupt.c@{interrupt.c}}
+\subsubsection{\texorpdfstring{bfin\_interrupt\_unregister()}{bfin\_interrupt\_unregister()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} bfin\+\_\+interrupt\+\_\+unregister (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structbfin__isr__s}{bfin\+\_\+isr\+\_\+t}} $\ast$}]{isr }\end{DoxyParamCaption})}
+
+This function unregisters a registered interrupt handler. 
+\begin{DoxyParams}{Parameters}
+{\em isr} & \\
+\hline
+\end{DoxyParams}

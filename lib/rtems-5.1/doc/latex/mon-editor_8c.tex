@@ -1,0 +1,115 @@
+\hypertarget{mon-editor_8c}{}\section{cpukit/libmisc/monitor/mon-\/editor.c File Reference}
+\label{mon-editor_8c}\index{cpukit/libmisc/monitor/mon-\/editor.c@{cpukit/libmisc/monitor/mon-\/editor.c}}
+
+
+Command line editor for R\+T\+E\+MS monitor.  
+
+
+{\ttfamily \#include $<$rtems.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/monitor.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$inttypes.\+h$>$}\newline
+{\ttfamily \#include $<$termios.\+h$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structtranslation__table}{translation\+\_\+table}}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{mon-editor_8c_a63d8e1f09b7393888acab18dfabf5a41}\label{mon-editor_8c_a63d8e1f09b7393888acab18dfabf5a41}} 
+\#define {\bfseries M\+O\+N\+I\+T\+O\+R\+\_\+\+P\+R\+O\+M\+PT}~\char`\"{}rtems\char`\"{}          /$\ast$ will have \textquotesingle{}$>$ \textquotesingle{} appended $\ast$/
+\item 
+\mbox{\Hypertarget{mon-editor_8c_a2f357ce8873460ba025d968f58323f09}\label{mon-editor_8c_a2f357ce8873460ba025d968f58323f09}} 
+\#define {\bfseries K\+E\+Y\+S\+\_\+\+E\+X\+T\+E\+N\+D\+ED}~(0x8000)
+\item 
+\mbox{\Hypertarget{mon-editor_8c_a7d4e6de1e65aeeb996d5dfc221476b11}\label{mon-editor_8c_a7d4e6de1e65aeeb996d5dfc221476b11}} 
+\#define {\bfseries K\+E\+Y\+S\+\_\+\+N\+O\+R\+M\+A\+L\+\_\+\+M\+A\+SK}~(0x00ff)
+\item 
+\mbox{\Hypertarget{mon-editor_8c_a4e721b5287e13d5bcf49cf8a30fc9f12}\label{mon-editor_8c_a4e721b5287e13d5bcf49cf8a30fc9f12}} 
+\#define {\bfseries K\+E\+Y\+S\+\_\+\+I\+NS}~(0)
+\item 
+\mbox{\Hypertarget{mon-editor_8c_a4e21bc577fabeb887e5695c3e1c2072c}\label{mon-editor_8c_a4e21bc577fabeb887e5695c3e1c2072c}} 
+\#define {\bfseries K\+E\+Y\+S\+\_\+\+D\+EL}~(1)
+\item 
+\mbox{\Hypertarget{mon-editor_8c_aeabbeb79ec4be12596cade4d9614ea05}\label{mon-editor_8c_aeabbeb79ec4be12596cade4d9614ea05}} 
+\#define {\bfseries K\+E\+Y\+S\+\_\+\+U\+A\+R\+R\+OW}~(2)
+\item 
+\mbox{\Hypertarget{mon-editor_8c_a144836e2b66a254985575d9e0d934faf}\label{mon-editor_8c_a144836e2b66a254985575d9e0d934faf}} 
+\#define {\bfseries K\+E\+Y\+S\+\_\+\+D\+A\+R\+R\+OW}~(3)
+\item 
+\mbox{\Hypertarget{mon-editor_8c_a031eba461a49291d3ca2cdeb7f7cc7fc}\label{mon-editor_8c_a031eba461a49291d3ca2cdeb7f7cc7fc}} 
+\#define {\bfseries K\+E\+Y\+S\+\_\+\+L\+A\+R\+R\+OW}~(4)
+\item 
+\mbox{\Hypertarget{mon-editor_8c_af91cdbc9a466102eaa9b2258d3600f8a}\label{mon-editor_8c_af91cdbc9a466102eaa9b2258d3600f8a}} 
+\#define {\bfseries K\+E\+Y\+S\+\_\+\+R\+A\+R\+R\+OW}~(5)
+\item 
+\mbox{\Hypertarget{mon-editor_8c_a1fa6cd241bf6e6d0dbd37d102cf9f79b}\label{mon-editor_8c_a1fa6cd241bf6e6d0dbd37d102cf9f79b}} 
+\#define {\bfseries K\+E\+Y\+S\+\_\+\+H\+O\+ME}~(6)
+\item 
+\mbox{\Hypertarget{mon-editor_8c_a2dfe5eb52c2dddf8574639989b868476}\label{mon-editor_8c_a2dfe5eb52c2dddf8574639989b868476}} 
+\#define {\bfseries K\+E\+Y\+S\+\_\+\+E\+ND}~(7)
+\item 
+\mbox{\Hypertarget{mon-editor_8c_ac4cd322a4df46499e2fc9f85316cc8cc}\label{mon-editor_8c_ac4cd322a4df46499e2fc9f85316cc8cc}} 
+\#define {\bfseries K\+E\+Y\+S\+\_\+\+F1}~(8)
+\item 
+\mbox{\Hypertarget{mon-editor_8c_aa578077c29d48d67146d89bfb509bc6e}\label{mon-editor_8c_aa578077c29d48d67146d89bfb509bc6e}} 
+\#define {\bfseries K\+E\+Y\+S\+\_\+\+F2}~(9)
+\item 
+\mbox{\Hypertarget{mon-editor_8c_a3484e57321a09eea2db6b1514ba6273d}\label{mon-editor_8c_a3484e57321a09eea2db6b1514ba6273d}} 
+\#define {\bfseries K\+E\+Y\+S\+\_\+\+F3}~(10)
+\item 
+\mbox{\Hypertarget{mon-editor_8c_a44289fca47aa6767201286316853509b}\label{mon-editor_8c_a44289fca47aa6767201286316853509b}} 
+\#define {\bfseries K\+E\+Y\+S\+\_\+\+F4}~(11)
+\item 
+\mbox{\Hypertarget{mon-editor_8c_a56c5dfec171dc0bff08bc63398441b1c}\label{mon-editor_8c_a56c5dfec171dc0bff08bc63398441b1c}} 
+\#define {\bfseries K\+E\+Y\+S\+\_\+\+F5}~(12)
+\item 
+\mbox{\Hypertarget{mon-editor_8c_a734f7bfeedaaaf1c5d9bbd85b64cd785}\label{mon-editor_8c_a734f7bfeedaaaf1c5d9bbd85b64cd785}} 
+\#define {\bfseries K\+E\+Y\+S\+\_\+\+F6}~(13)
+\item 
+\mbox{\Hypertarget{mon-editor_8c_a52cfb457633899daea53aa7935acea8b}\label{mon-editor_8c_a52cfb457633899daea53aa7935acea8b}} 
+\#define {\bfseries K\+E\+Y\+S\+\_\+\+F7}~(14)
+\item 
+\mbox{\Hypertarget{mon-editor_8c_a40391e40ec030d3dab9dd56c2f798ba9}\label{mon-editor_8c_a40391e40ec030d3dab9dd56c2f798ba9}} 
+\#define {\bfseries K\+E\+Y\+S\+\_\+\+F8}~(15)
+\item 
+\mbox{\Hypertarget{mon-editor_8c_a15344ee2d43deac4a48bd64f127256f9}\label{mon-editor_8c_a15344ee2d43deac4a48bd64f127256f9}} 
+\#define {\bfseries K\+E\+Y\+S\+\_\+\+F9}~(16)
+\item 
+\mbox{\Hypertarget{mon-editor_8c_aa81e303f27e8cd622a9f8a96883f62ed}\label{mon-editor_8c_aa81e303f27e8cd622a9f8a96883f62ed}} 
+\#define {\bfseries K\+E\+Y\+S\+\_\+\+F10}~(17)
+\item 
+\mbox{\Hypertarget{mon-editor_8c_a1c212c859799e2f51e42eefd2b5e37d8}\label{mon-editor_8c_a1c212c859799e2f51e42eefd2b5e37d8}} 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+C\+O\+M\+M\+A\+N\+D\+\_\+\+B\+U\+F\+F\+E\+R\+\_\+\+S\+I\+ZE}~(75)
+\item 
+\mbox{\Hypertarget{mon-editor_8c_a402717acedb6202380b365a8be46c4fd}\label{mon-editor_8c_a402717acedb6202380b365a8be46c4fd}} 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+C\+O\+M\+M\+A\+N\+D\+\_\+\+H\+I\+S\+T\+O\+R\+I\+ES}~(20)
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{mon-editor_8c_a3e6bea72b3f9baa53dfaeabbd7dd06d1}\label{mon-editor_8c_a3e6bea72b3f9baa53dfaeabbd7dd06d1}} 
+int {\bfseries rtems\+\_\+monitor\+\_\+make\+\_\+argv} (char $\ast$\mbox{\hyperlink{sun4u_2tte_8h_a7c4d12da78e9da48a4a9ad36b62d3232}{cp}}, int $\ast$argc\+\_\+p, char $\ast$$\ast$argv)
+\item 
+\mbox{\Hypertarget{mon-editor_8c_a4737077a440da29c94a33971882bffca}\label{mon-editor_8c_a4737077a440da29c94a33971882bffca}} 
+int {\bfseries rtems\+\_\+monitor\+\_\+command\+\_\+read} (char $\ast$command, int $\ast$argc, char $\ast$$\ast$argv)
+\item 
+\mbox{\Hypertarget{mon-editor_8c_ad8acb032203e41815aa2894e82875e54}\label{mon-editor_8c_ad8acb032203e41815aa2894e82875e54}} 
+void {\bfseries rtems\+\_\+monitor\+\_\+task} (\mbox{\hyperlink{group__ClassicTasks_gaf202f985ef5a3156f29eae99a0536842}{rtems\+\_\+task\+\_\+argument}} monitor\+\_\+flags)
+\item 
+\mbox{\Hypertarget{mon-editor_8c_a503b370b65a466e1f3b8ac2340707fbd}\label{mon-editor_8c_a503b370b65a466e1f3b8ac2340707fbd}} 
+void {\bfseries rtems\+\_\+monitor\+\_\+kill} (void)
+\item 
+\mbox{\Hypertarget{mon-editor_8c_a814628b630b2e2579b32ea1ee7216e4c}\label{mon-editor_8c_a814628b630b2e2579b32ea1ee7216e4c}} 
+void {\bfseries rtems\+\_\+monitor\+\_\+init} (uint32\+\_\+t monitor\+\_\+flags)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Command line editor for R\+T\+E\+MS monitor. 
+

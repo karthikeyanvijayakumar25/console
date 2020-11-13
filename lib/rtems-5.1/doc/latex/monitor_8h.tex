@@ -1,0 +1,449 @@
+\hypertarget{monitor_8h}{}\section{cpukit/include/rtems/monitor.h File Reference}
+\label{monitor_8h}\index{cpukit/include/rtems/monitor.h@{cpukit/include/rtems/monitor.h}}
+
+
+The R\+T\+E\+MS Monitor Task.  
+
+
+{\ttfamily \#include $<$rtems/score/objectimpl.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/error.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/config.\+h$>$}\newline
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structrtems__monitor__symbol__t}{rtems\+\_\+monitor\+\_\+symbol\+\_\+t}}
+\item 
+struct \mbox{\hyperlink{structrtems__monitor__generic__t}{rtems\+\_\+monitor\+\_\+generic\+\_\+t}}
+\item 
+struct \mbox{\hyperlink{structrtems__monitor__task__t}{rtems\+\_\+monitor\+\_\+task\+\_\+t}}
+\item 
+struct \mbox{\hyperlink{structrtems__monitor__init__task__t}{rtems\+\_\+monitor\+\_\+init\+\_\+task\+\_\+t}}
+\item 
+struct \mbox{\hyperlink{structrtems__monitor__queue__t}{rtems\+\_\+monitor\+\_\+queue\+\_\+t}}
+\item 
+struct \mbox{\hyperlink{structrtems__monitor__sema__t}{rtems\+\_\+monitor\+\_\+sema\+\_\+t}}
+\item 
+struct \mbox{\hyperlink{structrtems__monitor__extension__t}{rtems\+\_\+monitor\+\_\+extension\+\_\+t}}
+\item 
+struct \mbox{\hyperlink{structrtems__monitor__region__t}{rtems\+\_\+monitor\+\_\+region\+\_\+t}}
+\item 
+struct \mbox{\hyperlink{structrtems__monitor__part__t}{rtems\+\_\+monitor\+\_\+part\+\_\+t}}
+\item 
+struct \mbox{\hyperlink{structrtems__monitor__driver__t}{rtems\+\_\+monitor\+\_\+driver\+\_\+t}}
+\item 
+struct \mbox{\hyperlink{structrtems__monitor__config__t}{rtems\+\_\+monitor\+\_\+config\+\_\+t}}
+\item 
+union \mbox{\hyperlink{unionrtems__monitor__union__t}{rtems\+\_\+monitor\+\_\+union\+\_\+t}}
+\item 
+struct \mbox{\hyperlink{structrtems__monitor__server__request__t}{rtems\+\_\+monitor\+\_\+server\+\_\+request\+\_\+t}}
+\item 
+struct \mbox{\hyperlink{structrtems__monitor__server__response__t}{rtems\+\_\+monitor\+\_\+server\+\_\+response\+\_\+t}}
+\item 
+union \mbox{\hyperlink{union__rtems__monitor__command__arg__t}{\+\_\+rtems\+\_\+monitor\+\_\+command\+\_\+arg\+\_\+t}}
+\item 
+struct \mbox{\hyperlink{structrtems__monitor__command__entry__s}{rtems\+\_\+monitor\+\_\+command\+\_\+entry\+\_\+s}}
+\item 
+struct \mbox{\hyperlink{structrtems__monitor__object__info__t}{rtems\+\_\+monitor\+\_\+object\+\_\+info\+\_\+t}}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{monitor_8h_abdb9fa5b79685850ae5c2b65ae5fe40c}\label{monitor_8h_abdb9fa5b79685850ae5c2b65ae5fe40c}} 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+M\+O\+N\+I\+T\+O\+R\+\_\+\+S\+U\+S\+P\+E\+ND}~0x0001		/$\ast$ suspend monitor on startup $\ast$/
+\item 
+\mbox{\Hypertarget{monitor_8h_aa6dfa360e2ec9d83547411e0166e5c16}\label{monitor_8h_aa6dfa360e2ec9d83547411e0166e5c16}} 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+M\+O\+N\+I\+T\+O\+R\+\_\+\+G\+L\+O\+B\+AL}~0x0002          /$\ast$ monitor should be global $\ast$/
+\item 
+\mbox{\Hypertarget{monitor_8h_a077fe91b2c4946d5042e2cefd1cbdad7}\label{monitor_8h_a077fe91b2c4946d5042e2cefd1cbdad7}} 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+M\+O\+N\+I\+T\+O\+R\+\_\+\+N\+O\+T\+A\+SK}~0x0004 /$\ast$ do not start monitor task $\ast$/
+\item 
+\mbox{\Hypertarget{monitor_8h_a00bef62c2e378c2bd06056b69e74089a}\label{monitor_8h_a00bef62c2e378c2bd06056b69e74089a}} 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+M\+O\+N\+I\+T\+O\+R\+\_\+\+N\+O\+S\+Y\+M\+L\+O\+AD}~0x0008 /$\ast$ do not load symbols       $\ast$/
+\item 
+\mbox{\Hypertarget{monitor_8h_a4978daf9ed32d5ee03bb1b577acb2481}\label{monitor_8h_a4978daf9ed32d5ee03bb1b577acb2481}} 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+M\+O\+N\+I\+T\+O\+R\+\_\+\+W\+A\+I\+T\+Q\+U\+IT}~0x0010 /$\ast$ wait for monitor task to terminate $\ast$/
+\item 
+\mbox{\Hypertarget{monitor_8h_a7e1fad848127b1dad4ee9fdd73f106b6}\label{monitor_8h_a7e1fad848127b1dad4ee9fdd73f106b6}} 
+\#define {\bfseries M\+O\+N\+I\+T\+O\+R\+\_\+\+S\+Y\+M\+B\+O\+L\+\_\+\+L\+EN}~20
+\item 
+\mbox{\Hypertarget{monitor_8h_a595f1f4b8afb749263c016145f42cbb4}\label{monitor_8h_a595f1f4b8afb749263c016145f42cbb4}} 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+M\+O\+N\+I\+T\+O\+R\+\_\+\+N\+A\+ME}~(\mbox{\hyperlink{group__ClassicClassInfo_ga3f71442fa9093ffaa102cde5dcbd7daf}{rtems\+\_\+build\+\_\+name}}(\textquotesingle{}R\textquotesingle{}, \textquotesingle{}M\textquotesingle{}, \textquotesingle{}O\textquotesingle{}, \textquotesingle{}N\textquotesingle{}))
+\item 
+\mbox{\Hypertarget{monitor_8h_ae945c738f9f6b6c93b70ea13c3258b80}\label{monitor_8h_ae945c738f9f6b6c93b70ea13c3258b80}} 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+M\+O\+N\+I\+T\+O\+R\+\_\+\+S\+E\+R\+V\+E\+R\+\_\+\+N\+A\+ME}~(\mbox{\hyperlink{group__ClassicClassInfo_ga3f71442fa9093ffaa102cde5dcbd7daf}{rtems\+\_\+build\+\_\+name}}(\textquotesingle{}R\textquotesingle{}, \textquotesingle{}M\textquotesingle{}, \textquotesingle{}S\textquotesingle{}, \textquotesingle{}V\textquotesingle{}))
+\item 
+\mbox{\Hypertarget{monitor_8h_a4182a074969c6b605bf9e10e936ec934}\label{monitor_8h_a4182a074969c6b605bf9e10e936ec934}} 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+M\+O\+N\+I\+T\+O\+R\+\_\+\+Q\+U\+E\+U\+E\+\_\+\+N\+A\+ME}~(\mbox{\hyperlink{group__ClassicClassInfo_ga3f71442fa9093ffaa102cde5dcbd7daf}{rtems\+\_\+build\+\_\+name}}(\textquotesingle{}R\textquotesingle{}, \textquotesingle{}M\textquotesingle{}, \textquotesingle{}S\textquotesingle{}, \textquotesingle{}Q\textquotesingle{}))
+\item 
+\mbox{\Hypertarget{monitor_8h_a2717826c7ec030e84ba5f6ac37e24fb8}\label{monitor_8h_a2717826c7ec030e84ba5f6ac37e24fb8}} 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+M\+O\+N\+I\+T\+O\+R\+\_\+\+R\+E\+S\+P\+O\+N\+S\+E\+\_\+\+Q\+U\+E\+U\+E\+\_\+\+N\+A\+ME}~(\mbox{\hyperlink{group__ClassicClassInfo_ga3f71442fa9093ffaa102cde5dcbd7daf}{rtems\+\_\+build\+\_\+name}}(\textquotesingle{}R\textquotesingle{}, \textquotesingle{}M\textquotesingle{}, \textquotesingle{}R\textquotesingle{}, \textquotesingle{}Q\textquotesingle{}))
+\item 
+\mbox{\Hypertarget{monitor_8h_a02afb350337d397928abdddb665ab8d4}\label{monitor_8h_a02afb350337d397928abdddb665ab8d4}} 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+M\+O\+N\+I\+T\+O\+R\+\_\+\+S\+E\+R\+V\+E\+R\+\_\+\+R\+E\+S\+P\+O\+N\+SE}~0x0001
+\item 
+\mbox{\Hypertarget{monitor_8h_a8294a105e4cd2e51de5b5ad56fbd4186}\label{monitor_8h_a8294a105e4cd2e51de5b5ad56fbd4186}} 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+M\+O\+N\+I\+T\+O\+R\+\_\+\+S\+E\+R\+V\+E\+R\+\_\+\+C\+A\+N\+O\+N\+I\+C\+AL}~0x0002
+\item 
+\mbox{\Hypertarget{monitor_8h_a8d928131c70c4bcef597ad3ce33bd5c4}\label{monitor_8h_a8d928131c70c4bcef597ad3ce33bd5c4}} 
+\#define {\bfseries M\+O\+N\+I\+T\+O\+R\+\_\+\+W\+A\+K\+E\+U\+P\+\_\+\+E\+V\+E\+NT}~\mbox{\hyperlink{group__ClassicEventSet_ga40310258a3cbe2bef8420158c59f6acc}{R\+T\+E\+M\+S\+\_\+\+E\+V\+E\+N\+T\+\_\+0}}
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{monitor_8h_ae3ff3317922589c62d31f96244563071}\label{monitor_8h_ae3ff3317922589c62d31f96244563071}} 
+typedef struct \mbox{\hyperlink{struct__rtems__symbol__t}{\+\_\+rtems\+\_\+symbol\+\_\+t}} {\bfseries rtems\+\_\+symbol\+\_\+t}
+\item 
+\mbox{\Hypertarget{monitor_8h_a34553f3ad230d0a5bbc13c45bfda524d}\label{monitor_8h_a34553f3ad230d0a5bbc13c45bfda524d}} 
+typedef struct \mbox{\hyperlink{struct__rtems__symbol__table__t}{\+\_\+rtems\+\_\+symbol\+\_\+table\+\_\+t}} {\bfseries rtems\+\_\+symbol\+\_\+table\+\_\+t}
+\item 
+\mbox{\Hypertarget{monitor_8h_acd72581bdd26c387da543c5f9a3e921b}\label{monitor_8h_acd72581bdd26c387da543c5f9a3e921b}} 
+typedef struct \mbox{\hyperlink{structrtems__monitor__command__entry__s}{rtems\+\_\+monitor\+\_\+command\+\_\+entry\+\_\+s}} {\bfseries rtems\+\_\+monitor\+\_\+command\+\_\+entry\+\_\+t}
+\item 
+\mbox{\Hypertarget{monitor_8h_a26e8a4b8ea2f8309180b49f36580e0ec}\label{monitor_8h_a26e8a4b8ea2f8309180b49f36580e0ec}} 
+typedef union \mbox{\hyperlink{union__rtems__monitor__command__arg__t}{\+\_\+rtems\+\_\+monitor\+\_\+command\+\_\+arg\+\_\+t}} {\bfseries rtems\+\_\+monitor\+\_\+command\+\_\+arg\+\_\+t}
+\item 
+\mbox{\Hypertarget{monitor_8h_ad610a2ee39a94909e8b5a253ab4a18aa}\label{monitor_8h_ad610a2ee39a94909e8b5a253ab4a18aa}} 
+typedef void($\ast$ {\bfseries rtems\+\_\+monitor\+\_\+command\+\_\+function\+\_\+t}) (int argc, char $\ast$$\ast$argv, const \mbox{\hyperlink{union__rtems__monitor__command__arg__t}{rtems\+\_\+monitor\+\_\+command\+\_\+arg\+\_\+t}} $\ast$command\+\_\+arg, bool verbose)
+\item 
+\mbox{\Hypertarget{monitor_8h_aacf7d751739e0986b2e54941452b3b5b}\label{monitor_8h_aacf7d751739e0986b2e54941452b3b5b}} 
+typedef const void $\ast$($\ast$ {\bfseries rtems\+\_\+monitor\+\_\+object\+\_\+next\+\_\+fn}) (void $\ast$, void $\ast$, \mbox{\hyperlink{group__ClassicTasks_gab20892b814dced7dd4e5b9bf42becd57}{rtems\+\_\+id}} $\ast$)
+\item 
+\mbox{\Hypertarget{monitor_8h_aae16058eee24afedf7312305d02c6639}\label{monitor_8h_aae16058eee24afedf7312305d02c6639}} 
+typedef void($\ast$ {\bfseries rtems\+\_\+monitor\+\_\+object\+\_\+canonical\+\_\+fn}) (void $\ast$, const void $\ast$)
+\item 
+\mbox{\Hypertarget{monitor_8h_a9770de9e5ac254030852a8cc05bfea02}\label{monitor_8h_a9770de9e5ac254030852a8cc05bfea02}} 
+typedef void($\ast$ {\bfseries rtems\+\_\+monitor\+\_\+object\+\_\+dump\+\_\+header\+\_\+fn}) (bool)
+\item 
+\mbox{\Hypertarget{monitor_8h_aebc44b6e79f7ecd79b7af371804e522d}\label{monitor_8h_aebc44b6e79f7ecd79b7af371804e522d}} 
+typedef void($\ast$ {\bfseries rtems\+\_\+monitor\+\_\+object\+\_\+dump\+\_\+fn}) (void $\ast$, bool)
+\item 
+\mbox{\Hypertarget{monitor_8h_aa315863b1f30d867477c1d15ea4a6227}\label{monitor_8h_aa315863b1f30d867477c1d15ea4a6227}} 
+typedef bool($\ast$ {\bfseries rtems\+\_\+monitor\+\_\+per\+\_\+command\+\_\+routine}) (const \mbox{\hyperlink{structrtems__monitor__command__entry__s}{rtems\+\_\+monitor\+\_\+command\+\_\+entry\+\_\+t}} $\ast$, void $\ast$)
+\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{monitor_8h_a899c9bda5c67b4c371dc9d12155fa254}\label{monitor_8h_a899c9bda5c67b4c371dc9d12155fa254}} 
+enum {\bfseries rtems\+\_\+monitor\+\_\+object\+\_\+type\+\_\+t} \{ \newline
+{\bfseries R\+T\+E\+M\+S\+\_\+\+M\+O\+N\+I\+T\+O\+R\+\_\+\+O\+B\+J\+E\+C\+T\+\_\+\+I\+N\+V\+A\+L\+ID} = O\+B\+J\+E\+C\+T\+S\+\_\+\+C\+L\+A\+S\+S\+I\+C\+\_\+\+N\+O\+\_\+\+C\+L\+A\+SS, 
+{\bfseries R\+T\+E\+M\+S\+\_\+\+M\+O\+N\+I\+T\+O\+R\+\_\+\+O\+B\+J\+E\+C\+T\+\_\+\+T\+A\+SK} = O\+B\+J\+E\+C\+T\+S\+\_\+\+R\+T\+E\+M\+S\+\_\+\+T\+A\+S\+KS, 
+{\bfseries R\+T\+E\+M\+S\+\_\+\+M\+O\+N\+I\+T\+O\+R\+\_\+\+O\+B\+J\+E\+C\+T\+\_\+\+E\+X\+T\+E\+N\+S\+I\+ON} = O\+B\+J\+E\+C\+T\+S\+\_\+\+R\+T\+E\+M\+S\+\_\+\+E\+X\+T\+E\+N\+S\+I\+O\+NS, 
+{\bfseries R\+T\+E\+M\+S\+\_\+\+M\+O\+N\+I\+T\+O\+R\+\_\+\+O\+B\+J\+E\+C\+T\+\_\+\+Q\+U\+E\+UE} = O\+B\+J\+E\+C\+T\+S\+\_\+\+R\+T\+E\+M\+S\+\_\+\+M\+E\+S\+S\+A\+G\+E\+\_\+\+Q\+U\+E\+U\+ES, 
+\newline
+{\bfseries R\+T\+E\+M\+S\+\_\+\+M\+O\+N\+I\+T\+O\+R\+\_\+\+O\+B\+J\+E\+C\+T\+\_\+\+S\+E\+M\+A\+P\+H\+O\+RE} = O\+B\+J\+E\+C\+T\+S\+\_\+\+R\+T\+E\+M\+S\+\_\+\+S\+E\+M\+A\+P\+H\+O\+R\+ES, 
+{\bfseries R\+T\+E\+M\+S\+\_\+\+M\+O\+N\+I\+T\+O\+R\+\_\+\+O\+B\+J\+E\+C\+T\+\_\+\+P\+A\+R\+T\+I\+T\+I\+ON} = O\+B\+J\+E\+C\+T\+S\+\_\+\+R\+T\+E\+M\+S\+\_\+\+P\+A\+R\+T\+I\+T\+I\+O\+NS, 
+{\bfseries R\+T\+E\+M\+S\+\_\+\+M\+O\+N\+I\+T\+O\+R\+\_\+\+O\+B\+J\+E\+C\+T\+\_\+\+R\+E\+G\+I\+ON} = O\+B\+J\+E\+C\+T\+S\+\_\+\+R\+T\+E\+M\+S\+\_\+\+R\+E\+G\+I\+O\+NS, 
+{\bfseries R\+T\+E\+M\+S\+\_\+\+M\+O\+N\+I\+T\+O\+R\+\_\+\+O\+B\+J\+E\+C\+T\+\_\+\+P\+O\+RT} = O\+B\+J\+E\+C\+T\+S\+\_\+\+R\+T\+E\+M\+S\+\_\+\+P\+O\+R\+TS, 
+\newline
+{\bfseries R\+T\+E\+M\+S\+\_\+\+M\+O\+N\+I\+T\+O\+R\+\_\+\+O\+B\+J\+E\+C\+T\+\_\+\+D\+R\+I\+V\+ER} = O\+B\+J\+E\+C\+T\+S\+\_\+\+R\+T\+E\+M\+S\+\_\+\+C\+L\+A\+S\+S\+E\+S\+\_\+\+L\+A\+S\+T+1, 
+{\bfseries R\+T\+E\+M\+S\+\_\+\+M\+O\+N\+I\+T\+O\+R\+\_\+\+O\+B\+J\+E\+C\+T\+\_\+\+D\+N\+A\+ME}, 
+{\bfseries R\+T\+E\+M\+S\+\_\+\+M\+O\+N\+I\+T\+O\+R\+\_\+\+O\+B\+J\+E\+C\+T\+\_\+\+C\+O\+N\+F\+IG}, 
+{\bfseries R\+T\+E\+M\+S\+\_\+\+M\+O\+N\+I\+T\+O\+R\+\_\+\+O\+B\+J\+E\+C\+T\+\_\+\+I\+N\+I\+T\+\_\+\+T\+A\+SK}, 
+\newline
+{\bfseries R\+T\+E\+M\+S\+\_\+\+M\+O\+N\+I\+T\+O\+R\+\_\+\+O\+B\+J\+E\+C\+T\+\_\+\+M\+P\+CI}, 
+{\bfseries R\+T\+E\+M\+S\+\_\+\+M\+O\+N\+I\+T\+O\+R\+\_\+\+O\+B\+J\+E\+C\+T\+\_\+\+S\+Y\+M\+B\+OL}, 
+{\bfseries R\+T\+E\+M\+S\+\_\+\+M\+O\+N\+I\+T\+O\+R\+\_\+\+O\+B\+J\+E\+C\+T\+\_\+\+P\+T\+H\+R\+E\+AD}
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{monitor_8h_ac354e27b4d00e2381c7b813014cde2a1}\label{monitor_8h_ac354e27b4d00e2381c7b813014cde2a1}} 
+void {\bfseries rtems\+\_\+monitor\+\_\+pause\+\_\+cmd} (int, char $\ast$$\ast$, const \mbox{\hyperlink{union__rtems__monitor__command__arg__t}{rtems\+\_\+monitor\+\_\+command\+\_\+arg\+\_\+t}} $\ast$, bool)
+\item 
+\mbox{\Hypertarget{monitor_8h_a707dfb38ff3e291bc5a9c542d624d073}\label{monitor_8h_a707dfb38ff3e291bc5a9c542d624d073}} 
+void {\bfseries rtems\+\_\+monitor\+\_\+fatal\+\_\+cmd} (int, char $\ast$$\ast$, const \mbox{\hyperlink{union__rtems__monitor__command__arg__t}{rtems\+\_\+monitor\+\_\+command\+\_\+arg\+\_\+t}} $\ast$, bool)
+\item 
+\mbox{\Hypertarget{monitor_8h_a9644e3b9a8a4d11e5c72dcc084cc0caf}\label{monitor_8h_a9644e3b9a8a4d11e5c72dcc084cc0caf}} 
+void {\bfseries rtems\+\_\+monitor\+\_\+continue\+\_\+cmd} (int, char $\ast$$\ast$, const \mbox{\hyperlink{union__rtems__monitor__command__arg__t}{rtems\+\_\+monitor\+\_\+command\+\_\+arg\+\_\+t}} $\ast$, bool)
+\item 
+\mbox{\Hypertarget{monitor_8h_a07a2599da4a62ad4e3850046c275663d}\label{monitor_8h_a07a2599da4a62ad4e3850046c275663d}} 
+void {\bfseries rtems\+\_\+monitor\+\_\+debugger\+\_\+cmd} (int, char $\ast$$\ast$, const \mbox{\hyperlink{union__rtems__monitor__command__arg__t}{rtems\+\_\+monitor\+\_\+command\+\_\+arg\+\_\+t}} $\ast$, bool)
+\item 
+\mbox{\Hypertarget{monitor_8h_a1e03b32df9255d0605d470e5f3bb4b17}\label{monitor_8h_a1e03b32df9255d0605d470e5f3bb4b17}} 
+void {\bfseries rtems\+\_\+monitor\+\_\+reset\+\_\+cmd} (int, char $\ast$$\ast$, const \mbox{\hyperlink{union__rtems__monitor__command__arg__t}{rtems\+\_\+monitor\+\_\+command\+\_\+arg\+\_\+t}} $\ast$, bool)
+\item 
+\mbox{\Hypertarget{monitor_8h_aa692d380d51508a761ccea48ce31d835}\label{monitor_8h_aa692d380d51508a761ccea48ce31d835}} 
+void {\bfseries rtems\+\_\+monitor\+\_\+node\+\_\+cmd} (int, char $\ast$$\ast$, const \mbox{\hyperlink{union__rtems__monitor__command__arg__t}{rtems\+\_\+monitor\+\_\+command\+\_\+arg\+\_\+t}} $\ast$, bool)
+\item 
+\mbox{\Hypertarget{monitor_8h_ac07bfc958a870dc1700c7337f9114fc0}\label{monitor_8h_ac07bfc958a870dc1700c7337f9114fc0}} 
+void {\bfseries rtems\+\_\+monitor\+\_\+symbols\+\_\+loadup} (void)
+\item 
+\mbox{\Hypertarget{monitor_8h_acdc2596b0b9c564a5dc110b418949e18}\label{monitor_8h_acdc2596b0b9c564a5dc110b418949e18}} 
+int {\bfseries rtems\+\_\+monitor\+\_\+insert\+\_\+cmd} (\mbox{\hyperlink{structrtems__monitor__command__entry__s}{rtems\+\_\+monitor\+\_\+command\+\_\+entry\+\_\+t}} $\ast$)
+\item 
+\mbox{\Hypertarget{monitor_8h_a9dce13aebc7d9c0361ecd5490cd39c5e}\label{monitor_8h_a9dce13aebc7d9c0361ecd5490cd39c5e}} 
+void {\bfseries rtems\+\_\+monitor\+\_\+wakeup} (void)
+\item 
+void \mbox{\hyperlink{monitor_8h_acbf4a9f36893c4610a6fa071c2ce9a93}{rtems\+\_\+monitor\+\_\+command\+\_\+iterate}} (rtems\+\_\+monitor\+\_\+per\+\_\+command\+\_\+routine routine, void $\ast$arg)
+\begin{DoxyCompactList}\small\item\em Iterates through all registerd commands. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{monitor_8h_abc91fe2efc1e73bcc798c772bd163ea2}\label{monitor_8h_abc91fe2efc1e73bcc798c772bd163ea2}} 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} {\bfseries rtems\+\_\+monitor\+\_\+suspend} (\mbox{\hyperlink{group__ClassicTasks_gad39c43f949683d46874e3a5586b93aee}{rtems\+\_\+interval}} timeout)
+\item 
+\mbox{\Hypertarget{monitor_8h_a503b370b65a466e1f3b8ac2340707fbd}\label{monitor_8h_a503b370b65a466e1f3b8ac2340707fbd}} 
+void {\bfseries rtems\+\_\+monitor\+\_\+kill} (void)
+\item 
+\mbox{\Hypertarget{monitor_8h_a596d273014b53a4906ab4bc739115a9b}\label{monitor_8h_a596d273014b53a4906ab4bc739115a9b}} 
+void {\bfseries rtems\+\_\+monitor\+\_\+init} (uint32\+\_\+t)
+\item 
+\mbox{\Hypertarget{monitor_8h_a4c6e7a96fc37e18b45b9d8f79d678739}\label{monitor_8h_a4c6e7a96fc37e18b45b9d8f79d678739}} 
+void {\bfseries rtems\+\_\+monitor\+\_\+task} (\mbox{\hyperlink{group__ClassicTasks_gaf202f985ef5a3156f29eae99a0536842}{rtems\+\_\+task\+\_\+argument}})
+\item 
+\mbox{\Hypertarget{monitor_8h_a03bb352865788430184a58aaead4286d}\label{monitor_8h_a03bb352865788430184a58aaead4286d}} 
+void {\bfseries rtems\+\_\+monitor\+\_\+server\+\_\+kill} (void)
+\item 
+\mbox{\Hypertarget{monitor_8h_a55c8b818dbb680f2398e17ed01afc50a}\label{monitor_8h_a55c8b818dbb680f2398e17ed01afc50a}} 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} {\bfseries rtems\+\_\+monitor\+\_\+server\+\_\+request} (uint32\+\_\+t, \mbox{\hyperlink{structrtems__monitor__server__request__t}{rtems\+\_\+monitor\+\_\+server\+\_\+request\+\_\+t}} $\ast$, \mbox{\hyperlink{structrtems__monitor__server__response__t}{rtems\+\_\+monitor\+\_\+server\+\_\+response\+\_\+t}} $\ast$)
+\item 
+\mbox{\Hypertarget{monitor_8h_ad31941d1ce739b6e5f2905cb1e70a42f}\label{monitor_8h_ad31941d1ce739b6e5f2905cb1e70a42f}} 
+void {\bfseries rtems\+\_\+monitor\+\_\+server\+\_\+task} (\mbox{\hyperlink{group__ClassicTasks_gaf202f985ef5a3156f29eae99a0536842}{rtems\+\_\+task\+\_\+argument}})
+\item 
+\mbox{\Hypertarget{monitor_8h_a2a85d58df4d7bee9eb2694dd915367ea}\label{monitor_8h_a2a85d58df4d7bee9eb2694dd915367ea}} 
+void {\bfseries rtems\+\_\+monitor\+\_\+server\+\_\+init} (uint32\+\_\+t)
+\item 
+\mbox{\Hypertarget{monitor_8h_ab43a2f5dbc9a01572e26f7f46212f5ec}\label{monitor_8h_ab43a2f5dbc9a01572e26f7f46212f5ec}} 
+int {\bfseries rtems\+\_\+monitor\+\_\+make\+\_\+argv} (char $\ast$, int $\ast$, char $\ast$$\ast$)
+\item 
+\mbox{\Hypertarget{monitor_8h_aa4f3ce419d04c707bac44bef3fc049be}\label{monitor_8h_aa4f3ce419d04c707bac44bef3fc049be}} 
+int {\bfseries rtems\+\_\+monitor\+\_\+command\+\_\+read} (char $\ast$, int $\ast$, char $\ast$$\ast$)
+\item 
+\mbox{\Hypertarget{monitor_8h_a8b2bbf3d6b5c4dfe43b44ac7ed74f3a4}\label{monitor_8h_a8b2bbf3d6b5c4dfe43b44ac7ed74f3a4}} 
+void {\bfseries rtems\+\_\+monitor\+\_\+command\+\_\+usage} (const \mbox{\hyperlink{structrtems__monitor__command__entry__s}{rtems\+\_\+monitor\+\_\+command\+\_\+entry\+\_\+t}} $\ast$, const char $\ast$)
+\item 
+\mbox{\Hypertarget{monitor_8h_a77d837a310d34d1894c3319b2984d2b0}\label{monitor_8h_a77d837a310d34d1894c3319b2984d2b0}} 
+void {\bfseries rtems\+\_\+monitor\+\_\+help\+\_\+cmd} (int, char $\ast$$\ast$, const \mbox{\hyperlink{union__rtems__monitor__command__arg__t}{rtems\+\_\+monitor\+\_\+command\+\_\+arg\+\_\+t}} $\ast$, bool)
+\item 
+const \mbox{\hyperlink{structrtems__monitor__command__entry__s}{rtems\+\_\+monitor\+\_\+command\+\_\+entry\+\_\+t}} $\ast$ \mbox{\hyperlink{monitor_8h_a8ed4eec2eee505958982dcbc7651582a}{rtems\+\_\+monitor\+\_\+command\+\_\+lookup}} (const char $\ast$name)
+\begin{DoxyCompactList}\small\item\em Looks for a command with the name {\itshape name} in the list of registered commands. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{monitor_8h_a17a7b477cc976bc5b0584918924bacff}\label{monitor_8h_a17a7b477cc976bc5b0584918924bacff}} 
+void {\bfseries rtems\+\_\+monitor\+\_\+separator} (void)
+\item 
+\mbox{\Hypertarget{monitor_8h_aac38261ce5c1db064b4a8097d139759f}\label{monitor_8h_aac38261ce5c1db064b4a8097d139759f}} 
+uint32\+\_\+t {\bfseries rtems\+\_\+monitor\+\_\+pad} (uint32\+\_\+t dest\+\_\+col, uint32\+\_\+t curr\+\_\+col)
+\item 
+\mbox{\Hypertarget{monitor_8h_a0a3317c43f54cdac53d4fb867d2f352d}\label{monitor_8h_a0a3317c43f54cdac53d4fb867d2f352d}} 
+int {\bfseries rtems\+\_\+monitor\+\_\+dump\+\_\+decimal} (uint32\+\_\+t num)
+\item 
+\mbox{\Hypertarget{monitor_8h_a4c5ee4778fa3f4a01a2b3cff6459565b}\label{monitor_8h_a4c5ee4778fa3f4a01a2b3cff6459565b}} 
+int {\bfseries rtems\+\_\+monitor\+\_\+dump\+\_\+hex} (uint32\+\_\+t num)
+\item 
+\mbox{\Hypertarget{monitor_8h_ae98f15fa6cbfd445034514a22c72f88d}\label{monitor_8h_ae98f15fa6cbfd445034514a22c72f88d}} 
+int {\bfseries rtems\+\_\+monitor\+\_\+dump\+\_\+addr} (const void $\ast$addr)
+\item 
+\mbox{\Hypertarget{monitor_8h_a5985e8a569b06883bbba4486998ba803}\label{monitor_8h_a5985e8a569b06883bbba4486998ba803}} 
+int {\bfseries rtems\+\_\+monitor\+\_\+dump\+\_\+id} (\mbox{\hyperlink{group__ClassicTasks_gab20892b814dced7dd4e5b9bf42becd57}{rtems\+\_\+id}} id)
+\item 
+\mbox{\Hypertarget{monitor_8h_a3dfb0490788be3c879467d5b0cc11637}\label{monitor_8h_a3dfb0490788be3c879467d5b0cc11637}} 
+int {\bfseries rtems\+\_\+monitor\+\_\+dump\+\_\+name} (\mbox{\hyperlink{group__ClassicTasks_gab20892b814dced7dd4e5b9bf42becd57}{rtems\+\_\+id}} id)
+\item 
+\mbox{\Hypertarget{monitor_8h_a777a275b30b998288961aae9bb5f9df7}\label{monitor_8h_a777a275b30b998288961aae9bb5f9df7}} 
+int {\bfseries rtems\+\_\+monitor\+\_\+dump\+\_\+priority} (\mbox{\hyperlink{group__ClassicTasks_gaa80a0c0938307d1e99d0eb5fee765b47}{rtems\+\_\+task\+\_\+priority}} priority)
+\item 
+\mbox{\Hypertarget{monitor_8h_ac384758a281b4d8348c3dd00b0886c3b}\label{monitor_8h_ac384758a281b4d8348c3dd00b0886c3b}} 
+int {\bfseries rtems\+\_\+monitor\+\_\+dump\+\_\+state} (\mbox{\hyperlink{group__RTEMSScoreStates_gaeebbea0bfca162709b124fd519cf99d3}{States\+\_\+\+Control}} state)
+\item 
+\mbox{\Hypertarget{monitor_8h_a7be7a73c3053fc08138651a6d27231f1}\label{monitor_8h_a7be7a73c3053fc08138651a6d27231f1}} 
+int {\bfseries rtems\+\_\+monitor\+\_\+dump\+\_\+modes} (\mbox{\hyperlink{group__ClassicModes_ga8d46a41a837840dc97336fdcd20e4f68}{rtems\+\_\+mode}} modes)
+\item 
+\mbox{\Hypertarget{monitor_8h_a9b07cb7274d446a7b03d39d521901833}\label{monitor_8h_a9b07cb7274d446a7b03d39d521901833}} 
+int {\bfseries rtems\+\_\+monitor\+\_\+dump\+\_\+attributes} (\mbox{\hyperlink{group__ClassicAttributes_gaea40313cf78ed843e09c4315d0a10f79}{rtems\+\_\+attribute}} attributes)
+\item 
+\mbox{\Hypertarget{monitor_8h_a6888312ff504bd7c5ac28eabaddaa21b}\label{monitor_8h_a6888312ff504bd7c5ac28eabaddaa21b}} 
+int {\bfseries rtems\+\_\+monitor\+\_\+dump\+\_\+events} (\mbox{\hyperlink{group__ClassicEventSet_gab7b8f373bea85fd4e3b7ae23905faa07}{rtems\+\_\+event\+\_\+set}} events)
+\item 
+\mbox{\Hypertarget{monitor_8h_a7b71b7c5c6edd8b1a7ea39bdb62d93f1}\label{monitor_8h_a7b71b7c5c6edd8b1a7ea39bdb62d93f1}} 
+\mbox{\hyperlink{group__ClassicTasks_gab20892b814dced7dd4e5b9bf42becd57}{rtems\+\_\+id}} {\bfseries rtems\+\_\+monitor\+\_\+id\+\_\+fixup} (\mbox{\hyperlink{group__ClassicTasks_gab20892b814dced7dd4e5b9bf42becd57}{rtems\+\_\+id}}, uint32\+\_\+t, rtems\+\_\+monitor\+\_\+object\+\_\+type\+\_\+t)
+\item 
+\mbox{\Hypertarget{monitor_8h_a15c23720ddad3496e0abc1e4569883a0}\label{monitor_8h_a15c23720ddad3496e0abc1e4569883a0}} 
+const \mbox{\hyperlink{structrtems__monitor__object__info__t}{rtems\+\_\+monitor\+\_\+object\+\_\+info\+\_\+t}} $\ast$ {\bfseries rtems\+\_\+monitor\+\_\+object\+\_\+lookup} (rtems\+\_\+monitor\+\_\+object\+\_\+type\+\_\+t type)
+\item 
+\mbox{\Hypertarget{monitor_8h_a4cc2b8095d66374c73e6c16c32ea5835}\label{monitor_8h_a4cc2b8095d66374c73e6c16c32ea5835}} 
+\mbox{\hyperlink{group__ClassicTasks_gab20892b814dced7dd4e5b9bf42becd57}{rtems\+\_\+id}} {\bfseries rtems\+\_\+monitor\+\_\+object\+\_\+canonical\+\_\+get} (rtems\+\_\+monitor\+\_\+object\+\_\+type\+\_\+t, \mbox{\hyperlink{group__ClassicTasks_gab20892b814dced7dd4e5b9bf42becd57}{rtems\+\_\+id}}, void $\ast$, size\+\_\+t $\ast$size\+\_\+p)
+\item 
+\mbox{\Hypertarget{monitor_8h_a7580e37c916e248e2082b896a64cf722}\label{monitor_8h_a7580e37c916e248e2082b896a64cf722}} 
+\mbox{\hyperlink{group__ClassicTasks_gab20892b814dced7dd4e5b9bf42becd57}{rtems\+\_\+id}} {\bfseries rtems\+\_\+monitor\+\_\+object\+\_\+canonical\+\_\+next} (const \mbox{\hyperlink{structrtems__monitor__object__info__t}{rtems\+\_\+monitor\+\_\+object\+\_\+info\+\_\+t}} $\ast$, \mbox{\hyperlink{group__ClassicTasks_gab20892b814dced7dd4e5b9bf42becd57}{rtems\+\_\+id}}, void $\ast$)
+\item 
+\mbox{\Hypertarget{monitor_8h_ab3bf33e2ad4153f3c701671b26a76744}\label{monitor_8h_ab3bf33e2ad4153f3c701671b26a76744}} 
+const void $\ast$ {\bfseries rtems\+\_\+monitor\+\_\+object\+\_\+next} (void $\ast$, void $\ast$, \mbox{\hyperlink{group__ClassicTasks_gab20892b814dced7dd4e5b9bf42becd57}{rtems\+\_\+id}}, \mbox{\hyperlink{group__ClassicTasks_gab20892b814dced7dd4e5b9bf42becd57}{rtems\+\_\+id}} $\ast$)
+\item 
+\mbox{\Hypertarget{monitor_8h_a0594e47ba12f3a8fa1c915ba2f0a1337}\label{monitor_8h_a0594e47ba12f3a8fa1c915ba2f0a1337}} 
+\mbox{\hyperlink{group__ClassicTasks_gab20892b814dced7dd4e5b9bf42becd57}{rtems\+\_\+id}} {\bfseries rtems\+\_\+monitor\+\_\+object\+\_\+canonical} (\mbox{\hyperlink{group__ClassicTasks_gab20892b814dced7dd4e5b9bf42becd57}{rtems\+\_\+id}}, const void $\ast$)
+\item 
+\mbox{\Hypertarget{monitor_8h_a98d5479ef1e36752b106ed50ba7e8ced}\label{monitor_8h_a98d5479ef1e36752b106ed50ba7e8ced}} 
+void {\bfseries rtems\+\_\+monitor\+\_\+object\+\_\+cmd} (int, char $\ast$$\ast$, const \mbox{\hyperlink{union__rtems__monitor__command__arg__t}{rtems\+\_\+monitor\+\_\+command\+\_\+arg\+\_\+t}} $\ast$, bool)
+\item 
+\mbox{\Hypertarget{monitor_8h_a9a13acfed1fa7c8cdceb025330b3e7ac}\label{monitor_8h_a9a13acfed1fa7c8cdceb025330b3e7ac}} 
+const void $\ast$ {\bfseries rtems\+\_\+monitor\+\_\+manager\+\_\+next} (void $\ast$, void $\ast$, \mbox{\hyperlink{group__ClassicTasks_gab20892b814dced7dd4e5b9bf42becd57}{rtems\+\_\+id}} $\ast$)
+\item 
+\mbox{\Hypertarget{monitor_8h_a81760970ec626541d8d56cb8d104aa46}\label{monitor_8h_a81760970ec626541d8d56cb8d104aa46}} 
+void {\bfseries rtems\+\_\+monitor\+\_\+config\+\_\+canonical} (\mbox{\hyperlink{structrtems__monitor__config__t}{rtems\+\_\+monitor\+\_\+config\+\_\+t}} $\ast$, const void $\ast$)
+\item 
+\mbox{\Hypertarget{monitor_8h_ad98d84096d3c2d6067aaf00333355d2d}\label{monitor_8h_ad98d84096d3c2d6067aaf00333355d2d}} 
+const void $\ast$ {\bfseries rtems\+\_\+monitor\+\_\+config\+\_\+next} (void $\ast$, \mbox{\hyperlink{structrtems__monitor__config__t}{rtems\+\_\+monitor\+\_\+config\+\_\+t}} $\ast$, \mbox{\hyperlink{group__ClassicTasks_gab20892b814dced7dd4e5b9bf42becd57}{rtems\+\_\+id}} $\ast$)
+\item 
+\mbox{\Hypertarget{monitor_8h_a18eecdb3c7e132e274ab067fc5471d08}\label{monitor_8h_a18eecdb3c7e132e274ab067fc5471d08}} 
+void {\bfseries rtems\+\_\+monitor\+\_\+config\+\_\+dump\+\_\+header} (bool)
+\item 
+\mbox{\Hypertarget{monitor_8h_a167dd5fb80d88bd4babfe34fa03d9455}\label{monitor_8h_a167dd5fb80d88bd4babfe34fa03d9455}} 
+int {\bfseries rtems\+\_\+monitor\+\_\+config\+\_\+dump} (\mbox{\hyperlink{structrtems__monitor__config__t}{rtems\+\_\+monitor\+\_\+config\+\_\+t}} $\ast$, bool verbose)
+\item 
+\mbox{\Hypertarget{monitor_8h_a09cef6b20808ce2201e740844100df8f}\label{monitor_8h_a09cef6b20808ce2201e740844100df8f}} 
+void {\bfseries rtems\+\_\+monitor\+\_\+init\+\_\+task\+\_\+canonical} (\mbox{\hyperlink{structrtems__monitor__init__task__t}{rtems\+\_\+monitor\+\_\+init\+\_\+task\+\_\+t}} $\ast$, const void $\ast$)
+\item 
+\mbox{\Hypertarget{monitor_8h_afcd7aafac6295e70fb8211108988a468}\label{monitor_8h_afcd7aafac6295e70fb8211108988a468}} 
+const void $\ast$ {\bfseries rtems\+\_\+monitor\+\_\+init\+\_\+task\+\_\+next} (void $\ast$, \mbox{\hyperlink{structrtems__monitor__init__task__t}{rtems\+\_\+monitor\+\_\+init\+\_\+task\+\_\+t}} $\ast$, \mbox{\hyperlink{group__ClassicTasks_gab20892b814dced7dd4e5b9bf42becd57}{rtems\+\_\+id}} $\ast$)
+\item 
+\mbox{\Hypertarget{monitor_8h_afba514a39989d9ac687e9439e14bade1}\label{monitor_8h_afba514a39989d9ac687e9439e14bade1}} 
+void {\bfseries rtems\+\_\+monitor\+\_\+init\+\_\+task\+\_\+dump\+\_\+header} (bool)
+\item 
+\mbox{\Hypertarget{monitor_8h_af16e64f02fb02f502e4bbc3bd8034089}\label{monitor_8h_af16e64f02fb02f502e4bbc3bd8034089}} 
+void {\bfseries rtems\+\_\+monitor\+\_\+init\+\_\+task\+\_\+dump} (\mbox{\hyperlink{structrtems__monitor__init__task__t}{rtems\+\_\+monitor\+\_\+init\+\_\+task\+\_\+t}} $\ast$, bool verbose)
+\item 
+\mbox{\Hypertarget{monitor_8h_a1ef81cd45d9204eca731f17d4a87f29c}\label{monitor_8h_a1ef81cd45d9204eca731f17d4a87f29c}} 
+void {\bfseries rtems\+\_\+monitor\+\_\+extension\+\_\+canonical} (\mbox{\hyperlink{structrtems__monitor__extension__t}{rtems\+\_\+monitor\+\_\+extension\+\_\+t}} $\ast$, const void $\ast$)
+\item 
+\mbox{\Hypertarget{monitor_8h_af9123e922ffa0511963251cbd51563d7}\label{monitor_8h_af9123e922ffa0511963251cbd51563d7}} 
+void {\bfseries rtems\+\_\+monitor\+\_\+extension\+\_\+dump\+\_\+header} (bool verbose)
+\item 
+\mbox{\Hypertarget{monitor_8h_a7a3d6d8cbc0192c1783bd8dbab44c83f}\label{monitor_8h_a7a3d6d8cbc0192c1783bd8dbab44c83f}} 
+void {\bfseries rtems\+\_\+monitor\+\_\+extension\+\_\+dump} (\mbox{\hyperlink{structrtems__monitor__extension__t}{rtems\+\_\+monitor\+\_\+extension\+\_\+t}} $\ast$, bool)
+\item 
+\mbox{\Hypertarget{monitor_8h_a7c28befb33c631dfe7ceb91ccdfe6518}\label{monitor_8h_a7c28befb33c631dfe7ceb91ccdfe6518}} 
+void {\bfseries rtems\+\_\+monitor\+\_\+task\+\_\+canonical} (\mbox{\hyperlink{structrtems__monitor__task__t}{rtems\+\_\+monitor\+\_\+task\+\_\+t}} $\ast$, const void $\ast$)
+\item 
+\mbox{\Hypertarget{monitor_8h_ae76a7a266192cbdfd90fe7a5e46a5235}\label{monitor_8h_ae76a7a266192cbdfd90fe7a5e46a5235}} 
+void {\bfseries rtems\+\_\+monitor\+\_\+task\+\_\+dump\+\_\+header} (bool verbose)
+\item 
+\mbox{\Hypertarget{monitor_8h_a37f3cb958e23be207ef3e8e5143488d5}\label{monitor_8h_a37f3cb958e23be207ef3e8e5143488d5}} 
+void {\bfseries rtems\+\_\+monitor\+\_\+task\+\_\+dump} (\mbox{\hyperlink{structrtems__monitor__task__t}{rtems\+\_\+monitor\+\_\+task\+\_\+t}} $\ast$, bool)
+\item 
+\mbox{\Hypertarget{monitor_8h_a1499fbc5c470cda447ec42aef3fab45a}\label{monitor_8h_a1499fbc5c470cda447ec42aef3fab45a}} 
+void {\bfseries rtems\+\_\+monitor\+\_\+sema\+\_\+canonical} (\mbox{\hyperlink{structrtems__monitor__sema__t}{rtems\+\_\+monitor\+\_\+sema\+\_\+t}} $\ast$, const void $\ast$)
+\item 
+\mbox{\Hypertarget{monitor_8h_a13d1df8aa862413dddcd2451c0816c5b}\label{monitor_8h_a13d1df8aa862413dddcd2451c0816c5b}} 
+void {\bfseries rtems\+\_\+monitor\+\_\+sema\+\_\+dump\+\_\+header} (bool verbose)
+\item 
+\mbox{\Hypertarget{monitor_8h_ada52d9844195395cb3c3bb1dc41915aa}\label{monitor_8h_ada52d9844195395cb3c3bb1dc41915aa}} 
+void {\bfseries rtems\+\_\+monitor\+\_\+sema\+\_\+dump} (\mbox{\hyperlink{structrtems__monitor__sema__t}{rtems\+\_\+monitor\+\_\+sema\+\_\+t}} $\ast$, bool)
+\item 
+\mbox{\Hypertarget{monitor_8h_afb105084f27c2e0b06e337e7b3f27fa0}\label{monitor_8h_afb105084f27c2e0b06e337e7b3f27fa0}} 
+void {\bfseries rtems\+\_\+monitor\+\_\+queue\+\_\+canonical} (\mbox{\hyperlink{structrtems__monitor__queue__t}{rtems\+\_\+monitor\+\_\+queue\+\_\+t}} $\ast$, const void $\ast$)
+\item 
+\mbox{\Hypertarget{monitor_8h_aaaf7a48fa70b51988e901e644d032ca7}\label{monitor_8h_aaaf7a48fa70b51988e901e644d032ca7}} 
+void {\bfseries rtems\+\_\+monitor\+\_\+queue\+\_\+dump\+\_\+header} (bool verbose)
+\item 
+\mbox{\Hypertarget{monitor_8h_a30d7d49448f6d8eeec104eab6e6f69ea}\label{monitor_8h_a30d7d49448f6d8eeec104eab6e6f69ea}} 
+void {\bfseries rtems\+\_\+monitor\+\_\+queue\+\_\+dump} (\mbox{\hyperlink{structrtems__monitor__queue__t}{rtems\+\_\+monitor\+\_\+queue\+\_\+t}} $\ast$, bool)
+\item 
+\mbox{\Hypertarget{monitor_8h_a600a7f7dd39021f42c934f73499e4e1a}\label{monitor_8h_a600a7f7dd39021f42c934f73499e4e1a}} 
+void {\bfseries rtems\+\_\+monitor\+\_\+region\+\_\+canonical} (\mbox{\hyperlink{structrtems__monitor__region__t}{rtems\+\_\+monitor\+\_\+region\+\_\+t}} $\ast$, const void $\ast$)
+\item 
+\mbox{\Hypertarget{monitor_8h_aae5fc0318f96176bd905429d8ba348fa}\label{monitor_8h_aae5fc0318f96176bd905429d8ba348fa}} 
+void {\bfseries rtems\+\_\+monitor\+\_\+region\+\_\+dump\+\_\+header} (bool verbose)
+\item 
+\mbox{\Hypertarget{monitor_8h_a6fe6126fdd41012b2bd7b2fb7233cef1}\label{monitor_8h_a6fe6126fdd41012b2bd7b2fb7233cef1}} 
+void {\bfseries rtems\+\_\+monitor\+\_\+region\+\_\+dump} (\mbox{\hyperlink{structrtems__monitor__region__t}{rtems\+\_\+monitor\+\_\+region\+\_\+t}} $\ast$, bool)
+\item 
+\mbox{\Hypertarget{monitor_8h_a8214a35fed0908e11fef748ad1c0684b}\label{monitor_8h_a8214a35fed0908e11fef748ad1c0684b}} 
+void {\bfseries rtems\+\_\+monitor\+\_\+part\+\_\+canonical} (\mbox{\hyperlink{structrtems__monitor__part__t}{rtems\+\_\+monitor\+\_\+part\+\_\+t}} $\ast$, const void $\ast$)
+\item 
+\mbox{\Hypertarget{monitor_8h_a336f44fc2e5fd060ab58604db8a25707}\label{monitor_8h_a336f44fc2e5fd060ab58604db8a25707}} 
+void {\bfseries rtems\+\_\+monitor\+\_\+part\+\_\+dump\+\_\+header} (bool verbose)
+\item 
+\mbox{\Hypertarget{monitor_8h_abb98858d0301a39eb683c0c483850454}\label{monitor_8h_abb98858d0301a39eb683c0c483850454}} 
+void {\bfseries rtems\+\_\+monitor\+\_\+part\+\_\+dump} (\mbox{\hyperlink{structrtems__monitor__part__t}{rtems\+\_\+monitor\+\_\+part\+\_\+t}} $\ast$, bool)
+\item 
+\mbox{\Hypertarget{monitor_8h_a8e5835c6834cb73afa6121603b075d54}\label{monitor_8h_a8e5835c6834cb73afa6121603b075d54}} 
+const void $\ast$ {\bfseries rtems\+\_\+monitor\+\_\+driver\+\_\+next} (void $\ast$, \mbox{\hyperlink{structrtems__monitor__driver__t}{rtems\+\_\+monitor\+\_\+driver\+\_\+t}} $\ast$, \mbox{\hyperlink{group__ClassicTasks_gab20892b814dced7dd4e5b9bf42becd57}{rtems\+\_\+id}} $\ast$)
+\item 
+\mbox{\Hypertarget{monitor_8h_afa2f60ac396950dbba8eb72808c0d47c}\label{monitor_8h_afa2f60ac396950dbba8eb72808c0d47c}} 
+void {\bfseries rtems\+\_\+monitor\+\_\+driver\+\_\+canonical} (\mbox{\hyperlink{structrtems__monitor__driver__t}{rtems\+\_\+monitor\+\_\+driver\+\_\+t}} $\ast$, const void $\ast$)
+\item 
+\mbox{\Hypertarget{monitor_8h_a2bc34364ed75248723796ca539c1c866}\label{monitor_8h_a2bc34364ed75248723796ca539c1c866}} 
+void {\bfseries rtems\+\_\+monitor\+\_\+driver\+\_\+dump\+\_\+header} (bool)
+\item 
+\mbox{\Hypertarget{monitor_8h_a2838fdaeace249bba23610aa1be17c76}\label{monitor_8h_a2838fdaeace249bba23610aa1be17c76}} 
+void {\bfseries rtems\+\_\+monitor\+\_\+driver\+\_\+dump} (\mbox{\hyperlink{structrtems__monitor__driver__t}{rtems\+\_\+monitor\+\_\+driver\+\_\+t}} $\ast$, bool)
+\item 
+\mbox{\Hypertarget{monitor_8h_a45a6d7e04ab2df67e7be7ea815ddbce4}\label{monitor_8h_a45a6d7e04ab2df67e7be7ea815ddbce4}} 
+\mbox{\hyperlink{struct__rtems__symbol__table__t}{rtems\+\_\+symbol\+\_\+table\+\_\+t}} $\ast$ {\bfseries rtems\+\_\+symbol\+\_\+table\+\_\+create} (void)
+\item 
+\mbox{\Hypertarget{monitor_8h_a67d525eb5d9a2e136d47983e3a546ee2}\label{monitor_8h_a67d525eb5d9a2e136d47983e3a546ee2}} 
+void {\bfseries rtems\+\_\+symbol\+\_\+table\+\_\+destroy} (\mbox{\hyperlink{struct__rtems__symbol__table__t}{rtems\+\_\+symbol\+\_\+table\+\_\+t}} $\ast$table)
+\item 
+\mbox{\Hypertarget{monitor_8h_a8d103243431190d57e69739e13715c39}\label{monitor_8h_a8d103243431190d57e69739e13715c39}} 
+\mbox{\hyperlink{struct__rtems__symbol__t}{rtems\+\_\+symbol\+\_\+t}} $\ast$ {\bfseries rtems\+\_\+symbol\+\_\+create} (\mbox{\hyperlink{struct__rtems__symbol__table__t}{rtems\+\_\+symbol\+\_\+table\+\_\+t}} $\ast$, const char $\ast$, uint32\+\_\+t)
+\item 
+\mbox{\Hypertarget{monitor_8h_a7c80430505f29431a67e1d79b2cd63a1}\label{monitor_8h_a7c80430505f29431a67e1d79b2cd63a1}} 
+\mbox{\hyperlink{struct__rtems__symbol__t}{rtems\+\_\+symbol\+\_\+t}} $\ast$ {\bfseries rtems\+\_\+symbol\+\_\+value\+\_\+lookup} (\mbox{\hyperlink{struct__rtems__symbol__table__t}{rtems\+\_\+symbol\+\_\+table\+\_\+t}} $\ast$, uint32\+\_\+t)
+\item 
+\mbox{\Hypertarget{monitor_8h_a32ac354aa86f817d6fc2f5cbd3f70b87}\label{monitor_8h_a32ac354aa86f817d6fc2f5cbd3f70b87}} 
+const \mbox{\hyperlink{struct__rtems__symbol__t}{rtems\+\_\+symbol\+\_\+t}} $\ast$ {\bfseries rtems\+\_\+symbol\+\_\+value\+\_\+lookup\+\_\+exact} (\mbox{\hyperlink{struct__rtems__symbol__table__t}{rtems\+\_\+symbol\+\_\+table\+\_\+t}} $\ast$, uint32\+\_\+t)
+\item 
+\mbox{\Hypertarget{monitor_8h_a8faf9b5eb173d906946bc8d5472e4f78}\label{monitor_8h_a8faf9b5eb173d906946bc8d5472e4f78}} 
+\mbox{\hyperlink{struct__rtems__symbol__t}{rtems\+\_\+symbol\+\_\+t}} $\ast$ {\bfseries rtems\+\_\+symbol\+\_\+name\+\_\+lookup} (\mbox{\hyperlink{struct__rtems__symbol__table__t}{rtems\+\_\+symbol\+\_\+table\+\_\+t}} $\ast$, const char $\ast$)
+\item 
+\mbox{\Hypertarget{monitor_8h_a61a6e180e8bf67b79cb06829b5a1da70}\label{monitor_8h_a61a6e180e8bf67b79cb06829b5a1da70}} 
+const void $\ast$ {\bfseries rtems\+\_\+monitor\+\_\+symbol\+\_\+next} (void $\ast$object\+\_\+info, \mbox{\hyperlink{structrtems__monitor__symbol__t}{rtems\+\_\+monitor\+\_\+symbol\+\_\+t}} $\ast$, \mbox{\hyperlink{group__ClassicTasks_gab20892b814dced7dd4e5b9bf42becd57}{rtems\+\_\+id}} $\ast$)
+\item 
+\mbox{\Hypertarget{monitor_8h_a87838845ae9a7d8b44fe94baa264991a}\label{monitor_8h_a87838845ae9a7d8b44fe94baa264991a}} 
+void {\bfseries rtems\+\_\+monitor\+\_\+symbol\+\_\+canonical} (\mbox{\hyperlink{structrtems__monitor__symbol__t}{rtems\+\_\+monitor\+\_\+symbol\+\_\+t}} $\ast$, \mbox{\hyperlink{struct__rtems__symbol__t}{rtems\+\_\+symbol\+\_\+t}} $\ast$)
+\item 
+\mbox{\Hypertarget{monitor_8h_ab215671a1c746fda349e4de5d5ed864a}\label{monitor_8h_ab215671a1c746fda349e4de5d5ed864a}} 
+void {\bfseries rtems\+\_\+monitor\+\_\+symbol\+\_\+canonical\+\_\+by\+\_\+name} (\mbox{\hyperlink{structrtems__monitor__symbol__t}{rtems\+\_\+monitor\+\_\+symbol\+\_\+t}} $\ast$, const char $\ast$)
+\item 
+\mbox{\Hypertarget{monitor_8h_ad14cc0998d502e22cce192598ced1186}\label{monitor_8h_ad14cc0998d502e22cce192598ced1186}} 
+void {\bfseries rtems\+\_\+monitor\+\_\+symbol\+\_\+canonical\+\_\+by\+\_\+value} (\mbox{\hyperlink{structrtems__monitor__symbol__t}{rtems\+\_\+monitor\+\_\+symbol\+\_\+t}} $\ast$, void $\ast$)
+\item 
+\mbox{\Hypertarget{monitor_8h_a72449f1a8f7b992ad5314549c05b9c1b}\label{monitor_8h_a72449f1a8f7b992ad5314549c05b9c1b}} 
+uint32\+\_\+t {\bfseries rtems\+\_\+monitor\+\_\+symbol\+\_\+dump} (\mbox{\hyperlink{structrtems__monitor__symbol__t}{rtems\+\_\+monitor\+\_\+symbol\+\_\+t}} $\ast$, bool)
+\item 
+\mbox{\Hypertarget{monitor_8h_ac021dfc18b78ee9d44866fb3849673e0}\label{monitor_8h_ac021dfc18b78ee9d44866fb3849673e0}} 
+void {\bfseries rtems\+\_\+monitor\+\_\+symbol\+\_\+cmd} (int, char $\ast$$\ast$, const \mbox{\hyperlink{union__rtems__monitor__command__arg__t}{rtems\+\_\+monitor\+\_\+command\+\_\+arg\+\_\+t}} $\ast$, bool)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{monitor_8h_a6a2aadb1b551ee91c91cd8d906a56369}\label{monitor_8h_a6a2aadb1b551ee91c91cd8d906a56369}} 
+\mbox{\hyperlink{group__ClassicTasks_gab20892b814dced7dd4e5b9bf42becd57}{rtems\+\_\+id}} {\bfseries rtems\+\_\+monitor\+\_\+task\+\_\+id}
+\item 
+\mbox{\Hypertarget{monitor_8h_afe2c70a9a330dea502d1f4ea54111212}\label{monitor_8h_afe2c70a9a330dea502d1f4ea54111212}} 
+uint32\+\_\+t {\bfseries rtems\+\_\+monitor\+\_\+node}
+\item 
+\mbox{\Hypertarget{monitor_8h_ae8e28863c218059a52f6af94f8c470bf}\label{monitor_8h_ae8e28863c218059a52f6af94f8c470bf}} 
+uint32\+\_\+t {\bfseries rtems\+\_\+monitor\+\_\+default\+\_\+node}
+\item 
+\mbox{\Hypertarget{monitor_8h_a4d613af417c86e449699185255bf2d6f}\label{monitor_8h_a4d613af417c86e449699185255bf2d6f}} 
+\mbox{\hyperlink{struct__rtems__symbol__table__t}{rtems\+\_\+symbol\+\_\+table\+\_\+t}} $\ast$ {\bfseries rtems\+\_\+monitor\+\_\+symbols}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+The R\+T\+E\+MS Monitor Task. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{monitor_8h_acbf4a9f36893c4610a6fa071c2ce9a93}\label{monitor_8h_acbf4a9f36893c4610a6fa071c2ce9a93}} 
+\index{monitor.h@{monitor.h}!rtems\_monitor\_command\_iterate@{rtems\_monitor\_command\_iterate}}
+\index{rtems\_monitor\_command\_iterate@{rtems\_monitor\_command\_iterate}!monitor.h@{monitor.h}}
+\subsubsection{\texorpdfstring{rtems\_monitor\_command\_iterate()}{rtems\_monitor\_command\_iterate()}}
+{\footnotesize\ttfamily void rtems\+\_\+monitor\+\_\+command\+\_\+iterate (\begin{DoxyParamCaption}\item[{rtems\+\_\+monitor\+\_\+per\+\_\+command\+\_\+routine}]{routine,  }\item[{void $\ast$}]{arg }\end{DoxyParamCaption})}
+
+
+
+Iterates through all registerd commands. 
+
+For each command the interation routine {\itshape routine} is called with the command entry and the user provided argument {\itshape arg}. It is guaranteed that the command name and function are not N\+U\+LL. \mbox{\Hypertarget{monitor_8h_a8ed4eec2eee505958982dcbc7651582a}\label{monitor_8h_a8ed4eec2eee505958982dcbc7651582a}} 
+\index{monitor.h@{monitor.h}!rtems\_monitor\_command\_lookup@{rtems\_monitor\_command\_lookup}}
+\index{rtems\_monitor\_command\_lookup@{rtems\_monitor\_command\_lookup}!monitor.h@{monitor.h}}
+\subsubsection{\texorpdfstring{rtems\_monitor\_command\_lookup()}{rtems\_monitor\_command\_lookup()}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{structrtems__monitor__command__entry__s}{rtems\+\_\+monitor\+\_\+command\+\_\+entry\+\_\+t}}$\ast$ rtems\+\_\+monitor\+\_\+command\+\_\+lookup (\begin{DoxyParamCaption}\item[{const char $\ast$}]{name }\end{DoxyParamCaption})}
+
+
+
+Looks for a command with the name {\itshape name} in the list of registered commands. 
+
+The parameter {\itshape name} must not be N\+U\+LL.
+
+Returns the corresponding command entry or N\+U\+LL if no command is found. 

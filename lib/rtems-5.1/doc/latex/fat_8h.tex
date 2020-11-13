@@ -1,0 +1,365 @@
+\hypertarget{fat_8h}{}\section{cpukit/libfs/src/dosfs/fat.h File Reference}
+\label{fat_8h}\index{cpukit/libfs/src/dosfs/fat.h@{cpukit/libfs/src/dosfs/fat.h}}
+
+
+Constants/\+Data Structures/\+Prototypes on a Volume with F\+AT Filesystem.  
+
+
+{\ttfamily \#include $<$sys/param.\+h$>$}\newline
+{\ttfamily \#include $<$sys/endian.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/seterr.\+h$>$}\newline
+{\ttfamily \#include $<$errno.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/bdbuf.\+h$>$}\newline
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structfat__vol__s}{fat\+\_\+vol\+\_\+s}}
+\item 
+struct \mbox{\hyperlink{structfat__cache__s}{fat\+\_\+cache\+\_\+s}}
+\item 
+struct \mbox{\hyperlink{structfat__fs__info__s}{fat\+\_\+fs\+\_\+info\+\_\+s}}
+\item 
+struct \mbox{\hyperlink{structfat__pos__s}{fat\+\_\+pos\+\_\+s}}
+\item 
+struct \mbox{\hyperlink{structfat__dir__pos__s}{fat\+\_\+dir\+\_\+pos\+\_\+s}}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bfseries R\+C\+\_\+\+OK}~0
+\item 
+\#define {\bfseries C\+F\+\_\+\+L\+E\+\_\+W}(\mbox{\hyperlink{sun4u_2tte_8h_a0b943bd7a9fc74d6635879a38dc16894}{v}})~le16toh(\mbox{\hyperlink{sun4u_2tte_8h_a0b943bd7a9fc74d6635879a38dc16894}{v}})
+\item 
+\#define {\bfseries C\+F\+\_\+\+L\+E\+\_\+L}(\mbox{\hyperlink{sun4u_2tte_8h_a0b943bd7a9fc74d6635879a38dc16894}{v}})~le32toh(\mbox{\hyperlink{sun4u_2tte_8h_a0b943bd7a9fc74d6635879a38dc16894}{v}})
+\item 
+\#define {\bfseries C\+T\+\_\+\+L\+E\+\_\+W}(\mbox{\hyperlink{sun4u_2tte_8h_a0b943bd7a9fc74d6635879a38dc16894}{v}})~htole16(\mbox{\hyperlink{sun4u_2tte_8h_a0b943bd7a9fc74d6635879a38dc16894}{v}})
+\item 
+\#define {\bfseries C\+T\+\_\+\+L\+E\+\_\+L}(\mbox{\hyperlink{sun4u_2tte_8h_a0b943bd7a9fc74d6635879a38dc16894}{v}})~htole32(\mbox{\hyperlink{sun4u_2tte_8h_a0b943bd7a9fc74d6635879a38dc16894}{v}})
+\item 
+\#define {\bfseries F\+A\+T\+\_\+\+H\+A\+S\+H\+\_\+\+S\+I\+ZE}~2
+\item 
+\#define {\bfseries F\+A\+T\+\_\+\+H\+A\+S\+H\+\_\+\+M\+O\+D\+U\+LE}~F\+A\+T\+\_\+\+H\+A\+S\+H\+\_\+\+S\+I\+ZE
+\item 
+\#define {\bfseries F\+A\+T\+\_\+\+S\+E\+C\+T\+O\+R512\+\_\+\+S\+I\+ZE}~512 /$\ast$ sector \mbox{\hyperlink{sun4u_2tte_8h_a245260f6f74972558f61b85227df5aae}{size}} (bytes) $\ast$/
+\item 
+\#define {\bfseries F\+A\+T\+\_\+\+S\+E\+C\+T\+O\+R512\+\_\+\+B\+I\+TS}~9 /$\ast$ log2(S\+E\+C\+T\+O\+R\+\_\+\+S\+I\+ZE) $\ast$/
+\item 
+\#define {\bfseries F\+A\+T\+\_\+\+F\+A\+T12\+\_\+\+M\+A\+X\+\_\+\+C\+LN}~4085
+\item 
+\#define {\bfseries F\+A\+T\+\_\+\+F\+A\+T16\+\_\+\+M\+A\+X\+\_\+\+C\+LN}~65525
+\item 
+\#define {\bfseries F\+A\+T\+\_\+\+F\+A\+T12}~0x01
+\item 
+\#define {\bfseries F\+A\+T\+\_\+\+F\+A\+T16}~0x02
+\item 
+\#define {\bfseries F\+A\+T\+\_\+\+F\+A\+T32}~0x04
+\item 
+\#define {\bfseries F\+A\+T\+\_\+\+U\+N\+D\+E\+F\+I\+N\+E\+D\+\_\+\+V\+A\+L\+UE}~(uint32\+\_\+t)0x\+F\+F\+F\+F\+F\+F\+FF
+\item 
+\#define {\bfseries F\+A\+T\+\_\+\+F\+A\+T12\+\_\+\+E\+OC}~0x0\+F\+F8
+\item 
+\#define {\bfseries F\+A\+T\+\_\+\+F\+A\+T16\+\_\+\+E\+OC}~0x\+F\+F\+F8
+\item 
+\#define {\bfseries F\+A\+T\+\_\+\+F\+A\+T32\+\_\+\+E\+OC}~(uint32\+\_\+t)0x0\+F\+F\+F\+F\+F\+F8
+\item 
+\#define {\bfseries F\+A\+T\+\_\+\+F\+A\+T12\+\_\+\+F\+R\+EE}~0x0000
+\item 
+\#define {\bfseries F\+A\+T\+\_\+\+F\+A\+T16\+\_\+\+F\+R\+EE}~0x0000
+\item 
+\#define {\bfseries F\+A\+T\+\_\+\+F\+A\+T32\+\_\+\+F\+R\+EE}~0x00000000
+\item 
+\#define {\bfseries F\+A\+T\+\_\+\+G\+E\+N\+F\+A\+T\+\_\+\+E\+OC}~(uint32\+\_\+t)0x\+F\+F\+F\+F\+F\+F\+FF
+\item 
+\#define {\bfseries F\+A\+T\+\_\+\+G\+E\+N\+F\+A\+T\+\_\+\+F\+R\+EE}~(uint32\+\_\+t)0x00000000
+\item 
+\#define {\bfseries F\+A\+T\+\_\+\+F\+A\+T12\+\_\+\+S\+H\+I\+FT}~0x04
+\item 
+\#define {\bfseries F\+A\+T\+\_\+\+F\+A\+T12\+\_\+\+M\+A\+SK}~0x00000\+F\+FF
+\item 
+\#define {\bfseries F\+A\+T\+\_\+\+F\+A\+T16\+\_\+\+M\+A\+SK}~0x0000\+F\+F\+FF
+\item 
+\#define {\bfseries F\+A\+T\+\_\+\+F\+A\+T32\+\_\+\+M\+A\+SK}~(uint32\+\_\+t)0x0\+F\+F\+F\+F\+F\+FF
+\item 
+\#define {\bfseries F\+A\+T\+\_\+\+M\+A\+X\+\_\+\+B\+P\+B\+\_\+\+S\+I\+ZE}~90
+\item 
+\#define {\bfseries F\+A\+T\+\_\+\+T\+O\+T\+A\+L\+\_\+\+M\+B\+R\+\_\+\+S\+I\+ZE}~512
+\item 
+\#define {\bfseries F\+A\+T\+\_\+\+U\+S\+E\+F\+U\+L\+\_\+\+I\+N\+F\+O\+\_\+\+S\+I\+ZE}~12
+\item 
+\#define {\bfseries F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+A\+D\+DR}(x,  ofs)~((uint8\+\_\+t $\ast$)(x) + (ofs))
+\item 
+\#define {\bfseries F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+V\+A\+L8}(x,  ofs)~(uint8\+\_\+t)($\ast$((uint8\+\_\+t $\ast$)(x) + (ofs)))
+\item 
+\#define {\bfseries F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+V\+A\+L16}(x,  ofs)
+\item 
+\#define {\bfseries F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+V\+A\+L32}(x,  ofs)
+\item 
+\#define {\bfseries F\+A\+T\+\_\+\+S\+E\+T\+\_\+\+V\+A\+L8}(x,  ofs,  val)~($\ast$((uint8\+\_\+t $\ast$)(x)+(ofs))=(uint8\+\_\+t)(val))
+\item 
+\#define {\bfseries F\+A\+T\+\_\+\+S\+E\+T\+\_\+\+V\+A\+L16}(x,  ofs,  val)
+\item 
+\#define {\bfseries F\+A\+T\+\_\+\+S\+E\+T\+\_\+\+V\+A\+L32}(x,  ofs,  val)
+\item 
+\#define {\bfseries F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+B\+R\+\_\+\+J\+M\+P\+B\+O\+OT}(x)~F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+V\+A\+L8( x,  0)
+\item 
+\#define {\bfseries F\+A\+T\+\_\+\+S\+E\+T\+\_\+\+B\+R\+\_\+\+J\+M\+P\+B\+O\+OT}(x,  val)~F\+A\+T\+\_\+\+S\+E\+T\+\_\+\+V\+A\+L8( x,  0,val)
+\item 
+\#define {\bfseries F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+A\+D\+D\+R\+\_\+\+B\+R\+\_\+\+O\+E\+M\+N\+A\+ME}(x)~F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+A\+D\+DR( x,  3)
+\item 
+\#define {\bfseries F\+A\+T\+\_\+\+B\+R\+\_\+\+O\+E\+M\+N\+A\+M\+E\+\_\+\+S\+I\+ZE}~(8)
+\item 
+\#define {\bfseries F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+B\+R\+\_\+\+B\+Y\+T\+E\+S\+\_\+\+P\+E\+R\+\_\+\+S\+E\+C\+T\+OR}(x)~F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+V\+A\+L16(x, 11)
+\item 
+\#define {\bfseries F\+A\+T\+\_\+\+S\+E\+T\+\_\+\+B\+R\+\_\+\+B\+Y\+T\+E\+S\+\_\+\+P\+E\+R\+\_\+\+S\+E\+C\+T\+OR}(x,  val)~F\+A\+T\+\_\+\+S\+E\+T\+\_\+\+V\+A\+L16(x, 11,val)
+\item 
+\#define {\bfseries F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+B\+R\+\_\+\+S\+E\+C\+T\+O\+R\+S\+\_\+\+P\+E\+R\+\_\+\+C\+L\+U\+S\+T\+ER}(x)~F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+V\+A\+L8( x, 13)
+\item 
+\#define {\bfseries F\+A\+T\+\_\+\+S\+E\+T\+\_\+\+B\+R\+\_\+\+S\+E\+C\+T\+O\+R\+S\+\_\+\+P\+E\+R\+\_\+\+C\+L\+U\+S\+T\+ER}(x,  val)~F\+A\+T\+\_\+\+S\+E\+T\+\_\+\+V\+A\+L8( x, 13,val)
+\item 
+\#define {\bfseries F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+B\+R\+\_\+\+R\+E\+S\+E\+R\+V\+E\+D\+\_\+\+S\+E\+C\+T\+O\+R\+S\+\_\+\+N\+UM}(x)~F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+V\+A\+L16(x, 14)
+\item 
+\#define {\bfseries F\+A\+T\+\_\+\+S\+E\+T\+\_\+\+B\+R\+\_\+\+R\+E\+S\+E\+R\+V\+E\+D\+\_\+\+S\+E\+C\+T\+O\+R\+S\+\_\+\+N\+UM}(x,  val)~F\+A\+T\+\_\+\+S\+E\+T\+\_\+\+V\+A\+L16(x, 14,val)
+\item 
+\#define {\bfseries F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+B\+R\+\_\+\+F\+A\+T\+\_\+\+N\+UM}(x)~F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+V\+A\+L8( x, 16)
+\item 
+\#define {\bfseries F\+A\+T\+\_\+\+S\+E\+T\+\_\+\+B\+R\+\_\+\+F\+A\+T\+\_\+\+N\+UM}(x,  val)~F\+A\+T\+\_\+\+S\+E\+T\+\_\+\+V\+A\+L8( x, 16,val)
+\item 
+\#define {\bfseries F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+B\+R\+\_\+\+F\+I\+L\+E\+S\+\_\+\+P\+E\+R\+\_\+\+R\+O\+O\+T\+\_\+\+D\+IR}(x)~F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+V\+A\+L16(x, 17)
+\item 
+\#define {\bfseries F\+A\+T\+\_\+\+S\+E\+T\+\_\+\+B\+R\+\_\+\+F\+I\+L\+E\+S\+\_\+\+P\+E\+R\+\_\+\+R\+O\+O\+T\+\_\+\+D\+IR}(x,  val)~F\+A\+T\+\_\+\+S\+E\+T\+\_\+\+V\+A\+L16(x, 17,val)
+\item 
+\#define {\bfseries F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+B\+R\+\_\+\+T\+O\+T\+A\+L\+\_\+\+S\+E\+C\+T\+O\+R\+S\+\_\+\+N\+U\+M16}(x)~F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+V\+A\+L16(x, 19)
+\item 
+\#define {\bfseries F\+A\+T\+\_\+\+S\+E\+T\+\_\+\+B\+R\+\_\+\+T\+O\+T\+A\+L\+\_\+\+S\+E\+C\+T\+O\+R\+S\+\_\+\+N\+U\+M16}(x,  val)~F\+A\+T\+\_\+\+S\+E\+T\+\_\+\+V\+A\+L16(x, 19,val)
+\item 
+\#define {\bfseries F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+B\+R\+\_\+\+M\+E\+D\+IA}(x)~F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+V\+A\+L8( x, 21)
+\item 
+\#define {\bfseries F\+A\+T\+\_\+\+S\+E\+T\+\_\+\+B\+R\+\_\+\+M\+E\+D\+IA}(x,  val)~F\+A\+T\+\_\+\+S\+E\+T\+\_\+\+V\+A\+L8( x, 21,val)
+\item 
+\#define {\bfseries F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+B\+R\+\_\+\+S\+E\+C\+T\+O\+R\+S\+\_\+\+P\+E\+R\+\_\+\+F\+AT}(x)~F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+V\+A\+L16(x, 22)
+\item 
+\#define {\bfseries F\+A\+T\+\_\+\+S\+E\+T\+\_\+\+B\+R\+\_\+\+S\+E\+C\+T\+O\+R\+S\+\_\+\+P\+E\+R\+\_\+\+F\+AT}(x,  val)~F\+A\+T\+\_\+\+S\+E\+T\+\_\+\+V\+A\+L16(x, 22,val)
+\item 
+\#define {\bfseries F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+B\+R\+\_\+\+S\+E\+C\+T\+O\+R\+S\+\_\+\+P\+E\+R\+\_\+\+T\+R\+A\+CK}(x)~F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+V\+A\+L16(x, 24)
+\item 
+\#define {\bfseries F\+A\+T\+\_\+\+S\+E\+T\+\_\+\+B\+R\+\_\+\+S\+E\+C\+T\+O\+R\+S\+\_\+\+P\+E\+R\+\_\+\+T\+R\+A\+CK}(x,  val)~F\+A\+T\+\_\+\+S\+E\+T\+\_\+\+V\+A\+L16(x, 24,val)
+\item 
+\#define {\bfseries F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+B\+R\+\_\+\+N\+U\+M\+B\+E\+R\+\_\+\+O\+F\+\_\+\+H\+E\+A\+DS}(x)~F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+V\+A\+L16(x, 26)
+\item 
+\#define {\bfseries F\+A\+T\+\_\+\+S\+E\+T\+\_\+\+B\+R\+\_\+\+N\+U\+M\+B\+E\+R\+\_\+\+O\+F\+\_\+\+H\+E\+A\+DS}(x,  val)~F\+A\+T\+\_\+\+S\+E\+T\+\_\+\+V\+A\+L16(x, 26,val)
+\item 
+\#define {\bfseries F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+B\+R\+\_\+\+H\+I\+D\+D\+E\+N\+\_\+\+S\+E\+C\+T\+O\+RS}(x)~F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+V\+A\+L32(x, 28)
+\item 
+\#define {\bfseries F\+A\+T\+\_\+\+S\+E\+T\+\_\+\+B\+R\+\_\+\+H\+I\+D\+D\+E\+N\+\_\+\+S\+E\+C\+T\+O\+RS}(x,  val)~F\+A\+T\+\_\+\+S\+E\+T\+\_\+\+V\+A\+L32(x, 28,val)
+\item 
+\#define {\bfseries F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+B\+R\+\_\+\+T\+O\+T\+A\+L\+\_\+\+S\+E\+C\+T\+O\+R\+S\+\_\+\+N\+U\+M32}(x)~F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+V\+A\+L32(x, 32)
+\item 
+\#define {\bfseries F\+A\+T\+\_\+\+S\+E\+T\+\_\+\+B\+R\+\_\+\+T\+O\+T\+A\+L\+\_\+\+S\+E\+C\+T\+O\+R\+S\+\_\+\+N\+U\+M32}(x,  val)~F\+A\+T\+\_\+\+S\+E\+T\+\_\+\+V\+A\+L32(x, 32,val)
+\item 
+\#define {\bfseries F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+B\+R\+\_\+\+D\+R\+V\+N\+UM}(x)~F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+V\+A\+L8( x, 36)
+\item 
+\#define {\bfseries F\+A\+T\+\_\+\+S\+E\+T\+\_\+\+B\+R\+\_\+\+D\+R\+V\+N\+UM}(x,  val)~F\+A\+T\+\_\+\+S\+E\+T\+\_\+\+V\+A\+L8( x, 36,val)
+\item 
+\#define {\bfseries F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+B\+R\+\_\+\+R\+S\+V\+D1}(x)~F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+V\+A\+L8( x, 37)
+\item 
+\#define {\bfseries F\+A\+T\+\_\+\+S\+E\+T\+\_\+\+B\+R\+\_\+\+R\+S\+V\+D1}(x,  val)~F\+A\+T\+\_\+\+S\+E\+T\+\_\+\+V\+A\+L8( x, 37,val)
+\item 
+\#define {\bfseries F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+B\+R\+\_\+\+B\+O\+O\+T\+S\+IG}(x)~F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+V\+A\+L8( x, 38)
+\item 
+\#define {\bfseries F\+A\+T\+\_\+\+S\+E\+T\+\_\+\+B\+R\+\_\+\+B\+O\+O\+T\+S\+IG}(x,  val)~F\+A\+T\+\_\+\+S\+E\+T\+\_\+\+V\+A\+L8( x, 38,val)
+\item 
+\#define {\bfseries F\+A\+T\+\_\+\+B\+R\+\_\+\+B\+O\+O\+T\+S\+I\+G\+\_\+\+V\+AL}~(0x29)
+\item 
+\#define {\bfseries F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+B\+R\+\_\+\+V\+O\+L\+ID}(x)~F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+V\+A\+L32(x, 39)
+\item 
+\#define {\bfseries F\+A\+T\+\_\+\+S\+E\+T\+\_\+\+B\+R\+\_\+\+V\+O\+L\+ID}(x,  val)~F\+A\+T\+\_\+\+S\+E\+T\+\_\+\+V\+A\+L32(x, 39,val)
+\item 
+\#define {\bfseries F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+A\+D\+D\+R\+\_\+\+B\+R\+\_\+\+V\+O\+L\+L\+AB}(x)~F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+A\+D\+DR (x, 43)
+\item 
+\#define {\bfseries F\+A\+T\+\_\+\+B\+R\+\_\+\+V\+O\+L\+L\+A\+B\+\_\+\+S\+I\+ZE}~(11)
+\item 
+\#define {\bfseries F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+A\+D\+D\+R\+\_\+\+B\+R\+\_\+\+F\+I\+L\+S\+Y\+S\+T\+Y\+PE}(x)~F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+A\+D\+DR (x, 54)
+\item 
+\#define {\bfseries F\+A\+T\+\_\+\+B\+R\+\_\+\+F\+I\+L\+S\+Y\+S\+T\+Y\+P\+E\+\_\+\+S\+I\+ZE}~(8)
+\item 
+\#define {\bfseries F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+B\+R\+\_\+\+S\+E\+C\+T\+O\+R\+S\+\_\+\+P\+E\+R\+\_\+\+F\+A\+T32}(x)~F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+V\+A\+L32(x, 36)
+\item 
+\#define {\bfseries F\+A\+T\+\_\+\+S\+E\+T\+\_\+\+B\+R\+\_\+\+S\+E\+C\+T\+O\+R\+S\+\_\+\+P\+E\+R\+\_\+\+F\+A\+T32}(x,  val)~F\+A\+T\+\_\+\+S\+E\+T\+\_\+\+V\+A\+L32(x, 36,val)
+\item 
+\#define {\bfseries F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+B\+R\+\_\+\+E\+X\+T\+\_\+\+F\+L\+A\+GS}(x)~F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+V\+A\+L16(x, 40)
+\item 
+\#define {\bfseries F\+A\+T\+\_\+\+S\+E\+T\+\_\+\+B\+R\+\_\+\+E\+X\+T\+\_\+\+F\+L\+A\+GS}(x,  val)~F\+A\+T\+\_\+\+S\+E\+T\+\_\+\+V\+A\+L16(x, 40,val)
+\item 
+\#define {\bfseries F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+B\+R\+\_\+\+F\+S\+V\+ER}(x)~F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+V\+A\+L16(x, 42)
+\item 
+\#define {\bfseries F\+A\+T\+\_\+\+S\+E\+T\+\_\+\+B\+R\+\_\+\+F\+S\+V\+ER}(x,  val)~F\+A\+T\+\_\+\+S\+E\+T\+\_\+\+V\+A\+L16(x, 42,val)
+\item 
+\#define {\bfseries F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+B\+R\+\_\+\+F\+A\+T32\+\_\+\+R\+O\+O\+T\+\_\+\+C\+L\+U\+S\+T\+ER}(x)~F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+V\+A\+L32(x, 44)
+\item 
+\#define {\bfseries F\+A\+T\+\_\+\+S\+E\+T\+\_\+\+B\+R\+\_\+\+F\+A\+T32\+\_\+\+R\+O\+O\+T\+\_\+\+C\+L\+U\+S\+T\+ER}(x,  val)~F\+A\+T\+\_\+\+S\+E\+T\+\_\+\+V\+A\+L32(x, 44,val)
+\item 
+\#define {\bfseries F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+B\+R\+\_\+\+F\+A\+T32\+\_\+\+F\+S\+\_\+\+I\+N\+F\+O\+\_\+\+S\+E\+C\+T\+OR}(x)~F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+V\+A\+L16(x, 48)
+\item 
+\#define {\bfseries F\+A\+T\+\_\+\+S\+E\+T\+\_\+\+B\+R\+\_\+\+F\+A\+T32\+\_\+\+F\+S\+\_\+\+I\+N\+F\+O\+\_\+\+S\+E\+C\+T\+OR}(x,  val)~F\+A\+T\+\_\+\+S\+E\+T\+\_\+\+V\+A\+L16(x, 48,val)
+\item 
+\#define {\bfseries F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+B\+R\+\_\+\+F\+A\+T32\+\_\+\+B\+K\+\_\+\+B\+O\+O\+T\+\_\+\+S\+E\+C\+T\+OR}(x)~F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+V\+A\+L16(x, 50)
+\item 
+\#define {\bfseries F\+A\+T\+\_\+\+S\+E\+T\+\_\+\+B\+R\+\_\+\+F\+A\+T32\+\_\+\+B\+K\+\_\+\+B\+O\+O\+T\+\_\+\+S\+E\+C\+T\+OR}(x,  val)~F\+A\+T\+\_\+\+S\+E\+T\+\_\+\+V\+A\+L16(x, 50,val)
+\item 
+\#define {\bfseries F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+A\+D\+D\+R\+\_\+\+B\+R\+\_\+\+F\+A\+T32\+\_\+\+R\+E\+S\+E\+R\+V\+ED}(x)~F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+A\+D\+DR (x, 52)
+\item 
+\#define {\bfseries F\+A\+T\+\_\+\+B\+R\+\_\+\+F\+A\+T32\+\_\+\+R\+E\+S\+E\+R\+V\+E\+D\+\_\+\+S\+I\+ZE}~(12)
+\item 
+\#define {\bfseries F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+B\+R\+\_\+\+F\+A\+T32\+\_\+\+D\+R\+V\+N\+UM}(x)~F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+V\+A\+L8( x, 64)
+\item 
+\#define {\bfseries F\+A\+T\+\_\+\+S\+E\+T\+\_\+\+B\+R\+\_\+\+F\+A\+T32\+\_\+\+D\+R\+V\+N\+UM}(x,  val)~F\+A\+T\+\_\+\+S\+E\+T\+\_\+\+V\+A\+L8( x, 64,val)
+\item 
+\#define {\bfseries F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+B\+R\+\_\+\+F\+A\+T32\+\_\+\+R\+S\+V\+D1}(x)~F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+V\+A\+L8( x, 65)
+\item 
+\#define {\bfseries F\+A\+T\+\_\+\+S\+E\+T\+\_\+\+B\+R\+\_\+\+F\+A\+T32\+\_\+\+R\+S\+V\+D1}(x,  val)~F\+A\+T\+\_\+\+S\+E\+T\+\_\+\+V\+A\+L8( x, 65,val)
+\item 
+\#define {\bfseries F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+B\+R\+\_\+\+F\+A\+T32\+\_\+\+B\+O\+O\+T\+S\+IG}(x)~F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+V\+A\+L8( x, 66)
+\item 
+\#define {\bfseries F\+A\+T\+\_\+\+S\+E\+T\+\_\+\+B\+R\+\_\+\+F\+A\+T32\+\_\+\+B\+O\+O\+T\+S\+IG}(x,  val)~F\+A\+T\+\_\+\+S\+E\+T\+\_\+\+V\+A\+L8( x, 66,val)
+\item 
+\#define {\bfseries F\+A\+T\+\_\+\+B\+R\+\_\+\+F\+A\+T32\+\_\+\+B\+O\+O\+T\+S\+I\+G\+\_\+\+V\+AL}~(0x29)
+\item 
+\#define {\bfseries F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+B\+R\+\_\+\+F\+A\+T32\+\_\+\+V\+O\+L\+ID}(x)~F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+V\+A\+L32(x, 67)
+\item 
+\#define {\bfseries F\+A\+T\+\_\+\+S\+E\+T\+\_\+\+B\+R\+\_\+\+F\+A\+T32\+\_\+\+V\+O\+L\+ID}(x,  val)~F\+A\+T\+\_\+\+S\+E\+T\+\_\+\+V\+A\+L32(x, 67,val)
+\item 
+\#define {\bfseries F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+A\+D\+D\+R\+\_\+\+B\+R\+\_\+\+F\+A\+T32\+\_\+\+V\+O\+L\+L\+AB}(x)~F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+A\+D\+DR (x, 71)
+\item 
+\#define {\bfseries F\+A\+T\+\_\+\+B\+R\+\_\+\+F\+A\+T32\+\_\+\+V\+O\+L\+L\+A\+B\+\_\+\+S\+I\+ZE}~(11)
+\item 
+\#define {\bfseries F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+A\+D\+D\+R\+\_\+\+B\+R\+\_\+\+F\+A\+T32\+\_\+\+F\+I\+L\+S\+Y\+S\+T\+Y\+PE}(x)~F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+A\+D\+DR (x, 82)
+\item 
+\#define {\bfseries F\+A\+T\+\_\+\+B\+R\+\_\+\+F\+A\+T32\+\_\+\+F\+I\+L\+S\+Y\+S\+T\+Y\+P\+E\+\_\+\+S\+I\+ZE}~(8)
+\item 
+\#define {\bfseries F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+B\+R\+\_\+\+S\+I\+G\+N\+A\+T\+U\+RE}(x)~F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+V\+A\+L16(x,510)
+\item 
+\#define {\bfseries F\+A\+T\+\_\+\+S\+E\+T\+\_\+\+B\+R\+\_\+\+S\+I\+G\+N\+A\+T\+U\+RE}(x,  val)~F\+A\+T\+\_\+\+S\+E\+T\+\_\+\+V\+A\+L16(x,510,val)
+\item 
+\#define {\bfseries F\+A\+T\+\_\+\+B\+R\+\_\+\+S\+I\+G\+N\+A\+T\+U\+R\+E\+\_\+\+V\+AL}~(0x\+A\+A55)
+\item 
+\#define {\bfseries F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+F\+S\+I\+N\+F\+O\+\_\+\+L\+E\+A\+D\+\_\+\+S\+I\+G\+N\+A\+T\+U\+RE}(x)~F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+V\+A\+L32(x,  0)
+\item 
+\#define {\bfseries F\+A\+T\+\_\+\+S\+E\+T\+\_\+\+F\+S\+I\+N\+F\+O\+\_\+\+L\+E\+A\+D\+\_\+\+S\+I\+G\+N\+A\+T\+U\+RE}(x,  val)~F\+A\+T\+\_\+\+S\+E\+T\+\_\+\+V\+A\+L32(x,  0,val)
+\item 
+\#define {\bfseries F\+A\+T\+\_\+\+F\+S\+I\+N\+F\+O\+\_\+\+L\+E\+A\+D\+\_\+\+S\+I\+G\+N\+A\+T\+U\+R\+E\+\_\+\+V\+A\+L\+UE}~(0x41615252)
+\item 
+\#define {\bfseries F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+F\+S\+I\+N\+F\+O\+\_\+\+S\+T\+R\+U\+C\+\_\+\+S\+I\+G\+N\+A\+T\+U\+RE}(x)~F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+V\+A\+L32(x,484)
+\item 
+\#define {\bfseries F\+A\+T\+\_\+\+S\+E\+T\+\_\+\+F\+S\+I\+N\+F\+O\+\_\+\+S\+T\+R\+U\+C\+\_\+\+S\+I\+G\+N\+A\+T\+U\+RE}(x,  val)~F\+A\+T\+\_\+\+S\+E\+T\+\_\+\+V\+A\+L32(x,484,val)
+\item 
+\#define {\bfseries F\+A\+T\+\_\+\+F\+S\+I\+N\+F\+O\+\_\+\+S\+T\+R\+U\+C\+\_\+\+S\+I\+G\+N\+A\+T\+U\+R\+E\+\_\+\+V\+A\+L\+UE}~(0x61417272)
+\item 
+\#define {\bfseries F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+F\+S\+I\+N\+F\+O\+\_\+\+T\+R\+A\+I\+L\+\_\+\+S\+I\+G\+N\+A\+T\+U\+RE}(x)~F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+V\+A\+L32(x,508)
+\item 
+\#define {\bfseries F\+A\+T\+\_\+\+S\+E\+T\+\_\+\+F\+S\+I\+N\+F\+O\+\_\+\+T\+R\+A\+I\+L\+\_\+\+S\+I\+G\+N\+A\+T\+U\+RE}(x,  val)~F\+A\+T\+\_\+\+S\+E\+T\+\_\+\+V\+A\+L32(x,508,val)
+\item 
+\#define {\bfseries F\+A\+T\+\_\+\+F\+S\+I\+N\+F\+O\+\_\+\+T\+R\+A\+I\+L\+\_\+\+S\+I\+G\+N\+A\+T\+U\+R\+E\+\_\+\+V\+A\+L\+UE}~(0x\+A\+A550000)
+\item 
+\#define {\bfseries F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+F\+S\+I\+N\+F\+O\+\_\+\+F\+R\+E\+E\+\_\+\+C\+L\+U\+S\+T\+E\+R\+\_\+\+C\+O\+U\+NT}(x)~F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+V\+A\+L32(x, 4)
+\item 
+\#define {\bfseries F\+A\+T\+\_\+\+S\+E\+T\+\_\+\+F\+S\+I\+N\+F\+O\+\_\+\+F\+R\+E\+E\+\_\+\+C\+L\+U\+S\+T\+E\+R\+\_\+\+C\+O\+U\+NT}(x,  val)~F\+A\+T\+\_\+\+S\+E\+T\+\_\+\+V\+A\+L32(x, 4,val)
+\item 
+\#define {\bfseries F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+F\+S\+I\+N\+F\+O\+\_\+\+N\+E\+X\+T\+\_\+\+F\+R\+E\+E\+\_\+\+C\+L\+U\+S\+T\+ER}(x)~F\+A\+T\+\_\+\+G\+E\+T\+\_\+\+V\+A\+L32(x, 8)
+\item 
+\#define {\bfseries F\+A\+T\+\_\+\+S\+E\+T\+\_\+\+F\+S\+I\+N\+F\+O\+\_\+\+N\+E\+X\+T\+\_\+\+F\+R\+E\+E\+\_\+\+C\+L\+U\+S\+T\+ER}(x,  val)~F\+A\+T\+\_\+\+S\+E\+T\+\_\+\+V\+A\+L32(x, 8,val)
+\item 
+\#define {\bfseries F\+A\+T\+\_\+\+F\+S\+I\+\_\+\+I\+N\+FO}~484
+\item 
+\#define {\bfseries F\+A\+T\+\_\+\+F\+S\+I\+N\+F\+O\+\_\+\+S\+T\+R\+U\+C\+T\+\_\+\+O\+F\+F\+S\+ET}~488
+\item 
+\#define {\bfseries F\+A\+T\+\_\+\+F\+S\+I\+N\+F\+O\+\_\+\+F\+R\+E\+E\+\_\+\+C\+L\+U\+S\+T\+E\+R\+\_\+\+C\+O\+U\+N\+T\+\_\+\+O\+F\+F\+S\+ET}~(F\+A\+T\+\_\+\+F\+S\+I\+N\+F\+O\+\_\+\+S\+T\+R\+U\+C\+T\+\_\+\+O\+F\+F\+S\+ET+0)
+\item 
+\#define {\bfseries F\+A\+T\+\_\+\+F\+S\+I\+N\+F\+O\+\_\+\+N\+E\+X\+T\+\_\+\+F\+R\+E\+E\+\_\+\+C\+L\+U\+S\+T\+E\+R\+\_\+\+O\+F\+F\+S\+ET}~(F\+A\+T\+\_\+\+F\+S\+I\+N\+F\+O\+\_\+\+S\+T\+R\+U\+C\+T\+\_\+\+O\+F\+F\+S\+ET+4)
+\item 
+\#define {\bfseries F\+A\+T\+\_\+\+R\+S\+R\+V\+D\+\_\+\+C\+LN}~0x02
+\item 
+\#define {\bfseries F\+A\+T\+\_\+\+F\+S\+I\+\_\+\+L\+E\+A\+D\+S\+I\+G\+\_\+\+S\+I\+ZE}~0x04
+\item 
+\#define {\bfseries F\+A\+T\+\_\+\+T\+O\+T\+A\+L\+\_\+\+F\+S\+I\+N\+F\+O\+\_\+\+S\+I\+ZE}~512
+\item 
+\#define {\bfseries M\+S\+\_\+\+B\+Y\+T\+E\+S\+\_\+\+P\+E\+R\+\_\+\+C\+L\+U\+S\+T\+E\+R\+\_\+\+L\+I\+M\+IT}~0x10000    /$\ast$ 64\+K $\ast$/
+\item 
+\#define {\bfseries M\+S\+\_\+\+B\+Y\+T\+E\+S\+\_\+\+P\+E\+R\+\_\+\+C\+L\+U\+S\+T\+E\+R\+\_\+\+L\+I\+M\+I\+T\+\_\+\+F\+A\+T12}~0x1000     /$\ast$  4\+K $\ast$/
+\item 
+\#define {\bfseries F\+A\+T\+\_\+\+B\+R\+\_\+\+E\+X\+T\+\_\+\+F\+L\+A\+G\+S\+\_\+\+M\+I\+R\+R\+OR}~0x0080
+\item 
+\#define {\bfseries F\+A\+T\+\_\+\+B\+R\+\_\+\+E\+X\+T\+\_\+\+F\+L\+A\+G\+S\+\_\+\+F\+A\+T\+\_\+\+N\+UM}~0x000F
+\item 
+\#define {\bfseries F\+A\+T\+\_\+\+B\+R\+\_\+\+M\+E\+D\+I\+A\+\_\+\+F\+I\+X\+ED}~0xf8
+\item 
+\#define {\bfseries F\+A\+T\+\_\+\+D\+I\+R\+E\+N\+T\+R\+Y\+\_\+\+S\+I\+ZE}~32
+\item 
+\#define {\bfseries F\+A\+T\+\_\+\+D\+I\+R\+E\+N\+T\+R\+I\+E\+S\+\_\+\+P\+E\+R\+\_\+\+S\+E\+C512}~16
+\item 
+\#define {\bfseries F\+A\+T\+\_\+\+F\+I\+L\+E\+\_\+\+S\+H\+O\+R\+T\+\_\+\+N\+A\+ME}~(0xffffffff)
+\item 
+\#define {\bfseries F\+A\+T\+\_\+\+F\+A\+T\+\_\+\+O\+F\+F\+S\+ET}(fat\+\_\+type,  cln)
+\item 
+\#define {\bfseries F\+A\+T\+\_\+\+C\+L\+U\+S\+T\+E\+R\+\_\+\+I\+S\+\_\+\+O\+DD}(n)~((n) \& 0x0001)
+\item 
+\#define {\bfseries F\+A\+T12\+\_\+\+S\+H\+I\+FT}~0x4    /$\ast$ half of a byte $\ast$/
+\item 
+\#define {\bfseries F\+A\+T\+\_\+\+U\+I\+N\+O\+\_\+\+P\+O\+O\+L\+\_\+\+I\+N\+I\+T\+\_\+\+S\+I\+ZE}~0x100
+\item 
+\#define {\bfseries F\+A\+T\+\_\+\+C\+A\+C\+H\+E\+\_\+\+E\+M\+P\+TY}~0x0
+\item 
+\#define {\bfseries F\+A\+T\+\_\+\+C\+A\+C\+H\+E\+\_\+\+A\+C\+T\+U\+AL}~0x1
+\item 
+\#define {\bfseries F\+A\+T\+\_\+\+O\+P\+\_\+\+T\+Y\+P\+E\+\_\+\+R\+E\+AD}~0x1
+\item 
+\#define {\bfseries F\+A\+T\+\_\+\+O\+P\+\_\+\+T\+Y\+P\+E\+\_\+\+G\+ET}~0x2
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \mbox{\hyperlink{structfat__vol__s}{fat\+\_\+vol\+\_\+s}} {\bfseries fat\+\_\+vol\+\_\+t}
+\item 
+typedef struct \mbox{\hyperlink{structfat__cache__s}{fat\+\_\+cache\+\_\+s}} {\bfseries fat\+\_\+cache\+\_\+t}
+\item 
+typedef struct \mbox{\hyperlink{structfat__fs__info__s}{fat\+\_\+fs\+\_\+info\+\_\+s}} {\bfseries fat\+\_\+fs\+\_\+info\+\_\+t}
+\item 
+typedef struct \mbox{\hyperlink{structfat__pos__s}{fat\+\_\+pos\+\_\+s}} {\bfseries fat\+\_\+pos\+\_\+t}
+\item 
+typedef struct \mbox{\hyperlink{structfat__dir__pos__s}{fat\+\_\+dir\+\_\+pos\+\_\+s}} {\bfseries fat\+\_\+dir\+\_\+pos\+\_\+t}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int {\bfseries fat\+\_\+buf\+\_\+access} (\mbox{\hyperlink{structfat__fs__info__s}{fat\+\_\+fs\+\_\+info\+\_\+t}} $\ast$fs\+\_\+info, uint32\+\_\+t sec\+\_\+num, int op\+\_\+type, uint8\+\_\+t $\ast$$\ast$sec\+\_\+buf)
+\item 
+int {\bfseries fat\+\_\+buf\+\_\+release} (\mbox{\hyperlink{structfat__fs__info__s}{fat\+\_\+fs\+\_\+info\+\_\+t}} $\ast$fs\+\_\+info)
+\item 
+ssize\+\_\+t {\bfseries \+\_\+fat\+\_\+block\+\_\+read} (\mbox{\hyperlink{structfat__fs__info__s}{fat\+\_\+fs\+\_\+info\+\_\+t}} $\ast$fs\+\_\+info, uint32\+\_\+t start, uint32\+\_\+t offset, uint32\+\_\+t count, void $\ast$buff)
+\item 
+ssize\+\_\+t {\bfseries fat\+\_\+cluster\+\_\+write} (\mbox{\hyperlink{structfat__fs__info__s}{fat\+\_\+fs\+\_\+info\+\_\+t}} $\ast$fs\+\_\+info, uint32\+\_\+t start\+\_\+cln, uint32\+\_\+t offset, uint32\+\_\+t count, const void $\ast$buff)
+\item 
+ssize\+\_\+t {\bfseries fat\+\_\+sector\+\_\+write} (\mbox{\hyperlink{structfat__fs__info__s}{fat\+\_\+fs\+\_\+info\+\_\+t}} $\ast$fs\+\_\+info, uint32\+\_\+t start, uint32\+\_\+t offset, uint32\+\_\+t count, const void $\ast$buff)
+\item 
+ssize\+\_\+t {\bfseries fat\+\_\+cluster\+\_\+set} (\mbox{\hyperlink{structfat__fs__info__s}{fat\+\_\+fs\+\_\+info\+\_\+t}} $\ast$fs\+\_\+info, uint32\+\_\+t start, uint32\+\_\+t offset, uint32\+\_\+t count, uint8\+\_\+t pattern)
+\item 
+int {\bfseries fat\+\_\+init\+\_\+volume\+\_\+info} (\mbox{\hyperlink{structfat__fs__info__s}{fat\+\_\+fs\+\_\+info\+\_\+t}} $\ast$fs\+\_\+info, const char $\ast$\mbox{\hyperlink{structdevice}{device}})
+\item 
+int {\bfseries fat\+\_\+init\+\_\+clusters\+\_\+chain} (\mbox{\hyperlink{structfat__fs__info__s}{fat\+\_\+fs\+\_\+info\+\_\+t}} $\ast$fs\+\_\+info, uint32\+\_\+t start\+\_\+cln)
+\item 
+int {\bfseries fat\+\_\+shutdown\+\_\+drive} (\mbox{\hyperlink{structfat__fs__info__s}{fat\+\_\+fs\+\_\+info\+\_\+t}} $\ast$fs\+\_\+info)
+\item 
+uint32\+\_\+t {\bfseries fat\+\_\+get\+\_\+unique\+\_\+ino} (\mbox{\hyperlink{structfat__fs__info__s}{fat\+\_\+fs\+\_\+info\+\_\+t}} $\ast$fs\+\_\+info)
+\item 
+bool {\bfseries fat\+\_\+ino\+\_\+is\+\_\+unique} (\mbox{\hyperlink{structfat__fs__info__s}{fat\+\_\+fs\+\_\+info\+\_\+t}} $\ast$fs\+\_\+info, uint32\+\_\+t ino)
+\item 
+void {\bfseries fat\+\_\+free\+\_\+unique\+\_\+ino} (\mbox{\hyperlink{structfat__fs__info__s}{fat\+\_\+fs\+\_\+info\+\_\+t}} $\ast$fs\+\_\+info, uint32\+\_\+t ino)
+\item 
+int {\bfseries fat\+\_\+sync} (\mbox{\hyperlink{structfat__fs__info__s}{fat\+\_\+fs\+\_\+info\+\_\+t}} $\ast$fs\+\_\+info)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Constants/\+Data Structures/\+Prototypes on a Volume with F\+AT Filesystem. 
+
+Constants/\+Data Structures/\+Prototypes for Low-\/\+Level Operations on a Volume with F\+AT Filesystem 

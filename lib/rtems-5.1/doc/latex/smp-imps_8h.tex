@@ -1,0 +1,132 @@
+\hypertarget{smp-imps_8h}{}\section{bsps/i386/include/bsp/smp-\/imps.h File Reference}
+\label{smp-imps_8h}\index{bsps/i386/include/bsp/smp-\/imps.h@{bsps/i386/include/bsp/smp-\/imps.h}}
+
+
+Intel Multi\+Processor Specification (M\+PS) version 1.\+1 and 1.\+4 S\+MP hardware control.  
+
+
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structimps__fps}{imps\+\_\+fps}}
+\begin{DoxyCompactList}\small\item\em MP Floating Pointer Structure (fps) \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structimps__cth}{imps\+\_\+cth}}
+\begin{DoxyCompactList}\small\item\em MP Configuration Table Header (cth) \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structimps__processor}{imps\+\_\+processor}}
+\begin{DoxyCompactList}\small\item\em Base MP Configuration Table Types. They are sorted according to type (i.\+e. all of type 0 come first, etc.). Look on page 4-\/6 for the start of the descriptions. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structimps__bus}{imps\+\_\+bus}}
+\item 
+struct \mbox{\hyperlink{structimps__ioapic}{imps\+\_\+ioapic}}
+\item 
+struct \mbox{\hyperlink{structimps__interrupt}{imps\+\_\+interrupt}}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{smp-imps_8h_a178235e2a30df3d2c411b923cf72df4e}\label{smp-imps_8h_a178235e2a30df3d2c411b923cf72df4e}} 
+\#define {\bfseries I\+M\+P\+S\+\_\+\+R\+E\+AD}(x)~($\ast$((volatile unsigned $\ast$) (x)))
+\item 
+\mbox{\Hypertarget{smp-imps_8h_a1e4a951e4766f4c9c3e7ef71d7a0d00c}\label{smp-imps_8h_a1e4a951e4766f4c9c3e7ef71d7a0d00c}} 
+\#define {\bfseries I\+M\+P\+S\+\_\+\+W\+R\+I\+TE}(x,  y)~($\ast$((volatile unsigned $\ast$) (x)) = (y))
+\item 
+\mbox{\Hypertarget{smp-imps_8h_ae40da8814e8f63049c2dade22bb0dfe3}\label{smp-imps_8h_ae40da8814e8f63049c2dade22bb0dfe3}} 
+\#define {\bfseries I\+M\+P\+S\+\_\+\+D\+E\+B\+U\+G\+\_\+\+P\+R\+I\+NT}(x)
+\item 
+\mbox{\Hypertarget{smp-imps_8h_afcbbc21d3ec3697a2d41076ce3a36cea}\label{smp-imps_8h_afcbbc21d3ec3697a2d41076ce3a36cea}} 
+\#define {\bfseries I\+M\+P\+S\+\_\+\+M\+A\+X\+\_\+\+C\+P\+US}~A\+P\+I\+C\+\_\+\+B\+C\+A\+S\+T\+\_\+\+ID
+\item 
+\mbox{\Hypertarget{smp-imps_8h_a561b5fb11447074fb80eaed64dbcfd77}\label{smp-imps_8h_a561b5fb11447074fb80eaed64dbcfd77}} 
+\#define \mbox{\hyperlink{smp-imps_8h_a561b5fb11447074fb80eaed64dbcfd77}{I\+M\+P\+S\+\_\+\+F\+P\+S\+\_\+\+S\+I\+G\+N\+A\+T\+U\+RE}}~(\textquotesingle{}\+\_\+\textquotesingle{} $\vert$ (\textquotesingle{}M\textquotesingle{}$<$$<$8) $\vert$ (\textquotesingle{}P\textquotesingle{}$<$$<$16) $\vert$ (\textquotesingle{}\+\_\+\textquotesingle{}$<$$<$24))
+\begin{DoxyCompactList}\small\item\em This is the value that must be in the \char`\"{}sig\char`\"{} member of the MP Floating Pointer Structure. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{smp-imps_8h_a87138c5e6a6905a9fff26764712d51e0}\label{smp-imps_8h_a87138c5e6a6905a9fff26764712d51e0}} 
+\#define {\bfseries I\+M\+P\+S\+\_\+\+F\+P\+S\+\_\+\+I\+M\+C\+R\+P\+\_\+\+B\+IT}~0x80
+\item 
+\mbox{\Hypertarget{smp-imps_8h_a414e98557f5ab5ee1801fe8456b4a75c}\label{smp-imps_8h_a414e98557f5ab5ee1801fe8456b4a75c}} 
+\#define {\bfseries I\+M\+P\+S\+\_\+\+F\+P\+S\+\_\+\+D\+E\+F\+A\+U\+L\+T\+\_\+\+M\+AX}~7
+\item 
+\mbox{\Hypertarget{smp-imps_8h_aca9c0cd59b75925d8a080b4c86f2e0f3}\label{smp-imps_8h_aca9c0cd59b75925d8a080b4c86f2e0f3}} 
+\#define \mbox{\hyperlink{smp-imps_8h_aca9c0cd59b75925d8a080b4c86f2e0f3}{I\+M\+P\+S\+\_\+\+C\+T\+H\+\_\+\+S\+I\+G\+N\+A\+T\+U\+RE}}~(\textquotesingle{}P\textquotesingle{} $\vert$ (\textquotesingle{}C\textquotesingle{}$<$$<$8) $\vert$ (\textquotesingle{}M\textquotesingle{}$<$$<$16) $\vert$ (\textquotesingle{}P\textquotesingle{}$<$$<$24))
+\begin{DoxyCompactList}\small\item\em This is the value that must be in the \char`\"{}sig\char`\"{} member of the MP Configuration Table Header. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{smp-imps_8h_aa76caf708f6f3a1774a23aecbd5a9cb2}\label{smp-imps_8h_aa76caf708f6f3a1774a23aecbd5a9cb2}} 
+\#define \mbox{\hyperlink{smp-imps_8h_aa76caf708f6f3a1774a23aecbd5a9cb2}{I\+M\+P\+S\+\_\+\+F\+L\+A\+G\+\_\+\+E\+N\+A\+B\+L\+ED}}~1
+\begin{DoxyCompactList}\small\item\em These are the \char`\"{}type\char`\"{} values for Base MP Configuration Table entries. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{smp-imps_8h_a855f11153abba43fe2bafe84566a2c94}\label{smp-imps_8h_a855f11153abba43fe2bafe84566a2c94}} 
+\#define {\bfseries I\+M\+P\+S\+\_\+\+B\+C\+T\+\_\+\+P\+R\+O\+C\+E\+S\+S\+OR}~0
+\item 
+\mbox{\Hypertarget{smp-imps_8h_af2a7810808b36d96bcf1992e9a0c069a}\label{smp-imps_8h_af2a7810808b36d96bcf1992e9a0c069a}} 
+\#define {\bfseries I\+M\+P\+S\+\_\+\+C\+P\+U\+F\+L\+A\+G\+\_\+\+B\+O\+OT}~2
+\item 
+\mbox{\Hypertarget{smp-imps_8h_aff7e683f705f026c998fe84c746c2b76}\label{smp-imps_8h_aff7e683f705f026c998fe84c746c2b76}} 
+\#define {\bfseries I\+M\+P\+S\+\_\+\+B\+C\+T\+\_\+\+B\+US}~1
+\item 
+\mbox{\Hypertarget{smp-imps_8h_a73925f30336435c6ed7cea4c7cbe070b}\label{smp-imps_8h_a73925f30336435c6ed7cea4c7cbe070b}} 
+\#define {\bfseries I\+M\+P\+S\+\_\+\+B\+C\+T\+\_\+\+I\+O\+A\+P\+IC}~2
+\item 
+\mbox{\Hypertarget{smp-imps_8h_a0c44e4c7fcd510c65e1db86e49e6afc2}\label{smp-imps_8h_a0c44e4c7fcd510c65e1db86e49e6afc2}} 
+\#define {\bfseries I\+M\+P\+S\+\_\+\+B\+C\+T\+\_\+\+I\+O\+\_\+\+I\+N\+T\+E\+R\+R\+U\+PT}~3
+\item 
+\mbox{\Hypertarget{smp-imps_8h_ae5345cbda90a3e35ee6f8b72ff04d492}\label{smp-imps_8h_ae5345cbda90a3e35ee6f8b72ff04d492}} 
+\#define {\bfseries I\+M\+P\+S\+\_\+\+B\+C\+T\+\_\+\+L\+O\+C\+A\+L\+\_\+\+I\+N\+T\+E\+R\+R\+U\+PT}~4
+\item 
+\mbox{\Hypertarget{smp-imps_8h_a74424ba93941ff3e5aba155459d57fb8}\label{smp-imps_8h_a74424ba93941ff3e5aba155459d57fb8}} 
+\#define {\bfseries I\+M\+P\+S\+\_\+\+I\+N\+T\+\_\+\+I\+NT}~0
+\item 
+\mbox{\Hypertarget{smp-imps_8h_a6e027f0da6052e82d8e41473616f5bae}\label{smp-imps_8h_a6e027f0da6052e82d8e41473616f5bae}} 
+\#define {\bfseries I\+M\+P\+S\+\_\+\+I\+N\+T\+\_\+\+N\+MI}~1
+\item 
+\mbox{\Hypertarget{smp-imps_8h_ad256d897871fc3bf34bcc574964a6cb4}\label{smp-imps_8h_ad256d897871fc3bf34bcc574964a6cb4}} 
+\#define {\bfseries I\+M\+P\+S\+\_\+\+I\+N\+T\+\_\+\+S\+MI}~2
+\item 
+\mbox{\Hypertarget{smp-imps_8h_ae59dcdfb4760e6d48f75868e3a441f6f}\label{smp-imps_8h_ae59dcdfb4760e6d48f75868e3a441f6f}} 
+\#define {\bfseries I\+M\+P\+S\+\_\+\+I\+N\+T\+\_\+\+E\+X\+T\+I\+NT}~3
+\item 
+\mbox{\Hypertarget{smp-imps_8h_a8ec4693b52c0061eebb180de9218484c}\label{smp-imps_8h_a8ec4693b52c0061eebb180de9218484c}} 
+\#define {\bfseries I\+M\+P\+S\+\_\+\+L\+A\+P\+I\+C\+\_\+\+R\+E\+AD}(x)~($\ast$((volatile unsigned $\ast$) (\mbox{\hyperlink{smp-imps_8h_ad8c4ff22d3eb7322acff621557229f55}{imps\+\_\+lapic\+\_\+addr}}+(x))))
+\item 
+\mbox{\Hypertarget{smp-imps_8h_a070607784819fa2f8beca9b8cdb3f8ce}\label{smp-imps_8h_a070607784819fa2f8beca9b8cdb3f8ce}} 
+\#define {\bfseries I\+M\+P\+S\+\_\+\+L\+A\+P\+I\+C\+\_\+\+W\+R\+I\+TE}(x,  y)~($\ast$((volatile unsigned $\ast$) (\mbox{\hyperlink{smp-imps_8h_ad8c4ff22d3eb7322acff621557229f55}{imps\+\_\+lapic\+\_\+addr}}+(x))) = (y))
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{smp-imps_8h_ab45867b95399cf84219690769006a7a7}\label{smp-imps_8h_ab45867b95399cf84219690769006a7a7}} 
+typedef struct \mbox{\hyperlink{structimps__fps}{imps\+\_\+fps}} \mbox{\hyperlink{smp-imps_8h_ab45867b95399cf84219690769006a7a7}{imps\+\_\+fps}}
+\begin{DoxyCompactList}\small\item\em MP floating pointer structure. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{smp-imps_8h_a8c74c7f2e48c603c6d15f2e3c1326840}\label{smp-imps_8h_a8c74c7f2e48c603c6d15f2e3c1326840}} 
+typedef struct \mbox{\hyperlink{structimps__cth}{imps\+\_\+cth}} \mbox{\hyperlink{smp-imps_8h_a8c74c7f2e48c603c6d15f2e3c1326840}{imps\+\_\+cth}}
+\begin{DoxyCompactList}\small\item\em MP configuration table header. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{smp-imps_8h_a82b5a2804132cb213e6cff92f3f82a4a}\label{smp-imps_8h_a82b5a2804132cb213e6cff92f3f82a4a}} 
+typedef struct \mbox{\hyperlink{structimps__processor}{imps\+\_\+processor}} {\bfseries imps\+\_\+processor}
+\item 
+\mbox{\Hypertarget{smp-imps_8h_a62f5586cab9859598c2ac3a2d096c6fd}\label{smp-imps_8h_a62f5586cab9859598c2ac3a2d096c6fd}} 
+typedef struct \mbox{\hyperlink{structimps__bus}{imps\+\_\+bus}} {\bfseries imps\+\_\+bus}
+\item 
+\mbox{\Hypertarget{smp-imps_8h_a0ff69e6ecd951242bc89c493213fe03b}\label{smp-imps_8h_a0ff69e6ecd951242bc89c493213fe03b}} 
+typedef struct \mbox{\hyperlink{structimps__ioapic}{imps\+\_\+ioapic}} {\bfseries imps\+\_\+ioapic}
+\item 
+\mbox{\Hypertarget{smp-imps_8h_a38a710a727f9e823b590f5fb103c7b00}\label{smp-imps_8h_a38a710a727f9e823b590f5fb103c7b00}} 
+typedef struct \mbox{\hyperlink{structimps__interrupt}{imps\+\_\+interrupt}} {\bfseries imps\+\_\+interrupt}
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{smp-imps_8h_a55228e5a2229d3f3df067c98b66e5214}\label{smp-imps_8h_a55228e5a2229d3f3df067c98b66e5214}} 
+unsigned char \mbox{\hyperlink{smp-imps_8h_a55228e5a2229d3f3df067c98b66e5214}{imps\+\_\+cpu\+\_\+apic\+\_\+map}} \mbox{[}I\+M\+P\+S\+\_\+\+M\+A\+X\+\_\+\+C\+P\+US\mbox{]}
+\begin{DoxyCompactList}\small\item\em These map from virtual cpu numbers to A\+P\+IC id\textquotesingle{}s and back. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{smp-imps_8h_a830d0d3de593954f2a646d19403afab3}\label{smp-imps_8h_a830d0d3de593954f2a646d19403afab3}} 
+unsigned char {\bfseries imps\+\_\+apic\+\_\+cpu\+\_\+map} \mbox{[}I\+M\+P\+S\+\_\+\+M\+A\+X\+\_\+\+C\+P\+US\mbox{]}
+\item 
+\mbox{\Hypertarget{smp-imps_8h_a8554077aa6e1ed0de60cb896d2fe23d0}\label{smp-imps_8h_a8554077aa6e1ed0de60cb896d2fe23d0}} 
+char \mbox{\hyperlink{smp-imps_8h_a8554077aa6e1ed0de60cb896d2fe23d0}{\+\_\+binary\+\_\+appstart\+\_\+bin\+\_\+start}} \mbox{[}$\,$\mbox{]}
+\begin{DoxyCompactList}\small\item\em base address of application processor reset code at 0x70000 \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{smp-imps_8h_ab20a3e384123a9936c61940395bde993}\label{smp-imps_8h_ab20a3e384123a9936c61940395bde993}} 
+char {\bfseries \+\_\+binary\+\_\+appstart\+\_\+bin\+\_\+size} \mbox{[}$\,$\mbox{]}
+\item 
+\mbox{\Hypertarget{smp-imps_8h_ad8c4ff22d3eb7322acff621557229f55}\label{smp-imps_8h_ad8c4ff22d3eb7322acff621557229f55}} 
+unsigned \mbox{\hyperlink{smp-imps_8h_ad8c4ff22d3eb7322acff621557229f55}{imps\+\_\+lapic\+\_\+addr}}
+\begin{DoxyCompactList}\small\item\em base address of the local apic. Usually 0x\+F\+E\+E00000 \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Intel Multi\+Processor Specification (M\+PS) version 1.\+1 and 1.\+4 S\+MP hardware control. 
+

@@ -1,0 +1,178 @@
+\hypertarget{tms570-sci_8c}{}\section{bsps/arm/tms570/console/tms570-\/sci.c File Reference}
+\label{tms570-sci_8c}\index{bsps/arm/tms570/console/tms570-\/sci.c@{bsps/arm/tms570/console/tms570-\/sci.c}}
+
+
+Serial communication interface (S\+CI) functions definitions.  
+
+
+{\ttfamily \#include $<$bspopts.\+h$>$}\newline
+{\ttfamily \#include $<$termios.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/termiostypes.\+h$>$}\newline
+{\ttfamily \#include $<$bsp/tms570-\/sci.\+h$>$}\newline
+{\ttfamily \#include $<$bsp/tms570-\/sci-\/driver.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/console.\+h$>$}\newline
+{\ttfamily \#include $<$bsp.\+h$>$}\newline
+{\ttfamily \#include $<$bsp/fatal.\+h$>$}\newline
+{\ttfamily \#include $<$bsp/irq.\+h$>$}\newline
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{tms570-sci_8c_acb8120fafa31525f04b133323f5a7b5c}\label{tms570-sci_8c_acb8120fafa31525f04b133323f5a7b5c}} 
+\#define {\bfseries T\+M\+S570\+\_\+\+S\+C\+I\+\_\+\+B\+U\+F\+F\+E\+R\+\_\+\+S\+I\+ZE}~1
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{tms570-sci_8c_ae9a4d3192f3e78b9857788a98bb14187}\label{tms570-sci_8c_ae9a4d3192f3e78b9857788a98bb14187}} 
+void {\bfseries tms570\+\_\+sci\+\_\+initialize} (\mbox{\hyperlink{structtms570__sci__context}{tms570\+\_\+sci\+\_\+context}} $\ast$ctx)
+\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+device\+\_\+driver}} \mbox{\hyperlink{tms570-sci_8c_aafa42e88bcc94ce0f507f77be54a90a6}{console\+\_\+initialize}} (rtems\+\_\+device\+\_\+major\+\_\+number major, rtems\+\_\+device\+\_\+minor\+\_\+number minor, void $\ast$arg)
+\begin{DoxyCompactList}\small\item\em Serial drivers init function. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{tms570-sci_8c_a7cf94e3b205d7a61b8455d806ad96b67}{tms570\+\_\+sci\+\_\+set\+\_\+attributes}} (\mbox{\hyperlink{structrtems__termios__device__context}{rtems\+\_\+termios\+\_\+device\+\_\+context}} $\ast$base, const struct termios $\ast$t)
+\begin{DoxyCompactList}\small\item\em Set attributes of the HW peripheral. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structtms570__sci__context}{tms570\+\_\+sci\+\_\+context}} \mbox{\hyperlink{tms570-sci_8c_a6162f56b8d4e448ce7f72275b7bdc039}{driver\+\_\+context\+\_\+table}} \mbox{[}$\,$\mbox{]}
+\begin{DoxyCompactList}\small\item\em Table including all serial drivers. \end{DoxyCompactList}\item 
+const \mbox{\hyperlink{structrtems__termios__device__handler}{rtems\+\_\+termios\+\_\+device\+\_\+handler}} \mbox{\hyperlink{tms570-sci_8c_a2f9036d4d7c7c5dcb9068422928da97a}{tms570\+\_\+sci\+\_\+handler\+\_\+polled}}
+\begin{DoxyCompactList}\small\item\em Struct containing definitions of polled driver functions. \end{DoxyCompactList}\item 
+const \mbox{\hyperlink{structrtems__termios__device__handler}{rtems\+\_\+termios\+\_\+device\+\_\+handler}} \mbox{\hyperlink{tms570-sci_8c_afc72c833e5a0309b5716223987446713}{tms570\+\_\+sci\+\_\+handler\+\_\+interrupt}}
+\begin{DoxyCompactList}\small\item\em Struct containing definitions of interrupt driven driver functions. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Serial communication interface (S\+CI) functions definitions. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{tms570-sci_8c_aafa42e88bcc94ce0f507f77be54a90a6}\label{tms570-sci_8c_aafa42e88bcc94ce0f507f77be54a90a6}} 
+\index{tms570-\/sci.c@{tms570-\/sci.c}!console\_initialize@{console\_initialize}}
+\index{console\_initialize@{console\_initialize}!tms570-\/sci.c@{tms570-\/sci.c}}
+\subsubsection{\texorpdfstring{console\_initialize()}{console\_initialize()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+device\+\_\+driver}} console\+\_\+initialize (\begin{DoxyParamCaption}\item[{rtems\+\_\+device\+\_\+major\+\_\+number}]{major,  }\item[{rtems\+\_\+device\+\_\+minor\+\_\+number}]{minor,  }\item[{void $\ast$}]{arg }\end{DoxyParamCaption})}
+
+
+
+Serial drivers init function. 
+
+Console initialization entry point.
+
+Initialize all serial drivers specified in driver\+\_\+context\+\_\+table
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em major} & \\
+\hline
+\mbox{\texttt{ in}}  & {\em minor} & \\
+\hline
+\mbox{\texttt{ in}}  & {\em arg} & \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em R\+T\+E\+M\+S\+\_\+\+S\+U\+C\+C\+E\+S\+S\+F\+UL} & Initialization completed \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{tms570-sci_8c_a7cf94e3b205d7a61b8455d806ad96b67}\label{tms570-sci_8c_a7cf94e3b205d7a61b8455d806ad96b67}} 
+\index{tms570-\/sci.c@{tms570-\/sci.c}!tms570\_sci\_set\_attributes@{tms570\_sci\_set\_attributes}}
+\index{tms570\_sci\_set\_attributes@{tms570\_sci\_set\_attributes}!tms570-\/sci.c@{tms570-\/sci.c}}
+\subsubsection{\texorpdfstring{tms570\_sci\_set\_attributes()}{tms570\_sci\_set\_attributes()}}
+{\footnotesize\ttfamily bool tms570\+\_\+sci\+\_\+set\+\_\+attributes (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structrtems__termios__device__context}{rtems\+\_\+termios\+\_\+device\+\_\+context}} $\ast$}]{base,  }\item[{const struct termios $\ast$}]{t }\end{DoxyParamCaption})}
+
+
+
+Set attributes of the HW peripheral. 
+
+Sets attributes of the HW peripheral (parity, baud rate, etc.)
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em base} & context of the driver \\
+\hline
+\mbox{\texttt{ in}}  & {\em t} & termios driver \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em true} & peripheral setting is changed \\
+\hline
+\end{DoxyRetVals}
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{tms570-sci_8c_a6162f56b8d4e448ce7f72275b7bdc039}\label{tms570-sci_8c_a6162f56b8d4e448ce7f72275b7bdc039}} 
+\index{tms570-\/sci.c@{tms570-\/sci.c}!driver\_context\_table@{driver\_context\_table}}
+\index{driver\_context\_table@{driver\_context\_table}!tms570-\/sci.c@{tms570-\/sci.c}}
+\subsubsection{\texorpdfstring{driver\_context\_table}{driver\_context\_table}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structtms570__sci__context}{tms570\+\_\+sci\+\_\+context}} driver\+\_\+context\+\_\+table\mbox{[}$\,$\mbox{]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{  \{}
+\DoxyCodeLine{    .base = \mbox{\hyperlink{termiostypes_8h_a2f61e75fe352067a33998556c23789a1}{RTEMS\_TERMIOS\_DEVICE\_CONTEXT\_INITIALIZER}}(\textcolor{stringliteral}{"TMS570 SCI1"}),}
+\DoxyCodeLine{    .device\_name = \textcolor{stringliteral}{"/dev/console"},}
+\DoxyCodeLine{    }
+\DoxyCodeLine{    .regs = (\textcolor{keyword}{volatile} \mbox{\hyperlink{structtms570__sci__t}{tms570\_sci\_t}} *) \&TMS570\_LIN,}
+\DoxyCodeLine{    .irq = TMS570\_IRQ\_SCI\_LEVEL\_0,}
+\DoxyCodeLine{  \},}
+\DoxyCodeLine{  \{}
+\DoxyCodeLine{    .base = \mbox{\hyperlink{termiostypes_8h_a2f61e75fe352067a33998556c23789a1}{RTEMS\_TERMIOS\_DEVICE\_CONTEXT\_INITIALIZER}}(\textcolor{stringliteral}{"TMS570 SCI2"}),}
+\DoxyCodeLine{    .device\_name = \textcolor{stringliteral}{"/dev/ttyS1"},}
+\DoxyCodeLine{    .regs = \&TMS570\_SCI,}
+\DoxyCodeLine{    .irq = TMS570\_IRQ\_SCI2\_LEVEL\_0,}
+\DoxyCodeLine{  \}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Table including all serial drivers. 
+
+Definitions of all serial drivers \mbox{\Hypertarget{tms570-sci_8c_afc72c833e5a0309b5716223987446713}\label{tms570-sci_8c_afc72c833e5a0309b5716223987446713}} 
+\index{tms570-\/sci.c@{tms570-\/sci.c}!tms570\_sci\_handler\_interrupt@{tms570\_sci\_handler\_interrupt}}
+\index{tms570\_sci\_handler\_interrupt@{tms570\_sci\_handler\_interrupt}!tms570-\/sci.c@{tms570-\/sci.c}}
+\subsubsection{\texorpdfstring{tms570\_sci\_handler\_interrupt}{tms570\_sci\_handler\_interrupt}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{structrtems__termios__device__handler}{rtems\+\_\+termios\+\_\+device\+\_\+handler}} tms570\+\_\+sci\+\_\+handler\+\_\+interrupt}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{  .first\_open = tms570\_sci\_interrupt\_first\_open,}
+\DoxyCodeLine{  .last\_close = tms570\_sci\_interrupt\_last\_close,}
+\DoxyCodeLine{  .poll\_read = \mbox{\hyperlink{bestcomm__api_8h_a872bb74de61c3689ccd5b41873fce42c}{NULL}},}
+\DoxyCodeLine{  .write = tms570\_sci\_interrupt\_write,}
+\DoxyCodeLine{  .set\_attributes = \mbox{\hyperlink{tms570-sci_8c_a7cf94e3b205d7a61b8455d806ad96b67}{tms570\_sci\_set\_attributes}},}
+\DoxyCodeLine{  .mode = TERMIOS\_IRQ\_DRIVEN}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Struct containing definitions of interrupt driven driver functions. 
+
+Encapsulates interrupt driven driver functions. Use of this table is determited by defining T\+M\+S570\+\_\+\+U\+S\+E\+\_\+\+I\+N\+T\+E\+R\+R\+U\+P\+TS \mbox{\Hypertarget{tms570-sci_8c_a2f9036d4d7c7c5dcb9068422928da97a}\label{tms570-sci_8c_a2f9036d4d7c7c5dcb9068422928da97a}} 
+\index{tms570-\/sci.c@{tms570-\/sci.c}!tms570\_sci\_handler\_polled@{tms570\_sci\_handler\_polled}}
+\index{tms570\_sci\_handler\_polled@{tms570\_sci\_handler\_polled}!tms570-\/sci.c@{tms570-\/sci.c}}
+\subsubsection{\texorpdfstring{tms570\_sci\_handler\_polled}{tms570\_sci\_handler\_polled}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{structrtems__termios__device__handler}{rtems\+\_\+termios\+\_\+device\+\_\+handler}} tms570\+\_\+sci\+\_\+handler\+\_\+polled}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{  .first\_open = tms570\_sci\_poll\_first\_open,}
+\DoxyCodeLine{  .last\_close = tms570\_sci\_poll\_last\_close,}
+\DoxyCodeLine{  .poll\_read = tms570\_sci\_poll\_read,}
+\DoxyCodeLine{  .write = tms570\_sci\_poll\_write,}
+\DoxyCodeLine{  .set\_attributes = \mbox{\hyperlink{tms570-sci_8c_a7cf94e3b205d7a61b8455d806ad96b67}{tms570\_sci\_set\_attributes}},}
+\DoxyCodeLine{  .mode = TERMIOS\_POLLED}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Struct containing definitions of polled driver functions. 
+
+Encapsulates polled driver functions. Use of this table is determited by not defining T\+M\+S570\+\_\+\+U\+S\+E\+\_\+\+I\+N\+T\+E\+R\+R\+U\+P\+TS 

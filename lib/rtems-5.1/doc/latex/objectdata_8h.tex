@@ -1,0 +1,85 @@
+\hypertarget{objectdata_8h}{}\section{cpukit/include/rtems/score/objectdata.h File Reference}
+\label{objectdata_8h}\index{cpukit/include/rtems/score/objectdata.h@{cpukit/include/rtems/score/objectdata.h}}
+
+
+Object Handler Data Structures.  
+
+
+{\ttfamily \#include $<$rtems/score/object.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/score/chainimpl.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/score/rbtree.\+h$>$}\newline
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structObjects__Control}{Objects\+\_\+\+Control}}
+\item 
+struct \mbox{\hyperlink{structObjects__Information}{Objects\+\_\+\+Information}}
+\begin{DoxyCompactList}\small\item\em The information structure used to manage each A\+PI class of objects. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__RTEMSScoreObject_gab28c254ca8b651021dff18d181e053f2}{O\+B\+J\+E\+C\+T\+S\+\_\+\+N\+O\+\_\+\+S\+T\+R\+I\+N\+G\+\_\+\+N\+A\+ME}}~0
+\begin{DoxyCompactList}\small\item\em Constant for the object information string name length to indicate that this object class has no string names. \end{DoxyCompactList}\item 
+\#define {\bfseries O\+B\+J\+E\+C\+T\+S\+\_\+\+I\+N\+F\+O\+R\+M\+A\+T\+I\+O\+N\+\_\+\+MP}(name,  extract)
+\item 
+\#define \mbox{\hyperlink{group__RTEMSScoreObject_ga95e30a95356d2254e6b8839e654cccfc}{O\+B\+J\+E\+C\+T\+S\+\_\+\+I\+N\+F\+O\+R\+M\+A\+T\+I\+O\+N\+\_\+\+D\+E\+F\+I\+N\+E\+\_\+\+Z\+E\+RO}}(name,  api,  cls,  nl)
+\begin{DoxyCompactList}\small\item\em Statically initializes an objects information. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTEMSScoreObject_gac485289406e4297a576a74f72a28f608}{O\+B\+J\+E\+C\+T\+S\+\_\+\+I\+N\+F\+O\+R\+M\+A\+T\+I\+O\+N\+\_\+\+D\+E\+F\+I\+NE}}(name,  api,  cls,  type,  max,  nl,  ex)
+\begin{DoxyCompactList}\small\item\em Statically initializes an objects information. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \mbox{\hyperlink{structObjects__Information}{Objects\+\_\+\+Information}} {\bfseries Objects\+\_\+\+Information}
+\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{group__RTEMSScoreObject_gab0b081c60099c61c644af4cd5f70019f}{Objects\+\_\+\+Internal\+\_\+\+A\+PI}} \{ {\bfseries O\+B\+J\+E\+C\+T\+S\+\_\+\+I\+N\+T\+E\+R\+N\+A\+L\+\_\+\+N\+O\+\_\+\+C\+L\+A\+SS} = 0, 
+{\bfseries O\+B\+J\+E\+C\+T\+S\+\_\+\+I\+N\+T\+E\+R\+N\+A\+L\+\_\+\+T\+H\+R\+E\+A\+DS} = 1
+ \}
+\item 
+enum \mbox{\hyperlink{group__RTEMSScoreObject_gaea9b262405122fd6db22e869944b7632}{Objects\+\_\+\+Classic\+\_\+\+A\+PI}} \{ \newline
+{\bfseries O\+B\+J\+E\+C\+T\+S\+\_\+\+C\+L\+A\+S\+S\+I\+C\+\_\+\+N\+O\+\_\+\+C\+L\+A\+SS} = 0, 
+{\bfseries O\+B\+J\+E\+C\+T\+S\+\_\+\+R\+T\+E\+M\+S\+\_\+\+T\+A\+S\+KS} = 1, 
+{\bfseries O\+B\+J\+E\+C\+T\+S\+\_\+\+R\+T\+E\+M\+S\+\_\+\+T\+I\+M\+E\+RS}, 
+{\bfseries O\+B\+J\+E\+C\+T\+S\+\_\+\+R\+T\+E\+M\+S\+\_\+\+S\+E\+M\+A\+P\+H\+O\+R\+ES}, 
+\newline
+{\bfseries O\+B\+J\+E\+C\+T\+S\+\_\+\+R\+T\+E\+M\+S\+\_\+\+M\+E\+S\+S\+A\+G\+E\+\_\+\+Q\+U\+E\+U\+ES}, 
+{\bfseries O\+B\+J\+E\+C\+T\+S\+\_\+\+R\+T\+E\+M\+S\+\_\+\+P\+A\+R\+T\+I\+T\+I\+O\+NS}, 
+{\bfseries O\+B\+J\+E\+C\+T\+S\+\_\+\+R\+T\+E\+M\+S\+\_\+\+R\+E\+G\+I\+O\+NS}, 
+{\bfseries O\+B\+J\+E\+C\+T\+S\+\_\+\+R\+T\+E\+M\+S\+\_\+\+P\+O\+R\+TS}, 
+\newline
+{\bfseries O\+B\+J\+E\+C\+T\+S\+\_\+\+R\+T\+E\+M\+S\+\_\+\+P\+E\+R\+I\+O\+DS}, 
+{\bfseries O\+B\+J\+E\+C\+T\+S\+\_\+\+R\+T\+E\+M\+S\+\_\+\+E\+X\+T\+E\+N\+S\+I\+O\+NS}, 
+{\bfseries O\+B\+J\+E\+C\+T\+S\+\_\+\+R\+T\+E\+M\+S\+\_\+\+B\+A\+R\+R\+I\+E\+RS}
+ \}
+\item 
+enum \mbox{\hyperlink{group__RTEMSScoreObject_gaa08d967fe7c8ab07e1c9f9dfec70b01f}{Objects\+\_\+\+P\+O\+S\+I\+X\+\_\+\+A\+PI}} \{ \newline
+{\bfseries O\+B\+J\+E\+C\+T\+S\+\_\+\+P\+O\+S\+I\+X\+\_\+\+N\+O\+\_\+\+C\+L\+A\+SS} = 0, 
+{\bfseries O\+B\+J\+E\+C\+T\+S\+\_\+\+P\+O\+S\+I\+X\+\_\+\+T\+H\+R\+E\+A\+DS} = 1, 
+{\bfseries O\+B\+J\+E\+C\+T\+S\+\_\+\+P\+O\+S\+I\+X\+\_\+\+K\+E\+YS}, 
+{\bfseries O\+B\+J\+E\+C\+T\+S\+\_\+\+P\+O\+S\+I\+X\+\_\+\+M\+E\+S\+S\+A\+G\+E\+\_\+\+Q\+U\+E\+U\+ES}, 
+\newline
+{\bfseries O\+B\+J\+E\+C\+T\+S\+\_\+\+P\+O\+S\+I\+X\+\_\+\+S\+E\+M\+A\+P\+H\+O\+R\+ES}, 
+{\bfseries O\+B\+J\+E\+C\+T\+S\+\_\+\+P\+O\+S\+I\+X\+\_\+\+T\+I\+M\+E\+RS}, 
+{\bfseries O\+B\+J\+E\+C\+T\+S\+\_\+\+P\+O\+S\+I\+X\+\_\+\+S\+H\+MS}
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structObjects__Control}{Objects\+\_\+\+Control}} $\ast$ \mbox{\hyperlink{group__RTEMSScoreObject_gab0861c8e235b2892f2785b6cf582c74e}{\+\_\+\+Objects\+\_\+\+Allocate\+\_\+none}} (\mbox{\hyperlink{structObjects__Information}{Objects\+\_\+\+Information}} $\ast$information)
+\begin{DoxyCompactList}\small\item\em Always return N\+U\+LL. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structObjects__Control}{Objects\+\_\+\+Control}} $\ast$ \mbox{\hyperlink{group__RTEMSScoreObject_ga93a072e4b17ff04e60d29e57e6901ce1}{\+\_\+\+Objects\+\_\+\+Allocate\+\_\+static}} (\mbox{\hyperlink{structObjects__Information}{Objects\+\_\+\+Information}} $\ast$information)
+\begin{DoxyCompactList}\small\item\em Return an inactive object or N\+U\+LL. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structObjects__Control}{Objects\+\_\+\+Control}} $\ast$ \mbox{\hyperlink{group__RTEMSScoreObject_ga0a7f6c580a3b8f84842df598a283b890}{\+\_\+\+Objects\+\_\+\+Allocate\+\_\+unlimited}} (\mbox{\hyperlink{structObjects__Information}{Objects\+\_\+\+Information}} $\ast$information)
+\begin{DoxyCompactList}\small\item\em Return an inactive object or N\+U\+LL. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__RTEMSScoreObject_ga080ce791a8c319fbad853973fa53cf58}{\+\_\+\+Objects\+\_\+\+Free\+\_\+static}} (\mbox{\hyperlink{structObjects__Information}{Objects\+\_\+\+Information}} $\ast$information, \mbox{\hyperlink{structObjects__Control}{Objects\+\_\+\+Control}} $\ast$the\+\_\+object)
+\begin{DoxyCompactList}\small\item\em Free the object. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__RTEMSScoreObject_gae07a394b03c4cb77414045f2fca32e62}{\+\_\+\+Objects\+\_\+\+Free\+\_\+unlimited}} (\mbox{\hyperlink{structObjects__Information}{Objects\+\_\+\+Information}} $\ast$information, \mbox{\hyperlink{structObjects__Control}{Objects\+\_\+\+Control}} $\ast$the\+\_\+object)
+\begin{DoxyCompactList}\small\item\em Free the object. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Object Handler Data Structures. 
+

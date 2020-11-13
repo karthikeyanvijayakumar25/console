@@ -1,0 +1,191 @@
+\hypertarget{group__RTEMSScoreContext}{}\section{Context Handler}
+\label{group__RTEMSScoreContext}\index{Context Handler@{Context Handler}}
+
+
+Functionality for Abstraction of Thread Context Management.  
+
+
+\subsection*{Files}
+\begin{DoxyCompactItemize}
+\item 
+file \mbox{\hyperlink{context_8h}{context.\+h}}
+\begin{DoxyCompactList}\small\item\em Information About Each Thread\textquotesingle{}s Context. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__RTEMSScoreContext_gab5a3d965b96e9d5ed36aa5d28514a0c9}{C\+O\+N\+T\+E\+X\+T\+\_\+\+F\+P\+\_\+\+S\+I\+ZE}}
+\begin{DoxyCompactList}\small\item\em Size of floating point context area. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTEMSScoreContext_ga58ee7a020994c31e741b3c431eea168e}{\+\_\+\+Context\+\_\+\+Initialize}}(\+\_\+the\+\_\+context,  \+\_\+stack,  \+\_\+size,  \+\_\+isr,  \+\_\+entry,  \+\_\+is\+\_\+fp,  \+\_\+tls\+\_\+area)
+\begin{DoxyCompactList}\small\item\em Initialize context area. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTEMSScoreContext_ga2ef1ba43fa949a447be59fe34ecf6e96}{\+\_\+\+Context\+\_\+\+Initialization\+\_\+at\+\_\+thread\+\_\+begin}}()
+\item 
+\#define \mbox{\hyperlink{group__RTEMSScoreContext_gac1e12323e6e85bbced3d57828b36fff8}{\+\_\+\+Context\+\_\+\+Switch}}(\+\_\+executing,  \+\_\+heir)~\mbox{\hyperlink{group__RTEMSScoreCPUARM_gaa9f8cc989454b28232e5375e30c90970}{\+\_\+\+C\+P\+U\+\_\+\+Context\+\_\+switch}}( \+\_\+executing, \+\_\+heir )
+\begin{DoxyCompactList}\small\item\em Perform context switch. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTEMSScoreContext_ga617942caa9af6f3cf239c6de30ce6080}{\+\_\+\+Context\+\_\+\+Restart\+\_\+self}}(\+\_\+the\+\_\+context)~\mbox{\hyperlink{v850_2include_2rtems_2score_2cpu_8h_a3fb67e174d7b61251322cd32126acd1a}{\+\_\+\+C\+P\+U\+\_\+\+Context\+\_\+\+Restart\+\_\+self}}( \+\_\+the\+\_\+context )
+\begin{DoxyCompactList}\small\item\em Restart currently executing thread. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTEMSScoreContext_ga1990ec7db775e43ae0af46e7c79b1206}{\+\_\+\+Context\+\_\+\+Initialize\+\_\+fp}}(\+\_\+fp\+\_\+area)~\mbox{\hyperlink{sparc_2include_2rtems_2score_2cpu_8h_ac34a28abe9b31559d4096b2c942860a6}{\+\_\+\+C\+P\+U\+\_\+\+Context\+\_\+\+Initialize\+\_\+fp}}( \+\_\+fp\+\_\+area )
+\begin{DoxyCompactList}\small\item\em Initialize floating point context area. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTEMSScoreContext_gab2919317d5dbb7a40cfd3371c2195871}{\+\_\+\+Context\+\_\+\+Restore\+\_\+fp}}(\+\_\+fp)~\mbox{\hyperlink{sparc_2include_2rtems_2score_2cpu_8h_a8d77a957f827a9250794f9ad754acbf5}{\+\_\+\+C\+P\+U\+\_\+\+Context\+\_\+restore\+\_\+fp}}( \+\_\+fp )
+\begin{DoxyCompactList}\small\item\em Restore floating point context area. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTEMSScoreContext_gae7f5511c583da82fa4bcf8da870ef1c2}{\+\_\+\+Context\+\_\+\+Save\+\_\+fp}}(\+\_\+fp)~\mbox{\hyperlink{sparc_2include_2rtems_2score_2cpu_8h_ae8d9251a320d6920e3c8d6e45eb38fad}{\+\_\+\+C\+P\+U\+\_\+\+Context\+\_\+save\+\_\+fp}}( \+\_\+fp )
+\begin{DoxyCompactList}\small\item\em Save floating point context area. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__RTEMSScoreContext_gac92500d6e9e903ad709c4124e9818663}\label{group__RTEMSScoreContext_gac92500d6e9e903ad709c4124e9818663}} 
+\#define {\bfseries \+\_\+\+Context\+\_\+\+Destroy}(\+\_\+the\+\_\+thread,  \+\_\+the\+\_\+context)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Functionality for Abstraction of Thread Context Management. 
+
+This handler encapsulates functionality which abstracts thread context management in a portable manner.
+
+The context switch needed variable is contained in the per cpu data structure. 
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{group__RTEMSScoreContext_ga2ef1ba43fa949a447be59fe34ecf6e96}\label{group__RTEMSScoreContext_ga2ef1ba43fa949a447be59fe34ecf6e96}} 
+\index{Context Handler@{Context Handler}!\_Context\_Initialization\_at\_thread\_begin@{\_Context\_Initialization\_at\_thread\_begin}}
+\index{\_Context\_Initialization\_at\_thread\_begin@{\_Context\_Initialization\_at\_thread\_begin}!Context Handler@{Context Handler}}
+\subsubsection{\texorpdfstring{\_Context\_Initialization\_at\_thread\_begin}{\_Context\_Initialization\_at\_thread\_begin}}
+{\footnotesize\ttfamily \#define \+\_\+\+Context\+\_\+\+Initialization\+\_\+at\+\_\+thread\+\_\+begin(\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+This macro is invoked from \+\_\+\+Thread\+\_\+\+Handler to do whatever C\+PU specific magic is required that must be done in the context of the thread when it starts.
+
+If the C\+PU architecture does not require any magic, then this macro is empty. \mbox{\Hypertarget{group__RTEMSScoreContext_ga58ee7a020994c31e741b3c431eea168e}\label{group__RTEMSScoreContext_ga58ee7a020994c31e741b3c431eea168e}} 
+\index{Context Handler@{Context Handler}!\_Context\_Initialize@{\_Context\_Initialize}}
+\index{\_Context\_Initialize@{\_Context\_Initialize}!Context Handler@{Context Handler}}
+\subsubsection{\texorpdfstring{\_Context\_Initialize}{\_Context\_Initialize}}
+{\footnotesize\ttfamily \#define \+\_\+\+Context\+\_\+\+Initialize(\begin{DoxyParamCaption}\item[{}]{\+\_\+the\+\_\+context,  }\item[{}]{\+\_\+stack,  }\item[{}]{\+\_\+size,  }\item[{}]{\+\_\+isr,  }\item[{}]{\+\_\+entry,  }\item[{}]{\+\_\+is\+\_\+fp,  }\item[{}]{\+\_\+tls\+\_\+area }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\_CPU\_Context\_Initialize( \_the\_context, \_stack, \_size, \_isr, \_entry, \(\backslash\)}
+\DoxyCodeLine{      \_is\_fp, \_tls\_area )}
+
+\end{DoxyCode}
+
+
+Initialize context area. 
+
+This routine initializes {\itshape \+\_\+the\+\_\+context} such that the stack pointer, interrupt level, and entry point are correct for the thread\textquotesingle{}s initial state.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+the\+\_\+context} & will be initialized \\
+\hline
+\mbox{\texttt{ in}}  & {\em \+\_\+stack} & is the lowest physical address of the thread\textquotesingle{}s context \\
+\hline
+\mbox{\texttt{ in}}  & {\em \+\_\+size} & is the size in octets of the thread\textquotesingle{}s context \\
+\hline
+\mbox{\texttt{ in}}  & {\em \+\_\+isr} & is the I\+SR enable level for this thread \\
+\hline
+\mbox{\texttt{ in}}  & {\em \+\_\+entry} & is this thread\textquotesingle{}s entry point \\
+\hline
+\mbox{\texttt{ in}}  & {\em \+\_\+is\+\_\+fp} & is set to true if this thread has floating point enabled \\
+\hline
+\mbox{\texttt{ in}}  & {\em \+\_\+tls\+\_\+area} & The thread-\/local storage (T\+LS) area begin. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__RTEMSScoreContext_ga1990ec7db775e43ae0af46e7c79b1206}\label{group__RTEMSScoreContext_ga1990ec7db775e43ae0af46e7c79b1206}} 
+\index{Context Handler@{Context Handler}!\_Context\_Initialize\_fp@{\_Context\_Initialize\_fp}}
+\index{\_Context\_Initialize\_fp@{\_Context\_Initialize\_fp}!Context Handler@{Context Handler}}
+\subsubsection{\texorpdfstring{\_Context\_Initialize\_fp}{\_Context\_Initialize\_fp}}
+{\footnotesize\ttfamily \#define \+\_\+\+Context\+\_\+\+Initialize\+\_\+fp(\begin{DoxyParamCaption}\item[{}]{\+\_\+fp\+\_\+area }\end{DoxyParamCaption})~\mbox{\hyperlink{sparc_2include_2rtems_2score_2cpu_8h_ac34a28abe9b31559d4096b2c942860a6}{\+\_\+\+C\+P\+U\+\_\+\+Context\+\_\+\+Initialize\+\_\+fp}}( \+\_\+fp\+\_\+area )}
+
+
+
+Initialize floating point context area. 
+
+This routine initializes the floating point context save area to contain an initial known state.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+fp\+\_\+area} & is the base address of the floating point context save area to initialize. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__RTEMSScoreContext_ga617942caa9af6f3cf239c6de30ce6080}\label{group__RTEMSScoreContext_ga617942caa9af6f3cf239c6de30ce6080}} 
+\index{Context Handler@{Context Handler}!\_Context\_Restart\_self@{\_Context\_Restart\_self}}
+\index{\_Context\_Restart\_self@{\_Context\_Restart\_self}!Context Handler@{Context Handler}}
+\subsubsection{\texorpdfstring{\_Context\_Restart\_self}{\_Context\_Restart\_self}}
+{\footnotesize\ttfamily \#define \+\_\+\+Context\+\_\+\+Restart\+\_\+self(\begin{DoxyParamCaption}\item[{}]{\+\_\+the\+\_\+context }\end{DoxyParamCaption})~\mbox{\hyperlink{v850_2include_2rtems_2score_2cpu_8h_a3fb67e174d7b61251322cd32126acd1a}{\+\_\+\+C\+P\+U\+\_\+\+Context\+\_\+\+Restart\+\_\+self}}( \+\_\+the\+\_\+context )}
+
+
+
+Restart currently executing thread. 
+
+This routine restarts the calling thread by restoring its initial stack pointer and returning to the thread\textquotesingle{}s entry point.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+the\+\_\+context} & is the context of the thread to restart \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__RTEMSScoreContext_gab2919317d5dbb7a40cfd3371c2195871}\label{group__RTEMSScoreContext_gab2919317d5dbb7a40cfd3371c2195871}} 
+\index{Context Handler@{Context Handler}!\_Context\_Restore\_fp@{\_Context\_Restore\_fp}}
+\index{\_Context\_Restore\_fp@{\_Context\_Restore\_fp}!Context Handler@{Context Handler}}
+\subsubsection{\texorpdfstring{\_Context\_Restore\_fp}{\_Context\_Restore\_fp}}
+{\footnotesize\ttfamily \#define \+\_\+\+Context\+\_\+\+Restore\+\_\+fp(\begin{DoxyParamCaption}\item[{}]{\+\_\+fp }\end{DoxyParamCaption})~\mbox{\hyperlink{sparc_2include_2rtems_2score_2cpu_8h_a8d77a957f827a9250794f9ad754acbf5}{\+\_\+\+C\+P\+U\+\_\+\+Context\+\_\+restore\+\_\+fp}}( \+\_\+fp )}
+
+
+
+Restore floating point context area. 
+
+This routine restores the floating point context contained in the {\itshape \+\_\+fp} area. It is assumed that the current floating point context has been saved by a previous invocation of {\itshape \+\_\+\+Context\+\_\+\+Save\+\_\+fp}.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+fp} & points to the floating point context area to restore. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__RTEMSScoreContext_gae7f5511c583da82fa4bcf8da870ef1c2}\label{group__RTEMSScoreContext_gae7f5511c583da82fa4bcf8da870ef1c2}} 
+\index{Context Handler@{Context Handler}!\_Context\_Save\_fp@{\_Context\_Save\_fp}}
+\index{\_Context\_Save\_fp@{\_Context\_Save\_fp}!Context Handler@{Context Handler}}
+\subsubsection{\texorpdfstring{\_Context\_Save\_fp}{\_Context\_Save\_fp}}
+{\footnotesize\ttfamily \#define \+\_\+\+Context\+\_\+\+Save\+\_\+fp(\begin{DoxyParamCaption}\item[{}]{\+\_\+fp }\end{DoxyParamCaption})~\mbox{\hyperlink{sparc_2include_2rtems_2score_2cpu_8h_ae8d9251a320d6920e3c8d6e45eb38fad}{\+\_\+\+C\+P\+U\+\_\+\+Context\+\_\+save\+\_\+fp}}( \+\_\+fp )}
+
+
+
+Save floating point context area. 
+
+This routine saves the current floating point context in the {\itshape \+\_\+fp} area.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+fp} & points to the floating point context area to restore. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__RTEMSScoreContext_gac1e12323e6e85bbced3d57828b36fff8}\label{group__RTEMSScoreContext_gac1e12323e6e85bbced3d57828b36fff8}} 
+\index{Context Handler@{Context Handler}!\_Context\_Switch@{\_Context\_Switch}}
+\index{\_Context\_Switch@{\_Context\_Switch}!Context Handler@{Context Handler}}
+\subsubsection{\texorpdfstring{\_Context\_Switch}{\_Context\_Switch}}
+{\footnotesize\ttfamily \#define \+\_\+\+Context\+\_\+\+Switch(\begin{DoxyParamCaption}\item[{}]{\+\_\+executing,  }\item[{}]{\+\_\+heir }\end{DoxyParamCaption})~\mbox{\hyperlink{group__RTEMSScoreCPUARM_gaa9f8cc989454b28232e5375e30c90970}{\+\_\+\+C\+P\+U\+\_\+\+Context\+\_\+switch}}( \+\_\+executing, \+\_\+heir )}
+
+
+
+Perform context switch. 
+
+This routine saves the current context into the {\itshape \+\_\+executing} context record and restores the context specified by {\itshape \+\_\+heir}.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+executing} & is the currently executing thread\textquotesingle{}s context \\
+\hline
+\mbox{\texttt{ in}}  & {\em \+\_\+heir} & is the context of the thread to be switched to \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__RTEMSScoreContext_gab5a3d965b96e9d5ed36aa5d28514a0c9}\label{group__RTEMSScoreContext_gab5a3d965b96e9d5ed36aa5d28514a0c9}} 
+\index{Context Handler@{Context Handler}!CONTEXT\_FP\_SIZE@{CONTEXT\_FP\_SIZE}}
+\index{CONTEXT\_FP\_SIZE@{CONTEXT\_FP\_SIZE}!Context Handler@{Context Handler}}
+\subsubsection{\texorpdfstring{CONTEXT\_FP\_SIZE}{CONTEXT\_FP\_SIZE}}
+{\footnotesize\ttfamily \#define C\+O\+N\+T\+E\+X\+T\+\_\+\+F\+P\+\_\+\+S\+I\+ZE}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{( ( \mbox{\hyperlink{sparc_2include_2rtems_2score_2cpu_8h_af58e4ff1f7e1c85fc5c0b80cbd0672c5}{CPU\_CONTEXT\_FP\_SIZE}} + CPU\_HEAP\_ALIGNMENT - 1 ) \(\backslash\)}
+\DoxyCodeLine{      \& ~( CPU\_HEAP\_ALIGNMENT - 1 ) )}
+
+\end{DoxyCode}
+
+
+Size of floating point context area. 
+
+This constant defines the number of bytes required to store a full floating point context. 

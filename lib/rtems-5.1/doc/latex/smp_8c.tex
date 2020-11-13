@@ -1,0 +1,60 @@
+\hypertarget{smp_8c}{}\section{cpukit/score/src/smp.c File Reference}
+\label{smp_8c}\index{cpukit/score/src/smp.c@{cpukit/score/src/smp.c}}
+
+
+S\+MP Support.  
+
+
+{\ttfamily \#include $<$rtems/score/smpimpl.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/score/assert.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/score/memory.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/score/percpudata.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/score/schedulerimpl.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/score/threadimpl.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/config.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/sysinit.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{smp_8c_ab66552cc22a968c003a1c2a9d032951b}\label{smp_8c_ab66552cc22a968c003a1c2a9d032951b}} 
+void {\bfseries \+\_\+\+S\+M\+P\+\_\+\+Handler\+\_\+initialize} (void)
+\item 
+\mbox{\Hypertarget{smp_8c_a43d82b0c9150747d3c4a50b0055afcfc}\label{smp_8c_a43d82b0c9150747d3c4a50b0055afcfc}} 
+void {\bfseries \+\_\+\+S\+M\+P\+\_\+\+Request\+\_\+start\+\_\+multitasking} (void)
+\item 
+\mbox{\Hypertarget{smp_8c_ad354c61a7f2131e8f8647d4e3c9809f4}\label{smp_8c_ad354c61a7f2131e8f8647d4e3c9809f4}} 
+bool {\bfseries \+\_\+\+S\+M\+P\+\_\+\+Should\+\_\+start\+\_\+processor} (uint32\+\_\+t cpu\+\_\+index)
+\item 
+\mbox{\Hypertarget{smp_8c_aed15446d8dbc0aa936c7c178f42a3a73}\label{smp_8c_aed15446d8dbc0aa936c7c178f42a3a73}} 
+void {\bfseries \+\_\+\+S\+M\+P\+\_\+\+Start\+\_\+multitasking\+\_\+on\+\_\+secondary\+\_\+processor} (\mbox{\hyperlink{structPer__CPU__Control}{Per\+\_\+\+C\+P\+U\+\_\+\+Control}} $\ast$cpu\+\_\+self)
+\item 
+\mbox{\Hypertarget{smp_8c_aa56f24948459db1d7da8381022780bfc}\label{smp_8c_aa56f24948459db1d7da8381022780bfc}} 
+void {\bfseries \+\_\+\+S\+M\+P\+\_\+\+Request\+\_\+shutdown} (void)
+\item 
+\mbox{\Hypertarget{smp_8c_a9dd3c2ab90989dcc123ff425e7dd8888}\label{smp_8c_a9dd3c2ab90989dcc123ff425e7dd8888}} 
+void {\bfseries \+\_\+\+S\+M\+P\+\_\+\+Send\+\_\+message} (uint32\+\_\+t cpu\+\_\+index, unsigned long \mbox{\hyperlink{structmessage}{message}})
+\item 
+\mbox{\Hypertarget{smp_8c_ab5e9735d4a768f504a7eec68548e13cf}\label{smp_8c_ab5e9735d4a768f504a7eec68548e13cf}} 
+void {\bfseries \+\_\+\+S\+M\+P\+\_\+\+Send\+\_\+message\+\_\+broadcast} (unsigned long \mbox{\hyperlink{structmessage}{message}})
+\item 
+\mbox{\Hypertarget{smp_8c_a0d673e989fa3f3740516eb3ea638c7d1}\label{smp_8c_a0d673e989fa3f3740516eb3ea638c7d1}} 
+void {\bfseries \+\_\+\+S\+M\+P\+\_\+\+Send\+\_\+message\+\_\+multicast} (const Processor\+\_\+mask $\ast$targets, unsigned long \mbox{\hyperlink{structmessage}{message}})
+\item 
+\mbox{\Hypertarget{smp_8c_aa2abcfd56d2d54f63798564abb4b77b0}\label{smp_8c_aa2abcfd56d2d54f63798564abb4b77b0}} 
+{\bfseries R\+T\+E\+M\+S\+\_\+\+S\+Y\+S\+I\+N\+I\+T\+\_\+\+I\+T\+EM} (\+\_\+\+Per\+\_\+\+C\+P\+U\+\_\+\+Data\+\_\+initialize, R\+T\+E\+M\+S\+\_\+\+S\+Y\+S\+I\+N\+I\+T\+\_\+\+P\+E\+R\+\_\+\+C\+P\+U\+\_\+\+D\+A\+TA, R\+T\+E\+M\+S\+\_\+\+S\+Y\+S\+I\+N\+I\+T\+\_\+\+O\+R\+D\+E\+R\+\_\+\+M\+I\+D\+D\+LE)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{smp_8c_a4ef5733094cd0a141d8c8dd200019bbf}\label{smp_8c_a4ef5733094cd0a141d8c8dd200019bbf}} 
+Processor\+\_\+mask {\bfseries \+\_\+\+S\+M\+P\+\_\+\+Online\+\_\+processors}
+\item 
+\mbox{\Hypertarget{smp_8c_afbc4b37460e88d63ee9a742ad585e8f4}\label{smp_8c_afbc4b37460e88d63ee9a742ad585e8f4}} 
+uint32\+\_\+t {\bfseries \+\_\+\+S\+M\+P\+\_\+\+Processor\+\_\+maximum}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+S\+MP Support. 
+

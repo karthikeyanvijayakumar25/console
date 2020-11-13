@@ -1,0 +1,53 @@
+\hypertarget{mips_2jmr3904_2clock_2clockdrv_8c}{}\section{bsps/mips/jmr3904/clock/clockdrv.c File Reference}
+\label{mips_2jmr3904_2clock_2clockdrv_8c}\index{bsps/mips/jmr3904/clock/clockdrv.c@{bsps/mips/jmr3904/clock/clockdrv.c}}
+{\ttfamily \#include $<$rtems.\+h$>$}\newline
+{\ttfamily \#include $<$bsp/irq.\+h$>$}\newline
+{\ttfamily \#include $<$bsp.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}../../../shared/dev/clock/clockimpl.\+h\char`\"{}}\newline
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{mips_2jmr3904_2clock_2clockdrv_8c_a6e3ae347b60a9d8affa0971d341522d3}\label{mips_2jmr3904_2clock_2clockdrv_8c_a6e3ae347b60a9d8affa0971d341522d3}} 
+\#define {\bfseries C\+L\+O\+C\+K\+\_\+\+D\+R\+I\+V\+E\+R\+\_\+\+U\+S\+E\+\_\+\+F\+A\+S\+T\+\_\+\+I\+D\+LE}~1
+\item 
+\mbox{\Hypertarget{mips_2jmr3904_2clock_2clockdrv_8c_a4edae1f7872fdace9eb64c197b3f952d}\label{mips_2jmr3904_2clock_2clockdrv_8c_a4edae1f7872fdace9eb64c197b3f952d}} 
+\#define {\bfseries C\+L\+O\+C\+K\+\_\+\+V\+E\+C\+T\+OR}~T\+X3904\+\_\+\+I\+R\+Q\+\_\+\+T\+M\+R0
+\item 
+\mbox{\Hypertarget{mips_2jmr3904_2clock_2clockdrv_8c_a520dc9b6c5244bd63561278420c0c304}\label{mips_2jmr3904_2clock_2clockdrv_8c_a520dc9b6c5244bd63561278420c0c304}} 
+\#define {\bfseries C\+L\+I\+C\+KS}~5000
+\item 
+\mbox{\Hypertarget{mips_2jmr3904_2clock_2clockdrv_8c_a98b2c75f88d730742ba1e0b5b4950a4d}\label{mips_2jmr3904_2clock_2clockdrv_8c_a98b2c75f88d730742ba1e0b5b4950a4d}} 
+\#define {\bfseries Clock\+\_\+driver\+\_\+support\+\_\+install\+\_\+isr}(\+\_\+new)~\mbox{\hyperlink{group__rtems__interrupt__extension_ga086cc450fcdc9e37bfd0744a763dbfd4}{rtems\+\_\+interrupt\+\_\+handler\+\_\+install}}( C\+L\+O\+C\+K\+\_\+\+V\+E\+C\+T\+OR, \char`\"{}clock\char`\"{}, 0, \+\_\+new, \mbox{\hyperlink{bestcomm__api_8h_a872bb74de61c3689ccd5b41873fce42c}{N\+U\+LL}} )
+\item 
+\#define {\bfseries Clock\+\_\+driver\+\_\+support\+\_\+initialize\+\_\+hardware}()
+\item 
+\mbox{\Hypertarget{mips_2jmr3904_2clock_2clockdrv_8c_ab733c59b870d1dbad7a80319644fb5d4}\label{mips_2jmr3904_2clock_2clockdrv_8c_ab733c59b870d1dbad7a80319644fb5d4}} 
+\#define {\bfseries C\+L\+O\+C\+K\+\_\+\+D\+R\+I\+V\+E\+R\+\_\+\+U\+S\+E\+\_\+\+D\+U\+M\+M\+Y\+\_\+\+T\+I\+M\+E\+C\+O\+U\+N\+T\+ER}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Instantiate the clock driver shell.
+
+The T\+X3904 simulator in gdb counts instructions. 
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{mips_2jmr3904_2clock_2clockdrv_8c_a37475981ff0420ed43474fb3bdde8cbf}\label{mips_2jmr3904_2clock_2clockdrv_8c_a37475981ff0420ed43474fb3bdde8cbf}} 
+\index{clockdrv.c@{clockdrv.c}!Clock\_driver\_support\_initialize\_hardware@{Clock\_driver\_support\_initialize\_hardware}}
+\index{Clock\_driver\_support\_initialize\_hardware@{Clock\_driver\_support\_initialize\_hardware}!clockdrv.c@{clockdrv.c}}
+\subsubsection{\texorpdfstring{Clock\_driver\_support\_initialize\_hardware}{Clock\_driver\_support\_initialize\_hardware}}
+{\footnotesize\ttfamily \#define Clock\+\_\+driver\+\_\+support\+\_\+initialize\+\_\+hardware(\begin{DoxyParamCaption}\item[{}]{void }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do} \{ \(\backslash\)}
+\DoxyCodeLine{    uint32\_t   \_clicks = CLICKS; \(\backslash\)}
+\DoxyCodeLine{    TX3904\_TIMER\_WRITE( TX3904\_TIMER0\_BASE, TX3904\_TIMER\_CCDR, 0x3 ); \(\backslash\)}
+\DoxyCodeLine{    TX3904\_TIMER\_WRITE( TX3904\_TIMER0\_BASE, TX3904\_TIMER\_CPRA, \_clicks ); \(\backslash\)}
+\DoxyCodeLine{    TX3904\_TIMER\_WRITE( TX3904\_TIMER0\_BASE, TX3904\_TIMER\_TISR, 0x00 ); \(\backslash\)}
+\DoxyCodeLine{    TX3904\_TIMER\_WRITE( TX3904\_TIMER0\_BASE, TX3904\_TIMER\_ITMR, 0x8001 ); \(\backslash\)}
+\DoxyCodeLine{    TX3904\_TIMER\_WRITE( TX3904\_TIMER0\_BASE, TX3904\_TIMER\_TCR,   0xC0 ); \(\backslash\)}
+\DoxyCodeLine{    *((\textcolor{keyword}{volatile} uint32\_t*) 0xFFFFC01C) = 0x00000700; \(\backslash\)}
+\DoxyCodeLine{  \} \textcolor{keywordflow}{while}(0)}
+
+\end{DoxyCode}

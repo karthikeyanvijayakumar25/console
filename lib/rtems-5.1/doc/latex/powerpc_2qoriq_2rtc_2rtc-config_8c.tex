@@ -1,0 +1,74 @@
+\hypertarget{powerpc_2qoriq_2rtc_2rtc-config_8c}{}\section{bsps/powerpc/qoriq/rtc/rtc-\/config.c File Reference}
+\label{powerpc_2qoriq_2rtc_2rtc-config_8c}\index{bsps/powerpc/qoriq/rtc/rtc-\/config.c@{bsps/powerpc/qoriq/rtc/rtc-\/config.c}}
+
+
+R\+TC configuration.  
+
+
+{\ttfamily \#include $<$libchip/rtc.\+h$>$}\newline
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{powerpc_2qoriq_2rtc_2rtc-config_8c_af40108e80c461d98dc5c5efe79b6a4aa}\label{powerpc_2qoriq_2rtc_2rtc-config_8c_af40108e80c461d98dc5c5efe79b6a4aa}} 
+\#define {\bfseries R\+T\+C\+\_\+\+C\+O\+U\+NT}~1
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const \mbox{\hyperlink{struct__rtc__fns}{rtc\+\_\+fns}} {\bfseries qoriq\+\_\+rtc\+\_\+ops}
+\item 
+\mbox{\Hypertarget{powerpc_2qoriq_2rtc_2rtc-config_8c_a7b04b3ddbc07be0bcfcd73fde9a9f399}\label{powerpc_2qoriq_2rtc_2rtc-config_8c_a7b04b3ddbc07be0bcfcd73fde9a9f399}} 
+size\+\_\+t {\bfseries R\+T\+C\+\_\+\+Count} = R\+T\+C\+\_\+\+C\+O\+U\+NT
+\item 
+\mbox{\hyperlink{struct__rtc__tbl}{rtc\+\_\+tbl}} \mbox{\hyperlink{powerpc_2qoriq_2rtc_2rtc-config_8c_a4d681c66d42eb6dbbca44f073727d9d6}{R\+T\+C\+\_\+\+Table}} \mbox{[}R\+T\+C\+\_\+\+C\+O\+U\+NT\mbox{]}
+\begin{DoxyCompactList}\small\item\em Table to describes the rtc device. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+R\+TC configuration. 
+
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{powerpc_2qoriq_2rtc_2rtc-config_8c_ada75234cc8c9302ee704fc3995814fde}\label{powerpc_2qoriq_2rtc_2rtc-config_8c_ada75234cc8c9302ee704fc3995814fde}} 
+\index{rtc-\/config.c@{rtc-\/config.c}!qoriq\_rtc\_ops@{qoriq\_rtc\_ops}}
+\index{qoriq\_rtc\_ops@{qoriq\_rtc\_ops}!rtc-\/config.c@{rtc-\/config.c}}
+\subsubsection{\texorpdfstring{qoriq\_rtc\_ops}{qoriq\_rtc\_ops}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{struct__rtc__fns}{rtc\+\_\+fns}} qoriq\+\_\+rtc\+\_\+ops}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{  .deviceInitialize = qoriq\_rtc\_initialize,}
+\DoxyCodeLine{  .deviceGetTime = qoriq\_rtc\_get\_time,}
+\DoxyCodeLine{  .deviceSetTime = qoriq\_rtc\_set\_time}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{powerpc_2qoriq_2rtc_2rtc-config_8c_a4d681c66d42eb6dbbca44f073727d9d6}\label{powerpc_2qoriq_2rtc_2rtc-config_8c_a4d681c66d42eb6dbbca44f073727d9d6}} 
+\index{rtc-\/config.c@{rtc-\/config.c}!RTC\_Table@{RTC\_Table}}
+\index{RTC\_Table@{RTC\_Table}!rtc-\/config.c@{rtc-\/config.c}}
+\subsubsection{\texorpdfstring{RTC\_Table}{RTC\_Table}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct__rtc__tbl}{rtc\+\_\+tbl}} R\+T\+C\+\_\+\+Table\mbox{[}R\+T\+C\+\_\+\+C\+O\+U\+NT\mbox{]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{  \{}
+\DoxyCodeLine{    .sDeviceName = \textcolor{stringliteral}{"/dev/rtc"},}
+\DoxyCodeLine{    .deviceType = RTC\_CUSTOM,}
+\DoxyCodeLine{    .pDeviceFns = \&qoriq\_rtc\_ops,}
+\DoxyCodeLine{    .deviceProbe = qoriq\_rtc\_probe,}
+\DoxyCodeLine{    .pDeviceParams = \mbox{\hyperlink{bestcomm__api_8h_a872bb74de61c3689ccd5b41873fce42c}{NULL}},}
+\DoxyCodeLine{    .ulCtrlPort1 = 0,}
+\DoxyCodeLine{    .ulDataPort = 0,}
+\DoxyCodeLine{    .getRegister = \mbox{\hyperlink{bestcomm__api_8h_a872bb74de61c3689ccd5b41873fce42c}{NULL}},}
+\DoxyCodeLine{    .setRegister = \mbox{\hyperlink{bestcomm__api_8h_a872bb74de61c3689ccd5b41873fce42c}{NULL}}}
+\DoxyCodeLine{  \}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Table to describes the rtc device. 
+

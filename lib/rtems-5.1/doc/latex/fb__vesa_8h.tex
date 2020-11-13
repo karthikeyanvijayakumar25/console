@@ -1,0 +1,179 @@
+\hypertarget{fb__vesa_8h}{}\section{bsps/i386/pc386/include/bsp/fb\+\_\+vesa.h File Reference}
+\label{fb__vesa_8h}\index{bsps/i386/pc386/include/bsp/fb\_vesa.h@{bsps/i386/pc386/include/bsp/fb\_vesa.h}}
+
+
+Headers specific for framebuffer drivers utilizing V\+E\+SA V\+BE.  
+
+
+{\ttfamily \#include $<$bsp/vbe3.\+h$>$}\newline
+{\ttfamily \#include $<$edid.\+h$>$}\newline
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{fb__vesa_8h_af79f34df313a78e2330ccf2d81b867bb}{V\+B\+E\+\_\+controller\+\_\+information}} (V\+B\+E\+\_\+vbe\+\_\+info\+\_\+block $\ast$info\+\_\+block, uint16\+\_\+t queried\+\_\+\+V\+B\+E\+\_\+\+Version)
+\begin{DoxyCompactList}\small\item\em Returns information about graphic\textquotesingle{}s controller in the {\ttfamily info\+\_\+block} structure. \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{fb__vesa_8h_ad6912df918c80a1d1af9396d298fa290}{V\+B\+E\+\_\+mode\+\_\+information}} (V\+B\+E\+\_\+mode\+\_\+info\+\_\+block $\ast$info\+\_\+block, uint16\+\_\+t mode\+\_\+number)
+\begin{DoxyCompactList}\small\item\em Fills structure {\ttfamily info\+\_\+block} with informations about selected mode in {\ttfamily mode\+\_\+number} variable. \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{fb__vesa_8h_a9db0915ef74a364c88a6d42e847fa1b4}{V\+B\+E\+\_\+set\+\_\+mode}} (uint16\+\_\+t mode\+\_\+number, V\+B\+E\+\_\+\+C\+R\+T\+C\+\_\+info\+\_\+block $\ast$info\+\_\+block)
+\begin{DoxyCompactList}\small\item\em Sets graphics mode selected. If mode has refresh\+Rate\+Ctrl bit set, than the {\ttfamily info\+\_\+block} must be filled accordingly. \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{fb__vesa_8h_ad3c4b4e341541adb5ebbed06a56d4df6}{V\+B\+E\+\_\+current\+\_\+mode}} (uint16\+\_\+t $\ast$mode\+\_\+number)
+\begin{DoxyCompactList}\small\item\em Get currently set mode number. \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{fb__vesa_8h_aac4d734cef2ff871d97a6ba67a28192e}{V\+B\+E\+\_\+report\+\_\+\+D\+D\+C\+\_\+capabilities}} (uint16\+\_\+t controller\+\_\+unit\+\_\+number, uint8\+\_\+t $\ast$seconds\+\_\+to\+\_\+transfer\+\_\+\+E\+D\+I\+D\+\_\+block, uint8\+\_\+t $\ast$D\+D\+C\+\_\+level\+\_\+supported)
+\begin{DoxyCompactList}\small\item\em Gets information about display data channel implemented in the graphic\textquotesingle{}s controller. \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{fb__vesa_8h_a14025cd716317297c59efcf17afb8d71}{V\+B\+E\+\_\+read\+\_\+\+E\+D\+ID}} (uint16\+\_\+t controller\+\_\+unit\+\_\+number, uint16\+\_\+t E\+D\+I\+D\+\_\+block\+\_\+number, E\+D\+I\+D\+\_\+edid1 $\ast$buffer)
+\begin{DoxyCompactList}\small\item\em Reads selected E\+D\+ID block from display attached to controller\textquotesingle{}s interface. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Headers specific for framebuffer drivers utilizing V\+E\+SA V\+BE. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{fb__vesa_8h_af79f34df313a78e2330ccf2d81b867bb}\label{fb__vesa_8h_af79f34df313a78e2330ccf2d81b867bb}} 
+\index{fb\_vesa.h@{fb\_vesa.h}!VBE\_controller\_information@{VBE\_controller\_information}}
+\index{VBE\_controller\_information@{VBE\_controller\_information}!fb\_vesa.h@{fb\_vesa.h}}
+\subsubsection{\texorpdfstring{VBE\_controller\_information()}{VBE\_controller\_information()}}
+{\footnotesize\ttfamily uint32\+\_\+t V\+B\+E\+\_\+controller\+\_\+information (\begin{DoxyParamCaption}\item[{V\+B\+E\+\_\+vbe\+\_\+info\+\_\+block $\ast$}]{info\+\_\+block,  }\item[{uint16\+\_\+t}]{queried\+\_\+\+V\+B\+E\+\_\+\+Version }\end{DoxyParamCaption})}
+
+
+
+Returns information about graphic\textquotesingle{}s controller in the {\ttfamily info\+\_\+block} structure. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em info\+\_\+block} & pointer to the struct to be filled with controller information \\
+\hline
+\mbox{\texttt{ in}}  & {\em queried\+\_\+\+V\+B\+E\+\_\+\+Version} & if $>$0x200 then video bios is asked to fill in parameters which appeared with second version of V\+BE. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em ax} & register content as defined in V\+BE R\+E\+T\+U\+RN S\+T\+A\+T\+US paragraph \\
+\hline
+{\em -\/1} & error calling graphical bios \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{fb__vesa_8h_ad3c4b4e341541adb5ebbed06a56d4df6}\label{fb__vesa_8h_ad3c4b4e341541adb5ebbed06a56d4df6}} 
+\index{fb\_vesa.h@{fb\_vesa.h}!VBE\_current\_mode@{VBE\_current\_mode}}
+\index{VBE\_current\_mode@{VBE\_current\_mode}!fb\_vesa.h@{fb\_vesa.h}}
+\subsubsection{\texorpdfstring{VBE\_current\_mode()}{VBE\_current\_mode()}}
+{\footnotesize\ttfamily uint32\+\_\+t V\+B\+E\+\_\+current\+\_\+mode (\begin{DoxyParamCaption}\item[{uint16\+\_\+t $\ast$}]{mode\+\_\+number }\end{DoxyParamCaption})}
+
+
+
+Get currently set mode number. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em mode\+\_\+number} & variable to be filled with current mode number \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em ax} & register content as defined in V\+BE R\+E\+T\+U\+RN S\+T\+A\+T\+US paragraph \\
+\hline
+{\em -\/1} & error calling graphical bios \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{fb__vesa_8h_ad6912df918c80a1d1af9396d298fa290}\label{fb__vesa_8h_ad6912df918c80a1d1af9396d298fa290}} 
+\index{fb\_vesa.h@{fb\_vesa.h}!VBE\_mode\_information@{VBE\_mode\_information}}
+\index{VBE\_mode\_information@{VBE\_mode\_information}!fb\_vesa.h@{fb\_vesa.h}}
+\subsubsection{\texorpdfstring{VBE\_mode\_information()}{VBE\_mode\_information()}}
+{\footnotesize\ttfamily uint32\+\_\+t V\+B\+E\+\_\+mode\+\_\+information (\begin{DoxyParamCaption}\item[{V\+B\+E\+\_\+mode\+\_\+info\+\_\+block $\ast$}]{info\+\_\+block,  }\item[{uint16\+\_\+t}]{mode\+\_\+number }\end{DoxyParamCaption})}
+
+
+
+Fills structure {\ttfamily info\+\_\+block} with informations about selected mode in {\ttfamily mode\+\_\+number} variable. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em info\+\_\+block} & pointer to the struct to be filled with mode information \\
+\hline
+\mbox{\texttt{ in}}  & {\em mode\+\_\+number} & detailes of this mode to be filled \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em ax} & register content as defined in V\+BE R\+E\+T\+U\+RN S\+T\+A\+T\+US paragraph \\
+\hline
+{\em -\/1} & error calling graphical bios \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{fb__vesa_8h_a14025cd716317297c59efcf17afb8d71}\label{fb__vesa_8h_a14025cd716317297c59efcf17afb8d71}} 
+\index{fb\_vesa.h@{fb\_vesa.h}!VBE\_read\_EDID@{VBE\_read\_EDID}}
+\index{VBE\_read\_EDID@{VBE\_read\_EDID}!fb\_vesa.h@{fb\_vesa.h}}
+\subsubsection{\texorpdfstring{VBE\_read\_EDID()}{VBE\_read\_EDID()}}
+{\footnotesize\ttfamily uint32\+\_\+t V\+B\+E\+\_\+read\+\_\+\+E\+D\+ID (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{controller\+\_\+unit\+\_\+number,  }\item[{uint16\+\_\+t}]{E\+D\+I\+D\+\_\+block\+\_\+number,  }\item[{E\+D\+I\+D\+\_\+edid1 $\ast$}]{buffer }\end{DoxyParamCaption})}
+
+
+
+Reads selected E\+D\+ID block from display attached to controller\textquotesingle{}s interface. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em controller\+\_\+unit\+\_\+number} & \\
+\hline
+\mbox{\texttt{ in}}  & {\em E\+D\+I\+D\+\_\+block\+\_\+number} & block no. to be read from the display \\
+\hline
+\mbox{\texttt{ out}}  & {\em buffer} & place to store block fetched from the display \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em ax} & register content as defined in V\+BE R\+E\+T\+U\+RN S\+T\+A\+T\+US paragraph \\
+\hline
+{\em -\/1} & error calling graphical bios \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{fb__vesa_8h_aac4d734cef2ff871d97a6ba67a28192e}\label{fb__vesa_8h_aac4d734cef2ff871d97a6ba67a28192e}} 
+\index{fb\_vesa.h@{fb\_vesa.h}!VBE\_report\_DDC\_capabilities@{VBE\_report\_DDC\_capabilities}}
+\index{VBE\_report\_DDC\_capabilities@{VBE\_report\_DDC\_capabilities}!fb\_vesa.h@{fb\_vesa.h}}
+\subsubsection{\texorpdfstring{VBE\_report\_DDC\_capabilities()}{VBE\_report\_DDC\_capabilities()}}
+{\footnotesize\ttfamily uint32\+\_\+t V\+B\+E\+\_\+report\+\_\+\+D\+D\+C\+\_\+capabilities (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{controller\+\_\+unit\+\_\+number,  }\item[{uint8\+\_\+t $\ast$}]{seconds\+\_\+to\+\_\+transfer\+\_\+\+E\+D\+I\+D\+\_\+block,  }\item[{uint8\+\_\+t $\ast$}]{D\+D\+C\+\_\+level\+\_\+supported }\end{DoxyParamCaption})}
+
+
+
+Gets information about display data channel implemented in the graphic\textquotesingle{}s controller. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em controller\+\_\+unit\+\_\+number} & \\
+\hline
+\mbox{\texttt{ out}}  & {\em seconds\+\_\+to\+\_\+transfer\+\_\+\+E\+D\+I\+D\+\_\+block} & approximate time to transfer one E\+D\+ID block rounded up to seconds \\
+\hline
+\mbox{\texttt{ out}}  & {\em D\+D\+C\+\_\+level\+\_\+supported} & contains D\+DC version supported and screen blanking state during transfer \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em ax} & register content as defined in V\+BE R\+E\+T\+U\+RN S\+T\+A\+T\+US paragraph \\
+\hline
+{\em -\/1} & error calling graphical bios \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{fb__vesa_8h_a9db0915ef74a364c88a6d42e847fa1b4}\label{fb__vesa_8h_a9db0915ef74a364c88a6d42e847fa1b4}} 
+\index{fb\_vesa.h@{fb\_vesa.h}!VBE\_set\_mode@{VBE\_set\_mode}}
+\index{VBE\_set\_mode@{VBE\_set\_mode}!fb\_vesa.h@{fb\_vesa.h}}
+\subsubsection{\texorpdfstring{VBE\_set\_mode()}{VBE\_set\_mode()}}
+{\footnotesize\ttfamily uint32\+\_\+t V\+B\+E\+\_\+set\+\_\+mode (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{mode\+\_\+number,  }\item[{V\+B\+E\+\_\+\+C\+R\+T\+C\+\_\+info\+\_\+block $\ast$}]{info\+\_\+block }\end{DoxyParamCaption})}
+
+
+
+Sets graphics mode selected. If mode has refresh\+Rate\+Ctrl bit set, than the {\ttfamily info\+\_\+block} must be filled accordingly. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em mode\+\_\+number} & number of mode to be set \\
+\hline
+\mbox{\texttt{ in}}  & {\em info\+\_\+block} & pointer to struct containing refresh rate control info \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em ax} & register content as defined in V\+BE R\+E\+T\+U\+RN S\+T\+A\+T\+US paragraph \\
+\hline
+{\em -\/1} & error calling graphical bios \\
+\hline
+\end{DoxyRetVals}

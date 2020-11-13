@@ -1,0 +1,53 @@
+\hypertarget{posix_2barrierimpl_8h}{}\section{cpukit/include/rtems/posix/barrierimpl.h File Reference}
+\label{posix_2barrierimpl_8h}\index{cpukit/include/rtems/posix/barrierimpl.h@{cpukit/include/rtems/posix/barrierimpl.h}}
+
+
+Inlined Routines from the P\+O\+S\+IX Barrier Manager.  
+
+
+{\ttfamily \#include $<$errno.\+h$>$}\newline
+{\ttfamily \#include $<$pthread.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/score/percpu.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/score/threadqimpl.\+h$>$}\newline
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structPOSIX__Barrier__Control}{P\+O\+S\+I\+X\+\_\+\+Barrier\+\_\+\+Control}}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{posix_2barrierimpl_8h_af3de406c8190488371fef64d49ec66e9}\label{posix_2barrierimpl_8h_af3de406c8190488371fef64d49ec66e9}} 
+\#define {\bfseries P\+O\+S\+I\+X\+\_\+\+B\+A\+R\+R\+I\+E\+R\+\_\+\+M\+A\+G\+IC}~0x1cf03773\+UL
+\item 
+\mbox{\Hypertarget{posix_2barrierimpl_8h_a2b65b1494c0b619cc6409787e3981bb3}\label{posix_2barrierimpl_8h_a2b65b1494c0b619cc6409787e3981bb3}} 
+\#define {\bfseries P\+O\+S\+I\+X\+\_\+\+B\+A\+R\+R\+I\+E\+R\+\_\+\+T\+Q\+\_\+\+O\+P\+E\+R\+A\+T\+I\+O\+NS}~\&\+\_\+\+Thread\+\_\+queue\+\_\+\+Operations\+\_\+\+F\+I\+FO
+\item 
+\#define {\bfseries P\+O\+S\+I\+X\+\_\+\+B\+A\+R\+R\+I\+E\+R\+\_\+\+V\+A\+L\+I\+D\+A\+T\+E\+\_\+\+O\+B\+J\+E\+CT}(bar)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Inlined Routines from the P\+O\+S\+IX Barrier Manager. 
+
+This file contains the static inlin implementation of the inlined routines from the P\+O\+S\+IX Barrier Manager. 
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{posix_2barrierimpl_8h_a73cc779c5a2e300755f6c5f1fa8891b8}\label{posix_2barrierimpl_8h_a73cc779c5a2e300755f6c5f1fa8891b8}} 
+\index{barrierimpl.h@{barrierimpl.h}!POSIX\_BARRIER\_VALIDATE\_OBJECT@{POSIX\_BARRIER\_VALIDATE\_OBJECT}}
+\index{POSIX\_BARRIER\_VALIDATE\_OBJECT@{POSIX\_BARRIER\_VALIDATE\_OBJECT}!barrierimpl.h@{barrierimpl.h}}
+\subsubsection{\texorpdfstring{POSIX\_BARRIER\_VALIDATE\_OBJECT}{POSIX\_BARRIER\_VALIDATE\_OBJECT}}
+{\footnotesize\ttfamily \#define P\+O\+S\+I\+X\+\_\+\+B\+A\+R\+R\+I\+E\+R\+\_\+\+V\+A\+L\+I\+D\+A\+T\+E\+\_\+\+O\+B\+J\+E\+CT(\begin{DoxyParamCaption}\item[{}]{bar }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do} \{ \(\backslash\)}
+\DoxyCodeLine{    if ( \(\backslash\)}
+\DoxyCodeLine{      ( bar ) == \mbox{\hyperlink{bestcomm__api_8h_a872bb74de61c3689ccd5b41873fce42c}{NULL}} \(\backslash\)}
+\DoxyCodeLine{        || ( (uintptr\_t) ( bar ) \string^ POSIX\_BARRIER\_MAGIC ) != ( bar )->\_flags \(\backslash\)}
+\DoxyCodeLine{    ) \{ \(\backslash\)}
+\DoxyCodeLine{      return EINVAL; \(\backslash\)}
+\DoxyCodeLine{    \} \(\backslash\)}
+\DoxyCodeLine{  \} \textcolor{keywordflow}{while} ( 0 )}
+
+\end{DoxyCode}

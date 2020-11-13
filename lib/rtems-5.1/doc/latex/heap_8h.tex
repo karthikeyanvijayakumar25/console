@@ -1,0 +1,68 @@
+\hypertarget{heap_8h}{}\section{cpukit/include/rtems/score/heap.h File Reference}
+\label{heap_8h}\index{cpukit/include/rtems/score/heap.h@{cpukit/include/rtems/score/heap.h}}
+
+
+Heap Handler A\+PI.  
+
+
+{\ttfamily \#include $<$rtems/score/cpu.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/score/heapinfo.\+h$>$}\newline
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structHeap__Error__context}{Heap\+\_\+\+Error\+\_\+context}}
+\begin{DoxyCompactList}\small\item\em Context of a heap error. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structHeap__Block}{Heap\+\_\+\+Block}}
+\begin{DoxyCompactList}\small\item\em Description for free or used blocks. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structHeap__Control}{Heap\+\_\+\+Control}}
+\begin{DoxyCompactList}\small\item\em Control block used to manage a heap. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structHeap__Area}{Heap\+\_\+\+Area}}
+\begin{DoxyCompactList}\small\item\em Heap area structure for table based heap initialization and extension. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bfseries H\+E\+A\+P\+\_\+\+P\+R\+O\+T\+E\+C\+T\+I\+O\+N\+\_\+\+H\+E\+A\+D\+E\+R\+\_\+\+S\+I\+ZE}~0
+\item 
+\#define \mbox{\hyperlink{group__RTEMSScoreHeap_ga42b33e85598957dd367de0f3677261f0}{H\+E\+A\+P\+\_\+\+B\+L\+O\+C\+K\+\_\+\+H\+E\+A\+D\+E\+R\+\_\+\+S\+I\+ZE}}~(2 $\ast$ sizeof(uintptr\+\_\+t) + H\+E\+A\+P\+\_\+\+P\+R\+O\+T\+E\+C\+T\+I\+O\+N\+\_\+\+H\+E\+A\+D\+E\+R\+\_\+\+S\+I\+ZE)
+\begin{DoxyCompactList}\small\item\em The block header consists of the two size fields (\mbox{\hyperlink{structHeap__Block_ac19e44024599b1042cc628ccfd3abf53}{Heap\+\_\+\+Block\+::prev\+\_\+size}} and \mbox{\hyperlink{structHeap__Block_ae6f771ed25f18d98146417d7cf38d69c}{Heap\+\_\+\+Block\+::size\+\_\+and\+\_\+flag}}). \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \mbox{\hyperlink{structHeap__Control}{Heap\+\_\+\+Control}} {\bfseries Heap\+\_\+\+Control}
+\item 
+typedef struct \mbox{\hyperlink{structHeap__Block}{Heap\+\_\+\+Block}} {\bfseries Heap\+\_\+\+Block}
+\item 
+typedef uintptr\+\_\+t($\ast$ \mbox{\hyperlink{group__RTEMSScoreHeap_ga8953b692d39ca1c8a2780e9e8e2d9b1f}{Heap\+\_\+\+Initialization\+\_\+or\+\_\+extend\+\_\+handler}}) (\mbox{\hyperlink{structHeap__Control}{Heap\+\_\+\+Control}} $\ast$heap, void $\ast$area\+\_\+begin, uintptr\+\_\+t area\+\_\+size, uintptr\+\_\+t page\+\_\+size\+\_\+or\+\_\+unused)
+\begin{DoxyCompactList}\small\item\em Heap initialization and extend handler type. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{group__RTEMSScoreHeap_ga9f62692d135584572333cc6d1759e5e4}{Heap\+\_\+\+Error\+\_\+reason}} \{ \newline
+\mbox{\hyperlink{group__RTEMSScoreHeap_gga9f62692d135584572333cc6d1759e5e4ac63d3bd4d7901840f92555406bf0c98f}{H\+E\+A\+P\+\_\+\+E\+R\+R\+O\+R\+\_\+\+B\+R\+O\+K\+E\+N\+\_\+\+P\+R\+O\+T\+E\+C\+T\+OR}}, 
+\mbox{\hyperlink{group__RTEMSScoreHeap_gga9f62692d135584572333cc6d1759e5e4afb6094258c33a4c129972f5b7295bbaf}{H\+E\+A\+P\+\_\+\+E\+R\+R\+O\+R\+\_\+\+F\+R\+E\+E\+\_\+\+P\+A\+T\+T\+E\+RN}}, 
+\mbox{\hyperlink{group__RTEMSScoreHeap_gga9f62692d135584572333cc6d1759e5e4ae79a312b7fc1f5e0ee8c31a7f85c1e0a}{H\+E\+A\+P\+\_\+\+E\+R\+R\+O\+R\+\_\+\+D\+O\+U\+B\+L\+E\+\_\+\+F\+R\+EE}}, 
+\mbox{\hyperlink{group__RTEMSScoreHeap_gga9f62692d135584572333cc6d1759e5e4a27e8fabd5846f9b48df3a6e31484a142}{H\+E\+A\+P\+\_\+\+E\+R\+R\+O\+R\+\_\+\+B\+A\+D\+\_\+\+U\+S\+E\+D\+\_\+\+B\+L\+O\+CK}}, 
+\newline
+\mbox{\hyperlink{group__RTEMSScoreHeap_gga9f62692d135584572333cc6d1759e5e4aed114f40b13a7bc4ac394bdd017e667d}{H\+E\+A\+P\+\_\+\+E\+R\+R\+O\+R\+\_\+\+B\+A\+D\+\_\+\+F\+R\+E\+E\+\_\+\+B\+L\+O\+CK}}
+ \}
+\begin{DoxyCompactList}\small\item\em The heap error reason. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+uintptr\+\_\+t \mbox{\hyperlink{group__RTEMSScoreHeap_ga7484f40d81ae26a7f5b3773a2dd006be}{\+\_\+\+Heap\+\_\+\+Extend}} (\mbox{\hyperlink{structHeap__Control}{Heap\+\_\+\+Control}} $\ast$heap, void $\ast$area\+\_\+begin, uintptr\+\_\+t area\+\_\+size, uintptr\+\_\+t unused)
+\begin{DoxyCompactList}\small\item\em Extends the memory available for the heap. \end{DoxyCompactList}\item 
+uintptr\+\_\+t \mbox{\hyperlink{group__RTEMSScoreHeap_ga34c79fc0ef24f7bff393aedccff17a29}{\+\_\+\+Heap\+\_\+\+No\+\_\+extend}} (\mbox{\hyperlink{structHeap__Control}{Heap\+\_\+\+Control}} $\ast$unused\+\_\+0, void $\ast$unused\+\_\+1, uintptr\+\_\+t unused\+\_\+2, uintptr\+\_\+t unused\+\_\+3)
+\begin{DoxyCompactList}\small\item\em This function returns always zero. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} uintptr\+\_\+t \mbox{\hyperlink{group__RTEMSScoreHeap_gaa7c54b3d49cb3fbcf12bbf7a7a45e8d5}{\+\_\+\+Heap\+\_\+\+Align\+\_\+up}} (uintptr\+\_\+t value, uintptr\+\_\+t alignment)
+\begin{DoxyCompactList}\small\item\em Aligns the value to a given alignment, rounding up. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} uintptr\+\_\+t \mbox{\hyperlink{group__RTEMSScoreHeap_ga54ed70e7cf8e99037c356772c927eaee}{\+\_\+\+Heap\+\_\+\+Min\+\_\+block\+\_\+size}} (uintptr\+\_\+t page\+\_\+size)
+\begin{DoxyCompactList}\small\item\em Returns the minimal Heap Block size for the given page\+\_\+size. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} uintptr\+\_\+t \mbox{\hyperlink{group__RTEMSScoreHeap_gaa4fd1c467f6288c7c7501e99b8446e27}{\+\_\+\+Heap\+\_\+\+Area\+\_\+overhead}} (uintptr\+\_\+t page\+\_\+size)
+\begin{DoxyCompactList}\small\item\em Returns the worst case overhead to manage a memory area. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} uintptr\+\_\+t \mbox{\hyperlink{group__RTEMSScoreHeap_ga00d53e87789012f59ec95f97911f3f8b}{\+\_\+\+Heap\+\_\+\+Size\+\_\+with\+\_\+overhead}} (uintptr\+\_\+t page\+\_\+size, uintptr\+\_\+t \mbox{\hyperlink{sun4u_2tte_8h_a245260f6f74972558f61b85227df5aae}{size}}, uintptr\+\_\+t alignment)
+\begin{DoxyCompactList}\small\item\em Returns the size with administration and alignment overhead for one allocation. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Heap Handler A\+PI. 
+

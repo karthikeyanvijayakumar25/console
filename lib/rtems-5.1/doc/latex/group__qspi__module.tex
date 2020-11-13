@@ -1,0 +1,23 @@
+\hypertarget{group__qspi__module}{}\section{Working with Q\+S\+PI}
+\label{group__qspi__module}\index{Working with QSPI@{Working with QSPI}}
+The Q\+S\+PI driver provides the interface to configure and use the Q\+S\+PI peripheral.
+
+The Serial Peripheral Interface (Q\+S\+PI) circuit is a synchronous serial data link that provides communication with external devices in Master or Slave Mode.
+
+To use the Q\+S\+PI, the user has to follow these few steps\+:
+\begin{DoxyEnumerate}
+\item Enable the Q\+S\+PI pins required by the application (see \mbox{\hyperlink{pio_8h}{pio.\+h}}).
+\item Configure the Q\+S\+PI using the \mbox{\hyperlink{qspi_8c_a540d57bb3a49cb62569937d3f54f7085}{Q\+S\+P\+I\+\_\+\+Configure()}}. This enables the peripheral clock. The mode register is loaded with the given value.
+\item Configure all the necessary chip selects with Q\+S\+P\+I\+\_\+\+Configure\+N\+P\+C\+S().
+\item Enable the Q\+S\+PI by calling \mbox{\hyperlink{qspi_8c_a481f9cf7a40eb4de632cfef883abbafd}{Q\+S\+P\+I\+\_\+\+Enable()}}.
+\item Send/receive data using Q\+S\+P\+I\+\_\+\+Write() and Q\+S\+P\+I\+\_\+\+Read(). Note that Q\+S\+P\+I\+\_\+\+Read() must be called after Q\+S\+P\+I\+\_\+\+Write() to retrieve the last value read.
+\item Send/receive data using the P\+DC with the Q\+S\+P\+I\+\_\+\+Write\+Buffer() and Q\+S\+P\+I\+\_\+\+Read\+Buffer() functions.
+\item Disable the Q\+S\+PI by calling \mbox{\hyperlink{qspi_8c_a24e4ad68361409458213083438db8449}{Q\+S\+P\+I\+\_\+\+Disable()}}.
+\end{DoxyEnumerate}
+
+For more accurate information, please look at the Q\+S\+PI section of the Datasheet.
+
+Related files \+:~\newline
+qspi.\+c~\newline
+ qspi.\+h.~\newline
+ 

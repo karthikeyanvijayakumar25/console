@@ -1,0 +1,334 @@
+\hypertarget{tfs_8h}{}\section{bsps/include/umon/tfs.h File Reference}
+\label{tfs_8h}\index{bsps/include/umon/tfs.h@{bsps/include/umon/tfs.h}}
+
+
+Header file for T\+FS transactions, used by both application and monnitor.  
+
+
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structtfshdr}{tfshdr}}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{tfs_8h_a8af8dcc0c181db4db1abb1e441db357e}\label{tfs_8h_a8af8dcc0c181db4db1abb1e441db357e}} 
+\#define {\bfseries T\+F\+S\+I\+N\+F\+O\+S\+I\+ZE}~23		/$\ast$ Max \mbox{\hyperlink{sun4u_2tte_8h_a245260f6f74972558f61b85227df5aae}{size}} of info string (mod4-\/1). $\ast$/
+\item 
+\mbox{\Hypertarget{tfs_8h_a1dc522fd60199f1a63391b3eea31cbc0}\label{tfs_8h_a1dc522fd60199f1a63391b3eea31cbc0}} 
+\#define {\bfseries T\+F\+S\+N\+A\+M\+E\+S\+I\+ZE}~23		/$\ast$ name that can be used in T\+F\+S. $\ast$/
+\item 
+\mbox{\Hypertarget{tfs_8h_a1858bf57e99fd3121a1a4aa4539b4cae}\label{tfs_8h_a1858bf57e99fd3121a1a4aa4539b4cae}} 
+\#define {\bfseries T\+F\+S\+\_\+\+C\+H\+A\+N\+G\+E\+L\+O\+G\+\_\+\+S\+I\+ZE}~0	/$\ast$ facility within tfs. $\ast$/
+\item 
+\mbox{\Hypertarget{tfs_8h_ae6f4b5e1801f5c2a4a10b6dcecc8415f}\label{tfs_8h_ae6f4b5e1801f5c2a4a10b6dcecc8415f}} 
+\#define {\bfseries T\+F\+S\+\_\+\+C\+H\+A\+N\+G\+E\+L\+O\+G\+\_\+\+F\+I\+LE}~\char`\"{}.tfschlog\char`\"{}
+\item 
+\mbox{\Hypertarget{tfs_8h_ab5eb7d7c356967d835abe25a94fa8a65}\label{tfs_8h_ab5eb7d7c356967d835abe25a94fa8a65}} 
+\#define {\bfseries S\+Y\+M\+F\+I\+LE}~\char`\"{}symtbl\char`\"{}	/$\ast$ used by the monitor for the symbol $\ast$/
+\item 
+\mbox{\Hypertarget{tfs_8h_adb67ab2c8cd38ff8867f66229cbc78b7}\label{tfs_8h_adb67ab2c8cd38ff8867f66229cbc78b7}} 
+\#define {\bfseries M\+I\+N\+U\+S\+R\+L\+E\+V\+EL}~0		/$\ast$ Minimum user level supported. $\ast$/
+\item 
+\mbox{\Hypertarget{tfs_8h_acf2d49de79c721b46db255707789c365}\label{tfs_8h_acf2d49de79c721b46db255707789c365}} 
+\#define {\bfseries M\+A\+X\+U\+S\+R\+L\+E\+V\+EL}~3		/$\ast$ Maximum user level supported. $\ast$/
+\item 
+\mbox{\Hypertarget{tfs_8h_a43b1610b368f35f3c96360ba6c53912c}\label{tfs_8h_a43b1610b368f35f3c96360ba6c53912c}} 
+\#define {\bfseries T\+F\+S\+\_\+\+R\+E\+S\+E\+R\+V\+ED}~4		/$\ast$ Number of \char`\"{}reserved\char`\"{} entries (ulong) $\ast$/
+\item 
+\mbox{\Hypertarget{tfs_8h_a28ff6dab2ca4a6819f6d68cbe9fdcc3c}\label{tfs_8h_a28ff6dab2ca4a6819f6d68cbe9fdcc3c}} 
+\#define {\bfseries T\+F\+S\+\_\+\+E\+X\+EC}~0x00000001	/$\ast$ \textquotesingle{}e\textquotesingle{}\+: Executable script. $\ast$/
+\item 
+\mbox{\Hypertarget{tfs_8h_ac4312bb5d05bd28b98a0768eca165859}\label{tfs_8h_ac4312bb5d05bd28b98a0768eca165859}} 
+\#define {\bfseries T\+F\+S\+\_\+\+B\+R\+UN}~0x00000002	/$\ast$ \textquotesingle{}b\textquotesingle{}\+: To be executed at boot. $\ast$/
+\item 
+\mbox{\Hypertarget{tfs_8h_a380d0246bf2d3f8eb321659f695be939}\label{tfs_8h_a380d0246bf2d3f8eb321659f695be939}} 
+\#define {\bfseries T\+F\+S\+\_\+\+Q\+R\+Y\+B\+R\+UN}~0x00000004	/$\ast$ \textquotesingle{}\+B\textquotesingle{}\+: To be executed at boot if $\ast$/
+\item 
+\mbox{\Hypertarget{tfs_8h_ae9023009e0f2511188d58dd303492376}\label{tfs_8h_ae9023009e0f2511188d58dd303492376}} 
+\#define {\bfseries T\+F\+S\+\_\+\+S\+Y\+M\+L\+I\+NK}~0x00000008	/$\ast$ \textquotesingle{}l\textquotesingle{}\+: Symbolic link file. $\ast$/
+\item 
+\mbox{\Hypertarget{tfs_8h_ac687f8da7b5ddd96bc375c69e2980480}\label{tfs_8h_ac687f8da7b5ddd96bc375c69e2980480}} 
+\#define {\bfseries T\+F\+S\+\_\+\+E\+B\+IN}~0x00000010	/$\ast$ \textquotesingle{}\+E\textquotesingle{}\+: Executable binary (coff/elf/a.\+out). $\ast$/
+\item 
+\mbox{\Hypertarget{tfs_8h_a7a5b037da0d6f4c0d8b562284679d9e5}\label{tfs_8h_a7a5b037da0d6f4c0d8b562284679d9e5}} 
+\#define {\bfseries T\+F\+S\+\_\+\+C\+P\+RS}~0x00000040	/$\ast$ \textquotesingle{}c\textquotesingle{}\+: File is compressed. $\ast$/
+\item 
+\mbox{\Hypertarget{tfs_8h_add3356fe352c68b479ac3ae93121c3de}\label{tfs_8h_add3356fe352c68b479ac3ae93121c3de}} 
+\#define {\bfseries T\+F\+S\+\_\+\+I\+P\+M\+OD}~0x00000080	/$\ast$ \textquotesingle{}i\textquotesingle{}\+: File is in-\/place modifiable. $\ast$/
+\item 
+\mbox{\Hypertarget{tfs_8h_a3c803a1e1a8535f0924ddb4cac84492f}\label{tfs_8h_a3c803a1e1a8535f0924ddb4cac84492f}} 
+\#define {\bfseries T\+F\+S\+\_\+\+U\+N\+R\+E\+AD}~0x00000100	/$\ast$ \textquotesingle{}u\textquotesingle{}\+:	\+File is not even readable if the $\ast$/
+\item 
+\mbox{\Hypertarget{tfs_8h_a21f1d9cb25a78c45dca4bdf56815a32c}\label{tfs_8h_a21f1d9cb25a78c45dca4bdf56815a32c}} 
+\#define {\bfseries T\+F\+S\+\_\+\+U\+L\+V\+L\+M\+SK}~0x00000600	/$\ast$	\+User level mask defines 4 access levels\+: $\ast$/
+\item 
+\mbox{\Hypertarget{tfs_8h_a4986f6516f9c3887dab18bf102b2ecf8}\label{tfs_8h_a4986f6516f9c3887dab18bf102b2ecf8}} 
+\#define {\bfseries T\+F\+S\+\_\+\+U\+L\+V\+L0}~0x00000000	/$\ast$ \textquotesingle{}0\textquotesingle{}	level 0 $\ast$/
+\item 
+\mbox{\Hypertarget{tfs_8h_a8084a061795b373df071eb99b46fd816}\label{tfs_8h_a8084a061795b373df071eb99b46fd816}} 
+\#define {\bfseries T\+F\+S\+\_\+\+U\+L\+V\+L1}~0x00000200	/$\ast$ \textquotesingle{}1\textquotesingle{}	level 1 $\ast$/
+\item 
+\mbox{\Hypertarget{tfs_8h_a82035b81d3c74e4682acfb27f434f03a}\label{tfs_8h_a82035b81d3c74e4682acfb27f434f03a}} 
+\#define {\bfseries T\+F\+S\+\_\+\+U\+L\+V\+L2}~0x00000400	/$\ast$ \textquotesingle{}2\textquotesingle{}	level 2 $\ast$/
+\item 
+\mbox{\Hypertarget{tfs_8h_a57a9d5e2b00891dcc6f4186fd9af8978}\label{tfs_8h_a57a9d5e2b00891dcc6f4186fd9af8978}} 
+\#define {\bfseries T\+F\+S\+\_\+\+U\+L\+V\+L3}~0x00000600	/$\ast$ \textquotesingle{}3\textquotesingle{}	level 3 $\ast$/
+\item 
+\#define {\bfseries T\+F\+S\+\_\+\+N\+S\+T\+A\+LE}
+\item 
+\mbox{\Hypertarget{tfs_8h_a971dd13d54e494df75dfa5c8fc80f682}\label{tfs_8h_a971dd13d54e494df75dfa5c8fc80f682}} 
+\#define {\bfseries T\+F\+S\+\_\+\+A\+C\+T\+I\+VE}~0x00008000	/$\ast$ Used to indicate that file is not deleted. $\ast$/
+\item 
+\mbox{\Hypertarget{tfs_8h_a4266d5426d8da0bf0fb436dce14849b9}\label{tfs_8h_a4266d5426d8da0bf0fb436dce14849b9}} 
+\#define {\bfseries T\+F\+S\+\_\+\+U\+L\+V\+L\+M\+AX}~T\+F\+S\+\_\+\+U\+L\+V\+L3
+\item 
+\mbox{\Hypertarget{tfs_8h_a22aa7a2c8cb6c5fd6af90ba92b8f430b}\label{tfs_8h_a22aa7a2c8cb6c5fd6af90ba92b8f430b}} 
+\#define {\bfseries T\+F\+S\+\_\+\+U\+S\+R\+L\+VL}(f)~((f-\/$>$flags \& T\+F\+S\+\_\+\+U\+L\+V\+L\+M\+SK) $>$$>$ 9)
+\item 
+\mbox{\Hypertarget{tfs_8h_a9fdda9a0c24753ae05167e849da95320}\label{tfs_8h_a9fdda9a0c24753ae05167e849da95320}} 
+\#define {\bfseries T\+F\+S\+\_\+\+R\+D\+O\+N\+LY}~0x00010000	/$\ast$ File is opened for reading. $\ast$/
+\item 
+\mbox{\Hypertarget{tfs_8h_aa4c740c8c7b5613549c691381195d488}\label{tfs_8h_aa4c740c8c7b5613549c691381195d488}} 
+\#define {\bfseries T\+F\+S\+\_\+\+C\+R\+E\+A\+TE}~0x00020000	/$\ast$ File is to be created. Error if file $\ast$/
+\item 
+\mbox{\Hypertarget{tfs_8h_a5017c88124bc5060c26ab879573a2589}\label{tfs_8h_a5017c88124bc5060c26ab879573a2589}} 
+\#define {\bfseries T\+F\+S\+\_\+\+A\+P\+P\+E\+ND}~0x00040000	/$\ast$ Append to existing file.  If O\+R\textquotesingle{}ed $\ast$/
+\item 
+\mbox{\Hypertarget{tfs_8h_adbeb6a14bf0559b4fb79f8aaa093b289}\label{tfs_8h_adbeb6a14bf0559b4fb79f8aaa093b289}} 
+\#define {\bfseries T\+F\+S\+\_\+\+A\+L\+L\+F\+FS}~0x00080000	/$\ast$ File is created with all F\+Fs. $\ast$/
+\item 
+\mbox{\Hypertarget{tfs_8h_a6ac73cde3a43fbdb247830d8a57bb84c}\label{tfs_8h_a6ac73cde3a43fbdb247830d8a57bb84c}} 
+\#define {\bfseries T\+F\+S\+\_\+\+C\+R\+E\+A\+T\+E\+RM}~0x00100000	/$\ast$ File is to be created. If file with $\ast$/
+\item 
+\mbox{\Hypertarget{tfs_8h_a2826b81a09de1b41337c5310dcb66854}\label{tfs_8h_a2826b81a09de1b41337c5310dcb66854}} 
+\#define {\bfseries T\+F\+S\+\_\+\+R\+C\+F\+I\+LE}~\char`\"{}monrc\char`\"{}
+\item 
+\mbox{\Hypertarget{tfs_8h_a027a6c63455b5995a3ad23e91ea2882b}\label{tfs_8h_a027a6c63455b5995a3ad23e91ea2882b}} 
+\#define {\bfseries T\+F\+S\+\_\+\+E\+R\+R\+M\+SG}~1
+\item 
+\mbox{\Hypertarget{tfs_8h_a57d2c2b8c1a8cb12a348c94fe882668f}\label{tfs_8h_a57d2c2b8c1a8cb12a348c94fe882668f}} 
+\#define {\bfseries T\+F\+S\+\_\+\+M\+E\+M\+U\+SE}~2
+\item 
+\mbox{\Hypertarget{tfs_8h_a04c9bbbfc2806b7d4162e41f6b28ebaf}\label{tfs_8h_a04c9bbbfc2806b7d4162e41f6b28ebaf}} 
+\#define {\bfseries T\+F\+S\+\_\+\+M\+E\+M\+D\+E\+AD}~3
+\item 
+\mbox{\Hypertarget{tfs_8h_a8524f9a1adff99c89f3be26dfd84ed66}\label{tfs_8h_a8524f9a1adff99c89f3be26dfd84ed66}} 
+\#define {\bfseries T\+F\+S\+\_\+\+D\+E\+F\+R\+AG}~4
+\item 
+\mbox{\Hypertarget{tfs_8h_aa25193d306dada8d867eb6a8d03546a8}\label{tfs_8h_aa25193d306dada8d867eb6a8d03546a8}} 
+\#define {\bfseries T\+F\+S\+\_\+\+T\+E\+LL}~5
+\item 
+\mbox{\Hypertarget{tfs_8h_a31e3ea7c9aa4ef7ca1ae39669e59e154}\label{tfs_8h_a31e3ea7c9aa4ef7ca1ae39669e59e154}} 
+\#define {\bfseries T\+F\+S\+\_\+\+U\+N\+O\+P\+EN}~7
+\item 
+\mbox{\Hypertarget{tfs_8h_a80e71763c58e53e93fc8c4d93d722c7a}\label{tfs_8h_a80e71763c58e53e93fc8c4d93d722c7a}} 
+\#define {\bfseries T\+F\+S\+\_\+\+F\+A\+T\+OB}~8
+\item 
+\mbox{\Hypertarget{tfs_8h_aa0f2f6c94b6b02b0f588f87cfda77215}\label{tfs_8h_aa0f2f6c94b6b02b0f588f87cfda77215}} 
+\#define {\bfseries T\+F\+S\+\_\+\+F\+B\+T\+OA}~9
+\item 
+\mbox{\Hypertarget{tfs_8h_af800e7b5b6b41cff035348a2352fd89d}\label{tfs_8h_af800e7b5b6b41cff035348a2352fd89d}} 
+\#define {\bfseries T\+F\+S\+\_\+\+M\+E\+M\+A\+V\+A\+IL}~10
+\item 
+\mbox{\Hypertarget{tfs_8h_a17d262d90883efec818bc0bd67c93136}\label{tfs_8h_a17d262d90883efec818bc0bd67c93136}} 
+\#define {\bfseries T\+F\+S\+\_\+\+T\+I\+M\+E\+F\+U\+N\+CS}~11
+\item 
+\mbox{\Hypertarget{tfs_8h_a6950ee0558b41e3acdd4e20abe3a2207}\label{tfs_8h_a6950ee0558b41e3acdd4e20abe3a2207}} 
+\#define {\bfseries T\+F\+S\+\_\+\+D\+O\+C\+O\+M\+M\+A\+ND}~12
+\item 
+\mbox{\Hypertarget{tfs_8h_a3660a234e2c0b65e27107720a76cba70}\label{tfs_8h_a3660a234e2c0b65e27107720a76cba70}} 
+\#define {\bfseries T\+F\+S\+\_\+\+I\+N\+I\+T\+D\+EV}~13
+\item 
+\mbox{\Hypertarget{tfs_8h_a840c8b8d8844a0e9f2fc29341698c800}\label{tfs_8h_a840c8b8d8844a0e9f2fc29341698c800}} 
+\#define {\bfseries T\+F\+S\+\_\+\+C\+H\+E\+C\+K\+D\+EV}~14
+\item 
+\mbox{\Hypertarget{tfs_8h_a381db2387ef6d067f48c1c7ecfe0d1ab}\label{tfs_8h_a381db2387ef6d067f48c1c7ecfe0d1ab}} 
+\#define {\bfseries T\+F\+S\+\_\+\+D\+E\+F\+R\+A\+G\+D\+EV}~15
+\item 
+\mbox{\Hypertarget{tfs_8h_a5f228fd7d598f46a9edf0d0f005f4837}\label{tfs_8h_a5f228fd7d598f46a9edf0d0f005f4837}} 
+\#define {\bfseries T\+F\+S\+\_\+\+D\+E\+F\+R\+A\+G\+O\+FF}~16
+\item 
+\mbox{\Hypertarget{tfs_8h_a967b30a3587fba0e3b6167b7a3ac40ab}\label{tfs_8h_a967b30a3587fba0e3b6167b7a3ac40ab}} 
+\#define {\bfseries T\+F\+S\+\_\+\+D\+E\+F\+R\+A\+G\+ON}~17
+\item 
+\mbox{\Hypertarget{tfs_8h_a81d80a43b98633d1d0c7a657d76c20cc}\label{tfs_8h_a81d80a43b98633d1d0c7a657d76c20cc}} 
+\#define {\bfseries T\+F\+S\+\_\+\+H\+E\+A\+D\+R\+O\+OM}~18
+\item 
+\mbox{\Hypertarget{tfs_8h_a2f7cb4fe928f3d0f2bef9095a2a33a6a}\label{tfs_8h_a2f7cb4fe928f3d0f2bef9095a2a33a6a}} 
+\#define {\bfseries T\+F\+S\+\_\+\+F\+C\+O\+U\+NT}~19
+\item 
+\mbox{\Hypertarget{tfs_8h_af206600065abdb60282483f3dbd116df}\label{tfs_8h_af206600065abdb60282483f3dbd116df}} 
+\#define {\bfseries T\+F\+S\+H\+D\+R\+S\+IZ}~sizeof(struct \mbox{\hyperlink{structtfshdr}{tfshdr}})
+\item 
+\mbox{\Hypertarget{tfs_8h_a43fd702a198d45e06ebc8f0dc31459d5}\label{tfs_8h_a43fd702a198d45e06ebc8f0dc31459d5}} 
+\#define {\bfseries T\+F\+S\+\_\+\+O\+K\+AY}~0
+\item 
+\mbox{\Hypertarget{tfs_8h_ad8ffdc22dc969444e0ce405e0a12354b}\label{tfs_8h_ad8ffdc22dc969444e0ce405e0a12354b}} 
+\#define {\bfseries T\+F\+S\+E\+R\+R\+\_\+\+N\+O\+F\+I\+LE}~-\/1
+\item 
+\mbox{\Hypertarget{tfs_8h_a37a4ee658abb1c16eb1f21913108a930}\label{tfs_8h_a37a4ee658abb1c16eb1f21913108a930}} 
+\#define {\bfseries T\+F\+S\+E\+R\+R\+\_\+\+N\+O\+S\+L\+OT}~-\/2
+\item 
+\mbox{\Hypertarget{tfs_8h_a5e8c442be862cb184d662168b160535e}\label{tfs_8h_a5e8c442be862cb184d662168b160535e}} 
+\#define {\bfseries T\+F\+S\+E\+R\+R\+\_\+\+E\+OF}~-\/3
+\item 
+\mbox{\Hypertarget{tfs_8h_a408a481749a5f0ec6e0f2c4a66180eb8}\label{tfs_8h_a408a481749a5f0ec6e0f2c4a66180eb8}} 
+\#define {\bfseries T\+F\+S\+E\+R\+R\+\_\+\+B\+A\+D\+A\+RG}~-\/4
+\item 
+\mbox{\Hypertarget{tfs_8h_ae2774726c90a1569dd59baae77fcb7c3}\label{tfs_8h_ae2774726c90a1569dd59baae77fcb7c3}} 
+\#define {\bfseries T\+F\+S\+E\+R\+R\+\_\+\+N\+O\+T\+E\+X\+EC}~-\/5
+\item 
+\mbox{\Hypertarget{tfs_8h_afa1255e5d190e41554e9bee4634d8ef7}\label{tfs_8h_afa1255e5d190e41554e9bee4634d8ef7}} 
+\#define {\bfseries T\+F\+S\+E\+R\+R\+\_\+\+B\+A\+D\+C\+RC}~-\/6
+\item 
+\mbox{\Hypertarget{tfs_8h_a3c67110a5d9995393e58543e6c2af6ed}\label{tfs_8h_a3c67110a5d9995393e58543e6c2af6ed}} 
+\#define {\bfseries T\+F\+S\+E\+R\+R\+\_\+\+F\+I\+L\+E\+E\+X\+I\+S\+TS}~-\/7
+\item 
+\mbox{\Hypertarget{tfs_8h_a62a3d94975cf57ab1514f53aa955a11a}\label{tfs_8h_a62a3d94975cf57ab1514f53aa955a11a}} 
+\#define {\bfseries T\+F\+S\+E\+R\+R\+\_\+\+F\+L\+A\+S\+H\+F\+A\+I\+L\+U\+RE}~-\/8
+\item 
+\mbox{\Hypertarget{tfs_8h_a3645b773d65492b5b581e0255ae9f541}\label{tfs_8h_a3645b773d65492b5b581e0255ae9f541}} 
+\#define {\bfseries T\+F\+S\+E\+R\+R\+\_\+\+W\+R\+I\+T\+E\+M\+AX}~-\/9
+\item 
+\mbox{\Hypertarget{tfs_8h_a6a78cbc8a1f32b9c578071505642872f}\label{tfs_8h_a6a78cbc8a1f32b9c578071505642872f}} 
+\#define {\bfseries T\+F\+S\+E\+R\+R\+\_\+\+R\+D\+O\+N\+LY}~-\/10
+\item 
+\mbox{\Hypertarget{tfs_8h_a500e80367fb791ba1727c1f7225d90df}\label{tfs_8h_a500e80367fb791ba1727c1f7225d90df}} 
+\#define {\bfseries T\+F\+S\+E\+R\+R\+\_\+\+B\+A\+D\+FD}~-\/11
+\item 
+\mbox{\Hypertarget{tfs_8h_a325b67fdc610ca06d1e8909d61d5e001}\label{tfs_8h_a325b67fdc610ca06d1e8909d61d5e001}} 
+\#define {\bfseries T\+F\+S\+E\+R\+R\+\_\+\+B\+A\+D\+H\+DR}~-\/12
+\item 
+\mbox{\Hypertarget{tfs_8h_ad8aec56839226e3ac236e7868eb42825}\label{tfs_8h_ad8aec56839226e3ac236e7868eb42825}} 
+\#define {\bfseries T\+F\+S\+E\+R\+R\+\_\+\+C\+O\+R\+R\+U\+PT}~-\/13
+\item 
+\mbox{\Hypertarget{tfs_8h_a1e0ddc2469feeee2d1528928ec22c39e}\label{tfs_8h_a1e0ddc2469feeee2d1528928ec22c39e}} 
+\#define {\bfseries T\+F\+S\+E\+R\+R\+\_\+\+M\+E\+M\+F\+A\+IL}~-\/14
+\item 
+\mbox{\Hypertarget{tfs_8h_a298f610f340bbf0cccaf78903ee4670b}\label{tfs_8h_a298f610f340bbf0cccaf78903ee4670b}} 
+\#define {\bfseries T\+F\+S\+E\+R\+R\+\_\+\+N\+O\+T\+I\+P\+M\+OD}~-\/16
+\item 
+\mbox{\Hypertarget{tfs_8h_a1a43939c42f5024c3fed36c969c05517}\label{tfs_8h_a1a43939c42f5024c3fed36c969c05517}} 
+\#define {\bfseries T\+F\+S\+E\+R\+R\+\_\+\+M\+U\+T\+E\+X\+F\+A\+I\+L\+U\+RE}~-\/17
+\item 
+\mbox{\Hypertarget{tfs_8h_a732c0422747eb73990d68b03029b6ece}\label{tfs_8h_a732c0422747eb73990d68b03029b6ece}} 
+\#define {\bfseries T\+F\+S\+E\+R\+R\+\_\+\+F\+L\+A\+S\+H\+F\+U\+LL}~-\/18
+\item 
+\mbox{\Hypertarget{tfs_8h_a281765ecc1b1d5f1aba8bcb4c81cd1f7}\label{tfs_8h_a281765ecc1b1d5f1aba8bcb4c81cd1f7}} 
+\#define {\bfseries T\+F\+S\+E\+R\+R\+\_\+\+U\+S\+E\+R\+D\+E\+N\+I\+ED}~-\/19
+\item 
+\mbox{\Hypertarget{tfs_8h_a26664824f1aa43d7269e5a6695a297d7}\label{tfs_8h_a26664824f1aa43d7269e5a6695a297d7}} 
+\#define {\bfseries T\+F\+S\+E\+R\+R\+\_\+\+N\+A\+M\+E\+T\+O\+O\+B\+IG}~-\/20
+\item 
+\mbox{\Hypertarget{tfs_8h_a04915a49400cae6ee899c22048f2da7a}\label{tfs_8h_a04915a49400cae6ee899c22048f2da7a}} 
+\#define {\bfseries T\+F\+S\+E\+R\+R\+\_\+\+F\+I\+L\+E\+I\+N\+U\+SE}~-\/21
+\item 
+\mbox{\Hypertarget{tfs_8h_a0fc14ab676cce01b719bfb62dbefc800}\label{tfs_8h_a0fc14ab676cce01b719bfb62dbefc800}} 
+\#define {\bfseries T\+F\+S\+E\+R\+R\+\_\+\+N\+O\+T\+C\+P\+RS}~-\/22
+\item 
+\mbox{\Hypertarget{tfs_8h_ab67a973bc9906fdc861fd642f6721544}\label{tfs_8h_ab67a973bc9906fdc861fd642f6721544}} 
+\#define {\bfseries T\+F\+S\+E\+R\+R\+\_\+\+N\+O\+T\+A\+V\+A\+I\+L\+A\+B\+LE}~-\/23
+\item 
+\mbox{\Hypertarget{tfs_8h_a3cdcad66622f4f3422ceebef708dbc77}\label{tfs_8h_a3cdcad66622f4f3422ceebef708dbc77}} 
+\#define {\bfseries T\+F\+S\+E\+R\+R\+\_\+\+B\+A\+D\+F\+L\+AG}~-\/24
+\item 
+\mbox{\Hypertarget{tfs_8h_ad1e15e7d744ac46e48aeae2b68690048}\label{tfs_8h_ad1e15e7d744ac46e48aeae2b68690048}} 
+\#define {\bfseries T\+F\+S\+E\+R\+R\+\_\+\+C\+L\+E\+A\+N\+O\+FF}~-\/25
+\item 
+\mbox{\Hypertarget{tfs_8h_a432b75814e9344b33929acb8a17f5592}\label{tfs_8h_a432b75814e9344b33929acb8a17f5592}} 
+\#define {\bfseries T\+F\+S\+E\+R\+R\+\_\+\+F\+L\+A\+K\+E\+Y\+S\+O\+U\+R\+CE}~-\/26
+\item 
+\mbox{\Hypertarget{tfs_8h_afa6769f64bcbe8b36f1a5900d423d4cd}\label{tfs_8h_afa6769f64bcbe8b36f1a5900d423d4cd}} 
+\#define {\bfseries T\+F\+S\+E\+R\+R\+\_\+\+B\+A\+D\+E\+X\+T\+E\+N\+S\+I\+ON}~-\/27
+\item 
+\mbox{\Hypertarget{tfs_8h_aef28635c32cc2b3150e42d6b37bd776f}\label{tfs_8h_aef28635c32cc2b3150e42d6b37bd776f}} 
+\#define {\bfseries T\+F\+S\+E\+R\+R\+\_\+\+M\+IN}~-\/100
+\item 
+\mbox{\Hypertarget{tfs_8h_a954f16cc149fe5289f93711416b40451}\label{tfs_8h_a954f16cc149fe5289f93711416b40451}} 
+\#define {\bfseries T\+F\+S\+\_\+\+B\+E\+G\+IN}~1
+\item 
+\mbox{\Hypertarget{tfs_8h_a62f445a03f52f6be9f8952e8a23ba05f}\label{tfs_8h_a62f445a03f52f6be9f8952e8a23ba05f}} 
+\#define {\bfseries T\+F\+S\+\_\+\+C\+U\+R\+R\+E\+NT}~2
+\item 
+\mbox{\Hypertarget{tfs_8h_a00849c6e777a7ca4c04825e6d1158a7a}\label{tfs_8h_a00849c6e777a7ca4c04825e6d1158a7a}} 
+\#define {\bfseries T\+F\+S\+\_\+\+E\+ND}~3
+\item 
+\mbox{\Hypertarget{tfs_8h_ab8213c0a60f7354d621fd41d536a9226}\label{tfs_8h_ab8213c0a60f7354d621fd41d536a9226}} 
+\#define {\bfseries T\+F\+S\+\_\+\+D\+E\+L\+E\+T\+ED}(\mbox{\hyperlink{group__mips__regs_gae771351dd440a8640270282362e338d0}{fp}})~(!((\mbox{\hyperlink{group__mips__regs_gae771351dd440a8640270282362e338d0}{fp}})-\/$>$flags \& T\+F\+S\+\_\+\+A\+C\+T\+I\+VE))
+\item 
+\mbox{\Hypertarget{tfs_8h_ae21f3a235e2bd9101f51672f4cce2164}\label{tfs_8h_ae21f3a235e2bd9101f51672f4cce2164}} 
+\#define {\bfseries T\+F\+S\+\_\+\+F\+I\+L\+E\+E\+X\+I\+S\+TS}(\mbox{\hyperlink{group__mips__regs_gae771351dd440a8640270282362e338d0}{fp}})~((\mbox{\hyperlink{group__mips__regs_gae771351dd440a8640270282362e338d0}{fp}})-\/$>$flags \& T\+F\+S\+\_\+\+A\+C\+T\+I\+VE)
+\item 
+\mbox{\Hypertarget{tfs_8h_af7de80e8d52adbd1fee2d1dcee4631dc}\label{tfs_8h_af7de80e8d52adbd1fee2d1dcee4631dc}} 
+\#define {\bfseries T\+F\+S\+\_\+\+I\+S\+C\+P\+RS}(\mbox{\hyperlink{group__mips__regs_gae771351dd440a8640270282362e338d0}{fp}})~((\mbox{\hyperlink{group__mips__regs_gae771351dd440a8640270282362e338d0}{fp}})-\/$>$flags \& T\+F\+S\+\_\+\+C\+P\+RS)
+\item 
+\mbox{\Hypertarget{tfs_8h_ac48f73c76881208307ed0017eeb734b2}\label{tfs_8h_ac48f73c76881208307ed0017eeb734b2}} 
+\#define {\bfseries T\+F\+S\+\_\+\+I\+S\+E\+X\+EC}(\mbox{\hyperlink{group__mips__regs_gae771351dd440a8640270282362e338d0}{fp}})~((\mbox{\hyperlink{group__mips__regs_gae771351dd440a8640270282362e338d0}{fp}})-\/$>$flags \& T\+F\+S\+\_\+\+E\+X\+EC)
+\item 
+\mbox{\Hypertarget{tfs_8h_a65057bcfd1cd2315ab1a6ffd8b4dd127}\label{tfs_8h_a65057bcfd1cd2315ab1a6ffd8b4dd127}} 
+\#define {\bfseries T\+F\+S\+\_\+\+I\+S\+B\+O\+OT}(\mbox{\hyperlink{group__mips__regs_gae771351dd440a8640270282362e338d0}{fp}})~((\mbox{\hyperlink{group__mips__regs_gae771351dd440a8640270282362e338d0}{fp}})-\/$>$flags \& T\+F\+S\+\_\+\+B\+R\+UN)
+\item 
+\mbox{\Hypertarget{tfs_8h_a4fd15388999d8dcf66b3e3b5d6909586}\label{tfs_8h_a4fd15388999d8dcf66b3e3b5d6909586}} 
+\#define {\bfseries T\+F\+S\+\_\+\+I\+S\+L\+I\+NK}(\mbox{\hyperlink{group__mips__regs_gae771351dd440a8640270282362e338d0}{fp}})~((\mbox{\hyperlink{group__mips__regs_gae771351dd440a8640270282362e338d0}{fp}})-\/$>$flags \& T\+F\+S\+\_\+\+S\+Y\+M\+L\+I\+NK)
+\item 
+\mbox{\Hypertarget{tfs_8h_ad8ae996b52a3ca86f9eebd9c152cfd48}\label{tfs_8h_ad8ae996b52a3ca86f9eebd9c152cfd48}} 
+\#define {\bfseries T\+F\+S\+\_\+\+S\+T\+A\+LE}(\mbox{\hyperlink{group__mips__regs_gae771351dd440a8640270282362e338d0}{fp}})~(!((\mbox{\hyperlink{group__mips__regs_gae771351dd440a8640270282362e338d0}{fp}})-\/$>$flags \& T\+F\+S\+\_\+\+N\+S\+T\+A\+LE))
+\item 
+\mbox{\Hypertarget{tfs_8h_af3f1bb8d9cf71ade0d7221d14df1ae9d}\label{tfs_8h_af3f1bb8d9cf71ade0d7221d14df1ae9d}} 
+\#define {\bfseries T\+F\+S\+\_\+\+F\+L\+A\+GS}(\mbox{\hyperlink{group__mips__regs_gae771351dd440a8640270282362e338d0}{fp}})~((\mbox{\hyperlink{group__mips__regs_gae771351dd440a8640270282362e338d0}{fp}})-\/$>$flags)
+\item 
+\mbox{\Hypertarget{tfs_8h_a87a79ff490be37eadac4489bf657a044}\label{tfs_8h_a87a79ff490be37eadac4489bf657a044}} 
+\#define {\bfseries T\+F\+S\+\_\+\+N\+A\+ME}(\mbox{\hyperlink{group__mips__regs_gae771351dd440a8640270282362e338d0}{fp}})~((\mbox{\hyperlink{group__mips__regs_gae771351dd440a8640270282362e338d0}{fp}})-\/$>$name)
+\item 
+\mbox{\Hypertarget{tfs_8h_aca30cc927be4f1342d76ba02e928ead3}\label{tfs_8h_aca30cc927be4f1342d76ba02e928ead3}} 
+\#define {\bfseries T\+F\+S\+\_\+\+S\+I\+ZE}(\mbox{\hyperlink{group__mips__regs_gae771351dd440a8640270282362e338d0}{fp}})~((\mbox{\hyperlink{group__mips__regs_gae771351dd440a8640270282362e338d0}{fp}})-\/$>$filsize)
+\item 
+\mbox{\Hypertarget{tfs_8h_a23d45895bee9d97ec0256d3cecda8b18}\label{tfs_8h_a23d45895bee9d97ec0256d3cecda8b18}} 
+\#define {\bfseries T\+F\+S\+\_\+\+T\+I\+ME}(\mbox{\hyperlink{group__mips__regs_gae771351dd440a8640270282362e338d0}{fp}})~((\mbox{\hyperlink{group__mips__regs_gae771351dd440a8640270282362e338d0}{fp}})-\/$>$modtime)
+\item 
+\mbox{\Hypertarget{tfs_8h_a0f9a604dd21b57e053c5bb45d030893a}\label{tfs_8h_a0f9a604dd21b57e053c5bb45d030893a}} 
+\#define {\bfseries T\+F\+S\+\_\+\+I\+N\+FO}(\mbox{\hyperlink{group__mips__regs_gae771351dd440a8640270282362e338d0}{fp}})~((\mbox{\hyperlink{group__mips__regs_gae771351dd440a8640270282362e338d0}{fp}})-\/$>$info)
+\item 
+\mbox{\Hypertarget{tfs_8h_a80ab30d54b038062f254a5cd2a49a3f2}\label{tfs_8h_a80ab30d54b038062f254a5cd2a49a3f2}} 
+\#define {\bfseries T\+F\+S\+\_\+\+N\+E\+XT}(\mbox{\hyperlink{group__mips__regs_gae771351dd440a8640270282362e338d0}{fp}})~((\mbox{\hyperlink{group__mips__regs_gae771351dd440a8640270282362e338d0}{fp}})-\/$>$next)
+\item 
+\mbox{\Hypertarget{tfs_8h_a06d3bb43d35931a93de5e50910941032}\label{tfs_8h_a06d3bb43d35931a93de5e50910941032}} 
+\#define {\bfseries T\+F\+S\+\_\+\+C\+RC}(\mbox{\hyperlink{group__mips__regs_gae771351dd440a8640270282362e338d0}{fp}})~((\mbox{\hyperlink{group__mips__regs_gae771351dd440a8640270282362e338d0}{fp}})-\/$>$filcrc)
+\item 
+\mbox{\Hypertarget{tfs_8h_a39dc4f306fd14417891e72980bd1f3eb}\label{tfs_8h_a39dc4f306fd14417891e72980bd1f3eb}} 
+\#define {\bfseries T\+F\+S\+\_\+\+E\+N\+T\+RY}(\mbox{\hyperlink{group__mips__regs_gae771351dd440a8640270282362e338d0}{fp}})~((\mbox{\hyperlink{group__mips__regs_gae771351dd440a8640270282362e338d0}{fp}})-\/$>$\mbox{\hyperlink{structentry}{entry}})
+\item 
+\mbox{\Hypertarget{tfs_8h_ab8094ef28d1e74b2f142c64139a6ec26}\label{tfs_8h_ab8094ef28d1e74b2f142c64139a6ec26}} 
+\#define {\bfseries T\+F\+S\+\_\+\+B\+A\+SE}(\mbox{\hyperlink{group__mips__regs_gae771351dd440a8640270282362e338d0}{fp}})~((char $\ast$)(\mbox{\hyperlink{group__mips__regs_gae771351dd440a8640270282362e338d0}{fp}})+(\mbox{\hyperlink{group__mips__regs_gae771351dd440a8640270282362e338d0}{fp}})-\/$>$hdrsize)
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{tfs_8h_a177c583f89fc6bd479908dd1170ccb50}\label{tfs_8h_a177c583f89fc6bd479908dd1170ccb50}} 
+typedef struct \mbox{\hyperlink{structtfshdr}{tfshdr}} {\bfseries T\+F\+I\+LE}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Header file for T\+FS transactions, used by both application and monnitor. 
+
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{tfs_8h_a6fd7604d89cd3d4c8e388923815df594}\label{tfs_8h_a6fd7604d89cd3d4c8e388923815df594}} 
+\index{tfs.h@{tfs.h}!TFS\_NSTALE@{TFS\_NSTALE}}
+\index{TFS\_NSTALE@{TFS\_NSTALE}!tfs.h@{tfs.h}}
+\subsubsection{\texorpdfstring{TFS\_NSTALE}{TFS\_NSTALE}}
+{\footnotesize\ttfamily \#define T\+F\+S\+\_\+\+N\+S\+T\+A\+LE}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{0x00000800  \textcolor{comment}{/* File is NOT stale, invisible to user.}}
+\DoxyCodeLine{\textcolor{comment}{                                 * When this bit is clear, the file is}}
+\DoxyCodeLine{\textcolor{comment}{                                 * considered stale (see notes in tfsadd()).}}
+\DoxyCodeLine{\textcolor{comment}{                                 * See notes in tfsclose() for this.}}
+\DoxyCodeLine{\textcolor{comment}{                                 */}}
+
+\end{DoxyCode}

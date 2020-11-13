@@ -1,0 +1,83 @@
+\hypertarget{realmode__int_8h}{}\section{bsps/i386/include/bsp/realmode\+\_\+int.h File Reference}
+\label{realmode__int_8h}\index{bsps/i386/include/bsp/realmode\_int.h@{bsps/i386/include/bsp/realmode\_int.h}}
+
+
+Definitioins supporting real mode interrupt calls.  
+
+
+{\ttfamily \#include $<$rtems/score/cpu.\+h$>$}\newline
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structRTEMS__PACKED}{R\+T\+E\+M\+S\+\_\+\+P\+A\+C\+K\+ED}}
+\begin{DoxyCompactList}\small\item\em Used for passing and retrieving registers content to/from real mode interrupt call. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{realmode__int_8h_a3315706b06cd210c7f764c7baaf56291}\label{realmode__int_8h_a3315706b06cd210c7f764c7baaf56291}} 
+\#define {\bfseries I\+N\+T\+E\+R\+R\+U\+P\+T\+\_\+\+N\+O\+\_\+\+V\+I\+D\+E\+O\+\_\+\+S\+E\+R\+V\+I\+C\+ES}~0x10
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void $\ast$ \mbox{\hyperlink{realmode__int_8h_a0971c9c582ca7ed6c973370d8d2ddcf2}{i386\+\_\+get\+\_\+default\+\_\+rm\+\_\+buffer}} (uint16\+\_\+t $\ast$\mbox{\hyperlink{sun4u_2tte_8h_a245260f6f74972558f61b85227df5aae}{size}})
+\begin{DoxyCompactList}\small\item\em Returns buffer and its size usable with real mode interrupt call. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{realmode__int_8h_a1541b4af8720ed12dd8b966a7db9b100}{i386\+\_\+real\+\_\+interrupt\+\_\+call}} (uint8\+\_\+t interrupt\+\_\+number, i386\+\_\+realmode\+\_\+interrupt\+\_\+registers $\ast$ir)
+\begin{DoxyCompactList}\small\item\em Call to real mode interrupt with specified int NO and processor registers. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Definitioins supporting real mode interrupt calls. 
+
+Interface allows calling given interrupt number with content of the registers defined. For passing or receiving higher amounts of the data there is a buffer accessible from real mode available. Real mode pointer to this buffer is passed to the interrupt in the registers. 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{realmode__int_8h_a0971c9c582ca7ed6c973370d8d2ddcf2}\label{realmode__int_8h_a0971c9c582ca7ed6c973370d8d2ddcf2}} 
+\index{realmode\_int.h@{realmode\_int.h}!i386\_get\_default\_rm\_buffer@{i386\_get\_default\_rm\_buffer}}
+\index{i386\_get\_default\_rm\_buffer@{i386\_get\_default\_rm\_buffer}!realmode\_int.h@{realmode\_int.h}}
+\subsubsection{\texorpdfstring{i386\_get\_default\_rm\_buffer()}{i386\_get\_default\_rm\_buffer()}}
+{\footnotesize\ttfamily void$\ast$ i386\+\_\+get\+\_\+default\+\_\+rm\+\_\+buffer (\begin{DoxyParamCaption}\item[{uint16\+\_\+t $\ast$}]{size }\end{DoxyParamCaption})}
+
+
+
+Returns buffer and its size usable with real mode interrupt call. 
+
+Provides position to real mode buffer. It is buffer accessible from real mode context -\/ it is located below address $\sim$0x100000 in order for it to be accessible This buffer is meant to be pointed to by seg\+Reg\+:Gen\+Purp\+Reg and through this get bigger portion of an information to/from interrupt service routine than just by using register.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em size} & pointer to variable, where the size of buffer will be filled \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em pointer} & to buffer \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{realmode__int_8h_a1541b4af8720ed12dd8b966a7db9b100}\label{realmode__int_8h_a1541b4af8720ed12dd8b966a7db9b100}} 
+\index{realmode\_int.h@{realmode\_int.h}!i386\_real\_interrupt\_call@{i386\_real\_interrupt\_call}}
+\index{i386\_real\_interrupt\_call@{i386\_real\_interrupt\_call}!realmode\_int.h@{realmode\_int.h}}
+\subsubsection{\texorpdfstring{i386\_real\_interrupt\_call()}{i386\_real\_interrupt\_call()}}
+{\footnotesize\ttfamily int i386\+\_\+real\+\_\+interrupt\+\_\+call (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{interrupt\+\_\+number,  }\item[{i386\+\_\+realmode\+\_\+interrupt\+\_\+registers $\ast$}]{ir }\end{DoxyParamCaption})}
+
+
+
+Call to real mode interrupt with specified int NO and processor registers. 
+
+This function allows calling interrupts in real mode and to set processor registers as desired before interrupt call is made and to retrieve the registers content after call was made.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em interrupt\+\_\+number} & interrupt number to be called \\
+\hline
+\mbox{\texttt{ in}}  & {\em ir} & pointer to structure containing registers to be passed to interrupt and to retrieve register content after call was made. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em 0} & call failed (G\+DT too small or pagin is on) \\
+\hline
+{\em 1} & call successful \\
+\hline
+\end{DoxyRetVals}

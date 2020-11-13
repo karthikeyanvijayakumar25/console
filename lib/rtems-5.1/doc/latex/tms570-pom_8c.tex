@@ -1,0 +1,93 @@
+\hypertarget{tms570-pom_8c}{}\section{bsps/arm/tms570/start/tms570-\/pom.c File Reference}
+\label{tms570-pom_8c}\index{bsps/arm/tms570/start/tms570-\/pom.c@{bsps/arm/tms570/start/tms570-\/pom.c}}
+
+
+T\+M\+S570 Parameter Overlay Module functions definitions.  
+
+
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$bsp/tms570-\/pom.\+h$>$}\newline
+{\ttfamily \#include $<$bsp/linker-\/symbols.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/score/armv4.\+h$>$}\newline
+{\ttfamily \#include $<$bsp.\+h$>$}\newline
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structvec__remap__table}{vec\+\_\+remap\+\_\+table}}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{tms570-pom_8c_a09ba2c7b8831e73857517fd47c872eed}\label{tms570-pom_8c_a09ba2c7b8831e73857517fd47c872eed}} 
+void {\bfseries bsp\+\_\+block\+\_\+on\+\_\+exception} (void)
+\item 
+void \mbox{\hyperlink{tms570-pom_8c_a910d08b5bfffed83b88de9eb2ab27bc5}{tms570\+\_\+initialize\+\_\+and\+\_\+clear}} (void)
+\begin{DoxyCompactList}\small\item\em initialize and clear parameters overlay module (P\+OM) \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{tms570-pom_8c_aa5484712012d1e84f9422450a76fd6d4}{tms570\+\_\+pom\+\_\+remap}} (void)
+\begin{DoxyCompactList}\small\item\em remaps vector table \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{tms570-pom_8c_a965b160fb7522cd9e9831d4fe96d7c9c}\label{tms570-pom_8c_a965b160fb7522cd9e9831d4fe96d7c9c}} 
+char {\bfseries bsp\+\_\+int\+\_\+vec\+\_\+overlay\+\_\+start} \mbox{[}$\,$\mbox{]}
+\item 
+uint32\+\_\+t {\bfseries pom\+\_\+global\+\_\+overlay\+\_\+target\+\_\+address\+\_\+start}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+T\+M\+S570 Parameter Overlay Module functions definitions. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{tms570-pom_8c_a910d08b5bfffed83b88de9eb2ab27bc5}\label{tms570-pom_8c_a910d08b5bfffed83b88de9eb2ab27bc5}} 
+\index{tms570-\/pom.c@{tms570-\/pom.c}!tms570\_initialize\_and\_clear@{tms570\_initialize\_and\_clear}}
+\index{tms570\_initialize\_and\_clear@{tms570\_initialize\_and\_clear}!tms570-\/pom.c@{tms570-\/pom.c}}
+\subsubsection{\texorpdfstring{tms570\_initialize\_and\_clear()}{tms570\_initialize\_and\_clear()}}
+{\footnotesize\ttfamily void tms570\+\_\+initialize\+\_\+and\+\_\+clear (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+initialize and clear parameters overlay module (P\+OM) 
+
+clears all remap regions. The actual P\+OM enable is left to the first user.
+
+
+\begin{DoxyRetVals}{Return values}
+{\em Void} & \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{tms570-pom_8c_aa5484712012d1e84f9422450a76fd6d4}\label{tms570-pom_8c_aa5484712012d1e84f9422450a76fd6d4}} 
+\index{tms570-\/pom.c@{tms570-\/pom.c}!tms570\_pom\_remap@{tms570\_pom\_remap}}
+\index{tms570\_pom\_remap@{tms570\_pom\_remap}!tms570-\/pom.c@{tms570-\/pom.c}}
+\subsubsection{\texorpdfstring{tms570\_pom\_remap()}{tms570\_pom\_remap()}}
+{\footnotesize\ttfamily void tms570\+\_\+pom\+\_\+remap (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+remaps vector table 
+
+transfer the rtems start vector table to address 0x0
+
+
+\begin{DoxyRetVals}{Return values}
+{\em Void} & \\
+\hline
+\end{DoxyRetVals}
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{tms570-pom_8c_ae0d922fd7d45846492b1831f79536c7c}\label{tms570-pom_8c_ae0d922fd7d45846492b1831f79536c7c}} 
+\index{tms570-\/pom.c@{tms570-\/pom.c}!pom\_global\_overlay\_target\_address\_start@{pom\_global\_overlay\_target\_address\_start}}
+\index{pom\_global\_overlay\_target\_address\_start@{pom\_global\_overlay\_target\_address\_start}!tms570-\/pom.c@{tms570-\/pom.c}}
+\subsubsection{\texorpdfstring{pom\_global\_overlay\_target\_address\_start}{pom\_global\_overlay\_target\_address\_start}}
+{\footnotesize\ttfamily uint32\+\_\+t pom\+\_\+global\+\_\+overlay\+\_\+target\+\_\+address\+\_\+start}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=}
+\DoxyCodeLine{                                 (uintptr\_t)bsp\_int\_vec\_overlay\_start}
+
+\end{DoxyCode}

@@ -1,0 +1,151 @@
+\hypertarget{rtl-obj-comp_8h}{}\section{cpukit/include/rtems/rtl/rtl-\/obj-\/comp.h File Reference}
+\label{rtl-obj-comp_8h}\index{cpukit/include/rtems/rtl/rtl-\/obj-\/comp.h@{cpukit/include/rtems/rtl/rtl-\/obj-\/comp.h}}
+
+
+R\+T\+E\+MS Run-\/\+Time Linker Object File Compression manages a compressed stream of data.  
+
+
+{\ttfamily \#include $<$rtems/rtl/rtl-\/obj-\/cache.\+h$>$}\newline
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structrtems__rtl__obj__cpmp}{rtems\+\_\+rtl\+\_\+obj\+\_\+cpmp}}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{rtl-obj-comp_8h_aa83e636f2ed02dc146727d5cdf276344}{R\+T\+E\+M\+S\+\_\+\+R\+T\+L\+\_\+\+D\+E\+C\+O\+M\+P\+\_\+\+I\+N\+P\+U\+T\+\_\+\+S\+I\+ZE}}~(256)
+\item 
+\#define \mbox{\hyperlink{rtl-obj-comp_8h_a295f45fc293c0e2ee6d9d828451d34eb}{R\+T\+E\+M\+S\+\_\+\+R\+T\+L\+\_\+\+C\+O\+M\+P\+\_\+\+N\+O\+NE}}~(0)
+\item 
+\mbox{\Hypertarget{rtl-obj-comp_8h_aef7a8b1c9943d7a0c6fcb0b8df86ca22}\label{rtl-obj-comp_8h_aef7a8b1c9943d7a0c6fcb0b8df86ca22}} 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+R\+T\+L\+\_\+\+C\+O\+M\+P\+\_\+\+L\+Z77}~(1)
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \mbox{\hyperlink{structrtems__rtl__obj__cpmp}{rtems\+\_\+rtl\+\_\+obj\+\_\+cpmp}} \mbox{\hyperlink{rtl-obj-comp_8h_a5ac76d7cdc14a520157bd5c8a322f56c}{rtems\+\_\+rtl\+\_\+obj\+\_\+comp}}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{rtl-obj-comp_8h_ae57c7af4f1fefa9e13f9ed00eb01dcf3}{rtems\+\_\+rtl\+\_\+obj\+\_\+comp\+\_\+open}} (\mbox{\hyperlink{rtl-obj-comp_8h_a5ac76d7cdc14a520157bd5c8a322f56c}{rtems\+\_\+rtl\+\_\+obj\+\_\+comp}} $\ast$comp, size\+\_\+t \mbox{\hyperlink{sun4u_2tte_8h_a245260f6f74972558f61b85227df5aae}{size}})
+\item 
+void \mbox{\hyperlink{rtl-obj-comp_8h_aa623f3df8f95696261fe1f558bff7873}{rtems\+\_\+rtl\+\_\+obj\+\_\+comp\+\_\+close}} (\mbox{\hyperlink{rtl-obj-comp_8h_a5ac76d7cdc14a520157bd5c8a322f56c}{rtems\+\_\+rtl\+\_\+obj\+\_\+comp}} $\ast$comp)
+\item 
+void \mbox{\hyperlink{rtl-obj-comp_8h_a53f6650db0abec0a0fae4ad5a5975baa}{rtems\+\_\+rtl\+\_\+obj\+\_\+comp\+\_\+set}} (\mbox{\hyperlink{rtl-obj-comp_8h_a5ac76d7cdc14a520157bd5c8a322f56c}{rtems\+\_\+rtl\+\_\+obj\+\_\+comp}} $\ast$comp, \mbox{\hyperlink{structrtems__rtl__obj__cache}{rtems\+\_\+rtl\+\_\+obj\+\_\+cache}} $\ast$cache, int fd, int compression, off\+\_\+t offset)
+\item 
+bool \mbox{\hyperlink{rtl-obj-comp_8h_a4ad76f30e119ef7536b1222220715a40}{rtems\+\_\+rtl\+\_\+obj\+\_\+comp\+\_\+read}} (\mbox{\hyperlink{rtl-obj-comp_8h_a5ac76d7cdc14a520157bd5c8a322f56c}{rtems\+\_\+rtl\+\_\+obj\+\_\+comp}} $\ast$comp, void $\ast$buffer, size\+\_\+t length)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+R\+T\+E\+MS Run-\/\+Time Linker Object File Compression manages a compressed stream of data. 
+
+This is a simple interface to the object file cache to stream data from from a compressed object file. There is no ability to seek with the data from a compressed file. The module exists to allocate the output buffer when the loader starts and use the cache buffers will have been allocated. 
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{rtl-obj-comp_8h_a295f45fc293c0e2ee6d9d828451d34eb}\label{rtl-obj-comp_8h_a295f45fc293c0e2ee6d9d828451d34eb}} 
+\index{rtl-\/obj-\/comp.h@{rtl-\/obj-\/comp.h}!RTEMS\_RTL\_COMP\_NONE@{RTEMS\_RTL\_COMP\_NONE}}
+\index{RTEMS\_RTL\_COMP\_NONE@{RTEMS\_RTL\_COMP\_NONE}!rtl-\/obj-\/comp.h@{rtl-\/obj-\/comp.h}}
+\subsubsection{\texorpdfstring{RTEMS\_RTL\_COMP\_NONE}{RTEMS\_RTL\_COMP\_NONE}}
+{\footnotesize\ttfamily \#define R\+T\+E\+M\+S\+\_\+\+R\+T\+L\+\_\+\+C\+O\+M\+P\+\_\+\+N\+O\+NE~(0)}
+
+The types of supported compression. \mbox{\Hypertarget{rtl-obj-comp_8h_aa83e636f2ed02dc146727d5cdf276344}\label{rtl-obj-comp_8h_aa83e636f2ed02dc146727d5cdf276344}} 
+\index{rtl-\/obj-\/comp.h@{rtl-\/obj-\/comp.h}!RTEMS\_RTL\_DECOMP\_INPUT\_SIZE@{RTEMS\_RTL\_DECOMP\_INPUT\_SIZE}}
+\index{RTEMS\_RTL\_DECOMP\_INPUT\_SIZE@{RTEMS\_RTL\_DECOMP\_INPUT\_SIZE}!rtl-\/obj-\/comp.h@{rtl-\/obj-\/comp.h}}
+\subsubsection{\texorpdfstring{RTEMS\_RTL\_DECOMP\_INPUT\_SIZE}{RTEMS\_RTL\_DECOMP\_INPUT\_SIZE}}
+{\footnotesize\ttfamily \#define R\+T\+E\+M\+S\+\_\+\+R\+T\+L\+\_\+\+D\+E\+C\+O\+M\+P\+\_\+\+I\+N\+P\+U\+T\+\_\+\+S\+I\+ZE~(256)}
+
+The amount of input data read at a time from the file. 
+
+\subsection{Typedef Documentation}
+\mbox{\Hypertarget{rtl-obj-comp_8h_a5ac76d7cdc14a520157bd5c8a322f56c}\label{rtl-obj-comp_8h_a5ac76d7cdc14a520157bd5c8a322f56c}} 
+\index{rtl-\/obj-\/comp.h@{rtl-\/obj-\/comp.h}!rtems\_rtl\_obj\_comp@{rtems\_rtl\_obj\_comp}}
+\index{rtems\_rtl\_obj\_comp@{rtems\_rtl\_obj\_comp}!rtl-\/obj-\/comp.h@{rtl-\/obj-\/comp.h}}
+\subsubsection{\texorpdfstring{rtems\_rtl\_obj\_comp}{rtems\_rtl\_obj\_comp}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structrtems__rtl__obj__cpmp}{rtems\+\_\+rtl\+\_\+obj\+\_\+cpmp}}  \mbox{\hyperlink{rtl-obj-comp_8h_a5ac76d7cdc14a520157bd5c8a322f56c}{rtems\+\_\+rtl\+\_\+obj\+\_\+comp}}}
+
+The compressed file. 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{rtl-obj-comp_8h_aa623f3df8f95696261fe1f558bff7873}\label{rtl-obj-comp_8h_aa623f3df8f95696261fe1f558bff7873}} 
+\index{rtl-\/obj-\/comp.h@{rtl-\/obj-\/comp.h}!rtems\_rtl\_obj\_comp\_close@{rtems\_rtl\_obj\_comp\_close}}
+\index{rtems\_rtl\_obj\_comp\_close@{rtems\_rtl\_obj\_comp\_close}!rtl-\/obj-\/comp.h@{rtl-\/obj-\/comp.h}}
+\subsubsection{\texorpdfstring{rtems\_rtl\_obj\_comp\_close()}{rtems\_rtl\_obj\_comp\_close()}}
+{\footnotesize\ttfamily void rtems\+\_\+rtl\+\_\+obj\+\_\+comp\+\_\+close (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{rtl-obj-comp_8h_a5ac76d7cdc14a520157bd5c8a322f56c}{rtems\+\_\+rtl\+\_\+obj\+\_\+comp}} $\ast$}]{comp }\end{DoxyParamCaption})}
+
+Close a compressor.
+
+
+\begin{DoxyParams}{Parameters}
+{\em comp} & The compressor to close. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{rtl-obj-comp_8h_ae57c7af4f1fefa9e13f9ed00eb01dcf3}\label{rtl-obj-comp_8h_ae57c7af4f1fefa9e13f9ed00eb01dcf3}} 
+\index{rtl-\/obj-\/comp.h@{rtl-\/obj-\/comp.h}!rtems\_rtl\_obj\_comp\_open@{rtems\_rtl\_obj\_comp\_open}}
+\index{rtems\_rtl\_obj\_comp\_open@{rtems\_rtl\_obj\_comp\_open}!rtl-\/obj-\/comp.h@{rtl-\/obj-\/comp.h}}
+\subsubsection{\texorpdfstring{rtems\_rtl\_obj\_comp\_open()}{rtems\_rtl\_obj\_comp\_open()}}
+{\footnotesize\ttfamily bool rtems\+\_\+rtl\+\_\+obj\+\_\+comp\+\_\+open (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{rtl-obj-comp_8h_a5ac76d7cdc14a520157bd5c8a322f56c}{rtems\+\_\+rtl\+\_\+obj\+\_\+comp}} $\ast$}]{comp,  }\item[{size\+\_\+t}]{size }\end{DoxyParamCaption})}
+
+Open a compressor allocating the output buffer.
+
+
+\begin{DoxyParams}{Parameters}
+{\em comp} & The compressor to initialise. \\
+\hline
+{\em size} & The size of the compressor\textquotesingle{}s output buffer. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em true} & The compressor is open. \\
+\hline
+{\em false} & The compressor is not open. The R\+TL error is set. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{rtl-obj-comp_8h_a4ad76f30e119ef7536b1222220715a40}\label{rtl-obj-comp_8h_a4ad76f30e119ef7536b1222220715a40}} 
+\index{rtl-\/obj-\/comp.h@{rtl-\/obj-\/comp.h}!rtems\_rtl\_obj\_comp\_read@{rtems\_rtl\_obj\_comp\_read}}
+\index{rtems\_rtl\_obj\_comp\_read@{rtems\_rtl\_obj\_comp\_read}!rtl-\/obj-\/comp.h@{rtl-\/obj-\/comp.h}}
+\subsubsection{\texorpdfstring{rtems\_rtl\_obj\_comp\_read()}{rtems\_rtl\_obj\_comp\_read()}}
+{\footnotesize\ttfamily bool rtems\+\_\+rtl\+\_\+obj\+\_\+comp\+\_\+read (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{rtl-obj-comp_8h_a5ac76d7cdc14a520157bd5c8a322f56c}{rtems\+\_\+rtl\+\_\+obj\+\_\+comp}} $\ast$}]{comp,  }\item[{void $\ast$}]{buffer,  }\item[{size\+\_\+t}]{length }\end{DoxyParamCaption})}
+
+Read decompressed data. The length contains the amount of data that should be available in the cache and referenced by the buffer handle. It must be less than or equal to the size of the cache. This call will return the amount of data that is available. It can be less than you ask if the offset and size is past the end of the file.
+
+
+\begin{DoxyParams}{Parameters}
+{\em comp} & The compressor to read data from. \\
+\hline
+{\em buffer} & The buffer the output is written too. \\
+\hline
+{\em length} & The length of data to read. Can be modified to a lesser value and true is still returned so check it. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em true} & The data referenced is in the cache. \\
+\hline
+{\em false} & The read failed and the R\+TL error has been set. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{rtl-obj-comp_8h_a53f6650db0abec0a0fae4ad5a5975baa}\label{rtl-obj-comp_8h_a53f6650db0abec0a0fae4ad5a5975baa}} 
+\index{rtl-\/obj-\/comp.h@{rtl-\/obj-\/comp.h}!rtems\_rtl\_obj\_comp\_set@{rtems\_rtl\_obj\_comp\_set}}
+\index{rtems\_rtl\_obj\_comp\_set@{rtems\_rtl\_obj\_comp\_set}!rtl-\/obj-\/comp.h@{rtl-\/obj-\/comp.h}}
+\subsubsection{\texorpdfstring{rtems\_rtl\_obj\_comp\_set()}{rtems\_rtl\_obj\_comp\_set()}}
+{\footnotesize\ttfamily void rtems\+\_\+rtl\+\_\+obj\+\_\+comp\+\_\+set (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{rtl-obj-comp_8h_a5ac76d7cdc14a520157bd5c8a322f56c}{rtems\+\_\+rtl\+\_\+obj\+\_\+comp}} $\ast$}]{comp,  }\item[{\mbox{\hyperlink{structrtems__rtl__obj__cache}{rtems\+\_\+rtl\+\_\+obj\+\_\+cache}} $\ast$}]{cache,  }\item[{int}]{fd,  }\item[{int}]{compression,  }\item[{off\+\_\+t}]{offset }\end{DoxyParamCaption})}
+
+Set the cache and offset in the file the compressed stream starts.
+
+
+\begin{DoxyParams}{Parameters}
+{\em comp} & The compressor to set the offset in. \\
+\hline
+{\em cache} & The cache to read the file in by. \\
+\hline
+{\em fd} & The file descriptor. Must be an open file. \\
+\hline
+{\em compression} & The type of compression being streamed. \\
+\hline
+{\em offset} & The offset in the file the compressed stream starts. \\
+\hline
+\end{DoxyParams}

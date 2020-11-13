@@ -1,0 +1,154 @@
+\hypertarget{rtems-rfs-rtems_8c}{}\section{cpukit/libfs/src/rfs/rtems-\/rfs-\/rtems.c File Reference}
+\label{rtems-rfs-rtems_8c}\index{cpukit/libfs/src/rfs/rtems-\/rfs-\/rtems.c@{cpukit/libfs/src/rfs/rtems-\/rfs-\/rtems.c}}
+
+
+R\+T\+E\+MS File System Interface for R\+T\+E\+MS.  
+
+
+{\ttfamily \#include $<$sys/param.\+h$>$}\newline
+{\ttfamily \#include $<$inttypes.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/rfs/rtems-\/rfs-\/file.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/rfs/rtems-\/rfs-\/dir.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/rfs/rtems-\/rfs-\/link.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}rtems-\/rfs-\/rtems.\+h\char`\"{}}\newline
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{rtems-rfs-rtems_8c_a0ceaa395fe3f5ea0c01383618faa3b5c}{rtems\+\_\+rfs\+\_\+rtems\+\_\+fstat}} (const \mbox{\hyperlink{group__LibIO_ga3252b3d31ee3c49ffff0b7604a676864}{rtems\+\_\+filesystem\+\_\+location\+\_\+info\+\_\+t}} $\ast$pathloc, struct stat $\ast$buf)
+\item 
+int \mbox{\hyperlink{rtems-rfs-rtems_8c_acb8e7e6615d937f61862719b00445978}{rtems\+\_\+rfs\+\_\+rtems\+\_\+rmnod}} (const \mbox{\hyperlink{group__LibIO_ga3252b3d31ee3c49ffff0b7604a676864}{rtems\+\_\+filesystem\+\_\+location\+\_\+info\+\_\+t}} $\ast$parent\+\_\+pathloc, const \mbox{\hyperlink{group__LibIO_ga3252b3d31ee3c49ffff0b7604a676864}{rtems\+\_\+filesystem\+\_\+location\+\_\+info\+\_\+t}} $\ast$pathloc)
+\item 
+int \mbox{\hyperlink{rtems-rfs-rtems_8c_afea85d020da25d7bba8b14906c58a74a}{rtems\+\_\+rfs\+\_\+rtems\+\_\+fdatasync}} (\mbox{\hyperlink{structrtems__libio__tt}{rtems\+\_\+libio\+\_\+t}} $\ast$iop)
+\item 
+int \mbox{\hyperlink{group__rtems__rfs_gaf07230e2a00d753c32235965ba8ca4ad}{rtems\+\_\+rfs\+\_\+rtems\+\_\+initialise}} (\mbox{\hyperlink{structrtems__filesystem__mount__table__entry__tt}{rtems\+\_\+filesystem\+\_\+mount\+\_\+table\+\_\+entry\+\_\+t}} $\ast$mt\+\_\+entry, const void $\ast$data)
+\item 
+void \mbox{\hyperlink{rtems-rfs-rtems_8c_ad07997e173229e14ef6de4efc1033a5b}{rtems\+\_\+rfs\+\_\+rtems\+\_\+shutdown}} (\mbox{\hyperlink{structrtems__filesystem__mount__table__entry__tt}{rtems\+\_\+filesystem\+\_\+mount\+\_\+table\+\_\+entry\+\_\+t}} $\ast$mt\+\_\+entry)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const \mbox{\hyperlink{struct__rtems__filesystem__file__handlers__r}{rtems\+\_\+filesystem\+\_\+file\+\_\+handlers\+\_\+r}} \mbox{\hyperlink{rtems-rfs-rtems_8c_a1b1aa463d7b6bd01b968b2d557dd33dd}{rtems\+\_\+rfs\+\_\+rtems\+\_\+link\+\_\+handlers}}
+\item 
+const \mbox{\hyperlink{struct__rtems__filesystem__operations__table}{rtems\+\_\+filesystem\+\_\+operations\+\_\+table}} \mbox{\hyperlink{rtems-rfs-rtems_8c_a7ad51127fb7bd67172b491a6dfb7d4d9}{rtems\+\_\+rfs\+\_\+ops}}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+R\+T\+E\+MS File System Interface for R\+T\+E\+MS. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{rtems-rfs-rtems_8c_afea85d020da25d7bba8b14906c58a74a}\label{rtems-rfs-rtems_8c_afea85d020da25d7bba8b14906c58a74a}} 
+\index{rtems-\/rfs-\/rtems.c@{rtems-\/rfs-\/rtems.c}!rtems\_rfs\_rtems\_fdatasync@{rtems\_rfs\_rtems\_fdatasync}}
+\index{rtems\_rfs\_rtems\_fdatasync@{rtems\_rfs\_rtems\_fdatasync}!rtems-\/rfs-\/rtems.c@{rtems-\/rfs-\/rtems.c}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_rtems\_fdatasync()}{rtems\_rfs\_rtems\_fdatasync()}}
+{\footnotesize\ttfamily int rtems\+\_\+rfs\+\_\+rtems\+\_\+fdatasync (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structrtems__libio__tt}{rtems\+\_\+libio\+\_\+t}} $\ast$}]{iop }\end{DoxyParamCaption})}
+
+The following routine does a sync on an inode node. Currently it flushes everything related to this device.
+
+
+\begin{DoxyParams}{Parameters}
+{\em iop} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 
+\end{DoxyReturn}
+\mbox{\Hypertarget{rtems-rfs-rtems_8c_a0ceaa395fe3f5ea0c01383618faa3b5c}\label{rtems-rfs-rtems_8c_a0ceaa395fe3f5ea0c01383618faa3b5c}} 
+\index{rtems-\/rfs-\/rtems.c@{rtems-\/rfs-\/rtems.c}!rtems\_rfs\_rtems\_fstat@{rtems\_rfs\_rtems\_fstat}}
+\index{rtems\_rfs\_rtems\_fstat@{rtems\_rfs\_rtems\_fstat}!rtems-\/rfs-\/rtems.c@{rtems-\/rfs-\/rtems.c}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_rtems\_fstat()}{rtems\_rfs\_rtems\_fstat()}}
+{\footnotesize\ttfamily int rtems\+\_\+rfs\+\_\+rtems\+\_\+fstat (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{group__LibIO_ga3252b3d31ee3c49ffff0b7604a676864}{rtems\+\_\+filesystem\+\_\+location\+\_\+info\+\_\+t}} $\ast$}]{pathloc,  }\item[{struct stat $\ast$}]{buf }\end{DoxyParamCaption})}
+
+The following routine does a stat on a node. \mbox{\Hypertarget{rtems-rfs-rtems_8c_acb8e7e6615d937f61862719b00445978}\label{rtems-rfs-rtems_8c_acb8e7e6615d937f61862719b00445978}} 
+\index{rtems-\/rfs-\/rtems.c@{rtems-\/rfs-\/rtems.c}!rtems\_rfs\_rtems\_rmnod@{rtems\_rfs\_rtems\_rmnod}}
+\index{rtems\_rfs\_rtems\_rmnod@{rtems\_rfs\_rtems\_rmnod}!rtems-\/rfs-\/rtems.c@{rtems-\/rfs-\/rtems.c}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_rtems\_rmnod()}{rtems\_rfs\_rtems\_rmnod()}}
+{\footnotesize\ttfamily int rtems\+\_\+rfs\+\_\+rtems\+\_\+rmnod (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{group__LibIO_ga3252b3d31ee3c49ffff0b7604a676864}{rtems\+\_\+filesystem\+\_\+location\+\_\+info\+\_\+t}} $\ast$}]{parent\+\_\+pathloc,  }\item[{const \mbox{\hyperlink{group__LibIO_ga3252b3d31ee3c49ffff0b7604a676864}{rtems\+\_\+filesystem\+\_\+location\+\_\+info\+\_\+t}} $\ast$}]{pathloc }\end{DoxyParamCaption})}
+
+Routine to remove a node from the R\+FS file system.
+
+
+\begin{DoxyParams}{Parameters}
+{\em parent\+\_\+pathloc} & \\
+\hline
+{\em pathloc} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 
+\end{DoxyReturn}
+\mbox{\Hypertarget{rtems-rfs-rtems_8c_ad07997e173229e14ef6de4efc1033a5b}\label{rtems-rfs-rtems_8c_ad07997e173229e14ef6de4efc1033a5b}} 
+\index{rtems-\/rfs-\/rtems.c@{rtems-\/rfs-\/rtems.c}!rtems\_rfs\_rtems\_shutdown@{rtems\_rfs\_rtems\_shutdown}}
+\index{rtems\_rfs\_rtems\_shutdown@{rtems\_rfs\_rtems\_shutdown}!rtems-\/rfs-\/rtems.c@{rtems-\/rfs-\/rtems.c}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_rtems\_shutdown()}{rtems\_rfs\_rtems\_shutdown()}}
+{\footnotesize\ttfamily void rtems\+\_\+rfs\+\_\+rtems\+\_\+shutdown (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structrtems__filesystem__mount__table__entry__tt}{rtems\+\_\+filesystem\+\_\+mount\+\_\+table\+\_\+entry\+\_\+t}} $\ast$}]{mt\+\_\+entry }\end{DoxyParamCaption})}
+
+Shutdown the file system. 
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{rtems-rfs-rtems_8c_a7ad51127fb7bd67172b491a6dfb7d4d9}\label{rtems-rfs-rtems_8c_a7ad51127fb7bd67172b491a6dfb7d4d9}} 
+\index{rtems-\/rfs-\/rtems.c@{rtems-\/rfs-\/rtems.c}!rtems\_rfs\_ops@{rtems\_rfs\_ops}}
+\index{rtems\_rfs\_ops@{rtems\_rfs\_ops}!rtems-\/rfs-\/rtems.c@{rtems-\/rfs-\/rtems.c}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_ops}{rtems\_rfs\_ops}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{struct__rtems__filesystem__operations__table}{rtems\+\_\+filesystem\+\_\+operations\+\_\+table}} rtems\+\_\+rfs\+\_\+ops}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{  .lock\_h         = rtems\_rfs\_rtems\_lock\_by\_mt\_entry,}
+\DoxyCodeLine{  .unlock\_h       = rtems\_rfs\_rtems\_unlock\_by\_mt\_entry,}
+\DoxyCodeLine{  .are\_nodes\_equal\_h = \mbox{\hyperlink{group__LibIOFSOps_ga590c632457e7ce877651d41bbb4c1bad}{rtems\_filesystem\_default\_are\_nodes\_equal}},}
+\DoxyCodeLine{  .eval\_path\_h    = rtems\_rfs\_rtems\_eval\_path,}
+\DoxyCodeLine{  .link\_h         = rtems\_rfs\_rtems\_link,}
+\DoxyCodeLine{  .fchmod\_h       = rtems\_rfs\_rtems\_fchmod,}
+\DoxyCodeLine{  .mknod\_h        = rtems\_rfs\_rtems\_mknod,}
+\DoxyCodeLine{  .rmnod\_h        = \mbox{\hyperlink{rtems-rfs-rtems_8c_acb8e7e6615d937f61862719b00445978}{rtems\_rfs\_rtems\_rmnod}},}
+\DoxyCodeLine{  .chown\_h        = rtems\_rfs\_rtems\_chown,}
+\DoxyCodeLine{  .clonenod\_h     = \mbox{\hyperlink{group__LibIOFSOps_ga50dd6f2187a5ce3f918b18548df6e9eb}{rtems\_filesystem\_default\_clonenode}},}
+\DoxyCodeLine{  .freenod\_h      = \mbox{\hyperlink{group__LibIOFSOps_ga801a36a04179ec2431409303fa1b9031}{rtems\_filesystem\_default\_freenode}},}
+\DoxyCodeLine{  .mount\_h        = \mbox{\hyperlink{group__LibIOFSOps_ga6c134a7f03171ac182a6430be97b1cef}{rtems\_filesystem\_default\_mount}},}
+\DoxyCodeLine{  .unmount\_h      = \mbox{\hyperlink{group__LibIOFSOps_ga0fe302d1177a5be4f6b69110240cb08a}{rtems\_filesystem\_default\_unmount}},}
+\DoxyCodeLine{  .fsunmount\_me\_h = \mbox{\hyperlink{rtems-rfs-rtems_8c_ad07997e173229e14ef6de4efc1033a5b}{rtems\_rfs\_rtems\_shutdown}},}
+\DoxyCodeLine{  .utime\_h        = rtems\_rfs\_rtems\_utime,}
+\DoxyCodeLine{  .symlink\_h      = rtems\_rfs\_rtems\_symlink,}
+\DoxyCodeLine{  .readlink\_h     = rtems\_rfs\_rtems\_readlink,}
+\DoxyCodeLine{  .rename\_h       = rtems\_rfs\_rtems\_rename,}
+\DoxyCodeLine{  .statvfs\_h      = rtems\_rfs\_rtems\_statvfs}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+R\+FS file system operations table. \mbox{\Hypertarget{rtems-rfs-rtems_8c_a1b1aa463d7b6bd01b968b2d557dd33dd}\label{rtems-rfs-rtems_8c_a1b1aa463d7b6bd01b968b2d557dd33dd}} 
+\index{rtems-\/rfs-\/rtems.c@{rtems-\/rfs-\/rtems.c}!rtems\_rfs\_rtems\_link\_handlers@{rtems\_rfs\_rtems\_link\_handlers}}
+\index{rtems\_rfs\_rtems\_link\_handlers@{rtems\_rfs\_rtems\_link\_handlers}!rtems-\/rfs-\/rtems.c@{rtems-\/rfs-\/rtems.c}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_rtems\_link\_handlers}{rtems\_rfs\_rtems\_link\_handlers}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{struct__rtems__filesystem__file__handlers__r}{rtems\+\_\+filesystem\+\_\+file\+\_\+handlers\+\_\+r}} rtems\+\_\+rfs\+\_\+rtems\+\_\+link\+\_\+handlers}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{  .open\_h      = \mbox{\hyperlink{group__LibIOFSHandler_gadcd852d4f67d04301d03fc9104730389}{rtems\_filesystem\_default\_open}},}
+\DoxyCodeLine{  .close\_h     = \mbox{\hyperlink{group__LibIOFSHandler_gacc910eacfd4ffb5ba69d8ff0380d5f65}{rtems\_filesystem\_default\_close}},}
+\DoxyCodeLine{  .read\_h      = \mbox{\hyperlink{group__LibIOFSHandler_gad453e9f1320d2c20ac2966e327e9c351}{rtems\_filesystem\_default\_read}},}
+\DoxyCodeLine{  .write\_h     = \mbox{\hyperlink{group__LibIOFSHandler_gaf4201385a0dd5ad3d1f447b3a167b106}{rtems\_filesystem\_default\_write}},}
+\DoxyCodeLine{  .ioctl\_h     = \mbox{\hyperlink{group__LibIOFSHandler_ga50da2d5dcafa7a15fb37916e63e0cd5f}{rtems\_filesystem\_default\_ioctl}},}
+\DoxyCodeLine{  .lseek\_h     = \mbox{\hyperlink{group__LibIOFSHandler_gabc972cf07584efa949cb5ca635de7f06}{rtems\_filesystem\_default\_lseek}},}
+\DoxyCodeLine{  .fstat\_h     = \mbox{\hyperlink{rtems-rfs-rtems_8c_a0ceaa395fe3f5ea0c01383618faa3b5c}{rtems\_rfs\_rtems\_fstat}},}
+\DoxyCodeLine{  .ftruncate\_h = \mbox{\hyperlink{group__LibIOFSHandler_ga10a3664ce71afda3d60d6889a0c84367}{rtems\_filesystem\_default\_ftruncate}},}
+\DoxyCodeLine{  .fsync\_h     = \mbox{\hyperlink{group__LibIOFSHandler_ga7bcb245cbe4a71b0952beca086b63e1b}{rtems\_filesystem\_default\_fsync\_or\_fdatasync}},}
+\DoxyCodeLine{  .fdatasync\_h = \mbox{\hyperlink{group__LibIOFSHandler_ga7bcb245cbe4a71b0952beca086b63e1b}{rtems\_filesystem\_default\_fsync\_or\_fdatasync}},}
+\DoxyCodeLine{  .fcntl\_h     = \mbox{\hyperlink{group__LibIOFSHandler_ga090f67473d9fa5f26368adeb11c939c8}{rtems\_filesystem\_default\_fcntl}},}
+\DoxyCodeLine{  .kqfilter\_h  = \mbox{\hyperlink{group__LibIOFSHandler_ga9616b979a36fc433734c0e79e2c13f3d}{rtems\_filesystem\_default\_kqfilter}},}
+\DoxyCodeLine{  .mmap\_h      = \mbox{\hyperlink{group__LibIOFSHandler_gac2f7ea9b90b247cee91c3b6b10bf7ba9}{rtems\_filesystem\_default\_mmap}},}
+\DoxyCodeLine{  .poll\_h      = \mbox{\hyperlink{group__LibIOFSHandler_ga608540b3299f81fabee388092bdfbc9f}{rtems\_filesystem\_default\_poll}},}
+\DoxyCodeLine{  .readv\_h     = \mbox{\hyperlink{group__LibIOFSHandler_ga9e051f16ae657b119d54bffc29baffeb}{rtems\_filesystem\_default\_readv}},}
+\DoxyCodeLine{  .writev\_h    = \mbox{\hyperlink{group__LibIOFSHandler_ga9ac1157e2bd2cff626d67f67a6376a8f}{rtems\_filesystem\_default\_writev}}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+Handler table for R\+FS link nodes 

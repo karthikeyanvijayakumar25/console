@@ -1,0 +1,196 @@
+\hypertarget{bsps_2powerpc_2beatnik_2include_2bsp_8h}{}\section{bsps/powerpc/beatnik/include/bsp.h File Reference}
+\label{bsps_2powerpc_2beatnik_2include_2bsp_8h}\index{bsps/powerpc/beatnik/include/bsp.h@{bsps/powerpc/beatnik/include/bsp.h}}
+
+
+Global B\+SP definitions.  
+
+
+{\ttfamily \#include $<$bspopts.\+h$>$}\newline
+{\ttfamily \#include $<$bsp/default-\/initial-\/extension.\+h$>$}\newline
+{\ttfamily \#include $<$rtems.\+h$>$}\newline
+{\ttfamily \#include $<$libcpu/io.\+h$>$}\newline
+{\ttfamily \#include $<$bsp/vectors.\+h$>$}\newline
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bfseries B\+S\+P\+\_\+\+I\+N\+T\+E\+R\+R\+U\+P\+T\+\_\+\+S\+T\+A\+C\+K\+\_\+\+S\+I\+ZE}~(16 $\ast$ 1024)
+\item 
+\#define {\bfseries B\+S\+P\+\_\+\+M\+V64x60\+\_\+\+B\+A\+SE}~(0xf1000000)
+\item 
+\#define {\bfseries B\+S\+P\+\_\+\+M\+V64x60\+\_\+\+D\+E\+V1\+\_\+\+B\+A\+SE}~(0xf1100000)
+\item 
+\#define {\bfseries B\+S\+P\+\_\+\+U\+A\+R\+T\+\_\+\+I\+O\+B\+A\+S\+E\+\_\+\+C\+O\+M1}~((B\+S\+P\+\_\+\+M\+V64x60\+\_\+\+D\+E\+V1\+\_\+\+B\+A\+SE)+0x20000)
+\item 
+\#define {\bfseries B\+S\+P\+\_\+\+U\+A\+R\+T\+\_\+\+I\+O\+B\+A\+S\+E\+\_\+\+C\+O\+M2}~((B\+S\+P\+\_\+\+M\+V64x60\+\_\+\+D\+E\+V1\+\_\+\+B\+A\+SE)+0x21000)
+\item 
+\#define {\bfseries B\+S\+P\+\_\+\+U\+A\+R\+T\+\_\+\+U\+S\+E\+\_\+\+S\+H\+A\+R\+E\+D\+\_\+\+I\+R\+QS}
+\item 
+\#define {\bfseries B\+S\+P\+\_\+\+N\+V\+R\+A\+M\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR}~(0xf1110000)
+\item 
+\#define {\bfseries B\+S\+P\+\_\+\+N\+V\+R\+A\+M\+\_\+\+E\+N\+D\+\_\+\+A\+D\+DR}~(0xf1117fff)
+\item 
+\#define {\bfseries B\+S\+P\+\_\+\+N\+V\+R\+A\+M\+\_\+\+R\+T\+C\+\_\+\+S\+T\+A\+RT}~(0xf1117ff8)
+\item 
+\#define {\bfseries B\+S\+P\+\_\+\+N\+V\+R\+A\+M\+\_\+\+B\+O\+O\+T\+P\+A\+R\+M\+S\+\_\+\+S\+T\+A\+RT}~(0xf1111000)
+\item 
+\#define {\bfseries B\+S\+P\+\_\+\+N\+V\+R\+A\+M\+\_\+\+B\+O\+O\+T\+P\+A\+R\+M\+S\+\_\+\+E\+ND}~(0xf1111fff)
+\item 
+\#define {\bfseries P\+C\+I\+\_\+\+C\+O\+N\+F\+I\+G\+\_\+\+A\+D\+DR}~(B\+S\+P\+\_\+\+M\+V64x60\+\_\+\+B\+A\+SE + 0xcf8)
+\item 
+\#define {\bfseries P\+C\+I\+\_\+\+C\+O\+N\+F\+I\+G\+\_\+\+D\+A\+TA}~(B\+S\+P\+\_\+\+M\+V64x60\+\_\+\+B\+A\+SE + 0xcfc)
+\item 
+\#define {\bfseries \+\_\+\+I\+O\+\_\+\+B\+A\+SE}~0x00000000
+\item 
+\#define {\bfseries P\+C\+I\+\_\+\+M\+E\+M\+\_\+\+B\+A\+SE}~0
+\item 
+\#define {\bfseries P\+C\+I\+\_\+\+M\+E\+M\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+J\+U\+S\+T\+M\+E\+NT}~0
+\item 
+\#define {\bfseries P\+C\+I\+\_\+\+D\+R\+A\+M\+\_\+\+O\+F\+F\+S\+ET}~0
+\item 
+\#define {\bfseries B\+S\+P\+\_\+\+P\+C\+I2\+L\+O\+C\+A\+L\+\_\+\+A\+D\+DR}(a)~((uint32\+\_\+t)(a))
+\item 
+\#define {\bfseries B\+S\+P\+\_\+\+L\+O\+C\+A\+L2\+P\+C\+I\+\_\+\+A\+D\+DR}(a)~((uint32\+\_\+t)(a))
+\item 
+\#define {\bfseries B\+S\+P\+\_\+\+C\+O\+N\+F\+I\+G\+\_\+\+N\+U\+M\+\_\+\+P\+C\+I\+\_\+\+C\+A\+C\+H\+E\+\_\+\+S\+L\+O\+TS}~32
+\item 
+\#define {\bfseries B\+S\+P\+\_\+\+C\+O\+N\+S\+O\+L\+E\+\_\+\+P\+O\+RT}~\mbox{\hyperlink{group__i386__uart_gaa1561064cc8499388f7512347b434d25}{B\+S\+P\+\_\+\+U\+A\+R\+T\+\_\+\+C\+O\+M1}}
+\item 
+\#define {\bfseries B\+S\+P\+\_\+\+U\+A\+R\+T\+\_\+\+B\+A\+U\+D\+\_\+\+B\+A\+SE}~115200
+\item 
+\#define {\bfseries B\+S\+P\+\_\+\+V\+P\+D\+\_\+\+I2\+C\+\_\+\+A\+D\+DR}~(0x\+A8$>$$>$1)    /$\ast$ the V\+P\+D E\+E\+P\+R\+O\+M  $\ast$/
+\item 
+\#define {\bfseries B\+S\+P\+\_\+\+U\+S\+R\+\_\+\+I2\+C\+\_\+\+A\+D\+DR}~(0x\+A\+A$>$$>$1)    /$\ast$ the user E\+E\+P\+R\+O\+M $\ast$/
+\item 
+\#define {\bfseries B\+S\+P\+\_\+\+T\+H\+M\+\_\+\+I2\+C\+\_\+\+A\+D\+DR}~(0x90$>$$>$1)    /$\ast$ the D\+S1621 temperature sensor \& thermostat $\ast$/
+\item 
+\#define {\bfseries B\+S\+P\+\_\+\+I2\+C\+\_\+\+B\+U\+S\+\_\+\+D\+E\+S\+C\+R\+I\+P\+T\+OR}~gt64260\+\_\+i2c\+\_\+bus\+\_\+descriptor
+\item 
+\#define {\bfseries B\+S\+P\+\_\+\+I2\+C\+\_\+\+B\+U\+S0\+\_\+\+N\+A\+ME}~\char`\"{}/dev/i2c0\char`\"{}
+\item 
+\#define {\bfseries B\+S\+P\+\_\+\+I2\+C\+\_\+\+V\+P\+D\+\_\+\+E\+E\+P\+R\+O\+M\+\_\+\+N\+A\+ME}~\char`\"{}vpd-\/\mbox{\hyperlink{structeeprom}{eeprom}}\char`\"{}
+\item 
+\#define {\bfseries B\+S\+P\+\_\+\+I2\+C\+\_\+\+U\+S\+R\+\_\+\+E\+E\+P\+R\+O\+M\+\_\+\+N\+A\+ME}~\char`\"{}usr-\/\mbox{\hyperlink{structeeprom}{eeprom}}\char`\"{}
+\item 
+\#define {\bfseries B\+S\+P\+\_\+\+I2\+C\+\_\+\+D\+S1621\+\_\+\+N\+A\+ME}~\char`\"{}ds1621\char`\"{}
+\item 
+\#define {\bfseries B\+S\+P\+\_\+\+I2\+C\+\_\+\+T\+H\+M\+\_\+\+N\+A\+ME}~B\+S\+P\+\_\+\+I2\+C\+\_\+\+D\+S1621\+\_\+\+N\+A\+ME
+\item 
+\#define {\bfseries B\+S\+P\+\_\+\+I2\+C\+\_\+\+D\+S1621\+\_\+\+R\+A\+W\+\_\+\+N\+A\+ME}~\char`\"{}ds1621-\/raw\char`\"{}
+\item 
+\#define {\bfseries B\+S\+P\+\_\+\+I2\+C\+\_\+\+V\+P\+D\+\_\+\+E\+E\+P\+R\+O\+M\+\_\+\+D\+E\+V\+\_\+\+N\+A\+ME}~(B\+S\+P\+\_\+\+I2\+C\+\_\+\+B\+U\+S0\+\_\+\+N\+A\+ME \char`\"{}, \char`\"{} B\+S\+P\+\_\+\+I2\+C\+\_\+\+V\+P\+D\+\_\+\+E\+E\+P\+R\+O\+M\+\_\+\+N\+A\+ME)
+\item 
+\#define {\bfseries B\+S\+P\+\_\+\+I2\+C\+\_\+\+U\+S\+R\+\_\+\+E\+E\+P\+R\+O\+M\+\_\+\+D\+E\+V\+\_\+\+N\+A\+ME}~(B\+S\+P\+\_\+\+I2\+C\+\_\+\+B\+U\+S0\+\_\+\+N\+A\+ME \char`\"{}, \char`\"{} B\+S\+P\+\_\+\+I2\+C\+\_\+\+U\+S\+R\+\_\+\+E\+E\+P\+R\+O\+M\+\_\+\+N\+A\+ME)
+\item 
+\#define {\bfseries B\+S\+P\+\_\+\+I2\+C\+\_\+\+D\+S1621\+\_\+\+D\+E\+V\+\_\+\+N\+A\+ME}~(B\+S\+P\+\_\+\+I2\+C\+\_\+\+B\+U\+S0\+\_\+\+N\+A\+ME \char`\"{}, \char`\"{} B\+S\+P\+\_\+\+I2\+C\+\_\+\+D\+S1621\+\_\+\+N\+A\+ME)
+\item 
+\#define {\bfseries B\+S\+P\+\_\+\+I2\+C\+\_\+\+T\+H\+M\+\_\+\+D\+E\+V\+\_\+\+N\+A\+ME}~B\+S\+P\+\_\+\+I2\+C\+\_\+\+D\+S1621\+\_\+\+D\+E\+V\+\_\+\+N\+A\+ME
+\item 
+\#define {\bfseries B\+S\+P\+\_\+\+I2\+C\+\_\+\+D\+S1621\+\_\+\+R\+A\+W\+\_\+\+D\+E\+V\+\_\+\+N\+A\+ME}~(B\+S\+P\+\_\+\+I2\+C\+\_\+\+B\+U\+S0\+\_\+\+N\+A\+ME \char`\"{}, \char`\"{} B\+S\+P\+\_\+\+I2\+C\+\_\+\+D\+S1621\+\_\+\+R\+A\+W\+\_\+\+N\+A\+ME)
+\item 
+\#define {\bfseries B\+S\+P\+\_\+\+P\+C\+I\+\_\+\+H\+O\+S\+E0\+\_\+\+M\+E\+M\+\_\+\+B\+A\+SE}~0x80000000  /$\ast$ must be aligned to size $\ast$/
+\item 
+\#define {\bfseries B\+S\+P\+\_\+\+P\+C\+I\+\_\+\+H\+O\+S\+E0\+\_\+\+M\+E\+M\+\_\+\+S\+I\+ZE}~0x20000000
+\item 
+\#define {\bfseries B\+S\+P\+\_\+\+P\+C\+I\+\_\+\+H\+O\+S\+E1\+\_\+\+M\+E\+M\+\_\+\+B\+A\+SE}~0xe0000000
+\item 
+\#define {\bfseries B\+S\+P\+\_\+\+D\+E\+V\+\_\+\+A\+N\+D\+\_\+\+P\+C\+I\+\_\+\+I\+O\+\_\+\+B\+A\+SE}~0xf0000000
+\item 
+\#define {\bfseries B\+S\+P\+\_\+\+D\+E\+V\+\_\+\+A\+N\+D\+\_\+\+P\+C\+I\+\_\+\+I\+O\+\_\+\+S\+I\+ZE}~0x10000000
+\item 
+\#define {\bfseries B\+S\+P\+\_\+\+R\+W\+\_\+\+P\+A\+G\+E\+\_\+\+A\+T\+T\+R\+I\+B\+U\+T\+ES}~T\+R\+I\+V121\+\_\+\+A\+T\+T\+R\+\_\+M
+\item 
+\#define {\bfseries B\+S\+P\+\_\+\+E\+X\+C\+E\+P\+T\+I\+O\+N\+\_\+\+N\+O\+T\+E\+P\+AD}~14
+\item 
+\#define {\bfseries outport\+\_\+byte}(port,  value)~outb(value,port)
+\item 
+\#define {\bfseries outport\+\_\+word}(port,  value)~outw(value,port)
+\item 
+\#define {\bfseries outport\+\_\+long}(port,  value)~outl(value,port)
+\item 
+\#define {\bfseries inport\+\_\+byte}(port,  value)~(value = inb(port))
+\item 
+\#define {\bfseries inport\+\_\+word}(port,  value)~(value = inw(port))
+\item 
+\#define {\bfseries inport\+\_\+long}(port,  value)~(value = inl(port))
+\item 
+\#define {\bfseries B\+S\+P\+\_\+\+Convert\+\_\+decrementer}(\+\_\+value)~((unsigned long long) ((((unsigned long long)B\+S\+P\+\_\+time\+\_\+base\+\_\+divisor) $\ast$ 1000000\+U\+L\+L) /((unsigned long long) B\+S\+P\+\_\+bus\+\_\+frequency)) $\ast$ ((unsigned long long) (\+\_\+value)))
+\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{group__RTEMSBSPsPowerPCBeatnik_ga3bc37802c3cd326a2edca5804a6de278}\label{group__RTEMSBSPsPowerPCBeatnik_ga3bc37802c3cd326a2edca5804a6de278}} 
+enum {\bfseries B\+S\+P\+\_\+\+Board\+Type} \{ {\bfseries Unknown} = 0, 
+{\bfseries M\+V\+M\+E5500}, 
+{\bfseries M\+V\+M\+E6100}
+ \}
+\item 
+\mbox{\Hypertarget{group__RTEMSBSPsPowerPCBeatnik_ga2b6861a59dbf72f4969821636cf874a4}\label{group__RTEMSBSPsPowerPCBeatnik_ga2b6861a59dbf72f4969821636cf874a4}} 
+enum {\bfseries Discovery\+Version} \{ {\bfseries unknown} = 0, 
+{\bfseries G\+T\+\_\+64260\+\_\+A}, 
+{\bfseries G\+T\+\_\+64260\+\_\+B}, 
+{\bfseries M\+V\+\_\+64360}
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+B\+S\+P\+\_\+\+Board\+Type {\bfseries B\+S\+P\+\_\+get\+Board\+Type} (void)
+\item 
+Discovery\+Version {\bfseries B\+S\+P\+\_\+get\+Discovery\+Version} (int assertion)
+\item 
+void {\bfseries B\+S\+P\+\_\+motload\+\_\+pci\+\_\+fixup} (void)
+\item 
+int {\bfseries B\+S\+P\+\_\+i2c\+\_\+initialize} (void)
+\item 
+void {\bfseries B\+S\+P\+\_\+pci\+\_\+initialize} (void)
+\item 
+void {\bfseries bsp\+\_\+reset} (void)
+\item 
+int {\bfseries B\+S\+P\+\_\+disconnect\+\_\+clock\+\_\+handler} (void)
+\item 
+int {\bfseries B\+S\+P\+\_\+connect\+\_\+clock\+\_\+handler} (void)
+\item 
+unsigned long {\bfseries \+\_\+\+B\+S\+P\+\_\+clear\+\_\+hostbridge\+\_\+errors} (int enable\+M\+CP, int quiet)
+\item 
+void {\bfseries discovery\+\_\+pic\+\_\+set\+\_\+debug\+\_\+irq} (int on)
+\item 
+void {\bfseries discovery\+\_\+pic\+\_\+install\+\_\+debug\+\_\+irq} (void)
+\item 
+char $\ast$ {\bfseries save\+\_\+boot\+\_\+params} (void $\ast$r3, void $\ast$r4, void $\ast$r5, char $\ast$cmdline\+\_\+start, char $\ast$cmdline\+\_\+end)
+\item 
+void {\bfseries zero\+\_\+bss} (void)
+\item 
+uint32\+\_\+t {\bfseries probe\+Memory\+End} (void)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+unsigned {\bfseries B\+S\+P\+\_\+pci\+\_\+hose1\+\_\+bus\+\_\+base}
+\item 
+unsigned int {\bfseries B\+S\+P\+\_\+mem\+\_\+size}
+\item 
+unsigned int {\bfseries B\+S\+P\+\_\+heap\+\_\+start}
+\item 
+unsigned int {\bfseries B\+S\+P\+\_\+bus\+\_\+frequency}
+\item 
+unsigned int {\bfseries B\+S\+P\+\_\+processor\+\_\+frequency}
+\item 
+unsigned int {\bfseries B\+S\+P\+\_\+time\+\_\+base\+\_\+divisor}
+\item 
+char {\bfseries B\+S\+P\+\_\+product\+Ident} \mbox{[}20\mbox{]}
+\item 
+char {\bfseries B\+S\+P\+\_\+serial\+Number} \mbox{[}20\mbox{]}
+\item 
+char {\bfseries B\+S\+P\+\_\+enet\+Addr0} \mbox{[}7\mbox{]}
+\item 
+char {\bfseries B\+S\+P\+\_\+enet\+Addr1} \mbox{[}7\mbox{]}
+\item 
+char $\ast$ {\bfseries B\+S\+P\+\_\+commandline\+\_\+string}
+\item 
+unsigned short($\ast$ {\bfseries \+\_\+\+B\+S\+P\+\_\+clear\+\_\+vmebridge\+\_\+errors} )(int)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Global B\+SP definitions. 
+

@@ -1,0 +1,50 @@
+\hypertarget{schedulerpriorityaffinitysmp_8h}{}\section{cpukit/include/rtems/score/schedulerpriorityaffinitysmp.h File Reference}
+\label{schedulerpriorityaffinitysmp_8h}\index{cpukit/include/rtems/score/schedulerpriorityaffinitysmp.h@{cpukit/include/rtems/score/schedulerpriorityaffinitysmp.h}}
+
+
+Deterministic Priority Affinity S\+MP Scheduler A\+PI.  
+
+
+{\ttfamily \#include $<$rtems/score/scheduler.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/score/schedulerpriority.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/score/schedulersmp.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/score/schedulerprioritysmp.\+h$>$}\newline
+{\ttfamily \#include $<$sys/cpuset.\+h$>$}\newline
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structScheduler__priority__affinity__SMP__Node}{Scheduler\+\_\+priority\+\_\+affinity\+\_\+\+S\+M\+P\+\_\+\+Node}}
+\begin{DoxyCompactList}\small\item\em Scheduler node specialization for Deterministic Priority Affinity S\+MP schedulers. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__RTEMSScoreSchedulerPriorityAffinitySMP_ga666011a4b0a4074e8ad6d74ae8a2b417}{S\+C\+H\+E\+D\+U\+L\+E\+R\+\_\+\+P\+R\+I\+O\+R\+I\+T\+Y\+\_\+\+A\+F\+F\+I\+N\+I\+T\+Y\+\_\+\+S\+M\+P\+\_\+\+E\+N\+T\+R\+Y\+\_\+\+P\+O\+I\+N\+TS}}
+\begin{DoxyCompactList}\small\item\em Entry points for the Deterministic Priority Affinity S\+MP Scheduler. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{group__RTEMSScoreSchedulerPriorityAffinitySMP_ga725bf680167bbb6b5cb1ed149ee5c263}{\+\_\+\+Scheduler\+\_\+priority\+\_\+affinity\+\_\+\+S\+M\+P\+\_\+\+Node\+\_\+initialize}} (const \mbox{\hyperlink{struct__Scheduler__Control}{Scheduler\+\_\+\+Control}} $\ast$scheduler, \mbox{\hyperlink{structScheduler__Node}{Scheduler\+\_\+\+Node}} $\ast$node, \mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$the\+\_\+thread, \mbox{\hyperlink{group__RTEMSScorePriority_ga59d02b58072d31a9a1cfe644557aefe2}{Priority\+\_\+\+Control}} priority)
+\begin{DoxyCompactList}\small\item\em Initializes per thread scheduler information. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__RTEMSScoreSchedulerPriorityAffinitySMP_ga98f79ed789d7aebe859512080fb8523b}{\+\_\+\+Scheduler\+\_\+priority\+\_\+affinity\+\_\+\+S\+M\+P\+\_\+\+Block}} (const \mbox{\hyperlink{struct__Scheduler__Control}{Scheduler\+\_\+\+Control}} $\ast$scheduler, \mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$thread, \mbox{\hyperlink{structScheduler__Node}{Scheduler\+\_\+\+Node}} $\ast$node)
+\begin{DoxyCompactList}\small\item\em Blocks a thread. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__RTEMSScoreSchedulerPriorityAffinitySMP_gaf91960e285674e3280c62820c47e163e}{\+\_\+\+Scheduler\+\_\+priority\+\_\+affinity\+\_\+\+S\+M\+P\+\_\+\+Unblock}} (const \mbox{\hyperlink{struct__Scheduler__Control}{Scheduler\+\_\+\+Control}} $\ast$scheduler, \mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$thread, \mbox{\hyperlink{structScheduler__Node}{Scheduler\+\_\+\+Node}} $\ast$node)
+\begin{DoxyCompactList}\small\item\em Unblocks a thread. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__RTEMSScoreSchedulerPriorityAffinitySMP_gac4acb6359695ecfb294a5c3e9d67a726}{\+\_\+\+Scheduler\+\_\+priority\+\_\+affinity\+\_\+\+S\+M\+P\+\_\+\+Update\+\_\+priority}} (const \mbox{\hyperlink{struct__Scheduler__Control}{Scheduler\+\_\+\+Control}} $\ast$scheduler, \mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$the\+\_\+thread, \mbox{\hyperlink{structScheduler__Node}{Scheduler\+\_\+\+Node}} $\ast$node)
+\begin{DoxyCompactList}\small\item\em Updates the priority of the node. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__RTEMSScoreSchedulerPriorityAffinitySMP_ga927e0d514f2687a98d8f6d967c71030a}{\+\_\+\+Scheduler\+\_\+priority\+\_\+affinity\+\_\+\+S\+M\+P\+\_\+\+Ask\+\_\+for\+\_\+help}} (const \mbox{\hyperlink{struct__Scheduler__Control}{Scheduler\+\_\+\+Control}} $\ast$scheduler, \mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$the\+\_\+thread, \mbox{\hyperlink{structScheduler__Node}{Scheduler\+\_\+\+Node}} $\ast$node)
+\begin{DoxyCompactList}\small\item\em Asks for help. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__RTEMSScoreSchedulerPriorityAffinitySMP_gac1bc4e5237d4e53cd6c457ba115cda53}{\+\_\+\+Scheduler\+\_\+priority\+\_\+affinity\+\_\+\+S\+M\+P\+\_\+\+Reconsider\+\_\+help\+\_\+request}} (const \mbox{\hyperlink{struct__Scheduler__Control}{Scheduler\+\_\+\+Control}} $\ast$scheduler, \mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$the\+\_\+thread, \mbox{\hyperlink{structScheduler__Node}{Scheduler\+\_\+\+Node}} $\ast$node)
+\begin{DoxyCompactList}\small\item\em Reconsiders help. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__RTEMSScoreSchedulerPriorityAffinitySMP_ga79a3f78d0e7c98dd3f975d7c496e0876}{\+\_\+\+Scheduler\+\_\+priority\+\_\+affinity\+\_\+\+S\+M\+P\+\_\+\+Withdraw\+\_\+node}} (const \mbox{\hyperlink{struct__Scheduler__Control}{Scheduler\+\_\+\+Control}} $\ast$scheduler, \mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$the\+\_\+thread, \mbox{\hyperlink{structScheduler__Node}{Scheduler\+\_\+\+Node}} $\ast$node, Thread\+\_\+\+Scheduler\+\_\+state next\+\_\+state)
+\begin{DoxyCompactList}\small\item\em Withdraws node. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__RTEMSScoreSchedulerPriorityAffinitySMP_ga82529b3ece52d142315bea52e6edf5fb}{\+\_\+\+Scheduler\+\_\+priority\+\_\+affinity\+\_\+\+S\+M\+P\+\_\+\+Add\+\_\+processor}} (const \mbox{\hyperlink{struct__Scheduler__Control}{Scheduler\+\_\+\+Control}} $\ast$scheduler, \mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$idle)
+\begin{DoxyCompactList}\small\item\em Adds {\itshape idle} to {\itshape scheduler}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$ \mbox{\hyperlink{group__RTEMSScoreSchedulerPriorityAffinitySMP_ga1db5f76b6724cc01c34e0599225fba24}{\+\_\+\+Scheduler\+\_\+priority\+\_\+affinity\+\_\+\+S\+M\+P\+\_\+\+Remove\+\_\+processor}} (const \mbox{\hyperlink{struct__Scheduler__Control}{Scheduler\+\_\+\+Control}} $\ast$scheduler, struct \mbox{\hyperlink{structPer__CPU__Control}{Per\+\_\+\+C\+P\+U\+\_\+\+Control}} $\ast$cpu)
+\begin{DoxyCompactList}\small\item\em Removes an idle thread from the given cpu. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__RTEMSScoreSchedulerPriorityAffinitySMP_gab61693a5ce8950f216338a502a68b7ac}{\+\_\+\+Scheduler\+\_\+priority\+\_\+affinity\+\_\+\+S\+M\+P\+\_\+\+Set\+\_\+affinity}} (const \mbox{\hyperlink{struct__Scheduler__Control}{Scheduler\+\_\+\+Control}} $\ast$scheduler, \mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$thread, \mbox{\hyperlink{structScheduler__Node}{Scheduler\+\_\+\+Node}} $\ast$node, const Processor\+\_\+mask $\ast$affinity)
+\begin{DoxyCompactList}\small\item\em Sets affinity for the priority affinity S\+MP scheduler. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Deterministic Priority Affinity S\+MP Scheduler A\+PI. 
+

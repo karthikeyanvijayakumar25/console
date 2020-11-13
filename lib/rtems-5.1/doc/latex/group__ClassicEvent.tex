@@ -1,0 +1,159 @@
+\hypertarget{group__ClassicEvent}{}\section{Events}
+\label{group__ClassicEvent}\index{Events@{Events}}
+
+
+The event manager provides a high performance method of intertask communication and synchronization.  
+
+
+\subsection*{Modules}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{group__ClassicEventSet}{Event Set}}
+\item 
+\mbox{\hyperlink{group__ClassicEventSystem}{System Events}}
+\item 
+\mbox{\hyperlink{group__ClassicEventTransient}{Transient Event}}
+\end{DoxyCompactItemize}
+\subsection*{Files}
+\begin{DoxyCompactItemize}
+\item 
+file \mbox{\hyperlink{rtems_2rtems_2event_8h}{event.\+h}}
+\begin{DoxyCompactList}\small\item\em Classic Event Manager A\+PI. \end{DoxyCompactList}\item 
+file \mbox{\hyperlink{eventseize_8c}{eventseize.\+c}}
+\begin{DoxyCompactList}\small\item\em Event Manager Initialization. \end{DoxyCompactList}\item 
+file \mbox{\hyperlink{eventsend_8c}{eventsend.\+c}}
+\begin{DoxyCompactList}\small\item\em Sends an Event Set to the Target Task. \end{DoxyCompactList}\item 
+file \mbox{\hyperlink{eventsurrender_8c}{eventsurrender.\+c}}
+\begin{DoxyCompactList}\small\item\em Surrender Event. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{group__ClassicEvent_ga803a2cd3251ce738676d7f988082a1cf}\label{group__ClassicEvent_ga803a2cd3251ce738676d7f988082a1cf}} 
+\#define \mbox{\hyperlink{group__ClassicEvent_ga803a2cd3251ce738676d7f988082a1cf}{R\+T\+E\+M\+S\+\_\+\+P\+E\+N\+D\+I\+N\+G\+\_\+\+E\+V\+E\+N\+TS}}~0
+\begin{DoxyCompactList}\small\item\em Constant used to receive the set of currently pending events in \mbox{\hyperlink{group__ClassicEvent_ga87a7b47e1856045e4361f5619ad697cb}{rtems\+\_\+event\+\_\+receive()}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{group__ClassicEvent_ga2d31674c165127bc530178d06d557b94}{rtems\+\_\+event\+\_\+send}} (\mbox{\hyperlink{group__ClassicTasks_gab20892b814dced7dd4e5b9bf42becd57}{rtems\+\_\+id}} id, \mbox{\hyperlink{group__ClassicEventSet_gab7b8f373bea85fd4e3b7ae23905faa07}{rtems\+\_\+event\+\_\+set}} event\+\_\+in)
+\begin{DoxyCompactList}\small\item\em Sends an Event Set to the Target Task. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{group__ClassicEvent_ga87a7b47e1856045e4361f5619ad697cb}{rtems\+\_\+event\+\_\+receive}} (\mbox{\hyperlink{group__ClassicEventSet_gab7b8f373bea85fd4e3b7ae23905faa07}{rtems\+\_\+event\+\_\+set}} event\+\_\+in, \mbox{\hyperlink{group__ClassicOptions_gad26685eb0e60a9650082935c31920e29}{rtems\+\_\+option}} option\+\_\+set, \mbox{\hyperlink{group__ClassicTasks_gad39c43f949683d46874e3a5586b93aee}{rtems\+\_\+interval}} ticks, \mbox{\hyperlink{group__ClassicEventSet_gab7b8f373bea85fd4e3b7ae23905faa07}{rtems\+\_\+event\+\_\+set}} $\ast$event\+\_\+out)
+\begin{DoxyCompactList}\small\item\em Receives pending events. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+The event manager provides a high performance method of intertask communication and synchronization. 
+
+An event flag is used by a task (or I\+SR) to inform another task of the occurrence of a significant situation. Thirty-\/two event flags are associated with each task. A collection of one or more event flags is referred to as an event set. The data type rtems\+\_\+event\+\_\+set is used to manage event sets.
+
+The application developer should remember the following key characteristics of event operations when utilizing the event manager\+:
+
+
+\begin{DoxyItemize}
+\item Events provide a simple synchronization facility.
+\item Events are aimed at tasks.
+\item Tasks can wait on more than one event simultaneously.
+\item Events are independent of one another.
+\item Events do not hold or transport data.
+\item Events are not queued. In other words, if an event is sent more than once to a task before being received, the second and subsequent send operations to that same task have no effect.
+\end{DoxyItemize}
+
+An event set is posted when it is directed (or sent) to a task. A pending event is an event that has been posted but not received. An event condition is used to specify the event set which the task desires to receive and the algorithm which will be used to determine when the request is satisfied. An event condition is satisfied based upon one of two algorithms which are selected by the user. The \mbox{\hyperlink{group__ClassicOptions_ga164c17066d5d7f90e8626bfc0f6b6249}{R\+T\+E\+M\+S\+\_\+\+E\+V\+E\+N\+T\+\_\+\+A\+NY}} algorithm states that an event condition is satisfied when at least a single requested event is posted. The \mbox{\hyperlink{group__ClassicOptions_gafe88e8efae3e200e7fec8bd894dc09ec}{R\+T\+E\+M\+S\+\_\+\+E\+V\+E\+N\+T\+\_\+\+A\+LL}} algorithm states that an event condition is satisfied when every requested event is posted.
+
+An event set or condition is built by a bitwise or of the desired events. The set of valid events is \mbox{\hyperlink{group__ClassicEventSet_ga40310258a3cbe2bef8420158c59f6acc}{R\+T\+E\+M\+S\+\_\+\+E\+V\+E\+N\+T\+\_\+0}} through \mbox{\hyperlink{group__ClassicEventSet_gac9fdddefb1a966354c315634c2390b66}{R\+T\+E\+M\+S\+\_\+\+E\+V\+E\+N\+T\+\_\+31}}. If an event is not explicitly specified in the set or condition, then it is not present. Events are specifically designed to be mutually exclusive, therefore bitwise or and addition operations are equivalent as long as each event appears exactly once in the event set list.
+
+For example, when sending the event set consisting of \mbox{\hyperlink{group__ClassicEventSet_gaf059cf3f8c08c3953348fb4413652c08}{R\+T\+E\+M\+S\+\_\+\+E\+V\+E\+N\+T\+\_\+6}}, \mbox{\hyperlink{group__ClassicEventSet_ga1908945fa930647fa74ced6f868eaf18}{R\+T\+E\+M\+S\+\_\+\+E\+V\+E\+N\+T\+\_\+15}}, and \mbox{\hyperlink{group__ClassicEventSet_gac9fdddefb1a966354c315634c2390b66}{R\+T\+E\+M\+S\+\_\+\+E\+V\+E\+N\+T\+\_\+31}}, the event parameter to the \mbox{\hyperlink{group__ClassicEvent_ga2d31674c165127bc530178d06d557b94}{rtems\+\_\+event\+\_\+send()}} directive should be \mbox{\hyperlink{group__ClassicEventSet_gaf059cf3f8c08c3953348fb4413652c08}{R\+T\+E\+M\+S\+\_\+\+E\+V\+E\+N\+T\+\_\+6}} $\vert$ \mbox{\hyperlink{group__ClassicEventSet_ga1908945fa930647fa74ced6f868eaf18}{R\+T\+E\+M\+S\+\_\+\+E\+V\+E\+N\+T\+\_\+15}} $\vert$ \mbox{\hyperlink{group__ClassicEventSet_gac9fdddefb1a966354c315634c2390b66}{R\+T\+E\+M\+S\+\_\+\+E\+V\+E\+N\+T\+\_\+31}}. 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{group__ClassicEvent_ga87a7b47e1856045e4361f5619ad697cb}\label{group__ClassicEvent_ga87a7b47e1856045e4361f5619ad697cb}} 
+\index{Events@{Events}!rtems\_event\_receive@{rtems\_event\_receive}}
+\index{rtems\_event\_receive@{rtems\_event\_receive}!Events@{Events}}
+\subsubsection{\texorpdfstring{rtems\_event\_receive()}{rtems\_event\_receive()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} rtems\+\_\+event\+\_\+receive (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__ClassicEventSet_gab7b8f373bea85fd4e3b7ae23905faa07}{rtems\+\_\+event\+\_\+set}}}]{event\+\_\+in,  }\item[{\mbox{\hyperlink{group__ClassicOptions_gad26685eb0e60a9650082935c31920e29}{rtems\+\_\+option}}}]{option\+\_\+set,  }\item[{\mbox{\hyperlink{group__ClassicTasks_gad39c43f949683d46874e3a5586b93aee}{rtems\+\_\+interval}}}]{ticks,  }\item[{\mbox{\hyperlink{group__ClassicEventSet_gab7b8f373bea85fd4e3b7ae23905faa07}{rtems\+\_\+event\+\_\+set}} $\ast$}]{event\+\_\+out }\end{DoxyParamCaption})}
+
+
+
+Receives pending events. 
+
+This directive attempts to receive the event condition specified in {\itshape event\+\_\+in}. If {\itshape event\+\_\+in} is set to \mbox{\hyperlink{group__ClassicEvent_ga803a2cd3251ce738676d7f988082a1cf}{R\+T\+E\+M\+S\+\_\+\+P\+E\+N\+D\+I\+N\+G\+\_\+\+E\+V\+E\+N\+TS}}, then the current pending events are returned in {\itshape event\+\_\+out} and left pending. The \mbox{\hyperlink{group__ClassicOptions_ga6c344518194b529f32555ad5a9f85613}{R\+T\+E\+M\+S\+\_\+\+W\+A\+IT}} and \mbox{\hyperlink{group__ClassicOptions_gad525b4743e16aabd538fb492b71ba21d}{R\+T\+E\+M\+S\+\_\+\+N\+O\+\_\+\+W\+A\+IT}} options in the {\itshape option\+\_\+set} parameter are used to specify whether or not the task is willing to wait for the event condition to be satisfied. The \mbox{\hyperlink{group__ClassicOptions_ga164c17066d5d7f90e8626bfc0f6b6249}{R\+T\+E\+M\+S\+\_\+\+E\+V\+E\+N\+T\+\_\+\+A\+NY}} and \mbox{\hyperlink{group__ClassicOptions_gafe88e8efae3e200e7fec8bd894dc09ec}{R\+T\+E\+M\+S\+\_\+\+E\+V\+E\+N\+T\+\_\+\+A\+LL}} are used in the {\itshape option\+\_\+set} parameter to specify whether at least a single event or the complete event set is necessary to satisfy the event condition. The {\itshape event\+\_\+out} parameter is returned to the calling task with the value that corresponds to the events in {\itshape event\+\_\+in} that were satisfied.
+
+A task can determine the pending event set by using a value of \mbox{\hyperlink{group__ClassicEvent_ga803a2cd3251ce738676d7f988082a1cf}{R\+T\+E\+M\+S\+\_\+\+P\+E\+N\+D\+I\+N\+G\+\_\+\+E\+V\+E\+N\+TS}} for the input event set {\itshape event\+\_\+in}. The pending events are returned to the calling task but the event set is left unaltered.
+
+A task can receive all of the currently pending events by using the a value of \mbox{\hyperlink{group__ClassicEventSet_gab923e5b97e0670c3678eacef83fb97fe}{R\+T\+E\+M\+S\+\_\+\+A\+L\+L\+\_\+\+E\+V\+E\+N\+TS}} for the input event set {\itshape event\+\_\+in} and \mbox{\hyperlink{group__ClassicOptions_gad525b4743e16aabd538fb492b71ba21d}{R\+T\+E\+M\+S\+\_\+\+N\+O\+\_\+\+W\+A\+IT}} $\vert$ \mbox{\hyperlink{group__ClassicOptions_ga164c17066d5d7f90e8626bfc0f6b6249}{R\+T\+E\+M\+S\+\_\+\+E\+V\+E\+N\+T\+\_\+\+A\+NY}} for the option set {\itshape option\+\_\+set}. The pending events are returned to the calling task and the event set is cleared. If no events are pending then the \mbox{\hyperlink{group__ClassicStatus_gga545d41846817eaba6143d52ee4d9e9fea20ba7719ec954c175943fe22aa5ff221}{R\+T\+E\+M\+S\+\_\+\+U\+N\+S\+A\+T\+I\+S\+F\+I\+ED}} status code will be returned.
+
+If pending events satisfy the event condition, then {\itshape event\+\_\+out} is set to the satisfied events and the pending events in the event condition are cleared. If the event condition is not satisfied and \mbox{\hyperlink{group__ClassicOptions_gad525b4743e16aabd538fb492b71ba21d}{R\+T\+E\+M\+S\+\_\+\+N\+O\+\_\+\+W\+A\+IT}} is specified, then {\itshape event\+\_\+out} is set to the currently satisfied events. If the calling task chooses to wait, then it will block waiting for the event condition.
+
+If the calling task must wait for the event condition to be satisfied, then the timeout parameter is used to specify the maximum interval to wait. If it is set to \mbox{\hyperlink{group__RTEMSAPIClassic_ga4b2775cd075d4046bf637ae802689476}{R\+T\+E\+M\+S\+\_\+\+N\+O\+\_\+\+T\+I\+M\+E\+O\+UT}}, then the calling task will wait forever.
+
+This directive only affects the events specified in {\itshape event\+\_\+in}. Any pending events that do not correspond to any of the events specified in {\itshape event\+\_\+in} will be left pending.
+
+A clock tick is required to support the wait with time out functionality of this directive.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em event\+\_\+in} & Set of requested events (input events). \\
+\hline
+\mbox{\texttt{ in}}  & {\em option\+\_\+set} & Use a bitwise or of the following options
+\begin{DoxyItemize}
+\item \mbox{\hyperlink{group__ClassicOptions_ga6c344518194b529f32555ad5a9f85613}{R\+T\+E\+M\+S\+\_\+\+W\+A\+IT}} -\/ task will wait for event (default),
+\item \mbox{\hyperlink{group__ClassicOptions_gad525b4743e16aabd538fb492b71ba21d}{R\+T\+E\+M\+S\+\_\+\+N\+O\+\_\+\+W\+A\+IT}} -\/ task should not wait,
+\item \mbox{\hyperlink{group__ClassicOptions_gafe88e8efae3e200e7fec8bd894dc09ec}{R\+T\+E\+M\+S\+\_\+\+E\+V\+E\+N\+T\+\_\+\+A\+LL}} -\/ return after all events (default), and
+\item \mbox{\hyperlink{group__ClassicOptions_ga164c17066d5d7f90e8626bfc0f6b6249}{R\+T\+E\+M\+S\+\_\+\+E\+V\+E\+N\+T\+\_\+\+A\+NY}} -\/ return after any events. 
+\end{DoxyItemize}\\
+\hline
+\mbox{\texttt{ in}}  & {\em ticks} & Time out in ticks. Use \mbox{\hyperlink{group__RTEMSAPIClassic_ga4b2775cd075d4046bf637ae802689476}{R\+T\+E\+M\+S\+\_\+\+N\+O\+\_\+\+T\+I\+M\+E\+O\+UT}} to wait without a time out (potentially forever). \\
+\hline
+\mbox{\texttt{ out}}  & {\em event\+\_\+out} & Set of received events (output events).\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em R\+T\+E\+M\+S\+\_\+\+S\+U\+C\+C\+E\+S\+S\+F\+UL} & Successful operation. \\
+\hline
+{\em R\+T\+E\+M\+S\+\_\+\+U\+N\+S\+A\+T\+I\+S\+F\+I\+ED} & Input events not satisfied (only with the \mbox{\hyperlink{group__ClassicOptions_gad525b4743e16aabd538fb492b71ba21d}{R\+T\+E\+M\+S\+\_\+\+N\+O\+\_\+\+W\+A\+IT}} option). \\
+\hline
+{\em R\+T\+E\+M\+S\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+A\+D\+D\+R\+E\+SS} & The {\itshape event\+\_\+out} pointer is {\ttfamily N\+U\+LL}. \\
+\hline
+{\em R\+T\+E\+M\+S\+\_\+\+T\+I\+M\+E\+O\+UT} & Timed out waiting for events. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{group__ClassicEvent_ga2d31674c165127bc530178d06d557b94}\label{group__ClassicEvent_ga2d31674c165127bc530178d06d557b94}} 
+\index{Events@{Events}!rtems\_event\_send@{rtems\_event\_send}}
+\index{rtems\_event\_send@{rtems\_event\_send}!Events@{Events}}
+\subsubsection{\texorpdfstring{rtems\_event\_send()}{rtems\_event\_send()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} rtems\+\_\+event\+\_\+send (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__ClassicTasks_gab20892b814dced7dd4e5b9bf42becd57}{rtems\+\_\+id}}}]{id,  }\item[{\mbox{\hyperlink{group__ClassicEventSet_gab7b8f373bea85fd4e3b7ae23905faa07}{rtems\+\_\+event\+\_\+set}}}]{event\+\_\+in }\end{DoxyParamCaption})}
+
+
+
+Sends an Event Set to the Target Task. 
+
+This directive sends an event set {\itshape event\+\_\+in} to the task specified by {\itshape id}.
+
+Based upon the state of the target task, one of the following situations applies. The target task is
+\begin{DoxyItemize}
+\item blocked waiting for events. If the waiting task\textquotesingle{}s input event condition is
+\item satisfied, then the task is made ready for execution.
+\item not satisfied, then the event set is posted but left pending and the task remains blocked.
+\item not waiting for events.
+\item The event set is posted and left pending.
+\end{DoxyItemize}
+
+Identical events sent to a task are not queued. In other words, the second, and subsequent, posting of an event to a task before it can perform an \mbox{\hyperlink{group__ClassicEvent_ga87a7b47e1856045e4361f5619ad697cb}{rtems\+\_\+event\+\_\+receive()}} has no effect.
+
+The calling task will be preempted if it has preemption enabled and a higher priority task is unblocked as the result of this directive.
+
+Sending an event set to a global task which does not reside on the local node will generate a request telling the remote node to send the event set to the appropriate task.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em id} & Identifier of the target task. Specifying \mbox{\hyperlink{group__ClassicTasks_ga8a1cff22846976c3f4df8a8d50fdc4dc}{R\+T\+E\+M\+S\+\_\+\+S\+E\+LF}} results in the event set being sent to the calling task. \\
+\hline
+\mbox{\texttt{ in}}  & {\em event\+\_\+in} & Event set sent to the target task.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em R\+T\+E\+M\+S\+\_\+\+S\+U\+C\+C\+E\+S\+S\+F\+UL} & Successful operation. \\
+\hline
+{\em R\+T\+E\+M\+S\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+ID} & Invalid task identifier. \\
+\hline
+\end{DoxyRetVals}

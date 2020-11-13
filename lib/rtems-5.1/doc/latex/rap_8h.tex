@@ -1,0 +1,175 @@
+\hypertarget{rap_8h}{}\section{cpukit/include/rtems/rtl/rap.h File Reference}
+\label{rap_8h}\index{cpukit/include/rtems/rtl/rap.h@{cpukit/include/rtems/rtl/rap.h}}
+
+
+R\+T\+E\+MS Application Loader.  
+
+
+{\ttfamily \#include $<$rtems.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/chain.\+h$>$}\newline
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef bool($\ast$ \mbox{\hyperlink{rap_8h_ab9378cf5dc0ae95eb8b71a9e34ea6c2b}{rtems\+\_\+rap\+\_\+iterator}}) (void $\ast$handle)
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{rap_8h_a1afb8ca302fd0a9a903a7c757e9f260b}{rtems\+\_\+rap\+\_\+load}} (const char $\ast$name, int mode, int argc, const char $\ast$argv\mbox{[}$\,$\mbox{]})
+\item 
+bool \mbox{\hyperlink{rap_8h_a3c2e87feaa15152f2524b42d8774925b}{rtems\+\_\+rap\+\_\+unload}} (const char $\ast$name)
+\item 
+void $\ast$ \mbox{\hyperlink{rap_8h_a72ee014790bf88e4ff876838a7a52162}{rtems\+\_\+rap\+\_\+find}} (const char $\ast$name)
+\item 
+bool \mbox{\hyperlink{rap_8h_adf59a4e21d54839005166b26c26750d9}{rtems\+\_\+rap\+\_\+iterate}} (\mbox{\hyperlink{rap_8h_ab9378cf5dc0ae95eb8b71a9e34ea6c2b}{rtems\+\_\+rap\+\_\+iterator}} iterator)
+\item 
+const char $\ast$ \mbox{\hyperlink{rap_8h_a93a80bad56bfc0065311d61e8208b1f8}{rtems\+\_\+rap\+\_\+name}} (void $\ast$handle)
+\item 
+void $\ast$ \mbox{\hyperlink{rap_8h_a434b79f482545d75021ddd16ad211511}{rtems\+\_\+rap\+\_\+dl\+\_\+handle}} (void $\ast$handle)
+\item 
+int \mbox{\hyperlink{rap_8h_a69dd0c3e715dbc63c5cfde5e12e21ad4}{rtems\+\_\+rap\+\_\+get\+\_\+error}} (char $\ast$\mbox{\hyperlink{structmessage}{message}}, size\+\_\+t max\+\_\+message)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+R\+T\+E\+MS Application Loader. 
+
+This is the R\+T\+E\+MS Application loader for files in the R\+AP format. 
+
+\subsection{Typedef Documentation}
+\mbox{\Hypertarget{rap_8h_ab9378cf5dc0ae95eb8b71a9e34ea6c2b}\label{rap_8h_ab9378cf5dc0ae95eb8b71a9e34ea6c2b}} 
+\index{rap.h@{rap.h}!rtems\_rap\_iterator@{rtems\_rap\_iterator}}
+\index{rtems\_rap\_iterator@{rtems\_rap\_iterator}!rap.h@{rap.h}}
+\subsubsection{\texorpdfstring{rtems\_rap\_iterator}{rtems\_rap\_iterator}}
+{\footnotesize\ttfamily typedef bool($\ast$ rtems\+\_\+rap\+\_\+iterator) (void $\ast$handle)}
+
+The module iterator handle. 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{rap_8h_a434b79f482545d75021ddd16ad211511}\label{rap_8h_a434b79f482545d75021ddd16ad211511}} 
+\index{rap.h@{rap.h}!rtems\_rap\_dl\_handle@{rtems\_rap\_dl\_handle}}
+\index{rtems\_rap\_dl\_handle@{rtems\_rap\_dl\_handle}!rap.h@{rap.h}}
+\subsubsection{\texorpdfstring{rtems\_rap\_dl\_handle()}{rtems\_rap\_dl\_handle()}}
+{\footnotesize\ttfamily void$\ast$ rtems\+\_\+rap\+\_\+dl\+\_\+handle (\begin{DoxyParamCaption}\item[{void $\ast$}]{handle }\end{DoxyParamCaption})}
+
+Return the DL handle used to load the module given the R\+AP handle.
+
+
+\begin{DoxyParams}{Parameters}
+{\em handle} & The module handle. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void$\ast$ The DL handle returned by the dlopen call. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{rap_8h_a72ee014790bf88e4ff876838a7a52162}\label{rap_8h_a72ee014790bf88e4ff876838a7a52162}} 
+\index{rap.h@{rap.h}!rtems\_rap\_find@{rtems\_rap\_find}}
+\index{rtems\_rap\_find@{rtems\_rap\_find}!rap.h@{rap.h}}
+\subsubsection{\texorpdfstring{rtems\_rap\_find()}{rtems\_rap\_find()}}
+{\footnotesize\ttfamily void$\ast$ rtems\+\_\+rap\+\_\+find (\begin{DoxyParamCaption}\item[{const char $\ast$}]{name }\end{DoxyParamCaption})}
+
+Find the application handle given a file name.
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & The name of the application file. It can be absolute or relative. Relative names can the basename with an extension. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em N\+U\+LL} & No application file with that name found. \\
+\hline
+\end{DoxyRetVals}
+\begin{DoxyReturn}{Returns}
+void$\ast$ The application descriptor. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{rap_8h_a69dd0c3e715dbc63c5cfde5e12e21ad4}\label{rap_8h_a69dd0c3e715dbc63c5cfde5e12e21ad4}} 
+\index{rap.h@{rap.h}!rtems\_rap\_get\_error@{rtems\_rap\_get\_error}}
+\index{rtems\_rap\_get\_error@{rtems\_rap\_get\_error}!rap.h@{rap.h}}
+\subsubsection{\texorpdfstring{rtems\_rap\_get\_error()}{rtems\_rap\_get\_error()}}
+{\footnotesize\ttfamily int rtems\+\_\+rap\+\_\+get\+\_\+error (\begin{DoxyParamCaption}\item[{char $\ast$}]{message,  }\item[{size\+\_\+t}]{max\+\_\+message }\end{DoxyParamCaption})}
+
+Get the last error message clearing it. This call is not thread safe is multiple threads are loading object files at the same time. This call follows the model provided by the dlopen family of calls.
+
+
+\begin{DoxyParams}{Parameters}
+{\em message} & Pointer to a buffer to copy the message into. \\
+\hline
+{\em max\+\_\+message} & The maximum message that can be copied. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int The last error number. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{rap_8h_adf59a4e21d54839005166b26c26750d9}\label{rap_8h_adf59a4e21d54839005166b26c26750d9}} 
+\index{rap.h@{rap.h}!rtems\_rap\_iterate@{rtems\_rap\_iterate}}
+\index{rtems\_rap\_iterate@{rtems\_rap\_iterate}!rap.h@{rap.h}}
+\subsubsection{\texorpdfstring{rtems\_rap\_iterate()}{rtems\_rap\_iterate()}}
+{\footnotesize\ttfamily bool rtems\+\_\+rap\+\_\+iterate (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{rap_8h_ab9378cf5dc0ae95eb8b71a9e34ea6c2b}{rtems\+\_\+rap\+\_\+iterator}}}]{iterator }\end{DoxyParamCaption})}
+
+Run an iterator over the modules calling the iterator function.
+
+
+\begin{DoxyParams}{Parameters}
+{\em iterator} & The iterator function. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em true} & The iterator function returned did not return false. \\
+\hline
+{\em false} & The iterator function returned false.. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{rap_8h_a1afb8ca302fd0a9a903a7c757e9f260b}\label{rap_8h_a1afb8ca302fd0a9a903a7c757e9f260b}} 
+\index{rap.h@{rap.h}!rtems\_rap\_load@{rtems\_rap\_load}}
+\index{rtems\_rap\_load@{rtems\_rap\_load}!rap.h@{rap.h}}
+\subsubsection{\texorpdfstring{rtems\_rap\_load()}{rtems\_rap\_load()}}
+{\footnotesize\ttfamily bool rtems\+\_\+rap\+\_\+load (\begin{DoxyParamCaption}\item[{const char $\ast$}]{name,  }\item[{int}]{mode,  }\item[{int}]{argc,  }\item[{const char $\ast$}]{argv\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+Load an application.
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & The name of the application file. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool True if the module loads else an error. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{rap_8h_a93a80bad56bfc0065311d61e8208b1f8}\label{rap_8h_a93a80bad56bfc0065311d61e8208b1f8}} 
+\index{rap.h@{rap.h}!rtems\_rap\_name@{rtems\_rap\_name}}
+\index{rtems\_rap\_name@{rtems\_rap\_name}!rap.h@{rap.h}}
+\subsubsection{\texorpdfstring{rtems\_rap\_name()}{rtems\_rap\_name()}}
+{\footnotesize\ttfamily const char$\ast$ rtems\+\_\+rap\+\_\+name (\begin{DoxyParamCaption}\item[{void $\ast$}]{handle }\end{DoxyParamCaption})}
+
+Return the name of the module given a handle.
+
+
+\begin{DoxyParams}{Parameters}
+{\em handle} & The module handle. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+const char$\ast$ The name of the module if the handle is valid else it is N\+U\+LL. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{rap_8h_a3c2e87feaa15152f2524b42d8774925b}\label{rap_8h_a3c2e87feaa15152f2524b42d8774925b}} 
+\index{rap.h@{rap.h}!rtems\_rap\_unload@{rtems\_rap\_unload}}
+\index{rtems\_rap\_unload@{rtems\_rap\_unload}!rap.h@{rap.h}}
+\subsubsection{\texorpdfstring{rtems\_rap\_unload()}{rtems\_rap\_unload()}}
+{\footnotesize\ttfamily bool rtems\+\_\+rap\+\_\+unload (\begin{DoxyParamCaption}\item[{const char $\ast$}]{name }\end{DoxyParamCaption})}
+
+Unload an application.
+
+
+\begin{DoxyParams}{Parameters}
+{\em obj} & The application descriptor. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em true} & The application file has been unloaded. \\
+\hline
+{\em false} & The application could not be unloaded. \\
+\hline
+\end{DoxyRetVals}

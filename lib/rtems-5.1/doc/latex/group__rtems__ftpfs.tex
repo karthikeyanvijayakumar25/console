@@ -1,0 +1,102 @@
+\hypertarget{group__rtems__ftpfs}{}\section{File Transfer Protocol File System}
+\label{group__rtems__ftpfs}\index{File Transfer Protocol File System@{File Transfer Protocol File System}}
+
+
+The F\+TP file system (F\+TP client) can be used to transfer files from or to remote hosts.  
+
+
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{group__rtems__ftpfs_ga78cfc83393e18e7b875c57828c6e6a37}\label{group__rtems__ftpfs_ga78cfc83393e18e7b875c57828c6e6a37}} 
+\#define \mbox{\hyperlink{group__rtems__ftpfs_ga78cfc83393e18e7b875c57828c6e6a37}{R\+T\+E\+M\+S\+\_\+\+F\+T\+P\+F\+S\+\_\+\+C\+T\+R\+L\+\_\+\+P\+O\+RT}}~21
+\begin{DoxyCompactList}\small\item\em Well-\/known port number for F\+TP control connection. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__rtems__ftpfs_ga62b0e39dcbe47ed7a94eb4d44848dda6}\label{group__rtems__ftpfs_ga62b0e39dcbe47ed7a94eb4d44848dda6}} 
+\#define \mbox{\hyperlink{group__rtems__ftpfs_ga62b0e39dcbe47ed7a94eb4d44848dda6}{R\+T\+E\+M\+S\+\_\+\+F\+T\+P\+F\+S\+\_\+\+M\+O\+U\+N\+T\+\_\+\+P\+O\+I\+N\+T\+\_\+\+D\+E\+F\+A\+U\+LT}}~\char`\"{}/F\+TP\char`\"{}
+\begin{DoxyCompactList}\small\item\em Default mount point for F\+TP file system. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{group__rtems__ftpfs_gaa5a739b575dafe5b2e925d291d0ed474}\label{group__rtems__ftpfs_gaa5a739b575dafe5b2e925d291d0ed474}} 
+enum \mbox{\hyperlink{group__rtems__ftpfs_gaa5a739b575dafe5b2e925d291d0ed474}{rtems\+\_\+ftpfs\+\_\+ioctl\+\_\+numbers}} \{ {\bfseries R\+T\+E\+M\+S\+\_\+\+F\+T\+P\+F\+S\+\_\+\+I\+O\+C\+T\+L\+\_\+\+G\+E\+T\+\_\+\+V\+E\+R\+B\+O\+SE} = \+\_\+\+I\+OR( \textquotesingle{}d\textquotesingle{}, 1, bool $\ast$), 
+{\bfseries R\+T\+E\+M\+S\+\_\+\+F\+T\+P\+F\+S\+\_\+\+I\+O\+C\+T\+L\+\_\+\+S\+E\+T\+\_\+\+V\+E\+R\+B\+O\+SE} = \+\_\+\+I\+OW( \textquotesingle{}d\textquotesingle{}, 1, bool $\ast$), 
+{\bfseries R\+T\+E\+M\+S\+\_\+\+F\+T\+P\+F\+S\+\_\+\+I\+O\+C\+T\+L\+\_\+\+G\+E\+T\+\_\+\+T\+I\+M\+E\+O\+UT} = \+\_\+\+I\+OR( \textquotesingle{}d\textquotesingle{}, 2, struct timeval $\ast$), 
+{\bfseries R\+T\+E\+M\+S\+\_\+\+F\+T\+P\+F\+S\+\_\+\+I\+O\+C\+T\+L\+\_\+\+S\+E\+T\+\_\+\+T\+I\+M\+E\+O\+UT} = \+\_\+\+I\+OW( \textquotesingle{}d\textquotesingle{}, 2, struct timeval $\ast$)
+ \}
+\begin{DoxyCompactList}\small\item\em F\+TP file system \mbox{\hyperlink{structIO}{IO}} control requests. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{group__rtems__ftpfs_gaf963f45e8ceb6fe79e7a8c8e8a7a3827}{rtems\+\_\+ftpfs\+\_\+get\+\_\+verbose}} (const char $\ast$mount\+\_\+point, bool $\ast$verbose)
+\begin{DoxyCompactList}\small\item\em Returns in {\itshape verbose} if the verbose mode is enabled or disabled for the file system at {\itshape mount\+\_\+point}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{group__rtems__ftpfs_ga1b9eb4fa9eb72fe2218ee7448a7e970a}{rtems\+\_\+ftpfs\+\_\+set\+\_\+verbose}} (const char $\ast$mount\+\_\+point, bool verbose)
+\begin{DoxyCompactList}\small\item\em Enables or disables the verbose mode if {\itshape verbose} is {\ttfamily true} or {\ttfamily false} respectively for the file system at {\itshape mount\+\_\+point}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{group__rtems__ftpfs_ga6dde83f58606a122aec703001c59c571}{rtems\+\_\+ftpfs\+\_\+get\+\_\+timeout}} (const char $\ast$mount\+\_\+point, struct timeval $\ast$timeout)
+\begin{DoxyCompactList}\small\item\em Returns the current timeout value in {\itshape timeout} for the file system at {\itshape mount\+\_\+point}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{group__rtems__ftpfs_gaadeae39927ef1277b2ac47c6e796a07c}{rtems\+\_\+ftpfs\+\_\+set\+\_\+timeout}} (const char $\ast$mount\+\_\+point, const struct timeval $\ast$timeout)
+\begin{DoxyCompactList}\small\item\em Sets the timeout value to {\itshape timeout} for the file system at {\itshape mount\+\_\+point}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+The F\+TP file system (F\+TP client) can be used to transfer files from or to remote hosts. 
+
+You can mount the F\+TP file system with a call to \mbox{\hyperlink{group__FileSystemTypesAndMount_gaf3c1bed49bb0f3dec88d330b4f88d48b}{mount()}} or \mbox{\hyperlink{group__FileSystemTypesAndMount_ga27af6440b4ef795576c94e870c5d997f}{mount\+\_\+and\+\_\+make\+\_\+target\+\_\+path()}} with the R\+T\+E\+M\+S\+\_\+\+F\+I\+L\+E\+S\+Y\+S\+T\+E\+M\+\_\+\+T\+Y\+P\+E\+\_\+\+F\+T\+P\+FS file system type.
+
+You have to add C\+O\+N\+F\+I\+G\+U\+R\+E\+\_\+\+F\+I\+L\+E\+S\+Y\+S\+T\+E\+M\+\_\+\+F\+T\+P\+FS to your application configuration.
+
+You can open files either read-\/only or write-\/only. A seek is not allowed. A close terminates the control and data connections.
+
+To open a file {\ttfamily file.\+txt} in the directory {\ttfamily dir} (relative to home directory of the server) on a server named {\ttfamily host} using the user name {\ttfamily user} and the password {\ttfamily pw} you must specify the following path\+: {\ttfamily /\+F\+T\+P/user\+:pw@host/dir/file.\+txt}.
+
+If the server is the default server specified in B\+O\+O\+TP, it can be ommitted\+: {\ttfamily /\+F\+T\+P/user\+:pw/dir/file.\+txt}.
+
+The user name will be used for the password if it is ommitted\+: {\ttfamily /\+F\+T\+P/user@host/dir/file.\+txt}.
+
+For the data transfer passive (= default) and active (= fallback) mode are supported. 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{group__rtems__ftpfs_ga6dde83f58606a122aec703001c59c571}\label{group__rtems__ftpfs_ga6dde83f58606a122aec703001c59c571}} 
+\index{File Transfer Protocol File System@{File Transfer Protocol File System}!rtems\_ftpfs\_get\_timeout@{rtems\_ftpfs\_get\_timeout}}
+\index{rtems\_ftpfs\_get\_timeout@{rtems\_ftpfs\_get\_timeout}!File Transfer Protocol File System@{File Transfer Protocol File System}}
+\subsubsection{\texorpdfstring{rtems\_ftpfs\_get\_timeout()}{rtems\_ftpfs\_get\_timeout()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} rtems\+\_\+ftpfs\+\_\+get\+\_\+timeout (\begin{DoxyParamCaption}\item[{const char $\ast$}]{mount\+\_\+point,  }\item[{struct timeval $\ast$}]{timeout }\end{DoxyParamCaption})}
+
+
+
+Returns the current timeout value in {\itshape timeout} for the file system at {\itshape mount\+\_\+point}. 
+
+If {\itshape mount\+\_\+point} is {\ttfamily N\+U\+LL} the default mount point \mbox{\hyperlink{group__rtems__ftpfs_ga62b0e39dcbe47ed7a94eb4d44848dda6}{R\+T\+E\+M\+S\+\_\+\+F\+T\+P\+F\+S\+\_\+\+M\+O\+U\+N\+T\+\_\+\+P\+O\+I\+N\+T\+\_\+\+D\+E\+F\+A\+U\+LT}} will be used. \mbox{\Hypertarget{group__rtems__ftpfs_gaf963f45e8ceb6fe79e7a8c8e8a7a3827}\label{group__rtems__ftpfs_gaf963f45e8ceb6fe79e7a8c8e8a7a3827}} 
+\index{File Transfer Protocol File System@{File Transfer Protocol File System}!rtems\_ftpfs\_get\_verbose@{rtems\_ftpfs\_get\_verbose}}
+\index{rtems\_ftpfs\_get\_verbose@{rtems\_ftpfs\_get\_verbose}!File Transfer Protocol File System@{File Transfer Protocol File System}}
+\subsubsection{\texorpdfstring{rtems\_ftpfs\_get\_verbose()}{rtems\_ftpfs\_get\_verbose()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} rtems\+\_\+ftpfs\+\_\+get\+\_\+verbose (\begin{DoxyParamCaption}\item[{const char $\ast$}]{mount\+\_\+point,  }\item[{bool $\ast$}]{verbose }\end{DoxyParamCaption})}
+
+
+
+Returns in {\itshape verbose} if the verbose mode is enabled or disabled for the file system at {\itshape mount\+\_\+point}. 
+
+If {\itshape mount\+\_\+point} is {\ttfamily N\+U\+LL} the default mount point \mbox{\hyperlink{group__rtems__ftpfs_ga62b0e39dcbe47ed7a94eb4d44848dda6}{R\+T\+E\+M\+S\+\_\+\+F\+T\+P\+F\+S\+\_\+\+M\+O\+U\+N\+T\+\_\+\+P\+O\+I\+N\+T\+\_\+\+D\+E\+F\+A\+U\+LT}} will be used. \mbox{\Hypertarget{group__rtems__ftpfs_gaadeae39927ef1277b2ac47c6e796a07c}\label{group__rtems__ftpfs_gaadeae39927ef1277b2ac47c6e796a07c}} 
+\index{File Transfer Protocol File System@{File Transfer Protocol File System}!rtems\_ftpfs\_set\_timeout@{rtems\_ftpfs\_set\_timeout}}
+\index{rtems\_ftpfs\_set\_timeout@{rtems\_ftpfs\_set\_timeout}!File Transfer Protocol File System@{File Transfer Protocol File System}}
+\subsubsection{\texorpdfstring{rtems\_ftpfs\_set\_timeout()}{rtems\_ftpfs\_set\_timeout()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} rtems\+\_\+ftpfs\+\_\+set\+\_\+timeout (\begin{DoxyParamCaption}\item[{const char $\ast$}]{mount\+\_\+point,  }\item[{const struct timeval $\ast$}]{timeout }\end{DoxyParamCaption})}
+
+
+
+Sets the timeout value to {\itshape timeout} for the file system at {\itshape mount\+\_\+point}. 
+
+The timeout value will be used during connection establishment of active data connections. It will be also used for send and receive operations on data and control connections.
+
+If {\itshape mount\+\_\+point} is {\ttfamily N\+U\+LL} the default mount point \mbox{\hyperlink{group__rtems__ftpfs_ga62b0e39dcbe47ed7a94eb4d44848dda6}{R\+T\+E\+M\+S\+\_\+\+F\+T\+P\+F\+S\+\_\+\+M\+O\+U\+N\+T\+\_\+\+P\+O\+I\+N\+T\+\_\+\+D\+E\+F\+A\+U\+LT}} will be used. \mbox{\Hypertarget{group__rtems__ftpfs_ga1b9eb4fa9eb72fe2218ee7448a7e970a}\label{group__rtems__ftpfs_ga1b9eb4fa9eb72fe2218ee7448a7e970a}} 
+\index{File Transfer Protocol File System@{File Transfer Protocol File System}!rtems\_ftpfs\_set\_verbose@{rtems\_ftpfs\_set\_verbose}}
+\index{rtems\_ftpfs\_set\_verbose@{rtems\_ftpfs\_set\_verbose}!File Transfer Protocol File System@{File Transfer Protocol File System}}
+\subsubsection{\texorpdfstring{rtems\_ftpfs\_set\_verbose()}{rtems\_ftpfs\_set\_verbose()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} rtems\+\_\+ftpfs\+\_\+set\+\_\+verbose (\begin{DoxyParamCaption}\item[{const char $\ast$}]{mount\+\_\+point,  }\item[{bool}]{verbose }\end{DoxyParamCaption})}
+
+
+
+Enables or disables the verbose mode if {\itshape verbose} is {\ttfamily true} or {\ttfamily false} respectively for the file system at {\itshape mount\+\_\+point}. 
+
+In the enabled verbose mode the commands and replies of the F\+TP control connections will be printed to standard error.
+
+If {\itshape mount\+\_\+point} is {\ttfamily N\+U\+LL} the default mount point \mbox{\hyperlink{group__rtems__ftpfs_ga62b0e39dcbe47ed7a94eb4d44848dda6}{R\+T\+E\+M\+S\+\_\+\+F\+T\+P\+F\+S\+\_\+\+M\+O\+U\+N\+T\+\_\+\+P\+O\+I\+N\+T\+\_\+\+D\+E\+F\+A\+U\+LT}} will be used. 

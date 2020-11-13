@@ -1,0 +1,100 @@
+\hypertarget{check_8c}{}\section{cpukit/libmisc/stackchk/check.c File Reference}
+\label{check_8c}\index{cpukit/libmisc/stackchk/check.c@{cpukit/libmisc/stackchk/check.c}}
+
+
+Stack Overflow Check User Extension Set.  
+
+
+{\ttfamily \#include $<$rtems.\+h$>$}\newline
+{\ttfamily \#include $<$inttypes.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/bsp\+Io.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/printer.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/stackchk.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/sysinit.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/score/address.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/score/percpu.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/score/smp.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/score/threadimpl.\+h$>$}\newline
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bfseries C\+P\+U\+\_\+\+S\+T\+A\+C\+K\+\_\+\+C\+H\+E\+C\+K\+\_\+\+P\+A\+T\+T\+E\+R\+N\+\_\+\+I\+N\+I\+T\+I\+A\+L\+I\+Z\+ER}
+\item 
+\mbox{\Hypertarget{check_8c_ad8e2146e3bd5e831be041718c2d61c36}\label{check_8c_ad8e2146e3bd5e831be041718c2d61c36}} 
+\#define {\bfseries B\+Y\+T\+E\+\_\+\+P\+A\+T\+T\+E\+RN}~0x\+A5
+\item 
+\mbox{\Hypertarget{check_8c_aff45b01865e048a4cdee7bd197d82350}\label{check_8c_aff45b01865e048a4cdee7bd197d82350}} 
+\#define {\bfseries U32\+\_\+\+P\+A\+T\+T\+E\+RN}~0x\+A5\+A5\+A5\+A5
+\item 
+\mbox{\Hypertarget{check_8c_aaac722516ec8718aada978c721f2f3ed}\label{check_8c_aaac722516ec8718aada978c721f2f3ed}} 
+\#define {\bfseries S\+A\+N\+I\+T\+Y\+\_\+\+P\+A\+T\+T\+E\+R\+N\+\_\+\+S\+I\+Z\+E\+\_\+\+B\+Y\+T\+ES}~sizeof(Stack\+\_\+check\+\_\+\+Sanity\+\_\+pattern)
+\item 
+\mbox{\Hypertarget{check_8c_a12d8b085cc6c98a3ad87940d35e982c9}\label{check_8c_a12d8b085cc6c98a3ad87940d35e982c9}} 
+\#define {\bfseries S\+A\+N\+I\+T\+Y\+\_\+\+P\+A\+T\+T\+E\+R\+N\+\_\+\+S\+I\+Z\+E\+\_\+\+W\+O\+R\+DS}~R\+T\+E\+M\+S\+\_\+\+A\+R\+R\+A\+Y\+\_\+\+S\+I\+ZE(Stack\+\_\+check\+\_\+\+Sanity\+\_\+pattern)
+\item 
+\#define {\bfseries Stack\+\_\+check\+\_\+\+Get\+\_\+pattern}(\+\_\+the\+\_\+stack)
+\item 
+\mbox{\Hypertarget{check_8c_a2a429b62a03f7a3cae658076ec75599c}\label{check_8c_a2a429b62a03f7a3cae658076ec75599c}} 
+\#define {\bfseries Stack\+\_\+check\+\_\+\+Calculate\+\_\+used}(\+\_\+low,  \+\_\+size,  \+\_\+high\+\_\+water)~((char $\ast$)(\+\_\+high\+\_\+water) -\/ (char $\ast$)(\+\_\+low))
+\item 
+\mbox{\Hypertarget{check_8c_ad5ed484b0ae802e88a6d7e444e913398}\label{check_8c_ad5ed484b0ae802e88a6d7e444e913398}} 
+\#define {\bfseries Stack\+\_\+check\+\_\+\+Usable\+\_\+stack\+\_\+start}(\+\_\+the\+\_\+stack)~((\+\_\+the\+\_\+stack)-\/$>$area)
+\item 
+\mbox{\Hypertarget{check_8c_a1a3f6f71fecb82f064fdca8ef489682b}\label{check_8c_a1a3f6f71fecb82f064fdca8ef489682b}} 
+\#define {\bfseries Stack\+\_\+check\+\_\+\+Usable\+\_\+stack\+\_\+size}(\+\_\+the\+\_\+stack)~((\+\_\+the\+\_\+stack)-\/$>$\mbox{\hyperlink{sun4u_2tte_8h_a245260f6f74972558f61b85227df5aae}{size}} -\/ S\+A\+N\+I\+T\+Y\+\_\+\+P\+A\+T\+T\+E\+R\+N\+\_\+\+S\+I\+Z\+E\+\_\+\+B\+Y\+T\+ES)
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{check_8c_a091fc702043008648921e6b40d2c588d}\label{check_8c_a091fc702043008648921e6b40d2c588d}} 
+bool {\bfseries rtems\+\_\+stack\+\_\+checker\+\_\+create\+\_\+extension} (\mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$running \mbox{\hyperlink{group__RTEMSScoreBaseDefs_ga6794c0ff237a90e837e19f9bbcae4297}{R\+T\+E\+M\+S\+\_\+\+U\+N\+U\+S\+ED}}, \mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$the\+\_\+thread)
+\item 
+void {\bfseries rtems\+\_\+stack\+\_\+checker\+\_\+begin\+\_\+extension} (\mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$executing)
+\item 
+void \mbox{\hyperlink{group__libmisc__stackchk_gaab6fe708fb2c9109528ce4c55c92e9f2}{rtems\+\_\+stack\+\_\+checker\+\_\+switch\+\_\+extension}} (\mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$running, \mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$heir)
+\begin{DoxyCompactList}\small\item\em Stack Checker Task Context Switch Extension. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__libmisc__stackchk_ga3d14a039e776b11639d8b0a4166756e6}{rtems\+\_\+stack\+\_\+checker\+\_\+is\+\_\+blown}} (void)
+\begin{DoxyCompactList}\small\item\em Checks if current task is blown its stack. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__libmisc__stackchk_ga25ea63d8178d6eb26d2a1148bb03117d}{rtems\+\_\+stack\+\_\+checker\+\_\+report\+\_\+usage\+\_\+with\+\_\+plugin}} (const \mbox{\hyperlink{structrtems__printer}{rtems\+\_\+printer}} $\ast$printer)
+\begin{DoxyCompactList}\small\item\em Print the stack usage report using caller\textquotesingle{}s routine. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__libmisc__stackchk_ga8df4c8fbe9071233068782c83dc83fd0}{rtems\+\_\+stack\+\_\+checker\+\_\+report\+\_\+usage}} (void)
+\begin{DoxyCompactList}\small\item\em Print the stack usage report using printk. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{check_8c_a6b9891259eb74e9b28499888733c7aab}\label{check_8c_a6b9891259eb74e9b28499888733c7aab}} 
+{\bfseries R\+T\+E\+M\+S\+\_\+\+S\+Y\+S\+I\+N\+I\+T\+\_\+\+I\+T\+EM} (Stack\+\_\+check\+\_\+\+Prepare\+\_\+interrupt\+\_\+stacks, R\+T\+E\+M\+S\+\_\+\+S\+Y\+S\+I\+N\+I\+T\+\_\+\+I\+S\+R\+\_\+\+S\+T\+A\+CK, R\+T\+E\+M\+S\+\_\+\+S\+Y\+S\+I\+N\+I\+T\+\_\+\+O\+R\+D\+E\+R\+\_\+\+M\+I\+D\+D\+LE)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Stack Overflow Check User Extension Set. 
+
+N\+O\+TE\+: This extension set automatically determines at initialization time whether the stack for this C\+PU grows up or down and installs the correct extension routines for that direction. 
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{check_8c_a433b7cd2961f69ac55bd732ccdf7393c}\label{check_8c_a433b7cd2961f69ac55bd732ccdf7393c}} 
+\index{check.c@{check.c}!CPU\_STACK\_CHECK\_PATTERN\_INITIALIZER@{CPU\_STACK\_CHECK\_PATTERN\_INITIALIZER}}
+\index{CPU\_STACK\_CHECK\_PATTERN\_INITIALIZER@{CPU\_STACK\_CHECK\_PATTERN\_INITIALIZER}!check.c@{check.c}}
+\subsubsection{\texorpdfstring{CPU\_STACK\_CHECK\_PATTERN\_INITIALIZER}{CPU\_STACK\_CHECK\_PATTERN\_INITIALIZER}}
+{\footnotesize\ttfamily \#define C\+P\+U\+\_\+\+S\+T\+A\+C\+K\+\_\+\+C\+H\+E\+C\+K\+\_\+\+P\+A\+T\+T\+E\+R\+N\+\_\+\+I\+N\+I\+T\+I\+A\+L\+I\+Z\+ER}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{ \(\backslash\)}
+\DoxyCodeLine{    0xFEEDF00D, 0x0BAD0D06, \textcolor{comment}{/* FEED FOOD to  BAD DOG */} \(\backslash\)}
+\DoxyCodeLine{    0xDEADF00D, 0x600D0D06  \textcolor{comment}{/* DEAD FOOD but GOOD DOG */} \(\backslash\)}
+\DoxyCodeLine{  \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{check_8c_a062778ddb3c865bd748d67c4b6f19b0b}\label{check_8c_a062778ddb3c865bd748d67c4b6f19b0b}} 
+\index{check.c@{check.c}!Stack\_check\_Get\_pattern@{Stack\_check\_Get\_pattern}}
+\index{Stack\_check\_Get\_pattern@{Stack\_check\_Get\_pattern}!check.c@{check.c}}
+\subsubsection{\texorpdfstring{Stack\_check\_Get\_pattern}{Stack\_check\_Get\_pattern}}
+{\footnotesize\ttfamily \#define Stack\+\_\+check\+\_\+\+Get\+\_\+pattern(\begin{DoxyParamCaption}\item[{}]{\+\_\+the\+\_\+stack }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{((\textcolor{keywordtype}{char} *)(\_the\_stack)->area + \(\backslash\)}
+\DoxyCodeLine{         (\_the\_stack)->\mbox{\hyperlink{sun4u_2tte_8h_a245260f6f74972558f61b85227df5aae}{size}} - SANITY\_PATTERN\_SIZE\_BYTES )}
+
+\end{DoxyCode}

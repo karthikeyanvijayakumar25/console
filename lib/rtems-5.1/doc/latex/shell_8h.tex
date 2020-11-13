@@ -1,0 +1,373 @@
+\hypertarget{shell_8h}{}\section{cpukit/include/rtems/shell.h File Reference}
+\label{shell_8h}\index{cpukit/include/rtems/shell.h@{cpukit/include/rtems/shell.h}}
+
+
+Instantatiate a New Terminal Shell.  
+
+
+{\ttfamily \#include $<$sys/types.\+h$>$}\newline
+{\ttfamily \#include $<$sys/stat.\+h$>$}\newline
+{\ttfamily \#include $<$rtems.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$termios.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/fs.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/libio.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/chain.\+h$>$}\newline
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structrtems__shell__cmd__tt}{rtems\+\_\+shell\+\_\+cmd\+\_\+tt}}
+\item 
+struct \mbox{\hyperlink{structrtems__shell__alias__t}{rtems\+\_\+shell\+\_\+alias\+\_\+t}}
+\item 
+struct \mbox{\hyperlink{structrtems__shell__topic__tt}{rtems\+\_\+shell\+\_\+topic\+\_\+tt}}
+\item 
+struct \mbox{\hyperlink{structrtems__shell__env__t}{rtems\+\_\+shell\+\_\+env\+\_\+t}}
+\item 
+struct \mbox{\hyperlink{structrtems__shell__filesystems__tt}{rtems\+\_\+shell\+\_\+filesystems\+\_\+tt}}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{shell_8h_a35fff936e30639cac7ca1fa24aa1a989}\label{shell_8h_a35fff936e30639cac7ca1fa24aa1a989}} 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+S\+H\+E\+L\+L\+\_\+\+K\+E\+Y\+S\+\_\+\+E\+X\+T\+E\+N\+D\+ED}~(0x8000)
+\item 
+\mbox{\Hypertarget{shell_8h_ae10d13dba0b7d59c06f7b4510ff9df3f}\label{shell_8h_ae10d13dba0b7d59c06f7b4510ff9df3f}} 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+S\+H\+E\+L\+L\+\_\+\+K\+E\+Y\+S\+\_\+\+N\+O\+R\+M\+A\+L\+\_\+\+M\+A\+SK}~(0x00ff)
+\item 
+\mbox{\Hypertarget{shell_8h_ae812a04f11564dab32970199c14c7a3b}\label{shell_8h_ae812a04f11564dab32970199c14c7a3b}} 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+S\+H\+E\+L\+L\+\_\+\+K\+E\+Y\+S\+\_\+\+I\+NS}~(0)
+\item 
+\mbox{\Hypertarget{shell_8h_aa8c2639ff75148a3dc8a8e34c91492a6}\label{shell_8h_aa8c2639ff75148a3dc8a8e34c91492a6}} 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+S\+H\+E\+L\+L\+\_\+\+K\+E\+Y\+S\+\_\+\+D\+EL}~(1)
+\item 
+\mbox{\Hypertarget{shell_8h_a98b2f493e6c297f2c573078a9314c457}\label{shell_8h_a98b2f493e6c297f2c573078a9314c457}} 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+S\+H\+E\+L\+L\+\_\+\+K\+E\+Y\+S\+\_\+\+U\+A\+R\+R\+OW}~(2)
+\item 
+\mbox{\Hypertarget{shell_8h_a7f716850fb4b4b91a6df48cd0e33b057}\label{shell_8h_a7f716850fb4b4b91a6df48cd0e33b057}} 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+S\+H\+E\+L\+L\+\_\+\+K\+E\+Y\+S\+\_\+\+D\+A\+R\+R\+OW}~(3)
+\item 
+\mbox{\Hypertarget{shell_8h_aafedc83e019d24d757419e0a1a8d4743}\label{shell_8h_aafedc83e019d24d757419e0a1a8d4743}} 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+S\+H\+E\+L\+L\+\_\+\+K\+E\+Y\+S\+\_\+\+L\+A\+R\+R\+OW}~(4)
+\item 
+\mbox{\Hypertarget{shell_8h_a7b69ce3eb7ceb1c7010788f5d8cefabf}\label{shell_8h_a7b69ce3eb7ceb1c7010788f5d8cefabf}} 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+S\+H\+E\+L\+L\+\_\+\+K\+E\+Y\+S\+\_\+\+R\+A\+R\+R\+OW}~(5)
+\item 
+\mbox{\Hypertarget{shell_8h_a239ea54dd4df3bdf71d60b58dbb82f1b}\label{shell_8h_a239ea54dd4df3bdf71d60b58dbb82f1b}} 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+S\+H\+E\+L\+L\+\_\+\+K\+E\+Y\+S\+\_\+\+H\+O\+ME}~(6)
+\item 
+\mbox{\Hypertarget{shell_8h_a96006adaffe948d0bd7956c770c57a5a}\label{shell_8h_a96006adaffe948d0bd7956c770c57a5a}} 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+S\+H\+E\+L\+L\+\_\+\+K\+E\+Y\+S\+\_\+\+E\+ND}~(7)
+\item 
+\mbox{\Hypertarget{shell_8h_ae0929b788f5d51321a75baa391766cae}\label{shell_8h_ae0929b788f5d51321a75baa391766cae}} 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+S\+H\+E\+L\+L\+\_\+\+K\+E\+Y\+S\+\_\+\+F1}~(8)
+\item 
+\mbox{\Hypertarget{shell_8h_aebfb9f358c542248d0d08a05d27f14d1}\label{shell_8h_aebfb9f358c542248d0d08a05d27f14d1}} 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+S\+H\+E\+L\+L\+\_\+\+K\+E\+Y\+S\+\_\+\+F2}~(9)
+\item 
+\mbox{\Hypertarget{shell_8h_a418dda0afaf93c7763d2493e5c979ba2}\label{shell_8h_a418dda0afaf93c7763d2493e5c979ba2}} 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+S\+H\+E\+L\+L\+\_\+\+K\+E\+Y\+S\+\_\+\+F3}~(10)
+\item 
+\mbox{\Hypertarget{shell_8h_a79dd660581e6de8c45c87ca90c1f7713}\label{shell_8h_a79dd660581e6de8c45c87ca90c1f7713}} 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+S\+H\+E\+L\+L\+\_\+\+K\+E\+Y\+S\+\_\+\+F4}~(11)
+\item 
+\mbox{\Hypertarget{shell_8h_a61d868382f167a80c41ab96a68349620}\label{shell_8h_a61d868382f167a80c41ab96a68349620}} 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+S\+H\+E\+L\+L\+\_\+\+K\+E\+Y\+S\+\_\+\+F5}~(12)
+\item 
+\mbox{\Hypertarget{shell_8h_aa4e5fbdaefac1c4653f7726a19ba3f37}\label{shell_8h_aa4e5fbdaefac1c4653f7726a19ba3f37}} 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+S\+H\+E\+L\+L\+\_\+\+K\+E\+Y\+S\+\_\+\+F6}~(13)
+\item 
+\mbox{\Hypertarget{shell_8h_a45327ced03876650d27450a96219fcde}\label{shell_8h_a45327ced03876650d27450a96219fcde}} 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+S\+H\+E\+L\+L\+\_\+\+K\+E\+Y\+S\+\_\+\+F7}~(14)
+\item 
+\mbox{\Hypertarget{shell_8h_a7d4f187b36f6030e9996dfd18146f87e}\label{shell_8h_a7d4f187b36f6030e9996dfd18146f87e}} 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+S\+H\+E\+L\+L\+\_\+\+K\+E\+Y\+S\+\_\+\+F8}~(15)
+\item 
+\mbox{\Hypertarget{shell_8h_a5b8fb4431516e0683603c940fd35c2f5}\label{shell_8h_a5b8fb4431516e0683603c940fd35c2f5}} 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+S\+H\+E\+L\+L\+\_\+\+K\+E\+Y\+S\+\_\+\+F9}~(16)
+\item 
+\mbox{\Hypertarget{shell_8h_ab276fc58d55f1c48c2a0bb5f341934f3}\label{shell_8h_ab276fc58d55f1c48c2a0bb5f341934f3}} 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+S\+H\+E\+L\+L\+\_\+\+K\+E\+Y\+S\+\_\+\+F10}~(17)
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{shell_8h_a51120600ee726866f7e34ae4bf59e5ab}\label{shell_8h_a51120600ee726866f7e34ae4bf59e5ab}} 
+typedef bool($\ast$ {\bfseries rtems\+\_\+shell\+\_\+login\+\_\+check\+\_\+t}) (const char $\ast$, const char $\ast$)
+\item 
+\mbox{\Hypertarget{shell_8h_a9fbaf9d1966bbd4681339ccc430a58cd}\label{shell_8h_a9fbaf9d1966bbd4681339ccc430a58cd}} 
+typedef int($\ast$ {\bfseries rtems\+\_\+shell\+\_\+command\+\_\+t}) (int argc, char $\ast$$\ast$argv)
+\item 
+\mbox{\Hypertarget{shell_8h_aa5b1277ca4d7b44ae125bed97e6748b4}\label{shell_8h_aa5b1277ca4d7b44ae125bed97e6748b4}} 
+typedef struct \mbox{\hyperlink{structrtems__shell__cmd__tt}{rtems\+\_\+shell\+\_\+cmd\+\_\+tt}} {\bfseries rtems\+\_\+shell\+\_\+cmd\+\_\+t}
+\item 
+\mbox{\Hypertarget{shell_8h_adab8fda7599860ad16d2f93de86c2c30}\label{shell_8h_adab8fda7599860ad16d2f93de86c2c30}} 
+typedef struct \mbox{\hyperlink{structrtems__shell__topic__tt}{rtems\+\_\+shell\+\_\+topic\+\_\+tt}} {\bfseries rtems\+\_\+shell\+\_\+topic\+\_\+t}
+\item 
+\mbox{\Hypertarget{shell_8h_aab652a57ebdf9153cec14a87665e8221}\label{shell_8h_aab652a57ebdf9153cec14a87665e8221}} 
+typedef struct \mbox{\hyperlink{structrtems__shell__filesystems__tt}{rtems\+\_\+shell\+\_\+filesystems\+\_\+tt}} {\bfseries rtems\+\_\+shell\+\_\+filesystems\+\_\+t}
+\item 
+\mbox{\Hypertarget{shell_8h_a89e57176179350a83ad671046fbbe4e7}\label{shell_8h_a89e57176179350a83ad671046fbbe4e7}} 
+typedef int($\ast$ {\bfseries rtems\+\_\+shell\+\_\+filesystems\+\_\+mounter\+\_\+t}) (const char $\ast$driver, const char $\ast$path, \mbox{\hyperlink{structrtems__shell__filesystems__tt}{rtems\+\_\+shell\+\_\+filesystems\+\_\+t}} $\ast$fs, \mbox{\hyperlink{group__FileSystemTypesAndMount_gabb3a23ee6b6e7aacb719a1a81716af7a}{rtems\+\_\+filesystem\+\_\+options\+\_\+t}} options)
+\item 
+\mbox{\Hypertarget{shell_8h_ae94dfda443566925d3413c4aa555c156}\label{shell_8h_ae94dfda443566925d3413c4aa555c156}} 
+typedef void($\ast$ {\bfseries rtems\+\_\+shell\+\_\+wait\+\_\+for\+\_\+input\+\_\+notification}) (int fd, int seconds\+\_\+remaining, void $\ast$arg)
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{shell_8h_a34da8319190f18648db6b54dc35e4a91}\label{shell_8h_a34da8319190f18648db6b54dc35e4a91}} 
+bool {\bfseries rtems\+\_\+shell\+\_\+login\+\_\+prompt} (F\+I\+LE $\ast$in, F\+I\+LE $\ast$out, const char $\ast$\mbox{\hyperlink{structdevice}{device}}, rtems\+\_\+shell\+\_\+login\+\_\+check\+\_\+t check)
+\item 
+\mbox{\Hypertarget{shell_8h_aac6cf9e123f3c36a741527ffdf4331f1}\label{shell_8h_aac6cf9e123f3c36a741527ffdf4331f1}} 
+bool {\bfseries rtems\+\_\+shell\+\_\+login\+\_\+check} (const char $\ast$user, const char $\ast$passphrase)
+\item 
+\mbox{\Hypertarget{shell_8h_aabd7e5603c68306e66fd68def3f5612b}\label{shell_8h_aabd7e5603c68306e66fd68def3f5612b}} 
+unsigned int {\bfseries rtems\+\_\+shell\+\_\+getchar} (F\+I\+LE $\ast$in)
+\item 
+\mbox{\Hypertarget{shell_8h_a0f50ae534bcffabe86e59b1b66d976cc}\label{shell_8h_a0f50ae534bcffabe86e59b1b66d976cc}} 
+\mbox{\hyperlink{structrtems__shell__cmd__tt}{rtems\+\_\+shell\+\_\+cmd\+\_\+t}} $\ast$ {\bfseries rtems\+\_\+shell\+\_\+lookup\+\_\+cmd} (const char $\ast$cmd)
+\item 
+\mbox{\Hypertarget{shell_8h_abe8577d8ea29610e989564dd3158a346}\label{shell_8h_abe8577d8ea29610e989564dd3158a346}} 
+\mbox{\hyperlink{structrtems__shell__cmd__tt}{rtems\+\_\+shell\+\_\+cmd\+\_\+t}} $\ast$ {\bfseries rtems\+\_\+shell\+\_\+add\+\_\+cmd\+\_\+struct} (\mbox{\hyperlink{structrtems__shell__cmd__tt}{rtems\+\_\+shell\+\_\+cmd\+\_\+t}} $\ast$shell\+\_\+cmd)
+\item 
+\mbox{\Hypertarget{shell_8h_aec1ba97dbb37f837aed18cc26bcdaa84}\label{shell_8h_aec1ba97dbb37f837aed18cc26bcdaa84}} 
+\mbox{\hyperlink{structrtems__shell__cmd__tt}{rtems\+\_\+shell\+\_\+cmd\+\_\+t}} $\ast$ {\bfseries rtems\+\_\+shell\+\_\+add\+\_\+cmd} (const char $\ast$cmd, const char $\ast$topic, const char $\ast$usage, rtems\+\_\+shell\+\_\+command\+\_\+t command)
+\item 
+\mbox{\Hypertarget{shell_8h_acf4588797fa964a53386f5c964950cba}\label{shell_8h_acf4588797fa964a53386f5c964950cba}} 
+\mbox{\hyperlink{structrtems__shell__cmd__tt}{rtems\+\_\+shell\+\_\+cmd\+\_\+t}} $\ast$ {\bfseries rtems\+\_\+shell\+\_\+alias\+\_\+cmd} (const char $\ast$cmd, const char $\ast$alias)
+\item 
+\mbox{\Hypertarget{shell_8h_a6809b5a0a11fba526badd3c522c6b7db}\label{shell_8h_a6809b5a0a11fba526badd3c522c6b7db}} 
+int {\bfseries rtems\+\_\+shell\+\_\+make\+\_\+args} (char $\ast$command\+Line, int $\ast$argc\+\_\+p, char $\ast$$\ast$argv\+\_\+p, int max\+\_\+args)
+\item 
+\mbox{\Hypertarget{shell_8h_a12351b0974f0a6f53884b5ae74006469}\label{shell_8h_a12351b0974f0a6f53884b5ae74006469}} 
+\mbox{\hyperlink{structrtems__shell__topic__tt}{rtems\+\_\+shell\+\_\+topic\+\_\+t}} $\ast$ {\bfseries rtems\+\_\+shell\+\_\+lookup\+\_\+topic} (const char $\ast$topic)
+\item 
+\mbox{\Hypertarget{shell_8h_a2816029693432c81b3f51b32e0375a32}\label{shell_8h_a2816029693432c81b3f51b32e0375a32}} 
+bool {\bfseries rtems\+\_\+shell\+\_\+can\+\_\+see\+\_\+cmd} (const \mbox{\hyperlink{structrtems__shell__cmd__tt}{rtems\+\_\+shell\+\_\+cmd\+\_\+t}} $\ast$shell\+\_\+cmd)
+\item 
+\mbox{\Hypertarget{shell_8h_a444773a13b26ca96137622467719c00c}\label{shell_8h_a444773a13b26ca96137622467719c00c}} 
+int {\bfseries rtems\+\_\+shell\+\_\+execute\+\_\+cmd} (const char $\ast$cmd, int argc, char $\ast$argv\mbox{[}$\,$\mbox{]})
+\item 
+\mbox{\Hypertarget{shell_8h_aa47c3a144ef665b6d89da417045e3fa0}\label{shell_8h_aa47c3a144ef665b6d89da417045e3fa0}} 
+void {\bfseries rtems\+\_\+shell\+\_\+init\+\_\+environment} (void)
+\item 
+\mbox{\Hypertarget{shell_8h_a12a58bc6100fe4a78f86d72cd644911b}\label{shell_8h_a12a58bc6100fe4a78f86d72cd644911b}} 
+int {\bfseries rtems\+\_\+shell\+\_\+cat\+\_\+file} (F\+I\+LE $\ast$out, const char $\ast$name)
+\item 
+\mbox{\Hypertarget{shell_8h_af23ce3f066b20dc737c8a9be8dadf7b7}\label{shell_8h_af23ce3f066b20dc737c8a9be8dadf7b7}} 
+void {\bfseries rtems\+\_\+shell\+\_\+write\+\_\+file} (const char $\ast$name, const char $\ast$content)
+\item 
+\mbox{\Hypertarget{shell_8h_a4fbb0f8eae8e7be2de09bb58779124aa}\label{shell_8h_a4fbb0f8eae8e7be2de09bb58779124aa}} 
+int {\bfseries rtems\+\_\+shell\+\_\+script\+\_\+file} (int argc, char $\ast$$\ast$argv)
+\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{shell_8h_a9892130065846aef6d2e739b93ec5eed}{rtems\+\_\+shell\+\_\+init}} (const char $\ast$task\+\_\+name, size\+\_\+t task\+\_\+stacksize, \mbox{\hyperlink{group__ClassicTasks_gaa80a0c0938307d1e99d0eb5fee765b47}{rtems\+\_\+task\+\_\+priority}} task\+\_\+priority, const char $\ast$devname, bool forever, bool wait, rtems\+\_\+shell\+\_\+login\+\_\+check\+\_\+t login\+\_\+check)
+\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{shell_8h_ad9ff455108eebd059636e6e79aa9ed78}{rtems\+\_\+shell\+\_\+script}} (const char $\ast$task\+\_\+name, size\+\_\+t task\+\_\+stacksize, \mbox{\hyperlink{group__ClassicTasks_gaa80a0c0938307d1e99d0eb5fee765b47}{rtems\+\_\+task\+\_\+priority}} task\+\_\+priority, const char $\ast$input, const char $\ast$output, bool output\+\_\+append, bool wait, bool echo)
+\item 
+\mbox{\Hypertarget{shell_8h_a6c63062c0e9cd055eafd38e912ebf66f}\label{shell_8h_a6c63062c0e9cd055eafd38e912ebf66f}} 
+bool {\bfseries rtems\+\_\+shell\+\_\+main\+\_\+loop} (\mbox{\hyperlink{structrtems__shell__env__t}{rtems\+\_\+shell\+\_\+env\+\_\+t}} $\ast$rtems\+\_\+shell\+\_\+env)
+\item 
+\mbox{\Hypertarget{shell_8h_a5d652a7b4ba6f2f1ab4e8679c1435797}\label{shell_8h_a5d652a7b4ba6f2f1ab4e8679c1435797}} 
+\mbox{\hyperlink{structrtems__shell__env__t}{rtems\+\_\+shell\+\_\+env\+\_\+t}} $\ast$ {\bfseries rtems\+\_\+shell\+\_\+get\+\_\+current\+\_\+env} (void)
+\item 
+\mbox{\Hypertarget{shell_8h_a157f76500dd0f162ee060ef32bdc1e1c}\label{shell_8h_a157f76500dd0f162ee060ef32bdc1e1c}} 
+void {\bfseries rtems\+\_\+shell\+\_\+dup\+\_\+current\+\_\+env} (\mbox{\hyperlink{structrtems__shell__env__t}{rtems\+\_\+shell\+\_\+env\+\_\+t}} $\ast$)
+\item 
+void \mbox{\hyperlink{shell_8h_a711e5740761d1a827bdb0745919e285d}{rtems\+\_\+shell\+\_\+get\+\_\+prompt}} (\mbox{\hyperlink{structrtems__shell__env__t}{rtems\+\_\+shell\+\_\+env\+\_\+t}} $\ast$shell\+\_\+env, char $\ast$prompt, size\+\_\+t \mbox{\hyperlink{sun4u_2tte_8h_a245260f6f74972558f61b85227df5aae}{size}})
+\item 
+int \mbox{\hyperlink{shell_8h_a4eb1ce370bc46a30f612e571bb244850}{rtems\+\_\+shell\+\_\+libc\+\_\+mounter}} (const char $\ast$driver, const char $\ast$path, \mbox{\hyperlink{structrtems__shell__filesystems__tt}{rtems\+\_\+shell\+\_\+filesystems\+\_\+t}} $\ast$fs, \mbox{\hyperlink{group__FileSystemTypesAndMount_gabb3a23ee6b6e7aacb719a1a81716af7a}{rtems\+\_\+filesystem\+\_\+options\+\_\+t}} options)
+\item 
+void \mbox{\hyperlink{shell_8h_a5fb07cc542719956b0996241c15f6fd1}{rtems\+\_\+shell\+\_\+mount\+\_\+add\+\_\+fsys}} (\mbox{\hyperlink{structrtems__shell__filesystems__tt}{rtems\+\_\+shell\+\_\+filesystems\+\_\+t}} $\ast$fs)
+\item 
+void \mbox{\hyperlink{shell_8h_a933fe7849dcf488ee6e1f72050a389dd}{rtems\+\_\+shell\+\_\+mount\+\_\+del\+\_\+fsys}} (\mbox{\hyperlink{structrtems__shell__filesystems__tt}{rtems\+\_\+shell\+\_\+filesystems\+\_\+t}} $\ast$fs)
+\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{shell_8h_a2736cb87055691af6ae641e5e5f3db88}{rtems\+\_\+shell\+\_\+wait\+\_\+for\+\_\+input}} (int fd, int timeout\+\_\+in\+\_\+seconds, rtems\+\_\+shell\+\_\+wait\+\_\+for\+\_\+input\+\_\+notification notification, void $\ast$notification\+\_\+arg)
+\begin{DoxyCompactList}\small\item\em Waits for input. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{shell_8h_aece4c7db09d1edf8e6e1c083cc4b0643}{rtems\+\_\+shell\+\_\+wait\+\_\+for\+\_\+explicit\+\_\+input}} (int fd, int timeout\+\_\+in\+\_\+seconds, rtems\+\_\+shell\+\_\+wait\+\_\+for\+\_\+input\+\_\+notification notification, void $\ast$notification\+\_\+arg, int desired\+\_\+input)
+\begin{DoxyCompactList}\small\item\em Waits for explicit input. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{shell_8h_a0bf9f45b885eff3982291fafe786bf59}\label{shell_8h_a0bf9f45b885eff3982291fafe786bf59}} 
+int {\bfseries rtems\+\_\+shell\+\_\+main\+\_\+monitor} (int argc, char $\ast$$\ast$argv)
+\item 
+\mbox{\Hypertarget{shell_8h_a74f5af05e6ece205be5ceb7126f8317c}\label{shell_8h_a74f5af05e6ece205be5ceb7126f8317c}} 
+int {\bfseries rtems\+\_\+shell\+\_\+main\+\_\+mv} (int argc, char $\ast$argv\mbox{[}$\,$\mbox{]})
+\item 
+\mbox{\Hypertarget{shell_8h_af4fc43d3b9691cee2d271b8584f64d6c}\label{shell_8h_af4fc43d3b9691cee2d271b8584f64d6c}} 
+int {\bfseries rtems\+\_\+shell\+\_\+main\+\_\+cp} (int argc, char $\ast$argv\mbox{[}$\,$\mbox{]})
+\item 
+\mbox{\Hypertarget{shell_8h_a2790511892e167ddb0afc1994d1dfbfa}\label{shell_8h_a2790511892e167ddb0afc1994d1dfbfa}} 
+int {\bfseries rtems\+\_\+shell\+\_\+main\+\_\+rm} (int argc, char $\ast$argv\mbox{[}$\,$\mbox{]})
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{shell_8h_a6b4cb0401c8942b4fda7645951eb5109}\label{shell_8h_a6b4cb0401c8942b4fda7645951eb5109}} 
+const \mbox{\hyperlink{structrtems__shell__env__t}{rtems\+\_\+shell\+\_\+env\+\_\+t}} {\bfseries rtems\+\_\+global\+\_\+shell\+\_\+env}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Instantatiate a New Terminal Shell. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{shell_8h_a711e5740761d1a827bdb0745919e285d}\label{shell_8h_a711e5740761d1a827bdb0745919e285d}} 
+\index{shell.h@{shell.h}!rtems\_shell\_get\_prompt@{rtems\_shell\_get\_prompt}}
+\index{rtems\_shell\_get\_prompt@{rtems\_shell\_get\_prompt}!shell.h@{shell.h}}
+\subsubsection{\texorpdfstring{rtems\_shell\_get\_prompt()}{rtems\_shell\_get\_prompt()}}
+{\footnotesize\ttfamily void rtems\+\_\+shell\+\_\+get\+\_\+prompt (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structrtems__shell__env__t}{rtems\+\_\+shell\+\_\+env\+\_\+t}} $\ast$}]{shell\+\_\+env,  }\item[{char $\ast$}]{prompt,  }\item[{size\+\_\+t}]{size }\end{DoxyParamCaption})}
+
+This method dynamically builds the command line prompt string and places it in {\itshape prompt}.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em shell\+\_\+env} & is the shell execution environment \\
+\hline
+\mbox{\texttt{ in}}  & {\em prompt} & is a pointer to a string buffer area \\
+\hline
+\mbox{\texttt{ in}}  & {\em size} & is length of the prompt buffer area\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+This method fills in the memory pointed to by {\itshape prompt}.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+An application specific implementation can be provided by the user. 
+\end{DoxyNote}
+\mbox{\Hypertarget{shell_8h_a9892130065846aef6d2e739b93ec5eed}\label{shell_8h_a9892130065846aef6d2e739b93ec5eed}} 
+\index{shell.h@{shell.h}!rtems\_shell\_init@{rtems\_shell\_init}}
+\index{rtems\_shell\_init@{rtems\_shell\_init}!shell.h@{shell.h}}
+\subsubsection{\texorpdfstring{rtems\_shell\_init()}{rtems\_shell\_init()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} rtems\+\_\+shell\+\_\+init (\begin{DoxyParamCaption}\item[{const char $\ast$}]{task\+\_\+name,  }\item[{size\+\_\+t}]{task\+\_\+stacksize,  }\item[{\mbox{\hyperlink{group__ClassicTasks_gaa80a0c0938307d1e99d0eb5fee765b47}{rtems\+\_\+task\+\_\+priority}}}]{task\+\_\+priority,  }\item[{const char $\ast$}]{devname,  }\item[{bool}]{forever,  }\item[{bool}]{wait,  }\item[{rtems\+\_\+shell\+\_\+login\+\_\+check\+\_\+t}]{login\+\_\+check }\end{DoxyParamCaption})}
+
+Initialise the shell creating tasks to login and run the shell sessions.
+
+
+\begin{DoxyParams}{Parameters}
+{\em task\+\_\+name} & Name of the shell task. \\
+\hline
+{\em task\+\_\+stacksize} & The size of the stack. If 0 the default size is used. \\
+\hline
+{\em task\+\_\+priority} & The priority the shell runs at. \\
+\hline
+{\em forever} & Repeat logins. \\
+\hline
+{\em wait} & Caller should block until shell exits. \\
+\hline
+{\em login\+\_\+check} & User login check function, N\+U\+LL disables login checks. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{shell_8h_a4eb1ce370bc46a30f612e571bb244850}\label{shell_8h_a4eb1ce370bc46a30f612e571bb244850}} 
+\index{shell.h@{shell.h}!rtems\_shell\_libc\_mounter@{rtems\_shell\_libc\_mounter}}
+\index{rtems\_shell\_libc\_mounter@{rtems\_shell\_libc\_mounter}!shell.h@{shell.h}}
+\subsubsection{\texorpdfstring{rtems\_shell\_libc\_mounter()}{rtems\_shell\_libc\_mounter()}}
+{\footnotesize\ttfamily int rtems\+\_\+shell\+\_\+libc\+\_\+mounter (\begin{DoxyParamCaption}\item[{const char $\ast$}]{driver,  }\item[{const char $\ast$}]{path,  }\item[{\mbox{\hyperlink{structrtems__shell__filesystems__tt}{rtems\+\_\+shell\+\_\+filesystems\+\_\+t}} $\ast$}]{fs,  }\item[{\mbox{\hyperlink{group__FileSystemTypesAndMount_gabb3a23ee6b6e7aacb719a1a81716af7a}{rtems\+\_\+filesystem\+\_\+options\+\_\+t}}}]{options }\end{DoxyParamCaption})}
+
+Helper for the mount command.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em driver} & The path to the driver. \\
+\hline
+\mbox{\texttt{ in}}  & {\em path} & The path to mount on. \\
+\hline
+\mbox{\texttt{ in}}  & {\em fs} & The file system definition. \\
+\hline
+\mbox{\texttt{ in}}  & {\em options} & Special file system options. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{shell_8h_a5fb07cc542719956b0996241c15f6fd1}\label{shell_8h_a5fb07cc542719956b0996241c15f6fd1}} 
+\index{shell.h@{shell.h}!rtems\_shell\_mount\_add\_fsys@{rtems\_shell\_mount\_add\_fsys}}
+\index{rtems\_shell\_mount\_add\_fsys@{rtems\_shell\_mount\_add\_fsys}!shell.h@{shell.h}}
+\subsubsection{\texorpdfstring{rtems\_shell\_mount\_add\_fsys()}{rtems\_shell\_mount\_add\_fsys()}}
+{\footnotesize\ttfamily void rtems\+\_\+shell\+\_\+mount\+\_\+add\+\_\+fsys (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structrtems__shell__filesystems__tt}{rtems\+\_\+shell\+\_\+filesystems\+\_\+t}} $\ast$}]{fs }\end{DoxyParamCaption})}
+
+Add a new file system mount configuration to the mount command.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em fs} & The file system mount data. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{shell_8h_a933fe7849dcf488ee6e1f72050a389dd}\label{shell_8h_a933fe7849dcf488ee6e1f72050a389dd}} 
+\index{shell.h@{shell.h}!rtems\_shell\_mount\_del\_fsys@{rtems\_shell\_mount\_del\_fsys}}
+\index{rtems\_shell\_mount\_del\_fsys@{rtems\_shell\_mount\_del\_fsys}!shell.h@{shell.h}}
+\subsubsection{\texorpdfstring{rtems\_shell\_mount\_del\_fsys()}{rtems\_shell\_mount\_del\_fsys()}}
+{\footnotesize\ttfamily void rtems\+\_\+shell\+\_\+mount\+\_\+del\+\_\+fsys (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structrtems__shell__filesystems__tt}{rtems\+\_\+shell\+\_\+filesystems\+\_\+t}} $\ast$}]{fs }\end{DoxyParamCaption})}
+
+Delete file system mount configuration from the mount command.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em fs} & The file system mount data to remove. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{shell_8h_ad9ff455108eebd059636e6e79aa9ed78}\label{shell_8h_ad9ff455108eebd059636e6e79aa9ed78}} 
+\index{shell.h@{shell.h}!rtems\_shell\_script@{rtems\_shell\_script}}
+\index{rtems\_shell\_script@{rtems\_shell\_script}!shell.h@{shell.h}}
+\subsubsection{\texorpdfstring{rtems\_shell\_script()}{rtems\_shell\_script()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} rtems\+\_\+shell\+\_\+script (\begin{DoxyParamCaption}\item[{const char $\ast$}]{task\+\_\+name,  }\item[{size\+\_\+t}]{task\+\_\+stacksize,  }\item[{\mbox{\hyperlink{group__ClassicTasks_gaa80a0c0938307d1e99d0eb5fee765b47}{rtems\+\_\+task\+\_\+priority}}}]{task\+\_\+priority,  }\item[{const char $\ast$}]{input,  }\item[{const char $\ast$}]{output,  }\item[{bool}]{output\+\_\+append,  }\item[{bool}]{wait,  }\item[{bool}]{echo }\end{DoxyParamCaption})}
+
+Run a shell script creating a shell tasks to execute the command under.
+
+
+\begin{DoxyParams}{Parameters}
+{\em task\+\_\+name} & Name of the shell task. \\
+\hline
+{\em task\+\_\+stacksize} & The size of the stack. If 0 the default size is used. \\
+\hline
+{\em task\+\_\+priority} & The priority the shell runs at. \\
+\hline
+{\em input} & The file of commands. Can be \textquotesingle{}stdin\textquotesingle{} to use stdin. \\
+\hline
+{\em output} & The output file to write commands to. Can be \textquotesingle{}stdout\textquotesingle{}, \textquotesingle{}stderr\textquotesingle{} or \textquotesingle{}/dev/null\textquotesingle{}. \\
+\hline
+{\em output\+\_\+append} & Append the output to the file or truncate the file. Create if it does not exist. \\
+\hline
+{\em wait} & Wait for the script to finish. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{shell_8h_aece4c7db09d1edf8e6e1c083cc4b0643}\label{shell_8h_aece4c7db09d1edf8e6e1c083cc4b0643}} 
+\index{shell.h@{shell.h}!rtems\_shell\_wait\_for\_explicit\_input@{rtems\_shell\_wait\_for\_explicit\_input}}
+\index{rtems\_shell\_wait\_for\_explicit\_input@{rtems\_shell\_wait\_for\_explicit\_input}!shell.h@{shell.h}}
+\subsubsection{\texorpdfstring{rtems\_shell\_wait\_for\_explicit\_input()}{rtems\_shell\_wait\_for\_explicit\_input()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} rtems\+\_\+shell\+\_\+wait\+\_\+for\+\_\+explicit\+\_\+input (\begin{DoxyParamCaption}\item[{int}]{fd,  }\item[{int}]{timeout\+\_\+in\+\_\+seconds,  }\item[{rtems\+\_\+shell\+\_\+wait\+\_\+for\+\_\+input\+\_\+notification}]{notification,  }\item[{void $\ast$}]{notification\+\_\+arg,  }\item[{int}]{desired\+\_\+input }\end{DoxyParamCaption})}
+
+
+
+Waits for explicit input. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em desired\+\_\+input} & An explicit unsigned character to wait for or -\/1 to accept any input.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em R\+T\+E\+M\+S\+\_\+\+S\+U\+C\+C\+E\+S\+S\+F\+UL} & Input detected. \\
+\hline
+{\em R\+T\+E\+M\+S\+\_\+\+T\+I\+M\+E\+O\+UT} & Timeout expired. \\
+\hline
+{\em R\+T\+E\+M\+S\+\_\+\+U\+N\+S\+A\+T\+I\+S\+F\+I\+ED} & Cannot change or restore termios attributes. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{shell_8h_a2736cb87055691af6ae641e5e5f3db88}\label{shell_8h_a2736cb87055691af6ae641e5e5f3db88}} 
+\index{shell.h@{shell.h}!rtems\_shell\_wait\_for\_input@{rtems\_shell\_wait\_for\_input}}
+\index{rtems\_shell\_wait\_for\_input@{rtems\_shell\_wait\_for\_input}!shell.h@{shell.h}}
+\subsubsection{\texorpdfstring{rtems\_shell\_wait\_for\_input()}{rtems\_shell\_wait\_for\_input()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} rtems\+\_\+shell\+\_\+wait\+\_\+for\+\_\+input (\begin{DoxyParamCaption}\item[{int}]{fd,  }\item[{int}]{timeout\+\_\+in\+\_\+seconds,  }\item[{rtems\+\_\+shell\+\_\+wait\+\_\+for\+\_\+input\+\_\+notification}]{notification,  }\item[{void $\ast$}]{notification\+\_\+arg }\end{DoxyParamCaption})}
+
+
+
+Waits for input. 
+
+
+\begin{DoxyRetVals}{Return values}
+{\em R\+T\+E\+M\+S\+\_\+\+S\+U\+C\+C\+E\+S\+S\+F\+UL} & Input detected. \\
+\hline
+{\em R\+T\+E\+M\+S\+\_\+\+T\+I\+M\+E\+O\+UT} & Timeout expired. \\
+\hline
+{\em R\+T\+E\+M\+S\+\_\+\+U\+N\+S\+A\+T\+I\+S\+F\+I\+ED} & Cannot change or restore termios attributes. \\
+\hline
+\end{DoxyRetVals}

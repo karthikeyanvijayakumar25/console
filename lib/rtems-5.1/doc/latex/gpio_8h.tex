@@ -1,0 +1,1159 @@
+\hypertarget{gpio_8h}{}\section{bsps/include/bsp/gpio.h File Reference}
+\label{gpio_8h}\index{bsps/include/bsp/gpio.h@{bsps/include/bsp/gpio.h}}
+
+
+R\+T\+E\+MS G\+P\+IO A\+PI definition.  
+
+
+{\ttfamily \#include $<$bsp.\+h$>$}\newline
+{\ttfamily \#include $<$rtems.\+h$>$}\newline
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structrtems__gpio__specific__data}{rtems\+\_\+gpio\+\_\+specific\+\_\+data}}
+\begin{DoxyCompactList}\small\item\em Object containing relevant information for assigning a B\+SP specific function to a pin. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structrtems__gpio__interrupt__configuration}{rtems\+\_\+gpio\+\_\+interrupt\+\_\+configuration}}
+\begin{DoxyCompactList}\small\item\em Object containing configuration information regarding interrupts. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structrtems__gpio__pin__conf}{rtems\+\_\+gpio\+\_\+pin\+\_\+conf}}
+\begin{DoxyCompactList}\small\item\em Object containing configuration information to request/update a G\+P\+IO pin. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structrtems__gpio__multiple__pin__select}{rtems\+\_\+gpio\+\_\+multiple\+\_\+pin\+\_\+select}}
+\begin{DoxyCompactList}\small\item\em Object containing configuration information to assign G\+P\+IO functions to multiple pins at the same time. To be used by B\+SP code only. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structrtems__gpio__group__definition}{rtems\+\_\+gpio\+\_\+group\+\_\+definition}}
+\begin{DoxyCompactList}\small\item\em Object containing configuration information to request a G\+P\+IO pin group. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{gpio_8h_a17f9e5206daa3eb5cc9173906e479a65}\label{gpio_8h_a17f9e5206daa3eb5cc9173906e479a65}} 
+\#define {\bfseries G\+P\+I\+O\+\_\+\+L\+A\+S\+T\+\_\+\+B\+A\+N\+K\+\_\+\+P\+I\+NS}~B\+S\+P\+\_\+\+G\+P\+I\+O\+\_\+\+P\+I\+N\+\_\+\+C\+O\+U\+NT \% B\+S\+P\+\_\+\+G\+P\+I\+O\+\_\+\+P\+I\+N\+S\+\_\+\+P\+E\+R\+\_\+\+B\+A\+NK
+\item 
+\mbox{\Hypertarget{gpio_8h_aa906a49cafb2cd5f4b48ab947b4f002e}\label{gpio_8h_aa906a49cafb2cd5f4b48ab947b4f002e}} 
+\#define {\bfseries G\+P\+I\+O\+\_\+\+B\+A\+N\+K\+\_\+\+C\+O\+U\+NT}~B\+S\+P\+\_\+\+G\+P\+I\+O\+\_\+\+P\+I\+N\+\_\+\+C\+O\+U\+NT / B\+S\+P\+\_\+\+G\+P\+I\+O\+\_\+\+P\+I\+N\+S\+\_\+\+P\+E\+R\+\_\+\+B\+A\+NK
+\item 
+\mbox{\Hypertarget{gpio_8h_a17f9e5206daa3eb5cc9173906e479a65}\label{gpio_8h_a17f9e5206daa3eb5cc9173906e479a65}} 
+\#define {\bfseries G\+P\+I\+O\+\_\+\+L\+A\+S\+T\+\_\+\+B\+A\+N\+K\+\_\+\+P\+I\+NS}~B\+S\+P\+\_\+\+G\+P\+I\+O\+\_\+\+P\+I\+N\+S\+\_\+\+P\+E\+R\+\_\+\+B\+A\+NK
+\item 
+\mbox{\Hypertarget{gpio_8h_a7d9ce81b5d47ed704b87cf3810e993f9}\label{gpio_8h_a7d9ce81b5d47ed704b87cf3810e993f9}} 
+\#define {\bfseries G\+P\+I\+O\+\_\+\+S\+E\+L\+E\+C\+T\+\_\+\+B\+A\+N\+K\+\_\+\+C\+O\+U\+NT}~B\+S\+P\+\_\+\+G\+P\+I\+O\+\_\+\+P\+I\+N\+S\+\_\+\+P\+E\+R\+\_\+\+B\+A\+NK / B\+S\+P\+\_\+\+G\+P\+I\+O\+\_\+\+P\+I\+N\+S\+\_\+\+P\+E\+R\+\_\+\+S\+E\+L\+E\+C\+T\+\_\+\+B\+A\+NK
+\item 
+\mbox{\Hypertarget{gpio_8h_aae468f54304975719b2168979b130f98}\label{gpio_8h_aae468f54304975719b2168979b130f98}} 
+\#define {\bfseries I\+N\+T\+E\+R\+R\+U\+P\+T\+\_\+\+S\+E\+R\+V\+E\+R\+\_\+\+P\+R\+I\+O\+R\+I\+TY}~1
+\item 
+\mbox{\Hypertarget{gpio_8h_ad7656e9bac97f1464be0a92bbe2bd346}\label{gpio_8h_ad7656e9bac97f1464be0a92bbe2bd346}} 
+\#define {\bfseries I\+N\+T\+E\+R\+R\+U\+P\+T\+\_\+\+S\+E\+R\+V\+E\+R\+\_\+\+S\+T\+A\+C\+K\+\_\+\+S\+I\+ZE}~2 $\ast$ \mbox{\hyperlink{group__RTEMSAPIClassic_ga2e35188053c5e97a85df8e3aa4d23d2f}{R\+T\+E\+M\+S\+\_\+\+M\+I\+N\+I\+M\+U\+M\+\_\+\+S\+T\+A\+C\+K\+\_\+\+S\+I\+ZE}}
+\item 
+\mbox{\Hypertarget{gpio_8h_aaac0ce2819d88b92865db651a651ac14}\label{gpio_8h_aaac0ce2819d88b92865db651a651ac14}} 
+\#define {\bfseries I\+N\+T\+E\+R\+R\+U\+P\+T\+\_\+\+S\+E\+R\+V\+E\+R\+\_\+\+M\+O\+D\+ES}~\mbox{\hyperlink{group__ClassicModes_ga0559c65edac08e290536d0c211171a7e}{R\+T\+E\+M\+S\+\_\+\+T\+I\+M\+E\+S\+L\+I\+CE}} $\vert$ \mbox{\hyperlink{group__ClassicModes_gaf10ca77d8ec042125324421ae1c307a9}{R\+T\+E\+M\+S\+\_\+\+P\+R\+E\+E\+M\+PT}}
+\item 
+\mbox{\Hypertarget{gpio_8h_a4a9d6c7215eec1c6ef0501689f667809}\label{gpio_8h_a4a9d6c7215eec1c6ef0501689f667809}} 
+\#define {\bfseries I\+N\+T\+E\+R\+R\+U\+P\+T\+\_\+\+S\+E\+R\+V\+E\+R\+\_\+\+A\+T\+T\+R\+I\+B\+U\+T\+ES}~\mbox{\hyperlink{group__ClassicAttributes_gae5dc2c331679bb5da53ab70010061252}{R\+T\+E\+M\+S\+\_\+\+D\+E\+F\+A\+U\+L\+T\+\_\+\+A\+T\+T\+R\+I\+B\+U\+T\+ES}}
+\item 
+\mbox{\Hypertarget{gpio_8h_ad6bfa5d081f10733f6bc01bd75bbbd7e}\label{gpio_8h_ad6bfa5d081f10733f6bc01bd75bbbd7e}} 
+\#define {\bfseries G\+P\+I\+O\+\_\+\+I\+N\+P\+U\+T\+\_\+\+E\+R\+R\+OR}~$\sim$0
+\end{DoxyCompactItemize}
+\subsection*{G\+P\+IO data structures}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{gpio_8h_add28697559b41893e0754f35509bf835}{rtems\+\_\+gpio\+\_\+pull\+\_\+mode}} \{ {\bfseries P\+U\+L\+L\+\_\+\+UP} = 1, 
+{\bfseries P\+U\+L\+L\+\_\+\+D\+O\+WN}, 
+{\bfseries N\+O\+\_\+\+P\+U\+L\+L\+\_\+\+R\+E\+S\+I\+S\+T\+OR}
+ \}
+\begin{DoxyCompactList}\small\item\em The set of possible configurations for a G\+P\+IO pull-\/up resistor. \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{gpio_8h_a0dec0f66d467b092b41dafe3d731a0d1}{rtems\+\_\+gpio\+\_\+function}} \{ {\bfseries D\+I\+G\+I\+T\+A\+L\+\_\+\+I\+N\+P\+UT} = 0, 
+\mbox{\hyperlink{gpio_8h_a0dec0f66d467b092b41dafe3d731a0d1a7086d40d7021f0fb40ae172f506230cb}{D\+I\+G\+I\+T\+A\+L\+\_\+\+O\+U\+T\+P\+UT}}, 
+{\bfseries B\+S\+P\+\_\+\+S\+P\+E\+C\+I\+F\+IC}, 
+{\bfseries N\+O\+T\+\_\+\+U\+S\+ED}
+ \}
+\begin{DoxyCompactList}\small\item\em The set of possible functions a pin can have. \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{gpio_8h_a941c7497a28a335b0b05e1ebfd471ddc}{rtems\+\_\+gpio\+\_\+interrupt}} \{ \newline
+{\bfseries F\+A\+L\+L\+I\+N\+G\+\_\+\+E\+D\+GE} = 0, 
+{\bfseries R\+I\+S\+I\+N\+G\+\_\+\+E\+D\+GE}, 
+{\bfseries L\+O\+W\+\_\+\+L\+E\+V\+EL}, 
+{\bfseries H\+I\+G\+H\+\_\+\+L\+E\+V\+EL}, 
+\newline
+{\bfseries B\+O\+T\+H\+\_\+\+E\+D\+G\+ES}, 
+{\bfseries B\+O\+T\+H\+\_\+\+L\+E\+V\+E\+LS}, 
+{\bfseries N\+O\+NE}
+ \}
+\begin{DoxyCompactList}\small\item\em The set of possible interrupts a G\+P\+IO pin can generate. \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{gpio_8h_a22ef6f3b12eae878a51eaf96f72437ea}{rtems\+\_\+gpio\+\_\+irq\+\_\+state}} \{ {\bfseries I\+R\+Q\+\_\+\+H\+A\+N\+D\+L\+ED}, 
+{\bfseries I\+R\+Q\+\_\+\+N\+O\+NE}
+ \}
+\begin{DoxyCompactList}\small\item\em The set of possible handled states an user-\/defined interrupt handler can return. \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{gpio_8h_a5c0bd60f2caeb36c424b17c888331b8f}{rtems\+\_\+gpio\+\_\+handler\+\_\+flag}} \{ {\bfseries S\+H\+A\+R\+E\+D\+\_\+\+H\+A\+N\+D\+L\+ER}, 
+{\bfseries U\+N\+I\+Q\+U\+E\+\_\+\+H\+A\+N\+D\+L\+ER}
+ \}
+\begin{DoxyCompactList}\small\item\em The set of flags to specify an user-\/defined interrupt handler uniqueness on a G\+P\+IO pin. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{gpio_8h_aed27b670ca2bf48f96336d68be727a8b}\label{gpio_8h_aed27b670ca2bf48f96336d68be727a8b}} 
+typedef struct \mbox{\hyperlink{structrtems__gpio__group}{rtems\+\_\+gpio\+\_\+group}} \mbox{\hyperlink{gpio_8h_aed27b670ca2bf48f96336d68be727a8b}{rtems\+\_\+gpio\+\_\+group}}
+\begin{DoxyCompactList}\small\item\em Opaque type for a G\+P\+IO pin group. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{gpio Usage}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{gpio_8h_a569b507754f117c929de86f9ea24c27b}{rtems\+\_\+gpio\+\_\+initialize}} (void)
+\begin{DoxyCompactList}\small\item\em Initializes the G\+P\+IO A\+PI. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structrtems__gpio__group}{rtems\+\_\+gpio\+\_\+group}} $\ast$ \mbox{\hyperlink{gpio_8h_aebb1cf0d1a0a8997ff47df3e9f66eeeb}{rtems\+\_\+gpio\+\_\+create\+\_\+pin\+\_\+group}} (void)
+\begin{DoxyCompactList}\small\item\em Instantiates a G\+P\+IO pin group. To define the group. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{gpio_8h_ae1f53fbcb3890d7c55df0ae3d41c61ed}\label{gpio_8h_ae1f53fbcb3890d7c55df0ae3d41c61ed}} 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} {\bfseries rtems\+\_\+gpio\+\_\+define\+\_\+pin\+\_\+group} (const \mbox{\hyperlink{structrtems__gpio__group__definition}{rtems\+\_\+gpio\+\_\+group\+\_\+definition}} $\ast$group\+\_\+definition, \mbox{\hyperlink{structrtems__gpio__group}{rtems\+\_\+gpio\+\_\+group}} $\ast$group)
+\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{gpio_8h_ab47ad2030469bd1d81dd6506ffe09df2}{rtems\+\_\+gpio\+\_\+write\+\_\+group}} (uint32\+\_\+t data, \mbox{\hyperlink{structrtems__gpio__group}{rtems\+\_\+gpio\+\_\+group}} $\ast$group)
+\begin{DoxyCompactList}\small\item\em Writes a value to the group\textquotesingle{}s digital outputs. The pins order is as defined in the group definition. \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{gpio_8h_a2c5e4518cabe5b0a8ac570ea20a98417}{rtems\+\_\+gpio\+\_\+read\+\_\+group}} (\mbox{\hyperlink{structrtems__gpio__group}{rtems\+\_\+gpio\+\_\+group}} $\ast$group)
+\begin{DoxyCompactList}\small\item\em Reads the value/level of the group\textquotesingle{}s digital inputs. The pins order is as defined in the group definition. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{gpio_8h_a1658da3186e28124ec5fe11f29c4e02a}{rtems\+\_\+gpio\+\_\+group\+\_\+bsp\+\_\+specific\+\_\+operation}} (\mbox{\hyperlink{structrtems__gpio__group}{rtems\+\_\+gpio\+\_\+group}} $\ast$group, void $\ast$arg)
+\begin{DoxyCompactList}\small\item\em Performs a B\+SP specific operation on a group of pins. The pins order is as defined in the group definition. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{gpio_8h_ac22d10d49dd19cc62b50fff42945a57a}{rtems\+\_\+gpio\+\_\+request\+\_\+configuration}} (const \mbox{\hyperlink{structrtems__gpio__pin__conf}{rtems\+\_\+gpio\+\_\+pin\+\_\+conf}} $\ast$conf)
+\begin{DoxyCompactList}\small\item\em Requests a G\+P\+IO pin configuration. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{gpio_8h_a8953ad3c39c57114472330be3043ca54}{rtems\+\_\+gpio\+\_\+update\+\_\+configuration}} (const \mbox{\hyperlink{structrtems__gpio__pin__conf}{rtems\+\_\+gpio\+\_\+pin\+\_\+conf}} $\ast$conf)
+\begin{DoxyCompactList}\small\item\em Updates the current configuration of a G\+P\+IO pin . \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{gpio_8h_a462e6597484ac8edac564ca08c799cce}{rtems\+\_\+gpio\+\_\+multi\+\_\+set}} (uint32\+\_\+t $\ast$pin\+\_\+numbers, uint32\+\_\+t pin\+\_\+count)
+\begin{DoxyCompactList}\small\item\em Sets multiple output G\+P\+IO pins with the logical high. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{gpio_8h_afe29be9002176e368122afde0bc92141}{rtems\+\_\+gpio\+\_\+multi\+\_\+clear}} (uint32\+\_\+t $\ast$pin\+\_\+numbers, uint32\+\_\+t pin\+\_\+count)
+\begin{DoxyCompactList}\small\item\em Sets multiple output G\+P\+IO pins with the logical low. \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{gpio_8h_ac23d24237cf539a29dd60a104acce7fa}{rtems\+\_\+gpio\+\_\+multi\+\_\+read}} (uint32\+\_\+t $\ast$pin\+\_\+numbers, uint32\+\_\+t pin\+\_\+count)
+\begin{DoxyCompactList}\small\item\em Returns the value (level) of multiple G\+P\+IO input pins. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{gpio_8h_afa865af13489bec5abf91c7da92a79e7}{rtems\+\_\+gpio\+\_\+set}} (uint32\+\_\+t pin\+\_\+number)
+\begin{DoxyCompactList}\small\item\em Sets an output G\+P\+IO pin with the logical high. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{gpio_8h_ac3970793265cc031c20727e26f9eed48}{rtems\+\_\+gpio\+\_\+clear}} (uint32\+\_\+t pin\+\_\+number)
+\begin{DoxyCompactList}\small\item\em Sets an output G\+P\+IO pin with the logical low. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{gpio_8h_a5edaeced56e5e7124ec4eb33cfb51867}{rtems\+\_\+gpio\+\_\+get\+\_\+value}} (uint32\+\_\+t pin\+\_\+number)
+\begin{DoxyCompactList}\small\item\em Returns the value (level) of a G\+P\+IO input pin. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{gpio_8h_a1d543b10e6645eee41a5a0e2662a231d}\label{gpio_8h_a1d543b10e6645eee41a5a0e2662a231d}} 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} {\bfseries rtems\+\_\+gpio\+\_\+multi\+\_\+select} (const \mbox{\hyperlink{structrtems__gpio__pin__conf}{rtems\+\_\+gpio\+\_\+pin\+\_\+conf}} $\ast$pins, uint8\+\_\+t pin\+\_\+count)
+\item 
+\mbox{\Hypertarget{gpio_8h_abfccab28b40914118c02fc9e71ff6a5f}\label{gpio_8h_abfccab28b40914118c02fc9e71ff6a5f}} 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} {\bfseries rtems\+\_\+gpio\+\_\+request\+\_\+pin} (uint32\+\_\+t pin\+\_\+number, \mbox{\hyperlink{gpio_8h_a0dec0f66d467b092b41dafe3d731a0d1}{rtems\+\_\+gpio\+\_\+function}} function, bool output\+\_\+enable, bool logic\+\_\+invert, void $\ast$bsp\+\_\+specific)
+\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{gpio_8h_a013e4e3b5af6755d8a40000e297c1251}{rtems\+\_\+gpio\+\_\+resistor\+\_\+mode}} (uint32\+\_\+t pin\+\_\+number, \mbox{\hyperlink{gpio_8h_add28697559b41893e0754f35509bf835}{rtems\+\_\+gpio\+\_\+pull\+\_\+mode}} mode)
+\begin{DoxyCompactList}\small\item\em Configures a single G\+P\+IO pin pull resistor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{gpio_8h_a365b5cf4bcbb396316f2d99569ad95ec}{rtems\+\_\+gpio\+\_\+release\+\_\+pin}} (uint32\+\_\+t pin\+\_\+number)
+\begin{DoxyCompactList}\small\item\em Releases a G\+P\+IO pin, making it available to be used again. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{gpio_8h_ae2da05d49ec0e6f367f1f93b343f0673}{rtems\+\_\+gpio\+\_\+release\+\_\+configuration}} (const \mbox{\hyperlink{structrtems__gpio__pin__conf}{rtems\+\_\+gpio\+\_\+pin\+\_\+conf}} $\ast$conf)
+\begin{DoxyCompactList}\small\item\em Releases a G\+P\+IO pin, making it available to be used again. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{gpio_8h_a1012ba26222c3ba679a0d762051d6451}\label{gpio_8h_a1012ba26222c3ba679a0d762051d6451}} 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} {\bfseries rtems\+\_\+gpio\+\_\+release\+\_\+multiple\+\_\+pins} (const \mbox{\hyperlink{structrtems__gpio__pin__conf}{rtems\+\_\+gpio\+\_\+pin\+\_\+conf}} $\ast$pins, uint32\+\_\+t pin\+\_\+count)
+\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{gpio_8h_abbc68a70ea4826e1ad964f7d53cbd46b}{rtems\+\_\+gpio\+\_\+release\+\_\+pin\+\_\+group}} (\mbox{\hyperlink{structrtems__gpio__group}{rtems\+\_\+gpio\+\_\+group}} $\ast$group)
+\begin{DoxyCompactList}\small\item\em Releases a G\+P\+IO pin group, making the pins used available to be repurposed. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{gpio_8h_abaf46c0d03c01af99d9081038355e7df}{rtems\+\_\+gpio\+\_\+debounce\+\_\+switch}} (uint32\+\_\+t pin\+\_\+number, int ticks)
+\begin{DoxyCompactList}\small\item\em Attaches a debouncing function to a given pin/switch. Debouncing is done by requiring a certain number of clock ticks to pass between interrupts. Any interrupt fired too close to the last will be ignored as it is probably the result of an involuntary switch/button bounce after being released. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{gpio_8h_acc3d502e8578f0b84cf0bdaba043584e}{rtems\+\_\+gpio\+\_\+interrupt\+\_\+handler\+\_\+install}} (uint32\+\_\+t pin\+\_\+number, \mbox{\hyperlink{gpio_8h_a22ef6f3b12eae878a51eaf96f72437ea}{rtems\+\_\+gpio\+\_\+irq\+\_\+state}}($\ast$handler)(void $\ast$arg), void $\ast$arg)
+\begin{DoxyCompactList}\small\item\em Connects a new user-\/defined interrupt handler to a given pin. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{gpio_8h_a235803d69baa6d67f7712786ebf984cb}\label{gpio_8h_a235803d69baa6d67f7712786ebf984cb}} 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} {\bfseries rtems\+\_\+gpio\+\_\+enable\+\_\+interrupt} (uint32\+\_\+t pin\+\_\+number, \mbox{\hyperlink{gpio_8h_a941c7497a28a335b0b05e1ebfd471ddc}{rtems\+\_\+gpio\+\_\+interrupt}} interrupt, \mbox{\hyperlink{gpio_8h_a5c0bd60f2caeb36c424b17c888331b8f}{rtems\+\_\+gpio\+\_\+handler\+\_\+flag}} flag, bool threaded\+\_\+handling, \mbox{\hyperlink{gpio_8h_a22ef6f3b12eae878a51eaf96f72437ea}{rtems\+\_\+gpio\+\_\+irq\+\_\+state}}($\ast$handler)(void $\ast$arg), void $\ast$arg)
+\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{gpio_8h_a5d7e7afe399c24b0811c83aab49cd185}{rtems\+\_\+gpio\+\_\+interrupt\+\_\+handler\+\_\+remove}} (uint32\+\_\+t pin\+\_\+number, \mbox{\hyperlink{gpio_8h_a22ef6f3b12eae878a51eaf96f72437ea}{rtems\+\_\+gpio\+\_\+irq\+\_\+state}}($\ast$handler)(void $\ast$arg), void $\ast$arg)
+\begin{DoxyCompactList}\small\item\em Disconnects an user-\/defined interrupt handler from the given pin. If in the end there are no more user-\/defined handlers connected to the pin, interrupts are disabled on the given pin. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{gpio_8h_a37a34750be9379637427ea4345d46259}{rtems\+\_\+gpio\+\_\+disable\+\_\+interrupt}} (uint32\+\_\+t pin\+\_\+number)
+\begin{DoxyCompactList}\small\item\em Stops interrupts from being generated on a given G\+P\+IO pin and removes the corresponding handler. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{gpio_8h_a871540588ae2d984d118671860bb2cc1}{rtems\+\_\+gpio\+\_\+bsp\+\_\+multi\+\_\+set}} (uint32\+\_\+t bank, uint32\+\_\+t bitmask)
+\begin{DoxyCompactList}\small\item\em Sets multiple output G\+P\+IO pins with the logical high. This must be implemented by each B\+SP. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{gpio_8h_afa7c04d98a3c71b972a41697e1842863}{rtems\+\_\+gpio\+\_\+bsp\+\_\+multi\+\_\+clear}} (uint32\+\_\+t bank, uint32\+\_\+t bitmask)
+\begin{DoxyCompactList}\small\item\em Sets multiple output G\+P\+IO pins with the logical low. This must be implemented by each B\+SP. \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{gpio_8h_aafc08989c3820b4453f9dc1e9a28d165}{rtems\+\_\+gpio\+\_\+bsp\+\_\+multi\+\_\+read}} (uint32\+\_\+t bank, uint32\+\_\+t bitmask)
+\begin{DoxyCompactList}\small\item\em Returns the value (level) of multiple G\+P\+IO input pins. This must be implemented by each B\+SP. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{gpio_8h_af9faec34c779e654ecca12d548e22fe4}\label{gpio_8h_af9faec34c779e654ecca12d548e22fe4}} 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} {\bfseries rtems\+\_\+gpio\+\_\+bsp\+\_\+specific\+\_\+group\+\_\+operation} (uint32\+\_\+t bank, uint32\+\_\+t $\ast$pins, uint32\+\_\+t pin\+\_\+count, void $\ast$arg)
+\item 
+\mbox{\Hypertarget{gpio_8h_ae31ba07e917746a29e7cd061e941f834}\label{gpio_8h_ae31ba07e917746a29e7cd061e941f834}} 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} {\bfseries rtems\+\_\+gpio\+\_\+bsp\+\_\+multi\+\_\+select} (\mbox{\hyperlink{structrtems__gpio__multiple__pin__select}{rtems\+\_\+gpio\+\_\+multiple\+\_\+pin\+\_\+select}} $\ast$pins, uint32\+\_\+t pin\+\_\+count, uint32\+\_\+t select\+\_\+bank)
+\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{gpio_8h_ad9278a36680d984394c55f09283fc630}{rtems\+\_\+gpio\+\_\+bsp\+\_\+set}} (uint32\+\_\+t bank, uint32\+\_\+t pin)
+\begin{DoxyCompactList}\small\item\em Sets an output G\+P\+IO pin with the logical high. This must be implemented by each B\+SP. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{gpio_8h_a592adea1ce8d2b73d8d0b02a6d4e0115}{rtems\+\_\+gpio\+\_\+bsp\+\_\+clear}} (uint32\+\_\+t bank, uint32\+\_\+t pin)
+\begin{DoxyCompactList}\small\item\em Sets an output G\+P\+IO pin with the logical low. This must be implemented by each B\+SP. \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{gpio_8h_a70dfe1594f46a5cacefdc2827b2a0c4a}{rtems\+\_\+gpio\+\_\+bsp\+\_\+get\+\_\+value}} (uint32\+\_\+t bank, uint32\+\_\+t pin)
+\begin{DoxyCompactList}\small\item\em Returns the value (level) of a G\+P\+IO input pin. This must be implemented by each B\+SP. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{gpio_8h_a26775851150867b6ef5cd262cb6a5c9b}{rtems\+\_\+gpio\+\_\+bsp\+\_\+select\+\_\+input}} (uint32\+\_\+t bank, uint32\+\_\+t pin, void $\ast$bsp\+\_\+specific)
+\begin{DoxyCompactList}\small\item\em Assigns the digital input function to the given pin. This must be implemented by each B\+SP. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{gpio_8h_a98e85a6f967075ccafb25834bc23d1d5}{rtems\+\_\+gpio\+\_\+bsp\+\_\+select\+\_\+output}} (uint32\+\_\+t bank, uint32\+\_\+t pin, void $\ast$bsp\+\_\+specific)
+\begin{DoxyCompactList}\small\item\em Assigns the digital output function to the given pin. This must be implemented by each B\+SP. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{gpio_8h_a1fd3a252f28ba7786d85bb2e87dd41cd}{rtems\+\_\+gpio\+\_\+bsp\+\_\+select\+\_\+specific\+\_\+io}} (uint32\+\_\+t bank, uint32\+\_\+t pin, uint32\+\_\+t function, void $\ast$pin\+\_\+data)
+\begin{DoxyCompactList}\small\item\em Assigns a B\+SP specific function to the given pin. This must be implemented by each B\+SP. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{gpio_8h_a8a25b03ab6aa4456d19717824579cb73}{rtems\+\_\+gpio\+\_\+bsp\+\_\+set\+\_\+resistor\+\_\+mode}} (uint32\+\_\+t bank, uint32\+\_\+t pin, \mbox{\hyperlink{gpio_8h_add28697559b41893e0754f35509bf835}{rtems\+\_\+gpio\+\_\+pull\+\_\+mode}} mode)
+\begin{DoxyCompactList}\small\item\em Configures a single G\+P\+IO pin pull resistor. This must be implemented by each B\+SP. \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{gpio_8h_ab709f5c3dfd804da18fbb9a9a40182a0}{rtems\+\_\+gpio\+\_\+bsp\+\_\+interrupt\+\_\+line}} (\mbox{\hyperlink{group__ClassicINTR_ga3e434c197d99f128e78cae4d9358bd8b}{rtems\+\_\+vector\+\_\+number}} vector)
+\begin{DoxyCompactList}\small\item\em Reads and returns a vector/bank interrupt event line. The bitmask should indicate with a 1 if the corresponding pin as a pending interrupt, or 0 if otherwise. The function should clear the interrupt event line before returning. This must be implemented by each B\+SP. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicINTR_ga3e434c197d99f128e78cae4d9358bd8b}{rtems\+\_\+vector\+\_\+number}} \mbox{\hyperlink{gpio_8h_afd37aeabdf0cc490a9940f0998f7d668}{rtems\+\_\+gpio\+\_\+bsp\+\_\+get\+\_\+vector}} (uint32\+\_\+t bank)
+\begin{DoxyCompactList}\small\item\em Calculates a vector number for a given G\+P\+IO bank. This must be implemented by each B\+SP. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{gpio_8h_a5600f7ffdca5e11b5a607136f00a80ad}{rtems\+\_\+gpio\+\_\+bsp\+\_\+enable\+\_\+interrupt}} (uint32\+\_\+t bank, uint32\+\_\+t pin, \mbox{\hyperlink{gpio_8h_a941c7497a28a335b0b05e1ebfd471ddc}{rtems\+\_\+gpio\+\_\+interrupt}} interrupt)
+\begin{DoxyCompactList}\small\item\em Enables interrupts to be generated on a given G\+P\+IO pin. This must be implemented by each B\+SP. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{gpio_8h_a922ef6b0b9a1bc76d2a3cdf2eaef670d}{rtems\+\_\+gpio\+\_\+bsp\+\_\+disable\+\_\+interrupt}} (uint32\+\_\+t bank, uint32\+\_\+t pin, \mbox{\hyperlink{gpio_8h_a941c7497a28a335b0b05e1ebfd471ddc}{rtems\+\_\+gpio\+\_\+interrupt}} interrupt)
+\begin{DoxyCompactList}\small\item\em Stops interrupts from being generated on a given G\+P\+IO pin. This must be implemented by each B\+SP. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+R\+T\+E\+MS G\+P\+IO A\+PI definition. 
+
+
+
+\subsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{gpio_8h_a0dec0f66d467b092b41dafe3d731a0d1}\label{gpio_8h_a0dec0f66d467b092b41dafe3d731a0d1}} 
+\index{gpio.h@{gpio.h}!rtems\_gpio\_function@{rtems\_gpio\_function}}
+\index{rtems\_gpio\_function@{rtems\_gpio\_function}!gpio.h@{gpio.h}}
+\subsubsection{\texorpdfstring{rtems\_gpio\_function}{rtems\_gpio\_function}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{gpio_8h_a0dec0f66d467b092b41dafe3d731a0d1}{rtems\+\_\+gpio\+\_\+function}}}
+
+
+
+The set of possible functions a pin can have. 
+
+Enumerated type to define a pin function. \begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DIGITAL\_OUTPUT@{DIGITAL\_OUTPUT}!gpio.h@{gpio.h}}\index{gpio.h@{gpio.h}!DIGITAL\_OUTPUT@{DIGITAL\_OUTPUT}}}\mbox{\Hypertarget{gpio_8h_a0dec0f66d467b092b41dafe3d731a0d1a7086d40d7021f0fb40ae172f506230cb}\label{gpio_8h_a0dec0f66d467b092b41dafe3d731a0d1a7086d40d7021f0fb40ae172f506230cb}} 
+D\+I\+G\+I\+T\+A\+L\+\_\+\+O\+U\+T\+P\+UT&Assigns a certain function to a G\+P\+IO pin. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em pin\+\_\+number} & G\+P\+IO pin number. \\
+\hline
+\mbox{\texttt{ in}}  & {\em function} & The new function for the pin. \\
+\hline
+\mbox{\texttt{ in}}  & {\em output\+\_\+enabled} & If T\+R\+UE and then the pin is set with the logical high. Otherwise it is set with logical low. \\
+\hline
+\mbox{\texttt{ in}}  & {\em logic\+\_\+invert} & Reverses the digital I/O logic for D\+I\+G\+I\+T\+A\+L\+\_\+\+I\+N\+P\+UT and D\+I\+G\+I\+T\+A\+L\+\_\+\+O\+U\+T\+P\+UT pins. \\
+\hline
+\mbox{\texttt{ in}}  & {\em bsp\+\_\+specific} & Pointer to a B\+SP defined structure with B\+S\+P-\/specific data. This field is handled by the B\+SP.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em R\+T\+E\+M\+S\+\_\+\+S\+U\+C\+C\+E\+S\+S\+F\+UL} & Pin was configured successfully. \\
+\hline
+{\em R\+T\+E\+M\+S\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+ID} & Pin number is invalid. \\
+\hline
+{\em R\+T\+E\+M\+S\+\_\+\+R\+E\+S\+O\+U\+R\+C\+E\+\_\+\+I\+N\+\_\+\+U\+SE} & The received pin is already being used. \\
+\hline
+{\em R\+T\+E\+M\+S\+\_\+\+U\+N\+S\+A\+T\+I\+S\+F\+I\+ED} & Could not assign the G\+P\+IO function. \\
+\hline
+{\em R\+T\+E\+M\+S\+\_\+\+N\+O\+T\+\_\+\+D\+E\+F\+I\+N\+ED} & G\+P\+IO function not defined, or N\+O\+T\+\_\+\+U\+S\+ED. \\
+\hline
+\end{DoxyRetVals}
+\\
+\hline
+
+\end{DoxyEnumFields}
+\mbox{\Hypertarget{gpio_8h_a5c0bd60f2caeb36c424b17c888331b8f}\label{gpio_8h_a5c0bd60f2caeb36c424b17c888331b8f}} 
+\index{gpio.h@{gpio.h}!rtems\_gpio\_handler\_flag@{rtems\_gpio\_handler\_flag}}
+\index{rtems\_gpio\_handler\_flag@{rtems\_gpio\_handler\_flag}!gpio.h@{gpio.h}}
+\subsubsection{\texorpdfstring{rtems\_gpio\_handler\_flag}{rtems\_gpio\_handler\_flag}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{gpio_8h_a5c0bd60f2caeb36c424b17c888331b8f}{rtems\+\_\+gpio\+\_\+handler\+\_\+flag}}}
+
+
+
+The set of flags to specify an user-\/defined interrupt handler uniqueness on a G\+P\+IO pin. 
+
+Enumerated type to define an interrupt handler shared flag. \mbox{\Hypertarget{gpio_8h_a941c7497a28a335b0b05e1ebfd471ddc}\label{gpio_8h_a941c7497a28a335b0b05e1ebfd471ddc}} 
+\index{gpio.h@{gpio.h}!rtems\_gpio\_interrupt@{rtems\_gpio\_interrupt}}
+\index{rtems\_gpio\_interrupt@{rtems\_gpio\_interrupt}!gpio.h@{gpio.h}}
+\subsubsection{\texorpdfstring{rtems\_gpio\_interrupt}{rtems\_gpio\_interrupt}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{gpio_8h_a941c7497a28a335b0b05e1ebfd471ddc}{rtems\+\_\+gpio\+\_\+interrupt}}}
+
+
+
+The set of possible interrupts a G\+P\+IO pin can generate. 
+
+Enumerated type to define a G\+P\+IO pin interrupt. \mbox{\Hypertarget{gpio_8h_a22ef6f3b12eae878a51eaf96f72437ea}\label{gpio_8h_a22ef6f3b12eae878a51eaf96f72437ea}} 
+\index{gpio.h@{gpio.h}!rtems\_gpio\_irq\_state@{rtems\_gpio\_irq\_state}}
+\index{rtems\_gpio\_irq\_state@{rtems\_gpio\_irq\_state}!gpio.h@{gpio.h}}
+\subsubsection{\texorpdfstring{rtems\_gpio\_irq\_state}{rtems\_gpio\_irq\_state}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{gpio_8h_a22ef6f3b12eae878a51eaf96f72437ea}{rtems\+\_\+gpio\+\_\+irq\+\_\+state}}}
+
+
+
+The set of possible handled states an user-\/defined interrupt handler can return. 
+
+Enumerated type to define an interrupt handler handled state. \mbox{\Hypertarget{gpio_8h_add28697559b41893e0754f35509bf835}\label{gpio_8h_add28697559b41893e0754f35509bf835}} 
+\index{gpio.h@{gpio.h}!rtems\_gpio\_pull\_mode@{rtems\_gpio\_pull\_mode}}
+\index{rtems\_gpio\_pull\_mode@{rtems\_gpio\_pull\_mode}!gpio.h@{gpio.h}}
+\subsubsection{\texorpdfstring{rtems\_gpio\_pull\_mode}{rtems\_gpio\_pull\_mode}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{gpio_8h_add28697559b41893e0754f35509bf835}{rtems\+\_\+gpio\+\_\+pull\+\_\+mode}}}
+
+
+
+The set of possible configurations for a G\+P\+IO pull-\/up resistor. 
+
+Enumerated type to define the possible pull-\/up resistor configurations for a G\+P\+IO pin. 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{gpio_8h_a592adea1ce8d2b73d8d0b02a6d4e0115}\label{gpio_8h_a592adea1ce8d2b73d8d0b02a6d4e0115}} 
+\index{gpio.h@{gpio.h}!rtems\_gpio\_bsp\_clear@{rtems\_gpio\_bsp\_clear}}
+\index{rtems\_gpio\_bsp\_clear@{rtems\_gpio\_bsp\_clear}!gpio.h@{gpio.h}}
+\subsubsection{\texorpdfstring{rtems\_gpio\_bsp\_clear()}{rtems\_gpio\_bsp\_clear()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} rtems\+\_\+gpio\+\_\+bsp\+\_\+clear (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{bank,  }\item[{uint32\+\_\+t}]{pin }\end{DoxyParamCaption})}
+
+
+
+Sets an output G\+P\+IO pin with the logical low. This must be implemented by each B\+SP. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em bank} & G\+P\+IO bank number. \\
+\hline
+\mbox{\texttt{ in}}  & {\em pin} & G\+P\+IO pin number within the given bank.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em R\+T\+E\+M\+S\+\_\+\+S\+U\+C\+C\+E\+S\+S\+F\+UL} & Pin was cleared successfully. \\
+\hline
+{\em R\+T\+E\+M\+S\+\_\+\+U\+N\+S\+A\+T\+I\+S\+F\+I\+ED} & Could not clear the given pin. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{gpio_8h_a922ef6b0b9a1bc76d2a3cdf2eaef670d}\label{gpio_8h_a922ef6b0b9a1bc76d2a3cdf2eaef670d}} 
+\index{gpio.h@{gpio.h}!rtems\_gpio\_bsp\_disable\_interrupt@{rtems\_gpio\_bsp\_disable\_interrupt}}
+\index{rtems\_gpio\_bsp\_disable\_interrupt@{rtems\_gpio\_bsp\_disable\_interrupt}!gpio.h@{gpio.h}}
+\subsubsection{\texorpdfstring{rtems\_gpio\_bsp\_disable\_interrupt()}{rtems\_gpio\_bsp\_disable\_interrupt()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} rtems\+\_\+gpio\+\_\+bsp\+\_\+disable\+\_\+interrupt (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{bank,  }\item[{uint32\+\_\+t}]{pin,  }\item[{\mbox{\hyperlink{gpio_8h_a941c7497a28a335b0b05e1ebfd471ddc}{rtems\+\_\+gpio\+\_\+interrupt}}}]{interrupt }\end{DoxyParamCaption})}
+
+
+
+Stops interrupts from being generated on a given G\+P\+IO pin. This must be implemented by each B\+SP. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em bank} & G\+P\+IO bank number. \\
+\hline
+\mbox{\texttt{ in}}  & {\em pin} & G\+P\+IO pin number within the given bank. \\
+\hline
+\mbox{\texttt{ in}}  & {\em active\+\_\+interrupt} & Interrupt type currently active on this pin.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em R\+T\+E\+M\+S\+\_\+\+S\+U\+C\+C\+E\+S\+S\+F\+UL} & Interrupt successfully disabled for this pin. \\
+\hline
+{\em R\+T\+E\+M\+S\+\_\+\+U\+N\+S\+A\+T\+I\+S\+F\+I\+ED} & Could not disable interrupts on this pin. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{gpio_8h_a5600f7ffdca5e11b5a607136f00a80ad}\label{gpio_8h_a5600f7ffdca5e11b5a607136f00a80ad}} 
+\index{gpio.h@{gpio.h}!rtems\_gpio\_bsp\_enable\_interrupt@{rtems\_gpio\_bsp\_enable\_interrupt}}
+\index{rtems\_gpio\_bsp\_enable\_interrupt@{rtems\_gpio\_bsp\_enable\_interrupt}!gpio.h@{gpio.h}}
+\subsubsection{\texorpdfstring{rtems\_gpio\_bsp\_enable\_interrupt()}{rtems\_gpio\_bsp\_enable\_interrupt()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} rtems\+\_\+gpio\+\_\+bsp\+\_\+enable\+\_\+interrupt (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{bank,  }\item[{uint32\+\_\+t}]{pin,  }\item[{\mbox{\hyperlink{gpio_8h_a941c7497a28a335b0b05e1ebfd471ddc}{rtems\+\_\+gpio\+\_\+interrupt}}}]{interrupt }\end{DoxyParamCaption})}
+
+
+
+Enables interrupts to be generated on a given G\+P\+IO pin. This must be implemented by each B\+SP. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em bank} & G\+P\+IO bank number. \\
+\hline
+\mbox{\texttt{ in}}  & {\em pin} & G\+P\+IO pin number within the given bank. \\
+\hline
+\mbox{\texttt{ in}}  & {\em interrupt} & Type of interrupt to enable for the pin.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em R\+T\+E\+M\+S\+\_\+\+S\+U\+C\+C\+E\+S\+S\+F\+UL} & Interrupt successfully enabled for this pin. \\
+\hline
+{\em R\+T\+E\+M\+S\+\_\+\+U\+N\+S\+A\+T\+I\+S\+F\+I\+ED} & Could not enable the interrupt on the pin. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{gpio_8h_a70dfe1594f46a5cacefdc2827b2a0c4a}\label{gpio_8h_a70dfe1594f46a5cacefdc2827b2a0c4a}} 
+\index{gpio.h@{gpio.h}!rtems\_gpio\_bsp\_get\_value@{rtems\_gpio\_bsp\_get\_value}}
+\index{rtems\_gpio\_bsp\_get\_value@{rtems\_gpio\_bsp\_get\_value}!gpio.h@{gpio.h}}
+\subsubsection{\texorpdfstring{rtems\_gpio\_bsp\_get\_value()}{rtems\_gpio\_bsp\_get\_value()}}
+{\footnotesize\ttfamily uint32\+\_\+t rtems\+\_\+gpio\+\_\+bsp\+\_\+get\+\_\+value (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{bank,  }\item[{uint32\+\_\+t}]{pin }\end{DoxyParamCaption})}
+
+
+
+Returns the value (level) of a G\+P\+IO input pin. This must be implemented by each B\+SP. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em bank} & G\+P\+IO bank number. \\
+\hline
+\mbox{\texttt{ in}}  & {\em pin} & G\+P\+IO pin number within the given bank.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em The} & function must return 0 if the pin level is a logical low, or non zero if it has a logical high. \\
+\hline
+{\em G\+P\+I\+O\+\_\+\+I\+N\+P\+U\+T\+\_\+\+E\+R\+R\+OR} & Could not read the pin level. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{gpio_8h_afd37aeabdf0cc490a9940f0998f7d668}\label{gpio_8h_afd37aeabdf0cc490a9940f0998f7d668}} 
+\index{gpio.h@{gpio.h}!rtems\_gpio\_bsp\_get\_vector@{rtems\_gpio\_bsp\_get\_vector}}
+\index{rtems\_gpio\_bsp\_get\_vector@{rtems\_gpio\_bsp\_get\_vector}!gpio.h@{gpio.h}}
+\subsubsection{\texorpdfstring{rtems\_gpio\_bsp\_get\_vector()}{rtems\_gpio\_bsp\_get\_vector()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__ClassicINTR_ga3e434c197d99f128e78cae4d9358bd8b}{rtems\+\_\+vector\+\_\+number}} rtems\+\_\+gpio\+\_\+bsp\+\_\+get\+\_\+vector (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{bank }\end{DoxyParamCaption})}
+
+
+
+Calculates a vector number for a given G\+P\+IO bank. This must be implemented by each B\+SP. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em bank} & G\+P\+IO bank number.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em The} & corresponding rtems\+\_\+vector\+\_\+number. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{gpio_8h_ab709f5c3dfd804da18fbb9a9a40182a0}\label{gpio_8h_ab709f5c3dfd804da18fbb9a9a40182a0}} 
+\index{gpio.h@{gpio.h}!rtems\_gpio\_bsp\_interrupt\_line@{rtems\_gpio\_bsp\_interrupt\_line}}
+\index{rtems\_gpio\_bsp\_interrupt\_line@{rtems\_gpio\_bsp\_interrupt\_line}!gpio.h@{gpio.h}}
+\subsubsection{\texorpdfstring{rtems\_gpio\_bsp\_interrupt\_line()}{rtems\_gpio\_bsp\_interrupt\_line()}}
+{\footnotesize\ttfamily uint32\+\_\+t rtems\+\_\+gpio\+\_\+bsp\+\_\+interrupt\+\_\+line (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__ClassicINTR_ga3e434c197d99f128e78cae4d9358bd8b}{rtems\+\_\+vector\+\_\+number}}}]{vector }\end{DoxyParamCaption})}
+
+
+
+Reads and returns a vector/bank interrupt event line. The bitmask should indicate with a 1 if the corresponding pin as a pending interrupt, or 0 if otherwise. The function should clear the interrupt event line before returning. This must be implemented by each B\+SP. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em vector} & G\+P\+IO vector/bank.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em Bitmask} & (max 32-\/bit) representing a G\+P\+IO bank, where a bit set indicates an active interrupt on that pin. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{gpio_8h_afa7c04d98a3c71b972a41697e1842863}\label{gpio_8h_afa7c04d98a3c71b972a41697e1842863}} 
+\index{gpio.h@{gpio.h}!rtems\_gpio\_bsp\_multi\_clear@{rtems\_gpio\_bsp\_multi\_clear}}
+\index{rtems\_gpio\_bsp\_multi\_clear@{rtems\_gpio\_bsp\_multi\_clear}!gpio.h@{gpio.h}}
+\subsubsection{\texorpdfstring{rtems\_gpio\_bsp\_multi\_clear()}{rtems\_gpio\_bsp\_multi\_clear()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} rtems\+\_\+gpio\+\_\+bsp\+\_\+multi\+\_\+clear (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{bank,  }\item[{uint32\+\_\+t}]{bitmask }\end{DoxyParamCaption})}
+
+
+
+Sets multiple output G\+P\+IO pins with the logical low. This must be implemented by each B\+SP. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em bank} & G\+P\+IO bank number. \\
+\hline
+\mbox{\texttt{ in}}  & {\em bitmask} & Bitmask of G\+P\+IO pins to clear in the given bank.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em R\+T\+E\+M\+S\+\_\+\+S\+U\+C\+C\+E\+S\+S\+F\+UL} & All pins were cleared successfully. \\
+\hline
+{\em R\+T\+E\+M\+S\+\_\+\+U\+N\+S\+A\+T\+I\+S\+F\+I\+ED} & Could not clear at least one of the pins. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{gpio_8h_aafc08989c3820b4453f9dc1e9a28d165}\label{gpio_8h_aafc08989c3820b4453f9dc1e9a28d165}} 
+\index{gpio.h@{gpio.h}!rtems\_gpio\_bsp\_multi\_read@{rtems\_gpio\_bsp\_multi\_read}}
+\index{rtems\_gpio\_bsp\_multi\_read@{rtems\_gpio\_bsp\_multi\_read}!gpio.h@{gpio.h}}
+\subsubsection{\texorpdfstring{rtems\_gpio\_bsp\_multi\_read()}{rtems\_gpio\_bsp\_multi\_read()}}
+{\footnotesize\ttfamily uint32\+\_\+t rtems\+\_\+gpio\+\_\+bsp\+\_\+multi\+\_\+read (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{bank,  }\item[{uint32\+\_\+t}]{bitmask }\end{DoxyParamCaption})}
+
+
+
+Returns the value (level) of multiple G\+P\+IO input pins. This must be implemented by each B\+SP. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em bank} & G\+P\+IO bank number. \\
+\hline
+\mbox{\texttt{ in}}  & {\em bitmask} & Bitmask of G\+P\+IO pins to read in the given bank.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em The} & function must return a bitmask with the values of the corresponding pins. 0 for logical low and 1 for logical high. \\
+\hline
+{\em G\+P\+I\+O\+\_\+\+I\+N\+P\+U\+T\+\_\+\+E\+R\+R\+OR} & Could not read at least one pin level. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{gpio_8h_a871540588ae2d984d118671860bb2cc1}\label{gpio_8h_a871540588ae2d984d118671860bb2cc1}} 
+\index{gpio.h@{gpio.h}!rtems\_gpio\_bsp\_multi\_set@{rtems\_gpio\_bsp\_multi\_set}}
+\index{rtems\_gpio\_bsp\_multi\_set@{rtems\_gpio\_bsp\_multi\_set}!gpio.h@{gpio.h}}
+\subsubsection{\texorpdfstring{rtems\_gpio\_bsp\_multi\_set()}{rtems\_gpio\_bsp\_multi\_set()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} rtems\+\_\+gpio\+\_\+bsp\+\_\+multi\+\_\+set (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{bank,  }\item[{uint32\+\_\+t}]{bitmask }\end{DoxyParamCaption})}
+
+
+
+Sets multiple output G\+P\+IO pins with the logical high. This must be implemented by each B\+SP. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em bank} & G\+P\+IO bank number. \\
+\hline
+\mbox{\texttt{ in}}  & {\em bitmask} & Bitmask of G\+P\+IO pins to set in the given bank.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em R\+T\+E\+M\+S\+\_\+\+S\+U\+C\+C\+E\+S\+S\+F\+UL} & All pins were set successfully. \\
+\hline
+{\em R\+T\+E\+M\+S\+\_\+\+U\+N\+S\+A\+T\+I\+S\+F\+I\+ED} & Could not set at least one of the pins. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{gpio_8h_a26775851150867b6ef5cd262cb6a5c9b}\label{gpio_8h_a26775851150867b6ef5cd262cb6a5c9b}} 
+\index{gpio.h@{gpio.h}!rtems\_gpio\_bsp\_select\_input@{rtems\_gpio\_bsp\_select\_input}}
+\index{rtems\_gpio\_bsp\_select\_input@{rtems\_gpio\_bsp\_select\_input}!gpio.h@{gpio.h}}
+\subsubsection{\texorpdfstring{rtems\_gpio\_bsp\_select\_input()}{rtems\_gpio\_bsp\_select\_input()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} rtems\+\_\+gpio\+\_\+bsp\+\_\+select\+\_\+input (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{bank,  }\item[{uint32\+\_\+t}]{pin,  }\item[{void $\ast$}]{bsp\+\_\+specific }\end{DoxyParamCaption})}
+
+
+
+Assigns the digital input function to the given pin. This must be implemented by each B\+SP. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em bank} & G\+P\+IO bank number. \\
+\hline
+\mbox{\texttt{ in}}  & {\em pin} & G\+P\+IO pin number within the given bank. \\
+\hline
+\mbox{\texttt{ in}}  & {\em bsp\+\_\+specific} & Pointer to a B\+SP defined structure with B\+S\+P-\/specific data.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em R\+T\+E\+M\+S\+\_\+\+S\+U\+C\+C\+E\+S\+S\+F\+UL} & Function was assigned successfully. \\
+\hline
+{\em R\+T\+E\+M\+S\+\_\+\+U\+N\+S\+A\+T\+I\+S\+F\+I\+ED} & Could not assign the function to the pin. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{gpio_8h_a98e85a6f967075ccafb25834bc23d1d5}\label{gpio_8h_a98e85a6f967075ccafb25834bc23d1d5}} 
+\index{gpio.h@{gpio.h}!rtems\_gpio\_bsp\_select\_output@{rtems\_gpio\_bsp\_select\_output}}
+\index{rtems\_gpio\_bsp\_select\_output@{rtems\_gpio\_bsp\_select\_output}!gpio.h@{gpio.h}}
+\subsubsection{\texorpdfstring{rtems\_gpio\_bsp\_select\_output()}{rtems\_gpio\_bsp\_select\_output()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} rtems\+\_\+gpio\+\_\+bsp\+\_\+select\+\_\+output (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{bank,  }\item[{uint32\+\_\+t}]{pin,  }\item[{void $\ast$}]{bsp\+\_\+specific }\end{DoxyParamCaption})}
+
+
+
+Assigns the digital output function to the given pin. This must be implemented by each B\+SP. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em bank} & G\+P\+IO bank number. \\
+\hline
+\mbox{\texttt{ in}}  & {\em pin} & G\+P\+IO pin number within the given bank. \\
+\hline
+\mbox{\texttt{ in}}  & {\em bsp\+\_\+specific} & Pointer to a B\+SP defined structure with B\+S\+P-\/specific data.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em R\+T\+E\+M\+S\+\_\+\+S\+U\+C\+C\+E\+S\+S\+F\+UL} & Function was assigned successfully. \\
+\hline
+{\em R\+T\+E\+M\+S\+\_\+\+U\+N\+S\+A\+T\+I\+S\+F\+I\+ED} & Could not assign the function to the pin. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{gpio_8h_a1fd3a252f28ba7786d85bb2e87dd41cd}\label{gpio_8h_a1fd3a252f28ba7786d85bb2e87dd41cd}} 
+\index{gpio.h@{gpio.h}!rtems\_gpio\_bsp\_select\_specific\_io@{rtems\_gpio\_bsp\_select\_specific\_io}}
+\index{rtems\_gpio\_bsp\_select\_specific\_io@{rtems\_gpio\_bsp\_select\_specific\_io}!gpio.h@{gpio.h}}
+\subsubsection{\texorpdfstring{rtems\_gpio\_bsp\_select\_specific\_io()}{rtems\_gpio\_bsp\_select\_specific\_io()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} rtems\+\_\+gpio\+\_\+bsp\+\_\+select\+\_\+specific\+\_\+io (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{bank,  }\item[{uint32\+\_\+t}]{pin,  }\item[{uint32\+\_\+t}]{function,  }\item[{void $\ast$}]{pin\+\_\+data }\end{DoxyParamCaption})}
+
+
+
+Assigns a B\+SP specific function to the given pin. This must be implemented by each B\+SP. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em bank} & G\+P\+IO bank number. \\
+\hline
+\mbox{\texttt{ in}}  & {\em pin} & G\+P\+IO pin number within the given bank. \\
+\hline
+\mbox{\texttt{ in}}  & {\em function} & B\+SP defined G\+P\+IO function. \\
+\hline
+\mbox{\texttt{ in}}  & {\em pin\+\_\+data} & Pointer to a B\+SP defined structure with B\+S\+P-\/specific data.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em R\+T\+E\+M\+S\+\_\+\+S\+U\+C\+C\+E\+S\+S\+F\+UL} & Function was assigned successfully. \\
+\hline
+{\em R\+T\+E\+M\+S\+\_\+\+U\+N\+S\+A\+T\+I\+S\+F\+I\+ED} & Could not assign the function to the pin. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{gpio_8h_ad9278a36680d984394c55f09283fc630}\label{gpio_8h_ad9278a36680d984394c55f09283fc630}} 
+\index{gpio.h@{gpio.h}!rtems\_gpio\_bsp\_set@{rtems\_gpio\_bsp\_set}}
+\index{rtems\_gpio\_bsp\_set@{rtems\_gpio\_bsp\_set}!gpio.h@{gpio.h}}
+\subsubsection{\texorpdfstring{rtems\_gpio\_bsp\_set()}{rtems\_gpio\_bsp\_set()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} rtems\+\_\+gpio\+\_\+bsp\+\_\+set (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{bank,  }\item[{uint32\+\_\+t}]{pin }\end{DoxyParamCaption})}
+
+
+
+Sets an output G\+P\+IO pin with the logical high. This must be implemented by each B\+SP. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em bank} & G\+P\+IO bank number. \\
+\hline
+\mbox{\texttt{ in}}  & {\em pin} & G\+P\+IO pin number within the given bank.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em R\+T\+E\+M\+S\+\_\+\+S\+U\+C\+C\+E\+S\+S\+F\+UL} & Pin was set successfully. \\
+\hline
+{\em R\+T\+E\+M\+S\+\_\+\+U\+N\+S\+A\+T\+I\+S\+F\+I\+ED} & Could not set the given pin. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{gpio_8h_a8a25b03ab6aa4456d19717824579cb73}\label{gpio_8h_a8a25b03ab6aa4456d19717824579cb73}} 
+\index{gpio.h@{gpio.h}!rtems\_gpio\_bsp\_set\_resistor\_mode@{rtems\_gpio\_bsp\_set\_resistor\_mode}}
+\index{rtems\_gpio\_bsp\_set\_resistor\_mode@{rtems\_gpio\_bsp\_set\_resistor\_mode}!gpio.h@{gpio.h}}
+\subsubsection{\texorpdfstring{rtems\_gpio\_bsp\_set\_resistor\_mode()}{rtems\_gpio\_bsp\_set\_resistor\_mode()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} rtems\+\_\+gpio\+\_\+bsp\+\_\+set\+\_\+resistor\+\_\+mode (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{bank,  }\item[{uint32\+\_\+t}]{pin,  }\item[{\mbox{\hyperlink{gpio_8h_add28697559b41893e0754f35509bf835}{rtems\+\_\+gpio\+\_\+pull\+\_\+mode}}}]{mode }\end{DoxyParamCaption})}
+
+
+
+Configures a single G\+P\+IO pin pull resistor. This must be implemented by each B\+SP. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em bank} & G\+P\+IO bank number. \\
+\hline
+\mbox{\texttt{ in}}  & {\em pin} & G\+P\+IO pin number within the given bank. \\
+\hline
+\mbox{\texttt{ in}}  & {\em mode} & The pull resistor mode.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em R\+T\+E\+M\+S\+\_\+\+S\+U\+C\+C\+E\+S\+S\+F\+UL} & Pull resistor successfully configured. \\
+\hline
+{\em R\+T\+E\+M\+S\+\_\+\+U\+N\+S\+A\+T\+I\+S\+F\+I\+ED} & Could not set the pull mode. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{gpio_8h_ac3970793265cc031c20727e26f9eed48}\label{gpio_8h_ac3970793265cc031c20727e26f9eed48}} 
+\index{gpio.h@{gpio.h}!rtems\_gpio\_clear@{rtems\_gpio\_clear}}
+\index{rtems\_gpio\_clear@{rtems\_gpio\_clear}!gpio.h@{gpio.h}}
+\subsubsection{\texorpdfstring{rtems\_gpio\_clear()}{rtems\_gpio\_clear()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} rtems\+\_\+gpio\+\_\+clear (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{pin\+\_\+number }\end{DoxyParamCaption})}
+
+
+
+Sets an output G\+P\+IO pin with the logical low. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em pin\+\_\+number} & G\+P\+IO pin number.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em R\+T\+E\+M\+S\+\_\+\+S\+U\+C\+C\+E\+S\+S\+F\+UL} & Pin was cleared successfully. \\
+\hline
+{\em R\+T\+E\+M\+S\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+ID} & Pin number is invalid. \\
+\hline
+{\em R\+T\+E\+M\+S\+\_\+\+N\+O\+T\+\_\+\+C\+O\+N\+F\+I\+G\+U\+R\+ED} & The received pin is not configured as a digital output. \\
+\hline
+{\em R\+T\+E\+M\+S\+\_\+\+U\+N\+S\+A\+T\+I\+S\+F\+I\+ED} & Could not clear the G\+P\+IO pin. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{gpio_8h_aebb1cf0d1a0a8997ff47df3e9f66eeeb}\label{gpio_8h_aebb1cf0d1a0a8997ff47df3e9f66eeeb}} 
+\index{gpio.h@{gpio.h}!rtems\_gpio\_create\_pin\_group@{rtems\_gpio\_create\_pin\_group}}
+\index{rtems\_gpio\_create\_pin\_group@{rtems\_gpio\_create\_pin\_group}!gpio.h@{gpio.h}}
+\subsubsection{\texorpdfstring{rtems\_gpio\_create\_pin\_group()}{rtems\_gpio\_create\_pin\_group()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structrtems__gpio__group}{rtems\+\_\+gpio\+\_\+group}}$\ast$ rtems\+\_\+gpio\+\_\+create\+\_\+pin\+\_\+group (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Instantiates a G\+P\+IO pin group. To define the group. 
+
+\begin{DoxySeeAlso}{See also}
+rtems\+\_\+gpio\+\_\+define\+\_\+pin\+\_\+group().
+\end{DoxySeeAlso}
+
+\begin{DoxyRetVals}{Return values}
+{\em \mbox{\hyperlink{structrtems__gpio__group}{rtems\+\_\+gpio\+\_\+group}}} & pointer. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{gpio_8h_abaf46c0d03c01af99d9081038355e7df}\label{gpio_8h_abaf46c0d03c01af99d9081038355e7df}} 
+\index{gpio.h@{gpio.h}!rtems\_gpio\_debounce\_switch@{rtems\_gpio\_debounce\_switch}}
+\index{rtems\_gpio\_debounce\_switch@{rtems\_gpio\_debounce\_switch}!gpio.h@{gpio.h}}
+\subsubsection{\texorpdfstring{rtems\_gpio\_debounce\_switch()}{rtems\_gpio\_debounce\_switch()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} rtems\+\_\+gpio\+\_\+debounce\+\_\+switch (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{pin\+\_\+number,  }\item[{int}]{ticks }\end{DoxyParamCaption})}
+
+
+
+Attaches a debouncing function to a given pin/switch. Debouncing is done by requiring a certain number of clock ticks to pass between interrupts. Any interrupt fired too close to the last will be ignored as it is probably the result of an involuntary switch/button bounce after being released. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em pin\+\_\+number} & G\+P\+IO pin number. \\
+\hline
+\mbox{\texttt{ in}}  & {\em ticks} & Minimum number of clock ticks that must pass between interrupts so it can be considered a legitimate interrupt.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em R\+T\+E\+M\+S\+\_\+\+S\+U\+C\+C\+E\+S\+S\+F\+UL} & Debounce function successfully attached to the pin. \\
+\hline
+{\em R\+T\+E\+M\+S\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+ID} & Pin number is invalid. \\
+\hline
+{\em R\+T\+E\+M\+S\+\_\+\+N\+O\+T\+\_\+\+C\+O\+N\+F\+I\+G\+U\+R\+ED} & The current pin is not configured as a digital input, hence it can not be connected to a switch, or interrupts are not enabled for this pin. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{gpio_8h_a37a34750be9379637427ea4345d46259}\label{gpio_8h_a37a34750be9379637427ea4345d46259}} 
+\index{gpio.h@{gpio.h}!rtems\_gpio\_disable\_interrupt@{rtems\_gpio\_disable\_interrupt}}
+\index{rtems\_gpio\_disable\_interrupt@{rtems\_gpio\_disable\_interrupt}!gpio.h@{gpio.h}}
+\subsubsection{\texorpdfstring{rtems\_gpio\_disable\_interrupt()}{rtems\_gpio\_disable\_interrupt()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} rtems\+\_\+gpio\+\_\+disable\+\_\+interrupt (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{pin\+\_\+number }\end{DoxyParamCaption})}
+
+
+
+Stops interrupts from being generated on a given G\+P\+IO pin and removes the corresponding handler. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em pin\+\_\+number} & G\+P\+IO pin number.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em R\+T\+E\+M\+S\+\_\+\+S\+U\+C\+C\+E\+S\+S\+F\+UL} & Interrupt successfully disabled for this pin. \\
+\hline
+{\em R\+T\+E\+M\+S\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+ID} & Pin number is invalid. \\
+\hline
+{\em R\+T\+E\+M\+S\+\_\+\+N\+O\+T\+\_\+\+C\+O\+N\+F\+I\+G\+U\+R\+ED} & Pin has no active interrupts. \\
+\hline
+{\em R\+T\+E\+M\+S\+\_\+\+U\+N\+S\+A\+T\+I\+S\+F\+I\+ED} & Could not remove the current interrupt handler, could not recognize the current active interrupt on this pin or could not disable interrupts on this pin. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{gpio_8h_a5edaeced56e5e7124ec4eb33cfb51867}\label{gpio_8h_a5edaeced56e5e7124ec4eb33cfb51867}} 
+\index{gpio.h@{gpio.h}!rtems\_gpio\_get\_value@{rtems\_gpio\_get\_value}}
+\index{rtems\_gpio\_get\_value@{rtems\_gpio\_get\_value}!gpio.h@{gpio.h}}
+\subsubsection{\texorpdfstring{rtems\_gpio\_get\_value()}{rtems\_gpio\_get\_value()}}
+{\footnotesize\ttfamily int rtems\+\_\+gpio\+\_\+get\+\_\+value (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{pin\+\_\+number }\end{DoxyParamCaption})}
+
+
+
+Returns the value (level) of a G\+P\+IO input pin. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em pin\+\_\+number} & G\+P\+IO pin number.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em The} & function returns 0 or 1 depending on the pin current logical value. \\
+\hline
+{\em -\/1} & Pin number is invalid, or not a digital input pin. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{gpio_8h_a1658da3186e28124ec5fe11f29c4e02a}\label{gpio_8h_a1658da3186e28124ec5fe11f29c4e02a}} 
+\index{gpio.h@{gpio.h}!rtems\_gpio\_group\_bsp\_specific\_operation@{rtems\_gpio\_group\_bsp\_specific\_operation}}
+\index{rtems\_gpio\_group\_bsp\_specific\_operation@{rtems\_gpio\_group\_bsp\_specific\_operation}!gpio.h@{gpio.h}}
+\subsubsection{\texorpdfstring{rtems\_gpio\_group\_bsp\_specific\_operation()}{rtems\_gpio\_group\_bsp\_specific\_operation()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} rtems\+\_\+gpio\+\_\+group\+\_\+bsp\+\_\+specific\+\_\+operation (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structrtems__gpio__group}{rtems\+\_\+gpio\+\_\+group}} $\ast$}]{group,  }\item[{void $\ast$}]{arg }\end{DoxyParamCaption})}
+
+
+
+Performs a B\+SP specific operation on a group of pins. The pins order is as defined in the group definition. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em group} & Reference to the group. \\
+\hline
+\mbox{\texttt{ in}}  & {\em arg} & Pointer to a B\+SP defined structure with B\+S\+P-\/specific data. This field is handled by the B\+SP.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em R\+T\+E\+M\+S\+\_\+\+S\+U\+C\+C\+E\+S\+S\+F\+UL} & Operation completed with success. \\
+\hline
+{\em R\+T\+E\+M\+S\+\_\+\+N\+O\+T\+\_\+\+D\+E\+F\+I\+N\+ED} & Group has no B\+SP specific pins, or the B\+SP does not support B\+SP specific operations for groups. \\
+\hline
+{\em R\+T\+E\+M\+S\+\_\+\+U\+N\+S\+A\+T\+I\+S\+F\+I\+ED} & Could not operate on at least one of the pins. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{gpio_8h_a569b507754f117c929de86f9ea24c27b}\label{gpio_8h_a569b507754f117c929de86f9ea24c27b}} 
+\index{gpio.h@{gpio.h}!rtems\_gpio\_initialize@{rtems\_gpio\_initialize}}
+\index{rtems\_gpio\_initialize@{rtems\_gpio\_initialize}!gpio.h@{gpio.h}}
+\subsubsection{\texorpdfstring{rtems\_gpio\_initialize()}{rtems\_gpio\_initialize()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} rtems\+\_\+gpio\+\_\+initialize (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Initializes the G\+P\+IO A\+PI. 
+
+
+\begin{DoxyRetVals}{Return values}
+{\em R\+T\+E\+M\+S\+\_\+\+S\+U\+C\+C\+E\+S\+S\+F\+UL} & A\+PI successfully initialized. \\
+\hline
+{\em $\ast$} & \\
+\hline
+\end{DoxyRetVals}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{group__ClassicSem_ga215ed3e3aa56c2f5204edc629985f2aa}{rtems\+\_\+semaphore\+\_\+create()}}. 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{gpio_8h_acc3d502e8578f0b84cf0bdaba043584e}\label{gpio_8h_acc3d502e8578f0b84cf0bdaba043584e}} 
+\index{gpio.h@{gpio.h}!rtems\_gpio\_interrupt\_handler\_install@{rtems\_gpio\_interrupt\_handler\_install}}
+\index{rtems\_gpio\_interrupt\_handler\_install@{rtems\_gpio\_interrupt\_handler\_install}!gpio.h@{gpio.h}}
+\subsubsection{\texorpdfstring{rtems\_gpio\_interrupt\_handler\_install()}{rtems\_gpio\_interrupt\_handler\_install()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} rtems\+\_\+gpio\+\_\+interrupt\+\_\+handler\+\_\+install (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{pin\+\_\+number,  }\item[{\mbox{\hyperlink{gpio_8h_a22ef6f3b12eae878a51eaf96f72437ea}{rtems\+\_\+gpio\+\_\+irq\+\_\+state}}($\ast$)(void $\ast$arg)}]{handler,  }\item[{void $\ast$}]{arg }\end{DoxyParamCaption})}
+
+
+
+Connects a new user-\/defined interrupt handler to a given pin. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em pin\+\_\+number} & G\+P\+IO pin number. \\
+\hline
+\mbox{\texttt{ in}}  & {\em handler} & Pointer to a function that will be called every time the enabled interrupt for the given pin is generated. This function must return information about its handled/unhandled state. \\
+\hline
+\mbox{\texttt{ in}}  & {\em arg} & Void pointer to the arguments of the user-\/defined handler.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em R\+T\+E\+M\+S\+\_\+\+S\+U\+C\+C\+E\+S\+S\+F\+UL} & Handler successfully connected to this pin. \\
+\hline
+{\em R\+T\+E\+M\+S\+\_\+\+N\+O\+\_\+\+M\+E\+M\+O\+RY} & Could not connect more user-\/defined handlers to the given pin. \\
+\hline
+{\em R\+T\+E\+M\+S\+\_\+\+N\+O\+T\+\_\+\+C\+O\+N\+F\+I\+G\+U\+R\+ED} & The given pin has no interrupt configured. \\
+\hline
+{\em R\+T\+E\+M\+S\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+ID} & Pin number is invalid. \\
+\hline
+{\em R\+T\+E\+M\+S\+\_\+\+T\+O\+O\+\_\+\+M\+A\+NY} & The pin\textquotesingle{}s current handler is set as unique. \\
+\hline
+{\em R\+T\+E\+M\+S\+\_\+\+R\+E\+S\+O\+U\+R\+C\+E\+\_\+\+I\+N\+\_\+\+U\+SE} & The current user-\/defined handler for this pin is unique. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{gpio_8h_a5d7e7afe399c24b0811c83aab49cd185}\label{gpio_8h_a5d7e7afe399c24b0811c83aab49cd185}} 
+\index{gpio.h@{gpio.h}!rtems\_gpio\_interrupt\_handler\_remove@{rtems\_gpio\_interrupt\_handler\_remove}}
+\index{rtems\_gpio\_interrupt\_handler\_remove@{rtems\_gpio\_interrupt\_handler\_remove}!gpio.h@{gpio.h}}
+\subsubsection{\texorpdfstring{rtems\_gpio\_interrupt\_handler\_remove()}{rtems\_gpio\_interrupt\_handler\_remove()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} rtems\+\_\+gpio\+\_\+interrupt\+\_\+handler\+\_\+remove (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{pin\+\_\+number,  }\item[{\mbox{\hyperlink{gpio_8h_a22ef6f3b12eae878a51eaf96f72437ea}{rtems\+\_\+gpio\+\_\+irq\+\_\+state}}($\ast$)(void $\ast$arg)}]{handler,  }\item[{void $\ast$}]{arg }\end{DoxyParamCaption})}
+
+
+
+Disconnects an user-\/defined interrupt handler from the given pin. If in the end there are no more user-\/defined handlers connected to the pin, interrupts are disabled on the given pin. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em pin\+\_\+number} & G\+P\+IO pin number. \\
+\hline
+\mbox{\texttt{ in}}  & {\em handler} & Pointer to the user-\/defined handler \\
+\hline
+\mbox{\texttt{ in}}  & {\em arg} & Void pointer to the arguments of the user-\/defined handler.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em R\+T\+E\+M\+S\+\_\+\+S\+U\+C\+C\+E\+S\+S\+F\+UL} & Handler successfully disconnected from this pin. \\
+\hline
+{\em R\+T\+E\+M\+S\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+ID} & Pin number is invalid. \\
+\hline
+{\em R\+T\+E\+M\+S\+\_\+\+N\+O\+T\+\_\+\+C\+O\+N\+F\+I\+G\+U\+R\+ED} & Pin has no active interrupts. \\
+\hline
+{\em $\ast$} & \\
+\hline
+\end{DoxyRetVals}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{gpio_8h_a37a34750be9379637427ea4345d46259}{rtems\+\_\+gpio\+\_\+disable\+\_\+interrupt()}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{gpio_8h_afe29be9002176e368122afde0bc92141}\label{gpio_8h_afe29be9002176e368122afde0bc92141}} 
+\index{gpio.h@{gpio.h}!rtems\_gpio\_multi\_clear@{rtems\_gpio\_multi\_clear}}
+\index{rtems\_gpio\_multi\_clear@{rtems\_gpio\_multi\_clear}!gpio.h@{gpio.h}}
+\subsubsection{\texorpdfstring{rtems\_gpio\_multi\_clear()}{rtems\_gpio\_multi\_clear()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} rtems\+\_\+gpio\+\_\+multi\+\_\+clear (\begin{DoxyParamCaption}\item[{uint32\+\_\+t $\ast$}]{pin\+\_\+numbers,  }\item[{uint32\+\_\+t}]{pin\+\_\+count }\end{DoxyParamCaption})}
+
+
+
+Sets multiple output G\+P\+IO pins with the logical low. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em pin\+\_\+numbers} & Array with the G\+P\+IO pin numbers to clear. \\
+\hline
+\mbox{\texttt{ in}}  & {\em count} & Number of G\+P\+IO pins to clear.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em R\+T\+E\+M\+S\+\_\+\+S\+U\+C\+C\+E\+S\+S\+F\+UL} & All pins were cleared successfully. \\
+\hline
+{\em R\+T\+E\+M\+S\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+ID} & At least one pin number is invalid. \\
+\hline
+{\em R\+T\+E\+M\+S\+\_\+\+N\+O\+T\+\_\+\+C\+O\+N\+F\+I\+G\+U\+R\+ED} & At least one of the received pins is not configured as a digital output. \\
+\hline
+{\em R\+T\+E\+M\+S\+\_\+\+U\+N\+S\+A\+T\+I\+S\+F\+I\+ED} & Could not clear the G\+P\+IO pins. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{gpio_8h_ac23d24237cf539a29dd60a104acce7fa}\label{gpio_8h_ac23d24237cf539a29dd60a104acce7fa}} 
+\index{gpio.h@{gpio.h}!rtems\_gpio\_multi\_read@{rtems\_gpio\_multi\_read}}
+\index{rtems\_gpio\_multi\_read@{rtems\_gpio\_multi\_read}!gpio.h@{gpio.h}}
+\subsubsection{\texorpdfstring{rtems\_gpio\_multi\_read()}{rtems\_gpio\_multi\_read()}}
+{\footnotesize\ttfamily uint32\+\_\+t rtems\+\_\+gpio\+\_\+multi\+\_\+read (\begin{DoxyParamCaption}\item[{uint32\+\_\+t $\ast$}]{pin\+\_\+numbers,  }\item[{uint32\+\_\+t}]{pin\+\_\+count }\end{DoxyParamCaption})}
+
+
+
+Returns the value (level) of multiple G\+P\+IO input pins. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em pin\+\_\+numbers} & Array with the G\+P\+IO pin numbers to read. \\
+\hline
+\mbox{\texttt{ in}}  & {\em count} & Number of G\+P\+IO pins to read.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em Bitmask} & with the values of the corresponding pins. 0 for logical low and 1 for logical high. \\
+\hline
+{\em G\+P\+I\+O\+\_\+\+I\+N\+P\+U\+T\+\_\+\+E\+R\+R\+OR} & Could not read at least one pin level. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{gpio_8h_a462e6597484ac8edac564ca08c799cce}\label{gpio_8h_a462e6597484ac8edac564ca08c799cce}} 
+\index{gpio.h@{gpio.h}!rtems\_gpio\_multi\_set@{rtems\_gpio\_multi\_set}}
+\index{rtems\_gpio\_multi\_set@{rtems\_gpio\_multi\_set}!gpio.h@{gpio.h}}
+\subsubsection{\texorpdfstring{rtems\_gpio\_multi\_set()}{rtems\_gpio\_multi\_set()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} rtems\+\_\+gpio\+\_\+multi\+\_\+set (\begin{DoxyParamCaption}\item[{uint32\+\_\+t $\ast$}]{pin\+\_\+numbers,  }\item[{uint32\+\_\+t}]{pin\+\_\+count }\end{DoxyParamCaption})}
+
+
+
+Sets multiple output G\+P\+IO pins with the logical high. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em pin\+\_\+numbers} & Array with the G\+P\+IO pin numbers to set. \\
+\hline
+\mbox{\texttt{ in}}  & {\em count} & Number of G\+P\+IO pins to set.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em R\+T\+E\+M\+S\+\_\+\+S\+U\+C\+C\+E\+S\+S\+F\+UL} & All pins were set successfully. \\
+\hline
+{\em R\+T\+E\+M\+S\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+ID} & At least one pin number is invalid. \\
+\hline
+{\em R\+T\+E\+M\+S\+\_\+\+N\+O\+T\+\_\+\+C\+O\+N\+F\+I\+G\+U\+R\+ED} & At least one of the received pins is not configured as a digital output. \\
+\hline
+{\em R\+T\+E\+M\+S\+\_\+\+U\+N\+S\+A\+T\+I\+S\+F\+I\+ED} & Could not set the G\+P\+IO pins. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{gpio_8h_a2c5e4518cabe5b0a8ac570ea20a98417}\label{gpio_8h_a2c5e4518cabe5b0a8ac570ea20a98417}} 
+\index{gpio.h@{gpio.h}!rtems\_gpio\_read\_group@{rtems\_gpio\_read\_group}}
+\index{rtems\_gpio\_read\_group@{rtems\_gpio\_read\_group}!gpio.h@{gpio.h}}
+\subsubsection{\texorpdfstring{rtems\_gpio\_read\_group()}{rtems\_gpio\_read\_group()}}
+{\footnotesize\ttfamily uint32\+\_\+t rtems\+\_\+gpio\+\_\+read\+\_\+group (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structrtems__gpio__group}{rtems\+\_\+gpio\+\_\+group}} $\ast$}]{group }\end{DoxyParamCaption})}
+
+
+
+Reads the value/level of the group\textquotesingle{}s digital inputs. The pins order is as defined in the group definition. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em group} & Reference to the group.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em The} & function returns a 32-\/bit bitmask with the group\textquotesingle{}s input pins current logical values. \\
+\hline
+{\em G\+P\+I\+O\+\_\+\+I\+N\+P\+U\+T\+\_\+\+E\+R\+R\+OR} & Group has no input pins. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{gpio_8h_ae2da05d49ec0e6f367f1f93b343f0673}\label{gpio_8h_ae2da05d49ec0e6f367f1f93b343f0673}} 
+\index{gpio.h@{gpio.h}!rtems\_gpio\_release\_configuration@{rtems\_gpio\_release\_configuration}}
+\index{rtems\_gpio\_release\_configuration@{rtems\_gpio\_release\_configuration}!gpio.h@{gpio.h}}
+\subsubsection{\texorpdfstring{rtems\_gpio\_release\_configuration()}{rtems\_gpio\_release\_configuration()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} rtems\+\_\+gpio\+\_\+release\+\_\+configuration (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structrtems__gpio__pin__conf}{rtems\+\_\+gpio\+\_\+pin\+\_\+conf}} $\ast$}]{conf }\end{DoxyParamCaption})}
+
+
+
+Releases a G\+P\+IO pin, making it available to be used again. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em conf} & G\+P\+IO pin configuration to be released.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em R\+T\+E\+M\+S\+\_\+\+S\+U\+C\+C\+E\+S\+S\+F\+UL} & Pin successfully disabled. \\
+\hline
+{\em R\+T\+E\+M\+S\+\_\+\+U\+N\+S\+A\+T\+I\+S\+F\+I\+ED} & Pin configuration is N\+U\+LL. \\
+\hline
+{\em $\ast$} & \\
+\hline
+\end{DoxyRetVals}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{gpio_8h_a365b5cf4bcbb396316f2d99569ad95ec}{rtems\+\_\+gpio\+\_\+release\+\_\+pin()}}. 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{gpio_8h_a365b5cf4bcbb396316f2d99569ad95ec}\label{gpio_8h_a365b5cf4bcbb396316f2d99569ad95ec}} 
+\index{gpio.h@{gpio.h}!rtems\_gpio\_release\_pin@{rtems\_gpio\_release\_pin}}
+\index{rtems\_gpio\_release\_pin@{rtems\_gpio\_release\_pin}!gpio.h@{gpio.h}}
+\subsubsection{\texorpdfstring{rtems\_gpio\_release\_pin()}{rtems\_gpio\_release\_pin()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} rtems\+\_\+gpio\+\_\+release\+\_\+pin (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{pin\+\_\+number }\end{DoxyParamCaption})}
+
+
+
+Releases a G\+P\+IO pin, making it available to be used again. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em pin\+\_\+number} & G\+P\+IO pin number.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em R\+T\+E\+M\+S\+\_\+\+S\+U\+C\+C\+E\+S\+S\+F\+UL} & Pin successfully disabled. \\
+\hline
+{\em R\+T\+E\+M\+S\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+ID} & Pin number is invalid. \\
+\hline
+{\em $\ast$} & Could not disable an active interrupt on this pin, \\
+\hline
+\end{DoxyRetVals}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{gpio_8h_a37a34750be9379637427ea4345d46259}{rtems\+\_\+gpio\+\_\+disable\+\_\+interrupt()}}. 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{gpio_8h_abbc68a70ea4826e1ad964f7d53cbd46b}\label{gpio_8h_abbc68a70ea4826e1ad964f7d53cbd46b}} 
+\index{gpio.h@{gpio.h}!rtems\_gpio\_release\_pin\_group@{rtems\_gpio\_release\_pin\_group}}
+\index{rtems\_gpio\_release\_pin\_group@{rtems\_gpio\_release\_pin\_group}!gpio.h@{gpio.h}}
+\subsubsection{\texorpdfstring{rtems\_gpio\_release\_pin\_group()}{rtems\_gpio\_release\_pin\_group()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} rtems\+\_\+gpio\+\_\+release\+\_\+pin\+\_\+group (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structrtems__gpio__group}{rtems\+\_\+gpio\+\_\+group}} $\ast$}]{group }\end{DoxyParamCaption})}
+
+
+
+Releases a G\+P\+IO pin group, making the pins used available to be repurposed. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em conf} & G\+P\+IO pin configuration to be released.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em R\+T\+E\+M\+S\+\_\+\+S\+U\+C\+C\+E\+S\+S\+F\+UL} & Pins successfully disabled. \\
+\hline
+{\em $\ast$} & \\
+\hline
+\end{DoxyRetVals}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{gpio_8h_a365b5cf4bcbb396316f2d99569ad95ec}{rtems\+\_\+gpio\+\_\+release\+\_\+pin()}}, 
+
+\mbox{\hyperlink{group__ClassicSem_gabf9631b7132ab4142eff47a1502652a2}{rtems\+\_\+semaphore\+\_\+delete()}} or 
+
+\mbox{\hyperlink{group__ClassicSem_ga1d9a04c45e2e1c68fd3e19ee675e6150}{rtems\+\_\+semaphore\+\_\+flush()}}. 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{gpio_8h_ac22d10d49dd19cc62b50fff42945a57a}\label{gpio_8h_ac22d10d49dd19cc62b50fff42945a57a}} 
+\index{gpio.h@{gpio.h}!rtems\_gpio\_request\_configuration@{rtems\_gpio\_request\_configuration}}
+\index{rtems\_gpio\_request\_configuration@{rtems\_gpio\_request\_configuration}!gpio.h@{gpio.h}}
+\subsubsection{\texorpdfstring{rtems\_gpio\_request\_configuration()}{rtems\_gpio\_request\_configuration()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} rtems\+\_\+gpio\+\_\+request\+\_\+configuration (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structrtems__gpio__pin__conf}{rtems\+\_\+gpio\+\_\+pin\+\_\+conf}} $\ast$}]{conf }\end{DoxyParamCaption})}
+
+
+
+Requests a G\+P\+IO pin configuration. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em conf} & \mbox{\hyperlink{structrtems__gpio__pin__conf}{rtems\+\_\+gpio\+\_\+pin\+\_\+conf}} structure filled with the pin information and desired configurations.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em R\+T\+E\+M\+S\+\_\+\+S\+U\+C\+C\+E\+S\+S\+F\+UL} & Pin was configured successfully. \\
+\hline
+{\em R\+T\+E\+M\+S\+\_\+\+U\+N\+S\+A\+T\+I\+S\+F\+I\+ED} & Could not satisfy the given configuration. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{gpio_8h_a013e4e3b5af6755d8a40000e297c1251}\label{gpio_8h_a013e4e3b5af6755d8a40000e297c1251}} 
+\index{gpio.h@{gpio.h}!rtems\_gpio\_resistor\_mode@{rtems\_gpio\_resistor\_mode}}
+\index{rtems\_gpio\_resistor\_mode@{rtems\_gpio\_resistor\_mode}!gpio.h@{gpio.h}}
+\subsubsection{\texorpdfstring{rtems\_gpio\_resistor\_mode()}{rtems\_gpio\_resistor\_mode()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} rtems\+\_\+gpio\+\_\+resistor\+\_\+mode (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{pin\+\_\+number,  }\item[{\mbox{\hyperlink{gpio_8h_add28697559b41893e0754f35509bf835}{rtems\+\_\+gpio\+\_\+pull\+\_\+mode}}}]{mode }\end{DoxyParamCaption})}
+
+
+
+Configures a single G\+P\+IO pin pull resistor. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em pin\+\_\+number} & G\+P\+IO pin number. \\
+\hline
+\mbox{\texttt{ in}}  & {\em mode} & The pull resistor mode.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em R\+T\+E\+M\+S\+\_\+\+S\+U\+C\+C\+E\+S\+S\+F\+UL} & Pull resistor successfully configured. \\
+\hline
+{\em R\+T\+E\+M\+S\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+ID} & Pin number is invalid. \\
+\hline
+{\em R\+T\+E\+M\+S\+\_\+\+U\+N\+S\+A\+T\+I\+S\+F\+I\+ED} & Could not set the pull mode. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{gpio_8h_afa865af13489bec5abf91c7da92a79e7}\label{gpio_8h_afa865af13489bec5abf91c7da92a79e7}} 
+\index{gpio.h@{gpio.h}!rtems\_gpio\_set@{rtems\_gpio\_set}}
+\index{rtems\_gpio\_set@{rtems\_gpio\_set}!gpio.h@{gpio.h}}
+\subsubsection{\texorpdfstring{rtems\_gpio\_set()}{rtems\_gpio\_set()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} rtems\+\_\+gpio\+\_\+set (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{pin\+\_\+number }\end{DoxyParamCaption})}
+
+
+
+Sets an output G\+P\+IO pin with the logical high. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em pin\+\_\+number} & G\+P\+IO pin number.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em R\+T\+E\+M\+S\+\_\+\+S\+U\+C\+C\+E\+S\+S\+F\+UL} & Pin was set successfully. \\
+\hline
+{\em R\+T\+E\+M\+S\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+ID} & Pin number is invalid. \\
+\hline
+{\em R\+T\+E\+M\+S\+\_\+\+N\+O\+T\+\_\+\+C\+O\+N\+F\+I\+G\+U\+R\+ED} & The received pin is not configured as a digital output. \\
+\hline
+{\em R\+T\+E\+M\+S\+\_\+\+U\+N\+S\+A\+T\+I\+S\+F\+I\+ED} & Could not set the G\+P\+IO pin. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{gpio_8h_a8953ad3c39c57114472330be3043ca54}\label{gpio_8h_a8953ad3c39c57114472330be3043ca54}} 
+\index{gpio.h@{gpio.h}!rtems\_gpio\_update\_configuration@{rtems\_gpio\_update\_configuration}}
+\index{rtems\_gpio\_update\_configuration@{rtems\_gpio\_update\_configuration}!gpio.h@{gpio.h}}
+\subsubsection{\texorpdfstring{rtems\_gpio\_update\_configuration()}{rtems\_gpio\_update\_configuration()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} rtems\+\_\+gpio\+\_\+update\+\_\+configuration (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structrtems__gpio__pin__conf}{rtems\+\_\+gpio\+\_\+pin\+\_\+conf}} $\ast$}]{conf }\end{DoxyParamCaption})}
+
+
+
+Updates the current configuration of a G\+P\+IO pin . 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em conf} & \mbox{\hyperlink{structrtems__gpio__pin__conf}{rtems\+\_\+gpio\+\_\+pin\+\_\+conf}} structure filled with the pin information and desired configurations.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em R\+T\+E\+M\+S\+\_\+\+S\+U\+C\+C\+E\+S\+S\+F\+UL} & Pin configuration was updated successfully. \\
+\hline
+{\em R\+T\+E\+M\+S\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+ID} & Pin number is invalid. \\
+\hline
+{\em R\+T\+E\+M\+S\+\_\+\+N\+O\+T\+\_\+\+C\+O\+N\+F\+I\+G\+U\+R\+ED} & The pin is not being used. \\
+\hline
+{\em R\+T\+E\+M\+S\+\_\+\+U\+N\+S\+A\+T\+I\+S\+F\+I\+ED} & Could not update the pin\textquotesingle{}s configuration. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{gpio_8h_ab47ad2030469bd1d81dd6506ffe09df2}\label{gpio_8h_ab47ad2030469bd1d81dd6506ffe09df2}} 
+\index{gpio.h@{gpio.h}!rtems\_gpio\_write\_group@{rtems\_gpio\_write\_group}}
+\index{rtems\_gpio\_write\_group@{rtems\_gpio\_write\_group}!gpio.h@{gpio.h}}
+\subsubsection{\texorpdfstring{rtems\_gpio\_write\_group()}{rtems\_gpio\_write\_group()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} rtems\+\_\+gpio\+\_\+write\+\_\+group (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{data,  }\item[{\mbox{\hyperlink{structrtems__gpio__group}{rtems\+\_\+gpio\+\_\+group}} $\ast$}]{group }\end{DoxyParamCaption})}
+
+
+
+Writes a value to the group\textquotesingle{}s digital outputs. The pins order is as defined in the group definition. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em data} & Data to write/send. \\
+\hline
+\mbox{\texttt{ in}}  & {\em group} & Reference to the group.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em R\+T\+E\+M\+S\+\_\+\+S\+U\+C\+C\+E\+S\+S\+F\+UL} & Data successfully written. \\
+\hline
+{\em R\+T\+E\+M\+S\+\_\+\+N\+O\+T\+\_\+\+D\+E\+F\+I\+N\+ED} & Group has no output pins. \\
+\hline
+{\em R\+T\+E\+M\+S\+\_\+\+U\+N\+S\+A\+T\+I\+S\+F\+I\+ED} & Could not operate on at least one of the pins. \\
+\hline
+\end{DoxyRetVals}

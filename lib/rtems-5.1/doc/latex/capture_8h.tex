@@ -1,0 +1,220 @@
+\hypertarget{capture_8h}{}\section{cpukit/include/rtems/capture.h File Reference}
+\label{capture_8h}\index{cpukit/include/rtems/capture.h@{cpukit/include/rtems/capture.h}}
+
+
+Capture Engine Component of the R\+T\+E\+MS Measurement and Monitoring System.  
+
+
+{\ttfamily \#include $<$rtems.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/rtems/tasksimpl.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structrtems__capture__from}{rtems\+\_\+capture\+\_\+from}}
+\begin{DoxyCompactList}\small\item\em Task id and mask for the from trigger. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structrtems__capture__control}{rtems\+\_\+capture\+\_\+control}}
+\begin{DoxyCompactList}\small\item\em Capture control structure for a group of tasks. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structrtems__capture__record}{rtems\+\_\+capture\+\_\+record}}
+\item 
+struct \mbox{\hyperlink{structrtems__capture__task__record}{rtems\+\_\+capture\+\_\+task\+\_\+record}}
+\item 
+struct \mbox{\hyperlink{structrtems__capture__record__lock__context}{rtems\+\_\+capture\+\_\+record\+\_\+lock\+\_\+context}}
+\begin{DoxyCompactList}\small\item\em Capture record lock context. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+C\+A\+P\+T\+U\+R\+E\+\_\+\+I\+N\+IT}~(1u $<$$<$ 0)
+\item 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+C\+A\+P\+T\+U\+R\+E\+\_\+\+ON}~(1\+U $<$$<$ 1)
+\item 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+C\+A\+P\+T\+U\+R\+E\+\_\+\+N\+O\+\_\+\+M\+E\+M\+O\+RY}~(1\+U $<$$<$ 2)
+\item 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+C\+A\+P\+T\+U\+R\+E\+\_\+\+T\+R\+I\+G\+G\+E\+R\+ED}~(1\+U $<$$<$ 3)
+\item 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+C\+A\+P\+T\+U\+R\+E\+\_\+\+G\+L\+O\+B\+A\+L\+\_\+\+W\+A\+T\+CH}~(1\+U $<$$<$ 4)
+\item 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+C\+A\+P\+T\+U\+R\+E\+\_\+\+O\+N\+L\+Y\+\_\+\+M\+O\+N\+I\+T\+OR}~(1\+U $<$$<$ 5)
+\item 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+C\+A\+P\+T\+U\+R\+E\+\_\+\+O\+V\+E\+R\+F\+L\+OW}~(1\+U $<$$<$ 0)
+\item 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+C\+A\+P\+T\+U\+R\+E\+\_\+\+R\+E\+A\+D\+E\+R\+\_\+\+A\+C\+T\+I\+VE}~(1\+U $<$$<$ 1)
+\item 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+C\+A\+P\+T\+U\+R\+E\+\_\+\+R\+E\+A\+D\+E\+R\+\_\+\+W\+A\+I\+T\+I\+NG}~(1\+U $<$$<$ 2)
+\item 
+\#define \mbox{\hyperlink{group__libmisc__capture_gabac5efd1e36645cb55fbe5fb5fff3ec5}{R\+T\+E\+M\+S\+\_\+\+C\+A\+P\+T\+U\+R\+E\+\_\+\+T\+R\+I\+G\+G\+E\+R\+\_\+\+T\+A\+S\+KS}}~(32)
+\item 
+\#define \mbox{\hyperlink{group__libmisc__capture_ga3242850119d87a75a136b05fbf9195ef}{R\+T\+E\+M\+S\+\_\+\+C\+A\+P\+T\+U\+R\+E\+\_\+\+C\+O\+N\+T\+R\+O\+L\+\_\+\+F\+R\+O\+M\+\_\+\+M\+A\+SK}}(\+\_\+s)~(U\+I\+N\+T32\+\_\+C(1) $<$$<$ (\mbox{\hyperlink{group__libmisc__capture_gabac5efd1e36645cb55fbe5fb5fff3ec5}{R\+T\+E\+M\+S\+\_\+\+C\+A\+P\+T\+U\+R\+E\+\_\+\+T\+R\+I\+G\+G\+E\+R\+\_\+\+T\+A\+S\+KS}} -\/ ((\+\_\+s) + 1)))
+\item 
+\#define \mbox{\hyperlink{group__libmisc__capture_gadeb9357a00fe3609d4e982e3b378d65a}{R\+T\+E\+M\+S\+\_\+\+C\+A\+P\+T\+U\+R\+E\+\_\+\+W\+A\+T\+CH}}~(1\+U $<$$<$ 0)
+\item 
+\#define \mbox{\hyperlink{group__libmisc__capture_ga6970f8b4c0a14fcd49b5083346b44a4e}{R\+T\+E\+M\+S\+\_\+\+C\+A\+P\+T\+U\+R\+E\+\_\+\+S\+W\+I\+T\+CH}}~(1 $<$$<$ 0)
+\item 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+C\+A\+P\+T\+U\+R\+E\+\_\+\+C\+R\+E\+A\+TE}~(1 $<$$<$ 1)
+\item 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+C\+A\+P\+T\+U\+R\+E\+\_\+\+S\+T\+A\+RT}~(1 $<$$<$ 2)
+\item 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+C\+A\+P\+T\+U\+R\+E\+\_\+\+R\+E\+S\+T\+A\+RT}~(1 $<$$<$ 3)
+\item 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+C\+A\+P\+T\+U\+R\+E\+\_\+\+D\+E\+L\+E\+TE}~(1 $<$$<$ 4)
+\item 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+C\+A\+P\+T\+U\+R\+E\+\_\+\+B\+E\+G\+IN}~(1 $<$$<$ 5)
+\item 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+C\+A\+P\+T\+U\+R\+E\+\_\+\+E\+X\+I\+T\+T\+ED}~(1 $<$$<$ 6)
+\item 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+C\+A\+P\+T\+U\+R\+E\+\_\+\+T\+E\+R\+M\+I\+N\+A\+T\+ED}~(1 $<$$<$ 7)
+\item 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+C\+A\+P\+T\+U\+R\+E\+\_\+\+F\+R\+O\+M\+\_\+\+T\+R\+I\+GS}
+\item 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+C\+A\+P\+T\+U\+R\+E\+\_\+\+T\+O\+\_\+\+T\+R\+I\+GS}
+\item 
+\#define \mbox{\hyperlink{group__libmisc__capture_ga516b8fbfc1ee765f50eee329ad857c97}{R\+T\+E\+M\+S\+\_\+\+C\+A\+P\+T\+U\+R\+E\+\_\+\+T\+R\+A\+C\+ED}}~(1\+U $<$$<$ 0)
+\item 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+C\+A\+P\+T\+U\+R\+E\+\_\+\+I\+N\+I\+T\+\_\+\+T\+A\+SK}~(1\+U $<$$<$ 1)
+\item 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+C\+A\+P\+T\+U\+R\+E\+\_\+\+R\+E\+C\+O\+R\+D\+\_\+\+T\+A\+SK}~(1\+U $<$$<$ 2)
+\item 
+\#define \mbox{\hyperlink{group__libmisc__capture_gabd6dede4fe29999cbb25cc3382bc0a8c}{R\+T\+E\+M\+S\+\_\+\+C\+A\+P\+T\+U\+R\+E\+\_\+\+R\+E\+A\+L\+\_\+\+P\+R\+I\+\_\+\+E\+V\+E\+N\+T\+\_\+\+M\+A\+SK}}~U\+I\+N\+T32\+\_\+C (0x000000ff)
+\item 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+C\+A\+P\+T\+U\+R\+E\+\_\+\+C\+U\+R\+R\+\_\+\+P\+R\+I\+\_\+\+E\+V\+E\+N\+T\+\_\+\+M\+A\+SK}~U\+I\+N\+T32\+\_\+C (0x0000ff00)
+\item 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+C\+A\+P\+T\+U\+R\+E\+\_\+\+R\+E\+A\+L\+\_\+\+P\+R\+I\+O\+R\+I\+T\+Y\+\_\+\+E\+V\+E\+NT}~(0)
+\item 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+C\+A\+P\+T\+U\+R\+E\+\_\+\+C\+U\+R\+R\+\_\+\+P\+R\+I\+O\+R\+I\+T\+Y\+\_\+\+E\+V\+E\+NT}~(8)
+\item 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+C\+A\+P\+T\+U\+R\+E\+\_\+\+E\+V\+E\+N\+T\+\_\+\+S\+T\+A\+RT}~(16)
+\item 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+C\+A\+P\+T\+U\+R\+E\+\_\+\+C\+R\+E\+A\+T\+E\+D\+\_\+\+B\+Y\+\_\+\+E\+V\+E\+NT}~U\+I\+N\+T32\+\_\+C (0x00010000)
+\item 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+C\+A\+P\+T\+U\+R\+E\+\_\+\+C\+R\+E\+A\+T\+E\+D\+\_\+\+E\+V\+E\+NT}~U\+I\+N\+T32\+\_\+C (0x00020000)
+\item 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+C\+A\+P\+T\+U\+R\+E\+\_\+\+S\+T\+A\+R\+T\+E\+D\+\_\+\+B\+Y\+\_\+\+E\+V\+E\+NT}~U\+I\+N\+T32\+\_\+C (0x00040000)
+\item 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+C\+A\+P\+T\+U\+R\+E\+\_\+\+S\+T\+A\+R\+T\+E\+D\+\_\+\+E\+V\+E\+NT}~U\+I\+N\+T32\+\_\+C (0x00080000)
+\item 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+C\+A\+P\+T\+U\+R\+E\+\_\+\+R\+E\+S\+T\+A\+R\+T\+E\+D\+\_\+\+B\+Y\+\_\+\+E\+V\+E\+NT}~U\+I\+N\+T32\+\_\+C (0x00100000)
+\item 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+C\+A\+P\+T\+U\+R\+E\+\_\+\+R\+E\+S\+T\+A\+R\+T\+E\+D\+\_\+\+E\+V\+E\+NT}~U\+I\+N\+T32\+\_\+C (0x00200000)
+\item 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+C\+A\+P\+T\+U\+R\+E\+\_\+\+D\+E\+L\+E\+T\+E\+D\+\_\+\+B\+Y\+\_\+\+E\+V\+E\+NT}~U\+I\+N\+T32\+\_\+C (0x00400000)
+\item 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+C\+A\+P\+T\+U\+R\+E\+\_\+\+D\+E\+L\+E\+T\+E\+D\+\_\+\+E\+V\+E\+NT}~U\+I\+N\+T32\+\_\+C (0x00800000)
+\item 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+C\+A\+P\+T\+U\+R\+E\+\_\+\+T\+E\+R\+M\+I\+N\+A\+T\+E\+D\+\_\+\+E\+V\+E\+NT}~U\+I\+N\+T32\+\_\+C (0x01000000)
+\item 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+C\+A\+P\+T\+U\+R\+E\+\_\+\+B\+E\+G\+I\+N\+\_\+\+E\+V\+E\+NT}~U\+I\+N\+T32\+\_\+C (0x02000000)
+\item 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+C\+A\+P\+T\+U\+R\+E\+\_\+\+E\+X\+I\+T\+T\+E\+D\+\_\+\+E\+V\+E\+NT}~U\+I\+N\+T32\+\_\+C (0x04000000)
+\item 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+C\+A\+P\+T\+U\+R\+E\+\_\+\+S\+W\+I\+T\+C\+H\+E\+D\+\_\+\+O\+U\+T\+\_\+\+E\+V\+E\+NT}~U\+I\+N\+T32\+\_\+C (0x08000000)
+\item 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+C\+A\+P\+T\+U\+R\+E\+\_\+\+S\+W\+I\+T\+C\+H\+E\+D\+\_\+\+I\+N\+\_\+\+E\+V\+E\+NT}~U\+I\+N\+T32\+\_\+C (0x10000000)
+\item 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+C\+A\+P\+T\+U\+R\+E\+\_\+\+T\+I\+M\+E\+S\+T\+A\+MP}~U\+I\+N\+T32\+\_\+C (0x20000000)
+\item 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+C\+A\+P\+T\+U\+R\+E\+\_\+\+E\+V\+E\+N\+T\+\_\+\+E\+ND}~(29)
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef uint64\+\_\+t \mbox{\hyperlink{group__libmisc__capture_gaf4cab587ea286bb2352fcfab9c223560}{rtems\+\_\+capture\+\_\+time}}
+\begin{DoxyCompactList}\small\item\em A capture timestamp. \end{DoxyCompactList}\item 
+typedef struct \mbox{\hyperlink{structrtems__capture__from}{rtems\+\_\+capture\+\_\+from}} \mbox{\hyperlink{group__libmisc__capture_gabb9613c506ffe34885dccb4346fce2dc}{rtems\+\_\+capture\+\_\+from}}
+\begin{DoxyCompactList}\small\item\em Task id and mask for the from trigger. \end{DoxyCompactList}\item 
+typedef struct \mbox{\hyperlink{structrtems__capture__control}{rtems\+\_\+capture\+\_\+control}} \mbox{\hyperlink{group__libmisc__capture_ga8c06930c1e62210f9bd0e967bda31ff5}{rtems\+\_\+capture\+\_\+control}}
+\begin{DoxyCompactList}\small\item\em Capture control structure for a group of tasks. \end{DoxyCompactList}\item 
+typedef struct \mbox{\hyperlink{structrtems__capture__record}{rtems\+\_\+capture\+\_\+record}} {\bfseries rtems\+\_\+capture\+\_\+record}
+\item 
+typedef struct \mbox{\hyperlink{structrtems__capture__task__record}{rtems\+\_\+capture\+\_\+task\+\_\+record}} {\bfseries rtems\+\_\+capture\+\_\+task\+\_\+record}
+\item 
+typedef enum \mbox{\hyperlink{group__libmisc__capture_ga56557affa8f3021c9d5ed6ebca98f473}{rtems\+\_\+capture\+\_\+trigger\+\_\+mode}} \mbox{\hyperlink{group__libmisc__capture_gadc87e3aa33443ac0b7fb2f3083129eed}{rtems\+\_\+capture\+\_\+trigger\+\_\+mode}}
+\begin{DoxyCompactList}\small\item\em Capture trigger modes. \end{DoxyCompactList}\item 
+typedef enum \mbox{\hyperlink{group__libmisc__capture_ga5fd896f3981ec7db204355a0e527a074}{rtems\+\_\+capture\+\_\+trigger}} \mbox{\hyperlink{group__libmisc__capture_ga12806ba988f2cb7373e289941bedafbf}{rtems\+\_\+capture\+\_\+trigger}}
+\begin{DoxyCompactList}\small\item\em Capture trigger. \end{DoxyCompactList}\item 
+typedef void($\ast$ \mbox{\hyperlink{group__libmisc__capture_gab70845b819ef4c8c57f4f46ce276f0dd}{rtems\+\_\+capture\+\_\+timestamp}}) (\mbox{\hyperlink{group__libmisc__capture_gaf4cab587ea286bb2352fcfab9c223560}{rtems\+\_\+capture\+\_\+time}} $\ast$time)
+\begin{DoxyCompactList}\small\item\em Capture timestamp callout handler. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{group__libmisc__capture_ga56557affa8f3021c9d5ed6ebca98f473}{rtems\+\_\+capture\+\_\+trigger\+\_\+mode}} \{ {\bfseries rtems\+\_\+capture\+\_\+to\+\_\+any}, 
+{\bfseries rtems\+\_\+capture\+\_\+from\+\_\+any}, 
+{\bfseries rtems\+\_\+capture\+\_\+from\+\_\+to}
+ \}
+\begin{DoxyCompactList}\small\item\em Capture trigger modes. \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{group__libmisc__capture_ga5fd896f3981ec7db204355a0e527a074}{rtems\+\_\+capture\+\_\+trigger}} \{ \newline
+{\bfseries rtems\+\_\+capture\+\_\+switch}, 
+{\bfseries rtems\+\_\+capture\+\_\+create}, 
+{\bfseries rtems\+\_\+capture\+\_\+start}, 
+{\bfseries rtems\+\_\+capture\+\_\+restart}, 
+\newline
+{\bfseries rtems\+\_\+capture\+\_\+delete}, 
+{\bfseries rtems\+\_\+capture\+\_\+begin}, 
+{\bfseries rtems\+\_\+capture\+\_\+exitted}, 
+{\bfseries rtems\+\_\+capture\+\_\+terminated}
+ \}
+\begin{DoxyCompactList}\small\item\em Capture trigger. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{group__libmisc__capture_ga97f17a645e1379b42249b0b3b109e3bb}{rtems\+\_\+capture\+\_\+open}} (uint32\+\_\+t \mbox{\hyperlink{sun4u_2tte_8h_a245260f6f74972558f61b85227df5aae}{size}}, \mbox{\hyperlink{group__libmisc__capture_gab70845b819ef4c8c57f4f46ce276f0dd}{rtems\+\_\+capture\+\_\+timestamp}} timestamp)
+\begin{DoxyCompactList}\small\item\em Capture open. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{group__libmisc__capture_ga57b44945c2da07711529761d91af585a}{rtems\+\_\+capture\+\_\+close}} (void)
+\begin{DoxyCompactList}\small\item\em Capture close. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{group__libmisc__capture_ga93fda7c6a8537647f1236d2914f3fc98}{rtems\+\_\+capture\+\_\+set\+\_\+control}} (bool enable)
+\begin{DoxyCompactList}\small\item\em Capture control trace enable/disable. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{group__libmisc__capture_ga11c38aa44af23dfe0e8b1cd88c01eebd}{rtems\+\_\+capture\+\_\+set\+\_\+monitor}} (bool enable)
+\begin{DoxyCompactList}\small\item\em Capture monitor enable/disable. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} {\bfseries rtems\+\_\+capture\+\_\+flush} (bool prime)
+\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{group__libmisc__capture_ga3fc5d24ef1f172fa8ca08ca50a6058ba}{rtems\+\_\+capture\+\_\+watch\+\_\+add}} (\mbox{\hyperlink{group__ClassicTasks_ga55fb63c49f68c0cbd9bee004da15b1fd}{rtems\+\_\+name}} name, \mbox{\hyperlink{group__ClassicTasks_gab20892b814dced7dd4e5b9bf42becd57}{rtems\+\_\+id}} id)
+\begin{DoxyCompactList}\small\item\em Capture add watch. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{group__libmisc__capture_gaa61457ceadb0c2e77897e41790c22a7c}{rtems\+\_\+capture\+\_\+watch\+\_\+del}} (\mbox{\hyperlink{group__ClassicTasks_ga55fb63c49f68c0cbd9bee004da15b1fd}{rtems\+\_\+name}} name, \mbox{\hyperlink{group__ClassicTasks_gab20892b814dced7dd4e5b9bf42becd57}{rtems\+\_\+id}} id)
+\begin{DoxyCompactList}\small\item\em Capture delete watch. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{group__libmisc__capture_gaf369469774923c9fc482937aec6ca34f}{rtems\+\_\+capture\+\_\+watch\+\_\+ctrl}} (\mbox{\hyperlink{group__ClassicTasks_ga55fb63c49f68c0cbd9bee004da15b1fd}{rtems\+\_\+name}} name, \mbox{\hyperlink{group__ClassicTasks_gab20892b814dced7dd4e5b9bf42becd57}{rtems\+\_\+id}} id, bool enable)
+\begin{DoxyCompactList}\small\item\em Capture enable/disable watch. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{group__libmisc__capture_gaed2ce2569738d1553944c6cbf63717a5}{rtems\+\_\+capture\+\_\+watch\+\_\+global}} (bool enable)
+\begin{DoxyCompactList}\small\item\em Capture enable/disable global watch. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__libmisc__capture_ga59613c1b9451ff9fc8d15cf9ecb5bb98}{rtems\+\_\+capture\+\_\+watch\+\_\+global\+\_\+on}} (void)
+\begin{DoxyCompactList}\small\item\em Get global watch state. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{group__libmisc__capture_ga002c42e4818a1012b1b172076f6f9883}{rtems\+\_\+capture\+\_\+watch\+\_\+ceiling}} (\mbox{\hyperlink{group__ClassicTasks_gaa80a0c0938307d1e99d0eb5fee765b47}{rtems\+\_\+task\+\_\+priority}} ceiling)
+\begin{DoxyCompactList}\small\item\em Set watch ceiling. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicTasks_gaa80a0c0938307d1e99d0eb5fee765b47}{rtems\+\_\+task\+\_\+priority}} \mbox{\hyperlink{group__libmisc__capture_ga0d4e2c36e113e9413bd1aacdfe6edfb9}{rtems\+\_\+capture\+\_\+watch\+\_\+get\+\_\+ceiling}} (void)
+\begin{DoxyCompactList}\small\item\em Get watch ceiling. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{group__libmisc__capture_gacf62dfe7cfdea212a0c0abdb388e968d}{rtems\+\_\+capture\+\_\+watch\+\_\+floor}} (\mbox{\hyperlink{group__ClassicTasks_gaa80a0c0938307d1e99d0eb5fee765b47}{rtems\+\_\+task\+\_\+priority}} floor)
+\begin{DoxyCompactList}\small\item\em Capture set watch floor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicTasks_gaa80a0c0938307d1e99d0eb5fee765b47}{rtems\+\_\+task\+\_\+priority}} \mbox{\hyperlink{group__libmisc__capture_ga00a3676efcb328e7de776bcd01f60ee2}{rtems\+\_\+capture\+\_\+watch\+\_\+get\+\_\+floor}} (void)
+\begin{DoxyCompactList}\small\item\em Capture set watch floor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{group__libmisc__capture_ga98931dad73347565d0b528bee300df70}{rtems\+\_\+capture\+\_\+set\+\_\+trigger}} (\mbox{\hyperlink{group__ClassicTasks_ga55fb63c49f68c0cbd9bee004da15b1fd}{rtems\+\_\+name}} from\+\_\+name, \mbox{\hyperlink{group__ClassicTasks_gab20892b814dced7dd4e5b9bf42becd57}{rtems\+\_\+id}} from\+\_\+id, \mbox{\hyperlink{group__ClassicTasks_ga55fb63c49f68c0cbd9bee004da15b1fd}{rtems\+\_\+name}} to\+\_\+name, \mbox{\hyperlink{group__ClassicTasks_gab20892b814dced7dd4e5b9bf42becd57}{rtems\+\_\+id}} to\+\_\+id, \mbox{\hyperlink{group__libmisc__capture_ga56557affa8f3021c9d5ed6ebca98f473}{rtems\+\_\+capture\+\_\+trigger\+\_\+mode}} mode, \mbox{\hyperlink{group__libmisc__capture_ga5fd896f3981ec7db204355a0e527a074}{rtems\+\_\+capture\+\_\+trigger}} trigger)
+\begin{DoxyCompactList}\small\item\em Capture set trigger. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{group__libmisc__capture_gabe3c08ac77848a7880d79a63f73f48f0}{rtems\+\_\+capture\+\_\+clear\+\_\+trigger}} (\mbox{\hyperlink{group__ClassicTasks_ga55fb63c49f68c0cbd9bee004da15b1fd}{rtems\+\_\+name}} from\+\_\+name, \mbox{\hyperlink{group__ClassicTasks_gab20892b814dced7dd4e5b9bf42becd57}{rtems\+\_\+id}} from\+\_\+id, \mbox{\hyperlink{group__ClassicTasks_ga55fb63c49f68c0cbd9bee004da15b1fd}{rtems\+\_\+name}} to\+\_\+name, \mbox{\hyperlink{group__ClassicTasks_gab20892b814dced7dd4e5b9bf42becd57}{rtems\+\_\+id}} to\+\_\+id, \mbox{\hyperlink{group__libmisc__capture_ga56557affa8f3021c9d5ed6ebca98f473}{rtems\+\_\+capture\+\_\+trigger\+\_\+mode}} mode, \mbox{\hyperlink{group__libmisc__capture_ga5fd896f3981ec7db204355a0e527a074}{rtems\+\_\+capture\+\_\+trigger}} trigger)
+\begin{DoxyCompactList}\small\item\em Capture clear trigger. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{group__libmisc__capture_ga7b1b3c7f11c2d7fd3fbca0e1bf09f32f}{rtems\+\_\+capture\+\_\+read}} (uint32\+\_\+t cpu, size\+\_\+t $\ast$\mbox{\hyperlink{libcsupport_2src_2read_8c_a26d4711c05afec4c7771c3d17b2db9e9}{read}}, const void $\ast$$\ast$recs)
+\begin{DoxyCompactList}\small\item\em Capture read records from capture buffer. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{group__libmisc__capture_ga24a1e78b28e940d3947a32a6548557e6}{rtems\+\_\+capture\+\_\+release}} (uint32\+\_\+t cpu, uint32\+\_\+t count)
+\begin{DoxyCompactList}\small\item\em Capture release records. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__libmisc__capture_ga01d4b688031290f7f435ae4eb945be36}{rtems\+\_\+capture\+\_\+filter}} (\mbox{\hyperlink{group__ClassicTasks_gadd9f38f296a7833767355b8236f68908}{rtems\+\_\+tcb}} $\ast$task, uint32\+\_\+t events)
+\begin{DoxyCompactList}\small\item\em Capture filter. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__libmisc__capture_gac9c469ba4a3719c8f240f9a5aad50ddb}{rtems\+\_\+capture\+\_\+get\+\_\+time}} (\mbox{\hyperlink{group__libmisc__capture_gaf4cab587ea286bb2352fcfab9c223560}{rtems\+\_\+capture\+\_\+time}} $\ast$time)
+\begin{DoxyCompactList}\small\item\em Capture returns the current time. \end{DoxyCompactList}\item 
+const char $\ast$ \mbox{\hyperlink{group__libmisc__capture_ga3b0d9a7d62de5b9b9e648e47132033cc}{rtems\+\_\+capture\+\_\+event\+\_\+text}} (int event)
+\begin{DoxyCompactList}\small\item\em Capture get event text. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__libmisc__capture_gabedd44fdda1ae61040713a475edc133f}{rtems\+\_\+capture\+\_\+initialize\+\_\+task}} (\mbox{\hyperlink{group__ClassicTasks_gadd9f38f296a7833767355b8236f68908}{rtems\+\_\+tcb}} $\ast$tcb)
+\begin{DoxyCompactList}\small\item\em Capture initialize task. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__libmisc__capture_ga7b192fe695b15d1eef9ce249b568538d}{rtems\+\_\+capture\+\_\+record\+\_\+task}} (\mbox{\hyperlink{group__ClassicTasks_gadd9f38f296a7833767355b8236f68908}{rtems\+\_\+tcb}} $\ast$tcb)
+\begin{DoxyCompactList}\small\item\em Capture record task. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__libmisc__capture_ga8896ac66d91547fa17362067afe2874b}{rtems\+\_\+capture\+\_\+record\+\_\+lock}} (\mbox{\hyperlink{structrtems__capture__record__lock__context}{rtems\+\_\+capture\+\_\+record\+\_\+lock\+\_\+context}} $\ast$\mbox{\hyperlink{sun4u_2tte_8h_a9b4a99475e2709333b8e5d70483173f1}{context}})
+\begin{DoxyCompactList}\small\item\em Capture record lock. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__libmisc__capture_ga207f13eec5a4cc423c0072c88cf97a04}{rtems\+\_\+capture\+\_\+record\+\_\+unlock}} (\mbox{\hyperlink{structrtems__capture__record__lock__context}{rtems\+\_\+capture\+\_\+record\+\_\+lock\+\_\+context}} $\ast$\mbox{\hyperlink{sun4u_2tte_8h_a9b4a99475e2709333b8e5d70483173f1}{context}})
+\begin{DoxyCompactList}\small\item\em Capture record unlock. \end{DoxyCompactList}\item 
+void $\ast$ \mbox{\hyperlink{group__libmisc__capture_gaf76eb4d9425d273c40b2b2209590583e}{rtems\+\_\+capture\+\_\+record\+\_\+open}} (\mbox{\hyperlink{group__ClassicTasks_gadd9f38f296a7833767355b8236f68908}{rtems\+\_\+tcb}} $\ast$task, uint32\+\_\+t events, size\+\_\+t \mbox{\hyperlink{sun4u_2tte_8h_a245260f6f74972558f61b85227df5aae}{size}}, \mbox{\hyperlink{structrtems__capture__record__lock__context}{rtems\+\_\+capture\+\_\+record\+\_\+lock\+\_\+context}} $\ast$\mbox{\hyperlink{sun4u_2tte_8h_a9b4a99475e2709333b8e5d70483173f1}{context}})
+\begin{DoxyCompactList}\small\item\em Capture record open. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__libmisc__capture_ga04044b095a5cb34ca3620f99f6127c5a}{rtems\+\_\+capture\+\_\+record\+\_\+close}} (\mbox{\hyperlink{structrtems__capture__record__lock__context}{rtems\+\_\+capture\+\_\+record\+\_\+lock\+\_\+context}} $\ast$\mbox{\hyperlink{sun4u_2tte_8h_a9b4a99475e2709333b8e5d70483173f1}{context}})
+\begin{DoxyCompactList}\small\item\em Capture record close. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structrtems__capture__control}{rtems\+\_\+capture\+\_\+control}} $\ast$ \mbox{\hyperlink{group__libmisc__capture_ga2589fea91d3a22a2308b55736c17c890}{rtems\+\_\+capture\+\_\+get\+\_\+control\+\_\+list}} (void)
+\begin{DoxyCompactList}\small\item\em Capture get control list. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Capture Engine Component of the R\+T\+E\+MS Measurement and Monitoring System. 
+
+This is the Capture Engine component of the R\+T\+E\+MS Measurement and Monitoring system. 

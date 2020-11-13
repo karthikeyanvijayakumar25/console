@@ -1,0 +1,120 @@
+\hypertarget{spi__dma_8c}{}\section{bsps/arm/atsam/contrib/libraries/libchip/source/spi\+\_\+dma.c File Reference}
+\label{spi__dma_8c}\index{bsps/arm/atsam/contrib/libraries/libchip/source/spi\_dma.c@{bsps/arm/atsam/contrib/libraries/libchip/source/spi\_dma.c}}
+{\ttfamily \#include \char`\"{}chip.\+h\char`\"{}}\newline
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{spi__dma_8c_a2a919c30bfeebf56ef01386c55857f21}{U\+S\+E\+\_\+\+S\+P\+I\+\_\+\+D\+MA}}
+\item 
+\#define \mbox{\hyperlink{spi__dma_8c_a7ab960496ba3e3ebffb70d89f6b2d538}{D\+M\+A\+\_\+\+S\+P\+I\+\_\+\+L\+LI}}~2
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{spi__dma_8c_a46701ce9101e2fe7f1235c16cd74bab3}{S\+P\+I\+D\+\_\+\+Configure}} (\mbox{\hyperlink{spi__dma_8h_a9c6dff4e6aa11c3609620b9436a3f6da}{Spid}} $\ast$p\+Spid, \mbox{\hyperlink{structSpi}{Spi}} $\ast$p\+Spi\+Hw, uint8\+\_\+t spi\+Id, uint32\+\_\+t spi\+Mode, \mbox{\hyperlink{group__dmad__structs_gaf2c13151514615a6beb35c0d868a5053}{s\+Xdmad}} $\ast$p\+Xdmad)
+\begin{DoxyCompactList}\small\item\em Initializes the Spid structure and the corresponding S\+PI \& D\+MA hardware. select value. The driver will uses D\+MA channel 0 for RX and D\+MA channel 1 for TX. The D\+MA channels are freed automatically when no S\+PI command processing. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{spi__dma_8c_a36e110a3cda7abf52985f30626c47b5f}{S\+P\+I\+D\+\_\+\+Configure\+CS}} (\mbox{\hyperlink{spi__dma_8h_a9c6dff4e6aa11c3609620b9436a3f6da}{Spid}} $\ast$p\+Spid, uint32\+\_\+t dw\+CS, uint32\+\_\+t dw\+Csr)
+\begin{DoxyCompactList}\small\item\em Configures the parameters for the device corresponding to the cs value. \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{spi__dma_8c_ae3c774fb7e4bcf2db4e5d9e8891b6abd}{S\+P\+I\+D\+\_\+\+Send\+Command}} (\mbox{\hyperlink{spi__dma_8h_a9c6dff4e6aa11c3609620b9436a3f6da}{Spid}} $\ast$p\+Spid, \mbox{\hyperlink{spi__dma_8h_a8bc9732eedc1e8f02a7bfaf99d97837b}{Spid\+Cmd}} $\ast$p\+Command)
+\begin{DoxyCompactList}\small\item\em Starts a S\+PI master transfer. This is a non blocking function. It will return as soon as the transfer is started. \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{spi__dma_8c_a570a26a429bb5c77a48336209bd8acc5}{S\+P\+I\+D\+\_\+\+Is\+Busy}} (const \mbox{\hyperlink{spi__dma_8h_a9c6dff4e6aa11c3609620b9436a3f6da}{Spid}} $\ast$p\+Spid)
+\begin{DoxyCompactList}\small\item\em Check if the S\+PI driver is busy. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Implementation for the S\+PI Flash with x\+D\+MA driver. 
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{spi__dma_8c_a7ab960496ba3e3ebffb70d89f6b2d538}\label{spi__dma_8c_a7ab960496ba3e3ebffb70d89f6b2d538}} 
+\index{spi\_dma.c@{spi\_dma.c}!DMA\_SPI\_LLI@{DMA\_SPI\_LLI}}
+\index{DMA\_SPI\_LLI@{DMA\_SPI\_LLI}!spi\_dma.c@{spi\_dma.c}}
+\subsubsection{\texorpdfstring{DMA\_SPI\_LLI}{DMA\_SPI\_LLI}}
+{\footnotesize\ttfamily \#define D\+M\+A\+\_\+\+S\+P\+I\+\_\+\+L\+LI~2}
+
+x\+D\+MA Link List size for S\+PI transmission \mbox{\Hypertarget{spi__dma_8c_a2a919c30bfeebf56ef01386c55857f21}\label{spi__dma_8c_a2a919c30bfeebf56ef01386c55857f21}} 
+\index{spi\_dma.c@{spi\_dma.c}!USE\_SPI\_DMA@{USE\_SPI\_DMA}}
+\index{USE\_SPI\_DMA@{USE\_SPI\_DMA}!spi\_dma.c@{spi\_dma.c}}
+\subsubsection{\texorpdfstring{USE\_SPI\_DMA}{USE\_SPI\_DMA}}
+{\footnotesize\ttfamily \#define U\+S\+E\+\_\+\+S\+P\+I\+\_\+\+D\+MA}
+
+x\+D\+MA support 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{spi__dma_8c_a46701ce9101e2fe7f1235c16cd74bab3}\label{spi__dma_8c_a46701ce9101e2fe7f1235c16cd74bab3}} 
+\index{spi\_dma.c@{spi\_dma.c}!SPID\_Configure@{SPID\_Configure}}
+\index{SPID\_Configure@{SPID\_Configure}!spi\_dma.c@{spi\_dma.c}}
+\subsubsection{\texorpdfstring{SPID\_Configure()}{SPID\_Configure()}}
+{\footnotesize\ttfamily uint32\+\_\+t S\+P\+I\+D\+\_\+\+Configure (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{spi__dma_8h_a9c6dff4e6aa11c3609620b9436a3f6da}{Spid}} $\ast$}]{p\+Spid,  }\item[{\mbox{\hyperlink{structSpi}{Spi}} $\ast$}]{p\+Spi\+Hw,  }\item[{uint8\+\_\+t}]{spi\+Id,  }\item[{uint32\+\_\+t}]{spi\+Mode,  }\item[{\mbox{\hyperlink{group__dmad__structs_gaf2c13151514615a6beb35c0d868a5053}{s\+Xdmad}} $\ast$}]{p\+Xdmad }\end{DoxyParamCaption})}
+
+
+
+Initializes the Spid structure and the corresponding S\+PI \& D\+MA hardware. select value. The driver will uses D\+MA channel 0 for RX and D\+MA channel 1 for TX. The D\+MA channels are freed automatically when no S\+PI command processing. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Spid} & Pointer to a Spid instance. \\
+\hline
+{\em p\+Spi\+Hw} & Associated S\+PI peripheral. \\
+\hline
+{\em spi\+Id} & S\+PI peripheral identifier. \\
+\hline
+{\em p\+Dmad} & Pointer to a Dmad instance. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{spi__dma_8c_a36e110a3cda7abf52985f30626c47b5f}\label{spi__dma_8c_a36e110a3cda7abf52985f30626c47b5f}} 
+\index{spi\_dma.c@{spi\_dma.c}!SPID\_ConfigureCS@{SPID\_ConfigureCS}}
+\index{SPID\_ConfigureCS@{SPID\_ConfigureCS}!spi\_dma.c@{spi\_dma.c}}
+\subsubsection{\texorpdfstring{SPID\_ConfigureCS()}{SPID\_ConfigureCS()}}
+{\footnotesize\ttfamily void S\+P\+I\+D\+\_\+\+Configure\+CS (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{spi__dma_8h_a9c6dff4e6aa11c3609620b9436a3f6da}{Spid}} $\ast$}]{p\+Spid,  }\item[{uint32\+\_\+t}]{dw\+CS,  }\item[{uint32\+\_\+t}]{dw\+Csr }\end{DoxyParamCaption})}
+
+
+
+Configures the parameters for the device corresponding to the cs value. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Spid} & Pointer to a Spid instance. \\
+\hline
+{\em cs} & number corresponding to the S\+PI chip select. \\
+\hline
+{\em csr} & S\+P\+I\+\_\+\+C\+SR value to setup. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{spi__dma_8c_a570a26a429bb5c77a48336209bd8acc5}\label{spi__dma_8c_a570a26a429bb5c77a48336209bd8acc5}} 
+\index{spi\_dma.c@{spi\_dma.c}!SPID\_IsBusy@{SPID\_IsBusy}}
+\index{SPID\_IsBusy@{SPID\_IsBusy}!spi\_dma.c@{spi\_dma.c}}
+\subsubsection{\texorpdfstring{SPID\_IsBusy()}{SPID\_IsBusy()}}
+{\footnotesize\ttfamily uint32\+\_\+t S\+P\+I\+D\+\_\+\+Is\+Busy (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{spi__dma_8h_a9c6dff4e6aa11c3609620b9436a3f6da}{Spid}} $\ast$}]{p\+Spid }\end{DoxyParamCaption})}
+
+
+
+Check if the S\+PI driver is busy. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Spid} & Pointer to a Spid instance. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if the S\+PI driver is currently busy executing a command; otherwise 
+\end{DoxyReturn}
+\mbox{\Hypertarget{spi__dma_8c_ae3c774fb7e4bcf2db4e5d9e8891b6abd}\label{spi__dma_8c_ae3c774fb7e4bcf2db4e5d9e8891b6abd}} 
+\index{spi\_dma.c@{spi\_dma.c}!SPID\_SendCommand@{SPID\_SendCommand}}
+\index{SPID\_SendCommand@{SPID\_SendCommand}!spi\_dma.c@{spi\_dma.c}}
+\subsubsection{\texorpdfstring{SPID\_SendCommand()}{SPID\_SendCommand()}}
+{\footnotesize\ttfamily uint32\+\_\+t S\+P\+I\+D\+\_\+\+Send\+Command (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{spi__dma_8h_a9c6dff4e6aa11c3609620b9436a3f6da}{Spid}} $\ast$}]{p\+Spid,  }\item[{\mbox{\hyperlink{spi__dma_8h_a8bc9732eedc1e8f02a7bfaf99d97837b}{Spid\+Cmd}} $\ast$}]{p\+Command }\end{DoxyParamCaption})}
+
+
+
+Starts a S\+PI master transfer. This is a non blocking function. It will return as soon as the transfer is started. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Spid} & Pointer to a Spid instance. \\
+\hline
+{\em p\+Command} & Pointer to the S\+PI command to execute. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if the transfer has been started successfully; otherwise returns S\+P\+I\+D\+\_\+\+E\+R\+R\+O\+R\+\_\+\+L\+O\+CK is the driver is in use, or S\+P\+I\+D\+\_\+\+E\+R\+R\+OR if the command is not valid. 
+\end{DoxyReturn}

@@ -1,0 +1,112 @@
+\hypertarget{structrtems__profiling__per__cpu}{}\section{rtems\+\_\+profiling\+\_\+per\+\_\+cpu Struct Reference}
+\label{structrtems__profiling__per__cpu}\index{rtems\_profiling\_per\_cpu@{rtems\_profiling\_per\_cpu}}
+
+
+Per-\/\+C\+PU profiling data.  
+
+
+
+
+{\ttfamily \#include $<$profiling.\+h$>$}
+
+\subsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structrtems__profiling__per__cpu_a6e745ab55496d189e283cf68b1e3351d}\label{structrtems__profiling__per__cpu_a6e745ab55496d189e283cf68b1e3351d}} 
+\mbox{\hyperlink{structrtems__profiling__header}{rtems\+\_\+profiling\+\_\+header}} \mbox{\hyperlink{structrtems__profiling__per__cpu_a6e745ab55496d189e283cf68b1e3351d}{header}}
+\begin{DoxyCompactList}\small\item\em The profiling data header. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structrtems__profiling__per__cpu_ab06a40d92710b95257fd389a09ab936e}\label{structrtems__profiling__per__cpu_ab06a40d92710b95257fd389a09ab936e}} 
+uint32\+\_\+t \mbox{\hyperlink{structrtems__profiling__per__cpu_ab06a40d92710b95257fd389a09ab936e}{processor\+\_\+index}}
+\begin{DoxyCompactList}\small\item\em The processor index of this profiling data. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structrtems__profiling__per__cpu_a652f95fcdca93b2993b696babf2b8472}\label{structrtems__profiling__per__cpu_a652f95fcdca93b2993b696babf2b8472}} 
+uint32\+\_\+t \mbox{\hyperlink{structrtems__profiling__per__cpu_a652f95fcdca93b2993b696babf2b8472}{max\+\_\+thread\+\_\+dispatch\+\_\+disabled\+\_\+time}}
+\begin{DoxyCompactList}\small\item\em The maximum time of disabled thread dispatching in nanoseconds. \end{DoxyCompactList}\item 
+uint64\+\_\+t \mbox{\hyperlink{structrtems__profiling__per__cpu_ad5ffd37b33203299ff1f2933931189b7}{thread\+\_\+dispatch\+\_\+disabled\+\_\+count}}
+\begin{DoxyCompactList}\small\item\em Count of times when the thread dispatch disable level changes from zero to one in thread context. \end{DoxyCompactList}\item 
+uint64\+\_\+t \mbox{\hyperlink{structrtems__profiling__per__cpu_a13aec425f945e9f0dd535f4db69a3de3}{total\+\_\+thread\+\_\+dispatch\+\_\+disabled\+\_\+time}}
+\begin{DoxyCompactList}\small\item\em Total time of disabled thread dispatching in nanoseconds. \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{structrtems__profiling__per__cpu_a8d43d26a8e780a2fa616c402396b351c}{max\+\_\+interrupt\+\_\+delay}}
+\begin{DoxyCompactList}\small\item\em The maximum interrupt delay in nanoseconds if supported by the hardware. \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{structrtems__profiling__per__cpu_a12f3c2b20ade7916dd9278c445805826}{max\+\_\+interrupt\+\_\+time}}
+\begin{DoxyCompactList}\small\item\em The maximum time spent to process a single sequence of nested interrupts in nanoseconds. \end{DoxyCompactList}\item 
+uint64\+\_\+t \mbox{\hyperlink{structrtems__profiling__per__cpu_afd48c947ae70c7739575621fb156f1e4}{interrupt\+\_\+count}}
+\begin{DoxyCompactList}\small\item\em Count of times when the interrupt nest level changes from zero to one. \end{DoxyCompactList}\item 
+uint64\+\_\+t \mbox{\hyperlink{structrtems__profiling__per__cpu_a98a594f04430a4fd78b14b509b3eb7ba}{total\+\_\+interrupt\+\_\+time}}
+\begin{DoxyCompactList}\small\item\em Total time of interrupt processing in nanoseconds. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Per-\/\+C\+PU profiling data. 
+
+Theoretically all values in this structure can overflow, but the integer types are chosen so that they cannot overflow in practice. On systems with a 1G\+Hz C\+PU counter, the 64-\/bit integers can overflow in about 58 years. Since the system should not spend most of the time in critical sections the actual system run-\/time is much longer. Several other counters in the system will overflow before we get a problem in the profiling area. 
+
+\subsection{Field Documentation}
+\mbox{\Hypertarget{structrtems__profiling__per__cpu_afd48c947ae70c7739575621fb156f1e4}\label{structrtems__profiling__per__cpu_afd48c947ae70c7739575621fb156f1e4}} 
+\index{rtems\_profiling\_per\_cpu@{rtems\_profiling\_per\_cpu}!interrupt\_count@{interrupt\_count}}
+\index{interrupt\_count@{interrupt\_count}!rtems\_profiling\_per\_cpu@{rtems\_profiling\_per\_cpu}}
+\subsubsection{\texorpdfstring{interrupt\_count}{interrupt\_count}}
+{\footnotesize\ttfamily uint64\+\_\+t rtems\+\_\+profiling\+\_\+per\+\_\+cpu\+::interrupt\+\_\+count}
+
+
+
+Count of times when the interrupt nest level changes from zero to one. 
+
+This value may overflow. \mbox{\Hypertarget{structrtems__profiling__per__cpu_a8d43d26a8e780a2fa616c402396b351c}\label{structrtems__profiling__per__cpu_a8d43d26a8e780a2fa616c402396b351c}} 
+\index{rtems\_profiling\_per\_cpu@{rtems\_profiling\_per\_cpu}!max\_interrupt\_delay@{max\_interrupt\_delay}}
+\index{max\_interrupt\_delay@{max\_interrupt\_delay}!rtems\_profiling\_per\_cpu@{rtems\_profiling\_per\_cpu}}
+\subsubsection{\texorpdfstring{max\_interrupt\_delay}{max\_interrupt\_delay}}
+{\footnotesize\ttfamily uint32\+\_\+t rtems\+\_\+profiling\+\_\+per\+\_\+cpu\+::max\+\_\+interrupt\+\_\+delay}
+
+
+
+The maximum interrupt delay in nanoseconds if supported by the hardware. 
+
+The interrupt delay is the time interval from the recognition of an interrupt signal by the hardware up to the execution start of the corresponding high-\/level handler. The interrupt delay is the main contributor to the interrupt latency. To measure this time hardware support is required. A time stamp unit must capture the interrupt signal recognition time. If no hardware support is available, then this field will have a constant value of zero. \mbox{\Hypertarget{structrtems__profiling__per__cpu_a12f3c2b20ade7916dd9278c445805826}\label{structrtems__profiling__per__cpu_a12f3c2b20ade7916dd9278c445805826}} 
+\index{rtems\_profiling\_per\_cpu@{rtems\_profiling\_per\_cpu}!max\_interrupt\_time@{max\_interrupt\_time}}
+\index{max\_interrupt\_time@{max\_interrupt\_time}!rtems\_profiling\_per\_cpu@{rtems\_profiling\_per\_cpu}}
+\subsubsection{\texorpdfstring{max\_interrupt\_time}{max\_interrupt\_time}}
+{\footnotesize\ttfamily uint32\+\_\+t rtems\+\_\+profiling\+\_\+per\+\_\+cpu\+::max\+\_\+interrupt\+\_\+time}
+
+
+
+The maximum time spent to process a single sequence of nested interrupts in nanoseconds. 
+
+This is the time interval between the change of the interrupt nest level from zero to one and the change back from one to zero. It is the measured worst-\/case execution time of interrupt service routines. Please note that in case of nested interrupts this time includes the combined execution time and not the maximum time of an individual interrupt service routine. \mbox{\Hypertarget{structrtems__profiling__per__cpu_ad5ffd37b33203299ff1f2933931189b7}\label{structrtems__profiling__per__cpu_ad5ffd37b33203299ff1f2933931189b7}} 
+\index{rtems\_profiling\_per\_cpu@{rtems\_profiling\_per\_cpu}!thread\_dispatch\_disabled\_count@{thread\_dispatch\_disabled\_count}}
+\index{thread\_dispatch\_disabled\_count@{thread\_dispatch\_disabled\_count}!rtems\_profiling\_per\_cpu@{rtems\_profiling\_per\_cpu}}
+\subsubsection{\texorpdfstring{thread\_dispatch\_disabled\_count}{thread\_dispatch\_disabled\_count}}
+{\footnotesize\ttfamily uint64\+\_\+t rtems\+\_\+profiling\+\_\+per\+\_\+cpu\+::thread\+\_\+dispatch\+\_\+disabled\+\_\+count}
+
+
+
+Count of times when the thread dispatch disable level changes from zero to one in thread context. 
+
+This value may overflow. \mbox{\Hypertarget{structrtems__profiling__per__cpu_a98a594f04430a4fd78b14b509b3eb7ba}\label{structrtems__profiling__per__cpu_a98a594f04430a4fd78b14b509b3eb7ba}} 
+\index{rtems\_profiling\_per\_cpu@{rtems\_profiling\_per\_cpu}!total\_interrupt\_time@{total\_interrupt\_time}}
+\index{total\_interrupt\_time@{total\_interrupt\_time}!rtems\_profiling\_per\_cpu@{rtems\_profiling\_per\_cpu}}
+\subsubsection{\texorpdfstring{total\_interrupt\_time}{total\_interrupt\_time}}
+{\footnotesize\ttfamily uint64\+\_\+t rtems\+\_\+profiling\+\_\+per\+\_\+cpu\+::total\+\_\+interrupt\+\_\+time}
+
+
+
+Total time of interrupt processing in nanoseconds. 
+
+The average time of interrupt processing is the total time of interrupt processing divided by the interrupt count.
+
+This value may overflow. \mbox{\Hypertarget{structrtems__profiling__per__cpu_a13aec425f945e9f0dd535f4db69a3de3}\label{structrtems__profiling__per__cpu_a13aec425f945e9f0dd535f4db69a3de3}} 
+\index{rtems\_profiling\_per\_cpu@{rtems\_profiling\_per\_cpu}!total\_thread\_dispatch\_disabled\_time@{total\_thread\_dispatch\_disabled\_time}}
+\index{total\_thread\_dispatch\_disabled\_time@{total\_thread\_dispatch\_disabled\_time}!rtems\_profiling\_per\_cpu@{rtems\_profiling\_per\_cpu}}
+\subsubsection{\texorpdfstring{total\_thread\_dispatch\_disabled\_time}{total\_thread\_dispatch\_disabled\_time}}
+{\footnotesize\ttfamily uint64\+\_\+t rtems\+\_\+profiling\+\_\+per\+\_\+cpu\+::total\+\_\+thread\+\_\+dispatch\+\_\+disabled\+\_\+time}
+
+
+
+Total time of disabled thread dispatching in nanoseconds. 
+
+The average time of disabled thread dispatching is the total time of disabled thread dispatching divided by the thread dispatch disabled count.
+
+This value may overflow. 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+cpukit/include/rtems/\mbox{\hyperlink{profiling_8h}{profiling.\+h}}\end{DoxyCompactItemize}

@@ -1,0 +1,283 @@
+\hypertarget{spi-sd-card_8c}{}\section{bsps/shared/dev/i2c/spi-\/sd-\/card.c File Reference}
+\label{spi-sd-card_8c}\index{bsps/shared/dev/i2c/spi-\/sd-\/card.c@{bsps/shared/dev/i2c/spi-\/sd-\/card.c}}
+
+
+SD Card Lib\+I2C driver.  
+
+
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$errno.\+h$>$}\newline
+{\ttfamily \#include $<$inttypes.\+h$>$}\newline
+{\ttfamily \#include $<$rtems.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/libi2c.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/libio.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/blkdev.\+h$>$}\newline
+{\ttfamily \#include $<$libchip/spi-\/sd-\/card.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/status-\/checks.\+h$>$}\newline
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{spi-sd-card_8c_a595ef4f0300d16f2fd5508c1ea032c32}\label{spi-sd-card_8c_a595ef4f0300d16f2fd5508c1ea032c32}} 
+\#define {\bfseries S\+D\+\_\+\+C\+A\+R\+D\+\_\+\+B\+U\+S\+Y\+\_\+\+T\+O\+K\+EN}~0
+\item 
+\mbox{\Hypertarget{spi-sd-card_8c_ad1d111c8496000af7212e66571206019}\label{spi-sd-card_8c_ad1d111c8496000af7212e66571206019}} 
+\#define {\bfseries S\+D\+\_\+\+C\+A\+R\+D\+\_\+\+B\+L\+O\+C\+K\+\_\+\+S\+I\+Z\+E\+\_\+\+D\+E\+F\+A\+U\+LT}~512
+\item 
+\mbox{\Hypertarget{spi-sd-card_8c_a007e080a11d944be3b3e5ec497dcb4c9}\label{spi-sd-card_8c_a007e080a11d944be3b3e5ec497dcb4c9}} 
+\#define {\bfseries S\+D\+\_\+\+C\+A\+R\+D\+\_\+\+C\+O\+M\+M\+A\+N\+D\+\_\+\+R\+E\+S\+P\+O\+N\+S\+E\+\_\+\+S\+T\+A\+RT}~7
+\item 
+\mbox{\Hypertarget{spi-sd-card_8c_accf53594352bde15cdbf07f7f35ff94c}\label{spi-sd-card_8c_accf53594352bde15cdbf07f7f35ff94c}} 
+\#define {\bfseries S\+D\+\_\+\+C\+A\+R\+D\+\_\+\+I\+N\+V\+A\+L\+I\+D\+A\+T\+E\+\_\+\+R\+E\+S\+P\+O\+N\+S\+E\+\_\+\+I\+N\+D\+EX}(\mbox{\hyperlink{sun4u_2tte_8h_a8b0b9ed08e0e18920ec2682f48228c27}{e}})~\mbox{\hyperlink{sun4u_2tte_8h_a8b0b9ed08e0e18920ec2682f48228c27}{e}}-\/$>$response\+\_\+index = \mbox{\hyperlink{spi-sd-card_8h_add81282988892598d653b96979fb8991}{S\+D\+\_\+\+C\+A\+R\+D\+\_\+\+C\+O\+M\+M\+A\+N\+D\+\_\+\+S\+I\+ZE}}
+\end{DoxyCompactItemize}
+\begin{Indent}\textbf{ Commands}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{spi-sd-card_8c_abf34f416f11cdd08c542e01b396dafa8}\label{spi-sd-card_8c_abf34f416f11cdd08c542e01b396dafa8}} 
+\#define {\bfseries S\+D\+\_\+\+C\+A\+R\+D\+\_\+\+C\+M\+D\+\_\+\+G\+O\+\_\+\+I\+D\+L\+E\+\_\+\+S\+T\+A\+TE}~0
+\item 
+\mbox{\Hypertarget{spi-sd-card_8c_af32f3beb66789ef47b51109cded7e615}\label{spi-sd-card_8c_af32f3beb66789ef47b51109cded7e615}} 
+\#define {\bfseries S\+D\+\_\+\+C\+A\+R\+D\+\_\+\+C\+M\+D\+\_\+\+S\+E\+N\+D\+\_\+\+O\+P\+\_\+\+C\+O\+ND}~1
+\item 
+\mbox{\Hypertarget{spi-sd-card_8c_a4ecb5e9f0dcd2ff92e3b4e922f3afac4}\label{spi-sd-card_8c_a4ecb5e9f0dcd2ff92e3b4e922f3afac4}} 
+\#define {\bfseries S\+D\+\_\+\+C\+A\+R\+D\+\_\+\+C\+M\+D\+\_\+\+S\+E\+N\+D\+\_\+\+I\+F\+\_\+\+C\+O\+ND}~8
+\item 
+\mbox{\Hypertarget{spi-sd-card_8c_a6b588f4b63756d237396fa4c9143b5ae}\label{spi-sd-card_8c_a6b588f4b63756d237396fa4c9143b5ae}} 
+\#define {\bfseries S\+D\+\_\+\+C\+A\+R\+D\+\_\+\+C\+M\+D\+\_\+\+S\+E\+N\+D\+\_\+\+C\+SD}~9
+\item 
+\mbox{\Hypertarget{spi-sd-card_8c_aa6b39819cee88eeb2e361f3043d0587f}\label{spi-sd-card_8c_aa6b39819cee88eeb2e361f3043d0587f}} 
+\#define {\bfseries S\+D\+\_\+\+C\+A\+R\+D\+\_\+\+C\+M\+D\+\_\+\+S\+E\+N\+D\+\_\+\+C\+ID}~10
+\item 
+\mbox{\Hypertarget{spi-sd-card_8c_a9c5c82e23285a5b280c46202b87df393}\label{spi-sd-card_8c_a9c5c82e23285a5b280c46202b87df393}} 
+\#define {\bfseries S\+D\+\_\+\+C\+A\+R\+D\+\_\+\+C\+M\+D\+\_\+\+S\+T\+O\+P\+\_\+\+T\+R\+A\+N\+S\+M\+I\+S\+S\+I\+ON}~12
+\item 
+\mbox{\Hypertarget{spi-sd-card_8c_aad4285d2769d289d977e8af4edce755f}\label{spi-sd-card_8c_aad4285d2769d289d977e8af4edce755f}} 
+\#define {\bfseries S\+D\+\_\+\+C\+A\+R\+D\+\_\+\+C\+M\+D\+\_\+\+S\+E\+N\+D\+\_\+\+S\+T\+A\+T\+US}~13
+\item 
+\mbox{\Hypertarget{spi-sd-card_8c_affd2c4d9c1455767fdfb76be0675c846}\label{spi-sd-card_8c_affd2c4d9c1455767fdfb76be0675c846}} 
+\#define {\bfseries S\+D\+\_\+\+C\+A\+R\+D\+\_\+\+C\+M\+D\+\_\+\+S\+E\+T\+\_\+\+B\+L\+O\+C\+K\+L\+EN}~16
+\item 
+\mbox{\Hypertarget{spi-sd-card_8c_a5d37888707a6d5a83b3f2659b3a286e3}\label{spi-sd-card_8c_a5d37888707a6d5a83b3f2659b3a286e3}} 
+\#define {\bfseries S\+D\+\_\+\+C\+A\+R\+D\+\_\+\+C\+M\+D\+\_\+\+R\+E\+A\+D\+\_\+\+S\+I\+N\+G\+L\+E\+\_\+\+B\+L\+O\+CK}~17
+\item 
+\mbox{\Hypertarget{spi-sd-card_8c_a1c4a9c2e7266667e2ff95fb787bfb90e}\label{spi-sd-card_8c_a1c4a9c2e7266667e2ff95fb787bfb90e}} 
+\#define {\bfseries S\+D\+\_\+\+C\+A\+R\+D\+\_\+\+C\+M\+D\+\_\+\+R\+E\+A\+D\+\_\+\+M\+U\+L\+T\+I\+P\+L\+E\+\_\+\+B\+L\+O\+CK}~18
+\item 
+\mbox{\Hypertarget{spi-sd-card_8c_aaf43a994306cc0d428b8f86673ea9438}\label{spi-sd-card_8c_aaf43a994306cc0d428b8f86673ea9438}} 
+\#define {\bfseries S\+D\+\_\+\+C\+A\+R\+D\+\_\+\+C\+M\+D\+\_\+\+S\+E\+T\+\_\+\+B\+L\+O\+C\+K\+\_\+\+C\+O\+U\+NT}~23
+\item 
+\mbox{\Hypertarget{spi-sd-card_8c_a45569f248b42e513423850f228e61862}\label{spi-sd-card_8c_a45569f248b42e513423850f228e61862}} 
+\#define {\bfseries S\+D\+\_\+\+C\+A\+R\+D\+\_\+\+C\+M\+D\+\_\+\+W\+R\+I\+T\+E\+\_\+\+B\+L\+O\+CK}~24
+\item 
+\mbox{\Hypertarget{spi-sd-card_8c_a703f7c0666e2661b1ea5ddccbcd9bceb}\label{spi-sd-card_8c_a703f7c0666e2661b1ea5ddccbcd9bceb}} 
+\#define {\bfseries S\+D\+\_\+\+C\+A\+R\+D\+\_\+\+C\+M\+D\+\_\+\+W\+R\+I\+T\+E\+\_\+\+M\+U\+L\+T\+I\+P\+L\+E\+\_\+\+B\+L\+O\+CK}~25
+\item 
+\mbox{\Hypertarget{spi-sd-card_8c_aedcefff4033cccaa6e0a268dadca6e67}\label{spi-sd-card_8c_aedcefff4033cccaa6e0a268dadca6e67}} 
+\#define {\bfseries S\+D\+\_\+\+C\+A\+R\+D\+\_\+\+C\+M\+D\+\_\+\+P\+R\+O\+G\+R\+A\+M\+\_\+\+C\+SD}~27
+\item 
+\mbox{\Hypertarget{spi-sd-card_8c_a18a2595911465e7542e047d62b967696}\label{spi-sd-card_8c_a18a2595911465e7542e047d62b967696}} 
+\#define {\bfseries S\+D\+\_\+\+C\+A\+R\+D\+\_\+\+C\+M\+D\+\_\+\+S\+E\+T\+\_\+\+W\+R\+I\+T\+E\+\_\+\+P\+R\+OT}~28
+\item 
+\mbox{\Hypertarget{spi-sd-card_8c_a9144124f3ff8f013662b37802b4dba13}\label{spi-sd-card_8c_a9144124f3ff8f013662b37802b4dba13}} 
+\#define {\bfseries S\+D\+\_\+\+C\+A\+R\+D\+\_\+\+C\+M\+D\+\_\+\+C\+L\+R\+\_\+\+W\+R\+I\+T\+E\+\_\+\+P\+R\+OT}~29
+\item 
+\mbox{\Hypertarget{spi-sd-card_8c_a55805245c1d7d71a9eb00a74df0ab17f}\label{spi-sd-card_8c_a55805245c1d7d71a9eb00a74df0ab17f}} 
+\#define {\bfseries S\+D\+\_\+\+C\+A\+R\+D\+\_\+\+C\+M\+D\+\_\+\+S\+E\+N\+D\+\_\+\+W\+R\+I\+T\+E\+\_\+\+P\+R\+OT}~30
+\item 
+\mbox{\Hypertarget{spi-sd-card_8c_a7c951021a2a5287ef4b8f7a24fd2bfa8}\label{spi-sd-card_8c_a7c951021a2a5287ef4b8f7a24fd2bfa8}} 
+\#define {\bfseries S\+D\+\_\+\+C\+A\+R\+D\+\_\+\+C\+M\+D\+\_\+\+T\+A\+G\+\_\+\+S\+E\+C\+T\+O\+R\+\_\+\+S\+T\+A\+RT}~32
+\item 
+\mbox{\Hypertarget{spi-sd-card_8c_a6d74d20781ba1ab95e022cdcf7c83327}\label{spi-sd-card_8c_a6d74d20781ba1ab95e022cdcf7c83327}} 
+\#define {\bfseries S\+D\+\_\+\+C\+A\+R\+D\+\_\+\+C\+M\+D\+\_\+\+T\+A\+G\+\_\+\+S\+E\+C\+T\+O\+R\+\_\+\+E\+ND}~33
+\item 
+\mbox{\Hypertarget{spi-sd-card_8c_aa88dfd88c108ae27849050ba0a8e7f9b}\label{spi-sd-card_8c_aa88dfd88c108ae27849050ba0a8e7f9b}} 
+\#define {\bfseries S\+D\+\_\+\+C\+A\+R\+D\+\_\+\+C\+M\+D\+\_\+\+U\+N\+T\+A\+G\+\_\+\+S\+E\+C\+T\+OR}~34
+\item 
+\mbox{\Hypertarget{spi-sd-card_8c_a7e1dafb789322e7b58f533b5ca4013df}\label{spi-sd-card_8c_a7e1dafb789322e7b58f533b5ca4013df}} 
+\#define {\bfseries S\+D\+\_\+\+C\+A\+R\+D\+\_\+\+C\+M\+D\+\_\+\+T\+A\+G\+\_\+\+E\+R\+A\+S\+E\+\_\+\+G\+R\+O\+U\+P\+\_\+\+S\+T\+A\+RT}~35
+\item 
+\mbox{\Hypertarget{spi-sd-card_8c_ae1a73c7f41864d128d943ff2fb37bdf0}\label{spi-sd-card_8c_ae1a73c7f41864d128d943ff2fb37bdf0}} 
+\#define {\bfseries S\+D\+\_\+\+C\+A\+R\+D\+\_\+\+C\+M\+D\+\_\+\+T\+A\+G\+\_\+\+E\+R\+A\+S\+E\+\_\+\+G\+R\+O\+U\+P\+\_\+\+E\+ND}~36
+\item 
+\mbox{\Hypertarget{spi-sd-card_8c_ae03564b0782d09892a14c880c17a3fb1}\label{spi-sd-card_8c_ae03564b0782d09892a14c880c17a3fb1}} 
+\#define {\bfseries S\+D\+\_\+\+C\+A\+R\+D\+\_\+\+C\+M\+D\+\_\+\+U\+N\+T\+A\+G\+\_\+\+E\+R\+A\+S\+E\+\_\+\+G\+R\+O\+UP}~37
+\item 
+\mbox{\Hypertarget{spi-sd-card_8c_a1bcdb0ce24cd75f9fdda32251dcf91d9}\label{spi-sd-card_8c_a1bcdb0ce24cd75f9fdda32251dcf91d9}} 
+\#define {\bfseries S\+D\+\_\+\+C\+A\+R\+D\+\_\+\+C\+M\+D\+\_\+\+E\+R\+A\+SE}~38
+\item 
+\mbox{\Hypertarget{spi-sd-card_8c_af50352ee635b5fbe01a061e036f407d7}\label{spi-sd-card_8c_af50352ee635b5fbe01a061e036f407d7}} 
+\#define {\bfseries S\+D\+\_\+\+C\+A\+R\+D\+\_\+\+C\+M\+D\+\_\+\+L\+O\+C\+K\+\_\+\+U\+N\+L\+O\+CK}~42
+\item 
+\mbox{\Hypertarget{spi-sd-card_8c_ae9b8455b5327d80dbde9cc6464e197d2}\label{spi-sd-card_8c_ae9b8455b5327d80dbde9cc6464e197d2}} 
+\#define {\bfseries S\+D\+\_\+\+C\+A\+R\+D\+\_\+\+C\+M\+D\+\_\+\+A\+P\+P\+\_\+\+C\+MD}~55
+\item 
+\mbox{\Hypertarget{spi-sd-card_8c_a2f7034d0b8f4a6ffbd72295b0258c0f3}\label{spi-sd-card_8c_a2f7034d0b8f4a6ffbd72295b0258c0f3}} 
+\#define {\bfseries S\+D\+\_\+\+C\+A\+R\+D\+\_\+\+C\+M\+D\+\_\+\+G\+E\+N\+\_\+\+C\+ND}~56
+\item 
+\mbox{\Hypertarget{spi-sd-card_8c_a2060b1bbd7a233dfb6db31f38f4a138b}\label{spi-sd-card_8c_a2060b1bbd7a233dfb6db31f38f4a138b}} 
+\#define {\bfseries S\+D\+\_\+\+C\+A\+R\+D\+\_\+\+C\+M\+D\+\_\+\+R\+E\+A\+D\+\_\+\+O\+CR}~58
+\item 
+\mbox{\Hypertarget{spi-sd-card_8c_ad3797d4ca921db12c89cbbe22817dac6}\label{spi-sd-card_8c_ad3797d4ca921db12c89cbbe22817dac6}} 
+\#define {\bfseries S\+D\+\_\+\+C\+A\+R\+D\+\_\+\+C\+M\+D\+\_\+\+C\+R\+C\+\_\+\+O\+N\+\_\+\+O\+FF}~59
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Application Commands}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{spi-sd-card_8c_a67a2540fc6fdaa8d4ff5dac9efb11eca}\label{spi-sd-card_8c_a67a2540fc6fdaa8d4ff5dac9efb11eca}} 
+\#define {\bfseries S\+D\+\_\+\+C\+A\+R\+D\+\_\+\+A\+C\+M\+D\+\_\+\+S\+D\+\_\+\+S\+E\+N\+D\+\_\+\+O\+P\+\_\+\+C\+O\+ND}~41
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Command Flags}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{spi-sd-card_8c_a79e01e23041bfc274d3b3b334847fd27}\label{spi-sd-card_8c_a79e01e23041bfc274d3b3b334847fd27}} 
+\#define {\bfseries S\+D\+\_\+\+C\+A\+R\+D\+\_\+\+F\+L\+A\+G\+\_\+\+H\+CS}~0x40000000U
+\item 
+\mbox{\Hypertarget{spi-sd-card_8c_a17be5454526e26f84aa570fb9a48cb88}\label{spi-sd-card_8c_a17be5454526e26f84aa570fb9a48cb88}} 
+\#define {\bfseries S\+D\+\_\+\+C\+A\+R\+D\+\_\+\+F\+L\+A\+G\+\_\+\+V\+H\+S\+\_\+2\+\_\+7\+\_\+\+T\+O\+\_\+3\+\_\+3}~0x00000100U
+\item 
+\mbox{\Hypertarget{spi-sd-card_8c_a06b512912109284bcb6644b2e07d4c1b}\label{spi-sd-card_8c_a06b512912109284bcb6644b2e07d4c1b}} 
+\#define {\bfseries S\+D\+\_\+\+C\+A\+R\+D\+\_\+\+F\+L\+A\+G\+\_\+\+C\+H\+E\+C\+K\+\_\+\+P\+A\+T\+T\+E\+RN}~0x000000aaU
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Command Fields}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{spi-sd-card_8c_af026546f270572d99efe2a6281298aaf}\label{spi-sd-card_8c_af026546f270572d99efe2a6281298aaf}} 
+\#define {\bfseries S\+D\+\_\+\+C\+A\+R\+D\+\_\+\+C\+O\+M\+M\+A\+N\+D\+\_\+\+S\+E\+T\+\_\+\+C\+O\+M\+M\+A\+ND}(c,  cmd)~(c) \mbox{[}1\mbox{]} = (uint8\+\_\+t) (0x40 + ((cmd) \& 0x3f))
+\item 
+\mbox{\Hypertarget{spi-sd-card_8c_a805da41615ddd44bf9e5d8023276c313}\label{spi-sd-card_8c_a805da41615ddd44bf9e5d8023276c313}} 
+\#define {\bfseries S\+D\+\_\+\+C\+A\+R\+D\+\_\+\+C\+O\+M\+M\+A\+N\+D\+\_\+\+S\+E\+T\+\_\+\+A\+R\+G\+U\+M\+E\+NT}(c,  arg)~sd\+\_\+card\+\_\+put\+\_\+uint32( (arg), \&((c) \mbox{[}2\mbox{]}))
+\item 
+\mbox{\Hypertarget{spi-sd-card_8c_add08712f7489870b770142c9b6c1c761}\label{spi-sd-card_8c_add08712f7489870b770142c9b6c1c761}} 
+\#define {\bfseries S\+D\+\_\+\+C\+A\+R\+D\+\_\+\+C\+O\+M\+M\+A\+N\+D\+\_\+\+S\+E\+T\+\_\+\+C\+R\+C7}(c,  crc7)~((c) \mbox{[}6\mbox{]} = ((crc7) $<$$<$ 1) $\vert$ 1\+U)
+\item 
+\mbox{\Hypertarget{spi-sd-card_8c_a4c0f5bfac1dcc7c536b9d504a00909da}\label{spi-sd-card_8c_a4c0f5bfac1dcc7c536b9d504a00909da}} 
+\#define {\bfseries S\+D\+\_\+\+C\+A\+R\+D\+\_\+\+C\+O\+M\+M\+A\+N\+D\+\_\+\+G\+E\+T\+\_\+\+C\+R\+C7}(c)~((c) \mbox{[}6\mbox{]} $>$$>$ 1)
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Response Fields}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{spi-sd-card_8c_aede80caaa93ff7132711ddcae28b7f10}\label{spi-sd-card_8c_aede80caaa93ff7132711ddcae28b7f10}} 
+\#define {\bfseries S\+D\+\_\+\+C\+A\+R\+D\+\_\+\+I\+S\+\_\+\+R\+E\+S\+P\+O\+N\+SE}(r)~(((r) \& 0x80) == 0)
+\item 
+\mbox{\Hypertarget{spi-sd-card_8c_a15852cd0397d01c297fdd3fb95fffa77}\label{spi-sd-card_8c_a15852cd0397d01c297fdd3fb95fffa77}} 
+\#define {\bfseries S\+D\+\_\+\+C\+A\+R\+D\+\_\+\+I\+S\+\_\+\+E\+R\+R\+O\+R\+L\+E\+S\+S\+\_\+\+R\+E\+S\+P\+O\+N\+SE}(r)~(((r) \& 0x7e) == 0)
+\item 
+\mbox{\Hypertarget{spi-sd-card_8c_ab7433e176f29e0433f5dfdd4147c5fac}\label{spi-sd-card_8c_ab7433e176f29e0433f5dfdd4147c5fac}} 
+\#define {\bfseries S\+D\+\_\+\+C\+A\+R\+D\+\_\+\+I\+S\+\_\+\+N\+O\+T\+\_\+\+I\+D\+L\+E\+\_\+\+R\+E\+S\+P\+O\+N\+SE}(r)~(((r) \& 0x81) == 0)
+\item 
+\mbox{\Hypertarget{spi-sd-card_8c_afc950561b5a62939e318390fa9017fea}\label{spi-sd-card_8c_afc950561b5a62939e318390fa9017fea}} 
+\#define {\bfseries S\+D\+\_\+\+C\+A\+R\+D\+\_\+\+I\+S\+\_\+\+D\+A\+T\+A\+\_\+\+E\+R\+R\+OR}(r)~(((r) \& 0xe0) == 0)
+\item 
+\mbox{\Hypertarget{spi-sd-card_8c_adc46c3d855548bfdd601404bfc7acb64}\label{spi-sd-card_8c_adc46c3d855548bfdd601404bfc7acb64}} 
+\#define {\bfseries S\+D\+\_\+\+C\+A\+R\+D\+\_\+\+I\+S\+\_\+\+D\+A\+T\+A\+\_\+\+R\+E\+J\+E\+C\+T\+ED}(r)~(((r) \& 0x1f) != 0x05)
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Card Identification}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{spi-sd-card_8c_acc9de782919281bd0e3c12cc17dada23}\label{spi-sd-card_8c_acc9de782919281bd0e3c12cc17dada23}} 
+\#define {\bfseries S\+D\+\_\+\+C\+A\+R\+D\+\_\+\+C\+I\+D\+\_\+\+S\+I\+ZE}~16
+\item 
+\mbox{\Hypertarget{spi-sd-card_8c_a8109f2e3364d5797f498f591ee5dbc29}\label{spi-sd-card_8c_a8109f2e3364d5797f498f591ee5dbc29}} 
+\#define {\bfseries S\+D\+\_\+\+C\+A\+R\+D\+\_\+\+C\+I\+D\+\_\+\+G\+E\+T\+\_\+\+M\+ID}(cid)~((cid) \mbox{[}0\mbox{]})
+\item 
+\mbox{\Hypertarget{spi-sd-card_8c_aa4613bc9ed07c316f6c69e8705eff7a8}\label{spi-sd-card_8c_aa4613bc9ed07c316f6c69e8705eff7a8}} 
+\#define {\bfseries S\+D\+\_\+\+C\+A\+R\+D\+\_\+\+C\+I\+D\+\_\+\+G\+E\+T\+\_\+\+O\+ID}(cid)~sd\+\_\+card\+\_\+get\+\_\+uint16( cid + 1)
+\item 
+\mbox{\Hypertarget{spi-sd-card_8c_a4aa233733bfb044832e1dcb6a924c73b}\label{spi-sd-card_8c_a4aa233733bfb044832e1dcb6a924c73b}} 
+\#define {\bfseries S\+D\+\_\+\+C\+A\+R\+D\+\_\+\+C\+I\+D\+\_\+\+G\+E\+T\+\_\+\+P\+NM}(cid,  i)~((char) (cid) \mbox{[}3 + (i)\mbox{]})
+\item 
+\mbox{\Hypertarget{spi-sd-card_8c_af57f6ee8c921f04c7bdd5be25dfe21b0}\label{spi-sd-card_8c_af57f6ee8c921f04c7bdd5be25dfe21b0}} 
+\#define {\bfseries S\+D\+\_\+\+C\+A\+R\+D\+\_\+\+C\+I\+D\+\_\+\+G\+E\+T\+\_\+\+P\+RV}(cid)~((cid) \mbox{[}9\mbox{]})
+\item 
+\mbox{\Hypertarget{spi-sd-card_8c_aada3edd3b8abd0434e85bb9f48718597}\label{spi-sd-card_8c_aada3edd3b8abd0434e85bb9f48718597}} 
+\#define {\bfseries S\+D\+\_\+\+C\+A\+R\+D\+\_\+\+C\+I\+D\+\_\+\+G\+E\+T\+\_\+\+P\+SN}(cid)~sd\+\_\+card\+\_\+get\+\_\+uint32( cid + 10)
+\item 
+\mbox{\Hypertarget{spi-sd-card_8c_a85490ce10a6b0e3b79136509f6dacc44}\label{spi-sd-card_8c_a85490ce10a6b0e3b79136509f6dacc44}} 
+\#define {\bfseries S\+D\+\_\+\+C\+A\+R\+D\+\_\+\+C\+I\+D\+\_\+\+G\+E\+T\+\_\+\+M\+DT}(cid)~((cid) \mbox{[}14\mbox{]})
+\item 
+\mbox{\Hypertarget{spi-sd-card_8c_adae37150aa4711503ca7ebd9129a5dae}\label{spi-sd-card_8c_adae37150aa4711503ca7ebd9129a5dae}} 
+\#define {\bfseries S\+D\+\_\+\+C\+A\+R\+D\+\_\+\+C\+I\+D\+\_\+\+G\+E\+T\+\_\+\+C\+R\+C7}(cid)~((cid) \mbox{[}15\mbox{]} $>$$>$ 1)
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Card Specific Data}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{spi-sd-card_8c_a4fbd3d8e07d3a94f7400e8b6513fd620}\label{spi-sd-card_8c_a4fbd3d8e07d3a94f7400e8b6513fd620}} 
+\#define {\bfseries S\+D\+\_\+\+C\+A\+R\+D\+\_\+\+C\+S\+D\+\_\+\+S\+I\+ZE}~16
+\item 
+\mbox{\Hypertarget{spi-sd-card_8c_ae62910dc97103ad8abaf52921c202a3a}\label{spi-sd-card_8c_ae62910dc97103ad8abaf52921c202a3a}} 
+\#define {\bfseries S\+D\+\_\+\+C\+A\+R\+D\+\_\+\+C\+S\+D\+\_\+\+G\+E\+T\+\_\+\+C\+S\+D\+\_\+\+S\+T\+R\+U\+C\+T\+U\+RE}(csd)~((csd) \mbox{[}0\mbox{]} $>$$>$ 6)
+\item 
+\mbox{\Hypertarget{spi-sd-card_8c_a688c13e244a05f6f97ed54d4856663d4}\label{spi-sd-card_8c_a688c13e244a05f6f97ed54d4856663d4}} 
+\#define {\bfseries S\+D\+\_\+\+C\+A\+R\+D\+\_\+\+C\+S\+D\+\_\+\+G\+E\+T\+\_\+\+S\+P\+E\+C\+\_\+\+V\+E\+RS}(csd)~(((csd) \mbox{[}0\mbox{]} $>$$>$ 2) \& 0xf)
+\item 
+\mbox{\Hypertarget{spi-sd-card_8c_abef001802959c8b95218da8ec43087e3}\label{spi-sd-card_8c_abef001802959c8b95218da8ec43087e3}} 
+\#define {\bfseries S\+D\+\_\+\+C\+A\+R\+D\+\_\+\+C\+S\+D\+\_\+\+G\+E\+T\+\_\+\+T\+A\+AC}(csd)~((csd) \mbox{[}1\mbox{]})
+\item 
+\mbox{\Hypertarget{spi-sd-card_8c_a55780ad7fea22b844a6c87e427b7a5e6}\label{spi-sd-card_8c_a55780ad7fea22b844a6c87e427b7a5e6}} 
+\#define {\bfseries S\+D\+\_\+\+C\+A\+R\+D\+\_\+\+C\+S\+D\+\_\+\+G\+E\+T\+\_\+\+N\+S\+AC}(csd)~((uint32\+\_\+t) (csd) \mbox{[}2\mbox{]})
+\item 
+\mbox{\Hypertarget{spi-sd-card_8c_a0f25f80c819ada8d1f86d443d005704a}\label{spi-sd-card_8c_a0f25f80c819ada8d1f86d443d005704a}} 
+\#define {\bfseries S\+D\+\_\+\+C\+A\+R\+D\+\_\+\+C\+S\+D\+\_\+\+G\+E\+T\+\_\+\+T\+R\+A\+N\+\_\+\+S\+P\+E\+ED}(csd)~((csd) \mbox{[}3\mbox{]})
+\item 
+\mbox{\Hypertarget{spi-sd-card_8c_ae2d0bd0f1b34a1688ddf842483555a2b}\label{spi-sd-card_8c_ae2d0bd0f1b34a1688ddf842483555a2b}} 
+\#define {\bfseries S\+D\+\_\+\+C\+A\+R\+D\+\_\+\+C\+S\+D\+\_\+\+G\+E\+T\+\_\+\+C\+\_\+\+S\+I\+ZE}(csd)~((((uint32\+\_\+t) (csd) \mbox{[}6\mbox{]} \& 0x3) $<$$<$ 10) + (((uint32\+\_\+t) (csd) \mbox{[}7\mbox{]}) $<$$<$ 2) + ((((uint32\+\_\+t) (csd) \mbox{[}8\mbox{]}) $>$$>$ 6) \& 0x3))
+\item 
+\mbox{\Hypertarget{spi-sd-card_8c_a91c18b379598ed906e39929c48833002}\label{spi-sd-card_8c_a91c18b379598ed906e39929c48833002}} 
+\#define {\bfseries S\+D\+\_\+\+C\+A\+R\+D\+\_\+\+C\+S\+D\+\_\+\+G\+E\+T\+\_\+\+C\+\_\+\+S\+I\+Z\+E\+\_\+\+M\+U\+LT}(csd)~((((csd) \mbox{[}9\mbox{]} \& 0x3) $<$$<$ 1) + (((csd) \mbox{[}10\mbox{]} $>$$>$ 7) \& 0x1))
+\item 
+\mbox{\Hypertarget{spi-sd-card_8c_a9ffa10c50807d04b6552e449d7f8ee27}\label{spi-sd-card_8c_a9ffa10c50807d04b6552e449d7f8ee27}} 
+\#define {\bfseries S\+D\+\_\+\+C\+A\+R\+D\+\_\+\+C\+S\+D\+\_\+\+G\+E\+T\+\_\+\+R\+E\+A\+D\+\_\+\+B\+L\+K\+\_\+\+L\+EN}(csd)~((uint32\+\_\+t) (csd) \mbox{[}5\mbox{]} \& 0xf)
+\item 
+\mbox{\Hypertarget{spi-sd-card_8c_ac923a4013683c4f3d6543f40fd7bbc55}\label{spi-sd-card_8c_ac923a4013683c4f3d6543f40fd7bbc55}} 
+\#define {\bfseries S\+D\+\_\+\+C\+A\+R\+D\+\_\+\+C\+S\+D\+\_\+\+G\+E\+T\+\_\+\+W\+R\+I\+T\+E\+\_\+\+B\+L\+K\+\_\+\+L\+EN}(csd)~((((uint32\+\_\+t) (csd) \mbox{[}12\mbox{]} \& 0x3) $<$$<$ 2) + ((((uint32\+\_\+t) (csd) \mbox{[}13\mbox{]}) $>$$>$ 6) \& 0x3))
+\item 
+\mbox{\Hypertarget{spi-sd-card_8c_a6450c653be60c8db84cd5b85c8a38b2d}\label{spi-sd-card_8c_a6450c653be60c8db84cd5b85c8a38b2d}} 
+\#define {\bfseries S\+D\+\_\+\+C\+A\+R\+D\+\_\+\+C\+S\+D\+\_\+1\+\_\+\+G\+E\+T\+\_\+\+C\+\_\+\+S\+I\+ZE}(csd)~((((uint32\+\_\+t) (csd) \mbox{[}7\mbox{]} \& 0x3f) $<$$<$ 16) + (((uint32\+\_\+t) (csd) \mbox{[}8\mbox{]}) $<$$<$ 8) + (uint32\+\_\+t) (csd) \mbox{[}9\mbox{]})
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Data Start and Stop Tokens}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{spi-sd-card_8c_ab226576a16ca8168a108db3cf12d5122}\label{spi-sd-card_8c_ab226576a16ca8168a108db3cf12d5122}} 
+\#define {\bfseries S\+D\+\_\+\+C\+A\+R\+D\+\_\+\+S\+T\+A\+R\+T\+\_\+\+B\+L\+O\+C\+K\+\_\+\+S\+I\+N\+G\+L\+E\+\_\+\+B\+L\+O\+C\+K\+\_\+\+R\+E\+AD}~0xfe
+\item 
+\mbox{\Hypertarget{spi-sd-card_8c_afbf6521b707e3dbce8de0b66d4e6a5ec}\label{spi-sd-card_8c_afbf6521b707e3dbce8de0b66d4e6a5ec}} 
+\#define {\bfseries S\+D\+\_\+\+C\+A\+R\+D\+\_\+\+S\+T\+A\+R\+T\+\_\+\+B\+L\+O\+C\+K\+\_\+\+M\+U\+L\+T\+I\+P\+L\+E\+\_\+\+B\+L\+O\+C\+K\+\_\+\+R\+E\+AD}~0xfe
+\item 
+\mbox{\Hypertarget{spi-sd-card_8c_ad01809d8d257598e3c58e661626df28f}\label{spi-sd-card_8c_ad01809d8d257598e3c58e661626df28f}} 
+\#define {\bfseries S\+D\+\_\+\+C\+A\+R\+D\+\_\+\+S\+T\+A\+R\+T\+\_\+\+B\+L\+O\+C\+K\+\_\+\+S\+I\+N\+G\+L\+E\+\_\+\+B\+L\+O\+C\+K\+\_\+\+W\+R\+I\+TE}~0xfe
+\item 
+\mbox{\Hypertarget{spi-sd-card_8c_ab42bfaae4512dcb79a9c43a50d92471f}\label{spi-sd-card_8c_ab42bfaae4512dcb79a9c43a50d92471f}} 
+\#define {\bfseries S\+D\+\_\+\+C\+A\+R\+D\+\_\+\+S\+T\+A\+R\+T\+\_\+\+B\+L\+O\+C\+K\+\_\+\+M\+U\+L\+T\+I\+P\+L\+E\+\_\+\+B\+L\+O\+C\+K\+\_\+\+W\+R\+I\+TE}~0xfc
+\item 
+\mbox{\Hypertarget{spi-sd-card_8c_ae8734848f1dcd34946f5619c37732f80}\label{spi-sd-card_8c_ae8734848f1dcd34946f5619c37732f80}} 
+\#define {\bfseries S\+D\+\_\+\+C\+A\+R\+D\+\_\+\+S\+T\+O\+P\+\_\+\+T\+R\+A\+N\+S\+F\+E\+R\+\_\+\+M\+U\+L\+T\+I\+P\+L\+E\+\_\+\+B\+L\+O\+C\+K\+\_\+\+W\+R\+I\+TE}~0xfd
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Functions}
+\begin{Indent}\textbf{ Integer to and from Byte-\/\+Stream Converter}\par
+\end{Indent}
+\begin{Indent}\textbf{ Card Specific Data Functions}\par
+\end{Indent}
+\begin{Indent}\textbf{ C\+RC functions}\par
+{\em Based on \href{http://en.wikipedia.org/wiki/Computation_of_CRC}{\texttt{ http\+://en.\+wikipedia.\+org/wiki/\+Computation\+\_\+of\+\_\+\+C\+RC}} }\end{Indent}
+\begin{Indent}\textbf{ Communication Functions}\par
+\end{Indent}
+\begin{Indent}\textbf{ Disk Driver Functions}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{spi-sd-card_8c_aaaf1cf315366ca6aed59e4bece3e03da}\label{spi-sd-card_8c_aaaf1cf315366ca6aed59e4bece3e03da}} 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} {\bfseries sd\+\_\+card\+\_\+register} (void)
+\end{DoxyCompactItemize}
+\end{Indent}
+
+
+\subsection{Detailed Description}
+SD Card Lib\+I2C driver. 
+

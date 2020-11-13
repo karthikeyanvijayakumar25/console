@@ -1,0 +1,123 @@
+\hypertarget{group__RTEMSScoreTODHooks}{}\section{Time of Day Handler Action Hooks}
+\label{group__RTEMSScoreTODHooks}\index{Time of Day Handler Action Hooks@{Time of Day Handler Action Hooks}}
+
+
+Time of Day Handler Action Hooks.  
+
+
+\subsection*{Files}
+\begin{DoxyCompactItemize}
+\item 
+file \mbox{\hyperlink{coretodhookdata_8c}{coretodhookdata.\+c}}
+\begin{DoxyCompactList}\small\item\em T\+OD Hook Set. \end{DoxyCompactList}\item 
+file \mbox{\hyperlink{coretodhookregister_8c}{coretodhookregister.\+c}}
+\begin{DoxyCompactList}\small\item\em Register Hook to be in T\+OD Hook Set. \end{DoxyCompactList}\item 
+file \mbox{\hyperlink{coretodhookrun_8c}{coretodhookrun.\+c}}
+\begin{DoxyCompactList}\small\item\em Run T\+OD Hook Set. \end{DoxyCompactList}\item 
+file \mbox{\hyperlink{coretodhookunregister_8c}{coretodhookunregister.\+c}}
+\begin{DoxyCompactList}\small\item\em Remove Hook from T\+OD Hook Set. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structTOD__Hook}{T\+O\+D\+\_\+\+Hook}}
+\begin{DoxyCompactList}\small\item\em Structure to manage each T\+OD action hook. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{group__RTEMSScoreTODHooks_ga7d9ee399e6082e0eb83b84718431a9b8}\label{group__RTEMSScoreTODHooks_ga7d9ee399e6082e0eb83b84718431a9b8}} 
+typedef struct \mbox{\hyperlink{structTOD__Hook}{T\+O\+D\+\_\+\+Hook}} \mbox{\hyperlink{group__RTEMSScoreTODHooks_ga7d9ee399e6082e0eb83b84718431a9b8}{T\+O\+D\+\_\+\+Hook}}
+\begin{DoxyCompactList}\small\item\em Structure to manage each T\+OD action hook. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{group__RTEMSScoreTODHooks_gab9b3d7e3a626139950c25efa888d4332}{T\+O\+D\+\_\+\+Action}} \{ \mbox{\hyperlink{group__RTEMSScoreTODHooks_ggab9b3d7e3a626139950c25efa888d4332a93091d0c963aeebf2726ecdb20f74105}{T\+O\+D\+\_\+\+A\+C\+T\+I\+O\+N\+\_\+\+S\+E\+T\+\_\+\+C\+L\+O\+CK}}
+ \}
+\begin{DoxyCompactList}\small\item\em Possible actions where a registered hook could be invoked. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{group__RTEMSScoreTODHooks_ga9db96e52b259d049f468578e081605ff}{\+\_\+\+T\+O\+D\+\_\+\+Hook\+\_\+\+Register}} (\mbox{\hyperlink{structTOD__Hook}{T\+O\+D\+\_\+\+Hook}} $\ast$hook)
+\begin{DoxyCompactList}\small\item\em Add a T\+OD Action Hook. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__RTEMSScoreTODHooks_ga1d70eadc6cc3f1c7766d9fb6b8709e65}{\+\_\+\+T\+O\+D\+\_\+\+Hook\+\_\+\+Unregister}} (\mbox{\hyperlink{structTOD__Hook}{T\+O\+D\+\_\+\+Hook}} $\ast$hook)
+\begin{DoxyCompactList}\small\item\em Remove a T\+OD Action Hook. \end{DoxyCompactList}\item 
+Status\+\_\+\+Control \mbox{\hyperlink{group__RTEMSScoreTODHooks_ga115a4768c4a7c4fd838809465fc3d6e8}{\+\_\+\+T\+O\+D\+\_\+\+Hook\+\_\+\+Run}} (\mbox{\hyperlink{group__RTEMSScoreTODHooks_gab9b3d7e3a626139950c25efa888d4332}{T\+O\+D\+\_\+\+Action}} action, const struct timespec $\ast$tod)
+\begin{DoxyCompactList}\small\item\em Run the T\+OD Action Hooks. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{group__RTEMSScoreTODHooks_ga1185059aa76531a8be5cc3dfe29d4d2b}\label{group__RTEMSScoreTODHooks_ga1185059aa76531a8be5cc3dfe29d4d2b}} 
+\mbox{\hyperlink{unionChain__Control}{Chain\+\_\+\+Control}} \mbox{\hyperlink{group__RTEMSScoreTODHooks_ga1185059aa76531a8be5cc3dfe29d4d2b}{\+\_\+\+T\+O\+D\+\_\+\+Hooks}}
+\begin{DoxyCompactList}\small\item\em Set of registered methods for T\+OD Actions. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Time of Day Handler Action Hooks. 
+
+The following support registering a hook which is invoked when the T\+OD is set. These can be used by a paravirtualized B\+SP to mirror time changes to the hosting environment or a regular B\+SP to program a real-\/time clock when the R\+T\+E\+MS T\+OD is set. 
+
+\subsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{group__RTEMSScoreTODHooks_gab9b3d7e3a626139950c25efa888d4332}\label{group__RTEMSScoreTODHooks_gab9b3d7e3a626139950c25efa888d4332}} 
+\index{Time of Day Handler Action Hooks@{Time of Day Handler Action Hooks}!TOD\_Action@{TOD\_Action}}
+\index{TOD\_Action@{TOD\_Action}!Time of Day Handler Action Hooks@{Time of Day Handler Action Hooks}}
+\subsubsection{\texorpdfstring{TOD\_Action}{TOD\_Action}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{group__RTEMSScoreTODHooks_gab9b3d7e3a626139950c25efa888d4332}{T\+O\+D\+\_\+\+Action}}}
+
+
+
+Possible actions where a registered hook could be invoked. 
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{TOD\_ACTION\_SET\_CLOCK@{TOD\_ACTION\_SET\_CLOCK}!Time of Day Handler Action Hooks@{Time of Day Handler Action Hooks}}\index{Time of Day Handler Action Hooks@{Time of Day Handler Action Hooks}!TOD\_ACTION\_SET\_CLOCK@{TOD\_ACTION\_SET\_CLOCK}}}\mbox{\Hypertarget{group__RTEMSScoreTODHooks_ggab9b3d7e3a626139950c25efa888d4332a93091d0c963aeebf2726ecdb20f74105}\label{group__RTEMSScoreTODHooks_ggab9b3d7e3a626139950c25efa888d4332a93091d0c963aeebf2726ecdb20f74105}} 
+T\+O\+D\+\_\+\+A\+C\+T\+I\+O\+N\+\_\+\+S\+E\+T\+\_\+\+C\+L\+O\+CK&Constant to indicate the T\+OD is being set. \\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{group__RTEMSScoreTODHooks_ga9db96e52b259d049f468578e081605ff}\label{group__RTEMSScoreTODHooks_ga9db96e52b259d049f468578e081605ff}} 
+\index{Time of Day Handler Action Hooks@{Time of Day Handler Action Hooks}!\_TOD\_Hook\_Register@{\_TOD\_Hook\_Register}}
+\index{\_TOD\_Hook\_Register@{\_TOD\_Hook\_Register}!Time of Day Handler Action Hooks@{Time of Day Handler Action Hooks}}
+\subsubsection{\texorpdfstring{\_TOD\_Hook\_Register()}{\_TOD\_Hook\_Register()}}
+{\footnotesize\ttfamily void \+\_\+\+T\+O\+D\+\_\+\+Hook\+\_\+\+Register (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structTOD__Hook}{T\+O\+D\+\_\+\+Hook}} $\ast$}]{hook }\end{DoxyParamCaption})}
+
+
+
+Add a T\+OD Action Hook. 
+
+This method is used to add a hook to the T\+OD action set.
+
+hook is the action hook to register. \mbox{\Hypertarget{group__RTEMSScoreTODHooks_ga115a4768c4a7c4fd838809465fc3d6e8}\label{group__RTEMSScoreTODHooks_ga115a4768c4a7c4fd838809465fc3d6e8}} 
+\index{Time of Day Handler Action Hooks@{Time of Day Handler Action Hooks}!\_TOD\_Hook\_Run@{\_TOD\_Hook\_Run}}
+\index{\_TOD\_Hook\_Run@{\_TOD\_Hook\_Run}!Time of Day Handler Action Hooks@{Time of Day Handler Action Hooks}}
+\subsubsection{\texorpdfstring{\_TOD\_Hook\_Run()}{\_TOD\_Hook\_Run()}}
+{\footnotesize\ttfamily Status\+\_\+\+Control \+\_\+\+T\+O\+D\+\_\+\+Hook\+\_\+\+Run (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__RTEMSScoreTODHooks_gab9b3d7e3a626139950c25efa888d4332}{T\+O\+D\+\_\+\+Action}}}]{action,  }\item[{const struct timespec $\ast$}]{tod }\end{DoxyParamCaption})}
+
+
+
+Run the T\+OD Action Hooks. 
+
+This method is used to invoke the set of T\+OD action hooks.
+
+action The action which triggered this run. tod The current time of day.
+
+
+\begin{DoxyRetVals}{Return values}
+{\em S\+T\+A\+T\+U\+S\+\_\+\+S\+U\+C\+C\+E\+S\+S\+F\+UL} & Successful operation. \\
+\hline
+{\em other} & Some error occurred. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{group__RTEMSScoreTODHooks_ga1d70eadc6cc3f1c7766d9fb6b8709e65}\label{group__RTEMSScoreTODHooks_ga1d70eadc6cc3f1c7766d9fb6b8709e65}} 
+\index{Time of Day Handler Action Hooks@{Time of Day Handler Action Hooks}!\_TOD\_Hook\_Unregister@{\_TOD\_Hook\_Unregister}}
+\index{\_TOD\_Hook\_Unregister@{\_TOD\_Hook\_Unregister}!Time of Day Handler Action Hooks@{Time of Day Handler Action Hooks}}
+\subsubsection{\texorpdfstring{\_TOD\_Hook\_Unregister()}{\_TOD\_Hook\_Unregister()}}
+{\footnotesize\ttfamily void \+\_\+\+T\+O\+D\+\_\+\+Hook\+\_\+\+Unregister (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structTOD__Hook}{T\+O\+D\+\_\+\+Hook}} $\ast$}]{hook }\end{DoxyParamCaption})}
+
+
+
+Remove a T\+OD Action Hook. 
+
+This method is used to remove a hook from the T\+OD action set.
+
+hook is the action hook to unregister. 

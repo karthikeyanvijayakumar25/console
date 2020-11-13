@@ -1,0 +1,430 @@
+\hypertarget{group__I2CLinux}{}\section{Linux I2C User-\/\+Space A\+PI}
+\label{group__I2CLinux}\index{Linux I2C User-\/Space API@{Linux I2C User-\/Space API}}
+
+
+R\+T\+E\+MS port of Linux I2C user-\/space A\+PI.  
+
+
+\subsection*{Files}
+\begin{DoxyCompactItemize}
+\item 
+file \mbox{\hyperlink{i2c-dev_8h}{i2c-\/dev.\+h}}
+\begin{DoxyCompactList}\small\item\em R\+T\+E\+MS Port of Linux I2C Device A\+PI. \end{DoxyCompactList}\item 
+file \mbox{\hyperlink{cpukit_2include_2linux_2i2c_8h}{i2c.\+h}}
+\begin{DoxyCompactList}\small\item\em R\+T\+E\+MS Port of Linux I2C A\+PI. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structi2c__smbus__ioctl__data}{i2c\+\_\+smbus\+\_\+ioctl\+\_\+data}}
+\begin{DoxyCompactList}\small\item\em Argument type for I2\+C\+\_\+\+S\+M\+B\+US \mbox{\hyperlink{structIO}{IO}} control call. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structi2c__rdwr__ioctl__data}{i2c\+\_\+rdwr\+\_\+ioctl\+\_\+data}}
+\begin{DoxyCompactList}\small\item\em Argument type for I2\+C\+\_\+\+R\+D\+WR \mbox{\hyperlink{structIO}{IO}} control call. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structi2c__msg}{i2c\+\_\+msg}}
+\begin{DoxyCompactList}\small\item\em I2C transfer message. \end{DoxyCompactList}\item 
+union \mbox{\hyperlink{unioni2c__smbus__data}{i2c\+\_\+smbus\+\_\+data}}
+\begin{DoxyCompactList}\small\item\em S\+M\+Bus data. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{group__I2CLinux_ga272399a0175400a2ebb55ff518a85012}\label{group__I2CLinux_ga272399a0175400a2ebb55ff518a85012}} 
+\#define \mbox{\hyperlink{group__I2CLinux_ga272399a0175400a2ebb55ff518a85012}{I2\+C\+\_\+\+R\+D\+R\+W\+\_\+\+I\+O\+C\+T\+L\+\_\+\+M\+A\+X\+\_\+\+M\+S\+GS}}~42
+\begin{DoxyCompactList}\small\item\em Maximum count of messages for one \mbox{\hyperlink{structIO}{IO}} control call. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__I2CLinux_gac2dd8b77e329bba4a3ca9cd275f9bf50}\label{group__I2CLinux_gac2dd8b77e329bba4a3ca9cd275f9bf50}} 
+\#define \mbox{\hyperlink{group__I2CLinux_gac2dd8b77e329bba4a3ca9cd275f9bf50}{I2\+C\+\_\+\+S\+M\+B\+U\+S\+\_\+\+B\+L\+O\+C\+K\+\_\+\+M\+AX}}~32
+\begin{DoxyCompactList}\small\item\em Maximum S\+M\+Bus data block count. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{I2C IO Control Commands}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__I2CLinux_gae8b7ab32459314e0c0162974f2ce22e1}{I2\+C\+\_\+\+R\+E\+T\+R\+I\+ES}}~0x701
+\begin{DoxyCompactList}\small\item\em Sets the count of transfer retries in case a slave device does not acknowledge a transaction. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__I2CLinux_gafa3215f0aa766367f5d34bee80929152}{I2\+C\+\_\+\+T\+I\+M\+E\+O\+UT}}~0x702
+\begin{DoxyCompactList}\small\item\em Sets the transfer timeout in 10ms units. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__I2CLinux_gab15137f7c592d05573de99f078516157}{I2\+C\+\_\+\+S\+L\+A\+VE}}~0x703
+\begin{DoxyCompactList}\small\item\em Sets the slave address. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__I2CLinux_gafb1764d4b58fb542306c715ad6a28a42}{I2\+C\+\_\+\+S\+L\+A\+V\+E\+\_\+\+F\+O\+R\+CE}}~0x706
+\begin{DoxyCompactList}\small\item\em Forces setting the slave address. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__I2CLinux_ga2a0b1f3843e98977be7476579c851305}{I2\+C\+\_\+\+T\+E\+N\+B\+IT}}~0x704
+\begin{DoxyCompactList}\small\item\em Enables 10-\/bit addresses if argument is non-\/zero, otherwise disables 10-\/bit addresses. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__I2CLinux_ga4c2f02700f22d4f76c670966aed5079a}{I2\+C\+\_\+\+F\+U\+N\+CS}}~0x705
+\begin{DoxyCompactList}\small\item\em Gets the I2C controller functionality information. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__I2CLinux_ga7645f9831bcbbae2339fcff4d85691be}{I2\+C\+\_\+\+R\+D\+WR}}~0x707
+\begin{DoxyCompactList}\small\item\em Performs a combined read/write transfer. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__I2CLinux_ga2a72d7072db21c407f82e6e73854b38f}{I2\+C\+\_\+\+P\+EC}}~0x708
+\begin{DoxyCompactList}\small\item\em Enables System Management Bus (S\+M\+Bus) Packet Error Checking (P\+EC) if argument is non-\/zero, otherwise disables P\+EC. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__I2CLinux_ga4e9d483fb9eb1074646726ce518b1d4d}{I2\+C\+\_\+\+S\+M\+B\+US}}~0x720
+\begin{DoxyCompactList}\small\item\em Performs an S\+M\+Bus transfer. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{I2C Message Flags}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__I2CLinux_gabe53ff15e0717ccbd1d4c656c09ee53a}{I2\+C\+\_\+\+M\+\_\+\+T\+EN}}~0x0010
+\begin{DoxyCompactList}\small\item\em I2C message flag to indicate a 10-\/bit address. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__I2CLinux_gadb8eddbb89e88c4fc0e44306fc878b85}{I2\+C\+\_\+\+M\+\_\+\+RD}}~0x0001
+\begin{DoxyCompactList}\small\item\em I2C message flag to indicate a read transfer (from slave to master). \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__I2CLinux_gaf8026e2132312a148edbe7ff4ce52a72}{I2\+C\+\_\+\+M\+\_\+\+S\+T\+OP}}~0x8000
+\begin{DoxyCompactList}\small\item\em I2C message flag to signal a stop condition even if this is not the last message. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__I2CLinux_ga7a467d37a113d97496f0fa69c6c15650}{I2\+C\+\_\+\+M\+\_\+\+N\+O\+S\+T\+A\+RT}}~0x4000
+\begin{DoxyCompactList}\small\item\em I2C message flag to omit start condition and slave address. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__I2CLinux_ga6392dd65e4022a3ed20fc2d7dca3392f}{I2\+C\+\_\+\+M\+\_\+\+R\+E\+V\+\_\+\+D\+I\+R\+\_\+\+A\+D\+DR}}~0x2000
+\begin{DoxyCompactList}\small\item\em I2C message flag to reverse the direction flag. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__I2CLinux_ga0629c50bb05b4c037e726373da50755b}{I2\+C\+\_\+\+M\+\_\+\+I\+G\+N\+O\+R\+E\+\_\+\+N\+AK}}~0x1000
+\begin{DoxyCompactList}\small\item\em I2C message flag to ignore a non-\/acknowledge. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__I2CLinux_gadb8351c5c02ca2b6909baa9d374ff6d4}{I2\+C\+\_\+\+M\+\_\+\+N\+O\+\_\+\+R\+D\+\_\+\+A\+CK}}~0x0800
+\begin{DoxyCompactList}\small\item\em I2C message flag to omit a master acknowledge/non-\/acknowledge in a read transfer. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__I2CLinux_gad1b3262018276534d433daaf96648480}{I2\+C\+\_\+\+M\+\_\+\+R\+E\+C\+V\+\_\+\+L\+EN}}~0x0400
+\begin{DoxyCompactList}\small\item\em I2C message flag to indicate that the message data length is the first received byte. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{I2C Controller Functionality}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{group__I2CLinux_ga57a8a5a73f12268825d31bec6184b915}\label{group__I2CLinux_ga57a8a5a73f12268825d31bec6184b915}} 
+\#define {\bfseries I2\+C\+\_\+\+F\+U\+N\+C\+\_\+\+I2C}~0x00000001
+\item 
+\mbox{\Hypertarget{group__I2CLinux_ga41ba50f5508feed338fe3181540e1894}\label{group__I2CLinux_ga41ba50f5508feed338fe3181540e1894}} 
+\#define {\bfseries I2\+C\+\_\+\+F\+U\+N\+C\+\_\+10\+B\+I\+T\+\_\+\+A\+D\+DR}~0x00000002
+\item 
+\mbox{\Hypertarget{group__I2CLinux_gaf023c6b90cc950f3673e98462ff52a59}\label{group__I2CLinux_gaf023c6b90cc950f3673e98462ff52a59}} 
+\#define {\bfseries I2\+C\+\_\+\+F\+U\+N\+C\+\_\+\+P\+R\+O\+T\+O\+C\+O\+L\+\_\+\+M\+A\+N\+G\+L\+I\+NG}~0x00000004
+\item 
+\mbox{\Hypertarget{group__I2CLinux_gaef3b905e021dbe7aaf98da89c4648764}\label{group__I2CLinux_gaef3b905e021dbe7aaf98da89c4648764}} 
+\#define {\bfseries I2\+C\+\_\+\+F\+U\+N\+C\+\_\+\+S\+M\+B\+U\+S\+\_\+\+P\+EC}~0x00000008
+\item 
+\mbox{\Hypertarget{group__I2CLinux_gad9d706204e5843833e2e0e0a297f6bfd}\label{group__I2CLinux_gad9d706204e5843833e2e0e0a297f6bfd}} 
+\#define {\bfseries I2\+C\+\_\+\+F\+U\+N\+C\+\_\+\+N\+O\+S\+T\+A\+RT}~0x00000010
+\item 
+\mbox{\Hypertarget{group__I2CLinux_gab98217e0ad04cb3068e159c2de8fd84d}\label{group__I2CLinux_gab98217e0ad04cb3068e159c2de8fd84d}} 
+\#define {\bfseries I2\+C\+\_\+\+F\+U\+N\+C\+\_\+\+S\+M\+B\+U\+S\+\_\+\+B\+L\+O\+C\+K\+\_\+\+P\+R\+O\+C\+\_\+\+C\+A\+LL}~0x00008000
+\item 
+\mbox{\Hypertarget{group__I2CLinux_ga4cf424f52753c3afe4ee9713c96358a2}\label{group__I2CLinux_ga4cf424f52753c3afe4ee9713c96358a2}} 
+\#define {\bfseries I2\+C\+\_\+\+F\+U\+N\+C\+\_\+\+S\+M\+B\+U\+S\+\_\+\+Q\+U\+I\+CK}~0x00010000
+\item 
+\mbox{\Hypertarget{group__I2CLinux_ga2aea3a65daa2b1734e85d5c63b9e9672}\label{group__I2CLinux_ga2aea3a65daa2b1734e85d5c63b9e9672}} 
+\#define {\bfseries I2\+C\+\_\+\+F\+U\+N\+C\+\_\+\+S\+M\+B\+U\+S\+\_\+\+R\+E\+A\+D\+\_\+\+B\+Y\+TE}~0x00020000
+\item 
+\mbox{\Hypertarget{group__I2CLinux_ga0a0e43b21d3085e3a00300f41ccf156d}\label{group__I2CLinux_ga0a0e43b21d3085e3a00300f41ccf156d}} 
+\#define {\bfseries I2\+C\+\_\+\+F\+U\+N\+C\+\_\+\+S\+M\+B\+U\+S\+\_\+\+W\+R\+I\+T\+E\+\_\+\+B\+Y\+TE}~0x00040000
+\item 
+\mbox{\Hypertarget{group__I2CLinux_ga5645b268c2303289fdf043c3a035bf8d}\label{group__I2CLinux_ga5645b268c2303289fdf043c3a035bf8d}} 
+\#define {\bfseries I2\+C\+\_\+\+F\+U\+N\+C\+\_\+\+S\+M\+B\+U\+S\+\_\+\+R\+E\+A\+D\+\_\+\+B\+Y\+T\+E\+\_\+\+D\+A\+TA}~0x00080000
+\item 
+\mbox{\Hypertarget{group__I2CLinux_gac4186861a5c7f01d45e1f4ecba20334c}\label{group__I2CLinux_gac4186861a5c7f01d45e1f4ecba20334c}} 
+\#define {\bfseries I2\+C\+\_\+\+F\+U\+N\+C\+\_\+\+S\+M\+B\+U\+S\+\_\+\+W\+R\+I\+T\+E\+\_\+\+B\+Y\+T\+E\+\_\+\+D\+A\+TA}~0x00100000
+\item 
+\mbox{\Hypertarget{group__I2CLinux_ga1e313c48fbaba109e4b42b615c806459}\label{group__I2CLinux_ga1e313c48fbaba109e4b42b615c806459}} 
+\#define {\bfseries I2\+C\+\_\+\+F\+U\+N\+C\+\_\+\+S\+M\+B\+U\+S\+\_\+\+R\+E\+A\+D\+\_\+\+W\+O\+R\+D\+\_\+\+D\+A\+TA}~0x00200000
+\item 
+\mbox{\Hypertarget{group__I2CLinux_ga485634a989b0ace55940b8235785fcc5}\label{group__I2CLinux_ga485634a989b0ace55940b8235785fcc5}} 
+\#define {\bfseries I2\+C\+\_\+\+F\+U\+N\+C\+\_\+\+S\+M\+B\+U\+S\+\_\+\+W\+R\+I\+T\+E\+\_\+\+W\+O\+R\+D\+\_\+\+D\+A\+TA}~0x00400000
+\item 
+\mbox{\Hypertarget{group__I2CLinux_ga86389b833643e6b1a050f6d4a7027873}\label{group__I2CLinux_ga86389b833643e6b1a050f6d4a7027873}} 
+\#define {\bfseries I2\+C\+\_\+\+F\+U\+N\+C\+\_\+\+S\+M\+B\+U\+S\+\_\+\+P\+R\+O\+C\+\_\+\+C\+A\+LL}~0x00800000
+\item 
+\mbox{\Hypertarget{group__I2CLinux_ga8a64d1f3b43e584549645386089fafe4}\label{group__I2CLinux_ga8a64d1f3b43e584549645386089fafe4}} 
+\#define {\bfseries I2\+C\+\_\+\+F\+U\+N\+C\+\_\+\+S\+M\+B\+U\+S\+\_\+\+R\+E\+A\+D\+\_\+\+B\+L\+O\+C\+K\+\_\+\+D\+A\+TA}~0x01000000
+\item 
+\mbox{\Hypertarget{group__I2CLinux_ga1f3f845fc6c212f6d54848cc71e752ab}\label{group__I2CLinux_ga1f3f845fc6c212f6d54848cc71e752ab}} 
+\#define {\bfseries I2\+C\+\_\+\+F\+U\+N\+C\+\_\+\+S\+M\+B\+U\+S\+\_\+\+W\+R\+I\+T\+E\+\_\+\+B\+L\+O\+C\+K\+\_\+\+D\+A\+TA}~0x02000000
+\item 
+\mbox{\Hypertarget{group__I2CLinux_ga1e2efae197b3bcf4adb79b45065da621}\label{group__I2CLinux_ga1e2efae197b3bcf4adb79b45065da621}} 
+\#define {\bfseries I2\+C\+\_\+\+F\+U\+N\+C\+\_\+\+S\+M\+B\+U\+S\+\_\+\+R\+E\+A\+D\+\_\+\+I2\+C\+\_\+\+B\+L\+O\+CK}~0x04000000
+\item 
+\mbox{\Hypertarget{group__I2CLinux_ga87990a457cb6785821f82eddd5bda85e}\label{group__I2CLinux_ga87990a457cb6785821f82eddd5bda85e}} 
+\#define {\bfseries I2\+C\+\_\+\+F\+U\+N\+C\+\_\+\+S\+M\+B\+U\+S\+\_\+\+W\+R\+I\+T\+E\+\_\+\+I2\+C\+\_\+\+B\+L\+O\+CK}~0x08000000
+\item 
+\mbox{\Hypertarget{group__I2CLinux_ga0e940355fb6532a740e57aece17c670c}\label{group__I2CLinux_ga0e940355fb6532a740e57aece17c670c}} 
+\#define {\bfseries I2\+C\+\_\+\+F\+U\+N\+C\+\_\+\+S\+M\+B\+U\+S\+\_\+\+B\+Y\+TE}~(I2\+C\+\_\+\+F\+U\+N\+C\+\_\+\+S\+M\+B\+U\+S\+\_\+\+R\+E\+A\+D\+\_\+\+B\+Y\+TE $\vert$ I2\+C\+\_\+\+F\+U\+N\+C\+\_\+\+S\+M\+B\+U\+S\+\_\+\+W\+R\+I\+T\+E\+\_\+\+B\+Y\+TE)
+\item 
+\mbox{\Hypertarget{group__I2CLinux_ga3d09bc1b4dfbf7336abf83e477419b90}\label{group__I2CLinux_ga3d09bc1b4dfbf7336abf83e477419b90}} 
+\#define {\bfseries I2\+C\+\_\+\+F\+U\+N\+C\+\_\+\+S\+M\+B\+U\+S\+\_\+\+B\+Y\+T\+E\+\_\+\+D\+A\+TA}~(I2\+C\+\_\+\+F\+U\+N\+C\+\_\+\+S\+M\+B\+U\+S\+\_\+\+R\+E\+A\+D\+\_\+\+B\+Y\+T\+E\+\_\+\+D\+A\+TA $\vert$ I2\+C\+\_\+\+F\+U\+N\+C\+\_\+\+S\+M\+B\+U\+S\+\_\+\+W\+R\+I\+T\+E\+\_\+\+B\+Y\+T\+E\+\_\+\+D\+A\+TA)
+\item 
+\mbox{\Hypertarget{group__I2CLinux_ga1448936de71a0846193adbde34900948}\label{group__I2CLinux_ga1448936de71a0846193adbde34900948}} 
+\#define {\bfseries I2\+C\+\_\+\+F\+U\+N\+C\+\_\+\+S\+M\+B\+U\+S\+\_\+\+W\+O\+R\+D\+\_\+\+D\+A\+TA}~(I2\+C\+\_\+\+F\+U\+N\+C\+\_\+\+S\+M\+B\+U\+S\+\_\+\+R\+E\+A\+D\+\_\+\+W\+O\+R\+D\+\_\+\+D\+A\+TA $\vert$ I2\+C\+\_\+\+F\+U\+N\+C\+\_\+\+S\+M\+B\+U\+S\+\_\+\+W\+R\+I\+T\+E\+\_\+\+W\+O\+R\+D\+\_\+\+D\+A\+TA)
+\item 
+\mbox{\Hypertarget{group__I2CLinux_gaef52b94d71c11d2849c6f3ae62d0e29b}\label{group__I2CLinux_gaef52b94d71c11d2849c6f3ae62d0e29b}} 
+\#define {\bfseries I2\+C\+\_\+\+F\+U\+N\+C\+\_\+\+S\+M\+B\+U\+S\+\_\+\+B\+L\+O\+C\+K\+\_\+\+D\+A\+TA}~(I2\+C\+\_\+\+F\+U\+N\+C\+\_\+\+S\+M\+B\+U\+S\+\_\+\+R\+E\+A\+D\+\_\+\+B\+L\+O\+C\+K\+\_\+\+D\+A\+TA $\vert$ I2\+C\+\_\+\+F\+U\+N\+C\+\_\+\+S\+M\+B\+U\+S\+\_\+\+W\+R\+I\+T\+E\+\_\+\+B\+L\+O\+C\+K\+\_\+\+D\+A\+TA)
+\item 
+\mbox{\Hypertarget{group__I2CLinux_gad94ca1f256004b790c2feb762ff963e7}\label{group__I2CLinux_gad94ca1f256004b790c2feb762ff963e7}} 
+\#define {\bfseries I2\+C\+\_\+\+F\+U\+N\+C\+\_\+\+S\+M\+B\+U\+S\+\_\+\+I2\+C\+\_\+\+B\+L\+O\+CK}~(I2\+C\+\_\+\+F\+U\+N\+C\+\_\+\+S\+M\+B\+U\+S\+\_\+\+R\+E\+A\+D\+\_\+\+I2\+C\+\_\+\+B\+L\+O\+CK $\vert$ I2\+C\+\_\+\+F\+U\+N\+C\+\_\+\+S\+M\+B\+U\+S\+\_\+\+W\+R\+I\+T\+E\+\_\+\+I2\+C\+\_\+\+B\+L\+O\+CK)
+\item 
+\#define {\bfseries I2\+C\+\_\+\+F\+U\+N\+C\+\_\+\+S\+M\+B\+U\+S\+\_\+\+E\+M\+UL}
+\end{DoxyCompactItemize}
+\subsection*{S\+M\+Bus Transfer Read and Write Markers}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{group__I2CLinux_ga8f5482668eb7741ef21dd9c211d876c9}\label{group__I2CLinux_ga8f5482668eb7741ef21dd9c211d876c9}} 
+\#define {\bfseries I2\+C\+\_\+\+S\+M\+B\+U\+S\+\_\+\+R\+E\+AD}~1
+\item 
+\mbox{\Hypertarget{group__I2CLinux_gac4d2a9af170b85b33c640c811f240c76}\label{group__I2CLinux_gac4d2a9af170b85b33c640c811f240c76}} 
+\#define {\bfseries I2\+C\+\_\+\+S\+M\+B\+U\+S\+\_\+\+W\+R\+I\+TE}~0
+\end{DoxyCompactItemize}
+\subsection*{S\+M\+Bus Transaction Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{group__I2CLinux_ga94760c9e3bb58f5535578eb52a0ffc0c}\label{group__I2CLinux_ga94760c9e3bb58f5535578eb52a0ffc0c}} 
+\#define {\bfseries I2\+C\+\_\+\+S\+M\+B\+U\+S\+\_\+\+Q\+U\+I\+CK}~0
+\item 
+\mbox{\Hypertarget{group__I2CLinux_ga8006fa66a9d9224959fb8337a365a12a}\label{group__I2CLinux_ga8006fa66a9d9224959fb8337a365a12a}} 
+\#define {\bfseries I2\+C\+\_\+\+S\+M\+B\+U\+S\+\_\+\+B\+Y\+TE}~1
+\item 
+\mbox{\Hypertarget{group__I2CLinux_ga3d7320d4d3f8b109344ee08feab0e533}\label{group__I2CLinux_ga3d7320d4d3f8b109344ee08feab0e533}} 
+\#define {\bfseries I2\+C\+\_\+\+S\+M\+B\+U\+S\+\_\+\+B\+Y\+T\+E\+\_\+\+D\+A\+TA}~2
+\item 
+\mbox{\Hypertarget{group__I2CLinux_gabd0ad56a944b1a95435d51cc54db36c4}\label{group__I2CLinux_gabd0ad56a944b1a95435d51cc54db36c4}} 
+\#define {\bfseries I2\+C\+\_\+\+S\+M\+B\+U\+S\+\_\+\+W\+O\+R\+D\+\_\+\+D\+A\+TA}~3
+\item 
+\mbox{\Hypertarget{group__I2CLinux_ga140bc92b58f10de5eb796ad71e8f0da2}\label{group__I2CLinux_ga140bc92b58f10de5eb796ad71e8f0da2}} 
+\#define {\bfseries I2\+C\+\_\+\+S\+M\+B\+U\+S\+\_\+\+P\+R\+O\+C\+\_\+\+C\+A\+LL}~4
+\item 
+\mbox{\Hypertarget{group__I2CLinux_ga0253f81d1f2732492c1a05dc41094d12}\label{group__I2CLinux_ga0253f81d1f2732492c1a05dc41094d12}} 
+\#define {\bfseries I2\+C\+\_\+\+S\+M\+B\+U\+S\+\_\+\+B\+L\+O\+C\+K\+\_\+\+D\+A\+TA}~5
+\item 
+\mbox{\Hypertarget{group__I2CLinux_ga36bcbcb9294695fddb8606a32cbedc9b}\label{group__I2CLinux_ga36bcbcb9294695fddb8606a32cbedc9b}} 
+\#define {\bfseries I2\+C\+\_\+\+S\+M\+B\+U\+S\+\_\+\+I2\+C\+\_\+\+B\+L\+O\+C\+K\+\_\+\+B\+R\+O\+K\+EN}~6
+\item 
+\mbox{\Hypertarget{group__I2CLinux_ga187e1de23e9935885cdb94ee429a2eed}\label{group__I2CLinux_ga187e1de23e9935885cdb94ee429a2eed}} 
+\#define {\bfseries I2\+C\+\_\+\+S\+M\+B\+U\+S\+\_\+\+B\+L\+O\+C\+K\+\_\+\+P\+R\+O\+C\+\_\+\+C\+A\+LL}~7
+\item 
+\mbox{\Hypertarget{group__I2CLinux_gaa5ecbb0ceaddcb905d68d366edfb026c}\label{group__I2CLinux_gaa5ecbb0ceaddcb905d68d366edfb026c}} 
+\#define {\bfseries I2\+C\+\_\+\+S\+M\+B\+U\+S\+\_\+\+I2\+C\+\_\+\+B\+L\+O\+C\+K\+\_\+\+D\+A\+TA}~8
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+R\+T\+E\+MS port of Linux I2C user-\/space A\+PI. 
+
+Additional documentation is available through the Linux sources, see\+:
+
+
+\begin{DoxyItemize}
+\item /usr/src/linux/include/uapi/linux/i2c.h,
+\item /usr/src/linux/include/uapi/linux/i2c-\/dev.h
+\item \href{https://www.kernel.org/doc/Documentation/i2c/i2c-protocol}{\texttt{ https\+://www.\+kernel.\+org/doc/\+Documentation/i2c/i2c-\/protocol}}
+\item \href{https://www.kernel.org/doc/Documentation/i2c/dev-interface}{\texttt{ https\+://www.\+kernel.\+org/doc/\+Documentation/i2c/dev-\/interface}} 
+\end{DoxyItemize}
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{group__I2CLinux_gadbeca6d437f12cbfab5ea8a96633e903}\label{group__I2CLinux_gadbeca6d437f12cbfab5ea8a96633e903}} 
+\index{Linux I2C User-\/Space API@{Linux I2C User-\/Space API}!I2C\_FUNC\_SMBUS\_EMUL@{I2C\_FUNC\_SMBUS\_EMUL}}
+\index{I2C\_FUNC\_SMBUS\_EMUL@{I2C\_FUNC\_SMBUS\_EMUL}!Linux I2C User-\/Space API@{Linux I2C User-\/Space API}}
+\subsubsection{\texorpdfstring{I2C\_FUNC\_SMBUS\_EMUL}{I2C\_FUNC\_SMBUS\_EMUL}}
+{\footnotesize\ttfamily \#define I2\+C\+\_\+\+F\+U\+N\+C\+\_\+\+S\+M\+B\+U\+S\+\_\+\+E\+M\+UL}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(I2C\_FUNC\_SMBUS\_QUICK | I2C\_FUNC\_SMBUS\_BYTE | I2C\_FUNC\_SMBUS\_BYTE\_DATA \(\backslash\)}
+\DoxyCodeLine{    | I2C\_FUNC\_SMBUS\_WORD\_DATA | I2C\_FUNC\_SMBUS\_PROC\_CALL \(\backslash\)}
+\DoxyCodeLine{    | I2C\_FUNC\_SMBUS\_WRITE\_BLOCK\_DATA | I2C\_FUNC\_SMBUS\_I2C\_BLOCK \(\backslash\)}
+\DoxyCodeLine{    | I2C\_FUNC\_SMBUS\_PEC)}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{group__I2CLinux_ga4c2f02700f22d4f76c670966aed5079a}\label{group__I2CLinux_ga4c2f02700f22d4f76c670966aed5079a}} 
+\index{Linux I2C User-\/Space API@{Linux I2C User-\/Space API}!I2C\_FUNCS@{I2C\_FUNCS}}
+\index{I2C\_FUNCS@{I2C\_FUNCS}!Linux I2C User-\/Space API@{Linux I2C User-\/Space API}}
+\subsubsection{\texorpdfstring{I2C\_FUNCS}{I2C\_FUNCS}}
+{\footnotesize\ttfamily \#define I2\+C\+\_\+\+F\+U\+N\+CS~0x705}
+
+
+
+Gets the I2C controller functionality information. 
+
+The argument type is a pointer to an unsigned long. \mbox{\Hypertarget{group__I2CLinux_ga0629c50bb05b4c037e726373da50755b}\label{group__I2CLinux_ga0629c50bb05b4c037e726373da50755b}} 
+\index{Linux I2C User-\/Space API@{Linux I2C User-\/Space API}!I2C\_M\_IGNORE\_NAK@{I2C\_M\_IGNORE\_NAK}}
+\index{I2C\_M\_IGNORE\_NAK@{I2C\_M\_IGNORE\_NAK}!Linux I2C User-\/Space API@{Linux I2C User-\/Space API}}
+\subsubsection{\texorpdfstring{I2C\_M\_IGNORE\_NAK}{I2C\_M\_IGNORE\_NAK}}
+{\footnotesize\ttfamily \#define I2\+C\+\_\+\+M\+\_\+\+I\+G\+N\+O\+R\+E\+\_\+\+N\+AK~0x1000}
+
+
+
+I2C message flag to ignore a non-\/acknowledge. 
+
+The controller must support this as indicated by the I2\+C\+\_\+\+F\+U\+N\+C\+\_\+\+P\+R\+O\+T\+O\+C\+O\+L\+\_\+\+M\+A\+N\+G\+L\+I\+NG functionality.
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{structi2c__msg}{i2c\+\_\+msg}}. 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{group__I2CLinux_gadb8351c5c02ca2b6909baa9d374ff6d4}\label{group__I2CLinux_gadb8351c5c02ca2b6909baa9d374ff6d4}} 
+\index{Linux I2C User-\/Space API@{Linux I2C User-\/Space API}!I2C\_M\_NO\_RD\_ACK@{I2C\_M\_NO\_RD\_ACK}}
+\index{I2C\_M\_NO\_RD\_ACK@{I2C\_M\_NO\_RD\_ACK}!Linux I2C User-\/Space API@{Linux I2C User-\/Space API}}
+\subsubsection{\texorpdfstring{I2C\_M\_NO\_RD\_ACK}{I2C\_M\_NO\_RD\_ACK}}
+{\footnotesize\ttfamily \#define I2\+C\+\_\+\+M\+\_\+\+N\+O\+\_\+\+R\+D\+\_\+\+A\+CK~0x0800}
+
+
+
+I2C message flag to omit a master acknowledge/non-\/acknowledge in a read transfer. 
+
+The controller must support this as indicated by the I2\+C\+\_\+\+F\+U\+N\+C\+\_\+\+P\+R\+O\+T\+O\+C\+O\+L\+\_\+\+M\+A\+N\+G\+L\+I\+NG functionality.
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{structi2c__msg}{i2c\+\_\+msg}}. 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{group__I2CLinux_ga7a467d37a113d97496f0fa69c6c15650}\label{group__I2CLinux_ga7a467d37a113d97496f0fa69c6c15650}} 
+\index{Linux I2C User-\/Space API@{Linux I2C User-\/Space API}!I2C\_M\_NOSTART@{I2C\_M\_NOSTART}}
+\index{I2C\_M\_NOSTART@{I2C\_M\_NOSTART}!Linux I2C User-\/Space API@{Linux I2C User-\/Space API}}
+\subsubsection{\texorpdfstring{I2C\_M\_NOSTART}{I2C\_M\_NOSTART}}
+{\footnotesize\ttfamily \#define I2\+C\+\_\+\+M\+\_\+\+N\+O\+S\+T\+A\+RT~0x4000}
+
+
+
+I2C message flag to omit start condition and slave address. 
+
+The controller must support this as indicated by the I2\+C\+\_\+\+F\+U\+N\+C\+\_\+\+N\+O\+S\+T\+A\+RT functionality.
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{structi2c__msg}{i2c\+\_\+msg}}. 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{group__I2CLinux_gadb8eddbb89e88c4fc0e44306fc878b85}\label{group__I2CLinux_gadb8eddbb89e88c4fc0e44306fc878b85}} 
+\index{Linux I2C User-\/Space API@{Linux I2C User-\/Space API}!I2C\_M\_RD@{I2C\_M\_RD}}
+\index{I2C\_M\_RD@{I2C\_M\_RD}!Linux I2C User-\/Space API@{Linux I2C User-\/Space API}}
+\subsubsection{\texorpdfstring{I2C\_M\_RD}{I2C\_M\_RD}}
+{\footnotesize\ttfamily \#define I2\+C\+\_\+\+M\+\_\+\+RD~0x0001}
+
+
+
+I2C message flag to indicate a read transfer (from slave to master). 
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{structi2c__msg}{i2c\+\_\+msg}}. 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{group__I2CLinux_gad1b3262018276534d433daaf96648480}\label{group__I2CLinux_gad1b3262018276534d433daaf96648480}} 
+\index{Linux I2C User-\/Space API@{Linux I2C User-\/Space API}!I2C\_M\_RECV\_LEN@{I2C\_M\_RECV\_LEN}}
+\index{I2C\_M\_RECV\_LEN@{I2C\_M\_RECV\_LEN}!Linux I2C User-\/Space API@{Linux I2C User-\/Space API}}
+\subsubsection{\texorpdfstring{I2C\_M\_RECV\_LEN}{I2C\_M\_RECV\_LEN}}
+{\footnotesize\ttfamily \#define I2\+C\+\_\+\+M\+\_\+\+R\+E\+C\+V\+\_\+\+L\+EN~0x0400}
+
+
+
+I2C message flag to indicate that the message data length is the first received byte. 
+
+The message data buffer must be large enough to store up to 32 bytes, the initial length byte and the S\+M\+Bus P\+EC (if used). Initialize the message length to one. The message length is incremented by the count of received data bytes.
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{structi2c__msg}{i2c\+\_\+msg}}. 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{group__I2CLinux_ga6392dd65e4022a3ed20fc2d7dca3392f}\label{group__I2CLinux_ga6392dd65e4022a3ed20fc2d7dca3392f}} 
+\index{Linux I2C User-\/Space API@{Linux I2C User-\/Space API}!I2C\_M\_REV\_DIR\_ADDR@{I2C\_M\_REV\_DIR\_ADDR}}
+\index{I2C\_M\_REV\_DIR\_ADDR@{I2C\_M\_REV\_DIR\_ADDR}!Linux I2C User-\/Space API@{Linux I2C User-\/Space API}}
+\subsubsection{\texorpdfstring{I2C\_M\_REV\_DIR\_ADDR}{I2C\_M\_REV\_DIR\_ADDR}}
+{\footnotesize\ttfamily \#define I2\+C\+\_\+\+M\+\_\+\+R\+E\+V\+\_\+\+D\+I\+R\+\_\+\+A\+D\+DR~0x2000}
+
+
+
+I2C message flag to reverse the direction flag. 
+
+The controller must support this as indicated by the I2\+C\+\_\+\+F\+U\+N\+C\+\_\+\+P\+R\+O\+T\+O\+C\+O\+L\+\_\+\+M\+A\+N\+G\+L\+I\+NG functionality.
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{structi2c__msg}{i2c\+\_\+msg}}. 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{group__I2CLinux_gaf8026e2132312a148edbe7ff4ce52a72}\label{group__I2CLinux_gaf8026e2132312a148edbe7ff4ce52a72}} 
+\index{Linux I2C User-\/Space API@{Linux I2C User-\/Space API}!I2C\_M\_STOP@{I2C\_M\_STOP}}
+\index{I2C\_M\_STOP@{I2C\_M\_STOP}!Linux I2C User-\/Space API@{Linux I2C User-\/Space API}}
+\subsubsection{\texorpdfstring{I2C\_M\_STOP}{I2C\_M\_STOP}}
+{\footnotesize\ttfamily \#define I2\+C\+\_\+\+M\+\_\+\+S\+T\+OP~0x8000}
+
+
+
+I2C message flag to signal a stop condition even if this is not the last message. 
+
+The controller must support this as indicated by the I2\+C\+\_\+\+F\+U\+N\+C\+\_\+\+P\+R\+O\+T\+O\+C\+O\+L\+\_\+\+M\+A\+N\+G\+L\+I\+NG functionality.
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{structi2c__msg}{i2c\+\_\+msg}}. 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{group__I2CLinux_gabe53ff15e0717ccbd1d4c656c09ee53a}\label{group__I2CLinux_gabe53ff15e0717ccbd1d4c656c09ee53a}} 
+\index{Linux I2C User-\/Space API@{Linux I2C User-\/Space API}!I2C\_M\_TEN@{I2C\_M\_TEN}}
+\index{I2C\_M\_TEN@{I2C\_M\_TEN}!Linux I2C User-\/Space API@{Linux I2C User-\/Space API}}
+\subsubsection{\texorpdfstring{I2C\_M\_TEN}{I2C\_M\_TEN}}
+{\footnotesize\ttfamily \#define I2\+C\+\_\+\+M\+\_\+\+T\+EN~0x0010}
+
+
+
+I2C message flag to indicate a 10-\/bit address. 
+
+The controller must support this as indicated by the I2\+C\+\_\+\+F\+U\+N\+C\+\_\+10\+B\+I\+T\+\_\+\+A\+D\+DR functionality.
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{structi2c__msg}{i2c\+\_\+msg}}. 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{group__I2CLinux_ga2a72d7072db21c407f82e6e73854b38f}\label{group__I2CLinux_ga2a72d7072db21c407f82e6e73854b38f}} 
+\index{Linux I2C User-\/Space API@{Linux I2C User-\/Space API}!I2C\_PEC@{I2C\_PEC}}
+\index{I2C\_PEC@{I2C\_PEC}!Linux I2C User-\/Space API@{Linux I2C User-\/Space API}}
+\subsubsection{\texorpdfstring{I2C\_PEC}{I2C\_PEC}}
+{\footnotesize\ttfamily \#define I2\+C\+\_\+\+P\+EC~0x708}
+
+
+
+Enables System Management Bus (S\+M\+Bus) Packet Error Checking (P\+EC) if argument is non-\/zero, otherwise disables P\+EC. 
+
+The argument type is unsigned long. \mbox{\Hypertarget{group__I2CLinux_ga7645f9831bcbbae2339fcff4d85691be}\label{group__I2CLinux_ga7645f9831bcbbae2339fcff4d85691be}} 
+\index{Linux I2C User-\/Space API@{Linux I2C User-\/Space API}!I2C\_RDWR@{I2C\_RDWR}}
+\index{I2C\_RDWR@{I2C\_RDWR}!Linux I2C User-\/Space API@{Linux I2C User-\/Space API}}
+\subsubsection{\texorpdfstring{I2C\_RDWR}{I2C\_RDWR}}
+{\footnotesize\ttfamily \#define I2\+C\+\_\+\+R\+D\+WR~0x707}
+
+
+
+Performs a combined read/write transfer. 
+
+Only one stop condition is signalled.
+
+The argument type is a pointer to struct \mbox{\hyperlink{structi2c__rdwr__ioctl__data}{i2c\+\_\+rdwr\+\_\+ioctl\+\_\+data}}. \mbox{\Hypertarget{group__I2CLinux_gae8b7ab32459314e0c0162974f2ce22e1}\label{group__I2CLinux_gae8b7ab32459314e0c0162974f2ce22e1}} 
+\index{Linux I2C User-\/Space API@{Linux I2C User-\/Space API}!I2C\_RETRIES@{I2C\_RETRIES}}
+\index{I2C\_RETRIES@{I2C\_RETRIES}!Linux I2C User-\/Space API@{Linux I2C User-\/Space API}}
+\subsubsection{\texorpdfstring{I2C\_RETRIES}{I2C\_RETRIES}}
+{\footnotesize\ttfamily \#define I2\+C\+\_\+\+R\+E\+T\+R\+I\+ES~0x701}
+
+
+
+Sets the count of transfer retries in case a slave device does not acknowledge a transaction. 
+
+The argument type is unsigned long. \mbox{\Hypertarget{group__I2CLinux_gab15137f7c592d05573de99f078516157}\label{group__I2CLinux_gab15137f7c592d05573de99f078516157}} 
+\index{Linux I2C User-\/Space API@{Linux I2C User-\/Space API}!I2C\_SLAVE@{I2C\_SLAVE}}
+\index{I2C\_SLAVE@{I2C\_SLAVE}!Linux I2C User-\/Space API@{Linux I2C User-\/Space API}}
+\subsubsection{\texorpdfstring{I2C\_SLAVE}{I2C\_SLAVE}}
+{\footnotesize\ttfamily \#define I2\+C\+\_\+\+S\+L\+A\+VE~0x703}
+
+
+
+Sets the slave address. 
+
+It is an error to set a slave address already used by another slave device.
+
+The argument type is unsigned long. \mbox{\Hypertarget{group__I2CLinux_gafb1764d4b58fb542306c715ad6a28a42}\label{group__I2CLinux_gafb1764d4b58fb542306c715ad6a28a42}} 
+\index{Linux I2C User-\/Space API@{Linux I2C User-\/Space API}!I2C\_SLAVE\_FORCE@{I2C\_SLAVE\_FORCE}}
+\index{I2C\_SLAVE\_FORCE@{I2C\_SLAVE\_FORCE}!Linux I2C User-\/Space API@{Linux I2C User-\/Space API}}
+\subsubsection{\texorpdfstring{I2C\_SLAVE\_FORCE}{I2C\_SLAVE\_FORCE}}
+{\footnotesize\ttfamily \#define I2\+C\+\_\+\+S\+L\+A\+V\+E\+\_\+\+F\+O\+R\+CE~0x706}
+
+
+
+Forces setting the slave address. 
+
+The argument type is unsigned long. \mbox{\Hypertarget{group__I2CLinux_ga4e9d483fb9eb1074646726ce518b1d4d}\label{group__I2CLinux_ga4e9d483fb9eb1074646726ce518b1d4d}} 
+\index{Linux I2C User-\/Space API@{Linux I2C User-\/Space API}!I2C\_SMBUS@{I2C\_SMBUS}}
+\index{I2C\_SMBUS@{I2C\_SMBUS}!Linux I2C User-\/Space API@{Linux I2C User-\/Space API}}
+\subsubsection{\texorpdfstring{I2C\_SMBUS}{I2C\_SMBUS}}
+{\footnotesize\ttfamily \#define I2\+C\+\_\+\+S\+M\+B\+US~0x720}
+
+
+
+Performs an S\+M\+Bus transfer. 
+
+The argument type is a pointer to struct \mbox{\hyperlink{structi2c__smbus__ioctl__data}{i2c\+\_\+smbus\+\_\+ioctl\+\_\+data}}. \mbox{\Hypertarget{group__I2CLinux_ga2a0b1f3843e98977be7476579c851305}\label{group__I2CLinux_ga2a0b1f3843e98977be7476579c851305}} 
+\index{Linux I2C User-\/Space API@{Linux I2C User-\/Space API}!I2C\_TENBIT@{I2C\_TENBIT}}
+\index{I2C\_TENBIT@{I2C\_TENBIT}!Linux I2C User-\/Space API@{Linux I2C User-\/Space API}}
+\subsubsection{\texorpdfstring{I2C\_TENBIT}{I2C\_TENBIT}}
+{\footnotesize\ttfamily \#define I2\+C\+\_\+\+T\+E\+N\+B\+IT~0x704}
+
+
+
+Enables 10-\/bit addresses if argument is non-\/zero, otherwise disables 10-\/bit addresses. 
+
+The argument type is unsigned long. \mbox{\Hypertarget{group__I2CLinux_gafa3215f0aa766367f5d34bee80929152}\label{group__I2CLinux_gafa3215f0aa766367f5d34bee80929152}} 
+\index{Linux I2C User-\/Space API@{Linux I2C User-\/Space API}!I2C\_TIMEOUT@{I2C\_TIMEOUT}}
+\index{I2C\_TIMEOUT@{I2C\_TIMEOUT}!Linux I2C User-\/Space API@{Linux I2C User-\/Space API}}
+\subsubsection{\texorpdfstring{I2C\_TIMEOUT}{I2C\_TIMEOUT}}
+{\footnotesize\ttfamily \#define I2\+C\+\_\+\+T\+I\+M\+E\+O\+UT~0x702}
+
+
+
+Sets the transfer timeout in 10ms units. 
+
+The argument type is unsigned long. 

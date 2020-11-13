@@ -1,0 +1,161 @@
+\hypertarget{ambapp_8h}{}\section{bsps/include/grlib/ambapp.h File Reference}
+\label{ambapp_8h}\index{bsps/include/grlib/ambapp.h@{bsps/include/grlib/ambapp.h}}
+{\ttfamily \#include \char`\"{}ambapp\+\_\+ids.\+h\char`\"{}}\newline
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structambapp__dev}{ambapp\+\_\+dev}}
+\item 
+struct \mbox{\hyperlink{structambapp__common__info}{ambapp\+\_\+common\+\_\+info}}
+\item 
+struct \mbox{\hyperlink{structambapp__apb__info}{ambapp\+\_\+apb\+\_\+info}}
+\item 
+struct \mbox{\hyperlink{structambapp__ahb__info}{ambapp\+\_\+ahb\+\_\+info}}
+\item 
+struct \mbox{\hyperlink{structambapp__core}{ambapp\+\_\+core}}
+\item 
+struct \mbox{\hyperlink{structambapp__ahb__bus}{ambapp\+\_\+ahb\+\_\+bus}}
+\item 
+struct \mbox{\hyperlink{structambapp__mmap}{ambapp\+\_\+mmap}}
+\item 
+struct \mbox{\hyperlink{structambapp__bus}{ambapp\+\_\+bus}}
+\item 
+struct \mbox{\hyperlink{structambapp__pnp__ahb}{ambapp\+\_\+pnp\+\_\+ahb}}
+\item 
+struct \mbox{\hyperlink{structambapp__pnp__apb}{ambapp\+\_\+pnp\+\_\+apb}}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bfseries A\+H\+B\+\_\+\+B\+U\+S\+\_\+\+M\+AX}~6
+\item 
+\#define {\bfseries A\+M\+B\+A\+P\+P\+\_\+\+F\+L\+A\+G\+\_\+\+F\+F\+A\+C\+T\+\_\+\+D\+IR}~0x100	/$\ast$ Frequency factor direction, 0=down, 1=up $\ast$/
+\item 
+\#define {\bfseries A\+M\+B\+A\+P\+P\+\_\+\+F\+L\+A\+G\+\_\+\+F\+F\+A\+CT}~0x0f0	/$\ast$ Frequency factor against top bus $\ast$/
+\item 
+\#define {\bfseries A\+M\+B\+A\+P\+P\+\_\+\+F\+L\+A\+G\+\_\+\+M\+B\+US}~0x00c
+\item 
+\#define {\bfseries A\+M\+B\+A\+P\+P\+\_\+\+F\+L\+A\+G\+\_\+\+S\+B\+US}~0x003
+\item 
+\#define {\bfseries D\+E\+V\+\_\+\+T\+O\+\_\+\+A\+PB}(adev)~((struct \mbox{\hyperlink{structambapp__apb__info}{ambapp\+\_\+apb\+\_\+info}} $\ast$)((adev)-\/$>$devinfo))
+\item 
+\#define {\bfseries D\+E\+V\+\_\+\+T\+O\+\_\+\+A\+HB}(adev)~((struct \mbox{\hyperlink{structambapp__ahb__info}{ambapp\+\_\+ahb\+\_\+info}} $\ast$)((adev)-\/$>$devinfo))
+\item 
+\#define {\bfseries D\+E\+V\+\_\+\+T\+O\+\_\+\+C\+O\+M\+M\+ON}(adev)~((struct \mbox{\hyperlink{structambapp__common__info}{ambapp\+\_\+common\+\_\+info}} $\ast$)((adev)-\/$>$devinfo))
+\item 
+\#define {\bfseries A\+P\+B\+\_\+\+T\+O\+\_\+\+D\+EV}(apb\+\_\+info)
+\item 
+\#define {\bfseries A\+H\+B\+\_\+\+T\+O\+\_\+\+D\+EV}(ahb\+\_\+info)
+\item 
+\#define {\bfseries D\+E\+V\+\_\+\+I\+S\+\_\+\+F\+R\+EE}(dev)~(dev-\/$>$owner == \mbox{\hyperlink{bestcomm__api_8h_a872bb74de61c3689ccd5b41873fce42c}{N\+U\+LL}})
+\item 
+\#define {\bfseries D\+E\+V\+\_\+\+I\+S\+\_\+\+A\+L\+L\+O\+C\+A\+T\+ED}(dev)~(dev-\/$>$owner != \mbox{\hyperlink{bestcomm__api_8h_a872bb74de61c3689ccd5b41873fce42c}{N\+U\+LL}})
+\item 
+\#define {\bfseries O\+P\+T\+I\+O\+N\+S\+\_\+\+A\+H\+B\+\_\+\+M\+S\+TS}~0x00000001
+\item 
+\#define {\bfseries O\+P\+T\+I\+O\+N\+S\+\_\+\+A\+H\+B\+\_\+\+S\+L\+VS}~0x00000002
+\item 
+\#define {\bfseries O\+P\+T\+I\+O\+N\+S\+\_\+\+A\+P\+B\+\_\+\+S\+L\+VS}~0x00000004
+\item 
+\#define {\bfseries O\+P\+T\+I\+O\+N\+S\+\_\+\+A\+L\+L\+\_\+\+D\+E\+VS}~(O\+P\+T\+I\+O\+N\+S\+\_\+\+A\+H\+B\+\_\+\+M\+S\+TS$\vert$O\+P\+T\+I\+O\+N\+S\+\_\+\+A\+H\+B\+\_\+\+S\+L\+VS$\vert$O\+P\+T\+I\+O\+N\+S\+\_\+\+A\+P\+B\+\_\+\+S\+L\+VS)
+\item 
+\#define {\bfseries O\+P\+T\+I\+O\+N\+S\+\_\+\+F\+R\+EE}~0x00000010
+\item 
+\#define {\bfseries O\+P\+T\+I\+O\+N\+S\+\_\+\+A\+L\+L\+O\+C\+A\+T\+ED}~0x00000020
+\item 
+\#define {\bfseries O\+P\+T\+I\+O\+N\+S\+\_\+\+A\+LL}~(O\+P\+T\+I\+O\+N\+S\+\_\+\+F\+R\+EE$\vert$O\+P\+T\+I\+O\+N\+S\+\_\+\+A\+L\+L\+O\+C\+A\+T\+ED)
+\item 
+\#define {\bfseries O\+P\+T\+I\+O\+N\+S\+\_\+\+D\+E\+P\+T\+H\+\_\+\+F\+I\+R\+ST}~0x00000100
+\item 
+\#define {\bfseries D\+E\+V\+\_\+\+A\+H\+B\+\_\+\+N\+O\+NE}~0
+\item 
+\#define {\bfseries D\+E\+V\+\_\+\+A\+H\+B\+\_\+\+M\+ST}~1
+\item 
+\#define {\bfseries D\+E\+V\+\_\+\+A\+H\+B\+\_\+\+S\+LV}~2
+\item 
+\#define {\bfseries D\+E\+V\+\_\+\+A\+P\+B\+\_\+\+S\+LV}~3
+\item 
+\#define {\bfseries ambapp\+\_\+pnp\+\_\+vendor}(id)~(((id) $>$$>$ 24) \& 0xff)
+\item 
+\#define {\bfseries ambapp\+\_\+pnp\+\_\+device}(id)~(((id) $>$$>$ 12) \& 0xfff)
+\item 
+\#define {\bfseries ambapp\+\_\+pnp\+\_\+ver}(id)~(((id)$>$$>$5) \& 0x1f)
+\item 
+\#define {\bfseries ambapp\+\_\+pnp\+\_\+irq}(id)~((id) \& 0x1f)
+\item 
+\#define {\bfseries ambapp\+\_\+pnp\+\_\+start}(mbar)~(((mbar) \& 0xfff00000) \& (((mbar) \& 0xfff0) $<$$<$ 16))
+\item 
+\#define {\bfseries ambapp\+\_\+pnp\+\_\+mbar\+\_\+mask}(mbar)~(((mbar)$>$$>$4) \& 0xfff)
+\item 
+\#define {\bfseries ambapp\+\_\+pnp\+\_\+mbar\+\_\+type}(mbar)~((mbar) \& 0xf)
+\item 
+\#define {\bfseries ambapp\+\_\+pnp\+\_\+apb\+\_\+start}(iobar,  base)~((base) $\vert$ ((((iobar) \& 0xfff00000)$>$$>$12) \& (((iobar) \& 0xfff0)$<$$<$4)) )
+\item 
+\#define {\bfseries ambapp\+\_\+pnp\+\_\+apb\+\_\+mask}(iobar)~(($\sim$(ambapp\+\_\+pnp\+\_\+mbar\+\_\+mask(iobar)$<$$<$8) \& 0x000fffff) + 1)
+\item 
+\#define {\bfseries A\+M\+B\+A\+\_\+\+T\+Y\+P\+E\+\_\+\+A\+H\+B\+I\+O\+\_\+\+A\+D\+DR}(addr,  base\+\_\+ioarea)~((unsigned int)(base\+\_\+ioarea) $\vert$ ((addr) $>$$>$ 12))
+\item 
+\#define {\bfseries A\+M\+B\+A\+\_\+\+T\+Y\+P\+E\+\_\+\+A\+P\+B\+IO}~0x1
+\item 
+\#define {\bfseries A\+M\+B\+A\+\_\+\+T\+Y\+P\+E\+\_\+\+M\+EM}~0x2
+\item 
+\#define {\bfseries A\+M\+B\+A\+\_\+\+T\+Y\+P\+E\+\_\+\+A\+H\+B\+IO}~0x3
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef int($\ast$ {\bfseries ambapp\+\_\+func\+\_\+t}) (struct \mbox{\hyperlink{structambapp__dev}{ambapp\+\_\+dev}} $\ast$dev, int index, void $\ast$arg)
+\item 
+typedef void $\ast$($\ast$ {\bfseries ambapp\+\_\+memcpy\+\_\+t}) (void $\ast$dest, const void $\ast$src, int n, struct \mbox{\hyperlink{structambapp__bus}{ambapp\+\_\+bus}} $\ast$abus)
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int {\bfseries ambapp\+\_\+scan} (struct \mbox{\hyperlink{structambapp__bus}{ambapp\+\_\+bus}} $\ast$abus, unsigned int ioarea, ambapp\+\_\+memcpy\+\_\+t memfunc, struct \mbox{\hyperlink{structambapp__mmap}{ambapp\+\_\+mmap}} $\ast$mmaps)
+\item 
+void {\bfseries ambapp\+\_\+freq\+\_\+init} (struct \mbox{\hyperlink{structambapp__bus}{ambapp\+\_\+bus}} $\ast$abus, struct \mbox{\hyperlink{structambapp__dev}{ambapp\+\_\+dev}} $\ast$dev, unsigned int freq)
+\item 
+unsigned int {\bfseries ambapp\+\_\+freq\+\_\+get} (struct \mbox{\hyperlink{structambapp__bus}{ambapp\+\_\+bus}} $\ast$abus, struct \mbox{\hyperlink{structambapp__dev}{ambapp\+\_\+dev}} $\ast$dev)
+\item 
+int {\bfseries ambapp\+\_\+for\+\_\+each} (struct \mbox{\hyperlink{structambapp__bus}{ambapp\+\_\+bus}} $\ast$abus, unsigned int options, int vendor, int \mbox{\hyperlink{structdevice}{device}}, ambapp\+\_\+func\+\_\+t func, void $\ast$arg)
+\item 
+int {\bfseries ambapp\+\_\+find\+\_\+by\+\_\+idx} (struct \mbox{\hyperlink{structambapp__dev}{ambapp\+\_\+dev}} $\ast$dev, int index, void $\ast$pcount)
+\item 
+int {\bfseries ambapp\+\_\+dev\+\_\+count} (struct \mbox{\hyperlink{structambapp__bus}{ambapp\+\_\+bus}} $\ast$abus, unsigned int options, int vendor, int \mbox{\hyperlink{structdevice}{device}})
+\item 
+void {\bfseries ambapp\+\_\+print} (struct \mbox{\hyperlink{structambapp__bus}{ambapp\+\_\+bus}} $\ast$abus, int show\+\_\+depth)
+\item 
+int {\bfseries ambapp\+\_\+alloc\+\_\+dev} (struct \mbox{\hyperlink{structambapp__dev}{ambapp\+\_\+dev}} $\ast$dev, void $\ast$owner)
+\item 
+void {\bfseries ambapp\+\_\+free\+\_\+dev} (struct \mbox{\hyperlink{structambapp__dev}{ambapp\+\_\+dev}} $\ast$dev)
+\item 
+struct \mbox{\hyperlink{structambapp__dev}{ambapp\+\_\+dev}} $\ast$ {\bfseries ambapp\+\_\+find\+\_\+parent} (struct \mbox{\hyperlink{structambapp__dev}{ambapp\+\_\+dev}} $\ast$dev)
+\item 
+int {\bfseries ambapp\+\_\+depth} (struct \mbox{\hyperlink{structambapp__dev}{ambapp\+\_\+dev}} $\ast$dev)
+\item 
+char $\ast$ {\bfseries ambapp\+\_\+device\+\_\+id2str} (int vendor, int id)
+\item 
+char $\ast$ {\bfseries ambapp\+\_\+vendor\+\_\+id2str} (int vendor)
+\item 
+int {\bfseries ambapp\+\_\+vendev\+\_\+id2str} (int vendor, int id, char $\ast$buf)
+\item 
+int {\bfseries ambapp\+\_\+find\+\_\+apbslv} (struct \mbox{\hyperlink{structambapp__bus}{ambapp\+\_\+bus}} $\ast$abus, int vendor, int \mbox{\hyperlink{structdevice}{device}}, struct \mbox{\hyperlink{structambapp__apb__info}{ambapp\+\_\+apb\+\_\+info}} $\ast$dev)
+\item 
+int {\bfseries ambapp\+\_\+find\+\_\+apbslv\+\_\+next} (struct \mbox{\hyperlink{structambapp__bus}{ambapp\+\_\+bus}} $\ast$abus, int vendor, int \mbox{\hyperlink{structdevice}{device}}, struct \mbox{\hyperlink{structambapp__apb__info}{ambapp\+\_\+apb\+\_\+info}} $\ast$dev, int index)
+\item 
+int {\bfseries ambapp\+\_\+find\+\_\+apbslvs\+\_\+next} (struct \mbox{\hyperlink{structambapp__bus}{ambapp\+\_\+bus}} $\ast$abus, int vendor, int \mbox{\hyperlink{structdevice}{device}}, struct \mbox{\hyperlink{structambapp__apb__info}{ambapp\+\_\+apb\+\_\+info}} $\ast$dev, int index, int maxno)
+\item 
+int {\bfseries ambapp\+\_\+find\+\_\+apbslvs} (struct \mbox{\hyperlink{structambapp__bus}{ambapp\+\_\+bus}} $\ast$abus, int vendor, int \mbox{\hyperlink{structdevice}{device}}, struct \mbox{\hyperlink{structambapp__apb__info}{ambapp\+\_\+apb\+\_\+info}} $\ast$dev, int maxno)
+\item 
+int {\bfseries ambapp\+\_\+find\+\_\+ahbslv} (struct \mbox{\hyperlink{structambapp__bus}{ambapp\+\_\+bus}} $\ast$abus, int vendor, int \mbox{\hyperlink{structdevice}{device}}, struct \mbox{\hyperlink{structambapp__ahb__info}{ambapp\+\_\+ahb\+\_\+info}} $\ast$dev)
+\item 
+int {\bfseries ambapp\+\_\+find\+\_\+ahbslv\+\_\+next} (struct \mbox{\hyperlink{structambapp__bus}{ambapp\+\_\+bus}} $\ast$abus, int vendor, int \mbox{\hyperlink{structdevice}{device}}, struct \mbox{\hyperlink{structambapp__ahb__info}{ambapp\+\_\+ahb\+\_\+info}} $\ast$dev, int index)
+\item 
+int {\bfseries ambapp\+\_\+find\+\_\+ahbslvs\+\_\+next} (struct \mbox{\hyperlink{structambapp__bus}{ambapp\+\_\+bus}} $\ast$abus, int vendor, int \mbox{\hyperlink{structdevice}{device}}, struct \mbox{\hyperlink{structambapp__ahb__info}{ambapp\+\_\+ahb\+\_\+info}} $\ast$dev, int index, int maxno)
+\item 
+int {\bfseries ambapp\+\_\+find\+\_\+ahbslvs} (struct \mbox{\hyperlink{structambapp__bus}{ambapp\+\_\+bus}} $\ast$abus, int vendor, int \mbox{\hyperlink{structdevice}{device}}, struct \mbox{\hyperlink{structambapp__ahb__info}{ambapp\+\_\+ahb\+\_\+info}} $\ast$dev, int maxno)
+\item 
+int {\bfseries ambapp\+\_\+get\+\_\+number\+\_\+ahbslv\+\_\+devices} (struct \mbox{\hyperlink{structambapp__bus}{ambapp\+\_\+bus}} $\ast$abus, int vendor, int \mbox{\hyperlink{structdevice}{device}})
+\item 
+int {\bfseries ambapp\+\_\+get\+\_\+number\+\_\+apbslv\+\_\+devices} (struct \mbox{\hyperlink{structambapp__bus}{ambapp\+\_\+bus}} $\ast$abus, int vendor, int \mbox{\hyperlink{structdevice}{device}})
+\end{DoxyCompactItemize}

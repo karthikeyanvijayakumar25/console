@@ -1,0 +1,337 @@
+\hypertarget{cpukit_2score_2cpu_2sparc_2cpu_8c}{}\section{cpukit/score/cpu/sparc/cpu.c File Reference}
+\label{cpukit_2score_2cpu_2sparc_2cpu_8c}\index{cpukit/score/cpu/sparc/cpu.c@{cpukit/score/cpu/sparc/cpu.c}}
+
+
+S\+P\+A\+RC C\+PU Dependent Source.  
+
+
+{\ttfamily \#include $<$rtems/score/isr.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/score/percpu.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/score/tls.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/score/thread.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/rtems/cache.\+h$>$}\newline
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bfseries S\+P\+A\+R\+C\+\_\+\+A\+S\+S\+E\+R\+T\+\_\+\+O\+F\+F\+S\+ET}(field,  off)
+\item 
+\#define {\bfseries S\+P\+A\+R\+C\+\_\+\+A\+S\+S\+E\+R\+T\+\_\+\+I\+S\+F\+\_\+\+O\+F\+F\+S\+ET}(field,  off)
+\item 
+\#define {\bfseries S\+P\+A\+R\+C\+\_\+\+A\+S\+S\+E\+R\+T\+\_\+\+F\+P\+\_\+\+O\+F\+F\+S\+ET}(field,  off)
+\item 
+\mbox{\Hypertarget{cpukit_2score_2cpu_2sparc_2cpu_8c_aaa7ce20d64d78d0ba09fd00bad007d54}\label{cpukit_2score_2cpu_2sparc_2cpu_8c_aaa7ce20d64d78d0ba09fd00bad007d54}} 
+\#define {\bfseries H\+I\+G\+H\+\_\+\+B\+I\+T\+S\+\_\+\+M\+A\+SK}~0x\+F\+F\+F\+F\+F\+C00
+\item 
+\mbox{\Hypertarget{cpukit_2score_2cpu_2sparc_2cpu_8c_a1234cba2e9909913dbc7bf19beb0720c}\label{cpukit_2score_2cpu_2sparc_2cpu_8c_a1234cba2e9909913dbc7bf19beb0720c}} 
+\#define {\bfseries H\+I\+G\+H\+\_\+\+B\+I\+T\+S\+\_\+\+S\+H\+I\+FT}~10
+\item 
+\mbox{\Hypertarget{cpukit_2score_2cpu_2sparc_2cpu_8c_ae081884da9b718f3f06c7ce6095bac6b}\label{cpukit_2score_2cpu_2sparc_2cpu_8c_ae081884da9b718f3f06c7ce6095bac6b}} 
+\#define {\bfseries L\+O\+W\+\_\+\+B\+I\+T\+S\+\_\+\+M\+A\+SK}~0x000003\+FF
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{cpukit_2score_2cpu_2sparc_2cpu_8c_a6a56b47ef400309eca67d34d290e890c}\label{cpukit_2score_2cpu_2sparc_2cpu_8c_a6a56b47ef400309eca67d34d290e890c}} 
+{\bfseries S\+P\+A\+R\+C\+\_\+\+A\+S\+S\+E\+R\+T\+\_\+\+O\+F\+F\+S\+ET} (g5, G5)
+\item 
+\mbox{\Hypertarget{cpukit_2score_2cpu_2sparc_2cpu_8c_abcf1bdf9855b7c601f01e1f262b60e1a}\label{cpukit_2score_2cpu_2sparc_2cpu_8c_abcf1bdf9855b7c601f01e1f262b60e1a}} 
+{\bfseries S\+P\+A\+R\+C\+\_\+\+A\+S\+S\+E\+R\+T\+\_\+\+O\+F\+F\+S\+ET} (g7, G7)
+\item 
+\mbox{\Hypertarget{cpukit_2score_2cpu_2sparc_2cpu_8c_a598baafe3331b0ee0b6aa7505d607017}\label{cpukit_2score_2cpu_2sparc_2cpu_8c_a598baafe3331b0ee0b6aa7505d607017}} 
+{\bfseries R\+T\+E\+M\+S\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+A\+S\+S\+E\+RT} (offsetof(\mbox{\hyperlink{structContext__Control}{Context\+\_\+\+Control}}, l0\+\_\+and\+\_\+l1)==\mbox{\hyperlink{group__RTEMSScoreCPUSPARCContext_ga2aa8381a55d2c725ac07d78ede350ea8}{L0\+\_\+\+O\+F\+F\+S\+ET}}, Context\+\_\+\+Control\+\_\+offset\+\_\+\+L0)
+\item 
+\mbox{\Hypertarget{cpukit_2score_2cpu_2sparc_2cpu_8c_af2e83ea0059abc5c7c5221e82fdb6544}\label{cpukit_2score_2cpu_2sparc_2cpu_8c_af2e83ea0059abc5c7c5221e82fdb6544}} 
+{\bfseries R\+T\+E\+M\+S\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+A\+S\+S\+E\+RT} (offsetof(\mbox{\hyperlink{structContext__Control}{Context\+\_\+\+Control}}, l0\+\_\+and\+\_\+l1)+4==\mbox{\hyperlink{group__RTEMSScoreCPUSPARCContext_ga7e0044af98788804b7e01283a931753a}{L1\+\_\+\+O\+F\+F\+S\+ET}}, Context\+\_\+\+Control\+\_\+offset\+\_\+\+L1)
+\item 
+\mbox{\Hypertarget{cpukit_2score_2cpu_2sparc_2cpu_8c_a3351883fa3acc7a95ab75f24da016dff}\label{cpukit_2score_2cpu_2sparc_2cpu_8c_a3351883fa3acc7a95ab75f24da016dff}} 
+{\bfseries S\+P\+A\+R\+C\+\_\+\+A\+S\+S\+E\+R\+T\+\_\+\+O\+F\+F\+S\+ET} (l2, L2)
+\item 
+\mbox{\Hypertarget{cpukit_2score_2cpu_2sparc_2cpu_8c_acdb5f21f2ac3df324030ad3b6768fade}\label{cpukit_2score_2cpu_2sparc_2cpu_8c_acdb5f21f2ac3df324030ad3b6768fade}} 
+{\bfseries S\+P\+A\+R\+C\+\_\+\+A\+S\+S\+E\+R\+T\+\_\+\+O\+F\+F\+S\+ET} (l3, L3)
+\item 
+\mbox{\Hypertarget{cpukit_2score_2cpu_2sparc_2cpu_8c_ac200dfed15b487b4e366ac2a6c89065c}\label{cpukit_2score_2cpu_2sparc_2cpu_8c_ac200dfed15b487b4e366ac2a6c89065c}} 
+{\bfseries S\+P\+A\+R\+C\+\_\+\+A\+S\+S\+E\+R\+T\+\_\+\+O\+F\+F\+S\+ET} (l4, L4)
+\item 
+\mbox{\Hypertarget{cpukit_2score_2cpu_2sparc_2cpu_8c_a6807370cbeea83aabf7e26cac60949f8}\label{cpukit_2score_2cpu_2sparc_2cpu_8c_a6807370cbeea83aabf7e26cac60949f8}} 
+{\bfseries S\+P\+A\+R\+C\+\_\+\+A\+S\+S\+E\+R\+T\+\_\+\+O\+F\+F\+S\+ET} (l5, L5)
+\item 
+\mbox{\Hypertarget{cpukit_2score_2cpu_2sparc_2cpu_8c_a7674c9ad1e68eb4e0873cf4f57c00654}\label{cpukit_2score_2cpu_2sparc_2cpu_8c_a7674c9ad1e68eb4e0873cf4f57c00654}} 
+{\bfseries S\+P\+A\+R\+C\+\_\+\+A\+S\+S\+E\+R\+T\+\_\+\+O\+F\+F\+S\+ET} (l6, L6)
+\item 
+\mbox{\Hypertarget{cpukit_2score_2cpu_2sparc_2cpu_8c_ad34d584109084a7d52cd24d73ab40fac}\label{cpukit_2score_2cpu_2sparc_2cpu_8c_ad34d584109084a7d52cd24d73ab40fac}} 
+{\bfseries S\+P\+A\+R\+C\+\_\+\+A\+S\+S\+E\+R\+T\+\_\+\+O\+F\+F\+S\+ET} (l7, L7)
+\item 
+\mbox{\Hypertarget{cpukit_2score_2cpu_2sparc_2cpu_8c_abd9ad70b8dd9f88d9a4759180d97091b}\label{cpukit_2score_2cpu_2sparc_2cpu_8c_abd9ad70b8dd9f88d9a4759180d97091b}} 
+{\bfseries S\+P\+A\+R\+C\+\_\+\+A\+S\+S\+E\+R\+T\+\_\+\+O\+F\+F\+S\+ET} (i0, I0)
+\item 
+\mbox{\Hypertarget{cpukit_2score_2cpu_2sparc_2cpu_8c_a10639da4a3391adc994bf903b0e22d96}\label{cpukit_2score_2cpu_2sparc_2cpu_8c_a10639da4a3391adc994bf903b0e22d96}} 
+{\bfseries S\+P\+A\+R\+C\+\_\+\+A\+S\+S\+E\+R\+T\+\_\+\+O\+F\+F\+S\+ET} (i1, I1)
+\item 
+\mbox{\Hypertarget{cpukit_2score_2cpu_2sparc_2cpu_8c_a05389d9812c226c0bf1b2bb84439b745}\label{cpukit_2score_2cpu_2sparc_2cpu_8c_a05389d9812c226c0bf1b2bb84439b745}} 
+{\bfseries S\+P\+A\+R\+C\+\_\+\+A\+S\+S\+E\+R\+T\+\_\+\+O\+F\+F\+S\+ET} (i2, I2)
+\item 
+\mbox{\Hypertarget{cpukit_2score_2cpu_2sparc_2cpu_8c_adbbac0de173d5477d400daea3491f79e}\label{cpukit_2score_2cpu_2sparc_2cpu_8c_adbbac0de173d5477d400daea3491f79e}} 
+{\bfseries S\+P\+A\+R\+C\+\_\+\+A\+S\+S\+E\+R\+T\+\_\+\+O\+F\+F\+S\+ET} (i3, I3)
+\item 
+\mbox{\Hypertarget{cpukit_2score_2cpu_2sparc_2cpu_8c_a909063df520f97683f102e57a84f2aae}\label{cpukit_2score_2cpu_2sparc_2cpu_8c_a909063df520f97683f102e57a84f2aae}} 
+{\bfseries S\+P\+A\+R\+C\+\_\+\+A\+S\+S\+E\+R\+T\+\_\+\+O\+F\+F\+S\+ET} (i4, I4)
+\item 
+\mbox{\Hypertarget{cpukit_2score_2cpu_2sparc_2cpu_8c_ac252530b17b5a46c3dd86ce7ace044d6}\label{cpukit_2score_2cpu_2sparc_2cpu_8c_ac252530b17b5a46c3dd86ce7ace044d6}} 
+{\bfseries S\+P\+A\+R\+C\+\_\+\+A\+S\+S\+E\+R\+T\+\_\+\+O\+F\+F\+S\+ET} (i5, I5)
+\item 
+\mbox{\Hypertarget{cpukit_2score_2cpu_2sparc_2cpu_8c_a73b64af9c433547a4a290dcc9b54db7a}\label{cpukit_2score_2cpu_2sparc_2cpu_8c_a73b64af9c433547a4a290dcc9b54db7a}} 
+{\bfseries S\+P\+A\+R\+C\+\_\+\+A\+S\+S\+E\+R\+T\+\_\+\+O\+F\+F\+S\+ET} (i6\+\_\+fp, I6\+\_\+\+FP)
+\item 
+\mbox{\Hypertarget{cpukit_2score_2cpu_2sparc_2cpu_8c_a2c455523f261ceeb3f91da37d69ffdbf}\label{cpukit_2score_2cpu_2sparc_2cpu_8c_a2c455523f261ceeb3f91da37d69ffdbf}} 
+{\bfseries S\+P\+A\+R\+C\+\_\+\+A\+S\+S\+E\+R\+T\+\_\+\+O\+F\+F\+S\+ET} (i7, I7)
+\item 
+\mbox{\Hypertarget{cpukit_2score_2cpu_2sparc_2cpu_8c_a277e82229021b111a0f463b2765d73c9}\label{cpukit_2score_2cpu_2sparc_2cpu_8c_a277e82229021b111a0f463b2765d73c9}} 
+{\bfseries S\+P\+A\+R\+C\+\_\+\+A\+S\+S\+E\+R\+T\+\_\+\+O\+F\+F\+S\+ET} (o6\+\_\+sp, O6\+\_\+\+SP)
+\item 
+\mbox{\Hypertarget{cpukit_2score_2cpu_2sparc_2cpu_8c_ac7f04c5a442bc77826f8a40338e887e7}\label{cpukit_2score_2cpu_2sparc_2cpu_8c_ac7f04c5a442bc77826f8a40338e887e7}} 
+{\bfseries S\+P\+A\+R\+C\+\_\+\+A\+S\+S\+E\+R\+T\+\_\+\+O\+F\+F\+S\+ET} (o7, O7)
+\item 
+\mbox{\Hypertarget{cpukit_2score_2cpu_2sparc_2cpu_8c_adfd678532656c1d5b45d0e9565c35160}\label{cpukit_2score_2cpu_2sparc_2cpu_8c_adfd678532656c1d5b45d0e9565c35160}} 
+{\bfseries S\+P\+A\+R\+C\+\_\+\+A\+S\+S\+E\+R\+T\+\_\+\+O\+F\+F\+S\+ET} (psr, P\+SR)
+\item 
+\mbox{\Hypertarget{cpukit_2score_2cpu_2sparc_2cpu_8c_a28e846c6066ab802f5a9e8c95b29b469}\label{cpukit_2score_2cpu_2sparc_2cpu_8c_a28e846c6066ab802f5a9e8c95b29b469}} 
+{\bfseries S\+P\+A\+R\+C\+\_\+\+A\+S\+S\+E\+R\+T\+\_\+\+O\+F\+F\+S\+ET} (isr\+\_\+dispatch\+\_\+disable, I\+S\+R\+\_\+\+D\+I\+S\+P\+A\+T\+C\+H\+\_\+\+D\+I\+S\+A\+B\+L\+E\+\_\+\+S\+T\+A\+CK)
+\item 
+\mbox{\Hypertarget{cpukit_2score_2cpu_2sparc_2cpu_8c_a6211b77f535213050f699438faa23b07}\label{cpukit_2score_2cpu_2sparc_2cpu_8c_a6211b77f535213050f699438faa23b07}} 
+{\bfseries S\+P\+A\+R\+C\+\_\+\+A\+S\+S\+E\+R\+T\+\_\+\+I\+S\+F\+\_\+\+O\+F\+F\+S\+ET} (psr, P\+SR)
+\item 
+\mbox{\Hypertarget{cpukit_2score_2cpu_2sparc_2cpu_8c_aaf4f1b193ec7b7a572fcf578cca94f46}\label{cpukit_2score_2cpu_2sparc_2cpu_8c_aaf4f1b193ec7b7a572fcf578cca94f46}} 
+{\bfseries S\+P\+A\+R\+C\+\_\+\+A\+S\+S\+E\+R\+T\+\_\+\+I\+S\+F\+\_\+\+O\+F\+F\+S\+ET} (\mbox{\hyperlink{group__mips__regs_ga2f03b14a71de24f7c904d4ce6d26d7f5}{pc}}, PC)
+\item 
+\mbox{\Hypertarget{cpukit_2score_2cpu_2sparc_2cpu_8c_ae2ba5a28d9095e2eebc7400416da3a0c}\label{cpukit_2score_2cpu_2sparc_2cpu_8c_ae2ba5a28d9095e2eebc7400416da3a0c}} 
+{\bfseries S\+P\+A\+R\+C\+\_\+\+A\+S\+S\+E\+R\+T\+\_\+\+I\+S\+F\+\_\+\+O\+F\+F\+S\+ET} (npc, N\+PC)
+\item 
+\mbox{\Hypertarget{cpukit_2score_2cpu_2sparc_2cpu_8c_aba1ce73f465c4abeb148ba1b79409810}\label{cpukit_2score_2cpu_2sparc_2cpu_8c_aba1ce73f465c4abeb148ba1b79409810}} 
+{\bfseries S\+P\+A\+R\+C\+\_\+\+A\+S\+S\+E\+R\+T\+\_\+\+I\+S\+F\+\_\+\+O\+F\+F\+S\+ET} (g1, G1)
+\item 
+\mbox{\Hypertarget{cpukit_2score_2cpu_2sparc_2cpu_8c_ab94291aa4ed359afa665c8ea829b7f82}\label{cpukit_2score_2cpu_2sparc_2cpu_8c_ab94291aa4ed359afa665c8ea829b7f82}} 
+{\bfseries S\+P\+A\+R\+C\+\_\+\+A\+S\+S\+E\+R\+T\+\_\+\+I\+S\+F\+\_\+\+O\+F\+F\+S\+ET} (g2, G2)
+\item 
+\mbox{\Hypertarget{cpukit_2score_2cpu_2sparc_2cpu_8c_adc0354ccd5d11ed80160ab75732b86fe}\label{cpukit_2score_2cpu_2sparc_2cpu_8c_adc0354ccd5d11ed80160ab75732b86fe}} 
+{\bfseries S\+P\+A\+R\+C\+\_\+\+A\+S\+S\+E\+R\+T\+\_\+\+I\+S\+F\+\_\+\+O\+F\+F\+S\+ET} (g3, G3)
+\item 
+\mbox{\Hypertarget{cpukit_2score_2cpu_2sparc_2cpu_8c_a048f99a4e4a957a194196c3234952f8b}\label{cpukit_2score_2cpu_2sparc_2cpu_8c_a048f99a4e4a957a194196c3234952f8b}} 
+{\bfseries S\+P\+A\+R\+C\+\_\+\+A\+S\+S\+E\+R\+T\+\_\+\+I\+S\+F\+\_\+\+O\+F\+F\+S\+ET} (g4, G4)
+\item 
+\mbox{\Hypertarget{cpukit_2score_2cpu_2sparc_2cpu_8c_afa349c9beccc1e6d9167914ea646c31e}\label{cpukit_2score_2cpu_2sparc_2cpu_8c_afa349c9beccc1e6d9167914ea646c31e}} 
+{\bfseries S\+P\+A\+R\+C\+\_\+\+A\+S\+S\+E\+R\+T\+\_\+\+I\+S\+F\+\_\+\+O\+F\+F\+S\+ET} (g5, G5)
+\item 
+\mbox{\Hypertarget{cpukit_2score_2cpu_2sparc_2cpu_8c_a65826a3664ac1d57dee8465857cdd850}\label{cpukit_2score_2cpu_2sparc_2cpu_8c_a65826a3664ac1d57dee8465857cdd850}} 
+{\bfseries S\+P\+A\+R\+C\+\_\+\+A\+S\+S\+E\+R\+T\+\_\+\+I\+S\+F\+\_\+\+O\+F\+F\+S\+ET} (g7, G7)
+\item 
+\mbox{\Hypertarget{cpukit_2score_2cpu_2sparc_2cpu_8c_a97a1b15323c6fa59c4dc907d5b79fdf0}\label{cpukit_2score_2cpu_2sparc_2cpu_8c_a97a1b15323c6fa59c4dc907d5b79fdf0}} 
+{\bfseries S\+P\+A\+R\+C\+\_\+\+A\+S\+S\+E\+R\+T\+\_\+\+I\+S\+F\+\_\+\+O\+F\+F\+S\+ET} (i0, I0)
+\item 
+\mbox{\Hypertarget{cpukit_2score_2cpu_2sparc_2cpu_8c_ab99e69216611fc54925a28d2cc8c4add}\label{cpukit_2score_2cpu_2sparc_2cpu_8c_ab99e69216611fc54925a28d2cc8c4add}} 
+{\bfseries S\+P\+A\+R\+C\+\_\+\+A\+S\+S\+E\+R\+T\+\_\+\+I\+S\+F\+\_\+\+O\+F\+F\+S\+ET} (i1, I1)
+\item 
+\mbox{\Hypertarget{cpukit_2score_2cpu_2sparc_2cpu_8c_a0d232a229a7362bedba5c05131917a8c}\label{cpukit_2score_2cpu_2sparc_2cpu_8c_a0d232a229a7362bedba5c05131917a8c}} 
+{\bfseries S\+P\+A\+R\+C\+\_\+\+A\+S\+S\+E\+R\+T\+\_\+\+I\+S\+F\+\_\+\+O\+F\+F\+S\+ET} (i2, I2)
+\item 
+\mbox{\Hypertarget{cpukit_2score_2cpu_2sparc_2cpu_8c_a0eb223a8b604c064e3157bdc8bee2e88}\label{cpukit_2score_2cpu_2sparc_2cpu_8c_a0eb223a8b604c064e3157bdc8bee2e88}} 
+{\bfseries S\+P\+A\+R\+C\+\_\+\+A\+S\+S\+E\+R\+T\+\_\+\+I\+S\+F\+\_\+\+O\+F\+F\+S\+ET} (i3, I3)
+\item 
+\mbox{\Hypertarget{cpukit_2score_2cpu_2sparc_2cpu_8c_a2c5ca6bec94bfa9742ad614a4d96843c}\label{cpukit_2score_2cpu_2sparc_2cpu_8c_a2c5ca6bec94bfa9742ad614a4d96843c}} 
+{\bfseries S\+P\+A\+R\+C\+\_\+\+A\+S\+S\+E\+R\+T\+\_\+\+I\+S\+F\+\_\+\+O\+F\+F\+S\+ET} (i4, I4)
+\item 
+\mbox{\Hypertarget{cpukit_2score_2cpu_2sparc_2cpu_8c_a27b6583349473c1b015bfb04a9d1bf0c}\label{cpukit_2score_2cpu_2sparc_2cpu_8c_a27b6583349473c1b015bfb04a9d1bf0c}} 
+{\bfseries S\+P\+A\+R\+C\+\_\+\+A\+S\+S\+E\+R\+T\+\_\+\+I\+S\+F\+\_\+\+O\+F\+F\+S\+ET} (i5, I5)
+\item 
+\mbox{\Hypertarget{cpukit_2score_2cpu_2sparc_2cpu_8c_a267a00ae3838af3847eecc2b2c00d3b9}\label{cpukit_2score_2cpu_2sparc_2cpu_8c_a267a00ae3838af3847eecc2b2c00d3b9}} 
+{\bfseries S\+P\+A\+R\+C\+\_\+\+A\+S\+S\+E\+R\+T\+\_\+\+I\+S\+F\+\_\+\+O\+F\+F\+S\+ET} (i6\+\_\+fp, I6\+\_\+\+FP)
+\item 
+\mbox{\Hypertarget{cpukit_2score_2cpu_2sparc_2cpu_8c_afa5181229664c3aefc069a7fa8fd4cb0}\label{cpukit_2score_2cpu_2sparc_2cpu_8c_afa5181229664c3aefc069a7fa8fd4cb0}} 
+{\bfseries S\+P\+A\+R\+C\+\_\+\+A\+S\+S\+E\+R\+T\+\_\+\+I\+S\+F\+\_\+\+O\+F\+F\+S\+ET} (i7, I7)
+\item 
+\mbox{\Hypertarget{cpukit_2score_2cpu_2sparc_2cpu_8c_a78831aa4f172a54ac7c7aba9eb005671}\label{cpukit_2score_2cpu_2sparc_2cpu_8c_a78831aa4f172a54ac7c7aba9eb005671}} 
+{\bfseries S\+P\+A\+R\+C\+\_\+\+A\+S\+S\+E\+R\+T\+\_\+\+I\+S\+F\+\_\+\+O\+F\+F\+S\+ET} (y, Y)
+\item 
+\mbox{\Hypertarget{cpukit_2score_2cpu_2sparc_2cpu_8c_aa5cc937d410283f7bf8bfab51b3227e2}\label{cpukit_2score_2cpu_2sparc_2cpu_8c_aa5cc937d410283f7bf8bfab51b3227e2}} 
+{\bfseries S\+P\+A\+R\+C\+\_\+\+A\+S\+S\+E\+R\+T\+\_\+\+I\+S\+F\+\_\+\+O\+F\+F\+S\+ET} (tpc, T\+PC)
+\item 
+\mbox{\Hypertarget{cpukit_2score_2cpu_2sparc_2cpu_8c_aaaddeae47abcca9552382ceb85f4da4a}\label{cpukit_2score_2cpu_2sparc_2cpu_8c_aaaddeae47abcca9552382ceb85f4da4a}} 
+{\bfseries S\+P\+A\+R\+C\+\_\+\+A\+S\+S\+E\+R\+T\+\_\+\+F\+P\+\_\+\+O\+F\+F\+S\+ET} (f0\+\_\+f1, F0\+\_\+\+F1)
+\item 
+\mbox{\Hypertarget{cpukit_2score_2cpu_2sparc_2cpu_8c_ab3b0c95b5d38209b3eef8504c9919480}\label{cpukit_2score_2cpu_2sparc_2cpu_8c_ab3b0c95b5d38209b3eef8504c9919480}} 
+{\bfseries S\+P\+A\+R\+C\+\_\+\+A\+S\+S\+E\+R\+T\+\_\+\+F\+P\+\_\+\+O\+F\+F\+S\+ET} (f2\+\_\+f3, F2\+\_\+\+F3)
+\item 
+\mbox{\Hypertarget{cpukit_2score_2cpu_2sparc_2cpu_8c_a39a2ada29dee4fcc34053c179ee4acf8}\label{cpukit_2score_2cpu_2sparc_2cpu_8c_a39a2ada29dee4fcc34053c179ee4acf8}} 
+{\bfseries S\+P\+A\+R\+C\+\_\+\+A\+S\+S\+E\+R\+T\+\_\+\+F\+P\+\_\+\+O\+F\+F\+S\+ET} (f4\+\_\+f5, F4\+\_\+\+F5)
+\item 
+\mbox{\Hypertarget{cpukit_2score_2cpu_2sparc_2cpu_8c_a860f4d46f339aa4266434212207b8551}\label{cpukit_2score_2cpu_2sparc_2cpu_8c_a860f4d46f339aa4266434212207b8551}} 
+{\bfseries S\+P\+A\+R\+C\+\_\+\+A\+S\+S\+E\+R\+T\+\_\+\+F\+P\+\_\+\+O\+F\+F\+S\+ET} (f6\+\_\+f7, F6\+\_\+\+F7)
+\item 
+\mbox{\Hypertarget{cpukit_2score_2cpu_2sparc_2cpu_8c_ae35274b64e2f0410481e91c7843a70ad}\label{cpukit_2score_2cpu_2sparc_2cpu_8c_ae35274b64e2f0410481e91c7843a70ad}} 
+{\bfseries S\+P\+A\+R\+C\+\_\+\+A\+S\+S\+E\+R\+T\+\_\+\+F\+P\+\_\+\+O\+F\+F\+S\+ET} (f8\+\_\+f9, F8\+\_\+\+F9)
+\item 
+\mbox{\Hypertarget{cpukit_2score_2cpu_2sparc_2cpu_8c_aa589e432b35758f42d1affa803d03f32}\label{cpukit_2score_2cpu_2sparc_2cpu_8c_aa589e432b35758f42d1affa803d03f32}} 
+{\bfseries S\+P\+A\+R\+C\+\_\+\+A\+S\+S\+E\+R\+T\+\_\+\+F\+P\+\_\+\+O\+F\+F\+S\+ET} (f10\+\_\+f11, F10\+\_\+\+F11)
+\item 
+\mbox{\Hypertarget{cpukit_2score_2cpu_2sparc_2cpu_8c_a14f15d155e9b5eeabb89456a80ab4bf0}\label{cpukit_2score_2cpu_2sparc_2cpu_8c_a14f15d155e9b5eeabb89456a80ab4bf0}} 
+{\bfseries S\+P\+A\+R\+C\+\_\+\+A\+S\+S\+E\+R\+T\+\_\+\+F\+P\+\_\+\+O\+F\+F\+S\+ET} (f12\+\_\+f13, F12\+\_\+\+F13)
+\item 
+\mbox{\Hypertarget{cpukit_2score_2cpu_2sparc_2cpu_8c_ab9e807a13fdb04a643bbbbff71edef1f}\label{cpukit_2score_2cpu_2sparc_2cpu_8c_ab9e807a13fdb04a643bbbbff71edef1f}} 
+{\bfseries S\+P\+A\+R\+C\+\_\+\+A\+S\+S\+E\+R\+T\+\_\+\+F\+P\+\_\+\+O\+F\+F\+S\+ET} (f14\+\_\+f15, F14\+\_\+\+F15)
+\item 
+\mbox{\Hypertarget{cpukit_2score_2cpu_2sparc_2cpu_8c_a27644957a2943c3dd994ee1c03a3e2d6}\label{cpukit_2score_2cpu_2sparc_2cpu_8c_a27644957a2943c3dd994ee1c03a3e2d6}} 
+{\bfseries S\+P\+A\+R\+C\+\_\+\+A\+S\+S\+E\+R\+T\+\_\+\+F\+P\+\_\+\+O\+F\+F\+S\+ET} (f16\+\_\+f17, F16\+\_\+\+F17)
+\item 
+\mbox{\Hypertarget{cpukit_2score_2cpu_2sparc_2cpu_8c_a8a594818b1d6d9633cacba7b156efc47}\label{cpukit_2score_2cpu_2sparc_2cpu_8c_a8a594818b1d6d9633cacba7b156efc47}} 
+{\bfseries S\+P\+A\+R\+C\+\_\+\+A\+S\+S\+E\+R\+T\+\_\+\+F\+P\+\_\+\+O\+F\+F\+S\+ET} (f18\+\_\+f19, F18\+\_\+\+F19)
+\item 
+\mbox{\Hypertarget{cpukit_2score_2cpu_2sparc_2cpu_8c_aafe5d96cf09fdc8a107e0a2812b2a89d}\label{cpukit_2score_2cpu_2sparc_2cpu_8c_aafe5d96cf09fdc8a107e0a2812b2a89d}} 
+{\bfseries S\+P\+A\+R\+C\+\_\+\+A\+S\+S\+E\+R\+T\+\_\+\+F\+P\+\_\+\+O\+F\+F\+S\+ET} (f20\+\_\+f21, F20\+\_\+\+F21)
+\item 
+\mbox{\Hypertarget{cpukit_2score_2cpu_2sparc_2cpu_8c_a181b9eab392ec7d9bc2b3a14cc20b436}\label{cpukit_2score_2cpu_2sparc_2cpu_8c_a181b9eab392ec7d9bc2b3a14cc20b436}} 
+{\bfseries S\+P\+A\+R\+C\+\_\+\+A\+S\+S\+E\+R\+T\+\_\+\+F\+P\+\_\+\+O\+F\+F\+S\+ET} (f22\+\_\+f23, F22\+\_\+\+F23)
+\item 
+\mbox{\Hypertarget{cpukit_2score_2cpu_2sparc_2cpu_8c_a6b9e782a5adc6aeb5bd5130d73d42f06}\label{cpukit_2score_2cpu_2sparc_2cpu_8c_a6b9e782a5adc6aeb5bd5130d73d42f06}} 
+{\bfseries S\+P\+A\+R\+C\+\_\+\+A\+S\+S\+E\+R\+T\+\_\+\+F\+P\+\_\+\+O\+F\+F\+S\+ET} (f24\+\_\+f25, F24\+\_\+\+F25)
+\item 
+\mbox{\Hypertarget{cpukit_2score_2cpu_2sparc_2cpu_8c_a953cbb320a1e2d99b8ad6488f9d1d127}\label{cpukit_2score_2cpu_2sparc_2cpu_8c_a953cbb320a1e2d99b8ad6488f9d1d127}} 
+{\bfseries S\+P\+A\+R\+C\+\_\+\+A\+S\+S\+E\+R\+T\+\_\+\+F\+P\+\_\+\+O\+F\+F\+S\+ET} (f26\+\_\+f27, F26\+\_\+\+F27)
+\item 
+\mbox{\Hypertarget{cpukit_2score_2cpu_2sparc_2cpu_8c_ad0cff9bd0852a077c8de2e00cfc3210c}\label{cpukit_2score_2cpu_2sparc_2cpu_8c_ad0cff9bd0852a077c8de2e00cfc3210c}} 
+{\bfseries S\+P\+A\+R\+C\+\_\+\+A\+S\+S\+E\+R\+T\+\_\+\+F\+P\+\_\+\+O\+F\+F\+S\+ET} (f28\+\_\+f29, F28\+\_\+\+F29)
+\item 
+\mbox{\Hypertarget{cpukit_2score_2cpu_2sparc_2cpu_8c_ac2571add580537a29e73379feb4e044b}\label{cpukit_2score_2cpu_2sparc_2cpu_8c_ac2571add580537a29e73379feb4e044b}} 
+{\bfseries S\+P\+A\+R\+C\+\_\+\+A\+S\+S\+E\+R\+T\+\_\+\+F\+P\+\_\+\+O\+F\+F\+S\+ET} (f30\+\_\+f31, F30\+\_\+\+F31)
+\item 
+\mbox{\Hypertarget{cpukit_2score_2cpu_2sparc_2cpu_8c_a1ca1bb1a778728d4ee66151e9073c50b}\label{cpukit_2score_2cpu_2sparc_2cpu_8c_a1ca1bb1a778728d4ee66151e9073c50b}} 
+{\bfseries S\+P\+A\+R\+C\+\_\+\+A\+S\+S\+E\+R\+T\+\_\+\+F\+P\+\_\+\+O\+F\+F\+S\+ET} (fsr, F\+SR)
+\item 
+\mbox{\Hypertarget{cpukit_2score_2cpu_2sparc_2cpu_8c_a6785e0c0796438796feceb01654755b0}\label{cpukit_2score_2cpu_2sparc_2cpu_8c_a6785e0c0796438796feceb01654755b0}} 
+{\bfseries R\+T\+E\+M\+S\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+A\+S\+S\+E\+RT} (sizeof(\mbox{\hyperlink{structSPARC__Minimum__stack__frame}{S\+P\+A\+R\+C\+\_\+\+Minimum\+\_\+stack\+\_\+frame}})==\mbox{\hyperlink{group__RTEMSScoreCPUSPARC_ga8e296685f05588131b26bdc695cb9b8c}{S\+P\+A\+R\+C\+\_\+\+M\+I\+N\+I\+M\+U\+M\+\_\+\+S\+T\+A\+C\+K\+\_\+\+F\+R\+A\+M\+E\+\_\+\+S\+I\+ZE}}, \mbox{\hyperlink{group__RTEMSScoreCPUSPARC_ga8e296685f05588131b26bdc695cb9b8c}{S\+P\+A\+R\+C\+\_\+\+M\+I\+N\+I\+M\+U\+M\+\_\+\+S\+T\+A\+C\+K\+\_\+\+F\+R\+A\+M\+E\+\_\+\+S\+I\+ZE}})
+\item 
+\mbox{\Hypertarget{cpukit_2score_2cpu_2sparc_2cpu_8c_a085a9ca3c305c730ce790c7516a4b5b7}\label{cpukit_2score_2cpu_2sparc_2cpu_8c_a085a9ca3c305c730ce790c7516a4b5b7}} 
+{\bfseries R\+T\+E\+M\+S\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+A\+S\+S\+E\+RT} (sizeof(\mbox{\hyperlink{structCPU__Interrupt__frame}{C\+P\+U\+\_\+\+Interrupt\+\_\+frame}}) \% \mbox{\hyperlink{v850_2include_2rtems_2score_2cpu_8h_ae526a309e32001688261048b19cdb7d8}{C\+P\+U\+\_\+\+A\+L\+I\+G\+N\+M\+E\+NT}}==0, C\+P\+U\+\_\+\+Interrupt\+\_\+frame\+\_\+alignment)
+\item 
+void \mbox{\hyperlink{group__RTEMSScoreCPUARM_ga869484e3d851b032fd826c69ff21fc72}{\+\_\+\+C\+P\+U\+\_\+\+Initialize}} (void)
+\begin{DoxyCompactList}\small\item\em C\+PU initialization. \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{group__RTEMSScoreCPUARM_ga1d9dcab9170d532b6634a5620385adbd}{\+\_\+\+C\+P\+U\+\_\+\+I\+S\+R\+\_\+\+Get\+\_\+level}} (void)
+\begin{DoxyCompactList}\small\item\em Returns the interrupt level of the executing thread. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__RTEMSScoreCPUlm32Interrupt_gaa993b7752d5db306f85586ac400432ab}{\+\_\+\+C\+P\+U\+\_\+\+I\+S\+R\+\_\+install\+\_\+raw\+\_\+handler}} (uint32\+\_\+t vector, C\+P\+U\+\_\+\+I\+S\+R\+\_\+raw\+\_\+handler new\+\_\+handler, C\+P\+U\+\_\+\+I\+S\+R\+\_\+raw\+\_\+handler $\ast$old\+\_\+handler)
+\begin{DoxyCompactList}\small\item\em S\+P\+A\+RC specific raw I\+SR installer. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__RTEMSScoreCPUARM_gaa3480454768ad843ce97909111a48a1f}{\+\_\+\+C\+P\+U\+\_\+\+I\+S\+R\+\_\+install\+\_\+vector}} (uint32\+\_\+t vector, C\+P\+U\+\_\+\+I\+S\+R\+\_\+handler new\+\_\+handler, C\+P\+U\+\_\+\+I\+S\+R\+\_\+handler $\ast$old\+\_\+handler)
+\begin{DoxyCompactList}\small\item\em S\+P\+A\+RC specific R\+T\+E\+MS I\+SR installer. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{cpukit_2score_2cpu_2sparc_2cpu_8c_aff386644c2f5a1d6e8b57fd8f290cadc}{\+\_\+\+C\+P\+U\+\_\+\+Context\+\_\+\+Initialize}} (\mbox{\hyperlink{structContext__Control}{Context\+\_\+\+Control}} $\ast$the\+\_\+context, uint32\+\_\+t $\ast$stack\+\_\+base, uint32\+\_\+t \mbox{\hyperlink{sun4u_2tte_8h_a245260f6f74972558f61b85227df5aae}{size}}, uint32\+\_\+t new\+\_\+level, void $\ast$entry\+\_\+point, bool is\+\_\+fp, void $\ast$tls\+\_\+area)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const \mbox{\hyperlink{structCPU__Trap__table__entry}{C\+P\+U\+\_\+\+Trap\+\_\+table\+\_\+entry}} \mbox{\hyperlink{cpukit_2score_2cpu_2sparc_2cpu_8c_a379cc535ebfbfead96c7914b3f1de861}{\+\_\+\+C\+P\+U\+\_\+\+Trap\+\_\+slot\+\_\+template}}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+S\+P\+A\+RC C\+PU Dependent Source. 
+
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{cpukit_2score_2cpu_2sparc_2cpu_8c_adc85ab6c7b699190945b2770242892f1}\label{cpukit_2score_2cpu_2sparc_2cpu_8c_adc85ab6c7b699190945b2770242892f1}} 
+\index{cpu.c@{cpu.c}!SPARC\_ASSERT\_FP\_OFFSET@{SPARC\_ASSERT\_FP\_OFFSET}}
+\index{SPARC\_ASSERT\_FP\_OFFSET@{SPARC\_ASSERT\_FP\_OFFSET}!cpu.c@{cpu.c}}
+\subsubsection{\texorpdfstring{SPARC\_ASSERT\_FP\_OFFSET}{SPARC\_ASSERT\_FP\_OFFSET}}
+{\footnotesize\ttfamily \#define S\+P\+A\+R\+C\+\_\+\+A\+S\+S\+E\+R\+T\+\_\+\+F\+P\+\_\+\+O\+F\+F\+S\+ET(\begin{DoxyParamCaption}\item[{}]{field,  }\item[{}]{off }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{RTEMS\_STATIC\_ASSERT( \(\backslash\)}
+\DoxyCodeLine{    offsetof(\mbox{\hyperlink{structContext__Control__fp}{Context\_Control\_fp}}, field) == SPARC\_FP\_CONTEXT\_OFFSET\_ \#\# off, \(\backslash\)}
+\DoxyCodeLine{    Context\_Control\_fp\_offset\_ \#\# field \(\backslash\)}
+\DoxyCodeLine{  )}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{cpukit_2score_2cpu_2sparc_2cpu_8c_a8d07413af1831054735923b6ff205eaf}\label{cpukit_2score_2cpu_2sparc_2cpu_8c_a8d07413af1831054735923b6ff205eaf}} 
+\index{cpu.c@{cpu.c}!SPARC\_ASSERT\_ISF\_OFFSET@{SPARC\_ASSERT\_ISF\_OFFSET}}
+\index{SPARC\_ASSERT\_ISF\_OFFSET@{SPARC\_ASSERT\_ISF\_OFFSET}!cpu.c@{cpu.c}}
+\subsubsection{\texorpdfstring{SPARC\_ASSERT\_ISF\_OFFSET}{SPARC\_ASSERT\_ISF\_OFFSET}}
+{\footnotesize\ttfamily \#define S\+P\+A\+R\+C\+\_\+\+A\+S\+S\+E\+R\+T\+\_\+\+I\+S\+F\+\_\+\+O\+F\+F\+S\+ET(\begin{DoxyParamCaption}\item[{}]{field,  }\item[{}]{off }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{RTEMS\_STATIC\_ASSERT( \(\backslash\)}
+\DoxyCodeLine{    offsetof(\mbox{\hyperlink{structCPU__Interrupt__frame}{CPU\_Interrupt\_frame}}, field) == ISF\_ \#\# off \#\# \_OFFSET, \(\backslash\)}
+\DoxyCodeLine{    CPU\_Interrupt\_frame\_offset\_ \#\# field \(\backslash\)}
+\DoxyCodeLine{  )}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{cpukit_2score_2cpu_2sparc_2cpu_8c_a29be452c80bc594569158d3682ac7127}\label{cpukit_2score_2cpu_2sparc_2cpu_8c_a29be452c80bc594569158d3682ac7127}} 
+\index{cpu.c@{cpu.c}!SPARC\_ASSERT\_OFFSET@{SPARC\_ASSERT\_OFFSET}}
+\index{SPARC\_ASSERT\_OFFSET@{SPARC\_ASSERT\_OFFSET}!cpu.c@{cpu.c}}
+\subsubsection{\texorpdfstring{SPARC\_ASSERT\_OFFSET}{SPARC\_ASSERT\_OFFSET}}
+{\footnotesize\ttfamily \#define S\+P\+A\+R\+C\+\_\+\+A\+S\+S\+E\+R\+T\+\_\+\+O\+F\+F\+S\+ET(\begin{DoxyParamCaption}\item[{}]{field,  }\item[{}]{off }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{RTEMS\_STATIC\_ASSERT( \(\backslash\)}
+\DoxyCodeLine{    offsetof(\mbox{\hyperlink{structContext__Control}{Context\_Control}}, field) == off \#\# \_OFFSET, \(\backslash\)}
+\DoxyCodeLine{    Context\_Control\_offset\_ \#\# field \(\backslash\)}
+\DoxyCodeLine{  )}
+
+\end{DoxyCode}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{cpukit_2score_2cpu_2sparc_2cpu_8c_aff386644c2f5a1d6e8b57fd8f290cadc}\label{cpukit_2score_2cpu_2sparc_2cpu_8c_aff386644c2f5a1d6e8b57fd8f290cadc}} 
+\index{cpu.c@{cpu.c}!\_CPU\_Context\_Initialize@{\_CPU\_Context\_Initialize}}
+\index{\_CPU\_Context\_Initialize@{\_CPU\_Context\_Initialize}!cpu.c@{cpu.c}}
+\subsubsection{\texorpdfstring{\_CPU\_Context\_Initialize()}{\_CPU\_Context\_Initialize()}}
+{\footnotesize\ttfamily void \+\_\+\+C\+P\+U\+\_\+\+Context\+\_\+\+Initialize (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structContext__Control}{Context\+\_\+\+Control}} $\ast$}]{the\+\_\+context,  }\item[{uint32\+\_\+t $\ast$}]{stack\+\_\+base,  }\item[{uint32\+\_\+t}]{size,  }\item[{uint32\+\_\+t}]{new\+\_\+level,  }\item[{void $\ast$}]{entry\+\_\+point,  }\item[{bool}]{is\+\_\+fp,  }\item[{void $\ast$}]{tls\+\_\+area }\end{DoxyParamCaption})}
+
+Initialize the context to a state suitable for starting a task after a context restore operation. Generally, this involves\+:
+
+
+\begin{DoxyItemize}
+\item setting a starting address
+\item preparing the stack
+\item preparing the stack and frame pointers
+\item setting the proper interrupt level in the context
+\item initializing the floating point context
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em the\+\_\+context} & points to the context area \\
+\hline
+\mbox{\texttt{ in}}  & {\em stack\+\_\+base} & is the low address of the allocated stack area \\
+\hline
+\mbox{\texttt{ in}}  & {\em size} & is the size of the stack area in bytes \\
+\hline
+\mbox{\texttt{ in}}  & {\em new\+\_\+level} & is the interrupt level for the task \\
+\hline
+\mbox{\texttt{ in}}  & {\em entry\+\_\+point} & is the task\textquotesingle{}s entry point \\
+\hline
+\mbox{\texttt{ in}}  & {\em is\+\_\+fp} & is set to T\+R\+UE if the task is a floating point task \\
+\hline
+\mbox{\texttt{ in}}  & {\em tls\+\_\+area} & is the thread-\/local storage (T\+LS) area\\
+\hline
+\end{DoxyParams}
+N\+O\+TE\+: Implemented as a subroutine for the S\+P\+A\+RC port. 
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{cpukit_2score_2cpu_2sparc_2cpu_8c_a379cc535ebfbfead96c7914b3f1de861}\label{cpukit_2score_2cpu_2sparc_2cpu_8c_a379cc535ebfbfead96c7914b3f1de861}} 
+\index{cpu.c@{cpu.c}!\_CPU\_Trap\_slot\_template@{\_CPU\_Trap\_slot\_template}}
+\index{\_CPU\_Trap\_slot\_template@{\_CPU\_Trap\_slot\_template}!cpu.c@{cpu.c}}
+\subsubsection{\texorpdfstring{\_CPU\_Trap\_slot\_template}{\_CPU\_Trap\_slot\_template}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{structCPU__Trap__table__entry}{C\+P\+U\+\_\+\+Trap\+\_\+table\+\_\+entry}} \+\_\+\+C\+P\+U\+\_\+\+Trap\+\_\+slot\+\_\+template}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{  0xa1480000,      }
+\DoxyCodeLine{  0x29000000,      }
+\DoxyCodeLine{  0x81c52000,      }
+\DoxyCodeLine{  0xa6102000       }
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+This is the set of opcodes for the instructions loaded into a trap table entry. The routine which installs a handler is responsible for filling in the fields for the \+\_\+handler address and the \+\_\+vector trap type.
+
+The constants following this structure are masks for the fields which must be filled in when the handler is installed. 

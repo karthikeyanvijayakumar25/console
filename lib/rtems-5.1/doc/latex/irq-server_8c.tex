@@ -1,0 +1,68 @@
+\hypertarget{irq-server_8c}{}\section{bsps/shared/irq/irq-\/server.c File Reference}
+\label{irq-server_8c}\index{bsps/shared/irq/irq-\/server.c@{bsps/shared/irq/irq-\/server.c}}
+
+
+Generic B\+SP interrupt server implementation.  
+
+
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$rtems.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/chain.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/score/assert.\+h$>$}\newline
+{\ttfamily \#include $<$bsp/irq-\/generic.\+h$>$}\newline
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structbsp__interrupt__server__iterate__entry}{bsp\+\_\+interrupt\+\_\+server\+\_\+iterate\+\_\+entry}}
+\item 
+struct \mbox{\hyperlink{structbsp__interrupt__server__helper__data}{bsp\+\_\+interrupt\+\_\+server\+\_\+helper\+\_\+data}}
+\item 
+struct \mbox{\hyperlink{structbsp__interrupt__server__handler__iterate__helper__data}{bsp\+\_\+interrupt\+\_\+server\+\_\+handler\+\_\+iterate\+\_\+helper\+\_\+data}}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{irq-server_8c_ab1ca238b32d549cfdfabd2cbec0e40cf}\label{irq-server_8c_ab1ca238b32d549cfdfabd2cbec0e40cf}} 
+\#define {\bfseries B\+S\+P\+\_\+\+I\+N\+T\+E\+R\+R\+U\+P\+T\+\_\+\+S\+E\+R\+V\+E\+R\+\_\+\+M\+A\+N\+A\+G\+E\+M\+E\+N\+T\+\_\+\+V\+E\+C\+T\+OR}~(\mbox{\hyperlink{group__bsp__interrupt_gae4a2cdda5816a4c83c2fac0a49880c6e}{B\+S\+P\+\_\+\+I\+N\+T\+E\+R\+R\+U\+P\+T\+\_\+\+V\+E\+C\+T\+O\+R\+\_\+\+M\+AX}} + 1)
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{group__rtems__interrupt__extension_ga591084dbfb85313364d6591fef1768bc}{rtems\+\_\+interrupt\+\_\+server\+\_\+handler\+\_\+install}} (uint32\+\_\+t server\+\_\+index, \mbox{\hyperlink{group__ClassicINTR_ga3e434c197d99f128e78cae4d9358bd8b}{rtems\+\_\+vector\+\_\+number}} vector, const char $\ast$info, \mbox{\hyperlink{group__ClassicOptions_gad26685eb0e60a9650082935c31920e29}{rtems\+\_\+option}} options, \mbox{\hyperlink{group__rtems__interrupt__extension_gab39bd096ab2c3b41d03dace0e9777b08}{rtems\+\_\+interrupt\+\_\+handler}} handler, void $\ast$arg)
+\begin{DoxyCompactList}\small\item\em Installs the interrupt handler routine {\itshape handler} for the interrupt vector with number {\itshape vector} on the server {\itshape server}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{group__rtems__interrupt__extension_gad7840f288b1572dbcbe871b380e4eca7}{rtems\+\_\+interrupt\+\_\+server\+\_\+handler\+\_\+remove}} (uint32\+\_\+t server\+\_\+index, \mbox{\hyperlink{group__ClassicINTR_ga3e434c197d99f128e78cae4d9358bd8b}{rtems\+\_\+vector\+\_\+number}} vector, \mbox{\hyperlink{group__rtems__interrupt__extension_gab39bd096ab2c3b41d03dace0e9777b08}{rtems\+\_\+interrupt\+\_\+handler}} handler, void $\ast$arg)
+\begin{DoxyCompactList}\small\item\em Removes the interrupt handler routine {\itshape handler} with argument {\itshape arg} for the interrupt vector with number {\itshape vector} from the server {\itshape server}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{group__rtems__interrupt__extension_ga0a4f6995bde02b055963ae8d399c33d7}{rtems\+\_\+interrupt\+\_\+server\+\_\+handler\+\_\+iterate}} (uint32\+\_\+t server\+\_\+index, \mbox{\hyperlink{group__ClassicINTR_ga3e434c197d99f128e78cae4d9358bd8b}{rtems\+\_\+vector\+\_\+number}} vector, \mbox{\hyperlink{group__rtems__interrupt__extension_gad3e88a9acfac97a5021ff98471f5cd71}{rtems\+\_\+interrupt\+\_\+per\+\_\+handler\+\_\+routine}} routine, void $\ast$arg)
+\begin{DoxyCompactList}\small\item\em Iterates over all interrupt handler of the interrupt vector with number {\itshape vector} which are installed on the interrupt server specified by {\itshape server}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{group__rtems__interrupt__extension_ga7e728143679eb46d7c4792ea401a4335}{rtems\+\_\+interrupt\+\_\+server\+\_\+initialize}} (\mbox{\hyperlink{group__ClassicTasks_gaa80a0c0938307d1e99d0eb5fee765b47}{rtems\+\_\+task\+\_\+priority}} priority, size\+\_\+t stack\+\_\+size, \mbox{\hyperlink{group__ClassicModes_ga8d46a41a837840dc97336fdcd20e4f68}{rtems\+\_\+mode}} modes, \mbox{\hyperlink{group__ClassicAttributes_gaea40313cf78ed843e09c4315d0a10f79}{rtems\+\_\+attribute}} attributes, uint32\+\_\+t $\ast$server\+\_\+count)
+\begin{DoxyCompactList}\small\item\em Initializes the interrupt server tasks. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{group__rtems__interrupt__extension_gad7725dd729bfd34f36c0de4d9c326abc}{rtems\+\_\+interrupt\+\_\+server\+\_\+create}} (\mbox{\hyperlink{structrtems__interrupt__server__control}{rtems\+\_\+interrupt\+\_\+server\+\_\+control}} $\ast$s, const \mbox{\hyperlink{structrtems__interrupt__server__config}{rtems\+\_\+interrupt\+\_\+server\+\_\+config}} $\ast$\mbox{\hyperlink{structconfig__s}{config}}, uint32\+\_\+t $\ast$server\+\_\+index)
+\begin{DoxyCompactList}\small\item\em Creates an interrupt server. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{group__rtems__interrupt__extension_gaa1093bab07e2fe4be3ea1025ea5d15a7}{rtems\+\_\+interrupt\+\_\+server\+\_\+delete}} (uint32\+\_\+t server\+\_\+index)
+\begin{DoxyCompactList}\small\item\em Destroys the interrupt server. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{group__rtems__interrupt__extension_ga86ea2e100b06ad64fa320381bb34d2d1}{rtems\+\_\+interrupt\+\_\+server\+\_\+entry\+\_\+initialize}} (uint32\+\_\+t server\+\_\+index, \mbox{\hyperlink{structrtems__interrupt__server__entry}{rtems\+\_\+interrupt\+\_\+server\+\_\+entry}} $\ast$\mbox{\hyperlink{structentry}{entry}})
+\begin{DoxyCompactList}\small\item\em Initializes the specified interrupt server entry. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__rtems__interrupt__extension_ga734c36a08deae3d40775f46e526526be}{rtems\+\_\+interrupt\+\_\+server\+\_\+action\+\_\+prepend}} (\mbox{\hyperlink{structrtems__interrupt__server__entry}{rtems\+\_\+interrupt\+\_\+server\+\_\+entry}} $\ast$\mbox{\hyperlink{structentry}{entry}}, \mbox{\hyperlink{structrtems__interrupt__server__action}{rtems\+\_\+interrupt\+\_\+server\+\_\+action}} $\ast$action, \mbox{\hyperlink{group__rtems__interrupt__extension_gab39bd096ab2c3b41d03dace0e9777b08}{rtems\+\_\+interrupt\+\_\+handler}} handler, void $\ast$arg)
+\begin{DoxyCompactList}\small\item\em Prepends the specified interrupt server action to the list of actions of the specified interrupt server entry. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__rtems__interrupt__extension_ga9fd697f72b1ab860a3ebb548fab5929f}{rtems\+\_\+interrupt\+\_\+server\+\_\+entry\+\_\+submit}} (\mbox{\hyperlink{structrtems__interrupt__server__entry}{rtems\+\_\+interrupt\+\_\+server\+\_\+entry}} $\ast$\mbox{\hyperlink{structentry}{entry}})
+\begin{DoxyCompactList}\small\item\em Submits the specified interrupt server entry so that its interrupt server actions can be invoked by the specified interrupt server. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{group__rtems__interrupt__extension_gaa7023165766039522b7d4572f6335c3e}{rtems\+\_\+interrupt\+\_\+server\+\_\+entry\+\_\+move}} (\mbox{\hyperlink{structrtems__interrupt__server__entry}{rtems\+\_\+interrupt\+\_\+server\+\_\+entry}} $\ast$\mbox{\hyperlink{structentry}{entry}}, uint32\+\_\+t destination\+\_\+server\+\_\+index)
+\begin{DoxyCompactList}\small\item\em Moves the interrupt server entry to the specified destination interrupt server. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__rtems__interrupt__extension_ga8926167fe72ef23335bd242b0380c038}{rtems\+\_\+interrupt\+\_\+server\+\_\+entry\+\_\+destroy}} (\mbox{\hyperlink{structrtems__interrupt__server__entry}{rtems\+\_\+interrupt\+\_\+server\+\_\+entry}} $\ast$\mbox{\hyperlink{structentry}{entry}})
+\begin{DoxyCompactList}\small\item\em Destroys the specified interrupt server entry. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{group__rtems__interrupt__extension_ga6cd3744454ee6cbaf6aa77ba3e6d956d}{rtems\+\_\+interrupt\+\_\+server\+\_\+request\+\_\+initialize}} (uint32\+\_\+t server\+\_\+index, \mbox{\hyperlink{structrtems__interrupt__server__request}{rtems\+\_\+interrupt\+\_\+server\+\_\+request}} $\ast$request, \mbox{\hyperlink{group__rtems__interrupt__extension_gab39bd096ab2c3b41d03dace0e9777b08}{rtems\+\_\+interrupt\+\_\+handler}} handler, void $\ast$arg)
+\begin{DoxyCompactList}\small\item\em Initializes the specified interrupt server request. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{group__rtems__interrupt__extension_gaea09674f8f28aacbaad076e1e31dcdad}{rtems\+\_\+interrupt\+\_\+server\+\_\+move}} (uint32\+\_\+t source\+\_\+server\+\_\+index, \mbox{\hyperlink{group__ClassicINTR_ga3e434c197d99f128e78cae4d9358bd8b}{rtems\+\_\+vector\+\_\+number}} vector, uint32\+\_\+t destination\+\_\+server\+\_\+index)
+\begin{DoxyCompactList}\small\item\em Moves the interrupt handlers installed on the specified source interrupt server to the destination interrupt server. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{group__rtems__interrupt__extension_gab2a38f81f4b810d943c86e548104fc4f}{rtems\+\_\+interrupt\+\_\+server\+\_\+suspend}} (uint32\+\_\+t server\+\_\+index)
+\begin{DoxyCompactList}\small\item\em Suspends the specified interrupt server. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{group__rtems__interrupt__extension_ga69c0c38dd1999db80b4104a327caba46}{rtems\+\_\+interrupt\+\_\+server\+\_\+resume}} (uint32\+\_\+t server\+\_\+index)
+\begin{DoxyCompactList}\small\item\em Resumes the specified interrupt server. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{group__rtems__interrupt__extension_ga759f271ddd8a58e83b79058702634c57}{rtems\+\_\+interrupt\+\_\+server\+\_\+set\+\_\+affinity}} (uint32\+\_\+t server\+\_\+index, size\+\_\+t affinity\+\_\+size, const cpu\+\_\+set\+\_\+t $\ast$affinity, \mbox{\hyperlink{group__ClassicTasks_gaa80a0c0938307d1e99d0eb5fee765b47}{rtems\+\_\+task\+\_\+priority}} priority)
+\begin{DoxyCompactList}\small\item\em Sets the processor affinity of the specified interrupt server. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Generic B\+SP interrupt server implementation. 
+

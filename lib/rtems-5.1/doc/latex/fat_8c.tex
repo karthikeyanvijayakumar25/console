@@ -1,0 +1,66 @@
+\hypertarget{fat_8c}{}\section{cpukit/libfs/src/dosfs/fat.c File Reference}
+\label{fat_8c}\index{cpukit/libfs/src/dosfs/fat.c@{cpukit/libfs/src/dosfs/fat.c}}
+
+
+Low-\/level Operations on a Volume with a D\+O\+S\+FS F\+AT filesystem.  
+
+
+{\ttfamily \#include $<$sys/types.\+h$>$}\newline
+{\ttfamily \#include $<$sys/stat.\+h$>$}\newline
+{\ttfamily \#include $<$fcntl.\+h$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include $<$errno.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/libio\+\_\+.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}fat.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}fat\+\_\+fat\+\_\+operations.\+h\char`\"{}}\newline
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{fat_8c_a712dc933eaeff3c206c982a337ab4221}\label{fat_8c_a712dc933eaeff3c206c982a337ab4221}} 
+\#define {\bfseries F\+A\+T\+\_\+\+U\+N\+I\+Q\+\_\+\+I\+N\+O\+\_\+\+B\+A\+SE}~0x0\+F\+F\+F\+F\+F00
+\item 
+\mbox{\Hypertarget{fat_8c_a3d728bae9e30b977afa204bae90a027a}\label{fat_8c_a3d728bae9e30b977afa204bae90a027a}} 
+\#define {\bfseries F\+A\+T\+\_\+\+U\+N\+I\+Q\+\_\+\+I\+N\+O\+\_\+\+I\+S\+\_\+\+B\+U\+SY}(index,  arr)~(((arr)\mbox{[}((index)$>$$>$3)\mbox{]}$>$$>$((index) \& (8-\/1))) \& 0x01)
+\item 
+\mbox{\Hypertarget{fat_8c_a6bca88aa607e1af768fe4d7fdc95bfe7}\label{fat_8c_a6bca88aa607e1af768fe4d7fdc95bfe7}} 
+\#define {\bfseries F\+A\+T\+\_\+\+S\+E\+T\+\_\+\+U\+N\+I\+Q\+\_\+\+I\+N\+O\+\_\+\+B\+U\+SY}(index,  arr)~((arr)\mbox{[}((index)$>$$>$3)\mbox{]} $\vert$= (0x01$<$$<$((index) \& (8-\/1))))
+\item 
+\mbox{\Hypertarget{fat_8c_a047c4c9f810a69d947edc65b449aae59}\label{fat_8c_a047c4c9f810a69d947edc65b449aae59}} 
+\#define {\bfseries F\+A\+T\+\_\+\+S\+E\+T\+\_\+\+U\+N\+I\+Q\+\_\+\+I\+N\+O\+\_\+\+F\+R\+EE}(index,  arr)~((arr)\mbox{[}((index)$>$$>$3)\mbox{]} \&= ($\sim$(0x01$<$$<$((index) \& (8-\/1)))))
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int {\bfseries fat\+\_\+buf\+\_\+access} (\mbox{\hyperlink{structfat__fs__info__s}{fat\+\_\+fs\+\_\+info\+\_\+t}} $\ast$fs\+\_\+info, const uint32\+\_\+t sec\+\_\+num, const int op\+\_\+type, uint8\+\_\+t $\ast$$\ast$sec\+\_\+buf)
+\item 
+int {\bfseries fat\+\_\+buf\+\_\+release} (\mbox{\hyperlink{structfat__fs__info__s}{fat\+\_\+fs\+\_\+info\+\_\+t}} $\ast$fs\+\_\+info)
+\item 
+ssize\+\_\+t {\bfseries \+\_\+fat\+\_\+block\+\_\+read} (\mbox{\hyperlink{structfat__fs__info__s}{fat\+\_\+fs\+\_\+info\+\_\+t}} $\ast$fs\+\_\+info, uint32\+\_\+t start, uint32\+\_\+t offset, uint32\+\_\+t count, void $\ast$buff)
+\item 
+ssize\+\_\+t {\bfseries fat\+\_\+sector\+\_\+write} (\mbox{\hyperlink{structfat__fs__info__s}{fat\+\_\+fs\+\_\+info\+\_\+t}} $\ast$fs\+\_\+info, uint32\+\_\+t start, uint32\+\_\+t offset, uint32\+\_\+t count, const void $\ast$buff)
+\item 
+ssize\+\_\+t {\bfseries fat\+\_\+cluster\+\_\+set} (\mbox{\hyperlink{structfat__fs__info__s}{fat\+\_\+fs\+\_\+info\+\_\+t}} $\ast$fs\+\_\+info, const uint32\+\_\+t start\+\_\+cln, const uint32\+\_\+t offset, const uint32\+\_\+t count, const uint8\+\_\+t pattern)
+\item 
+ssize\+\_\+t {\bfseries fat\+\_\+cluster\+\_\+write} (\mbox{\hyperlink{structfat__fs__info__s}{fat\+\_\+fs\+\_\+info\+\_\+t}} $\ast$fs\+\_\+info, const uint32\+\_\+t start\+\_\+cln, const uint32\+\_\+t offset, const uint32\+\_\+t count, const void $\ast$buff)
+\item 
+int {\bfseries fat\+\_\+init\+\_\+volume\+\_\+info} (\mbox{\hyperlink{structfat__fs__info__s}{fat\+\_\+fs\+\_\+info\+\_\+t}} $\ast$fs\+\_\+info, const char $\ast$\mbox{\hyperlink{structdevice}{device}})
+\item 
+int {\bfseries fat\+\_\+sync} (\mbox{\hyperlink{structfat__fs__info__s}{fat\+\_\+fs\+\_\+info\+\_\+t}} $\ast$fs\+\_\+info)
+\item 
+int {\bfseries fat\+\_\+shutdown\+\_\+drive} (\mbox{\hyperlink{structfat__fs__info__s}{fat\+\_\+fs\+\_\+info\+\_\+t}} $\ast$fs\+\_\+info)
+\item 
+int {\bfseries fat\+\_\+init\+\_\+clusters\+\_\+chain} (\mbox{\hyperlink{structfat__fs__info__s}{fat\+\_\+fs\+\_\+info\+\_\+t}} $\ast$fs\+\_\+info, uint32\+\_\+t start\+\_\+cln)
+\item 
+uint32\+\_\+t {\bfseries fat\+\_\+get\+\_\+unique\+\_\+ino} (\mbox{\hyperlink{structfat__fs__info__s}{fat\+\_\+fs\+\_\+info\+\_\+t}} $\ast$fs\+\_\+info)
+\item 
+void {\bfseries fat\+\_\+free\+\_\+unique\+\_\+ino} (\mbox{\hyperlink{structfat__fs__info__s}{fat\+\_\+fs\+\_\+info\+\_\+t}} $\ast$fs\+\_\+info, uint32\+\_\+t ino)
+\item 
+bool {\bfseries fat\+\_\+ino\+\_\+is\+\_\+unique} (\mbox{\hyperlink{structfat__fs__info__s}{fat\+\_\+fs\+\_\+info\+\_\+t}} $\ast$fs\+\_\+info, uint32\+\_\+t ino)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Low-\/level Operations on a Volume with a D\+O\+S\+FS F\+AT filesystem. 
+

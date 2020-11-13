@@ -1,0 +1,105 @@
+\hypertarget{group__ALT__QSPI__DMA}{}\section{D\+MA Peripheral Interface}
+\label{group__ALT__QSPI__DMA}\index{DMA Peripheral Interface@{DMA Peripheral Interface}}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__ALT__QSPI__DMA_ga4d16f0e1e367185438c882b1e54ad69a}{alt\+\_\+qspi\+\_\+dma\+\_\+disable}} (void)
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__ALT__QSPI__DMA_gab7335b92adfb09af82a3e7e92e2c1765}{alt\+\_\+qspi\+\_\+dma\+\_\+enable}} (void)
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__ALT__QSPI__DMA_ga92ee264b9fe98d0acfabe3c0ac2d9d1b}{alt\+\_\+qspi\+\_\+dma\+\_\+config\+\_\+get}} (uint32\+\_\+t $\ast$single\+\_\+type\+\_\+sz, uint32\+\_\+t $\ast$burst\+\_\+type\+\_\+sz)
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__ALT__QSPI__DMA_ga6544a397843d6b1204f500be26896878}{alt\+\_\+qspi\+\_\+dma\+\_\+config\+\_\+set}} (const uint32\+\_\+t single\+\_\+type\+\_\+sz, const uint32\+\_\+t burst\+\_\+type\+\_\+sz)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+The D\+MA peripheral request controller is only used for the indirect mode of operation where data is temporarily stored in the S\+R\+AM. The Q\+S\+PI flash controller uses the D\+MA peripheral request interface to trigger the external D\+MA into performing data transfers between memory and the Q\+S\+PI controller.
+
+There are two D\+MA peripheral request interfaces, one for indirect reads and one for indirect writes. The D\+MA peripheral request controller can issue two types of D\+MA requests, single or burst, to the external D\+MA. The number of bytes for each single or burst request is specified using the \mbox{\hyperlink{group__ALT__QSPI__DMA_ga6544a397843d6b1204f500be26896878}{alt\+\_\+qspi\+\_\+dma\+\_\+config\+\_\+set()}}. The D\+MA peripheral request controller splits the total amount of data to be transferred into a number of D\+MA burst and single requests by dividing the total number of bytes by the number of bytes specified in the burst request, and then dividing the remainder by the number of bytes in a single request.
+
+When programming the D\+MA controller, the burst request size must match the burst request size set in the quad S\+PI controller to avoid quickly reaching an overflow or underflow condition. 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{group__ALT__QSPI__DMA_ga92ee264b9fe98d0acfabe3c0ac2d9d1b}\label{group__ALT__QSPI__DMA_ga92ee264b9fe98d0acfabe3c0ac2d9d1b}} 
+\index{DMA Peripheral Interface@{DMA Peripheral Interface}!alt\_qspi\_dma\_config\_get@{alt\_qspi\_dma\_config\_get}}
+\index{alt\_qspi\_dma\_config\_get@{alt\_qspi\_dma\_config\_get}!DMA Peripheral Interface@{DMA Peripheral Interface}}
+\subsubsection{\texorpdfstring{alt\_qspi\_dma\_config\_get()}{alt\_qspi\_dma\_config\_get()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} alt\+\_\+qspi\+\_\+dma\+\_\+config\+\_\+get (\begin{DoxyParamCaption}\item[{uint32\+\_\+t $\ast$}]{single\+\_\+type\+\_\+sz,  }\item[{uint32\+\_\+t $\ast$}]{burst\+\_\+type\+\_\+sz }\end{DoxyParamCaption})}
+
+Get the current D\+MA peripheral configuration.
+
+This function returns the Q\+S\+PI D\+MA peripheral interface single and burst type transfer size configurations.
+
+
+\begin{DoxyParams}{Parameters}
+{\em single\+\_\+type\+\_\+sz} & \mbox{[}out\mbox{]} The number of bytes for each D\+MA single type request. Value must be a power of 2 between 1 and 32728.\\
+\hline
+{\em burst\+\_\+type\+\_\+sz} & \mbox{[}out\mbox{]} The number of bytes for each D\+MA burst type request. Value must be a power of 2 between 1 and 32728.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em A\+L\+T\+\_\+\+E\+\_\+\+S\+U\+C\+C\+E\+SS} & Indicates successful completion. \\
+\hline
+{\em A\+L\+T\+\_\+\+E\+\_\+\+E\+R\+R\+OR} & Indicates an error occurred. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{group__ALT__QSPI__DMA_ga6544a397843d6b1204f500be26896878}\label{group__ALT__QSPI__DMA_ga6544a397843d6b1204f500be26896878}} 
+\index{DMA Peripheral Interface@{DMA Peripheral Interface}!alt\_qspi\_dma\_config\_set@{alt\_qspi\_dma\_config\_set}}
+\index{alt\_qspi\_dma\_config\_set@{alt\_qspi\_dma\_config\_set}!DMA Peripheral Interface@{DMA Peripheral Interface}}
+\subsubsection{\texorpdfstring{alt\_qspi\_dma\_config\_set()}{alt\_qspi\_dma\_config\_set()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} alt\+\_\+qspi\+\_\+dma\+\_\+config\+\_\+set (\begin{DoxyParamCaption}\item[{const uint32\+\_\+t}]{single\+\_\+type\+\_\+sz,  }\item[{const uint32\+\_\+t}]{burst\+\_\+type\+\_\+sz }\end{DoxyParamCaption})}
+
+Set the D\+MA peripheral configuration.
+
+This function configures the Q\+S\+PI D\+MA peripheral interface single and burst type transfer sizes. The D\+MA configruation should be setup while the controller is idle. Because all transfers are required to be word aligned, the smallest D\+MA request is 4 bytes.
+
+This A\+PI requires that the Q\+S\+PI controller be idle, as determined by \mbox{\hyperlink{group__ALT__QSPI__CSR_gaeaa7e762d8b79b1989385c978174b7b8}{alt\+\_\+qspi\+\_\+is\+\_\+idle()}}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em single\+\_\+type\+\_\+sz} & The number of bytes for each D\+MA single type request. Value must be a power of 2 between 4 and 32768.\\
+\hline
+{\em burst\+\_\+type\+\_\+sz} & The number of bytes for each D\+MA burst type request. Value must be a power of 2 between 4 and 32768. Bursts must be equal or larger than single requests.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em A\+L\+T\+\_\+\+E\+\_\+\+S\+U\+C\+C\+E\+SS} & Indicates successful completion. \\
+\hline
+{\em A\+L\+T\+\_\+\+E\+\_\+\+E\+R\+R\+OR} & Indicates an error occurred. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{group__ALT__QSPI__DMA_ga4d16f0e1e367185438c882b1e54ad69a}\label{group__ALT__QSPI__DMA_ga4d16f0e1e367185438c882b1e54ad69a}} 
+\index{DMA Peripheral Interface@{DMA Peripheral Interface}!alt\_qspi\_dma\_disable@{alt\_qspi\_dma\_disable}}
+\index{alt\_qspi\_dma\_disable@{alt\_qspi\_dma\_disable}!DMA Peripheral Interface@{DMA Peripheral Interface}}
+\subsubsection{\texorpdfstring{alt\_qspi\_dma\_disable()}{alt\_qspi\_dma\_disable()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} alt\+\_\+qspi\+\_\+dma\+\_\+disable (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+Disable the Q\+S\+PI D\+MA peripheral interface.
+
+
+\begin{DoxyRetVals}{Return values}
+{\em A\+L\+T\+\_\+\+E\+\_\+\+S\+U\+C\+C\+E\+SS} & Indicates successful completion. \\
+\hline
+{\em A\+L\+T\+\_\+\+E\+\_\+\+E\+R\+R\+OR} & Indicates an error occurred. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{group__ALT__QSPI__DMA_gab7335b92adfb09af82a3e7e92e2c1765}\label{group__ALT__QSPI__DMA_gab7335b92adfb09af82a3e7e92e2c1765}} 
+\index{DMA Peripheral Interface@{DMA Peripheral Interface}!alt\_qspi\_dma\_enable@{alt\_qspi\_dma\_enable}}
+\index{alt\_qspi\_dma\_enable@{alt\_qspi\_dma\_enable}!DMA Peripheral Interface@{DMA Peripheral Interface}}
+\subsubsection{\texorpdfstring{alt\_qspi\_dma\_enable()}{alt\_qspi\_dma\_enable()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} alt\+\_\+qspi\+\_\+dma\+\_\+enable (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+Enable the Q\+S\+PI D\+MA peripheral interface.
+
+Enable the Q\+S\+PI D\+MA handshaking logic. When enabled the Q\+S\+PI will trigger D\+MA transfer requests via the D\+MA peripheral interface.
+
+
+\begin{DoxyRetVals}{Return values}
+{\em A\+L\+T\+\_\+\+E\+\_\+\+S\+U\+C\+C\+E\+SS} & Indicates successful completion. \\
+\hline
+{\em A\+L\+T\+\_\+\+E\+\_\+\+E\+R\+R\+OR} & Indicates an error occurred. \\
+\hline
+\end{DoxyRetVals}

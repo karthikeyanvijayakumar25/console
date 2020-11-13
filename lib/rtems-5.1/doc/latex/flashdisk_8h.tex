@@ -1,0 +1,81 @@
+\hypertarget{flashdisk_8h}{}\section{cpukit/include/rtems/flashdisk.h File Reference}
+\label{flashdisk_8h}\index{cpukit/include/rtems/flashdisk.h@{cpukit/include/rtems/flashdisk.h}}
+
+
+Interface to a Flash Disk Block Device.  
+
+
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include $<$sys/ioctl.\+h$>$}\newline
+{\ttfamily \#include $<$rtems.\+h$>$}\newline
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structrtems__fdisk__monitor__data}{rtems\+\_\+fdisk\+\_\+monitor\+\_\+data}}
+\begin{DoxyCompactList}\small\item\em Flash Disk Monitoring Data allows a user to obtain the current status of the disk. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structrtems__fdisk__segment__desc}{rtems\+\_\+fdisk\+\_\+segment\+\_\+desc}}
+\begin{DoxyCompactList}\small\item\em Flash Segment Descriptor holds, number of continuous segments in the device of this type, the base segment number in the device, the address offset of the base segment in the device, and the size of segment. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structrtems__fdisk__driver__handlers}{rtems\+\_\+fdisk\+\_\+driver\+\_\+handlers}}
+\begin{DoxyCompactList}\small\item\em Flash Low Level driver handlers. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structrtems__fdisk__device__desc}{rtems\+\_\+fdisk\+\_\+device\+\_\+desc}}
+\begin{DoxyCompactList}\small\item\em Flash Device Descriptor holds the segments in a device. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structrtems__flashdisk__config}{rtems\+\_\+flashdisk\+\_\+config}}
+\begin{DoxyCompactList}\small\item\em R\+T\+E\+MS Flash Disk configuration table used to initialise the driver. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__RTEMSFDisk_gaae3e325729c8176e749bb3cee3f253b7}{R\+T\+E\+M\+S\+\_\+\+F\+L\+A\+S\+H\+D\+I\+S\+K\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+B\+A\+S\+E\+\_\+\+N\+A\+ME}}~\char`\"{}/dev/fdd\char`\"{}
+\begin{DoxyCompactList}\small\item\em The base name of the flash disks. \end{DoxyCompactList}\item 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+F\+D\+I\+S\+K\+\_\+\+I\+O\+C\+T\+L\+\_\+\+E\+R\+A\+S\+E\+\_\+\+D\+I\+SK}~\+\_\+\+IO(\textquotesingle{}B\textquotesingle{}, 128)
+\item 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+F\+D\+I\+S\+K\+\_\+\+I\+O\+C\+T\+L\+\_\+\+C\+O\+M\+P\+A\+CT}~\+\_\+\+IO(\textquotesingle{}B\textquotesingle{}, 129)
+\item 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+F\+D\+I\+S\+K\+\_\+\+I\+O\+C\+T\+L\+\_\+\+E\+R\+A\+S\+E\+\_\+\+U\+S\+ED}~\+\_\+\+IO(\textquotesingle{}B\textquotesingle{}, 130)
+\item 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+F\+D\+I\+S\+K\+\_\+\+I\+O\+C\+T\+L\+\_\+\+M\+O\+N\+I\+T\+O\+R\+I\+NG}~\+\_\+\+IO(\textquotesingle{}B\textquotesingle{}, 131)
+\item 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+F\+D\+I\+S\+K\+\_\+\+I\+O\+C\+T\+L\+\_\+\+I\+N\+F\+O\+\_\+\+L\+E\+V\+EL}~\+\_\+\+IO(\textquotesingle{}B\textquotesingle{}, 132)
+\item 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+F\+D\+I\+S\+K\+\_\+\+I\+O\+C\+T\+L\+\_\+\+P\+R\+I\+N\+T\+\_\+\+S\+T\+A\+T\+US}~\+\_\+\+IO(\textquotesingle{}B\textquotesingle{}, 133)
+\item 
+\#define \mbox{\hyperlink{group__RTEMSFDisk_ga907c65153df83bedad2668cbe3d8d120}{R\+T\+E\+M\+S\+\_\+\+F\+D\+I\+S\+K\+\_\+\+K\+B\+Y\+T\+ES}}(\+\_\+k)~(U\+I\+N\+T32\+\_\+C(1024) $\ast$ (\+\_\+k))
+\begin{DoxyCompactList}\small\item\em Return the number of kilo-\/bytes. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTEMSFDisk_ga73e85fdb0656e7ab09e8a63d48d8becf}{R\+T\+E\+M\+S\+\_\+\+F\+D\+I\+S\+K\+\_\+\+B\+A\+C\+K\+G\+R\+O\+U\+N\+D\+\_\+\+E\+R\+A\+SE}}~(1 $<$$<$ 0)
+\item 
+\#define \mbox{\hyperlink{group__RTEMSFDisk_ga6a5bec45cf7f7ada226478f09256bd1c}{R\+T\+E\+M\+S\+\_\+\+F\+D\+I\+S\+K\+\_\+\+B\+A\+C\+K\+G\+R\+O\+U\+N\+D\+\_\+\+C\+O\+M\+P\+A\+CT}}~(1 $<$$<$ 1)
+\item 
+\#define \mbox{\hyperlink{group__RTEMSFDisk_ga4d81d60c676b7ad742f0a51b193c15b8}{R\+T\+E\+M\+S\+\_\+\+F\+D\+I\+S\+K\+\_\+\+C\+H\+E\+C\+K\+\_\+\+P\+A\+G\+ES}}~(1 $<$$<$ 2)
+\item 
+\#define \mbox{\hyperlink{group__RTEMSFDisk_ga47c3c0239203378502183004b56be45e}{R\+T\+E\+M\+S\+\_\+\+F\+D\+I\+S\+K\+\_\+\+B\+L\+A\+N\+K\+\_\+\+C\+H\+E\+C\+K\+\_\+\+B\+E\+F\+O\+R\+E\+\_\+\+W\+R\+I\+TE}}~(1 $<$$<$ 3)
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \mbox{\hyperlink{structrtems__fdisk__monitor__data}{rtems\+\_\+fdisk\+\_\+monitor\+\_\+data}} \mbox{\hyperlink{group__RTEMSFDisk_ga3cbff7dffdac7250af3b513a24601f91}{rtems\+\_\+fdisk\+\_\+monitor\+\_\+data}}
+\begin{DoxyCompactList}\small\item\em Flash Disk Monitoring Data allows a user to obtain the current status of the disk. \end{DoxyCompactList}\item 
+typedef struct \mbox{\hyperlink{structrtems__fdisk__segment__desc}{rtems\+\_\+fdisk\+\_\+segment\+\_\+desc}} \mbox{\hyperlink{group__RTEMSFDisk_ga0af0a297f5876583c22f099ac54688c7}{rtems\+\_\+fdisk\+\_\+segment\+\_\+desc}}
+\begin{DoxyCompactList}\small\item\em Flash Segment Descriptor holds, number of continuous segments in the device of this type, the base segment number in the device, the address offset of the base segment in the device, and the size of segment. \end{DoxyCompactList}\item 
+typedef struct \mbox{\hyperlink{structrtems__fdisk__driver__handlers}{rtems\+\_\+fdisk\+\_\+driver\+\_\+handlers}} \mbox{\hyperlink{group__RTEMSFDisk_ga3e36a0fb2b70165104f1d988f33cd029}{rtems\+\_\+fdisk\+\_\+driver\+\_\+handlers}}
+\begin{DoxyCompactList}\small\item\em Flash Low Level driver handlers. \end{DoxyCompactList}\item 
+typedef struct \mbox{\hyperlink{structrtems__fdisk__device__desc}{rtems\+\_\+fdisk\+\_\+device\+\_\+desc}} \mbox{\hyperlink{group__RTEMSFDisk_ga4e1cf210089a66216e739c7ccd3ea84e}{rtems\+\_\+fdisk\+\_\+device\+\_\+desc}}
+\begin{DoxyCompactList}\small\item\em Flash Device Descriptor holds the segments in a device. \end{DoxyCompactList}\item 
+typedef struct \mbox{\hyperlink{structrtems__flashdisk__config}{rtems\+\_\+flashdisk\+\_\+config}} \mbox{\hyperlink{group__RTEMSFDisk_ga8d4fff797358538766b3bb13be596811}{rtems\+\_\+flashdisk\+\_\+config}}
+\begin{DoxyCompactList}\small\item\em R\+T\+E\+MS Flash Disk configuration table used to initialise the driver. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+device\+\_\+driver}} \mbox{\hyperlink{group__RTEMSFDisk_ga38fc68a069082118de0f8b389fcd004b}{rtems\+\_\+fdisk\+\_\+initialize}} (rtems\+\_\+device\+\_\+major\+\_\+number major, rtems\+\_\+device\+\_\+minor\+\_\+number minor, void $\ast$arg)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const \mbox{\hyperlink{structrtems__flashdisk__config}{rtems\+\_\+flashdisk\+\_\+config}} \mbox{\hyperlink{group__RTEMSFDisk_ga68b00046a3d3c3b702ae52bcb3286651}{rtems\+\_\+flashdisk\+\_\+configuration}} \mbox{[}$\,$\mbox{]}
+\begin{DoxyCompactList}\small\item\em External reference to the configuration. Please supply. Support is present in \mbox{\hyperlink{confdefs_8h}{confdefs.\+h}} for providing this variable. \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{group__RTEMSFDisk_ga6bc9f00bbbd031f76f3024fc91a4d0b0}{rtems\+\_\+flashdisk\+\_\+configuration\+\_\+size}}
+\begin{DoxyCompactList}\small\item\em External reference to the number of configurations. Please supply. Support is present in \mbox{\hyperlink{confdefs_8h}{confdefs.\+h}} for providing this variable. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Interface to a Flash Disk Block Device. 
+
+This file defines the interface to a flash disk block device. 

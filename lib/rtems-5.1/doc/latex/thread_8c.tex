@@ -1,0 +1,67 @@
+\hypertarget{thread_8c}{}\section{cpukit/score/src/thread.c File Reference}
+\label{thread_8c}\index{cpukit/score/src/thread.c@{cpukit/score/src/thread.c}}
+
+
+Initialize Thread Handler.  
+
+
+{\ttfamily \#include $<$rtems/score/threadimpl.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/score/interr.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/score/objectimpl.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/score/scheduler.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/score/wkspace.\+h$>$}\newline
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bfseries T\+H\+R\+E\+A\+D\+\_\+\+O\+F\+F\+S\+E\+T\+\_\+\+A\+S\+S\+E\+RT}(field)
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{thread_8c_a10849387ddb4e390bfd9c053cb24afc1}\label{thread_8c_a10849387ddb4e390bfd9c053cb24afc1}} 
+{\bfseries T\+H\+R\+E\+A\+D\+\_\+\+O\+F\+F\+S\+E\+T\+\_\+\+A\+S\+S\+E\+RT} (Object)
+\item 
+\mbox{\Hypertarget{thread_8c_a8853a6a0eb6368845549b92f7edc1ba7}\label{thread_8c_a8853a6a0eb6368845549b92f7edc1ba7}} 
+{\bfseries T\+H\+R\+E\+A\+D\+\_\+\+O\+F\+F\+S\+E\+T\+\_\+\+A\+S\+S\+E\+RT} (Join\+\_\+queue)
+\item 
+\mbox{\Hypertarget{thread_8c_a80e46497c95582eae609580fede3563a}\label{thread_8c_a80e46497c95582eae609580fede3563a}} 
+{\bfseries T\+H\+R\+E\+A\+D\+\_\+\+O\+F\+F\+S\+E\+T\+\_\+\+A\+S\+S\+E\+RT} (current\+\_\+state)
+\item 
+\mbox{\Hypertarget{thread_8c_a882ae7235f358836b68194b75d49edf1}\label{thread_8c_a882ae7235f358836b68194b75d49edf1}} 
+{\bfseries T\+H\+R\+E\+A\+D\+\_\+\+O\+F\+F\+S\+E\+T\+\_\+\+A\+S\+S\+E\+RT} (Real\+\_\+priority)
+\item 
+\mbox{\Hypertarget{thread_8c_ac50b5967b709add5c16e65a2056239cc}\label{thread_8c_ac50b5967b709add5c16e65a2056239cc}} 
+{\bfseries T\+H\+R\+E\+A\+D\+\_\+\+O\+F\+F\+S\+E\+T\+\_\+\+A\+S\+S\+E\+RT} (Scheduler)
+\item 
+\mbox{\Hypertarget{thread_8c_aaa8b7fe073b7f0ebf4336db7bf87e5b3}\label{thread_8c_aaa8b7fe073b7f0ebf4336db7bf87e5b3}} 
+{\bfseries T\+H\+R\+E\+A\+D\+\_\+\+O\+F\+F\+S\+E\+T\+\_\+\+A\+S\+S\+E\+RT} (Wait)
+\item 
+\mbox{\Hypertarget{thread_8c_a322fdbedbadc85db544bad195d9f55c0}\label{thread_8c_a322fdbedbadc85db544bad195d9f55c0}} 
+{\bfseries T\+H\+R\+E\+A\+D\+\_\+\+O\+F\+F\+S\+E\+T\+\_\+\+A\+S\+S\+E\+RT} (Timer)
+\item 
+void \mbox{\hyperlink{group__RTEMSScoreThread_gacd86ef6b0e5fb19ec14d7fe51e3868e2}{\+\_\+\+Thread\+\_\+\+Initialize\+\_\+information}} (\mbox{\hyperlink{structThread__Information}{Thread\+\_\+\+Information}} $\ast$information)
+\begin{DoxyCompactList}\small\item\em Initializes the thread information. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__RTEMSScoreThread_ga439268e164b067a866d2901085c8c672}{\+\_\+\+Thread\+\_\+\+Handler\+\_\+initialization}} (void)
+\begin{DoxyCompactList}\small\item\em Initializes thread handler. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Initialize Thread Handler. 
+
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{thread_8c_a259dc8cea1243d07fd5f8a2dbd75b92a}\label{thread_8c_a259dc8cea1243d07fd5f8a2dbd75b92a}} 
+\index{thread.c@{thread.c}!THREAD\_OFFSET\_ASSERT@{THREAD\_OFFSET\_ASSERT}}
+\index{THREAD\_OFFSET\_ASSERT@{THREAD\_OFFSET\_ASSERT}!thread.c@{thread.c}}
+\subsubsection{\texorpdfstring{THREAD\_OFFSET\_ASSERT}{THREAD\_OFFSET\_ASSERT}}
+{\footnotesize\ttfamily \#define T\+H\+R\+E\+A\+D\+\_\+\+O\+F\+F\+S\+E\+T\+\_\+\+A\+S\+S\+E\+RT(\begin{DoxyParamCaption}\item[{}]{field }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{RTEMS\_STATIC\_ASSERT( \(\backslash\)}
+\DoxyCodeLine{    offsetof( \mbox{\hyperlink{struct__Thread__Control}{Thread\_Control}}, field ) == offsetof( \mbox{\hyperlink{structThread__Proxy__control}{Thread\_Proxy\_control}}, field ), \(\backslash\)}
+\DoxyCodeLine{    field \(\backslash\)}
+\DoxyCodeLine{  )}
+
+\end{DoxyCode}

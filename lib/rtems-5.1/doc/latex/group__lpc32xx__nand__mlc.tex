@@ -1,0 +1,474 @@
+\hypertarget{group__lpc32xx__nand__mlc}{}\section{N\+A\+ND M\+LC Controller}
+\label{group__lpc32xx__nand__mlc}\index{NAND MLC Controller@{NAND MLC Controller}}
+
+
+N\+A\+ND M\+LC Controller.  
+
+
+\subsection*{Files}
+\begin{DoxyCompactItemize}
+\item 
+file \mbox{\hyperlink{nand-mlc_8h}{nand-\/mlc.\+h}}
+\begin{DoxyCompactList}\small\item\em N\+A\+ND M\+LC controller A\+PI. \end{DoxyCompactList}\item 
+file \mbox{\hyperlink{nand-mlc-erase-block-safe_8c}{nand-\/mlc-\/erase-\/block-\/safe.\+c}}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{group__lpc32xx__nand__mlc_gab3b2378535527c368dd10f78a4eca68c}{lpc32xx\+\_\+mlc\+\_\+erase\+\_\+block\+\_\+safe()}}, \mbox{\hyperlink{group__lpc32xx__nand__mlc_gab7abd0702699aa8db9c2acb4eb55258c}{lpc32xx\+\_\+mlc\+\_\+erase\+\_\+block\+\_\+safe\+\_\+3()}}, and lpc32xx\+\_\+mlc\+\_\+zero\+\_\+block() implementation. \end{DoxyCompactList}\item 
+file \mbox{\hyperlink{nand-mlc-read-blocks_8c}{nand-\/mlc-\/read-\/blocks.\+c}}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{group__lpc32xx__nand__mlc_ga2d5f41c8abd5910ad853e7ba096c9f7b}{lpc32xx\+\_\+mlc\+\_\+read\+\_\+blocks()}} implementation. \end{DoxyCompactList}\item 
+file \mbox{\hyperlink{nand-mlc-write-blocks_8c}{nand-\/mlc-\/write-\/blocks.\+c}}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{group__lpc32xx__nand__mlc_gafa7ec91e1dfa52e3bcc614f4a9a66ab2}{lpc32xx\+\_\+mlc\+\_\+write\+\_\+blocks()}} implementation. \end{DoxyCompactList}\item 
+file \mbox{\hyperlink{nand-mlc_8c}{nand-\/mlc.\+c}}
+\begin{DoxyCompactList}\small\item\em N\+A\+ND M\+LC controller implementation. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structlpc32xx__mlc__config}{lpc32xx\+\_\+mlc\+\_\+config}}
+\begin{DoxyCompactList}\small\item\em M\+LC N\+A\+ND controller configuration. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{group__lpc32xx__nand__mlc_ga9e8da612c0810fcabd6d72203134dd65}\label{group__lpc32xx__nand__mlc_ga9e8da612c0810fcabd6d72203134dd65}} 
+\#define \mbox{\hyperlink{group__lpc32xx__nand__mlc_ga9e8da612c0810fcabd6d72203134dd65}{M\+L\+C\+\_\+\+S\+M\+A\+L\+L\+\_\+\+P\+A\+G\+ES}}~0x1U
+\begin{DoxyCompactList}\small\item\em Selects small pages (512 Bytes user data and 16 Bytes spare data) or large pages (2048 Bytes user data and 64 Bytes spare data) if not set. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__lpc32xx__nand__mlc_gaa02b2b76bde2195a15a66128a3643517}{M\+L\+C\+\_\+\+M\+A\+N\+Y\+\_\+\+A\+D\+D\+R\+E\+S\+S\+\_\+\+C\+Y\+C\+L\+ES}}~0x2U
+\item 
+\#define \mbox{\hyperlink{group__lpc32xx__nand__mlc_ga438ea163775acc06c4b1d516aadb1d37}{M\+L\+C\+\_\+\+N\+O\+R\+M\+A\+L\+\_\+\+B\+L\+O\+C\+KS}}~0x4U
+\begin{DoxyCompactList}\small\item\em Selects 64 pages per block or 128 pages per block if not set. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__lpc32xx__nand__mlc_gae60c5844b85dd6758e12d1257b06ce33}\label{group__lpc32xx__nand__mlc_gae60c5844b85dd6758e12d1257b06ce33}} 
+\#define \mbox{\hyperlink{group__lpc32xx__nand__mlc_gae60c5844b85dd6758e12d1257b06ce33}{M\+L\+C\+\_\+\+I\+O\+\_\+\+W\+I\+D\+T\+H\+\_\+16\+\_\+\+B\+IT}}~0x8U
+\begin{DoxyCompactList}\small\item\em Selects 16-\/bit \mbox{\hyperlink{structIO}{IO}} width or 8-\/bit \mbox{\hyperlink{structIO}{IO}} width if not set. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef bool($\ast$ \mbox{\hyperlink{group__lpc32xx__nand__mlc_ga8adf1c46b26e07838b729a78d83332ee}{lpc32xx\+\_\+mlc\+\_\+read\+\_\+process}}) (void $\ast$process\+\_\+arg, uint32\+\_\+t page\+\_\+index, uint32\+\_\+t page\+\_\+size, uint32\+\_\+t page\+\_\+data \mbox{[}M\+L\+C\+\_\+\+L\+A\+R\+G\+E\+\_\+\+D\+A\+T\+A\+\_\+\+W\+O\+R\+D\+\_\+\+C\+O\+U\+NT\mbox{]}, uint32\+\_\+t page\+\_\+spare \mbox{[}M\+L\+C\+\_\+\+L\+A\+R\+G\+E\+\_\+\+S\+P\+A\+R\+E\+\_\+\+W\+O\+R\+D\+\_\+\+C\+O\+U\+NT\mbox{]})
+\begin{DoxyCompactList}\small\item\em Read blocks process function type. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{group__lpc32xx__nand__mlc_ga223b19df7910441502b54c1561f29dcb}\label{group__lpc32xx__nand__mlc_ga223b19df7910441502b54c1561f29dcb}} 
+void \mbox{\hyperlink{group__lpc32xx__nand__mlc_ga223b19df7910441502b54c1561f29dcb}{lpc32xx\+\_\+mlc\+\_\+init}} (const \mbox{\hyperlink{structlpc32xx__mlc__config}{lpc32xx\+\_\+mlc\+\_\+config}} $\ast$cfg)
+\begin{DoxyCompactList}\small\item\em Initializes the M\+LC N\+A\+ND controller according to {\itshape cfg}. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__lpc32xx__nand__mlc_ga5f48505ecfcc266e7adfb2aa696af025}\label{group__lpc32xx__nand__mlc_ga5f48505ecfcc266e7adfb2aa696af025}} 
+uint32\+\_\+t {\bfseries lpc32xx\+\_\+mlc\+\_\+page\+\_\+size} (void)
+\item 
+\mbox{\Hypertarget{group__lpc32xx__nand__mlc_gacda5ee7184a3c1671dd838fd18979c5f}\label{group__lpc32xx__nand__mlc_gacda5ee7184a3c1671dd838fd18979c5f}} 
+uint32\+\_\+t {\bfseries lpc32xx\+\_\+mlc\+\_\+pages\+\_\+per\+\_\+block} (void)
+\item 
+\mbox{\Hypertarget{group__lpc32xx__nand__mlc_gae87762adf9936f919391073f13262b14}\label{group__lpc32xx__nand__mlc_gae87762adf9936f919391073f13262b14}} 
+uint32\+\_\+t {\bfseries lpc32xx\+\_\+mlc\+\_\+block\+\_\+count} (void)
+\item 
+\mbox{\Hypertarget{group__lpc32xx__nand__mlc_ga1cca568e3266d6ed134ccf783df6c7a1}\label{group__lpc32xx__nand__mlc_ga1cca568e3266d6ed134ccf783df6c7a1}} 
+uint32\+\_\+t {\bfseries lpc32xx\+\_\+mlc\+\_\+io\+\_\+width} (void)
+\item 
+\mbox{\Hypertarget{group__lpc32xx__nand__mlc_ga7d969a7489dd956ceb3c98b22eabe5d2}\label{group__lpc32xx__nand__mlc_ga7d969a7489dd956ceb3c98b22eabe5d2}} 
+void {\bfseries lpc32xx\+\_\+mlc\+\_\+write\+\_\+protection} (uint32\+\_\+t page\+\_\+index\+\_\+low, uint32\+\_\+t page\+\_\+index\+\_\+high)
+\item 
+\mbox{\Hypertarget{group__lpc32xx__nand__mlc_ga0e8f40703e95376e5fe3031ded9e57c3}\label{group__lpc32xx__nand__mlc_ga0e8f40703e95376e5fe3031ded9e57c3}} 
+void {\bfseries lpc32xx\+\_\+mlc\+\_\+read\+\_\+id} (uint8\+\_\+t $\ast$id, size\+\_\+t n)
+\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{group__lpc32xx__nand__mlc_gad998b76b7200ed71c4a99422ae2f036c}{lpc32xx\+\_\+mlc\+\_\+read\+\_\+page}} (uint32\+\_\+t page\+\_\+index, void $\ast$data, void $\ast$spare, uint32\+\_\+t $\ast$symbol\+\_\+error\+\_\+count)
+\begin{DoxyCompactList}\small\item\em Reads the page with index {\itshape page\+\_\+index}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{group__lpc32xx__nand__mlc_gad2e1dff4507a4ba350d817a1493cad5f}{lpc32xx\+\_\+mlc\+\_\+is\+\_\+valid\+\_\+block}} (uint32\+\_\+t block\+\_\+index)
+\begin{DoxyCompactList}\small\item\em Checks if the block with index {\itshape block\+\_\+index} is valid. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{group__lpc32xx__nand__mlc_ga602a6e700d0e763ba5ca98874b92f926}{lpc32xx\+\_\+mlc\+\_\+erase\+\_\+block}} (uint32\+\_\+t block\+\_\+index)
+\begin{DoxyCompactList}\small\item\em Erases the block with index {\itshape block\+\_\+index}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{group__lpc32xx__nand__mlc_gab3b2378535527c368dd10f78a4eca68c}{lpc32xx\+\_\+mlc\+\_\+erase\+\_\+block\+\_\+safe}} (uint32\+\_\+t block\+\_\+index)
+\begin{DoxyCompactList}\small\item\em Erases the block with index {\itshape block\+\_\+index}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{group__lpc32xx__nand__mlc_gab7abd0702699aa8db9c2acb4eb55258c}{lpc32xx\+\_\+mlc\+\_\+erase\+\_\+block\+\_\+safe\+\_\+3}} (uint32\+\_\+t block\+\_\+index, uint32\+\_\+t page\+\_\+begin, uint32\+\_\+t page\+\_\+end)
+\begin{DoxyCompactList}\small\item\em Erases the block with index {\itshape block\+\_\+index}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__lpc32xx__nand__mlc_gae790b87623d06d4795abd696698e9344}{lpc32xx\+\_\+mlc\+\_\+zero\+\_\+pages}} (uint32\+\_\+t page\+\_\+begin, uint32\+\_\+t page\+\_\+end)
+\begin{DoxyCompactList}\small\item\em Writes zero values to the pages specified by {\itshape page\+\_\+begin} and {\itshape page\+\_\+end}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{group__lpc32xx__nand__mlc_ga3e7231705d7d840e2e71fbb64534b2f0}{lpc32xx\+\_\+mlc\+\_\+write\+\_\+page\+\_\+with\+\_\+ecc}} (uint32\+\_\+t page\+\_\+index, const void $\ast$data, const void $\ast$spare)
+\begin{DoxyCompactList}\small\item\em Writes the page with index {\itshape page\+\_\+index}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{group__lpc32xx__nand__mlc_gafa7ec91e1dfa52e3bcc614f4a9a66ab2}{lpc32xx\+\_\+mlc\+\_\+write\+\_\+blocks}} (uint32\+\_\+t block\+\_\+begin, uint32\+\_\+t block\+\_\+end, const void $\ast$src, size\+\_\+t src\+\_\+size, uint32\+\_\+t page\+\_\+buffer \mbox{[}M\+L\+C\+\_\+\+L\+A\+R\+G\+E\+\_\+\+D\+A\+T\+A\+\_\+\+W\+O\+R\+D\+\_\+\+C\+O\+U\+NT\mbox{]})
+\begin{DoxyCompactList}\small\item\em Writes {\itshape src\+\_\+size} Bytes from {\itshape src} to the flash area specified by {\itshape block\+\_\+begin} and {\itshape block\+\_\+end}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{group__lpc32xx__nand__mlc_ga2d5f41c8abd5910ad853e7ba096c9f7b}{lpc32xx\+\_\+mlc\+\_\+read\+\_\+blocks}} (uint32\+\_\+t block\+\_\+begin, uint32\+\_\+t block\+\_\+end, \mbox{\hyperlink{group__lpc32xx__nand__mlc_ga8adf1c46b26e07838b729a78d83332ee}{lpc32xx\+\_\+mlc\+\_\+read\+\_\+process}} process, void $\ast$process\+\_\+arg, uint32\+\_\+t page\+\_\+buffer\+\_\+0 \mbox{[}M\+L\+C\+\_\+\+L\+A\+R\+G\+E\+\_\+\+D\+A\+T\+A\+\_\+\+W\+O\+R\+D\+\_\+\+C\+O\+U\+NT\mbox{]}, uint32\+\_\+t page\+\_\+buffer\+\_\+1 \mbox{[}M\+L\+C\+\_\+\+L\+A\+R\+G\+E\+\_\+\+D\+A\+T\+A\+\_\+\+W\+O\+R\+D\+\_\+\+C\+O\+U\+NT\mbox{]})
+\begin{DoxyCompactList}\small\item\em Reads the pages of block {\itshape block\+\_\+begin} up to and excluding {\itshape block\+\_\+end}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{M\+LC N\+A\+ND Flash Dimensions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{group__lpc32xx__nand__mlc_ga4675312b1b9f88d1fce59f1acced08ea}\label{group__lpc32xx__nand__mlc_ga4675312b1b9f88d1fce59f1acced08ea}} 
+\#define {\bfseries M\+L\+C\+\_\+\+S\+M\+A\+L\+L\+\_\+\+P\+A\+G\+E\+\_\+\+S\+I\+ZE}~528
+\item 
+\mbox{\Hypertarget{group__lpc32xx__nand__mlc_ga2c9408d5baf571960ce266fca95532d7}\label{group__lpc32xx__nand__mlc_ga2c9408d5baf571960ce266fca95532d7}} 
+\#define {\bfseries M\+L\+C\+\_\+\+S\+M\+A\+L\+L\+\_\+\+D\+A\+T\+A\+\_\+\+S\+I\+ZE}~512
+\item 
+\mbox{\Hypertarget{group__lpc32xx__nand__mlc_ga8a75cbd14fa3807cd5e08c65bec8e4f2}\label{group__lpc32xx__nand__mlc_ga8a75cbd14fa3807cd5e08c65bec8e4f2}} 
+\#define {\bfseries M\+L\+C\+\_\+\+S\+M\+A\+L\+L\+\_\+\+S\+P\+A\+R\+E\+\_\+\+S\+I\+ZE}~16
+\item 
+\mbox{\Hypertarget{group__lpc32xx__nand__mlc_gacec74222c7aa48a2ce2d264a42592d7a}\label{group__lpc32xx__nand__mlc_gacec74222c7aa48a2ce2d264a42592d7a}} 
+\#define {\bfseries M\+L\+C\+\_\+\+S\+M\+A\+L\+L\+\_\+\+U\+S\+E\+R\+\_\+\+S\+P\+A\+R\+E\+\_\+\+S\+I\+ZE}~6
+\item 
+\mbox{\Hypertarget{group__lpc32xx__nand__mlc_ga4312271e7f9d5905fa87fb6aacd3d0b1}\label{group__lpc32xx__nand__mlc_ga4312271e7f9d5905fa87fb6aacd3d0b1}} 
+\#define {\bfseries M\+L\+C\+\_\+\+S\+M\+A\+L\+L\+\_\+\+E\+C\+C\+\_\+\+S\+P\+A\+R\+E\+\_\+\+S\+I\+ZE}~10
+\item 
+\mbox{\Hypertarget{group__lpc32xx__nand__mlc_gab6995e133e146f52e2ea9ca63d6f0187}\label{group__lpc32xx__nand__mlc_gab6995e133e146f52e2ea9ca63d6f0187}} 
+\#define {\bfseries M\+L\+C\+\_\+\+S\+M\+A\+L\+L\+\_\+\+D\+A\+T\+A\+\_\+\+W\+O\+R\+D\+\_\+\+C\+O\+U\+NT}~(M\+L\+C\+\_\+\+S\+M\+A\+L\+L\+\_\+\+D\+A\+T\+A\+\_\+\+S\+I\+ZE / 4)
+\item 
+\mbox{\Hypertarget{group__lpc32xx__nand__mlc_gadfbc9bf0f148533c13f489622cb76129}\label{group__lpc32xx__nand__mlc_gadfbc9bf0f148533c13f489622cb76129}} 
+\#define {\bfseries M\+L\+C\+\_\+\+S\+M\+A\+L\+L\+\_\+\+S\+P\+A\+R\+E\+\_\+\+W\+O\+R\+D\+\_\+\+C\+O\+U\+NT}~(M\+L\+C\+\_\+\+S\+M\+A\+L\+L\+\_\+\+S\+P\+A\+R\+E\+\_\+\+S\+I\+ZE / 4)
+\item 
+\mbox{\Hypertarget{group__lpc32xx__nand__mlc_gaf311f4f240bc79727aa2108861ec1b25}\label{group__lpc32xx__nand__mlc_gaf311f4f240bc79727aa2108861ec1b25}} 
+\#define {\bfseries M\+L\+C\+\_\+\+S\+M\+A\+L\+L\+\_\+\+P\+A\+G\+E\+S\+\_\+\+P\+E\+R\+\_\+\+L\+A\+R\+G\+E\+\_\+\+P\+A\+GE}~4
+\item 
+\mbox{\Hypertarget{group__lpc32xx__nand__mlc_ga550139d0474fc4d3c9d1f9c5c588b13d}\label{group__lpc32xx__nand__mlc_ga550139d0474fc4d3c9d1f9c5c588b13d}} 
+\#define {\bfseries M\+L\+C\+\_\+\+L\+A\+R\+G\+E\+\_\+\+P\+A\+G\+E\+\_\+\+S\+I\+ZE}~(M\+L\+C\+\_\+\+S\+M\+A\+L\+L\+\_\+\+P\+A\+G\+E\+S\+\_\+\+P\+E\+R\+\_\+\+L\+A\+R\+G\+E\+\_\+\+P\+A\+GE $\ast$ M\+L\+C\+\_\+\+S\+M\+A\+L\+L\+\_\+\+P\+A\+G\+E\+\_\+\+S\+I\+ZE)
+\item 
+\mbox{\Hypertarget{group__lpc32xx__nand__mlc_ga1c8d40a5938d89b5ad1b54d8de64eae6}\label{group__lpc32xx__nand__mlc_ga1c8d40a5938d89b5ad1b54d8de64eae6}} 
+\#define {\bfseries M\+L\+C\+\_\+\+L\+A\+R\+G\+E\+\_\+\+D\+A\+T\+A\+\_\+\+S\+I\+ZE}~(M\+L\+C\+\_\+\+S\+M\+A\+L\+L\+\_\+\+P\+A\+G\+E\+S\+\_\+\+P\+E\+R\+\_\+\+L\+A\+R\+G\+E\+\_\+\+P\+A\+GE $\ast$ M\+L\+C\+\_\+\+S\+M\+A\+L\+L\+\_\+\+D\+A\+T\+A\+\_\+\+S\+I\+ZE)
+\item 
+\mbox{\Hypertarget{group__lpc32xx__nand__mlc_ga531203d78a950374f0921e7ac2c844b5}\label{group__lpc32xx__nand__mlc_ga531203d78a950374f0921e7ac2c844b5}} 
+\#define {\bfseries M\+L\+C\+\_\+\+L\+A\+R\+G\+E\+\_\+\+S\+P\+A\+R\+E\+\_\+\+S\+I\+ZE}~(M\+L\+C\+\_\+\+S\+M\+A\+L\+L\+\_\+\+P\+A\+G\+E\+S\+\_\+\+P\+E\+R\+\_\+\+L\+A\+R\+G\+E\+\_\+\+P\+A\+GE $\ast$ M\+L\+C\+\_\+\+S\+M\+A\+L\+L\+\_\+\+S\+P\+A\+R\+E\+\_\+\+S\+I\+ZE)
+\item 
+\mbox{\Hypertarget{group__lpc32xx__nand__mlc_gad0c24d9f0ec687ae37dcb3093393ad0e}\label{group__lpc32xx__nand__mlc_gad0c24d9f0ec687ae37dcb3093393ad0e}} 
+\#define {\bfseries M\+L\+C\+\_\+\+L\+A\+R\+G\+E\+\_\+\+D\+A\+T\+A\+\_\+\+W\+O\+R\+D\+\_\+\+C\+O\+U\+NT}~(M\+L\+C\+\_\+\+L\+A\+R\+G\+E\+\_\+\+D\+A\+T\+A\+\_\+\+S\+I\+ZE / 4)
+\item 
+\mbox{\Hypertarget{group__lpc32xx__nand__mlc_ga33d0e5ca3d25e155b0fab11c7932da99}\label{group__lpc32xx__nand__mlc_ga33d0e5ca3d25e155b0fab11c7932da99}} 
+\#define {\bfseries M\+L\+C\+\_\+\+L\+A\+R\+G\+E\+\_\+\+S\+P\+A\+R\+E\+\_\+\+W\+O\+R\+D\+\_\+\+C\+O\+U\+NT}~(M\+L\+C\+\_\+\+L\+A\+R\+G\+E\+\_\+\+S\+P\+A\+R\+E\+\_\+\+S\+I\+ZE / 4)
+\end{DoxyCompactItemize}
+\subsection*{N\+A\+ND Flash Clock Control Register (F\+L\+A\+S\+H\+C\+L\+K\+\_\+\+C\+T\+RL)}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{group__lpc32xx__nand__mlc_ga99951f3d82cce502b0d9f6bc3c191bdf}\label{group__lpc32xx__nand__mlc_ga99951f3d82cce502b0d9f6bc3c191bdf}} 
+\#define {\bfseries F\+L\+A\+S\+H\+C\+L\+K\+\_\+\+I\+R\+Q\+\_\+\+M\+LC}~B\+S\+P\+\_\+\+B\+I\+T32(5)
+\item 
+\mbox{\Hypertarget{group__lpc32xx__nand__mlc_ga1411860bd0bfea5215301204efe1c7a6}\label{group__lpc32xx__nand__mlc_ga1411860bd0bfea5215301204efe1c7a6}} 
+\#define {\bfseries F\+L\+A\+S\+H\+C\+L\+K\+\_\+\+M\+L\+C\+\_\+\+D\+M\+A\+\_\+\+R\+NB}~B\+S\+P\+\_\+\+B\+I\+T32(4)
+\item 
+\mbox{\Hypertarget{group__lpc32xx__nand__mlc_ga5ea8785193a586ea3a67721ab4467b3c}\label{group__lpc32xx__nand__mlc_ga5ea8785193a586ea3a67721ab4467b3c}} 
+\#define {\bfseries F\+L\+A\+S\+H\+C\+L\+K\+\_\+\+M\+L\+C\+\_\+\+D\+M\+A\+\_\+\+I\+NT}~B\+S\+P\+\_\+\+B\+I\+T32(3)
+\item 
+\mbox{\Hypertarget{group__lpc32xx__nand__mlc_gabd5e3f6483ceb7a275a5880cddabdc60}\label{group__lpc32xx__nand__mlc_gabd5e3f6483ceb7a275a5880cddabdc60}} 
+\#define {\bfseries F\+L\+A\+S\+H\+C\+L\+K\+\_\+\+S\+E\+L\+E\+C\+T\+\_\+\+S\+LC}~B\+S\+P\+\_\+\+B\+I\+T32(2)
+\item 
+\mbox{\Hypertarget{group__lpc32xx__nand__mlc_ga5c7f28f246edb641eff9ab2f488c32cf}\label{group__lpc32xx__nand__mlc_ga5c7f28f246edb641eff9ab2f488c32cf}} 
+\#define {\bfseries F\+L\+A\+S\+H\+C\+L\+K\+\_\+\+M\+L\+C\+\_\+\+C\+L\+K\+\_\+\+E\+N\+A\+B\+LE}~B\+S\+P\+\_\+\+B\+I\+T32(1)
+\item 
+\mbox{\Hypertarget{group__lpc32xx__nand__mlc_gaa3b7f9ebf43e1a55b6af9c71efe3409b}\label{group__lpc32xx__nand__mlc_gaa3b7f9ebf43e1a55b6af9c71efe3409b}} 
+\#define {\bfseries F\+L\+A\+S\+H\+C\+L\+K\+\_\+\+S\+L\+C\+\_\+\+C\+L\+K\+\_\+\+E\+N\+A\+B\+LE}~B\+S\+P\+\_\+\+B\+I\+T32(0)
+\end{DoxyCompactItemize}
+\subsection*{M\+LC N\+A\+ND Timing Register (M\+L\+C\+\_\+\+T\+I\+M\+E\+\_\+\+R\+EG)}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{group__lpc32xx__nand__mlc_ga65d3d982478162a5cce8574c610427e1}\label{group__lpc32xx__nand__mlc_ga65d3d982478162a5cce8574c610427e1}} 
+\#define {\bfseries M\+L\+C\+\_\+\+T\+I\+M\+E\+\_\+\+W\+R\+\_\+\+L\+OW}(val)~B\+S\+P\+\_\+\+F\+L\+D32(val, 0, 3)
+\item 
+\mbox{\Hypertarget{group__lpc32xx__nand__mlc_gaaa0320f8f123788c964b749abf8ddc55}\label{group__lpc32xx__nand__mlc_gaaa0320f8f123788c964b749abf8ddc55}} 
+\#define {\bfseries M\+L\+C\+\_\+\+T\+I\+M\+E\+\_\+\+W\+R\+\_\+\+H\+I\+GH}(val)~B\+S\+P\+\_\+\+F\+L\+D32(val, 4, 7)
+\item 
+\mbox{\Hypertarget{group__lpc32xx__nand__mlc_gaf653199e9228166ae1be2aeba0f87b62}\label{group__lpc32xx__nand__mlc_gaf653199e9228166ae1be2aeba0f87b62}} 
+\#define {\bfseries M\+L\+C\+\_\+\+T\+I\+M\+E\+\_\+\+R\+D\+\_\+\+L\+OW}(val)~B\+S\+P\+\_\+\+F\+L\+D32(val, 8, 11)
+\item 
+\mbox{\Hypertarget{group__lpc32xx__nand__mlc_ga0c76ec29d96d3deddd0ee4c3e33a4291}\label{group__lpc32xx__nand__mlc_ga0c76ec29d96d3deddd0ee4c3e33a4291}} 
+\#define {\bfseries M\+L\+C\+\_\+\+T\+I\+M\+E\+\_\+\+R\+D\+\_\+\+H\+I\+GH}(val)~B\+S\+P\+\_\+\+F\+L\+D32(val, 12, 15)
+\item 
+\mbox{\Hypertarget{group__lpc32xx__nand__mlc_ga3f5e99228315ac86924a0f4a66cbe9b0}\label{group__lpc32xx__nand__mlc_ga3f5e99228315ac86924a0f4a66cbe9b0}} 
+\#define {\bfseries M\+L\+C\+\_\+\+T\+I\+M\+E\+\_\+\+N\+A\+N\+D\+\_\+\+TA}(val)~B\+S\+P\+\_\+\+F\+L\+D32(val, 16, 18)
+\item 
+\mbox{\Hypertarget{group__lpc32xx__nand__mlc_gab97add83fdc7a7b4fff0a76390970fa1}\label{group__lpc32xx__nand__mlc_gab97add83fdc7a7b4fff0a76390970fa1}} 
+\#define {\bfseries M\+L\+C\+\_\+\+T\+I\+M\+E\+\_\+\+B\+U\+S\+Y\+\_\+\+D\+E\+L\+AY}(val)~B\+S\+P\+\_\+\+F\+L\+D32(val, 19, 23)
+\item 
+\mbox{\Hypertarget{group__lpc32xx__nand__mlc_ga8781d8a70eb465b95c6829d1435da18e}\label{group__lpc32xx__nand__mlc_ga8781d8a70eb465b95c6829d1435da18e}} 
+\#define {\bfseries M\+L\+C\+\_\+\+T\+I\+M\+E\+\_\+\+T\+C\+E\+A\+\_\+\+D\+E\+L\+AY}(val)~B\+S\+P\+\_\+\+F\+L\+D32(val, 24, 25)
+\end{DoxyCompactItemize}
+\subsection*{M\+LC N\+A\+ND Lock Protection Register (M\+L\+C\+\_\+\+L\+O\+C\+K\+\_\+\+PR)}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{group__lpc32xx__nand__mlc_ga7a07a0271683f98cbee28398f487ff55}\label{group__lpc32xx__nand__mlc_ga7a07a0271683f98cbee28398f487ff55}} 
+\#define {\bfseries M\+L\+C\+\_\+\+U\+N\+L\+O\+C\+K\+\_\+\+P\+R\+OT}~0xa25e
+\end{DoxyCompactItemize}
+\subsection*{M\+LC N\+A\+ND Status Register (M\+L\+C\+\_\+\+I\+SR)}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{group__lpc32xx__nand__mlc_gae29aed53319b4d98465135a88afef240}\label{group__lpc32xx__nand__mlc_gae29aed53319b4d98465135a88afef240}} 
+\#define {\bfseries M\+L\+C\+\_\+\+I\+S\+R\+\_\+\+D\+E\+C\+O\+D\+E\+R\+\_\+\+F\+A\+I\+L\+U\+RE}~B\+S\+P\+\_\+\+B\+I\+T32(6)
+\item 
+\mbox{\Hypertarget{group__lpc32xx__nand__mlc_ga3786ba72db48f949799ce65eada46a60}\label{group__lpc32xx__nand__mlc_ga3786ba72db48f949799ce65eada46a60}} 
+\#define {\bfseries M\+L\+C\+\_\+\+I\+S\+R\+\_\+\+S\+Y\+M\+B\+O\+L\+\_\+\+E\+R\+R\+O\+RS}(reg)~B\+S\+P\+\_\+\+F\+L\+D32\+G\+ET(reg, 4, 5)
+\item 
+\mbox{\Hypertarget{group__lpc32xx__nand__mlc_ga663a5bee36ff30d782a8dbb22486a795}\label{group__lpc32xx__nand__mlc_ga663a5bee36ff30d782a8dbb22486a795}} 
+\#define {\bfseries M\+L\+C\+\_\+\+I\+S\+R\+\_\+\+E\+R\+R\+O\+R\+S\+\_\+\+D\+E\+T\+E\+C\+T\+ED}~B\+S\+P\+\_\+\+B\+I\+T32(3)
+\item 
+\mbox{\Hypertarget{group__lpc32xx__nand__mlc_ga6227e8a75d00dc03f541bfef662043b7}\label{group__lpc32xx__nand__mlc_ga6227e8a75d00dc03f541bfef662043b7}} 
+\#define {\bfseries M\+L\+C\+\_\+\+I\+S\+R\+\_\+\+E\+C\+C\+\_\+\+R\+E\+A\+DY}~B\+S\+P\+\_\+\+B\+I\+T32(2)
+\item 
+\mbox{\Hypertarget{group__lpc32xx__nand__mlc_ga7243c69a7b2dd87d8765e67fae3c26b0}\label{group__lpc32xx__nand__mlc_ga7243c69a7b2dd87d8765e67fae3c26b0}} 
+\#define {\bfseries M\+L\+C\+\_\+\+I\+S\+R\+\_\+\+C\+O\+N\+T\+R\+O\+L\+L\+E\+R\+\_\+\+R\+E\+A\+DY}~B\+S\+P\+\_\+\+B\+I\+T32(1)
+\item 
+\mbox{\Hypertarget{group__lpc32xx__nand__mlc_ga05f0ffd018f9047cd2e897cbb98d4c10}\label{group__lpc32xx__nand__mlc_ga05f0ffd018f9047cd2e897cbb98d4c10}} 
+\#define {\bfseries M\+L\+C\+\_\+\+I\+S\+R\+\_\+\+N\+A\+N\+D\+\_\+\+R\+E\+A\+DY}~B\+S\+P\+\_\+\+B\+I\+T32(0)
+\end{DoxyCompactItemize}
+\subsection*{M\+LC N\+A\+ND Controller Configuration Register (M\+L\+C\+\_\+\+I\+CR)}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{group__lpc32xx__nand__mlc_gafa184d51565e7c117c4bb76e2e0f410a}\label{group__lpc32xx__nand__mlc_gafa184d51565e7c117c4bb76e2e0f410a}} 
+\#define {\bfseries M\+L\+C\+\_\+\+I\+C\+R\+\_\+\+S\+O\+F\+T\+\_\+\+W\+R\+I\+T\+E\+\_\+\+P\+R\+OT}~B\+S\+P\+\_\+\+B\+I\+T32(3)
+\item 
+\mbox{\Hypertarget{group__lpc32xx__nand__mlc_ga8b587f5392d598f73f1e641fac585005}\label{group__lpc32xx__nand__mlc_ga8b587f5392d598f73f1e641fac585005}} 
+\#define {\bfseries M\+L\+C\+\_\+\+I\+C\+R\+\_\+\+L\+A\+R\+G\+E\+\_\+\+P\+A\+G\+ES}~B\+S\+P\+\_\+\+B\+I\+T32(2)
+\item 
+\mbox{\Hypertarget{group__lpc32xx__nand__mlc_ga048cb9942a727a7eca746345c55f1f22}\label{group__lpc32xx__nand__mlc_ga048cb9942a727a7eca746345c55f1f22}} 
+\#define {\bfseries M\+L\+C\+\_\+\+I\+C\+R\+\_\+\+A\+D\+D\+R\+\_\+\+W\+O\+R\+D\+\_\+\+C\+O\+U\+N\+T\+\_\+4\+\_\+5}~B\+S\+P\+\_\+\+B\+I\+T32(1)
+\item 
+\mbox{\Hypertarget{group__lpc32xx__nand__mlc_ga1e5d95b667f3305b72564df294498d70}\label{group__lpc32xx__nand__mlc_ga1e5d95b667f3305b72564df294498d70}} 
+\#define {\bfseries M\+L\+C\+\_\+\+I\+C\+R\+\_\+\+I\+O\+\_\+\+B\+U\+S\+\_\+16}~B\+S\+P\+\_\+\+B\+I\+T32(0)
+\end{DoxyCompactItemize}
+\subsection*{M\+LC N\+A\+ND Auto Encode Register (M\+L\+C\+\_\+\+E\+C\+C\+\_\+\+A\+U\+T\+O\+\_\+\+E\+NC)}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{group__lpc32xx__nand__mlc_gae0285eaa1a112e3e7b438488c41e76cb}\label{group__lpc32xx__nand__mlc_gae0285eaa1a112e3e7b438488c41e76cb}} 
+\#define {\bfseries M\+L\+C\+\_\+\+E\+C\+C\+\_\+\+A\+U\+T\+O\+\_\+\+E\+N\+C\+\_\+\+P\+R\+O\+G\+R\+AM}~B\+S\+P\+\_\+\+B\+I\+T32(8)
+\end{DoxyCompactItemize}
+\subsection*{N\+A\+ND Status Register}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{group__lpc32xx__nand__mlc_gaca176d5a48af7cdfb35f44cb8f62860b}\label{group__lpc32xx__nand__mlc_gaca176d5a48af7cdfb35f44cb8f62860b}} 
+\#define {\bfseries N\+A\+N\+D\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+E\+R\+R\+OR}~(1\+U $<$$<$ 0)
+\item 
+\mbox{\Hypertarget{group__lpc32xx__nand__mlc_gaa1daa228831240b1df9cec250fffc6b8}\label{group__lpc32xx__nand__mlc_gaa1daa228831240b1df9cec250fffc6b8}} 
+\#define {\bfseries N\+A\+N\+D\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+R\+E\+A\+DY}~(1\+U $<$$<$ 6)
+\item 
+\mbox{\Hypertarget{group__lpc32xx__nand__mlc_ga6baec50094dd0065356d84d6708c7af4}\label{group__lpc32xx__nand__mlc_ga6baec50094dd0065356d84d6708c7af4}} 
+\#define {\bfseries N\+A\+N\+D\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+N\+O\+T\+\_\+\+P\+R\+O\+T\+E\+C\+T\+ED}~(1\+U $<$$<$ 7)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+N\+A\+ND M\+LC Controller. 
+
+Timing constraints\+:
+
+
+\begin{DoxyEnumerate}
+\item (W\+R\+\_\+\+L\+OW + 1) / H\+C\+LK $>$= t\+WP
+\item (W\+R\+\_\+\+H\+I\+GH -\/ W\+R\+\_\+\+L\+OW) / H\+C\+LK $>$= t\+WH
+\item (W\+R\+\_\+\+L\+OW + 1) / H\+C\+LK + (W\+R\+\_\+\+H\+I\+GH -\/ W\+R\+\_\+\+L\+OW) / H\+C\+LK $>$= t\+WC
+\item (R\+D\+\_\+\+L\+OW + 1) / H\+C\+LK $>$= t\+RP
+\item (R\+D\+\_\+\+L\+OW + 1) / H\+C\+LK $>$= t\+R\+EA + t\+SU
+\item (R\+D\+\_\+\+H\+I\+GH -\/ R\+D\+\_\+\+L\+OW) / H\+C\+LK $>$= t\+R\+EH
+\item (R\+D\+\_\+\+L\+OW + 1) / H\+C\+LK + (R\+D\+\_\+\+H\+I\+GH -\/ R\+D\+\_\+\+L\+OW) / H\+C\+LK $>$= t\+RC
+\item (R\+D\+\_\+\+H\+I\+GH -\/ R\+D\+\_\+\+L\+OW) / H\+C\+LK + N\+A\+N\+D\+\_\+\+TA / H\+C\+LK $>$= t\+R\+HZ
+\item B\+U\+S\+Y\+\_\+\+D\+E\+L\+AY / H\+C\+LK $>$= max(t\+W\+B, t\+R\+B)
+\item T\+C\+E\+A\+\_\+\+D\+E\+L\+AY / H\+C\+LK $>$= t\+C\+EA -\/ t\+R\+EA
+\end{DoxyEnumerate}
+
+Known flash layouts (Format\+: SP = small pages, LP = large pages / address cycles / pages per block)\+:
+
+
+\begin{DoxyEnumerate}
+\item S\+P/3/32
+\item S\+P/4/32
+\item L\+P/4/64
+\item L\+P/5/64
+\item L\+P/5/128 
+\end{DoxyEnumerate}
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{group__lpc32xx__nand__mlc_gaa02b2b76bde2195a15a66128a3643517}\label{group__lpc32xx__nand__mlc_gaa02b2b76bde2195a15a66128a3643517}} 
+\index{NAND MLC Controller@{NAND MLC Controller}!MLC\_MANY\_ADDRESS\_CYCLES@{MLC\_MANY\_ADDRESS\_CYCLES}}
+\index{MLC\_MANY\_ADDRESS\_CYCLES@{MLC\_MANY\_ADDRESS\_CYCLES}!NAND MLC Controller@{NAND MLC Controller}}
+\subsubsection{\texorpdfstring{MLC\_MANY\_ADDRESS\_CYCLES}{MLC\_MANY\_ADDRESS\_CYCLES}}
+{\footnotesize\ttfamily \#define M\+L\+C\+\_\+\+M\+A\+N\+Y\+\_\+\+A\+D\+D\+R\+E\+S\+S\+\_\+\+C\+Y\+C\+L\+ES~0x2U}
+
+@\+Brief Selects 4/5 address cycles for small/large pages or 3/4 address cycles if not set. \mbox{\Hypertarget{group__lpc32xx__nand__mlc_ga438ea163775acc06c4b1d516aadb1d37}\label{group__lpc32xx__nand__mlc_ga438ea163775acc06c4b1d516aadb1d37}} 
+\index{NAND MLC Controller@{NAND MLC Controller}!MLC\_NORMAL\_BLOCKS@{MLC\_NORMAL\_BLOCKS}}
+\index{MLC\_NORMAL\_BLOCKS@{MLC\_NORMAL\_BLOCKS}!NAND MLC Controller@{NAND MLC Controller}}
+\subsubsection{\texorpdfstring{MLC\_NORMAL\_BLOCKS}{MLC\_NORMAL\_BLOCKS}}
+{\footnotesize\ttfamily \#define M\+L\+C\+\_\+\+N\+O\+R\+M\+A\+L\+\_\+\+B\+L\+O\+C\+KS~0x4U}
+
+
+
+Selects 64 pages per block or 128 pages per block if not set. 
+
+This flag is only valid for large pages. 
+
+\subsection{Typedef Documentation}
+\mbox{\Hypertarget{group__lpc32xx__nand__mlc_ga8adf1c46b26e07838b729a78d83332ee}\label{group__lpc32xx__nand__mlc_ga8adf1c46b26e07838b729a78d83332ee}} 
+\index{NAND MLC Controller@{NAND MLC Controller}!lpc32xx\_mlc\_read\_process@{lpc32xx\_mlc\_read\_process}}
+\index{lpc32xx\_mlc\_read\_process@{lpc32xx\_mlc\_read\_process}!NAND MLC Controller@{NAND MLC Controller}}
+\subsubsection{\texorpdfstring{lpc32xx\_mlc\_read\_process}{lpc32xx\_mlc\_read\_process}}
+{\footnotesize\ttfamily typedef bool($\ast$ lpc32xx\+\_\+mlc\+\_\+read\+\_\+process) (void $\ast$process\+\_\+arg, uint32\+\_\+t page\+\_\+index, uint32\+\_\+t page\+\_\+size, uint32\+\_\+t page\+\_\+data \mbox{[}M\+L\+C\+\_\+\+L\+A\+R\+G\+E\+\_\+\+D\+A\+T\+A\+\_\+\+W\+O\+R\+D\+\_\+\+C\+O\+U\+NT\mbox{]}, uint32\+\_\+t page\+\_\+spare \mbox{[}M\+L\+C\+\_\+\+L\+A\+R\+G\+E\+\_\+\+S\+P\+A\+R\+E\+\_\+\+W\+O\+R\+D\+\_\+\+C\+O\+U\+NT\mbox{]})}
+
+
+
+Read blocks process function type. 
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{group__lpc32xx__nand__mlc_ga2d5f41c8abd5910ad853e7ba096c9f7b}{lpc32xx\+\_\+mlc\+\_\+read\+\_\+blocks()}}.
+\end{DoxySeeAlso}
+
+\begin{DoxyRetVals}{Return values}
+{\em false} & Continue processing. \\
+\hline
+{\em true} & Stop processing. \\
+\hline
+\end{DoxyRetVals}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{group__lpc32xx__nand__mlc_ga602a6e700d0e763ba5ca98874b92f926}\label{group__lpc32xx__nand__mlc_ga602a6e700d0e763ba5ca98874b92f926}} 
+\index{NAND MLC Controller@{NAND MLC Controller}!lpc32xx\_mlc\_erase\_block@{lpc32xx\_mlc\_erase\_block}}
+\index{lpc32xx\_mlc\_erase\_block@{lpc32xx\_mlc\_erase\_block}!NAND MLC Controller@{NAND MLC Controller}}
+\subsubsection{\texorpdfstring{lpc32xx\_mlc\_erase\_block()}{lpc32xx\_mlc\_erase\_block()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} lpc32xx\+\_\+mlc\+\_\+erase\+\_\+block (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{block\+\_\+index }\end{DoxyParamCaption})}
+
+
+
+Erases the block with index {\itshape block\+\_\+index}. 
+
+
+\begin{DoxyRetVals}{Return values}
+{\em R\+T\+E\+M\+S\+\_\+\+S\+U\+C\+C\+E\+S\+S\+F\+UL} & Successful operation. \\
+\hline
+{\em R\+T\+E\+M\+S\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+ID} & Invalid {\itshape block\+\_\+index} value. \\
+\hline
+{\em R\+T\+E\+M\+S\+\_\+\+U\+N\+S\+A\+T\+I\+S\+F\+I\+ED} & Erase error. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{group__lpc32xx__nand__mlc_gab3b2378535527c368dd10f78a4eca68c}\label{group__lpc32xx__nand__mlc_gab3b2378535527c368dd10f78a4eca68c}} 
+\index{NAND MLC Controller@{NAND MLC Controller}!lpc32xx\_mlc\_erase\_block\_safe@{lpc32xx\_mlc\_erase\_block\_safe}}
+\index{lpc32xx\_mlc\_erase\_block\_safe@{lpc32xx\_mlc\_erase\_block\_safe}!NAND MLC Controller@{NAND MLC Controller}}
+\subsubsection{\texorpdfstring{lpc32xx\_mlc\_erase\_block\_safe()}{lpc32xx\_mlc\_erase\_block\_safe()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} lpc32xx\+\_\+mlc\+\_\+erase\+\_\+block\+\_\+safe (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{block\+\_\+index }\end{DoxyParamCaption})}
+
+
+
+Erases the block with index {\itshape block\+\_\+index}. 
+
+In case of an erase error all pages and the spare areas of this block are programmed with zero values. This will hopefully mark the block as bad.
+
+
+\begin{DoxyRetVals}{Return values}
+{\em R\+T\+E\+M\+S\+\_\+\+S\+U\+C\+C\+E\+S\+S\+F\+UL} & Successful operation. \\
+\hline
+{\em R\+T\+E\+M\+S\+\_\+\+I\+N\+C\+O\+R\+R\+E\+C\+T\+\_\+\+S\+T\+A\+TE} & The block is bad. \\
+\hline
+{\em R\+T\+E\+M\+S\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+ID} & Invalid {\itshape block\+\_\+index} value. \\
+\hline
+{\em R\+T\+E\+M\+S\+\_\+\+U\+N\+S\+A\+T\+I\+S\+F\+I\+ED} & Erase error. \\
+\hline
+{\em R\+T\+E\+M\+S\+\_\+\+N\+O\+T\+\_\+\+I\+M\+P\+L\+E\+M\+E\+N\+T\+ED} & No implementation available for this flash type. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{group__lpc32xx__nand__mlc_gab7abd0702699aa8db9c2acb4eb55258c}\label{group__lpc32xx__nand__mlc_gab7abd0702699aa8db9c2acb4eb55258c}} 
+\index{NAND MLC Controller@{NAND MLC Controller}!lpc32xx\_mlc\_erase\_block\_safe\_3@{lpc32xx\_mlc\_erase\_block\_safe\_3}}
+\index{lpc32xx\_mlc\_erase\_block\_safe\_3@{lpc32xx\_mlc\_erase\_block\_safe\_3}!NAND MLC Controller@{NAND MLC Controller}}
+\subsubsection{\texorpdfstring{lpc32xx\_mlc\_erase\_block\_safe\_3()}{lpc32xx\_mlc\_erase\_block\_safe\_3()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} lpc32xx\+\_\+mlc\+\_\+erase\+\_\+block\+\_\+safe\+\_\+3 (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{block\+\_\+index,  }\item[{uint32\+\_\+t}]{page\+\_\+begin,  }\item[{uint32\+\_\+t}]{page\+\_\+end }\end{DoxyParamCaption})}
+
+
+
+Erases the block with index {\itshape block\+\_\+index}. 
+
+Variant of \mbox{\hyperlink{group__lpc32xx__nand__mlc_gab3b2378535527c368dd10f78a4eca68c}{lpc32xx\+\_\+mlc\+\_\+erase\+\_\+block\+\_\+safe()}} with more parameters for efficiency reasons. The {\itshape page\+\_\+begin} must be the index of the first page of the block. The {\itshape page\+\_\+end} must be the page index of the last page of the block plus one. \mbox{\Hypertarget{group__lpc32xx__nand__mlc_gad2e1dff4507a4ba350d817a1493cad5f}\label{group__lpc32xx__nand__mlc_gad2e1dff4507a4ba350d817a1493cad5f}} 
+\index{NAND MLC Controller@{NAND MLC Controller}!lpc32xx\_mlc\_is\_valid\_block@{lpc32xx\_mlc\_is\_valid\_block}}
+\index{lpc32xx\_mlc\_is\_valid\_block@{lpc32xx\_mlc\_is\_valid\_block}!NAND MLC Controller@{NAND MLC Controller}}
+\subsubsection{\texorpdfstring{lpc32xx\_mlc\_is\_valid\_block()}{lpc32xx\_mlc\_is\_valid\_block()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} lpc32xx\+\_\+mlc\+\_\+is\+\_\+valid\+\_\+block (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{block\+\_\+index }\end{DoxyParamCaption})}
+
+
+
+Checks if the block with index {\itshape block\+\_\+index} is valid. 
+
+The initial valid block information of the manufacturer will be used. Unfortunately there seems to be no standard for this. A block will be considered as bad if the first or second page of this block does not contain 0xff at the 6th byte of the spare area. This should work for flashes with small pages and a 8-\/bit \mbox{\hyperlink{structIO}{IO}} width.
+
+
+\begin{DoxyRetVals}{Return values}
+{\em R\+T\+E\+M\+S\+\_\+\+S\+U\+C\+C\+E\+S\+S\+F\+UL} & The block is valid. \\
+\hline
+{\em R\+T\+E\+M\+S\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+ID} & Invalid {\itshape block\+\_\+index} value. \\
+\hline
+{\em R\+T\+E\+M\+S\+\_\+\+I\+O\+\_\+\+E\+R\+R\+OR} & Uncorrectable bit error. \\
+\hline
+{\em R\+T\+E\+M\+S\+\_\+\+I\+N\+C\+O\+R\+R\+E\+C\+T\+\_\+\+S\+T\+A\+TE} & The block is bad. \\
+\hline
+{\em R\+T\+E\+M\+S\+\_\+\+N\+O\+T\+\_\+\+I\+M\+P\+L\+E\+M\+E\+N\+T\+ED} & No implementation available for this flash type. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{group__lpc32xx__nand__mlc_ga2d5f41c8abd5910ad853e7ba096c9f7b}\label{group__lpc32xx__nand__mlc_ga2d5f41c8abd5910ad853e7ba096c9f7b}} 
+\index{NAND MLC Controller@{NAND MLC Controller}!lpc32xx\_mlc\_read\_blocks@{lpc32xx\_mlc\_read\_blocks}}
+\index{lpc32xx\_mlc\_read\_blocks@{lpc32xx\_mlc\_read\_blocks}!NAND MLC Controller@{NAND MLC Controller}}
+\subsubsection{\texorpdfstring{lpc32xx\_mlc\_read\_blocks()}{lpc32xx\_mlc\_read\_blocks()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} lpc32xx\+\_\+mlc\+\_\+read\+\_\+blocks (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{block\+\_\+begin,  }\item[{uint32\+\_\+t}]{block\+\_\+end,  }\item[{\mbox{\hyperlink{group__lpc32xx__nand__mlc_ga8adf1c46b26e07838b729a78d83332ee}{lpc32xx\+\_\+mlc\+\_\+read\+\_\+process}}}]{process,  }\item[{void $\ast$}]{process\+\_\+arg,  }\item[{uint32\+\_\+t}]{page\+\_\+buffer\+\_\+0\mbox{[}\+M\+L\+C\+\_\+\+L\+A\+R\+G\+E\+\_\+\+D\+A\+T\+A\+\_\+\+W\+O\+R\+D\+\_\+\+C\+O\+U\+N\+T\mbox{]},  }\item[{uint32\+\_\+t}]{page\+\_\+buffer\+\_\+1\mbox{[}\+M\+L\+C\+\_\+\+L\+A\+R\+G\+E\+\_\+\+D\+A\+T\+A\+\_\+\+W\+O\+R\+D\+\_\+\+C\+O\+U\+N\+T\mbox{]} }\end{DoxyParamCaption})}
+
+
+
+Reads the pages of block {\itshape block\+\_\+begin} up to and excluding {\itshape block\+\_\+end}. 
+
+For each page {\itshape process} will be called with the {\itshape process\+\_\+arg} parameter, the page\+\_\+index, the page data and the page spare.
+
+The {\itshape page\+\_\+buffer\+\_\+0} and {\itshape page\+\_\+buffer\+\_\+1} will be used as intermediate buffers. \mbox{\Hypertarget{group__lpc32xx__nand__mlc_gad998b76b7200ed71c4a99422ae2f036c}\label{group__lpc32xx__nand__mlc_gad998b76b7200ed71c4a99422ae2f036c}} 
+\index{NAND MLC Controller@{NAND MLC Controller}!lpc32xx\_mlc\_read\_page@{lpc32xx\_mlc\_read\_page}}
+\index{lpc32xx\_mlc\_read\_page@{lpc32xx\_mlc\_read\_page}!NAND MLC Controller@{NAND MLC Controller}}
+\subsubsection{\texorpdfstring{lpc32xx\_mlc\_read\_page()}{lpc32xx\_mlc\_read\_page()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} lpc32xx\+\_\+mlc\+\_\+read\+\_\+page (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{page\+\_\+index,  }\item[{void $\ast$}]{data,  }\item[{void $\ast$}]{spare,  }\item[{uint32\+\_\+t $\ast$}]{symbol\+\_\+error\+\_\+count }\end{DoxyParamCaption})}
+
+
+
+Reads the page with index {\itshape page\+\_\+index}. 
+
+Bytes 6 to 15 of the spare area will contain the E\+CC.
+
+If the read is successful, then the {\itshape symbol\+\_\+error\+\_\+count} will contain the number of detected symbol errors (0, 1, 2, 3, or 4), else the value will be 0xffffffff. The {\itshape symbol\+\_\+error\+\_\+count} pointer may be {\ttfamily N\+U\+LL}.
+
+
+\begin{DoxyRetVals}{Return values}
+{\em R\+T\+E\+M\+S\+\_\+\+S\+U\+C\+C\+E\+S\+S\+F\+UL} & Successful operation. \\
+\hline
+{\em R\+T\+E\+M\+S\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+ID} & Invalid {\itshape page\+\_\+index} value. \\
+\hline
+{\em R\+T\+E\+M\+S\+\_\+\+I\+O\+\_\+\+E\+R\+R\+OR} & Uncorrectable bit error. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{group__lpc32xx__nand__mlc_gafa7ec91e1dfa52e3bcc614f4a9a66ab2}\label{group__lpc32xx__nand__mlc_gafa7ec91e1dfa52e3bcc614f4a9a66ab2}} 
+\index{NAND MLC Controller@{NAND MLC Controller}!lpc32xx\_mlc\_write\_blocks@{lpc32xx\_mlc\_write\_blocks}}
+\index{lpc32xx\_mlc\_write\_blocks@{lpc32xx\_mlc\_write\_blocks}!NAND MLC Controller@{NAND MLC Controller}}
+\subsubsection{\texorpdfstring{lpc32xx\_mlc\_write\_blocks()}{lpc32xx\_mlc\_write\_blocks()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} lpc32xx\+\_\+mlc\+\_\+write\+\_\+blocks (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{block\+\_\+begin,  }\item[{uint32\+\_\+t}]{block\+\_\+end,  }\item[{const void $\ast$}]{src,  }\item[{size\+\_\+t}]{src\+\_\+size,  }\item[{uint32\+\_\+t}]{page\+\_\+buffer\mbox{[}\+M\+L\+C\+\_\+\+L\+A\+R\+G\+E\+\_\+\+D\+A\+T\+A\+\_\+\+W\+O\+R\+D\+\_\+\+C\+O\+U\+N\+T\mbox{]} }\end{DoxyParamCaption})}
+
+
+
+Writes {\itshape src\+\_\+size} Bytes from {\itshape src} to the flash area specified by {\itshape block\+\_\+begin} and {\itshape block\+\_\+end}. 
+
+The {\itshape page\+\_\+buffer} will be used as an intermediate buffer.
+
+
+\begin{DoxyRetVals}{Return values}
+{\em R\+T\+E\+M\+S\+\_\+\+S\+U\+C\+C\+E\+S\+S\+F\+UL} & Successful operation. \\
+\hline
+{\em R\+T\+E\+M\+S\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+ID} & Invalid {\itshape block\+\_\+begin} or {\itshape block\+\_\+end} value. \\
+\hline
+{\em R\+T\+E\+M\+S\+\_\+\+I\+O\+\_\+\+E\+R\+R\+OR} & Too many bad blocks or source area too big. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{group__lpc32xx__nand__mlc_ga3e7231705d7d840e2e71fbb64534b2f0}\label{group__lpc32xx__nand__mlc_ga3e7231705d7d840e2e71fbb64534b2f0}} 
+\index{NAND MLC Controller@{NAND MLC Controller}!lpc32xx\_mlc\_write\_page\_with\_ecc@{lpc32xx\_mlc\_write\_page\_with\_ecc}}
+\index{lpc32xx\_mlc\_write\_page\_with\_ecc@{lpc32xx\_mlc\_write\_page\_with\_ecc}!NAND MLC Controller@{NAND MLC Controller}}
+\subsubsection{\texorpdfstring{lpc32xx\_mlc\_write\_page\_with\_ecc()}{lpc32xx\_mlc\_write\_page\_with\_ecc()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} lpc32xx\+\_\+mlc\+\_\+write\+\_\+page\+\_\+with\+\_\+ecc (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{page\+\_\+index,  }\item[{const void $\ast$}]{data,  }\item[{const void $\ast$}]{spare }\end{DoxyParamCaption})}
+
+
+
+Writes the page with index {\itshape page\+\_\+index}. 
+
+Only the bytes 0 to 5 of the spare area can be used for user data, the bytes 6 to 15 will be used for the automatically generated E\+CC.
+
+
+\begin{DoxyRetVals}{Return values}
+{\em R\+T\+E\+M\+S\+\_\+\+S\+U\+C\+C\+E\+S\+S\+F\+UL} & Successful operation. \\
+\hline
+{\em R\+T\+E\+M\+S\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+ID} & Invalid {\itshape page\+\_\+index} value. \\
+\hline
+{\em R\+T\+E\+M\+S\+\_\+\+I\+O\+\_\+\+E\+R\+R\+OR} & Write error. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{group__lpc32xx__nand__mlc_gae790b87623d06d4795abd696698e9344}\label{group__lpc32xx__nand__mlc_gae790b87623d06d4795abd696698e9344}} 
+\index{NAND MLC Controller@{NAND MLC Controller}!lpc32xx\_mlc\_zero\_pages@{lpc32xx\_mlc\_zero\_pages}}
+\index{lpc32xx\_mlc\_zero\_pages@{lpc32xx\_mlc\_zero\_pages}!NAND MLC Controller@{NAND MLC Controller}}
+\subsubsection{\texorpdfstring{lpc32xx\_mlc\_zero\_pages()}{lpc32xx\_mlc\_zero\_pages()}}
+{\footnotesize\ttfamily void lpc32xx\+\_\+mlc\+\_\+zero\+\_\+pages (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{page\+\_\+begin,  }\item[{uint32\+\_\+t}]{page\+\_\+end }\end{DoxyParamCaption})}
+
+
+
+Writes zero values to the pages specified by {\itshape page\+\_\+begin} and {\itshape page\+\_\+end}. 
+
+The data and spare area are cleared to zero. This marks the pages as bad. 

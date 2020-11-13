@@ -1,0 +1,78 @@
+\hypertarget{main__rtc_8c}{}\section{cpukit/libmisc/shell/main\+\_\+rtc.c File Reference}
+\label{main__rtc_8c}\index{cpukit/libmisc/shell/main\_rtc.c@{cpukit/libmisc/shell/main\_rtc.c}}
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$inttypes.\+h$>$}\newline
+{\ttfamily \#include $<$sys/types.\+h$>$}\newline
+{\ttfamily \#include $<$sys/stat.\+h$>$}\newline
+{\ttfamily \#include $<$fcntl.\+h$>$}\newline
+{\ttfamily \#include $<$rtems.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/rtc.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/error.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/shell.\+h$>$}\newline
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+R\+T\+C\+\_\+\+S\+H\+E\+L\+L\+\_\+\+E\+R\+R\+OR}(fmt, ...)
+\item 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+R\+T\+C\+\_\+\+S\+H\+E\+L\+L\+\_\+\+E\+R\+R\+O\+R\+\_\+\+SC}(sc,  fmt, ...)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structrtems__shell__cmd__tt}{rtems\+\_\+shell\+\_\+cmd\+\_\+tt}} {\bfseries rtems\+\_\+shell\+\_\+\+R\+T\+C\+\_\+\+Command}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Real time clock shell command. 
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{main__rtc_8c_aeb0e20662c2bfe92434fc296c9161bda}\label{main__rtc_8c_aeb0e20662c2bfe92434fc296c9161bda}} 
+\index{main\_rtc.c@{main\_rtc.c}!RTEMS\_RTC\_SHELL\_ERROR@{RTEMS\_RTC\_SHELL\_ERROR}}
+\index{RTEMS\_RTC\_SHELL\_ERROR@{RTEMS\_RTC\_SHELL\_ERROR}!main\_rtc.c@{main\_rtc.c}}
+\subsubsection{\texorpdfstring{RTEMS\_RTC\_SHELL\_ERROR}{RTEMS\_RTC\_SHELL\_ERROR}}
+{\footnotesize\ttfamily \#define R\+T\+E\+M\+S\+\_\+\+R\+T\+C\+\_\+\+S\+H\+E\+L\+L\+\_\+\+E\+R\+R\+OR(\begin{DoxyParamCaption}\item[{}]{fmt,  }\item[{}]{... }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do} \{ \(\backslash\)}
+\DoxyCodeLine{    printf( \textcolor{stringliteral}{"error: "} fmt \textcolor{stringliteral}{"\(\backslash\)n"}, \#\#\_\_VA\_ARGS\_\_); \(\backslash\)}
+\DoxyCodeLine{    return -1; \(\backslash\)}
+\DoxyCodeLine{  \} \textcolor{keywordflow}{while} (0)}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{main__rtc_8c_a2af5886c6c97384f6f7ebce5f7fd2cf1}\label{main__rtc_8c_a2af5886c6c97384f6f7ebce5f7fd2cf1}} 
+\index{main\_rtc.c@{main\_rtc.c}!RTEMS\_RTC\_SHELL\_ERROR\_SC@{RTEMS\_RTC\_SHELL\_ERROR\_SC}}
+\index{RTEMS\_RTC\_SHELL\_ERROR\_SC@{RTEMS\_RTC\_SHELL\_ERROR\_SC}!main\_rtc.c@{main\_rtc.c}}
+\subsubsection{\texorpdfstring{RTEMS\_RTC\_SHELL\_ERROR\_SC}{RTEMS\_RTC\_SHELL\_ERROR\_SC}}
+{\footnotesize\ttfamily \#define R\+T\+E\+M\+S\+\_\+\+R\+T\+C\+\_\+\+S\+H\+E\+L\+L\+\_\+\+E\+R\+R\+O\+R\+\_\+\+SC(\begin{DoxyParamCaption}\item[{}]{sc,  }\item[{}]{fmt,  }\item[{}]{... }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{if} ((sc) != \mbox{\hyperlink{group__ClassicStatus_gga545d41846817eaba6143d52ee4d9e9fea8a23e2d94778f09399da984d73562536}{RTEMS\_SUCCESSFUL}}) \{ \(\backslash\)}
+\DoxyCodeLine{    printf( \textcolor{stringliteral}{"error: "} fmt \textcolor{stringliteral}{": \%s\(\backslash\)n"}, \#\#\_\_VA\_ARGS\_\_, \mbox{\hyperlink{group__ClassicStatus_ga2266bf8df3365634df546ace2d0f1146}{rtems\_status\_text}}( sc)); \(\backslash\)}
+\DoxyCodeLine{    return -1; \(\backslash\)}
+\DoxyCodeLine{  \}}
+
+\end{DoxyCode}
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{main__rtc_8c_a9318e17653e8bb6c9c00eade30b2f641}\label{main__rtc_8c_a9318e17653e8bb6c9c00eade30b2f641}} 
+\index{main\_rtc.c@{main\_rtc.c}!rtems\_shell\_RTC\_Command@{rtems\_shell\_RTC\_Command}}
+\index{rtems\_shell\_RTC\_Command@{rtems\_shell\_RTC\_Command}!main\_rtc.c@{main\_rtc.c}}
+\subsubsection{\texorpdfstring{rtems\_shell\_RTC\_Command}{rtems\_shell\_RTC\_Command}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structrtems__shell__cmd__tt}{rtems\+\_\+shell\+\_\+cmd\+\_\+tt}} rtems\+\_\+shell\+\_\+\+R\+T\+C\+\_\+\+Command}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{  .name = \textcolor{stringliteral}{"rtc"},}
+\DoxyCodeLine{  .usage = rtems\_rtc\_shell\_usage,}
+\DoxyCodeLine{  .topic = \textcolor{stringliteral}{"misc"},}
+\DoxyCodeLine{  .command = rtems\_rtc\_shell\_main,}
+\DoxyCodeLine{  .alias = \mbox{\hyperlink{bestcomm__api_8h_a872bb74de61c3689ccd5b41873fce42c}{NULL}},}
+\DoxyCodeLine{  .next = \mbox{\hyperlink{bestcomm__api_8h_a872bb74de61c3689ccd5b41873fce42c}{NULL}}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}

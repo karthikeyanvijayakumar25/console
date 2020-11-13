@@ -1,0 +1,44 @@
+\hypertarget{schedulersmpimpl_8h}{}\section{cpukit/include/rtems/score/schedulersmpimpl.h File Reference}
+\label{schedulersmpimpl_8h}\index{cpukit/include/rtems/score/schedulersmpimpl.h@{cpukit/include/rtems/score/schedulersmpimpl.h}}
+
+
+S\+MP Scheduler Implementation.  
+
+
+{\ttfamily \#include $<$rtems/score/schedulersmp.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/score/assert.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/score/chainimpl.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/score/schedulersimpleimpl.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/bsp\+Io.\+h$>$}\newline
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef bool($\ast$ {\bfseries Scheduler\+\_\+\+S\+M\+P\+\_\+\+Has\+\_\+ready}) (\mbox{\hyperlink{structScheduler__Context}{Scheduler\+\_\+\+Context}} $\ast$\mbox{\hyperlink{sun4u_2tte_8h_a9b4a99475e2709333b8e5d70483173f1}{context}})
+\item 
+typedef \mbox{\hyperlink{structScheduler__Node}{Scheduler\+\_\+\+Node}} $\ast$($\ast$ {\bfseries Scheduler\+\_\+\+S\+M\+P\+\_\+\+Get\+\_\+highest\+\_\+ready}) (\mbox{\hyperlink{structScheduler__Context}{Scheduler\+\_\+\+Context}} $\ast$\mbox{\hyperlink{sun4u_2tte_8h_a9b4a99475e2709333b8e5d70483173f1}{context}}, \mbox{\hyperlink{structScheduler__Node}{Scheduler\+\_\+\+Node}} $\ast$node)
+\item 
+typedef \mbox{\hyperlink{structScheduler__Node}{Scheduler\+\_\+\+Node}} $\ast$($\ast$ {\bfseries Scheduler\+\_\+\+S\+M\+P\+\_\+\+Get\+\_\+lowest\+\_\+scheduled}) (\mbox{\hyperlink{structScheduler__Context}{Scheduler\+\_\+\+Context}} $\ast$\mbox{\hyperlink{sun4u_2tte_8h_a9b4a99475e2709333b8e5d70483173f1}{context}}, \mbox{\hyperlink{structScheduler__Node}{Scheduler\+\_\+\+Node}} $\ast$filter)
+\item 
+typedef void($\ast$ {\bfseries Scheduler\+\_\+\+S\+M\+P\+\_\+\+Extract}) (\mbox{\hyperlink{structScheduler__Context}{Scheduler\+\_\+\+Context}} $\ast$\mbox{\hyperlink{sun4u_2tte_8h_a9b4a99475e2709333b8e5d70483173f1}{context}}, \mbox{\hyperlink{structScheduler__Node}{Scheduler\+\_\+\+Node}} $\ast$node\+\_\+to\+\_\+extract)
+\item 
+typedef void($\ast$ {\bfseries Scheduler\+\_\+\+S\+M\+P\+\_\+\+Insert}) (\mbox{\hyperlink{structScheduler__Context}{Scheduler\+\_\+\+Context}} $\ast$\mbox{\hyperlink{sun4u_2tte_8h_a9b4a99475e2709333b8e5d70483173f1}{context}}, \mbox{\hyperlink{structScheduler__Node}{Scheduler\+\_\+\+Node}} $\ast$node\+\_\+to\+\_\+insert, \mbox{\hyperlink{group__RTEMSScorePriority_ga59d02b58072d31a9a1cfe644557aefe2}{Priority\+\_\+\+Control}} insert\+\_\+priority)
+\item 
+typedef void($\ast$ {\bfseries Scheduler\+\_\+\+S\+M\+P\+\_\+\+Move}) (\mbox{\hyperlink{structScheduler__Context}{Scheduler\+\_\+\+Context}} $\ast$\mbox{\hyperlink{sun4u_2tte_8h_a9b4a99475e2709333b8e5d70483173f1}{context}}, \mbox{\hyperlink{structScheduler__Node}{Scheduler\+\_\+\+Node}} $\ast$node\+\_\+to\+\_\+move)
+\item 
+typedef bool($\ast$ {\bfseries Scheduler\+\_\+\+S\+M\+P\+\_\+\+Ask\+\_\+for\+\_\+help}) (\mbox{\hyperlink{structScheduler__Context}{Scheduler\+\_\+\+Context}} $\ast$\mbox{\hyperlink{sun4u_2tte_8h_a9b4a99475e2709333b8e5d70483173f1}{context}}, \mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$thread, \mbox{\hyperlink{structScheduler__Node}{Scheduler\+\_\+\+Node}} $\ast$node)
+\item 
+typedef void($\ast$ {\bfseries Scheduler\+\_\+\+S\+M\+P\+\_\+\+Update}) (\mbox{\hyperlink{structScheduler__Context}{Scheduler\+\_\+\+Context}} $\ast$\mbox{\hyperlink{sun4u_2tte_8h_a9b4a99475e2709333b8e5d70483173f1}{context}}, \mbox{\hyperlink{structScheduler__Node}{Scheduler\+\_\+\+Node}} $\ast$node\+\_\+to\+\_\+update, \mbox{\hyperlink{group__RTEMSScorePriority_ga59d02b58072d31a9a1cfe644557aefe2}{Priority\+\_\+\+Control}} new\+\_\+priority)
+\item 
+typedef void($\ast$ {\bfseries Scheduler\+\_\+\+S\+M\+P\+\_\+\+Set\+\_\+affinity}) (\mbox{\hyperlink{structScheduler__Context}{Scheduler\+\_\+\+Context}} $\ast$\mbox{\hyperlink{sun4u_2tte_8h_a9b4a99475e2709333b8e5d70483173f1}{context}}, \mbox{\hyperlink{structScheduler__Node}{Scheduler\+\_\+\+Node}} $\ast$node, void $\ast$arg)
+\item 
+typedef bool($\ast$ {\bfseries Scheduler\+\_\+\+S\+M\+P\+\_\+\+Enqueue}) (\mbox{\hyperlink{structScheduler__Context}{Scheduler\+\_\+\+Context}} $\ast$\mbox{\hyperlink{sun4u_2tte_8h_a9b4a99475e2709333b8e5d70483173f1}{context}}, \mbox{\hyperlink{structScheduler__Node}{Scheduler\+\_\+\+Node}} $\ast$node\+\_\+to\+\_\+enqueue, \mbox{\hyperlink{group__RTEMSScorePriority_ga59d02b58072d31a9a1cfe644557aefe2}{Priority\+\_\+\+Control}} priority)
+\item 
+typedef void($\ast$ {\bfseries Scheduler\+\_\+\+S\+M\+P\+\_\+\+Allocate\+\_\+processor}) (\mbox{\hyperlink{structScheduler__Context}{Scheduler\+\_\+\+Context}} $\ast$\mbox{\hyperlink{sun4u_2tte_8h_a9b4a99475e2709333b8e5d70483173f1}{context}}, \mbox{\hyperlink{structScheduler__Node}{Scheduler\+\_\+\+Node}} $\ast$scheduled, \mbox{\hyperlink{structScheduler__Node}{Scheduler\+\_\+\+Node}} $\ast$victim, \mbox{\hyperlink{structPer__CPU__Control}{Per\+\_\+\+C\+P\+U\+\_\+\+Control}} $\ast$victim\+\_\+cpu)
+\item 
+typedef void($\ast$ {\bfseries Scheduler\+\_\+\+S\+M\+P\+\_\+\+Register\+\_\+idle}) (\mbox{\hyperlink{structScheduler__Context}{Scheduler\+\_\+\+Context}} $\ast$\mbox{\hyperlink{sun4u_2tte_8h_a9b4a99475e2709333b8e5d70483173f1}{context}}, \mbox{\hyperlink{structScheduler__Node}{Scheduler\+\_\+\+Node}} $\ast$idle, \mbox{\hyperlink{structPer__CPU__Control}{Per\+\_\+\+C\+P\+U\+\_\+\+Control}} $\ast$cpu)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+S\+MP Scheduler Implementation. 
+

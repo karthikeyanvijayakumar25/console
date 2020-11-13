@@ -1,0 +1,103 @@
+\hypertarget{libi2c_8h}{}\section{cpukit/include/rtems/libi2c.h File Reference}
+\label{libi2c_8h}\index{cpukit/include/rtems/libi2c.h@{cpukit/include/rtems/libi2c.h}}
+
+
+Legacy I2C Library.  
+
+
+{\ttfamily \#include $<$rtems.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/io.\+h$>$}\newline
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structrtems__libi2c__bus__t__}{rtems\+\_\+libi2c\+\_\+bus\+\_\+t\+\_\+}}
+\item 
+struct \mbox{\hyperlink{structrtems__libi2c__bus__ops__}{rtems\+\_\+libi2c\+\_\+bus\+\_\+ops\+\_\+}}
+\item 
+struct \mbox{\hyperlink{structrtems__libi2c__drv__t__}{rtems\+\_\+libi2c\+\_\+drv\+\_\+t\+\_\+}}
+\item 
+struct \mbox{\hyperlink{structrtems__libi2c__read__write__t}{rtems\+\_\+libi2c\+\_\+read\+\_\+write\+\_\+t}}
+\item 
+struct \mbox{\hyperlink{structrtems__libi2c__tfr__mode__t}{rtems\+\_\+libi2c\+\_\+tfr\+\_\+mode\+\_\+t}}
+\item 
+struct \mbox{\hyperlink{structrtems__libi2c__tfm__read__write__t}{rtems\+\_\+libi2c\+\_\+tfm\+\_\+read\+\_\+write\+\_\+t}}
+\item 
+struct \mbox{\hyperlink{structrtems__libi2c__read__write__async__t}{rtems\+\_\+libi2c\+\_\+read\+\_\+write\+\_\+async\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{structIO}{IO}} command data for asynchronous read and write. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+L\+I\+B\+I2\+C\+\_\+\+D\+R\+I\+V\+E\+R\+\_\+\+T\+A\+B\+L\+E\+\_\+\+E\+N\+T\+RY}
+\item 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+L\+I\+B\+I2\+C\+\_\+\+M\+A\+K\+E\+\_\+\+M\+I\+N\+OR}(busno,  i2caddr)~((((busno)\&((1$<$$<$3)-\/1))$<$$<$10) $\vert$ ((i2caddr)\&((1$<$$<$10)-\/1)))
+\item 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+L\+I\+B\+I2\+C\+\_\+\+I\+O\+C\+T\+L\+\_\+\+R\+E\+A\+D\+\_\+\+W\+R\+I\+TE}~1
+\item 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+L\+I\+B\+I2\+C\+\_\+\+I\+O\+C\+T\+L\+\_\+\+S\+T\+A\+R\+T\+\_\+\+T\+F\+M\+\_\+\+R\+E\+A\+D\+\_\+\+W\+R\+I\+TE}~2
+\item 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+L\+I\+B\+I2\+C\+\_\+\+I\+O\+C\+T\+L\+\_\+\+S\+E\+T\+\_\+\+T\+F\+R\+M\+O\+DE}~3
+\item 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+L\+I\+B\+I2\+C\+\_\+\+I\+O\+C\+T\+L\+\_\+\+G\+E\+T\+\_\+\+D\+R\+V\+\_\+T}~4
+\item 
+\#define \mbox{\hyperlink{group__libi2c_gadae8be7dedd12dba0ca853f7f041fc1b}{R\+T\+E\+M\+S\+\_\+\+L\+I\+B\+I2\+C\+\_\+\+I\+O\+C\+T\+L\+\_\+\+R\+E\+A\+D\+\_\+\+W\+R\+I\+T\+E\+\_\+\+A\+S\+Y\+NC}}~5
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{structIO}{IO}} control command for asynchronous read and write. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \mbox{\hyperlink{structrtems__libi2c__bus__t__}{rtems\+\_\+libi2c\+\_\+bus\+\_\+t\+\_\+}} {\bfseries rtems\+\_\+libi2c\+\_\+bus\+\_\+t}
+\item 
+typedef struct \mbox{\hyperlink{structrtems__libi2c__bus__ops__}{rtems\+\_\+libi2c\+\_\+bus\+\_\+ops\+\_\+}} {\bfseries rtems\+\_\+libi2c\+\_\+bus\+\_\+ops\+\_\+t}
+\item 
+typedef struct \mbox{\hyperlink{structrtems__libi2c__drv__t__}{rtems\+\_\+libi2c\+\_\+drv\+\_\+t\+\_\+}} {\bfseries rtems\+\_\+libi2c\+\_\+drv\+\_\+t}
+\item 
+typedef void($\ast$ \mbox{\hyperlink{group__libi2c_gae9d3e463bdcf351a6d40952c9c57446c}{rtems\+\_\+libi2c\+\_\+read\+\_\+write\+\_\+done\+\_\+t}}) (int, int, void $\ast$)
+\begin{DoxyCompactList}\small\item\em Notification function type for asynchronous read and write. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int {\bfseries rtems\+\_\+libi2c\+\_\+initialize} (void)
+\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} {\bfseries rtems\+\_\+i2c\+\_\+init} (rtems\+\_\+device\+\_\+major\+\_\+number major, rtems\+\_\+device\+\_\+minor\+\_\+number minor, void $\ast$arg)
+\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} {\bfseries rtems\+\_\+i2c\+\_\+open} (rtems\+\_\+device\+\_\+major\+\_\+number major, rtems\+\_\+device\+\_\+minor\+\_\+number minor, void $\ast$arg)
+\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} {\bfseries rtems\+\_\+i2c\+\_\+close} (rtems\+\_\+device\+\_\+major\+\_\+number major, rtems\+\_\+device\+\_\+minor\+\_\+number minor, void $\ast$arg)
+\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} {\bfseries rtems\+\_\+i2c\+\_\+read} (rtems\+\_\+device\+\_\+major\+\_\+number major, rtems\+\_\+device\+\_\+minor\+\_\+number minor, void $\ast$arg)
+\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} {\bfseries rtems\+\_\+i2c\+\_\+write} (rtems\+\_\+device\+\_\+major\+\_\+number major, rtems\+\_\+device\+\_\+minor\+\_\+number minor, void $\ast$arg)
+\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} {\bfseries rtems\+\_\+i2c\+\_\+ioctl} (rtems\+\_\+device\+\_\+major\+\_\+number major, rtems\+\_\+device\+\_\+minor\+\_\+number minor, void $\ast$arg)
+\item 
+int {\bfseries rtems\+\_\+libi2c\+\_\+register\+\_\+bus} (const char $\ast$name, \mbox{\hyperlink{structrtems__libi2c__bus__t__}{rtems\+\_\+libi2c\+\_\+bus\+\_\+t}} $\ast$bus)
+\item 
+int {\bfseries rtems\+\_\+libi2c\+\_\+register\+\_\+drv} (const char $\ast$name, \mbox{\hyperlink{structrtems__libi2c__drv__t__}{rtems\+\_\+libi2c\+\_\+drv\+\_\+t}} $\ast$drvtbl, unsigned bus, unsigned i2caddr)
+\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} {\bfseries rtems\+\_\+libi2c\+\_\+send\+\_\+start} (rtems\+\_\+device\+\_\+minor\+\_\+number minor)
+\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} {\bfseries rtems\+\_\+libi2c\+\_\+send\+\_\+stop} (rtems\+\_\+device\+\_\+minor\+\_\+number minor)
+\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} {\bfseries rtems\+\_\+libi2c\+\_\+send\+\_\+addr} (rtems\+\_\+device\+\_\+minor\+\_\+number minor, int rw)
+\item 
+int {\bfseries rtems\+\_\+libi2c\+\_\+read\+\_\+bytes} (rtems\+\_\+device\+\_\+minor\+\_\+number minor, unsigned char $\ast$bytes, int nbytes)
+\item 
+int {\bfseries rtems\+\_\+libi2c\+\_\+write\+\_\+bytes} (rtems\+\_\+device\+\_\+minor\+\_\+number minor, const unsigned char $\ast$bytes, int nbytes)
+\item 
+int {\bfseries rtems\+\_\+libi2c\+\_\+start\+\_\+read\+\_\+bytes} (rtems\+\_\+device\+\_\+minor\+\_\+number minor, unsigned char $\ast$bytes, int nbytes)
+\item 
+int {\bfseries rtems\+\_\+libi2c\+\_\+start\+\_\+write\+\_\+bytes} (rtems\+\_\+device\+\_\+minor\+\_\+number minor, const unsigned char $\ast$bytes, int nbytes)
+\item 
+int {\bfseries rtems\+\_\+libi2c\+\_\+ioctl} (rtems\+\_\+device\+\_\+minor\+\_\+number minor, int cmd,...)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const \mbox{\hyperlink{structrtems__driver__address__table}{rtems\+\_\+driver\+\_\+address\+\_\+table}} {\bfseries rtems\+\_\+libi2c\+\_\+io\+\_\+ops}
+\item 
+rtems\+\_\+device\+\_\+major\+\_\+number {\bfseries rtems\+\_\+libi2c\+\_\+major}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Legacy I2C Library. 
+

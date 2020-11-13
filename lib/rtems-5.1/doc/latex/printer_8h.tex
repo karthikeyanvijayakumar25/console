@@ -1,0 +1,46 @@
+\hypertarget{printer_8h}{}\section{cpukit/include/rtems/printer.h File Reference}
+\label{printer_8h}\index{cpukit/include/rtems/printer.h@{cpukit/include/rtems/printer.h}}
+
+
+User print interface to the bsp\+IO print plug in.  
+
+
+{\ttfamily \#include $<$rtems/print.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/chain.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/rtems/intr.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/rtems/tasks.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structrtems__printer}{rtems\+\_\+printer}}
+\item 
+struct \mbox{\hyperlink{structrtems__printer__task__context}{rtems\+\_\+printer\+\_\+task\+\_\+context}}
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef int($\ast$ \mbox{\hyperlink{group__RTEMSPrintSupport_ga1a1d078f9f2a229f68b017e3c21ded61}{rtems\+\_\+print\+\_\+printer}}) (void $\ast$, const char $\ast$\mbox{\hyperlink{structformat}{format}}, va\+\_\+list ap)
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{group__RTEMSPrintSupport_ga553b725c5361554dc9788e1a6a82b373}{rtems\+\_\+print\+\_\+printer\+\_\+printk}} (\mbox{\hyperlink{structrtems__printer}{rtems\+\_\+printer}} $\ast$printer)
+\begin{DoxyCompactList}\small\item\em Initializes the printer to print via \mbox{\hyperlink{bspIo_8h_a380cfecc8035cec8a13b68c0cb90f32f}{printk()}}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__RTEMSPrintSupport_ga90a67702ffe1d15690e1de2b15bf229f}{rtems\+\_\+print\+\_\+printer\+\_\+printf}} (\mbox{\hyperlink{structrtems__printer}{rtems\+\_\+printer}} $\ast$printer)
+\begin{DoxyCompactList}\small\item\em Initializes the printer to print via printf(). \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__RTEMSPrintSupport_ga1495ba5b6aea0cd31f5b98f5c28d3beb}{rtems\+\_\+print\+\_\+printer\+\_\+fprintf}} (\mbox{\hyperlink{structrtems__printer}{rtems\+\_\+printer}} $\ast$printer, F\+I\+LE $\ast$\mbox{\hyperlink{structfile}{file}})
+\begin{DoxyCompactList}\small\item\em Initializes the printer to print via fprintf() using the specified file stream. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__RTEMSPrintSupport_ga527e5e5b91e40e2fc44a13be10484105}{rtems\+\_\+print\+\_\+printer\+\_\+fprintf\+\_\+putc}} (\mbox{\hyperlink{structrtems__printer}{rtems\+\_\+printer}} $\ast$printer)
+\begin{DoxyCompactList}\small\item\em Initializes the printer to print via fprintf() using an unbuffered F\+I\+LE stream with output through \mbox{\hyperlink{bspIo_8h_a6fd11f34260f10035f38a051af872e1e}{rtems\+\_\+putc()}}. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__RTEMSPrintSupport_ga826644e95a7ef01b186d55cf7bf37766}{rtems\+\_\+print\+\_\+printer\+\_\+task}} (\mbox{\hyperlink{structrtems__printer}{rtems\+\_\+printer}} $\ast$printer, \mbox{\hyperlink{structrtems__printer__task__context}{rtems\+\_\+printer\+\_\+task\+\_\+context}} $\ast$\mbox{\hyperlink{sun4u_2tte_8h_a9b4a99475e2709333b8e5d70483173f1}{context}})
+\begin{DoxyCompactList}\small\item\em Creates a printer task. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__RTEMSPrintSupport_ga96fffda2c9f3f85e47b6c15a2c6b3708}{rtems\+\_\+printer\+\_\+task\+\_\+drain}} (\mbox{\hyperlink{structrtems__printer__task__context}{rtems\+\_\+printer\+\_\+task\+\_\+context}} $\ast$\mbox{\hyperlink{sun4u_2tte_8h_a9b4a99475e2709333b8e5d70483173f1}{context}})
+\begin{DoxyCompactList}\small\item\em Drains the work queue of the printer task. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+User print interface to the bsp\+IO print plug in. 
+
+This include file defines the user interface to kernel print methods. 

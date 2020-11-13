@@ -1,0 +1,82 @@
+\hypertarget{error_8c}{}\section{cpukit/libcsupport/src/error.c File Reference}
+\label{error_8c}\index{cpukit/libcsupport/src/error.c@{cpukit/libcsupport/src/error.c}}
+
+
+Error and Panic Report Support.  
+
+
+{\ttfamily \#include $<$rtems.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/error.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/assoc.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/score/sysstate.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/score/threadimpl.\+h$>$}\newline
+{\ttfamily \#include $<$inttypes.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdarg.\+h$>$}\newline
+{\ttfamily \#include $<$errno.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{error_8c_a938f00130f51b521d70c005d878c8495}{rtems\+\_\+verror}} (rtems\+\_\+error\+\_\+code\+\_\+t error\+\_\+flag, const char $\ast$printf\+\_\+format, va\+\_\+list arglist)
+\begin{DoxyCompactList}\small\item\em Report an Error. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{error_8c_a70b6b183e682463a401ceff34acd149c}{rtems\+\_\+error}} (rtems\+\_\+error\+\_\+code\+\_\+t error\+\_\+flag, const char $\ast$printf\+\_\+format,...)
+\begin{DoxyCompactList}\small\item\em Report an Error. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{error_8c_a81c87d4a85e540eea1a030e602c61ac1}\label{error_8c_a81c87d4a85e540eea1a030e602c61ac1}} 
+int {\bfseries rtems\+\_\+panic\+\_\+in\+\_\+progress}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Error and Panic Report Support. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{error_8c_a70b6b183e682463a401ceff34acd149c}\label{error_8c_a70b6b183e682463a401ceff34acd149c}} 
+\index{error.c@{error.c}!rtems\_error@{rtems\_error}}
+\index{rtems\_error@{rtems\_error}!error.c@{error.c}}
+\subsubsection{\texorpdfstring{rtems\_error()}{rtems\_error()}}
+{\footnotesize\ttfamily int rtems\+\_\+error (\begin{DoxyParamCaption}\item[{rtems\+\_\+error\+\_\+code\+\_\+t}]{error\+\_\+code,  }\item[{const char $\ast$}]{printf\+\_\+format,  }\item[{}]{... }\end{DoxyParamCaption})}
+
+
+
+Report an Error. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em error\+\_\+code} & can be specified as any of the following\+: R\+T\+E\+M\+S\+\_\+\+E\+R\+R\+O\+R\+\_\+\+E\+R\+R\+NO -- include errno text in output R\+T\+E\+M\+S\+\_\+\+E\+R\+R\+O\+R\+\_\+\+P\+A\+N\+IC -- halts local system after output R\+T\+E\+M\+S\+\_\+\+E\+R\+R\+O\+R\+\_\+\+A\+B\+O\+RT -- abort after output\\
+\hline
+\mbox{\texttt{ in}}  & {\em printf\+\_\+format} & is a normal printf(3) format string, with its concommitant arguments\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the number of characters written. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{error_8c_a938f00130f51b521d70c005d878c8495}\label{error_8c_a938f00130f51b521d70c005d878c8495}} 
+\index{error.c@{error.c}!rtems\_verror@{rtems\_verror}}
+\index{rtems\_verror@{rtems\_verror}!error.c@{error.c}}
+\subsubsection{\texorpdfstring{rtems\_verror()}{rtems\_verror()}}
+{\footnotesize\ttfamily int rtems\+\_\+verror (\begin{DoxyParamCaption}\item[{rtems\+\_\+error\+\_\+code\+\_\+t}]{error\+\_\+code,  }\item[{const char $\ast$}]{printf\+\_\+format,  }\item[{va\+\_\+list}]{arglist }\end{DoxyParamCaption})}
+
+
+
+Report an Error. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em error\+\_\+code} & can be specified as any of the following\+: R\+T\+E\+M\+S\+\_\+\+E\+R\+R\+O\+R\+\_\+\+E\+R\+R\+NO -- include errno text in output R\+T\+E\+M\+S\+\_\+\+E\+R\+R\+O\+R\+\_\+\+P\+A\+N\+IC -- halts local system after output R\+T\+E\+M\+S\+\_\+\+E\+R\+R\+O\+R\+\_\+\+A\+B\+O\+RT -- abort after output\\
+\hline
+\mbox{\texttt{ in}}  & {\em printf\+\_\+format} & is a normal printf(3) format string, with its concommitant arguments \\
+\hline
+\mbox{\texttt{ in}}  & {\em arglist} & is a varargs list corresponding to printf\+\_\+format\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the number of characters written. 
+\end{DoxyReturn}

@@ -1,0 +1,477 @@
+\hypertarget{rtems-rfs-bitmaps_8h}{}\section{cpukit/include/rtems/rfs/rtems-\/rfs-\/bitmaps.h File Reference}
+\label{rtems-rfs-bitmaps_8h}\index{cpukit/include/rtems/rfs/rtems-\/rfs-\/bitmaps.h@{cpukit/include/rtems/rfs/rtems-\/rfs-\/bitmaps.h}}
+
+
+R\+T\+E\+MS File Systems Bitmap Routines.  
+
+
+{\ttfamily \#include $<$rtems/rfs/rtems-\/rfs-\/buffer.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/rfs/rtems-\/rfs-\/file-\/system-\/fwd.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/rfs/rtems-\/rfs-\/trace.\+h$>$}\newline
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structrtems__rfs__bitmap__control__s}{rtems\+\_\+rfs\+\_\+bitmap\+\_\+control\+\_\+s}}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{rtems-rfs-bitmaps_8h_ae2466cb8aeedf71a7f74bd8f64ff5c83}{R\+T\+E\+M\+S\+\_\+\+R\+F\+S\+\_\+\+B\+I\+T\+M\+A\+P\+\_\+\+C\+L\+E\+A\+R\+\_\+\+Z\+E\+RO}}~0
+\item 
+\mbox{\Hypertarget{rtems-rfs-bitmaps_8h_a7481e2cb1b36032c791045087628eb7c}\label{rtems-rfs-bitmaps_8h_a7481e2cb1b36032c791045087628eb7c}} 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+R\+F\+S\+\_\+\+B\+I\+T\+M\+A\+P\+\_\+\+B\+I\+T\+\_\+\+C\+L\+E\+AR}~1
+\item 
+\mbox{\Hypertarget{rtems-rfs-bitmaps_8h_a63bb6693b6fbf93504c1b55409acb767}\label{rtems-rfs-bitmaps_8h_a63bb6693b6fbf93504c1b55409acb767}} 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+R\+F\+S\+\_\+\+B\+I\+T\+M\+A\+P\+\_\+\+B\+I\+T\+\_\+\+S\+ET}~0
+\item 
+\mbox{\Hypertarget{rtems-rfs-bitmaps_8h_a75a8d77a6c3f2a0807ea9049c02af8a1}\label{rtems-rfs-bitmaps_8h_a75a8d77a6c3f2a0807ea9049c02af8a1}} 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+R\+F\+S\+\_\+\+B\+I\+T\+M\+A\+P\+\_\+\+E\+L\+E\+M\+E\+N\+T\+\_\+\+S\+ET}~(0)
+\item 
+\mbox{\Hypertarget{rtems-rfs-bitmaps_8h_aab2ab360bb5686ad2dab463312ddc1a2}\label{rtems-rfs-bitmaps_8h_aab2ab360bb5686ad2dab463312ddc1a2}} 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+R\+F\+S\+\_\+\+B\+I\+T\+M\+A\+P\+\_\+\+E\+L\+E\+M\+E\+N\+T\+\_\+\+C\+L\+E\+AR}~(\mbox{\hyperlink{rtems-rfs-bitmaps_8h_a4bf35eb00bf85c48828951345f140106}{R\+T\+E\+M\+S\+\_\+\+R\+F\+S\+\_\+\+B\+I\+T\+M\+A\+P\+\_\+\+E\+L\+E\+M\+E\+N\+T\+\_\+\+F\+U\+L\+L\+\_\+\+M\+A\+SK}})
+\item 
+\mbox{\Hypertarget{rtems-rfs-bitmaps_8h_a5b66f10eb60f4f79a04fb598fd0a7b7e}\label{rtems-rfs-bitmaps_8h_a5b66f10eb60f4f79a04fb598fd0a7b7e}} 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+R\+F\+S\+\_\+\+B\+I\+T\+M\+A\+P\+\_\+\+S\+E\+T\+\_\+\+B\+I\+TS}(\+\_\+t,  \+\_\+b)~((\+\_\+t) \& $\sim$(\+\_\+b))
+\item 
+\mbox{\Hypertarget{rtems-rfs-bitmaps_8h_a134612bb6c640929e8b68425e68e93f0}\label{rtems-rfs-bitmaps_8h_a134612bb6c640929e8b68425e68e93f0}} 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+R\+F\+S\+\_\+\+B\+I\+T\+M\+A\+P\+\_\+\+C\+L\+E\+A\+R\+\_\+\+B\+I\+TS}(\+\_\+t,  \+\_\+b)~((\+\_\+t) $\vert$ (\+\_\+b))
+\item 
+\mbox{\Hypertarget{rtems-rfs-bitmaps_8h_ab712e01e501236921b6d173b4266206b}\label{rtems-rfs-bitmaps_8h_ab712e01e501236921b6d173b4266206b}} 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+R\+F\+S\+\_\+\+B\+I\+T\+M\+A\+P\+\_\+\+T\+E\+S\+T\+\_\+\+B\+IT}(\+\_\+t,  \+\_\+b)~(((\+\_\+t) \& (1 $<$$<$ (\+\_\+b))) == 0 ? true \+: false)
+\item 
+\#define \mbox{\hyperlink{rtems-rfs-bitmaps_8h_af0872737babfc79ed19f089f387471cb}{R\+T\+E\+M\+S\+\_\+\+R\+F\+S\+\_\+\+B\+I\+T\+M\+A\+P\+\_\+\+I\+N\+V\+E\+R\+T\+\_\+\+M\+A\+SK}}(\+\_\+mask)~($\sim$(\+\_\+mask))
+\item 
+\#define \mbox{\hyperlink{rtems-rfs-bitmaps_8h_a4bf35eb00bf85c48828951345f140106}{R\+T\+E\+M\+S\+\_\+\+R\+F\+S\+\_\+\+B\+I\+T\+M\+A\+P\+\_\+\+E\+L\+E\+M\+E\+N\+T\+\_\+\+F\+U\+L\+L\+\_\+\+M\+A\+SK}}~(0xffffffff\+U\+L)
+\item 
+\#define \mbox{\hyperlink{rtems-rfs-bitmaps_8h_ad3c7e12ac41b9056a1109cf017258407}{R\+T\+E\+M\+S\+\_\+\+R\+F\+S\+\_\+\+B\+I\+T\+M\+A\+P\+\_\+\+S\+E\+A\+R\+C\+H\+\_\+\+W\+I\+N\+D\+OW}}~(\mbox{\hyperlink{rtems-rfs-bitmaps_8h_a1a65e04003510b29a2fcb55e43940449}{rtems\+\_\+rfs\+\_\+bitmap\+\_\+element\+\_\+bits}} () $\ast$ 64)
+\item 
+\#define \mbox{\hyperlink{rtems-rfs-bitmaps_8h_a50825eb249f04b99969055b75f2da875}{R\+T\+E\+M\+S\+\_\+\+R\+F\+S\+\_\+\+E\+L\+E\+M\+E\+N\+T\+\_\+\+B\+I\+T\+S\+\_\+\+P\+O\+W\+E\+R\+\_\+2}}~(5)
+\item 
+\#define \mbox{\hyperlink{rtems-rfs-bitmaps_8h_a789a8cd5be87a1954942fc26a9e928c0}{rtems\+\_\+rfs\+\_\+bitmap\+\_\+numof\+\_\+bits}}(\+\_\+bytes)~(8 $\ast$ (\+\_\+bytes))
+\item 
+\#define \mbox{\hyperlink{rtems-rfs-bitmaps_8h_a1a65e04003510b29a2fcb55e43940449}{rtems\+\_\+rfs\+\_\+bitmap\+\_\+element\+\_\+bits}}()~\mbox{\hyperlink{rtems-rfs-bitmaps_8h_a789a8cd5be87a1954942fc26a9e928c0}{rtems\+\_\+rfs\+\_\+bitmap\+\_\+numof\+\_\+bits}} (sizeof (\mbox{\hyperlink{rtems-rfs-bitmaps_8h_a2e909e0a0c9759ac71ca69851253b905}{rtems\+\_\+rfs\+\_\+bitmap\+\_\+element}}))
+\item 
+\#define \mbox{\hyperlink{rtems-rfs-bitmaps_8h_a5b8b4c46da0f907b713cf14639b85835}{rtems\+\_\+rfs\+\_\+bitmap\+\_\+search\+\_\+element\+\_\+bits}}()~(\mbox{\hyperlink{rtems-rfs-bitmaps_8h_a1a65e04003510b29a2fcb55e43940449}{rtems\+\_\+rfs\+\_\+bitmap\+\_\+element\+\_\+bits}}() $\ast$ \mbox{\hyperlink{rtems-rfs-bitmaps_8h_a1a65e04003510b29a2fcb55e43940449}{rtems\+\_\+rfs\+\_\+bitmap\+\_\+element\+\_\+bits}}())
+\item 
+\#define \mbox{\hyperlink{rtems-rfs-bitmaps_8h_aa6013059cd24b7dbfca056121f4c51b3}{rtems\+\_\+rfs\+\_\+bitmap\+\_\+elements}}(\+\_\+bits)~((((\+\_\+bits) -\/ 1) / \mbox{\hyperlink{rtems-rfs-bitmaps_8h_a1a65e04003510b29a2fcb55e43940449}{rtems\+\_\+rfs\+\_\+bitmap\+\_\+element\+\_\+bits}}()) + 1)
+\item 
+\#define \mbox{\hyperlink{rtems-rfs-bitmaps_8h_a5f00d9076ee9d45c3b9856d1225b0e4e}{rtems\+\_\+rfs\+\_\+bitmap\+\_\+release\+\_\+buffer}}(\mbox{\hyperlink{struct__fs}{\+\_\+fs}},  \+\_\+bm)~\mbox{\hyperlink{rtems-rfs-buffer_8c_ab50227fce5883f922c86d14e0e558270}{rtems\+\_\+rfs\+\_\+buffer\+\_\+handle\+\_\+release}} (\mbox{\hyperlink{struct__fs}{\+\_\+fs}}, (\+\_\+bm)-\/$>$buffer)
+\item 
+\#define \mbox{\hyperlink{rtems-rfs-bitmaps_8h_a6becee21763009245244280533e33637}{rtems\+\_\+rfs\+\_\+bitmap\+\_\+map\+\_\+index}}(\+\_\+b)~((\+\_\+b) $>$$>$ \mbox{\hyperlink{rtems-rfs-bitmaps_8h_a50825eb249f04b99969055b75f2da875}{R\+T\+E\+M\+S\+\_\+\+R\+F\+S\+\_\+\+E\+L\+E\+M\+E\+N\+T\+\_\+\+B\+I\+T\+S\+\_\+\+P\+O\+W\+E\+R\+\_\+2}})
+\item 
+\#define \mbox{\hyperlink{rtems-rfs-bitmaps_8h_ae9076b7c3012744e43636f2d6e5846e9}{rtems\+\_\+rfs\+\_\+bitmap\+\_\+map\+\_\+offset}}(\+\_\+b)~((\+\_\+b) \& ((1 $<$$<$ \mbox{\hyperlink{rtems-rfs-bitmaps_8h_a50825eb249f04b99969055b75f2da875}{R\+T\+E\+M\+S\+\_\+\+R\+F\+S\+\_\+\+E\+L\+E\+M\+E\+N\+T\+\_\+\+B\+I\+T\+S\+\_\+\+P\+O\+W\+E\+R\+\_\+2}}) -\/ 1))
+\item 
+\#define \mbox{\hyperlink{rtems-rfs-bitmaps_8h_a9d70bc8a3baca07f39595769270f7ecb}{rtems\+\_\+rfs\+\_\+bitmap\+\_\+map\+\_\+size}}(\+\_\+c)~((\+\_\+c)-\/$>$\mbox{\hyperlink{sun4u_2tte_8h_a245260f6f74972558f61b85227df5aae}{size}})
+\item 
+\#define \mbox{\hyperlink{rtems-rfs-bitmaps_8h_a19da0df03523c1b92a30b41af0fa74a1}{rtems\+\_\+rfs\+\_\+bitmap\+\_\+map\+\_\+free}}(\+\_\+c)~((\+\_\+c)-\/$>$free)
+\item 
+\#define \mbox{\hyperlink{rtems-rfs-bitmaps_8h_a8b9a67764746ff36aea1f5c3c85b4349}{rtems\+\_\+rfs\+\_\+bitmap\+\_\+map\+\_\+handle}}(\+\_\+c)~((\+\_\+c)-\/$>$buffer)
+\item 
+\#define \mbox{\hyperlink{rtems-rfs-bitmaps_8h_a72e94408c493773318bf497a9ffe7a65}{rtems\+\_\+rfs\+\_\+bitmap\+\_\+map\+\_\+block}}(\+\_\+c)~((\+\_\+c)-\/$>$block)
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef int32\+\_\+t \mbox{\hyperlink{rtems-rfs-bitmaps_8h_acc1b0aefe1b090890ccbc1b05279a78e}{rtems\+\_\+rfs\+\_\+bitmap\+\_\+bit}}
+\item 
+typedef uint32\+\_\+t \mbox{\hyperlink{rtems-rfs-bitmaps_8h_a2e909e0a0c9759ac71ca69851253b905}{rtems\+\_\+rfs\+\_\+bitmap\+\_\+element}}
+\item 
+typedef \mbox{\hyperlink{rtems-rfs-bitmaps_8h_a2e909e0a0c9759ac71ca69851253b905}{rtems\+\_\+rfs\+\_\+bitmap\+\_\+element}} $\ast$ \mbox{\hyperlink{rtems-rfs-bitmaps_8h_ad7417fa816b1cfccbc03fc564a5b341b}{rtems\+\_\+rfs\+\_\+bitmap\+\_\+map}}
+\item 
+typedef struct \mbox{\hyperlink{structrtems__rfs__bitmap__control__s}{rtems\+\_\+rfs\+\_\+bitmap\+\_\+control\+\_\+s}} \mbox{\hyperlink{rtems-rfs-bitmaps_8h_aa1b1de5abc294444428eb1038d7f898b}{rtems\+\_\+rfs\+\_\+bitmap\+\_\+control}}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{rtems-rfs-bitmaps_8h_a2e909e0a0c9759ac71ca69851253b905}{rtems\+\_\+rfs\+\_\+bitmap\+\_\+element}} \mbox{\hyperlink{rtems-rfs-bitmaps_8h_a6c6686287ba3caa0684a13233870c2ce}{rtems\+\_\+rfs\+\_\+bitmap\+\_\+mask}} (unsigned int \mbox{\hyperlink{sun4u_2tte_8h_a245260f6f74972558f61b85227df5aae}{size}})
+\item 
+\mbox{\hyperlink{rtems-rfs-bitmaps_8h_a2e909e0a0c9759ac71ca69851253b905}{rtems\+\_\+rfs\+\_\+bitmap\+\_\+element}} \mbox{\hyperlink{rtems-rfs-bitmaps_8h_ab7bd24e753558028374d00c06c99ded1}{rtems\+\_\+rfs\+\_\+bitmap\+\_\+mask\+\_\+section}} (unsigned int start, unsigned int end)
+\item 
+int \mbox{\hyperlink{rtems-rfs-bitmaps_8h_a36abb0e8f56bc9307bef555ec0f740be}{rtems\+\_\+rfs\+\_\+bitmap\+\_\+map\+\_\+set}} (\mbox{\hyperlink{rtems-rfs-bitmaps_8h_aa1b1de5abc294444428eb1038d7f898b}{rtems\+\_\+rfs\+\_\+bitmap\+\_\+control}} $\ast$\mbox{\hyperlink{structcontrol}{control}}, \mbox{\hyperlink{rtems-rfs-bitmaps_8h_acc1b0aefe1b090890ccbc1b05279a78e}{rtems\+\_\+rfs\+\_\+bitmap\+\_\+bit}} bit)
+\item 
+int \mbox{\hyperlink{rtems-rfs-bitmaps_8h_aa4bd94b56bf1969270c51b4534ad5677}{rtems\+\_\+rfs\+\_\+bitmap\+\_\+map\+\_\+clear}} (\mbox{\hyperlink{rtems-rfs-bitmaps_8h_aa1b1de5abc294444428eb1038d7f898b}{rtems\+\_\+rfs\+\_\+bitmap\+\_\+control}} $\ast$\mbox{\hyperlink{structcontrol}{control}}, \mbox{\hyperlink{rtems-rfs-bitmaps_8h_acc1b0aefe1b090890ccbc1b05279a78e}{rtems\+\_\+rfs\+\_\+bitmap\+\_\+bit}} bit)
+\item 
+int \mbox{\hyperlink{rtems-rfs-bitmaps_8h_abc6a4b7a3b0ef2602246517f9bb4e9a3}{rtems\+\_\+rfs\+\_\+bitmap\+\_\+map\+\_\+test}} (\mbox{\hyperlink{rtems-rfs-bitmaps_8h_aa1b1de5abc294444428eb1038d7f898b}{rtems\+\_\+rfs\+\_\+bitmap\+\_\+control}} $\ast$\mbox{\hyperlink{structcontrol}{control}}, \mbox{\hyperlink{rtems-rfs-bitmaps_8h_acc1b0aefe1b090890ccbc1b05279a78e}{rtems\+\_\+rfs\+\_\+bitmap\+\_\+bit}} bit, bool $\ast$state)
+\item 
+int \mbox{\hyperlink{rtems-rfs-bitmaps_8h_a88705115aae0a4ba16c754dc2be2ae6b}{rtems\+\_\+rfs\+\_\+bitmap\+\_\+map\+\_\+set\+\_\+all}} (\mbox{\hyperlink{rtems-rfs-bitmaps_8h_aa1b1de5abc294444428eb1038d7f898b}{rtems\+\_\+rfs\+\_\+bitmap\+\_\+control}} $\ast$\mbox{\hyperlink{structcontrol}{control}})
+\item 
+int \mbox{\hyperlink{rtems-rfs-bitmaps_8h_a43897e97e0f7d1c2a7d1defad8d907da}{rtems\+\_\+rfs\+\_\+bitmap\+\_\+map\+\_\+clear\+\_\+all}} (\mbox{\hyperlink{rtems-rfs-bitmaps_8h_aa1b1de5abc294444428eb1038d7f898b}{rtems\+\_\+rfs\+\_\+bitmap\+\_\+control}} $\ast$\mbox{\hyperlink{structcontrol}{control}})
+\item 
+int \mbox{\hyperlink{rtems-rfs-bitmaps_8h_a9440e240c08c3da4132de47af5b9a21b}{rtems\+\_\+rfs\+\_\+bitmap\+\_\+map\+\_\+alloc}} (\mbox{\hyperlink{rtems-rfs-bitmaps_8h_aa1b1de5abc294444428eb1038d7f898b}{rtems\+\_\+rfs\+\_\+bitmap\+\_\+control}} $\ast$\mbox{\hyperlink{structcontrol}{control}}, \mbox{\hyperlink{rtems-rfs-bitmaps_8h_acc1b0aefe1b090890ccbc1b05279a78e}{rtems\+\_\+rfs\+\_\+bitmap\+\_\+bit}} seed, bool $\ast$allocate, \mbox{\hyperlink{rtems-rfs-bitmaps_8h_acc1b0aefe1b090890ccbc1b05279a78e}{rtems\+\_\+rfs\+\_\+bitmap\+\_\+bit}} $\ast$bit)
+\item 
+int \mbox{\hyperlink{rtems-rfs-bitmaps_8h_a4023169caad628bff0943dbfde9a23a9}{rtems\+\_\+rfs\+\_\+bitmap\+\_\+create\+\_\+search}} (\mbox{\hyperlink{rtems-rfs-bitmaps_8h_aa1b1de5abc294444428eb1038d7f898b}{rtems\+\_\+rfs\+\_\+bitmap\+\_\+control}} $\ast$\mbox{\hyperlink{structcontrol}{control}})
+\item 
+int \mbox{\hyperlink{rtems-rfs-bitmaps_8h_a9365e69e28aa6b044fb68f5b56397489}{rtems\+\_\+rfs\+\_\+bitmap\+\_\+open}} (\mbox{\hyperlink{rtems-rfs-bitmaps_8h_aa1b1de5abc294444428eb1038d7f898b}{rtems\+\_\+rfs\+\_\+bitmap\+\_\+control}} $\ast$\mbox{\hyperlink{structcontrol}{control}}, \mbox{\hyperlink{struct__rtems__rfs__file__system}{rtems\+\_\+rfs\+\_\+file\+\_\+system}} $\ast$fs, \mbox{\hyperlink{rtems-rfs-buffer_8h_a17f97c37c5273ad28d413dfd2d175e23}{rtems\+\_\+rfs\+\_\+buffer\+\_\+handle}} $\ast$buffer, size\+\_\+t \mbox{\hyperlink{sun4u_2tte_8h_a245260f6f74972558f61b85227df5aae}{size}}, \mbox{\hyperlink{rtems-rfs-buffer_8h_a5650d53328a5af0a78198fe780aec043}{rtems\+\_\+rfs\+\_\+buffer\+\_\+block}} block)
+\item 
+int \mbox{\hyperlink{rtems-rfs-bitmaps_8h_a9c5c4b4e9f3e518b9b1d9bed4824c67c}{rtems\+\_\+rfs\+\_\+bitmap\+\_\+close}} (\mbox{\hyperlink{rtems-rfs-bitmaps_8h_aa1b1de5abc294444428eb1038d7f898b}{rtems\+\_\+rfs\+\_\+bitmap\+\_\+control}} $\ast$\mbox{\hyperlink{structcontrol}{control}})
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+R\+T\+E\+MS File Systems Bitmap Routines. 
+
+R\+T\+E\+MS File Systems Bitmap Routines.
+
+These functions manage bit maps. A bit map consists of the map of bit allocated in a block and a search map where a bit represents 32 actual bits. The search map allows for a faster search for an available bit as 32 search bits can checked in a test. 
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{rtems-rfs-bitmaps_8h_ae2466cb8aeedf71a7f74bd8f64ff5c83}\label{rtems-rfs-bitmaps_8h_ae2466cb8aeedf71a7f74bd8f64ff5c83}} 
+\index{rtems-\/rfs-\/bitmaps.h@{rtems-\/rfs-\/bitmaps.h}!RTEMS\_RFS\_BITMAP\_CLEAR\_ZERO@{RTEMS\_RFS\_BITMAP\_CLEAR\_ZERO}}
+\index{RTEMS\_RFS\_BITMAP\_CLEAR\_ZERO@{RTEMS\_RFS\_BITMAP\_CLEAR\_ZERO}!rtems-\/rfs-\/bitmaps.h@{rtems-\/rfs-\/bitmaps.h}}
+\subsubsection{\texorpdfstring{RTEMS\_RFS\_BITMAP\_CLEAR\_ZERO}{RTEMS\_RFS\_BITMAP\_CLEAR\_ZERO}}
+{\footnotesize\ttfamily \#define R\+T\+E\+M\+S\+\_\+\+R\+F\+S\+\_\+\+B\+I\+T\+M\+A\+P\+\_\+\+C\+L\+E\+A\+R\+\_\+\+Z\+E\+RO~0}
+
+Define the way the bits are configured. We can have them configured as clear being 0 or clear being 1. This does not effect how masks are defined. A mask always has a 1 for set and 0 for clear. \mbox{\Hypertarget{rtems-rfs-bitmaps_8h_a1a65e04003510b29a2fcb55e43940449}\label{rtems-rfs-bitmaps_8h_a1a65e04003510b29a2fcb55e43940449}} 
+\index{rtems-\/rfs-\/bitmaps.h@{rtems-\/rfs-\/bitmaps.h}!rtems\_rfs\_bitmap\_element\_bits@{rtems\_rfs\_bitmap\_element\_bits}}
+\index{rtems\_rfs\_bitmap\_element\_bits@{rtems\_rfs\_bitmap\_element\_bits}!rtems-\/rfs-\/bitmaps.h@{rtems-\/rfs-\/bitmaps.h}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_bitmap\_element\_bits}{rtems\_rfs\_bitmap\_element\_bits}}
+{\footnotesize\ttfamily \#define rtems\+\_\+rfs\+\_\+bitmap\+\_\+element\+\_\+bits(\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})~\mbox{\hyperlink{rtems-rfs-bitmaps_8h_a789a8cd5be87a1954942fc26a9e928c0}{rtems\+\_\+rfs\+\_\+bitmap\+\_\+numof\+\_\+bits}} (sizeof (\mbox{\hyperlink{rtems-rfs-bitmaps_8h_a2e909e0a0c9759ac71ca69851253b905}{rtems\+\_\+rfs\+\_\+bitmap\+\_\+element}}))}
+
+Return the number of bits for the number of bytes provided. The search element and the element must have the same number of bits. \mbox{\Hypertarget{rtems-rfs-bitmaps_8h_a4bf35eb00bf85c48828951345f140106}\label{rtems-rfs-bitmaps_8h_a4bf35eb00bf85c48828951345f140106}} 
+\index{rtems-\/rfs-\/bitmaps.h@{rtems-\/rfs-\/bitmaps.h}!RTEMS\_RFS\_BITMAP\_ELEMENT\_FULL\_MASK@{RTEMS\_RFS\_BITMAP\_ELEMENT\_FULL\_MASK}}
+\index{RTEMS\_RFS\_BITMAP\_ELEMENT\_FULL\_MASK@{RTEMS\_RFS\_BITMAP\_ELEMENT\_FULL\_MASK}!rtems-\/rfs-\/bitmaps.h@{rtems-\/rfs-\/bitmaps.h}}
+\subsubsection{\texorpdfstring{RTEMS\_RFS\_BITMAP\_ELEMENT\_FULL\_MASK}{RTEMS\_RFS\_BITMAP\_ELEMENT\_FULL\_MASK}}
+{\footnotesize\ttfamily \#define R\+T\+E\+M\+S\+\_\+\+R\+F\+S\+\_\+\+B\+I\+T\+M\+A\+P\+\_\+\+E\+L\+E\+M\+E\+N\+T\+\_\+\+F\+U\+L\+L\+\_\+\+M\+A\+SK~(0xffffffff\+U\+L)}
+
+This is the full mask of the length of the element. A mask is always a 1 for set and 0 for clear. It is not effected by the state of R\+T\+E\+M\+S\+\_\+\+R\+F\+S\+\_\+\+B\+I\+T\+M\+A\+P\+\_\+\+C\+L\+E\+A\+R\+\_\+\+Z\+E\+RO. \mbox{\Hypertarget{rtems-rfs-bitmaps_8h_aa6013059cd24b7dbfca056121f4c51b3}\label{rtems-rfs-bitmaps_8h_aa6013059cd24b7dbfca056121f4c51b3}} 
+\index{rtems-\/rfs-\/bitmaps.h@{rtems-\/rfs-\/bitmaps.h}!rtems\_rfs\_bitmap\_elements@{rtems\_rfs\_bitmap\_elements}}
+\index{rtems\_rfs\_bitmap\_elements@{rtems\_rfs\_bitmap\_elements}!rtems-\/rfs-\/bitmaps.h@{rtems-\/rfs-\/bitmaps.h}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_bitmap\_elements}{rtems\_rfs\_bitmap\_elements}}
+{\footnotesize\ttfamily \#define rtems\+\_\+rfs\+\_\+bitmap\+\_\+elements(\begin{DoxyParamCaption}\item[{}]{\+\_\+bits }\end{DoxyParamCaption})~((((\+\_\+bits) -\/ 1) / \mbox{\hyperlink{rtems-rfs-bitmaps_8h_a1a65e04003510b29a2fcb55e43940449}{rtems\+\_\+rfs\+\_\+bitmap\+\_\+element\+\_\+bits}}()) + 1)}
+
+Return the number of elements for a given number of bits. \mbox{\Hypertarget{rtems-rfs-bitmaps_8h_af0872737babfc79ed19f089f387471cb}\label{rtems-rfs-bitmaps_8h_af0872737babfc79ed19f089f387471cb}} 
+\index{rtems-\/rfs-\/bitmaps.h@{rtems-\/rfs-\/bitmaps.h}!RTEMS\_RFS\_BITMAP\_INVERT\_MASK@{RTEMS\_RFS\_BITMAP\_INVERT\_MASK}}
+\index{RTEMS\_RFS\_BITMAP\_INVERT\_MASK@{RTEMS\_RFS\_BITMAP\_INVERT\_MASK}!rtems-\/rfs-\/bitmaps.h@{rtems-\/rfs-\/bitmaps.h}}
+\subsubsection{\texorpdfstring{RTEMS\_RFS\_BITMAP\_INVERT\_MASK}{RTEMS\_RFS\_BITMAP\_INVERT\_MASK}}
+{\footnotesize\ttfamily \#define R\+T\+E\+M\+S\+\_\+\+R\+F\+S\+\_\+\+B\+I\+T\+M\+A\+P\+\_\+\+I\+N\+V\+E\+R\+T\+\_\+\+M\+A\+SK(\begin{DoxyParamCaption}\item[{}]{\+\_\+mask }\end{DoxyParamCaption})~($\sim$(\+\_\+mask))}
+
+Invert a mask. Masks are always 1 for set and 0 for clear. \mbox{\Hypertarget{rtems-rfs-bitmaps_8h_a72e94408c493773318bf497a9ffe7a65}\label{rtems-rfs-bitmaps_8h_a72e94408c493773318bf497a9ffe7a65}} 
+\index{rtems-\/rfs-\/bitmaps.h@{rtems-\/rfs-\/bitmaps.h}!rtems\_rfs\_bitmap\_map\_block@{rtems\_rfs\_bitmap\_map\_block}}
+\index{rtems\_rfs\_bitmap\_map\_block@{rtems\_rfs\_bitmap\_map\_block}!rtems-\/rfs-\/bitmaps.h@{rtems-\/rfs-\/bitmaps.h}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_bitmap\_map\_block}{rtems\_rfs\_bitmap\_map\_block}}
+{\footnotesize\ttfamily \#define rtems\+\_\+rfs\+\_\+bitmap\+\_\+map\+\_\+block(\begin{DoxyParamCaption}\item[{}]{\+\_\+c }\end{DoxyParamCaption})~((\+\_\+c)-\/$>$block)}
+
+Return the bitmap map block. \mbox{\Hypertarget{rtems-rfs-bitmaps_8h_a19da0df03523c1b92a30b41af0fa74a1}\label{rtems-rfs-bitmaps_8h_a19da0df03523c1b92a30b41af0fa74a1}} 
+\index{rtems-\/rfs-\/bitmaps.h@{rtems-\/rfs-\/bitmaps.h}!rtems\_rfs\_bitmap\_map\_free@{rtems\_rfs\_bitmap\_map\_free}}
+\index{rtems\_rfs\_bitmap\_map\_free@{rtems\_rfs\_bitmap\_map\_free}!rtems-\/rfs-\/bitmaps.h@{rtems-\/rfs-\/bitmaps.h}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_bitmap\_map\_free}{rtems\_rfs\_bitmap\_map\_free}}
+{\footnotesize\ttfamily \#define rtems\+\_\+rfs\+\_\+bitmap\+\_\+map\+\_\+free(\begin{DoxyParamCaption}\item[{}]{\+\_\+c }\end{DoxyParamCaption})~((\+\_\+c)-\/$>$free)}
+
+Return the number of free bits in the bitmap. \mbox{\Hypertarget{rtems-rfs-bitmaps_8h_a8b9a67764746ff36aea1f5c3c85b4349}\label{rtems-rfs-bitmaps_8h_a8b9a67764746ff36aea1f5c3c85b4349}} 
+\index{rtems-\/rfs-\/bitmaps.h@{rtems-\/rfs-\/bitmaps.h}!rtems\_rfs\_bitmap\_map\_handle@{rtems\_rfs\_bitmap\_map\_handle}}
+\index{rtems\_rfs\_bitmap\_map\_handle@{rtems\_rfs\_bitmap\_map\_handle}!rtems-\/rfs-\/bitmaps.h@{rtems-\/rfs-\/bitmaps.h}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_bitmap\_map\_handle}{rtems\_rfs\_bitmap\_map\_handle}}
+{\footnotesize\ttfamily \#define rtems\+\_\+rfs\+\_\+bitmap\+\_\+map\+\_\+handle(\begin{DoxyParamCaption}\item[{}]{\+\_\+c }\end{DoxyParamCaption})~((\+\_\+c)-\/$>$buffer)}
+
+Return the buffer handle. \mbox{\Hypertarget{rtems-rfs-bitmaps_8h_a6becee21763009245244280533e33637}\label{rtems-rfs-bitmaps_8h_a6becee21763009245244280533e33637}} 
+\index{rtems-\/rfs-\/bitmaps.h@{rtems-\/rfs-\/bitmaps.h}!rtems\_rfs\_bitmap\_map\_index@{rtems\_rfs\_bitmap\_map\_index}}
+\index{rtems\_rfs\_bitmap\_map\_index@{rtems\_rfs\_bitmap\_map\_index}!rtems-\/rfs-\/bitmaps.h@{rtems-\/rfs-\/bitmaps.h}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_bitmap\_map\_index}{rtems\_rfs\_bitmap\_map\_index}}
+{\footnotesize\ttfamily \#define rtems\+\_\+rfs\+\_\+bitmap\+\_\+map\+\_\+index(\begin{DoxyParamCaption}\item[{}]{\+\_\+b }\end{DoxyParamCaption})~((\+\_\+b) $>$$>$ \mbox{\hyperlink{rtems-rfs-bitmaps_8h_a50825eb249f04b99969055b75f2da875}{R\+T\+E\+M\+S\+\_\+\+R\+F\+S\+\_\+\+E\+L\+E\+M\+E\+N\+T\+\_\+\+B\+I\+T\+S\+\_\+\+P\+O\+W\+E\+R\+\_\+2}})}
+
+Return the element index for a given bit. We use a macro to hide any implementation assuptions. Typically this would be calculated by dividing the bit index by the number of bits in an element. Given we have a power of 2 as the number of bits we can avoid the division by using a shift. A good compiler should figure this out but I would rather enforce this than rely on the specific backend of a compiler to do the right thing. \mbox{\Hypertarget{rtems-rfs-bitmaps_8h_ae9076b7c3012744e43636f2d6e5846e9}\label{rtems-rfs-bitmaps_8h_ae9076b7c3012744e43636f2d6e5846e9}} 
+\index{rtems-\/rfs-\/bitmaps.h@{rtems-\/rfs-\/bitmaps.h}!rtems\_rfs\_bitmap\_map\_offset@{rtems\_rfs\_bitmap\_map\_offset}}
+\index{rtems\_rfs\_bitmap\_map\_offset@{rtems\_rfs\_bitmap\_map\_offset}!rtems-\/rfs-\/bitmaps.h@{rtems-\/rfs-\/bitmaps.h}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_bitmap\_map\_offset}{rtems\_rfs\_bitmap\_map\_offset}}
+{\footnotesize\ttfamily \#define rtems\+\_\+rfs\+\_\+bitmap\+\_\+map\+\_\+offset(\begin{DoxyParamCaption}\item[{}]{\+\_\+b }\end{DoxyParamCaption})~((\+\_\+b) \& ((1 $<$$<$ \mbox{\hyperlink{rtems-rfs-bitmaps_8h_a50825eb249f04b99969055b75f2da875}{R\+T\+E\+M\+S\+\_\+\+R\+F\+S\+\_\+\+E\+L\+E\+M\+E\+N\+T\+\_\+\+B\+I\+T\+S\+\_\+\+P\+O\+W\+E\+R\+\_\+2}}) -\/ 1))}
+
+Return the bit offset for a given bit in an element in a map. See \mbox{\hyperlink{rtems-rfs-bitmaps_8h_a6becee21763009245244280533e33637}{rtems\+\_\+rfs\+\_\+bitmap\+\_\+map\+\_\+index}} for a detailed reason why. \mbox{\Hypertarget{rtems-rfs-bitmaps_8h_a9d70bc8a3baca07f39595769270f7ecb}\label{rtems-rfs-bitmaps_8h_a9d70bc8a3baca07f39595769270f7ecb}} 
+\index{rtems-\/rfs-\/bitmaps.h@{rtems-\/rfs-\/bitmaps.h}!rtems\_rfs\_bitmap\_map\_size@{rtems\_rfs\_bitmap\_map\_size}}
+\index{rtems\_rfs\_bitmap\_map\_size@{rtems\_rfs\_bitmap\_map\_size}!rtems-\/rfs-\/bitmaps.h@{rtems-\/rfs-\/bitmaps.h}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_bitmap\_map\_size}{rtems\_rfs\_bitmap\_map\_size}}
+{\footnotesize\ttfamily \#define rtems\+\_\+rfs\+\_\+bitmap\+\_\+map\+\_\+size(\begin{DoxyParamCaption}\item[{}]{\+\_\+c }\end{DoxyParamCaption})~((\+\_\+c)-\/$>$\mbox{\hyperlink{sun4u_2tte_8h_a245260f6f74972558f61b85227df5aae}{size}})}
+
+Return the size of the bitmap. \mbox{\Hypertarget{rtems-rfs-bitmaps_8h_a789a8cd5be87a1954942fc26a9e928c0}\label{rtems-rfs-bitmaps_8h_a789a8cd5be87a1954942fc26a9e928c0}} 
+\index{rtems-\/rfs-\/bitmaps.h@{rtems-\/rfs-\/bitmaps.h}!rtems\_rfs\_bitmap\_numof\_bits@{rtems\_rfs\_bitmap\_numof\_bits}}
+\index{rtems\_rfs\_bitmap\_numof\_bits@{rtems\_rfs\_bitmap\_numof\_bits}!rtems-\/rfs-\/bitmaps.h@{rtems-\/rfs-\/bitmaps.h}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_bitmap\_numof\_bits}{rtems\_rfs\_bitmap\_numof\_bits}}
+{\footnotesize\ttfamily \#define rtems\+\_\+rfs\+\_\+bitmap\+\_\+numof\+\_\+bits(\begin{DoxyParamCaption}\item[{}]{\+\_\+bytes }\end{DoxyParamCaption})~(8 $\ast$ (\+\_\+bytes))}
+
+Return the number of bits for the number of bytes provided. \mbox{\Hypertarget{rtems-rfs-bitmaps_8h_a5f00d9076ee9d45c3b9856d1225b0e4e}\label{rtems-rfs-bitmaps_8h_a5f00d9076ee9d45c3b9856d1225b0e4e}} 
+\index{rtems-\/rfs-\/bitmaps.h@{rtems-\/rfs-\/bitmaps.h}!rtems\_rfs\_bitmap\_release\_buffer@{rtems\_rfs\_bitmap\_release\_buffer}}
+\index{rtems\_rfs\_bitmap\_release\_buffer@{rtems\_rfs\_bitmap\_release\_buffer}!rtems-\/rfs-\/bitmaps.h@{rtems-\/rfs-\/bitmaps.h}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_bitmap\_release\_buffer}{rtems\_rfs\_bitmap\_release\_buffer}}
+{\footnotesize\ttfamily \#define rtems\+\_\+rfs\+\_\+bitmap\+\_\+release\+\_\+buffer(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{struct__fs}{\+\_\+fs}},  }\item[{}]{\+\_\+bm }\end{DoxyParamCaption})~\mbox{\hyperlink{rtems-rfs-buffer_8c_ab50227fce5883f922c86d14e0e558270}{rtems\+\_\+rfs\+\_\+buffer\+\_\+handle\+\_\+release}} (\mbox{\hyperlink{struct__fs}{\+\_\+fs}}, (\+\_\+bm)-\/$>$buffer)}
+
+Release the bitmap buffer back to the buffer pool or cache. \mbox{\Hypertarget{rtems-rfs-bitmaps_8h_a5b8b4c46da0f907b713cf14639b85835}\label{rtems-rfs-bitmaps_8h_a5b8b4c46da0f907b713cf14639b85835}} 
+\index{rtems-\/rfs-\/bitmaps.h@{rtems-\/rfs-\/bitmaps.h}!rtems\_rfs\_bitmap\_search\_element\_bits@{rtems\_rfs\_bitmap\_search\_element\_bits}}
+\index{rtems\_rfs\_bitmap\_search\_element\_bits@{rtems\_rfs\_bitmap\_search\_element\_bits}!rtems-\/rfs-\/bitmaps.h@{rtems-\/rfs-\/bitmaps.h}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_bitmap\_search\_element\_bits}{rtems\_rfs\_bitmap\_search\_element\_bits}}
+{\footnotesize\ttfamily \#define rtems\+\_\+rfs\+\_\+bitmap\+\_\+search\+\_\+element\+\_\+bits(\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})~(\mbox{\hyperlink{rtems-rfs-bitmaps_8h_a1a65e04003510b29a2fcb55e43940449}{rtems\+\_\+rfs\+\_\+bitmap\+\_\+element\+\_\+bits}}() $\ast$ \mbox{\hyperlink{rtems-rfs-bitmaps_8h_a1a65e04003510b29a2fcb55e43940449}{rtems\+\_\+rfs\+\_\+bitmap\+\_\+element\+\_\+bits}}())}
+
+Return the number of bits a search element covers. \mbox{\Hypertarget{rtems-rfs-bitmaps_8h_ad3c7e12ac41b9056a1109cf017258407}\label{rtems-rfs-bitmaps_8h_ad3c7e12ac41b9056a1109cf017258407}} 
+\index{rtems-\/rfs-\/bitmaps.h@{rtems-\/rfs-\/bitmaps.h}!RTEMS\_RFS\_BITMAP\_SEARCH\_WINDOW@{RTEMS\_RFS\_BITMAP\_SEARCH\_WINDOW}}
+\index{RTEMS\_RFS\_BITMAP\_SEARCH\_WINDOW@{RTEMS\_RFS\_BITMAP\_SEARCH\_WINDOW}!rtems-\/rfs-\/bitmaps.h@{rtems-\/rfs-\/bitmaps.h}}
+\subsubsection{\texorpdfstring{RTEMS\_RFS\_BITMAP\_SEARCH\_WINDOW}{RTEMS\_RFS\_BITMAP\_SEARCH\_WINDOW}}
+{\footnotesize\ttfamily \#define R\+T\+E\+M\+S\+\_\+\+R\+F\+S\+\_\+\+B\+I\+T\+M\+A\+P\+\_\+\+S\+E\+A\+R\+C\+H\+\_\+\+W\+I\+N\+D\+OW~(\mbox{\hyperlink{rtems-rfs-bitmaps_8h_a1a65e04003510b29a2fcb55e43940449}{rtems\+\_\+rfs\+\_\+bitmap\+\_\+element\+\_\+bits}} () $\ast$ 64)}
+
+The bitmap search window. Searches occur around a seed in either direction for half the window. \mbox{\Hypertarget{rtems-rfs-bitmaps_8h_a50825eb249f04b99969055b75f2da875}\label{rtems-rfs-bitmaps_8h_a50825eb249f04b99969055b75f2da875}} 
+\index{rtems-\/rfs-\/bitmaps.h@{rtems-\/rfs-\/bitmaps.h}!RTEMS\_RFS\_ELEMENT\_BITS\_POWER\_2@{RTEMS\_RFS\_ELEMENT\_BITS\_POWER\_2}}
+\index{RTEMS\_RFS\_ELEMENT\_BITS\_POWER\_2@{RTEMS\_RFS\_ELEMENT\_BITS\_POWER\_2}!rtems-\/rfs-\/bitmaps.h@{rtems-\/rfs-\/bitmaps.h}}
+\subsubsection{\texorpdfstring{RTEMS\_RFS\_ELEMENT\_BITS\_POWER\_2}{RTEMS\_RFS\_ELEMENT\_BITS\_POWER\_2}}
+{\footnotesize\ttfamily \#define R\+T\+E\+M\+S\+\_\+\+R\+F\+S\+\_\+\+E\+L\+E\+M\+E\+N\+T\+\_\+\+B\+I\+T\+S\+\_\+\+P\+O\+W\+E\+R\+\_\+2~(5)}
+
+The power of 2 number of bits in the element. 
+
+\subsection{Typedef Documentation}
+\mbox{\Hypertarget{rtems-rfs-bitmaps_8h_acc1b0aefe1b090890ccbc1b05279a78e}\label{rtems-rfs-bitmaps_8h_acc1b0aefe1b090890ccbc1b05279a78e}} 
+\index{rtems-\/rfs-\/bitmaps.h@{rtems-\/rfs-\/bitmaps.h}!rtems\_rfs\_bitmap\_bit@{rtems\_rfs\_bitmap\_bit}}
+\index{rtems\_rfs\_bitmap\_bit@{rtems\_rfs\_bitmap\_bit}!rtems-\/rfs-\/bitmaps.h@{rtems-\/rfs-\/bitmaps.h}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_bitmap\_bit}{rtems\_rfs\_bitmap\_bit}}
+{\footnotesize\ttfamily typedef int32\+\_\+t \mbox{\hyperlink{rtems-rfs-bitmaps_8h_acc1b0aefe1b090890ccbc1b05279a78e}{rtems\+\_\+rfs\+\_\+bitmap\+\_\+bit}}}
+
+A bit in a map. \mbox{\Hypertarget{rtems-rfs-bitmaps_8h_aa1b1de5abc294444428eb1038d7f898b}\label{rtems-rfs-bitmaps_8h_aa1b1de5abc294444428eb1038d7f898b}} 
+\index{rtems-\/rfs-\/bitmaps.h@{rtems-\/rfs-\/bitmaps.h}!rtems\_rfs\_bitmap\_control@{rtems\_rfs\_bitmap\_control}}
+\index{rtems\_rfs\_bitmap\_control@{rtems\_rfs\_bitmap\_control}!rtems-\/rfs-\/bitmaps.h@{rtems-\/rfs-\/bitmaps.h}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_bitmap\_control}{rtems\_rfs\_bitmap\_control}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structrtems__rfs__bitmap__control__s}{rtems\+\_\+rfs\+\_\+bitmap\+\_\+control\+\_\+s}}  \mbox{\hyperlink{rtems-rfs-bitmaps_8h_aa1b1de5abc294444428eb1038d7f898b}{rtems\+\_\+rfs\+\_\+bitmap\+\_\+control}}}
+
+The bitmap control is a simple way to manage the various parts of a bitmap. \mbox{\Hypertarget{rtems-rfs-bitmaps_8h_a2e909e0a0c9759ac71ca69851253b905}\label{rtems-rfs-bitmaps_8h_a2e909e0a0c9759ac71ca69851253b905}} 
+\index{rtems-\/rfs-\/bitmaps.h@{rtems-\/rfs-\/bitmaps.h}!rtems\_rfs\_bitmap\_element@{rtems\_rfs\_bitmap\_element}}
+\index{rtems\_rfs\_bitmap\_element@{rtems\_rfs\_bitmap\_element}!rtems-\/rfs-\/bitmaps.h@{rtems-\/rfs-\/bitmaps.h}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_bitmap\_element}{rtems\_rfs\_bitmap\_element}}
+{\footnotesize\ttfamily typedef uint32\+\_\+t \mbox{\hyperlink{rtems-rfs-bitmaps_8h_a2e909e0a0c9759ac71ca69851253b905}{rtems\+\_\+rfs\+\_\+bitmap\+\_\+element}}}
+
+The basic element of a bitmap. A bitmap is manipulated by elements. \mbox{\Hypertarget{rtems-rfs-bitmaps_8h_ad7417fa816b1cfccbc03fc564a5b341b}\label{rtems-rfs-bitmaps_8h_ad7417fa816b1cfccbc03fc564a5b341b}} 
+\index{rtems-\/rfs-\/bitmaps.h@{rtems-\/rfs-\/bitmaps.h}!rtems\_rfs\_bitmap\_map@{rtems\_rfs\_bitmap\_map}}
+\index{rtems\_rfs\_bitmap\_map@{rtems\_rfs\_bitmap\_map}!rtems-\/rfs-\/bitmaps.h@{rtems-\/rfs-\/bitmaps.h}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_bitmap\_map}{rtems\_rfs\_bitmap\_map}}
+{\footnotesize\ttfamily typedef \mbox{\hyperlink{rtems-rfs-bitmaps_8h_a2e909e0a0c9759ac71ca69851253b905}{rtems\+\_\+rfs\+\_\+bitmap\+\_\+element}}$\ast$ \mbox{\hyperlink{rtems-rfs-bitmaps_8h_ad7417fa816b1cfccbc03fc564a5b341b}{rtems\+\_\+rfs\+\_\+bitmap\+\_\+map}}}
+
+A bitmap or map is an array of bitmap elements. 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{rtems-rfs-bitmaps_8h_a9c5c4b4e9f3e518b9b1d9bed4824c67c}\label{rtems-rfs-bitmaps_8h_a9c5c4b4e9f3e518b9b1d9bed4824c67c}} 
+\index{rtems-\/rfs-\/bitmaps.h@{rtems-\/rfs-\/bitmaps.h}!rtems\_rfs\_bitmap\_close@{rtems\_rfs\_bitmap\_close}}
+\index{rtems\_rfs\_bitmap\_close@{rtems\_rfs\_bitmap\_close}!rtems-\/rfs-\/bitmaps.h@{rtems-\/rfs-\/bitmaps.h}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_bitmap\_close()}{rtems\_rfs\_bitmap\_close()}}
+{\footnotesize\ttfamily int rtems\+\_\+rfs\+\_\+bitmap\+\_\+close (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{rtems-rfs-bitmaps_8h_aa1b1de5abc294444428eb1038d7f898b}{rtems\+\_\+rfs\+\_\+bitmap\+\_\+control}} $\ast$}]{control }\end{DoxyParamCaption})}
+
+Close a bitmap.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em control} & is the bit map control.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em 0} & Successful operation. \\
+\hline
+{\em error\+\_\+code} & An error occurred. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{rtems-rfs-bitmaps_8h_a4023169caad628bff0943dbfde9a23a9}\label{rtems-rfs-bitmaps_8h_a4023169caad628bff0943dbfde9a23a9}} 
+\index{rtems-\/rfs-\/bitmaps.h@{rtems-\/rfs-\/bitmaps.h}!rtems\_rfs\_bitmap\_create\_search@{rtems\_rfs\_bitmap\_create\_search}}
+\index{rtems\_rfs\_bitmap\_create\_search@{rtems\_rfs\_bitmap\_create\_search}!rtems-\/rfs-\/bitmaps.h@{rtems-\/rfs-\/bitmaps.h}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_bitmap\_create\_search()}{rtems\_rfs\_bitmap\_create\_search()}}
+{\footnotesize\ttfamily int rtems\+\_\+rfs\+\_\+bitmap\+\_\+create\+\_\+search (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{rtems-rfs-bitmaps_8h_aa1b1de5abc294444428eb1038d7f898b}{rtems\+\_\+rfs\+\_\+bitmap\+\_\+control}} $\ast$}]{control }\end{DoxyParamCaption})}
+
+Create a search bit map from the actual bit map.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em control} & is the map control.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em 0} & Successful operation. \\
+\hline
+{\em error\+\_\+code} & An error occurred. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{rtems-rfs-bitmaps_8h_a9440e240c08c3da4132de47af5b9a21b}\label{rtems-rfs-bitmaps_8h_a9440e240c08c3da4132de47af5b9a21b}} 
+\index{rtems-\/rfs-\/bitmaps.h@{rtems-\/rfs-\/bitmaps.h}!rtems\_rfs\_bitmap\_map\_alloc@{rtems\_rfs\_bitmap\_map\_alloc}}
+\index{rtems\_rfs\_bitmap\_map\_alloc@{rtems\_rfs\_bitmap\_map\_alloc}!rtems-\/rfs-\/bitmaps.h@{rtems-\/rfs-\/bitmaps.h}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_bitmap\_map\_alloc()}{rtems\_rfs\_bitmap\_map\_alloc()}}
+{\footnotesize\ttfamily int rtems\+\_\+rfs\+\_\+bitmap\+\_\+map\+\_\+alloc (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{rtems-rfs-bitmaps_8h_aa1b1de5abc294444428eb1038d7f898b}{rtems\+\_\+rfs\+\_\+bitmap\+\_\+control}} $\ast$}]{control,  }\item[{\mbox{\hyperlink{rtems-rfs-bitmaps_8h_acc1b0aefe1b090890ccbc1b05279a78e}{rtems\+\_\+rfs\+\_\+bitmap\+\_\+bit}}}]{seed,  }\item[{bool $\ast$}]{allocate,  }\item[{\mbox{\hyperlink{rtems-rfs-bitmaps_8h_acc1b0aefe1b090890ccbc1b05279a78e}{rtems\+\_\+rfs\+\_\+bitmap\+\_\+bit}} $\ast$}]{bit }\end{DoxyParamCaption})}
+
+Find a free bit searching from the seed up and down until found. The search is performing by moving up from the seed for the window distance then to search down from the seed for the window distance. This is repeated out from the seed for each window until a free bit is found. The search is performed by checking the search map to see if the map has a free bit.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em control} & is the map control. \\
+\hline
+\mbox{\texttt{ in}}  & {\em seed} & is the bit to search out from. \\
+\hline
+\mbox{\texttt{ out}}  & {\em allocate} & A bit was allocated. \\
+\hline
+\mbox{\texttt{ out}}  & {\em bit} & will contain the bit found free if true is returned.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em 0} & Successful operation. \\
+\hline
+{\em error\+\_\+code} & An error occurred. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{rtems-rfs-bitmaps_8h_aa4bd94b56bf1969270c51b4534ad5677}\label{rtems-rfs-bitmaps_8h_aa4bd94b56bf1969270c51b4534ad5677}} 
+\index{rtems-\/rfs-\/bitmaps.h@{rtems-\/rfs-\/bitmaps.h}!rtems\_rfs\_bitmap\_map\_clear@{rtems\_rfs\_bitmap\_map\_clear}}
+\index{rtems\_rfs\_bitmap\_map\_clear@{rtems\_rfs\_bitmap\_map\_clear}!rtems-\/rfs-\/bitmaps.h@{rtems-\/rfs-\/bitmaps.h}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_bitmap\_map\_clear()}{rtems\_rfs\_bitmap\_map\_clear()}}
+{\footnotesize\ttfamily int rtems\+\_\+rfs\+\_\+bitmap\+\_\+map\+\_\+clear (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{rtems-rfs-bitmaps_8h_aa1b1de5abc294444428eb1038d7f898b}{rtems\+\_\+rfs\+\_\+bitmap\+\_\+control}} $\ast$}]{control,  }\item[{\mbox{\hyperlink{rtems-rfs-bitmaps_8h_acc1b0aefe1b090890ccbc1b05279a78e}{rtems\+\_\+rfs\+\_\+bitmap\+\_\+bit}}}]{bit }\end{DoxyParamCaption})}
+
+Clear a bit in a map and make sure the search map bit is clear so a search will find this bit available.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em control} & is the control for the map. \\
+\hline
+\mbox{\texttt{ in}}  & {\em bit} & is the bit in the map to clear.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em 0} & Successful operation. \\
+\hline
+{\em error\+\_\+code} & An error occurred. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{rtems-rfs-bitmaps_8h_a43897e97e0f7d1c2a7d1defad8d907da}\label{rtems-rfs-bitmaps_8h_a43897e97e0f7d1c2a7d1defad8d907da}} 
+\index{rtems-\/rfs-\/bitmaps.h@{rtems-\/rfs-\/bitmaps.h}!rtems\_rfs\_bitmap\_map\_clear\_all@{rtems\_rfs\_bitmap\_map\_clear\_all}}
+\index{rtems\_rfs\_bitmap\_map\_clear\_all@{rtems\_rfs\_bitmap\_map\_clear\_all}!rtems-\/rfs-\/bitmaps.h@{rtems-\/rfs-\/bitmaps.h}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_bitmap\_map\_clear\_all()}{rtems\_rfs\_bitmap\_map\_clear\_all()}}
+{\footnotesize\ttfamily int rtems\+\_\+rfs\+\_\+bitmap\+\_\+map\+\_\+clear\+\_\+all (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{rtems-rfs-bitmaps_8h_aa1b1de5abc294444428eb1038d7f898b}{rtems\+\_\+rfs\+\_\+bitmap\+\_\+control}} $\ast$}]{control }\end{DoxyParamCaption})}
+
+Clear all bits in the bitmap and set the dirty bit.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em control} & is the bitmap control.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em 0} & Successful operation. \\
+\hline
+{\em error\+\_\+code} & An error occurred. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{rtems-rfs-bitmaps_8h_a36abb0e8f56bc9307bef555ec0f740be}\label{rtems-rfs-bitmaps_8h_a36abb0e8f56bc9307bef555ec0f740be}} 
+\index{rtems-\/rfs-\/bitmaps.h@{rtems-\/rfs-\/bitmaps.h}!rtems\_rfs\_bitmap\_map\_set@{rtems\_rfs\_bitmap\_map\_set}}
+\index{rtems\_rfs\_bitmap\_map\_set@{rtems\_rfs\_bitmap\_map\_set}!rtems-\/rfs-\/bitmaps.h@{rtems-\/rfs-\/bitmaps.h}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_bitmap\_map\_set()}{rtems\_rfs\_bitmap\_map\_set()}}
+{\footnotesize\ttfamily int rtems\+\_\+rfs\+\_\+bitmap\+\_\+map\+\_\+set (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{rtems-rfs-bitmaps_8h_aa1b1de5abc294444428eb1038d7f898b}{rtems\+\_\+rfs\+\_\+bitmap\+\_\+control}} $\ast$}]{control,  }\item[{\mbox{\hyperlink{rtems-rfs-bitmaps_8h_acc1b0aefe1b090890ccbc1b05279a78e}{rtems\+\_\+rfs\+\_\+bitmap\+\_\+bit}}}]{bit }\end{DoxyParamCaption})}
+
+Set a bit in a map and if all the bits are set, set the search map bit as well.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em control} & is the control for the map. \\
+\hline
+\mbox{\texttt{ in}}  & {\em bit} & is the bit in the map to set.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em 0} & Successful operation. \\
+\hline
+{\em error\+\_\+code} & An error occurred. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{rtems-rfs-bitmaps_8h_a88705115aae0a4ba16c754dc2be2ae6b}\label{rtems-rfs-bitmaps_8h_a88705115aae0a4ba16c754dc2be2ae6b}} 
+\index{rtems-\/rfs-\/bitmaps.h@{rtems-\/rfs-\/bitmaps.h}!rtems\_rfs\_bitmap\_map\_set\_all@{rtems\_rfs\_bitmap\_map\_set\_all}}
+\index{rtems\_rfs\_bitmap\_map\_set\_all@{rtems\_rfs\_bitmap\_map\_set\_all}!rtems-\/rfs-\/bitmaps.h@{rtems-\/rfs-\/bitmaps.h}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_bitmap\_map\_set\_all()}{rtems\_rfs\_bitmap\_map\_set\_all()}}
+{\footnotesize\ttfamily int rtems\+\_\+rfs\+\_\+bitmap\+\_\+map\+\_\+set\+\_\+all (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{rtems-rfs-bitmaps_8h_aa1b1de5abc294444428eb1038d7f898b}{rtems\+\_\+rfs\+\_\+bitmap\+\_\+control}} $\ast$}]{control }\end{DoxyParamCaption})}
+
+Set all bits in the bitmap and set the dirty bit.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em control} & is the bitmap control.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em 0} & Successful operation. \\
+\hline
+{\em error\+\_\+code} & An error occurred. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{rtems-rfs-bitmaps_8h_abc6a4b7a3b0ef2602246517f9bb4e9a3}\label{rtems-rfs-bitmaps_8h_abc6a4b7a3b0ef2602246517f9bb4e9a3}} 
+\index{rtems-\/rfs-\/bitmaps.h@{rtems-\/rfs-\/bitmaps.h}!rtems\_rfs\_bitmap\_map\_test@{rtems\_rfs\_bitmap\_map\_test}}
+\index{rtems\_rfs\_bitmap\_map\_test@{rtems\_rfs\_bitmap\_map\_test}!rtems-\/rfs-\/bitmaps.h@{rtems-\/rfs-\/bitmaps.h}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_bitmap\_map\_test()}{rtems\_rfs\_bitmap\_map\_test()}}
+{\footnotesize\ttfamily int rtems\+\_\+rfs\+\_\+bitmap\+\_\+map\+\_\+test (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{rtems-rfs-bitmaps_8h_aa1b1de5abc294444428eb1038d7f898b}{rtems\+\_\+rfs\+\_\+bitmap\+\_\+control}} $\ast$}]{control,  }\item[{\mbox{\hyperlink{rtems-rfs-bitmaps_8h_acc1b0aefe1b090890ccbc1b05279a78e}{rtems\+\_\+rfs\+\_\+bitmap\+\_\+bit}}}]{bit,  }\item[{bool $\ast$}]{state }\end{DoxyParamCaption})}
+
+Test a bit in the map.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em control} & is the bitmap control. \\
+\hline
+\mbox{\texttt{ in}}  & {\em bit} & is the bit to test. \\
+\hline
+\mbox{\texttt{ in}}  & {\em state} & is the state of the bit if no error is returned.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em 0} & Successful operation. \\
+\hline
+{\em error\+\_\+code} & An error occurred. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{rtems-rfs-bitmaps_8h_a6c6686287ba3caa0684a13233870c2ce}\label{rtems-rfs-bitmaps_8h_a6c6686287ba3caa0684a13233870c2ce}} 
+\index{rtems-\/rfs-\/bitmaps.h@{rtems-\/rfs-\/bitmaps.h}!rtems\_rfs\_bitmap\_mask@{rtems\_rfs\_bitmap\_mask}}
+\index{rtems\_rfs\_bitmap\_mask@{rtems\_rfs\_bitmap\_mask}!rtems-\/rfs-\/bitmaps.h@{rtems-\/rfs-\/bitmaps.h}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_bitmap\_mask()}{rtems\_rfs\_bitmap\_mask()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{rtems-rfs-bitmaps_8h_a2e909e0a0c9759ac71ca69851253b905}{rtems\+\_\+rfs\+\_\+bitmap\+\_\+element}} rtems\+\_\+rfs\+\_\+bitmap\+\_\+mask (\begin{DoxyParamCaption}\item[{unsigned int}]{size }\end{DoxyParamCaption})}
+
+Create a bit mask with the specified number of bits up to an element\textquotesingle{}s size. The mask is aligned to bit 0 of the element.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em size} & is the number of bits in the mask.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The mask of the argument size number of bits. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{rtems-rfs-bitmaps_8h_ab7bd24e753558028374d00c06c99ded1}\label{rtems-rfs-bitmaps_8h_ab7bd24e753558028374d00c06c99ded1}} 
+\index{rtems-\/rfs-\/bitmaps.h@{rtems-\/rfs-\/bitmaps.h}!rtems\_rfs\_bitmap\_mask\_section@{rtems\_rfs\_bitmap\_mask\_section}}
+\index{rtems\_rfs\_bitmap\_mask\_section@{rtems\_rfs\_bitmap\_mask\_section}!rtems-\/rfs-\/bitmaps.h@{rtems-\/rfs-\/bitmaps.h}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_bitmap\_mask\_section()}{rtems\_rfs\_bitmap\_mask\_section()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{rtems-rfs-bitmaps_8h_a2e909e0a0c9759ac71ca69851253b905}{rtems\+\_\+rfs\+\_\+bitmap\+\_\+element}} rtems\+\_\+rfs\+\_\+bitmap\+\_\+mask\+\_\+section (\begin{DoxyParamCaption}\item[{unsigned int}]{start,  }\item[{unsigned int}]{end }\end{DoxyParamCaption})}
+
+Create a bit mask section. A mask section is a mask that is not aligned to an end of the element.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em start} & is the first bit of the mask numbered from 0. \\
+\hline
+\mbox{\texttt{ in}}  & {\em end} & is the end bit of the mask numbered from 0.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Mask section as defined by the start and end arguments. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{rtems-rfs-bitmaps_8h_a9365e69e28aa6b044fb68f5b56397489}\label{rtems-rfs-bitmaps_8h_a9365e69e28aa6b044fb68f5b56397489}} 
+\index{rtems-\/rfs-\/bitmaps.h@{rtems-\/rfs-\/bitmaps.h}!rtems\_rfs\_bitmap\_open@{rtems\_rfs\_bitmap\_open}}
+\index{rtems\_rfs\_bitmap\_open@{rtems\_rfs\_bitmap\_open}!rtems-\/rfs-\/bitmaps.h@{rtems-\/rfs-\/bitmaps.h}}
+\subsubsection{\texorpdfstring{rtems\_rfs\_bitmap\_open()}{rtems\_rfs\_bitmap\_open()}}
+{\footnotesize\ttfamily int rtems\+\_\+rfs\+\_\+bitmap\+\_\+open (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{rtems-rfs-bitmaps_8h_aa1b1de5abc294444428eb1038d7f898b}{rtems\+\_\+rfs\+\_\+bitmap\+\_\+control}} $\ast$}]{control,  }\item[{\mbox{\hyperlink{struct__rtems__rfs__file__system}{rtems\+\_\+rfs\+\_\+file\+\_\+system}} $\ast$}]{fs,  }\item[{\mbox{\hyperlink{rtems-rfs-buffer_8h_a17f97c37c5273ad28d413dfd2d175e23}{rtems\+\_\+rfs\+\_\+buffer\+\_\+handle}} $\ast$}]{buffer,  }\item[{size\+\_\+t}]{size,  }\item[{\mbox{\hyperlink{rtems-rfs-buffer_8h_a5650d53328a5af0a78198fe780aec043}{rtems\+\_\+rfs\+\_\+buffer\+\_\+block}}}]{block }\end{DoxyParamCaption})}
+
+Open a bitmap control with a map and search map.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em control} & is the map control. \\
+\hline
+\mbox{\texttt{ in}}  & {\em fs} & is the file system data. \\
+\hline
+\mbox{\texttt{ in}}  & {\em buffer} & is a pointer to the buffer handle the map is stored in. \\
+\hline
+\mbox{\texttt{ in}}  & {\em size} & is the number of bits in the map.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em 0} & Successful operation. \\
+\hline
+{\em error\+\_\+code} & An error occurred. \\
+\hline
+\end{DoxyRetVals}

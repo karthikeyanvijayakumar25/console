@@ -1,0 +1,265 @@
+\hypertarget{group__I2CBus}{}\section{I2C Bus Driver}
+\label{group__I2CBus}\index{I2C Bus Driver@{I2C Bus Driver}}
+\subsection*{Files}
+\begin{DoxyCompactItemize}
+\item 
+file \mbox{\hyperlink{i2c-bus_8c}{i2c-\/bus.\+c}}
+\begin{DoxyCompactList}\small\item\em Inter-\/\+Integrated Circuit (I2C) Bus Implementation. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structi2c__bus}{i2c\+\_\+bus}}
+\begin{DoxyCompactList}\small\item\em I2C bus control. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{group__I2CBus_ga8926381d74682fc32fee4727c8d76cac}\label{group__I2CBus_ga8926381d74682fc32fee4727c8d76cac}} 
+\#define \mbox{\hyperlink{group__I2CBus_ga8926381d74682fc32fee4727c8d76cac}{I2\+C\+\_\+\+B\+U\+S\+\_\+\+C\+L\+O\+C\+K\+\_\+\+D\+E\+F\+A\+U\+LT}}~100000
+\begin{DoxyCompactList}\small\item\em Default I2C bus clock in Hz. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{group__I2CBus_ga53427f41c12b16e164f944d99b7a9a25}{i2c\+\_\+bus\+\_\+init}} (\mbox{\hyperlink{structi2c__bus}{i2c\+\_\+bus}} $\ast$bus)
+\begin{DoxyCompactList}\small\item\em Initializes a bus control. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structi2c__bus}{i2c\+\_\+bus}} $\ast$ \mbox{\hyperlink{group__I2CBus_gaf66a22612850bee468de351d1635f28a}{i2c\+\_\+bus\+\_\+alloc\+\_\+and\+\_\+init}} (size\+\_\+t \mbox{\hyperlink{sun4u_2tte_8h_a245260f6f74972558f61b85227df5aae}{size}})
+\begin{DoxyCompactList}\small\item\em Allocates a bus control from the heap and initializes it. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__I2CBus_ga000d6042dcb980798aa8358dbdd5cfba}{i2c\+\_\+bus\+\_\+destroy}} (\mbox{\hyperlink{structi2c__bus}{i2c\+\_\+bus}} $\ast$bus)
+\begin{DoxyCompactList}\small\item\em Destroys a bus control. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__I2CBus_ga174d189593676d0053ca88bc6edb238d}{i2c\+\_\+bus\+\_\+destroy\+\_\+and\+\_\+free}} (\mbox{\hyperlink{structi2c__bus}{i2c\+\_\+bus}} $\ast$bus)
+\begin{DoxyCompactList}\small\item\em Destroys a bus control and frees its memory. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__I2CBus_ga6987c0edf1d40adf54d2689fed47c3cf}{i2c\+\_\+bus\+\_\+register}} (\mbox{\hyperlink{structi2c__bus}{i2c\+\_\+bus}} $\ast$bus, const char $\ast$bus\+\_\+path)
+\begin{DoxyCompactList}\small\item\em Registers a bus control. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__I2CBus_ga18a5b66cdf62e17b8610b99cf8fef086}{i2c\+\_\+bus\+\_\+obtain}} (\mbox{\hyperlink{structi2c__bus}{i2c\+\_\+bus}} $\ast$bus)
+\begin{DoxyCompactList}\small\item\em Obtains the bus. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__I2CBus_gabf677e37011d97c32fc2253004fe1a72}{i2c\+\_\+bus\+\_\+release}} (\mbox{\hyperlink{structi2c__bus}{i2c\+\_\+bus}} $\ast$bus)
+\begin{DoxyCompactList}\small\item\em Releases the bus. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__I2CBus_ga0b55fa0b52b40128fdc2d5fbcfe317dc}{i2c\+\_\+bus\+\_\+transfer}} (\mbox{\hyperlink{structi2c__bus}{i2c\+\_\+bus}} $\ast$bus, \mbox{\hyperlink{structi2c__msg}{i2c\+\_\+msg}} $\ast$msgs, uint32\+\_\+t msg\+\_\+count)
+\begin{DoxyCompactList}\small\item\em Transfers I2C messages. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{I2C IO Control Commands}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__I2CBus_gad159039fe8e5bab657e71ce875d79527}{I2\+C\+\_\+\+B\+U\+S\+\_\+\+O\+B\+T\+A\+IN}}~0x800
+\begin{DoxyCompactList}\small\item\em Obtains the bus. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__I2CBus_ga31412b5ae3e35968e3f9ed8aff9e4c39}{I2\+C\+\_\+\+B\+U\+S\+\_\+\+R\+E\+L\+E\+A\+SE}}~0x801
+\begin{DoxyCompactList}\small\item\em Releases the bus. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__I2CBus_gacda477916c6ce927a3999d80b515af73}{I2\+C\+\_\+\+B\+U\+S\+\_\+\+G\+E\+T\+\_\+\+C\+O\+N\+T\+R\+OL}}~0x802
+\begin{DoxyCompactList}\small\item\em Gets the bus control. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__I2CBus_gaa58f3eb1f3998bd0dd31db7768d4abcf}{I2\+C\+\_\+\+B\+U\+S\+\_\+\+S\+E\+T\+\_\+\+C\+L\+O\+CK}}~0x803
+\begin{DoxyCompactList}\small\item\em Sets the bus clock in Hz. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{group__I2CBus_gacda477916c6ce927a3999d80b515af73}\label{group__I2CBus_gacda477916c6ce927a3999d80b515af73}} 
+\index{I2C Bus Driver@{I2C Bus Driver}!I2C\_BUS\_GET\_CONTROL@{I2C\_BUS\_GET\_CONTROL}}
+\index{I2C\_BUS\_GET\_CONTROL@{I2C\_BUS\_GET\_CONTROL}!I2C Bus Driver@{I2C Bus Driver}}
+\subsubsection{\texorpdfstring{I2C\_BUS\_GET\_CONTROL}{I2C\_BUS\_GET\_CONTROL}}
+{\footnotesize\ttfamily \#define I2\+C\+\_\+\+B\+U\+S\+\_\+\+G\+E\+T\+\_\+\+C\+O\+N\+T\+R\+OL~0x802}
+
+
+
+Gets the bus control. 
+
+The argument type is a pointer to \mbox{\hyperlink{structi2c__bus}{i2c\+\_\+bus}} pointer. \mbox{\Hypertarget{group__I2CBus_gad159039fe8e5bab657e71ce875d79527}\label{group__I2CBus_gad159039fe8e5bab657e71ce875d79527}} 
+\index{I2C Bus Driver@{I2C Bus Driver}!I2C\_BUS\_OBTAIN@{I2C\_BUS\_OBTAIN}}
+\index{I2C\_BUS\_OBTAIN@{I2C\_BUS\_OBTAIN}!I2C Bus Driver@{I2C Bus Driver}}
+\subsubsection{\texorpdfstring{I2C\_BUS\_OBTAIN}{I2C\_BUS\_OBTAIN}}
+{\footnotesize\ttfamily \#define I2\+C\+\_\+\+B\+U\+S\+\_\+\+O\+B\+T\+A\+IN~0x800}
+
+
+
+Obtains the bus. 
+
+This command has no argument. \mbox{\Hypertarget{group__I2CBus_ga31412b5ae3e35968e3f9ed8aff9e4c39}\label{group__I2CBus_ga31412b5ae3e35968e3f9ed8aff9e4c39}} 
+\index{I2C Bus Driver@{I2C Bus Driver}!I2C\_BUS\_RELEASE@{I2C\_BUS\_RELEASE}}
+\index{I2C\_BUS\_RELEASE@{I2C\_BUS\_RELEASE}!I2C Bus Driver@{I2C Bus Driver}}
+\subsubsection{\texorpdfstring{I2C\_BUS\_RELEASE}{I2C\_BUS\_RELEASE}}
+{\footnotesize\ttfamily \#define I2\+C\+\_\+\+B\+U\+S\+\_\+\+R\+E\+L\+E\+A\+SE~0x801}
+
+
+
+Releases the bus. 
+
+This command has no argument. \mbox{\Hypertarget{group__I2CBus_gaa58f3eb1f3998bd0dd31db7768d4abcf}\label{group__I2CBus_gaa58f3eb1f3998bd0dd31db7768d4abcf}} 
+\index{I2C Bus Driver@{I2C Bus Driver}!I2C\_BUS\_SET\_CLOCK@{I2C\_BUS\_SET\_CLOCK}}
+\index{I2C\_BUS\_SET\_CLOCK@{I2C\_BUS\_SET\_CLOCK}!I2C Bus Driver@{I2C Bus Driver}}
+\subsubsection{\texorpdfstring{I2C\_BUS\_SET\_CLOCK}{I2C\_BUS\_SET\_CLOCK}}
+{\footnotesize\ttfamily \#define I2\+C\+\_\+\+B\+U\+S\+\_\+\+S\+E\+T\+\_\+\+C\+L\+O\+CK~0x803}
+
+
+
+Sets the bus clock in Hz. 
+
+The argument type is unsigned long. 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{group__I2CBus_gaf66a22612850bee468de351d1635f28a}\label{group__I2CBus_gaf66a22612850bee468de351d1635f28a}} 
+\index{I2C Bus Driver@{I2C Bus Driver}!i2c\_bus\_alloc\_and\_init@{i2c\_bus\_alloc\_and\_init}}
+\index{i2c\_bus\_alloc\_and\_init@{i2c\_bus\_alloc\_and\_init}!I2C Bus Driver@{I2C Bus Driver}}
+\subsubsection{\texorpdfstring{i2c\_bus\_alloc\_and\_init()}{i2c\_bus\_alloc\_and\_init()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structi2c__bus}{i2c\+\_\+bus}}$\ast$ i2c\+\_\+bus\+\_\+alloc\+\_\+and\+\_\+init (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{size }\end{DoxyParamCaption})}
+
+
+
+Allocates a bus control from the heap and initializes it. 
+
+After a sucessful allocation and initialization the bus control must be destroyed via \mbox{\hyperlink{group__I2CBus_ga174d189593676d0053ca88bc6edb238d}{i2c\+\_\+bus\+\_\+destroy\+\_\+and\+\_\+free()}}. A registered bus control will be automatically destroyed in case the device file is unlinked. Make sure to call \mbox{\hyperlink{group__I2CBus_ga174d189593676d0053ca88bc6edb238d}{i2c\+\_\+bus\+\_\+destroy\+\_\+and\+\_\+free()}} in a custom destruction handler.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em size} & The size of the bus control. This enables the addition of bus controller specific data to the base bus control. The bus control is zero initialized.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em non-\/\+N\+U\+LL} & The new bus control. \\
+\hline
+{\em N\+U\+LL} & An error occurred. The errno is set to indicate the error.\\
+\hline
+\end{DoxyRetVals}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{group__I2CBus_ga6987c0edf1d40adf54d2689fed47c3cf}{i2c\+\_\+bus\+\_\+register()}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{group__I2CBus_ga000d6042dcb980798aa8358dbdd5cfba}\label{group__I2CBus_ga000d6042dcb980798aa8358dbdd5cfba}} 
+\index{I2C Bus Driver@{I2C Bus Driver}!i2c\_bus\_destroy@{i2c\_bus\_destroy}}
+\index{i2c\_bus\_destroy@{i2c\_bus\_destroy}!I2C Bus Driver@{I2C Bus Driver}}
+\subsubsection{\texorpdfstring{i2c\_bus\_destroy()}{i2c\_bus\_destroy()}}
+{\footnotesize\ttfamily void i2c\+\_\+bus\+\_\+destroy (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structi2c__bus}{i2c\+\_\+bus}} $\ast$}]{bus }\end{DoxyParamCaption})}
+
+
+
+Destroys a bus control. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em bus} & The bus control. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__I2CBus_ga174d189593676d0053ca88bc6edb238d}\label{group__I2CBus_ga174d189593676d0053ca88bc6edb238d}} 
+\index{I2C Bus Driver@{I2C Bus Driver}!i2c\_bus\_destroy\_and\_free@{i2c\_bus\_destroy\_and\_free}}
+\index{i2c\_bus\_destroy\_and\_free@{i2c\_bus\_destroy\_and\_free}!I2C Bus Driver@{I2C Bus Driver}}
+\subsubsection{\texorpdfstring{i2c\_bus\_destroy\_and\_free()}{i2c\_bus\_destroy\_and\_free()}}
+{\footnotesize\ttfamily void i2c\+\_\+bus\+\_\+destroy\+\_\+and\+\_\+free (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structi2c__bus}{i2c\+\_\+bus}} $\ast$}]{bus }\end{DoxyParamCaption})}
+
+
+
+Destroys a bus control and frees its memory. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em bus} & The bus control. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__I2CBus_ga53427f41c12b16e164f944d99b7a9a25}\label{group__I2CBus_ga53427f41c12b16e164f944d99b7a9a25}} 
+\index{I2C Bus Driver@{I2C Bus Driver}!i2c\_bus\_init@{i2c\_bus\_init}}
+\index{i2c\_bus\_init@{i2c\_bus\_init}!I2C Bus Driver@{I2C Bus Driver}}
+\subsubsection{\texorpdfstring{i2c\_bus\_init()}{i2c\_bus\_init()}}
+{\footnotesize\ttfamily int i2c\+\_\+bus\+\_\+init (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structi2c__bus}{i2c\+\_\+bus}} $\ast$}]{bus }\end{DoxyParamCaption})}
+
+
+
+Initializes a bus control. 
+
+After a sucessful initialization the bus control must be destroyed via \mbox{\hyperlink{group__I2CBus_ga000d6042dcb980798aa8358dbdd5cfba}{i2c\+\_\+bus\+\_\+destroy()}}. A registered bus control will be automatically destroyed in case the device file is unlinked. Make sure to call \mbox{\hyperlink{group__I2CBus_ga000d6042dcb980798aa8358dbdd5cfba}{i2c\+\_\+bus\+\_\+destroy()}} in a custom destruction handler.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em bus} & The bus control.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em 0} & Successful operation. \\
+\hline
+{\em -\/1} & An error occurred. The errno is set to indicate the error.\\
+\hline
+\end{DoxyRetVals}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{group__I2CBus_ga6987c0edf1d40adf54d2689fed47c3cf}{i2c\+\_\+bus\+\_\+register()}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{group__I2CBus_ga18a5b66cdf62e17b8610b99cf8fef086}\label{group__I2CBus_ga18a5b66cdf62e17b8610b99cf8fef086}} 
+\index{I2C Bus Driver@{I2C Bus Driver}!i2c\_bus\_obtain@{i2c\_bus\_obtain}}
+\index{i2c\_bus\_obtain@{i2c\_bus\_obtain}!I2C Bus Driver@{I2C Bus Driver}}
+\subsubsection{\texorpdfstring{i2c\_bus\_obtain()}{i2c\_bus\_obtain()}}
+{\footnotesize\ttfamily void i2c\+\_\+bus\+\_\+obtain (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structi2c__bus}{i2c\+\_\+bus}} $\ast$}]{bus }\end{DoxyParamCaption})}
+
+
+
+Obtains the bus. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em bus} & The bus control. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__I2CBus_ga6987c0edf1d40adf54d2689fed47c3cf}\label{group__I2CBus_ga6987c0edf1d40adf54d2689fed47c3cf}} 
+\index{I2C Bus Driver@{I2C Bus Driver}!i2c\_bus\_register@{i2c\_bus\_register}}
+\index{i2c\_bus\_register@{i2c\_bus\_register}!I2C Bus Driver@{I2C Bus Driver}}
+\subsubsection{\texorpdfstring{i2c\_bus\_register()}{i2c\_bus\_register()}}
+{\footnotesize\ttfamily int i2c\+\_\+bus\+\_\+register (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structi2c__bus}{i2c\+\_\+bus}} $\ast$}]{bus,  }\item[{const char $\ast$}]{bus\+\_\+path }\end{DoxyParamCaption})}
+
+
+
+Registers a bus control. 
+
+This function claims ownership of the bus control regardless if the registration is successful or not.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em bus} & The bus control. \\
+\hline
+\mbox{\texttt{ in}}  & {\em bus\+\_\+path} & The path to the bus device file.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em 0} & Successful operation. \\
+\hline
+{\em -\/1} & An error occurred. The errno is set to indicate the error. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{group__I2CBus_gabf677e37011d97c32fc2253004fe1a72}\label{group__I2CBus_gabf677e37011d97c32fc2253004fe1a72}} 
+\index{I2C Bus Driver@{I2C Bus Driver}!i2c\_bus\_release@{i2c\_bus\_release}}
+\index{i2c\_bus\_release@{i2c\_bus\_release}!I2C Bus Driver@{I2C Bus Driver}}
+\subsubsection{\texorpdfstring{i2c\_bus\_release()}{i2c\_bus\_release()}}
+{\footnotesize\ttfamily void i2c\+\_\+bus\+\_\+release (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structi2c__bus}{i2c\+\_\+bus}} $\ast$}]{bus }\end{DoxyParamCaption})}
+
+
+
+Releases the bus. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em bus} & The bus control. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__I2CBus_ga0b55fa0b52b40128fdc2d5fbcfe317dc}\label{group__I2CBus_ga0b55fa0b52b40128fdc2d5fbcfe317dc}} 
+\index{I2C Bus Driver@{I2C Bus Driver}!i2c\_bus\_transfer@{i2c\_bus\_transfer}}
+\index{i2c\_bus\_transfer@{i2c\_bus\_transfer}!I2C Bus Driver@{I2C Bus Driver}}
+\subsubsection{\texorpdfstring{i2c\_bus\_transfer()}{i2c\_bus\_transfer()}}
+{\footnotesize\ttfamily int i2c\+\_\+bus\+\_\+transfer (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structi2c__bus}{i2c\+\_\+bus}} $\ast$}]{bus,  }\item[{\mbox{\hyperlink{structi2c__msg}{i2c\+\_\+msg}} $\ast$}]{msgs,  }\item[{uint32\+\_\+t}]{msg\+\_\+count }\end{DoxyParamCaption})}
+
+
+
+Transfers I2C messages. 
+
+The bus is obtained before the transfer and released afterwards.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em bus} & The bus control. \\
+\hline
+\mbox{\texttt{ in}}  & {\em msgs} & The messages to transfer. \\
+\hline
+\mbox{\texttt{ in}}  & {\em msg\+\_\+count} & The count of messages to transfer. It must be positive.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em 0} & Successful operation. \\
+\hline
+{\em negative} & Negative error number in case of an error. \\
+\hline
+\end{DoxyRetVals}

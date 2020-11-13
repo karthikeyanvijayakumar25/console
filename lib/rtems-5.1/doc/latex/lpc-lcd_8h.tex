@@ -1,0 +1,169 @@
+\hypertarget{lpc-lcd_8h}{}\section{bsps/arm/include/bsp/lpc-\/lcd.h File Reference}
+\label{lpc-lcd_8h}\index{bsps/arm/include/bsp/lpc-\/lcd.h@{bsps/arm/include/bsp/lpc-\/lcd.h}}
+
+
+L\+CD support A\+PI.  
+
+
+{\ttfamily \#include $<$bsp/utility.\+h$>$}\newline
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structlpc__cursor}{lpc\+\_\+cursor}}
+\item 
+struct \mbox{\hyperlink{structlpc__lcd}{lpc\+\_\+lcd}}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{Indent}\textbf{ L\+CD Configuration Register}\par
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bfseries L\+C\+D\+\_\+\+C\+F\+G\+\_\+\+C\+L\+K\+D\+IV}(val)~B\+S\+P\+\_\+\+F\+L\+D32(val, 0, 4)
+\item 
+\#define {\bfseries L\+C\+D\+\_\+\+C\+F\+G\+\_\+\+H\+C\+L\+K\+\_\+\+E\+N\+A\+B\+LE}~B\+S\+P\+\_\+\+B\+I\+T32(5)
+\item 
+\#define {\bfseries L\+C\+D\+\_\+\+C\+F\+G\+\_\+\+M\+O\+D\+E\+\_\+\+S\+E\+L\+E\+CT}(val)~B\+S\+P\+\_\+\+F\+L\+D32(val, 6, 7)
+\item 
+\#define {\bfseries L\+C\+D\+\_\+\+C\+F\+G\+\_\+\+D\+I\+S\+P\+L\+A\+Y\+\_\+\+T\+Y\+PE}~B\+S\+P\+\_\+\+B\+I\+T32(8)
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ L\+CD Horizontal Timing Register}\par
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bfseries L\+C\+D\+\_\+\+T\+I\+M\+H\+\_\+\+P\+PL}(val)~B\+S\+P\+\_\+\+F\+L\+D32(val, 2, 7)
+\item 
+\#define {\bfseries L\+C\+D\+\_\+\+T\+I\+M\+H\+\_\+\+P\+P\+L\+\_\+\+G\+ET}(reg)~B\+S\+P\+\_\+\+F\+L\+D32\+G\+ET(reg, 2, 7)
+\item 
+\#define {\bfseries L\+C\+D\+\_\+\+T\+I\+M\+H\+\_\+\+H\+SW}(val)~B\+S\+P\+\_\+\+F\+L\+D32(val, 8, 15)
+\item 
+\#define {\bfseries L\+C\+D\+\_\+\+T\+I\+M\+H\+\_\+\+H\+S\+W\+\_\+\+G\+ET}(reg)~B\+S\+P\+\_\+\+F\+L\+D32\+G\+ET(reg, 8, 15)
+\item 
+\#define {\bfseries L\+C\+D\+\_\+\+T\+I\+M\+H\+\_\+\+H\+FP}(val)~B\+S\+P\+\_\+\+F\+L\+D32(val, 16, 23)
+\item 
+\#define {\bfseries L\+C\+D\+\_\+\+T\+I\+M\+H\+\_\+\+H\+F\+P\+\_\+\+G\+ET}(reg)~B\+S\+P\+\_\+\+F\+L\+D32\+G\+ET(reg, 16, 23)
+\item 
+\#define {\bfseries L\+C\+D\+\_\+\+T\+I\+M\+H\+\_\+\+H\+BP}(val)~B\+S\+P\+\_\+\+F\+L\+D32(val, 24, 31)
+\item 
+\#define {\bfseries L\+C\+D\+\_\+\+T\+I\+M\+H\+\_\+\+H\+B\+P\+\_\+\+G\+ET}(reg)~B\+S\+P\+\_\+\+F\+L\+D32\+G\+ET(reg, 24, 31)
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ L\+CD Vertical Timing Register}\par
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bfseries L\+C\+D\+\_\+\+T\+I\+M\+V\+\_\+\+L\+PP}(val)~B\+S\+P\+\_\+\+F\+L\+D32(val, 0, 9)
+\item 
+\#define {\bfseries L\+C\+D\+\_\+\+T\+I\+M\+V\+\_\+\+L\+P\+P\+\_\+\+G\+ET}(reg)~B\+S\+P\+\_\+\+F\+L\+D32\+G\+ET(reg, 0, 9)
+\item 
+\#define {\bfseries L\+C\+D\+\_\+\+T\+I\+M\+V\+\_\+\+V\+SW}(val)~B\+S\+P\+\_\+\+F\+L\+D32(val, 10, 15)
+\item 
+\#define {\bfseries L\+C\+D\+\_\+\+T\+I\+M\+V\+\_\+\+V\+S\+W\+\_\+\+G\+ET}(reg)~B\+S\+P\+\_\+\+F\+L\+D32\+G\+ET(reg, 10, 15)
+\item 
+\#define {\bfseries L\+C\+D\+\_\+\+T\+I\+M\+V\+\_\+\+V\+FP}(val)~B\+S\+P\+\_\+\+F\+L\+D32(val, 16, 23)
+\item 
+\#define {\bfseries L\+C\+D\+\_\+\+T\+I\+M\+V\+\_\+\+V\+F\+P\+\_\+\+G\+ET}(reg)~B\+S\+P\+\_\+\+F\+L\+D32\+G\+ET(reg, 16, 23)
+\item 
+\#define {\bfseries L\+C\+D\+\_\+\+T\+I\+M\+V\+\_\+\+V\+BP}(val)~B\+S\+P\+\_\+\+F\+L\+D32(val, 24, 31)
+\item 
+\#define {\bfseries L\+C\+D\+\_\+\+T\+I\+M\+V\+\_\+\+V\+B\+P\+\_\+\+G\+ET}(reg)~B\+S\+P\+\_\+\+F\+L\+D32\+G\+ET(reg, 24, 31)
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ L\+CD Clock and Signal Polarity Register}\par
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bfseries L\+C\+D\+\_\+\+P\+O\+L\+\_\+\+P\+C\+D\+\_\+\+LO}(val)~B\+S\+P\+\_\+\+F\+L\+D32(val, 0, 4)
+\item 
+\#define {\bfseries L\+C\+D\+\_\+\+P\+O\+L\+\_\+\+P\+C\+D\+\_\+\+L\+O\+\_\+\+G\+ET}(reg)~B\+S\+P\+\_\+\+F\+L\+D32\+G\+ET(reg, 0, 4)
+\item 
+\#define {\bfseries L\+C\+D\+\_\+\+P\+O\+L\+\_\+\+C\+L\+K\+S\+EL}~B\+S\+P\+\_\+\+B\+I\+T32(5)
+\item 
+\#define {\bfseries L\+C\+D\+\_\+\+P\+O\+L\+\_\+\+A\+CB}(val)~B\+S\+P\+\_\+\+F\+L\+D32(val, 6, 10)
+\item 
+\#define {\bfseries L\+C\+D\+\_\+\+P\+O\+L\+\_\+\+A\+C\+B\+\_\+\+G\+ET}(reg)~B\+S\+P\+\_\+\+F\+L\+D32\+G\+ET(reg, 6, 10)
+\item 
+\#define {\bfseries L\+C\+D\+\_\+\+P\+O\+L\+\_\+\+I\+VS}~B\+S\+P\+\_\+\+B\+I\+T32(11)
+\item 
+\#define {\bfseries L\+C\+D\+\_\+\+P\+O\+L\+\_\+\+I\+HS}~B\+S\+P\+\_\+\+B\+I\+T32(12)
+\item 
+\#define {\bfseries L\+C\+D\+\_\+\+P\+O\+L\+\_\+\+I\+PC}~B\+S\+P\+\_\+\+B\+I\+T32(13)
+\item 
+\#define {\bfseries L\+C\+D\+\_\+\+P\+O\+L\+\_\+\+I\+OE}~B\+S\+P\+\_\+\+B\+I\+T32(14)
+\item 
+\#define {\bfseries L\+C\+D\+\_\+\+P\+O\+L\+\_\+\+C\+PL}(val)~B\+S\+P\+\_\+\+F\+L\+D32(val, 16, 25)
+\item 
+\#define {\bfseries L\+C\+D\+\_\+\+P\+O\+L\+\_\+\+C\+P\+L\+\_\+\+G\+ET}(reg)~B\+S\+P\+\_\+\+F\+L\+D32\+G\+ET(reg, 16, 25)
+\item 
+\#define {\bfseries L\+C\+D\+\_\+\+P\+O\+L\+\_\+\+B\+CD}~B\+S\+P\+\_\+\+B\+I\+T32(26)
+\item 
+\#define {\bfseries L\+C\+D\+\_\+\+P\+O\+L\+\_\+\+P\+C\+D\+\_\+\+HI}(val)~B\+S\+P\+\_\+\+F\+L\+D32(val, 27, 31)
+\item 
+\#define {\bfseries L\+C\+D\+\_\+\+P\+O\+L\+\_\+\+P\+C\+D\+\_\+\+H\+I\+\_\+\+G\+ET}(reg)~B\+S\+P\+\_\+\+F\+L\+D32\+G\+ET(reg, 27, 31)
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ L\+CD Line End Control Register}\par
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bfseries L\+C\+D\+\_\+\+L\+E\+\_\+\+L\+ED}(val)~B\+S\+P\+\_\+\+F\+L\+D32(val, 0, 6)
+\item 
+\#define {\bfseries L\+C\+D\+\_\+\+L\+E\+\_\+\+L\+EE}~B\+S\+P\+\_\+\+B\+I\+T32(16)
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ L\+CD Control Register}\par
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bfseries L\+C\+D\+\_\+\+C\+T\+R\+L\+\_\+\+L\+C\+D\+EN}~B\+S\+P\+\_\+\+B\+I\+T32(0)
+\item 
+\#define {\bfseries L\+C\+D\+\_\+\+C\+T\+R\+L\+\_\+\+L\+C\+D\+B\+PP}(val)~B\+S\+P\+\_\+\+F\+L\+D32(val, 1, 3)
+\item 
+\#define {\bfseries L\+C\+D\+\_\+\+C\+T\+R\+L\+\_\+\+L\+C\+D\+B\+P\+P\+\_\+\+G\+ET}(reg)~B\+S\+P\+\_\+\+F\+L\+D32\+G\+ET(reg, 1, 3)
+\item 
+\#define {\bfseries L\+C\+D\+\_\+\+C\+T\+R\+L\+\_\+\+L\+C\+D\+BW}~B\+S\+P\+\_\+\+B\+I\+T32(4)
+\item 
+\#define {\bfseries L\+C\+D\+\_\+\+C\+T\+R\+L\+\_\+\+L\+C\+D\+T\+FT}~B\+S\+P\+\_\+\+B\+I\+T32(5)
+\item 
+\#define {\bfseries L\+C\+D\+\_\+\+C\+T\+R\+L\+\_\+\+L\+C\+D\+M\+O\+N\+O8}~B\+S\+P\+\_\+\+B\+I\+T32(6)
+\item 
+\#define {\bfseries L\+C\+D\+\_\+\+C\+T\+R\+L\+\_\+\+L\+C\+D\+D\+U\+AL}~B\+S\+P\+\_\+\+B\+I\+T32(7)
+\item 
+\#define {\bfseries L\+C\+D\+\_\+\+C\+T\+R\+L\+\_\+\+B\+GR}~B\+S\+P\+\_\+\+B\+I\+T32(8)
+\item 
+\#define {\bfseries L\+C\+D\+\_\+\+C\+T\+R\+L\+\_\+\+B\+E\+BO}~B\+S\+P\+\_\+\+B\+I\+T32(9)
+\item 
+\#define {\bfseries L\+C\+D\+\_\+\+C\+T\+R\+L\+\_\+\+B\+E\+PO}~B\+S\+P\+\_\+\+B\+I\+T32(10)
+\item 
+\#define {\bfseries L\+C\+D\+\_\+\+C\+T\+R\+L\+\_\+\+L\+C\+D\+P\+WR}~B\+S\+P\+\_\+\+B\+I\+T32(11)
+\item 
+\#define {\bfseries L\+C\+D\+\_\+\+C\+T\+R\+L\+\_\+\+L\+C\+D\+V\+C\+O\+MP}(val)~B\+S\+P\+\_\+\+F\+L\+D32(val, 12, 13)
+\item 
+\#define {\bfseries L\+C\+D\+\_\+\+C\+T\+R\+L\+\_\+\+L\+C\+D\+V\+C\+O\+M\+P\+\_\+\+G\+ET}(reg)~B\+S\+P\+\_\+\+F\+L\+D32\+G\+ET(reg, 12, 13)
+\item 
+\#define {\bfseries L\+C\+D\+\_\+\+C\+T\+R\+L\+\_\+\+W\+A\+T\+E\+R\+M\+A\+RK}~B\+S\+P\+\_\+\+B\+I\+T32(16)
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ L\+CD Interrupt Registers}\par
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bfseries L\+C\+D\+\_\+\+I\+N\+T\+\_\+\+F\+UF}~B\+S\+P\+\_\+\+B\+I\+T32(1)
+\item 
+\#define {\bfseries L\+C\+D\+\_\+\+I\+N\+T\+\_\+\+L\+N\+BU}~B\+S\+P\+\_\+\+B\+I\+T32(2)
+\item 
+\#define {\bfseries L\+C\+D\+\_\+\+I\+N\+T\+\_\+\+V\+C\+O\+MP}~B\+S\+P\+\_\+\+B\+I\+T32(3)
+\item 
+\#define {\bfseries L\+C\+D\+\_\+\+I\+N\+T\+\_\+\+B\+ER}~B\+S\+P\+\_\+\+B\+I\+T32(4)
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ L\+CD Color Palette Register}\par
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bfseries L\+C\+D\+\_\+\+P\+A\+L\+\_\+R}(val)~B\+S\+P\+\_\+\+F\+L\+D16(val, 0, 4)
+\item 
+\#define {\bfseries L\+C\+D\+\_\+\+P\+A\+L\+\_\+G}(val)~B\+S\+P\+\_\+\+F\+L\+D16(val, 5, 9)
+\item 
+\#define {\bfseries L\+C\+D\+\_\+\+P\+A\+L\+\_\+B}(val)~B\+S\+P\+\_\+\+F\+L\+D16(val, 10, 14)
+\item 
+\#define {\bfseries L\+C\+D\+\_\+\+P\+A\+L\+\_\+I}~B\+S\+P\+\_\+\+B\+I\+T16(15)
+\end{DoxyCompactItemize}
+\end{Indent}
+
+
+\subsection{Detailed Description}
+L\+CD support A\+PI. 
+

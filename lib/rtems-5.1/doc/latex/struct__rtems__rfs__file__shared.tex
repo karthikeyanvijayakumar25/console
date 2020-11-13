@@ -1,0 +1,92 @@
+\hypertarget{struct__rtems__rfs__file__shared}{}\section{\+\_\+rtems\+\_\+rfs\+\_\+file\+\_\+shared Struct Reference}
+\label{struct__rtems__rfs__file__shared}\index{\_rtems\_rfs\_file\_shared@{\_rtems\_rfs\_file\_shared}}
+
+
+{\ttfamily \#include $<$rtems-\/rfs-\/file.\+h$>$}
+
+\subsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structChain__Node__struct}{rtems\+\_\+chain\+\_\+node}} \mbox{\hyperlink{struct__rtems__rfs__file__shared_ac9a589e20a44f9986e7efb45cf9db9b5}{link}}
+\item 
+int \mbox{\hyperlink{struct__rtems__rfs__file__shared_a7c0a1d1b43b6a47eb72ca556fc34e43f}{references}}
+\item 
+\mbox{\hyperlink{rtems-rfs-inode_8h_a91f02dac5a2d91e072d676f3266ab8d2}{rtems\+\_\+rfs\+\_\+inode\+\_\+handle}} \mbox{\hyperlink{struct__rtems__rfs__file__shared_a612c91853406705d5737030a7f6a157e}{inode}}
+\item 
+\mbox{\hyperlink{rtems-rfs-block_8h_af488270acef452a961e888bffdc3a7bf}{rtems\+\_\+rfs\+\_\+block\+\_\+map}} \mbox{\hyperlink{struct__rtems__rfs__file__shared_aad10c2e2758c7412b77b6b674b0bb1f2}{map}}
+\item 
+\mbox{\hyperlink{rtems-rfs-block-pos_8h_aa72438eee22908110dc633ca6b89b390}{rtems\+\_\+rfs\+\_\+block\+\_\+size}} \mbox{\hyperlink{struct__rtems__rfs__file__shared_a9e560fbf0582c82fa673e31dd9bbb49f}{size}}
+\item 
+\mbox{\hyperlink{rtems-rfs-inode_8h_a7877cc60240d76cccb89acaffdd20aa6}{rtems\+\_\+rfs\+\_\+time}} \mbox{\hyperlink{struct__rtems__rfs__file__shared_a9f36f49e4410534f4b9d71c24ba5e7a5}{atime}}
+\item 
+\mbox{\hyperlink{rtems-rfs-inode_8h_a7877cc60240d76cccb89acaffdd20aa6}{rtems\+\_\+rfs\+\_\+time}} \mbox{\hyperlink{struct__rtems__rfs__file__shared_abd80b3c44c16145f2f82c6ca5cce6f50}{mtime}}
+\item 
+\mbox{\hyperlink{rtems-rfs-inode_8h_a7877cc60240d76cccb89acaffdd20aa6}{rtems\+\_\+rfs\+\_\+time}} \mbox{\hyperlink{struct__rtems__rfs__file__shared_aa97064ef5014a727cbbb43ac018dd774}{ctime}}
+\item 
+\mbox{\hyperlink{struct__rtems__rfs__file__system}{rtems\+\_\+rfs\+\_\+file\+\_\+system}} $\ast$ \mbox{\hyperlink{struct__rtems__rfs__file__shared_a7b2dd0a580796f25377f1417deb9bf6d}{fs}}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+File data that is shared by various file handles accessing the same file. We hold various inode values common to the file that can change frequently so the inode is not thrashed yet we meet the requirements of the P\+O\+S\+IX standard. The stat call needs to check the shared file data. 
+
+\subsection{Field Documentation}
+\mbox{\Hypertarget{struct__rtems__rfs__file__shared_a9f36f49e4410534f4b9d71c24ba5e7a5}\label{struct__rtems__rfs__file__shared_a9f36f49e4410534f4b9d71c24ba5e7a5}} 
+\index{\_rtems\_rfs\_file\_shared@{\_rtems\_rfs\_file\_shared}!atime@{atime}}
+\index{atime@{atime}!\_rtems\_rfs\_file\_shared@{\_rtems\_rfs\_file\_shared}}
+\subsubsection{\texorpdfstring{atime}{atime}}
+{\footnotesize\ttfamily \mbox{\hyperlink{rtems-rfs-inode_8h_a7877cc60240d76cccb89acaffdd20aa6}{rtems\+\_\+rfs\+\_\+time}} \+\_\+rtems\+\_\+rfs\+\_\+file\+\_\+shared\+::atime}
+
+The access time. The last time the file was read. \mbox{\Hypertarget{struct__rtems__rfs__file__shared_aa97064ef5014a727cbbb43ac018dd774}\label{struct__rtems__rfs__file__shared_aa97064ef5014a727cbbb43ac018dd774}} 
+\index{\_rtems\_rfs\_file\_shared@{\_rtems\_rfs\_file\_shared}!ctime@{ctime}}
+\index{ctime@{ctime}!\_rtems\_rfs\_file\_shared@{\_rtems\_rfs\_file\_shared}}
+\subsubsection{\texorpdfstring{ctime}{ctime}}
+{\footnotesize\ttfamily \mbox{\hyperlink{rtems-rfs-inode_8h_a7877cc60240d76cccb89acaffdd20aa6}{rtems\+\_\+rfs\+\_\+time}} \+\_\+rtems\+\_\+rfs\+\_\+file\+\_\+shared\+::ctime}
+
+The change time. The last time the inode was written too. \mbox{\Hypertarget{struct__rtems__rfs__file__shared_a7b2dd0a580796f25377f1417deb9bf6d}\label{struct__rtems__rfs__file__shared_a7b2dd0a580796f25377f1417deb9bf6d}} 
+\index{\_rtems\_rfs\_file\_shared@{\_rtems\_rfs\_file\_shared}!fs@{fs}}
+\index{fs@{fs}!\_rtems\_rfs\_file\_shared@{\_rtems\_rfs\_file\_shared}}
+\subsubsection{\texorpdfstring{fs}{fs}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct__rtems__rfs__file__system}{rtems\+\_\+rfs\+\_\+file\+\_\+system}}$\ast$ \+\_\+rtems\+\_\+rfs\+\_\+file\+\_\+shared\+::fs}
+
+Hold a pointer to the file system data so users can take the handle and use it without the needing to hold the file system data pointer. \mbox{\Hypertarget{struct__rtems__rfs__file__shared_a612c91853406705d5737030a7f6a157e}\label{struct__rtems__rfs__file__shared_a612c91853406705d5737030a7f6a157e}} 
+\index{\_rtems\_rfs\_file\_shared@{\_rtems\_rfs\_file\_shared}!inode@{inode}}
+\index{inode@{inode}!\_rtems\_rfs\_file\_shared@{\_rtems\_rfs\_file\_shared}}
+\subsubsection{\texorpdfstring{inode}{inode}}
+{\footnotesize\ttfamily \mbox{\hyperlink{rtems-rfs-inode_8h_a91f02dac5a2d91e072d676f3266ab8d2}{rtems\+\_\+rfs\+\_\+inode\+\_\+handle}} \+\_\+rtems\+\_\+rfs\+\_\+file\+\_\+shared\+::inode}
+
+The inode for the file. \mbox{\Hypertarget{struct__rtems__rfs__file__shared_ac9a589e20a44f9986e7efb45cf9db9b5}\label{struct__rtems__rfs__file__shared_ac9a589e20a44f9986e7efb45cf9db9b5}} 
+\index{\_rtems\_rfs\_file\_shared@{\_rtems\_rfs\_file\_shared}!link@{link}}
+\index{link@{link}!\_rtems\_rfs\_file\_shared@{\_rtems\_rfs\_file\_shared}}
+\subsubsection{\texorpdfstring{link}{link}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structChain__Node__struct}{rtems\+\_\+chain\+\_\+node}} \+\_\+rtems\+\_\+rfs\+\_\+file\+\_\+shared\+::link}
+
+The shared parts are maintained as a list. \mbox{\Hypertarget{struct__rtems__rfs__file__shared_aad10c2e2758c7412b77b6b674b0bb1f2}\label{struct__rtems__rfs__file__shared_aad10c2e2758c7412b77b6b674b0bb1f2}} 
+\index{\_rtems\_rfs\_file\_shared@{\_rtems\_rfs\_file\_shared}!map@{map}}
+\index{map@{map}!\_rtems\_rfs\_file\_shared@{\_rtems\_rfs\_file\_shared}}
+\subsubsection{\texorpdfstring{map}{map}}
+{\footnotesize\ttfamily \mbox{\hyperlink{rtems-rfs-block_8h_af488270acef452a961e888bffdc3a7bf}{rtems\+\_\+rfs\+\_\+block\+\_\+map}} \+\_\+rtems\+\_\+rfs\+\_\+file\+\_\+shared\+::map}
+
+The block map for the file. The handle holds the file\textquotesingle{}s position not the map. \mbox{\Hypertarget{struct__rtems__rfs__file__shared_abd80b3c44c16145f2f82c6ca5cce6f50}\label{struct__rtems__rfs__file__shared_abd80b3c44c16145f2f82c6ca5cce6f50}} 
+\index{\_rtems\_rfs\_file\_shared@{\_rtems\_rfs\_file\_shared}!mtime@{mtime}}
+\index{mtime@{mtime}!\_rtems\_rfs\_file\_shared@{\_rtems\_rfs\_file\_shared}}
+\subsubsection{\texorpdfstring{mtime}{mtime}}
+{\footnotesize\ttfamily \mbox{\hyperlink{rtems-rfs-inode_8h_a7877cc60240d76cccb89acaffdd20aa6}{rtems\+\_\+rfs\+\_\+time}} \+\_\+rtems\+\_\+rfs\+\_\+file\+\_\+shared\+::mtime}
+
+The modified time. The last time the file was written too. \mbox{\Hypertarget{struct__rtems__rfs__file__shared_a7c0a1d1b43b6a47eb72ca556fc34e43f}\label{struct__rtems__rfs__file__shared_a7c0a1d1b43b6a47eb72ca556fc34e43f}} 
+\index{\_rtems\_rfs\_file\_shared@{\_rtems\_rfs\_file\_shared}!references@{references}}
+\index{references@{references}!\_rtems\_rfs\_file\_shared@{\_rtems\_rfs\_file\_shared}}
+\subsubsection{\texorpdfstring{references}{references}}
+{\footnotesize\ttfamily int \+\_\+rtems\+\_\+rfs\+\_\+file\+\_\+shared\+::references}
+
+Reference count the users of this data. \mbox{\Hypertarget{struct__rtems__rfs__file__shared_a9e560fbf0582c82fa673e31dd9bbb49f}\label{struct__rtems__rfs__file__shared_a9e560fbf0582c82fa673e31dd9bbb49f}} 
+\index{\_rtems\_rfs\_file\_shared@{\_rtems\_rfs\_file\_shared}!size@{size}}
+\index{size@{size}!\_rtems\_rfs\_file\_shared@{\_rtems\_rfs\_file\_shared}}
+\subsubsection{\texorpdfstring{size}{size}}
+{\footnotesize\ttfamily \mbox{\hyperlink{rtems-rfs-block-pos_8h_aa72438eee22908110dc633ca6b89b390}{rtems\+\_\+rfs\+\_\+block\+\_\+size}} \+\_\+rtems\+\_\+rfs\+\_\+file\+\_\+shared\+::size}
+
+The size of the file as taken from the inode. The map\textquotesingle{}s size and this size should be the same. 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+cpukit/include/rtems/rfs/\mbox{\hyperlink{rtems-rfs-file_8h}{rtems-\/rfs-\/file.\+h}}\end{DoxyCompactItemize}

@@ -1,0 +1,456 @@
+\hypertarget{group__RTEMSScoreSchedulerDPS}{}\section{Deterministic Priority Scheduler}
+\label{group__RTEMSScoreSchedulerDPS}\index{Deterministic Priority Scheduler@{Deterministic Priority Scheduler}}
+
+
+Deterministic Priority Scheduler.  
+
+
+\subsection*{Files}
+\begin{DoxyCompactItemize}
+\item 
+file \mbox{\hyperlink{schedulerpriority_8h}{schedulerpriority.\+h}}
+\begin{DoxyCompactList}\small\item\em Thread Manipulation with the Priority-\/\+Based Scheduler. \end{DoxyCompactList}\item 
+file \mbox{\hyperlink{schedulerpriorityimpl_8h}{schedulerpriorityimpl.\+h}}
+\begin{DoxyCompactList}\small\item\em Inlined Routines Associated with the Manipulation of the Priority-\/\+Based Scheduling Structures. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structScheduler__priority__Context}{Scheduler\+\_\+priority\+\_\+\+Context}}
+\item 
+struct \mbox{\hyperlink{structScheduler__priority__Ready__queue}{Scheduler\+\_\+priority\+\_\+\+Ready\+\_\+queue}}
+\begin{DoxyCompactList}\small\item\em Data for ready queue operations. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structScheduler__priority__Node}{Scheduler\+\_\+priority\+\_\+\+Node}}
+\begin{DoxyCompactList}\small\item\em Scheduler node specialization for Deterministic Priority schedulers. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__RTEMSScoreSchedulerDPS_ga146e87fdcedc2532678dee635f2421ba}{S\+C\+H\+E\+D\+U\+L\+E\+R\+\_\+\+P\+R\+I\+O\+R\+I\+T\+Y\+\_\+\+E\+N\+T\+R\+Y\+\_\+\+P\+O\+I\+N\+TS}}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{group__RTEMSScoreSchedulerDPS_ga623c461e2ff127d4c9619410d89dc31d}{\+\_\+\+Scheduler\+\_\+priority\+\_\+\+Initialize}} (const \mbox{\hyperlink{struct__Scheduler__Control}{Scheduler\+\_\+\+Control}} $\ast$scheduler)
+\begin{DoxyCompactList}\small\item\em Initializes the priority scheduler. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__RTEMSScoreSchedulerDPS_ga0ef8d30efe3b8106036c277fb1e6967e}{\+\_\+\+Scheduler\+\_\+priority\+\_\+\+Block}} (const \mbox{\hyperlink{struct__Scheduler__Control}{Scheduler\+\_\+\+Control}} $\ast$scheduler, \mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$the\+\_\+thread, \mbox{\hyperlink{structScheduler__Node}{Scheduler\+\_\+\+Node}} $\ast$node)
+\begin{DoxyCompactList}\small\item\em Blocks the thread. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__RTEMSScoreSchedulerDPS_ga5f88549e443f989b9058f08f46eb4e8f}{\+\_\+\+Scheduler\+\_\+priority\+\_\+\+Schedule}} (const \mbox{\hyperlink{struct__Scheduler__Control}{Scheduler\+\_\+\+Control}} $\ast$scheduler, \mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$the\+\_\+thread)
+\begin{DoxyCompactList}\small\item\em Sets the heir thread to be the next ready thread. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__RTEMSScoreSchedulerDPS_ga2a24da77012650161d32bed57eb5c128}{\+\_\+\+Scheduler\+\_\+priority\+\_\+\+Unblock}} (const \mbox{\hyperlink{struct__Scheduler__Control}{Scheduler\+\_\+\+Control}} $\ast$scheduler, \mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$the\+\_\+thread, \mbox{\hyperlink{structScheduler__Node}{Scheduler\+\_\+\+Node}} $\ast$node)
+\begin{DoxyCompactList}\small\item\em Unblocks the thread. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__RTEMSScoreSchedulerDPS_gaa9250624cb136b5fd42bdfe060a2eb5e}{\+\_\+\+Scheduler\+\_\+priority\+\_\+\+Update\+\_\+priority}} (const \mbox{\hyperlink{struct__Scheduler__Control}{Scheduler\+\_\+\+Control}} $\ast$scheduler, \mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$the\+\_\+thread, \mbox{\hyperlink{structScheduler__Node}{Scheduler\+\_\+\+Node}} $\ast$base\+\_\+node)
+\begin{DoxyCompactList}\small\item\em Updates the priority of the node. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__RTEMSScoreSchedulerDPS_ga068b274fb5ddb43859266d6bcfadb060}{\+\_\+\+Scheduler\+\_\+priority\+\_\+\+Node\+\_\+initialize}} (const \mbox{\hyperlink{struct__Scheduler__Control}{Scheduler\+\_\+\+Control}} $\ast$scheduler, \mbox{\hyperlink{structScheduler__Node}{Scheduler\+\_\+\+Node}} $\ast$node, \mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$the\+\_\+thread, \mbox{\hyperlink{group__RTEMSScorePriority_ga59d02b58072d31a9a1cfe644557aefe2}{Priority\+\_\+\+Control}} priority)
+\begin{DoxyCompactList}\small\item\em Initializes the node with the given priority. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__RTEMSScoreSchedulerDPS_ga5a3959d17cc9aa59b20ef5622e5de88f}{\+\_\+\+Scheduler\+\_\+priority\+\_\+\+Yield}} (const \mbox{\hyperlink{struct__Scheduler__Control}{Scheduler\+\_\+\+Control}} $\ast$scheduler, \mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$the\+\_\+thread, \mbox{\hyperlink{structScheduler__Node}{Scheduler\+\_\+\+Node}} $\ast$node)
+\begin{DoxyCompactList}\small\item\em Performs the yield of a thread. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} \mbox{\hyperlink{structScheduler__priority__Context}{Scheduler\+\_\+priority\+\_\+\+Context}} $\ast$ \mbox{\hyperlink{group__RTEMSScoreSchedulerDPS_ga8a69246c562c36bec9bf7047be7d50ae}{\+\_\+\+Scheduler\+\_\+priority\+\_\+\+Get\+\_\+context}} (const \mbox{\hyperlink{struct__Scheduler__Control}{Scheduler\+\_\+\+Control}} $\ast$scheduler)
+\begin{DoxyCompactList}\small\item\em Gets the context of the scheduler. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} \mbox{\hyperlink{structScheduler__priority__Node}{Scheduler\+\_\+priority\+\_\+\+Node}} $\ast$ \mbox{\hyperlink{group__RTEMSScoreSchedulerDPS_ga491e49f14d38c8dfa87378a63cd36520}{\+\_\+\+Scheduler\+\_\+priority\+\_\+\+Thread\+\_\+get\+\_\+node}} (\mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$the\+\_\+thread)
+\begin{DoxyCompactList}\small\item\em Gets the scheduler node of the thread. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} \mbox{\hyperlink{structScheduler__priority__Node}{Scheduler\+\_\+priority\+\_\+\+Node}} $\ast$ \mbox{\hyperlink{group__RTEMSScoreSchedulerDPS_ga46493ec8bb581ce801bf2b20e5067cfd}{\+\_\+\+Scheduler\+\_\+priority\+\_\+\+Node\+\_\+downcast}} (\mbox{\hyperlink{structScheduler__Node}{Scheduler\+\_\+\+Node}} $\ast$node)
+\begin{DoxyCompactList}\small\item\em Gets the priority node of the scheduler node. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \mbox{\hyperlink{group__RTEMSScoreSchedulerDPS_ga7a379ad8779fd574bbf2644248ba0db9}{\+\_\+\+Scheduler\+\_\+priority\+\_\+\+Ready\+\_\+queue\+\_\+initialize}} (\mbox{\hyperlink{unionChain__Control}{Chain\+\_\+\+Control}} $\ast$ready\+\_\+queues, \mbox{\hyperlink{group__RTEMSScorePriority_ga59d02b58072d31a9a1cfe644557aefe2}{Priority\+\_\+\+Control}} maximum\+\_\+priority)
+\begin{DoxyCompactList}\small\item\em Ready queue initialization. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \mbox{\hyperlink{group__RTEMSScoreSchedulerDPS_ga6f9c3b0a25b20c2986d5936486e027fd}{\+\_\+\+Scheduler\+\_\+priority\+\_\+\+Ready\+\_\+queue\+\_\+enqueue}} (\mbox{\hyperlink{group__RTEMSScoreChain_ga0dd4bfcca1ac7f90de2842e447846d3d}{Chain\+\_\+\+Node}} $\ast$node, \mbox{\hyperlink{structScheduler__priority__Ready__queue}{Scheduler\+\_\+priority\+\_\+\+Ready\+\_\+queue}} $\ast$ready\+\_\+queue, \mbox{\hyperlink{structPriority__bit__map__Control}{Priority\+\_\+bit\+\_\+map\+\_\+\+Control}} $\ast$bit\+\_\+map)
+\begin{DoxyCompactList}\small\item\em Enqueues a node on the specified ready queue. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \mbox{\hyperlink{group__RTEMSScoreSchedulerDPS_ga0868a355751996dd45401461948ce5db}{\+\_\+\+Scheduler\+\_\+priority\+\_\+\+Ready\+\_\+queue\+\_\+enqueue\+\_\+first}} (\mbox{\hyperlink{group__RTEMSScoreChain_ga0dd4bfcca1ac7f90de2842e447846d3d}{Chain\+\_\+\+Node}} $\ast$node, \mbox{\hyperlink{structScheduler__priority__Ready__queue}{Scheduler\+\_\+priority\+\_\+\+Ready\+\_\+queue}} $\ast$ready\+\_\+queue, \mbox{\hyperlink{structPriority__bit__map__Control}{Priority\+\_\+bit\+\_\+map\+\_\+\+Control}} $\ast$bit\+\_\+map)
+\begin{DoxyCompactList}\small\item\em Enqueues a node on the specified ready queue as first. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \mbox{\hyperlink{group__RTEMSScoreSchedulerDPS_ga50249c9f6e86f80647058f85f4df62cb}{\+\_\+\+Scheduler\+\_\+priority\+\_\+\+Ready\+\_\+queue\+\_\+extract}} (\mbox{\hyperlink{group__RTEMSScoreChain_ga0dd4bfcca1ac7f90de2842e447846d3d}{Chain\+\_\+\+Node}} $\ast$node, \mbox{\hyperlink{structScheduler__priority__Ready__queue}{Scheduler\+\_\+priority\+\_\+\+Ready\+\_\+queue}} $\ast$ready\+\_\+queue, \mbox{\hyperlink{structPriority__bit__map__Control}{Priority\+\_\+bit\+\_\+map\+\_\+\+Control}} $\ast$bit\+\_\+map)
+\begin{DoxyCompactList}\small\item\em Extracts a node from the specified ready queue. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \mbox{\hyperlink{group__RTEMSScoreSchedulerDPS_gaedde62e7cf01a24fac59b6ad06d3cb08}{\+\_\+\+Scheduler\+\_\+priority\+\_\+\+Extract\+\_\+body}} (const \mbox{\hyperlink{struct__Scheduler__Control}{Scheduler\+\_\+\+Control}} $\ast$scheduler, \mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$the\+\_\+thread, \mbox{\hyperlink{structScheduler__Node}{Scheduler\+\_\+\+Node}} $\ast$node)
+\begin{DoxyCompactList}\small\item\em Extracts a node from the context of the scheduler. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} \mbox{\hyperlink{group__RTEMSScoreChain_ga0dd4bfcca1ac7f90de2842e447846d3d}{Chain\+\_\+\+Node}} $\ast$ \mbox{\hyperlink{group__RTEMSScoreSchedulerDPS_ga8d8a162be45d44eb572a6d2a243249cb}{\+\_\+\+Scheduler\+\_\+priority\+\_\+\+Ready\+\_\+queue\+\_\+first}} (\mbox{\hyperlink{structPriority__bit__map__Control}{Priority\+\_\+bit\+\_\+map\+\_\+\+Control}} $\ast$bit\+\_\+map, \mbox{\hyperlink{unionChain__Control}{Chain\+\_\+\+Control}} $\ast$ready\+\_\+queues)
+\begin{DoxyCompactList}\small\item\em Returns a pointer to the first node. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \mbox{\hyperlink{group__RTEMSScoreSchedulerDPS_ga8b52515687c00a3b3e8a90b0dcd6b749}{\+\_\+\+Scheduler\+\_\+priority\+\_\+\+Schedule\+\_\+body}} (const \mbox{\hyperlink{struct__Scheduler__Control}{Scheduler\+\_\+\+Control}} $\ast$scheduler, \mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$the\+\_\+thread, bool force\+\_\+dispatch)
+\begin{DoxyCompactList}\small\item\em Scheduling decision logic. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \mbox{\hyperlink{group__RTEMSScoreSchedulerDPS_ga6acac442055201dbdda485d7b0021628}{\+\_\+\+Scheduler\+\_\+priority\+\_\+\+Ready\+\_\+queue\+\_\+update}} (\mbox{\hyperlink{structScheduler__priority__Ready__queue}{Scheduler\+\_\+priority\+\_\+\+Ready\+\_\+queue}} $\ast$ready\+\_\+queue, unsigned int new\+\_\+priority, \mbox{\hyperlink{structPriority__bit__map__Control}{Priority\+\_\+bit\+\_\+map\+\_\+\+Control}} $\ast$bit\+\_\+map, \mbox{\hyperlink{unionChain__Control}{Chain\+\_\+\+Control}} $\ast$ready\+\_\+queues)
+\begin{DoxyCompactList}\small\item\em Updates the specified ready queue data according to the new priority value. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Deterministic Priority Scheduler. 
+
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{group__RTEMSScoreSchedulerDPS_ga146e87fdcedc2532678dee635f2421ba}\label{group__RTEMSScoreSchedulerDPS_ga146e87fdcedc2532678dee635f2421ba}} 
+\index{Deterministic Priority Scheduler@{Deterministic Priority Scheduler}!SCHEDULER\_PRIORITY\_ENTRY\_POINTS@{SCHEDULER\_PRIORITY\_ENTRY\_POINTS}}
+\index{SCHEDULER\_PRIORITY\_ENTRY\_POINTS@{SCHEDULER\_PRIORITY\_ENTRY\_POINTS}!Deterministic Priority Scheduler@{Deterministic Priority Scheduler}}
+\subsubsection{\texorpdfstring{SCHEDULER\_PRIORITY\_ENTRY\_POINTS}{SCHEDULER\_PRIORITY\_ENTRY\_POINTS}}
+{\footnotesize\ttfamily \#define S\+C\+H\+E\+D\+U\+L\+E\+R\+\_\+\+P\+R\+I\+O\+R\+I\+T\+Y\+\_\+\+E\+N\+T\+R\+Y\+\_\+\+P\+O\+I\+N\+TS}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{ \(\backslash\)}
+\DoxyCodeLine{    \_Scheduler\_priority\_Initialize,       \textcolor{comment}{/* initialize entry point */} \(\backslash\)}
+\DoxyCodeLine{    \_Scheduler\_priority\_Schedule,         \textcolor{comment}{/* schedule entry point */} \(\backslash\)}
+\DoxyCodeLine{    \_Scheduler\_priority\_Yield,            \textcolor{comment}{/* yield entry point */} \(\backslash\)}
+\DoxyCodeLine{    \_Scheduler\_priority\_Block,            \textcolor{comment}{/* block entry point */} \(\backslash\)}
+\DoxyCodeLine{    \_Scheduler\_priority\_Unblock,          \textcolor{comment}{/* unblock entry point */} \(\backslash\)}
+\DoxyCodeLine{    \_Scheduler\_priority\_Update\_priority,  \textcolor{comment}{/* update priority entry point */} \(\backslash\)}
+\DoxyCodeLine{    \_Scheduler\_default\_Map\_priority,      \textcolor{comment}{/* map priority entry point */} \(\backslash\)}
+\DoxyCodeLine{    \_Scheduler\_default\_Unmap\_priority,    \textcolor{comment}{/* unmap priority entry point */} \mbox{\hyperlink{group__RTEMSScoreSchedulerDPS_ga068b274fb5ddb43859266d6bcfadb060}{\(\backslash\)}}}
+\DoxyCodeLine{\mbox{\hyperlink{group__RTEMSScoreSchedulerDPS_ga068b274fb5ddb43859266d6bcfadb060}{    SCHEDULER\_OPERATION\_DEFAULT\_ASK\_FOR\_HELP \(\backslash\)}}}
+\DoxyCodeLine{\mbox{\hyperlink{group__RTEMSScoreSchedulerDPS_ga068b274fb5ddb43859266d6bcfadb060}{    \_Scheduler\_priority\_Node\_initialize}},  \textcolor{comment}{/* node initialize entry point */} \(\backslash\)}
+\DoxyCodeLine{    \_Scheduler\_default\_Node\_destroy,      \textcolor{comment}{/* node destroy entry point */} \(\backslash\)}
+\DoxyCodeLine{    \_Scheduler\_default\_Release\_job,       \textcolor{comment}{/* new period of task */} \(\backslash\)}
+\DoxyCodeLine{    \_Scheduler\_default\_Cancel\_job,        \textcolor{comment}{/* cancel period of task */} \(\backslash\)}
+\DoxyCodeLine{    \_Scheduler\_default\_Tick,              \textcolor{comment}{/* tick entry point */} \(\backslash\)}
+\DoxyCodeLine{    \_Scheduler\_default\_Start\_idle         \textcolor{comment}{/* start idle entry point */} \(\backslash\)}
+\DoxyCodeLine{    SCHEDULER\_OPERATION\_DEFAULT\_GET\_SET\_AFFINITY \(\backslash\)}
+\DoxyCodeLine{  \}}
+
+\end{DoxyCode}
+Entry points for the Deterministic Priority Based Scheduler. 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{group__RTEMSScoreSchedulerDPS_ga0ef8d30efe3b8106036c277fb1e6967e}\label{group__RTEMSScoreSchedulerDPS_ga0ef8d30efe3b8106036c277fb1e6967e}} 
+\index{Deterministic Priority Scheduler@{Deterministic Priority Scheduler}!\_Scheduler\_priority\_Block@{\_Scheduler\_priority\_Block}}
+\index{\_Scheduler\_priority\_Block@{\_Scheduler\_priority\_Block}!Deterministic Priority Scheduler@{Deterministic Priority Scheduler}}
+\subsubsection{\texorpdfstring{\_Scheduler\_priority\_Block()}{\_Scheduler\_priority\_Block()}}
+{\footnotesize\ttfamily void \+\_\+\+Scheduler\+\_\+priority\+\_\+\+Block (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct__Scheduler__Control}{Scheduler\+\_\+\+Control}} $\ast$}]{scheduler,  }\item[{\mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$}]{the\+\_\+thread,  }\item[{\mbox{\hyperlink{structScheduler__Node}{Scheduler\+\_\+\+Node}} $\ast$}]{node }\end{DoxyParamCaption})}
+
+
+
+Blocks the thread. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+ & {\em scheduler} & The scheduler instance. \\
+\hline
+\mbox{\texttt{ in,out}}  & {\em the\+\_\+thread} & The thread to block. \\
+\hline
+\mbox{\texttt{ in,out}}  & {\em node} & The {\itshape thread\textquotesingle{}s} scheduler node. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__RTEMSScoreSchedulerDPS_gaedde62e7cf01a24fac59b6ad06d3cb08}\label{group__RTEMSScoreSchedulerDPS_gaedde62e7cf01a24fac59b6ad06d3cb08}} 
+\index{Deterministic Priority Scheduler@{Deterministic Priority Scheduler}!\_Scheduler\_priority\_Extract\_body@{\_Scheduler\_priority\_Extract\_body}}
+\index{\_Scheduler\_priority\_Extract\_body@{\_Scheduler\_priority\_Extract\_body}!Deterministic Priority Scheduler@{Deterministic Priority Scheduler}}
+\subsubsection{\texorpdfstring{\_Scheduler\_priority\_Extract\_body()}{\_Scheduler\_priority\_Extract\_body()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \+\_\+\+Scheduler\+\_\+priority\+\_\+\+Extract\+\_\+body (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct__Scheduler__Control}{Scheduler\+\_\+\+Control}} $\ast$}]{scheduler,  }\item[{\mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$}]{the\+\_\+thread,  }\item[{\mbox{\hyperlink{structScheduler__Node}{Scheduler\+\_\+\+Node}} $\ast$}]{node }\end{DoxyParamCaption})}
+
+
+
+Extracts a node from the context of the scheduler. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+ & {\em scheduler} & The scheduler instance. \\
+\hline
+ & {\em the\+\_\+thread} & The thread of which the node will be extracted. \\
+\hline
+\mbox{\texttt{ in,out}}  & {\em The} & node which preserves the ready queue. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__RTEMSScoreSchedulerDPS_ga8a69246c562c36bec9bf7047be7d50ae}\label{group__RTEMSScoreSchedulerDPS_ga8a69246c562c36bec9bf7047be7d50ae}} 
+\index{Deterministic Priority Scheduler@{Deterministic Priority Scheduler}!\_Scheduler\_priority\_Get\_context@{\_Scheduler\_priority\_Get\_context}}
+\index{\_Scheduler\_priority\_Get\_context@{\_Scheduler\_priority\_Get\_context}!Deterministic Priority Scheduler@{Deterministic Priority Scheduler}}
+\subsubsection{\texorpdfstring{\_Scheduler\_priority\_Get\_context()}{\_Scheduler\_priority\_Get\_context()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} \mbox{\hyperlink{structScheduler__priority__Context}{Scheduler\+\_\+priority\+\_\+\+Context}}$\ast$ \+\_\+\+Scheduler\+\_\+priority\+\_\+\+Get\+\_\+context (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct__Scheduler__Control}{Scheduler\+\_\+\+Control}} $\ast$}]{scheduler }\end{DoxyParamCaption})}
+
+
+
+Gets the context of the scheduler. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em scheduler} & The scheduler to get the context of.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The context of the scheduler. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{group__RTEMSScoreSchedulerDPS_ga623c461e2ff127d4c9619410d89dc31d}\label{group__RTEMSScoreSchedulerDPS_ga623c461e2ff127d4c9619410d89dc31d}} 
+\index{Deterministic Priority Scheduler@{Deterministic Priority Scheduler}!\_Scheduler\_priority\_Initialize@{\_Scheduler\_priority\_Initialize}}
+\index{\_Scheduler\_priority\_Initialize@{\_Scheduler\_priority\_Initialize}!Deterministic Priority Scheduler@{Deterministic Priority Scheduler}}
+\subsubsection{\texorpdfstring{\_Scheduler\_priority\_Initialize()}{\_Scheduler\_priority\_Initialize()}}
+{\footnotesize\ttfamily void \+\_\+\+Scheduler\+\_\+priority\+\_\+\+Initialize (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct__Scheduler__Control}{Scheduler\+\_\+\+Control}} $\ast$}]{scheduler }\end{DoxyParamCaption})}
+
+
+
+Initializes the priority scheduler. 
+
+This routine initializes the priority scheduler.
+
+
+\begin{DoxyParams}{Parameters}
+{\em scheduler} & The scheduler to initialize. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__RTEMSScoreSchedulerDPS_ga46493ec8bb581ce801bf2b20e5067cfd}\label{group__RTEMSScoreSchedulerDPS_ga46493ec8bb581ce801bf2b20e5067cfd}} 
+\index{Deterministic Priority Scheduler@{Deterministic Priority Scheduler}!\_Scheduler\_priority\_Node\_downcast@{\_Scheduler\_priority\_Node\_downcast}}
+\index{\_Scheduler\_priority\_Node\_downcast@{\_Scheduler\_priority\_Node\_downcast}!Deterministic Priority Scheduler@{Deterministic Priority Scheduler}}
+\subsubsection{\texorpdfstring{\_Scheduler\_priority\_Node\_downcast()}{\_Scheduler\_priority\_Node\_downcast()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} \mbox{\hyperlink{structScheduler__priority__Node}{Scheduler\+\_\+priority\+\_\+\+Node}}$\ast$ \+\_\+\+Scheduler\+\_\+priority\+\_\+\+Node\+\_\+downcast (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structScheduler__Node}{Scheduler\+\_\+\+Node}} $\ast$}]{node }\end{DoxyParamCaption})}
+
+
+
+Gets the priority node of the scheduler node. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em node} & The node to get the priority node of.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The priority node. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{group__RTEMSScoreSchedulerDPS_ga068b274fb5ddb43859266d6bcfadb060}\label{group__RTEMSScoreSchedulerDPS_ga068b274fb5ddb43859266d6bcfadb060}} 
+\index{Deterministic Priority Scheduler@{Deterministic Priority Scheduler}!\_Scheduler\_priority\_Node\_initialize@{\_Scheduler\_priority\_Node\_initialize}}
+\index{\_Scheduler\_priority\_Node\_initialize@{\_Scheduler\_priority\_Node\_initialize}!Deterministic Priority Scheduler@{Deterministic Priority Scheduler}}
+\subsubsection{\texorpdfstring{\_Scheduler\_priority\_Node\_initialize()}{\_Scheduler\_priority\_Node\_initialize()}}
+{\footnotesize\ttfamily void \+\_\+\+Scheduler\+\_\+priority\+\_\+\+Node\+\_\+initialize (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct__Scheduler__Control}{Scheduler\+\_\+\+Control}} $\ast$}]{scheduler,  }\item[{\mbox{\hyperlink{structScheduler__Node}{Scheduler\+\_\+\+Node}} $\ast$}]{node,  }\item[{\mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$}]{the\+\_\+thread,  }\item[{\mbox{\hyperlink{group__RTEMSScorePriority_ga59d02b58072d31a9a1cfe644557aefe2}{Priority\+\_\+\+Control}}}]{priority }\end{DoxyParamCaption})}
+
+
+
+Initializes the node with the given priority. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+ & {\em scheduler} & The scheduler instance. \\
+\hline
+\mbox{\texttt{ out}}  & {\em node} & The node to initialize. \\
+\hline
+ & {\em the\+\_\+thread} & The thread of the scheduler node. \\
+\hline
+ & {\em priority} & The priority for the initialization. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__RTEMSScoreSchedulerDPS_ga6f9c3b0a25b20c2986d5936486e027fd}\label{group__RTEMSScoreSchedulerDPS_ga6f9c3b0a25b20c2986d5936486e027fd}} 
+\index{Deterministic Priority Scheduler@{Deterministic Priority Scheduler}!\_Scheduler\_priority\_Ready\_queue\_enqueue@{\_Scheduler\_priority\_Ready\_queue\_enqueue}}
+\index{\_Scheduler\_priority\_Ready\_queue\_enqueue@{\_Scheduler\_priority\_Ready\_queue\_enqueue}!Deterministic Priority Scheduler@{Deterministic Priority Scheduler}}
+\subsubsection{\texorpdfstring{\_Scheduler\_priority\_Ready\_queue\_enqueue()}{\_Scheduler\_priority\_Ready\_queue\_enqueue()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \+\_\+\+Scheduler\+\_\+priority\+\_\+\+Ready\+\_\+queue\+\_\+enqueue (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__RTEMSScoreChain_ga0dd4bfcca1ac7f90de2842e447846d3d}{Chain\+\_\+\+Node}} $\ast$}]{node,  }\item[{\mbox{\hyperlink{structScheduler__priority__Ready__queue}{Scheduler\+\_\+priority\+\_\+\+Ready\+\_\+queue}} $\ast$}]{ready\+\_\+queue,  }\item[{\mbox{\hyperlink{structPriority__bit__map__Control}{Priority\+\_\+bit\+\_\+map\+\_\+\+Control}} $\ast$}]{bit\+\_\+map }\end{DoxyParamCaption})}
+
+
+
+Enqueues a node on the specified ready queue. 
+
+The node is placed as the last element of its priority group.
+
+
+\begin{DoxyParams}[1]{Parameters}
+ & {\em node} & The node to enqueue. \\
+\hline
+\mbox{\texttt{ in,out}}  & {\em ready\+\_\+queue} & The ready queue. \\
+\hline
+\mbox{\texttt{ out}}  & {\em bit\+\_\+map} & The priority bit map of the scheduler instance. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__RTEMSScoreSchedulerDPS_ga0868a355751996dd45401461948ce5db}\label{group__RTEMSScoreSchedulerDPS_ga0868a355751996dd45401461948ce5db}} 
+\index{Deterministic Priority Scheduler@{Deterministic Priority Scheduler}!\_Scheduler\_priority\_Ready\_queue\_enqueue\_first@{\_Scheduler\_priority\_Ready\_queue\_enqueue\_first}}
+\index{\_Scheduler\_priority\_Ready\_queue\_enqueue\_first@{\_Scheduler\_priority\_Ready\_queue\_enqueue\_first}!Deterministic Priority Scheduler@{Deterministic Priority Scheduler}}
+\subsubsection{\texorpdfstring{\_Scheduler\_priority\_Ready\_queue\_enqueue\_first()}{\_Scheduler\_priority\_Ready\_queue\_enqueue\_first()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \+\_\+\+Scheduler\+\_\+priority\+\_\+\+Ready\+\_\+queue\+\_\+enqueue\+\_\+first (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__RTEMSScoreChain_ga0dd4bfcca1ac7f90de2842e447846d3d}{Chain\+\_\+\+Node}} $\ast$}]{node,  }\item[{\mbox{\hyperlink{structScheduler__priority__Ready__queue}{Scheduler\+\_\+priority\+\_\+\+Ready\+\_\+queue}} $\ast$}]{ready\+\_\+queue,  }\item[{\mbox{\hyperlink{structPriority__bit__map__Control}{Priority\+\_\+bit\+\_\+map\+\_\+\+Control}} $\ast$}]{bit\+\_\+map }\end{DoxyParamCaption})}
+
+
+
+Enqueues a node on the specified ready queue as first. 
+
+The node is placed as the first element of its priority group.
+
+
+\begin{DoxyParams}[1]{Parameters}
+ & {\em node} & The node to enqueue as first. \\
+\hline
+\mbox{\texttt{ in,out}}  & {\em ready\+\_\+queue} & The ready queue. \\
+\hline
+\mbox{\texttt{ out}}  & {\em bit\+\_\+map} & The priority bit map of the scheduler instance. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__RTEMSScoreSchedulerDPS_ga50249c9f6e86f80647058f85f4df62cb}\label{group__RTEMSScoreSchedulerDPS_ga50249c9f6e86f80647058f85f4df62cb}} 
+\index{Deterministic Priority Scheduler@{Deterministic Priority Scheduler}!\_Scheduler\_priority\_Ready\_queue\_extract@{\_Scheduler\_priority\_Ready\_queue\_extract}}
+\index{\_Scheduler\_priority\_Ready\_queue\_extract@{\_Scheduler\_priority\_Ready\_queue\_extract}!Deterministic Priority Scheduler@{Deterministic Priority Scheduler}}
+\subsubsection{\texorpdfstring{\_Scheduler\_priority\_Ready\_queue\_extract()}{\_Scheduler\_priority\_Ready\_queue\_extract()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \+\_\+\+Scheduler\+\_\+priority\+\_\+\+Ready\+\_\+queue\+\_\+extract (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__RTEMSScoreChain_ga0dd4bfcca1ac7f90de2842e447846d3d}{Chain\+\_\+\+Node}} $\ast$}]{node,  }\item[{\mbox{\hyperlink{structScheduler__priority__Ready__queue}{Scheduler\+\_\+priority\+\_\+\+Ready\+\_\+queue}} $\ast$}]{ready\+\_\+queue,  }\item[{\mbox{\hyperlink{structPriority__bit__map__Control}{Priority\+\_\+bit\+\_\+map\+\_\+\+Control}} $\ast$}]{bit\+\_\+map }\end{DoxyParamCaption})}
+
+
+
+Extracts a node from the specified ready queue. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+ & {\em node} & The node to extract. \\
+\hline
+\mbox{\texttt{ in,out}}  & {\em ready\+\_\+queue} & The ready queue. \\
+\hline
+\mbox{\texttt{ out}}  & {\em bit\+\_\+map} & The priority bit map of the scheduler instance. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__RTEMSScoreSchedulerDPS_ga8d8a162be45d44eb572a6d2a243249cb}\label{group__RTEMSScoreSchedulerDPS_ga8d8a162be45d44eb572a6d2a243249cb}} 
+\index{Deterministic Priority Scheduler@{Deterministic Priority Scheduler}!\_Scheduler\_priority\_Ready\_queue\_first@{\_Scheduler\_priority\_Ready\_queue\_first}}
+\index{\_Scheduler\_priority\_Ready\_queue\_first@{\_Scheduler\_priority\_Ready\_queue\_first}!Deterministic Priority Scheduler@{Deterministic Priority Scheduler}}
+\subsubsection{\texorpdfstring{\_Scheduler\_priority\_Ready\_queue\_first()}{\_Scheduler\_priority\_Ready\_queue\_first()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} \mbox{\hyperlink{group__RTEMSScoreChain_ga0dd4bfcca1ac7f90de2842e447846d3d}{Chain\+\_\+\+Node}}$\ast$ \+\_\+\+Scheduler\+\_\+priority\+\_\+\+Ready\+\_\+queue\+\_\+first (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structPriority__bit__map__Control}{Priority\+\_\+bit\+\_\+map\+\_\+\+Control}} $\ast$}]{bit\+\_\+map,  }\item[{\mbox{\hyperlink{unionChain__Control}{Chain\+\_\+\+Control}} $\ast$}]{ready\+\_\+queues }\end{DoxyParamCaption})}
+
+
+
+Returns a pointer to the first node. 
+
+This routines returns a pointer to the first node on {\itshape ready\+\_\+queues}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em bit\+\_\+map} & The priority bit map of the scheduler instance. \\
+\hline
+{\em ready\+\_\+queues} & The ready queues of the scheduler instance.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+This method returns the first node. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{group__RTEMSScoreSchedulerDPS_ga7a379ad8779fd574bbf2644248ba0db9}\label{group__RTEMSScoreSchedulerDPS_ga7a379ad8779fd574bbf2644248ba0db9}} 
+\index{Deterministic Priority Scheduler@{Deterministic Priority Scheduler}!\_Scheduler\_priority\_Ready\_queue\_initialize@{\_Scheduler\_priority\_Ready\_queue\_initialize}}
+\index{\_Scheduler\_priority\_Ready\_queue\_initialize@{\_Scheduler\_priority\_Ready\_queue\_initialize}!Deterministic Priority Scheduler@{Deterministic Priority Scheduler}}
+\subsubsection{\texorpdfstring{\_Scheduler\_priority\_Ready\_queue\_initialize()}{\_Scheduler\_priority\_Ready\_queue\_initialize()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \+\_\+\+Scheduler\+\_\+priority\+\_\+\+Ready\+\_\+queue\+\_\+initialize (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{unionChain__Control}{Chain\+\_\+\+Control}} $\ast$}]{ready\+\_\+queues,  }\item[{\mbox{\hyperlink{group__RTEMSScorePriority_ga59d02b58072d31a9a1cfe644557aefe2}{Priority\+\_\+\+Control}}}]{maximum\+\_\+priority }\end{DoxyParamCaption})}
+
+
+
+Ready queue initialization. 
+
+This routine initializes {\itshape ready\+\_\+queues} for priority-\/based scheduling.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em ready\+\_\+queues} & The ready queue to initialize. \\
+\hline
+ & {\em maximum\+\_\+priority} & The maximum priority in the ready queue. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__RTEMSScoreSchedulerDPS_ga6acac442055201dbdda485d7b0021628}\label{group__RTEMSScoreSchedulerDPS_ga6acac442055201dbdda485d7b0021628}} 
+\index{Deterministic Priority Scheduler@{Deterministic Priority Scheduler}!\_Scheduler\_priority\_Ready\_queue\_update@{\_Scheduler\_priority\_Ready\_queue\_update}}
+\index{\_Scheduler\_priority\_Ready\_queue\_update@{\_Scheduler\_priority\_Ready\_queue\_update}!Deterministic Priority Scheduler@{Deterministic Priority Scheduler}}
+\subsubsection{\texorpdfstring{\_Scheduler\_priority\_Ready\_queue\_update()}{\_Scheduler\_priority\_Ready\_queue\_update()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \+\_\+\+Scheduler\+\_\+priority\+\_\+\+Ready\+\_\+queue\+\_\+update (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structScheduler__priority__Ready__queue}{Scheduler\+\_\+priority\+\_\+\+Ready\+\_\+queue}} $\ast$}]{ready\+\_\+queue,  }\item[{unsigned int}]{new\+\_\+priority,  }\item[{\mbox{\hyperlink{structPriority__bit__map__Control}{Priority\+\_\+bit\+\_\+map\+\_\+\+Control}} $\ast$}]{bit\+\_\+map,  }\item[{\mbox{\hyperlink{unionChain__Control}{Chain\+\_\+\+Control}} $\ast$}]{ready\+\_\+queues }\end{DoxyParamCaption})}
+
+
+
+Updates the specified ready queue data according to the new priority value. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em ready\+\_\+queue} & The ready queue. \\
+\hline
+ & {\em new\+\_\+priority} & The new priority. \\
+\hline
+ & {\em bit\+\_\+map} & The priority bit map of the scheduler instance. \\
+\hline
+ & {\em ready\+\_\+queues} & The ready queues of the scheduler instance. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__RTEMSScoreSchedulerDPS_ga5f88549e443f989b9058f08f46eb4e8f}\label{group__RTEMSScoreSchedulerDPS_ga5f88549e443f989b9058f08f46eb4e8f}} 
+\index{Deterministic Priority Scheduler@{Deterministic Priority Scheduler}!\_Scheduler\_priority\_Schedule@{\_Scheduler\_priority\_Schedule}}
+\index{\_Scheduler\_priority\_Schedule@{\_Scheduler\_priority\_Schedule}!Deterministic Priority Scheduler@{Deterministic Priority Scheduler}}
+\subsubsection{\texorpdfstring{\_Scheduler\_priority\_Schedule()}{\_Scheduler\_priority\_Schedule()}}
+{\footnotesize\ttfamily void \+\_\+\+Scheduler\+\_\+priority\+\_\+\+Schedule (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct__Scheduler__Control}{Scheduler\+\_\+\+Control}} $\ast$}]{scheduler,  }\item[{\mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$}]{the\+\_\+thread }\end{DoxyParamCaption})}
+
+
+
+Sets the heir thread to be the next ready thread. 
+
+This kernel routine sets the heir thread to be the next ready thread by invoking the\+\_\+scheduler-\/$>$ready\+\_\+queue-\/$>$operations-\/$>$first().
+
+
+\begin{DoxyParams}{Parameters}
+{\em scheduler} & The scheduler instance. \\
+\hline
+{\em the\+\_\+thread} & The thread for the operation. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__RTEMSScoreSchedulerDPS_ga8b52515687c00a3b3e8a90b0dcd6b749}\label{group__RTEMSScoreSchedulerDPS_ga8b52515687c00a3b3e8a90b0dcd6b749}} 
+\index{Deterministic Priority Scheduler@{Deterministic Priority Scheduler}!\_Scheduler\_priority\_Schedule\_body@{\_Scheduler\_priority\_Schedule\_body}}
+\index{\_Scheduler\_priority\_Schedule\_body@{\_Scheduler\_priority\_Schedule\_body}!Deterministic Priority Scheduler@{Deterministic Priority Scheduler}}
+\subsubsection{\texorpdfstring{\_Scheduler\_priority\_Schedule\_body()}{\_Scheduler\_priority\_Schedule\_body()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \+\_\+\+Scheduler\+\_\+priority\+\_\+\+Schedule\+\_\+body (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct__Scheduler__Control}{Scheduler\+\_\+\+Control}} $\ast$}]{scheduler,  }\item[{\mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$}]{the\+\_\+thread,  }\item[{bool}]{force\+\_\+dispatch }\end{DoxyParamCaption})}
+
+
+
+Scheduling decision logic. 
+
+This kernel routine implements scheduling decision logic for priority-\/based scheduling.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em scheduler} & The scheduler instance. \\
+\hline
+ & {\em the\+\_\+thread} & This parameter is unused. \\
+\hline
+ & {\em force\+\_\+dispatch} & Indicates whether the dispatch happens also if the currently executing thread is set as not preemptible. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__RTEMSScoreSchedulerDPS_ga491e49f14d38c8dfa87378a63cd36520}\label{group__RTEMSScoreSchedulerDPS_ga491e49f14d38c8dfa87378a63cd36520}} 
+\index{Deterministic Priority Scheduler@{Deterministic Priority Scheduler}!\_Scheduler\_priority\_Thread\_get\_node@{\_Scheduler\_priority\_Thread\_get\_node}}
+\index{\_Scheduler\_priority\_Thread\_get\_node@{\_Scheduler\_priority\_Thread\_get\_node}!Deterministic Priority Scheduler@{Deterministic Priority Scheduler}}
+\subsubsection{\texorpdfstring{\_Scheduler\_priority\_Thread\_get\_node()}{\_Scheduler\_priority\_Thread\_get\_node()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} \mbox{\hyperlink{structScheduler__priority__Node}{Scheduler\+\_\+priority\+\_\+\+Node}}$\ast$ \+\_\+\+Scheduler\+\_\+priority\+\_\+\+Thread\+\_\+get\+\_\+node (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$}]{the\+\_\+thread }\end{DoxyParamCaption})}
+
+
+
+Gets the scheduler node of the thread. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em the\+\_\+thread} & The thread to get the scheduler node of.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The scheduler node of {\itshape the\+\_\+thread}. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{group__RTEMSScoreSchedulerDPS_ga2a24da77012650161d32bed57eb5c128}\label{group__RTEMSScoreSchedulerDPS_ga2a24da77012650161d32bed57eb5c128}} 
+\index{Deterministic Priority Scheduler@{Deterministic Priority Scheduler}!\_Scheduler\_priority\_Unblock@{\_Scheduler\_priority\_Unblock}}
+\index{\_Scheduler\_priority\_Unblock@{\_Scheduler\_priority\_Unblock}!Deterministic Priority Scheduler@{Deterministic Priority Scheduler}}
+\subsubsection{\texorpdfstring{\_Scheduler\_priority\_Unblock()}{\_Scheduler\_priority\_Unblock()}}
+{\footnotesize\ttfamily void \+\_\+\+Scheduler\+\_\+priority\+\_\+\+Unblock (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct__Scheduler__Control}{Scheduler\+\_\+\+Control}} $\ast$}]{scheduler,  }\item[{\mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$}]{the\+\_\+thread,  }\item[{\mbox{\hyperlink{structScheduler__Node}{Scheduler\+\_\+\+Node}} $\ast$}]{node }\end{DoxyParamCaption})}
+
+
+
+Unblocks the thread. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+ & {\em scheduler} & The scheduler instance. \\
+\hline
+\mbox{\texttt{ in,out}}  & {\em the\+\_\+thread} & The thread to unblock. \\
+\hline
+\mbox{\texttt{ in,out}}  & {\em node} & The {\itshape thread\textquotesingle{}s} scheduler node. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__RTEMSScoreSchedulerDPS_gaa9250624cb136b5fd42bdfe060a2eb5e}\label{group__RTEMSScoreSchedulerDPS_gaa9250624cb136b5fd42bdfe060a2eb5e}} 
+\index{Deterministic Priority Scheduler@{Deterministic Priority Scheduler}!\_Scheduler\_priority\_Update\_priority@{\_Scheduler\_priority\_Update\_priority}}
+\index{\_Scheduler\_priority\_Update\_priority@{\_Scheduler\_priority\_Update\_priority}!Deterministic Priority Scheduler@{Deterministic Priority Scheduler}}
+\subsubsection{\texorpdfstring{\_Scheduler\_priority\_Update\_priority()}{\_Scheduler\_priority\_Update\_priority()}}
+{\footnotesize\ttfamily void \+\_\+\+Scheduler\+\_\+priority\+\_\+\+Update\+\_\+priority (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct__Scheduler__Control}{Scheduler\+\_\+\+Control}} $\ast$}]{scheduler,  }\item[{\mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$}]{the\+\_\+thread,  }\item[{\mbox{\hyperlink{structScheduler__Node}{Scheduler\+\_\+\+Node}} $\ast$}]{base\+\_\+node }\end{DoxyParamCaption})}
+
+
+
+Updates the priority of the node. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em scheduler} & The scheduler instance. \\
+\hline
+{\em the\+\_\+thread} & The thread for the operation. \\
+\hline
+{\em base\+\_\+node} & The thread\textquotesingle{}s scheduler node. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__RTEMSScoreSchedulerDPS_ga5a3959d17cc9aa59b20ef5622e5de88f}\label{group__RTEMSScoreSchedulerDPS_ga5a3959d17cc9aa59b20ef5622e5de88f}} 
+\index{Deterministic Priority Scheduler@{Deterministic Priority Scheduler}!\_Scheduler\_priority\_Yield@{\_Scheduler\_priority\_Yield}}
+\index{\_Scheduler\_priority\_Yield@{\_Scheduler\_priority\_Yield}!Deterministic Priority Scheduler@{Deterministic Priority Scheduler}}
+\subsubsection{\texorpdfstring{\_Scheduler\_priority\_Yield()}{\_Scheduler\_priority\_Yield()}}
+{\footnotesize\ttfamily void \+\_\+\+Scheduler\+\_\+priority\+\_\+\+Yield (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct__Scheduler__Control}{Scheduler\+\_\+\+Control}} $\ast$}]{scheduler,  }\item[{\mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$}]{the\+\_\+thread,  }\item[{\mbox{\hyperlink{structScheduler__Node}{Scheduler\+\_\+\+Node}} $\ast$}]{node }\end{DoxyParamCaption})}
+
+
+
+Performs the yield of a thread. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+ & {\em scheduler} & The scheduler instance. \\
+\hline
+\mbox{\texttt{ in,out}}  & {\em the\+\_\+thread} & The thread that performed the yield operation. \\
+\hline
+ & {\em node} & The scheduler node of {\itshape the\+\_\+thread}. \\
+\hline
+\end{DoxyParams}

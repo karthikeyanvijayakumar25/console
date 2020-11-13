@@ -1,0 +1,61 @@
+\hypertarget{struct__Thread__queue__Heads}{}\section{\+\_\+\+Thread\+\_\+queue\+\_\+\+Heads Struct Reference}
+\label{struct__Thread__queue__Heads}\index{\_Thread\_queue\_Heads@{\_Thread\_queue\_Heads}}
+
+
+Thread queue heads.  
+
+
+
+
+{\ttfamily \#include $<$threadq.\+h$>$}
+
+\subsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+\begin{tabbing}
+xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=\kill
+union \{\\
+\>\mbox{\hyperlink{unionChain__Control}{Chain\_Control}} \mbox{\hyperlink{struct__Thread__queue__Heads_a0810b5b56b238a61d7cf664b28e3d337}{Fifo}}\\
+\>\>{\em This is the FIFO discipline list. }\\
+\>\mbox{\hyperlink{structThread__queue__Priority__queue}{Thread\_queue\_Priority\_queue}} \mbox{\hyperlink{struct__Thread__queue__Heads_a2059f4ca3fa003a28d08bb11612607ee}{Priority}}\\
+\>\>{\em This is the set of threads for priority discipline waiting. }\\
+\} \mbox{\hyperlink{struct__Thread__queue__Heads_a21d754973bc1115a827336f826e2d142}{Heads}}\\
+
+\end{tabbing}\item 
+\mbox{\Hypertarget{struct__Thread__queue__Heads_a700b2b1b08a1e40eaba5cf833ddda02e}\label{struct__Thread__queue__Heads_a700b2b1b08a1e40eaba5cf833ddda02e}} 
+\mbox{\hyperlink{unionChain__Control}{Chain\+\_\+\+Control}} \mbox{\hyperlink{struct__Thread__queue__Heads_a700b2b1b08a1e40eaba5cf833ddda02e}{Free\+\_\+chain}}
+\begin{DoxyCompactList}\small\item\em A chain with free thread queue heads providing the spare thread queue heads for a thread once it is dequeued. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{struct__Thread__queue__Heads_a61c5352cb32c0bdf6a53c2ca89ff5ea5}\label{struct__Thread__queue__Heads_a61c5352cb32c0bdf6a53c2ca89ff5ea5}} 
+\mbox{\hyperlink{group__RTEMSScoreChain_ga0dd4bfcca1ac7f90de2842e447846d3d}{Chain\+\_\+\+Node}} \mbox{\hyperlink{struct__Thread__queue__Heads_a61c5352cb32c0bdf6a53c2ca89ff5ea5}{Free\+\_\+node}}
+\begin{DoxyCompactList}\small\item\em A chain node to add these thread queue heads to the free chain of the thread queue heads dedicated to the thread queue of an object. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Thread queue heads. 
+
+Each thread is equipped with spare thread queue heads in case it is not enqueued on a thread queue. The first thread enqueued on a thread queue will give its spare thread queue heads to that thread queue. The threads arriving at the queue will add their thread queue heads to the free chain of the queue heads provided by the first thread enqueued. Once a thread is dequeued it use the free chain to get new spare thread queue heads.
+
+Uses a leading underscore in the structure name to allow forward declarations in standard header files provided by Newlib and G\+CC. 
+
+\subsection{Field Documentation}
+\mbox{\Hypertarget{struct__Thread__queue__Heads_a0810b5b56b238a61d7cf664b28e3d337}\label{struct__Thread__queue__Heads_a0810b5b56b238a61d7cf664b28e3d337}} 
+\index{\_Thread\_queue\_Heads@{\_Thread\_queue\_Heads}!Fifo@{Fifo}}
+\index{Fifo@{Fifo}!\_Thread\_queue\_Heads@{\_Thread\_queue\_Heads}}
+\subsubsection{\texorpdfstring{Fifo}{Fifo}}
+{\footnotesize\ttfamily \mbox{\hyperlink{unionChain__Control}{Chain\+\_\+\+Control}} \+\_\+\+Thread\+\_\+queue\+\_\+\+Heads\+::\+Fifo}
+
+
+
+This is the F\+I\+FO discipline list. 
+
+On S\+MP configurations this F\+I\+FO is used to enqueue the per scheduler instance priority queues of this structure. This ensures F\+I\+FO fairness among the highest priority thread of each scheduler instance. \mbox{\Hypertarget{struct__Thread__queue__Heads_a21d754973bc1115a827336f826e2d142}\label{struct__Thread__queue__Heads_a21d754973bc1115a827336f826e2d142}} 
+\index{\_Thread\_queue\_Heads@{\_Thread\_queue\_Heads}!Heads@{Heads}}
+\index{Heads@{Heads}!\_Thread\_queue\_Heads@{\_Thread\_queue\_Heads}}
+\subsubsection{\texorpdfstring{Heads}{Heads}}
+{\footnotesize\ttfamily union \{ ... \}   \+\_\+\+Thread\+\_\+queue\+\_\+\+Heads\+::\+Heads}
+
+This union contains the data structures used to manage the blocked set of tasks which varies based upon the discipline. 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+cpukit/include/rtems/score/\mbox{\hyperlink{threadq_8h}{threadq.\+h}}\end{DoxyCompactItemize}

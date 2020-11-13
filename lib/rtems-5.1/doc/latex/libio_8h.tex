@@ -1,0 +1,393 @@
+\hypertarget{libio_8h}{}\section{cpukit/include/rtems/libio.h File Reference}
+\label{libio_8h}\index{cpukit/include/rtems/libio.h@{cpukit/include/rtems/libio.h}}
+
+
+Basic \mbox{\hyperlink{structIO}{IO}} A\+PI.  
+
+
+{\ttfamily \#include $<$sys/types.\+h$>$}\newline
+{\ttfamily \#include $<$sys/stat.\+h$>$}\newline
+{\ttfamily \#include $<$sys/ioccom.\+h$>$}\newline
+{\ttfamily \#include $<$sys/statvfs.\+h$>$}\newline
+{\ttfamily \#include $<$sys/uio.\+h$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include $<$termios.\+h$>$}\newline
+{\ttfamily \#include $<$rtems.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/fs.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/chain.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/score/atomic.\+h$>$}\newline
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structrtems__filesystem__eval__path__context__t}{rtems\+\_\+filesystem\+\_\+eval\+\_\+path\+\_\+context\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Path evaluation context. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{struct__rtems__filesystem__operations__table}{\+\_\+rtems\+\_\+filesystem\+\_\+operations\+\_\+table}}
+\begin{DoxyCompactList}\small\item\em File system operations table. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{struct__rtems__filesystem__file__handlers__r}{\+\_\+rtems\+\_\+filesystem\+\_\+file\+\_\+handlers\+\_\+r}}
+\begin{DoxyCompactList}\small\item\em File system node operations table. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structrtems__filesystem__limits__and__options__t}{rtems\+\_\+filesystem\+\_\+limits\+\_\+and\+\_\+options\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Contain file system specific information which is required to support \mbox{\hyperlink{fpathconf_8c_a71e43208c97faad6658a5f7d7daa92cd}{fpathconf()}}. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structrtems__libio__tt}{rtems\+\_\+libio\+\_\+tt}}
+\begin{DoxyCompactList}\small\item\em An open file data structure. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structrtems__libio__rw__args__t}{rtems\+\_\+libio\+\_\+rw\+\_\+args\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Paramameter block for read/write. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structrtems__libio__open__close__args__t}{rtems\+\_\+libio\+\_\+open\+\_\+close\+\_\+args\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Parameter block for open/close. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structrtems__libio__ioctl__args__t}{rtems\+\_\+libio\+\_\+ioctl\+\_\+args\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Parameter block for ioctl. \end{DoxyCompactList}\item 
+union \mbox{\hyperlink{union____rtems__dev__t}{\+\_\+\+\_\+rtems\+\_\+dev\+\_\+t}}
+\item 
+struct \mbox{\hyperlink{structrtems__filesystem__mount__table__entry__tt}{rtems\+\_\+filesystem\+\_\+mount\+\_\+table\+\_\+entry\+\_\+tt}}
+\begin{DoxyCompactList}\small\item\em Mount table entry. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structrtems__filesystem__table__t}{rtems\+\_\+filesystem\+\_\+table\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em File system table entry. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structrtems__filesystem__mount__configuration}{rtems\+\_\+filesystem\+\_\+mount\+\_\+configuration}}
+\item 
+struct \mbox{\hyperlink{structrtems__termios__callbacks}{rtems\+\_\+termios\+\_\+callbacks}}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bfseries rtems\+\_\+filesystem\+\_\+split\+\_\+dev\+\_\+t}(\+\_\+dev,  \+\_\+major,  \+\_\+minor)
+\item 
+\mbox{\Hypertarget{libio_8h_a7aa27e8f301089936e24e6e5c6940e6b}\label{libio_8h_a7aa27e8f301089936e24e6e5c6940e6b}} 
+\#define \mbox{\hyperlink{libio_8h_a7aa27e8f301089936e24e6e5c6940e6b}{rtems\+\_\+filesystem\+\_\+pathconf}}(\+\_\+mte)~((\+\_\+mte)-\/$>$pathconf\+\_\+limits\+\_\+and\+\_\+options)
+\begin{DoxyCompactList}\small\item\em The pathconf setting for a file system. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{libio_8h_a2c15b4024e03980e1f4a6ec8991cdae8}\label{libio_8h_a2c15b4024e03980e1f4a6ec8991cdae8}} 
+\#define \mbox{\hyperlink{libio_8h_a2c15b4024e03980e1f4a6ec8991cdae8}{rtems\+\_\+filesystem\+\_\+type}}(\+\_\+mte)~((\+\_\+mte)-\/$>$type)
+\begin{DoxyCompactList}\small\item\em The type of file system. Its name. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{libio_8h_a03814d98d393fb69b88b12c9a25c05ca}\label{libio_8h_a03814d98d393fb69b88b12c9a25c05ca}} 
+\#define \mbox{\hyperlink{libio_8h_a03814d98d393fb69b88b12c9a25c05ca}{rtems\+\_\+filesystem\+\_\+mount\+\_\+point}}(\+\_\+mte)~((\+\_\+mte)-\/$>$target)
+\begin{DoxyCompactList}\small\item\em The mount point of a file system. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{libio_8h_ac665b22126733219bce47b82840a931d}\label{libio_8h_ac665b22126733219bce47b82840a931d}} 
+\#define \mbox{\hyperlink{libio_8h_ac665b22126733219bce47b82840a931d}{rtems\+\_\+filesystem\+\_\+mount\+\_\+device}}(\+\_\+mte)~((\+\_\+mte)-\/$>$dev)
+\begin{DoxyCompactList}\small\item\em The device entry of a file system. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{Indent}\textbf{ Flag Values}\par
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bfseries L\+I\+B\+I\+O\+\_\+\+F\+L\+A\+G\+S\+\_\+\+N\+O\+\_\+\+D\+E\+L\+AY}~0x0001\+U  /$\ast$ return immediately if no data $\ast$/
+\item 
+\#define {\bfseries L\+I\+B\+I\+O\+\_\+\+F\+L\+A\+G\+S\+\_\+\+R\+E\+AD}~0x0002\+U  /$\ast$ reading $\ast$/
+\item 
+\#define {\bfseries L\+I\+B\+I\+O\+\_\+\+F\+L\+A\+G\+S\+\_\+\+W\+R\+I\+TE}~0x0004\+U  /$\ast$ writing $\ast$/
+\item 
+\#define {\bfseries L\+I\+B\+I\+O\+\_\+\+F\+L\+A\+G\+S\+\_\+\+O\+P\+EN}~0x0100\+U  /$\ast$ device is open $\ast$/
+\item 
+\#define {\bfseries L\+I\+B\+I\+O\+\_\+\+F\+L\+A\+G\+S\+\_\+\+A\+P\+P\+E\+ND}~0x0200\+U  /$\ast$ all writes append $\ast$/
+\item 
+\#define {\bfseries L\+I\+B\+I\+O\+\_\+\+F\+L\+A\+G\+S\+\_\+\+C\+L\+O\+S\+E\+\_\+\+O\+N\+\_\+\+E\+X\+EC}~0x0800\+U  /$\ast$ close on process exec() $\ast$/
+\item 
+\#define {\bfseries L\+I\+B\+I\+O\+\_\+\+F\+L\+A\+G\+S\+\_\+\+R\+E\+A\+D\+\_\+\+W\+R\+I\+TE}~(L\+I\+B\+I\+O\+\_\+\+F\+L\+A\+G\+S\+\_\+\+R\+E\+AD $\vert$ L\+I\+B\+I\+O\+\_\+\+F\+L\+A\+G\+S\+\_\+\+W\+R\+I\+TE)
+\item 
+\#define {\bfseries L\+I\+B\+I\+O\+\_\+\+F\+L\+A\+G\+S\+\_\+\+R\+E\+F\+E\+R\+E\+N\+C\+E\+\_\+\+I\+NC}~0x1000U
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Permission Macros}\par
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+F\+S\+\_\+\+P\+E\+R\+M\+S\+\_\+\+R\+E\+AD}~0x4
+\item 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+F\+S\+\_\+\+P\+E\+R\+M\+S\+\_\+\+W\+R\+I\+TE}~0x2
+\item 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+F\+S\+\_\+\+P\+E\+R\+M\+S\+\_\+\+E\+X\+EC}~0x1
+\item 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+F\+S\+\_\+\+P\+E\+R\+M\+S\+\_\+\+R\+WX}~(R\+T\+E\+M\+S\+\_\+\+F\+S\+\_\+\+P\+E\+R\+M\+S\+\_\+\+R\+E\+AD $\vert$ R\+T\+E\+M\+S\+\_\+\+F\+S\+\_\+\+P\+E\+R\+M\+S\+\_\+\+W\+R\+I\+TE $\vert$ R\+T\+E\+M\+S\+\_\+\+F\+S\+\_\+\+P\+E\+R\+M\+S\+\_\+\+E\+X\+EC)
+\item 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+F\+S\+\_\+\+F\+O\+L\+L\+O\+W\+\_\+\+H\+A\+R\+D\+\_\+\+L\+I\+NK}~0x8
+\item 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+F\+S\+\_\+\+F\+O\+L\+L\+O\+W\+\_\+\+S\+Y\+M\+\_\+\+L\+I\+NK}~0x10
+\item 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+F\+S\+\_\+\+F\+O\+L\+L\+O\+W\+\_\+\+L\+I\+NK}~(R\+T\+E\+M\+S\+\_\+\+F\+S\+\_\+\+F\+O\+L\+L\+O\+W\+\_\+\+H\+A\+R\+D\+\_\+\+L\+I\+NK $\vert$ R\+T\+E\+M\+S\+\_\+\+F\+S\+\_\+\+F\+O\+L\+L\+O\+W\+\_\+\+S\+Y\+M\+\_\+\+L\+I\+NK)
+\item 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+F\+S\+\_\+\+M\+A\+KE}~0x20
+\item 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+F\+S\+\_\+\+E\+X\+C\+L\+U\+S\+I\+VE}~0x40
+\item 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+F\+S\+\_\+\+A\+C\+C\+E\+P\+T\+\_\+\+R\+E\+S\+I\+D\+U\+A\+L\+\_\+\+D\+E\+L\+I\+M\+I\+T\+E\+RS}~0x80
+\item 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+F\+S\+\_\+\+R\+E\+J\+E\+C\+T\+\_\+\+T\+E\+R\+M\+I\+N\+A\+L\+\_\+\+D\+OT}~0x100
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ File System Types}\par
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+F\+I\+L\+E\+S\+Y\+S\+T\+E\+M\+\_\+\+T\+Y\+P\+E\+\_\+\+I\+M\+FS}~\char`\"{}imfs\char`\"{}
+\item 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+F\+I\+L\+E\+S\+Y\+S\+T\+E\+M\+\_\+\+T\+Y\+P\+E\+\_\+\+F\+T\+P\+FS}~\char`\"{}ftpfs\char`\"{}
+\item 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+F\+I\+L\+E\+S\+Y\+S\+T\+E\+M\+\_\+\+T\+Y\+P\+E\+\_\+\+T\+F\+T\+P\+FS}~\char`\"{}tftpfs\char`\"{}
+\item 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+F\+I\+L\+E\+S\+Y\+S\+T\+E\+M\+\_\+\+T\+Y\+P\+E\+\_\+\+N\+FS}~\char`\"{}nfs\char`\"{}
+\item 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+F\+I\+L\+E\+S\+Y\+S\+T\+E\+M\+\_\+\+T\+Y\+P\+E\+\_\+\+D\+O\+S\+FS}~\char`\"{}dosfs\char`\"{}
+\item 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+F\+I\+L\+E\+S\+Y\+S\+T\+E\+M\+\_\+\+T\+Y\+P\+E\+\_\+\+R\+FS}~\char`\"{}rfs\char`\"{}
+\item 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+F\+I\+L\+E\+S\+Y\+S\+T\+E\+M\+\_\+\+T\+Y\+P\+E\+\_\+\+J\+F\+F\+S2}~\char`\"{}jffs2\char`\"{}
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef void($\ast$ \mbox{\hyperlink{group__LibIOFSOps_gae6a0c55a60927170f228b90ede1032f9}{rtems\+\_\+filesystem\+\_\+mt\+\_\+entry\+\_\+lock\+\_\+t}}) (const \mbox{\hyperlink{structrtems__filesystem__mount__table__entry__tt}{rtems\+\_\+filesystem\+\_\+mount\+\_\+table\+\_\+entry\+\_\+t}} $\ast$mt\+\_\+entry)
+\begin{DoxyCompactList}\small\item\em Locks a file system instance. \end{DoxyCompactList}\item 
+typedef void($\ast$ \mbox{\hyperlink{group__LibIOFSOps_ga9a04cab210f543206c54fc78877cb884}{rtems\+\_\+filesystem\+\_\+mt\+\_\+entry\+\_\+unlock\+\_\+t}}) (const \mbox{\hyperlink{structrtems__filesystem__mount__table__entry__tt}{rtems\+\_\+filesystem\+\_\+mount\+\_\+table\+\_\+entry\+\_\+t}} $\ast$mt\+\_\+entry)
+\begin{DoxyCompactList}\small\item\em Unlocks a file system instance. \end{DoxyCompactList}\item 
+typedef void($\ast$ \mbox{\hyperlink{group__LibIOFSOps_ga49260fbd8e55e1ecb71daef115c751c4}{rtems\+\_\+filesystem\+\_\+eval\+\_\+path\+\_\+t}}) (\mbox{\hyperlink{structrtems__filesystem__eval__path__context__t}{rtems\+\_\+filesystem\+\_\+eval\+\_\+path\+\_\+context\+\_\+t}} $\ast$ctx)
+\begin{DoxyCompactList}\small\item\em Path evaluation. \end{DoxyCompactList}\item 
+typedef int($\ast$ \mbox{\hyperlink{group__LibIOFSOps_ga13198d873ccc0493d7ba970d4429502f}{rtems\+\_\+filesystem\+\_\+link\+\_\+t}}) (const \mbox{\hyperlink{group__LibIO_ga3252b3d31ee3c49ffff0b7604a676864}{rtems\+\_\+filesystem\+\_\+location\+\_\+info\+\_\+t}} $\ast$parentloc, const \mbox{\hyperlink{group__LibIO_ga3252b3d31ee3c49ffff0b7604a676864}{rtems\+\_\+filesystem\+\_\+location\+\_\+info\+\_\+t}} $\ast$targetloc, const char $\ast$name, size\+\_\+t namelen)
+\begin{DoxyCompactList}\small\item\em Creates a new link for the existing file. \end{DoxyCompactList}\item 
+typedef int($\ast$ \mbox{\hyperlink{group__LibIOFSOps_ga1b1d7f7442b24fc05ffedc596f1cec4b}{rtems\+\_\+filesystem\+\_\+fchmod\+\_\+t}}) (const \mbox{\hyperlink{group__LibIO_ga3252b3d31ee3c49ffff0b7604a676864}{rtems\+\_\+filesystem\+\_\+location\+\_\+info\+\_\+t}} $\ast$loc, mode\+\_\+t mode)
+\begin{DoxyCompactList}\small\item\em Changes the mode of a node. \end{DoxyCompactList}\item 
+typedef int($\ast$ \mbox{\hyperlink{group__LibIOFSOps_gad7040c3142badcd374418462276f977a}{rtems\+\_\+filesystem\+\_\+chown\+\_\+t}}) (const \mbox{\hyperlink{group__LibIO_ga3252b3d31ee3c49ffff0b7604a676864}{rtems\+\_\+filesystem\+\_\+location\+\_\+info\+\_\+t}} $\ast$loc, uid\+\_\+t owner, gid\+\_\+t group)
+\begin{DoxyCompactList}\small\item\em Changes owner and group of a node. \end{DoxyCompactList}\item 
+typedef int($\ast$ \mbox{\hyperlink{group__LibIOFSOps_ga7ff510a002e57b7165b331e4c2f21a10}{rtems\+\_\+filesystem\+\_\+clonenode\+\_\+t}}) (\mbox{\hyperlink{group__LibIO_ga3252b3d31ee3c49ffff0b7604a676864}{rtems\+\_\+filesystem\+\_\+location\+\_\+info\+\_\+t}} $\ast$loc)
+\begin{DoxyCompactList}\small\item\em Clones a location. \end{DoxyCompactList}\item 
+typedef void($\ast$ \mbox{\hyperlink{group__LibIOFSOps_gae151461f446627c1bee2a12decf99745}{rtems\+\_\+filesystem\+\_\+freenode\+\_\+t}}) (const \mbox{\hyperlink{group__LibIO_ga3252b3d31ee3c49ffff0b7604a676864}{rtems\+\_\+filesystem\+\_\+location\+\_\+info\+\_\+t}} $\ast$loc)
+\begin{DoxyCompactList}\small\item\em Frees the location of a node. \end{DoxyCompactList}\item 
+typedef int($\ast$ \mbox{\hyperlink{group__LibIOFSOps_ga1836d0f226aaaf7d7a94231dadb42663}{rtems\+\_\+filesystem\+\_\+mount\+\_\+t}}) (\mbox{\hyperlink{structrtems__filesystem__mount__table__entry__tt}{rtems\+\_\+filesystem\+\_\+mount\+\_\+table\+\_\+entry\+\_\+t}} $\ast$mt\+\_\+entry)
+\begin{DoxyCompactList}\small\item\em Mounts a file system instance in a mount point (directory). \end{DoxyCompactList}\item 
+typedef int($\ast$ \mbox{\hyperlink{group__LibIOFSOps_gab86f790d75005100fc4d847f7cdc8aef}{rtems\+\_\+filesystem\+\_\+fsmount\+\_\+me\+\_\+t}}) (\mbox{\hyperlink{structrtems__filesystem__mount__table__entry__tt}{rtems\+\_\+filesystem\+\_\+mount\+\_\+table\+\_\+entry\+\_\+t}} $\ast$mt\+\_\+entry, const void $\ast$data)
+\begin{DoxyCompactList}\small\item\em Initializes a file system instance. \end{DoxyCompactList}\item 
+typedef int($\ast$ \mbox{\hyperlink{group__LibIOFSOps_ga4eab60ad75d332e4ee4b1ee7ffb95690}{rtems\+\_\+filesystem\+\_\+unmount\+\_\+t}}) (\mbox{\hyperlink{structrtems__filesystem__mount__table__entry__tt}{rtems\+\_\+filesystem\+\_\+mount\+\_\+table\+\_\+entry\+\_\+t}} $\ast$mt\+\_\+entry)
+\begin{DoxyCompactList}\small\item\em Unmounts a file system instance in a mount point (directory). \end{DoxyCompactList}\item 
+typedef void($\ast$ \mbox{\hyperlink{group__LibIOFSOps_ga2f385e23e8448df4e51240f8377aac43}{rtems\+\_\+filesystem\+\_\+fsunmount\+\_\+me\+\_\+t}}) (\mbox{\hyperlink{structrtems__filesystem__mount__table__entry__tt}{rtems\+\_\+filesystem\+\_\+mount\+\_\+table\+\_\+entry\+\_\+t}} $\ast$mt\+\_\+entry)
+\begin{DoxyCompactList}\small\item\em Destroys a file system instance. \end{DoxyCompactList}\item 
+typedef bool($\ast$ \mbox{\hyperlink{group__LibIOFSOps_ga97ac953981e738d086a678a2cb66105d}{rtems\+\_\+filesystem\+\_\+are\+\_\+nodes\+\_\+equal\+\_\+t}}) (const \mbox{\hyperlink{group__LibIO_ga3252b3d31ee3c49ffff0b7604a676864}{rtems\+\_\+filesystem\+\_\+location\+\_\+info\+\_\+t}} $\ast$a, const \mbox{\hyperlink{group__LibIO_ga3252b3d31ee3c49ffff0b7604a676864}{rtems\+\_\+filesystem\+\_\+location\+\_\+info\+\_\+t}} $\ast$b)
+\begin{DoxyCompactList}\small\item\em Tests if the node of one location is equal to the node of the other location. \end{DoxyCompactList}\item 
+typedef int($\ast$ \mbox{\hyperlink{group__LibIOFSOps_ga9003ec0170a16478f8f47331b4fcad0a}{rtems\+\_\+filesystem\+\_\+mknod\+\_\+t}}) (const \mbox{\hyperlink{group__LibIO_ga3252b3d31ee3c49ffff0b7604a676864}{rtems\+\_\+filesystem\+\_\+location\+\_\+info\+\_\+t}} $\ast$parentloc, const char $\ast$name, size\+\_\+t namelen, mode\+\_\+t mode, dev\+\_\+t dev)
+\begin{DoxyCompactList}\small\item\em Creates a new node. \end{DoxyCompactList}\item 
+typedef int($\ast$ \mbox{\hyperlink{group__LibIOFSOps_ga59f7a2562e7acba10bae871649c5d0f3}{rtems\+\_\+filesystem\+\_\+rmnod\+\_\+t}}) (const \mbox{\hyperlink{group__LibIO_ga3252b3d31ee3c49ffff0b7604a676864}{rtems\+\_\+filesystem\+\_\+location\+\_\+info\+\_\+t}} $\ast$parentloc, const \mbox{\hyperlink{group__LibIO_ga3252b3d31ee3c49ffff0b7604a676864}{rtems\+\_\+filesystem\+\_\+location\+\_\+info\+\_\+t}} $\ast$loc)
+\begin{DoxyCompactList}\small\item\em Removes a node. \end{DoxyCompactList}\item 
+typedef int($\ast$ \mbox{\hyperlink{group__LibIOFSOps_ga7b4bd5a75a776c42f1e09159406e2c94}{rtems\+\_\+filesystem\+\_\+utime\+\_\+t}}) (const \mbox{\hyperlink{group__LibIO_ga3252b3d31ee3c49ffff0b7604a676864}{rtems\+\_\+filesystem\+\_\+location\+\_\+info\+\_\+t}} $\ast$loc, time\+\_\+t actime, time\+\_\+t modtime)
+\begin{DoxyCompactList}\small\item\em Set node access and modification times. \end{DoxyCompactList}\item 
+typedef int($\ast$ \mbox{\hyperlink{group__LibIOFSOps_gaf21fe2af848bab4061fd62dd0f60522f}{rtems\+\_\+filesystem\+\_\+symlink\+\_\+t}}) (const \mbox{\hyperlink{group__LibIO_ga3252b3d31ee3c49ffff0b7604a676864}{rtems\+\_\+filesystem\+\_\+location\+\_\+info\+\_\+t}} $\ast$parentloc, const char $\ast$name, size\+\_\+t namelen, const char $\ast$target)
+\begin{DoxyCompactList}\small\item\em Makes a symbolic link to a node. \end{DoxyCompactList}\item 
+typedef ssize\+\_\+t($\ast$ \mbox{\hyperlink{group__LibIOFSOps_ga811a6b3bc7b01155f7b585a8eae29177}{rtems\+\_\+filesystem\+\_\+readlink\+\_\+t}}) (const \mbox{\hyperlink{group__LibIO_ga3252b3d31ee3c49ffff0b7604a676864}{rtems\+\_\+filesystem\+\_\+location\+\_\+info\+\_\+t}} $\ast$loc, char $\ast$buf, size\+\_\+t bufsize)
+\begin{DoxyCompactList}\small\item\em Reads the contents of a symbolic link. \end{DoxyCompactList}\item 
+typedef int($\ast$ \mbox{\hyperlink{group__LibIOFSOps_ga6b92b1f0dc00c743d3fc99cebbeb22bf}{rtems\+\_\+filesystem\+\_\+rename\+\_\+t}}) (const \mbox{\hyperlink{group__LibIO_ga3252b3d31ee3c49ffff0b7604a676864}{rtems\+\_\+filesystem\+\_\+location\+\_\+info\+\_\+t}} $\ast$oldparentloc, const \mbox{\hyperlink{group__LibIO_ga3252b3d31ee3c49ffff0b7604a676864}{rtems\+\_\+filesystem\+\_\+location\+\_\+info\+\_\+t}} $\ast$oldloc, const \mbox{\hyperlink{group__LibIO_ga3252b3d31ee3c49ffff0b7604a676864}{rtems\+\_\+filesystem\+\_\+location\+\_\+info\+\_\+t}} $\ast$newparentloc, const char $\ast$name, size\+\_\+t namelen)
+\begin{DoxyCompactList}\small\item\em Renames a node. \end{DoxyCompactList}\item 
+typedef int($\ast$ \mbox{\hyperlink{group__LibIOFSOps_ga0866278bfe736fad7750e3e89c5fc93b}{rtems\+\_\+filesystem\+\_\+statvfs\+\_\+t}}) (const \mbox{\hyperlink{group__LibIO_ga3252b3d31ee3c49ffff0b7604a676864}{rtems\+\_\+filesystem\+\_\+location\+\_\+info\+\_\+t}} $\ast$loc, struct \mbox{\hyperlink{structstatvfs}{statvfs}} $\ast$buf)
+\begin{DoxyCompactList}\small\item\em Gets file system information. \end{DoxyCompactList}\item 
+typedef int($\ast$ \mbox{\hyperlink{group__LibIOFSHandler_gaf95c211266cc1feef5e53066310f9134}{rtems\+\_\+filesystem\+\_\+open\+\_\+t}}) (\mbox{\hyperlink{structrtems__libio__tt}{rtems\+\_\+libio\+\_\+t}} $\ast$iop, const char $\ast$path, int oflag, mode\+\_\+t mode)
+\begin{DoxyCompactList}\small\item\em Opens a node. \end{DoxyCompactList}\item 
+typedef int($\ast$ \mbox{\hyperlink{group__LibIOFSHandler_ga9c520e776b733893afba2997e163c8af}{rtems\+\_\+filesystem\+\_\+close\+\_\+t}}) (\mbox{\hyperlink{structrtems__libio__tt}{rtems\+\_\+libio\+\_\+t}} $\ast$iop)
+\begin{DoxyCompactList}\small\item\em Closes a node. \end{DoxyCompactList}\item 
+typedef ssize\+\_\+t($\ast$ \mbox{\hyperlink{group__LibIOFSHandler_ga36ed9dda6132dd307fc24ce03f730312}{rtems\+\_\+filesystem\+\_\+read\+\_\+t}}) (\mbox{\hyperlink{structrtems__libio__tt}{rtems\+\_\+libio\+\_\+t}} $\ast$iop, void $\ast$buffer, size\+\_\+t count)
+\begin{DoxyCompactList}\small\item\em Reads from a node. \end{DoxyCompactList}\item 
+typedef ssize\+\_\+t($\ast$ \mbox{\hyperlink{group__LibIOFSHandler_gae6ccf9c319ab60636be036e7437f8dd7}{rtems\+\_\+filesystem\+\_\+readv\+\_\+t}}) (\mbox{\hyperlink{structrtems__libio__tt}{rtems\+\_\+libio\+\_\+t}} $\ast$iop, const struct iovec $\ast$iov, int iovcnt, ssize\+\_\+t total)
+\begin{DoxyCompactList}\small\item\em Reads an \mbox{\hyperlink{structIO}{IO}} vector from a node. \end{DoxyCompactList}\item 
+typedef ssize\+\_\+t($\ast$ \mbox{\hyperlink{group__LibIOFSHandler_gacbc1d51a1699693e340b3e31f7f62611}{rtems\+\_\+filesystem\+\_\+write\+\_\+t}}) (\mbox{\hyperlink{structrtems__libio__tt}{rtems\+\_\+libio\+\_\+t}} $\ast$iop, const void $\ast$buffer, size\+\_\+t count)
+\begin{DoxyCompactList}\small\item\em Writes to a node. \end{DoxyCompactList}\item 
+typedef ssize\+\_\+t($\ast$ \mbox{\hyperlink{group__LibIOFSHandler_gabdb95b0ef5e3875f0b80cc221edf78f8}{rtems\+\_\+filesystem\+\_\+writev\+\_\+t}}) (\mbox{\hyperlink{structrtems__libio__tt}{rtems\+\_\+libio\+\_\+t}} $\ast$iop, const struct iovec $\ast$iov, int iovcnt, ssize\+\_\+t total)
+\begin{DoxyCompactList}\small\item\em Writes an \mbox{\hyperlink{structIO}{IO}} vector to a node. \end{DoxyCompactList}\item 
+typedef int($\ast$ \mbox{\hyperlink{group__LibIOFSHandler_ga04ace53d3f0513746d5241dc94c76387}{rtems\+\_\+filesystem\+\_\+ioctl\+\_\+t}}) (\mbox{\hyperlink{structrtems__libio__tt}{rtems\+\_\+libio\+\_\+t}} $\ast$iop, ioctl\+\_\+command\+\_\+t request, void $\ast$buffer)
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{structIO}{IO}} control of a node. \end{DoxyCompactList}\item 
+typedef off\+\_\+t($\ast$ \mbox{\hyperlink{group__LibIOFSHandler_gab3752ab0473efced7afee0d60c0e2c58}{rtems\+\_\+filesystem\+\_\+lseek\+\_\+t}}) (\mbox{\hyperlink{structrtems__libio__tt}{rtems\+\_\+libio\+\_\+t}} $\ast$iop, off\+\_\+t offset, int whence)
+\begin{DoxyCompactList}\small\item\em Moves the read/write file offset. \end{DoxyCompactList}\item 
+typedef int($\ast$ \mbox{\hyperlink{group__LibIOFSHandler_gabdbd09354c4e86c79735da3a1dc340a8}{rtems\+\_\+filesystem\+\_\+fstat\+\_\+t}}) (const \mbox{\hyperlink{group__LibIO_ga3252b3d31ee3c49ffff0b7604a676864}{rtems\+\_\+filesystem\+\_\+location\+\_\+info\+\_\+t}} $\ast$loc, struct stat $\ast$buf)
+\begin{DoxyCompactList}\small\item\em Gets a node status. \end{DoxyCompactList}\item 
+typedef int($\ast$ \mbox{\hyperlink{group__LibIOFSHandler_gaf5cc5b12b8ab1799641171b1649de34b}{rtems\+\_\+filesystem\+\_\+ftruncate\+\_\+t}}) (\mbox{\hyperlink{structrtems__libio__tt}{rtems\+\_\+libio\+\_\+t}} $\ast$iop, off\+\_\+t length)
+\begin{DoxyCompactList}\small\item\em Truncates a file to a specified length. \end{DoxyCompactList}\item 
+typedef int($\ast$ \mbox{\hyperlink{group__LibIOFSHandler_gace838c9c108ef6f2e7ddeed186a369f5}{rtems\+\_\+filesystem\+\_\+fsync\+\_\+t}}) (\mbox{\hyperlink{structrtems__libio__tt}{rtems\+\_\+libio\+\_\+t}} $\ast$iop)
+\begin{DoxyCompactList}\small\item\em Synchronizes changes to a file. \end{DoxyCompactList}\item 
+typedef int($\ast$ \mbox{\hyperlink{group__LibIOFSHandler_gad78b9605ac97be914b586f3a2820a3de}{rtems\+\_\+filesystem\+\_\+fdatasync\+\_\+t}}) (\mbox{\hyperlink{structrtems__libio__tt}{rtems\+\_\+libio\+\_\+t}} $\ast$iop)
+\begin{DoxyCompactList}\small\item\em Synchronizes the data of a file. \end{DoxyCompactList}\item 
+typedef int($\ast$ \mbox{\hyperlink{group__LibIOFSHandler_ga4af1bd820051eb2fc74b91f5d8868e06}{rtems\+\_\+filesystem\+\_\+fcntl\+\_\+t}}) (\mbox{\hyperlink{structrtems__libio__tt}{rtems\+\_\+libio\+\_\+t}} $\ast$iop, int cmd)
+\begin{DoxyCompactList}\small\item\em File control. \end{DoxyCompactList}\item 
+typedef int($\ast$ \mbox{\hyperlink{group__LibIOFSHandler_ga0e8056cf6051bb275005b03e74d0ff5d}{rtems\+\_\+filesystem\+\_\+poll\+\_\+t}}) (\mbox{\hyperlink{structrtems__libio__tt}{rtems\+\_\+libio\+\_\+t}} $\ast$iop, int events)
+\begin{DoxyCompactList}\small\item\em Poll and select support. \end{DoxyCompactList}\item 
+typedef int($\ast$ \mbox{\hyperlink{group__LibIOFSHandler_ga8d33b578b98ea48ea8f2282632e01e72}{rtems\+\_\+filesystem\+\_\+kqfilter\+\_\+t}}) (\mbox{\hyperlink{structrtems__libio__tt}{rtems\+\_\+libio\+\_\+t}} $\ast$iop, struct knote $\ast$kn)
+\begin{DoxyCompactList}\small\item\em Kernel event filter support. \end{DoxyCompactList}\item 
+typedef int($\ast$ \mbox{\hyperlink{group__LibIOFSHandler_gadfd939c2b1e61acd15671a288a259e96}{rtems\+\_\+filesystem\+\_\+mmap\+\_\+t}}) (\mbox{\hyperlink{structrtems__libio__tt}{rtems\+\_\+libio\+\_\+t}} $\ast$iop, void $\ast$$\ast$addr, size\+\_\+t len, int prot, off\+\_\+t off)
+\begin{DoxyCompactList}\small\item\em M\+M\+AP support. \end{DoxyCompactList}\item 
+typedef off\+\_\+t rtems\+\_\+off64\+\_\+t {\bfseries \+\_\+\+\_\+attribute\+\_\+\+\_\+}((deprecated))
+\item 
+typedef struct \mbox{\hyperlink{structrtems__filesystem__table__t}{rtems\+\_\+filesystem\+\_\+table\+\_\+t}} \mbox{\hyperlink{group__FileSystemTypesAndMount_ga7a76c11a7070c975aba1d545f6b7df07}{rtems\+\_\+filesystem\+\_\+table\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em File system table entry. \end{DoxyCompactList}\item 
+typedef bool($\ast$ \mbox{\hyperlink{group__FileSystemTypesAndMount_gaa40c0b8e4e5abe60a08bead5b3c72241}{rtems\+\_\+per\+\_\+filesystem\+\_\+routine}}) (const \mbox{\hyperlink{structrtems__filesystem__table__t}{rtems\+\_\+filesystem\+\_\+table\+\_\+t}} $\ast$fs\+\_\+entry, void $\ast$arg)
+\begin{DoxyCompactList}\small\item\em Per file system type routine. \end{DoxyCompactList}\item 
+typedef bool($\ast$ \mbox{\hyperlink{group__FileSystemTypesAndMount_ga84a7a5cd36614b906e1c485224beb686}{rtems\+\_\+filesystem\+\_\+mt\+\_\+entry\+\_\+visitor}}) (const \mbox{\hyperlink{structrtems__filesystem__mount__table__entry__tt}{rtems\+\_\+filesystem\+\_\+mount\+\_\+table\+\_\+entry\+\_\+t}} $\ast$mt\+\_\+entry, void $\ast$arg)
+\begin{DoxyCompactList}\small\item\em Mount table entry visitor. \end{DoxyCompactList}\item 
+typedef struct \mbox{\hyperlink{structrtems__termios__callbacks}{rtems\+\_\+termios\+\_\+callbacks}} {\bfseries rtems\+\_\+termios\+\_\+callbacks}
+\item 
+typedef \mbox{\hyperlink{group__Termios_ga8d00143bb99772a960e237f16437fc1b}{rtems\+\_\+termios\+\_\+iproc\+\_\+status\+\_\+code}}($\ast$ \mbox{\hyperlink{group__Termios_ga8a2610b7c8bcc2c80bbd040f0e773faf}{rtems\+\_\+termios\+\_\+isig\+\_\+handler}}) (unsigned char c, struct \mbox{\hyperlink{structrtems__termios__tty}{rtems\+\_\+termios\+\_\+tty}} $\ast$tty)
+\begin{DoxyCompactList}\small\item\em Type for I\+S\+IG (V\+I\+N\+T\+R/\+V\+K\+I\+LL) handler. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{Indent}\textbf{ External I/O Handlers}\par
+\begin{DoxyCompactItemize}
+\item 
+typedef int($\ast$ {\bfseries rtems\+\_\+libio\+\_\+open\+\_\+t}) (const char $\ast$pathname, uint32\+\_\+t flag, uint32\+\_\+t mode)
+\item 
+typedef int($\ast$ {\bfseries rtems\+\_\+libio\+\_\+close\+\_\+t}) (int fd)
+\item 
+typedef ssize\+\_\+t($\ast$ {\bfseries rtems\+\_\+libio\+\_\+read\+\_\+t}) (int fd, void $\ast$buffer, size\+\_\+t count)
+\item 
+typedef ssize\+\_\+t($\ast$ {\bfseries rtems\+\_\+libio\+\_\+write\+\_\+t}) (int fd, const void $\ast$buffer, size\+\_\+t count)
+\item 
+typedef int($\ast$ {\bfseries rtems\+\_\+libio\+\_\+ioctl\+\_\+t}) (int fd, uint32\+\_\+t command, void $\ast$buffer)
+\item 
+typedef off\+\_\+t($\ast$ {\bfseries rtems\+\_\+libio\+\_\+lseek\+\_\+t}) (int fd, off\+\_\+t offset, int whence)
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{group__FileSystemTypesAndMount_gabb3a23ee6b6e7aacb719a1a81716af7a}\label{group__FileSystemTypesAndMount_gabb3a23ee6b6e7aacb719a1a81716af7a}} 
+enum \mbox{\hyperlink{group__FileSystemTypesAndMount_gabb3a23ee6b6e7aacb719a1a81716af7a}{rtems\+\_\+filesystem\+\_\+options\+\_\+t}} \{ {\bfseries R\+T\+E\+M\+S\+\_\+\+F\+I\+L\+E\+S\+Y\+S\+T\+E\+M\+\_\+\+R\+E\+A\+D\+\_\+\+O\+N\+LY}, 
+{\bfseries R\+T\+E\+M\+S\+\_\+\+F\+I\+L\+E\+S\+Y\+S\+T\+E\+M\+\_\+\+R\+E\+A\+D\+\_\+\+W\+R\+I\+TE}, 
+{\bfseries R\+T\+E\+M\+S\+\_\+\+F\+I\+L\+E\+S\+Y\+S\+T\+E\+M\+\_\+\+B\+A\+D\+\_\+\+O\+P\+T\+I\+O\+NS}
+ \}
+\begin{DoxyCompactList}\small\item\em File system options. \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{group__Termios_ga8d00143bb99772a960e237f16437fc1b}{rtems\+\_\+termios\+\_\+iproc\+\_\+status\+\_\+code}} \{ \mbox{\hyperlink{group__Termios_gga8d00143bb99772a960e237f16437fc1bae9a05995f485b7c6cb51a8cfa473e955}{R\+T\+E\+M\+S\+\_\+\+T\+E\+R\+M\+I\+O\+S\+\_\+\+I\+P\+R\+O\+C\+\_\+\+C\+O\+N\+T\+I\+N\+UE}}, 
+\mbox{\hyperlink{group__Termios_gga8d00143bb99772a960e237f16437fc1baf7b4b4f7736fd154021de342202e4914}{R\+T\+E\+M\+S\+\_\+\+T\+E\+R\+M\+I\+O\+S\+\_\+\+I\+P\+R\+O\+C\+\_\+\+I\+N\+T\+E\+R\+R\+U\+PT}}, 
+\mbox{\hyperlink{group__Termios_gga8d00143bb99772a960e237f16437fc1ba8fbe8ec8425eb685f8e5fc72a50178c1}{R\+T\+E\+M\+S\+\_\+\+T\+E\+R\+M\+I\+O\+S\+\_\+\+I\+P\+R\+O\+C\+\_\+\+D\+O\+NE}}
+ \}
+\begin{DoxyCompactList}\small\item\em The status code returned by all Termios input processing (iproc) functions and input signal (isig) handlers. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{group__LibIOFSOps_ga22adb86bb962a91df5c36619925c3a7b}{rtems\+\_\+filesystem\+\_\+default\+\_\+lock}} (const \mbox{\hyperlink{structrtems__filesystem__mount__table__entry__tt}{rtems\+\_\+filesystem\+\_\+mount\+\_\+table\+\_\+entry\+\_\+t}} $\ast$mt\+\_\+entry)
+\begin{DoxyCompactList}\small\item\em Obtains the \mbox{\hyperlink{structIO}{IO}} library mutex. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__LibIOFSOps_ga574786e949fa2835878995fe9c16db6c}{rtems\+\_\+filesystem\+\_\+default\+\_\+unlock}} (const \mbox{\hyperlink{structrtems__filesystem__mount__table__entry__tt}{rtems\+\_\+filesystem\+\_\+mount\+\_\+table\+\_\+entry\+\_\+t}} $\ast$mt\+\_\+entry)
+\begin{DoxyCompactList}\small\item\em Releases the \mbox{\hyperlink{structIO}{IO}} library mutex. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__LibIOFSOps_gaa070ca99adbec30122412347ccc634e7}{rtems\+\_\+filesystem\+\_\+default\+\_\+eval\+\_\+path}} (\mbox{\hyperlink{structrtems__filesystem__eval__path__context__t}{rtems\+\_\+filesystem\+\_\+eval\+\_\+path\+\_\+context\+\_\+t}} $\ast$ctx)
+\begin{DoxyCompactList}\small\item\em Terminates the path evaluation and replaces the current location with the null location. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__LibIOFSOps_gaf49aa8c3671b5c5282bb3f865b8e162a}{rtems\+\_\+filesystem\+\_\+default\+\_\+link}} (const \mbox{\hyperlink{group__LibIO_ga3252b3d31ee3c49ffff0b7604a676864}{rtems\+\_\+filesystem\+\_\+location\+\_\+info\+\_\+t}} $\ast$parentloc, const \mbox{\hyperlink{group__LibIO_ga3252b3d31ee3c49ffff0b7604a676864}{rtems\+\_\+filesystem\+\_\+location\+\_\+info\+\_\+t}} $\ast$targetloc, const char $\ast$name, size\+\_\+t namelen)
+\item 
+bool \mbox{\hyperlink{group__LibIOFSOps_ga590c632457e7ce877651d41bbb4c1bad}{rtems\+\_\+filesystem\+\_\+default\+\_\+are\+\_\+nodes\+\_\+equal}} (const \mbox{\hyperlink{group__LibIO_ga3252b3d31ee3c49ffff0b7604a676864}{rtems\+\_\+filesystem\+\_\+location\+\_\+info\+\_\+t}} $\ast$a, const \mbox{\hyperlink{group__LibIO_ga3252b3d31ee3c49ffff0b7604a676864}{rtems\+\_\+filesystem\+\_\+location\+\_\+info\+\_\+t}} $\ast$b)
+\begin{DoxyCompactList}\small\item\em Tests if the node access pointer of one location is equal to the node access pointer of the other location. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__LibIOFSOps_ga2fe9c4e63942b2ebd92b0e1a3a089bcc}{rtems\+\_\+filesystem\+\_\+default\+\_\+mknod}} (const \mbox{\hyperlink{group__LibIO_ga3252b3d31ee3c49ffff0b7604a676864}{rtems\+\_\+filesystem\+\_\+location\+\_\+info\+\_\+t}} $\ast$parentloc, const char $\ast$name, size\+\_\+t namelen, mode\+\_\+t mode, dev\+\_\+t dev)
+\item 
+int \mbox{\hyperlink{group__LibIOFSOps_ga63601e9ffafa64ffa19065810db9d95c}{rtems\+\_\+filesystem\+\_\+default\+\_\+rmnod}} (const \mbox{\hyperlink{group__LibIO_ga3252b3d31ee3c49ffff0b7604a676864}{rtems\+\_\+filesystem\+\_\+location\+\_\+info\+\_\+t}} $\ast$parentloc, const \mbox{\hyperlink{group__LibIO_ga3252b3d31ee3c49ffff0b7604a676864}{rtems\+\_\+filesystem\+\_\+location\+\_\+info\+\_\+t}} $\ast$loc)
+\item 
+int \mbox{\hyperlink{group__LibIOFSOps_ga3dd804eb9c4578e02e07eb0ee445af43}{rtems\+\_\+filesystem\+\_\+default\+\_\+fchmod}} (const \mbox{\hyperlink{group__LibIO_ga3252b3d31ee3c49ffff0b7604a676864}{rtems\+\_\+filesystem\+\_\+location\+\_\+info\+\_\+t}} $\ast$loc, mode\+\_\+t mode)
+\item 
+int \mbox{\hyperlink{group__LibIOFSOps_gae95fe9ae3c0b953cc789a3885a9fe20b}{rtems\+\_\+filesystem\+\_\+default\+\_\+chown}} (const \mbox{\hyperlink{group__LibIO_ga3252b3d31ee3c49ffff0b7604a676864}{rtems\+\_\+filesystem\+\_\+location\+\_\+info\+\_\+t}} $\ast$loc, uid\+\_\+t owner, gid\+\_\+t group)
+\item 
+int \mbox{\hyperlink{group__LibIOFSOps_ga50dd6f2187a5ce3f918b18548df6e9eb}{rtems\+\_\+filesystem\+\_\+default\+\_\+clonenode}} (\mbox{\hyperlink{group__LibIO_ga3252b3d31ee3c49ffff0b7604a676864}{rtems\+\_\+filesystem\+\_\+location\+\_\+info\+\_\+t}} $\ast$loc)
+\item 
+void \mbox{\hyperlink{group__LibIOFSOps_ga801a36a04179ec2431409303fa1b9031}{rtems\+\_\+filesystem\+\_\+default\+\_\+freenode}} (const \mbox{\hyperlink{group__LibIO_ga3252b3d31ee3c49ffff0b7604a676864}{rtems\+\_\+filesystem\+\_\+location\+\_\+info\+\_\+t}} $\ast$loc)
+\item 
+int \mbox{\hyperlink{group__LibIOFSOps_ga6c134a7f03171ac182a6430be97b1cef}{rtems\+\_\+filesystem\+\_\+default\+\_\+mount}} (\mbox{\hyperlink{structrtems__filesystem__mount__table__entry__tt}{rtems\+\_\+filesystem\+\_\+mount\+\_\+table\+\_\+entry\+\_\+t}} $\ast$mt\+\_\+entry)
+\item 
+int \mbox{\hyperlink{group__LibIOFSOps_ga0fe302d1177a5be4f6b69110240cb08a}{rtems\+\_\+filesystem\+\_\+default\+\_\+unmount}} (\mbox{\hyperlink{structrtems__filesystem__mount__table__entry__tt}{rtems\+\_\+filesystem\+\_\+mount\+\_\+table\+\_\+entry\+\_\+t}} $\ast$mt\+\_\+entry)
+\item 
+void \mbox{\hyperlink{group__LibIOFSOps_ga8ccbdac4957138c89d1ca6000f4e7382}{rtems\+\_\+filesystem\+\_\+default\+\_\+fsunmount}} (\mbox{\hyperlink{structrtems__filesystem__mount__table__entry__tt}{rtems\+\_\+filesystem\+\_\+mount\+\_\+table\+\_\+entry\+\_\+t}} $\ast$mt\+\_\+entry)
+\item 
+int \mbox{\hyperlink{group__LibIOFSOps_ga3c2daf1a049f27cbaa4ce8726b519a11}{rtems\+\_\+filesystem\+\_\+default\+\_\+utime}} (const \mbox{\hyperlink{group__LibIO_ga3252b3d31ee3c49ffff0b7604a676864}{rtems\+\_\+filesystem\+\_\+location\+\_\+info\+\_\+t}} $\ast$loc, time\+\_\+t actime, time\+\_\+t modtime)
+\item 
+int \mbox{\hyperlink{group__LibIOFSOps_gab04c987aeb43aca10df08f0d20d3c462}{rtems\+\_\+filesystem\+\_\+default\+\_\+symlink}} (const \mbox{\hyperlink{group__LibIO_ga3252b3d31ee3c49ffff0b7604a676864}{rtems\+\_\+filesystem\+\_\+location\+\_\+info\+\_\+t}} $\ast$parentloc, const char $\ast$name, size\+\_\+t namelen, const char $\ast$target)
+\item 
+ssize\+\_\+t \mbox{\hyperlink{group__LibIOFSOps_gaebd8dda0956f23082c6d9cb151d3db8c}{rtems\+\_\+filesystem\+\_\+default\+\_\+readlink}} (const \mbox{\hyperlink{group__LibIO_ga3252b3d31ee3c49ffff0b7604a676864}{rtems\+\_\+filesystem\+\_\+location\+\_\+info\+\_\+t}} $\ast$loc, char $\ast$buf, size\+\_\+t bufsize)
+\item 
+int \mbox{\hyperlink{group__LibIOFSOps_ga2338baaf387fcb88acd1ea1abe897bd4}{rtems\+\_\+filesystem\+\_\+default\+\_\+rename}} (const \mbox{\hyperlink{group__LibIO_ga3252b3d31ee3c49ffff0b7604a676864}{rtems\+\_\+filesystem\+\_\+location\+\_\+info\+\_\+t}} $\ast$oldparentloc, const \mbox{\hyperlink{group__LibIO_ga3252b3d31ee3c49ffff0b7604a676864}{rtems\+\_\+filesystem\+\_\+location\+\_\+info\+\_\+t}} $\ast$oldloc, const \mbox{\hyperlink{group__LibIO_ga3252b3d31ee3c49ffff0b7604a676864}{rtems\+\_\+filesystem\+\_\+location\+\_\+info\+\_\+t}} $\ast$newparentloc, const char $\ast$name, size\+\_\+t namelen)
+\item 
+int \mbox{\hyperlink{group__LibIOFSOps_gab61aa6a004147ff2c28fd3d0b105928c}{rtems\+\_\+filesystem\+\_\+default\+\_\+statvfs}} (const \mbox{\hyperlink{group__LibIO_ga3252b3d31ee3c49ffff0b7604a676864}{rtems\+\_\+filesystem\+\_\+location\+\_\+info\+\_\+t}} $\ast$loc, struct \mbox{\hyperlink{structstatvfs}{statvfs}} $\ast$buf)
+\item 
+int \mbox{\hyperlink{group__LibIOFSHandler_gadcd852d4f67d04301d03fc9104730389}{rtems\+\_\+filesystem\+\_\+default\+\_\+open}} (\mbox{\hyperlink{structrtems__libio__tt}{rtems\+\_\+libio\+\_\+t}} $\ast$iop, const char $\ast$path, int oflag, mode\+\_\+t mode)
+\item 
+int \mbox{\hyperlink{group__LibIOFSHandler_gacc910eacfd4ffb5ba69d8ff0380d5f65}{rtems\+\_\+filesystem\+\_\+default\+\_\+close}} (\mbox{\hyperlink{structrtems__libio__tt}{rtems\+\_\+libio\+\_\+t}} $\ast$iop)
+\item 
+ssize\+\_\+t \mbox{\hyperlink{group__LibIOFSHandler_gad453e9f1320d2c20ac2966e327e9c351}{rtems\+\_\+filesystem\+\_\+default\+\_\+read}} (\mbox{\hyperlink{structrtems__libio__tt}{rtems\+\_\+libio\+\_\+t}} $\ast$iop, void $\ast$buffer, size\+\_\+t count)
+\item 
+ssize\+\_\+t \mbox{\hyperlink{group__LibIOFSHandler_ga9e051f16ae657b119d54bffc29baffeb}{rtems\+\_\+filesystem\+\_\+default\+\_\+readv}} (\mbox{\hyperlink{structrtems__libio__tt}{rtems\+\_\+libio\+\_\+t}} $\ast$iop, const struct iovec $\ast$iov, int iovcnt, ssize\+\_\+t total)
+\begin{DoxyCompactList}\small\item\em Calls the read handler for each \mbox{\hyperlink{structIO}{IO}} vector entry. \end{DoxyCompactList}\item 
+ssize\+\_\+t \mbox{\hyperlink{group__LibIOFSHandler_gaf4201385a0dd5ad3d1f447b3a167b106}{rtems\+\_\+filesystem\+\_\+default\+\_\+write}} (\mbox{\hyperlink{structrtems__libio__tt}{rtems\+\_\+libio\+\_\+t}} $\ast$iop, const void $\ast$buffer, size\+\_\+t count)
+\item 
+ssize\+\_\+t \mbox{\hyperlink{group__LibIOFSHandler_ga9ac1157e2bd2cff626d67f67a6376a8f}{rtems\+\_\+filesystem\+\_\+default\+\_\+writev}} (\mbox{\hyperlink{structrtems__libio__tt}{rtems\+\_\+libio\+\_\+t}} $\ast$iop, const struct iovec $\ast$iov, int iovcnt, ssize\+\_\+t total)
+\begin{DoxyCompactList}\small\item\em Calls the write handler for each \mbox{\hyperlink{structIO}{IO}} vector entry. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__LibIOFSHandler_ga50da2d5dcafa7a15fb37916e63e0cd5f}{rtems\+\_\+filesystem\+\_\+default\+\_\+ioctl}} (\mbox{\hyperlink{structrtems__libio__tt}{rtems\+\_\+libio\+\_\+t}} $\ast$iop, ioctl\+\_\+command\+\_\+t request, void $\ast$buffer)
+\item 
+off\+\_\+t \mbox{\hyperlink{group__LibIOFSHandler_gabc972cf07584efa949cb5ca635de7f06}{rtems\+\_\+filesystem\+\_\+default\+\_\+lseek}} (\mbox{\hyperlink{structrtems__libio__tt}{rtems\+\_\+libio\+\_\+t}} $\ast$iop, off\+\_\+t offset, int whence)
+\item 
+off\+\_\+t \mbox{\hyperlink{group__LibIOFSHandler_ga2cfb650e15d0a0589079c8c1a5a5c665}{rtems\+\_\+filesystem\+\_\+default\+\_\+lseek\+\_\+directory}} (\mbox{\hyperlink{structrtems__libio__tt}{rtems\+\_\+libio\+\_\+t}} $\ast$iop, off\+\_\+t offset, int whence)
+\begin{DoxyCompactList}\small\item\em An offset 0 with a whence of S\+E\+E\+K\+\_\+\+S\+ET will perform a directory rewind operation. \end{DoxyCompactList}\item 
+off\+\_\+t \mbox{\hyperlink{group__LibIOFSHandler_ga84f8b0895bbd61dd0f8d5a62864dcc2c}{rtems\+\_\+filesystem\+\_\+default\+\_\+lseek\+\_\+file}} (\mbox{\hyperlink{structrtems__libio__tt}{rtems\+\_\+libio\+\_\+t}} $\ast$iop, off\+\_\+t offset, int whence)
+\begin{DoxyCompactList}\small\item\em Default lseek() handler for files. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__LibIOFSHandler_ga8df6ed93bdd72abc2cda577c8f78fd54}{rtems\+\_\+filesystem\+\_\+default\+\_\+fstat}} (const \mbox{\hyperlink{group__LibIO_ga3252b3d31ee3c49ffff0b7604a676864}{rtems\+\_\+filesystem\+\_\+location\+\_\+info\+\_\+t}} $\ast$loc, struct stat $\ast$buf)
+\begin{DoxyCompactList}\small\item\em Sets the mode to S\+\_\+\+I\+R\+W\+XU $\vert$ S\+\_\+\+I\+R\+W\+XG $\vert$ S\+\_\+\+I\+R\+W\+XO. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__LibIOFSHandler_ga10a3664ce71afda3d60d6889a0c84367}{rtems\+\_\+filesystem\+\_\+default\+\_\+ftruncate}} (\mbox{\hyperlink{structrtems__libio__tt}{rtems\+\_\+libio\+\_\+t}} $\ast$iop, off\+\_\+t length)
+\item 
+int \mbox{\hyperlink{group__LibIOFSHandler_ga17c8ee92bd9c2a374973906270a03b79}{rtems\+\_\+filesystem\+\_\+default\+\_\+ftruncate\+\_\+directory}} (\mbox{\hyperlink{structrtems__libio__tt}{rtems\+\_\+libio\+\_\+t}} $\ast$iop, off\+\_\+t length)
+\item 
+int \mbox{\hyperlink{group__LibIOFSHandler_ga7bcb245cbe4a71b0952beca086b63e1b}{rtems\+\_\+filesystem\+\_\+default\+\_\+fsync\+\_\+or\+\_\+fdatasync}} (\mbox{\hyperlink{structrtems__libio__tt}{rtems\+\_\+libio\+\_\+t}} $\ast$iop)
+\item 
+int \mbox{\hyperlink{group__LibIOFSHandler_ga9447b9dc7947e64bde539307a8c0cdb5}{rtems\+\_\+filesystem\+\_\+default\+\_\+fsync\+\_\+or\+\_\+fdatasync\+\_\+success}} (\mbox{\hyperlink{structrtems__libio__tt}{rtems\+\_\+libio\+\_\+t}} $\ast$iop)
+\item 
+int \mbox{\hyperlink{group__LibIOFSHandler_ga090f67473d9fa5f26368adeb11c939c8}{rtems\+\_\+filesystem\+\_\+default\+\_\+fcntl}} (\mbox{\hyperlink{structrtems__libio__tt}{rtems\+\_\+libio\+\_\+t}} $\ast$iop, int cmd)
+\item 
+int \mbox{\hyperlink{group__LibIOFSHandler_ga608540b3299f81fabee388092bdfbc9f}{rtems\+\_\+filesystem\+\_\+default\+\_\+poll}} (\mbox{\hyperlink{structrtems__libio__tt}{rtems\+\_\+libio\+\_\+t}} $\ast$iop, int events)
+\begin{DoxyCompactList}\small\item\em Default poll handler. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__LibIOFSHandler_ga9616b979a36fc433734c0e79e2c13f3d}{rtems\+\_\+filesystem\+\_\+default\+\_\+kqfilter}} (\mbox{\hyperlink{structrtems__libio__tt}{rtems\+\_\+libio\+\_\+t}} $\ast$iop, struct knote $\ast$kn)
+\begin{DoxyCompactList}\small\item\em Default kernel event filter handler. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__LibIOFSHandler_gac2f7ea9b90b247cee91c3b6b10bf7ba9}{rtems\+\_\+filesystem\+\_\+default\+\_\+mmap}} (\mbox{\hyperlink{structrtems__libio__tt}{rtems\+\_\+libio\+\_\+t}} $\ast$iop, void $\ast$$\ast$addr, size\+\_\+t len, int prot, off\+\_\+t off)
+\begin{DoxyCompactList}\small\item\em Default M\+M\+AP handler. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__LibIOFSOps_gab86f790d75005100fc4d847f7cdc8aef}{rtems\+\_\+filesystem\+\_\+fsmount\+\_\+me\+\_\+t}} \mbox{\hyperlink{group__LibIO_ga62474d331c7b110859bcb85ccc85289a}{rtems\+\_\+filesystem\+\_\+get\+\_\+mount\+\_\+handler}} (const char $\ast$type)
+\begin{DoxyCompactList}\small\item\em Gets the mount handler for the file system {\itshape type}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__LibIO_gad5344541746c6e86ef313e926ac2d7af}{rtems\+\_\+filesystem\+\_\+initialize}} (void)
+\begin{DoxyCompactList}\small\item\em Base File System Initialization. \end{DoxyCompactList}\item 
+void {\bfseries rtems\+\_\+libio\+\_\+post\+\_\+driver} (void)
+\item 
+void {\bfseries rtems\+\_\+libio\+\_\+exit} (void)
+\item 
+int \mbox{\hyperlink{group__LibIO_gad15bb6c81ba9ed35ec75103d13bde734}{rtems\+\_\+mkdir}} (const char $\ast$path, mode\+\_\+t mode)
+\begin{DoxyCompactList}\small\item\em Creates a directory and all its parent directories according to {\itshape path}. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__FileSystemTypesAndMount_gaac7f1c7fe78f3acc145272809cef62a2}{rtems\+\_\+filesystem\+\_\+register}} (const char $\ast$type, \mbox{\hyperlink{group__LibIOFSOps_gab86f790d75005100fc4d847f7cdc8aef}{rtems\+\_\+filesystem\+\_\+fsmount\+\_\+me\+\_\+t}} mount\+\_\+h)
+\begin{DoxyCompactList}\small\item\em Registers a file system {\itshape type}. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__FileSystemTypesAndMount_ga4e658123f1059ea0684904df0ddb8d67}{rtems\+\_\+filesystem\+\_\+unregister}} (const char $\ast$type)
+\begin{DoxyCompactList}\small\item\em Unregisters a file system {\itshape type}. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__FileSystemTypesAndMount_ga4c8f87fc991f94992e0da1f87243f9e0}{unmount}} (const char $\ast$mount\+\_\+path)
+\begin{DoxyCompactList}\small\item\em Unmounts the file system instance at the specified mount path. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__FileSystemTypesAndMount_gaf3c1bed49bb0f3dec88d330b4f88d48b}{mount}} (const char $\ast$source, const char $\ast$target, const char $\ast$filesystemtype, \mbox{\hyperlink{group__FileSystemTypesAndMount_gabb3a23ee6b6e7aacb719a1a81716af7a}{rtems\+\_\+filesystem\+\_\+options\+\_\+t}} options, const void $\ast$data)
+\begin{DoxyCompactList}\small\item\em Mounts a file system instance at the specified target path. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__FileSystemTypesAndMount_ga27af6440b4ef795576c94e870c5d997f}{mount\+\_\+and\+\_\+make\+\_\+target\+\_\+path}} (const char $\ast$source, const char $\ast$target, const char $\ast$filesystemtype, \mbox{\hyperlink{group__FileSystemTypesAndMount_gabb3a23ee6b6e7aacb719a1a81716af7a}{rtems\+\_\+filesystem\+\_\+options\+\_\+t}} options, const void $\ast$data)
+\begin{DoxyCompactList}\small\item\em Mounts a file system and makes the {\itshape target} path. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__FileSystemTypesAndMount_ga27b530006418803c3888d8bfd1c3949a}{rtems\+\_\+filesystem\+\_\+iterate}} (\mbox{\hyperlink{group__FileSystemTypesAndMount_gaa40c0b8e4e5abe60a08bead5b3c72241}{rtems\+\_\+per\+\_\+filesystem\+\_\+routine}} routine, void $\ast$\mbox{\hyperlink{structroutine__arg}{routine\+\_\+arg}})
+\begin{DoxyCompactList}\small\item\em Iterates over all file system types. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{group__FileSystemTypesAndMount_ga0b6051a3ebc57b6b7c37bcfa2132b66f}{rtems\+\_\+filesystem\+\_\+mount\+\_\+iterate}} (\mbox{\hyperlink{group__FileSystemTypesAndMount_ga84a7a5cd36614b906e1c485224beb686}{rtems\+\_\+filesystem\+\_\+mt\+\_\+entry\+\_\+visitor}} visitor, void $\ast$visitor\+\_\+arg)
+\begin{DoxyCompactList}\small\item\em Iterates over all file system mount entries. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void {\bfseries rtems\+\_\+termios\+\_\+initialize} (void)
+\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} {\bfseries rtems\+\_\+termios\+\_\+bufsize} (size\+\_\+t cbufsize, size\+\_\+t raw\+\_\+input, size\+\_\+t raw\+\_\+output)
+\item 
+\mbox{\hyperlink{group__Termios_ga8d00143bb99772a960e237f16437fc1b}{rtems\+\_\+termios\+\_\+iproc\+\_\+status\+\_\+code}} \mbox{\hyperlink{group__Termios_ga31143aa30ff2944008dfe4e77fb2bbf6}{rtems\+\_\+termios\+\_\+default\+\_\+isig\+\_\+handler}} (unsigned char c, struct \mbox{\hyperlink{structrtems__termios__tty}{rtems\+\_\+termios\+\_\+tty}} $\ast$tty)
+\begin{DoxyCompactList}\small\item\em Default handler for I\+S\+IG (V\+I\+N\+T\+R/\+V\+K\+I\+LL) \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__Termios_ga8d00143bb99772a960e237f16437fc1b}{rtems\+\_\+termios\+\_\+iproc\+\_\+status\+\_\+code}} \mbox{\hyperlink{group__Termios_gad4bc0c678b0c08941507b4259815e571}{rtems\+\_\+termios\+\_\+posix\+\_\+isig\+\_\+handler}} (unsigned char c, struct \mbox{\hyperlink{structrtems__termios__tty}{rtems\+\_\+termios\+\_\+tty}} $\ast$tty)
+\begin{DoxyCompactList}\small\item\em P\+O\+S\+IX handler for I\+S\+IG (V\+I\+N\+T\+R/\+V\+K\+I\+LL) \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{group__Termios_gac24c80209e7bfdf9a74119103c30e221}{rtems\+\_\+termios\+\_\+register\+\_\+isig\+\_\+handler}} (\mbox{\hyperlink{group__Termios_ga8a2610b7c8bcc2c80bbd040f0e773faf}{rtems\+\_\+termios\+\_\+isig\+\_\+handler}} handler)
+\begin{DoxyCompactList}\small\item\em Register handler for I\+S\+IG (V\+I\+N\+T\+R/\+V\+K\+I\+LL) \end{DoxyCompactList}\item 
+int {\bfseries rtems\+\_\+termios\+\_\+enqueue\+\_\+raw\+\_\+characters} (void $\ast$ttyp, const char $\ast$buf, int len)
+\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} {\bfseries rtems\+\_\+termios\+\_\+open} (rtems\+\_\+device\+\_\+major\+\_\+number major, rtems\+\_\+device\+\_\+minor\+\_\+number minor, void $\ast$arg, const \mbox{\hyperlink{structrtems__termios__callbacks}{rtems\+\_\+termios\+\_\+callbacks}} $\ast$callbacks)
+\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} {\bfseries rtems\+\_\+termios\+\_\+close} (void $\ast$arg)
+\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} {\bfseries rtems\+\_\+termios\+\_\+read} (void $\ast$arg)
+\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} {\bfseries rtems\+\_\+termios\+\_\+write} (void $\ast$arg)
+\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} {\bfseries rtems\+\_\+termios\+\_\+ioctl} (void $\ast$arg)
+\item 
+int {\bfseries rtems\+\_\+termios\+\_\+dequeue\+\_\+characters} (void $\ast$ttyp, int len)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const \mbox{\hyperlink{struct__rtems__filesystem__operations__table}{rtems\+\_\+filesystem\+\_\+operations\+\_\+table}} \mbox{\hyperlink{group__LibIOFSOps_gad7ee501951b5067cb6cdf2abe4c1125d}{rtems\+\_\+filesystem\+\_\+operations\+\_\+default}}
+\begin{DoxyCompactList}\small\item\em File system operations table with default operations. \end{DoxyCompactList}\item 
+const \mbox{\hyperlink{struct__rtems__filesystem__file__handlers__r}{rtems\+\_\+filesystem\+\_\+file\+\_\+handlers\+\_\+r}} \mbox{\hyperlink{group__LibIOFSHandler_ga8433aa296d887c411d5ab8adc491ffe6}{rtems\+\_\+filesystem\+\_\+handlers\+\_\+default}}
+\begin{DoxyCompactList}\small\item\em File system node handler table with default node handlers. \end{DoxyCompactList}\item 
+const \mbox{\hyperlink{structrtems__filesystem__limits__and__options__t}{rtems\+\_\+filesystem\+\_\+limits\+\_\+and\+\_\+options\+\_\+t}} \mbox{\hyperlink{group__LibIO_gaf623825fb7bd37d1ba06849b57e29db4}{rtems\+\_\+filesystem\+\_\+default\+\_\+pathconf}}
+\begin{DoxyCompactList}\small\item\em Default pathconf settings. \end{DoxyCompactList}\item 
+const \mbox{\hyperlink{structrtems__filesystem__table__t}{rtems\+\_\+filesystem\+\_\+table\+\_\+t}} \mbox{\hyperlink{group__FileSystemTypesAndMount_ga752ec6b29e7d936b663d74eff727f0ca}{rtems\+\_\+filesystem\+\_\+table}} \mbox{[}$\,$\mbox{]}
+\begin{DoxyCompactList}\small\item\em Static table of file systems. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{unionChain__Control}{rtems\+\_\+chain\+\_\+control}} {\bfseries rtems\+\_\+filesystem\+\_\+mount\+\_\+table}
+\item 
+const \mbox{\hyperlink{structrtems__filesystem__mount__configuration}{rtems\+\_\+filesystem\+\_\+mount\+\_\+configuration}} {\bfseries rtems\+\_\+filesystem\+\_\+root\+\_\+configuration}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Basic \mbox{\hyperlink{structIO}{IO}} A\+PI. 
+
+This file contains the support infrastructure used to manage the table of integer style file descriptors used by the low level P\+O\+S\+IX system calls like \mbox{\hyperlink{open_8c_a62e93eb794fed24c0f46c6acda6ea510}{open()}}, read, fstat(), etc. 

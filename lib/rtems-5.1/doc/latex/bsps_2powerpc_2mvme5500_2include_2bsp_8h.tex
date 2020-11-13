@@ -1,0 +1,156 @@
+\hypertarget{bsps_2powerpc_2mvme5500_2include_2bsp_8h}{}\section{bsps/powerpc/mvme5500/include/bsp.h File Reference}
+\label{bsps_2powerpc_2mvme5500_2include_2bsp_8h}\index{bsps/powerpc/mvme5500/include/bsp.h@{bsps/powerpc/mvme5500/include/bsp.h}}
+
+
+Global B\+SP definitions.  
+
+
+{\ttfamily \#include $<$bspopts.\+h$>$}\newline
+{\ttfamily \#include $<$bsp/default-\/initial-\/extension.\+h$>$}\newline
+{\ttfamily \#include $<$rtems.\+h$>$}\newline
+{\ttfamily \#include $<$libcpu/io.\+h$>$}\newline
+{\ttfamily \#include $<$bsp/vectors.\+h$>$}\newline
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bfseries \+\_\+256M}~0x10000000
+\item 
+\#define {\bfseries \+\_\+512M}~0x20000000
+\item 
+\#define {\bfseries G\+T64x60\+\_\+\+R\+E\+G\+\_\+\+B\+A\+SE}~0xf1000000  /$\ast$ Base of G\+T64260 Reg Space $\ast$/
+\item 
+\#define {\bfseries G\+T64x60\+\_\+\+R\+E\+G\+\_\+\+S\+P\+A\+C\+E\+\_\+\+S\+I\+ZE}~0x10000     /$\ast$ 64\+Kb Internal Reg Space $\ast$/
+\item 
+\#define {\bfseries G\+T64x60\+\_\+\+D\+E\+V1\+\_\+\+B\+A\+SE}
+\item 
+\#define {\bfseries G\+T64260\+\_\+\+D\+E\+V1\+\_\+\+S\+I\+ZE}~0x00100000 /$\ast$ Device bank size $\ast$/
+\item 
+\#define {\bfseries \+\_\+\+I\+O\+\_\+\+B\+A\+SE}~G\+T64x60\+\_\+\+R\+E\+G\+\_\+\+B\+A\+SE
+\item 
+\#define {\bfseries B\+S\+P\+\_\+\+N\+V\+R\+A\+M\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+DR}~0xf1110000
+\item 
+\#define {\bfseries B\+S\+P\+\_\+\+R\+T\+C\+\_\+\+I\+N\+T\+A\+\_\+\+R\+EG}~0x7ff0
+\item 
+\#define {\bfseries B\+S\+P\+\_\+\+R\+T\+C\+\_\+\+S\+E\+C\+O\+ND}~0x7ff2
+\item 
+\#define {\bfseries B\+S\+P\+\_\+\+R\+T\+C\+\_\+\+M\+I\+N\+U\+TE}~0x7ff3
+\item 
+\#define {\bfseries B\+S\+P\+\_\+\+R\+T\+C\+\_\+\+H\+O\+UR}~0x7ff4
+\item 
+\#define {\bfseries B\+S\+P\+\_\+\+R\+T\+C\+\_\+\+D\+A\+TE}~0x7ff5
+\item 
+\#define {\bfseries B\+S\+P\+\_\+\+R\+T\+C\+\_\+\+I\+N\+T\+E\+R\+R\+U\+P\+TS}~0x7ff6
+\item 
+\#define {\bfseries B\+S\+P\+\_\+\+R\+T\+C\+\_\+\+W\+A\+T\+C\+H\+D\+OG}~0x7ff7
+\item 
+\#define {\bfseries P\+C\+I0\+\_\+\+I\+O\+\_\+\+B\+A\+SE}~0xf0000000
+\item 
+\#define {\bfseries P\+C\+I1\+\_\+\+I\+O\+\_\+\+B\+A\+SE}~0xf0800000
+\item 
+\#define {\bfseries P\+C\+I0\+\_\+\+M\+E\+M\+\_\+\+B\+A\+SE}~0x80000000
+\item 
+\#define {\bfseries P\+C\+I\+\_\+\+M\+E\+M\+\_\+\+B\+A\+SE}~0  /$\ast$ glue for vme\+Universe $\ast$/
+\item 
+\#define {\bfseries P\+C\+I\+\_\+\+M\+E\+M\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+J\+U\+S\+T\+M\+E\+NT}~0
+\item 
+\#define {\bfseries P\+C\+I\+\_\+\+D\+R\+A\+M\+\_\+\+O\+F\+F\+S\+ET}~0
+\item 
+\#define {\bfseries P\+C\+I1\+\_\+\+M\+E\+M\+\_\+\+B\+A\+SE}~0xe0000000
+\item 
+\#define {\bfseries P\+C\+I1\+\_\+\+M\+E\+M\+\_\+\+S\+I\+ZE}~0x10000000
+\item 
+\#define {\bfseries B\+S\+P\+\_\+\+M\+A\+X\+\_\+\+P\+C\+I\+\_\+\+B\+U\+S\+\_\+\+O\+N\+\_\+\+P\+C\+I0}~8
+\item 
+\#define {\bfseries B\+S\+P\+\_\+\+M\+A\+X\+\_\+\+P\+C\+I\+\_\+\+B\+U\+S\+\_\+\+O\+N\+\_\+\+P\+C\+I1}~2
+\item 
+\#define {\bfseries B\+S\+P\+\_\+\+M\+A\+X\+\_\+\+P\+C\+I\+\_\+\+B\+US}~(B\+S\+P\+\_\+\+M\+A\+X\+\_\+\+P\+C\+I\+\_\+\+B\+U\+S\+\_\+\+O\+N\+\_\+\+P\+C\+I0+B\+S\+P\+\_\+\+M\+A\+X\+\_\+\+P\+C\+I\+\_\+\+B\+U\+S\+\_\+\+O\+N\+\_\+\+P\+C\+I1)
+\item 
+\#define {\bfseries B\+S\+P\+\_\+\+P\+C\+I\+\_\+\+I\+R\+Q0}~B\+S\+P\+\_\+\+G\+P\+P\+\_\+\+I\+R\+Q\+\_\+\+L\+O\+W\+E\+S\+T\+\_\+\+O\+F\+F\+S\+ET
+\item 
+\#define {\bfseries B\+S\+P\+\_\+\+I\+N\+T\+E\+R\+R\+U\+P\+T\+\_\+\+S\+T\+A\+C\+K\+\_\+\+S\+I\+ZE}~(16 $\ast$ 1024) /$\ast$ $<$skf$>$ 2/09 wants it to be adjustable by B\+SP $\ast$/
+\item 
+\#define {\bfseries B\+S\+P\+\_\+\+U\+A\+R\+T\+\_\+\+I\+O\+B\+A\+S\+E\+\_\+\+C\+O\+M1}~G\+T64x60\+\_\+\+D\+E\+V1\+\_\+\+B\+A\+SE + 0x20000
+\item 
+\#define {\bfseries B\+S\+P\+\_\+\+U\+A\+R\+T\+\_\+\+I\+O\+B\+A\+S\+E\+\_\+\+C\+O\+M2}~G\+T64x60\+\_\+\+D\+E\+V1\+\_\+\+B\+A\+SE + 0x21000
+\item 
+\#define {\bfseries B\+S\+P\+\_\+\+C\+O\+N\+S\+O\+L\+E\+\_\+\+P\+O\+RT}~\mbox{\hyperlink{group__i386__uart_gaa1561064cc8499388f7512347b434d25}{B\+S\+P\+\_\+\+U\+A\+R\+T\+\_\+\+C\+O\+M1}}  /$\ast$ console $\ast$/
+\item 
+\#define {\bfseries B\+S\+P\+\_\+\+U\+A\+R\+T\+\_\+\+B\+A\+U\+D\+\_\+\+B\+A\+SE}~115200
+\item 
+\#define {\bfseries B\+S\+P\+\_\+\+Convert\+\_\+decrementer}(\+\_\+value)~((unsigned long long) ((((unsigned long long)B\+S\+P\+\_\+time\+\_\+base\+\_\+divisor) $\ast$ 1000000\+U\+L\+L) /((unsigned long long) B\+S\+P\+\_\+bus\+\_\+frequency)) $\ast$ ((unsigned long long) (\+\_\+value)))
+\item 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+B\+S\+P\+\_\+\+N\+E\+T\+W\+O\+R\+K\+\_\+\+D\+R\+I\+V\+E\+R\+\_\+\+N\+A\+ME}~\char`\"{}wm\+G1\char`\"{}
+\item 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+B\+S\+P\+\_\+\+N\+E\+T\+W\+O\+R\+K\+\_\+\+D\+R\+I\+V\+E\+R\+\_\+\+A\+T\+T\+A\+CH}~rtems\+\_\+i82544\+E\+I\+\_\+driver\+\_\+attach
+\item 
+\#define {\bfseries gcc\+Mem\+Bar}()~\mbox{\hyperlink{group__RTEMSScoreBaseDefs_ga81cf73d35183e14fe3e08dffb62ec579}{R\+T\+E\+M\+S\+\_\+\+C\+O\+M\+P\+I\+L\+E\+R\+\_\+\+M\+E\+M\+O\+R\+Y\+\_\+\+B\+A\+R\+R\+I\+ER}}()
+\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{group__RTEMSBSPsPowerPCMVME5500_gaaa92301e3304cb524c5353a335006bb4}\label{group__RTEMSBSPsPowerPCMVME5500_gaaa92301e3304cb524c5353a335006bb4}} 
+enum {\bfseries B\+S\+P\+\_\+\+Board\+Types} \{ {\bfseries undefined} = 0, 
+{\bfseries M\+V\+M\+E5500}, 
+{\bfseries M\+V\+M\+E6100}
+ \}
+\item 
+\mbox{\Hypertarget{group__RTEMSBSPsPowerPCMVME5500_gafdab7650a7c9934e1ff82828123043e2}\label{group__RTEMSBSPsPowerPCMVME5500_gafdab7650a7c9934e1ff82828123043e2}} 
+enum {\bfseries B\+S\+P\+\_\+\+V\+M\+Echip\+Types} \{ {\bfseries Undefined}, 
+{\bfseries U\+N\+I\+V\+E\+R\+S\+E2}, 
+{\bfseries T\+S\+I148}
+ \}
+\item 
+\mbox{\Hypertarget{group__RTEMSBSPsPowerPCMVME5500_ga5dffb2799eac8c4e740e383702982a5c}\label{group__RTEMSBSPsPowerPCMVME5500_ga5dffb2799eac8c4e740e383702982a5c}} 
+enum {\bfseries Discovery\+Chip\+Version} \{ {\bfseries notdefined}, 
+{\bfseries G\+T64260A}, 
+{\bfseries G\+T64260B}, 
+{\bfseries M\+V64360}
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+B\+S\+P\+\_\+\+Board\+Types {\bfseries B\+S\+P\+\_\+get\+Board\+Type} (void)
+\item 
+B\+S\+P\+\_\+\+V\+M\+Echip\+Types {\bfseries B\+S\+P\+\_\+get\+V\+M\+Echip\+Type} (void)
+\item 
+Discovery\+Chip\+Version {\bfseries B\+S\+P\+\_\+get\+Discovery\+Chip\+Version} (void)
+\item 
+void {\bfseries bsp\+\_\+reset} (void)
+\item 
+int {\bfseries B\+S\+P\+\_\+disconnect\+\_\+clock\+\_\+handler} (void)
+\item 
+int {\bfseries B\+S\+P\+\_\+connect\+\_\+clock\+\_\+handler} (void)
+\item 
+unsigned long {\bfseries \+\_\+\+B\+S\+P\+\_\+clear\+\_\+hostbridge\+\_\+errors} (int enable\+M\+CP, int quiet)
+\item 
+char $\ast$ {\bfseries save\+\_\+boot\+\_\+params} (void $\ast$r3, void $\ast$r4, void $\ast$r5, char $\ast$cmdline\+\_\+start, char $\ast$cmdline\+\_\+end)
+\item 
+void {\bfseries zero\+\_\+bss} (void)
+\item 
+uint32\+\_\+t {\bfseries probe\+Memory\+End} (void)
+\item 
+void {\bfseries pci\+\_\+interface} (void)
+\item 
+void {\bfseries B\+S\+P\+\_\+print\+Pic\+Isr\+Tbl} (void)
+\item 
+int {\bfseries I2\+Cread\+\_\+eeprom} (unsigned char I2c\+Bus\+Addr, uint32\+\_\+t dev\+A2\+A1\+A0, uint32\+\_\+t Addr\+Bytes, unsigned char $\ast$p\+Buff, uint32\+\_\+t num\+Bytes)
+\item 
+int {\bfseries R\+T\+E\+M\+S\+\_\+\+B\+S\+P\+\_\+\+N\+E\+T\+W\+O\+R\+K\+\_\+\+D\+R\+I\+V\+E\+R\+\_\+\+A\+T\+T\+A\+CH} (struct rtems\+\_\+bsdnet\+\_\+ifconfig $\ast$, int)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+unsigned int {\bfseries B\+S\+P\+\_\+mem\+\_\+size}
+\item 
+unsigned int {\bfseries B\+S\+P\+\_\+bus\+\_\+frequency}
+\item 
+unsigned int {\bfseries B\+S\+P\+\_\+processor\+\_\+frequency}
+\item 
+unsigned int {\bfseries B\+S\+P\+\_\+time\+\_\+base\+\_\+divisor}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Global B\+SP definitions. 
+

@@ -1,0 +1,205 @@
+\hypertarget{efc_8c}{}\section{bsps/arm/atsam/contrib/libraries/libchip/source/efc.c File Reference}
+\label{efc_8c}\index{bsps/arm/atsam/contrib/libraries/libchip/source/efc.c@{bsps/arm/atsam/contrib/libraries/libchip/source/efc.c}}
+{\ttfamily \#include \char`\"{}chip.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$assert.\+h$>$}\newline
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{efc_8c_a73be88482ae7a8fea141c3c576486f77}\label{efc_8c_a73be88482ae7a8fea141c3c576486f77}} 
+\#define {\bfseries E\+E\+F\+C\+\_\+\+F\+C\+R\+\_\+\+F\+C\+MD}(value)~((\mbox{\hyperlink{group__SAMV71__EFC_ga866b6d397f0140edf68f3051c2c8acd6}{E\+E\+F\+C\+\_\+\+F\+C\+R\+\_\+\+F\+C\+M\+D\+\_\+\+Msk}} \& ((value) $<$$<$ E\+E\+F\+C\+\_\+\+F\+C\+R\+\_\+\+F\+C\+M\+D\+\_\+\+Pos)))
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{efc_8c_a9472975ee0e532c5f2b8114953ddb66d}\label{efc_8c_a9472975ee0e532c5f2b8114953ddb66d}} 
+void {\bfseries E\+F\+C\+\_\+\+Write\+F\+MR} (\mbox{\hyperlink{structEfc}{Efc}} $\ast$efc, uint32\+\_\+t dw\+Fmr)
+\item 
+\mbox{\Hypertarget{efc_8c_abe19dd57d8f5134d05760d0adef58c7f}\label{efc_8c_abe19dd57d8f5134d05760d0adef58c7f}} 
+{\bfseries \+\_\+\+\_\+attribute\+\_\+\+\_\+} ((section(\char`\"{}.ramfunc\char`\"{})))
+\item 
+void \mbox{\hyperlink{efc_8c_a3f6311b4fcbc57fe4079b1ef05b3fc14}{E\+F\+C\+\_\+\+Enable\+Frdy\+It}} (\mbox{\hyperlink{structEfc}{Efc}} $\ast$efc)
+\begin{DoxyCompactList}\small\item\em Enables the flash ready interrupt source on the E\+E\+FC peripheral. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{efc_8c_a47e9d8bbb518d8c528cf7317b9080aa3}{E\+F\+C\+\_\+\+Disable\+Frdy\+It}} (\mbox{\hyperlink{structEfc}{Efc}} $\ast$efc)
+\begin{DoxyCompactList}\small\item\em Disables the flash ready interrupt source on the E\+E\+FC peripheral. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{efc_8c_a845ff031ad09aaca87a20bd14b10cd84}{E\+F\+C\+\_\+\+Set\+Wait\+State}} (\mbox{\hyperlink{structEfc}{Efc}} $\ast$efc, uint8\+\_\+t uc\+Cycles)
+\begin{DoxyCompactList}\small\item\em Set read/write wait state on the E\+E\+FC peripheral. \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{efc_8c_a112cc6ecce4ee96d5262c40df8fd0ef1}{E\+F\+C\+\_\+\+Get\+Status}} (\mbox{\hyperlink{structEfc}{Efc}} $\ast$efc)
+\begin{DoxyCompactList}\small\item\em Returns the current status of the E\+E\+FC. \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{efc_8c_a5a13faa6909d8d0500679fdaa8245a40}{E\+F\+C\+\_\+\+Get\+Result}} (\mbox{\hyperlink{structEfc}{Efc}} $\ast$efc)
+\begin{DoxyCompactList}\small\item\em Returns the result of the last executed command. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{efc_8c_a577ae5d408db32f16d8e2ce7000e73e9}{E\+F\+C\+\_\+\+Translate\+Address}} (\mbox{\hyperlink{structEfc}{Efc}} $\ast$$\ast$pp\+Efc, uint32\+\_\+t dw\+Address, uint16\+\_\+t $\ast$pw\+Page, uint16\+\_\+t $\ast$pw\+Offset)
+\begin{DoxyCompactList}\small\item\em Translates the given address page and offset values. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{efc_8c_a50ce7469847193013d20ad0a928bd953}{E\+F\+C\+\_\+\+Compute\+Address}} (\mbox{\hyperlink{structEfc}{Efc}} $\ast$efc, uint16\+\_\+t w\+Page, uint16\+\_\+t w\+Offset, uint32\+\_\+t $\ast$pdw\+Address)
+\begin{DoxyCompactList}\small\item\em Computes the address of a flash access given the page and offset. \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{efc_8c_aa9b30cd8bbb9ff48c04922ad5b36adfb}{E\+F\+C\+\_\+\+Perform\+Command}} (\mbox{\hyperlink{structEfc}{Efc}} $\ast$efc, uint32\+\_\+t dw\+Command, uint32\+\_\+t dw\+Argument, uint32\+\_\+t dw\+Use\+I\+AP)
+\begin{DoxyCompactList}\small\item\em Performs the given command and wait until its completion (or an error). \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{efc_8c_a20b13ad67a18cb8408da8d0693620d96}{E\+F\+C\+\_\+\+Set\+Flash\+Access\+Mode}} (\mbox{\hyperlink{structEfc}{Efc}} $\ast$efc, uint32\+\_\+t dw\+Mode)
+\begin{DoxyCompactList}\small\item\em Set flash access mode. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Implementation of Enhanced Embedded Flash Controller (E\+E\+FC). 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{efc_8c_a50ce7469847193013d20ad0a928bd953}\label{efc_8c_a50ce7469847193013d20ad0a928bd953}} 
+\index{efc.c@{efc.c}!EFC\_ComputeAddress@{EFC\_ComputeAddress}}
+\index{EFC\_ComputeAddress@{EFC\_ComputeAddress}!efc.c@{efc.c}}
+\subsubsection{\texorpdfstring{EFC\_ComputeAddress()}{EFC\_ComputeAddress()}}
+{\footnotesize\ttfamily void E\+F\+C\+\_\+\+Compute\+Address (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structEfc}{Efc}} $\ast$}]{efc,  }\item[{uint16\+\_\+t}]{w\+Page,  }\item[{uint16\+\_\+t}]{w\+Offset,  }\item[{uint32\+\_\+t $\ast$}]{pdw\+Address }\end{DoxyParamCaption})}
+
+
+
+Computes the address of a flash access given the page and offset. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em efc} & Pointer to a \mbox{\hyperlink{structEfc}{Efc}} instance \\
+\hline
+{\em page} & Page number. \\
+\hline
+{\em offset} & Byte offset inside page. \\
+\hline
+{\em p\+Address} & Computed address (optional). \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{efc_8c_a47e9d8bbb518d8c528cf7317b9080aa3}\label{efc_8c_a47e9d8bbb518d8c528cf7317b9080aa3}} 
+\index{efc.c@{efc.c}!EFC\_DisableFrdyIt@{EFC\_DisableFrdyIt}}
+\index{EFC\_DisableFrdyIt@{EFC\_DisableFrdyIt}!efc.c@{efc.c}}
+\subsubsection{\texorpdfstring{EFC\_DisableFrdyIt()}{EFC\_DisableFrdyIt()}}
+{\footnotesize\ttfamily void E\+F\+C\+\_\+\+Disable\+Frdy\+It (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structEfc}{Efc}} $\ast$}]{efc }\end{DoxyParamCaption})}
+
+
+
+Disables the flash ready interrupt source on the E\+E\+FC peripheral. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em efc} & Pointer to a \mbox{\hyperlink{structEfc}{Efc}} instance \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{efc_8c_a3f6311b4fcbc57fe4079b1ef05b3fc14}\label{efc_8c_a3f6311b4fcbc57fe4079b1ef05b3fc14}} 
+\index{efc.c@{efc.c}!EFC\_EnableFrdyIt@{EFC\_EnableFrdyIt}}
+\index{EFC\_EnableFrdyIt@{EFC\_EnableFrdyIt}!efc.c@{efc.c}}
+\subsubsection{\texorpdfstring{EFC\_EnableFrdyIt()}{EFC\_EnableFrdyIt()}}
+{\footnotesize\ttfamily void E\+F\+C\+\_\+\+Enable\+Frdy\+It (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structEfc}{Efc}} $\ast$}]{efc }\end{DoxyParamCaption})}
+
+
+
+Enables the flash ready interrupt source on the E\+E\+FC peripheral. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em efc} & Pointer to a \mbox{\hyperlink{structEfc}{Efc}} instance \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{efc_8c_a5a13faa6909d8d0500679fdaa8245a40}\label{efc_8c_a5a13faa6909d8d0500679fdaa8245a40}} 
+\index{efc.c@{efc.c}!EFC\_GetResult@{EFC\_GetResult}}
+\index{EFC\_GetResult@{EFC\_GetResult}!efc.c@{efc.c}}
+\subsubsection{\texorpdfstring{EFC\_GetResult()}{EFC\_GetResult()}}
+{\footnotesize\ttfamily uint32\+\_\+t E\+F\+C\+\_\+\+Get\+Result (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structEfc}{Efc}} $\ast$}]{efc }\end{DoxyParamCaption})}
+
+
+
+Returns the result of the last executed command. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em efc} & Pointer to a \mbox{\hyperlink{structEfc}{Efc}} instance \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{efc_8c_a112cc6ecce4ee96d5262c40df8fd0ef1}\label{efc_8c_a112cc6ecce4ee96d5262c40df8fd0ef1}} 
+\index{efc.c@{efc.c}!EFC\_GetStatus@{EFC\_GetStatus}}
+\index{EFC\_GetStatus@{EFC\_GetStatus}!efc.c@{efc.c}}
+\subsubsection{\texorpdfstring{EFC\_GetStatus()}{EFC\_GetStatus()}}
+{\footnotesize\ttfamily uint32\+\_\+t E\+F\+C\+\_\+\+Get\+Status (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structEfc}{Efc}} $\ast$}]{efc }\end{DoxyParamCaption})}
+
+
+
+Returns the current status of the E\+E\+FC. 
+
+\begin{DoxyNote}{Note}
+Keep in mind that this function clears the value of some status bits (L\+O\+C\+KE, P\+R\+O\+GE).
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em efc} & Pointer to a \mbox{\hyperlink{structEfc}{Efc}} instance \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{efc_8c_aa9b30cd8bbb9ff48c04922ad5b36adfb}\label{efc_8c_aa9b30cd8bbb9ff48c04922ad5b36adfb}} 
+\index{efc.c@{efc.c}!EFC\_PerformCommand@{EFC\_PerformCommand}}
+\index{EFC\_PerformCommand@{EFC\_PerformCommand}!efc.c@{efc.c}}
+\subsubsection{\texorpdfstring{EFC\_PerformCommand()}{EFC\_PerformCommand()}}
+{\footnotesize\ttfamily uint32\+\_\+t E\+F\+C\+\_\+\+Perform\+Command (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structEfc}{Efc}} $\ast$}]{efc,  }\item[{uint32\+\_\+t}]{dw\+Command,  }\item[{uint32\+\_\+t}]{dw\+Argument,  }\item[{uint32\+\_\+t}]{dw\+Use\+I\+AP }\end{DoxyParamCaption})}
+
+
+
+Performs the given command and wait until its completion (or an error). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em efc} & Pointer to a \mbox{\hyperlink{structEfc}{Efc}} instance \\
+\hline
+{\em command} & Command to perform. \\
+\hline
+{\em argument} & Optional command argument.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if successful, otherwise returns an error code. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{efc_8c_a20b13ad67a18cb8408da8d0693620d96}\label{efc_8c_a20b13ad67a18cb8408da8d0693620d96}} 
+\index{efc.c@{efc.c}!EFC\_SetFlashAccessMode@{EFC\_SetFlashAccessMode}}
+\index{EFC\_SetFlashAccessMode@{EFC\_SetFlashAccessMode}!efc.c@{efc.c}}
+\subsubsection{\texorpdfstring{EFC\_SetFlashAccessMode()}{EFC\_SetFlashAccessMode()}}
+{\footnotesize\ttfamily void E\+F\+C\+\_\+\+Set\+Flash\+Access\+Mode (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structEfc}{Efc}} $\ast$}]{efc,  }\item[{uint32\+\_\+t}]{dw\+Mode }\end{DoxyParamCaption})}
+
+
+
+Set flash access mode. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dw\+Mode} & -\/ 0\+:128-\/bit, (1$<$$<$24)\+:64-\/bit \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{efc_8c_a845ff031ad09aaca87a20bd14b10cd84}\label{efc_8c_a845ff031ad09aaca87a20bd14b10cd84}} 
+\index{efc.c@{efc.c}!EFC\_SetWaitState@{EFC\_SetWaitState}}
+\index{EFC\_SetWaitState@{EFC\_SetWaitState}!efc.c@{efc.c}}
+\subsubsection{\texorpdfstring{EFC\_SetWaitState()}{EFC\_SetWaitState()}}
+{\footnotesize\ttfamily void E\+F\+C\+\_\+\+Set\+Wait\+State (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structEfc}{Efc}} $\ast$}]{efc,  }\item[{uint8\+\_\+t}]{uc\+Cycles }\end{DoxyParamCaption})}
+
+
+
+Set read/write wait state on the E\+E\+FC peripheral. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em efc} & Pointer to a \mbox{\hyperlink{structEfc}{Efc}} instance \\
+\hline
+{\em cycles} & the number of wait states in cycle. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{efc_8c_a577ae5d408db32f16d8e2ce7000e73e9}\label{efc_8c_a577ae5d408db32f16d8e2ce7000e73e9}} 
+\index{efc.c@{efc.c}!EFC\_TranslateAddress@{EFC\_TranslateAddress}}
+\index{EFC\_TranslateAddress@{EFC\_TranslateAddress}!efc.c@{efc.c}}
+\subsubsection{\texorpdfstring{EFC\_TranslateAddress()}{EFC\_TranslateAddress()}}
+{\footnotesize\ttfamily void E\+F\+C\+\_\+\+Translate\+Address (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structEfc}{Efc}} $\ast$$\ast$}]{pp\+Efc,  }\item[{uint32\+\_\+t}]{dw\+Address,  }\item[{uint16\+\_\+t $\ast$}]{pw\+Page,  }\item[{uint16\+\_\+t $\ast$}]{pw\+Offset }\end{DoxyParamCaption})}
+
+
+
+Translates the given address page and offset values. 
+
+\begin{DoxyNote}{Note}
+The resulting values are stored in the provided variables if they are not null.
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em efc} & Pointer to a \mbox{\hyperlink{structEfc}{Efc}} instance \\
+\hline
+{\em address} & Address to translate. \\
+\hline
+{\em p\+Page} & First page accessed. \\
+\hline
+{\em p\+Offset} & Byte offset in first page. \\
+\hline
+\end{DoxyParams}

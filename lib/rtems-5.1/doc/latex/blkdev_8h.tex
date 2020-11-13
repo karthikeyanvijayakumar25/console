@@ -1,0 +1,114 @@
+\hypertarget{blkdev_8h}{}\section{cpukit/include/rtems/blkdev.h File Reference}
+\label{blkdev_8h}\index{cpukit/include/rtems/blkdev.h@{cpukit/include/rtems/blkdev.h}}
+
+
+Block Device Management.  
+
+
+{\ttfamily \#include $<$rtems.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/diskdevs.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/print.\+h$>$}\newline
+{\ttfamily \#include $<$sys/ioccom.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structrtems__blkdev__sg__buffer}{rtems\+\_\+blkdev\+\_\+sg\+\_\+buffer}}
+\begin{DoxyCompactList}\small\item\em Block device scatter or gather buffer structure. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structrtems__blkdev__request}{rtems\+\_\+blkdev\+\_\+request}}
+\begin{DoxyCompactList}\small\item\em The block device transfer request is used to read or write a number of blocks from or to the device. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__rtems__blkdev_ga1dd3697d64b56629c38f43b1f5615914}{R\+T\+E\+M\+S\+\_\+\+B\+L\+K\+D\+E\+V\+\_\+\+S\+T\+A\+R\+T\+\_\+\+B\+L\+O\+CK}}(req)~(req-\/$>$bufs\mbox{[}0\mbox{]}.block)
+\begin{DoxyCompactList}\small\item\em The start block in a request. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__rtems__blkdev__generic_gab2d9149dc532657053697e5010fffa82}{R\+T\+E\+M\+S\+\_\+\+G\+E\+N\+E\+R\+I\+C\+\_\+\+B\+L\+O\+C\+K\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+D\+R\+I\+V\+E\+R\+\_\+\+E\+N\+T\+R\+I\+ES}}
+\end{DoxyCompactItemize}
+\begin{Indent}\textbf{ IO Control Request Codes}\par
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+B\+L\+K\+I\+O\+\_\+\+R\+E\+Q\+U\+E\+ST}~\+\_\+\+I\+O\+WR(\textquotesingle{}B\textquotesingle{}, 1, \mbox{\hyperlink{structrtems__blkdev__request}{rtems\+\_\+blkdev\+\_\+request}})
+\item 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+B\+L\+K\+I\+O\+\_\+\+G\+E\+T\+M\+E\+D\+I\+A\+B\+L\+K\+S\+I\+ZE}~\+\_\+\+I\+OR(\textquotesingle{}B\textquotesingle{}, 2, uint32\+\_\+t)
+\item 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+B\+L\+K\+I\+O\+\_\+\+G\+E\+T\+B\+L\+K\+S\+I\+ZE}~\+\_\+\+I\+OR(\textquotesingle{}B\textquotesingle{}, 3, uint32\+\_\+t)
+\item 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+B\+L\+K\+I\+O\+\_\+\+S\+E\+T\+B\+L\+K\+S\+I\+ZE}~\+\_\+\+I\+OW(\textquotesingle{}B\textquotesingle{}, 4, uint32\+\_\+t)
+\item 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+B\+L\+K\+I\+O\+\_\+\+G\+E\+T\+S\+I\+ZE}~\+\_\+\+I\+OR(\textquotesingle{}B\textquotesingle{}, 5, \mbox{\hyperlink{group__rtems__disk_ga5fbcfd40b657bff6c54d9e393fab3274}{rtems\+\_\+blkdev\+\_\+bnum}})
+\item 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+B\+L\+K\+I\+O\+\_\+\+S\+Y\+N\+C\+D\+EV}~\+\_\+\+IO(\textquotesingle{}B\textquotesingle{}, 6)
+\item 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+B\+L\+K\+I\+O\+\_\+\+D\+E\+L\+E\+T\+ED}~\+\_\+\+IO(\textquotesingle{}B\textquotesingle{}, 7)
+\item 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+B\+L\+K\+I\+O\+\_\+\+C\+A\+P\+A\+B\+I\+L\+I\+T\+I\+ES}~\+\_\+\+IO(\textquotesingle{}B\textquotesingle{}, 8)
+\item 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+B\+L\+K\+I\+O\+\_\+\+G\+E\+T\+D\+I\+S\+K\+D\+EV}~\+\_\+\+I\+OR(\textquotesingle{}B\textquotesingle{}, 9, \mbox{\hyperlink{structrtems__disk__device}{rtems\+\_\+disk\+\_\+device}} $\ast$)
+\item 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+B\+L\+K\+I\+O\+\_\+\+P\+U\+R\+G\+E\+D\+EV}~\+\_\+\+IO(\textquotesingle{}B\textquotesingle{}, 10)
+\item 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+B\+L\+K\+I\+O\+\_\+\+G\+E\+T\+D\+E\+V\+S\+T\+A\+TS}~\+\_\+\+I\+OR(\textquotesingle{}B\textquotesingle{}, 11, \mbox{\hyperlink{structrtems__blkdev__stats}{rtems\+\_\+blkdev\+\_\+stats}} $\ast$)
+\item 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+B\+L\+K\+I\+O\+\_\+\+R\+E\+S\+E\+T\+D\+E\+V\+S\+T\+A\+TS}~\+\_\+\+IO(\textquotesingle{}B\textquotesingle{}, 12)
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Block Device Driver Capabilities}\par
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__rtems__blkdev_ga25f2de1a9746d8b7d016ae12c51d5328}{R\+T\+E\+M\+S\+\_\+\+B\+L\+K\+D\+E\+V\+\_\+\+C\+A\+P\+\_\+\+M\+U\+L\+T\+I\+S\+E\+C\+T\+O\+R\+\_\+\+C\+O\+NT}}~(1 $<$$<$ 0)
+\begin{DoxyCompactList}\small\item\em Only consecutive multi-\/sector buffer requests are supported. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__rtems__blkdev_gab3164c0a50bb161d4a99177e1f08ef52}{R\+T\+E\+M\+S\+\_\+\+B\+L\+K\+D\+E\+V\+\_\+\+C\+A\+P\+\_\+\+S\+Y\+NC}}~(1 $<$$<$ 1)
+\begin{DoxyCompactList}\small\item\em The driver will accept a sync call. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef enum \mbox{\hyperlink{group__rtems__blkdev_ga36465495f1b9e28347838751ca90f0fe}{rtems\+\_\+blkdev\+\_\+request\+\_\+op}} \mbox{\hyperlink{group__rtems__blkdev_ga3f09489ef7c88b70744a747573f5b741}{rtems\+\_\+blkdev\+\_\+request\+\_\+op}}
+\begin{DoxyCompactList}\small\item\em Block device request type. \end{DoxyCompactList}\item 
+typedef void($\ast$ \mbox{\hyperlink{group__rtems__blkdev_ga64a394fd9c40d7e2d1d22441741b6c83}{rtems\+\_\+blkdev\+\_\+request\+\_\+cb}}) (struct \mbox{\hyperlink{structrtems__blkdev__request}{rtems\+\_\+blkdev\+\_\+request}} $\ast$req, \mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} status)
+\begin{DoxyCompactList}\small\item\em Block device request done callback function type. \end{DoxyCompactList}\item 
+typedef struct \mbox{\hyperlink{structrtems__blkdev__sg__buffer}{rtems\+\_\+blkdev\+\_\+sg\+\_\+buffer}} \mbox{\hyperlink{group__rtems__blkdev_ga78d471b21ee2156476d4aa0b1cf0abe0}{rtems\+\_\+blkdev\+\_\+sg\+\_\+buffer}}
+\begin{DoxyCompactList}\small\item\em Block device scatter or gather buffer structure. \end{DoxyCompactList}\item 
+typedef struct \mbox{\hyperlink{structrtems__blkdev__request}{rtems\+\_\+blkdev\+\_\+request}} \mbox{\hyperlink{group__rtems__blkdev_gac77b556344073a161224333b6c605608}{rtems\+\_\+blkdev\+\_\+request}}
+\begin{DoxyCompactList}\small\item\em The block device transfer request is used to read or write a number of blocks from or to the device. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{group__rtems__blkdev_ga36465495f1b9e28347838751ca90f0fe}{rtems\+\_\+blkdev\+\_\+request\+\_\+op}} \{ \mbox{\hyperlink{group__rtems__blkdev_gga36465495f1b9e28347838751ca90f0fea093ae86fe53f5ba14f85119f890c05ca}{R\+T\+E\+M\+S\+\_\+\+B\+L\+K\+D\+E\+V\+\_\+\+R\+E\+Q\+\_\+\+R\+E\+AD}}, 
+\mbox{\hyperlink{group__rtems__blkdev_gga36465495f1b9e28347838751ca90f0feadd7b428e4168a2256b2797fff07b22e7}{R\+T\+E\+M\+S\+\_\+\+B\+L\+K\+D\+E\+V\+\_\+\+R\+E\+Q\+\_\+\+W\+R\+I\+TE}}, 
+\mbox{\hyperlink{group__rtems__blkdev_gga36465495f1b9e28347838751ca90f0feaa2108d42eb1d1d49a81025f6022fa35e}{R\+T\+E\+M\+S\+\_\+\+B\+L\+K\+D\+E\+V\+\_\+\+R\+E\+Q\+\_\+\+S\+Y\+NC}}
+ \}
+\begin{DoxyCompactList}\small\item\em Block device request type. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{group__rtems__blkdev_gab555c151c08cc5ec60ccea5d24052d23}{rtems\+\_\+blkdev\+\_\+ioctl}} (\mbox{\hyperlink{structrtems__disk__device}{rtems\+\_\+disk\+\_\+device}} $\ast$dd, uint32\+\_\+t req, void $\ast$argp)
+\begin{DoxyCompactList}\small\item\em Common \mbox{\hyperlink{structIO}{IO}} control primitive. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{group__rtems__blkdev_gae2fe7e8c05fa9db0fa7c0ec4e8e4967d}{rtems\+\_\+blkdev\+\_\+create}} (const char $\ast$\mbox{\hyperlink{structdevice}{device}}, uint32\+\_\+t media\+\_\+block\+\_\+size, \mbox{\hyperlink{group__rtems__disk_ga5fbcfd40b657bff6c54d9e393fab3274}{rtems\+\_\+blkdev\+\_\+bnum}} media\+\_\+block\+\_\+count, \mbox{\hyperlink{group__rtems__disk_gacbf717f10129b976deaf8e6f4deb17ad}{rtems\+\_\+block\+\_\+device\+\_\+ioctl}} handler, void $\ast$driver\+\_\+data)
+\begin{DoxyCompactList}\small\item\em Creates a block device. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{group__rtems__blkdev_ga9271a94a55c2d58494b2a43dcb55e13e}{rtems\+\_\+blkdev\+\_\+create\+\_\+partition}} (const char $\ast$\mbox{\hyperlink{structpartition}{partition}}, const char $\ast$parent\+\_\+block\+\_\+device, \mbox{\hyperlink{group__rtems__disk_ga5fbcfd40b657bff6c54d9e393fab3274}{rtems\+\_\+blkdev\+\_\+bnum}} media\+\_\+block\+\_\+begin, \mbox{\hyperlink{group__rtems__disk_ga5fbcfd40b657bff6c54d9e393fab3274}{rtems\+\_\+blkdev\+\_\+bnum}} media\+\_\+block\+\_\+count)
+\begin{DoxyCompactList}\small\item\em Creates a partition within a parent block device. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__rtems__blkdev_gab318e4ab409ba1adb81fd6ad21314656}{rtems\+\_\+blkdev\+\_\+print\+\_\+stats}} (const \mbox{\hyperlink{structrtems__blkdev__stats}{rtems\+\_\+blkdev\+\_\+stats}} $\ast$stats, uint32\+\_\+t media\+\_\+block\+\_\+size, uint32\+\_\+t media\+\_\+block\+\_\+count, uint32\+\_\+t block\+\_\+size, const \mbox{\hyperlink{structrtems__printer}{rtems\+\_\+printer}} $\ast$printer)
+\begin{DoxyCompactList}\small\item\em Prints the block device statistics. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__rtems__blkdev_gac171a347539842982856bb7b32dd4e76}{rtems\+\_\+blkstats}} (const \mbox{\hyperlink{structrtems__printer}{rtems\+\_\+printer}} $\ast$printer, const char $\ast$\mbox{\hyperlink{structdevice}{device}}, bool reset)
+\begin{DoxyCompactList}\small\item\em Block device statistics command. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gab651a076d4d51d50221e7ef7ac99d4e7}{R\+T\+E\+M\+S\+\_\+\+D\+E\+P\+R\+E\+C\+A\+T\+ED}} \mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+device\+\_\+driver}} {\bfseries rtems\+\_\+blkdev\+\_\+generic\+\_\+read} (rtems\+\_\+device\+\_\+major\+\_\+number major, rtems\+\_\+device\+\_\+minor\+\_\+number minor, void $\ast$arg)
+\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gab651a076d4d51d50221e7ef7ac99d4e7}{R\+T\+E\+M\+S\+\_\+\+D\+E\+P\+R\+E\+C\+A\+T\+ED}} \mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+device\+\_\+driver}} {\bfseries rtems\+\_\+blkdev\+\_\+generic\+\_\+write} (rtems\+\_\+device\+\_\+major\+\_\+number major, rtems\+\_\+device\+\_\+minor\+\_\+number minor, void $\ast$arg)
+\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gab651a076d4d51d50221e7ef7ac99d4e7}{R\+T\+E\+M\+S\+\_\+\+D\+E\+P\+R\+E\+C\+A\+T\+ED}} \mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+device\+\_\+driver}} {\bfseries rtems\+\_\+blkdev\+\_\+generic\+\_\+open} (rtems\+\_\+device\+\_\+major\+\_\+number major, rtems\+\_\+device\+\_\+minor\+\_\+number minor, void $\ast$arg)
+\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gab651a076d4d51d50221e7ef7ac99d4e7}{R\+T\+E\+M\+S\+\_\+\+D\+E\+P\+R\+E\+C\+A\+T\+ED}} \mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+device\+\_\+driver}} {\bfseries rtems\+\_\+blkdev\+\_\+generic\+\_\+close} (rtems\+\_\+device\+\_\+major\+\_\+number major, rtems\+\_\+device\+\_\+minor\+\_\+number minor, void $\ast$arg)
+\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gab651a076d4d51d50221e7ef7ac99d4e7}{R\+T\+E\+M\+S\+\_\+\+D\+E\+P\+R\+E\+C\+A\+T\+ED}} \mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+device\+\_\+driver}} {\bfseries rtems\+\_\+blkdev\+\_\+generic\+\_\+ioctl} (rtems\+\_\+device\+\_\+major\+\_\+number major, rtems\+\_\+device\+\_\+minor\+\_\+number minor, void $\ast$arg)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gab651a076d4d51d50221e7ef7ac99d4e7}{R\+T\+E\+M\+S\+\_\+\+D\+E\+P\+R\+E\+C\+A\+T\+ED}} const \mbox{\hyperlink{structrtems__driver__address__table}{rtems\+\_\+driver\+\_\+address\+\_\+table}} {\bfseries rtems\+\_\+blkdev\+\_\+generic\+\_\+ops}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Block Device Management. 
+

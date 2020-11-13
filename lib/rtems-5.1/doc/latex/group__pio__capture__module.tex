@@ -1,0 +1,40 @@
+\hypertarget{group__pio__capture__module}{}\section{Working with P\+IO Parallel Capture Mode}
+\label{group__pio__capture__module}\index{Working with PIO Parallel Capture Mode@{Working with PIO Parallel Capture Mode}}
+The P\+IO Parallel Capture Mode driver provides the interface to configure and use the P\+IO Parallel Capture Mode peripheral.~\newline
+ The P\+IO Controller integrates an interface able to read data from a C\+M\+OS digital image sensor, a high-\/speed parallel A\+DC, a D\+SP synchronous port in synchronous mode, etc.... For better understanding and to ease reading, the following description uses an example with a C\+M\+OS digital image sensor
+
+To use the P\+IO Parallel Capture, the user has to follow these few steps\+: 
+\begin{DoxyItemize}
+\item Enable P\+I\+OA peripheral clock  
+\item Configure the P\+DC  
+\item Configure the P\+IO Capture interrupt  
+\item Enable the P\+DC  
+\item Enable the P\+IO Capture  
+\item Wait for interrupt  
+\item Disable the interrupt  
+\item Read the D\+A\+TA  
+\end{DoxyItemize}
+
+For more accurate information, please look at the P\+IO Parallel Capture Mode section of the Datasheet.
+
+{\bfseries{A\+PI Usage\+:}}
+
+
+\begin{DoxyEnumerate}
+\item Configurate the interrupt for P\+I\+OA, can be done by P\+I\+O\+\_\+\+Initialize\+Interrupts()
+\item Initialize the P\+IO Parallel Capture A\+PI by filing the Spio\+Capture\+Init structure options\+:
+\begin{DoxyItemize}
+\item always\+Sampling\+: for sample data with or without take in account E\+N\+A\+B\+LE pins.
+\item half\+Sampling\+: for sample all data or only one time out of two
+\end{DoxyItemize}
+\item Call \mbox{\hyperlink{pio__capture_8c_a2bd58aa646eab74ad61f326639c402bf}{P\+I\+O\+\_\+\+Capture\+Init()}} for init and enable the P\+DC, init the P\+IO capture.
+\item Call \mbox{\hyperlink{pio__capture_8c_aab4d2625e0e7026c0471dfe838cb57a2}{P\+I\+O\+\_\+\+Capture\+Enable()}} for enable the P\+IO Parallel Capture.
+\item When an interrupt is received, the \mbox{\hyperlink{pio__capture_8c_adaf2253c76b14e77d0dbca31f2c93690}{P\+I\+O\+\_\+\+Capture\+Handler()}} is call and the respective callback is launch.
+\item When the transfer is complete, the user need to disable interrupt with \mbox{\hyperlink{pio__capture_8c_aff2746080dee414844c97c193cdbca28}{P\+I\+O\+\_\+\+Capture\+Disable\+It()}}. Otherwise, the P\+DC will send an interrupt.
+\item The data receive by the P\+IO Parallel Capture is inside the buffer passed in the \mbox{\hyperlink{pio__capture_8c_a2bd58aa646eab74ad61f326639c402bf}{P\+I\+O\+\_\+\+Capture\+Init()}}.
+\end{DoxyEnumerate}
+
+Related files \+:~\newline
+pio\+\_\+capture.\+c~\newline
+ pio\+\_\+capture.\+h~\newline
+ 

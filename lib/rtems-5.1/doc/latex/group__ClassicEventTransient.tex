@@ -1,0 +1,111 @@
+\hypertarget{group__ClassicEventTransient}{}\section{Transient Event}
+\label{group__ClassicEventTransient}\index{Transient Event@{Transient Event}}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} \mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{group__ClassicEventTransient_gab2d8a49e579d5eb1f71f499230ed9808}{rtems\+\_\+event\+\_\+transient\+\_\+send}} (\mbox{\hyperlink{group__ClassicTasks_gab20892b814dced7dd4e5b9bf42becd57}{rtems\+\_\+id}} id)
+\begin{DoxyCompactList}\small\item\em See \mbox{\hyperlink{group__ClassicEventSystem_ga1119cb4341890e86ffa7cc7fad414f19}{rtems\+\_\+event\+\_\+system\+\_\+send()}}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} \mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{group__ClassicEventTransient_ga9a9d65005be8b07ee557eef07de4b501}{rtems\+\_\+event\+\_\+transient\+\_\+receive}} (\mbox{\hyperlink{group__ClassicOptions_gad26685eb0e60a9650082935c31920e29}{rtems\+\_\+option}} option\+\_\+set, \mbox{\hyperlink{group__ClassicTasks_gad39c43f949683d46874e3a5586b93aee}{rtems\+\_\+interval}} ticks)
+\begin{DoxyCompactList}\small\item\em See \mbox{\hyperlink{group__ClassicEventSystem_ga10c79eebe1e9c1b00eb72017bb67daf7}{rtems\+\_\+event\+\_\+system\+\_\+receive()}}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \mbox{\hyperlink{group__ClassicEventTransient_ga5fd6be98f54e9aa634dbb203902b8676}{rtems\+\_\+event\+\_\+transient\+\_\+clear}} (void)
+\begin{DoxyCompactList}\small\item\em See \mbox{\hyperlink{group__ClassicEventSystem_ga10c79eebe1e9c1b00eb72017bb67daf7}{rtems\+\_\+event\+\_\+system\+\_\+receive()}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+The transient event can be used by a client task to issue a request to another task or interrupt service (server). The server can send the transient event to the client task to notify about a request completion, see \mbox{\hyperlink{group__ClassicEventTransient_gab2d8a49e579d5eb1f71f499230ed9808}{rtems\+\_\+event\+\_\+transient\+\_\+send()}}. The client task can wait for the transient event reception with \mbox{\hyperlink{group__ClassicEventTransient_ga9a9d65005be8b07ee557eef07de4b501}{rtems\+\_\+event\+\_\+transient\+\_\+receive()}}.
+
+The user of the transient event must ensure that this event is not pending once the request is finished or cancelled. A successful reception of the transient event with \mbox{\hyperlink{group__ClassicEventTransient_ga9a9d65005be8b07ee557eef07de4b501}{rtems\+\_\+event\+\_\+transient\+\_\+receive()}} will clear the transient event. If a reception with timeout is used the transient event state is undefined after a timeout return status. The transient event can be cleared unconditionally with the non-\/blocking \mbox{\hyperlink{group__ClassicEventTransient_ga5fd6be98f54e9aa634dbb203902b8676}{rtems\+\_\+event\+\_\+transient\+\_\+clear()}}.
+
+
+\begin{DoxyImageNoCaption}
+  \mbox{\includegraphics[width=\textwidth,height=\textheight/2,keepaspectratio=true]{inline_mscgraph_1}}
+\end{DoxyImageNoCaption}
+
+
+Suppose you have a task that wants to issue a certain request and then waits for request completion. It can create a request structure and store its task identifier there. Now it can place the request on a work queue of another task (or interrupt handler). Afterwards the task waits for the reception of the transient event. Once the server task is finished with the request it can send the transient event to the waiting task and wake it up.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include <\mbox{\hyperlink{assert_8h}{assert.h}}>}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include <\mbox{\hyperlink{rtems_8h}{rtems.h}}>}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keyword}{typedef} \textcolor{keyword}{struct }\{}
+\DoxyCodeLine{  \mbox{\hyperlink{group__ClassicTasks_gab20892b814dced7dd4e5b9bf42becd57}{rtems\_id}} task\_id;}
+\DoxyCodeLine{  \textcolor{keywordtype}{bool} work\_done;}
+\DoxyCodeLine{\} request;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{void} server(\mbox{\hyperlink{group__ClassicTasks_gaf202f985ef5a3156f29eae99a0536842}{rtems\_task\_argument}} arg)}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{  \mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\_status\_code}} sc;}
+\DoxyCodeLine{  request *req = (request *) arg;}
+\DoxyCodeLine{}
+\DoxyCodeLine{  req->work\_done = \textcolor{keyword}{true};}
+\DoxyCodeLine{}
+\DoxyCodeLine{  sc = \mbox{\hyperlink{group__ClassicEventTransient_gab2d8a49e579d5eb1f71f499230ed9808}{rtems\_event\_transient\_send}}(req->task\_id);}
+\DoxyCodeLine{  assert(sc == \mbox{\hyperlink{group__ClassicStatus_gga545d41846817eaba6143d52ee4d9e9fea8a23e2d94778f09399da984d73562536}{RTEMS\_SUCCESSFUL}});}
+\DoxyCodeLine{}
+\DoxyCodeLine{  rtems\_task\_exit();}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{void} issue\_request\_and\_wait\_for\_completion(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{  \mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\_status\_code}} sc;}
+\DoxyCodeLine{  \mbox{\hyperlink{group__ClassicTasks_gab20892b814dced7dd4e5b9bf42becd57}{rtems\_id}} id;}
+\DoxyCodeLine{  request req;}
+\DoxyCodeLine{}
+\DoxyCodeLine{  req.task\_id = \mbox{\hyperlink{group__ClassicTasks_gae2e554d80b478d7e7040c34a40afb6db}{rtems\_task\_self}}();}
+\DoxyCodeLine{  req.work\_done = \textcolor{keyword}{false};}
+\DoxyCodeLine{}
+\DoxyCodeLine{  sc = \mbox{\hyperlink{group__ClassicTasks_gabffda1c2301962f0ae5af042ac0bba62}{rtems\_task\_create}}(}
+\DoxyCodeLine{    \mbox{\hyperlink{group__ClassicClassInfo_ga3f71442fa9093ffaa102cde5dcbd7daf}{rtems\_build\_name}}(\textcolor{charliteral}{'S'}, \textcolor{charliteral}{'E'}, \textcolor{charliteral}{'R'}, \textcolor{charliteral}{'V'}),}
+\DoxyCodeLine{    1,}
+\DoxyCodeLine{    \mbox{\hyperlink{group__RTEMSAPIClassic_ga2e35188053c5e97a85df8e3aa4d23d2f}{RTEMS\_MINIMUM\_STACK\_SIZE}},}
+\DoxyCodeLine{    \mbox{\hyperlink{group__ClassicModes_ga809c838116a3079c58fb6e41d7f1782a}{RTEMS\_DEFAULT\_MODES}},}
+\DoxyCodeLine{    \mbox{\hyperlink{group__ClassicAttributes_gae5dc2c331679bb5da53ab70010061252}{RTEMS\_DEFAULT\_ATTRIBUTES}},}
+\DoxyCodeLine{    \&\textcolor{keywordtype}{id}}
+\DoxyCodeLine{  );}
+\DoxyCodeLine{  assert(sc == \mbox{\hyperlink{group__ClassicStatus_gga545d41846817eaba6143d52ee4d9e9fea8a23e2d94778f09399da984d73562536}{RTEMS\_SUCCESSFUL}});}
+\DoxyCodeLine{}
+\DoxyCodeLine{  sc = \mbox{\hyperlink{group__ClassicTasks_gac7fe1362154946d78978ceb4f116f13e}{rtems\_task\_start}}(\textcolor{keywordtype}{id}, server, (\mbox{\hyperlink{group__ClassicTasks_gaf202f985ef5a3156f29eae99a0536842}{rtems\_task\_argument}}) \&req);}
+\DoxyCodeLine{  assert(sc == \mbox{\hyperlink{group__ClassicStatus_gga545d41846817eaba6143d52ee4d9e9fea8a23e2d94778f09399da984d73562536}{RTEMS\_SUCCESSFUL}});}
+\DoxyCodeLine{}
+\DoxyCodeLine{  sc = \mbox{\hyperlink{group__ClassicEventTransient_ga9a9d65005be8b07ee557eef07de4b501}{rtems\_event\_transient\_receive}}(\mbox{\hyperlink{group__ClassicOptions_ga6c344518194b529f32555ad5a9f85613}{RTEMS\_WAIT}}, \mbox{\hyperlink{group__RTEMSAPIClassic_ga4b2775cd075d4046bf637ae802689476}{RTEMS\_NO\_TIMEOUT}});}
+\DoxyCodeLine{  assert(sc == \mbox{\hyperlink{group__ClassicStatus_gga545d41846817eaba6143d52ee4d9e9fea8a23e2d94778f09399da984d73562536}{RTEMS\_SUCCESSFUL}});}
+\DoxyCodeLine{}
+\DoxyCodeLine{  assert(req.work\_done);}
+\DoxyCodeLine{\}}
+\end{DoxyCode}
+ 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{group__ClassicEventTransient_ga5fd6be98f54e9aa634dbb203902b8676}\label{group__ClassicEventTransient_ga5fd6be98f54e9aa634dbb203902b8676}} 
+\index{Transient Event@{Transient Event}!rtems\_event\_transient\_clear@{rtems\_event\_transient\_clear}}
+\index{rtems\_event\_transient\_clear@{rtems\_event\_transient\_clear}!Transient Event@{Transient Event}}
+\subsubsection{\texorpdfstring{rtems\_event\_transient\_clear()}{rtems\_event\_transient\_clear()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void rtems\+\_\+event\+\_\+transient\+\_\+clear (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+See \mbox{\hyperlink{group__ClassicEventSystem_ga10c79eebe1e9c1b00eb72017bb67daf7}{rtems\+\_\+event\+\_\+system\+\_\+receive()}}. 
+
+The system event \mbox{\hyperlink{group__ClassicEventSystem_gace35bdbb8d804a49ca2d5eff5a90e214}{R\+T\+E\+M\+S\+\_\+\+E\+V\+E\+N\+T\+\_\+\+S\+Y\+S\+T\+E\+M\+\_\+\+T\+R\+A\+N\+S\+I\+E\+NT}} will be cleared. \mbox{\Hypertarget{group__ClassicEventTransient_ga9a9d65005be8b07ee557eef07de4b501}\label{group__ClassicEventTransient_ga9a9d65005be8b07ee557eef07de4b501}} 
+\index{Transient Event@{Transient Event}!rtems\_event\_transient\_receive@{rtems\_event\_transient\_receive}}
+\index{rtems\_event\_transient\_receive@{rtems\_event\_transient\_receive}!Transient Event@{Transient Event}}
+\subsubsection{\texorpdfstring{rtems\_event\_transient\_receive()}{rtems\_event\_transient\_receive()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} \mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} rtems\+\_\+event\+\_\+transient\+\_\+receive (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__ClassicOptions_gad26685eb0e60a9650082935c31920e29}{rtems\+\_\+option}}}]{option\+\_\+set,  }\item[{\mbox{\hyperlink{group__ClassicTasks_gad39c43f949683d46874e3a5586b93aee}{rtems\+\_\+interval}}}]{ticks }\end{DoxyParamCaption})}
+
+
+
+See \mbox{\hyperlink{group__ClassicEventSystem_ga10c79eebe1e9c1b00eb72017bb67daf7}{rtems\+\_\+event\+\_\+system\+\_\+receive()}}. 
+
+The system event \mbox{\hyperlink{group__ClassicEventSystem_gace35bdbb8d804a49ca2d5eff5a90e214}{R\+T\+E\+M\+S\+\_\+\+E\+V\+E\+N\+T\+\_\+\+S\+Y\+S\+T\+E\+M\+\_\+\+T\+R\+A\+N\+S\+I\+E\+NT}} will be received. \mbox{\Hypertarget{group__ClassicEventTransient_gab2d8a49e579d5eb1f71f499230ed9808}\label{group__ClassicEventTransient_gab2d8a49e579d5eb1f71f499230ed9808}} 
+\index{Transient Event@{Transient Event}!rtems\_event\_transient\_send@{rtems\_event\_transient\_send}}
+\index{rtems\_event\_transient\_send@{rtems\_event\_transient\_send}!Transient Event@{Transient Event}}
+\subsubsection{\texorpdfstring{rtems\_event\_transient\_send()}{rtems\_event\_transient\_send()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} \mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} rtems\+\_\+event\+\_\+transient\+\_\+send (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__ClassicTasks_gab20892b814dced7dd4e5b9bf42becd57}{rtems\+\_\+id}}}]{id }\end{DoxyParamCaption})}
+
+
+
+See \mbox{\hyperlink{group__ClassicEventSystem_ga1119cb4341890e86ffa7cc7fad414f19}{rtems\+\_\+event\+\_\+system\+\_\+send()}}. 
+
+The system event \mbox{\hyperlink{group__ClassicEventSystem_gace35bdbb8d804a49ca2d5eff5a90e214}{R\+T\+E\+M\+S\+\_\+\+E\+V\+E\+N\+T\+\_\+\+S\+Y\+S\+T\+E\+M\+\_\+\+T\+R\+A\+N\+S\+I\+E\+NT}} will be sent. 

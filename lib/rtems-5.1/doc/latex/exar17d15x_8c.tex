@@ -1,0 +1,83 @@
+\hypertarget{exar17d15x_8c}{}\section{bsps/i386/pc386/console/exar17d15x.c File Reference}
+\label{exar17d15x_8c}\index{bsps/i386/pc386/console/exar17d15x.c@{bsps/i386/pc386/console/exar17d15x.c}}
+
+
+Driver for Exar X\+R17\+D15x Multiport U\+A\+R\+Ts.  
+
+
+{\ttfamily \#include $<$bsp.\+h$>$}\newline
+{\ttfamily \#include $<$termios.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/termiostypes.\+h$>$}\newline
+{\ttfamily \#include $<$libchip/serial.\+h$>$}\newline
+{\ttfamily \#include $<$libchip/ns16550.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/bsp\+Io.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/pci.\+h$>$}\newline
+{\ttfamily \#include $<$bsp/exar17d15x.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}../../shared/dev/serial/legacy-\/console.\+h\char`\"{}}\newline
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structexar__parts__t}{exar\+\_\+parts\+\_\+t}}
+\item 
+struct \mbox{\hyperlink{structexar17d15x__conf__t}{exar17d15x\+\_\+conf\+\_\+t}}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{exar17d15x_8c_a09d570e408c9e6ed66026c7ae5713473}\label{exar17d15x_8c_a09d570e408c9e6ed66026c7ae5713473}} 
+\#define {\bfseries M\+A\+X\+\_\+\+B\+O\+A\+R\+DS}~4
+\item 
+\mbox{\Hypertarget{exar17d15x_8c_a91b049dcec0d06cbd8694f4e61820626}\label{exar17d15x_8c_a91b049dcec0d06cbd8694f4e61820626}} 
+\#define {\bfseries E\+X\+A\+R\+\_\+\+C\+L\+O\+C\+K\+\_\+\+R\+A\+TE}~(921600$\ast$16)
+\item 
+\mbox{\Hypertarget{exar17d15x_8c_ab949de9a45c6f6f8c610857606ba4835}\label{exar17d15x_8c_ab949de9a45c6f6f8c610857606ba4835}} 
+\#define {\bfseries P\+C\+I\+\_\+\+V\+E\+N\+D\+O\+R\+\_\+\+I\+D\+\_\+\+E\+X\+AR}~0x13\+A8
+\item 
+\mbox{\Hypertarget{exar17d15x_8c_a645eecccfdc1e33812881dac452348cd}\label{exar17d15x_8c_a645eecccfdc1e33812881dac452348cd}} 
+\#define {\bfseries P\+C\+I\+\_\+\+V\+E\+N\+D\+O\+R\+\_\+\+I\+D\+\_\+\+E\+X\+A\+R\+\_\+\+X\+R17\+D158}~0x0158
+\item 
+\mbox{\Hypertarget{exar17d15x_8c_a7f824dff9999fa9900334d7eff034eab}\label{exar17d15x_8c_a7f824dff9999fa9900334d7eff034eab}} 
+\#define {\bfseries P\+C\+I\+\_\+\+V\+E\+N\+D\+O\+R\+\_\+\+I\+D\+\_\+\+E\+X\+A\+R\+\_\+\+X\+R17\+D154}~0x0154
+\item 
+\mbox{\Hypertarget{exar17d15x_8c_a189209d49d976dcc6f14eebe91636168}\label{exar17d15x_8c_a189209d49d976dcc6f14eebe91636168}} 
+\#define {\bfseries P\+C\+I\+\_\+\+V\+E\+N\+D\+O\+R\+\_\+\+I\+D\+\_\+\+E\+X\+A\+R\+\_\+\+X\+R17\+D152}~0x0152
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+device\+\_\+driver}} \mbox{\hyperlink{exar17d15x_8c_a83ce2b92a2ff007df4799c558403d428}{exar17d15x\+\_\+initialize}} (rtems\+\_\+device\+\_\+major\+\_\+number major, rtems\+\_\+device\+\_\+minor\+\_\+number minor\+\_\+arg, void $\ast$arg)
+\begin{DoxyCompactList}\small\item\em Exar 17D15x Initialization Entry Point. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Driver for Exar X\+R17\+D15x Multiport U\+A\+R\+Ts. 
+
+This driver supports 2, 4 or 8 port Exar parts which are N\+S16550 compatible. 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{exar17d15x_8c_a83ce2b92a2ff007df4799c558403d428}\label{exar17d15x_8c_a83ce2b92a2ff007df4799c558403d428}} 
+\index{exar17d15x.c@{exar17d15x.c}!exar17d15x\_initialize@{exar17d15x\_initialize}}
+\index{exar17d15x\_initialize@{exar17d15x\_initialize}!exar17d15x.c@{exar17d15x.c}}
+\subsubsection{\texorpdfstring{exar17d15x\_initialize()}{exar17d15x\_initialize()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+device\+\_\+driver}} exar17d15x\+\_\+initialize (\begin{DoxyParamCaption}\item[{rtems\+\_\+device\+\_\+major\+\_\+number}]{major,  }\item[{rtems\+\_\+device\+\_\+minor\+\_\+number}]{minor,  }\item[{void $\ast$}]{arg }\end{DoxyParamCaption})}
+
+
+
+Exar 17D15x Initialization Entry Point. 
+
+This method initializes the Exar X\+R17\+D15x device driver.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em major} & is the device driver major number \\
+\hline
+\mbox{\texttt{ in}}  & {\em minor} & is the device driver minor number \\
+\hline
+\mbox{\texttt{ in}}  & {\em arg} & is the parameters to this call\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+This method returns R\+T\+E\+M\+S\+\_\+\+S\+U\+C\+C\+E\+S\+S\+F\+UL when the device driver is successfully initialized. 
+\end{DoxyReturn}

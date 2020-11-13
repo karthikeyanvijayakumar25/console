@@ -1,0 +1,169 @@
+\hypertarget{serial_8h}{}\section{bsps/include/libchip/serial.h File Reference}
+\label{serial_8h}\index{bsps/include/libchip/serial.h@{bsps/include/libchip/serial.h}}
+
+
+The generic libchip serial driver interface.  
+
+
+{\ttfamily \#include $<$termios.\+h$>$}\newline
+{\ttfamily \#include $<$rtems.\+h$>$}\newline
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct__console__fns}{\+\_\+console\+\_\+fns}}
+\item 
+struct \mbox{\hyperlink{struct__console__flow}{\+\_\+console\+\_\+flow}}
+\item 
+struct \mbox{\hyperlink{struct__console__tbl}{\+\_\+console\+\_\+tbl}}
+\item 
+struct \mbox{\hyperlink{struct__console__data}{\+\_\+console\+\_\+data}}
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{serial_8h_ab08b020ac57dc38db812e6a6f5a85a01}\label{serial_8h_ab08b020ac57dc38db812e6a6f5a85a01}} 
+typedef uint8\+\_\+t($\ast$ {\bfseries get\+Register\+\_\+f}) (uintptr\+\_\+t port, uint8\+\_\+t reg)
+\item 
+\mbox{\Hypertarget{serial_8h_a454fcb13dc1547404a8e48e0a3bf806f}\label{serial_8h_a454fcb13dc1547404a8e48e0a3bf806f}} 
+typedef void($\ast$ {\bfseries set\+Register\+\_\+f}) (uintptr\+\_\+t port, uint8\+\_\+t reg, uint8\+\_\+t value)
+\item 
+typedef uint8\+\_\+t($\ast$ \mbox{\hyperlink{serial_8h_a8b3da3714b7a892e4498566118046feb}{get\+Data\+\_\+f}}) (uintptr\+\_\+t port)
+\item 
+typedef void($\ast$ \mbox{\hyperlink{serial_8h_aedca9408a278c203c91f9498bec05076}{set\+Data\+\_\+f}}) (uintptr\+\_\+t port, uint8\+\_\+t value)
+\item 
+\mbox{\Hypertarget{serial_8h_a7df0f933e482c825db73770a14b40428}\label{serial_8h_a7df0f933e482c825db73770a14b40428}} 
+typedef struct \mbox{\hyperlink{struct__console__fns}{\+\_\+console\+\_\+fns}} {\bfseries console\+\_\+fns}
+\item 
+\mbox{\Hypertarget{serial_8h_addd7c617a5ef97d5dddd196b4c87ba51}\label{serial_8h_addd7c617a5ef97d5dddd196b4c87ba51}} 
+typedef struct \mbox{\hyperlink{struct__console__flow}{\+\_\+console\+\_\+flow}} {\bfseries console\+\_\+flow}
+\item 
+typedef struct \mbox{\hyperlink{struct__console__tbl}{\+\_\+console\+\_\+tbl}} \mbox{\hyperlink{serial_8h_a03c9d8834c16a2553c1e8499a6bd0930}{console\+\_\+tbl}}
+\item 
+typedef struct \mbox{\hyperlink{struct__console__data}{\+\_\+console\+\_\+data}} \mbox{\hyperlink{serial_8h_ae808572b81efa0deaf4057a9c3e0b5eb}{console\+\_\+data}}
+\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{serial_8h_a0450b2dba111c72a0316ed1912aeda71}{console\+\_\+devs}} \{ \newline
+{\bfseries S\+E\+R\+I\+A\+L\+\_\+\+M\+C68681}, 
+{\bfseries S\+E\+R\+I\+A\+L\+\_\+\+N\+S16550}, 
+{\bfseries S\+E\+R\+I\+A\+L\+\_\+\+N\+S16550\+\_\+\+W\+I\+T\+H\+\_\+\+F\+DR}, 
+{\bfseries S\+E\+R\+I\+A\+L\+\_\+\+Z85\+C30}, 
+\newline
+{\bfseries S\+E\+R\+I\+A\+L\+\_\+\+C\+U\+S\+T\+OM}
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{serial_8h_ae73dabc40ad9e53c57500f843066a0ff}{bsp\+\_\+console\+\_\+select}} (void)
+\begin{DoxyCompactList}\small\item\em Selects the minor number of the console device. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{struct__console__tbl}{console\+\_\+tbl}} $\ast$$\ast$ \mbox{\hyperlink{serial_8h_a47c39eaf13b8d9c87acba10c2d7fb688}{Console\+\_\+\+Port\+\_\+\+Tbl}}
+\item 
+unsigned long \mbox{\hyperlink{serial_8h_a0d8fd810e762900a25000b9acf34df35}{Console\+\_\+\+Port\+\_\+\+Count}}
+\item 
+\mbox{\hyperlink{struct__console__tbl}{console\+\_\+tbl}} \mbox{\hyperlink{serial_8h_a8d1404b49209c3692a3dc1433710e550}{Console\+\_\+\+Configuration\+\_\+\+Ports}} \mbox{[}$\,$\mbox{]}
+\item 
+unsigned long \mbox{\hyperlink{serial_8h_a59f0ae8f9904bd193825ccfc2c99aeb6}{Console\+\_\+\+Configuration\+\_\+\+Count}}
+\item 
+\mbox{\hyperlink{serial_8h_ae808572b81efa0deaf4057a9c3e0b5eb}{console\+\_\+data}} $\ast$ \mbox{\hyperlink{serial_8h_a83dec721bc848c432ca3fd874ff7f6d5}{Console\+\_\+\+Port\+\_\+\+Data}}
+\item 
+\mbox{\Hypertarget{serial_8h_ac2b6e70e09cf51ece7b205338e419a71}\label{serial_8h_ac2b6e70e09cf51ece7b205338e419a71}} 
+rtems\+\_\+device\+\_\+minor\+\_\+number {\bfseries Console\+\_\+\+Port\+\_\+\+Minor}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+The generic libchip serial driver interface. 
+
+
+
+\subsection{Typedef Documentation}
+\mbox{\Hypertarget{serial_8h_ae808572b81efa0deaf4057a9c3e0b5eb}\label{serial_8h_ae808572b81efa0deaf4057a9c3e0b5eb}} 
+\index{serial.h@{serial.h}!console\_data@{console\_data}}
+\index{console\_data@{console\_data}!serial.h@{serial.h}}
+\subsubsection{\texorpdfstring{console\_data}{console\_data}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{struct__console__data}{\+\_\+console\+\_\+data}}  \mbox{\hyperlink{serial_8h_ae808572b81efa0deaf4057a9c3e0b5eb}{console\+\_\+data}}}
+
+This type defination provides data for the console port. \mbox{\Hypertarget{serial_8h_a03c9d8834c16a2553c1e8499a6bd0930}\label{serial_8h_a03c9d8834c16a2553c1e8499a6bd0930}} 
+\index{serial.h@{serial.h}!console\_tbl@{console\_tbl}}
+\index{console\_tbl@{console\_tbl}!serial.h@{serial.h}}
+\subsubsection{\texorpdfstring{console\_tbl}{console\_tbl}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{struct__console__tbl}{\+\_\+console\+\_\+tbl}}  \mbox{\hyperlink{struct__console__tbl}{console\+\_\+tbl}}}
+
+This type defination provides an structure that is used to uniquely identify a specific serial port. \mbox{\Hypertarget{serial_8h_a8b3da3714b7a892e4498566118046feb}\label{serial_8h_a8b3da3714b7a892e4498566118046feb}} 
+\index{serial.h@{serial.h}!getData\_f@{getData\_f}}
+\index{getData\_f@{getData\_f}!serial.h@{serial.h}}
+\subsubsection{\texorpdfstring{getData\_f}{getData\_f}}
+{\footnotesize\ttfamily get\+Data\+\_\+f}
+
+This type function provides a hook for the bsp specific method that gets data from the specified port. \mbox{\Hypertarget{serial_8h_aedca9408a278c203c91f9498bec05076}\label{serial_8h_aedca9408a278c203c91f9498bec05076}} 
+\index{serial.h@{serial.h}!setData\_f@{setData\_f}}
+\index{setData\_f@{setData\_f}!serial.h@{serial.h}}
+\subsubsection{\texorpdfstring{setData\_f}{setData\_f}}
+{\footnotesize\ttfamily set\+Data\+\_\+f}
+
+This type function provides a hook for the bsp specific method that sets register data from the given port and register to the given value.
+
+This type function provides a hook for the bsp specific method that writes value to the specified port. 
+
+\subsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{serial_8h_a0450b2dba111c72a0316ed1912aeda71}\label{serial_8h_a0450b2dba111c72a0316ed1912aeda71}} 
+\index{serial.h@{serial.h}!console\_devs@{console\_devs}}
+\index{console\_devs@{console\_devs}!serial.h@{serial.h}}
+\subsubsection{\texorpdfstring{console\_devs}{console\_devs}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{serial_8h_a0450b2dba111c72a0316ed1912aeda71}{console\+\_\+devs}}}
+
+This type defination provides an enumerated type of all supported libchip console drivers. 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{serial_8h_ae73dabc40ad9e53c57500f843066a0ff}\label{serial_8h_ae73dabc40ad9e53c57500f843066a0ff}} 
+\index{serial.h@{serial.h}!bsp\_console\_select@{bsp\_console\_select}}
+\index{bsp\_console\_select@{bsp\_console\_select}!serial.h@{serial.h}}
+\subsubsection{\texorpdfstring{bsp\_console\_select()}{bsp\_console\_select()}}
+{\footnotesize\ttfamily void bsp\+\_\+console\+\_\+select (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Selects the minor number of the console device. 
+
+\begin{DoxySeeAlso}{See also}
+Console\+\_\+\+Port\+\_\+\+Minor. 
+\end{DoxySeeAlso}
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{serial_8h_a59f0ae8f9904bd193825ccfc2c99aeb6}\label{serial_8h_a59f0ae8f9904bd193825ccfc2c99aeb6}} 
+\index{serial.h@{serial.h}!Console\_Configuration\_Count@{Console\_Configuration\_Count}}
+\index{Console\_Configuration\_Count@{Console\_Configuration\_Count}!serial.h@{serial.h}}
+\subsubsection{\texorpdfstring{Console\_Configuration\_Count}{Console\_Configuration\_Count}}
+{\footnotesize\ttfamily unsigned long Console\+\_\+\+Configuration\+\_\+\+Count}
+
+The number of serial ports defined in Console\+\_\+\+Configuration\+\_\+\+Ports \mbox{\Hypertarget{serial_8h_a8d1404b49209c3692a3dc1433710e550}\label{serial_8h_a8d1404b49209c3692a3dc1433710e550}} 
+\index{serial.h@{serial.h}!Console\_Configuration\_Ports@{Console\_Configuration\_Ports}}
+\index{Console\_Configuration\_Ports@{Console\_Configuration\_Ports}!serial.h@{serial.h}}
+\subsubsection{\texorpdfstring{Console\_Configuration\_Ports}{Console\_Configuration\_Ports}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct__console__tbl}{console\+\_\+tbl}} Console\+\_\+\+Configuration\+\_\+\+Ports\mbox{[}$\,$\mbox{]}}
+
+The statically configured serial port information tables which are used to initially populate the dynamic tables. \mbox{\Hypertarget{serial_8h_a0d8fd810e762900a25000b9acf34df35}\label{serial_8h_a0d8fd810e762900a25000b9acf34df35}} 
+\index{serial.h@{serial.h}!Console\_Port\_Count@{Console\_Port\_Count}}
+\index{Console\_Port\_Count@{Console\_Port\_Count}!serial.h@{serial.h}}
+\subsubsection{\texorpdfstring{Console\_Port\_Count}{Console\_Port\_Count}}
+{\footnotesize\ttfamily unsigned long Console\+\_\+\+Port\+\_\+\+Count}
+
+This is the number of serial ports defined in the Console\+\_\+\+Port\+\_\+\+Tbl. \mbox{\Hypertarget{serial_8h_a83dec721bc848c432ca3fd874ff7f6d5}\label{serial_8h_a83dec721bc848c432ca3fd874ff7f6d5}} 
+\index{serial.h@{serial.h}!Console\_Port\_Data@{Console\_Port\_Data}}
+\index{Console\_Port\_Data@{Console\_Port\_Data}!serial.h@{serial.h}}
+\subsubsection{\texorpdfstring{Console\_Port\_Data}{Console\_Port\_Data}}
+{\footnotesize\ttfamily \mbox{\hyperlink{serial_8h_ae808572b81efa0deaf4057a9c3e0b5eb}{console\+\_\+data}}$\ast$ Console\+\_\+\+Port\+\_\+\+Data}
+
+This is an array of per port information. \mbox{\Hypertarget{serial_8h_a47c39eaf13b8d9c87acba10c2d7fb688}\label{serial_8h_a47c39eaf13b8d9c87acba10c2d7fb688}} 
+\index{serial.h@{serial.h}!Console\_Port\_Tbl@{Console\_Port\_Tbl}}
+\index{Console\_Port\_Tbl@{Console\_Port\_Tbl}!serial.h@{serial.h}}
+\subsubsection{\texorpdfstring{Console\_Port\_Tbl}{Console\_Port\_Tbl}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct__console__tbl}{console\+\_\+tbl}}$\ast$$\ast$ Console\+\_\+\+Port\+\_\+\+Tbl}
+
+This is a dynamically sized set of tables containing the serial port information. 

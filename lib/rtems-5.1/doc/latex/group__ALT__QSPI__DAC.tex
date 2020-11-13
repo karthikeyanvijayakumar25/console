@@ -1,0 +1,132 @@
+\hypertarget{group__ALT__QSPI__DAC}{}\section{Direct Access Mode}
+\label{group__ALT__QSPI__DAC}\index{Direct Access Mode@{Direct Access Mode}}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__ALT__QSPI__DAC_ga87c0f59732f55d34b21cb53a26e385c2}{alt\+\_\+qspi\+\_\+direct\+\_\+disable}} (void)
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__ALT__QSPI__DAC_gae37eb1b5749d99e70b9cbb59aa02abe3}{alt\+\_\+qspi\+\_\+direct\+\_\+enable}} (void)
+\item 
+uint32\+\_\+t \mbox{\hyperlink{group__ALT__QSPI__DAC_ga37e95f1b1aba211cf942a9db0ca46073}{alt\+\_\+qspi\+\_\+ahb\+\_\+remap\+\_\+address\+\_\+get}} (void)
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__ALT__QSPI__DAC_gad7b0dc3a61560e7d7c2edeb9204698ad}{alt\+\_\+qspi\+\_\+ahb\+\_\+remap\+\_\+address\+\_\+set}} (const uint32\+\_\+t ahb\+\_\+remap\+\_\+addr)
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__ALT__QSPI__DAC_ga7df90b3cb6c7074554eaf324b72a3b00}{alt\+\_\+qspi\+\_\+ahb\+\_\+address\+\_\+remap\+\_\+disable}} (void)
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__ALT__QSPI__DAC_ga0663558383dd05011ee908f98acbf0b0}{alt\+\_\+qspi\+\_\+ahb\+\_\+address\+\_\+remap\+\_\+enable}} (void)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+In direct access mode, an access to the A\+HB data slave triggers a read or write command to the flash memory. To use the direct access mode, enable the direct access controller with the \mbox{\hyperlink{group__ALT__QSPI__DAC_gae37eb1b5749d99e70b9cbb59aa02abe3}{alt\+\_\+qspi\+\_\+direct\+\_\+enable()}} function. An external master, for example a processor, triggers the direct access controller with a read or write operation to the A\+HB data slave interface. The data slave exposes a 1MB window into the flash device. You can remap this window to any 1MB location within the flash device address range.
+
+To remap the A\+HB data slave to access other 1MB regions of the flash device, enable address remapping by calling \mbox{\hyperlink{group__ALT__QSPI__DAC_ga0663558383dd05011ee908f98acbf0b0}{alt\+\_\+qspi\+\_\+ahb\+\_\+address\+\_\+remap\+\_\+enable()}}. All incoming data slave accesses remap to the offset specified in the remap address register which is configured by \mbox{\hyperlink{group__ALT__QSPI__DAC_gad7b0dc3a61560e7d7c2edeb9204698ad}{alt\+\_\+qspi\+\_\+ahb\+\_\+remap\+\_\+address\+\_\+set()}}.
+
+The 20 L\+S\+Bs of incoming addresses are used for accessing the 1MB region and the higher bits are ignored.
+
+The quad S\+PI controller does not issue any error status for accesses that lie outside the connected flash memory space. 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{group__ALT__QSPI__DAC_ga7df90b3cb6c7074554eaf324b72a3b00}\label{group__ALT__QSPI__DAC_ga7df90b3cb6c7074554eaf324b72a3b00}} 
+\index{Direct Access Mode@{Direct Access Mode}!alt\_qspi\_ahb\_address\_remap\_disable@{alt\_qspi\_ahb\_address\_remap\_disable}}
+\index{alt\_qspi\_ahb\_address\_remap\_disable@{alt\_qspi\_ahb\_address\_remap\_disable}!Direct Access Mode@{Direct Access Mode}}
+\subsubsection{\texorpdfstring{alt\_qspi\_ahb\_address\_remap\_disable()}{alt\_qspi\_ahb\_address\_remap\_disable()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} alt\+\_\+qspi\+\_\+ahb\+\_\+address\+\_\+remap\+\_\+disable (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+Disable A\+HB address remapping.
+
+Disables remapping of incoming A\+HB addresses so they are sent unmodified to the flash device. The incoming A\+HB address maps directly to the address serially sent to the flash device.
+
+
+\begin{DoxyRetVals}{Return values}
+{\em A\+L\+T\+\_\+\+E\+\_\+\+S\+U\+C\+C\+E\+SS} & Indicates successful completion. \\
+\hline
+{\em A\+L\+T\+\_\+\+E\+\_\+\+E\+R\+R\+OR} & Indicates an error occurred. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{group__ALT__QSPI__DAC_ga0663558383dd05011ee908f98acbf0b0}\label{group__ALT__QSPI__DAC_ga0663558383dd05011ee908f98acbf0b0}} 
+\index{Direct Access Mode@{Direct Access Mode}!alt\_qspi\_ahb\_address\_remap\_enable@{alt\_qspi\_ahb\_address\_remap\_enable}}
+\index{alt\_qspi\_ahb\_address\_remap\_enable@{alt\_qspi\_ahb\_address\_remap\_enable}!Direct Access Mode@{Direct Access Mode}}
+\subsubsection{\texorpdfstring{alt\_qspi\_ahb\_address\_remap\_enable()}{alt\_qspi\_ahb\_address\_remap\_enable()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} alt\+\_\+qspi\+\_\+ahb\+\_\+address\+\_\+remap\+\_\+enable (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+Enable A\+HB address remapping.
+
+Enables remapping of incoming A\+HB addresses so they are modified to $<$address$>$ + {\itshape N}, where {\itshape N} is the configured remap address value.
+
+See\+: \mbox{\hyperlink{group__ALT__QSPI__DAC_gad7b0dc3a61560e7d7c2edeb9204698ad}{alt\+\_\+qspi\+\_\+ahb\+\_\+remap\+\_\+address\+\_\+set()}}.
+
+
+\begin{DoxyRetVals}{Return values}
+{\em A\+L\+T\+\_\+\+E\+\_\+\+S\+U\+C\+C\+E\+SS} & Indicates successful completion. \\
+\hline
+{\em A\+L\+T\+\_\+\+E\+\_\+\+E\+R\+R\+OR} & Indicates an error occurred. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{group__ALT__QSPI__DAC_ga37e95f1b1aba211cf942a9db0ca46073}\label{group__ALT__QSPI__DAC_ga37e95f1b1aba211cf942a9db0ca46073}} 
+\index{Direct Access Mode@{Direct Access Mode}!alt\_qspi\_ahb\_remap\_address\_get@{alt\_qspi\_ahb\_remap\_address\_get}}
+\index{alt\_qspi\_ahb\_remap\_address\_get@{alt\_qspi\_ahb\_remap\_address\_get}!Direct Access Mode@{Direct Access Mode}}
+\subsubsection{\texorpdfstring{alt\_qspi\_ahb\_remap\_address\_get()}{alt\_qspi\_ahb\_remap\_address\_get()}}
+{\footnotesize\ttfamily uint32\+\_\+t alt\+\_\+qspi\+\_\+ahb\+\_\+remap\+\_\+address\+\_\+get (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+Get the current A\+HB address remap value.
+
+Returns the current value of the A\+HB remap address register.
+
+\begin{DoxyReturn}{Returns}
+The value used to remap an incoming A\+HB address to a different address used by the flash device. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{group__ALT__QSPI__DAC_gad7b0dc3a61560e7d7c2edeb9204698ad}\label{group__ALT__QSPI__DAC_gad7b0dc3a61560e7d7c2edeb9204698ad}} 
+\index{Direct Access Mode@{Direct Access Mode}!alt\_qspi\_ahb\_remap\_address\_set@{alt\_qspi\_ahb\_remap\_address\_set}}
+\index{alt\_qspi\_ahb\_remap\_address\_set@{alt\_qspi\_ahb\_remap\_address\_set}!Direct Access Mode@{Direct Access Mode}}
+\subsubsection{\texorpdfstring{alt\_qspi\_ahb\_remap\_address\_set()}{alt\_qspi\_ahb\_remap\_address\_set()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} alt\+\_\+qspi\+\_\+ahb\+\_\+remap\+\_\+address\+\_\+set (\begin{DoxyParamCaption}\item[{const uint32\+\_\+t}]{ahb\+\_\+remap\+\_\+addr }\end{DoxyParamCaption})}
+
+Set the A\+HB address remap value.
+
+Sets the value of the A\+HB remap address register.
+
+This A\+PI requires that the Q\+S\+PI controller be idle, as determined by \mbox{\hyperlink{group__ALT__QSPI__CSR_gaeaa7e762d8b79b1989385c978174b7b8}{alt\+\_\+qspi\+\_\+is\+\_\+idle()}}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em ahb\+\_\+remap\+\_\+addr} & The value used to remap an incoming A\+HB address to a different address used by the flash device.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em A\+L\+T\+\_\+\+E\+\_\+\+S\+U\+C\+C\+E\+SS} & Indicates successful completion. \\
+\hline
+{\em A\+L\+T\+\_\+\+E\+\_\+\+E\+R\+R\+OR} & Indicates an error occurred. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{group__ALT__QSPI__DAC_ga87c0f59732f55d34b21cb53a26e385c2}\label{group__ALT__QSPI__DAC_ga87c0f59732f55d34b21cb53a26e385c2}} 
+\index{Direct Access Mode@{Direct Access Mode}!alt\_qspi\_direct\_disable@{alt\_qspi\_direct\_disable}}
+\index{alt\_qspi\_direct\_disable@{alt\_qspi\_direct\_disable}!Direct Access Mode@{Direct Access Mode}}
+\subsubsection{\texorpdfstring{alt\_qspi\_direct\_disable()}{alt\_qspi\_direct\_disable()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} alt\+\_\+qspi\+\_\+direct\+\_\+disable (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+Disable the Q\+S\+PI Direct Access Controller.
+
+
+\begin{DoxyRetVals}{Return values}
+{\em A\+L\+T\+\_\+\+E\+\_\+\+S\+U\+C\+C\+E\+SS} & Indicates successful completion. \\
+\hline
+{\em A\+L\+T\+\_\+\+E\+\_\+\+E\+R\+R\+OR} & Indicates an error occurred. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{group__ALT__QSPI__DAC_gae37eb1b5749d99e70b9cbb59aa02abe3}\label{group__ALT__QSPI__DAC_gae37eb1b5749d99e70b9cbb59aa02abe3}} 
+\index{Direct Access Mode@{Direct Access Mode}!alt\_qspi\_direct\_enable@{alt\_qspi\_direct\_enable}}
+\index{alt\_qspi\_direct\_enable@{alt\_qspi\_direct\_enable}!Direct Access Mode@{Direct Access Mode}}
+\subsubsection{\texorpdfstring{alt\_qspi\_direct\_enable()}{alt\_qspi\_direct\_enable()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} alt\+\_\+qspi\+\_\+direct\+\_\+enable (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+Enable the Q\+S\+PI Direct Access Controller.
+
+
+\begin{DoxyRetVals}{Return values}
+{\em A\+L\+T\+\_\+\+E\+\_\+\+S\+U\+C\+C\+E\+SS} & Indicates successful completion. \\
+\hline
+{\em A\+L\+T\+\_\+\+E\+\_\+\+E\+R\+R\+OR} & Indicates an error occurred. \\
+\hline
+\end{DoxyRetVals}

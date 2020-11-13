@@ -1,0 +1,91 @@
+\hypertarget{bsps_2mips_2malta_2include_2bsp_8h}{}\section{bsps/mips/malta/include/bsp.h File Reference}
+\label{bsps_2mips_2malta_2include_2bsp_8h}\index{bsps/mips/malta/include/bsp.h@{bsps/mips/malta/include/bsp.h}}
+
+
+Global B\+SP definitions.  
+
+
+{\ttfamily \#include $<$bspopts.\+h$>$}\newline
+{\ttfamily \#include $<$bsp/default-\/initial-\/extension.\+h$>$}\newline
+{\ttfamily \#include $<$rtems.\+h$>$}\newline
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bfseries B\+S\+P\+\_\+\+F\+E\+A\+T\+U\+R\+E\+\_\+\+I\+R\+Q\+\_\+\+E\+X\+T\+E\+N\+S\+I\+ON}
+\item 
+\#define {\bfseries B\+S\+P\+\_\+\+S\+H\+A\+R\+E\+D\+\_\+\+H\+A\+N\+D\+L\+E\+R\+\_\+\+S\+U\+P\+P\+O\+RT}~1
+\item 
+\#define {\bfseries R\+E\+V\+I\+S\+I\+O\+N\+\_\+\+R\+E\+G\+I\+S\+T\+E\+R\+\_\+\+A\+D\+D\+R\+E\+SS}~0x1fc00010
+\item 
+\#define {\bfseries P\+R\+O\+R\+V\+\_\+\+M\+A\+SK}~0x0000000f   /$\ast$ 4 bit Product Revision $\ast$/
+\item 
+\#define {\bfseries P\+R\+O\+I\+D\+\_\+\+M\+A\+SK}~0x000000f0   /$\ast$ 4 bit Product I\+D $\ast$/
+\item 
+\#define {\bfseries C\+O\+R\+R\+V\+\_\+\+M\+A\+SK}~0x00000300   /$\ast$ 2 bit Core Board Revision $\ast$/
+\item 
+\#define {\bfseries C\+O\+R\+I\+D\+\_\+\+M\+A\+SK}~0x0000fc00   /$\ast$ 6 bit Core Board I\+D $\ast$/
+\item 
+\#define {\bfseries F\+P\+G\+R\+V\+\_\+\+M\+A\+SK}~0x00ff0000   /$\ast$ 8 bit C\+B\+U\+S F\+P\+G\+A Revision $\ast$/
+\item 
+\#define {\bfseries B\+S\+P\+\_\+8259\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+D\+R\+E\+SS}~(0x18000000\+U\+L $\vert$ 0xa0000000\+U\+L)
+\item 
+\#define {\bfseries B\+S\+P\+\_\+\+P\+C\+I\+\_\+\+B\+A\+S\+E\+\_\+\+A\+D\+D\+R\+E\+SS}~(0x1be00000\+U\+L $\vert$ 0xa0000000\+U\+L)
+\item 
+\#define {\bfseries B\+S\+P\+\_\+\+N\+I\+C\+\_\+\+I\+O\+\_\+\+B\+A\+SE}~(0x10000000\+U\+L $\vert$ 0xa0000000\+U\+L)
+\item 
+\#define {\bfseries P\+C\+I0\+\_\+\+I\+O\+\_\+\+B\+A\+SE}~(0x18000000\+U\+L $\vert$ 0xa0000000\+U\+L)
+\item 
+\#define {\bfseries B\+S\+P\+\_\+\+N\+I\+C\+\_\+\+M\+E\+M\+\_\+\+B\+A\+SE}~(0x00000000\+U\+L $\vert$ 0xa0000000\+U\+L)
+\item 
+\#define {\bfseries W\+R\+I\+T\+E\+\_\+\+P\+R\+O\+T\+E\+C\+T\+E\+D\+\_\+\+U\+I\+N\+T8}(\+\_\+addr,  \+\_\+value)
+\item 
+\#define {\bfseries W\+R\+I\+T\+E\+\_\+\+P\+R\+O\+T\+E\+C\+T\+E\+D\+\_\+\+U\+I\+N\+T16}(\+\_\+addr,  \+\_\+value)
+\item 
+\#define {\bfseries W\+R\+I\+T\+E\+\_\+\+P\+R\+O\+T\+E\+C\+T\+E\+D\+\_\+\+U\+I\+N\+T32}(\+\_\+addr,  \+\_\+value)
+\item 
+\#define {\bfseries R\+E\+A\+D\+\_\+\+P\+R\+O\+T\+E\+C\+T\+E\+D\+\_\+\+U\+I\+N\+T8}(\+\_\+addr,  \+\_\+value)
+\item 
+\#define {\bfseries R\+E\+A\+D\+\_\+\+P\+R\+O\+T\+E\+C\+T\+E\+D\+\_\+\+U\+I\+N\+T16}(\+\_\+addr,  \+\_\+value)
+\item 
+\#define {\bfseries R\+E\+A\+D\+\_\+\+P\+R\+O\+T\+E\+C\+T\+E\+D\+\_\+\+U\+I\+N\+T32}(\+\_\+addr,  \+\_\+value)
+\item 
+\#define {\bfseries R\+E\+A\+D\+\_\+\+U\+I\+N\+T8}(\+\_\+register\+\_\+,  \+\_\+value\+\_\+)~((\+\_\+value\+\_\+) = $\ast$((volatile unsigned char $\ast$)(\+\_\+register\+\_\+)))
+\item 
+\#define {\bfseries W\+R\+I\+T\+E\+\_\+\+U\+I\+N\+T8}(\+\_\+register\+\_\+,  \+\_\+value\+\_\+)~($\ast$((volatile unsigned char $\ast$)(\+\_\+register\+\_\+)) = (\+\_\+value\+\_\+))
+\item 
+\#define {\bfseries R\+E\+A\+D\+\_\+\+U\+I\+N\+T16}(\+\_\+register\+\_\+,  \+\_\+value\+\_\+)~((\+\_\+value\+\_\+) = $\ast$((volatile unsigned short $\ast$)(\+\_\+register\+\_\+)))
+\item 
+\#define {\bfseries W\+R\+I\+T\+E\+\_\+\+U\+I\+N\+T16}(\+\_\+register\+\_\+,  \+\_\+value\+\_\+)~($\ast$((volatile unsigned short $\ast$)(\+\_\+register\+\_\+)) = (\+\_\+value\+\_\+))
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void {\bfseries simple\+\_\+out\+\_\+32} (uint32\+\_\+t base, uint32\+\_\+t addr, uint32\+\_\+t val)
+\item 
+void {\bfseries simple\+\_\+out\+\_\+le32} (uint32\+\_\+t base, uint32\+\_\+t addr, uint32\+\_\+t val)
+\item 
+uint8\+\_\+t {\bfseries simple\+\_\+in\+\_\+8} (uint32\+\_\+t base, uint32\+\_\+t addr)
+\item 
+void {\bfseries simple\+\_\+out\+\_\+8} (uint32\+\_\+t base, uint32\+\_\+t addr, uint8\+\_\+t val)
+\item 
+int16\+\_\+t {\bfseries simple\+\_\+in\+\_\+le16} (uint32\+\_\+t base, uint32\+\_\+t addr)
+\item 
+int16\+\_\+t {\bfseries simple\+\_\+in\+\_\+16} (uint32\+\_\+t base, uint32\+\_\+t addr)
+\item 
+uint32\+\_\+t {\bfseries simple\+\_\+in\+\_\+le32} (uint32\+\_\+t base, uint32\+\_\+t addr)
+\item 
+uint32\+\_\+t {\bfseries simple\+\_\+in\+\_\+32} (uint32\+\_\+t base, uint32\+\_\+t addr)
+\item 
+void {\bfseries simple\+\_\+out\+\_\+le16} (uint32\+\_\+t base, uint32\+\_\+t addr, uint16\+\_\+t val)
+\item 
+void {\bfseries simple\+\_\+out\+\_\+16} (uint32\+\_\+t base, uint32\+\_\+t addr, uint16\+\_\+t val)
+\item 
+void {\bfseries init\+\_\+tlb} (void)
+\item 
+void {\bfseries resettlb} (int i)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Global B\+SP definitions. 
+

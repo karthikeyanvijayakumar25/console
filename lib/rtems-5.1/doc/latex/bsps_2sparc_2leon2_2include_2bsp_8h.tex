@@ -1,0 +1,103 @@
+\hypertarget{bsps_2sparc_2leon2_2include_2bsp_8h}{}\section{bsps/sparc/leon2/include/bsp.h File Reference}
+\label{bsps_2sparc_2leon2_2include_2bsp_8h}\index{bsps/sparc/leon2/include/bsp.h@{bsps/sparc/leon2/include/bsp.h}}
+
+
+Global B\+SP definitions.  
+
+
+{\ttfamily \#include $<$bspopts.\+h$>$}\newline
+{\ttfamily \#include $<$bsp/default-\/initial-\/extension.\+h$>$}\newline
+{\ttfamily \#include $<$rtems.\+h$>$}\newline
+{\ttfamily \#include $<$leon.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/irq-\/extension.\+h$>$}\newline
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bfseries L\+E\+O\+N2}~1
+\item 
+\#define {\bfseries B\+S\+P\+\_\+\+I\+D\+L\+E\+\_\+\+T\+A\+S\+K\+\_\+\+B\+O\+DY}~\mbox{\hyperlink{group__RTEMSBSPsSPARCLEON3_ga301be7085b80c41a9c5887247003c662}{bsp\+\_\+idle\+\_\+thread}}
+\item 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+B\+S\+P\+\_\+\+N\+E\+T\+W\+O\+R\+K\+\_\+\+D\+R\+I\+V\+E\+R\+\_\+\+N\+A\+ME}~\char`\"{}open\+\_\+eth1\char`\"{}
+\item 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+B\+S\+P\+\_\+\+N\+E\+T\+W\+O\+R\+K\+\_\+\+D\+R\+I\+V\+E\+R\+\_\+\+A\+T\+T\+A\+C\+H\+\_\+\+O\+P\+E\+N\+E\+TH}~rtems\+\_\+leon\+\_\+open\+\_\+eth\+\_\+driver\+\_\+attach
+\item 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+B\+S\+P\+\_\+\+N\+E\+T\+W\+O\+R\+K\+\_\+\+D\+R\+I\+V\+E\+R\+\_\+\+A\+T\+T\+A\+C\+H\+\_\+\+S\+M\+C91111}~rtems\+\_\+smc91111\+\_\+driver\+\_\+attach\+\_\+leon2
+\item 
+\#define {\bfseries H\+A\+S\+\_\+\+S\+M\+C91111}
+\item 
+\#define {\bfseries G\+R\+E\+T\+H\+\_\+\+S\+U\+P\+P\+O\+R\+T\+ED}
+\item 
+\#define {\bfseries G\+R\+E\+T\+H\+\_\+\+M\+E\+M\+\_\+\+L\+O\+AD}(addr)~leon\+\_\+r32\+\_\+no\+\_\+cache((uintptr\+\_\+t) addr)
+\item 
+\#define {\bfseries B\+S\+P\+\_\+\+P\+C\+I\+\_\+\+B\+I\+G\+\_\+\+E\+N\+D\+I\+AN}
+\item 
+\#define {\bfseries A\+M\+B\+A\+P\+P\+B\+U\+S\+\_\+\+I\+N\+F\+O\+\_\+\+A\+V\+A\+IL}~/$\ast$ A\+M\+B\+A\+PP Bus driver $\ast$/
+\item 
+\#define {\bfseries G\+P\+T\+I\+M\+E\+R\+\_\+\+I\+N\+F\+O\+\_\+\+A\+V\+A\+IL}~/$\ast$ G\+P\+T\+I\+M\+ER Timer driver $\ast$/
+\item 
+\#define {\bfseries G\+R\+E\+T\+H\+\_\+\+I\+N\+F\+O\+\_\+\+A\+V\+A\+IL}~/$\ast$ G\+R\+E\+TH Ethernet driver $\ast$/
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef void($\ast$ {\bfseries bsp\+\_\+shared\+\_\+isr}) (void $\ast$arg)
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void $\ast$ \mbox{\hyperlink{group__RTEMSBSPsSPARCLEON2_ga301be7085b80c41a9c5887247003c662}{bsp\+\_\+idle\+\_\+thread}} (uintptr\+\_\+t ignored)
+\begin{DoxyCompactList}\small\item\em Optimized idle task. \end{DoxyCompactList}\item 
+int {\bfseries rtems\+\_\+leon\+\_\+open\+\_\+eth\+\_\+driver\+\_\+attach} (struct rtems\+\_\+bsdnet\+\_\+ifconfig $\ast$\mbox{\hyperlink{structconfig__s}{config}})
+\item 
+int {\bfseries rtems\+\_\+smc91111\+\_\+driver\+\_\+attach\+\_\+leon2} (struct rtems\+\_\+bsdnet\+\_\+ifconfig $\ast$\mbox{\hyperlink{structconfig__s}{config}})
+\item 
+rtems\+\_\+isr\+\_\+entry \mbox{\hyperlink{group__RTEMSBSPsSPARCLEON2_gab3388042c56b34c40be81fd5f028d97e}{set\+\_\+vector}} (rtems\+\_\+isr\+\_\+entry handler, \mbox{\hyperlink{group__ClassicINTR_ga3e434c197d99f128e78cae4d9358bd8b}{rtems\+\_\+vector\+\_\+number}} vector, int type)
+\begin{DoxyCompactList}\small\item\em Install an interrupt handler. \end{DoxyCompactList}\item 
+void {\bfseries B\+S\+P\+\_\+fatal\+\_\+exit} (uint32\+\_\+t error)
+\item 
+void {\bfseries bsp\+\_\+spurious\+\_\+initialize} (void)
+\item 
+void {\bfseries B\+S\+P\+\_\+shared\+\_\+interrupt\+\_\+init} (void)
+\item 
+void {\bfseries bsp\+\_\+isr\+\_\+handler} (\mbox{\hyperlink{group__ClassicINTR_ga3e434c197d99f128e78cae4d9358bd8b}{rtems\+\_\+vector\+\_\+number}} vector)
+\item 
+void {\bfseries B\+S\+P\+\_\+shared\+\_\+interrupt\+\_\+clear} (int irq)
+\item 
+void {\bfseries B\+S\+P\+\_\+shared\+\_\+interrupt\+\_\+unmask} (int irq)
+\item 
+void {\bfseries B\+S\+P\+\_\+shared\+\_\+interrupt\+\_\+mask} (int irq)
+\item 
+void {\bfseries rtems\+\_\+bsp\+\_\+delay} (int usecs)
+\item 
+int {\bfseries cchip1\+\_\+register} (void)
+\item 
+void {\bfseries console\+\_\+outbyte\+\_\+polled} (int port, unsigned char ch)
+\item 
+int \mbox{\hyperlink{group__RTEMSBSPsSPARCLEON2_ga33017a80c39bdce884e201734ceb023d}{console\+\_\+inbyte\+\_\+nonblocking}} (int port)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+int {\bfseries C\+P\+U\+\_\+\+S\+P\+A\+R\+C\+\_\+\+H\+A\+S\+\_\+\+S\+N\+O\+O\+P\+I\+NG}
+\item 
+int {\bfseries R\+A\+M\+\_\+\+S\+T\+A\+RT}
+\item 
+int {\bfseries R\+A\+M\+\_\+\+E\+ND}
+\item 
+int {\bfseries R\+A\+M\+\_\+\+S\+I\+ZE}
+\item 
+int {\bfseries P\+R\+O\+M\+\_\+\+S\+T\+A\+RT}
+\item 
+int {\bfseries P\+R\+O\+M\+\_\+\+E\+ND}
+\item 
+int {\bfseries P\+R\+O\+M\+\_\+\+S\+I\+ZE}
+\item 
+int {\bfseries C\+L\+O\+C\+K\+\_\+\+S\+P\+E\+ED}
+\item 
+int {\bfseries end}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Global B\+SP definitions. 
+

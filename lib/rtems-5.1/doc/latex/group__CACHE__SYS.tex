@@ -1,0 +1,197 @@
+\hypertarget{group__CACHE__SYS}{}\section{System Level Cache Management A\+PI}
+\label{group__CACHE__SYS}\index{System Level Cache Management API@{System Level Cache Management API}}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__CACHE__SYS_ga6f5aef1f8665ce92140f797a40107362}{A\+L\+T\+\_\+\+C\+A\+C\+H\+E\+\_\+\+S\+U\+P\+P\+O\+R\+T\+\_\+\+N\+O\+N\+\_\+\+F\+L\+A\+T\+\_\+\+V\+I\+R\+T\+U\+A\+L\+\_\+\+M\+E\+M\+O\+RY}}~(0)
+\item 
+\#define \mbox{\hyperlink{group__CACHE__SYS_ga86dd25e6cd718fa78826b612132df84e}{A\+L\+T\+\_\+\+C\+A\+C\+H\+E\+\_\+\+L\+I\+N\+E\+\_\+\+S\+I\+ZE}}~32
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__CACHE__SYS_ga7e2d77afe993421ee6f3ba6a6bc419ee}{alt\+\_\+cache\+\_\+system\+\_\+enable}} (void)
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__CACHE__SYS_ga1a7fb4dd364afc5a7ae8c68a5d1bdac6}{alt\+\_\+cache\+\_\+system\+\_\+disable}} (void)
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__CACHE__SYS_ga50d87865a68390d96a7f5ddadb465d16}{alt\+\_\+cache\+\_\+system\+\_\+invalidate}} (void $\ast$vaddress, size\+\_\+t length)
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__CACHE__SYS_gad6f5aeeac2c752c650e9faa1c7df0e97}{alt\+\_\+cache\+\_\+system\+\_\+clean}} (void $\ast$vaddress, size\+\_\+t length)
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__CACHE__SYS_gaa3019ba404096846ee255af73db6e85c}{alt\+\_\+cache\+\_\+system\+\_\+purge}} (void $\ast$vaddress, size\+\_\+t length)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This A\+PI group provides cache maintenance operations which affects multiple cache levels.
+
+The enable and disable functions enables and disables all caches in the system respectively. For caches shared by the C\+PU core(s), particularly the L2 cache, once that cache is enabled or disabled it will not be invalidated or cleaned again respectively. This allows the safe system-\/wide enable and disable to be used in single-\/core and multi-\/core scenarios.
+
+For cache maintenance operations, this A\+PI implements the procedures outlined in the L2\+C-\/310 Technical Reference Manual, section 3.\+3.\+10, subsection \char`\"{}\+System cache maintenance considerations\char`\"{}. This allows for a convenient way to invalidate, clean, or clean and invalidate cache data from the L1 to L2 to L3 while avoiding any potential race conditions in mutli-\/core or multi-\/master scenarios. It assumes that the L1 and L2 cache is set in \char`\"{}non-\/exclusive\char`\"{} mode. This means a segment of data can reside in both the L1 and L2 simultaneously. This is the default mode for caches in the system.
+
+The current implementation of the system cache A\+P\+Is assumes that the M\+MU is configured with a flat memory mapping or that every virtual address matches perfectly with the physical address. This restriction may be lifted in a future release of the cache A\+PI implementation. 
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{group__CACHE__SYS_ga86dd25e6cd718fa78826b612132df84e}\label{group__CACHE__SYS_ga86dd25e6cd718fa78826b612132df84e}} 
+\index{System Level Cache Management API@{System Level Cache Management API}!ALT\_CACHE\_LINE\_SIZE@{ALT\_CACHE\_LINE\_SIZE}}
+\index{ALT\_CACHE\_LINE\_SIZE@{ALT\_CACHE\_LINE\_SIZE}!System Level Cache Management API@{System Level Cache Management API}}
+\subsubsection{\texorpdfstring{ALT\_CACHE\_LINE\_SIZE}{ALT\_CACHE\_LINE\_SIZE}}
+{\footnotesize\ttfamily \#define A\+L\+T\+\_\+\+C\+A\+C\+H\+E\+\_\+\+L\+I\+N\+E\+\_\+\+S\+I\+ZE~32}
+
+This is the system wide cache line size, given in bytes. \mbox{\Hypertarget{group__CACHE__SYS_ga6f5aef1f8665ce92140f797a40107362}\label{group__CACHE__SYS_ga6f5aef1f8665ce92140f797a40107362}} 
+\index{System Level Cache Management API@{System Level Cache Management API}!ALT\_CACHE\_SUPPORT\_NON\_FLAT\_VIRTUAL\_MEMORY@{ALT\_CACHE\_SUPPORT\_NON\_FLAT\_VIRTUAL\_MEMORY}}
+\index{ALT\_CACHE\_SUPPORT\_NON\_FLAT\_VIRTUAL\_MEMORY@{ALT\_CACHE\_SUPPORT\_NON\_FLAT\_VIRTUAL\_MEMORY}!System Level Cache Management API@{System Level Cache Management API}}
+\subsubsection{\texorpdfstring{ALT\_CACHE\_SUPPORT\_NON\_FLAT\_VIRTUAL\_MEMORY}{ALT\_CACHE\_SUPPORT\_NON\_FLAT\_VIRTUAL\_MEMORY}}
+{\footnotesize\ttfamily \#define A\+L\+T\+\_\+\+C\+A\+C\+H\+E\+\_\+\+S\+U\+P\+P\+O\+R\+T\+\_\+\+N\+O\+N\+\_\+\+F\+L\+A\+T\+\_\+\+V\+I\+R\+T\+U\+A\+L\+\_\+\+M\+E\+M\+O\+RY~(0)}
+
+Enables support for a non-\/flat virtual memory. A flat virtual memory is where every virtual address matches exactly to the physical address, making the virtual to physical translation trivial. Adding support for non-\/flat adds some overhead for the VA to PA translation and error detection.
+
+To enable non-\/flat virtual memory support, defined A\+L\+T\+\_\+\+C\+A\+C\+H\+E\+\_\+\+S\+U\+P\+P\+O\+R\+T\+\_\+\+N\+O\+N\+\_\+\+F\+L\+A\+T\+\_\+\+V\+I\+R\+T\+U\+A\+L\+\_\+\+M\+E\+M\+O\+RY=1 in your Makefile when compiling H\+W\+Libs. 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{group__CACHE__SYS_gad6f5aeeac2c752c650e9faa1c7df0e97}\label{group__CACHE__SYS_gad6f5aeeac2c752c650e9faa1c7df0e97}} 
+\index{System Level Cache Management API@{System Level Cache Management API}!alt\_cache\_system\_clean@{alt\_cache\_system\_clean}}
+\index{alt\_cache\_system\_clean@{alt\_cache\_system\_clean}!System Level Cache Management API@{System Level Cache Management API}}
+\subsubsection{\texorpdfstring{alt\_cache\_system\_clean()}{alt\_cache\_system\_clean()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} alt\+\_\+cache\+\_\+system\+\_\+clean (\begin{DoxyParamCaption}\item[{void $\ast$}]{vaddress,  }\item[{size\+\_\+t}]{length }\end{DoxyParamCaption})}
+
+Cleans the specified contents of all cache levels visible to the current C\+PU core for the given memory segment.
+
+The memory segment address and length specified must align to the characteristics of the cache line. This means the address and length must be multiples of the cache line size. To determine the cache line size, use the {\bfseries{A\+L\+T\+\_\+\+C\+A\+C\+H\+E\+\_\+\+L\+I\+N\+E\+\_\+\+S\+I\+ZE}} macro.
+
+The following pseudocode outlines the operations carried out by this function\+:
+\begin{DoxyEnumerate}
+\item L1 clean address(es)
+\item D\+SB instruction
+\item L2 clean address(es)
+\item L2 cache sync
+\end{DoxyEnumerate}
+
+The current implementation of the system cache A\+P\+Is assumes that the M\+MU is configured with a flat memory mapping or that every virtual address matches perfectly with the physical address. This restriction may be lifted in a future release of the cache A\+PI implementation.
+
+
+\begin{DoxyParams}{Parameters}
+{\em vaddress} & The virtual address of the memory segment to be cleaned.\\
+\hline
+{\em length} & The length of the memory segment to be cleaned.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em A\+L\+T\+\_\+\+E\+\_\+\+S\+U\+C\+C\+E\+SS} & The operation was successful. \\
+\hline
+{\em A\+L\+T\+\_\+\+E\+\_\+\+E\+R\+R\+OR} & The operation failed. \\
+\hline
+{\em A\+L\+T\+\_\+\+E\+\_\+\+B\+A\+D\+\_\+\+A\+RG} & The memory segment is invalid. \\
+\hline
+{\em A\+L\+T\+\_\+\+E\+\_\+\+T\+MO} & The memory operation timed out. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{group__CACHE__SYS_ga1a7fb4dd364afc5a7ae8c68a5d1bdac6}\label{group__CACHE__SYS_ga1a7fb4dd364afc5a7ae8c68a5d1bdac6}} 
+\index{System Level Cache Management API@{System Level Cache Management API}!alt\_cache\_system\_disable@{alt\_cache\_system\_disable}}
+\index{alt\_cache\_system\_disable@{alt\_cache\_system\_disable}!System Level Cache Management API@{System Level Cache Management API}}
+\subsubsection{\texorpdfstring{alt\_cache\_system\_disable()}{alt\_cache\_system\_disable()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} alt\+\_\+cache\+\_\+system\+\_\+disable (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+Disables all cache controllers visible to the current C\+PU core. Cache controllers visible to multiple C\+PU cores, for example the L2, will first be checked to be enabled before being disabled. All necessary cache maintenance operations will be done automatically.
+
+
+\begin{DoxyRetVals}{Return values}
+{\em A\+L\+T\+\_\+\+E\+\_\+\+S\+U\+C\+C\+E\+SS} & The operation was successful. \\
+\hline
+{\em A\+L\+T\+\_\+\+E\+\_\+\+E\+R\+R\+OR} & The operation failed. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{group__CACHE__SYS_ga7e2d77afe993421ee6f3ba6a6bc419ee}\label{group__CACHE__SYS_ga7e2d77afe993421ee6f3ba6a6bc419ee}} 
+\index{System Level Cache Management API@{System Level Cache Management API}!alt\_cache\_system\_enable@{alt\_cache\_system\_enable}}
+\index{alt\_cache\_system\_enable@{alt\_cache\_system\_enable}!System Level Cache Management API@{System Level Cache Management API}}
+\subsubsection{\texorpdfstring{alt\_cache\_system\_enable()}{alt\_cache\_system\_enable()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} alt\+\_\+cache\+\_\+system\+\_\+enable (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+Enables all caches and features which improve reliability and speed on all cache controllers visible to the current C\+PU core. This includes parity error detection. Cache controllers visible to multiple C\+PU cores, for example the L2, will first be checked to be disabled before being enabled. All necessary cache maintenance operations will be done automatically.
+
+
+\begin{DoxyRetVals}{Return values}
+{\em A\+L\+T\+\_\+\+E\+\_\+\+S\+U\+C\+C\+E\+SS} & The operation was successful. \\
+\hline
+{\em A\+L\+T\+\_\+\+E\+\_\+\+E\+R\+R\+OR} & The operation failed. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{group__CACHE__SYS_ga50d87865a68390d96a7f5ddadb465d16}\label{group__CACHE__SYS_ga50d87865a68390d96a7f5ddadb465d16}} 
+\index{System Level Cache Management API@{System Level Cache Management API}!alt\_cache\_system\_invalidate@{alt\_cache\_system\_invalidate}}
+\index{alt\_cache\_system\_invalidate@{alt\_cache\_system\_invalidate}!System Level Cache Management API@{System Level Cache Management API}}
+\subsubsection{\texorpdfstring{alt\_cache\_system\_invalidate()}{alt\_cache\_system\_invalidate()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} alt\+\_\+cache\+\_\+system\+\_\+invalidate (\begin{DoxyParamCaption}\item[{void $\ast$}]{vaddress,  }\item[{size\+\_\+t}]{length }\end{DoxyParamCaption})}
+
+Invalidates the specified contents of all cache levels visible to the current C\+PU core for the given memory segment.
+
+The memory segment address and length specified must align to the characteristics of the cache line. This means the address and length must be multiples of the cache line size. To determine the cache line size, use the {\bfseries{A\+L\+T\+\_\+\+C\+A\+C\+H\+E\+\_\+\+L\+I\+N\+E\+\_\+\+S\+I\+ZE}} macro.
+
+The following pseudocode outlines the operations carried out by this function\+:
+\begin{DoxyEnumerate}
+\item L2 invalidate address(es)
+\item L2 cache sync
+\item L1 invalidate address(es)
+\item D\+SB instruction
+\end{DoxyEnumerate}
+
+The current implementation of the system cache A\+P\+Is assumes that the M\+MU is configured with a flat memory mapping or that every virtual address matches perfectly with the physical address. This restriction may be lifted in a future release of the cache A\+PI implementation.
+
+
+\begin{DoxyParams}{Parameters}
+{\em vaddress} & The virtual address of the memory segment to be invalidated.\\
+\hline
+{\em length} & The length of the memory segment to be invalidated.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em A\+L\+T\+\_\+\+E\+\_\+\+S\+U\+C\+C\+E\+SS} & The operation was successful. \\
+\hline
+{\em A\+L\+T\+\_\+\+E\+\_\+\+E\+R\+R\+OR} & The operation failed. \\
+\hline
+{\em A\+L\+T\+\_\+\+E\+\_\+\+B\+A\+D\+\_\+\+A\+RG} & The memory segment is invalid. \\
+\hline
+{\em A\+L\+T\+\_\+\+E\+\_\+\+T\+MO} & The memory operation timed out. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{group__CACHE__SYS_gaa3019ba404096846ee255af73db6e85c}\label{group__CACHE__SYS_gaa3019ba404096846ee255af73db6e85c}} 
+\index{System Level Cache Management API@{System Level Cache Management API}!alt\_cache\_system\_purge@{alt\_cache\_system\_purge}}
+\index{alt\_cache\_system\_purge@{alt\_cache\_system\_purge}!System Level Cache Management API@{System Level Cache Management API}}
+\subsubsection{\texorpdfstring{alt\_cache\_system\_purge()}{alt\_cache\_system\_purge()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} alt\+\_\+cache\+\_\+system\+\_\+purge (\begin{DoxyParamCaption}\item[{void $\ast$}]{vaddress,  }\item[{size\+\_\+t}]{length }\end{DoxyParamCaption})}
+
+Cleans and invalidates the specified contents of all cache levels visible to the current C\+PU core for the given memory segment.
+
+The memory segment address and length specified must align to the characteristics of the cache line. This means the address and length must be multiples of the cache line size. To determine the cache line size, use the {\bfseries{A\+L\+T\+\_\+\+C\+A\+C\+H\+E\+\_\+\+L\+I\+N\+E\+\_\+\+S\+I\+ZE}} macro.
+
+The following pseudocode outlines the operations carried out by this function\+:
+\begin{DoxyEnumerate}
+\item L1 clean address(es)
+\item D\+SB instruction
+\item L2 clean and invalidate address(es)
+\item L2 cache sync
+\item L1 invalidate address(es)
+\item D\+SB instruction
+\end{DoxyEnumerate}
+
+The current implementation of the system cache A\+P\+Is assumes that the M\+MU is configured with a flat memory mapping or that every virtual address matches perfectly with the physical address. This restriction may be lifted in a future release of the cache A\+PI implementation.
+
+
+\begin{DoxyParams}{Parameters}
+{\em vaddress} & The virtual address of the memory segment to be purged.\\
+\hline
+{\em length} & The length of the memory segment to be purged.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em A\+L\+T\+\_\+\+E\+\_\+\+S\+U\+C\+C\+E\+SS} & The operation was successful. \\
+\hline
+{\em A\+L\+T\+\_\+\+E\+\_\+\+E\+R\+R\+OR} & The operation failed. \\
+\hline
+{\em A\+L\+T\+\_\+\+E\+\_\+\+B\+A\+D\+\_\+\+A\+RG} & The memory segment is invalid. \\
+\hline
+{\em A\+L\+T\+\_\+\+E\+\_\+\+T\+MO} & The memory operation timed out. \\
+\hline
+\end{DoxyRetVals}

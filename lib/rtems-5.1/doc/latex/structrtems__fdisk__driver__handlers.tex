@@ -1,0 +1,203 @@
+\hypertarget{structrtems__fdisk__driver__handlers}{}\section{rtems\+\_\+fdisk\+\_\+driver\+\_\+handlers Struct Reference}
+\label{structrtems__fdisk__driver__handlers}\index{rtems\_fdisk\_driver\_handlers@{rtems\_fdisk\_driver\_handlers}}
+
+
+Flash Low Level driver handlers.  
+
+
+
+
+{\ttfamily \#include $<$flashdisk.\+h$>$}
+
+\subsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+int($\ast$ \mbox{\hyperlink{structrtems__fdisk__driver__handlers_ad1c83b556560e58b379cd6faba061959}{read}} )(const \mbox{\hyperlink{structrtems__fdisk__segment__desc}{rtems\+\_\+fdisk\+\_\+segment\+\_\+desc}} $\ast$sd, uint32\+\_\+t \mbox{\hyperlink{structdevice}{device}}, uint32\+\_\+t segment, uint32\+\_\+t offset, void $\ast$buffer, uint32\+\_\+t \mbox{\hyperlink{sun4u_2tte_8h_a245260f6f74972558f61b85227df5aae}{size}})
+\item 
+int($\ast$ \mbox{\hyperlink{structrtems__fdisk__driver__handlers_a14430a22a8f1b7a9bfd9329c1041a809}{write}} )(const \mbox{\hyperlink{structrtems__fdisk__segment__desc}{rtems\+\_\+fdisk\+\_\+segment\+\_\+desc}} $\ast$sd, uint32\+\_\+t \mbox{\hyperlink{structdevice}{device}}, uint32\+\_\+t segment, uint32\+\_\+t offset, const void $\ast$buffer, uint32\+\_\+t \mbox{\hyperlink{sun4u_2tte_8h_a245260f6f74972558f61b85227df5aae}{size}})
+\item 
+int($\ast$ \mbox{\hyperlink{structrtems__fdisk__driver__handlers_afab24fd17437d920f877eb533fb849f3}{blank}} )(const \mbox{\hyperlink{structrtems__fdisk__segment__desc}{rtems\+\_\+fdisk\+\_\+segment\+\_\+desc}} $\ast$sd, uint32\+\_\+t \mbox{\hyperlink{structdevice}{device}}, uint32\+\_\+t segment, uint32\+\_\+t offset, uint32\+\_\+t \mbox{\hyperlink{sun4u_2tte_8h_a245260f6f74972558f61b85227df5aae}{size}})
+\item 
+int($\ast$ \mbox{\hyperlink{structrtems__fdisk__driver__handlers_a7ffca2062919a41fe49e06ee1058810f}{verify}} )(const \mbox{\hyperlink{structrtems__fdisk__segment__desc}{rtems\+\_\+fdisk\+\_\+segment\+\_\+desc}} $\ast$sd, uint32\+\_\+t \mbox{\hyperlink{structdevice}{device}}, uint32\+\_\+t segment, uint32\+\_\+t offset, const void $\ast$buffer, uint32\+\_\+t \mbox{\hyperlink{sun4u_2tte_8h_a245260f6f74972558f61b85227df5aae}{size}})
+\item 
+int($\ast$ \mbox{\hyperlink{structrtems__fdisk__driver__handlers_aaff1b01c8f7d53fb2fd586479b155f59}{erase}} )(const \mbox{\hyperlink{structrtems__fdisk__segment__desc}{rtems\+\_\+fdisk\+\_\+segment\+\_\+desc}} $\ast$sd, uint32\+\_\+t \mbox{\hyperlink{structdevice}{device}}, uint32\+\_\+t segment)
+\item 
+int($\ast$ \mbox{\hyperlink{structrtems__fdisk__driver__handlers_a526623f353abfb0b0c770cb3e6c53cef}{erase\+\_\+device}} )(const struct \mbox{\hyperlink{structrtems__fdisk__device__desc}{rtems\+\_\+fdisk\+\_\+device\+\_\+desc}} $\ast$dd, uint32\+\_\+t \mbox{\hyperlink{structdevice}{device}})
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Flash Low Level driver handlers. 
+
+Typically this structure is part of a table of handlers in the device which is referenced in the flash disk configuration table. The reference is kept in the driver and used all the time to manage the flash device, therefore it must always exist. 
+
+\subsection{Field Documentation}
+\mbox{\Hypertarget{structrtems__fdisk__driver__handlers_afab24fd17437d920f877eb533fb849f3}\label{structrtems__fdisk__driver__handlers_afab24fd17437d920f877eb533fb849f3}} 
+\index{rtems\_fdisk\_driver\_handlers@{rtems\_fdisk\_driver\_handlers}!blank@{blank}}
+\index{blank@{blank}!rtems\_fdisk\_driver\_handlers@{rtems\_fdisk\_driver\_handlers}}
+\subsubsection{\texorpdfstring{blank}{blank}}
+{\footnotesize\ttfamily int($\ast$ rtems\+\_\+fdisk\+\_\+driver\+\_\+handlers\+::blank) (const \mbox{\hyperlink{structrtems__fdisk__segment__desc}{rtems\+\_\+fdisk\+\_\+segment\+\_\+desc}} $\ast$sd, uint32\+\_\+t \mbox{\hyperlink{structdevice}{device}}, uint32\+\_\+t segment, uint32\+\_\+t offset, uint32\+\_\+t \mbox{\hyperlink{sun4u_2tte_8h_a245260f6f74972558f61b85227df5aae}{size}})}
+
+Blank a segment in the device. Return an errno error number if the device cannot be read or is not blank. A segment descriptor can describe more than segment in a device if the device has repeating segments. The segment number is the device segment to access and the segment descriptor must reference the segment being requested. For example the segment number must resided in the range \mbox{[}base, base + count).
+
+
+\begin{DoxyParams}{Parameters}
+{\em sd} & The segment descriptor. \\
+\hline
+{\em device} & The device to read data from. \\
+\hline
+{\em segment} & The segment within the device to read. \\
+\hline
+{\em offset} & The offset in the segment to checl. \\
+\hline
+{\em size} & The amount of data to check. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em 0} & No error. \\
+\hline
+{\em E\+IO} & The segment is not blank. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{structrtems__fdisk__driver__handlers_aaff1b01c8f7d53fb2fd586479b155f59}\label{structrtems__fdisk__driver__handlers_aaff1b01c8f7d53fb2fd586479b155f59}} 
+\index{rtems\_fdisk\_driver\_handlers@{rtems\_fdisk\_driver\_handlers}!erase@{erase}}
+\index{erase@{erase}!rtems\_fdisk\_driver\_handlers@{rtems\_fdisk\_driver\_handlers}}
+\subsubsection{\texorpdfstring{erase}{erase}}
+{\footnotesize\ttfamily int($\ast$ rtems\+\_\+fdisk\+\_\+driver\+\_\+handlers\+::erase) (const \mbox{\hyperlink{structrtems__fdisk__segment__desc}{rtems\+\_\+fdisk\+\_\+segment\+\_\+desc}} $\ast$sd, uint32\+\_\+t \mbox{\hyperlink{structdevice}{device}}, uint32\+\_\+t segment)}
+
+Erase the segment. Return an errno error number if the segment cannot be erased. A segment descriptor can describe more than segment in a device if the device has repeating segments. The segment number is the device segment to access and the segment descriptor must reference the segment being requested.
+
+
+\begin{DoxyParams}{Parameters}
+{\em sd} & The segment descriptor. \\
+\hline
+{\em device} & The device to erase the segment of. \\
+\hline
+{\em segment} & The segment within the device to erase. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em 0} & No error. \\
+\hline
+{\em E\+IO} & The segment was not erased. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{structrtems__fdisk__driver__handlers_a526623f353abfb0b0c770cb3e6c53cef}\label{structrtems__fdisk__driver__handlers_a526623f353abfb0b0c770cb3e6c53cef}} 
+\index{rtems\_fdisk\_driver\_handlers@{rtems\_fdisk\_driver\_handlers}!erase\_device@{erase\_device}}
+\index{erase\_device@{erase\_device}!rtems\_fdisk\_driver\_handlers@{rtems\_fdisk\_driver\_handlers}}
+\subsubsection{\texorpdfstring{erase\_device}{erase\_device}}
+{\footnotesize\ttfamily int($\ast$ rtems\+\_\+fdisk\+\_\+driver\+\_\+handlers\+::erase\+\_\+device) (const struct \mbox{\hyperlink{structrtems__fdisk__device__desc}{rtems\+\_\+fdisk\+\_\+device\+\_\+desc}} $\ast$dd, uint32\+\_\+t \mbox{\hyperlink{structdevice}{device}})}
+
+Erase the device. Return an errno error number if the segment cannot be erased. A segment descriptor can describe more than segment in a device if the device has repeating segments. The segment number is the segment to access and the segment descriptor must reference the segment being requested.
+
+
+\begin{DoxyParams}{Parameters}
+{\em sd} & The segment descriptor. \\
+\hline
+{\em device} & The device to erase. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em 0} & No error. \\
+\hline
+{\em E\+IO} & The device was not erased. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{structrtems__fdisk__driver__handlers_ad1c83b556560e58b379cd6faba061959}\label{structrtems__fdisk__driver__handlers_ad1c83b556560e58b379cd6faba061959}} 
+\index{rtems\_fdisk\_driver\_handlers@{rtems\_fdisk\_driver\_handlers}!read@{read}}
+\index{read@{read}!rtems\_fdisk\_driver\_handlers@{rtems\_fdisk\_driver\_handlers}}
+\subsubsection{\texorpdfstring{read}{read}}
+{\footnotesize\ttfamily int($\ast$ rtems\+\_\+fdisk\+\_\+driver\+\_\+handlers\+::read) (const \mbox{\hyperlink{structrtems__fdisk__segment__desc}{rtems\+\_\+fdisk\+\_\+segment\+\_\+desc}} $\ast$sd, uint32\+\_\+t \mbox{\hyperlink{structdevice}{device}}, uint32\+\_\+t segment, uint32\+\_\+t offset, void $\ast$buffer, uint32\+\_\+t \mbox{\hyperlink{sun4u_2tte_8h_a245260f6f74972558f61b85227df5aae}{size}})}
+
+Read data from the device into the buffer. Return an errno error number if the device cannot be read. A segment descriptor can describe more than one segment in a device if the device has repeating segments. The segment number is the device segment to access and the segment descriptor must reference the segment being requested. For example the segment number must resided in the range \mbox{[}base, base + count).
+
+
+\begin{DoxyParams}{Parameters}
+{\em sd} & The segment descriptor. \\
+\hline
+{\em device} & The device to read data from. \\
+\hline
+{\em segment} & The segment within the device to read. \\
+\hline
+{\em offset} & The offset in the segment to read. \\
+\hline
+{\em buffer} & The buffer to read the data into. \\
+\hline
+{\em size} & The amount of data to read. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em 0} & No error. \\
+\hline
+{\em E\+IO} & The read did not complete. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{structrtems__fdisk__driver__handlers_a7ffca2062919a41fe49e06ee1058810f}\label{structrtems__fdisk__driver__handlers_a7ffca2062919a41fe49e06ee1058810f}} 
+\index{rtems\_fdisk\_driver\_handlers@{rtems\_fdisk\_driver\_handlers}!verify@{verify}}
+\index{verify@{verify}!rtems\_fdisk\_driver\_handlers@{rtems\_fdisk\_driver\_handlers}}
+\subsubsection{\texorpdfstring{verify}{verify}}
+{\footnotesize\ttfamily int($\ast$ rtems\+\_\+fdisk\+\_\+driver\+\_\+handlers\+::verify) (const \mbox{\hyperlink{structrtems__fdisk__segment__desc}{rtems\+\_\+fdisk\+\_\+segment\+\_\+desc}} $\ast$sd, uint32\+\_\+t \mbox{\hyperlink{structdevice}{device}}, uint32\+\_\+t segment, uint32\+\_\+t offset, const void $\ast$buffer, uint32\+\_\+t \mbox{\hyperlink{sun4u_2tte_8h_a245260f6f74972558f61b85227df5aae}{size}})}
+
+Verify data in the buffer to the data in the device. Return an errno error number if the device cannot be read. A segment descriptor can describe more than segment in a device if the device has repeating segments. The segment number is the segment to access and the segment descriptor must reference the device segment being requested. For example the segment number must resided in the range \mbox{[}base, base + count).
+
+
+\begin{DoxyParams}{Parameters}
+{\em sd} & The segment descriptor. \\
+\hline
+{\em device} & The device to verify data in. \\
+\hline
+{\em segment} & The segment within the device to verify. \\
+\hline
+{\em offset} & The offset in the segment to verify. \\
+\hline
+{\em buffer} & The buffer to verify the data in the device with. \\
+\hline
+{\em size} & The amount of data to verify. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em 0} & No error. \\
+\hline
+{\em E\+IO} & The data did not verify. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{structrtems__fdisk__driver__handlers_a14430a22a8f1b7a9bfd9329c1041a809}\label{structrtems__fdisk__driver__handlers_a14430a22a8f1b7a9bfd9329c1041a809}} 
+\index{rtems\_fdisk\_driver\_handlers@{rtems\_fdisk\_driver\_handlers}!write@{write}}
+\index{write@{write}!rtems\_fdisk\_driver\_handlers@{rtems\_fdisk\_driver\_handlers}}
+\subsubsection{\texorpdfstring{write}{write}}
+{\footnotesize\ttfamily int($\ast$ rtems\+\_\+fdisk\+\_\+driver\+\_\+handlers\+::write) (const \mbox{\hyperlink{structrtems__fdisk__segment__desc}{rtems\+\_\+fdisk\+\_\+segment\+\_\+desc}} $\ast$sd, uint32\+\_\+t \mbox{\hyperlink{structdevice}{device}}, uint32\+\_\+t segment, uint32\+\_\+t offset, const void $\ast$buffer, uint32\+\_\+t \mbox{\hyperlink{sun4u_2tte_8h_a245260f6f74972558f61b85227df5aae}{size}})}
+
+Write data from the buffer to the device. Return an errno error number if the device cannot be written to. A segment descriptor can describe more than segment in a device if the device has repeating segments. The segment number is the device segment to access and the segment descriptor must reference the segment being requested. For example the segment number must resided in the range \mbox{[}base, base + count).
+
+
+\begin{DoxyParams}{Parameters}
+{\em sd} & The segment descriptor. \\
+\hline
+{\em device} & The device to write data from. \\
+\hline
+{\em segment} & The segment within the device to write to. \\
+\hline
+{\em offset} & The offset in the segment to write. \\
+\hline
+{\em buffer} & The buffer to write the data from. \\
+\hline
+{\em size} & The amount of data to write. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em 0} & No error. \\
+\hline
+{\em E\+IO} & The write did not complete or verify. \\
+\hline
+\end{DoxyRetVals}
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+cpukit/include/rtems/\mbox{\hyperlink{flashdisk_8h}{flashdisk.\+h}}\end{DoxyCompactItemize}

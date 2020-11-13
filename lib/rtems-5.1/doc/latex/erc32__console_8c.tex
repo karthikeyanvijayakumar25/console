@@ -1,0 +1,110 @@
+\hypertarget{erc32__console_8c}{}\section{bsps/sparc/erc32/console/erc32\+\_\+console.c File Reference}
+\label{erc32__console_8c}\index{bsps/sparc/erc32/console/erc32\_console.c@{bsps/sparc/erc32/console/erc32\_console.c}}
+
+
+Driver for serial ports on the E\+R\+C32.  
+
+
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include $<$termios.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$rtems.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/libio.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/console.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/termiostypes.\+h$>$}\newline
+{\ttfamily \#include $<$libchip/serial.\+h$>$}\newline
+{\ttfamily \#include $<$libchip/sersupp.\+h$>$}\newline
+{\ttfamily \#include $<$bsp.\+h$>$}\newline
+{\ttfamily \#include $<$bspopts.\+h$>$}\newline
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{erc32__console_8c_a41b7a1a2b79001d20447308be5649bce}\label{erc32__console_8c_a41b7a1a2b79001d20447308be5649bce}} 
+\#define {\bfseries C\+O\+N\+S\+O\+L\+E\+\_\+\+B\+U\+F\+\_\+\+S\+I\+ZE}~(16)
+\item 
+\mbox{\Hypertarget{erc32__console_8c_a85cecb30920ccb3c85835fb226ae32e9}\label{erc32__console_8c_a85cecb30920ccb3c85835fb226ae32e9}} 
+\#define {\bfseries C\+O\+N\+S\+O\+L\+E\+\_\+\+U\+A\+R\+T\+\_\+\+A\+\_\+\+T\+R\+AP}~E\+R\+C32\+\_\+\+T\+R\+A\+P\+\_\+\+T\+Y\+PE(E\+R\+C32\+\_\+\+I\+N\+T\+E\+R\+R\+U\+P\+T\+\_\+\+U\+A\+R\+T\+\_\+\+A\+\_\+\+R\+X\+\_\+\+TX)
+\item 
+\mbox{\Hypertarget{erc32__console_8c_af198612aae116953ec2fddb831eed545}\label{erc32__console_8c_af198612aae116953ec2fddb831eed545}} 
+\#define {\bfseries C\+O\+N\+S\+O\+L\+E\+\_\+\+U\+A\+R\+T\+\_\+\+B\+\_\+\+T\+R\+AP}~E\+R\+C32\+\_\+\+T\+R\+A\+P\+\_\+\+T\+Y\+PE(E\+R\+C32\+\_\+\+I\+N\+T\+E\+R\+R\+U\+P\+T\+\_\+\+U\+A\+R\+T\+\_\+\+B\+\_\+\+R\+X\+\_\+\+TX)
+\item 
+\mbox{\Hypertarget{erc32__console_8c_a5ed0483b8b91e2a24218e9b20f7f447e}\label{erc32__console_8c_a5ed0483b8b91e2a24218e9b20f7f447e}} 
+\#define {\bfseries E\+R\+C32\+\_\+\+U\+A\+R\+T\+\_\+\+C\+O\+U\+NT}~(2)
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{erc32__console_8c_a33017a80c39bdce884e201734ceb023d}{console\+\_\+inbyte\+\_\+nonblocking}} (int port)
+\item 
+\mbox{\Hypertarget{erc32__console_8c_a93eaec294fed78ff6f4b210ceb43707d}\label{erc32__console_8c_a93eaec294fed78ff6f4b210ceb43707d}} 
+void {\bfseries console\+\_\+outbyte\+\_\+polled} (int port, unsigned char ch)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const \mbox{\hyperlink{struct__console__fns}{console\+\_\+fns}} {\bfseries erc32\+\_\+fns}
+\item 
+\mbox{\hyperlink{struct__console__tbl}{console\+\_\+tbl}} \mbox{\hyperlink{erc32__console_8c_a8d1404b49209c3692a3dc1433710e550}{Console\+\_\+\+Configuration\+\_\+\+Ports}} \mbox{[}$\,$\mbox{]}
+\item 
+unsigned long \mbox{\hyperlink{erc32__console_8c_a59f0ae8f9904bd193825ccfc2c99aeb6}{Console\+\_\+\+Configuration\+\_\+\+Count}} = E\+R\+C32\+\_\+\+U\+A\+R\+T\+\_\+\+C\+O\+U\+NT
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Driver for serial ports on the E\+R\+C32. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{erc32__console_8c_a33017a80c39bdce884e201734ceb023d}\label{erc32__console_8c_a33017a80c39bdce884e201734ceb023d}} 
+\index{erc32\_console.c@{erc32\_console.c}!console\_inbyte\_nonblocking@{console\_inbyte\_nonblocking}}
+\index{console\_inbyte\_nonblocking@{console\_inbyte\_nonblocking}!erc32\_console.c@{erc32\_console.c}}
+\subsubsection{\texorpdfstring{console\_inbyte\_nonblocking()}{console\_inbyte\_nonblocking()}}
+{\footnotesize\ttfamily int console\+\_\+inbyte\+\_\+nonblocking (\begin{DoxyParamCaption}\item[{int}]{port }\end{DoxyParamCaption})}
+
+This method polls the specified {\itshape port} for an input character. console {\itshape port}.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em port} & is the input port\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+This method returns the character read of -\/1 if there is no data. 
+\end{DoxyReturn}
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{erc32__console_8c_a59f0ae8f9904bd193825ccfc2c99aeb6}\label{erc32__console_8c_a59f0ae8f9904bd193825ccfc2c99aeb6}} 
+\index{erc32\_console.c@{erc32\_console.c}!Console\_Configuration\_Count@{Console\_Configuration\_Count}}
+\index{Console\_Configuration\_Count@{Console\_Configuration\_Count}!erc32\_console.c@{erc32\_console.c}}
+\subsubsection{\texorpdfstring{Console\_Configuration\_Count}{Console\_Configuration\_Count}}
+{\footnotesize\ttfamily unsigned long Console\+\_\+\+Configuration\+\_\+\+Count = E\+R\+C32\+\_\+\+U\+A\+R\+T\+\_\+\+C\+O\+U\+NT}
+
+The number of serial ports defined in Console\+\_\+\+Configuration\+\_\+\+Ports \mbox{\Hypertarget{erc32__console_8c_a8d1404b49209c3692a3dc1433710e550}\label{erc32__console_8c_a8d1404b49209c3692a3dc1433710e550}} 
+\index{erc32\_console.c@{erc32\_console.c}!Console\_Configuration\_Ports@{Console\_Configuration\_Ports}}
+\index{Console\_Configuration\_Ports@{Console\_Configuration\_Ports}!erc32\_console.c@{erc32\_console.c}}
+\subsubsection{\texorpdfstring{Console\_Configuration\_Ports}{Console\_Configuration\_Ports}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct__console__tbl}{console\+\_\+tbl}} Console\+\_\+\+Configuration\+\_\+\+Ports\mbox{[}$\,$\mbox{]}}
+
+The statically configured serial port information tables which are used to initially populate the dynamic tables. \mbox{\Hypertarget{erc32__console_8c_a5e736d376a44375850c714cab6259e04}\label{erc32__console_8c_a5e736d376a44375850c714cab6259e04}} 
+\index{erc32\_console.c@{erc32\_console.c}!erc32\_fns@{erc32\_fns}}
+\index{erc32\_fns@{erc32\_fns}!erc32\_console.c@{erc32\_console.c}}
+\subsubsection{\texorpdfstring{erc32\_fns}{erc32\_fns}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{struct__console__fns}{console\+\_\+fns}} erc32\+\_\+fns}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{    libchip\_serial\_default\_probe,           }
+\DoxyCodeLine{    erc32\_console\_first\_open,               }
+\DoxyCodeLine{    \mbox{\hyperlink{bestcomm__api_8h_a872bb74de61c3689ccd5b41873fce42c}{NULL}},                                   }
+\DoxyCodeLine{    \mbox{\hyperlink{erc32__console_8c_a33017a80c39bdce884e201734ceb023d}{console\_inbyte\_nonblocking}},             }
+\DoxyCodeLine{    erc32\_console\_write\_support\_polled,     }
+\DoxyCodeLine{    erc32\_console\_initialize,               }
+\DoxyCodeLine{    \mbox{\hyperlink{bestcomm__api_8h_a872bb74de61c3689ccd5b41873fce42c}{NULL}},                                   }
+\DoxyCodeLine{    \mbox{\hyperlink{bestcomm__api_8h_a872bb74de61c3689ccd5b41873fce42c}{NULL}},                                   }
+\DoxyCodeLine{    TERMIOS\_POLLED                          }
+\DoxyCodeLine{  \}}
+
+\end{DoxyCode}

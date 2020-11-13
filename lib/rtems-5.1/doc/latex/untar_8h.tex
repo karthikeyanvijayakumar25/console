@@ -1,0 +1,72 @@
+\hypertarget{untar_8h}{}\section{cpukit/include/rtems/untar.h File Reference}
+\label{untar_8h}\index{cpukit/include/rtems/untar.h@{cpukit/include/rtems/untar.h}}
+
+
+Untar an Image.  
+
+
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
+{\ttfamily \#include $<$stddef.\+h$>$}\newline
+{\ttfamily \#include $<$tar.\+h$>$}\newline
+{\ttfamily \#include $<$zlib.\+h$>$}\newline
+{\ttfamily \#include $<$xz.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/print.\+h$>$}\newline
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structUntar__HeaderContext}{Untar\+\_\+\+Header\+Context}}
+\item 
+struct \mbox{\hyperlink{structUntar__ChunkContext}{Untar\+\_\+\+Chunk\+Context}}
+\item 
+struct \mbox{\hyperlink{structUntar__GzChunkContext}{Untar\+\_\+\+Gz\+Chunk\+Context}}
+\item 
+struct \mbox{\hyperlink{structUntar__XzChunkContext}{Untar\+\_\+\+Xz\+Chunk\+Context}}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bfseries U\+N\+T\+A\+R\+\_\+\+S\+U\+C\+C\+E\+S\+S\+F\+UL}~0
+\item 
+\#define {\bfseries U\+N\+T\+A\+R\+\_\+\+F\+A\+IL}~1
+\item 
+\#define {\bfseries U\+N\+T\+A\+R\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+C\+H\+E\+C\+K\+S\+UM}~2
+\item 
+\#define {\bfseries U\+N\+T\+A\+R\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+H\+E\+A\+D\+ER}~3
+\item 
+\#define {\bfseries U\+N\+T\+A\+R\+\_\+\+G\+Z\+\_\+\+I\+N\+F\+L\+A\+T\+E\+\_\+\+F\+A\+I\+L\+ED}~4
+\item 
+\#define {\bfseries U\+N\+T\+A\+R\+\_\+\+G\+Z\+\_\+\+I\+N\+F\+L\+A\+T\+E\+\_\+\+E\+N\+D\+\_\+\+F\+A\+I\+L\+ED}~5
+\item 
+\#define {\bfseries U\+N\+T\+A\+R\+\_\+\+F\+I\+L\+E\+\_\+\+N\+A\+M\+E\+\_\+\+S\+I\+ZE}~100
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int {\bfseries Untar\+\_\+\+From\+Memory} (void $\ast$tar\+\_\+buf, size\+\_\+t \mbox{\hyperlink{sun4u_2tte_8h_a245260f6f74972558f61b85227df5aae}{size}})
+\item 
+int {\bfseries Untar\+\_\+\+From\+Memory\+\_\+\+Print} (void $\ast$tar\+\_\+buf, size\+\_\+t \mbox{\hyperlink{sun4u_2tte_8h_a245260f6f74972558f61b85227df5aae}{size}}, const \mbox{\hyperlink{structrtems__printer}{rtems\+\_\+printer}} $\ast$printer)
+\item 
+int {\bfseries Untar\+\_\+\+From\+File} (const char $\ast$tar\+\_\+name)
+\item 
+int {\bfseries Untar\+\_\+\+From\+File\+\_\+\+Print} (const char $\ast$tar\+\_\+name, const \mbox{\hyperlink{structrtems__printer}{rtems\+\_\+printer}} $\ast$printer)
+\item 
+void \mbox{\hyperlink{group__libmisc__untar__img_gadfe0cdaf37c2939553e5babf3b76c6b1}{Untar\+\_\+\+Chunk\+Context\+\_\+\+Init}} (\mbox{\hyperlink{structUntar__ChunkContext}{Untar\+\_\+\+Chunk\+Context}} $\ast$\mbox{\hyperlink{sun4u_2tte_8h_a9b4a99475e2709333b8e5d70483173f1}{context}})
+\begin{DoxyCompactList}\small\item\em Initializes the \mbox{\hyperlink{structUntar__ChunkContext}{Untar\+\_\+\+Chunk\+Context}} files out of a part of a block of memory. \end{DoxyCompactList}\item 
+int {\bfseries Untar\+\_\+\+From\+Chunk\+\_\+\+Print} (\mbox{\hyperlink{structUntar__ChunkContext}{Untar\+\_\+\+Chunk\+Context}} $\ast$\mbox{\hyperlink{sun4u_2tte_8h_a9b4a99475e2709333b8e5d70483173f1}{context}}, void $\ast$chunk, size\+\_\+t chunk\+\_\+size, const \mbox{\hyperlink{structrtems__printer}{rtems\+\_\+printer}} $\ast$printer)
+\item 
+int \mbox{\hyperlink{group__libmisc__untar__img_ga88650d94dd642342aabc5cfcb7eb01b9}{Untar\+\_\+\+Gz\+Chunk\+Context\+\_\+\+Init}} (\mbox{\hyperlink{structUntar__GzChunkContext}{Untar\+\_\+\+Gz\+Chunk\+Context}} $\ast$ctx, void $\ast$inflate\+Buffer, size\+\_\+t inflate\+Buffer\+Size)
+\begin{DoxyCompactList}\small\item\em Initializes the Untar\+\_\+\+Chunk\+Gz\+Context. \end{DoxyCompactList}\item 
+int {\bfseries Untar\+\_\+\+From\+Gz\+Chunk\+\_\+\+Print} (\mbox{\hyperlink{structUntar__GzChunkContext}{Untar\+\_\+\+Gz\+Chunk\+Context}} $\ast$ctx, void $\ast$chunk, size\+\_\+t chunk\+\_\+size, const \mbox{\hyperlink{structrtems__printer}{rtems\+\_\+printer}} $\ast$printer)
+\item 
+int \mbox{\hyperlink{group__libmisc__untar__img_ga814ea61fa29546ca49041e5c60f2b2f1}{Untar\+\_\+\+Xz\+Chunk\+Context\+\_\+\+Init}} (\mbox{\hyperlink{structUntar__XzChunkContext}{Untar\+\_\+\+Xz\+Chunk\+Context}} $\ast$ctx, enum xz\+\_\+mode mode, uint32\+\_\+t dict\+\_\+max, void $\ast$inflate\+Buffer, size\+\_\+t inflate\+Buffer\+Size)
+\begin{DoxyCompactList}\small\item\em Initializes the Untar\+\_\+\+Chunk\+Xz\+Context. \end{DoxyCompactList}\item 
+int {\bfseries Untar\+\_\+\+From\+Xz\+Chunk\+\_\+\+Print} (\mbox{\hyperlink{structUntar__XzChunkContext}{Untar\+\_\+\+Xz\+Chunk\+Context}} $\ast$ctx, const void $\ast$chunk, size\+\_\+t chunk\+\_\+size, const \mbox{\hyperlink{structrtems__printer}{rtems\+\_\+printer}} $\ast$printer)
+\item 
+int {\bfseries Untar\+\_\+\+Process\+Header} (\mbox{\hyperlink{structUntar__HeaderContext}{Untar\+\_\+\+Header\+Context}} $\ast$ctx, const char $\ast$bufr)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Untar an Image. 
+
+This file defines the interface to methods which can untar an image. 

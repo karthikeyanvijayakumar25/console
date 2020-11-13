@@ -1,0 +1,97 @@
+\hypertarget{group__CLK__MGR__BYPASS}{}\section{P\+LL Bypass Control}
+\label{group__CLK__MGR__BYPASS}\index{PLL Bypass Control@{PLL Bypass Control}}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__CLK__MGR__BYPASS_gabf3771138273ff77637fd6ad758347c0}{alt\+\_\+clk\+\_\+pll\+\_\+bypass\+\_\+disable}} (\mbox{\hyperlink{group__CLK__MGR_ga4cdb80e84284365fe3d47c2f8050b13d}{A\+L\+T\+\_\+\+C\+L\+K\+\_\+t}} pll)
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__CLK__MGR__BYPASS_gaaca34e9742b2602995e6fe2f58a6d68a}{alt\+\_\+clk\+\_\+pll\+\_\+bypass\+\_\+enable}} (\mbox{\hyperlink{group__CLK__MGR_ga4cdb80e84284365fe3d47c2f8050b13d}{A\+L\+T\+\_\+\+C\+L\+K\+\_\+t}} pll, bool use\+\_\+input\+\_\+mux)
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__CLK__MGR__BYPASS_ga4c3a63abaf39a4cb0ea0f89ed9754e28}{alt\+\_\+clk\+\_\+pll\+\_\+is\+\_\+bypassed}} (\mbox{\hyperlink{group__CLK__MGR_ga4cdb80e84284365fe3d47c2f8050b13d}{A\+L\+T\+\_\+\+C\+L\+K\+\_\+t}} pll)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+When a P\+LL is in bypass, the P\+LL clock logic is kept in reset. In this manner, the P\+LL clock can be free running while it stabilizes and achieves lock. The bypass logic isolates P\+LL configuration registers from the clock while changes are made to the P\+LL settings.
+
+The bypass controls are used by software to change the source clock input reference (for Peripheral and S\+D\+R\+AM P\+L\+Ls) and is recommended when changing settings that may affect the ability of the V\+CO to maintain lock. When a P\+LL is taken in or out of bypass the P\+LL output clocks will pause momentarily while the clocks are in transition, There will be no glitches or clocks shorter than the either the old or the new clock period.
+
+In summary, the P\+LL bypass controls permit\+:
+\begin{DoxyItemize}
+\item Each P\+LL to be individually bypassed.
+\item Bypass of all P\+LL clock outputs to {\bfseries{osc1\+\_\+clk}} or alternatively the P\+L\+Ls reference clock input source reference clock selection.
+\item Isolation of a the P\+LL V\+CO frequency registers (multiplier and divider), phase shift registers (negative phase) , and post scale counters.
+\item Glitch free clock transitions. 
+\end{DoxyItemize}
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{group__CLK__MGR__BYPASS_gabf3771138273ff77637fd6ad758347c0}\label{group__CLK__MGR__BYPASS_gabf3771138273ff77637fd6ad758347c0}} 
+\index{PLL Bypass Control@{PLL Bypass Control}!alt\_clk\_pll\_bypass\_disable@{alt\_clk\_pll\_bypass\_disable}}
+\index{alt\_clk\_pll\_bypass\_disable@{alt\_clk\_pll\_bypass\_disable}!PLL Bypass Control@{PLL Bypass Control}}
+\subsubsection{\texorpdfstring{alt\_clk\_pll\_bypass\_disable()}{alt\_clk\_pll\_bypass\_disable()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} alt\+\_\+clk\+\_\+pll\+\_\+bypass\+\_\+disable (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__CLK__MGR_ga4cdb80e84284365fe3d47c2f8050b13d}{A\+L\+T\+\_\+\+C\+L\+K\+\_\+t}}}]{pll }\end{DoxyParamCaption})}
+
+Disable bypass mode for the specified P\+LL. This operation takes the P\+LL out of bypass mode.
+
+
+\begin{DoxyParams}{Parameters}
+{\em pll} & The P\+LL to take out of bypass mode.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em A\+L\+T\+\_\+\+E\+\_\+\+S\+U\+C\+C\+E\+SS} & The operation was succesful. \\
+\hline
+{\em A\+L\+T\+\_\+\+E\+\_\+\+E\+R\+R\+OR} & The operation failed. \\
+\hline
+{\em A\+L\+T\+\_\+\+E\+\_\+\+B\+A\+D\+\_\+\+A\+RG} & The {\itshape pll} argument specified a non P\+LL clock value. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{group__CLK__MGR__BYPASS_gaaca34e9742b2602995e6fe2f58a6d68a}\label{group__CLK__MGR__BYPASS_gaaca34e9742b2602995e6fe2f58a6d68a}} 
+\index{PLL Bypass Control@{PLL Bypass Control}!alt\_clk\_pll\_bypass\_enable@{alt\_clk\_pll\_bypass\_enable}}
+\index{alt\_clk\_pll\_bypass\_enable@{alt\_clk\_pll\_bypass\_enable}!PLL Bypass Control@{PLL Bypass Control}}
+\subsubsection{\texorpdfstring{alt\_clk\_pll\_bypass\_enable()}{alt\_clk\_pll\_bypass\_enable()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} alt\+\_\+clk\+\_\+pll\+\_\+bypass\+\_\+enable (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__CLK__MGR_ga4cdb80e84284365fe3d47c2f8050b13d}{A\+L\+T\+\_\+\+C\+L\+K\+\_\+t}}}]{pll,  }\item[{bool}]{use\+\_\+input\+\_\+mux }\end{DoxyParamCaption})}
+
+Enable bypass mode for the specified P\+LL.
+
+
+\begin{DoxyParams}{Parameters}
+{\em pll} & The P\+LL to put into bypass mode.\\
+\hline
+{\em use\+\_\+input\+\_\+mux} & If T\+R\+UE then use the P\+L\+Ls reference clock input source selection to directly drive the bypass clock. If F\+A\+L\+SE then use bypass clock directly driven by the {\bfseries{osc1\+\_\+clk}}.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em A\+L\+T\+\_\+\+E\+\_\+\+S\+U\+C\+C\+E\+SS} & The operation was succesful. \\
+\hline
+{\em A\+L\+T\+\_\+\+E\+\_\+\+E\+R\+R\+OR} & The operation failed. \\
+\hline
+{\em A\+L\+T\+\_\+\+E\+\_\+\+B\+A\+D\+\_\+\+A\+RG} & The {\itshape pll} argument specified a non P\+LL clock value. \\
+\hline
+{\em A\+L\+T\+\_\+\+E\+\_\+\+I\+N\+V\+\_\+\+O\+P\+T\+I\+ON} & T\+R\+UE is an invalid option for {\itshape use\+\_\+input\+\_\+mux} with the {\itshape pll} selection. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{group__CLK__MGR__BYPASS_ga4c3a63abaf39a4cb0ea0f89ed9754e28}\label{group__CLK__MGR__BYPASS_ga4c3a63abaf39a4cb0ea0f89ed9754e28}} 
+\index{PLL Bypass Control@{PLL Bypass Control}!alt\_clk\_pll\_is\_bypassed@{alt\_clk\_pll\_is\_bypassed}}
+\index{alt\_clk\_pll\_is\_bypassed@{alt\_clk\_pll\_is\_bypassed}!PLL Bypass Control@{PLL Bypass Control}}
+\subsubsection{\texorpdfstring{alt\_clk\_pll\_is\_bypassed()}{alt\_clk\_pll\_is\_bypassed()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} alt\+\_\+clk\+\_\+pll\+\_\+is\+\_\+bypassed (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__CLK__MGR_ga4cdb80e84284365fe3d47c2f8050b13d}{A\+L\+T\+\_\+\+C\+L\+K\+\_\+t}}}]{pll }\end{DoxyParamCaption})}
+
+Return whether the specified P\+LL is in bypass or not.
+
+
+\begin{DoxyParams}{Parameters}
+{\em pll} & The P\+LL to check whether in bypass mode or not.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em A\+L\+T\+\_\+\+E\+\_\+\+T\+R\+UE} & The P\+LL is in bypass mode. \\
+\hline
+{\em A\+L\+T\+\_\+\+E\+\_\+\+F\+A\+L\+SE} & The P\+LL is not in bypass mode. \\
+\hline
+{\em A\+L\+T\+\_\+\+E\+\_\+\+B\+A\+D\+\_\+\+A\+RG} & The {\itshape pll} argument designates a non P\+LL clock value. \\
+\hline
+\end{DoxyRetVals}

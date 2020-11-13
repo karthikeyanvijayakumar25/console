@@ -1,0 +1,122 @@
+\hypertarget{tasks_8h}{}\section{cpukit/include/rtems/rtems/tasks.h File Reference}
+\label{tasks_8h}\index{cpukit/include/rtems/rtems/tasks.h@{cpukit/include/rtems/rtems/tasks.h}}
+
+
+Classic Task Manager A\+PI.  
+
+
+{\ttfamily \#include $<$rtems/rtems/attr.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/rtems/status.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/rtems/types.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/score/smp.\+h$>$}\newline
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structrtems__initialization__tasks__table}{rtems\+\_\+initialization\+\_\+tasks\+\_\+table}}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__ClassicTasks_ga8a1cff22846976c3f4df8a8d50fdc4dc}{R\+T\+E\+M\+S\+\_\+\+S\+E\+LF}}~\mbox{\hyperlink{group__RTEMSScoreObject_ga2454d6c322916168e6924f5ff26ab393}{O\+B\+J\+E\+C\+T\+S\+\_\+\+I\+D\+\_\+\+O\+F\+\_\+\+S\+E\+LF}}
+\item 
+\#define \mbox{\hyperlink{group__ClassicTasks_gab8389262bfd555f0b1515a568bc97b07}{R\+T\+E\+M\+S\+\_\+\+Y\+I\+E\+L\+D\+\_\+\+P\+R\+O\+C\+E\+S\+S\+OR}}~\mbox{\hyperlink{group__RTEMSScoreWatchdog_gaa7a11d3dcb3ba512032421888d16b327}{W\+A\+T\+C\+H\+D\+O\+G\+\_\+\+N\+O\+\_\+\+T\+I\+M\+E\+O\+UT}}
+\item 
+\#define \mbox{\hyperlink{group__ClassicTasks_ga3ba355e613ccbe3d0a4a80b961d5832b}{R\+T\+E\+M\+S\+\_\+\+N\+O\+\_\+\+P\+R\+I\+O\+R\+I\+TY}}~\mbox{\hyperlink{group__ClassicTasks_ga49bfed4e201631e3a17158e32dc0314b}{R\+T\+E\+M\+S\+\_\+\+C\+U\+R\+R\+E\+N\+T\+\_\+\+P\+R\+I\+O\+R\+I\+TY}}
+\item 
+\#define \mbox{\hyperlink{group__ClassicTasks_ga4f6daa11e05fc2d5f47e8426a4d6d4d5}{R\+T\+E\+M\+S\+\_\+\+M\+I\+N\+I\+M\+U\+M\+\_\+\+P\+R\+I\+O\+R\+I\+TY}}~1
+\item 
+\#define \mbox{\hyperlink{group__ClassicTasks_ga5db28fd197129084aaede29389af1872}{R\+T\+E\+M\+S\+\_\+\+M\+A\+X\+I\+M\+U\+M\+\_\+\+P\+R\+I\+O\+R\+I\+TY}}~\+\_\+\+R\+T\+E\+M\+S\+\_\+\+Maximum\+\_\+priority()
+\item 
+\#define \mbox{\hyperlink{group__ClassicTasks_ga49bfed4e201631e3a17158e32dc0314b}{R\+T\+E\+M\+S\+\_\+\+C\+U\+R\+R\+E\+N\+T\+\_\+\+P\+R\+I\+O\+R\+I\+TY}}~0
+\item 
+\#define \mbox{\hyperlink{group__ClassicTasks_gac7891d8a0bfe04de75c7c9e89f174cab}{rtems\+\_\+scheduler\+\_\+get\+\_\+processor}}()~\+\_\+\+S\+M\+P\+\_\+\+Get\+\_\+current\+\_\+processor()
+\begin{DoxyCompactList}\small\item\em Returns the index of the current processor. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__ClassicTasks_ga3bfd90bb42ab219bc15b7b97ffc596b9}{rtems\+\_\+scheduler\+\_\+get\+\_\+processor\+\_\+maximum}}()~\+\_\+\+S\+M\+P\+\_\+\+Get\+\_\+processor\+\_\+maximum()
+\begin{DoxyCompactList}\small\item\em Returns the processor maximum supported by the system. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef uint32\+\_\+t \mbox{\hyperlink{group__ClassicTasks_gaa80a0c0938307d1e99d0eb5fee765b47}{rtems\+\_\+task\+\_\+priority}}
+\item 
+typedef struct \mbox{\hyperlink{struct__Thread__Control}{\+\_\+\+Thread\+\_\+\+Control}} \mbox{\hyperlink{group__ClassicTasks_gadd9f38f296a7833767355b8236f68908}{rtems\+\_\+tcb}}
+\item 
+typedef void \mbox{\hyperlink{group__ClassicTasks_gadf265d2ec26417f16d856514bd9d9394}{rtems\+\_\+task}}
+\item 
+typedef \mbox{\hyperlink{group__RTEMSScoreCPUARM_ga9fca17f81f850e128fcc8ed5b87ff2ab}{C\+P\+U\+\_\+\+Uint32ptr}} \mbox{\hyperlink{group__ClassicTasks_gaf202f985ef5a3156f29eae99a0536842}{rtems\+\_\+task\+\_\+argument}}
+\item 
+typedef \mbox{\hyperlink{group__ClassicTasks_gadf265d2ec26417f16d856514bd9d9394}{rtems\+\_\+task}}($\ast$ \mbox{\hyperlink{group__ClassicTasks_ga3232e2350ecd8d85855ab1f6ec186828}{rtems\+\_\+task\+\_\+entry}}) (\mbox{\hyperlink{group__ClassicTasks_gaf202f985ef5a3156f29eae99a0536842}{rtems\+\_\+task\+\_\+argument}})
+\item 
+typedef bool($\ast$ \mbox{\hyperlink{group__ClassicTasks_ga861b5d2aa73bff68304c15cbb2b9c688}{rtems\+\_\+task\+\_\+visitor}}) (\mbox{\hyperlink{group__ClassicTasks_gadd9f38f296a7833767355b8236f68908}{rtems\+\_\+tcb}} $\ast$tcb, void $\ast$arg)
+\begin{DoxyCompactList}\small\item\em Task visitor. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{group__ClassicTasks_gaa80a0c0938307d1e99d0eb5fee765b47}{rtems\+\_\+task\+\_\+priority}} {\bfseries \+\_\+\+R\+T\+E\+M\+S\+\_\+\+Maximum\+\_\+priority} (void)
+\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{group__ClassicTasks_gabffda1c2301962f0ae5af042ac0bba62}{rtems\+\_\+task\+\_\+create}} (\mbox{\hyperlink{group__ClassicTasks_ga55fb63c49f68c0cbd9bee004da15b1fd}{rtems\+\_\+name}} name, \mbox{\hyperlink{group__ClassicTasks_gaa80a0c0938307d1e99d0eb5fee765b47}{rtems\+\_\+task\+\_\+priority}} initial\+\_\+priority, size\+\_\+t stack\+\_\+size, \mbox{\hyperlink{group__ClassicModes_ga8d46a41a837840dc97336fdcd20e4f68}{rtems\+\_\+mode}} initial\+\_\+modes, \mbox{\hyperlink{group__ClassicAttributes_gaea40313cf78ed843e09c4315d0a10f79}{rtems\+\_\+attribute}} attribute\+\_\+set, \mbox{\hyperlink{group__ClassicTasks_gab20892b814dced7dd4e5b9bf42becd57}{rtems\+\_\+id}} $\ast$id)
+\begin{DoxyCompactList}\small\item\em R\+T\+E\+MS Task Create. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{group__ClassicTasks_ga9a353585426bfe736693749fb8891daa}{rtems\+\_\+task\+\_\+ident}} (\mbox{\hyperlink{group__ClassicTasks_ga55fb63c49f68c0cbd9bee004da15b1fd}{rtems\+\_\+name}} name, uint32\+\_\+t node, \mbox{\hyperlink{group__ClassicTasks_gab20892b814dced7dd4e5b9bf42becd57}{rtems\+\_\+id}} $\ast$id)
+\begin{DoxyCompactList}\small\item\em R\+T\+E\+MS Task Name to Id. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{group__ClassicTasks_gaf7c82a7fa13338a65583dc3d760ad9cc}{rtems\+\_\+task\+\_\+delete}} (\mbox{\hyperlink{group__ClassicTasks_gab20892b814dced7dd4e5b9bf42becd57}{rtems\+\_\+id}} id)
+\begin{DoxyCompactList}\small\item\em R\+T\+E\+MS Delete Task. \end{DoxyCompactList}\item 
+void {\bfseries rtems\+\_\+task\+\_\+exit} (void) \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gaa2f0ed67aa174f684bb31b7e8bdb386f}{R\+T\+E\+M\+S\+\_\+\+N\+O\+\_\+\+R\+E\+T\+U\+RN}}
+\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{group__ClassicTasks_gad74c115e94d1f65c416444b36bf012bf}{rtems\+\_\+task\+\_\+mode}} (\mbox{\hyperlink{group__ClassicModes_ga8d46a41a837840dc97336fdcd20e4f68}{rtems\+\_\+mode}} mode\+\_\+set, \mbox{\hyperlink{group__ClassicModes_ga8d46a41a837840dc97336fdcd20e4f68}{rtems\+\_\+mode}} mask, \mbox{\hyperlink{group__ClassicModes_ga8d46a41a837840dc97336fdcd20e4f68}{rtems\+\_\+mode}} $\ast$previous\+\_\+mode\+\_\+set)
+\begin{DoxyCompactList}\small\item\em R\+T\+E\+MS Task Mode. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{group__ClassicTasks_ga504b10074964c789ea82fbae8771e074}{rtems\+\_\+task\+\_\+restart}} (\mbox{\hyperlink{group__ClassicTasks_gab20892b814dced7dd4e5b9bf42becd57}{rtems\+\_\+id}} id, \mbox{\hyperlink{group__ClassicTasks_gaf202f985ef5a3156f29eae99a0536842}{rtems\+\_\+task\+\_\+argument}} argument)
+\begin{DoxyCompactList}\small\item\em R\+T\+E\+MS Task Restart. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{group__ClassicTasks_ga16aca2f5aa37d9d2b2a1a54de0f63dbf}{rtems\+\_\+task\+\_\+suspend}} (\mbox{\hyperlink{group__ClassicTasks_gab20892b814dced7dd4e5b9bf42becd57}{rtems\+\_\+id}} id)
+\begin{DoxyCompactList}\small\item\em R\+T\+E\+MS Suspend Task. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{group__ClassicTasks_ga5b5778a2be36d41764e730377ccc58a5}{rtems\+\_\+task\+\_\+resume}} (\mbox{\hyperlink{group__ClassicTasks_gab20892b814dced7dd4e5b9bf42becd57}{rtems\+\_\+id}} id)
+\begin{DoxyCompactList}\small\item\em R\+T\+E\+MS Resume Task. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{group__ClassicTasks_gaeff43063975950a2436c0fddf96f9b33}{rtems\+\_\+task\+\_\+set\+\_\+priority}} (\mbox{\hyperlink{group__ClassicTasks_gab20892b814dced7dd4e5b9bf42becd57}{rtems\+\_\+id}} id, \mbox{\hyperlink{group__ClassicTasks_gaa80a0c0938307d1e99d0eb5fee765b47}{rtems\+\_\+task\+\_\+priority}} new\+\_\+priority, \mbox{\hyperlink{group__ClassicTasks_gaa80a0c0938307d1e99d0eb5fee765b47}{rtems\+\_\+task\+\_\+priority}} $\ast$old\+\_\+priority)
+\begin{DoxyCompactList}\small\item\em R\+T\+E\+MS Set Task Priority. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{group__ClassicTasks_gad06646a724fbaf16f1a4d117d1c667dc}{rtems\+\_\+task\+\_\+get\+\_\+priority}} (\mbox{\hyperlink{group__ClassicTasks_gab20892b814dced7dd4e5b9bf42becd57}{rtems\+\_\+id}} task\+\_\+id, \mbox{\hyperlink{group__ClassicTasks_gab20892b814dced7dd4e5b9bf42becd57}{rtems\+\_\+id}} scheduler\+\_\+id, \mbox{\hyperlink{group__ClassicTasks_gaa80a0c0938307d1e99d0eb5fee765b47}{rtems\+\_\+task\+\_\+priority}} $\ast$priority)
+\begin{DoxyCompactList}\small\item\em Gets the current priority of the specified task with respect to the specified scheduler instance. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{group__ClassicTasks_gac7fe1362154946d78978ceb4f116f13e}{rtems\+\_\+task\+\_\+start}} (\mbox{\hyperlink{group__ClassicTasks_gab20892b814dced7dd4e5b9bf42becd57}{rtems\+\_\+id}} id, \mbox{\hyperlink{group__ClassicTasks_ga3232e2350ecd8d85855ab1f6ec186828}{rtems\+\_\+task\+\_\+entry}} entry\+\_\+point, \mbox{\hyperlink{group__ClassicTasks_gaf202f985ef5a3156f29eae99a0536842}{rtems\+\_\+task\+\_\+argument}} argument)
+\begin{DoxyCompactList}\small\item\em R\+T\+E\+MS Start Task. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{group__ClassicTasks_gad5c419525564142bcd1f116b18c4ed7c}{rtems\+\_\+task\+\_\+wake\+\_\+when}} (\mbox{\hyperlink{structrtems__time__of__day}{rtems\+\_\+time\+\_\+of\+\_\+day}} $\ast$time\+\_\+buffer)
+\begin{DoxyCompactList}\small\item\em R\+T\+E\+MS Task Wake When. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{group__ClassicTasks_ga69becc1811a7654b0b74836272ac6429}{rtems\+\_\+task\+\_\+wake\+\_\+after}} (\mbox{\hyperlink{group__ClassicTasks_gad39c43f949683d46874e3a5586b93aee}{rtems\+\_\+interval}} ticks)
+\begin{DoxyCompactList}\small\item\em R\+T\+E\+MS Task Wake After. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{group__ClassicTasks_ga626e860edc5525db9f87de63efe14661}{rtems\+\_\+task\+\_\+is\+\_\+suspended}} (\mbox{\hyperlink{group__ClassicTasks_gab20892b814dced7dd4e5b9bf42becd57}{rtems\+\_\+id}} id)
+\begin{DoxyCompactList}\small\item\em rtems\+\_\+task\+\_\+is\+\_\+suspended \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{group__ClassicTasks_gaf4a38e236136d5df6e5bef463a7e5506}{rtems\+\_\+task\+\_\+get\+\_\+affinity}} (\mbox{\hyperlink{group__ClassicTasks_gab20892b814dced7dd4e5b9bf42becd57}{rtems\+\_\+id}} id, size\+\_\+t cpusetsize, cpu\+\_\+set\+\_\+t $\ast$cpuset)
+\begin{DoxyCompactList}\small\item\em Gets the processor affinity set of a task. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{group__ClassicTasks_ga33444117a6771a55307452862a1ca944}{rtems\+\_\+task\+\_\+set\+\_\+affinity}} (\mbox{\hyperlink{group__ClassicTasks_gab20892b814dced7dd4e5b9bf42becd57}{rtems\+\_\+id}} id, size\+\_\+t cpusetsize, const cpu\+\_\+set\+\_\+t $\ast$cpuset)
+\begin{DoxyCompactList}\small\item\em Sets the processor affinity set of a task. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{group__ClassicTasks_gae1825025c9bc70a32d9e223759586b9d}{rtems\+\_\+task\+\_\+get\+\_\+scheduler}} (\mbox{\hyperlink{group__ClassicTasks_gab20892b814dced7dd4e5b9bf42becd57}{rtems\+\_\+id}} task\+\_\+id, \mbox{\hyperlink{group__ClassicTasks_gab20892b814dced7dd4e5b9bf42becd57}{rtems\+\_\+id}} $\ast$scheduler\+\_\+id)
+\begin{DoxyCompactList}\small\item\em Gets the scheduler of a task. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{group__ClassicTasks_ga1ca20ee9675ee6604edb59ca9c1aa763}{rtems\+\_\+task\+\_\+set\+\_\+scheduler}} (\mbox{\hyperlink{group__ClassicTasks_gab20892b814dced7dd4e5b9bf42becd57}{rtems\+\_\+id}} task\+\_\+id, \mbox{\hyperlink{group__ClassicTasks_gab20892b814dced7dd4e5b9bf42becd57}{rtems\+\_\+id}} scheduler\+\_\+id, \mbox{\hyperlink{group__ClassicTasks_gaa80a0c0938307d1e99d0eb5fee765b47}{rtems\+\_\+task\+\_\+priority}} priority)
+\begin{DoxyCompactList}\small\item\em Sets the scheduler instance of a task. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicTasks_gab20892b814dced7dd4e5b9bf42becd57}{rtems\+\_\+id}} \mbox{\hyperlink{group__ClassicTasks_gae2e554d80b478d7e7040c34a40afb6db}{rtems\+\_\+task\+\_\+self}} (void)
+\begin{DoxyCompactList}\small\item\em R\+T\+E\+MS Get Self Task Id. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__ClassicTasks_ga7255f41eb20238aebe5ce139d5dfd97d}{rtems\+\_\+task\+\_\+iterate}} (\mbox{\hyperlink{group__ClassicTasks_ga861b5d2aa73bff68304c15cbb2b9c688}{rtems\+\_\+task\+\_\+visitor}} visitor, void $\ast$arg)
+\begin{DoxyCompactList}\small\item\em Iterates over all tasks in the system. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{group__ClassicTasks_ga8161245a1768f06057d17eefdba253ca}{rtems\+\_\+scheduler\+\_\+ident}} (\mbox{\hyperlink{group__ClassicTasks_ga55fb63c49f68c0cbd9bee004da15b1fd}{rtems\+\_\+name}} name, \mbox{\hyperlink{group__ClassicTasks_gab20892b814dced7dd4e5b9bf42becd57}{rtems\+\_\+id}} $\ast$id)
+\begin{DoxyCompactList}\small\item\em Identifies a scheduler by its name. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{group__ClassicTasks_gad09bcc5a41e197368ad19c1d795059ca}{rtems\+\_\+scheduler\+\_\+ident\+\_\+by\+\_\+processor}} (uint32\+\_\+t cpu\+\_\+index, \mbox{\hyperlink{group__ClassicTasks_gab20892b814dced7dd4e5b9bf42becd57}{rtems\+\_\+id}} $\ast$id)
+\begin{DoxyCompactList}\small\item\em Identifies a scheduler by a processor index. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{group__ClassicTasks_ga77fc4026688530e7c81270dcab036a8b}{rtems\+\_\+scheduler\+\_\+ident\+\_\+by\+\_\+processor\+\_\+set}} (size\+\_\+t cpusetsize, const cpu\+\_\+set\+\_\+t $\ast$cpuset, \mbox{\hyperlink{group__ClassicTasks_gab20892b814dced7dd4e5b9bf42becd57}{rtems\+\_\+id}} $\ast$id)
+\begin{DoxyCompactList}\small\item\em Identifies a scheduler by a processor set. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gab651a076d4d51d50221e7ef7ac99d4e7}{R\+T\+E\+M\+S\+\_\+\+D\+E\+P\+R\+E\+C\+A\+T\+ED}} \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} uint32\+\_\+t \mbox{\hyperlink{group__ClassicTasks_ga2017f8bfa8565df99034f362638cb89c}{rtems\+\_\+get\+\_\+current\+\_\+processor}} (void)
+\begin{DoxyCompactList}\small\item\em Returns the index of the current processor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gab651a076d4d51d50221e7ef7ac99d4e7}{R\+T\+E\+M\+S\+\_\+\+D\+E\+P\+R\+E\+C\+A\+T\+ED}} \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} uint32\+\_\+t \mbox{\hyperlink{group__ClassicTasks_ga055c5c7a9106ddce18326a347e77e1ee}{rtems\+\_\+get\+\_\+processor\+\_\+count}} (void)
+\begin{DoxyCompactList}\small\item\em Returns the processor maximum supported by the system. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{group__ClassicTasks_ga6947e9b2f588f98314f573ae6207363e}{rtems\+\_\+scheduler\+\_\+get\+\_\+processor\+\_\+set}} (\mbox{\hyperlink{group__ClassicTasks_gab20892b814dced7dd4e5b9bf42becd57}{rtems\+\_\+id}} scheduler\+\_\+id, size\+\_\+t cpusetsize, cpu\+\_\+set\+\_\+t $\ast$cpuset)
+\begin{DoxyCompactList}\small\item\em Gets the set of processors owned by the specified scheduler instance. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{group__ClassicTasks_ga3dcba5bc6f402c4fa35f0dc91dd1e3fd}{rtems\+\_\+scheduler\+\_\+add\+\_\+processor}} (\mbox{\hyperlink{group__ClassicTasks_gab20892b814dced7dd4e5b9bf42becd57}{rtems\+\_\+id}} scheduler\+\_\+id, uint32\+\_\+t cpu\+\_\+index)
+\begin{DoxyCompactList}\small\item\em Adds a processor to the set of processors owned by the specified scheduler instance. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{group__ClassicTasks_ga033f8f1ec58d5e0f91dbf69f0486b441}{rtems\+\_\+scheduler\+\_\+remove\+\_\+processor}} (\mbox{\hyperlink{group__ClassicTasks_gab20892b814dced7dd4e5b9bf42becd57}{rtems\+\_\+id}} scheduler\+\_\+id, uint32\+\_\+t cpu\+\_\+index)
+\begin{DoxyCompactList}\small\item\em Removes a processor from set of processors owned by the specified scheduler instance. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{group__ClassicTasks_gabc603f953ab1ee64fa66e092a30a9274}{rtems\+\_\+scheduler\+\_\+get\+\_\+maximum\+\_\+priority}} (\mbox{\hyperlink{group__ClassicTasks_gab20892b814dced7dd4e5b9bf42becd57}{rtems\+\_\+id}} scheduler\+\_\+id, \mbox{\hyperlink{group__ClassicTasks_gaa80a0c0938307d1e99d0eb5fee765b47}{rtems\+\_\+task\+\_\+priority}} $\ast$priority)
+\begin{DoxyCompactList}\small\item\em Gets the maximum task priority of the specified scheduler instance. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{group__ClassicTasks_ga875f450e05e528d678c06243dbfbda17}{rtems\+\_\+scheduler\+\_\+map\+\_\+priority\+\_\+to\+\_\+posix}} (\mbox{\hyperlink{group__ClassicTasks_gab20892b814dced7dd4e5b9bf42becd57}{rtems\+\_\+id}} scheduler\+\_\+id, \mbox{\hyperlink{group__ClassicTasks_gaa80a0c0938307d1e99d0eb5fee765b47}{rtems\+\_\+task\+\_\+priority}} priority, int $\ast$posix\+\_\+priority)
+\begin{DoxyCompactList}\small\item\em Map a task priority to the corresponding P\+O\+S\+IX thread priority. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{group__ClassicTasks_ga52b4ea4c1b8bb3a657e75f1c69e24741}{rtems\+\_\+scheduler\+\_\+map\+\_\+priority\+\_\+from\+\_\+posix}} (\mbox{\hyperlink{group__ClassicTasks_gab20892b814dced7dd4e5b9bf42becd57}{rtems\+\_\+id}} scheduler\+\_\+id, int posix\+\_\+priority, \mbox{\hyperlink{group__ClassicTasks_gaa80a0c0938307d1e99d0eb5fee765b47}{rtems\+\_\+task\+\_\+priority}} $\ast$priority)
+\begin{DoxyCompactList}\small\item\em Map a P\+O\+S\+IX thread priority to the corresponding task priority. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Classic Task Manager A\+PI. 
+

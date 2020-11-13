@@ -1,0 +1,40 @@
+\hypertarget{semmp_8c}{}\section{cpukit/rtems/src/semmp.c File Reference}
+\label{semmp_8c}\index{cpukit/rtems/src/semmp.c@{cpukit/rtems/src/semmp.c}}
+
+
+Semaphore MP Support.  
+
+
+{\ttfamily \#include $<$rtems/rtems/semimpl.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/rtems/optionsimpl.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/rtems/statusimpl.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/sysinit.\+h$>$}\newline
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{semmp_8c_aa3ea07d6cb39ce091a8b1d4a01cb891e}\label{semmp_8c_aa3ea07d6cb39ce091a8b1d4a01cb891e}} 
+{\bfseries R\+T\+E\+M\+S\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+A\+S\+S\+E\+RT} (sizeof(\mbox{\hyperlink{structSemaphore__MP__Packet}{Semaphore\+\_\+\+M\+P\+\_\+\+Packet}})$<$=\mbox{\hyperlink{group__RTEMSScoreMPPacket_gadb26ef7629e08a46b4d1caa3a61a6788}{M\+P\+\_\+\+P\+A\+C\+K\+E\+T\+\_\+\+M\+I\+N\+I\+M\+U\+M\+\_\+\+P\+A\+C\+K\+E\+T\+\_\+\+S\+I\+ZE}}, \mbox{\hyperlink{structSemaphore__MP__Packet}{Semaphore\+\_\+\+M\+P\+\_\+\+Packet}})
+\item 
+void \mbox{\hyperlink{group__ClassicSEM_gabf7ddd01f6d1775f91d196955b8c7699}{\+\_\+\+Semaphore\+\_\+\+M\+P\+\_\+\+Send\+\_\+process\+\_\+packet}} (\mbox{\hyperlink{group__ClassicSEM_ga24fc0fecc46118303c1de1742a2c5adf}{Semaphore\+\_\+\+M\+P\+\_\+\+Remote\+\_\+operations}} operation, \mbox{\hyperlink{group__RTEMSScoreObject_ga5821f52a51072941bdd603e542d0863e}{Objects\+\_\+\+Id}} semaphore\+\_\+id, \mbox{\hyperlink{group__ClassicTasks_ga55fb63c49f68c0cbd9bee004da15b1fd}{rtems\+\_\+name}} name, \mbox{\hyperlink{group__RTEMSScoreObject_ga5821f52a51072941bdd603e542d0863e}{Objects\+\_\+\+Id}} proxy\+\_\+id)
+\begin{DoxyCompactList}\small\item\em Semaphore MP Send Process Packet. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{group__ClassicSEM_ga22c4bec291ea89e9825a4c08519f9d54}{\+\_\+\+Semaphore\+\_\+\+M\+P\+\_\+\+Obtain}} (\mbox{\hyperlink{group__ClassicTasks_gab20892b814dced7dd4e5b9bf42becd57}{rtems\+\_\+id}} id, \mbox{\hyperlink{group__ClassicOptions_gad26685eb0e60a9650082935c31920e29}{rtems\+\_\+option}} option\+\_\+set, \mbox{\hyperlink{group__ClassicTasks_gad39c43f949683d46874e3a5586b93aee}{rtems\+\_\+interval}} timeout)
+\begin{DoxyCompactList}\small\item\em Issues a remote \mbox{\hyperlink{group__ClassicSem_gae8c1795a85f982ceea89e7faf7d68e91}{rtems\+\_\+semaphore\+\_\+obtain()}} request. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{group__ClassicSEM_gafc01404f8ad14adf485b8ce87e3a8240}{\+\_\+\+Semaphore\+\_\+\+M\+P\+\_\+\+Release}} (\mbox{\hyperlink{group__ClassicTasks_gab20892b814dced7dd4e5b9bf42becd57}{rtems\+\_\+id}} id)
+\begin{DoxyCompactList}\small\item\em Issues a remote \mbox{\hyperlink{group__ClassicSem_gae493f08a92f963ecddc7889181808402}{rtems\+\_\+semaphore\+\_\+release()}} request. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__ClassicSEM_ga7a8f00bd895761599a272f8edc077201}{\+\_\+\+Semaphore\+\_\+\+M\+P\+\_\+\+Send\+\_\+object\+\_\+was\+\_\+deleted}} (\mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$the\+\_\+proxy, \mbox{\hyperlink{group__RTEMSScoreObject_ga5821f52a51072941bdd603e542d0863e}{Objects\+\_\+\+Id}} mp\+\_\+id)
+\begin{DoxyCompactList}\small\item\em Semaphore MP Send Object was Deleted. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{semmp_8c_a11d6f653f5ffdd75169bb05dab95b528}\label{semmp_8c_a11d6f653f5ffdd75169bb05dab95b528}} 
+void {\bfseries \+\_\+\+Semaphore\+\_\+\+M\+P\+\_\+\+Send\+\_\+extract\+\_\+proxy} (\mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$the\+\_\+thread, \mbox{\hyperlink{group__RTEMSScoreObject_ga5821f52a51072941bdd603e542d0863e}{Objects\+\_\+\+Id}} id)
+\item 
+void \mbox{\hyperlink{group__ClassicSEM_ga604f4eeb578725b893398adcaaaed0a1}{\+\_\+\+Semaphore\+\_\+\+Core\+\_\+mutex\+\_\+mp\+\_\+support}} (\mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$the\+\_\+thread, \mbox{\hyperlink{group__RTEMSScoreObject_ga5821f52a51072941bdd603e542d0863e}{Objects\+\_\+\+Id}} id)
+\begin{DoxyCompactList}\small\item\em Semaphore Core Mutex MP Support. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__ClassicSEM_ga2476d946164b5b2bb2f535f8aaae7daa}{\+\_\+\+Semaphore\+\_\+\+Core\+\_\+semaphore\+\_\+mp\+\_\+support}} (\mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$the\+\_\+thread, \mbox{\hyperlink{group__RTEMSScoreObject_ga5821f52a51072941bdd603e542d0863e}{Objects\+\_\+\+Id}} id)
+\begin{DoxyCompactList}\small\item\em Semaphore Core MP Support. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{semmp_8c_ab5738c00befa55594e4dc29a1a89c373}\label{semmp_8c_ab5738c00befa55594e4dc29a1a89c373}} 
+{\bfseries R\+T\+E\+M\+S\+\_\+\+S\+Y\+S\+I\+N\+I\+T\+\_\+\+I\+T\+EM} (\+\_\+\+Semaphore\+\_\+\+M\+P\+\_\+\+Initialize, R\+T\+E\+M\+S\+\_\+\+S\+Y\+S\+I\+N\+I\+T\+\_\+\+C\+L\+A\+S\+S\+I\+C\+\_\+\+S\+E\+M\+A\+P\+H\+O\+R\+E\+\_\+\+MP, R\+T\+E\+M\+S\+\_\+\+S\+Y\+S\+I\+N\+I\+T\+\_\+\+O\+R\+D\+E\+R\+\_\+\+M\+I\+D\+D\+LE)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Semaphore MP Support. 
+

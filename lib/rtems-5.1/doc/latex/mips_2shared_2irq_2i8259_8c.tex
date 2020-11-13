@@ -1,0 +1,59 @@
+\hypertarget{mips_2shared_2irq_2i8259_8c}{}\section{bsps/mips/shared/irq/i8259.c File Reference}
+\label{mips_2shared_2irq_2i8259_8c}\index{bsps/mips/shared/irq/i8259.c@{bsps/mips/shared/irq/i8259.c}}
+{\ttfamily \#include $<$bsp.\+h$>$}\newline
+{\ttfamily \#include $<$bsp/irq.\+h$>$}\newline
+{\ttfamily \#include $<$bsp/i8259.\+h$>$}\newline
+{\ttfamily \#include $<$bsp/pci.\+h$>$}\newline
+{\ttfamily \#include $<$bsp/irq-\/generic.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/bsp\+Io.\+h$>$}\newline
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{mips_2shared_2irq_2i8259_8c_a06fd557285b60511793e3f2d5d18eb78}\label{mips_2shared_2irq_2i8259_8c_a06fd557285b60511793e3f2d5d18eb78}} 
+\#define {\bfseries D\+E\+B\+U\+G\+\_\+8259}~1
+\item 
+\mbox{\Hypertarget{mips_2shared_2irq_2i8259_8c_a34138ed9d6338cb100ff38a8c3e5ef49}\label{mips_2shared_2irq_2i8259_8c_a34138ed9d6338cb100ff38a8c3e5ef49}} 
+\#define {\bfseries Validate\+Irq\+Line}(\+\_\+irq)~if ( ((int)\+\_\+irq $<$ 0) $\vert$$\vert$((int)\+\_\+irq $>$ 16)) return 1;
+\item 
+\mbox{\Hypertarget{mips_2shared_2irq_2i8259_8c_abe7cd692ddb992ddb5072d0fdf1efe63}\label{mips_2shared_2irq_2i8259_8c_abe7cd692ddb992ddb5072d0fdf1efe63}} 
+\#define {\bfseries P\+C\+I\+\_\+\+\_\+\+G\+EN}(bus,  off,  num)~(((off)$^\wedge$((bus) $<$$<$ 7))+((num) $<$$<$ 4))
+\item 
+\mbox{\Hypertarget{mips_2shared_2irq_2i8259_8c_a6305acf901927eac1e430cd113b2faec}\label{mips_2shared_2irq_2i8259_8c_a6305acf901927eac1e430cd113b2faec}} 
+\#define {\bfseries P\+C\+I\+\_\+\+I\+N\+T\+R\+\_\+\+A\+CK}(bus)~P\+C\+I\+\_\+\+\_\+\+G\+EN(bus, 0x0c34, 0)
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{group__mips__i8259__irq_ga2cbf3b2287a4937b96bacd73ce4ce3c7}{B\+S\+P\+\_\+irq\+\_\+disable\+\_\+at\+\_\+i8259s}} (const rtems\+\_\+irq\+\_\+number irq\+Line)
+\begin{DoxyCompactList}\small\item\em function to disable a particular irq at 8259 level. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__mips__i8259__irq_ga0504c1761cd7a8b649a5794ac4f15afe}{B\+S\+P\+\_\+irq\+\_\+enable\+\_\+at\+\_\+i8259s}} (const rtems\+\_\+irq\+\_\+number irq\+Line)
+\begin{DoxyCompactList}\small\item\em function to enable a particular irq at 8259 level. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__mips__i8259__irq_gad45f6f265e31986fe1a820cd0b82339e}{B\+S\+P\+\_\+irq\+\_\+enabled\+\_\+at\+\_\+i8259s}} (const rtems\+\_\+irq\+\_\+number irq\+Line)
+\begin{DoxyCompactList}\small\item\em function to check if a particular irq is enabled at 8259 level. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__mips__i8259__irq_ga71748a7cd08c833484dc27fe32dafeb5}{B\+S\+P\+\_\+irq\+\_\+ack\+\_\+at\+\_\+i8259s}} (const rtems\+\_\+irq\+\_\+number irq\+Line)
+\begin{DoxyCompactList}\small\item\em function to acknowledge a particular irq at 8259 level. \end{DoxyCompactList}\item 
+void {\bfseries B\+S\+P\+\_\+i8259s\+\_\+init} (void)
+\item 
+\mbox{\Hypertarget{mips_2shared_2irq_2i8259_8c_ad175dc16d3026a2a10d689c25a47c042}\label{mips_2shared_2irq_2i8259_8c_ad175dc16d3026a2a10d689c25a47c042}} 
+void {\bfseries bsp\+\_\+show\+\_\+interrupt\+\_\+regs} (void)
+\item 
+int {\bfseries B\+S\+P\+\_\+i8259s\+\_\+int\+\_\+process} ()
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+volatile \mbox{\hyperlink{group__i386__irq_gabcb5f2200fea51d658c5ed728282ee77}{rtems\+\_\+i8259\+\_\+masks}} {\bfseries i8259s\+\_\+cache} = 0xfffb
+\item 
+\mbox{\Hypertarget{mips_2shared_2irq_2i8259_8c_aa1520d1d297282c04edad91441499a8f}\label{mips_2shared_2irq_2i8259_8c_aa1520d1d297282c04edad91441499a8f}} 
+volatile uint8\+\_\+t {\bfseries master}
+\item 
+\mbox{\Hypertarget{mips_2shared_2irq_2i8259_8c_a66d327b7122924f4dd049a54e7d5c406}\label{mips_2shared_2irq_2i8259_8c_a66d327b7122924f4dd049a54e7d5c406}} 
+volatile uint8\+\_\+t {\bfseries slave}
+\item 
+\mbox{\Hypertarget{mips_2shared_2irq_2i8259_8c_a0849a05a0191a174215a9f9832d6ce91}\label{mips_2shared_2irq_2i8259_8c_a0849a05a0191a174215a9f9832d6ce91}} 
+volatile uint8\+\_\+t {\bfseries temp}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This file was based upon the powerpc and the i386. 

@@ -1,0 +1,98 @@
+\hypertarget{m68k_2mvme167_2btimer_2btimer_8c}{}\section{bsps/m68k/mvme167/btimer/btimer.c File Reference}
+\label{m68k_2mvme167_2btimer_2btimer_8c}\index{bsps/m68k/mvme167/btimer/btimer.c@{bsps/m68k/mvme167/btimer/btimer.c}}
+{\ttfamily \#include $<$rtems.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/btimer.\+h$>$}\newline
+{\ttfamily \#include $<$bsp.\+h$>$}\newline
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{m68k_2mvme167_2btimer_2btimer_8c_a75ffb1897670af90b6941ea94114a3b5}\label{m68k_2mvme167_2btimer_2btimer_8c_a75ffb1897670af90b6941ea94114a3b5}} 
+\#define {\bfseries T\+I\+C\+K\+\_\+\+I\+N\+T\+E\+R\+V\+AL}~10000\+U\+L     /$\ast$ T1\textquotesingle{}s countdown constant (10 ms) $\ast$/
+\item 
+\mbox{\Hypertarget{m68k_2mvme167_2btimer_2btimer_8c_afbd560ff9263704ed0e4944d3ec6aee1}\label{m68k_2mvme167_2btimer_2btimer_8c_afbd560ff9263704ed0e4944d3ec6aee1}} 
+\#define {\bfseries T\+I\+M\+E\+R\+\_\+\+I\+N\+T\+\_\+\+L\+E\+V\+EL}~6           /$\ast$ T1\textquotesingle{}s interrupt level $\ast$/
+\item 
+\mbox{\Hypertarget{m68k_2mvme167_2btimer_2btimer_8c_a664839648fa40e020db83c21689e0af9}\label{m68k_2mvme167_2btimer_2btimer_8c_a664839648fa40e020db83c21689e0af9}} 
+\#define {\bfseries T\+I\+M\+E\+R\+\_\+\+V\+E\+C\+T\+OR}~(V\+B\+R0 $\ast$ 0x10 + 0x8)  /$\ast$ T1 is vector \$\+X8 (p. 2-\/71)$\ast$/
+\item 
+\mbox{\Hypertarget{m68k_2mvme167_2btimer_2btimer_8c_aac89169fdf120750d8321464268bf18b}\label{m68k_2mvme167_2btimer_2btimer_8c_aac89169fdf120750d8321464268bf18b}} 
+\#define {\bfseries A\+V\+G\+\_\+\+O\+V\+E\+R\+H\+E\+AD}~3\+U\+L   /$\ast$ It typically takes 3.\+0 microseconds $\ast$/
+\item 
+\mbox{\Hypertarget{m68k_2mvme167_2btimer_2btimer_8c_ae0b5ca13bcf573a43bdf52d4eae8f79c}\label{m68k_2mvme167_2btimer_2btimer_8c_ae0b5ca13bcf573a43bdf52d4eae8f79c}} 
+\#define {\bfseries L\+E\+A\+S\+T\+\_\+\+V\+A\+L\+ID}~3\+U\+L   /$\ast$ Don\textquotesingle{}t trust a value lower than this $\ast$/
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{m68k_2mvme167_2btimer_2btimer_8c_a1f57d185ea18eb066e620d535f1e5ba2}\label{m68k_2mvme167_2btimer_2btimer_8c_a1f57d185ea18eb066e620d535f1e5ba2}} 
+\mbox{\hyperlink{group__ClassicINTR_ga17fb491bd308ce6b1bf27a51dec0b46d}{rtems\+\_\+isr}} {\bfseries timerisr} (\mbox{\hyperlink{group__ClassicINTR_ga3e434c197d99f128e78cae4d9358bd8b}{rtems\+\_\+vector\+\_\+number}})
+\item 
+void \mbox{\hyperlink{m68k_2mvme167_2btimer_2btimer_8c_a9ba0ae2fd8880801fb86979a16cd3b2b}{benchmark\+\_\+timer\+\_\+initialize}} (void)
+\begin{DoxyCompactList}\small\item\em Initialize the Benchmark Timer. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{btimer_8h_ac0f944fe3193b01df09c3d3a5a677e5a}{benchmark\+\_\+timer\+\_\+t}} \mbox{\hyperlink{m68k_2mvme167_2btimer_2btimer_8c_ab8dc8517e97918d293d78e85b9454855}{benchmark\+\_\+timer\+\_\+read}} (void)
+\begin{DoxyCompactList}\small\item\em Read the Benchmark Timer. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{m68k_2mvme167_2btimer_2btimer_8c_af3b4e28a2f0f7870be848a1d5cee0d03}{benchmark\+\_\+timer\+\_\+disable\+\_\+subtracting\+\_\+average\+\_\+overhead}} (bool find\+\_\+flag)
+\begin{DoxyCompactList}\small\item\em Disable Average Overhead Removal from the Benchmark Timer. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{m68k_2mvme167_2btimer_2btimer_8c_a52fddc1cfe812e7206543b15f46c1db1}\label{m68k_2mvme167_2btimer_2btimer_8c_a52fddc1cfe812e7206543b15f46c1db1}} 
+uint32\+\_\+t {\bfseries Ttimer\+\_\+val}
+\item 
+\mbox{\Hypertarget{m68k_2mvme167_2btimer_2btimer_8c_aff7592371a0cc40ceba40a1adf11bbc0}\label{m68k_2mvme167_2btimer_2btimer_8c_aff7592371a0cc40ceba40a1adf11bbc0}} 
+bool {\bfseries benchmark\+\_\+timer\+\_\+find\+\_\+average\+\_\+overhead}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This file manages the benchmark timer used by the R\+T\+E\+MS Timing Test Suite. Each measured time period is demarcated by calls to \mbox{\hyperlink{arm_2csb336_2btimer_2btimer_8c_a9ba0ae2fd8880801fb86979a16cd3b2b}{benchmark\+\_\+timer\+\_\+initialize()}} and \mbox{\hyperlink{arm_2csb336_2btimer_2btimer_8c_ab8dc8517e97918d293d78e85b9454855}{benchmark\+\_\+timer\+\_\+read()}}. \mbox{\hyperlink{arm_2csb336_2btimer_2btimer_8c_ab8dc8517e97918d293d78e85b9454855}{benchmark\+\_\+timer\+\_\+read()}} usually returns the number of microseconds since \mbox{\hyperlink{arm_2csb336_2btimer_2btimer_8c_a9ba0ae2fd8880801fb86979a16cd3b2b}{benchmark\+\_\+timer\+\_\+initialize()}} exitted.
+
+These functions are prototyped in \mbox{\hyperlink{btimer_8h}{rtems/btimer.\+h}} and must be implemented as part of the B\+SP.
+
+This port does not allow the application to select which timer on the M\+V\+M\+E167 to use for the timer, nor does it allow the application to configure the timer. The timer uses the V\+M\+Echip2 Tick Timer \#1. This timer is distinct from the clock, which uses Tick Timer \#2 in the V\+M\+Echip2.
+
+All page references are to the M\+V\+M\+E166/\+M\+V\+M\+E167/\+M\+V\+M\+E187 Single Board Computer Programmer\textquotesingle{}s Reference Guide (M\+V\+M\+E187\+P\+G/\+D2) with the April 1993 supplements/addenda (M\+V\+M\+E187\+P\+G/\+D2\+A1). 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{m68k_2mvme167_2btimer_2btimer_8c_af3b4e28a2f0f7870be848a1d5cee0d03}\label{m68k_2mvme167_2btimer_2btimer_8c_af3b4e28a2f0f7870be848a1d5cee0d03}} 
+\index{btimer.c@{btimer.c}!benchmark\_timer\_disable\_subtracting\_average\_overhead@{benchmark\_timer\_disable\_subtracting\_average\_overhead}}
+\index{benchmark\_timer\_disable\_subtracting\_average\_overhead@{benchmark\_timer\_disable\_subtracting\_average\_overhead}!btimer.c@{btimer.c}}
+\subsubsection{\texorpdfstring{benchmark\_timer\_disable\_subtracting\_average\_overhead()}{benchmark\_timer\_disable\_subtracting\_average\_overhead()}}
+{\footnotesize\ttfamily void benchmark\+\_\+timer\+\_\+disable\+\_\+subtracting\+\_\+average\+\_\+overhead (\begin{DoxyParamCaption}\item[{bool}]{find\+\_\+flag }\end{DoxyParamCaption})}
+
+
+
+Disable Average Overhead Removal from the Benchmark Timer. 
+
+This method places the benchmark timer in a \char`\"{}raw\char`\"{} mode where it returns the actual number of units which have passed between calls to {\itshape benchmark\+\_\+timer\+\_\+initialize} and {\itshape benchmark\+\_\+timer\+\_\+read} counting.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em find\+\_\+flag} & indicates to enable or disable the mode \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{m68k_2mvme167_2btimer_2btimer_8c_a9ba0ae2fd8880801fb86979a16cd3b2b}\label{m68k_2mvme167_2btimer_2btimer_8c_a9ba0ae2fd8880801fb86979a16cd3b2b}} 
+\index{btimer.c@{btimer.c}!benchmark\_timer\_initialize@{benchmark\_timer\_initialize}}
+\index{benchmark\_timer\_initialize@{benchmark\_timer\_initialize}!btimer.c@{btimer.c}}
+\subsubsection{\texorpdfstring{benchmark\_timer\_initialize()}{benchmark\_timer\_initialize()}}
+{\footnotesize\ttfamily void benchmark\+\_\+timer\+\_\+initialize (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Initialize the Benchmark Timer. 
+
+This method initializes the benchmark timer and resets it to begin counting. \mbox{\Hypertarget{m68k_2mvme167_2btimer_2btimer_8c_ab8dc8517e97918d293d78e85b9454855}\label{m68k_2mvme167_2btimer_2btimer_8c_ab8dc8517e97918d293d78e85b9454855}} 
+\index{btimer.c@{btimer.c}!benchmark\_timer\_read@{benchmark\_timer\_read}}
+\index{benchmark\_timer\_read@{benchmark\_timer\_read}!btimer.c@{btimer.c}}
+\subsubsection{\texorpdfstring{benchmark\_timer\_read()}{benchmark\_timer\_read()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{btimer_8h_ac0f944fe3193b01df09c3d3a5a677e5a}{benchmark\+\_\+timer\+\_\+t}} benchmark\+\_\+timer\+\_\+read (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Read the Benchmark Timer. 
+
+This method stops the benchmark timer and returns the number of units that have passed since {\itshape benchmark\+\_\+timer\+\_\+initialize} was invoked.
+
+\begin{DoxyReturn}{Returns}
+This method returns the number of units with the average overhead removed. If the value is below the minimum trusted value, zero is returned. 
+\end{DoxyReturn}

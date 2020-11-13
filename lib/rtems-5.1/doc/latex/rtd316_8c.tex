@@ -1,0 +1,106 @@
+\hypertarget{rtd316_8c}{}\section{bsps/i386/pc386/console/rtd316.c File Reference}
+\label{rtd316_8c}\index{bsps/i386/pc386/console/rtd316.c@{bsps/i386/pc386/console/rtd316.c}}
+
+
+Driver for R\+T\+D316 I\+SA S\+CC Board.  
+
+
+{\ttfamily \#include $<$bsp.\+h$>$}\newline
+{\ttfamily \#include $<$termios.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/termiostypes.\+h$>$}\newline
+{\ttfamily \#include $<$libchip/serial.\+h$>$}\newline
+{\ttfamily \#include $<$libchip/z85c30.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/bsp\+Io.\+h$>$}\newline
+{\ttfamily \#include $<$bsp/rtd316.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/score/i386.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}../../shared/dev/serial/legacy-\/console.\+h\char`\"{}}\newline
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{rtd316_8c_a63deae3240a4aff81e57182d11f22e90}\label{rtd316_8c_a63deae3240a4aff81e57182d11f22e90}} 
+\#define {\bfseries R\+T\+D\+\_\+\+C\+L\+O\+C\+K\+\_\+\+R\+A\+TE}~(460800 $\ast$ 32)
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{rtd316_8c_ad57822a6f7fe2c1dfeedd53eca02f006}{rtd316\+\_\+com\+\_\+get\+\_\+register}} (uint32\+\_\+t addr, uint8\+\_\+t reg)
+\begin{DoxyCompactList}\small\item\em R\+T\+D316 Obtain Register Helper. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{rtd316_8c_aadf9462809af18b83b8ab6fabcc1bebf}{rtd316\+\_\+com\+\_\+set\+\_\+register}} (uint32\+\_\+t addr, uint8\+\_\+t reg, uint8\+\_\+t val)
+\begin{DoxyCompactList}\small\item\em R\+T\+D316 Set Register Helper. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+device\+\_\+driver}} \mbox{\hyperlink{rtd316_8c_a9a8f6cdda67630fcee54c2deef5fdede}{rtd316\+\_\+initialize}} (rtems\+\_\+device\+\_\+major\+\_\+number major, rtems\+\_\+device\+\_\+minor\+\_\+number minor\+\_\+arg, void $\ast$arg)
+\begin{DoxyCompactList}\small\item\em R\+T\+D316 Initialization Entry Point. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Driver for R\+T\+D316 I\+SA S\+CC Board. 
+
+The R\+T\+D316 has a single Z85\+C30. 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{rtd316_8c_ad57822a6f7fe2c1dfeedd53eca02f006}\label{rtd316_8c_ad57822a6f7fe2c1dfeedd53eca02f006}} 
+\index{rtd316.c@{rtd316.c}!rtd316\_com\_get\_register@{rtd316\_com\_get\_register}}
+\index{rtd316\_com\_get\_register@{rtd316\_com\_get\_register}!rtd316.c@{rtd316.c}}
+\subsubsection{\texorpdfstring{rtd316\_com\_get\_register()}{rtd316\_com\_get\_register()}}
+{\footnotesize\ttfamily uint8\+\_\+t rtd316\+\_\+com\+\_\+get\+\_\+register (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{addr,  }\item[{uint8\+\_\+t}]{reg }\end{DoxyParamCaption})}
+
+
+
+R\+T\+D316 Obtain Register Helper. 
+
+This method is used to read registers on the R\+T\+D316.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em addr} & is the base address \\
+\hline
+\mbox{\texttt{ in}}  & {\em reg} & is the register number\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+This method returns the value of the register. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{rtd316_8c_aadf9462809af18b83b8ab6fabcc1bebf}\label{rtd316_8c_aadf9462809af18b83b8ab6fabcc1bebf}} 
+\index{rtd316.c@{rtd316.c}!rtd316\_com\_set\_register@{rtd316\_com\_set\_register}}
+\index{rtd316\_com\_set\_register@{rtd316\_com\_set\_register}!rtd316.c@{rtd316.c}}
+\subsubsection{\texorpdfstring{rtd316\_com\_set\_register()}{rtd316\_com\_set\_register()}}
+{\footnotesize\ttfamily void rtd316\+\_\+com\+\_\+set\+\_\+register (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{addr,  }\item[{uint8\+\_\+t}]{reg,  }\item[{uint8\+\_\+t}]{val }\end{DoxyParamCaption})}
+
+
+
+R\+T\+D316 Set Register Helper. 
+
+This method is used to set registers on the R\+T\+D316.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em addr} & is the base address \\
+\hline
+\mbox{\texttt{ in}}  & {\em reg} & is the register number \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{rtd316_8c_a9a8f6cdda67630fcee54c2deef5fdede}\label{rtd316_8c_a9a8f6cdda67630fcee54c2deef5fdede}} 
+\index{rtd316.c@{rtd316.c}!rtd316\_initialize@{rtd316\_initialize}}
+\index{rtd316\_initialize@{rtd316\_initialize}!rtd316.c@{rtd316.c}}
+\subsubsection{\texorpdfstring{rtd316\_initialize()}{rtd316\_initialize()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+device\+\_\+driver}} rtd316\+\_\+initialize (\begin{DoxyParamCaption}\item[{rtems\+\_\+device\+\_\+major\+\_\+number}]{major,  }\item[{rtems\+\_\+device\+\_\+minor\+\_\+number}]{minor,  }\item[{void $\ast$}]{arg }\end{DoxyParamCaption})}
+
+
+
+R\+T\+D316 Initialization Entry Point. 
+
+This method initializes the R\+T\+D316 device driver.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em major} & is the device driver major number \\
+\hline
+\mbox{\texttt{ in}}  & {\em minor} & is the device driver minor number \\
+\hline
+\mbox{\texttt{ in}}  & {\em arg} & is the parameters to this call\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+This method returns R\+T\+E\+M\+S\+\_\+\+S\+U\+C\+C\+E\+S\+S\+F\+UL when the device driver is successfully initialized. 
+\end{DoxyReturn}

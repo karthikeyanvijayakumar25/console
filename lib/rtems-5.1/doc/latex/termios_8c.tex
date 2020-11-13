@@ -1,0 +1,211 @@
+\hypertarget{termios_8c}{}\section{cpukit/libcsupport/src/termios.c File Reference}
+\label{termios_8c}\index{cpukit/libcsupport/src/termios.c@{cpukit/libcsupport/src/termios.c}}
+{\ttfamily \#include $<$rtems.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/libio.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/imfs.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/score/assert.\+h$>$}\newline
+{\ttfamily \#include $<$ctype.\+h$>$}\newline
+{\ttfamily \#include $<$errno.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$termios.\+h$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include $<$sys/fcntl.\+h$>$}\newline
+{\ttfamily \#include $<$sys/filio.\+h$>$}\newline
+{\ttfamily \#include $<$sys/ttycom.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/termiostypes.\+h$>$}\newline
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{termios_8c_a128dd43a6b82f91832e25dc00d58df14}\label{termios_8c_a128dd43a6b82f91832e25dc00d58df14}} 
+\#define {\bfseries C\+B\+U\+F\+S\+I\+ZE}~(rtems\+\_\+termios\+\_\+cbufsize)
+\item 
+\mbox{\Hypertarget{termios_8c_a1c2249349e36b5abe1cce0ba46add685}\label{termios_8c_a1c2249349e36b5abe1cce0ba46add685}} 
+\#define {\bfseries R\+A\+W\+\_\+\+I\+N\+P\+U\+T\+\_\+\+B\+U\+F\+F\+E\+R\+\_\+\+S\+I\+ZE}~(rtems\+\_\+termios\+\_\+raw\+\_\+input\+\_\+size)
+\item 
+\mbox{\Hypertarget{termios_8c_a291ff085388162ec36c2a84d3787d070}\label{termios_8c_a291ff085388162ec36c2a84d3787d070}} 
+\#define {\bfseries R\+A\+W\+\_\+\+O\+U\+T\+P\+U\+T\+\_\+\+B\+U\+F\+F\+E\+R\+\_\+\+S\+I\+ZE}~(rtems\+\_\+termios\+\_\+raw\+\_\+output\+\_\+size)
+\item 
+\mbox{\Hypertarget{termios_8c_acd18b3c9797212cdf4935ad9bb8f25ed}\label{termios_8c_acd18b3c9797212cdf4935ad9bb8f25ed}} 
+\#define {\bfseries F\+L\+\_\+\+I\+R\+E\+Q\+X\+OF}~1\+U        /$\ast$ input queue requests stop of incoming data $\ast$/
+\item 
+\mbox{\Hypertarget{termios_8c_a9b317346e86b2101b412d1c41eb23d33}\label{termios_8c_a9b317346e86b2101b412d1c41eb23d33}} 
+\#define {\bfseries F\+L\+\_\+\+I\+S\+N\+T\+X\+OF}~2\+U        /$\ast$ X\+O\+F\+F has been sent to other side of line   $\ast$/
+\item 
+\mbox{\Hypertarget{termios_8c_adae21de766013ae8b26f4a9e26730df4}\label{termios_8c_adae21de766013ae8b26f4a9e26730df4}} 
+\#define {\bfseries F\+L\+\_\+\+I\+R\+T\+S\+O\+FF}~4\+U        /$\ast$ R\+T\+S has been turned off for other side..   $\ast$/
+\item 
+\mbox{\Hypertarget{termios_8c_ad0acc8b642e0dcbc85e6ba89eba6dc78}\label{termios_8c_ad0acc8b642e0dcbc85e6ba89eba6dc78}} 
+\#define {\bfseries F\+L\+\_\+\+O\+R\+C\+V\+X\+OF}~0x10\+U     /$\ast$ X\+O\+F\+F has been received                     $\ast$/
+\item 
+\mbox{\Hypertarget{termios_8c_a8a01d08e2e37e7d98fe6e4119e715b6a}\label{termios_8c_a8a01d08e2e37e7d98fe6e4119e715b6a}} 
+\#define {\bfseries F\+L\+\_\+\+O\+S\+T\+OP}~0x20\+U     /$\ast$ output has been stopped due to X\+O\+F\+F        $\ast$/
+\item 
+\mbox{\Hypertarget{termios_8c_a2e8ce7f5dfc8a54bd93c30fa984f811b}\label{termios_8c_a2e8ce7f5dfc8a54bd93c30fa984f811b}} 
+\#define {\bfseries F\+L\+\_\+\+M\+D\+R\+TS}~0x100\+U    /$\ast$ input controlled with R\+T\+S/\+C\+T\+S handshake    $\ast$/
+\item 
+\mbox{\Hypertarget{termios_8c_a94674305ee0fcf7b568583bc8a05d04e}\label{termios_8c_a94674305ee0fcf7b568583bc8a05d04e}} 
+\#define {\bfseries F\+L\+\_\+\+M\+D\+X\+ON}~0x200\+U    /$\ast$ input controlled with X\+O\+N/\+X\+O\+F\+F protocol    $\ast$/
+\item 
+\mbox{\Hypertarget{termios_8c_a137421f71788a9e935ca62544000af37}\label{termios_8c_a137421f71788a9e935ca62544000af37}} 
+\#define {\bfseries F\+L\+\_\+\+M\+D\+X\+OF}~0x400\+U    /$\ast$ output controlled with X\+O\+N/\+X\+O\+F\+F protocol   $\ast$/
+\item 
+\#define {\bfseries N\+O\+D\+I\+SC}(n)
+\item 
+\mbox{\Hypertarget{termios_8c_ae94355f0ae54ce106ea865ba95ba6ed1}\label{termios_8c_ae94355f0ae54ce106ea865ba95ba6ed1}} 
+\#define {\bfseries T\+E\+R\+M\+I\+O\+S\+\_\+\+T\+X\+T\+A\+S\+K\+\_\+\+P\+R\+IO}~10
+\item 
+\mbox{\Hypertarget{termios_8c_a35b44c0eeb8dc6d6eba11f62792257ce}\label{termios_8c_a35b44c0eeb8dc6d6eba11f62792257ce}} 
+\#define {\bfseries T\+E\+R\+M\+I\+O\+S\+\_\+\+R\+X\+T\+A\+S\+K\+\_\+\+P\+R\+IO}~9
+\item 
+\mbox{\Hypertarget{termios_8c_a9bcf9203366adedf9296faf0d108da68}\label{termios_8c_a9bcf9203366adedf9296faf0d108da68}} 
+\#define {\bfseries T\+E\+R\+M\+I\+O\+S\+\_\+\+T\+X\+T\+A\+S\+K\+\_\+\+S\+T\+A\+C\+K\+S\+I\+ZE}~1024
+\item 
+\mbox{\Hypertarget{termios_8c_a43ca4e3840a02bf7f0acedd26dfd6db0}\label{termios_8c_a43ca4e3840a02bf7f0acedd26dfd6db0}} 
+\#define {\bfseries T\+E\+R\+M\+I\+O\+S\+\_\+\+R\+X\+T\+A\+S\+K\+\_\+\+S\+T\+A\+C\+K\+S\+I\+ZE}~1024
+\item 
+\mbox{\Hypertarget{termios_8c_a995cb4d1b8ae7acc5619c7383c219187}\label{termios_8c_a995cb4d1b8ae7acc5619c7383c219187}} 
+\#define {\bfseries T\+E\+R\+M\+I\+O\+S\+\_\+\+T\+X\+\_\+\+S\+T\+A\+R\+T\+\_\+\+E\+V\+E\+NT}~\mbox{\hyperlink{group__ClassicEventSet_ga9f027021d0070d4f9e35cccb41029e2d}{R\+T\+E\+M\+S\+\_\+\+E\+V\+E\+N\+T\+\_\+1}}
+\item 
+\mbox{\Hypertarget{termios_8c_a78b6e7704ecd0aab7d85565f5027bf39}\label{termios_8c_a78b6e7704ecd0aab7d85565f5027bf39}} 
+\#define {\bfseries T\+E\+R\+M\+I\+O\+S\+\_\+\+T\+X\+\_\+\+T\+E\+R\+M\+I\+N\+A\+T\+E\+\_\+\+E\+V\+E\+NT}~\mbox{\hyperlink{group__ClassicEventSet_ga40310258a3cbe2bef8420158c59f6acc}{R\+T\+E\+M\+S\+\_\+\+E\+V\+E\+N\+T\+\_\+0}}
+\item 
+\mbox{\Hypertarget{termios_8c_a70bfee8875ab8cb2152632918f8ae8bb}\label{termios_8c_a70bfee8875ab8cb2152632918f8ae8bb}} 
+\#define {\bfseries T\+E\+R\+M\+I\+O\+S\+\_\+\+R\+X\+\_\+\+P\+R\+O\+C\+\_\+\+E\+V\+E\+NT}~\mbox{\hyperlink{group__ClassicEventSet_ga9f027021d0070d4f9e35cccb41029e2d}{R\+T\+E\+M\+S\+\_\+\+E\+V\+E\+N\+T\+\_\+1}}
+\item 
+\mbox{\Hypertarget{termios_8c_ab43e0de560fff02460c5dab69623fb13}\label{termios_8c_ab43e0de560fff02460c5dab69623fb13}} 
+\#define {\bfseries T\+E\+R\+M\+I\+O\+S\+\_\+\+R\+X\+\_\+\+T\+E\+R\+M\+I\+N\+A\+T\+E\+\_\+\+E\+V\+E\+NT}~\mbox{\hyperlink{group__ClassicEventSet_ga40310258a3cbe2bef8420158c59f6acc}{R\+T\+E\+M\+S\+\_\+\+E\+V\+E\+N\+T\+\_\+0}}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{termios_8c_aede46864d5d763fd7591830fefe22e1c}{rtems\+\_\+termios\+\_\+device\+\_\+install}} (const char $\ast$device\+\_\+file, const \mbox{\hyperlink{structrtems__termios__device__handler}{rtems\+\_\+termios\+\_\+device\+\_\+handler}} $\ast$handler, const \mbox{\hyperlink{structrtems__termios__device__flow}{rtems\+\_\+termios\+\_\+device\+\_\+flow}} $\ast$flow, \mbox{\hyperlink{structrtems__termios__device__context}{rtems\+\_\+termios\+\_\+device\+\_\+context}} $\ast$\mbox{\hyperlink{sun4u_2tte_8h_a9b4a99475e2709333b8e5d70483173f1}{context}})
+\begin{DoxyCompactList}\small\item\em Installs a Termios device. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} {\bfseries rtems\+\_\+termios\+\_\+open} (rtems\+\_\+device\+\_\+major\+\_\+number major, rtems\+\_\+device\+\_\+minor\+\_\+number minor, void $\ast$arg, const \mbox{\hyperlink{structrtems__termios__callbacks}{rtems\+\_\+termios\+\_\+callbacks}} $\ast$callbacks)
+\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} {\bfseries rtems\+\_\+termios\+\_\+close} (void $\ast$arg)
+\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} {\bfseries rtems\+\_\+termios\+\_\+bufsize} (size\+\_\+t cbufsize, size\+\_\+t raw\+\_\+input, size\+\_\+t raw\+\_\+output)
+\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} {\bfseries rtems\+\_\+termios\+\_\+ioctl} (void $\ast$arg)
+\item 
+\mbox{\Hypertarget{termios_8c_a005c7a80d343cca873d1cc60f015339a}\label{termios_8c_a005c7a80d343cca873d1cc60f015339a}} 
+void {\bfseries rtems\+\_\+termios\+\_\+puts} (const void $\ast$\+\_\+buf, size\+\_\+t len, struct \mbox{\hyperlink{structrtems__termios__tty}{rtems\+\_\+termios\+\_\+tty}} $\ast$tty)
+\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} {\bfseries rtems\+\_\+termios\+\_\+write} (void $\ast$arg)
+\item 
+\mbox{\hyperlink{group__Termios_ga8d00143bb99772a960e237f16437fc1b}{rtems\+\_\+termios\+\_\+iproc\+\_\+status\+\_\+code}} \mbox{\hyperlink{group__Termios_ga31143aa30ff2944008dfe4e77fb2bbf6}{rtems\+\_\+termios\+\_\+default\+\_\+isig\+\_\+handler}} (unsigned char c, struct \mbox{\hyperlink{structrtems__termios__tty}{rtems\+\_\+termios\+\_\+tty}} $\ast$tty)
+\begin{DoxyCompactList}\small\item\em Default handler for I\+S\+IG (V\+I\+N\+T\+R/\+V\+K\+I\+LL) \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{group__Termios_gac24c80209e7bfdf9a74119103c30e221}{rtems\+\_\+termios\+\_\+register\+\_\+isig\+\_\+handler}} (\mbox{\hyperlink{group__Termios_ga8a2610b7c8bcc2c80bbd040f0e773faf}{rtems\+\_\+termios\+\_\+isig\+\_\+handler}} handler)
+\begin{DoxyCompactList}\small\item\em Register handler for I\+S\+IG (V\+I\+N\+T\+R/\+V\+K\+I\+LL) \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} {\bfseries rtems\+\_\+termios\+\_\+read} (void $\ast$arg)
+\item 
+\mbox{\Hypertarget{termios_8c_a9dd97a1b494e296caf2522740f602841}\label{termios_8c_a9dd97a1b494e296caf2522740f602841}} 
+void {\bfseries rtems\+\_\+termios\+\_\+rxirq\+\_\+occured} (struct \mbox{\hyperlink{structrtems__termios__tty}{rtems\+\_\+termios\+\_\+tty}} $\ast$tty)
+\item 
+int {\bfseries rtems\+\_\+termios\+\_\+enqueue\+\_\+raw\+\_\+characters} (void $\ast$ttyp, const char $\ast$buf, int len)
+\item 
+int {\bfseries rtems\+\_\+termios\+\_\+dequeue\+\_\+characters} (void $\ast$ttyp, int len)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structrtems__termios__linesw}{rtems\+\_\+termios\+\_\+linesw}} {\bfseries rtems\+\_\+termios\+\_\+linesw} \mbox{[}M\+A\+X\+L\+D\+I\+SC\mbox{]}
+\item 
+int {\bfseries rtems\+\_\+termios\+\_\+nlinesw}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+T\+E\+R\+M\+I\+OS serial line support 
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{termios_8c_a9ae243c96334c9ee472c245d214c5b00}\label{termios_8c_a9ae243c96334c9ee472c245d214c5b00}} 
+\index{termios.c@{termios.c}!NODISC@{NODISC}}
+\index{NODISC@{NODISC}!termios.c@{termios.c}}
+\subsubsection{\texorpdfstring{NODISC}{NODISC}}
+{\footnotesize\ttfamily \#define N\+O\+D\+I\+SC(\begin{DoxyParamCaption}\item[{}]{n }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{ \mbox{\hyperlink{bestcomm__api_8h_a872bb74de61c3689ccd5b41873fce42c}{NULL}},  \mbox{\hyperlink{bestcomm__api_8h_a872bb74de61c3689ccd5b41873fce42c}{NULL}},  \mbox{\hyperlink{bestcomm__api_8h_a872bb74de61c3689ccd5b41873fce42c}{NULL}},  \mbox{\hyperlink{bestcomm__api_8h_a872bb74de61c3689ccd5b41873fce42c}{NULL}}, \(\backslash\)}
+\DoxyCodeLine{    NULL,  \mbox{\hyperlink{bestcomm__api_8h_a872bb74de61c3689ccd5b41873fce42c}{NULL}},  \mbox{\hyperlink{bestcomm__api_8h_a872bb74de61c3689ccd5b41873fce42c}{NULL}},  \mbox{\hyperlink{bestcomm__api_8h_a872bb74de61c3689ccd5b41873fce42c}{NULL}} \}}
+
+\end{DoxyCode}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{termios_8c_aede46864d5d763fd7591830fefe22e1c}\label{termios_8c_aede46864d5d763fd7591830fefe22e1c}} 
+\index{termios.c@{termios.c}!rtems\_termios\_device\_install@{rtems\_termios\_device\_install}}
+\index{rtems\_termios\_device\_install@{rtems\_termios\_device\_install}!termios.c@{termios.c}}
+\subsubsection{\texorpdfstring{rtems\_termios\_device\_install()}{rtems\_termios\_device\_install()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} rtems\+\_\+termios\+\_\+device\+\_\+install (\begin{DoxyParamCaption}\item[{const char $\ast$}]{device\+\_\+file,  }\item[{const \mbox{\hyperlink{structrtems__termios__device__handler}{rtems\+\_\+termios\+\_\+device\+\_\+handler}} $\ast$}]{handler,  }\item[{const \mbox{\hyperlink{structrtems__termios__device__flow}{rtems\+\_\+termios\+\_\+device\+\_\+flow}} $\ast$}]{flow,  }\item[{\mbox{\hyperlink{structrtems__termios__device__context}{rtems\+\_\+termios\+\_\+device\+\_\+context}} $\ast$}]{context }\end{DoxyParamCaption})}
+
+
+
+Installs a Termios device. 
+
+The installed Termios device may be removed via \mbox{\hyperlink{unlink_8c_a28af9471bbdf262321af663e02899a47}{unlink()}}.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em device\+\_\+file} & The device file path. \\
+\hline
+\mbox{\texttt{ in}}  & {\em handler} & The device handler. It must be persistent throughout the installed time of the device. \\
+\hline
+\mbox{\texttt{ in}}  & {\em flow} & The device flow control handler. The device flow control handler are optional and may be {\ttfamily N\+U\+LL}. If present must be persistent throughout the installed time of the device. \\
+\hline
+\mbox{\texttt{ in}}  & {\em context} & The device context. It must be persistent throughout the installed time of the device.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em R\+T\+E\+M\+S\+\_\+\+S\+U\+C\+C\+E\+S\+S\+F\+UL} & Successful operation. \\
+\hline
+{\em R\+T\+E\+M\+S\+\_\+\+N\+O\+\_\+\+M\+E\+M\+O\+RY} & Not enough memory to create a device node. \\
+\hline
+{\em R\+T\+E\+M\+S\+\_\+\+U\+N\+S\+A\+T\+I\+S\+F\+I\+ED} & Creation of the device file failed. \\
+\hline
+{\em R\+T\+E\+M\+S\+\_\+\+I\+N\+C\+O\+R\+R\+E\+C\+T\+\_\+\+S\+T\+A\+TE} & Termios is not initialized.\\
+\hline
+\end{DoxyRetVals}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{termiostypes_8h_afa4793c232f435902a7c61806215bfcf}{rtems\+\_\+termios\+\_\+get\+\_\+device\+\_\+context()}}. 
+\end{DoxySeeAlso}
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{termios_8c_a6d9e86a2ba17f5816b204f7036f263c4}\label{termios_8c_a6d9e86a2ba17f5816b204f7036f263c4}} 
+\index{termios.c@{termios.c}!rtems\_termios\_linesw@{rtems\_termios\_linesw}}
+\index{rtems\_termios\_linesw@{rtems\_termios\_linesw}!termios.c@{termios.c}}
+\subsubsection{\texorpdfstring{rtems\_termios\_linesw}{rtems\_termios\_linesw}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structrtems__termios__linesw}{rtems\+\_\+termios\+\_\+linesw}} \mbox{\hyperlink{structrtems__termios__linesw}{rtems\+\_\+termios\+\_\+linesw}}\mbox{[}M\+A\+X\+L\+D\+I\+SC\mbox{]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{  NODISC(0),    }
+\DoxyCodeLine{  NODISC(1),    }
+\DoxyCodeLine{  NODISC(2),    }
+\DoxyCodeLine{  NODISC(3),    }
+\DoxyCodeLine{  NODISC(4),    }
+\DoxyCodeLine{  NODISC(5),    }
+\DoxyCodeLine{  NODISC(6),    }
+\DoxyCodeLine{  NODISC(7),    }
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{termios_8c_a85524bff1b63360352a237895cccaaa4}\label{termios_8c_a85524bff1b63360352a237895cccaaa4}} 
+\index{termios.c@{termios.c}!rtems\_termios\_nlinesw@{rtems\_termios\_nlinesw}}
+\index{rtems\_termios\_nlinesw@{rtems\_termios\_nlinesw}!termios.c@{termios.c}}
+\subsubsection{\texorpdfstring{rtems\_termios\_nlinesw}{rtems\_termios\_nlinesw}}
+{\footnotesize\ttfamily int rtems\+\_\+termios\+\_\+nlinesw}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=}
+\DoxyCodeLine{       \textcolor{keyword}{sizeof} (\mbox{\hyperlink{structrtems__termios__linesw}{rtems\_termios\_linesw}}) / \textcolor{keyword}{sizeof} (\mbox{\hyperlink{structrtems__termios__linesw}{rtems\_termios\_linesw}}[0])}
+
+\end{DoxyCode}

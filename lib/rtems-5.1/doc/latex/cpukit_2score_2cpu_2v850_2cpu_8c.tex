@@ -1,0 +1,62 @@
+\hypertarget{cpukit_2score_2cpu_2v850_2cpu_8c}{}\section{cpukit/score/cpu/v850/cpu.c File Reference}
+\label{cpukit_2score_2cpu_2v850_2cpu_8c}\index{cpukit/score/cpu/v850/cpu.c@{cpukit/score/cpu/v850/cpu.c}}
+
+
+v850 C\+PU Initialize  
+
+
+{\ttfamily \#include $<$rtems/score/isr.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/score/wkspace.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{group__RTEMSScoreCPUARM_ga869484e3d851b032fd826c69ff21fc72}{\+\_\+\+C\+P\+U\+\_\+\+Initialize}} (void)
+\begin{DoxyCompactList}\small\item\em C\+PU initialization. \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{group__RTEMSScoreCPUARM_ga1d9dcab9170d532b6634a5620385adbd}{\+\_\+\+C\+P\+U\+\_\+\+I\+S\+R\+\_\+\+Get\+\_\+level}} (void)
+\begin{DoxyCompactList}\small\item\em Returns the interrupt level of the executing thread. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{cpukit_2score_2cpu_2v850_2cpu_8c_aff386644c2f5a1d6e8b57fd8f290cadc}{\+\_\+\+C\+P\+U\+\_\+\+Context\+\_\+\+Initialize}} (\mbox{\hyperlink{structContext__Control}{Context\+\_\+\+Control}} $\ast$the\+\_\+context, uint32\+\_\+t $\ast$stack\+\_\+base, uint32\+\_\+t \mbox{\hyperlink{sun4u_2tte_8h_a245260f6f74972558f61b85227df5aae}{size}}, uint32\+\_\+t new\+\_\+level, void $\ast$entry\+\_\+point, bool is\+\_\+fp, void $\ast$tls\+\_\+area)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+v850 C\+PU Initialize 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{cpukit_2score_2cpu_2v850_2cpu_8c_aff386644c2f5a1d6e8b57fd8f290cadc}\label{cpukit_2score_2cpu_2v850_2cpu_8c_aff386644c2f5a1d6e8b57fd8f290cadc}} 
+\index{cpu.c@{cpu.c}!\_CPU\_Context\_Initialize@{\_CPU\_Context\_Initialize}}
+\index{\_CPU\_Context\_Initialize@{\_CPU\_Context\_Initialize}!cpu.c@{cpu.c}}
+\subsubsection{\texorpdfstring{\_CPU\_Context\_Initialize()}{\_CPU\_Context\_Initialize()}}
+{\footnotesize\ttfamily void \+\_\+\+C\+P\+U\+\_\+\+Context\+\_\+\+Initialize (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structContext__Control}{Context\+\_\+\+Control}} $\ast$}]{the\+\_\+context,  }\item[{uint32\+\_\+t $\ast$}]{stack\+\_\+base,  }\item[{uint32\+\_\+t}]{size,  }\item[{uint32\+\_\+t}]{new\+\_\+level,  }\item[{void $\ast$}]{entry\+\_\+point,  }\item[{bool}]{is\+\_\+fp,  }\item[{void $\ast$}]{tls\+\_\+area }\end{DoxyParamCaption})}
+
+Initialize the context to a state suitable for starting a task after a context restore operation. Generally, this involves\+:
+
+
+\begin{DoxyItemize}
+\item setting a starting address
+\item preparing the stack
+\item preparing the stack and frame pointers
+\item setting the proper interrupt level in the context
+\item initializing the floating point context
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em the\+\_\+context} & points to the context area \\
+\hline
+\mbox{\texttt{ in}}  & {\em stack\+\_\+base} & is the low address of the allocated stack area \\
+\hline
+\mbox{\texttt{ in}}  & {\em size} & is the size of the stack area in bytes \\
+\hline
+\mbox{\texttt{ in}}  & {\em new\+\_\+level} & is the interrupt level for the task \\
+\hline
+\mbox{\texttt{ in}}  & {\em entry\+\_\+point} & is the task\textquotesingle{}s entry point \\
+\hline
+\mbox{\texttt{ in}}  & {\em is\+\_\+fp} & is set to T\+R\+UE if the task is a floating point task \\
+\hline
+\mbox{\texttt{ in}}  & {\em tls\+\_\+area} & is the thread-\/local storage (T\+LS) area\\
+\hline
+\end{DoxyParams}
+N\+O\+TE\+: Implemented as a subroutine for the S\+P\+A\+RC port. 

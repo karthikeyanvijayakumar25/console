@@ -1,0 +1,99 @@
+\hypertarget{mpci_8c}{}\section{cpukit/score/src/mpci.c File Reference}
+\label{mpci_8c}\index{cpukit/score/src/mpci.c@{cpukit/score/src/mpci.c}}
+
+
+Multiprocessing Communications Interface (M\+P\+CI) Handler.  
+
+
+{\ttfamily \#include $<$rtems/score/mpciimpl.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/score/coresemimpl.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/score/interr.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/score/objectmp.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/score/stackimpl.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/score/sysstate.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/score/schedulerimpl.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/score/threadimpl.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/score/threadqimpl.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/sysinit.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{mpci_8c_a6c20ef9f6ada52281cbecfcfd971f81e}\label{mpci_8c_a6c20ef9f6ada52281cbecfcfd971f81e}} 
+\#define {\bfseries M\+P\+C\+I\+\_\+\+S\+E\+M\+A\+P\+H\+O\+R\+E\+\_\+\+T\+Q\+\_\+\+O\+P\+E\+R\+A\+T\+I\+O\+NS}~\&\+\_\+\+Thread\+\_\+queue\+\_\+\+Operations\+\_\+\+F\+I\+FO
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{mpci_8c_a00acf6e8192b928985bc843bc709fabf}\label{mpci_8c_a00acf6e8192b928985bc843bc709fabf}} 
+{\bfseries R\+T\+E\+M\+S\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+A\+S\+S\+E\+RT} (sizeof(\mbox{\hyperlink{structMPCI__Internal__packet}{M\+P\+C\+I\+\_\+\+Internal\+\_\+packet}})$<$=\mbox{\hyperlink{group__RTEMSScoreMPPacket_gadb26ef7629e08a46b4d1caa3a61a6788}{M\+P\+\_\+\+P\+A\+C\+K\+E\+T\+\_\+\+M\+I\+N\+I\+M\+U\+M\+\_\+\+P\+A\+C\+K\+E\+T\+\_\+\+S\+I\+ZE}}, \mbox{\hyperlink{structMPCI__Internal__packet}{M\+P\+C\+I\+\_\+\+Internal\+\_\+packet}})
+\item 
+void \mbox{\hyperlink{group__RTEMSScoreMPCI_gac273d577d3696588f86f26b1910a2f9c}{\+\_\+\+M\+P\+C\+I\+\_\+\+Register\+\_\+packet\+\_\+processor}} (\mbox{\hyperlink{group__RTEMSScoreMPPacket_gafed9717210f8917e5acb8e63f2c6bac3}{M\+P\+\_\+packet\+\_\+\+Classes}} the\+\_\+class, \mbox{\hyperlink{group__RTEMSScoreMPCI_gafc97753e25c76740b182f3e8cdf74cc8}{M\+P\+C\+I\+\_\+\+Packet\+\_\+processor}} the\+\_\+packet\+\_\+processor)
+\begin{DoxyCompactList}\small\item\em Registers the M\+P\+CI packet processor for the designated object class. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structMP__packet__Prefix}{M\+P\+\_\+packet\+\_\+\+Prefix}} $\ast$ \mbox{\hyperlink{group__RTEMSScoreMPCI_ga66e87499b1e505e2e38411619c88adce}{\+\_\+\+M\+P\+C\+I\+\_\+\+Get\+\_\+packet}} (void)
+\begin{DoxyCompactList}\small\item\em Obtains a packet by invoking the user provided M\+P\+CI get packet callout. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__RTEMSScoreMPCI_ga4921eb7c6291474df410b099381b09d9}{\+\_\+\+M\+P\+C\+I\+\_\+\+Return\+\_\+packet}} (\mbox{\hyperlink{structMP__packet__Prefix}{M\+P\+\_\+packet\+\_\+\+Prefix}} $\ast$the\+\_\+packet)
+\begin{DoxyCompactList}\small\item\em Deallocates a packet. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__RTEMSScoreMPCI_ga02e1e38a1e6a9d3b6488058c89ac96a1}{\+\_\+\+M\+P\+C\+I\+\_\+\+Send\+\_\+process\+\_\+packet}} (uint32\+\_\+t destination, \mbox{\hyperlink{structMP__packet__Prefix}{M\+P\+\_\+packet\+\_\+\+Prefix}} $\ast$the\+\_\+packet)
+\begin{DoxyCompactList}\small\item\em Sends a process packet. \end{DoxyCompactList}\item 
+Status\+\_\+\+Control \mbox{\hyperlink{group__RTEMSScoreMPCI_gaa7cccdabe9e7db7495e1d8bd12e6bcb0}{\+\_\+\+M\+P\+C\+I\+\_\+\+Send\+\_\+request\+\_\+packet}} (uint32\+\_\+t destination, \mbox{\hyperlink{structMP__packet__Prefix}{M\+P\+\_\+packet\+\_\+\+Prefix}} $\ast$the\+\_\+packet, \mbox{\hyperlink{group__RTEMSScoreStates_gaeebbea0bfca162709b124fd519cf99d3}{States\+\_\+\+Control}} extra\+\_\+state)
+\begin{DoxyCompactList}\small\item\em Sends a request packet. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__RTEMSScoreMPCI_ga1623ab44f2cfb10c69b0f62674e53f1f}{\+\_\+\+M\+P\+C\+I\+\_\+\+Send\+\_\+response\+\_\+packet}} (uint32\+\_\+t destination, \mbox{\hyperlink{structMP__packet__Prefix}{M\+P\+\_\+packet\+\_\+\+Prefix}} $\ast$the\+\_\+packet)
+\begin{DoxyCompactList}\small\item\em Sends a response packet. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structMP__packet__Prefix}{M\+P\+\_\+packet\+\_\+\+Prefix}} $\ast$ \mbox{\hyperlink{group__RTEMSScoreMPCI_ga053f924dabe674cd71718615990e408c}{\+\_\+\+M\+P\+C\+I\+\_\+\+Receive\+\_\+packet}} (void)
+\begin{DoxyCompactList}\small\item\em Receives a packet. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$ \mbox{\hyperlink{group__RTEMSScoreMPCI_gae2df57913a498a0305315a2fb6cf12fb}{\+\_\+\+M\+P\+C\+I\+\_\+\+Process\+\_\+response}} (\mbox{\hyperlink{structMP__packet__Prefix}{M\+P\+\_\+packet\+\_\+\+Prefix}} $\ast$the\+\_\+packet)
+\begin{DoxyCompactList}\small\item\em Passes a packet to the thread. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__RTEMSScoreMPCI_gaf232dadc9160e4b1c733906d3a6d1f57}{\+\_\+\+M\+P\+C\+I\+\_\+\+Receive\+\_\+server}} (\mbox{\hyperlink{group__RTEMSScoreThread_gab56e437830bb9a4af5b27ac7ec503b6a}{Thread\+\_\+\+Entry\+\_\+numeric\+\_\+type}} ignored)
+\begin{DoxyCompactList}\small\item\em Receives and processes all packets. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__RTEMSScoreMPCI_gaafbd7ed1ef4bd2b8672df8da832f79f4}{\+\_\+\+M\+P\+C\+I\+\_\+\+Announce}} (void)
+\begin{DoxyCompactList}\small\item\em Announces the availability of a packet. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__RTEMSScoreMPCI_ga63356f90abac093ad7d8817cedf1da28}{\+\_\+\+M\+P\+C\+I\+\_\+\+Internal\+\_\+packets\+\_\+\+Send\+\_\+process\+\_\+packet}} (\mbox{\hyperlink{group__RTEMSScoreMPCI_ga04a2fa1c1617558e729e75700624cdb7}{M\+P\+C\+I\+\_\+\+Internal\+\_\+\+Remote\+\_\+operations}} operation)
+\begin{DoxyCompactList}\small\item\em Performs a process on another node. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__RTEMSScoreMPCI_gae202814c7151db9baf145786aa4ef068}{\+\_\+\+M\+P\+C\+I\+\_\+\+Internal\+\_\+packets\+\_\+\+Process\+\_\+packet}} (\mbox{\hyperlink{structMP__packet__Prefix}{M\+P\+\_\+packet\+\_\+\+Prefix}} $\ast$the\+\_\+packet\+\_\+prefix)
+\begin{DoxyCompactList}\small\item\em Performs requested action from another node. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structMPCI__Internal__packet}{M\+P\+C\+I\+\_\+\+Internal\+\_\+packet}} $\ast$ \mbox{\hyperlink{group__RTEMSScoreMPCI_gaa1dfe78c5adee4604729d791941634a6}{\+\_\+\+M\+P\+C\+I\+\_\+\+Internal\+\_\+packets\+\_\+\+Get\+\_\+packet}} (void)
+\begin{DoxyCompactList}\small\item\em Obtains an internal thread. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{mpci_8c_a5d2c645a6e29e4826a367a6867517dd5}\label{mpci_8c_a5d2c645a6e29e4826a367a6867517dd5}} 
+{\bfseries R\+T\+E\+M\+S\+\_\+\+S\+Y\+S\+I\+N\+I\+T\+\_\+\+I\+T\+EM} (\+\_\+\+M\+P\+C\+I\+\_\+\+Handler\+\_\+early\+\_\+initialization, R\+T\+E\+M\+S\+\_\+\+S\+Y\+S\+I\+N\+I\+T\+\_\+\+M\+P\+\_\+\+E\+A\+R\+LY, R\+T\+E\+M\+S\+\_\+\+S\+Y\+S\+I\+N\+I\+T\+\_\+\+O\+R\+D\+E\+R\+\_\+\+M\+I\+D\+D\+LE)
+\item 
+\mbox{\Hypertarget{mpci_8c_aa8d9dcc8cf57ab04773ed248470bfff9}\label{mpci_8c_aa8d9dcc8cf57ab04773ed248470bfff9}} 
+{\bfseries R\+T\+E\+M\+S\+\_\+\+S\+Y\+S\+I\+N\+I\+T\+\_\+\+I\+T\+EM} (\+\_\+\+M\+P\+C\+I\+\_\+\+Handler\+\_\+initialization, R\+T\+E\+M\+S\+\_\+\+S\+Y\+S\+I\+N\+I\+T\+\_\+\+MP, R\+T\+E\+M\+S\+\_\+\+S\+Y\+S\+I\+N\+I\+T\+\_\+\+O\+R\+D\+E\+R\+\_\+\+M\+I\+D\+D\+LE)
+\item 
+\mbox{\Hypertarget{mpci_8c_a43cbd83603c43bcfc4dd60d2abdf5ae7}\label{mpci_8c_a43cbd83603c43bcfc4dd60d2abdf5ae7}} 
+{\bfseries R\+T\+E\+M\+S\+\_\+\+S\+Y\+S\+I\+N\+I\+T\+\_\+\+I\+T\+EM} (\+\_\+\+M\+P\+C\+I\+\_\+\+Create\+\_\+server, R\+T\+E\+M\+S\+\_\+\+S\+Y\+S\+I\+N\+I\+T\+\_\+\+M\+P\+\_\+\+S\+E\+R\+V\+ER, R\+T\+E\+M\+S\+\_\+\+S\+Y\+S\+I\+N\+I\+T\+\_\+\+O\+R\+D\+E\+R\+\_\+\+M\+I\+D\+D\+LE)
+\item 
+\mbox{\Hypertarget{mpci_8c_a66f1aa54f9cc4de8b0cb67b08e88203b}\label{mpci_8c_a66f1aa54f9cc4de8b0cb67b08e88203b}} 
+{\bfseries R\+T\+E\+M\+S\+\_\+\+S\+Y\+S\+I\+N\+I\+T\+\_\+\+I\+T\+EM} (\+\_\+\+M\+P\+C\+I\+\_\+\+Finalize, R\+T\+E\+M\+S\+\_\+\+S\+Y\+S\+I\+N\+I\+T\+\_\+\+M\+P\+\_\+\+F\+I\+N\+A\+L\+I\+ZE, R\+T\+E\+M\+S\+\_\+\+S\+Y\+S\+I\+N\+I\+T\+\_\+\+O\+R\+D\+E\+R\+\_\+\+M\+I\+D\+D\+LE)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{mpci_8c_ab95f5a13128051fa81d7a93306108283}\label{mpci_8c_ab95f5a13128051fa81d7a93306108283}} 
+bool {\bfseries \+\_\+\+System\+\_\+state\+\_\+\+Is\+\_\+multiprocessing}
+\item 
+\mbox{\hyperlink{structCORE__semaphore__Control}{C\+O\+R\+E\+\_\+semaphore\+\_\+\+Control}} \mbox{\hyperlink{mpci_8c_a099eba59cd11c25eb8d7fc6e1685ade0}{\+\_\+\+M\+P\+C\+I\+\_\+\+Semaphore}}
+\item 
+\mbox{\hyperlink{structThread__queue__Control}{Thread\+\_\+queue\+\_\+\+Control}} \mbox{\hyperlink{group__RTEMSScoreMPCI_gab1454472037213316f1ba2a85c29820b}{\+\_\+\+M\+P\+C\+I\+\_\+\+Remote\+\_\+blocked\+\_\+threads}}
+\item 
+\mbox{\hyperlink{structMPCI__Control}{M\+P\+C\+I\+\_\+\+Control}} $\ast$ \mbox{\hyperlink{group__RTEMSScoreMPCI_ga6b0a65f9ac68015c46d17f17f44a5bd9}{\+\_\+\+M\+P\+C\+I\+\_\+table}}
+\item 
+\mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$ \mbox{\hyperlink{group__RTEMSScoreMPCI_gac0894f96d2d7e99feb038917fdb3c9cb}{\+\_\+\+M\+P\+C\+I\+\_\+\+Receive\+\_\+server\+\_\+tcb}}
+\begin{DoxyCompactList}\small\item\em Pointer to MP thread control block. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreMPCI_gafc97753e25c76740b182f3e8cdf74cc8}{M\+P\+C\+I\+\_\+\+Packet\+\_\+processor}} \mbox{\hyperlink{group__RTEMSScoreMPCI_ga390b6f48eb63a6879d3c3c2fcb38a4e8}{\+\_\+\+M\+P\+C\+I\+\_\+\+Packet\+\_\+processors}} \mbox{[}\mbox{\hyperlink{group__RTEMSScoreMPPacket_ga968e1b3a70aac1692b70ff42f9525bc7}{M\+P\+\_\+\+P\+A\+C\+K\+E\+T\+\_\+\+C\+L\+A\+S\+S\+E\+S\+\_\+\+L\+A\+ST}}+1\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Multiprocessing Communications Interface (M\+P\+CI) Handler. 
+
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{mpci_8c_a099eba59cd11c25eb8d7fc6e1685ade0}\label{mpci_8c_a099eba59cd11c25eb8d7fc6e1685ade0}} 
+\index{mpci.c@{mpci.c}!\_MPCI\_Semaphore@{\_MPCI\_Semaphore}}
+\index{\_MPCI\_Semaphore@{\_MPCI\_Semaphore}!mpci.c@{mpci.c}}
+\subsubsection{\texorpdfstring{\_MPCI\_Semaphore}{\_MPCI\_Semaphore}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structCORE__semaphore__Control}{C\+O\+R\+E\+\_\+semaphore\+\_\+\+Control}} \+\_\+\+M\+P\+C\+I\+\_\+\+Semaphore}
+
+This is the core semaphore which the M\+P\+CI Receive Server blocks on. 

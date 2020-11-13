@@ -1,0 +1,249 @@
+\hypertarget{mpc55xxevb_2console_2console-generic_8c}{}\section{bsps/powerpc/mpc55xxevb/console/console-\/generic.c File Reference}
+\label{mpc55xxevb_2console_2console-generic_8c}\index{bsps/powerpc/mpc55xxevb/console/console-\/generic.c@{bsps/powerpc/mpc55xxevb/console/console-\/generic.c}}
+
+
+Generic console driver implementation.  
+
+
+{\ttfamily \#include $<$sys/cdefs.\+h$>$}\newline
+{\ttfamily \#include $<$bsp.\+h$>$}\newline
+{\ttfamily \#include $<$bsp/console-\/generic.\+h$>$}\newline
+{\ttfamily \#include $<$bsp/fatal.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/bsp\+Io.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/console.\+h$>$}\newline
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+device\+\_\+driver}} \mbox{\hyperlink{mpc55xxevb_2console_2console-generic_8c_aafa42e88bcc94ce0f507f77be54a90a6}{console\+\_\+initialize}} (rtems\+\_\+device\+\_\+major\+\_\+number major, rtems\+\_\+device\+\_\+minor\+\_\+number minor, void $\ast$arg)
+\begin{DoxyCompactList}\small\item\em Console initialization entry point. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+device\+\_\+driver}} \mbox{\hyperlink{mpc55xxevb_2console_2console-generic_8c_a3f4320ff384009c3bdfa6ec4f1b79501}{console\+\_\+open}} (rtems\+\_\+device\+\_\+major\+\_\+number major, rtems\+\_\+device\+\_\+minor\+\_\+number minor, void $\ast$arg)
+\begin{DoxyCompactList}\small\item\em Console open entry point. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+device\+\_\+driver}} \mbox{\hyperlink{mpc55xxevb_2console_2console-generic_8c_a4efabb094608f8155b1a679e03f2eafc}{console\+\_\+close}} (rtems\+\_\+device\+\_\+major\+\_\+number major, rtems\+\_\+device\+\_\+minor\+\_\+number minor, void $\ast$arg)
+\begin{DoxyCompactList}\small\item\em Console close entry point. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+device\+\_\+driver}} \mbox{\hyperlink{mpc55xxevb_2console_2console-generic_8c_affd7cbaa034887f37032640f39c74b0d}{console\+\_\+read}} (rtems\+\_\+device\+\_\+major\+\_\+number major, rtems\+\_\+device\+\_\+minor\+\_\+number minor, void $\ast$arg)
+\begin{DoxyCompactList}\small\item\em Console read entry point. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+device\+\_\+driver}} \mbox{\hyperlink{mpc55xxevb_2console_2console-generic_8c_a211cf468eb7aec89e37bc784a62753ce}{console\+\_\+write}} (rtems\+\_\+device\+\_\+major\+\_\+number major, rtems\+\_\+device\+\_\+minor\+\_\+number minor, void $\ast$arg)
+\begin{DoxyCompactList}\small\item\em Console write entry point. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+device\+\_\+driver}} \mbox{\hyperlink{mpc55xxevb_2console_2console-generic_8c_a3ecfcbb4d683d7d77476039aba0f94db}{console\+\_\+control}} (rtems\+\_\+device\+\_\+major\+\_\+number major, rtems\+\_\+device\+\_\+minor\+\_\+number minor, void $\ast$arg)
+\begin{DoxyCompactList}\small\item\em Console \mbox{\hyperlink{structIO}{IO}} control entry point. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{bspIo_8h_a0b0dff1c3d35110ae303b4098c60dc14}{B\+S\+P\+\_\+output\+\_\+char\+\_\+function\+\_\+type}} \mbox{\hyperlink{mpc55xxevb_2console_2console-generic_8c_a5fb8c9c4f076f0340b4a17ed432ced5c}{B\+S\+P\+\_\+output\+\_\+char}} = console\+\_\+generic\+\_\+char\+\_\+out\+\_\+init
+\item 
+\mbox{\hyperlink{bspIo_8h_a132b9ceff428a634ece5dfaac7ef1006}{B\+S\+P\+\_\+polling\+\_\+getchar\+\_\+function\+\_\+type}} \mbox{\hyperlink{mpc55xxevb_2console_2console-generic_8c_ae5846eecdfa8f2813504371bf01c29b0}{B\+S\+P\+\_\+poll\+\_\+char}} = console\+\_\+generic\+\_\+char\+\_\+in
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Generic console driver implementation. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{mpc55xxevb_2console_2console-generic_8c_a4efabb094608f8155b1a679e03f2eafc}\label{mpc55xxevb_2console_2console-generic_8c_a4efabb094608f8155b1a679e03f2eafc}} 
+\index{console-\/generic.c@{console-\/generic.c}!console\_close@{console\_close}}
+\index{console\_close@{console\_close}!console-\/generic.c@{console-\/generic.c}}
+\subsubsection{\texorpdfstring{console\_close()}{console\_close()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+device\+\_\+driver}} console\+\_\+close (\begin{DoxyParamCaption}\item[{rtems\+\_\+device\+\_\+major\+\_\+number}]{major,  }\item[{rtems\+\_\+device\+\_\+minor\+\_\+number}]{minor,  }\item[{void $\ast$}]{arg }\end{DoxyParamCaption})}
+
+
+
+Console close entry point. 
+
+This method closes a specific device supported by the console device driver.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em major} & is the device driver major number \\
+\hline
+\mbox{\texttt{ in}}  & {\em minor} & is the device driver minor number \\
+\hline
+\mbox{\texttt{ in}}  & {\em arg} & is the parameters to this call\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em R\+T\+E\+M\+S\+\_\+\+S\+U\+C\+C\+E\+S\+S\+F\+UL} & The device driver is successfully closed. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{mpc55xxevb_2console_2console-generic_8c_a3ecfcbb4d683d7d77476039aba0f94db}\label{mpc55xxevb_2console_2console-generic_8c_a3ecfcbb4d683d7d77476039aba0f94db}} 
+\index{console-\/generic.c@{console-\/generic.c}!console\_control@{console\_control}}
+\index{console\_control@{console\_control}!console-\/generic.c@{console-\/generic.c}}
+\subsubsection{\texorpdfstring{console\_control()}{console\_control()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+device\+\_\+driver}} console\+\_\+control (\begin{DoxyParamCaption}\item[{rtems\+\_\+device\+\_\+major\+\_\+number}]{major,  }\item[{rtems\+\_\+device\+\_\+minor\+\_\+number}]{minor,  }\item[{void $\ast$}]{arg }\end{DoxyParamCaption})}
+
+
+
+Console \mbox{\hyperlink{structIO}{IO}} control entry point. 
+
+This method performs an \mbox{\hyperlink{structIO}{IO}} Control operation on a specific device supported by the console device driver.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em major} & is the device driver major number \\
+\hline
+\mbox{\texttt{ in}}  & {\em minor} & is the device driver minor number \\
+\hline
+\mbox{\texttt{ in}}  & {\em arg} & is the parameters to this call\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em R\+T\+E\+M\+S\+\_\+\+S\+U\+C\+C\+E\+S\+S\+F\+UL} & the device driver \mbox{\hyperlink{structIO}{IO}} control operation is successfully performed. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{mpc55xxevb_2console_2console-generic_8c_aafa42e88bcc94ce0f507f77be54a90a6}\label{mpc55xxevb_2console_2console-generic_8c_aafa42e88bcc94ce0f507f77be54a90a6}} 
+\index{console-\/generic.c@{console-\/generic.c}!console\_initialize@{console\_initialize}}
+\index{console\_initialize@{console\_initialize}!console-\/generic.c@{console-\/generic.c}}
+\subsubsection{\texorpdfstring{console\_initialize()}{console\_initialize()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+device\+\_\+driver}} console\+\_\+initialize (\begin{DoxyParamCaption}\item[{rtems\+\_\+device\+\_\+major\+\_\+number}]{major,  }\item[{rtems\+\_\+device\+\_\+minor\+\_\+number}]{minor,  }\item[{void $\ast$}]{arg }\end{DoxyParamCaption})}
+
+
+
+Console initialization entry point. 
+
+This method initializes the console device driver.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em major} & is the device driver major number. \\
+\hline
+\mbox{\texttt{ in}}  & {\em minor} & is the device driver minor number. \\
+\hline
+\mbox{\texttt{ in}}  & {\em arg} & is the parameters to this call.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em R\+T\+E\+M\+S\+\_\+\+S\+U\+C\+C\+E\+S\+S\+F\+UL} & The device driver is successfully initialized.\\
+\hline
+\end{DoxyRetVals}
+Console initialization entry point.
+
+Initialize all serial drivers specified in driver\+\_\+context\+\_\+table
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em major} & \\
+\hline
+\mbox{\texttt{ in}}  & {\em minor} & \\
+\hline
+\mbox{\texttt{ in}}  & {\em arg} & \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em R\+T\+E\+M\+S\+\_\+\+S\+U\+C\+C\+E\+S\+S\+F\+UL} & Initialization completed\\
+\hline
+\end{DoxyRetVals}
+This routine initializes the console \mbox{\hyperlink{structIO}{IO}} driver.
+
+Parameters 
+\begin{DoxyParams}{Parameters}
+{\em major} & major number \\
+\hline
+{\em minor} & minor number\\
+\hline
+\end{DoxyParams}
+Output parameters\+: N\+O\+NE
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\mbox{\Hypertarget{mpc55xxevb_2console_2console-generic_8c_a3f4320ff384009c3bdfa6ec4f1b79501}\label{mpc55xxevb_2console_2console-generic_8c_a3f4320ff384009c3bdfa6ec4f1b79501}} 
+\index{console-\/generic.c@{console-\/generic.c}!console\_open@{console\_open}}
+\index{console\_open@{console\_open}!console-\/generic.c@{console-\/generic.c}}
+\subsubsection{\texorpdfstring{console\_open()}{console\_open()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+device\+\_\+driver}} console\+\_\+open (\begin{DoxyParamCaption}\item[{rtems\+\_\+device\+\_\+major\+\_\+number}]{major,  }\item[{rtems\+\_\+device\+\_\+minor\+\_\+number}]{minor,  }\item[{void $\ast$}]{arg }\end{DoxyParamCaption})}
+
+
+
+Console open entry point. 
+
+This method opens a specific device supported by the console device driver.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em major} & is the device driver major number \\
+\hline
+\mbox{\texttt{ in}}  & {\em minor} & is the device driver minor number \\
+\hline
+\mbox{\texttt{ in}}  & {\em arg} & is the parameters to this call\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em R\+T\+E\+M\+S\+\_\+\+S\+U\+C\+C\+E\+S\+S\+F\+UL} & The device driver is successfully opened. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{mpc55xxevb_2console_2console-generic_8c_affd7cbaa034887f37032640f39c74b0d}\label{mpc55xxevb_2console_2console-generic_8c_affd7cbaa034887f37032640f39c74b0d}} 
+\index{console-\/generic.c@{console-\/generic.c}!console\_read@{console\_read}}
+\index{console\_read@{console\_read}!console-\/generic.c@{console-\/generic.c}}
+\subsubsection{\texorpdfstring{console\_read()}{console\_read()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+device\+\_\+driver}} console\+\_\+read (\begin{DoxyParamCaption}\item[{rtems\+\_\+device\+\_\+major\+\_\+number}]{major,  }\item[{rtems\+\_\+device\+\_\+minor\+\_\+number}]{minor,  }\item[{void $\ast$}]{arg }\end{DoxyParamCaption})}
+
+
+
+Console read entry point. 
+
+This method reads from a specific device supported by the console device driver.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em major} & is the device driver major number \\
+\hline
+\mbox{\texttt{ in}}  & {\em minor} & is the device driver minor number \\
+\hline
+\mbox{\texttt{ in}}  & {\em arg} & is the parameters to this call\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em R\+T\+E\+M\+S\+\_\+\+S\+U\+C\+C\+E\+S\+S\+F\+UL} & The device is successfully read from. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{mpc55xxevb_2console_2console-generic_8c_a211cf468eb7aec89e37bc784a62753ce}\label{mpc55xxevb_2console_2console-generic_8c_a211cf468eb7aec89e37bc784a62753ce}} 
+\index{console-\/generic.c@{console-\/generic.c}!console\_write@{console\_write}}
+\index{console\_write@{console\_write}!console-\/generic.c@{console-\/generic.c}}
+\subsubsection{\texorpdfstring{console\_write()}{console\_write()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+device\+\_\+driver}} console\+\_\+write (\begin{DoxyParamCaption}\item[{rtems\+\_\+device\+\_\+major\+\_\+number}]{major,  }\item[{rtems\+\_\+device\+\_\+minor\+\_\+number}]{minor,  }\item[{void $\ast$}]{arg }\end{DoxyParamCaption})}
+
+
+
+Console write entry point. 
+
+This method writes to a specific device supported by the console device driver.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em major} & is the device driver major number \\
+\hline
+\mbox{\texttt{ in}}  & {\em minor} & is the device driver minor number \\
+\hline
+\mbox{\texttt{ in}}  & {\em arg} & is the parameters to this call\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em R\+T\+E\+M\+S\+\_\+\+S\+U\+C\+C\+E\+S\+S\+F\+UL} & The device is successfully written. \\
+\hline
+\end{DoxyRetVals}
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{mpc55xxevb_2console_2console-generic_8c_a5fb8c9c4f076f0340b4a17ed432ced5c}\label{mpc55xxevb_2console_2console-generic_8c_a5fb8c9c4f076f0340b4a17ed432ced5c}} 
+\index{console-\/generic.c@{console-\/generic.c}!BSP\_output\_char@{BSP\_output\_char}}
+\index{BSP\_output\_char@{BSP\_output\_char}!console-\/generic.c@{console-\/generic.c}}
+\subsubsection{\texorpdfstring{BSP\_output\_char}{BSP\_output\_char}}
+{\footnotesize\ttfamily \mbox{\hyperlink{bspIo_8h_a0b0dff1c3d35110ae303b4098c60dc14}{B\+S\+P\+\_\+output\+\_\+char\+\_\+function\+\_\+type}} B\+S\+P\+\_\+output\+\_\+char = console\+\_\+generic\+\_\+char\+\_\+out\+\_\+init}
+
+This variable points to the B\+SP provided method to output a character for the purposes of debug output.
+
+It must output only the specific character. It must not perform character translations, e.\+g. \char`\"{}\textbackslash{}n\char`\"{} to \char`\"{}\textbackslash{}r\textbackslash{}n\char`\"{}. \mbox{\Hypertarget{mpc55xxevb_2console_2console-generic_8c_ae5846eecdfa8f2813504371bf01c29b0}\label{mpc55xxevb_2console_2console-generic_8c_ae5846eecdfa8f2813504371bf01c29b0}} 
+\index{console-\/generic.c@{console-\/generic.c}!BSP\_poll\_char@{BSP\_poll\_char}}
+\index{BSP\_poll\_char@{BSP\_poll\_char}!console-\/generic.c@{console-\/generic.c}}
+\subsubsection{\texorpdfstring{BSP\_poll\_char}{BSP\_poll\_char}}
+{\footnotesize\ttfamily \mbox{\hyperlink{bspIo_8h_a132b9ceff428a634ece5dfaac7ef1006}{B\+S\+P\+\_\+polling\+\_\+getchar\+\_\+function\+\_\+type}} B\+S\+P\+\_\+poll\+\_\+char = console\+\_\+generic\+\_\+char\+\_\+in}
+
+This variable points to the B\+SP provided method to input a character for the purposes of debug input. 

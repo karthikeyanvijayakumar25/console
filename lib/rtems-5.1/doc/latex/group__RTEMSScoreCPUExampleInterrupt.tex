@@ -1,0 +1,110 @@
+\hypertarget{group__RTEMSScoreCPUExampleInterrupt}{}\section{Processor Dependent Interrupt Management}
+\label{group__RTEMSScoreCPUExampleInterrupt}\index{Processor Dependent Interrupt Management@{Processor Dependent Interrupt Management}}
+R\+T\+E\+MS supports a software managed interrupt stack. The interrupt stacks are statically allocated by $<$\mbox{\hyperlink{confdefs_8h}{rtems/confdefs.\+h}}$>$ and the switch is performed by hardware or the interrupt processing code. These variables contain pointers to the lowest and highest addresses in the chunk of memory allocated for the interrupt stack. Since it is unknown whether the stack grows up or down (in general), this gives the C\+PU dependent code the option of picking the version it wants to use.
+
+Port Specific Information\+:
+
+X\+XX document implementation including references if appropriate
+
+The following defines the number of bits actually used in the interrupt field of the task mode. How those bits map to the C\+PU interrupt levels is defined by the routine \mbox{\hyperlink{group__RTEMSScoreCPUARM_ga43820ba3d51d7a699c22fce8cac93ef1}{\+\_\+\+C\+P\+U\+\_\+\+I\+S\+R\+\_\+\+Set\+\_\+level}}.
+
+Port Specific Information\+:
+
+X\+XX document implementation including references if appropriate
+
+This defines the number of entries in the \+\_\+\+I\+S\+R\+\_\+\+Vector\+\_\+table managed by R\+T\+E\+MS in case C\+P\+U\+\_\+\+S\+I\+M\+P\+L\+E\+\_\+\+V\+E\+C\+T\+O\+R\+E\+D\+\_\+\+I\+N\+T\+E\+R\+R\+U\+P\+TS is defined to T\+R\+UE. It must be a compile-\/time constant.
+
+It must be undefined in case C\+P\+U\+\_\+\+S\+I\+M\+P\+L\+E\+\_\+\+V\+E\+C\+T\+O\+R\+E\+D\+\_\+\+I\+N\+T\+E\+R\+R\+U\+P\+TS is defined to F\+A\+L\+SE.
+
+This defines the highest interrupt vector number for this port in case C\+P\+U\+\_\+\+S\+I\+M\+P\+L\+E\+\_\+\+V\+E\+C\+T\+O\+R\+E\+D\+\_\+\+I\+N\+T\+E\+R\+R\+U\+P\+TS is defined to T\+R\+UE. It must be less than C\+P\+U\+\_\+\+I\+N\+T\+E\+R\+R\+U\+P\+T\+\_\+\+N\+U\+M\+B\+E\+R\+\_\+\+O\+F\+\_\+\+V\+E\+C\+T\+O\+RS. It may be not a compile-\/time constant.
+
+It must be undefined in case C\+P\+U\+\_\+\+S\+I\+M\+P\+L\+E\+\_\+\+V\+E\+C\+T\+O\+R\+E\+D\+\_\+\+I\+N\+T\+E\+R\+R\+U\+P\+TS is defined to F\+A\+L\+SE.
+
+This is defined if the port has a special way to report the I\+SR nesting level. Most ports maintain the variable {\itshape \+\_\+\+I\+S\+R\+\_\+\+Nest\+\_\+level}.
+
+Support routine to initialize the R\+T\+E\+MS vector table after it is allocated.
+
+Port Specific Information\+:
+
+X\+XX document implementation including references if appropriate
+
+Disable all interrupts for an R\+T\+E\+MS critical section. The previous level is returned in {\itshape \+\_\+isr\+\_\+cookie}.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em \+\_\+isr\+\_\+cookie} & will contain the previous level cookie\\
+\hline
+\end{DoxyParams}
+Port Specific Information\+:
+
+X\+XX document implementation including references if appropriate
+
+Enable interrupts to the previous level (returned by \+\_\+\+C\+P\+U\+\_\+\+I\+S\+R\+\_\+\+Disable). This indicates the end of an R\+T\+E\+MS critical section. The parameter {\itshape \+\_\+isr\+\_\+cookie} is not modified.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+isr\+\_\+cookie} & contain the previous level cookie\\
+\hline
+\end{DoxyParams}
+Port Specific Information\+:
+
+X\+XX document implementation including references if appropriate
+
+This temporarily restores the interrupt to {\itshape \+\_\+isr\+\_\+cookie} before immediately disabling them again. This is used to divide long R\+T\+E\+MS critical sections into two or more parts. The parameter {\itshape \+\_\+isr\+\_\+cookie} is not modified.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+isr\+\_\+cookie} & contain the previous level cookie\\
+\hline
+\end{DoxyParams}
+Port Specific Information\+:
+
+X\+XX document implementation including references if appropriate
+
+This routine and \mbox{\hyperlink{group__RTEMSScoreCPUARM_ga1d9dcab9170d532b6634a5620385adbd}{\+\_\+\+C\+P\+U\+\_\+\+I\+S\+R\+\_\+\+Get\+\_\+level}} Map the interrupt level in task mode onto the hardware that the C\+PU actually provides. Currently, interrupt levels which do not map onto the C\+PU in a generic fashion are undefined. Someday, it would be nice if these were \char`\"{}mapped\char`\"{} by the application via a callout. For example, m68k has 8 levels 0 -\/ 7, levels 8 -\/ 255 would be available for bsp/application specific meaning. This could be used to manage a programmable interrupt controller via the rtems\+\_\+task\+\_\+mode directive.
+
+Port Specific Information\+:
+
+X\+XX document implementation including references if appropriate
+
+Return the current interrupt disable level for this task in the format used by the interrupt level portion of the task mode.
+
+N\+O\+TE\+: This routine usually must be implemented as a subroutine.
+
+Port Specific Information\+:
+
+X\+XX document implementation including references if appropriate
+
+This routine installs a \char`\"{}raw\char`\"{} interrupt handler directly into the processor\textquotesingle{}s vector table.
+
+This routine is not used by architecture-\/independent code and thus optional.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em vector} & is the vector number \\
+\hline
+\mbox{\texttt{ in}}  & {\em new\+\_\+handler} & is the raw I\+SR handler to install \\
+\hline
+\mbox{\texttt{ in}}  & {\em old\+\_\+handler} & is the previously installed I\+SR Handler\\
+\hline
+\end{DoxyParams}
+Port Specific Information\+:
+
+X\+XX document implementation including references if appropriate
+
+This routine installs an interrupt vector.
+
+This routine is only used by architecture-\/independent code if C\+P\+U\+\_\+\+S\+I\+M\+P\+L\+E\+\_\+\+V\+E\+C\+T\+O\+R\+E\+D\+\_\+\+I\+N\+T\+E\+R\+R\+U\+P\+TS == T\+R\+UE, otherwise it is optional.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em vector} & is the vector number \\
+\hline
+\mbox{\texttt{ in}}  & {\em new\+\_\+handler} & is the R\+T\+E\+MS I\+SR handler to install \\
+\hline
+\mbox{\texttt{ in}}  & {\em old\+\_\+handler} & is the previously installed I\+SR Handler\\
+\hline
+\end{DoxyParams}
+Port Specific Information\+:
+
+X\+XX document implementation including references if appropriate 

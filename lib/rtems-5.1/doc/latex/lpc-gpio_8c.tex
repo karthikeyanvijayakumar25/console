@@ -1,0 +1,141 @@
+\hypertarget{lpc-gpio_8c}{}\section{bsps/arm/lpc176x/gpio/lpc-\/gpio.c File Reference}
+\label{lpc-gpio_8c}\index{bsps/arm/lpc176x/gpio/lpc-\/gpio.c@{bsps/arm/lpc176x/gpio/lpc-\/gpio.c}}
+
+
+G\+P\+IO library for the lpc176x bsp.  
+
+
+{\ttfamily \#include $<$assert.\+h$>$}\newline
+{\ttfamily \#include $<$bsp/irq.\+h$>$}\newline
+{\ttfamily \#include $<$bsp/io.\+h$>$}\newline
+{\ttfamily \#include $<$bsp/lpc-\/gpio.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/status-\/checks.\+h$>$}\newline
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{lpc-gpio_8c_a7a76b077d3ffba00d57d0b9b7ede28f2}{lpc176x\+\_\+gpio\+\_\+config}} (const \mbox{\hyperlink{common-types_8h_a8215ced1557c43bc5925b691a3c1dc23}{lpc176x\+\_\+pin\+\_\+number}} pin, const \mbox{\hyperlink{gpio-defs_8h_a0c9e959ab33ca3965f03caf07c8ecc17}{lpc176x\+\_\+gpio\+\_\+direction}} dir)
+\begin{DoxyCompactList}\small\item\em Configures the pin as input or output G\+P\+IO. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{lpc-gpio_8c_a94a3ba04eb2443625898f44b797acdfe}{lpc176x\+\_\+gpio\+\_\+config\+\_\+input\+\_\+with\+\_\+interrupt}} (const \mbox{\hyperlink{common-types_8h_a8215ced1557c43bc5925b691a3c1dc23}{lpc176x\+\_\+pin\+\_\+number}} pin, const \mbox{\hyperlink{gpio-defs_8h_afc30bf25b9862f6272f1bab077f8016b}{lpc176x\+\_\+gpio\+\_\+interrupt}} edge, const \mbox{\hyperlink{gpio-defs_8h_aee89c4be418a21db878253cdf558ecc5}{lpc176x\+\_\+gpio\+\_\+interrupt\+\_\+function}} isr\+\_\+funct)
+\begin{DoxyCompactList}\small\item\em Configures the pin as input, enables interrupt for an edge/s and sets isrfunct as the function to call when that interrupt occurs. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{lpc-gpio_8c_ac96e0713a459b1581759133a858ebc73}{lpc176x\+\_\+gpio\+\_\+set\+\_\+pin}} (const \mbox{\hyperlink{common-types_8h_a8215ced1557c43bc5925b691a3c1dc23}{lpc176x\+\_\+pin\+\_\+number}} pin)
+\begin{DoxyCompactList}\small\item\em Sets the output pin to 1. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{lpc-gpio_8c_a5bae3a3990dd0e2fe8769c2221130c70}{lpc176x\+\_\+gpio\+\_\+clear\+\_\+pin}} (const \mbox{\hyperlink{common-types_8h_a8215ced1557c43bc5925b691a3c1dc23}{lpc176x\+\_\+pin\+\_\+number}} pin)
+\begin{DoxyCompactList}\small\item\em Sets the output pin to 0. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{lpc-gpio_8c_a8aa6fe8e8aac1e5ba18c0a90b2c61c97}{lpc176x\+\_\+gpio\+\_\+write\+\_\+pin}} (const \mbox{\hyperlink{common-types_8h_a8215ced1557c43bc5925b691a3c1dc23}{lpc176x\+\_\+pin\+\_\+number}} pin, const bool value)
+\begin{DoxyCompactList}\small\item\em Sets the output pin to 0 or 1 according to value. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{lpc-gpio_8c_ab51cfd202c57128af7db6ce1927ab4a5}{lpc176x\+\_\+gpio\+\_\+get\+\_\+pin\+\_\+value}} (const \mbox{\hyperlink{common-types_8h_a8215ced1557c43bc5925b691a3c1dc23}{lpc176x\+\_\+pin\+\_\+number}} pin, bool $\ast$pin\+\_\+value)
+\begin{DoxyCompactList}\small\item\em Returns the value at the given input pin. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+G\+P\+IO library for the lpc176x bsp. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{lpc-gpio_8c_a5bae3a3990dd0e2fe8769c2221130c70}\label{lpc-gpio_8c_a5bae3a3990dd0e2fe8769c2221130c70}} 
+\index{lpc-\/gpio.c@{lpc-\/gpio.c}!lpc176x\_gpio\_clear\_pin@{lpc176x\_gpio\_clear\_pin}}
+\index{lpc176x\_gpio\_clear\_pin@{lpc176x\_gpio\_clear\_pin}!lpc-\/gpio.c@{lpc-\/gpio.c}}
+\subsubsection{\texorpdfstring{lpc176x\_gpio\_clear\_pin()}{lpc176x\_gpio\_clear\_pin()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} lpc176x\+\_\+gpio\+\_\+clear\+\_\+pin (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{common-types_8h_a8215ced1557c43bc5925b691a3c1dc23}{lpc176x\+\_\+pin\+\_\+number}}}]{pin }\end{DoxyParamCaption})}
+
+
+
+Sets the output pin to 0. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pin} & The pin to set \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{lpc-gpio_8c_a7a76b077d3ffba00d57d0b9b7ede28f2}\label{lpc-gpio_8c_a7a76b077d3ffba00d57d0b9b7ede28f2}} 
+\index{lpc-\/gpio.c@{lpc-\/gpio.c}!lpc176x\_gpio\_config@{lpc176x\_gpio\_config}}
+\index{lpc176x\_gpio\_config@{lpc176x\_gpio\_config}!lpc-\/gpio.c@{lpc-\/gpio.c}}
+\subsubsection{\texorpdfstring{lpc176x\_gpio\_config()}{lpc176x\_gpio\_config()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} lpc176x\+\_\+gpio\+\_\+config (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{common-types_8h_a8215ced1557c43bc5925b691a3c1dc23}{lpc176x\+\_\+pin\+\_\+number}}}]{pin,  }\item[{\mbox{\hyperlink{gpio-defs_8h_a0c9e959ab33ca3965f03caf07c8ecc17}{lpc176x\+\_\+gpio\+\_\+direction}}}]{dir }\end{DoxyParamCaption})}
+
+
+
+Configures the pin as input or output G\+P\+IO. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pin} & The pin to configure \\
+\hline
+{\em dir} & Input or output. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{lpc-gpio_8c_a94a3ba04eb2443625898f44b797acdfe}\label{lpc-gpio_8c_a94a3ba04eb2443625898f44b797acdfe}} 
+\index{lpc-\/gpio.c@{lpc-\/gpio.c}!lpc176x\_gpio\_config\_input\_with\_interrupt@{lpc176x\_gpio\_config\_input\_with\_interrupt}}
+\index{lpc176x\_gpio\_config\_input\_with\_interrupt@{lpc176x\_gpio\_config\_input\_with\_interrupt}!lpc-\/gpio.c@{lpc-\/gpio.c}}
+\subsubsection{\texorpdfstring{lpc176x\_gpio\_config\_input\_with\_interrupt()}{lpc176x\_gpio\_config\_input\_with\_interrupt()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} lpc176x\+\_\+gpio\+\_\+config\+\_\+input\+\_\+with\+\_\+interrupt (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{common-types_8h_a8215ced1557c43bc5925b691a3c1dc23}{lpc176x\+\_\+pin\+\_\+number}}}]{pin,  }\item[{\mbox{\hyperlink{gpio-defs_8h_afc30bf25b9862f6272f1bab077f8016b}{lpc176x\+\_\+gpio\+\_\+interrupt}}}]{edge,  }\item[{\mbox{\hyperlink{gpio-defs_8h_aee89c4be418a21db878253cdf558ecc5}{lpc176x\+\_\+gpio\+\_\+interrupt\+\_\+function}}}]{isrfunct }\end{DoxyParamCaption})}
+
+
+
+Configures the pin as input, enables interrupt for an edge/s and sets isrfunct as the function to call when that interrupt occurs. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pin} & The pin to configure. \\
+\hline
+{\em edge} & Which edge or edges will activate the interrupt. \\
+\hline
+{\em isrfunct} & The function that is called when the interrupt occurs. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+R\+T\+E\+M\+S\+\_\+\+S\+U\+C\+C\+E\+S\+S\+F\+U\+LL if the configurations was success. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{lpc-gpio_8c_ab51cfd202c57128af7db6ce1927ab4a5}\label{lpc-gpio_8c_ab51cfd202c57128af7db6ce1927ab4a5}} 
+\index{lpc-\/gpio.c@{lpc-\/gpio.c}!lpc176x\_gpio\_get\_pin\_value@{lpc176x\_gpio\_get\_pin\_value}}
+\index{lpc176x\_gpio\_get\_pin\_value@{lpc176x\_gpio\_get\_pin\_value}!lpc-\/gpio.c@{lpc-\/gpio.c}}
+\subsubsection{\texorpdfstring{lpc176x\_gpio\_get\_pin\_value()}{lpc176x\_gpio\_get\_pin\_value()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} lpc176x\+\_\+gpio\+\_\+get\+\_\+pin\+\_\+value (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{common-types_8h_a8215ced1557c43bc5925b691a3c1dc23}{lpc176x\+\_\+pin\+\_\+number}}}]{pin,  }\item[{bool $\ast$}]{pin\+\_\+value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns the value at the given input pin. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pin} & The pin where to read the value. \\
+\hline
+{\em pin\+\_\+value} & T\+R\+UE if the pin value was getted successfuly. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+R\+T\+E\+M\+S\+\_\+\+S\+U\+C\+C\+E\+S\+S\+F\+UL if the pin value was getted successfuly. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{lpc-gpio_8c_ac96e0713a459b1581759133a858ebc73}\label{lpc-gpio_8c_ac96e0713a459b1581759133a858ebc73}} 
+\index{lpc-\/gpio.c@{lpc-\/gpio.c}!lpc176x\_gpio\_set\_pin@{lpc176x\_gpio\_set\_pin}}
+\index{lpc176x\_gpio\_set\_pin@{lpc176x\_gpio\_set\_pin}!lpc-\/gpio.c@{lpc-\/gpio.c}}
+\subsubsection{\texorpdfstring{lpc176x\_gpio\_set\_pin()}{lpc176x\_gpio\_set\_pin()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} lpc176x\+\_\+gpio\+\_\+set\+\_\+pin (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{common-types_8h_a8215ced1557c43bc5925b691a3c1dc23}{lpc176x\+\_\+pin\+\_\+number}}}]{pin }\end{DoxyParamCaption})}
+
+
+
+Sets the output pin to 1. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pin} & The pin to set \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{lpc-gpio_8c_a8aa6fe8e8aac1e5ba18c0a90b2c61c97}\label{lpc-gpio_8c_a8aa6fe8e8aac1e5ba18c0a90b2c61c97}} 
+\index{lpc-\/gpio.c@{lpc-\/gpio.c}!lpc176x\_gpio\_write\_pin@{lpc176x\_gpio\_write\_pin}}
+\index{lpc176x\_gpio\_write\_pin@{lpc176x\_gpio\_write\_pin}!lpc-\/gpio.c@{lpc-\/gpio.c}}
+\subsubsection{\texorpdfstring{lpc176x\_gpio\_write\_pin()}{lpc176x\_gpio\_write\_pin()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} lpc176x\+\_\+gpio\+\_\+write\+\_\+pin (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{common-types_8h_a8215ced1557c43bc5925b691a3c1dc23}{lpc176x\+\_\+pin\+\_\+number}}}]{pin,  }\item[{bool}]{value }\end{DoxyParamCaption})}
+
+
+
+Sets the output pin to 0 or 1 according to value. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pin} & The pin to set \\
+\hline
+{\em value} & the value to set. \\
+\hline
+\end{DoxyParams}

@@ -1,0 +1,99 @@
+\hypertarget{structrtems__flashdisk__config}{}\section{rtems\+\_\+flashdisk\+\_\+config Struct Reference}
+\label{structrtems__flashdisk__config}\index{rtems\_flashdisk\_config@{rtems\_flashdisk\_config}}
+
+
+R\+T\+E\+MS Flash Disk configuration table used to initialise the driver.  
+
+
+
+
+{\ttfamily \#include $<$flashdisk.\+h$>$}
+
+\subsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{structrtems__flashdisk__config_a50fe17de497dc86963fb14f36cfdf118}{block\+\_\+size}}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{structrtems__flashdisk__config_a7fc7be0683fa49cdafd26c536e357ac1}{device\+\_\+count}}
+\item 
+const \mbox{\hyperlink{structrtems__fdisk__device__desc}{rtems\+\_\+fdisk\+\_\+device\+\_\+desc}} $\ast$ \mbox{\hyperlink{structrtems__flashdisk__config_a7444ecefbfec131ca32d608634b31a3d}{devices}}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{structrtems__flashdisk__config_a16d44d1db2e877e5671a9c229b3b4db1}{flags}}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{structrtems__flashdisk__config_ad06eb8b2ba70e0207374aad689d55649}{unavail\+\_\+blocks}}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{structrtems__flashdisk__config_a7b622c625af71aa93caddca226de7a85}{compact\+\_\+segs}}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{structrtems__flashdisk__config_a24b0928570dd72694937dee16ebbc4e5}{avail\+\_\+compact\+\_\+segs}}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{structrtems__flashdisk__config_a335a00f9e02f56e5c8f6ec07dcd2229b}{info\+\_\+level}}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+R\+T\+E\+MS Flash Disk configuration table used to initialise the driver. 
+
+The unavailable blocks count is the number of blocks less than the available number of blocks the file system is given. This means there will always be that number of blocks available when the file system thinks the disk is full. The compaction code needs blocks to compact with so you will never be able to have all the blocks allocated to the file system and be able to full the disk.
+
+The compacting segment count is the number of segments that are moved into a new segment. A high number will mean more segments with low active page counts and high used page counts will be moved into avaliable pages how-\/ever this extends the compaction time due to time it takes the erase the pages. There is no pont making this number greater than the maximum number of pages in a segment.
+
+The available compacting segment count is the level when compaction occurs when writing. If you set this to 0 then compaction will fail because there will be no segments to compact into.
+
+The info level can be 0 for off with error, and abort messages allowed. Level 1 is warning messages, level 1 is informational messages, and level 3 is debugging type prints. The info level can be turned off with a compile time directive on the command line to the compiler of\+: \begin{DoxyVerb}-DRTEMS_FDISK_TRACE=0
+\end{DoxyVerb}
+ 
+
+\subsection{Field Documentation}
+\mbox{\Hypertarget{structrtems__flashdisk__config_a24b0928570dd72694937dee16ebbc4e5}\label{structrtems__flashdisk__config_a24b0928570dd72694937dee16ebbc4e5}} 
+\index{rtems\_flashdisk\_config@{rtems\_flashdisk\_config}!avail\_compact\_segs@{avail\_compact\_segs}}
+\index{avail\_compact\_segs@{avail\_compact\_segs}!rtems\_flashdisk\_config@{rtems\_flashdisk\_config}}
+\subsubsection{\texorpdfstring{avail\_compact\_segs}{avail\_compact\_segs}}
+{\footnotesize\ttfamily uint32\+\_\+t rtems\+\_\+flashdisk\+\_\+config\+::avail\+\_\+compact\+\_\+segs}
+
+The number of segments when compaction occurs when writing. In case the number of segments in the available queue is less than or equal to this number the compaction process will be triggered. The available queue contains all segments with erased blocks. \mbox{\Hypertarget{structrtems__flashdisk__config_a50fe17de497dc86963fb14f36cfdf118}\label{structrtems__flashdisk__config_a50fe17de497dc86963fb14f36cfdf118}} 
+\index{rtems\_flashdisk\_config@{rtems\_flashdisk\_config}!block\_size@{block\_size}}
+\index{block\_size@{block\_size}!rtems\_flashdisk\_config@{rtems\_flashdisk\_config}}
+\subsubsection{\texorpdfstring{block\_size}{block\_size}}
+{\footnotesize\ttfamily uint32\+\_\+t rtems\+\_\+flashdisk\+\_\+config\+::block\+\_\+size}
+
+The block size. \mbox{\Hypertarget{structrtems__flashdisk__config_a7b622c625af71aa93caddca226de7a85}\label{structrtems__flashdisk__config_a7b622c625af71aa93caddca226de7a85}} 
+\index{rtems\_flashdisk\_config@{rtems\_flashdisk\_config}!compact\_segs@{compact\_segs}}
+\index{compact\_segs@{compact\_segs}!rtems\_flashdisk\_config@{rtems\_flashdisk\_config}}
+\subsubsection{\texorpdfstring{compact\_segs}{compact\_segs}}
+{\footnotesize\ttfamily uint32\+\_\+t rtems\+\_\+flashdisk\+\_\+config\+::compact\+\_\+segs}
+
+Max number of segs to compact in one pass. \mbox{\Hypertarget{structrtems__flashdisk__config_a7fc7be0683fa49cdafd26c536e357ac1}\label{structrtems__flashdisk__config_a7fc7be0683fa49cdafd26c536e357ac1}} 
+\index{rtems\_flashdisk\_config@{rtems\_flashdisk\_config}!device\_count@{device\_count}}
+\index{device\_count@{device\_count}!rtems\_flashdisk\_config@{rtems\_flashdisk\_config}}
+\subsubsection{\texorpdfstring{device\_count}{device\_count}}
+{\footnotesize\ttfamily uint32\+\_\+t rtems\+\_\+flashdisk\+\_\+config\+::device\+\_\+count}
+
+The number of devices. \mbox{\Hypertarget{structrtems__flashdisk__config_a7444ecefbfec131ca32d608634b31a3d}\label{structrtems__flashdisk__config_a7444ecefbfec131ca32d608634b31a3d}} 
+\index{rtems\_flashdisk\_config@{rtems\_flashdisk\_config}!devices@{devices}}
+\index{devices@{devices}!rtems\_flashdisk\_config@{rtems\_flashdisk\_config}}
+\subsubsection{\texorpdfstring{devices}{devices}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{structrtems__fdisk__device__desc}{rtems\+\_\+fdisk\+\_\+device\+\_\+desc}}$\ast$ rtems\+\_\+flashdisk\+\_\+config\+::devices}
+
+The device descriptions. \mbox{\Hypertarget{structrtems__flashdisk__config_a16d44d1db2e877e5671a9c229b3b4db1}\label{structrtems__flashdisk__config_a16d44d1db2e877e5671a9c229b3b4db1}} 
+\index{rtems\_flashdisk\_config@{rtems\_flashdisk\_config}!flags@{flags}}
+\index{flags@{flags}!rtems\_flashdisk\_config@{rtems\_flashdisk\_config}}
+\subsubsection{\texorpdfstring{flags}{flags}}
+{\footnotesize\ttfamily uint32\+\_\+t rtems\+\_\+flashdisk\+\_\+config\+::flags}
+
+Set of flags to control driver. \mbox{\Hypertarget{structrtems__flashdisk__config_a335a00f9e02f56e5c8f6ec07dcd2229b}\label{structrtems__flashdisk__config_a335a00f9e02f56e5c8f6ec07dcd2229b}} 
+\index{rtems\_flashdisk\_config@{rtems\_flashdisk\_config}!info\_level@{info\_level}}
+\index{info\_level@{info\_level}!rtems\_flashdisk\_config@{rtems\_flashdisk\_config}}
+\subsubsection{\texorpdfstring{info\_level}{info\_level}}
+{\footnotesize\ttfamily uint32\+\_\+t rtems\+\_\+flashdisk\+\_\+config\+::info\+\_\+level}
+
+Default info level. \mbox{\Hypertarget{structrtems__flashdisk__config_ad06eb8b2ba70e0207374aad689d55649}\label{structrtems__flashdisk__config_ad06eb8b2ba70e0207374aad689d55649}} 
+\index{rtems\_flashdisk\_config@{rtems\_flashdisk\_config}!unavail\_blocks@{unavail\_blocks}}
+\index{unavail\_blocks@{unavail\_blocks}!rtems\_flashdisk\_config@{rtems\_flashdisk\_config}}
+\subsubsection{\texorpdfstring{unavail\_blocks}{unavail\_blocks}}
+{\footnotesize\ttfamily uint32\+\_\+t rtems\+\_\+flashdisk\+\_\+config\+::unavail\+\_\+blocks}
+
+Number of blocks not available to the file system. This number must be greater than or equal to the number of blocks in the largest segment to avoid starvation of erased blocks. 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+cpukit/include/rtems/\mbox{\hyperlink{flashdisk_8h}{flashdisk.\+h}}\end{DoxyCompactItemize}

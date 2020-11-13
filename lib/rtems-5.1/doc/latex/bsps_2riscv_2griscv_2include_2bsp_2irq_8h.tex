@@ -1,0 +1,47 @@
+\hypertarget{bsps_2riscv_2griscv_2include_2bsp_2irq_8h}{}\section{bsps/riscv/griscv/include/bsp/irq.h File Reference}
+\label{bsps_2riscv_2griscv_2include_2bsp_2irq_8h}\index{bsps/riscv/griscv/include/bsp/irq.h@{bsps/riscv/griscv/include/bsp/irq.h}}
+
+
+Interrupt definitions.  
+
+
+{\ttfamily \#include $<$bsp.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/irq.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/irq-\/extension.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/score/processormask.\+h$>$}\newline
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{bsps_2riscv_2griscv_2include_2bsp_2irq_8h_aa8db09b5ad7e0367b3303ac43dd8aba6}\label{bsps_2riscv_2griscv_2include_2bsp_2irq_8h_aa8db09b5ad7e0367b3303ac43dd8aba6}} 
+\#define {\bfseries R\+I\+S\+C\+V\+\_\+\+I\+N\+T\+E\+R\+R\+U\+P\+T\+\_\+\+V\+E\+C\+T\+O\+R\+\_\+\+S\+O\+F\+T\+W\+A\+RE}~0
+\item 
+\mbox{\Hypertarget{bsps_2riscv_2griscv_2include_2bsp_2irq_8h_acc4be3fb557fe02f2389bc36056ef06d}\label{bsps_2riscv_2griscv_2include_2bsp_2irq_8h_acc4be3fb557fe02f2389bc36056ef06d}} 
+\#define {\bfseries R\+I\+S\+C\+V\+\_\+\+I\+N\+T\+E\+R\+R\+U\+P\+T\+\_\+\+V\+E\+C\+T\+O\+R\+\_\+\+T\+I\+M\+ER}~1
+\item 
+\mbox{\Hypertarget{bsps_2riscv_2griscv_2include_2bsp_2irq_8h_a2a3dbc1cc88762974141548d9f7bfe2d}\label{bsps_2riscv_2griscv_2include_2bsp_2irq_8h_a2a3dbc1cc88762974141548d9f7bfe2d}} 
+\#define {\bfseries R\+I\+S\+C\+V\+\_\+\+I\+N\+T\+E\+R\+R\+U\+P\+T\+\_\+\+V\+E\+C\+T\+O\+R\+\_\+\+E\+X\+T\+E\+R\+N\+AL}(x)~((x) + 2)
+\item 
+\mbox{\Hypertarget{bsps_2riscv_2griscv_2include_2bsp_2irq_8h_ac6d4ec979344211ba126f41a0db0b380}\label{bsps_2riscv_2griscv_2include_2bsp_2irq_8h_ac6d4ec979344211ba126f41a0db0b380}} 
+\#define {\bfseries R\+I\+S\+C\+V\+\_\+\+I\+N\+T\+E\+R\+R\+U\+P\+T\+\_\+\+V\+E\+C\+T\+O\+R\+\_\+\+I\+S\+\_\+\+E\+X\+T\+E\+R\+N\+AL}(x)~((x) $>$= 2)
+\item 
+\mbox{\Hypertarget{bsps_2riscv_2griscv_2include_2bsp_2irq_8h_a6a9e40c0a85e52b896345d3868a3b96d}\label{bsps_2riscv_2griscv_2include_2bsp_2irq_8h_a6a9e40c0a85e52b896345d3868a3b96d}} 
+\#define {\bfseries R\+I\+S\+C\+V\+\_\+\+I\+N\+T\+E\+R\+R\+U\+P\+T\+\_\+\+V\+E\+C\+T\+O\+R\+\_\+\+E\+X\+T\+E\+R\+N\+A\+L\+\_\+\+T\+O\+\_\+\+I\+N\+D\+EX}(x)~((x) -\/ 2)
+\item 
+\mbox{\Hypertarget{bsps_2riscv_2griscv_2include_2bsp_2irq_8h_a64cbb02dfea4d6923abccaa0087d2a0d}\label{bsps_2riscv_2griscv_2include_2bsp_2irq_8h_a64cbb02dfea4d6923abccaa0087d2a0d}} 
+\#define {\bfseries B\+S\+P\+\_\+\+I\+N\+T\+E\+R\+R\+U\+P\+T\+\_\+\+V\+E\+C\+T\+O\+R\+\_\+\+M\+IN}~0
+\item 
+\mbox{\Hypertarget{bsps_2riscv_2griscv_2include_2bsp_2irq_8h_ae4a2cdda5816a4c83c2fac0a49880c6e}\label{bsps_2riscv_2griscv_2include_2bsp_2irq_8h_ae4a2cdda5816a4c83c2fac0a49880c6e}} 
+\#define {\bfseries B\+S\+P\+\_\+\+I\+N\+T\+E\+R\+R\+U\+P\+T\+\_\+\+V\+E\+C\+T\+O\+R\+\_\+\+M\+AX}~R\+I\+S\+C\+V\+\_\+\+I\+N\+T\+E\+R\+R\+U\+P\+T\+\_\+\+V\+E\+C\+T\+O\+R\+\_\+\+E\+X\+T\+E\+R\+N\+AL(R\+I\+S\+C\+V\+\_\+\+M\+A\+X\+I\+M\+U\+M\+\_\+\+E\+X\+T\+E\+R\+N\+A\+L\+\_\+\+I\+N\+T\+E\+R\+R\+U\+P\+TS -\/ 1)
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void {\bfseries bsp\+\_\+interrupt\+\_\+set\+\_\+affinity} (\mbox{\hyperlink{group__ClassicINTR_ga3e434c197d99f128e78cae4d9358bd8b}{rtems\+\_\+vector\+\_\+number}} vector, const Processor\+\_\+mask $\ast$affinity)
+\item 
+void {\bfseries bsp\+\_\+interrupt\+\_\+get\+\_\+affinity} (\mbox{\hyperlink{group__ClassicINTR_ga3e434c197d99f128e78cae4d9358bd8b}{rtems\+\_\+vector\+\_\+number}} vector, Processor\+\_\+mask $\ast$affinity)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Interrupt definitions. 
+

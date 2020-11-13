@@ -1,0 +1,114 @@
+\hypertarget{structRate__monotonic__Control}{}\section{Rate\+\_\+monotonic\+\_\+\+Control Struct Reference}
+\label{structRate__monotonic__Control}\index{Rate\_monotonic\_Control@{Rate\_monotonic\_Control}}
+
+
+The following structure defines the control block used to manage each period.  
+
+
+
+
+{\ttfamily \#include $<$ratemondata.\+h$>$}
+
+\subsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structObjects__Control}{Objects\+\_\+\+Control}} \mbox{\hyperlink{structRate__monotonic__Control_a03fc19c9c36d03112da8ec05cc9f5054}{Object}}
+\item 
+\mbox{\hyperlink{structWatchdog__Control}{Watchdog\+\_\+\+Control}} \mbox{\hyperlink{structRate__monotonic__Control_a4bdcf4d867dc6a8395c7da359e2a559d}{Timer}}
+\begin{DoxyCompactList}\small\item\em Protects the rate monotonic period state. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicRateMon_ga0fd6fa9e7304b022e004061d542ca743}{rtems\+\_\+rate\+\_\+monotonic\+\_\+period\+\_\+states}} \mbox{\hyperlink{structRate__monotonic__Control_af28511a5363f94b4e136635e56c4d846}{state}}
+\item 
+\mbox{\Hypertarget{structRate__monotonic__Control_abf78e006586f141540783237efd84ada}\label{structRate__monotonic__Control_abf78e006586f141540783237efd84ada}} 
+\mbox{\hyperlink{structPriority__Node}{Priority\+\_\+\+Node}} \mbox{\hyperlink{structRate__monotonic__Control_abf78e006586f141540783237efd84ada}{Priority}}
+\begin{DoxyCompactList}\small\item\em A priority node for use by the scheduler job release and cancel operations. \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{structRate__monotonic__Control_a3565f22c218535127cdcc2e3d7e6953b}{next\+\_\+length}}
+\item 
+\mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$ \mbox{\hyperlink{structRate__monotonic__Control_ad6d997fcb87f49af5896722a34da7244}{owner}}
+\item 
+\mbox{\hyperlink{group__SuperCoreTimeStamp_ga8508036506d5211c98844c88045e2410}{Timestamp\+\_\+\+Control}} \mbox{\hyperlink{structRate__monotonic__Control_a295f830e730f8c548a743596dbdb308e}{cpu\+\_\+usage\+\_\+period\+\_\+initiated}}
+\item 
+\mbox{\hyperlink{group__SuperCoreTimeStamp_ga8508036506d5211c98844c88045e2410}{Timestamp\+\_\+\+Control}} \mbox{\hyperlink{structRate__monotonic__Control_a3157757fefd869eae191df4b9c77507e}{time\+\_\+period\+\_\+initiated}}
+\item 
+\mbox{\hyperlink{structRate__monotonic__Statistics}{Rate\+\_\+monotonic\+\_\+\+Statistics}} \mbox{\hyperlink{structRate__monotonic__Control_a4857637dc9ed13112fff9aaae0114ea0}{Statistics}}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{structRate__monotonic__Control_a96732887b5cce6f60f55431666e46288}{postponed\+\_\+jobs}}
+\item 
+uint64\+\_\+t \mbox{\hyperlink{structRate__monotonic__Control_af8d39ea22c9c2a17d0362cc2f054b6b6}{latest\+\_\+deadline}}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+The following structure defines the control block used to manage each period. 
+
+State changes are protected by the default thread lock of the owner thread. The owner thread is the thread that created the period object. The owner thread field is immutable after object creation. 
+
+\subsection{Field Documentation}
+\mbox{\Hypertarget{structRate__monotonic__Control_a295f830e730f8c548a743596dbdb308e}\label{structRate__monotonic__Control_a295f830e730f8c548a743596dbdb308e}} 
+\index{Rate\_monotonic\_Control@{Rate\_monotonic\_Control}!cpu\_usage\_period\_initiated@{cpu\_usage\_period\_initiated}}
+\index{cpu\_usage\_period\_initiated@{cpu\_usage\_period\_initiated}!Rate\_monotonic\_Control@{Rate\_monotonic\_Control}}
+\subsubsection{\texorpdfstring{cpu\_usage\_period\_initiated}{cpu\_usage\_period\_initiated}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__SuperCoreTimeStamp_ga8508036506d5211c98844c88045e2410}{Timestamp\+\_\+\+Control}} Rate\+\_\+monotonic\+\_\+\+Control\+::cpu\+\_\+usage\+\_\+period\+\_\+initiated}
+
+This field contains the cpu usage value of the owning thread when the period was initiated. It is used to compute the period\textquotesingle{}s statistics. \mbox{\Hypertarget{structRate__monotonic__Control_af8d39ea22c9c2a17d0362cc2f054b6b6}\label{structRate__monotonic__Control_af8d39ea22c9c2a17d0362cc2f054b6b6}} 
+\index{Rate\_monotonic\_Control@{Rate\_monotonic\_Control}!latest\_deadline@{latest\_deadline}}
+\index{latest\_deadline@{latest\_deadline}!Rate\_monotonic\_Control@{Rate\_monotonic\_Control}}
+\subsubsection{\texorpdfstring{latest\_deadline}{latest\_deadline}}
+{\footnotesize\ttfamily uint64\+\_\+t Rate\+\_\+monotonic\+\_\+\+Control\+::latest\+\_\+deadline}
+
+This field contains the tick of the latest deadline decided by the period watchdog. \mbox{\Hypertarget{structRate__monotonic__Control_a3565f22c218535127cdcc2e3d7e6953b}\label{structRate__monotonic__Control_a3565f22c218535127cdcc2e3d7e6953b}} 
+\index{Rate\_monotonic\_Control@{Rate\_monotonic\_Control}!next\_length@{next\_length}}
+\index{next\_length@{next\_length}!Rate\_monotonic\_Control@{Rate\_monotonic\_Control}}
+\subsubsection{\texorpdfstring{next\_length}{next\_length}}
+{\footnotesize\ttfamily uint32\+\_\+t Rate\+\_\+monotonic\+\_\+\+Control\+::next\+\_\+length}
+
+This field contains the length of the next period to be executed. \mbox{\Hypertarget{structRate__monotonic__Control_a03fc19c9c36d03112da8ec05cc9f5054}\label{structRate__monotonic__Control_a03fc19c9c36d03112da8ec05cc9f5054}} 
+\index{Rate\_monotonic\_Control@{Rate\_monotonic\_Control}!Object@{Object}}
+\index{Object@{Object}!Rate\_monotonic\_Control@{Rate\_monotonic\_Control}}
+\subsubsection{\texorpdfstring{Object}{Object}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structObjects__Control}{Objects\+\_\+\+Control}} Rate\+\_\+monotonic\+\_\+\+Control\+::\+Object}
+
+This field is the object management portion of a Period instance. \mbox{\Hypertarget{structRate__monotonic__Control_ad6d997fcb87f49af5896722a34da7244}\label{structRate__monotonic__Control_ad6d997fcb87f49af5896722a34da7244}} 
+\index{Rate\_monotonic\_Control@{Rate\_monotonic\_Control}!owner@{owner}}
+\index{owner@{owner}!Rate\_monotonic\_Control@{Rate\_monotonic\_Control}}
+\subsubsection{\texorpdfstring{owner}{owner}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}}$\ast$ Rate\+\_\+monotonic\+\_\+\+Control\+::owner}
+
+This field contains a pointer to the T\+CB for the thread which owns and uses this period instance. \mbox{\Hypertarget{structRate__monotonic__Control_a96732887b5cce6f60f55431666e46288}\label{structRate__monotonic__Control_a96732887b5cce6f60f55431666e46288}} 
+\index{Rate\_monotonic\_Control@{Rate\_monotonic\_Control}!postponed\_jobs@{postponed\_jobs}}
+\index{postponed\_jobs@{postponed\_jobs}!Rate\_monotonic\_Control@{Rate\_monotonic\_Control}}
+\subsubsection{\texorpdfstring{postponed\_jobs}{postponed\_jobs}}
+{\footnotesize\ttfamily uint32\+\_\+t Rate\+\_\+monotonic\+\_\+\+Control\+::postponed\+\_\+jobs}
+
+This field contains the number of postponed jobs. When the watchdog timeout, this variable will be increased immediately. \mbox{\Hypertarget{structRate__monotonic__Control_af28511a5363f94b4e136635e56c4d846}\label{structRate__monotonic__Control_af28511a5363f94b4e136635e56c4d846}} 
+\index{Rate\_monotonic\_Control@{Rate\_monotonic\_Control}!state@{state}}
+\index{state@{state}!Rate\_monotonic\_Control@{Rate\_monotonic\_Control}}
+\subsubsection{\texorpdfstring{state}{state}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__ClassicRateMon_ga0fd6fa9e7304b022e004061d542ca743}{rtems\+\_\+rate\+\_\+monotonic\+\_\+period\+\_\+states}} Rate\+\_\+monotonic\+\_\+\+Control\+::state}
+
+This field indicates the current state of the period. \mbox{\Hypertarget{structRate__monotonic__Control_a4857637dc9ed13112fff9aaae0114ea0}\label{structRate__monotonic__Control_a4857637dc9ed13112fff9aaae0114ea0}} 
+\index{Rate\_monotonic\_Control@{Rate\_monotonic\_Control}!Statistics@{Statistics}}
+\index{Statistics@{Statistics}!Rate\_monotonic\_Control@{Rate\_monotonic\_Control}}
+\subsubsection{\texorpdfstring{Statistics}{Statistics}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structRate__monotonic__Statistics}{Rate\+\_\+monotonic\+\_\+\+Statistics}} Rate\+\_\+monotonic\+\_\+\+Control\+::\+Statistics}
+
+This field contains the statistics maintained for the period. \mbox{\Hypertarget{structRate__monotonic__Control_a3157757fefd869eae191df4b9c77507e}\label{structRate__monotonic__Control_a3157757fefd869eae191df4b9c77507e}} 
+\index{Rate\_monotonic\_Control@{Rate\_monotonic\_Control}!time\_period\_initiated@{time\_period\_initiated}}
+\index{time\_period\_initiated@{time\_period\_initiated}!Rate\_monotonic\_Control@{Rate\_monotonic\_Control}}
+\subsubsection{\texorpdfstring{time\_period\_initiated}{time\_period\_initiated}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__SuperCoreTimeStamp_ga8508036506d5211c98844c88045e2410}{Timestamp\+\_\+\+Control}} Rate\+\_\+monotonic\+\_\+\+Control\+::time\+\_\+period\+\_\+initiated}
+
+This field contains the wall time value when the period was initiated. It is used to compute the period\textquotesingle{}s statistics. \mbox{\Hypertarget{structRate__monotonic__Control_a4bdcf4d867dc6a8395c7da359e2a559d}\label{structRate__monotonic__Control_a4bdcf4d867dc6a8395c7da359e2a559d}} 
+\index{Rate\_monotonic\_Control@{Rate\_monotonic\_Control}!Timer@{Timer}}
+\index{Timer@{Timer}!Rate\_monotonic\_Control@{Rate\_monotonic\_Control}}
+\subsubsection{\texorpdfstring{Timer}{Timer}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structWatchdog__Control}{Watchdog\+\_\+\+Control}} Rate\+\_\+monotonic\+\_\+\+Control\+::\+Timer}
+
+
+
+Protects the rate monotonic period state. 
+
+This is the timer used to provide the unblocking mechanism. 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+cpukit/include/rtems/rtems/\mbox{\hyperlink{ratemondata_8h}{ratemondata.\+h}}\end{DoxyCompactItemize}

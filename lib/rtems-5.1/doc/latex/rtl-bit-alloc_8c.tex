@@ -1,0 +1,101 @@
+\hypertarget{rtl-bit-alloc_8c}{}\section{cpukit/libdl/rtl-\/bit-\/alloc.c File Reference}
+\label{rtl-bit-alloc_8c}\index{cpukit/libdl/rtl-\/bit-\/alloc.c@{cpukit/libdl/rtl-\/bit-\/alloc.c}}
+
+
+R\+T\+E\+MS Run-\/\+Time Link Editor Bit Allocator.  
+
+
+{\ttfamily \#include $<$errno.\+h$>$}\newline
+{\ttfamily \#include $<$inttypes.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/rtl/rtl-\/allocator.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}rtl-\/bit-\/alloc.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}rtl-\/error.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$rtems/rtl/rtl-\/trace.\+h$>$}\newline
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{rtl-bit-alloc_8c_af859a98f57110e5243e8f0541319e43b}\label{rtl-bit-alloc_8c_af859a98f57110e5243e8f0541319e43b}} 
+\#define {\bfseries B\+I\+T\+S\+\_\+\+P\+E\+R\+\_\+\+W\+O\+RD}~(sizeof (uint32\+\_\+t) $\ast$ 8)
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structrtems__rtl__bit__alloc}{rtems\+\_\+rtl\+\_\+bit\+\_\+alloc}} $\ast$ \mbox{\hyperlink{rtl-bit-alloc_8c_a68fb715e86083d53b06b7381b4f0645b}{rtems\+\_\+rtl\+\_\+bit\+\_\+alloc\+\_\+open}} (void $\ast$base, size\+\_\+t \mbox{\hyperlink{sun4u_2tte_8h_a245260f6f74972558f61b85227df5aae}{size}}, size\+\_\+t block\+\_\+size, size\+\_\+t used)
+\item 
+void \mbox{\hyperlink{rtl-bit-alloc_8c_ae20e516fc07b19dc0d56f5ed4a83e677}{rtems\+\_\+rtl\+\_\+bit\+\_\+alloc\+\_\+close}} (\mbox{\hyperlink{structrtems__rtl__bit__alloc}{rtems\+\_\+rtl\+\_\+bit\+\_\+alloc}} $\ast$balloc)
+\item 
+void $\ast$ \mbox{\hyperlink{rtl-bit-alloc_8c_a4efbf95039225f1c361636877a9df6b3}{rtems\+\_\+rtl\+\_\+bit\+\_\+alloc\+\_\+balloc}} (\mbox{\hyperlink{structrtems__rtl__bit__alloc}{rtems\+\_\+rtl\+\_\+bit\+\_\+alloc}} $\ast$balloc, size\+\_\+t \mbox{\hyperlink{sun4u_2tte_8h_a245260f6f74972558f61b85227df5aae}{size}})
+\item 
+void \mbox{\hyperlink{rtl-bit-alloc_8c_aa895314e00bf91d5561c34e032f3ff58}{rtems\+\_\+rtl\+\_\+bit\+\_\+alloc\+\_\+bfree}} (\mbox{\hyperlink{structrtems__rtl__bit__alloc}{rtems\+\_\+rtl\+\_\+bit\+\_\+alloc}} $\ast$balloc, void $\ast$addr, size\+\_\+t \mbox{\hyperlink{sun4u_2tte_8h_a245260f6f74972558f61b85227df5aae}{size}})
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+R\+T\+E\+MS Run-\/\+Time Link Editor Bit Allocator. 
+
+A configurable allocator for small peices of memory where embedding control blocks into the memory are not viable. The amount of memory should be small and the minimum allocator a 32bit work or higher. 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{rtl-bit-alloc_8c_a4efbf95039225f1c361636877a9df6b3}\label{rtl-bit-alloc_8c_a4efbf95039225f1c361636877a9df6b3}} 
+\index{rtl-\/bit-\/alloc.c@{rtl-\/bit-\/alloc.c}!rtems\_rtl\_bit\_alloc\_balloc@{rtems\_rtl\_bit\_alloc\_balloc}}
+\index{rtems\_rtl\_bit\_alloc\_balloc@{rtems\_rtl\_bit\_alloc\_balloc}!rtl-\/bit-\/alloc.c@{rtl-\/bit-\/alloc.c}}
+\subsubsection{\texorpdfstring{rtems\_rtl\_bit\_alloc\_balloc()}{rtems\_rtl\_bit\_alloc\_balloc()}}
+{\footnotesize\ttfamily void$\ast$ rtems\+\_\+rtl\+\_\+bit\+\_\+alloc\+\_\+balloc (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structrtems__rtl__bit__alloc}{rtems\+\_\+rtl\+\_\+bit\+\_\+alloc}} $\ast$}]{balloc,  }\item[{size\+\_\+t}]{size }\end{DoxyParamCaption})}
+
+Allocate a piece of memory being managed. The size is in bytes are is rounded up the next block size.
+
+
+\begin{DoxyParams}{Parameters}
+{\em balloc} & The allocator. \\
+\hline
+{\em size} & Number of bytes to allocate. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void$\ast$ The memory if the allocation is successful else N\+U\+LL if there is no more memory. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{rtl-bit-alloc_8c_aa895314e00bf91d5561c34e032f3ff58}\label{rtl-bit-alloc_8c_aa895314e00bf91d5561c34e032f3ff58}} 
+\index{rtl-\/bit-\/alloc.c@{rtl-\/bit-\/alloc.c}!rtems\_rtl\_bit\_alloc\_bfree@{rtems\_rtl\_bit\_alloc\_bfree}}
+\index{rtems\_rtl\_bit\_alloc\_bfree@{rtems\_rtl\_bit\_alloc\_bfree}!rtl-\/bit-\/alloc.c@{rtl-\/bit-\/alloc.c}}
+\subsubsection{\texorpdfstring{rtems\_rtl\_bit\_alloc\_bfree()}{rtems\_rtl\_bit\_alloc\_bfree()}}
+{\footnotesize\ttfamily void rtems\+\_\+rtl\+\_\+bit\+\_\+alloc\+\_\+bfree (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structrtems__rtl__bit__alloc}{rtems\+\_\+rtl\+\_\+bit\+\_\+alloc}} $\ast$}]{balloc,  }\item[{void $\ast$}]{addr,  }\item[{size\+\_\+t}]{size }\end{DoxyParamCaption})}
+
+Free an allocated memory block. The size is required because the allocator does not contain any state information. \mbox{\Hypertarget{rtl-bit-alloc_8c_ae20e516fc07b19dc0d56f5ed4a83e677}\label{rtl-bit-alloc_8c_ae20e516fc07b19dc0d56f5ed4a83e677}} 
+\index{rtl-\/bit-\/alloc.c@{rtl-\/bit-\/alloc.c}!rtems\_rtl\_bit\_alloc\_close@{rtems\_rtl\_bit\_alloc\_close}}
+\index{rtems\_rtl\_bit\_alloc\_close@{rtems\_rtl\_bit\_alloc\_close}!rtl-\/bit-\/alloc.c@{rtl-\/bit-\/alloc.c}}
+\subsubsection{\texorpdfstring{rtems\_rtl\_bit\_alloc\_close()}{rtems\_rtl\_bit\_alloc\_close()}}
+{\footnotesize\ttfamily void rtems\+\_\+rtl\+\_\+bit\+\_\+alloc\+\_\+close (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structrtems__rtl__bit__alloc}{rtems\+\_\+rtl\+\_\+bit\+\_\+alloc}} $\ast$}]{balloc }\end{DoxyParamCaption})}
+
+Close the bit allocator.
+
+
+\begin{DoxyParams}{Parameters}
+{\em balloc} & The allocator to close. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{rtl-bit-alloc_8c_a68fb715e86083d53b06b7381b4f0645b}\label{rtl-bit-alloc_8c_a68fb715e86083d53b06b7381b4f0645b}} 
+\index{rtl-\/bit-\/alloc.c@{rtl-\/bit-\/alloc.c}!rtems\_rtl\_bit\_alloc\_open@{rtems\_rtl\_bit\_alloc\_open}}
+\index{rtems\_rtl\_bit\_alloc\_open@{rtems\_rtl\_bit\_alloc\_open}!rtl-\/bit-\/alloc.c@{rtl-\/bit-\/alloc.c}}
+\subsubsection{\texorpdfstring{rtems\_rtl\_bit\_alloc\_open()}{rtems\_rtl\_bit\_alloc\_open()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structrtems__rtl__bit__alloc}{rtems\+\_\+rtl\+\_\+bit\+\_\+alloc}}$\ast$ rtems\+\_\+rtl\+\_\+bit\+\_\+alloc\+\_\+open (\begin{DoxyParamCaption}\item[{void $\ast$}]{base,  }\item[{size\+\_\+t}]{size,  }\item[{size\+\_\+t}]{block\+\_\+size,  }\item[{size\+\_\+t}]{used }\end{DoxyParamCaption})}
+
+Open a bit allocator. The allocator allocates block\+\_\+size pieces of the memory being managed.
+
+
+\begin{DoxyParams}{Parameters}
+{\em base} & The memory to managem N\+U\+LL to allocate a piece of memory. \\
+\hline
+{\em size} & The size of the memory being managed in bytes. \\
+\hline
+{\em block\+\_\+size} & The minimum allocation unit in bytes. \\
+\hline
+{\em used} & The amount of memory already in use in bytes. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em \mbox{\hyperlink{structrtems__rtl__bit__alloc}{rtems\+\_\+rtl\+\_\+bit\+\_\+alloc}}} & The bit allocator structure. \\
+\hline
+\end{DoxyRetVals}

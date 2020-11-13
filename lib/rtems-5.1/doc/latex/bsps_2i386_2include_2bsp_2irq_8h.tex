@@ -1,0 +1,60 @@
+\hypertarget{bsps_2i386_2include_2bsp_2irq_8h}{}\section{bsps/i386/include/bsp/irq.h File Reference}
+\label{bsps_2i386_2include_2bsp_2irq_8h}\index{bsps/i386/include/bsp/irq.h@{bsps/i386/include/bsp/irq.h}}
+
+
+Interrupt handlers.  
+
+
+{\ttfamily \#include $<$bsp/irq\+\_\+asm.\+h$>$}\newline
+{\ttfamily \#include $<$rtems.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/irq.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/irq-\/extension.\+h$>$}\newline
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__i386__irq_ga2fe5e739729e5756a04cc73da64cc8ee}{B\+S\+P\+\_\+\+S\+H\+A\+R\+E\+D\+\_\+\+H\+A\+N\+D\+L\+E\+R\+\_\+\+S\+U\+P\+P\+O\+RT}}~1
+\begin{DoxyCompactList}\small\item\em Include some preprocessor value also used by assember code. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__i386__irq_ga942062c30f3cc4be854047a61430cc31}{B\+S\+P\+\_\+\+I\+R\+Q\+\_\+\+V\+E\+C\+T\+O\+R\+\_\+\+B\+A\+SE}}~B\+S\+P\+\_\+\+A\+S\+M\+\_\+\+I\+R\+Q\+\_\+\+V\+E\+C\+T\+O\+R\+\_\+\+B\+A\+SE
+\begin{DoxyCompactList}\small\item\em Base vector for our I\+RQ handlers. \end{DoxyCompactList}\item 
+\#define {\bfseries B\+S\+P\+\_\+\+I\+R\+Q\+\_\+\+L\+I\+N\+E\+S\+\_\+\+N\+U\+M\+B\+ER}~16
+\item 
+\#define {\bfseries B\+S\+P\+\_\+\+I\+R\+Q\+\_\+\+M\+A\+X\+\_\+\+O\+N\+\_\+i8259A}~(B\+S\+P\+\_\+\+I\+R\+Q\+\_\+\+L\+I\+N\+E\+S\+\_\+\+N\+U\+M\+B\+ER -\/ 1)
+\item 
+\#define {\bfseries B\+S\+P\+\_\+\+I\+R\+Q\+\_\+\+V\+E\+C\+T\+O\+R\+\_\+\+N\+U\+M\+B\+ER}~17
+\item 
+\#define {\bfseries B\+S\+P\+\_\+\+I\+R\+Q\+\_\+\+V\+E\+C\+T\+O\+R\+\_\+\+L\+O\+W\+E\+S\+T\+\_\+\+O\+F\+F\+S\+ET}~0
+\item 
+\#define {\bfseries B\+S\+P\+\_\+\+I\+R\+Q\+\_\+\+V\+E\+C\+T\+O\+R\+\_\+\+M\+A\+X\+\_\+\+O\+F\+F\+S\+ET}~(B\+S\+P\+\_\+\+I\+R\+Q\+\_\+\+V\+E\+C\+T\+O\+R\+\_\+\+N\+U\+M\+B\+ER -\/ 1)
+\item 
+\#define \mbox{\hyperlink{group__i386__irq_ga70bcb445450b9fe20d8dfbc4d352a3bb}{B\+S\+P\+\_\+\+P\+E\+R\+I\+O\+D\+I\+C\+\_\+\+T\+I\+M\+ER}}~0 /$\ast$ fixed on all builds of PC $\ast$/
+\begin{DoxyCompactList}\small\item\em Interrupt offset in comparison to B\+S\+P\+\_\+\+A\+S\+M\+\_\+\+I\+R\+Q\+\_\+\+V\+E\+C\+T\+O\+R\+\_\+\+B\+A\+SE NB \+: 1) Interrupt vector number in I\+DT = offset + B\+S\+P\+\_\+\+A\+S\+M\+\_\+\+I\+R\+Q\+\_\+\+V\+E\+C\+T\+O\+R\+\_\+\+B\+A\+SE 2) The same name should be defined on all architecture so that handler connection can be unchanged. \end{DoxyCompactList}\item 
+\#define {\bfseries B\+S\+P\+\_\+\+K\+E\+Y\+B\+O\+A\+RD}~1 /$\ast$ fixed on all builds of PC $\ast$/
+\item 
+\#define {\bfseries B\+S\+P\+\_\+\+U\+A\+R\+T\+\_\+\+C\+O\+M2\+\_\+\+I\+RQ}~3 /$\ast$ fixed for I\+SA bus $\ast$/
+\item 
+\#define {\bfseries B\+S\+P\+\_\+\+U\+A\+R\+T\+\_\+\+C\+O\+M1\+\_\+\+I\+RQ}~4 /$\ast$ fixed for I\+SA bus $\ast$/
+\item 
+\#define {\bfseries B\+S\+P\+\_\+\+U\+A\+R\+T\+\_\+\+C\+O\+M3\+\_\+\+I\+RQ}~5
+\item 
+\#define {\bfseries B\+S\+P\+\_\+\+U\+A\+R\+T\+\_\+\+C\+O\+M4\+\_\+\+I\+RQ}~6
+\item 
+\#define {\bfseries B\+S\+P\+\_\+\+R\+T\+\_\+\+T\+I\+M\+E\+R1}~8
+\item 
+\#define {\bfseries B\+S\+P\+\_\+\+R\+T\+\_\+\+T\+I\+M\+E\+R3}~10
+\item 
+\#define {\bfseries B\+S\+P\+\_\+\+S\+M\+P\+\_\+\+I\+PI}~16 /$\ast$ not part of the A\+T\+P\+IC $\ast$/
+\item 
+\#define {\bfseries B\+S\+P\+\_\+\+I\+N\+T\+E\+R\+R\+U\+P\+T\+\_\+\+V\+E\+C\+T\+O\+R\+\_\+\+M\+IN}~B\+S\+P\+\_\+\+I\+R\+Q\+\_\+\+V\+E\+C\+T\+O\+R\+\_\+\+L\+O\+W\+E\+S\+T\+\_\+\+O\+F\+F\+S\+ET
+\item 
+\#define {\bfseries B\+S\+P\+\_\+\+I\+N\+T\+E\+R\+R\+U\+P\+T\+\_\+\+V\+E\+C\+T\+O\+R\+\_\+\+M\+AX}~B\+S\+P\+\_\+\+I\+R\+Q\+\_\+\+V\+E\+C\+T\+O\+R\+\_\+\+M\+A\+X\+\_\+\+O\+F\+F\+S\+ET
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef unsigned short \mbox{\hyperlink{group__i386__irq_gabcb5f2200fea51d658c5ed728282ee77}{rtems\+\_\+i8259\+\_\+masks}}
+\begin{DoxyCompactList}\small\item\em Type definition for R\+T\+E\+MS managed interrupts. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Interrupt handlers. 
+

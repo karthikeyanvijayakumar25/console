@@ -1,0 +1,123 @@
+\hypertarget{group__RTEMSScoreCPUExample}{}\section{Example}
+\label{group__RTEMSScoreCPUExample}\index{Example@{Example}}
+
+
+Example C\+PU Architecture Support.  
+
+
+\subsection*{Modules}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{group__RTEMSScoreCPUExampleCPUEndian}{C\+P\+U\+Endian}}
+\begin{DoxyCompactList}\small\item\em C\+P\+U\+Endian. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreCPUExampleASM}{Example Assembler Support}}
+\item 
+\mbox{\hyperlink{group__Management}{Management}}
+\begin{DoxyCompactList}\small\item\em Management. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreCPUExampleBitfield}{Processor Dependent Bitfield Manipulation}}
+\item 
+\mbox{\hyperlink{group__RTEMSScoreCPUExampleContext}{Processor Dependent Context Management}}
+\begin{DoxyCompactList}\small\item\em Destroys the context of the thread. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreCPUExampleInterrupt}{Processor Dependent Interrupt Management}}
+\end{DoxyCompactItemize}
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structCPU__Per__CPU__control}{C\+P\+U\+\_\+\+Per\+\_\+\+C\+P\+U\+\_\+control}}
+\begin{DoxyCompactList}\small\item\em The C\+PU specific per-\/\+C\+PU control. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__RTEMSScoreCPUExample_gaf8e38596ad3db49995fd8eb9fb4e86b2}{C\+P\+U\+\_\+\+P\+E\+R\+\_\+\+C\+P\+U\+\_\+\+C\+O\+N\+T\+R\+O\+L\+\_\+\+S\+I\+ZE}}~0
+\begin{DoxyCompactList}\small\item\em The size of the C\+PU specific per-\/\+C\+PU control. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTEMSScoreCPUExample_ga026af6cb089314aa4eac9e276624953e}{\+\_\+\+C\+P\+U\+\_\+\+Get\+\_\+current\+\_\+per\+\_\+\+C\+P\+U\+\_\+control}}()~( \+\_\+\+C\+P\+U\+\_\+\+Per\+\_\+\+C\+P\+U\+\_\+current )
+\begin{DoxyCompactList}\small\item\em Optional method to obtain the per-\/\+C\+PU control of the current processor. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__RTEMSScoreCPUExample_gadcdca3586eca8c4286b18312eac9087f}{\+\_\+\+C\+P\+U\+\_\+\+Get\+\_\+thread\+\_\+executing}}()~( \+\_\+\+C\+P\+U\+\_\+\+Per\+\_\+\+C\+P\+U\+\_\+current-\/$>$executing )
+\begin{DoxyCompactList}\small\item\em Optional method to get the executing thread. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+register struct \mbox{\hyperlink{structPer__CPU__Control}{Per\+\_\+\+C\+P\+U\+\_\+\+Control}} $\ast$\+\_\+\+C\+P\+U\+\_\+\+Per\+\_\+\+C\+P\+U\+\_\+current \mbox{\hyperlink{group__RTEMSScoreCPUExample_ga04cbac6d343a5c80b8e4547131c6bfcd}{asm}} (\char`\"{}rX\char`\"{})
+\begin{DoxyCompactList}\small\item\em Special register pointing to the per-\/\+C\+PU control of the current processor. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__RTEMSScoreCPUExample_gad26becade17fbdbb0bdf63c6b9228688}\label{group__RTEMSScoreCPUExample_gad26becade17fbdbb0bdf63c6b9228688}} 
+void {\bfseries \+\_\+\+C\+P\+U\+\_\+\+Context\+\_\+volatile\+\_\+clobber} (uintptr\+\_\+t pattern)
+\item 
+\mbox{\Hypertarget{group__RTEMSScoreCPUExample_ga3adb94b8d32fd0e3058934ffd3df6d90}\label{group__RTEMSScoreCPUExample_ga3adb94b8d32fd0e3058934ffd3df6d90}} 
+void {\bfseries \+\_\+\+C\+P\+U\+\_\+\+Context\+\_\+validate} (uintptr\+\_\+t pattern)
+\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \mbox{\hyperlink{group__RTEMSScoreCPUExample_ga07618c93359f2485af2e98a96b330208}{\+\_\+\+C\+P\+U\+\_\+\+Instruction\+\_\+illegal}} (void)
+\begin{DoxyCompactList}\small\item\em Emits an illegal instruction. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \mbox{\hyperlink{group__RTEMSScoreCPUExample_gab683a0a37a089e2a0fd3c356836d5499}{\+\_\+\+C\+P\+U\+\_\+\+Instruction\+\_\+no\+\_\+operation}} (void)
+\begin{DoxyCompactList}\small\item\em Emits a no operation instruction (nop). \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Example C\+PU Architecture Support. 
+
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{group__RTEMSScoreCPUExample_ga026af6cb089314aa4eac9e276624953e}\label{group__RTEMSScoreCPUExample_ga026af6cb089314aa4eac9e276624953e}} 
+\index{Example@{Example}!\_CPU\_Get\_current\_per\_CPU\_control@{\_CPU\_Get\_current\_per\_CPU\_control}}
+\index{\_CPU\_Get\_current\_per\_CPU\_control@{\_CPU\_Get\_current\_per\_CPU\_control}!Example@{Example}}
+\subsubsection{\texorpdfstring{\_CPU\_Get\_current\_per\_CPU\_control}{\_CPU\_Get\_current\_per\_CPU\_control}}
+{\footnotesize\ttfamily \#define \+\_\+\+C\+P\+U\+\_\+\+Get\+\_\+current\+\_\+per\+\_\+\+C\+P\+U\+\_\+control(\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})~( \+\_\+\+C\+P\+U\+\_\+\+Per\+\_\+\+C\+P\+U\+\_\+current )}
+
+
+
+Optional method to obtain the per-\/\+C\+PU control of the current processor. 
+
+This is optional. Not every C\+PU port needs this. It is only an optional optimization variant. In case this macro is undefined, the default implementation using the current processor index will be used. \mbox{\Hypertarget{group__RTEMSScoreCPUExample_gadcdca3586eca8c4286b18312eac9087f}\label{group__RTEMSScoreCPUExample_gadcdca3586eca8c4286b18312eac9087f}} 
+\index{Example@{Example}!\_CPU\_Get\_thread\_executing@{\_CPU\_Get\_thread\_executing}}
+\index{\_CPU\_Get\_thread\_executing@{\_CPU\_Get\_thread\_executing}!Example@{Example}}
+\subsubsection{\texorpdfstring{\_CPU\_Get\_thread\_executing}{\_CPU\_Get\_thread\_executing}}
+{\footnotesize\ttfamily \#define \+\_\+\+C\+P\+U\+\_\+\+Get\+\_\+thread\+\_\+executing(\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})~( \+\_\+\+C\+P\+U\+\_\+\+Per\+\_\+\+C\+P\+U\+\_\+current-\/$>$executing )}
+
+
+
+Optional method to get the executing thread. 
+
+This is optional. Not every C\+PU port needs this. It is only an optional optimization variant. In case this macro is undefined, the default implementation uses the per-\/\+C\+PU information and the current processor index to get the executing thread. \mbox{\Hypertarget{group__RTEMSScoreCPUExample_gaf8e38596ad3db49995fd8eb9fb4e86b2}\label{group__RTEMSScoreCPUExample_gaf8e38596ad3db49995fd8eb9fb4e86b2}} 
+\index{Example@{Example}!CPU\_PER\_CPU\_CONTROL\_SIZE@{CPU\_PER\_CPU\_CONTROL\_SIZE}}
+\index{CPU\_PER\_CPU\_CONTROL\_SIZE@{CPU\_PER\_CPU\_CONTROL\_SIZE}!Example@{Example}}
+\subsubsection{\texorpdfstring{CPU\_PER\_CPU\_CONTROL\_SIZE}{CPU\_PER\_CPU\_CONTROL\_SIZE}}
+{\footnotesize\ttfamily \#define C\+P\+U\+\_\+\+P\+E\+R\+\_\+\+C\+P\+U\+\_\+\+C\+O\+N\+T\+R\+O\+L\+\_\+\+S\+I\+ZE~0}
+
+
+
+The size of the C\+PU specific per-\/\+C\+PU control. 
+
+This define must be visible to assember files since it is used to derive structure offsets. 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{group__RTEMSScoreCPUExample_ga07618c93359f2485af2e98a96b330208}\label{group__RTEMSScoreCPUExample_ga07618c93359f2485af2e98a96b330208}} 
+\index{Example@{Example}!\_CPU\_Instruction\_illegal@{\_CPU\_Instruction\_illegal}}
+\index{\_CPU\_Instruction\_illegal@{\_CPU\_Instruction\_illegal}!Example@{Example}}
+\subsubsection{\texorpdfstring{\_CPU\_Instruction\_illegal()}{\_CPU\_Instruction\_illegal()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \+\_\+\+C\+P\+U\+\_\+\+Instruction\+\_\+illegal (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Emits an illegal instruction. 
+
+This function is used only in test sptests/spfatal26. \mbox{\Hypertarget{group__RTEMSScoreCPUExample_gab683a0a37a089e2a0fd3c356836d5499}\label{group__RTEMSScoreCPUExample_gab683a0a37a089e2a0fd3c356836d5499}} 
+\index{Example@{Example}!\_CPU\_Instruction\_no\_operation@{\_CPU\_Instruction\_no\_operation}}
+\index{\_CPU\_Instruction\_no\_operation@{\_CPU\_Instruction\_no\_operation}!Example@{Example}}
+\subsubsection{\texorpdfstring{\_CPU\_Instruction\_no\_operation()}{\_CPU\_Instruction\_no\_operation()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} void \+\_\+\+C\+P\+U\+\_\+\+Instruction\+\_\+no\+\_\+operation (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Emits a no operation instruction (nop). 
+
+This function is used only in test sptests/spcache01. \mbox{\Hypertarget{group__RTEMSScoreCPUExample_ga04cbac6d343a5c80b8e4547131c6bfcd}\label{group__RTEMSScoreCPUExample_ga04cbac6d343a5c80b8e4547131c6bfcd}} 
+\index{Example@{Example}!asm@{asm}}
+\index{asm@{asm}!Example@{Example}}
+\subsubsection{\texorpdfstring{asm()}{asm()}}
+{\footnotesize\ttfamily register struct \mbox{\hyperlink{structPer__CPU__Control}{Per\+\_\+\+C\+P\+U\+\_\+\+Control}}$\ast$ \+\_\+\+C\+P\+U\+\_\+\+Per\+\_\+\+C\+P\+U\+\_\+current asm (\begin{DoxyParamCaption}\item[{\char`\"{}rX\char`\"{}}]{ }\end{DoxyParamCaption})}
+
+
+
+Special register pointing to the per-\/\+C\+PU control of the current processor. 
+
+This is optional. Not every C\+PU port needs this. It is only an optional optimization variant. 

@@ -1,0 +1,113 @@
+\hypertarget{group__ALT__I2C__DMA}{}\section{D\+MA Interface}
+\label{group__ALT__I2C__DMA}\index{DMA Interface@{DMA Interface}}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__ALT__I2C__DMA_ga7424ca160282d4131f918000f7c6f6c1}{alt\+\_\+i2c\+\_\+rx\+\_\+dma\+\_\+threshold\+\_\+get}} (\mbox{\hyperlink{structALT__I2C__DEV__s}{A\+L\+T\+\_\+\+I2\+C\+\_\+\+D\+E\+V\+\_\+t}} $\ast$\mbox{\hyperlink{structi2c__dev}{i2c\+\_\+dev}}, uint8\+\_\+t $\ast$threshold)
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__ALT__I2C__DMA_ga556f776c29ff76200811565f5f21f212}{alt\+\_\+i2c\+\_\+rx\+\_\+dma\+\_\+threshold\+\_\+set}} (\mbox{\hyperlink{structALT__I2C__DEV__s}{A\+L\+T\+\_\+\+I2\+C\+\_\+\+D\+E\+V\+\_\+t}} $\ast$\mbox{\hyperlink{structi2c__dev}{i2c\+\_\+dev}}, uint8\+\_\+t threshold)
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__ALT__I2C__DMA_ga7bd9b0fc4745d569930c13ef37fbb8d4}{alt\+\_\+i2c\+\_\+tx\+\_\+dma\+\_\+threshold\+\_\+get}} (\mbox{\hyperlink{structALT__I2C__DEV__s}{A\+L\+T\+\_\+\+I2\+C\+\_\+\+D\+E\+V\+\_\+t}} $\ast$\mbox{\hyperlink{structi2c__dev}{i2c\+\_\+dev}}, uint8\+\_\+t $\ast$threshold)
+\item 
+\mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} \mbox{\hyperlink{group__ALT__I2C__DMA_ga3aaf92e0837ceb1c37af47b603985c5c}{alt\+\_\+i2c\+\_\+tx\+\_\+dma\+\_\+threshold\+\_\+set}} (\mbox{\hyperlink{structALT__I2C__DEV__s}{A\+L\+T\+\_\+\+I2\+C\+\_\+\+D\+E\+V\+\_\+t}} $\ast$\mbox{\hyperlink{structi2c__dev}{i2c\+\_\+dev}}, uint8\+\_\+t threshold)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+The D\+MA interface has a configurable threshold value that controls the level of entries that triggers the burst handshaking request used for D\+MA integration.
+
+For the TX threshold, if the number of entries in the TX F\+I\+FO is at or below the set threshold, a D\+MA handshaking request will be made. The valid range for the TX threshold is 0 -\/ (A\+L\+T\+\_\+\+I2\+C\+\_\+\+T\+X\+\_\+\+F\+I\+F\+O\+\_\+\+N\+U\+M\+\_\+\+E\+N\+T\+R\+I\+ES -\/ 1).
+
+For the RX threshold, if the number of entries in the RX F\+I\+FO is above the set threshold, a D\+MA handshaking request will be made. The valid range for the RX treshold is 0 -\/ (A\+L\+T\+\_\+\+I2\+C\+\_\+\+T\+X\+\_\+\+F\+I\+F\+O\+\_\+\+N\+U\+M\+\_\+\+E\+N\+T\+R\+I\+ES -\/ 1).
+
+Having a higher threshold can improve the A\+XI bus utilization at the expense of the likelyhoold of overflow / underflow conditions. 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{group__ALT__I2C__DMA_ga7424ca160282d4131f918000f7c6f6c1}\label{group__ALT__I2C__DMA_ga7424ca160282d4131f918000f7c6f6c1}} 
+\index{DMA Interface@{DMA Interface}!alt\_i2c\_rx\_dma\_threshold\_get@{alt\_i2c\_rx\_dma\_threshold\_get}}
+\index{alt\_i2c\_rx\_dma\_threshold\_get@{alt\_i2c\_rx\_dma\_threshold\_get}!DMA Interface@{DMA Interface}}
+\subsubsection{\texorpdfstring{alt\_i2c\_rx\_dma\_threshold\_get()}{alt\_i2c\_rx\_dma\_threshold\_get()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} alt\+\_\+i2c\+\_\+rx\+\_\+dma\+\_\+threshold\+\_\+get (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structALT__I2C__DEV__s}{A\+L\+T\+\_\+\+I2\+C\+\_\+\+D\+E\+V\+\_\+t}} $\ast$}]{i2c\+\_\+dev,  }\item[{uint8\+\_\+t $\ast$}]{threshold }\end{DoxyParamCaption})}
+
+Gets the current RX D\+MA threshold level value.
+
+
+\begin{DoxyParams}{Parameters}
+{\em \mbox{\hyperlink{structi2c__dev}{i2c\+\_\+dev}}} & A pointer to the I2C controller device block instance.\\
+\hline
+{\em threshold} & \mbox{[}out\mbox{]} The threshold value.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em A\+L\+T\+\_\+\+E\+\_\+\+S\+U\+C\+C\+E\+SS} & Successful status. \\
+\hline
+{\em A\+L\+T\+\_\+\+E\+\_\+\+E\+R\+R\+OR} & Details about error status code \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{group__ALT__I2C__DMA_ga556f776c29ff76200811565f5f21f212}\label{group__ALT__I2C__DMA_ga556f776c29ff76200811565f5f21f212}} 
+\index{DMA Interface@{DMA Interface}!alt\_i2c\_rx\_dma\_threshold\_set@{alt\_i2c\_rx\_dma\_threshold\_set}}
+\index{alt\_i2c\_rx\_dma\_threshold\_set@{alt\_i2c\_rx\_dma\_threshold\_set}!DMA Interface@{DMA Interface}}
+\subsubsection{\texorpdfstring{alt\_i2c\_rx\_dma\_threshold\_set()}{alt\_i2c\_rx\_dma\_threshold\_set()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} alt\+\_\+i2c\+\_\+rx\+\_\+dma\+\_\+threshold\+\_\+set (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structALT__I2C__DEV__s}{A\+L\+T\+\_\+\+I2\+C\+\_\+\+D\+E\+V\+\_\+t}} $\ast$}]{i2c\+\_\+dev,  }\item[{uint8\+\_\+t}]{threshold }\end{DoxyParamCaption})}
+
+Sets the current RX D\+MA threshold level value.
+
+
+\begin{DoxyParams}{Parameters}
+{\em \mbox{\hyperlink{structi2c__dev}{i2c\+\_\+dev}}} & A pointer to the I2C controller device block instance.\\
+\hline
+{\em threshold} & The threshold value.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em A\+L\+T\+\_\+\+E\+\_\+\+S\+U\+C\+C\+E\+SS} & Successful status. \\
+\hline
+{\em A\+L\+T\+\_\+\+E\+\_\+\+E\+R\+R\+OR} & Details about error status code \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{group__ALT__I2C__DMA_ga7bd9b0fc4745d569930c13ef37fbb8d4}\label{group__ALT__I2C__DMA_ga7bd9b0fc4745d569930c13ef37fbb8d4}} 
+\index{DMA Interface@{DMA Interface}!alt\_i2c\_tx\_dma\_threshold\_get@{alt\_i2c\_tx\_dma\_threshold\_get}}
+\index{alt\_i2c\_tx\_dma\_threshold\_get@{alt\_i2c\_tx\_dma\_threshold\_get}!DMA Interface@{DMA Interface}}
+\subsubsection{\texorpdfstring{alt\_i2c\_tx\_dma\_threshold\_get()}{alt\_i2c\_tx\_dma\_threshold\_get()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} alt\+\_\+i2c\+\_\+tx\+\_\+dma\+\_\+threshold\+\_\+get (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structALT__I2C__DEV__s}{A\+L\+T\+\_\+\+I2\+C\+\_\+\+D\+E\+V\+\_\+t}} $\ast$}]{i2c\+\_\+dev,  }\item[{uint8\+\_\+t $\ast$}]{threshold }\end{DoxyParamCaption})}
+
+Gets the current TX D\+MA threshold level value.
+
+
+\begin{DoxyParams}{Parameters}
+{\em \mbox{\hyperlink{structi2c__dev}{i2c\+\_\+dev}}} & A pointer to the I2C controller device block instance.\\
+\hline
+{\em threshold} & \mbox{[}out\mbox{]} The threshold value.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em A\+L\+T\+\_\+\+E\+\_\+\+S\+U\+C\+C\+E\+SS} & Successful status. \\
+\hline
+{\em A\+L\+T\+\_\+\+E\+\_\+\+E\+R\+R\+OR} & Details about error status code \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{group__ALT__I2C__DMA_ga3aaf92e0837ceb1c37af47b603985c5c}\label{group__ALT__I2C__DMA_ga3aaf92e0837ceb1c37af47b603985c5c}} 
+\index{DMA Interface@{DMA Interface}!alt\_i2c\_tx\_dma\_threshold\_set@{alt\_i2c\_tx\_dma\_threshold\_set}}
+\index{alt\_i2c\_tx\_dma\_threshold\_set@{alt\_i2c\_tx\_dma\_threshold\_set}!DMA Interface@{DMA Interface}}
+\subsubsection{\texorpdfstring{alt\_i2c\_tx\_dma\_threshold\_set()}{alt\_i2c\_tx\_dma\_threshold\_set()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{hwlib_8h_abdb0d369f069723ca55d6c94bcaaaa12}{A\+L\+T\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+C\+O\+DE}} alt\+\_\+i2c\+\_\+tx\+\_\+dma\+\_\+threshold\+\_\+set (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structALT__I2C__DEV__s}{A\+L\+T\+\_\+\+I2\+C\+\_\+\+D\+E\+V\+\_\+t}} $\ast$}]{i2c\+\_\+dev,  }\item[{uint8\+\_\+t}]{threshold }\end{DoxyParamCaption})}
+
+Sets the current TX D\+MA threshold level value.
+
+
+\begin{DoxyParams}{Parameters}
+{\em \mbox{\hyperlink{structi2c__dev}{i2c\+\_\+dev}}} & A pointer to the I2C controller device block instance.\\
+\hline
+{\em threshold} & The threshold value.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em A\+L\+T\+\_\+\+E\+\_\+\+S\+U\+C\+C\+E\+SS} & Successful status. \\
+\hline
+{\em A\+L\+T\+\_\+\+E\+\_\+\+E\+R\+R\+OR} & Details about error status code \\
+\hline
+\end{DoxyRetVals}

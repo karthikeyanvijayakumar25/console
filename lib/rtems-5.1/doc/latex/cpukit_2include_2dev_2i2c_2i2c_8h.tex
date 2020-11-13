@@ -1,0 +1,89 @@
+\hypertarget{cpukit_2include_2dev_2i2c_2i2c_8h}{}\section{cpukit/include/dev/i2c/i2c.h File Reference}
+\label{cpukit_2include_2dev_2i2c_2i2c_8h}\index{cpukit/include/dev/i2c/i2c.h@{cpukit/include/dev/i2c/i2c.h}}
+
+
+Inter-\/\+Integrated Circuit (I2C) Driver A\+PI.  
+
+
+{\ttfamily \#include $<$linux/i2c.\+h$>$}\newline
+{\ttfamily \#include $<$linux/i2c-\/dev.\+h$>$}\newline
+{\ttfamily \#include $<$rtems.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/seterr.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/thread.\+h$>$}\newline
+{\ttfamily \#include $<$sys/ioctl.\+h$>$}\newline
+{\ttfamily \#include $<$sys/stat.\+h$>$}\newline
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structi2c__bus}{i2c\+\_\+bus}}
+\begin{DoxyCompactList}\small\item\em I2C bus control. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structi2c__dev}{i2c\+\_\+dev}}
+\begin{DoxyCompactList}\small\item\em I2C slave device control. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__I2CBus_ga8926381d74682fc32fee4727c8d76cac}{I2\+C\+\_\+\+B\+U\+S\+\_\+\+C\+L\+O\+C\+K\+\_\+\+D\+E\+F\+A\+U\+LT}}~100000
+\begin{DoxyCompactList}\small\item\em Default I2C bus clock in Hz. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__I2CDevice_gae8b74d1b5fc16a9c31e4da115b0ab004}{I2\+C\+\_\+\+D\+E\+V\+\_\+\+I\+O\+\_\+\+C\+O\+N\+T\+R\+OL}}~0x900
+\begin{DoxyCompactList}\small\item\em Base number for device \mbox{\hyperlink{structIO}{IO}} control commands. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{Indent}\textbf{ I2C IO Control Commands}\par
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__I2CBus_gad159039fe8e5bab657e71ce875d79527}{I2\+C\+\_\+\+B\+U\+S\+\_\+\+O\+B\+T\+A\+IN}}~0x800
+\begin{DoxyCompactList}\small\item\em Obtains the bus. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__I2CBus_ga31412b5ae3e35968e3f9ed8aff9e4c39}{I2\+C\+\_\+\+B\+U\+S\+\_\+\+R\+E\+L\+E\+A\+SE}}~0x801
+\begin{DoxyCompactList}\small\item\em Releases the bus. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__I2CBus_gacda477916c6ce927a3999d80b515af73}{I2\+C\+\_\+\+B\+U\+S\+\_\+\+G\+E\+T\+\_\+\+C\+O\+N\+T\+R\+OL}}~0x802
+\begin{DoxyCompactList}\small\item\em Gets the bus control. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__I2CBus_gaa58f3eb1f3998bd0dd31db7768d4abcf}{I2\+C\+\_\+\+B\+U\+S\+\_\+\+S\+E\+T\+\_\+\+C\+L\+O\+CK}}~0x803
+\begin{DoxyCompactList}\small\item\em Sets the bus clock in Hz. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{cpukit_2include_2dev_2i2c_2i2c_8h_a3c7e9c96fc64adc5809d8107918d5745}\label{cpukit_2include_2dev_2i2c_2i2c_8h_a3c7e9c96fc64adc5809d8107918d5745}} 
+typedef struct \mbox{\hyperlink{structi2c__msg}{i2c\+\_\+msg}} {\bfseries i2c\+\_\+msg}
+\item 
+\mbox{\Hypertarget{cpukit_2include_2dev_2i2c_2i2c_8h_a6a7037bea5aba20402c1c3f5bfc68f21}\label{cpukit_2include_2dev_2i2c_2i2c_8h_a6a7037bea5aba20402c1c3f5bfc68f21}} 
+typedef struct \mbox{\hyperlink{structi2c__bus}{i2c\+\_\+bus}} {\bfseries i2c\+\_\+bus}
+\item 
+\mbox{\Hypertarget{cpukit_2include_2dev_2i2c_2i2c_8h_a01e0d2c2d333aa0c2c33e96e7cab1903}\label{cpukit_2include_2dev_2i2c_2i2c_8h_a01e0d2c2d333aa0c2c33e96e7cab1903}} 
+typedef struct \mbox{\hyperlink{structi2c__dev}{i2c\+\_\+dev}} {\bfseries i2c\+\_\+dev}
+\item 
+\mbox{\Hypertarget{cpukit_2include_2dev_2i2c_2i2c_8h_a8d528633b0c4a0866c29302e6c63fd23}\label{cpukit_2include_2dev_2i2c_2i2c_8h_a8d528633b0c4a0866c29302e6c63fd23}} 
+typedef struct \mbox{\hyperlink{structi2c__rdwr__ioctl__data}{i2c\+\_\+rdwr\+\_\+ioctl\+\_\+data}} {\bfseries i2c\+\_\+rdwr\+\_\+ioctl\+\_\+data}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{group__I2CBus_ga53427f41c12b16e164f944d99b7a9a25}{i2c\+\_\+bus\+\_\+init}} (\mbox{\hyperlink{structi2c__bus}{i2c\+\_\+bus}} $\ast$bus)
+\begin{DoxyCompactList}\small\item\em Initializes a bus control. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structi2c__bus}{i2c\+\_\+bus}} $\ast$ \mbox{\hyperlink{group__I2CBus_gaf66a22612850bee468de351d1635f28a}{i2c\+\_\+bus\+\_\+alloc\+\_\+and\+\_\+init}} (size\+\_\+t \mbox{\hyperlink{sun4u_2tte_8h_a245260f6f74972558f61b85227df5aae}{size}})
+\begin{DoxyCompactList}\small\item\em Allocates a bus control from the heap and initializes it. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__I2CBus_ga000d6042dcb980798aa8358dbdd5cfba}{i2c\+\_\+bus\+\_\+destroy}} (\mbox{\hyperlink{structi2c__bus}{i2c\+\_\+bus}} $\ast$bus)
+\begin{DoxyCompactList}\small\item\em Destroys a bus control. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__I2CBus_ga174d189593676d0053ca88bc6edb238d}{i2c\+\_\+bus\+\_\+destroy\+\_\+and\+\_\+free}} (\mbox{\hyperlink{structi2c__bus}{i2c\+\_\+bus}} $\ast$bus)
+\begin{DoxyCompactList}\small\item\em Destroys a bus control and frees its memory. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__I2CBus_ga6987c0edf1d40adf54d2689fed47c3cf}{i2c\+\_\+bus\+\_\+register}} (\mbox{\hyperlink{structi2c__bus}{i2c\+\_\+bus}} $\ast$bus, const char $\ast$bus\+\_\+path)
+\begin{DoxyCompactList}\small\item\em Registers a bus control. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__I2CBus_ga18a5b66cdf62e17b8610b99cf8fef086}{i2c\+\_\+bus\+\_\+obtain}} (\mbox{\hyperlink{structi2c__bus}{i2c\+\_\+bus}} $\ast$bus)
+\begin{DoxyCompactList}\small\item\em Obtains the bus. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__I2CBus_gabf677e37011d97c32fc2253004fe1a72}{i2c\+\_\+bus\+\_\+release}} (\mbox{\hyperlink{structi2c__bus}{i2c\+\_\+bus}} $\ast$bus)
+\begin{DoxyCompactList}\small\item\em Releases the bus. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__I2CBus_ga0b55fa0b52b40128fdc2d5fbcfe317dc}{i2c\+\_\+bus\+\_\+transfer}} (\mbox{\hyperlink{structi2c__bus}{i2c\+\_\+bus}} $\ast$bus, \mbox{\hyperlink{structi2c__msg}{i2c\+\_\+msg}} $\ast$msgs, uint32\+\_\+t msg\+\_\+count)
+\begin{DoxyCompactList}\small\item\em Transfers I2C messages. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__I2CDevice_ga240da9c0f736698756528ac98b790ca8}{i2c\+\_\+dev\+\_\+init}} (\mbox{\hyperlink{structi2c__dev}{i2c\+\_\+dev}} $\ast$dev, const char $\ast$bus\+\_\+path, uint16\+\_\+t address)
+\begin{DoxyCompactList}\small\item\em Initializes a device control. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structi2c__dev}{i2c\+\_\+dev}} $\ast$ \mbox{\hyperlink{group__I2CDevice_gaaa52883fe2313442f1172eb5f4de1215}{i2c\+\_\+dev\+\_\+alloc\+\_\+and\+\_\+init}} (size\+\_\+t \mbox{\hyperlink{sun4u_2tte_8h_a245260f6f74972558f61b85227df5aae}{size}}, const char $\ast$bus\+\_\+path, uint16\+\_\+t address)
+\begin{DoxyCompactList}\small\item\em Allocates a device control from the heap and initializes it. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__I2CDevice_ga2ed20633d6ded213b3f06ca56db211c6}{i2c\+\_\+dev\+\_\+destroy}} (\mbox{\hyperlink{structi2c__dev}{i2c\+\_\+dev}} $\ast$dev)
+\begin{DoxyCompactList}\small\item\em Destroys a device control. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__I2CDevice_gabb0478e95d721b85cc8e06bd2be89559}{i2c\+\_\+dev\+\_\+destroy\+\_\+and\+\_\+free}} (\mbox{\hyperlink{structi2c__dev}{i2c\+\_\+dev}} $\ast$dev)
+\begin{DoxyCompactList}\small\item\em Destroys a device control and frees its memory. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__I2CDevice_ga917604be9f6cfaa0e4d7a9302e873d16}{i2c\+\_\+dev\+\_\+register}} (\mbox{\hyperlink{structi2c__dev}{i2c\+\_\+dev}} $\ast$dev, const char $\ast$dev\+\_\+path)
+\begin{DoxyCompactList}\small\item\em Registers a device control. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Inter-\/\+Integrated Circuit (I2C) Driver A\+PI. 
+

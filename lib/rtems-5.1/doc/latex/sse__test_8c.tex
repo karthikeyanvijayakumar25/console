@@ -1,0 +1,427 @@
+\hypertarget{sse__test_8c}{}\section{cpukit/score/cpu/i386/sse\+\_\+test.c File Reference}
+\label{sse__test_8c}\index{cpukit/score/cpu/i386/sse\_test.c@{cpukit/score/cpu/i386/sse\_test.c}}
+
+
+Test F\+P\+U/\+S\+SE Context Save and Restore.  
+
+
+{\ttfamily \#include $<$inttypes.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$math.\+h$>$}\newline
+{\ttfamily \#include $<$signal.\+h$>$}\newline
+{\ttfamily \#include $<$ucontext.\+h$>$}\newline
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structContext__Control__sse}{Context\+\_\+\+Control\+\_\+sse}}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{sse__test_8c_a2e120ad7c2dee8be97f7093150fa1a19}\label{sse__test_8c_a2e120ad7c2dee8be97f7093150fa1a19}} 
+\#define {\bfseries S\+S\+E\+\_\+\+T\+E\+S\+T\+\_\+\+I\+RQ}~10
+\item 
+\mbox{\Hypertarget{sse__test_8c_a3a42169c7a0a40215967d8d113ad3a8c}\label{sse__test_8c_a3a42169c7a0a40215967d8d113ad3a8c}} 
+\#define {\bfseries M\+X\+C\+S\+R\+\_\+\+FZ}~(1$<$$<$15)   /$\ast$ Flush to zero $\ast$/
+\item 
+\mbox{\Hypertarget{sse__test_8c_ae4433f8fc339f571410a09c93a163569}\label{sse__test_8c_ae4433f8fc339f571410a09c93a163569}} 
+\#define {\bfseries M\+X\+C\+S\+R\+\_\+\+RC}(x)~(((x)\&3)$<$$<$13)   /$\ast$ Rounding ctrl $\ast$/
+\item 
+\mbox{\Hypertarget{sse__test_8c_ad411d70eaf9bfa0abc08d5f9fed35999}\label{sse__test_8c_ad411d70eaf9bfa0abc08d5f9fed35999}} 
+\#define {\bfseries M\+X\+C\+S\+R\+\_\+\+PM}~(1$<$$<$12)   /$\ast$ Precision msk $\ast$/
+\item 
+\mbox{\Hypertarget{sse__test_8c_ad9182fed1aaeb2d55cbdc14f0abb5af0}\label{sse__test_8c_ad9182fed1aaeb2d55cbdc14f0abb5af0}} 
+\#define {\bfseries M\+X\+C\+S\+R\+\_\+\+UM}~(1$<$$<$11)   /$\ast$ Underflow msk $\ast$/
+\item 
+\mbox{\Hypertarget{sse__test_8c_a27c11879cfc3c086d8b9adc2b87ae4a3}\label{sse__test_8c_a27c11879cfc3c086d8b9adc2b87ae4a3}} 
+\#define {\bfseries M\+X\+C\+S\+R\+\_\+\+OM}~(1$<$$<$10)   /$\ast$ Overflow  msk $\ast$/
+\item 
+\mbox{\Hypertarget{sse__test_8c_afbc1e40897e832d3512ff38b3f51cfba}\label{sse__test_8c_afbc1e40897e832d3512ff38b3f51cfba}} 
+\#define {\bfseries M\+X\+C\+S\+R\+\_\+\+ZM}~(1$<$$<$ 9)   /$\ast$ Divbyzero msk $\ast$/
+\item 
+\mbox{\Hypertarget{sse__test_8c_ad112ef2e51c09e906ccfbb28bdedab9b}\label{sse__test_8c_ad112ef2e51c09e906ccfbb28bdedab9b}} 
+\#define {\bfseries M\+X\+C\+S\+R\+\_\+\+DM}~(1$<$$<$ 8)   /$\ast$ Denormal  msk $\ast$/
+\item 
+\mbox{\Hypertarget{sse__test_8c_a2b7a64cb477ec4e797d894ac104ec052}\label{sse__test_8c_a2b7a64cb477ec4e797d894ac104ec052}} 
+\#define {\bfseries M\+X\+C\+S\+R\+\_\+\+IM}~(1$<$$<$ 7)   /$\ast$ Invalidop msk $\ast$/
+\item 
+\mbox{\Hypertarget{sse__test_8c_aaaaa72ef7374254846762e3e4df54c1f}\label{sse__test_8c_aaaaa72ef7374254846762e3e4df54c1f}} 
+\#define {\bfseries M\+X\+C\+S\+R\+\_\+\+D\+AZ}~(1$<$$<$ 6)   /$\ast$ Denorml are 0 $\ast$/
+\item 
+\mbox{\Hypertarget{sse__test_8c_ae87ceff0ec5148fbd8c57665b2c55f6a}\label{sse__test_8c_ae87ceff0ec5148fbd8c57665b2c55f6a}} 
+\#define {\bfseries M\+X\+C\+S\+R\+\_\+\+PE}~(1$<$$<$ 5)   /$\ast$ Precision flg $\ast$/
+\item 
+\mbox{\Hypertarget{sse__test_8c_aa9eca1b80bdd0aa9917a333a44c92139}\label{sse__test_8c_aa9eca1b80bdd0aa9917a333a44c92139}} 
+\#define {\bfseries M\+X\+C\+S\+R\+\_\+\+UE}~(1$<$$<$ 4)   /$\ast$ Underflow flg $\ast$/
+\item 
+\mbox{\Hypertarget{sse__test_8c_ae41faaf84e21c9253ca7758195c4103e}\label{sse__test_8c_ae41faaf84e21c9253ca7758195c4103e}} 
+\#define {\bfseries M\+X\+C\+S\+R\+\_\+\+OE}~(1$<$$<$ 3)   /$\ast$ Overflow  flg $\ast$/
+\item 
+\mbox{\Hypertarget{sse__test_8c_a6967b5337a1346f28f4e37d612ea5afa}\label{sse__test_8c_a6967b5337a1346f28f4e37d612ea5afa}} 
+\#define {\bfseries M\+X\+C\+S\+R\+\_\+\+ZE}~(1$<$$<$ 2)   /$\ast$ Divbyzero flg $\ast$/
+\item 
+\mbox{\Hypertarget{sse__test_8c_a7de9eefc613ff7121b35d9af12e1ea9a}\label{sse__test_8c_a7de9eefc613ff7121b35d9af12e1ea9a}} 
+\#define {\bfseries M\+X\+C\+S\+R\+\_\+\+DE}~(1$<$$<$ 1)   /$\ast$ Denormal  flg $\ast$/
+\item 
+\mbox{\Hypertarget{sse__test_8c_a70e5df50778c4246b700d26fb5e21f8a}\label{sse__test_8c_a70e5df50778c4246b700d26fb5e21f8a}} 
+\#define {\bfseries M\+X\+C\+S\+R\+\_\+\+IE}~(1$<$$<$ 0)   /$\ast$ Invalidop flg $\ast$/
+\item 
+\mbox{\Hypertarget{sse__test_8c_a4e321a0eebb32da5a695a723fd934941}\label{sse__test_8c_a4e321a0eebb32da5a695a723fd934941}} 
+\#define {\bfseries M\+X\+C\+S\+R\+\_\+\+A\+L\+LM}~(M\+X\+C\+S\+R\+\_\+\+PM $\vert$ M\+X\+C\+S\+R\+\_\+\+UM $\vert$ M\+X\+C\+S\+R\+\_\+\+OM $\vert$ M\+X\+C\+S\+R\+\_\+\+ZM $\vert$ M\+X\+C\+S\+R\+\_\+\+DM $\vert$ M\+X\+C\+S\+R\+\_\+\+IM)
+\item 
+\mbox{\Hypertarget{sse__test_8c_aaab09917ab5b956924becfb161a007a9}\label{sse__test_8c_aaab09917ab5b956924becfb161a007a9}} 
+\#define {\bfseries M\+X\+C\+S\+R\+\_\+\+A\+L\+LE}~(M\+X\+C\+S\+R\+\_\+\+PE $\vert$ M\+X\+C\+S\+R\+\_\+\+UE $\vert$ M\+X\+C\+S\+R\+\_\+\+OE $\vert$ M\+X\+C\+S\+R\+\_\+\+ZE $\vert$ M\+X\+C\+S\+R\+\_\+\+DE $\vert$ M\+X\+C\+S\+R\+\_\+\+IE)
+\item 
+\mbox{\Hypertarget{sse__test_8c_a3322b786fed13c9a1657333b2b4debc5}\label{sse__test_8c_a3322b786fed13c9a1657333b2b4debc5}} 
+\#define {\bfseries F\+P\+S\+R\+\_\+B}~(1$<$$<$15)   /$\ast$ F\+PU busy      $\ast$/
+\item 
+\mbox{\Hypertarget{sse__test_8c_a3dea8cd365b24a9f2f58f1d8d6724c67}\label{sse__test_8c_a3dea8cd365b24a9f2f58f1d8d6724c67}} 
+\#define {\bfseries F\+P\+S\+R\+\_\+\+C3}~(1$<$$<$14)   /$\ast$ Cond \mbox{\hyperlink{structcode}{code}} C3  $\ast$/
+\item 
+\mbox{\Hypertarget{sse__test_8c_af181649f7ab6c975964d1c0f402527c2}\label{sse__test_8c_af181649f7ab6c975964d1c0f402527c2}} 
+\#define {\bfseries F\+P\+S\+R\+\_\+\+T\+OP}(x)~(((x)\&7)$<$$<$11)   /$\ast$ T\+OP           $\ast$/
+\item 
+\mbox{\Hypertarget{sse__test_8c_a7c4fed00f8b404dfd0a345720552d5ed}\label{sse__test_8c_a7c4fed00f8b404dfd0a345720552d5ed}} 
+\#define {\bfseries F\+P\+S\+R\+\_\+\+C2}~(1$<$$<$10)   /$\ast$ Cond \mbox{\hyperlink{structcode}{code}} C2  $\ast$/
+\item 
+\mbox{\Hypertarget{sse__test_8c_abd3bc1ecac990e3b184b16443d894ca1}\label{sse__test_8c_abd3bc1ecac990e3b184b16443d894ca1}} 
+\#define {\bfseries F\+P\+S\+R\+\_\+\+C1}~(1$<$$<$ 9)   /$\ast$ Cond \mbox{\hyperlink{structcode}{code}} C1  $\ast$/
+\item 
+\mbox{\Hypertarget{sse__test_8c_ad4d10ed3e0a8778edede6d8a06719132}\label{sse__test_8c_ad4d10ed3e0a8778edede6d8a06719132}} 
+\#define {\bfseries F\+P\+S\+R\+\_\+\+C0}~(1$<$$<$ 8)   /$\ast$ Cond \mbox{\hyperlink{structcode}{code}} C0  $\ast$/
+\item 
+\mbox{\Hypertarget{sse__test_8c_aa8f7694ed6103f98a11cc291f74914b1}\label{sse__test_8c_aa8f7694ed6103f98a11cc291f74914b1}} 
+\#define {\bfseries F\+P\+S\+R\+\_\+\+ES}~(1$<$$<$ 7)   /$\ast$ Error summary $\ast$/
+\item 
+\mbox{\Hypertarget{sse__test_8c_ab1ba281b0c2a42f97de1a4ebc4ce7ad2}\label{sse__test_8c_ab1ba281b0c2a42f97de1a4ebc4ce7ad2}} 
+\#define {\bfseries F\+P\+S\+R\+\_\+\+SF}~(1$<$$<$ 6)   /$\ast$ Stack fault   $\ast$/
+\item 
+\mbox{\Hypertarget{sse__test_8c_aee4f34a77e5421afd875585bbe900cd6}\label{sse__test_8c_aee4f34a77e5421afd875585bbe900cd6}} 
+\#define {\bfseries F\+P\+S\+R\+\_\+\+PE}~(1$<$$<$ 5)   /$\ast$ Precision flg $\ast$/
+\item 
+\mbox{\Hypertarget{sse__test_8c_a922202e5991831d45a0a6b72c76c0017}\label{sse__test_8c_a922202e5991831d45a0a6b72c76c0017}} 
+\#define {\bfseries F\+P\+S\+R\+\_\+\+UE}~(1$<$$<$ 4)   /$\ast$ Underflow flg $\ast$/
+\item 
+\mbox{\Hypertarget{sse__test_8c_a9d3f92bb2a44748a5f5601336325f2e6}\label{sse__test_8c_a9d3f92bb2a44748a5f5601336325f2e6}} 
+\#define {\bfseries F\+P\+S\+R\+\_\+\+OE}~(1$<$$<$ 3)   /$\ast$ Overflow  flg $\ast$/
+\item 
+\mbox{\Hypertarget{sse__test_8c_a50c50620c1265353d819142705b2c8df}\label{sse__test_8c_a50c50620c1265353d819142705b2c8df}} 
+\#define {\bfseries F\+P\+S\+R\+\_\+\+ZE}~(1$<$$<$ 2)   /$\ast$ Divbyzero flg $\ast$/
+\item 
+\mbox{\Hypertarget{sse__test_8c_a73d499e2f1153bba0f2c75950d3a6d13}\label{sse__test_8c_a73d499e2f1153bba0f2c75950d3a6d13}} 
+\#define {\bfseries F\+P\+S\+R\+\_\+\+DE}~(1$<$$<$ 1)   /$\ast$ Denormal  flg $\ast$/
+\item 
+\mbox{\Hypertarget{sse__test_8c_a37f9e907c2c47bf3907cc87f9421dbea}\label{sse__test_8c_a37f9e907c2c47bf3907cc87f9421dbea}} 
+\#define {\bfseries F\+P\+S\+R\+\_\+\+IE}~(1$<$$<$ 0)   /$\ast$ Invalidop flg $\ast$/
+\item 
+\mbox{\Hypertarget{sse__test_8c_a247d53f1ddc4d4d09c8b13ff5ac2b436}\label{sse__test_8c_a247d53f1ddc4d4d09c8b13ff5ac2b436}} 
+\#define {\bfseries F\+P\+C\+W\+\_\+X}~(1$<$$<$12)   /$\ast$ Infinity ctrl $\ast$/
+\item 
+\mbox{\Hypertarget{sse__test_8c_a0c5de9da69e08908467c85b53f28e954}\label{sse__test_8c_a0c5de9da69e08908467c85b53f28e954}} 
+\#define {\bfseries F\+P\+C\+W\+\_\+\+RC}(x)~(((x)\&3)$<$$<$10)   /$\ast$ Rounding ctrl $\ast$/
+\item 
+\mbox{\Hypertarget{sse__test_8c_adb9864fcbc782be68b6534204b3d9ca7}\label{sse__test_8c_adb9864fcbc782be68b6534204b3d9ca7}} 
+\#define {\bfseries F\+P\+C\+W\+\_\+\+PC}(x)~(((x)\&3)$<$$<$ 8)   /$\ast$ Precision ctl $\ast$/
+\item 
+\mbox{\Hypertarget{sse__test_8c_ad11edb5b367d6140caf91cebb06abfc3}\label{sse__test_8c_ad11edb5b367d6140caf91cebb06abfc3}} 
+\#define {\bfseries F\+P\+C\+W\+\_\+\+PM}~(1$<$$<$ 5)   /$\ast$ Precision msk $\ast$/
+\item 
+\mbox{\Hypertarget{sse__test_8c_ad1c4d316dcdaacc845976b90ac67f826}\label{sse__test_8c_ad1c4d316dcdaacc845976b90ac67f826}} 
+\#define {\bfseries F\+P\+C\+W\+\_\+\+UM}~(1$<$$<$ 4)   /$\ast$ Underflow msk $\ast$/
+\item 
+\mbox{\Hypertarget{sse__test_8c_aaab9f8ef6354957292b75fdf95769f41}\label{sse__test_8c_aaab9f8ef6354957292b75fdf95769f41}} 
+\#define {\bfseries F\+P\+C\+W\+\_\+\+OM}~(1$<$$<$ 3)   /$\ast$ Overflow  msk $\ast$/
+\item 
+\mbox{\Hypertarget{sse__test_8c_a5ba33be0224e3648d3befcbd690d5305}\label{sse__test_8c_a5ba33be0224e3648d3befcbd690d5305}} 
+\#define {\bfseries F\+P\+C\+W\+\_\+\+ZM}~(1$<$$<$ 2)   /$\ast$ Divbyzero msk $\ast$/
+\item 
+\mbox{\Hypertarget{sse__test_8c_a2b9bab587919f771e7b5ef3c147e2d8c}\label{sse__test_8c_a2b9bab587919f771e7b5ef3c147e2d8c}} 
+\#define {\bfseries F\+P\+C\+W\+\_\+\+DM}~(1$<$$<$ 1)   /$\ast$ Denormal  msk $\ast$/
+\item 
+\mbox{\Hypertarget{sse__test_8c_abd1d35d97db26db9718a918929458a28}\label{sse__test_8c_abd1d35d97db26db9718a918929458a28}} 
+\#define {\bfseries F\+P\+C\+W\+\_\+\+IM}~(1$<$$<$ 0)   /$\ast$ Invalidop msk $\ast$/
+\item 
+\mbox{\Hypertarget{sse__test_8c_a8713f5238e7c6a14cc29d839a8f8059d}\label{sse__test_8c_a8713f5238e7c6a14cc29d839a8f8059d}} 
+\#define {\bfseries F\+P\+C\+W\+\_\+\+A\+L\+LM}~(F\+P\+C\+W\+\_\+\+PM $\vert$ F\+P\+C\+W\+\_\+\+UM $\vert$ F\+P\+C\+W\+\_\+\+OM $\vert$ F\+P\+C\+W\+\_\+\+ZM $\vert$ F\+P\+C\+W\+\_\+\+DM $\vert$ F\+P\+C\+W\+\_\+\+IM)
+\item 
+\mbox{\Hypertarget{sse__test_8c_ad11f72c02972bd971abe3fc6288add05}\label{sse__test_8c_ad11f72c02972bd971abe3fc6288add05}} 
+\#define {\bfseries F\+P\+S\+R\+\_\+\+A\+L\+LE}~(F\+P\+S\+R\+\_\+\+ES $\vert$ F\+P\+S\+R\+\_\+\+SF $\vert$ F\+P\+S\+R\+\_\+\+PE $\vert$ F\+P\+S\+R\+\_\+\+UE $\vert$ F\+P\+S\+R\+\_\+\+OE $\vert$ F\+P\+S\+R\+\_\+\+ZE $\vert$ F\+P\+S\+R\+\_\+\+DE $\vert$ F\+P\+S\+R\+\_\+\+IE)
+\item 
+\#define {\bfseries F\+P\+U\+C\+L\+O\+B\+B\+ER}
+\item 
+\#define {\bfseries S\+S\+E\+C\+L\+O\+B\+B\+ER}
+\item 
+\mbox{\Hypertarget{sse__test_8c_aebc3d6a5d7926a86ab6a1d0cec2537a5}\label{sse__test_8c_aebc3d6a5d7926a86ab6a1d0cec2537a5}} 
+\#define {\bfseries H08}~\char`\"{}0x\%02\char`\"{}\+P\+R\+Ix8
+\item 
+\mbox{\Hypertarget{sse__test_8c_a3c4fe341363250c451d92fe2e9629920}\label{sse__test_8c_a3c4fe341363250c451d92fe2e9629920}} 
+\#define {\bfseries H16}~\char`\"{}0x\%04\char`\"{}\+P\+R\+Ix16
+\item 
+\mbox{\Hypertarget{sse__test_8c_a3307b9c257e33ba3144dc41d36b76c09}\label{sse__test_8c_a3307b9c257e33ba3144dc41d36b76c09}} 
+\#define {\bfseries H32}~\char`\"{}0x\%08\char`\"{}\+P\+R\+Ix32
+\item 
+\mbox{\Hypertarget{sse__test_8c_a849bede8661634aca6361f00dfdbddb5}\label{sse__test_8c_a849bede8661634aca6361f00dfdbddb5}} 
+\#define {\bfseries F16}~\char`\"{}mismatch (\char`\"{}H16\char`\"{} != \char`\"{}H16\char`\"{})\textbackslash{}n\char`\"{}
+\item 
+\#define {\bfseries F\+L\+D\+C\+MP}(fld,  fmt)
+\item 
+\#define {\bfseries F\+L\+T\+C\+MP}(i)
+\item 
+\#define {\bfseries X\+M\+M\+C\+MP}(i)
+\item 
+\mbox{\Hypertarget{sse__test_8c_ae88652acd14e1b9457c3628caf4ff07d}\label{sse__test_8c_ae88652acd14e1b9457c3628caf4ff07d}} 
+\#define {\bfseries F\+P\+\_\+\+E\+XC}~0
+\item 
+\mbox{\Hypertarget{sse__test_8c_a5d3357b81cb4c80815e7a4645dfcc350}\label{sse__test_8c_a5d3357b81cb4c80815e7a4645dfcc350}} 
+\#define {\bfseries I\+R\+Q\+\_\+\+E\+XC}~1
+\item 
+\mbox{\Hypertarget{sse__test_8c_acb12a2c96403891e01bb9cfb0f9b811b}\label{sse__test_8c_acb12a2c96403891e01bb9cfb0f9b811b}} 
+\#define {\bfseries S\+S\+E\+\_\+\+E\+XC}~-\/1
+\item 
+\mbox{\Hypertarget{sse__test_8c_a2453dcb6c5f83a21ea570cb235891d54}\label{sse__test_8c_a2453dcb6c5f83a21ea570cb235891d54}} 
+\#define {\bfseries \+\_\+\+\_\+\+I\+N\+T\+R\+A\+I\+SE}(x)~\char`\"{}	int  \$32+\char`\"{}\#x\char`\"{} \textbackslash{}n\char`\"{}
+\item 
+\mbox{\Hypertarget{sse__test_8c_a48b99e420407793f935dfd14c193d526}\label{sse__test_8c_a48b99e420407793f935dfd14c193d526}} 
+\#define {\bfseries I\+N\+T\+R\+A\+I\+SE}(x)~\+\_\+\+\_\+\+I\+N\+T\+R\+A\+I\+SE(x)
+\item 
+\mbox{\Hypertarget{sse__test_8c_a641be6a91b643029a9621a657b6b1959}\label{sse__test_8c_a641be6a91b643029a9621a657b6b1959}} 
+\#define {\bfseries S\+S\+E\+\_\+\+T\+E\+S\+T\+\_\+\+H\+P\+\_\+\+F\+A\+I\+L\+ED}~1
+\item 
+\mbox{\Hypertarget{sse__test_8c_a39892713ceef25d56ffcbc62aaf676f2}\label{sse__test_8c_a39892713ceef25d56ffcbc62aaf676f2}} 
+\#define {\bfseries S\+S\+E\+\_\+\+T\+E\+S\+T\+\_\+\+F\+S\+P\+R\+\_\+\+F\+A\+I\+L\+ED}~2
+\item 
+\mbox{\Hypertarget{sse__test_8c_a0e3136982ae7a02c1ed0c8f210141d44}\label{sse__test_8c_a0e3136982ae7a02c1ed0c8f210141d44}} 
+\#define {\bfseries S\+S\+E\+\_\+\+T\+E\+S\+T\+\_\+\+C\+T\+X\+T\+C\+M\+P\+\_\+\+F\+A\+I\+L\+ED}~4
+\item 
+\mbox{\Hypertarget{sse__test_8c_a512daa1e8d5ac7a448ab6316edaa4490}\label{sse__test_8c_a512daa1e8d5ac7a448ab6316edaa4490}} 
+\#define {\bfseries M\+K\+C\+A\+SE}(X)~case F\+P\+E\+\_\+\#\#X\+: \mbox{\hyperlink{structmsg}{msg}}=\char`\"{}F\+P\+E\+\_\+\char`\"{}\#X; break;
+\item 
+\mbox{\Hypertarget{sse__test_8c_aa045d46b5537c71cb4787cff52afadf3}\label{sse__test_8c_aa045d46b5537c71cb4787cff52afadf3}} 
+\#define {\bfseries C\+L\+R\+X\+MM}(i)~\mbox{\hyperlink{group__RTEMSScoreCPUSPARC_ga82257d4fc068f4b21b029dd69d276839}{\+\_\+\+\_\+asm\+\_\+\+\_\+}} volatile(\char`\"{}pxor \%\%xmm\char`\"{}\#i\char`\"{}, \%\%xmm\char`\"{}\#i\+:::\char`\"{}xmm\char`\"{}\#i)
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{sse__test_8c_a767af9051554fdad9d0c8220e0fe41b5}\label{sse__test_8c_a767af9051554fdad9d0c8220e0fe41b5}} 
+typedef uint8\+\_\+t \+\_\+\+\_\+v8 {\bfseries \+\_\+\+\_\+attribute\+\_\+\+\_\+}((vector\+\_\+size(16)))
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{sse__test_8c_af4e36661261f50c8e7696f2d520e21b2}\label{sse__test_8c_af4e36661261f50c8e7696f2d520e21b2}} 
+struct \mbox{\hyperlink{structContext__Control__sse}{Context\+\_\+\+Control\+\_\+sse}} {\bfseries \+\_\+\+\_\+attribute\+\_\+\+\_\+} ((aligned(16)))
+\item 
+\mbox{\Hypertarget{sse__test_8c_a8f0d14dad5b71c45eff7939a072e429b}\label{sse__test_8c_a8f0d14dad5b71c45eff7939a072e429b}} 
+void {\bfseries fp\+\_\+st1} (uint8\+\_\+t($\ast$p\+\_\+dst)\mbox{[}10\mbox{]}, double \mbox{\hyperlink{sun4u_2tte_8h_a0b943bd7a9fc74d6635879a38dc16894}{v}})
+\item 
+\mbox{\Hypertarget{sse__test_8c_a6944b1fade9f4c993ddcaa525fd008a7}\label{sse__test_8c_a6944b1fade9f4c993ddcaa525fd008a7}} 
+void {\bfseries fp\+\_\+st} (\mbox{\hyperlink{structContext__Control__sse}{Context\+\_\+\+Control\+\_\+sse}} $\ast$p\+\_\+ctxt, int i, double \mbox{\hyperlink{sun4u_2tte_8h_a0b943bd7a9fc74d6635879a38dc16894}{v}})
+\item 
+\mbox{\Hypertarget{sse__test_8c_af22d5544b7fc2137f474933207dfea95}\label{sse__test_8c_af22d5544b7fc2137f474933207dfea95}} 
+double {\bfseries fp\+\_\+ld1} (uint8\+\_\+t($\ast$p\+\_\+src)\mbox{[}10\mbox{]})
+\item 
+\mbox{\Hypertarget{sse__test_8c_ad402429dc261b13c586c48285dff89c0}\label{sse__test_8c_ad402429dc261b13c586c48285dff89c0}} 
+double {\bfseries fp\+\_\+ld} (\mbox{\hyperlink{structContext__Control__sse}{Context\+\_\+\+Control\+\_\+sse}} $\ast$p\+\_\+ctxt, int i)
+\item 
+\mbox{\Hypertarget{sse__test_8c_a32a87962fe4723b2907fde85fac42074}\label{sse__test_8c_a32a87962fe4723b2907fde85fac42074}} 
+void {\bfseries all\+\_\+clobber} (uint32\+\_\+t v1, uint32\+\_\+t v2)
+\item 
+\mbox{\Hypertarget{sse__test_8c_ad382c0f5f0bdfec35645c83bb73e729e}\label{sse__test_8c_ad382c0f5f0bdfec35645c83bb73e729e}} 
+{\bfseries \+\_\+\+\_\+asm\+\_\+\+\_\+} (\char`\"{}all\+\_\+clobber\+:               \textbackslash{}n\char`\"{} \char`\"{}   finit                   \textbackslash{}n\char`\"{} \char`\"{}	movq  0(\%esp), \%xmm0    \textbackslash{}n\char`\"{} \char`\"{}   punpcklqdq \%xmm0, \%xmm0 \textbackslash{}n\char`\"{} \char`\"{}	movdqa \%xmm0, \%xmm1     \textbackslash{}n\char`\"{} \char`\"{}	movdqa \%xmm0, \%xmm2     \textbackslash{}n\char`\"{} \char`\"{}	movdqa \%xmm0, \%xmm3     \textbackslash{}n\char`\"{} \char`\"{}	movdqa \%xmm0, \%xmm4     \textbackslash{}n\char`\"{} \char`\"{}	movdqa \%xmm0, \%xmm5     \textbackslash{}n\char`\"{} \char`\"{}	movdqa \%xmm0, \%xmm6     \textbackslash{}n\char`\"{} \char`\"{}	movdqa \%xmm0, \%xmm7     \textbackslash{}n\char`\"{} \char`\"{}	ret                     \textbackslash{}n\char`\"{})
+\item 
+\mbox{\Hypertarget{sse__test_8c_a464cf87e321c08c019175c05094b9d27}\label{sse__test_8c_a464cf87e321c08c019175c05094b9d27}} 
+void {\bfseries init\+\_\+ctxt} (\mbox{\hyperlink{structContext__Control__sse}{Context\+\_\+\+Control\+\_\+sse}} $\ast$p\+\_\+ctxt)
+\item 
+\mbox{\Hypertarget{sse__test_8c_a941d00238449406ce0631cac21987a4e}\label{sse__test_8c_a941d00238449406ce0631cac21987a4e}} 
+{\bfseries \+\_\+\+\_\+asm\+\_\+\+\_\+} (\char`\"{}init\+\_\+ctxt\+:            \textbackslash{}n\char`\"{} \char`\"{}	finit              \textbackslash{}n\char`\"{} \char`\"{}   mov    4(\%esp), \%eax\textbackslash{}n\char`\"{} \char`\"{}   fxsave (\%eax)      \textbackslash{}n\char`\"{} \char`\"{}   fwait              \textbackslash{}n\char`\"{} \char`\"{}   ret                \textbackslash{}n\char`\"{})
+\item 
+\mbox{\Hypertarget{sse__test_8c_ac8b2cdf2896a599622399ab2f12c44c2}\label{sse__test_8c_ac8b2cdf2896a599622399ab2f12c44c2}} 
+{\bfseries \+\_\+\+\_\+asm\+\_\+\+\_\+} (\char`\"{}do\+\_\+raise\+:               \textbackslash{}n\char`\"{} \char`\"{}   fwait                \textbackslash{}n\char`\"{} \char`\"{}	test    \%eax, \%eax   \textbackslash{}n\char`\"{} \char`\"{}   je      2f           \textbackslash{}n\char`\"{} \char`\"{}   jl      1f           \textbackslash{}n\char`\"{} \char`\"{}   jmp     2f           \textbackslash{}n\char`\"{} \char`\"{}1\+: sqrtps  \%xmm0, \%xmm0 \textbackslash{}n\char`\"{} \char`\"{}2\+:                      \textbackslash{}n\char`\"{} \char`\"{}   ret                  \textbackslash{}n\char`\"{})
+\item 
+\mbox{\Hypertarget{sse__test_8c_a3c04138a5bfe5d72780bb7e82a18e627}\label{sse__test_8c_a3c04138a5bfe5d72780bb7e82a18e627}} 
+int {\bfseries main} (int argc, char $\ast$$\ast$argv)
+\item 
+\mbox{\Hypertarget{sse__test_8c_a0c7dc70991b22564a2ef6f3dd84cbbf3}\label{sse__test_8c_a0c7dc70991b22564a2ef6f3dd84cbbf3}} 
+uint32\+\_\+t {\bfseries mfcr4} ()
+\item 
+\mbox{\Hypertarget{sse__test_8c_afd8ef05557801e34c030042e85d90f49}\label{sse__test_8c_afd8ef05557801e34c030042e85d90f49}} 
+void {\bfseries mtcr4} (uint32\+\_\+t rval)
+\item 
+\mbox{\Hypertarget{sse__test_8c_a514594eafb8d4ce40eea7fa53bedb2f5}\label{sse__test_8c_a514594eafb8d4ce40eea7fa53bedb2f5}} 
+uint32\+\_\+t {\bfseries mfmxcsr} ()
+\item 
+\mbox{\Hypertarget{sse__test_8c_a24808d7330c59b599f19408844bf8bd1}\label{sse__test_8c_a24808d7330c59b599f19408844bf8bd1}} 
+void {\bfseries mtmxcsr} (uint32\+\_\+t rval)
+\item 
+\mbox{\Hypertarget{sse__test_8c_a2b86fd8d5446da2d8da26fcd0b0a6a0c}\label{sse__test_8c_a2b86fd8d5446da2d8da26fcd0b0a6a0c}} 
+float {\bfseries sseraise} ()
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{sse__test_8c_a2e33b01fe25cb595f498d300575eb310}\label{sse__test_8c_a2e33b01fe25cb595f498d300575eb310}} 
+uint16\+\_\+t {\bfseries fcw}
+\item 
+\mbox{\Hypertarget{sse__test_8c_ab22d66ef6012b705c21f163e38fa496e}\label{sse__test_8c_ab22d66ef6012b705c21f163e38fa496e}} 
+uint16\+\_\+t {\bfseries fsw}
+\item 
+\mbox{\Hypertarget{sse__test_8c_ae7c0ce85422a2a1bb4c709c3fa9bfdd5}\label{sse__test_8c_ae7c0ce85422a2a1bb4c709c3fa9bfdd5}} 
+uint8\+\_\+t {\bfseries ftw}
+\item 
+\mbox{\Hypertarget{sse__test_8c_af0794d7b45f9d67e95d3735ea508b206}\label{sse__test_8c_af0794d7b45f9d67e95d3735ea508b206}} 
+uint8\+\_\+t {\bfseries res\+\_\+1}
+\item 
+\mbox{\Hypertarget{sse__test_8c_aaaf1ee01ae13a6701cbbcdc3f8330da9}\label{sse__test_8c_aaaf1ee01ae13a6701cbbcdc3f8330da9}} 
+uint16\+\_\+t {\bfseries fop}
+\item 
+\mbox{\Hypertarget{sse__test_8c_a430709a6aa845157a983ffded5f938e8}\label{sse__test_8c_a430709a6aa845157a983ffded5f938e8}} 
+uint32\+\_\+t {\bfseries fpu\+\_\+ip}
+\item 
+\mbox{\Hypertarget{sse__test_8c_a6779da9ece2642b856cf966f13b99047}\label{sse__test_8c_a6779da9ece2642b856cf966f13b99047}} 
+uint16\+\_\+t {\bfseries cs}
+\item 
+\mbox{\Hypertarget{sse__test_8c_a6b829ef95d3f25c83d1c5355523bf1ec}\label{sse__test_8c_a6b829ef95d3f25c83d1c5355523bf1ec}} 
+uint16\+\_\+t {\bfseries res\+\_\+2}
+\item 
+\mbox{\Hypertarget{sse__test_8c_adc6b50ce448b7e118864611e4f80ee61}\label{sse__test_8c_adc6b50ce448b7e118864611e4f80ee61}} 
+uint32\+\_\+t {\bfseries fpu\+\_\+dp}
+\item 
+\mbox{\Hypertarget{sse__test_8c_a1593f2113f73ecbc0e6a92e41fa76d14}\label{sse__test_8c_a1593f2113f73ecbc0e6a92e41fa76d14}} 
+uint16\+\_\+t {\bfseries ds}
+\item 
+\mbox{\Hypertarget{sse__test_8c_abdeb31e98fdcfe5375f2aebb6eb33c8a}\label{sse__test_8c_abdeb31e98fdcfe5375f2aebb6eb33c8a}} 
+uint16\+\_\+t {\bfseries res\+\_\+3}
+\item 
+\mbox{\Hypertarget{sse__test_8c_a1485787f3c2fb8d9f8e3668eb0dbbfe3}\label{sse__test_8c_a1485787f3c2fb8d9f8e3668eb0dbbfe3}} 
+uint32\+\_\+t {\bfseries mxcsr}
+\item 
+\mbox{\Hypertarget{sse__test_8c_ad1c05b4421c5de1edc602432cb3aec36}\label{sse__test_8c_ad1c05b4421c5de1edc602432cb3aec36}} 
+uint32\+\_\+t {\bfseries mxcsr\+\_\+mask}
+\item 
+\mbox{\Hypertarget{sse__test_8c_a75035f57234efa406693df9edb2a5eeb}\label{sse__test_8c_a75035f57234efa406693df9edb2a5eeb}} 
+\begin{tabbing}
+xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=\kill
+struct \{\\
+\>uint8\_t {\bfseries fpreg} \mbox{[}10\mbox{]}\\
+\>uint8\_t {\bfseries res\_4} \mbox{[}6\mbox{]}\\
+\} {\bfseries fp\_mmregs} \mbox{[}8\mbox{]}\\
+
+\end{tabbing}\item 
+\mbox{\Hypertarget{sse__test_8c_ad4d6bee85f391a8d316e392477e40f58}\label{sse__test_8c_ad4d6bee85f391a8d316e392477e40f58}} 
+uint8\+\_\+t {\bfseries xmmregs} \mbox{[}8\mbox{]}\mbox{[}16\mbox{]}
+\item 
+\mbox{\Hypertarget{sse__test_8c_a485f2542990cf1e60e4d48db97b542d4}\label{sse__test_8c_a485f2542990cf1e60e4d48db97b542d4}} 
+uint8\+\_\+t {\bfseries res\+\_\+5} \mbox{[}224\mbox{]}
+\item 
+\mbox{\Hypertarget{sse__test_8c_a2d79ba312af3b785698ba59a914797c9}\label{sse__test_8c_a2d79ba312af3b785698ba59a914797c9}} 
+int {\bfseries sse\+\_\+test\+\_\+debug} = 0
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Test F\+P\+U/\+S\+SE Context Save and Restore. 
+
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{sse__test_8c_a197e07a6820a612ff47ce012d2409549}\label{sse__test_8c_a197e07a6820a612ff47ce012d2409549}} 
+\index{sse\_test.c@{sse\_test.c}!FLDCMP@{FLDCMP}}
+\index{FLDCMP@{FLDCMP}!sse\_test.c@{sse\_test.c}}
+\subsubsection{\texorpdfstring{FLDCMP}{FLDCMP}}
+{\footnotesize\ttfamily \#define F\+L\+D\+C\+MP(\begin{DoxyParamCaption}\item[{}]{fld,  }\item[{}]{fmt }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{if} ( a->fld != b->fld ) \{ \(\backslash\)}
+\DoxyCodeLine{        rval = 1;             \(\backslash\)}
+\DoxyCodeLine{        if ( !quiet )         \(\backslash\)}
+\DoxyCodeLine{           fprintf(stderr,\#fld\textcolor{stringliteral}{" mismatch ("}fmt\textcolor{stringliteral}{" != "}fmt\textcolor{stringliteral}{")\(\backslash\)n"},a->fld, b->fld); \(\backslash\)}
+\DoxyCodeLine{    \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{sse__test_8c_a2c9726fc66ff2a6b31fb4ec41fd5670a}\label{sse__test_8c_a2c9726fc66ff2a6b31fb4ec41fd5670a}} 
+\index{sse\_test.c@{sse\_test.c}!FLTCMP@{FLTCMP}}
+\index{FLTCMP@{FLTCMP}!sse\_test.c@{sse\_test.c}}
+\subsubsection{\texorpdfstring{FLTCMP}{FLTCMP}}
+{\footnotesize\ttfamily \#define F\+L\+T\+C\+MP(\begin{DoxyParamCaption}\item[{}]{i }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do} \{                                            \(\backslash\)}
+\DoxyCodeLine{        if (   ( (a->ftw \string^ b->ftw) \& (1<<i))        \(\backslash\)}
+\DoxyCodeLine{            || ( (a->ftw \& b->ftw  \& (1<<i)) \&\&     \(\backslash\)}
+\DoxyCodeLine{                 memcmp(a->fp\_mmregs[i].fpreg,      \(\backslash\)}
+\DoxyCodeLine{                    b->fp\_mmregs[i].fpreg,          \(\backslash\)}
+\DoxyCodeLine{                    \textcolor{keyword}{sizeof}(a->fp\_mmregs[i].fpreg))  \(\backslash\)}
+\DoxyCodeLine{               )                                    \(\backslash\)}
+\DoxyCodeLine{           ) \{                                      \(\backslash\)}
+\DoxyCodeLine{            rval = 1;                               \(\backslash\)}
+\DoxyCodeLine{            if ( !quiet ) \{                         \(\backslash\)}
+\DoxyCodeLine{              double fa = fp\_ld(a, i);              \(\backslash\)}
+\DoxyCodeLine{              double fb = fp\_ld(b, i);              \(\backslash\)}
+\DoxyCodeLine{              if ( ((a->ftw \string^ b->ftw) \& (1<<i)) )   \(\backslash\)}
+\DoxyCodeLine{                fprintf(stderr,\textcolor{stringliteral}{"fpreg[\%u] TAG mismatch (\%u != \%u)\(\backslash\)n"},i,(a->ftw \& (1<<i)) ? 1 : 0,(b->ftw \& (1<<i)) ? 1 : 0); \(\backslash\)}
+\DoxyCodeLine{              else                                  \(\backslash\)}
+\DoxyCodeLine{                fprintf(stderr,\textcolor{stringliteral}{"fpreg[\%u] mismatch (\%g != \%g)\(\backslash\)n"},i,fa,fb); \(\backslash\)}
+\DoxyCodeLine{            \}                                       \(\backslash\)}
+\DoxyCodeLine{        \}                                           \(\backslash\)}
+\DoxyCodeLine{    \} \textcolor{keywordflow}{while} (0)}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{sse__test_8c_afc63d87c1e690ba2bd7f68e90ffffa49}\label{sse__test_8c_afc63d87c1e690ba2bd7f68e90ffffa49}} 
+\index{sse\_test.c@{sse\_test.c}!FPUCLOBBER@{FPUCLOBBER}}
+\index{FPUCLOBBER@{FPUCLOBBER}!sse\_test.c@{sse\_test.c}}
+\subsubsection{\texorpdfstring{FPUCLOBBER}{FPUCLOBBER}}
+{\footnotesize\ttfamily \#define F\+P\+U\+C\+L\+O\+B\+B\+ER}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{stringliteral}{"st"},\textcolor{stringliteral}{"st(1)"},\textcolor{stringliteral}{"st(2)"},\textcolor{stringliteral}{"st(3)"},   \(\backslash\)}
+\DoxyCodeLine{    \textcolor{stringliteral}{"st(4)"},\textcolor{stringliteral}{"st(5)"},\textcolor{stringliteral}{"st(6)"},\textcolor{stringliteral}{"st(7)"},\(\backslash\)}
+\DoxyCodeLine{    \textcolor{stringliteral}{"fpsr"},\textcolor{stringliteral}{"fpcr"}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{sse__test_8c_a90b96e545298bebddb9f130aafedff46}\label{sse__test_8c_a90b96e545298bebddb9f130aafedff46}} 
+\index{sse\_test.c@{sse\_test.c}!SSECLOBBER@{SSECLOBBER}}
+\index{SSECLOBBER@{SSECLOBBER}!sse\_test.c@{sse\_test.c}}
+\subsubsection{\texorpdfstring{SSECLOBBER}{SSECLOBBER}}
+{\footnotesize\ttfamily \#define S\+S\+E\+C\+L\+O\+B\+B\+ER}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{stringliteral}{"xmm0"},\textcolor{stringliteral}{"xmm1"},\textcolor{stringliteral}{"xmm2"},\textcolor{stringliteral}{"xmm3"},    \(\backslash\)}
+\DoxyCodeLine{    \textcolor{stringliteral}{"xmm4"},\textcolor{stringliteral}{"xmm5"},\textcolor{stringliteral}{"xmm6"},\textcolor{stringliteral}{"xmm7"}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{sse__test_8c_aa461f4810c4841eff4415bc95567b3e3}\label{sse__test_8c_aa461f4810c4841eff4415bc95567b3e3}} 
+\index{sse\_test.c@{sse\_test.c}!XMMCMP@{XMMCMP}}
+\index{XMMCMP@{XMMCMP}!sse\_test.c@{sse\_test.c}}
+\subsubsection{\texorpdfstring{XMMCMP}{XMMCMP}}
+{\footnotesize\ttfamily \#define X\+M\+M\+C\+MP(\begin{DoxyParamCaption}\item[{}]{i }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{do} \{                                            \(\backslash\)}
+\DoxyCodeLine{        if ( memcmp(\&a->xmmregs[i],                 \(\backslash\)}
+\DoxyCodeLine{                    \&b->xmmregs[i],                 \(\backslash\)}
+\DoxyCodeLine{                    \textcolor{keyword}{sizeof}(a->xmmregs[i]))          \(\backslash\)}
+\DoxyCodeLine{           ) \{                                      \(\backslash\)}
+\DoxyCodeLine{            rval = 1;                               \(\backslash\)}
+\DoxyCodeLine{            if ( !quiet ) \{                         \(\backslash\)}
+\DoxyCodeLine{              int \_jj;                              \(\backslash\)}
+\DoxyCodeLine{              fprintf(stderr,\textcolor{stringliteral}{"xmmreg[\%u] mismatch:\(\backslash\)n"}, i); \(\backslash\)}
+\DoxyCodeLine{              fprintf(stderr,\textcolor{stringliteral}{"    "});               \(\backslash\)}
+\DoxyCodeLine{              for (\_jj=0; \_jj<16; \_jj++)            \(\backslash\)}
+\DoxyCodeLine{                fprintf(stderr,\textcolor{stringliteral}{"\%02x "},a->xmmregs[i][\_jj]); \(\backslash\)}
+\DoxyCodeLine{              fprintf(stderr,\textcolor{stringliteral}{"\(\backslash\)n !=\(\backslash\)n"});            \(\backslash\)}
+\DoxyCodeLine{              fprintf(stderr,\textcolor{stringliteral}{"    "});               \(\backslash\)}
+\DoxyCodeLine{              for (\_jj=0; \_jj<16; \_jj++)            \(\backslash\)}
+\DoxyCodeLine{                fprintf(stderr,\textcolor{stringliteral}{"\%02x "},b->xmmregs[i][\_jj]); \(\backslash\)}
+\DoxyCodeLine{              fprintf(stderr,\textcolor{stringliteral}{"\(\backslash\)n"});                 \(\backslash\)}
+\DoxyCodeLine{            \}                                       \(\backslash\)}
+\DoxyCodeLine{        \}                                           \(\backslash\)}
+\DoxyCodeLine{    \} \textcolor{keywordflow}{while} (0)}
+
+\end{DoxyCode}

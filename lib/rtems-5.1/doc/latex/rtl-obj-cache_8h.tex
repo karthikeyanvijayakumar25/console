@@ -1,0 +1,163 @@
+\hypertarget{rtl-obj-cache_8h}{}\section{cpukit/include/rtems/rtl/rtl-\/obj-\/cache.h File Reference}
+\label{rtl-obj-cache_8h}\index{cpukit/include/rtems/rtl/rtl-\/obj-\/cache.h@{cpukit/include/rtems/rtl/rtl-\/obj-\/cache.h}}
+
+
+R\+T\+E\+MS Run-\/\+Time Linker Object File cache buffers a section of the object file in a buffer to localise read performance.  
+
+
+{\ttfamily \#include $<$fcntl.\+h$>$}\newline
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structrtems__rtl__obj__cache}{rtems\+\_\+rtl\+\_\+obj\+\_\+cache}}
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \mbox{\hyperlink{structrtems__rtl__obj__cache}{rtems\+\_\+rtl\+\_\+obj\+\_\+cache}} \mbox{\hyperlink{rtl-obj-cache_8h_a81e975e0a01c847123f0c3ed0245c88f}{rtems\+\_\+rtl\+\_\+obj\+\_\+cache}}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{rtl-obj-cache_8h_a5b2951671bf88bf7b8e915dd8938b691}{rtems\+\_\+rtl\+\_\+obj\+\_\+cache\+\_\+open}} (\mbox{\hyperlink{structrtems__rtl__obj__cache}{rtems\+\_\+rtl\+\_\+obj\+\_\+cache}} $\ast$cache, size\+\_\+t \mbox{\hyperlink{sun4u_2tte_8h_a245260f6f74972558f61b85227df5aae}{size}})
+\item 
+void \mbox{\hyperlink{rtl-obj-cache_8h_af823408cc02aeceb7ab687c7d818ad1a}{rtems\+\_\+rtl\+\_\+obj\+\_\+cache\+\_\+close}} (\mbox{\hyperlink{structrtems__rtl__obj__cache}{rtems\+\_\+rtl\+\_\+obj\+\_\+cache}} $\ast$cache)
+\item 
+void \mbox{\hyperlink{rtl-obj-cache_8h_a111b8cc86622e49926e5267d2be870e7}{rtems\+\_\+rtl\+\_\+obj\+\_\+cache\+\_\+flush}} (\mbox{\hyperlink{structrtems__rtl__obj__cache}{rtems\+\_\+rtl\+\_\+obj\+\_\+cache}} $\ast$cache)
+\item 
+bool \mbox{\hyperlink{rtl-obj-cache_8h_adad604773572de631e48629ce4a7e212}{rtems\+\_\+rtl\+\_\+obj\+\_\+cache\+\_\+read}} (\mbox{\hyperlink{structrtems__rtl__obj__cache}{rtems\+\_\+rtl\+\_\+obj\+\_\+cache}} $\ast$cache, int fd, off\+\_\+t offset, void $\ast$$\ast$buffer, size\+\_\+t $\ast$length)
+\item 
+bool \mbox{\hyperlink{rtl-obj-cache_8h_a80432d8deca613a70eb9fa3c8ae017c1}{rtems\+\_\+rtl\+\_\+obj\+\_\+cache\+\_\+read\+\_\+byval}} (\mbox{\hyperlink{structrtems__rtl__obj__cache}{rtems\+\_\+rtl\+\_\+obj\+\_\+cache}} $\ast$cache, int fd, off\+\_\+t offset, void $\ast$buffer, size\+\_\+t length)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+R\+T\+E\+MS Run-\/\+Time Linker Object File cache buffers a section of the object file in a buffer to localise read performance. 
+
+This is a simple object file cache that holds a buffer of data from the offset in the file the read is requested from. Writes are not supported.
+
+The cache holds the file descriptor, the offset into the file and the amount of valid data in the cache. If the file is ever modified the user of the cache to responsible for flushing the cache. For example the cache should be flused if the file is closed.
+
+The cache can return by reference or by value. By reference allow access to the cache buffer. Do not modify the cache\textquotesingle{}s data. By value will copy the requested data into the user supplied buffer.
+
+The read by reference call allows you to probe the file\textquotesingle{}s data. For example a string in an object file can be an unknown length. You can request a read up to the cache\textquotesingle{}s size by reference. The code will attempt to have this data in the buffer. If there is not enough data in the file the length will be modifed to reflect this.
+
+You can have more than one cache for a single file all looking at different parts of the file. 
+
+\subsection{Typedef Documentation}
+\mbox{\Hypertarget{rtl-obj-cache_8h_a81e975e0a01c847123f0c3ed0245c88f}\label{rtl-obj-cache_8h_a81e975e0a01c847123f0c3ed0245c88f}} 
+\index{rtl-\/obj-\/cache.h@{rtl-\/obj-\/cache.h}!rtems\_rtl\_obj\_cache@{rtems\_rtl\_obj\_cache}}
+\index{rtems\_rtl\_obj\_cache@{rtems\_rtl\_obj\_cache}!rtl-\/obj-\/cache.h@{rtl-\/obj-\/cache.h}}
+\subsubsection{\texorpdfstring{rtems\_rtl\_obj\_cache}{rtems\_rtl\_obj\_cache}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structrtems__rtl__obj__cache}{rtems\+\_\+rtl\+\_\+obj\+\_\+cache}}  \mbox{\hyperlink{structrtems__rtl__obj__cache}{rtems\+\_\+rtl\+\_\+obj\+\_\+cache}}}
+
+The buffer cache. 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{rtl-obj-cache_8h_af823408cc02aeceb7ab687c7d818ad1a}\label{rtl-obj-cache_8h_af823408cc02aeceb7ab687c7d818ad1a}} 
+\index{rtl-\/obj-\/cache.h@{rtl-\/obj-\/cache.h}!rtems\_rtl\_obj\_cache\_close@{rtems\_rtl\_obj\_cache\_close}}
+\index{rtems\_rtl\_obj\_cache\_close@{rtems\_rtl\_obj\_cache\_close}!rtl-\/obj-\/cache.h@{rtl-\/obj-\/cache.h}}
+\subsubsection{\texorpdfstring{rtems\_rtl\_obj\_cache\_close()}{rtems\_rtl\_obj\_cache\_close()}}
+{\footnotesize\ttfamily void rtems\+\_\+rtl\+\_\+obj\+\_\+cache\+\_\+close (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structrtems__rtl__obj__cache}{rtems\+\_\+rtl\+\_\+obj\+\_\+cache}} $\ast$}]{cache }\end{DoxyParamCaption})}
+
+Close a cache.
+
+
+\begin{DoxyParams}{Parameters}
+{\em cache} & The cache to close. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{rtl-obj-cache_8h_a111b8cc86622e49926e5267d2be870e7}\label{rtl-obj-cache_8h_a111b8cc86622e49926e5267d2be870e7}} 
+\index{rtl-\/obj-\/cache.h@{rtl-\/obj-\/cache.h}!rtems\_rtl\_obj\_cache\_flush@{rtems\_rtl\_obj\_cache\_flush}}
+\index{rtems\_rtl\_obj\_cache\_flush@{rtems\_rtl\_obj\_cache\_flush}!rtl-\/obj-\/cache.h@{rtl-\/obj-\/cache.h}}
+\subsubsection{\texorpdfstring{rtems\_rtl\_obj\_cache\_flush()}{rtems\_rtl\_obj\_cache\_flush()}}
+{\footnotesize\ttfamily void rtems\+\_\+rtl\+\_\+obj\+\_\+cache\+\_\+flush (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structrtems__rtl__obj__cache}{rtems\+\_\+rtl\+\_\+obj\+\_\+cache}} $\ast$}]{cache }\end{DoxyParamCaption})}
+
+Flush the cache. Any further read will read the data from the file.
+
+
+\begin{DoxyParams}{Parameters}
+{\em cache} & The cache to flush. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{rtl-obj-cache_8h_a5b2951671bf88bf7b8e915dd8938b691}\label{rtl-obj-cache_8h_a5b2951671bf88bf7b8e915dd8938b691}} 
+\index{rtl-\/obj-\/cache.h@{rtl-\/obj-\/cache.h}!rtems\_rtl\_obj\_cache\_open@{rtems\_rtl\_obj\_cache\_open}}
+\index{rtems\_rtl\_obj\_cache\_open@{rtems\_rtl\_obj\_cache\_open}!rtl-\/obj-\/cache.h@{rtl-\/obj-\/cache.h}}
+\subsubsection{\texorpdfstring{rtems\_rtl\_obj\_cache\_open()}{rtems\_rtl\_obj\_cache\_open()}}
+{\footnotesize\ttfamily bool rtems\+\_\+rtl\+\_\+obj\+\_\+cache\+\_\+open (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structrtems__rtl__obj__cache}{rtems\+\_\+rtl\+\_\+obj\+\_\+cache}} $\ast$}]{cache,  }\item[{size\+\_\+t}]{size }\end{DoxyParamCaption})}
+
+Open a cache allocating a single buffer of the size passed. The default state of the cache is flushed. No already open checks are made.
+
+
+\begin{DoxyParams}{Parameters}
+{\em cache} & The cache to initialise. \\
+\hline
+{\em size} & The size of the cache. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em true} & The cache is open. \\
+\hline
+{\em false} & The cache is not open. The R\+TL error is set. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{rtl-obj-cache_8h_adad604773572de631e48629ce4a7e212}\label{rtl-obj-cache_8h_adad604773572de631e48629ce4a7e212}} 
+\index{rtl-\/obj-\/cache.h@{rtl-\/obj-\/cache.h}!rtems\_rtl\_obj\_cache\_read@{rtems\_rtl\_obj\_cache\_read}}
+\index{rtems\_rtl\_obj\_cache\_read@{rtems\_rtl\_obj\_cache\_read}!rtl-\/obj-\/cache.h@{rtl-\/obj-\/cache.h}}
+\subsubsection{\texorpdfstring{rtems\_rtl\_obj\_cache\_read()}{rtems\_rtl\_obj\_cache\_read()}}
+{\footnotesize\ttfamily bool rtems\+\_\+rtl\+\_\+obj\+\_\+cache\+\_\+read (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structrtems__rtl__obj__cache}{rtems\+\_\+rtl\+\_\+obj\+\_\+cache}} $\ast$}]{cache,  }\item[{int}]{fd,  }\item[{off\+\_\+t}]{offset,  }\item[{void $\ast$$\ast$}]{buffer,  }\item[{size\+\_\+t $\ast$}]{length }\end{DoxyParamCaption})}
+
+Read data by reference. The length contains the amount of data that should be available in the cache and referenced by the buffer handle. It must be less than or equal to the size of the cache. This call will return the amount of data that is available. It can be less than you ask if the offset and size is past the end of the file.
+
+
+\begin{DoxyParams}{Parameters}
+{\em cache} & The cache to reference data from. \\
+\hline
+{\em fd} & The file descriptor. Must be an open file. \\
+\hline
+{\em offset} & The offset in the file to reference the data to. \\
+\hline
+{\em buffer} & The location to reference the data from. \\
+\hline
+{\em length} & The length of data to reference. Can be modified to a lesser value and true is still returned so check it. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em true} & The data referenced is in the cache. \\
+\hline
+{\em false} & The read failed and the R\+TL error has been set. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{rtl-obj-cache_8h_a80432d8deca613a70eb9fa3c8ae017c1}\label{rtl-obj-cache_8h_a80432d8deca613a70eb9fa3c8ae017c1}} 
+\index{rtl-\/obj-\/cache.h@{rtl-\/obj-\/cache.h}!rtems\_rtl\_obj\_cache\_read\_byval@{rtems\_rtl\_obj\_cache\_read\_byval}}
+\index{rtems\_rtl\_obj\_cache\_read\_byval@{rtems\_rtl\_obj\_cache\_read\_byval}!rtl-\/obj-\/cache.h@{rtl-\/obj-\/cache.h}}
+\subsubsection{\texorpdfstring{rtems\_rtl\_obj\_cache\_read\_byval()}{rtems\_rtl\_obj\_cache\_read\_byval()}}
+{\footnotesize\ttfamily bool rtems\+\_\+rtl\+\_\+obj\+\_\+cache\+\_\+read\+\_\+byval (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structrtems__rtl__obj__cache}{rtems\+\_\+rtl\+\_\+obj\+\_\+cache}} $\ast$}]{cache,  }\item[{int}]{fd,  }\item[{off\+\_\+t}]{offset,  }\item[{void $\ast$}]{buffer,  }\item[{size\+\_\+t}]{length }\end{DoxyParamCaption})}
+
+Read data by value. The data is copied to the user supplied buffer.
+
+
+\begin{DoxyParams}{Parameters}
+{\em cache} & The cache to read the data from. \\
+\hline
+{\em fd} & The file descriptor. Must be an open file. \\
+\hline
+{\em offset} & The offset in the file to read the data from. \\
+\hline
+{\em buffer} & The location the data is written into. \\
+\hline
+{\em length} & The length of data to read. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em true} & The data has been read from the cache. \\
+\hline
+{\em false} & The read failed and the R\+TL error has been set. \\
+\hline
+\end{DoxyRetVals}

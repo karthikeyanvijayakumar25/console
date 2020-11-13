@@ -1,0 +1,224 @@
+\hypertarget{init__system_8c}{}\section{bsps/arm/tms570/start/init\+\_\+system.c File Reference}
+\label{init__system_8c}\index{bsps/arm/tms570/start/init\_system.c@{bsps/arm/tms570/start/init\_system.c}}
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
+{\ttfamily \#include $<$bsp/tms570.\+h$>$}\newline
+{\ttfamily \#include $<$bsp/tms570-\/pinmux.\+h$>$}\newline
+{\ttfamily \#include $<$bsp/tms570\+\_\+selftest.\+h$>$}\newline
+{\ttfamily \#include $<$bsp/tms570\+\_\+hwinit.\+h$>$}\newline
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{init__system_8c_ac81098bb0fe7b47840aa83f144348ce2}{tms570\+\_\+flash\+\_\+power\+\_\+modes}} \{ \mbox{\hyperlink{init__system_8c_ac81098bb0fe7b47840aa83f144348ce2aa191dae1652d61f82d9576b9f64c978f}{T\+M\+S570\+\_\+\+F\+L\+A\+S\+H\+\_\+\+S\+Y\+S\+\_\+\+S\+L\+E\+EP}} = 0U, 
+\mbox{\hyperlink{init__system_8c_ac81098bb0fe7b47840aa83f144348ce2abd977a52a5d1ef87b38649bc5b39f1dc}{T\+M\+S570\+\_\+\+F\+L\+A\+S\+H\+\_\+\+S\+Y\+S\+\_\+\+S\+T\+A\+N\+D\+BY}} = 1U, 
+\mbox{\hyperlink{init__system_8c_ac81098bb0fe7b47840aa83f144348ce2a4bc6e80ba03272066b21b8f6b625501b}{T\+M\+S570\+\_\+\+F\+L\+A\+S\+H\+\_\+\+S\+Y\+S\+\_\+\+A\+C\+T\+I\+VE}} = 3U
+ \}
+\item 
+enum \mbox{\hyperlink{init__system_8c_a4b87d3b1d1ea4ef81709cc6491cb6608}{tms570\+\_\+system\+\_\+clock\+\_\+source}} \{ \newline
+\mbox{\hyperlink{init__system_8c_a4b87d3b1d1ea4ef81709cc6491cb6608a69ae48500ceffad67372d4c485b9e03d}{T\+M\+S570\+\_\+\+S\+Y\+S\+\_\+\+C\+L\+K\+\_\+\+S\+R\+C\+\_\+\+O\+SC}} = 0U, 
+\mbox{\hyperlink{init__system_8c_a4b87d3b1d1ea4ef81709cc6491cb6608ad324daa9da62c925571e6f614dd035c5}{T\+M\+S570\+\_\+\+S\+Y\+S\+\_\+\+C\+L\+K\+\_\+\+S\+R\+C\+\_\+\+P\+L\+L1}} = 1U, 
+\mbox{\hyperlink{init__system_8c_a4b87d3b1d1ea4ef81709cc6491cb6608a97b2c9e074e7098593896dc10db78b44}{T\+M\+S570\+\_\+\+S\+Y\+S\+\_\+\+C\+L\+K\+\_\+\+S\+R\+C\+\_\+\+E\+X\+T\+E\+R\+N\+A\+L1}} = 3U, 
+\mbox{\hyperlink{init__system_8c_a4b87d3b1d1ea4ef81709cc6491cb6608aab4fab1a8500c5d03793220889c67519}{T\+M\+S570\+\_\+\+S\+Y\+S\+\_\+\+C\+L\+K\+\_\+\+S\+R\+C\+\_\+\+L\+P\+O\+\_\+\+L\+OW}} = 4U, 
+\newline
+\mbox{\hyperlink{init__system_8c_a4b87d3b1d1ea4ef81709cc6491cb6608a02114fb4240c1ea258c1beceda9d146c}{T\+M\+S570\+\_\+\+S\+Y\+S\+\_\+\+C\+L\+K\+\_\+\+S\+R\+C\+\_\+\+L\+P\+O\+\_\+\+H\+I\+GH}} = 5U, 
+\mbox{\hyperlink{init__system_8c_a4b87d3b1d1ea4ef81709cc6491cb6608a51d31ad09a40e2a63773eca0bf8f0698}{T\+M\+S570\+\_\+\+S\+Y\+S\+\_\+\+C\+L\+K\+\_\+\+S\+R\+C\+\_\+\+P\+L\+L2}} = 6U, 
+\mbox{\hyperlink{init__system_8c_a4b87d3b1d1ea4ef81709cc6491cb6608a1145d14618d09ccf404cd6a7be24b4e0}{T\+M\+S570\+\_\+\+S\+Y\+S\+\_\+\+C\+L\+K\+\_\+\+S\+R\+C\+\_\+\+E\+X\+T\+E\+R\+N\+A\+L2}} = 7U, 
+\mbox{\hyperlink{init__system_8c_a4b87d3b1d1ea4ef81709cc6491cb6608ac1ef0f123ba05b55629b7d1e1728018d}{T\+M\+S570\+\_\+\+S\+Y\+S\+\_\+\+C\+L\+K\+\_\+\+S\+R\+C\+\_\+\+V\+C\+LK}} = 9U
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{init__system_8c_a43137f0b9b1e10251be70ee40935709a}{tms570\+\_\+pll\+\_\+init}} (void)
+\begin{DoxyCompactList}\small\item\em Setup all system P\+L\+Ls (H\+CG\+:setup\+P\+LL) \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{init__system_8c_a788b6e4333764ce64557748a795fcaef}{tms570\+\_\+trim\+\_\+lpo\+\_\+init}} (void)
+\begin{DoxyCompactList}\small\item\em Adjust Low-\/\+Frequency (L\+PO) oscilator (H\+CG\+:trim\+L\+PO) \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{init__system_8c_a93991a2136c7abc0b1c6be56b46bd1dd}{tms570\+\_\+flash\+\_\+init}} (void)
+\begin{DoxyCompactList}\small\item\em Setup Flash memory parameters and timing (H\+CG\+:setup\+Flash) \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{init__system_8c_ae309cda1599147b5dbdec6c4d19732b6}{tms570\+\_\+periph\+\_\+init}} (void)
+\begin{DoxyCompactList}\small\item\em Power-\/up all peripherals and enable their clocks (H\+CG\+:periph\+Init) \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{init__system_8c_a6843c9d8e672b736a060ea5314bd2c91}{tms570\+\_\+map\+\_\+clock\+\_\+init}} (void)
+\begin{DoxyCompactList}\small\item\em Setup chip clocks including to wait for P\+L\+Ls locks (H\+CG\+:map\+Clocks) \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{init__system_8c_adfc60d117ea095a205722a96aeaf3b65}{tms570\+\_\+system\+\_\+hw\+\_\+init}} (void)
+\begin{DoxyCompactList}\small\item\em T\+M\+S570 system hardware initialization (H\+CG\+:system\+Init) \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+based on Ti Hal\+Co\+Gen generated file 
+
+\subsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{init__system_8c_ac81098bb0fe7b47840aa83f144348ce2}\label{init__system_8c_ac81098bb0fe7b47840aa83f144348ce2}} 
+\index{init\_system.c@{init\_system.c}!tms570\_flash\_power\_modes@{tms570\_flash\_power\_modes}}
+\index{tms570\_flash\_power\_modes@{tms570\_flash\_power\_modes}!init\_system.c@{init\_system.c}}
+\subsubsection{\texorpdfstring{tms570\_flash\_power\_modes}{tms570\_flash\_power\_modes}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{init__system_8c_ac81098bb0fe7b47840aa83f144348ce2}{tms570\+\_\+flash\+\_\+power\+\_\+modes}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{TMS570\_FLASH\_SYS\_SLEEP@{TMS570\_FLASH\_SYS\_SLEEP}!init\_system.c@{init\_system.c}}\index{init\_system.c@{init\_system.c}!TMS570\_FLASH\_SYS\_SLEEP@{TMS570\_FLASH\_SYS\_SLEEP}}}\mbox{\Hypertarget{init__system_8c_ac81098bb0fe7b47840aa83f144348ce2aa191dae1652d61f82d9576b9f64c978f}\label{init__system_8c_ac81098bb0fe7b47840aa83f144348ce2aa191dae1652d61f82d9576b9f64c978f}} 
+T\+M\+S570\+\_\+\+F\+L\+A\+S\+H\+\_\+\+S\+Y\+S\+\_\+\+S\+L\+E\+EP&Alias for flash bank power mode sleep \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{TMS570\_FLASH\_SYS\_STANDBY@{TMS570\_FLASH\_SYS\_STANDBY}!init\_system.c@{init\_system.c}}\index{init\_system.c@{init\_system.c}!TMS570\_FLASH\_SYS\_STANDBY@{TMS570\_FLASH\_SYS\_STANDBY}}}\mbox{\Hypertarget{init__system_8c_ac81098bb0fe7b47840aa83f144348ce2abd977a52a5d1ef87b38649bc5b39f1dc}\label{init__system_8c_ac81098bb0fe7b47840aa83f144348ce2abd977a52a5d1ef87b38649bc5b39f1dc}} 
+T\+M\+S570\+\_\+\+F\+L\+A\+S\+H\+\_\+\+S\+Y\+S\+\_\+\+S\+T\+A\+N\+D\+BY&Alias for flash bank power mode standby \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{TMS570\_FLASH\_SYS\_ACTIVE@{TMS570\_FLASH\_SYS\_ACTIVE}!init\_system.c@{init\_system.c}}\index{init\_system.c@{init\_system.c}!TMS570\_FLASH\_SYS\_ACTIVE@{TMS570\_FLASH\_SYS\_ACTIVE}}}\mbox{\Hypertarget{init__system_8c_ac81098bb0fe7b47840aa83f144348ce2a4bc6e80ba03272066b21b8f6b625501b}\label{init__system_8c_ac81098bb0fe7b47840aa83f144348ce2a4bc6e80ba03272066b21b8f6b625501b}} 
+T\+M\+S570\+\_\+\+F\+L\+A\+S\+H\+\_\+\+S\+Y\+S\+\_\+\+A\+C\+T\+I\+VE&Alias for flash bank power mode active \\
+\hline
+
+\end{DoxyEnumFields}
+\mbox{\Hypertarget{init__system_8c_a4b87d3b1d1ea4ef81709cc6491cb6608}\label{init__system_8c_a4b87d3b1d1ea4ef81709cc6491cb6608}} 
+\index{init\_system.c@{init\_system.c}!tms570\_system\_clock\_source@{tms570\_system\_clock\_source}}
+\index{tms570\_system\_clock\_source@{tms570\_system\_clock\_source}!init\_system.c@{init\_system.c}}
+\subsubsection{\texorpdfstring{tms570\_system\_clock\_source}{tms570\_system\_clock\_source}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{init__system_8c_a4b87d3b1d1ea4ef81709cc6491cb6608}{tms570\+\_\+system\+\_\+clock\+\_\+source}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{TMS570\_SYS\_CLK\_SRC\_OSC@{TMS570\_SYS\_CLK\_SRC\_OSC}!init\_system.c@{init\_system.c}}\index{init\_system.c@{init\_system.c}!TMS570\_SYS\_CLK\_SRC\_OSC@{TMS570\_SYS\_CLK\_SRC\_OSC}}}\mbox{\Hypertarget{init__system_8c_a4b87d3b1d1ea4ef81709cc6491cb6608a69ae48500ceffad67372d4c485b9e03d}\label{init__system_8c_a4b87d3b1d1ea4ef81709cc6491cb6608a69ae48500ceffad67372d4c485b9e03d}} 
+T\+M\+S570\+\_\+\+S\+Y\+S\+\_\+\+C\+L\+K\+\_\+\+S\+R\+C\+\_\+\+O\+SC&Alias for oscillator clock Source \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{TMS570\_SYS\_CLK\_SRC\_PLL1@{TMS570\_SYS\_CLK\_SRC\_PLL1}!init\_system.c@{init\_system.c}}\index{init\_system.c@{init\_system.c}!TMS570\_SYS\_CLK\_SRC\_PLL1@{TMS570\_SYS\_CLK\_SRC\_PLL1}}}\mbox{\Hypertarget{init__system_8c_a4b87d3b1d1ea4ef81709cc6491cb6608ad324daa9da62c925571e6f614dd035c5}\label{init__system_8c_a4b87d3b1d1ea4ef81709cc6491cb6608ad324daa9da62c925571e6f614dd035c5}} 
+T\+M\+S570\+\_\+\+S\+Y\+S\+\_\+\+C\+L\+K\+\_\+\+S\+R\+C\+\_\+\+P\+L\+L1&Alias for Pll1 clock Source \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{TMS570\_SYS\_CLK\_SRC\_EXTERNAL1@{TMS570\_SYS\_CLK\_SRC\_EXTERNAL1}!init\_system.c@{init\_system.c}}\index{init\_system.c@{init\_system.c}!TMS570\_SYS\_CLK\_SRC\_EXTERNAL1@{TMS570\_SYS\_CLK\_SRC\_EXTERNAL1}}}\mbox{\Hypertarget{init__system_8c_a4b87d3b1d1ea4ef81709cc6491cb6608a97b2c9e074e7098593896dc10db78b44}\label{init__system_8c_a4b87d3b1d1ea4ef81709cc6491cb6608a97b2c9e074e7098593896dc10db78b44}} 
+T\+M\+S570\+\_\+\+S\+Y\+S\+\_\+\+C\+L\+K\+\_\+\+S\+R\+C\+\_\+\+E\+X\+T\+E\+R\+N\+A\+L1&Alias for external clock Source \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{TMS570\_SYS\_CLK\_SRC\_LPO\_LOW@{TMS570\_SYS\_CLK\_SRC\_LPO\_LOW}!init\_system.c@{init\_system.c}}\index{init\_system.c@{init\_system.c}!TMS570\_SYS\_CLK\_SRC\_LPO\_LOW@{TMS570\_SYS\_CLK\_SRC\_LPO\_LOW}}}\mbox{\Hypertarget{init__system_8c_a4b87d3b1d1ea4ef81709cc6491cb6608aab4fab1a8500c5d03793220889c67519}\label{init__system_8c_a4b87d3b1d1ea4ef81709cc6491cb6608aab4fab1a8500c5d03793220889c67519}} 
+T\+M\+S570\+\_\+\+S\+Y\+S\+\_\+\+C\+L\+K\+\_\+\+S\+R\+C\+\_\+\+L\+P\+O\+\_\+\+L\+OW&Alias for low power oscillator low clock Source \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{TMS570\_SYS\_CLK\_SRC\_LPO\_HIGH@{TMS570\_SYS\_CLK\_SRC\_LPO\_HIGH}!init\_system.c@{init\_system.c}}\index{init\_system.c@{init\_system.c}!TMS570\_SYS\_CLK\_SRC\_LPO\_HIGH@{TMS570\_SYS\_CLK\_SRC\_LPO\_HIGH}}}\mbox{\Hypertarget{init__system_8c_a4b87d3b1d1ea4ef81709cc6491cb6608a02114fb4240c1ea258c1beceda9d146c}\label{init__system_8c_a4b87d3b1d1ea4ef81709cc6491cb6608a02114fb4240c1ea258c1beceda9d146c}} 
+T\+M\+S570\+\_\+\+S\+Y\+S\+\_\+\+C\+L\+K\+\_\+\+S\+R\+C\+\_\+\+L\+P\+O\+\_\+\+H\+I\+GH&Alias for low power oscillator high clock Source \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{TMS570\_SYS\_CLK\_SRC\_PLL2@{TMS570\_SYS\_CLK\_SRC\_PLL2}!init\_system.c@{init\_system.c}}\index{init\_system.c@{init\_system.c}!TMS570\_SYS\_CLK\_SRC\_PLL2@{TMS570\_SYS\_CLK\_SRC\_PLL2}}}\mbox{\Hypertarget{init__system_8c_a4b87d3b1d1ea4ef81709cc6491cb6608a51d31ad09a40e2a63773eca0bf8f0698}\label{init__system_8c_a4b87d3b1d1ea4ef81709cc6491cb6608a51d31ad09a40e2a63773eca0bf8f0698}} 
+T\+M\+S570\+\_\+\+S\+Y\+S\+\_\+\+C\+L\+K\+\_\+\+S\+R\+C\+\_\+\+P\+L\+L2&Alias for Pll2 clock Source \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{TMS570\_SYS\_CLK\_SRC\_EXTERNAL2@{TMS570\_SYS\_CLK\_SRC\_EXTERNAL2}!init\_system.c@{init\_system.c}}\index{init\_system.c@{init\_system.c}!TMS570\_SYS\_CLK\_SRC\_EXTERNAL2@{TMS570\_SYS\_CLK\_SRC\_EXTERNAL2}}}\mbox{\Hypertarget{init__system_8c_a4b87d3b1d1ea4ef81709cc6491cb6608a1145d14618d09ccf404cd6a7be24b4e0}\label{init__system_8c_a4b87d3b1d1ea4ef81709cc6491cb6608a1145d14618d09ccf404cd6a7be24b4e0}} 
+T\+M\+S570\+\_\+\+S\+Y\+S\+\_\+\+C\+L\+K\+\_\+\+S\+R\+C\+\_\+\+E\+X\+T\+E\+R\+N\+A\+L2&Alias for external 2 clock Source \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{TMS570\_SYS\_CLK\_SRC\_VCLK@{TMS570\_SYS\_CLK\_SRC\_VCLK}!init\_system.c@{init\_system.c}}\index{init\_system.c@{init\_system.c}!TMS570\_SYS\_CLK\_SRC\_VCLK@{TMS570\_SYS\_CLK\_SRC\_VCLK}}}\mbox{\Hypertarget{init__system_8c_a4b87d3b1d1ea4ef81709cc6491cb6608ac1ef0f123ba05b55629b7d1e1728018d}\label{init__system_8c_a4b87d3b1d1ea4ef81709cc6491cb6608ac1ef0f123ba05b55629b7d1e1728018d}} 
+T\+M\+S570\+\_\+\+S\+Y\+S\+\_\+\+C\+L\+K\+\_\+\+S\+R\+C\+\_\+\+V\+C\+LK&Alias for synchronous V\+C\+L\+K1 clock Source \\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{init__system_8c_a93991a2136c7abc0b1c6be56b46bd1dd}\label{init__system_8c_a93991a2136c7abc0b1c6be56b46bd1dd}} 
+\index{init\_system.c@{init\_system.c}!tms570\_flash\_init@{tms570\_flash\_init}}
+\index{tms570\_flash\_init@{tms570\_flash\_init}!init\_system.c@{init\_system.c}}
+\subsubsection{\texorpdfstring{tms570\_flash\_init()}{tms570\_flash\_init()}}
+{\footnotesize\ttfamily void tms570\+\_\+flash\+\_\+init (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Setup Flash memory parameters and timing (H\+CG\+:setup\+Flash) 
+
+
+\begin{DoxyItemize}
+\item Setup flash read mode, address wait states and data wait states
+\item Setup flash access wait states for bank 7
+\item Disable write access to flash state machine registers
+\item Setup flash bank power modes 
+\end{DoxyItemize}\mbox{\Hypertarget{init__system_8c_a6843c9d8e672b736a060ea5314bd2c91}\label{init__system_8c_a6843c9d8e672b736a060ea5314bd2c91}} 
+\index{init\_system.c@{init\_system.c}!tms570\_map\_clock\_init@{tms570\_map\_clock\_init}}
+\index{tms570\_map\_clock\_init@{tms570\_map\_clock\_init}!init\_system.c@{init\_system.c}}
+\subsubsection{\texorpdfstring{tms570\_map\_clock\_init()}{tms570\_map\_clock\_init()}}
+{\footnotesize\ttfamily void tms570\+\_\+map\+\_\+clock\+\_\+init (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Setup chip clocks including to wait for P\+L\+Ls locks (H\+CG\+:map\+Clocks) 
+
+{\bfseries{Initialize}} {\bfseries{Clock}} {\bfseries{Tree\+:}} 
+
+
+\begin{DoxyItemize}
+\item Disable / Enable clock domain
+\item Wait for until clocks are locked
+\item Map device clock domains to desired sources and configure top-\/level dividers
+\item All clock domains are working off the default clock sources until now
+\item The below assignments can be easily modified using the H\+A\+L\+Co\+Gen G\+UI
+\item Setup G\+C\+LK, H\+C\+LK and V\+C\+LK clock source for normal operation, power down mode and after wakeup
+\item Setup synchronous peripheral clock dividers for V\+C\+L\+K1, V\+C\+L\+K2, V\+C\+L\+K3
+\item Setup R\+T\+I\+C\+L\+K1 and R\+T\+I\+C\+L\+K2 clocks
+\item Setup asynchronous peripheral clock sources for A\+V\+C\+L\+K1 and A\+V\+C\+L\+K2 
+\end{DoxyItemize}\mbox{\Hypertarget{init__system_8c_ae309cda1599147b5dbdec6c4d19732b6}\label{init__system_8c_ae309cda1599147b5dbdec6c4d19732b6}} 
+\index{init\_system.c@{init\_system.c}!tms570\_periph\_init@{tms570\_periph\_init}}
+\index{tms570\_periph\_init@{tms570\_periph\_init}!init\_system.c@{init\_system.c}}
+\subsubsection{\texorpdfstring{tms570\_periph\_init()}{tms570\_periph\_init()}}
+{\footnotesize\ttfamily void tms570\+\_\+periph\+\_\+init (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Power-\/up all peripherals and enable their clocks (H\+CG\+:periph\+Init) 
+
+
+\begin{DoxyItemize}
+\item Disable Peripherals before peripheral powerup
+\item Release peripherals from reset and enable clocks to all peripherals
+\item Power-\/up all peripherals
+\item Enable Peripherals 
+\end{DoxyItemize}\mbox{\Hypertarget{init__system_8c_a43137f0b9b1e10251be70ee40935709a}\label{init__system_8c_a43137f0b9b1e10251be70ee40935709a}} 
+\index{init\_system.c@{init\_system.c}!tms570\_pll\_init@{tms570\_pll\_init}}
+\index{tms570\_pll\_init@{tms570\_pll\_init}!init\_system.c@{init\_system.c}}
+\subsubsection{\texorpdfstring{tms570\_pll\_init()}{tms570\_pll\_init()}}
+{\footnotesize\ttfamily void tms570\+\_\+pll\+\_\+init (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Setup all system P\+L\+Ls (H\+CG\+:setup\+P\+LL) 
+
+
+\begin{DoxyItemize}
+\item Configure P\+LL control registers
+\end{DoxyItemize}
+
+{\bfseries{Initialize}} {\bfseries{Pll1\+:}} 
+
+{\bfseries{Initialize}} {\bfseries{Pll2\+:}} 
+
+
+\begin{DoxyItemize}
+\item Enable P\+L\+L(s) to start up or Lock 
+\end{DoxyItemize}\mbox{\Hypertarget{init__system_8c_adfc60d117ea095a205722a96aeaf3b65}\label{init__system_8c_adfc60d117ea095a205722a96aeaf3b65}} 
+\index{init\_system.c@{init\_system.c}!tms570\_system\_hw\_init@{tms570\_system\_hw\_init}}
+\index{tms570\_system\_hw\_init@{tms570\_system\_hw\_init}!init\_system.c@{init\_system.c}}
+\subsubsection{\texorpdfstring{tms570\_system\_hw\_init()}{tms570\_system\_hw\_init()}}
+{\footnotesize\ttfamily void tms570\+\_\+system\+\_\+hw\+\_\+init (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+T\+M\+S570 system hardware initialization (H\+CG\+:system\+Init) 
+
+
+\begin{DoxyItemize}
+\item Set up flash address and data wait states based on the target C\+PU clock frequency The number of address and data wait states for the target C\+PU clock frequency are specified in the specific part\textquotesingle{}s datasheet.
+\item Configure the L\+PO such that HF L\+PO is as close to 10M\+Hz as possible
+\item Wait for P\+L\+Ls to start up and map clock domains to desired clock sources
+\item set E\+C\+LK pins functional mode
+\item set E\+C\+LK pins default output value
+\item set E\+C\+LK pins output direction
+\item set E\+C\+LK pins open drain enable
+\item set E\+C\+LK pins pullup/pulldown enable
+\item set E\+C\+LK pins pullup/pulldown select
+\item Setup E\+C\+LK 
+\end{DoxyItemize}\mbox{\Hypertarget{init__system_8c_a788b6e4333764ce64557748a795fcaef}\label{init__system_8c_a788b6e4333764ce64557748a795fcaef}} 
+\index{init\_system.c@{init\_system.c}!tms570\_trim\_lpo\_init@{tms570\_trim\_lpo\_init}}
+\index{tms570\_trim\_lpo\_init@{tms570\_trim\_lpo\_init}!init\_system.c@{init\_system.c}}
+\subsubsection{\texorpdfstring{tms570\_trim\_lpo\_init()}{tms570\_trim\_lpo\_init()}}
+{\footnotesize\ttfamily void tms570\+\_\+trim\+\_\+lpo\+\_\+init (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Adjust Low-\/\+Frequency (L\+PO) oscilator (H\+CG\+:trim\+L\+PO) 
+
+{\bfseries{Initialize}} Lpo\+:
+
+Load T\+R\+IM values from O\+TP if present else load user defined values 

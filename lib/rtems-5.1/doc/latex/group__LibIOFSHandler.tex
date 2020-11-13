@@ -1,0 +1,872 @@
+\hypertarget{group__LibIOFSHandler}{}\section{File System Node Handler}
+\label{group__LibIOFSHandler}\index{File System Node Handler@{File System Node Handler}}
+
+
+File system node handler.  
+
+
+\subsection*{Files}
+\begin{DoxyCompactItemize}
+\item 
+file \mbox{\hyperlink{default__kqfilter_8c}{default\+\_\+kqfilter.\+c}}
+\begin{DoxyCompactList}\small\item\em Default Kernel Event Filter Handler. \end{DoxyCompactList}\item 
+file \mbox{\hyperlink{default__mmap_8c}{default\+\_\+mmap.\+c}}
+\begin{DoxyCompactList}\small\item\em Default M\+M\+AP Handler. \end{DoxyCompactList}\item 
+file \mbox{\hyperlink{default__poll_8c}{default\+\_\+poll.\+c}}
+\begin{DoxyCompactList}\small\item\em Default Poll Handler. \end{DoxyCompactList}\item 
+file \mbox{\hyperlink{default__readv_8c}{default\+\_\+readv.\+c}}
+\begin{DoxyCompactList}\small\item\em Default Read \mbox{\hyperlink{structIO}{IO}} Vector Handler. \end{DoxyCompactList}\item 
+file \mbox{\hyperlink{default__writev_8c}{default\+\_\+writev.\+c}}
+\begin{DoxyCompactList}\small\item\em Default Read \mbox{\hyperlink{structIO}{IO}} Vector Handler. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct__rtems__filesystem__file__handlers__r}{\+\_\+rtems\+\_\+filesystem\+\_\+file\+\_\+handlers\+\_\+r}}
+\begin{DoxyCompactList}\small\item\em File system node operations table. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef int($\ast$ \mbox{\hyperlink{group__LibIOFSHandler_gaf95c211266cc1feef5e53066310f9134}{rtems\+\_\+filesystem\+\_\+open\+\_\+t}}) (\mbox{\hyperlink{structrtems__libio__tt}{rtems\+\_\+libio\+\_\+t}} $\ast$iop, const char $\ast$path, int oflag, mode\+\_\+t mode)
+\begin{DoxyCompactList}\small\item\em Opens a node. \end{DoxyCompactList}\item 
+typedef int($\ast$ \mbox{\hyperlink{group__LibIOFSHandler_ga9c520e776b733893afba2997e163c8af}{rtems\+\_\+filesystem\+\_\+close\+\_\+t}}) (\mbox{\hyperlink{structrtems__libio__tt}{rtems\+\_\+libio\+\_\+t}} $\ast$iop)
+\begin{DoxyCompactList}\small\item\em Closes a node. \end{DoxyCompactList}\item 
+typedef ssize\+\_\+t($\ast$ \mbox{\hyperlink{group__LibIOFSHandler_ga36ed9dda6132dd307fc24ce03f730312}{rtems\+\_\+filesystem\+\_\+read\+\_\+t}}) (\mbox{\hyperlink{structrtems__libio__tt}{rtems\+\_\+libio\+\_\+t}} $\ast$iop, void $\ast$buffer, size\+\_\+t count)
+\begin{DoxyCompactList}\small\item\em Reads from a node. \end{DoxyCompactList}\item 
+typedef ssize\+\_\+t($\ast$ \mbox{\hyperlink{group__LibIOFSHandler_gae6ccf9c319ab60636be036e7437f8dd7}{rtems\+\_\+filesystem\+\_\+readv\+\_\+t}}) (\mbox{\hyperlink{structrtems__libio__tt}{rtems\+\_\+libio\+\_\+t}} $\ast$iop, const struct iovec $\ast$iov, int iovcnt, ssize\+\_\+t total)
+\begin{DoxyCompactList}\small\item\em Reads an \mbox{\hyperlink{structIO}{IO}} vector from a node. \end{DoxyCompactList}\item 
+typedef ssize\+\_\+t($\ast$ \mbox{\hyperlink{group__LibIOFSHandler_gacbc1d51a1699693e340b3e31f7f62611}{rtems\+\_\+filesystem\+\_\+write\+\_\+t}}) (\mbox{\hyperlink{structrtems__libio__tt}{rtems\+\_\+libio\+\_\+t}} $\ast$iop, const void $\ast$buffer, size\+\_\+t count)
+\begin{DoxyCompactList}\small\item\em Writes to a node. \end{DoxyCompactList}\item 
+typedef ssize\+\_\+t($\ast$ \mbox{\hyperlink{group__LibIOFSHandler_gabdb95b0ef5e3875f0b80cc221edf78f8}{rtems\+\_\+filesystem\+\_\+writev\+\_\+t}}) (\mbox{\hyperlink{structrtems__libio__tt}{rtems\+\_\+libio\+\_\+t}} $\ast$iop, const struct iovec $\ast$iov, int iovcnt, ssize\+\_\+t total)
+\begin{DoxyCompactList}\small\item\em Writes an \mbox{\hyperlink{structIO}{IO}} vector to a node. \end{DoxyCompactList}\item 
+typedef int($\ast$ \mbox{\hyperlink{group__LibIOFSHandler_ga04ace53d3f0513746d5241dc94c76387}{rtems\+\_\+filesystem\+\_\+ioctl\+\_\+t}}) (\mbox{\hyperlink{structrtems__libio__tt}{rtems\+\_\+libio\+\_\+t}} $\ast$iop, ioctl\+\_\+command\+\_\+t request, void $\ast$buffer)
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{structIO}{IO}} control of a node. \end{DoxyCompactList}\item 
+typedef off\+\_\+t($\ast$ \mbox{\hyperlink{group__LibIOFSHandler_gab3752ab0473efced7afee0d60c0e2c58}{rtems\+\_\+filesystem\+\_\+lseek\+\_\+t}}) (\mbox{\hyperlink{structrtems__libio__tt}{rtems\+\_\+libio\+\_\+t}} $\ast$iop, off\+\_\+t offset, int whence)
+\begin{DoxyCompactList}\small\item\em Moves the read/write file offset. \end{DoxyCompactList}\item 
+typedef int($\ast$ \mbox{\hyperlink{group__LibIOFSHandler_gabdbd09354c4e86c79735da3a1dc340a8}{rtems\+\_\+filesystem\+\_\+fstat\+\_\+t}}) (const \mbox{\hyperlink{group__LibIO_ga3252b3d31ee3c49ffff0b7604a676864}{rtems\+\_\+filesystem\+\_\+location\+\_\+info\+\_\+t}} $\ast$loc, struct stat $\ast$buf)
+\begin{DoxyCompactList}\small\item\em Gets a node status. \end{DoxyCompactList}\item 
+typedef int($\ast$ \mbox{\hyperlink{group__LibIOFSHandler_gaf5cc5b12b8ab1799641171b1649de34b}{rtems\+\_\+filesystem\+\_\+ftruncate\+\_\+t}}) (\mbox{\hyperlink{structrtems__libio__tt}{rtems\+\_\+libio\+\_\+t}} $\ast$iop, off\+\_\+t length)
+\begin{DoxyCompactList}\small\item\em Truncates a file to a specified length. \end{DoxyCompactList}\item 
+typedef int($\ast$ \mbox{\hyperlink{group__LibIOFSHandler_gace838c9c108ef6f2e7ddeed186a369f5}{rtems\+\_\+filesystem\+\_\+fsync\+\_\+t}}) (\mbox{\hyperlink{structrtems__libio__tt}{rtems\+\_\+libio\+\_\+t}} $\ast$iop)
+\begin{DoxyCompactList}\small\item\em Synchronizes changes to a file. \end{DoxyCompactList}\item 
+typedef int($\ast$ \mbox{\hyperlink{group__LibIOFSHandler_gad78b9605ac97be914b586f3a2820a3de}{rtems\+\_\+filesystem\+\_\+fdatasync\+\_\+t}}) (\mbox{\hyperlink{structrtems__libio__tt}{rtems\+\_\+libio\+\_\+t}} $\ast$iop)
+\begin{DoxyCompactList}\small\item\em Synchronizes the data of a file. \end{DoxyCompactList}\item 
+typedef int($\ast$ \mbox{\hyperlink{group__LibIOFSHandler_ga4af1bd820051eb2fc74b91f5d8868e06}{rtems\+\_\+filesystem\+\_\+fcntl\+\_\+t}}) (\mbox{\hyperlink{structrtems__libio__tt}{rtems\+\_\+libio\+\_\+t}} $\ast$iop, int cmd)
+\begin{DoxyCompactList}\small\item\em File control. \end{DoxyCompactList}\item 
+typedef int($\ast$ \mbox{\hyperlink{group__LibIOFSHandler_ga0e8056cf6051bb275005b03e74d0ff5d}{rtems\+\_\+filesystem\+\_\+poll\+\_\+t}}) (\mbox{\hyperlink{structrtems__libio__tt}{rtems\+\_\+libio\+\_\+t}} $\ast$iop, int events)
+\begin{DoxyCompactList}\small\item\em Poll and select support. \end{DoxyCompactList}\item 
+typedef int($\ast$ \mbox{\hyperlink{group__LibIOFSHandler_ga8d33b578b98ea48ea8f2282632e01e72}{rtems\+\_\+filesystem\+\_\+kqfilter\+\_\+t}}) (\mbox{\hyperlink{structrtems__libio__tt}{rtems\+\_\+libio\+\_\+t}} $\ast$iop, struct knote $\ast$kn)
+\begin{DoxyCompactList}\small\item\em Kernel event filter support. \end{DoxyCompactList}\item 
+typedef int($\ast$ \mbox{\hyperlink{group__LibIOFSHandler_gadfd939c2b1e61acd15671a288a259e96}{rtems\+\_\+filesystem\+\_\+mmap\+\_\+t}}) (\mbox{\hyperlink{structrtems__libio__tt}{rtems\+\_\+libio\+\_\+t}} $\ast$iop, void $\ast$$\ast$addr, size\+\_\+t len, int prot, off\+\_\+t off)
+\begin{DoxyCompactList}\small\item\em M\+M\+AP support. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{group__LibIOFSHandler_gadcd852d4f67d04301d03fc9104730389}{rtems\+\_\+filesystem\+\_\+default\+\_\+open}} (\mbox{\hyperlink{structrtems__libio__tt}{rtems\+\_\+libio\+\_\+t}} $\ast$iop, const char $\ast$path, int oflag, mode\+\_\+t mode)
+\item 
+int \mbox{\hyperlink{group__LibIOFSHandler_gacc910eacfd4ffb5ba69d8ff0380d5f65}{rtems\+\_\+filesystem\+\_\+default\+\_\+close}} (\mbox{\hyperlink{structrtems__libio__tt}{rtems\+\_\+libio\+\_\+t}} $\ast$iop)
+\item 
+ssize\+\_\+t \mbox{\hyperlink{group__LibIOFSHandler_gad453e9f1320d2c20ac2966e327e9c351}{rtems\+\_\+filesystem\+\_\+default\+\_\+read}} (\mbox{\hyperlink{structrtems__libio__tt}{rtems\+\_\+libio\+\_\+t}} $\ast$iop, void $\ast$buffer, size\+\_\+t count)
+\item 
+ssize\+\_\+t \mbox{\hyperlink{group__LibIOFSHandler_ga9e051f16ae657b119d54bffc29baffeb}{rtems\+\_\+filesystem\+\_\+default\+\_\+readv}} (\mbox{\hyperlink{structrtems__libio__tt}{rtems\+\_\+libio\+\_\+t}} $\ast$iop, const struct iovec $\ast$iov, int iovcnt, ssize\+\_\+t total)
+\begin{DoxyCompactList}\small\item\em Calls the read handler for each \mbox{\hyperlink{structIO}{IO}} vector entry. \end{DoxyCompactList}\item 
+ssize\+\_\+t \mbox{\hyperlink{group__LibIOFSHandler_gaf4201385a0dd5ad3d1f447b3a167b106}{rtems\+\_\+filesystem\+\_\+default\+\_\+write}} (\mbox{\hyperlink{structrtems__libio__tt}{rtems\+\_\+libio\+\_\+t}} $\ast$iop, const void $\ast$buffer, size\+\_\+t count)
+\item 
+ssize\+\_\+t \mbox{\hyperlink{group__LibIOFSHandler_ga9ac1157e2bd2cff626d67f67a6376a8f}{rtems\+\_\+filesystem\+\_\+default\+\_\+writev}} (\mbox{\hyperlink{structrtems__libio__tt}{rtems\+\_\+libio\+\_\+t}} $\ast$iop, const struct iovec $\ast$iov, int iovcnt, ssize\+\_\+t total)
+\begin{DoxyCompactList}\small\item\em Calls the write handler for each \mbox{\hyperlink{structIO}{IO}} vector entry. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__LibIOFSHandler_ga50da2d5dcafa7a15fb37916e63e0cd5f}{rtems\+\_\+filesystem\+\_\+default\+\_\+ioctl}} (\mbox{\hyperlink{structrtems__libio__tt}{rtems\+\_\+libio\+\_\+t}} $\ast$iop, ioctl\+\_\+command\+\_\+t request, void $\ast$buffer)
+\item 
+off\+\_\+t \mbox{\hyperlink{group__LibIOFSHandler_gabc972cf07584efa949cb5ca635de7f06}{rtems\+\_\+filesystem\+\_\+default\+\_\+lseek}} (\mbox{\hyperlink{structrtems__libio__tt}{rtems\+\_\+libio\+\_\+t}} $\ast$iop, off\+\_\+t offset, int whence)
+\item 
+off\+\_\+t \mbox{\hyperlink{group__LibIOFSHandler_ga2cfb650e15d0a0589079c8c1a5a5c665}{rtems\+\_\+filesystem\+\_\+default\+\_\+lseek\+\_\+directory}} (\mbox{\hyperlink{structrtems__libio__tt}{rtems\+\_\+libio\+\_\+t}} $\ast$iop, off\+\_\+t offset, int whence)
+\begin{DoxyCompactList}\small\item\em An offset 0 with a whence of S\+E\+E\+K\+\_\+\+S\+ET will perform a directory rewind operation. \end{DoxyCompactList}\item 
+off\+\_\+t \mbox{\hyperlink{group__LibIOFSHandler_ga84f8b0895bbd61dd0f8d5a62864dcc2c}{rtems\+\_\+filesystem\+\_\+default\+\_\+lseek\+\_\+file}} (\mbox{\hyperlink{structrtems__libio__tt}{rtems\+\_\+libio\+\_\+t}} $\ast$iop, off\+\_\+t offset, int whence)
+\begin{DoxyCompactList}\small\item\em Default lseek() handler for files. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__LibIOFSHandler_ga8df6ed93bdd72abc2cda577c8f78fd54}{rtems\+\_\+filesystem\+\_\+default\+\_\+fstat}} (const \mbox{\hyperlink{group__LibIO_ga3252b3d31ee3c49ffff0b7604a676864}{rtems\+\_\+filesystem\+\_\+location\+\_\+info\+\_\+t}} $\ast$loc, struct stat $\ast$buf)
+\begin{DoxyCompactList}\small\item\em Sets the mode to S\+\_\+\+I\+R\+W\+XU $\vert$ S\+\_\+\+I\+R\+W\+XG $\vert$ S\+\_\+\+I\+R\+W\+XO. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__LibIOFSHandler_ga10a3664ce71afda3d60d6889a0c84367}{rtems\+\_\+filesystem\+\_\+default\+\_\+ftruncate}} (\mbox{\hyperlink{structrtems__libio__tt}{rtems\+\_\+libio\+\_\+t}} $\ast$iop, off\+\_\+t length)
+\item 
+int \mbox{\hyperlink{group__LibIOFSHandler_ga17c8ee92bd9c2a374973906270a03b79}{rtems\+\_\+filesystem\+\_\+default\+\_\+ftruncate\+\_\+directory}} (\mbox{\hyperlink{structrtems__libio__tt}{rtems\+\_\+libio\+\_\+t}} $\ast$iop, off\+\_\+t length)
+\item 
+int \mbox{\hyperlink{group__LibIOFSHandler_ga7bcb245cbe4a71b0952beca086b63e1b}{rtems\+\_\+filesystem\+\_\+default\+\_\+fsync\+\_\+or\+\_\+fdatasync}} (\mbox{\hyperlink{structrtems__libio__tt}{rtems\+\_\+libio\+\_\+t}} $\ast$iop)
+\item 
+int \mbox{\hyperlink{group__LibIOFSHandler_ga9447b9dc7947e64bde539307a8c0cdb5}{rtems\+\_\+filesystem\+\_\+default\+\_\+fsync\+\_\+or\+\_\+fdatasync\+\_\+success}} (\mbox{\hyperlink{structrtems__libio__tt}{rtems\+\_\+libio\+\_\+t}} $\ast$iop)
+\item 
+int \mbox{\hyperlink{group__LibIOFSHandler_ga090f67473d9fa5f26368adeb11c939c8}{rtems\+\_\+filesystem\+\_\+default\+\_\+fcntl}} (\mbox{\hyperlink{structrtems__libio__tt}{rtems\+\_\+libio\+\_\+t}} $\ast$iop, int cmd)
+\item 
+int \mbox{\hyperlink{group__LibIOFSHandler_ga608540b3299f81fabee388092bdfbc9f}{rtems\+\_\+filesystem\+\_\+default\+\_\+poll}} (\mbox{\hyperlink{structrtems__libio__tt}{rtems\+\_\+libio\+\_\+t}} $\ast$iop, int events)
+\begin{DoxyCompactList}\small\item\em Default poll handler. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__LibIOFSHandler_ga9616b979a36fc433734c0e79e2c13f3d}{rtems\+\_\+filesystem\+\_\+default\+\_\+kqfilter}} (\mbox{\hyperlink{structrtems__libio__tt}{rtems\+\_\+libio\+\_\+t}} $\ast$iop, struct knote $\ast$kn)
+\begin{DoxyCompactList}\small\item\em Default kernel event filter handler. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__LibIOFSHandler_gac2f7ea9b90b247cee91c3b6b10bf7ba9}{rtems\+\_\+filesystem\+\_\+default\+\_\+mmap}} (\mbox{\hyperlink{structrtems__libio__tt}{rtems\+\_\+libio\+\_\+t}} $\ast$iop, void $\ast$$\ast$addr, size\+\_\+t len, int prot, off\+\_\+t off)
+\begin{DoxyCompactList}\small\item\em Default M\+M\+AP handler. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{group__LibIOFSHandler_ga8433aa296d887c411d5ab8adc491ffe6}\label{group__LibIOFSHandler_ga8433aa296d887c411d5ab8adc491ffe6}} 
+const \mbox{\hyperlink{struct__rtems__filesystem__file__handlers__r}{rtems\+\_\+filesystem\+\_\+file\+\_\+handlers\+\_\+r}} \mbox{\hyperlink{group__LibIOFSHandler_ga8433aa296d887c411d5ab8adc491ffe6}{rtems\+\_\+filesystem\+\_\+handlers\+\_\+default}}
+\begin{DoxyCompactList}\small\item\em File system node handler table with default node handlers. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+File system node handler. 
+
+
+
+\subsection{Typedef Documentation}
+\mbox{\Hypertarget{group__LibIOFSHandler_ga9c520e776b733893afba2997e163c8af}\label{group__LibIOFSHandler_ga9c520e776b733893afba2997e163c8af}} 
+\index{File System Node Handler@{File System Node Handler}!rtems\_filesystem\_close\_t@{rtems\_filesystem\_close\_t}}
+\index{rtems\_filesystem\_close\_t@{rtems\_filesystem\_close\_t}!File System Node Handler@{File System Node Handler}}
+\subsubsection{\texorpdfstring{rtems\_filesystem\_close\_t}{rtems\_filesystem\_close\_t}}
+{\footnotesize\ttfamily typedef int($\ast$ rtems\+\_\+filesystem\+\_\+close\+\_\+t) (\mbox{\hyperlink{structrtems__libio__tt}{rtems\+\_\+libio\+\_\+t}} $\ast$iop)}
+
+
+
+Closes a node. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em iop} & The \mbox{\hyperlink{structIO}{IO}} pointer.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em 0} & Successful operation. \\
+\hline
+{\em -\/1} & An error occurred. The errno is set to indicate the error.\\
+\hline
+\end{DoxyRetVals}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{group__LibIOFSHandler_gacc910eacfd4ffb5ba69d8ff0380d5f65}{rtems\+\_\+filesystem\+\_\+default\+\_\+close()}}. 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{group__LibIOFSHandler_ga4af1bd820051eb2fc74b91f5d8868e06}\label{group__LibIOFSHandler_ga4af1bd820051eb2fc74b91f5d8868e06}} 
+\index{File System Node Handler@{File System Node Handler}!rtems\_filesystem\_fcntl\_t@{rtems\_filesystem\_fcntl\_t}}
+\index{rtems\_filesystem\_fcntl\_t@{rtems\_filesystem\_fcntl\_t}!File System Node Handler@{File System Node Handler}}
+\subsubsection{\texorpdfstring{rtems\_filesystem\_fcntl\_t}{rtems\_filesystem\_fcntl\_t}}
+{\footnotesize\ttfamily typedef int($\ast$ rtems\+\_\+filesystem\+\_\+fcntl\+\_\+t) (\mbox{\hyperlink{structrtems__libio__tt}{rtems\+\_\+libio\+\_\+t}} $\ast$iop, int cmd)}
+
+
+
+File control. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em iop} & The \mbox{\hyperlink{structIO}{IO}} pointer. \\
+\hline
+\mbox{\texttt{ in}}  & {\em cmd} & Control command.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em 0} & Successful operation. \\
+\hline
+{\em errno} & An error occurred. This value is assigned to errno.\\
+\hline
+\end{DoxyRetVals}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{group__LibIOFSHandler_ga090f67473d9fa5f26368adeb11c939c8}{rtems\+\_\+filesystem\+\_\+default\+\_\+fcntl()}}. 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{group__LibIOFSHandler_gad78b9605ac97be914b586f3a2820a3de}\label{group__LibIOFSHandler_gad78b9605ac97be914b586f3a2820a3de}} 
+\index{File System Node Handler@{File System Node Handler}!rtems\_filesystem\_fdatasync\_t@{rtems\_filesystem\_fdatasync\_t}}
+\index{rtems\_filesystem\_fdatasync\_t@{rtems\_filesystem\_fdatasync\_t}!File System Node Handler@{File System Node Handler}}
+\subsubsection{\texorpdfstring{rtems\_filesystem\_fdatasync\_t}{rtems\_filesystem\_fdatasync\_t}}
+{\footnotesize\ttfamily typedef int($\ast$ rtems\+\_\+filesystem\+\_\+fdatasync\+\_\+t) (\mbox{\hyperlink{structrtems__libio__tt}{rtems\+\_\+libio\+\_\+t}} $\ast$iop)}
+
+
+
+Synchronizes the data of a file. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em iop} & The \mbox{\hyperlink{structIO}{IO}} pointer.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em 0} & Successful operation. \\
+\hline
+{\em -\/1} & An error occurred. The errno is set to indicate the error.\\
+\hline
+\end{DoxyRetVals}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{group__LibIOFSHandler_ga7bcb245cbe4a71b0952beca086b63e1b}{rtems\+\_\+filesystem\+\_\+default\+\_\+fsync\+\_\+or\+\_\+fdatasync()}} and \mbox{\hyperlink{group__LibIOFSHandler_ga9447b9dc7947e64bde539307a8c0cdb5}{rtems\+\_\+filesystem\+\_\+default\+\_\+fsync\+\_\+or\+\_\+fdatasync\+\_\+success()}}. 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{group__LibIOFSHandler_gabdbd09354c4e86c79735da3a1dc340a8}\label{group__LibIOFSHandler_gabdbd09354c4e86c79735da3a1dc340a8}} 
+\index{File System Node Handler@{File System Node Handler}!rtems\_filesystem\_fstat\_t@{rtems\_filesystem\_fstat\_t}}
+\index{rtems\_filesystem\_fstat\_t@{rtems\_filesystem\_fstat\_t}!File System Node Handler@{File System Node Handler}}
+\subsubsection{\texorpdfstring{rtems\_filesystem\_fstat\_t}{rtems\_filesystem\_fstat\_t}}
+{\footnotesize\ttfamily typedef int($\ast$ rtems\+\_\+filesystem\+\_\+fstat\+\_\+t) (const \mbox{\hyperlink{group__LibIO_ga3252b3d31ee3c49ffff0b7604a676864}{rtems\+\_\+filesystem\+\_\+location\+\_\+info\+\_\+t}} $\ast$loc, struct stat $\ast$buf)}
+
+
+
+Gets a node status. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em iop} & The \mbox{\hyperlink{structIO}{IO}} pointer. \\
+\hline
+\mbox{\texttt{ out}}  & {\em stat} & The buffer to status information.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em 0} & Successful operation. \\
+\hline
+{\em -\/1} & An error occurred. The errno is set to indicate the error.\\
+\hline
+\end{DoxyRetVals}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{group__LibIOFSHandler_ga8df6ed93bdd72abc2cda577c8f78fd54}{rtems\+\_\+filesystem\+\_\+default\+\_\+fstat()}}. 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{group__LibIOFSHandler_gace838c9c108ef6f2e7ddeed186a369f5}\label{group__LibIOFSHandler_gace838c9c108ef6f2e7ddeed186a369f5}} 
+\index{File System Node Handler@{File System Node Handler}!rtems\_filesystem\_fsync\_t@{rtems\_filesystem\_fsync\_t}}
+\index{rtems\_filesystem\_fsync\_t@{rtems\_filesystem\_fsync\_t}!File System Node Handler@{File System Node Handler}}
+\subsubsection{\texorpdfstring{rtems\_filesystem\_fsync\_t}{rtems\_filesystem\_fsync\_t}}
+{\footnotesize\ttfamily typedef int($\ast$ rtems\+\_\+filesystem\+\_\+fsync\+\_\+t) (\mbox{\hyperlink{structrtems__libio__tt}{rtems\+\_\+libio\+\_\+t}} $\ast$iop)}
+
+
+
+Synchronizes changes to a file. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em iop} & The \mbox{\hyperlink{structIO}{IO}} pointer.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em 0} & Successful operation. \\
+\hline
+{\em -\/1} & An error occurred. The errno is set to indicate the error.\\
+\hline
+\end{DoxyRetVals}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{group__LibIOFSHandler_ga7bcb245cbe4a71b0952beca086b63e1b}{rtems\+\_\+filesystem\+\_\+default\+\_\+fsync\+\_\+or\+\_\+fdatasync()}} and \mbox{\hyperlink{group__LibIOFSHandler_ga9447b9dc7947e64bde539307a8c0cdb5}{rtems\+\_\+filesystem\+\_\+default\+\_\+fsync\+\_\+or\+\_\+fdatasync\+\_\+success()}}. 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{group__LibIOFSHandler_gaf5cc5b12b8ab1799641171b1649de34b}\label{group__LibIOFSHandler_gaf5cc5b12b8ab1799641171b1649de34b}} 
+\index{File System Node Handler@{File System Node Handler}!rtems\_filesystem\_ftruncate\_t@{rtems\_filesystem\_ftruncate\_t}}
+\index{rtems\_filesystem\_ftruncate\_t@{rtems\_filesystem\_ftruncate\_t}!File System Node Handler@{File System Node Handler}}
+\subsubsection{\texorpdfstring{rtems\_filesystem\_ftruncate\_t}{rtems\_filesystem\_ftruncate\_t}}
+{\footnotesize\ttfamily typedef int($\ast$ rtems\+\_\+filesystem\+\_\+ftruncate\+\_\+t) (\mbox{\hyperlink{structrtems__libio__tt}{rtems\+\_\+libio\+\_\+t}} $\ast$iop, off\+\_\+t length)}
+
+
+
+Truncates a file to a specified length. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em iop} & The \mbox{\hyperlink{structIO}{IO}} pointer. \\
+\hline
+\mbox{\texttt{ in}}  & {\em length} & The new length in characters.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em 0} & Successful operation. \\
+\hline
+{\em -\/1} & An error occurred. The errno is set to indicate the error.\\
+\hline
+\end{DoxyRetVals}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{group__LibIOFSHandler_ga10a3664ce71afda3d60d6889a0c84367}{rtems\+\_\+filesystem\+\_\+default\+\_\+ftruncate()}} and \mbox{\hyperlink{group__LibIOFSHandler_ga17c8ee92bd9c2a374973906270a03b79}{rtems\+\_\+filesystem\+\_\+default\+\_\+ftruncate\+\_\+directory()}}. 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{group__LibIOFSHandler_ga04ace53d3f0513746d5241dc94c76387}\label{group__LibIOFSHandler_ga04ace53d3f0513746d5241dc94c76387}} 
+\index{File System Node Handler@{File System Node Handler}!rtems\_filesystem\_ioctl\_t@{rtems\_filesystem\_ioctl\_t}}
+\index{rtems\_filesystem\_ioctl\_t@{rtems\_filesystem\_ioctl\_t}!File System Node Handler@{File System Node Handler}}
+\subsubsection{\texorpdfstring{rtems\_filesystem\_ioctl\_t}{rtems\_filesystem\_ioctl\_t}}
+{\footnotesize\ttfamily typedef int($\ast$ rtems\+\_\+filesystem\+\_\+ioctl\+\_\+t) (\mbox{\hyperlink{structrtems__libio__tt}{rtems\+\_\+libio\+\_\+t}} $\ast$iop, ioctl\+\_\+command\+\_\+t request, void $\ast$buffer)}
+
+
+
+\mbox{\hyperlink{structIO}{IO}} control of a node. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em iop} & The \mbox{\hyperlink{structIO}{IO}} pointer. \\
+\hline
+\mbox{\texttt{ in}}  & {\em request} & The \mbox{\hyperlink{structIO}{IO}} control request. \\
+\hline
+\mbox{\texttt{ in,out}}  & {\em buffer} & The buffer for \mbox{\hyperlink{structIO}{IO}} control request data.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em 0} & Successful operation. \\
+\hline
+{\em -\/1} & An error occurred. The errno is set to indicate the error.\\
+\hline
+\end{DoxyRetVals}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{group__LibIOFSHandler_ga50da2d5dcafa7a15fb37916e63e0cd5f}{rtems\+\_\+filesystem\+\_\+default\+\_\+ioctl()}}. 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{group__LibIOFSHandler_ga8d33b578b98ea48ea8f2282632e01e72}\label{group__LibIOFSHandler_ga8d33b578b98ea48ea8f2282632e01e72}} 
+\index{File System Node Handler@{File System Node Handler}!rtems\_filesystem\_kqfilter\_t@{rtems\_filesystem\_kqfilter\_t}}
+\index{rtems\_filesystem\_kqfilter\_t@{rtems\_filesystem\_kqfilter\_t}!File System Node Handler@{File System Node Handler}}
+\subsubsection{\texorpdfstring{rtems\_filesystem\_kqfilter\_t}{rtems\_filesystem\_kqfilter\_t}}
+{\footnotesize\ttfamily typedef int($\ast$ rtems\+\_\+filesystem\+\_\+kqfilter\+\_\+t) (\mbox{\hyperlink{structrtems__libio__tt}{rtems\+\_\+libio\+\_\+t}} $\ast$iop, struct knote $\ast$kn)}
+
+
+
+Kernel event filter support. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em iop} & The \mbox{\hyperlink{structIO}{IO}} pointer. \\
+\hline
+\mbox{\texttt{ in}}  & {\em kn} & The kernel event note.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em 0} & Successful operation. \\
+\hline
+{\em error} & An error occurred. This is usually E\+I\+N\+V\+AL.\\
+\hline
+\end{DoxyRetVals}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{group__LibIOFSHandler_ga9616b979a36fc433734c0e79e2c13f3d}{rtems\+\_\+filesystem\+\_\+default\+\_\+kqfilter()}}. 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{group__LibIOFSHandler_gab3752ab0473efced7afee0d60c0e2c58}\label{group__LibIOFSHandler_gab3752ab0473efced7afee0d60c0e2c58}} 
+\index{File System Node Handler@{File System Node Handler}!rtems\_filesystem\_lseek\_t@{rtems\_filesystem\_lseek\_t}}
+\index{rtems\_filesystem\_lseek\_t@{rtems\_filesystem\_lseek\_t}!File System Node Handler@{File System Node Handler}}
+\subsubsection{\texorpdfstring{rtems\_filesystem\_lseek\_t}{rtems\_filesystem\_lseek\_t}}
+{\footnotesize\ttfamily typedef off\+\_\+t($\ast$ rtems\+\_\+filesystem\+\_\+lseek\+\_\+t) (\mbox{\hyperlink{structrtems__libio__tt}{rtems\+\_\+libio\+\_\+t}} $\ast$iop, off\+\_\+t offset, int whence)}
+
+
+
+Moves the read/write file offset. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em iop} & The \mbox{\hyperlink{structIO}{IO}} pointer. \\
+\hline
+\mbox{\texttt{ in}}  & {\em offset} & The offset. \\
+\hline
+\mbox{\texttt{ in}}  & {\em whence} & The reference position for the offset.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em non-\/negative} & The new offset from the beginning of the file. \\
+\hline
+{\em -\/1} & An error occurred. The errno is set to indicate the error.\\
+\hline
+\end{DoxyRetVals}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{group__LibIOFSHandler_gabc972cf07584efa949cb5ca635de7f06}{rtems\+\_\+filesystem\+\_\+default\+\_\+lseek()}}, \mbox{\hyperlink{group__LibIOFSHandler_ga84f8b0895bbd61dd0f8d5a62864dcc2c}{rtems\+\_\+filesystem\+\_\+default\+\_\+lseek\+\_\+file()}}, and \mbox{\hyperlink{group__LibIOFSHandler_ga2cfb650e15d0a0589079c8c1a5a5c665}{rtems\+\_\+filesystem\+\_\+default\+\_\+lseek\+\_\+directory()}}. 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{group__LibIOFSHandler_gadfd939c2b1e61acd15671a288a259e96}\label{group__LibIOFSHandler_gadfd939c2b1e61acd15671a288a259e96}} 
+\index{File System Node Handler@{File System Node Handler}!rtems\_filesystem\_mmap\_t@{rtems\_filesystem\_mmap\_t}}
+\index{rtems\_filesystem\_mmap\_t@{rtems\_filesystem\_mmap\_t}!File System Node Handler@{File System Node Handler}}
+\subsubsection{\texorpdfstring{rtems\_filesystem\_mmap\_t}{rtems\_filesystem\_mmap\_t}}
+{\footnotesize\ttfamily typedef int($\ast$ rtems\+\_\+filesystem\+\_\+mmap\+\_\+t) (\mbox{\hyperlink{structrtems__libio__tt}{rtems\+\_\+libio\+\_\+t}} $\ast$iop, void $\ast$$\ast$addr, size\+\_\+t len, int prot, off\+\_\+t off)}
+
+
+
+M\+M\+AP support. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em iop} & The \mbox{\hyperlink{structIO}{IO}} pointer. \\
+\hline
+\mbox{\texttt{ in,out}}  & {\em addr} & The starting address of the mapped memory. \\
+\hline
+\mbox{\texttt{ in}}  & {\em len} & The maximum number of bytes to map. \\
+\hline
+\mbox{\texttt{ in}}  & {\em prot} & The desired memory protection. \\
+\hline
+\mbox{\texttt{ in}}  & {\em off} & The offset within the file descriptor to map.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em 0} & Successful operation. \\
+\hline
+{\em error} & An error occurred. This is usually E\+I\+N\+V\+AL.\\
+\hline
+\end{DoxyRetVals}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{group__LibIOFSHandler_gac2f7ea9b90b247cee91c3b6b10bf7ba9}{rtems\+\_\+filesystem\+\_\+default\+\_\+mmap()}}. 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{group__LibIOFSHandler_gaf95c211266cc1feef5e53066310f9134}\label{group__LibIOFSHandler_gaf95c211266cc1feef5e53066310f9134}} 
+\index{File System Node Handler@{File System Node Handler}!rtems\_filesystem\_open\_t@{rtems\_filesystem\_open\_t}}
+\index{rtems\_filesystem\_open\_t@{rtems\_filesystem\_open\_t}!File System Node Handler@{File System Node Handler}}
+\subsubsection{\texorpdfstring{rtems\_filesystem\_open\_t}{rtems\_filesystem\_open\_t}}
+{\footnotesize\ttfamily typedef int($\ast$ rtems\+\_\+filesystem\+\_\+open\+\_\+t) (\mbox{\hyperlink{structrtems__libio__tt}{rtems\+\_\+libio\+\_\+t}} $\ast$iop, const char $\ast$path, int oflag, mode\+\_\+t mode)}
+
+
+
+Opens a node. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em iop} & The \mbox{\hyperlink{structIO}{IO}} pointer. \\
+\hline
+\mbox{\texttt{ in}}  & {\em path} & The path. \\
+\hline
+\mbox{\texttt{ in}}  & {\em oflag} & The open flags. \\
+\hline
+\mbox{\texttt{ in}}  & {\em mode} & Optional mode for node creation.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em 0} & Successful operation. \\
+\hline
+{\em -\/1} & An error occurred. The errno is set to indicate the error.\\
+\hline
+\end{DoxyRetVals}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{group__LibIOFSHandler_gadcd852d4f67d04301d03fc9104730389}{rtems\+\_\+filesystem\+\_\+default\+\_\+open()}}. 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{group__LibIOFSHandler_ga0e8056cf6051bb275005b03e74d0ff5d}\label{group__LibIOFSHandler_ga0e8056cf6051bb275005b03e74d0ff5d}} 
+\index{File System Node Handler@{File System Node Handler}!rtems\_filesystem\_poll\_t@{rtems\_filesystem\_poll\_t}}
+\index{rtems\_filesystem\_poll\_t@{rtems\_filesystem\_poll\_t}!File System Node Handler@{File System Node Handler}}
+\subsubsection{\texorpdfstring{rtems\_filesystem\_poll\_t}{rtems\_filesystem\_poll\_t}}
+{\footnotesize\ttfamily typedef int($\ast$ rtems\+\_\+filesystem\+\_\+poll\+\_\+t) (\mbox{\hyperlink{structrtems__libio__tt}{rtems\+\_\+libio\+\_\+t}} $\ast$iop, int events)}
+
+
+
+Poll and select support. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em iop} & The \mbox{\hyperlink{structIO}{IO}} pointer. \\
+\hline
+\mbox{\texttt{ in}}  & {\em events} & The poll events.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The poll return events.
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{group__LibIOFSHandler_ga608540b3299f81fabee388092bdfbc9f}{rtems\+\_\+filesystem\+\_\+default\+\_\+poll()}}. 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{group__LibIOFSHandler_ga36ed9dda6132dd307fc24ce03f730312}\label{group__LibIOFSHandler_ga36ed9dda6132dd307fc24ce03f730312}} 
+\index{File System Node Handler@{File System Node Handler}!rtems\_filesystem\_read\_t@{rtems\_filesystem\_read\_t}}
+\index{rtems\_filesystem\_read\_t@{rtems\_filesystem\_read\_t}!File System Node Handler@{File System Node Handler}}
+\subsubsection{\texorpdfstring{rtems\_filesystem\_read\_t}{rtems\_filesystem\_read\_t}}
+{\footnotesize\ttfamily typedef ssize\+\_\+t($\ast$ rtems\+\_\+filesystem\+\_\+read\+\_\+t) (\mbox{\hyperlink{structrtems__libio__tt}{rtems\+\_\+libio\+\_\+t}} $\ast$iop, void $\ast$buffer, size\+\_\+t count)}
+
+
+
+Reads from a node. 
+
+This handler is responsible to update the offset field of the \mbox{\hyperlink{structIO}{IO}} descriptor.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em iop} & The \mbox{\hyperlink{structIO}{IO}} pointer. \\
+\hline
+\mbox{\texttt{ out}}  & {\em buffer} & The buffer for read data. \\
+\hline
+\mbox{\texttt{ in}}  & {\em count} & The size of the buffer in characters.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em non-\/negative} & Count of read characters. \\
+\hline
+{\em -\/1} & An error occurred. The errno is set to indicate the error.\\
+\hline
+\end{DoxyRetVals}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{group__LibIOFSHandler_gad453e9f1320d2c20ac2966e327e9c351}{rtems\+\_\+filesystem\+\_\+default\+\_\+read()}}. 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{group__LibIOFSHandler_gae6ccf9c319ab60636be036e7437f8dd7}\label{group__LibIOFSHandler_gae6ccf9c319ab60636be036e7437f8dd7}} 
+\index{File System Node Handler@{File System Node Handler}!rtems\_filesystem\_readv\_t@{rtems\_filesystem\_readv\_t}}
+\index{rtems\_filesystem\_readv\_t@{rtems\_filesystem\_readv\_t}!File System Node Handler@{File System Node Handler}}
+\subsubsection{\texorpdfstring{rtems\_filesystem\_readv\_t}{rtems\_filesystem\_readv\_t}}
+{\footnotesize\ttfamily typedef ssize\+\_\+t($\ast$ rtems\+\_\+filesystem\+\_\+readv\+\_\+t) (\mbox{\hyperlink{structrtems__libio__tt}{rtems\+\_\+libio\+\_\+t}} $\ast$iop, const struct iovec $\ast$iov, int iovcnt, ssize\+\_\+t total)}
+
+
+
+Reads an \mbox{\hyperlink{structIO}{IO}} vector from a node. 
+
+This handler is responsible to update the offset field of the \mbox{\hyperlink{structIO}{IO}} descriptor.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em iop} & The \mbox{\hyperlink{structIO}{IO}} pointer. \\
+\hline
+\mbox{\texttt{ in}}  & {\em iov} & The \mbox{\hyperlink{structIO}{IO}} vector with buffer for read data. The caller must ensure that the \mbox{\hyperlink{structIO}{IO}} vector values are valid. \\
+\hline
+\mbox{\texttt{ in}}  & {\em iovcnt} & The count of buffers in the \mbox{\hyperlink{structIO}{IO}} vector. \\
+\hline
+\mbox{\texttt{ in}}  & {\em total} & The total count of bytes in the buffers in the \mbox{\hyperlink{structIO}{IO}} vector.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em non-\/negative} & Count of read characters. \\
+\hline
+{\em -\/1} & An error occurred. The errno is set to indicate the error.\\
+\hline
+\end{DoxyRetVals}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{group__LibIOFSHandler_ga9e051f16ae657b119d54bffc29baffeb}{rtems\+\_\+filesystem\+\_\+default\+\_\+readv()}}. 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{group__LibIOFSHandler_gacbc1d51a1699693e340b3e31f7f62611}\label{group__LibIOFSHandler_gacbc1d51a1699693e340b3e31f7f62611}} 
+\index{File System Node Handler@{File System Node Handler}!rtems\_filesystem\_write\_t@{rtems\_filesystem\_write\_t}}
+\index{rtems\_filesystem\_write\_t@{rtems\_filesystem\_write\_t}!File System Node Handler@{File System Node Handler}}
+\subsubsection{\texorpdfstring{rtems\_filesystem\_write\_t}{rtems\_filesystem\_write\_t}}
+{\footnotesize\ttfamily typedef ssize\+\_\+t($\ast$ rtems\+\_\+filesystem\+\_\+write\+\_\+t) (\mbox{\hyperlink{structrtems__libio__tt}{rtems\+\_\+libio\+\_\+t}} $\ast$iop, const void $\ast$buffer, size\+\_\+t count)}
+
+
+
+Writes to a node. 
+
+This handler is responsible to update the offset field of the \mbox{\hyperlink{structIO}{IO}} descriptor.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em iop} & The \mbox{\hyperlink{structIO}{IO}} pointer. \\
+\hline
+\mbox{\texttt{ out}}  & {\em buffer} & The buffer for write data. \\
+\hline
+\mbox{\texttt{ in}}  & {\em count} & The size of the buffer in characters.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em non-\/negative} & Count of written characters. \\
+\hline
+{\em -\/1} & An error occurred. The errno is set to indicate the error.\\
+\hline
+\end{DoxyRetVals}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{group__LibIOFSHandler_gaf4201385a0dd5ad3d1f447b3a167b106}{rtems\+\_\+filesystem\+\_\+default\+\_\+write()}}. 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{group__LibIOFSHandler_gabdb95b0ef5e3875f0b80cc221edf78f8}\label{group__LibIOFSHandler_gabdb95b0ef5e3875f0b80cc221edf78f8}} 
+\index{File System Node Handler@{File System Node Handler}!rtems\_filesystem\_writev\_t@{rtems\_filesystem\_writev\_t}}
+\index{rtems\_filesystem\_writev\_t@{rtems\_filesystem\_writev\_t}!File System Node Handler@{File System Node Handler}}
+\subsubsection{\texorpdfstring{rtems\_filesystem\_writev\_t}{rtems\_filesystem\_writev\_t}}
+{\footnotesize\ttfamily typedef ssize\+\_\+t($\ast$ rtems\+\_\+filesystem\+\_\+writev\+\_\+t) (\mbox{\hyperlink{structrtems__libio__tt}{rtems\+\_\+libio\+\_\+t}} $\ast$iop, const struct iovec $\ast$iov, int iovcnt, ssize\+\_\+t total)}
+
+
+
+Writes an \mbox{\hyperlink{structIO}{IO}} vector to a node. 
+
+This handler is responsible to update the offset field of the \mbox{\hyperlink{structIO}{IO}} descriptor.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em iop} & The \mbox{\hyperlink{structIO}{IO}} pointer. \\
+\hline
+\mbox{\texttt{ in}}  & {\em iov} & The \mbox{\hyperlink{structIO}{IO}} vector with buffer for write data. The caller must ensure that the \mbox{\hyperlink{structIO}{IO}} vector values are valid. \\
+\hline
+\mbox{\texttt{ in}}  & {\em iovcnt} & The count of buffers in the \mbox{\hyperlink{structIO}{IO}} vector. \\
+\hline
+\mbox{\texttt{ in}}  & {\em total} & The total count of bytes in the buffers in the \mbox{\hyperlink{structIO}{IO}} vector.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em non-\/negative} & Count of written characters. \\
+\hline
+{\em -\/1} & An error occurred. The errno is set to indicate the error.\\
+\hline
+\end{DoxyRetVals}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{group__LibIOFSHandler_ga9ac1157e2bd2cff626d67f67a6376a8f}{rtems\+\_\+filesystem\+\_\+default\+\_\+writev()}}. 
+\end{DoxySeeAlso}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{group__LibIOFSHandler_gacc910eacfd4ffb5ba69d8ff0380d5f65}\label{group__LibIOFSHandler_gacc910eacfd4ffb5ba69d8ff0380d5f65}} 
+\index{File System Node Handler@{File System Node Handler}!rtems\_filesystem\_default\_close@{rtems\_filesystem\_default\_close}}
+\index{rtems\_filesystem\_default\_close@{rtems\_filesystem\_default\_close}!File System Node Handler@{File System Node Handler}}
+\subsubsection{\texorpdfstring{rtems\_filesystem\_default\_close()}{rtems\_filesystem\_default\_close()}}
+{\footnotesize\ttfamily int rtems\+\_\+filesystem\+\_\+default\+\_\+close (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structrtems__libio__tt}{rtems\+\_\+libio\+\_\+t}} $\ast$}]{iop }\end{DoxyParamCaption})}
+
+
+\begin{DoxyRetVals}{Return values}
+{\em 0} & Always.\\
+\hline
+\end{DoxyRetVals}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{group__LibIOFSHandler_ga9c520e776b733893afba2997e163c8af}{rtems\+\_\+filesystem\+\_\+close\+\_\+t}}. 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{group__LibIOFSHandler_ga090f67473d9fa5f26368adeb11c939c8}\label{group__LibIOFSHandler_ga090f67473d9fa5f26368adeb11c939c8}} 
+\index{File System Node Handler@{File System Node Handler}!rtems\_filesystem\_default\_fcntl@{rtems\_filesystem\_default\_fcntl}}
+\index{rtems\_filesystem\_default\_fcntl@{rtems\_filesystem\_default\_fcntl}!File System Node Handler@{File System Node Handler}}
+\subsubsection{\texorpdfstring{rtems\_filesystem\_default\_fcntl()}{rtems\_filesystem\_default\_fcntl()}}
+{\footnotesize\ttfamily int rtems\+\_\+filesystem\+\_\+default\+\_\+fcntl (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structrtems__libio__tt}{rtems\+\_\+libio\+\_\+t}} $\ast$}]{iop,  }\item[{int}]{cmd }\end{DoxyParamCaption})}
+
+
+\begin{DoxyRetVals}{Return values}
+{\em 0} & Always.\\
+\hline
+\end{DoxyRetVals}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{group__LibIOFSHandler_ga4af1bd820051eb2fc74b91f5d8868e06}{rtems\+\_\+filesystem\+\_\+fcntl\+\_\+t}}. 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{group__LibIOFSHandler_ga8df6ed93bdd72abc2cda577c8f78fd54}\label{group__LibIOFSHandler_ga8df6ed93bdd72abc2cda577c8f78fd54}} 
+\index{File System Node Handler@{File System Node Handler}!rtems\_filesystem\_default\_fstat@{rtems\_filesystem\_default\_fstat}}
+\index{rtems\_filesystem\_default\_fstat@{rtems\_filesystem\_default\_fstat}!File System Node Handler@{File System Node Handler}}
+\subsubsection{\texorpdfstring{rtems\_filesystem\_default\_fstat()}{rtems\_filesystem\_default\_fstat()}}
+{\footnotesize\ttfamily int rtems\+\_\+filesystem\+\_\+default\+\_\+fstat (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{group__LibIO_ga3252b3d31ee3c49ffff0b7604a676864}{rtems\+\_\+filesystem\+\_\+location\+\_\+info\+\_\+t}} $\ast$}]{loc,  }\item[{struct stat $\ast$}]{buf }\end{DoxyParamCaption})}
+
+
+
+Sets the mode to S\+\_\+\+I\+R\+W\+XU $\vert$ S\+\_\+\+I\+R\+W\+XG $\vert$ S\+\_\+\+I\+R\+W\+XO. 
+
+
+\begin{DoxyRetVals}{Return values}
+{\em 0} & Always.\\
+\hline
+\end{DoxyRetVals}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{group__LibIOFSHandler_gabdbd09354c4e86c79735da3a1dc340a8}{rtems\+\_\+filesystem\+\_\+fstat\+\_\+t}}. 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{group__LibIOFSHandler_ga7bcb245cbe4a71b0952beca086b63e1b}\label{group__LibIOFSHandler_ga7bcb245cbe4a71b0952beca086b63e1b}} 
+\index{File System Node Handler@{File System Node Handler}!rtems\_filesystem\_default\_fsync\_or\_fdatasync@{rtems\_filesystem\_default\_fsync\_or\_fdatasync}}
+\index{rtems\_filesystem\_default\_fsync\_or\_fdatasync@{rtems\_filesystem\_default\_fsync\_or\_fdatasync}!File System Node Handler@{File System Node Handler}}
+\subsubsection{\texorpdfstring{rtems\_filesystem\_default\_fsync\_or\_fdatasync()}{rtems\_filesystem\_default\_fsync\_or\_fdatasync()}}
+{\footnotesize\ttfamily int rtems\+\_\+filesystem\+\_\+default\+\_\+fsync\+\_\+or\+\_\+fdatasync (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structrtems__libio__tt}{rtems\+\_\+libio\+\_\+t}} $\ast$}]{iop }\end{DoxyParamCaption})}
+
+
+\begin{DoxyRetVals}{Return values}
+{\em -\/1} & Always. The errno is set to E\+I\+N\+V\+AL.\\
+\hline
+\end{DoxyRetVals}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{group__LibIOFSHandler_gace838c9c108ef6f2e7ddeed186a369f5}{rtems\+\_\+filesystem\+\_\+fsync\+\_\+t}} and \mbox{\hyperlink{group__LibIOFSHandler_gad78b9605ac97be914b586f3a2820a3de}{rtems\+\_\+filesystem\+\_\+fdatasync\+\_\+t}}. 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{group__LibIOFSHandler_ga9447b9dc7947e64bde539307a8c0cdb5}\label{group__LibIOFSHandler_ga9447b9dc7947e64bde539307a8c0cdb5}} 
+\index{File System Node Handler@{File System Node Handler}!rtems\_filesystem\_default\_fsync\_or\_fdatasync\_success@{rtems\_filesystem\_default\_fsync\_or\_fdatasync\_success}}
+\index{rtems\_filesystem\_default\_fsync\_or\_fdatasync\_success@{rtems\_filesystem\_default\_fsync\_or\_fdatasync\_success}!File System Node Handler@{File System Node Handler}}
+\subsubsection{\texorpdfstring{rtems\_filesystem\_default\_fsync\_or\_fdatasync\_success()}{rtems\_filesystem\_default\_fsync\_or\_fdatasync\_success()}}
+{\footnotesize\ttfamily int rtems\+\_\+filesystem\+\_\+default\+\_\+fsync\+\_\+or\+\_\+fdatasync\+\_\+success (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structrtems__libio__tt}{rtems\+\_\+libio\+\_\+t}} $\ast$}]{iop }\end{DoxyParamCaption})}
+
+
+\begin{DoxyRetVals}{Return values}
+{\em 0} & Always.\\
+\hline
+\end{DoxyRetVals}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{group__LibIOFSHandler_gace838c9c108ef6f2e7ddeed186a369f5}{rtems\+\_\+filesystem\+\_\+fsync\+\_\+t}} and \mbox{\hyperlink{group__LibIOFSHandler_gad78b9605ac97be914b586f3a2820a3de}{rtems\+\_\+filesystem\+\_\+fdatasync\+\_\+t}}. 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{group__LibIOFSHandler_ga10a3664ce71afda3d60d6889a0c84367}\label{group__LibIOFSHandler_ga10a3664ce71afda3d60d6889a0c84367}} 
+\index{File System Node Handler@{File System Node Handler}!rtems\_filesystem\_default\_ftruncate@{rtems\_filesystem\_default\_ftruncate}}
+\index{rtems\_filesystem\_default\_ftruncate@{rtems\_filesystem\_default\_ftruncate}!File System Node Handler@{File System Node Handler}}
+\subsubsection{\texorpdfstring{rtems\_filesystem\_default\_ftruncate()}{rtems\_filesystem\_default\_ftruncate()}}
+{\footnotesize\ttfamily int rtems\+\_\+filesystem\+\_\+default\+\_\+ftruncate (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structrtems__libio__tt}{rtems\+\_\+libio\+\_\+t}} $\ast$}]{iop,  }\item[{off\+\_\+t}]{length }\end{DoxyParamCaption})}
+
+
+\begin{DoxyRetVals}{Return values}
+{\em -\/1} & Always. The errno is set to E\+I\+N\+V\+AL.\\
+\hline
+\end{DoxyRetVals}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{group__LibIOFSHandler_gaf5cc5b12b8ab1799641171b1649de34b}{rtems\+\_\+filesystem\+\_\+ftruncate\+\_\+t}}. 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{group__LibIOFSHandler_ga17c8ee92bd9c2a374973906270a03b79}\label{group__LibIOFSHandler_ga17c8ee92bd9c2a374973906270a03b79}} 
+\index{File System Node Handler@{File System Node Handler}!rtems\_filesystem\_default\_ftruncate\_directory@{rtems\_filesystem\_default\_ftruncate\_directory}}
+\index{rtems\_filesystem\_default\_ftruncate\_directory@{rtems\_filesystem\_default\_ftruncate\_directory}!File System Node Handler@{File System Node Handler}}
+\subsubsection{\texorpdfstring{rtems\_filesystem\_default\_ftruncate\_directory()}{rtems\_filesystem\_default\_ftruncate\_directory()}}
+{\footnotesize\ttfamily int rtems\+\_\+filesystem\+\_\+default\+\_\+ftruncate\+\_\+directory (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structrtems__libio__tt}{rtems\+\_\+libio\+\_\+t}} $\ast$}]{iop,  }\item[{off\+\_\+t}]{length }\end{DoxyParamCaption})}
+
+
+\begin{DoxyRetVals}{Return values}
+{\em -\/1} & Always. The errno is set to E\+I\+S\+D\+IR.\\
+\hline
+\end{DoxyRetVals}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{group__LibIOFSHandler_gaf5cc5b12b8ab1799641171b1649de34b}{rtems\+\_\+filesystem\+\_\+ftruncate\+\_\+t}}. 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{group__LibIOFSHandler_ga50da2d5dcafa7a15fb37916e63e0cd5f}\label{group__LibIOFSHandler_ga50da2d5dcafa7a15fb37916e63e0cd5f}} 
+\index{File System Node Handler@{File System Node Handler}!rtems\_filesystem\_default\_ioctl@{rtems\_filesystem\_default\_ioctl}}
+\index{rtems\_filesystem\_default\_ioctl@{rtems\_filesystem\_default\_ioctl}!File System Node Handler@{File System Node Handler}}
+\subsubsection{\texorpdfstring{rtems\_filesystem\_default\_ioctl()}{rtems\_filesystem\_default\_ioctl()}}
+{\footnotesize\ttfamily int rtems\+\_\+filesystem\+\_\+default\+\_\+ioctl (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structrtems__libio__tt}{rtems\+\_\+libio\+\_\+t}} $\ast$}]{iop,  }\item[{ioctl\+\_\+command\+\_\+t}]{request,  }\item[{void $\ast$}]{buffer }\end{DoxyParamCaption})}
+
+
+\begin{DoxyRetVals}{Return values}
+{\em -\/1} & Always. The errno is set to E\+N\+O\+T\+TY.\\
+\hline
+\end{DoxyRetVals}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{group__LibIOFSHandler_ga04ace53d3f0513746d5241dc94c76387}{rtems\+\_\+filesystem\+\_\+ioctl\+\_\+t}}. 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{group__LibIOFSHandler_ga9616b979a36fc433734c0e79e2c13f3d}\label{group__LibIOFSHandler_ga9616b979a36fc433734c0e79e2c13f3d}} 
+\index{File System Node Handler@{File System Node Handler}!rtems\_filesystem\_default\_kqfilter@{rtems\_filesystem\_default\_kqfilter}}
+\index{rtems\_filesystem\_default\_kqfilter@{rtems\_filesystem\_default\_kqfilter}!File System Node Handler@{File System Node Handler}}
+\subsubsection{\texorpdfstring{rtems\_filesystem\_default\_kqfilter()}{rtems\_filesystem\_default\_kqfilter()}}
+{\footnotesize\ttfamily int rtems\+\_\+filesystem\+\_\+default\+\_\+kqfilter (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structrtems__libio__tt}{rtems\+\_\+libio\+\_\+t}} $\ast$}]{iop,  }\item[{struct knote $\ast$}]{kn }\end{DoxyParamCaption})}
+
+
+
+Default kernel event filter handler. 
+
+
+\begin{DoxyRetVals}{Return values}
+{\em E\+I\+N\+V\+AL} & Always.\\
+\hline
+\end{DoxyRetVals}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{group__LibIOFSHandler_ga8d33b578b98ea48ea8f2282632e01e72}{rtems\+\_\+filesystem\+\_\+kqfilter\+\_\+t}}. 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{group__LibIOFSHandler_gabc972cf07584efa949cb5ca635de7f06}\label{group__LibIOFSHandler_gabc972cf07584efa949cb5ca635de7f06}} 
+\index{File System Node Handler@{File System Node Handler}!rtems\_filesystem\_default\_lseek@{rtems\_filesystem\_default\_lseek}}
+\index{rtems\_filesystem\_default\_lseek@{rtems\_filesystem\_default\_lseek}!File System Node Handler@{File System Node Handler}}
+\subsubsection{\texorpdfstring{rtems\_filesystem\_default\_lseek()}{rtems\_filesystem\_default\_lseek()}}
+{\footnotesize\ttfamily off\+\_\+t rtems\+\_\+filesystem\+\_\+default\+\_\+lseek (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structrtems__libio__tt}{rtems\+\_\+libio\+\_\+t}} $\ast$}]{iop,  }\item[{off\+\_\+t}]{offset,  }\item[{int}]{whence }\end{DoxyParamCaption})}
+
+
+\begin{DoxyRetVals}{Return values}
+{\em -\/1} & Always. The errno is set to E\+S\+P\+I\+PE.\\
+\hline
+\end{DoxyRetVals}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{group__LibIOFSHandler_gab3752ab0473efced7afee0d60c0e2c58}{rtems\+\_\+filesystem\+\_\+lseek\+\_\+t}}. 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{group__LibIOFSHandler_ga2cfb650e15d0a0589079c8c1a5a5c665}\label{group__LibIOFSHandler_ga2cfb650e15d0a0589079c8c1a5a5c665}} 
+\index{File System Node Handler@{File System Node Handler}!rtems\_filesystem\_default\_lseek\_directory@{rtems\_filesystem\_default\_lseek\_directory}}
+\index{rtems\_filesystem\_default\_lseek\_directory@{rtems\_filesystem\_default\_lseek\_directory}!File System Node Handler@{File System Node Handler}}
+\subsubsection{\texorpdfstring{rtems\_filesystem\_default\_lseek\_directory()}{rtems\_filesystem\_default\_lseek\_directory()}}
+{\footnotesize\ttfamily off\+\_\+t rtems\+\_\+filesystem\+\_\+default\+\_\+lseek\+\_\+directory (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structrtems__libio__tt}{rtems\+\_\+libio\+\_\+t}} $\ast$}]{iop,  }\item[{off\+\_\+t}]{offset,  }\item[{int}]{whence }\end{DoxyParamCaption})}
+
+
+
+An offset 0 with a whence of S\+E\+E\+K\+\_\+\+S\+ET will perform a directory rewind operation. 
+
+This function has no protection against concurrent access.
+
+
+\begin{DoxyRetVals}{Return values}
+{\em -\/1} & The offset is not zero or the whence is not S\+E\+E\+K\+\_\+\+S\+ET. \\
+\hline
+{\em 0} & Successful rewind operation.\\
+\hline
+\end{DoxyRetVals}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{group__LibIOFSHandler_gab3752ab0473efced7afee0d60c0e2c58}{rtems\+\_\+filesystem\+\_\+lseek\+\_\+t}}. 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{group__LibIOFSHandler_ga84f8b0895bbd61dd0f8d5a62864dcc2c}\label{group__LibIOFSHandler_ga84f8b0895bbd61dd0f8d5a62864dcc2c}} 
+\index{File System Node Handler@{File System Node Handler}!rtems\_filesystem\_default\_lseek\_file@{rtems\_filesystem\_default\_lseek\_file}}
+\index{rtems\_filesystem\_default\_lseek\_file@{rtems\_filesystem\_default\_lseek\_file}!File System Node Handler@{File System Node Handler}}
+\subsubsection{\texorpdfstring{rtems\_filesystem\_default\_lseek\_file()}{rtems\_filesystem\_default\_lseek\_file()}}
+{\footnotesize\ttfamily off\+\_\+t rtems\+\_\+filesystem\+\_\+default\+\_\+lseek\+\_\+file (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structrtems__libio__tt}{rtems\+\_\+libio\+\_\+t}} $\ast$}]{iop,  }\item[{off\+\_\+t}]{offset,  }\item[{int}]{whence }\end{DoxyParamCaption})}
+
+
+
+Default lseek() handler for files. 
+
+The fstat() handler will be used to obtain the file size in case whence is S\+E\+E\+K\+\_\+\+E\+ND.
+
+This function has no protection against concurrent access.
+
+
+\begin{DoxyRetVals}{Return values}
+{\em -\/1} & An error occurred. In case an integer overflow occurred, then the errno will be set to E\+O\+V\+E\+R\+F\+L\+OW. In case the new offset is negative, then the errno will be set to E\+I\+N\+V\+AL. In case the whence is S\+E\+E\+K\+\_\+\+E\+ND and the fstat() handler to obtain the current file size returned an error status, then the errno will be set by the fstat() handler. \\
+\hline
+{\em offset} & The new offset.\\
+\hline
+\end{DoxyRetVals}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{group__LibIOFSHandler_gab3752ab0473efced7afee0d60c0e2c58}{rtems\+\_\+filesystem\+\_\+lseek\+\_\+t}}. 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{group__LibIOFSHandler_gac2f7ea9b90b247cee91c3b6b10bf7ba9}\label{group__LibIOFSHandler_gac2f7ea9b90b247cee91c3b6b10bf7ba9}} 
+\index{File System Node Handler@{File System Node Handler}!rtems\_filesystem\_default\_mmap@{rtems\_filesystem\_default\_mmap}}
+\index{rtems\_filesystem\_default\_mmap@{rtems\_filesystem\_default\_mmap}!File System Node Handler@{File System Node Handler}}
+\subsubsection{\texorpdfstring{rtems\_filesystem\_default\_mmap()}{rtems\_filesystem\_default\_mmap()}}
+{\footnotesize\ttfamily int rtems\+\_\+filesystem\+\_\+default\+\_\+mmap (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structrtems__libio__tt}{rtems\+\_\+libio\+\_\+t}} $\ast$}]{iop,  }\item[{void $\ast$$\ast$}]{addr,  }\item[{size\+\_\+t}]{len,  }\item[{int}]{prot,  }\item[{off\+\_\+t}]{off }\end{DoxyParamCaption})}
+
+
+
+Default M\+M\+AP handler. 
+
+
+\begin{DoxyRetVals}{Return values}
+{\em E\+N\+O\+T\+S\+UP} & Always.\\
+\hline
+\end{DoxyRetVals}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{group__LibIOFSHandler_gadfd939c2b1e61acd15671a288a259e96}{rtems\+\_\+filesystem\+\_\+mmap\+\_\+t}}. 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{group__LibIOFSHandler_gadcd852d4f67d04301d03fc9104730389}\label{group__LibIOFSHandler_gadcd852d4f67d04301d03fc9104730389}} 
+\index{File System Node Handler@{File System Node Handler}!rtems\_filesystem\_default\_open@{rtems\_filesystem\_default\_open}}
+\index{rtems\_filesystem\_default\_open@{rtems\_filesystem\_default\_open}!File System Node Handler@{File System Node Handler}}
+\subsubsection{\texorpdfstring{rtems\_filesystem\_default\_open()}{rtems\_filesystem\_default\_open()}}
+{\footnotesize\ttfamily int rtems\+\_\+filesystem\+\_\+default\+\_\+open (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structrtems__libio__tt}{rtems\+\_\+libio\+\_\+t}} $\ast$}]{iop,  }\item[{const char $\ast$}]{path,  }\item[{int}]{oflag,  }\item[{mode\+\_\+t}]{mode }\end{DoxyParamCaption})}
+
+
+\begin{DoxyRetVals}{Return values}
+{\em 0} & Always.\\
+\hline
+\end{DoxyRetVals}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{group__LibIOFSHandler_gaf95c211266cc1feef5e53066310f9134}{rtems\+\_\+filesystem\+\_\+open\+\_\+t}}. 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{group__LibIOFSHandler_ga608540b3299f81fabee388092bdfbc9f}\label{group__LibIOFSHandler_ga608540b3299f81fabee388092bdfbc9f}} 
+\index{File System Node Handler@{File System Node Handler}!rtems\_filesystem\_default\_poll@{rtems\_filesystem\_default\_poll}}
+\index{rtems\_filesystem\_default\_poll@{rtems\_filesystem\_default\_poll}!File System Node Handler@{File System Node Handler}}
+\subsubsection{\texorpdfstring{rtems\_filesystem\_default\_poll()}{rtems\_filesystem\_default\_poll()}}
+{\footnotesize\ttfamily int rtems\+\_\+filesystem\+\_\+default\+\_\+poll (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structrtems__libio__tt}{rtems\+\_\+libio\+\_\+t}} $\ast$}]{iop,  }\item[{int}]{events }\end{DoxyParamCaption})}
+
+
+
+Default poll handler. 
+
+
+\begin{DoxyRetVals}{Return values}
+{\em P\+O\+L\+L\+E\+RR} & Always.\\
+\hline
+\end{DoxyRetVals}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{group__LibIOFSHandler_ga0e8056cf6051bb275005b03e74d0ff5d}{rtems\+\_\+filesystem\+\_\+poll\+\_\+t}}. 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{group__LibIOFSHandler_gad453e9f1320d2c20ac2966e327e9c351}\label{group__LibIOFSHandler_gad453e9f1320d2c20ac2966e327e9c351}} 
+\index{File System Node Handler@{File System Node Handler}!rtems\_filesystem\_default\_read@{rtems\_filesystem\_default\_read}}
+\index{rtems\_filesystem\_default\_read@{rtems\_filesystem\_default\_read}!File System Node Handler@{File System Node Handler}}
+\subsubsection{\texorpdfstring{rtems\_filesystem\_default\_read()}{rtems\_filesystem\_default\_read()}}
+{\footnotesize\ttfamily ssize\+\_\+t rtems\+\_\+filesystem\+\_\+default\+\_\+read (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structrtems__libio__tt}{rtems\+\_\+libio\+\_\+t}} $\ast$}]{iop,  }\item[{void $\ast$}]{buffer,  }\item[{size\+\_\+t}]{count }\end{DoxyParamCaption})}
+
+
+\begin{DoxyRetVals}{Return values}
+{\em -\/1} & Always. The errno is set to E\+N\+O\+T\+S\+UP.\\
+\hline
+\end{DoxyRetVals}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{group__LibIOFSHandler_ga36ed9dda6132dd307fc24ce03f730312}{rtems\+\_\+filesystem\+\_\+read\+\_\+t}}. 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{group__LibIOFSHandler_ga9e051f16ae657b119d54bffc29baffeb}\label{group__LibIOFSHandler_ga9e051f16ae657b119d54bffc29baffeb}} 
+\index{File System Node Handler@{File System Node Handler}!rtems\_filesystem\_default\_readv@{rtems\_filesystem\_default\_readv}}
+\index{rtems\_filesystem\_default\_readv@{rtems\_filesystem\_default\_readv}!File System Node Handler@{File System Node Handler}}
+\subsubsection{\texorpdfstring{rtems\_filesystem\_default\_readv()}{rtems\_filesystem\_default\_readv()}}
+{\footnotesize\ttfamily ssize\+\_\+t rtems\+\_\+filesystem\+\_\+default\+\_\+readv (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structrtems__libio__tt}{rtems\+\_\+libio\+\_\+t}} $\ast$}]{iop,  }\item[{const struct iovec $\ast$}]{iov,  }\item[{int}]{iovcnt,  }\item[{ssize\+\_\+t}]{total }\end{DoxyParamCaption})}
+
+
+
+Calls the read handler for each \mbox{\hyperlink{structIO}{IO}} vector entry. 
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{group__LibIOFSHandler_gae6ccf9c319ab60636be036e7437f8dd7}{rtems\+\_\+filesystem\+\_\+readv\+\_\+t}}. 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{group__LibIOFSHandler_gaf4201385a0dd5ad3d1f447b3a167b106}\label{group__LibIOFSHandler_gaf4201385a0dd5ad3d1f447b3a167b106}} 
+\index{File System Node Handler@{File System Node Handler}!rtems\_filesystem\_default\_write@{rtems\_filesystem\_default\_write}}
+\index{rtems\_filesystem\_default\_write@{rtems\_filesystem\_default\_write}!File System Node Handler@{File System Node Handler}}
+\subsubsection{\texorpdfstring{rtems\_filesystem\_default\_write()}{rtems\_filesystem\_default\_write()}}
+{\footnotesize\ttfamily ssize\+\_\+t rtems\+\_\+filesystem\+\_\+default\+\_\+write (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structrtems__libio__tt}{rtems\+\_\+libio\+\_\+t}} $\ast$}]{iop,  }\item[{const void $\ast$}]{buffer,  }\item[{size\+\_\+t}]{count }\end{DoxyParamCaption})}
+
+
+\begin{DoxyRetVals}{Return values}
+{\em -\/1} & Always. The errno is set to E\+N\+O\+T\+S\+UP.\\
+\hline
+\end{DoxyRetVals}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{group__LibIOFSHandler_gacbc1d51a1699693e340b3e31f7f62611}{rtems\+\_\+filesystem\+\_\+write\+\_\+t}}. 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{group__LibIOFSHandler_ga9ac1157e2bd2cff626d67f67a6376a8f}\label{group__LibIOFSHandler_ga9ac1157e2bd2cff626d67f67a6376a8f}} 
+\index{File System Node Handler@{File System Node Handler}!rtems\_filesystem\_default\_writev@{rtems\_filesystem\_default\_writev}}
+\index{rtems\_filesystem\_default\_writev@{rtems\_filesystem\_default\_writev}!File System Node Handler@{File System Node Handler}}
+\subsubsection{\texorpdfstring{rtems\_filesystem\_default\_writev()}{rtems\_filesystem\_default\_writev()}}
+{\footnotesize\ttfamily ssize\+\_\+t rtems\+\_\+filesystem\+\_\+default\+\_\+writev (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structrtems__libio__tt}{rtems\+\_\+libio\+\_\+t}} $\ast$}]{iop,  }\item[{const struct iovec $\ast$}]{iov,  }\item[{int}]{iovcnt,  }\item[{ssize\+\_\+t}]{total }\end{DoxyParamCaption})}
+
+
+
+Calls the write handler for each \mbox{\hyperlink{structIO}{IO}} vector entry. 
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{group__LibIOFSHandler_gacbc1d51a1699693e340b3e31f7f62611}{rtems\+\_\+filesystem\+\_\+write\+\_\+t}}. 
+\end{DoxySeeAlso}

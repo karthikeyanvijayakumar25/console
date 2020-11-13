@@ -1,0 +1,72 @@
+\hypertarget{cpuusagetop_8c}{}\section{cpukit/libmisc/cpuuse/cpuusagetop.c File Reference}
+\label{cpuusagetop_8c}\index{cpukit/libmisc/cpuuse/cpuusagetop.c@{cpukit/libmisc/cpuuse/cpuusagetop.c}}
+
+
+C\+PU Usage Top.  
+
+
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$ctype.\+h$>$}\newline
+{\ttfamily \#include $<$inttypes.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/cpuuse.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/printer.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/malloc.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/score/objectimpl.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/score/protectedheap.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/score/schedulerimpl.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/score/threadimpl.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/score/todimpl.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/score/watchdogimpl.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/score/wkspace.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/rtems/tasksimpl.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}cpuuseimpl.\+h\char`\"{}}\newline
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structrtems__cpu__usage__data}{rtems\+\_\+cpu\+\_\+usage\+\_\+data}}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{cpuusagetop_8c_a2be6fcdf84b8553a1a1ccec5cc9cee5a}\label{cpuusagetop_8c_a2be6fcdf84b8553a1a1ccec5cc9cee5a}} 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+T\+O\+P\+\_\+\+S\+O\+R\+T\+\_\+\+ID}~(0)
+\item 
+\mbox{\Hypertarget{cpuusagetop_8c_afe87cb4812e6f60829a67af962dd745f}\label{cpuusagetop_8c_afe87cb4812e6f60829a67af962dd745f}} 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+T\+O\+P\+\_\+\+S\+O\+R\+T\+\_\+\+R\+E\+A\+L\+\_\+\+P\+RI}~(1)
+\item 
+\mbox{\Hypertarget{cpuusagetop_8c_ab8650171c619d6466152e73b07527f18}\label{cpuusagetop_8c_ab8650171c619d6466152e73b07527f18}} 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+T\+O\+P\+\_\+\+S\+O\+R\+T\+\_\+\+C\+U\+R\+R\+E\+N\+T\+\_\+\+P\+RI}~(2)
+\item 
+\mbox{\Hypertarget{cpuusagetop_8c_a81cc3a63f7eb5a69b22300c293da46a1}\label{cpuusagetop_8c_a81cc3a63f7eb5a69b22300c293da46a1}} 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+T\+O\+P\+\_\+\+S\+O\+R\+T\+\_\+\+T\+O\+T\+AL}~(3)
+\item 
+\mbox{\Hypertarget{cpuusagetop_8c_a2de54820c4cd71b5a6f0a733710ea3d4}\label{cpuusagetop_8c_a2de54820c4cd71b5a6f0a733710ea3d4}} 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+T\+O\+P\+\_\+\+S\+O\+R\+T\+\_\+\+C\+U\+R\+R\+E\+NT}~(4)
+\item 
+\mbox{\Hypertarget{cpuusagetop_8c_a9a9a2fec46bbc808cfe4c4cd51869e2d}\label{cpuusagetop_8c_a9a9a2fec46bbc808cfe4c4cd51869e2d}} 
+\#define {\bfseries R\+T\+E\+M\+S\+\_\+\+T\+O\+P\+\_\+\+S\+O\+R\+T\+\_\+\+M\+AX}~(4)
+\item 
+\mbox{\Hypertarget{cpuusagetop_8c_af9f923a9ac56795a78f9122da6ae8950}\label{cpuusagetop_8c_af9f923a9ac56795a78f9122da6ae8950}} 
+\#define {\bfseries C\+P\+U\+\_\+usage\+\_\+\+Equal\+\_\+to}(\+\_\+lhs,  \+\_\+rhs)~\mbox{\hyperlink{group__SuperCoreTimeStamp_ga41ac4e996cd371410aa431a2d273bba2}{\+\_\+\+Timestamp\+\_\+\+Equal\+\_\+to}}( \+\_\+lhs, \+\_\+rhs )
+\item 
+\mbox{\Hypertarget{cpuusagetop_8c_a620b89bcc5e7d17141383a4e7d62f300}\label{cpuusagetop_8c_a620b89bcc5e7d17141383a4e7d62f300}} 
+\#define {\bfseries C\+P\+U\+\_\+usage\+\_\+\+Set\+\_\+to\+\_\+zero}(\+\_\+time)~\mbox{\hyperlink{group__SuperCoreTimeStamp_ga6906837be670a2ca36c2f5a231034321}{\+\_\+\+Timestamp\+\_\+\+Set\+\_\+to\+\_\+zero}}( \+\_\+time )
+\item 
+\mbox{\Hypertarget{cpuusagetop_8c_aefc55d6ea08550c5f21ece4a84a1fe12}\label{cpuusagetop_8c_aefc55d6ea08550c5f21ece4a84a1fe12}} 
+\#define {\bfseries C\+P\+U\+\_\+usage\+\_\+\+Less\+\_\+than}(\+\_\+lhs,  \+\_\+rhs)~\mbox{\hyperlink{group__SuperCoreTimeStamp_gabf40cb389eb452ee520043a6386b9c41}{\+\_\+\+Timestamp\+\_\+\+Less\+\_\+than}}( \+\_\+lhs, \+\_\+rhs )
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{group__libmisc__cpuuse_gacd408d05bbbb31991311a6b90ef0b0a8}{rtems\+\_\+cpu\+\_\+usage\+\_\+top\+\_\+with\+\_\+plugin}} (const \mbox{\hyperlink{structrtems__printer}{rtems\+\_\+printer}} $\ast$printer)
+\begin{DoxyCompactList}\small\item\em C\+PU usage Top plugin. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__libmisc__cpuuse_ga19ebbbc28253558959a17de6992d0ef2}{rtems\+\_\+cpu\+\_\+usage\+\_\+top}} (void)
+\begin{DoxyCompactList}\small\item\em C\+PU usage top. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+C\+PU Usage Top. 
+

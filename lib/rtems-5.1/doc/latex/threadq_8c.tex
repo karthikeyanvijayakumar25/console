@@ -1,0 +1,48 @@
+\hypertarget{threadq_8c}{}\section{cpukit/score/src/threadq.c File Reference}
+\label{threadq_8c}\index{cpukit/score/src/threadq.c@{cpukit/score/src/threadq.c}}
+
+
+Thread Queue Initialize.  
+
+
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/score/threadqimpl.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/score/rbtreeimpl.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/score/threadimpl.\+h$>$}\newline
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{threadq_8c_ac661446f4f0a41a29b8a709acbf439f5}\label{threadq_8c_ac661446f4f0a41a29b8a709acbf439f5}} 
+{\bfseries R\+T\+E\+M\+S\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+A\+S\+S\+E\+RT} (offsetof(\mbox{\hyperlink{structThread__queue__Syslock__queue}{Thread\+\_\+queue\+\_\+\+Syslock\+\_\+queue}}, reserved\mbox{[}0\mbox{]})==offsetof(struct \+\_\+\+Thread\+\_\+queue\+\_\+\+Queue, \+\_\+\+Lock.\+\_\+next\+\_\+ticket), T\+H\+R\+E\+A\+D\+\_\+\+Q\+U\+E\+U\+E\+\_\+\+S\+Y\+S\+L\+O\+C\+K\+\_\+\+Q\+U\+E\+U\+E\+\_\+\+N\+E\+X\+T\+\_\+\+T\+I\+C\+K\+ET)
+\item 
+\mbox{\Hypertarget{threadq_8c_a2d8d51caf7179417f1dacac9825410f9}\label{threadq_8c_a2d8d51caf7179417f1dacac9825410f9}} 
+{\bfseries R\+T\+E\+M\+S\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+A\+S\+S\+E\+RT} (offsetof(\mbox{\hyperlink{structThread__queue__Syslock__queue}{Thread\+\_\+queue\+\_\+\+Syslock\+\_\+queue}}, reserved\mbox{[}1\mbox{]})==offsetof(struct \+\_\+\+Thread\+\_\+queue\+\_\+\+Queue, \+\_\+\+Lock.\+\_\+now\+\_\+serving), T\+H\+R\+E\+A\+D\+\_\+\+Q\+U\+E\+U\+E\+\_\+\+S\+Y\+S\+L\+O\+C\+K\+\_\+\+Q\+U\+E\+U\+E\+\_\+\+N\+O\+W\+\_\+\+S\+E\+R\+V\+I\+NG)
+\item 
+\mbox{\Hypertarget{threadq_8c_a2437d156dab84d304f65ebc894dc50b5}\label{threadq_8c_a2437d156dab84d304f65ebc894dc50b5}} 
+{\bfseries R\+T\+E\+M\+S\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+A\+S\+S\+E\+RT} (offsetof(\mbox{\hyperlink{structThread__queue__Syslock__queue}{Thread\+\_\+queue\+\_\+\+Syslock\+\_\+queue}}, Queue.\+heads)==offsetof(struct \+\_\+\+Thread\+\_\+queue\+\_\+\+Queue, \+\_\+heads), T\+H\+R\+E\+A\+D\+\_\+\+Q\+U\+E\+U\+E\+\_\+\+S\+Y\+S\+L\+O\+C\+K\+\_\+\+Q\+U\+E\+U\+E\+\_\+\+H\+E\+A\+DS)
+\item 
+\mbox{\Hypertarget{threadq_8c_aa738f1d06e30e27e5837400a25f8d0e6}\label{threadq_8c_aa738f1d06e30e27e5837400a25f8d0e6}} 
+{\bfseries R\+T\+E\+M\+S\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+A\+S\+S\+E\+RT} (offsetof(\mbox{\hyperlink{structThread__queue__Syslock__queue}{Thread\+\_\+queue\+\_\+\+Syslock\+\_\+queue}}, Queue.\+owner)==offsetof(struct \+\_\+\+Thread\+\_\+queue\+\_\+\+Queue, \+\_\+owner), T\+H\+R\+E\+A\+D\+\_\+\+Q\+U\+E\+U\+E\+\_\+\+S\+Y\+S\+L\+O\+C\+K\+\_\+\+Q\+U\+E\+U\+E\+\_\+\+O\+W\+N\+ER)
+\item 
+\mbox{\Hypertarget{threadq_8c_af2fdecfb3e283112527df5fa8eb6e0bd}\label{threadq_8c_af2fdecfb3e283112527df5fa8eb6e0bd}} 
+{\bfseries R\+T\+E\+M\+S\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+A\+S\+S\+E\+RT} (offsetof(\mbox{\hyperlink{structThread__queue__Syslock__queue}{Thread\+\_\+queue\+\_\+\+Syslock\+\_\+queue}}, Queue.\+name)==offsetof(struct \+\_\+\+Thread\+\_\+queue\+\_\+\+Queue, \+\_\+name), T\+H\+R\+E\+A\+D\+\_\+\+Q\+U\+E\+U\+E\+\_\+\+S\+Y\+S\+L\+O\+C\+K\+\_\+\+Q\+U\+E\+U\+E\+\_\+\+N\+A\+ME)
+\item 
+\mbox{\Hypertarget{threadq_8c_ab0fe668878a87a1637943bd1105e7151}\label{threadq_8c_ab0fe668878a87a1637943bd1105e7151}} 
+{\bfseries R\+T\+E\+M\+S\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+A\+S\+S\+E\+RT} (sizeof(\mbox{\hyperlink{structThread__queue__Syslock__queue}{Thread\+\_\+queue\+\_\+\+Syslock\+\_\+queue}})==sizeof(struct \+\_\+\+Thread\+\_\+queue\+\_\+\+Queue), T\+H\+R\+E\+A\+D\+\_\+\+Q\+U\+E\+U\+E\+\_\+\+S\+Y\+S\+L\+O\+C\+K\+\_\+\+Q\+U\+E\+U\+E\+\_\+\+S\+I\+ZE)
+\item 
+void \mbox{\hyperlink{group__RTEMSScoreThreadQueue_gae839c93467db7f3bb1776323a17ac8ad}{\+\_\+\+Thread\+\_\+queue\+\_\+\+Initialize}} (\mbox{\hyperlink{structThread__queue__Control}{Thread\+\_\+queue\+\_\+\+Control}} $\ast$the\+\_\+thread\+\_\+queue, const char $\ast$name)
+\begin{DoxyCompactList}\small\item\em Initializes the thread queue control to the given name. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__RTEMSScoreThreadQueue_gadff2605d33f07f210c22844f1ae71eaf}{\+\_\+\+Thread\+\_\+queue\+\_\+\+Object\+\_\+initialize}} (\mbox{\hyperlink{structThread__queue__Control}{Thread\+\_\+queue\+\_\+\+Control}} $\ast$the\+\_\+thread\+\_\+queue)
+\begin{DoxyCompactList}\small\item\em Initializes a thread queue embedded in an object with identifier. \end{DoxyCompactList}\item 
+size\+\_\+t \mbox{\hyperlink{group__RTEMSScoreThreadQueue_gac17ae1a1c80b80869cac13c6c8bb9ade}{\+\_\+\+Thread\+\_\+queue\+\_\+\+Queue\+\_\+get\+\_\+name\+\_\+and\+\_\+id}} (const \mbox{\hyperlink{structThread__queue__Queue}{Thread\+\_\+queue\+\_\+\+Queue}} $\ast$queue, char $\ast$buffer, size\+\_\+t buffer\+\_\+size, \mbox{\hyperlink{group__RTEMSScoreObject_ga5821f52a51072941bdd603e542d0863e}{Objects\+\_\+\+Id}} $\ast$id)
+\begin{DoxyCompactList}\small\item\em Copies the thread queue name to the specified buffer. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const char \mbox{\hyperlink{group__RTEMSScoreThreadQueue_gaa050ed6bbc86ca717c26cd68b93a49b7}{\+\_\+\+Thread\+\_\+queue\+\_\+\+Object\+\_\+name}} \mbox{[}$\,$\mbox{]} = \{ \textquotesingle{}\textbackslash{}0\textquotesingle{} \}
+\begin{DoxyCompactList}\small\item\em The special thread queue name to indicated that the thread queue is embedded in an object with identifier. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Thread Queue Initialize. 
+

@@ -1,0 +1,198 @@
+\hypertarget{bspIo_8h}{}\section{cpukit/include/rtems/bsp\+Io.h File Reference}
+\label{bspIo_8h}\index{cpukit/include/rtems/bspIo.h@{cpukit/include/rtems/bspIo.h}}
+
+
+Interface to Kernel Print Methods.  
+
+
+{\ttfamily \#include $<$rtems/score/basedefs.\+h$>$}\newline
+{\ttfamily \#include $<$stdarg.\+h$>$}\newline
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef void($\ast$ \mbox{\hyperlink{bspIo_8h_a0b0dff1c3d35110ae303b4098c60dc14}{B\+S\+P\+\_\+output\+\_\+char\+\_\+function\+\_\+type}}) (char c)
+\item 
+typedef int($\ast$ \mbox{\hyperlink{bspIo_8h_a132b9ceff428a634ece5dfaac7ef1006}{B\+S\+P\+\_\+polling\+\_\+getchar\+\_\+function\+\_\+type}}) (void)
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{bspIo_8h_adfcdd18182af02b76e4634c69b135fc6}{getchark}} (void)
+\begin{DoxyCompactList}\small\item\em Get Character (kernel I/O) \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{bspIo_8h_a48cd00393a9699689b769200037738bb}{vprintk}} (const char $\ast$fmt, va\+\_\+list ap)
+\begin{DoxyCompactList}\small\item\em Variable Argument \mbox{\hyperlink{bspIo_8h_a380cfecc8035cec8a13b68c0cb90f32f}{printk()}} \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{bspIo_8h_ada3e7b4e55515d9b5bd320510e73414b}\label{bspIo_8h_ada3e7b4e55515d9b5bd320510e73414b}} 
+int {\bfseries rtems\+\_\+printk\+\_\+printer} (void $\ast$ignored, const char $\ast$\mbox{\hyperlink{structformat}{format}}, va\+\_\+list ap)
+\item 
+int \mbox{\hyperlink{bspIo_8h_a380cfecc8035cec8a13b68c0cb90f32f}{printk}} (const char $\ast$fmt,...) \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac1811143c580ed4898c9eae63d5c5b8e}{R\+T\+E\+M\+S\+\_\+\+P\+R\+I\+N\+T\+F\+L\+I\+KE}}(1
+\begin{DoxyCompactList}\small\item\em Kernel Print. \end{DoxyCompactList}\item 
+int int \mbox{\hyperlink{bspIo_8h_a9eb1404ca66eed1fb34b0b02b19f983c}{putk}} (const char $\ast$s)
+\begin{DoxyCompactList}\small\item\em Kernel Put String. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{bspIo_8h_a6fd11f34260f10035f38a051af872e1e}{rtems\+\_\+putc}} (char c)
+\begin{DoxyCompactList}\small\item\em Kernel Put Character. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{bspIo_8h_aa7aa6e025aa35b36643e9ddbc2eccc10}{rtems\+\_\+put\+\_\+char}} (int c, void $\ast$arg)
+\begin{DoxyCompactList}\small\item\em Puts the character via \mbox{\hyperlink{bspIo_8h_a6fd11f34260f10035f38a051af872e1e}{rtems\+\_\+putc()}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{bspIo_8h_a0b0dff1c3d35110ae303b4098c60dc14}{B\+S\+P\+\_\+output\+\_\+char\+\_\+function\+\_\+type}} \mbox{\hyperlink{bspIo_8h_a5fb8c9c4f076f0340b4a17ed432ced5c}{B\+S\+P\+\_\+output\+\_\+char}}
+\item 
+\mbox{\hyperlink{bspIo_8h_a132b9ceff428a634ece5dfaac7ef1006}{B\+S\+P\+\_\+polling\+\_\+getchar\+\_\+function\+\_\+type}} \mbox{\hyperlink{bspIo_8h_ae5846eecdfa8f2813504371bf01c29b0}{B\+S\+P\+\_\+poll\+\_\+char}}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Interface to Kernel Print Methods. 
+
+This include file defines the interface to kernel print methods. 
+
+\subsection{Typedef Documentation}
+\mbox{\Hypertarget{bspIo_8h_a0b0dff1c3d35110ae303b4098c60dc14}\label{bspIo_8h_a0b0dff1c3d35110ae303b4098c60dc14}} 
+\index{bspIo.h@{bspIo.h}!BSP\_output\_char\_function\_type@{BSP\_output\_char\_function\_type}}
+\index{BSP\_output\_char\_function\_type@{BSP\_output\_char\_function\_type}!bspIo.h@{bspIo.h}}
+\subsubsection{\texorpdfstring{BSP\_output\_char\_function\_type}{BSP\_output\_char\_function\_type}}
+{\footnotesize\ttfamily typedef void($\ast$ B\+S\+P\+\_\+output\+\_\+char\+\_\+function\+\_\+type) (char c)}
+
+This type defines the prototype for the B\+SP provided method to print a single character. It is assumed to be polled. \mbox{\Hypertarget{bspIo_8h_a132b9ceff428a634ece5dfaac7ef1006}\label{bspIo_8h_a132b9ceff428a634ece5dfaac7ef1006}} 
+\index{bspIo.h@{bspIo.h}!BSP\_polling\_getchar\_function\_type@{BSP\_polling\_getchar\_function\_type}}
+\index{BSP\_polling\_getchar\_function\_type@{BSP\_polling\_getchar\_function\_type}!bspIo.h@{bspIo.h}}
+\subsubsection{\texorpdfstring{BSP\_polling\_getchar\_function\_type}{BSP\_polling\_getchar\_function\_type}}
+{\footnotesize\ttfamily typedef int($\ast$ B\+S\+P\+\_\+polling\+\_\+getchar\+\_\+function\+\_\+type) (void)}
+
+This type defines the prototype for the B\+SP provided method to input a single character. It is assumed to be polled. 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{bspIo_8h_adfcdd18182af02b76e4634c69b135fc6}\label{bspIo_8h_adfcdd18182af02b76e4634c69b135fc6}} 
+\index{bspIo.h@{bspIo.h}!getchark@{getchark}}
+\index{getchark@{getchark}!bspIo.h@{bspIo.h}}
+\subsubsection{\texorpdfstring{getchark()}{getchark()}}
+{\footnotesize\ttfamily int getchark (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Get Character (kernel I/O) 
+
+This method polls for a key in the simplest possible fashion from whatever the debug console device is.
+
+\begin{DoxyReturn}{Returns}
+If a character is available, it is returned. Otherwise this method returns -\/1.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+This method uses the B\+S\+P\+\_\+poll\+\_\+char pointer to a B\+SP provided method. 
+\end{DoxyNote}
+\mbox{\Hypertarget{bspIo_8h_a380cfecc8035cec8a13b68c0cb90f32f}\label{bspIo_8h_a380cfecc8035cec8a13b68c0cb90f32f}} 
+\index{bspIo.h@{bspIo.h}!printk@{printk}}
+\index{printk@{printk}!bspIo.h@{bspIo.h}}
+\subsubsection{\texorpdfstring{printk()}{printk()}}
+{\footnotesize\ttfamily int printk (\begin{DoxyParamCaption}\item[{const char $\ast$}]{fmt,  }\item[{}]{... }\end{DoxyParamCaption})}
+
+
+
+Kernel Print. 
+
+This method allows the user to perform a debug \mbox{\hyperlink{bspIo_8h_a380cfecc8035cec8a13b68c0cb90f32f}{printk()}}. It performs a character translation from \char`\"{}\textbackslash{}n\char`\"{} to \char`\"{}\textbackslash{}r\textbackslash{}n\char`\"{}.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em fmt} & is a printf()-\/style format string\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The number of characters output. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{bspIo_8h_a9eb1404ca66eed1fb34b0b02b19f983c}\label{bspIo_8h_a9eb1404ca66eed1fb34b0b02b19f983c}} 
+\index{bspIo.h@{bspIo.h}!putk@{putk}}
+\index{putk@{putk}!bspIo.h@{bspIo.h}}
+\subsubsection{\texorpdfstring{putk()}{putk()}}
+{\footnotesize\ttfamily int int putk (\begin{DoxyParamCaption}\item[{const char $\ast$}]{s }\end{DoxyParamCaption})}
+
+
+
+Kernel Put String. 
+
+This method allows the user to perform a debug puts().
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em s} & is the string to print\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The number of characters output.
+\end{DoxyReturn}
+Kernel putk (e.\+g. puts) function requiring minimal infrastrure. \mbox{\Hypertarget{bspIo_8h_aa7aa6e025aa35b36643e9ddbc2eccc10}\label{bspIo_8h_aa7aa6e025aa35b36643e9ddbc2eccc10}} 
+\index{bspIo.h@{bspIo.h}!rtems\_put\_char@{rtems\_put\_char}}
+\index{rtems\_put\_char@{rtems\_put\_char}!bspIo.h@{bspIo.h}}
+\subsubsection{\texorpdfstring{rtems\_put\_char()}{rtems\_put\_char()}}
+{\footnotesize\ttfamily void rtems\+\_\+put\+\_\+char (\begin{DoxyParamCaption}\item[{int}]{c,  }\item[{void $\ast$}]{arg }\end{DoxyParamCaption})}
+
+
+
+Puts the character via \mbox{\hyperlink{bspIo_8h_a6fd11f34260f10035f38a051af872e1e}{rtems\+\_\+putc()}}. 
+
+This is a compatibility function to support an internal A\+PI.
+
+
+\begin{DoxyParams}{Parameters}
+{\em c} & The character to put. \\
+\hline
+{\em arg} & Ignored. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{bspIo_8h_a6fd11f34260f10035f38a051af872e1e}\label{bspIo_8h_a6fd11f34260f10035f38a051af872e1e}} 
+\index{bspIo.h@{bspIo.h}!rtems\_putc@{rtems\_putc}}
+\index{rtems\_putc@{rtems\_putc}!bspIo.h@{bspIo.h}}
+\subsubsection{\texorpdfstring{rtems\_putc()}{rtems\_putc()}}
+{\footnotesize\ttfamily void rtems\+\_\+putc (\begin{DoxyParamCaption}\item[{char}]{c }\end{DoxyParamCaption})}
+
+
+
+Kernel Put Character. 
+
+This method allows the user to perform a debug putc(). It performs a character translation from \char`\"{}\textbackslash{}n\char`\"{} to \char`\"{}\textbackslash{}r\textbackslash{}n\char`\"{}.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em c} & is the character to print \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{bspIo_8h_a48cd00393a9699689b769200037738bb}\label{bspIo_8h_a48cd00393a9699689b769200037738bb}} 
+\index{bspIo.h@{bspIo.h}!vprintk@{vprintk}}
+\index{vprintk@{vprintk}!bspIo.h@{bspIo.h}}
+\subsubsection{\texorpdfstring{vprintk()}{vprintk()}}
+{\footnotesize\ttfamily int vprintk (\begin{DoxyParamCaption}\item[{const char $\ast$}]{fmt,  }\item[{va\+\_\+list}]{ap }\end{DoxyParamCaption})}
+
+
+
+Variable Argument \mbox{\hyperlink{bspIo_8h_a380cfecc8035cec8a13b68c0cb90f32f}{printk()}} 
+
+This method allows the user to access \mbox{\hyperlink{bspIo_8h_a380cfecc8035cec8a13b68c0cb90f32f}{printk()}} functionality with a va\+\_\+list style argument.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em fmt} & is a printf()-\/style format string \\
+\hline
+\mbox{\texttt{ in}}  & {\em ap} & is a va\+\_\+list pointer to arguments\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The number of characters output. 
+\end{DoxyReturn}
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{bspIo_8h_a5fb8c9c4f076f0340b4a17ed432ced5c}\label{bspIo_8h_a5fb8c9c4f076f0340b4a17ed432ced5c}} 
+\index{bspIo.h@{bspIo.h}!BSP\_output\_char@{BSP\_output\_char}}
+\index{BSP\_output\_char@{BSP\_output\_char}!bspIo.h@{bspIo.h}}
+\subsubsection{\texorpdfstring{BSP\_output\_char}{BSP\_output\_char}}
+{\footnotesize\ttfamily \mbox{\hyperlink{bspIo_8h_a0b0dff1c3d35110ae303b4098c60dc14}{B\+S\+P\+\_\+output\+\_\+char\+\_\+function\+\_\+type}} B\+S\+P\+\_\+output\+\_\+char}
+
+This variable points to the B\+SP provided method to output a character for the purposes of debug output.
+
+It must output only the specific character. It must not perform character translations, e.\+g. \char`\"{}\textbackslash{}n\char`\"{} to \char`\"{}\textbackslash{}r\textbackslash{}n\char`\"{}. \mbox{\Hypertarget{bspIo_8h_ae5846eecdfa8f2813504371bf01c29b0}\label{bspIo_8h_ae5846eecdfa8f2813504371bf01c29b0}} 
+\index{bspIo.h@{bspIo.h}!BSP\_poll\_char@{BSP\_poll\_char}}
+\index{BSP\_poll\_char@{BSP\_poll\_char}!bspIo.h@{bspIo.h}}
+\subsubsection{\texorpdfstring{BSP\_poll\_char}{BSP\_poll\_char}}
+{\footnotesize\ttfamily \mbox{\hyperlink{bspIo_8h_a132b9ceff428a634ece5dfaac7ef1006}{B\+S\+P\+\_\+polling\+\_\+getchar\+\_\+function\+\_\+type}} B\+S\+P\+\_\+poll\+\_\+char}
+
+This variable points to the B\+SP provided method to input a character for the purposes of debug input. 

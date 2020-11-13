@@ -1,0 +1,184 @@
+\hypertarget{nand-mlc_8h}{}\section{bsps/arm/lpc32xx/include/bsp/nand-\/mlc.h File Reference}
+\label{nand-mlc_8h}\index{bsps/arm/lpc32xx/include/bsp/nand-\/mlc.h@{bsps/arm/lpc32xx/include/bsp/nand-\/mlc.h}}
+
+
+N\+A\+ND M\+LC controller A\+PI.  
+
+
+{\ttfamily \#include $<$rtems.\+h$>$}\newline
+{\ttfamily \#include $<$bsp/utility.\+h$>$}\newline
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structlpc32xx__mlc__config}{lpc32xx\+\_\+mlc\+\_\+config}}
+\begin{DoxyCompactList}\small\item\em M\+LC N\+A\+ND controller configuration. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__lpc32xx__nand__mlc_ga9e8da612c0810fcabd6d72203134dd65}{M\+L\+C\+\_\+\+S\+M\+A\+L\+L\+\_\+\+P\+A\+G\+ES}}~0x1U
+\begin{DoxyCompactList}\small\item\em Selects small pages (512 Bytes user data and 16 Bytes spare data) or large pages (2048 Bytes user data and 64 Bytes spare data) if not set. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__lpc32xx__nand__mlc_gaa02b2b76bde2195a15a66128a3643517}{M\+L\+C\+\_\+\+M\+A\+N\+Y\+\_\+\+A\+D\+D\+R\+E\+S\+S\+\_\+\+C\+Y\+C\+L\+ES}}~0x2U
+\item 
+\#define \mbox{\hyperlink{group__lpc32xx__nand__mlc_ga438ea163775acc06c4b1d516aadb1d37}{M\+L\+C\+\_\+\+N\+O\+R\+M\+A\+L\+\_\+\+B\+L\+O\+C\+KS}}~0x4U
+\begin{DoxyCompactList}\small\item\em Selects 64 pages per block or 128 pages per block if not set. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__lpc32xx__nand__mlc_gae60c5844b85dd6758e12d1257b06ce33}{M\+L\+C\+\_\+\+I\+O\+\_\+\+W\+I\+D\+T\+H\+\_\+16\+\_\+\+B\+IT}}~0x8U
+\begin{DoxyCompactList}\small\item\em Selects 16-\/bit \mbox{\hyperlink{structIO}{IO}} width or 8-\/bit \mbox{\hyperlink{structIO}{IO}} width if not set. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{Indent}\textbf{ M\+LC N\+A\+ND Flash Dimensions}\par
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bfseries M\+L\+C\+\_\+\+S\+M\+A\+L\+L\+\_\+\+P\+A\+G\+E\+\_\+\+S\+I\+ZE}~528
+\item 
+\#define {\bfseries M\+L\+C\+\_\+\+S\+M\+A\+L\+L\+\_\+\+D\+A\+T\+A\+\_\+\+S\+I\+ZE}~512
+\item 
+\#define {\bfseries M\+L\+C\+\_\+\+S\+M\+A\+L\+L\+\_\+\+S\+P\+A\+R\+E\+\_\+\+S\+I\+ZE}~16
+\item 
+\#define {\bfseries M\+L\+C\+\_\+\+S\+M\+A\+L\+L\+\_\+\+U\+S\+E\+R\+\_\+\+S\+P\+A\+R\+E\+\_\+\+S\+I\+ZE}~6
+\item 
+\#define {\bfseries M\+L\+C\+\_\+\+S\+M\+A\+L\+L\+\_\+\+E\+C\+C\+\_\+\+S\+P\+A\+R\+E\+\_\+\+S\+I\+ZE}~10
+\item 
+\#define {\bfseries M\+L\+C\+\_\+\+S\+M\+A\+L\+L\+\_\+\+D\+A\+T\+A\+\_\+\+W\+O\+R\+D\+\_\+\+C\+O\+U\+NT}~(M\+L\+C\+\_\+\+S\+M\+A\+L\+L\+\_\+\+D\+A\+T\+A\+\_\+\+S\+I\+ZE / 4)
+\item 
+\#define {\bfseries M\+L\+C\+\_\+\+S\+M\+A\+L\+L\+\_\+\+S\+P\+A\+R\+E\+\_\+\+W\+O\+R\+D\+\_\+\+C\+O\+U\+NT}~(M\+L\+C\+\_\+\+S\+M\+A\+L\+L\+\_\+\+S\+P\+A\+R\+E\+\_\+\+S\+I\+ZE / 4)
+\item 
+\#define {\bfseries M\+L\+C\+\_\+\+S\+M\+A\+L\+L\+\_\+\+P\+A\+G\+E\+S\+\_\+\+P\+E\+R\+\_\+\+L\+A\+R\+G\+E\+\_\+\+P\+A\+GE}~4
+\item 
+\#define {\bfseries M\+L\+C\+\_\+\+L\+A\+R\+G\+E\+\_\+\+P\+A\+G\+E\+\_\+\+S\+I\+ZE}~(M\+L\+C\+\_\+\+S\+M\+A\+L\+L\+\_\+\+P\+A\+G\+E\+S\+\_\+\+P\+E\+R\+\_\+\+L\+A\+R\+G\+E\+\_\+\+P\+A\+GE $\ast$ M\+L\+C\+\_\+\+S\+M\+A\+L\+L\+\_\+\+P\+A\+G\+E\+\_\+\+S\+I\+ZE)
+\item 
+\#define {\bfseries M\+L\+C\+\_\+\+L\+A\+R\+G\+E\+\_\+\+D\+A\+T\+A\+\_\+\+S\+I\+ZE}~(M\+L\+C\+\_\+\+S\+M\+A\+L\+L\+\_\+\+P\+A\+G\+E\+S\+\_\+\+P\+E\+R\+\_\+\+L\+A\+R\+G\+E\+\_\+\+P\+A\+GE $\ast$ M\+L\+C\+\_\+\+S\+M\+A\+L\+L\+\_\+\+D\+A\+T\+A\+\_\+\+S\+I\+ZE)
+\item 
+\#define {\bfseries M\+L\+C\+\_\+\+L\+A\+R\+G\+E\+\_\+\+S\+P\+A\+R\+E\+\_\+\+S\+I\+ZE}~(M\+L\+C\+\_\+\+S\+M\+A\+L\+L\+\_\+\+P\+A\+G\+E\+S\+\_\+\+P\+E\+R\+\_\+\+L\+A\+R\+G\+E\+\_\+\+P\+A\+GE $\ast$ M\+L\+C\+\_\+\+S\+M\+A\+L\+L\+\_\+\+S\+P\+A\+R\+E\+\_\+\+S\+I\+ZE)
+\item 
+\#define {\bfseries M\+L\+C\+\_\+\+L\+A\+R\+G\+E\+\_\+\+D\+A\+T\+A\+\_\+\+W\+O\+R\+D\+\_\+\+C\+O\+U\+NT}~(M\+L\+C\+\_\+\+L\+A\+R\+G\+E\+\_\+\+D\+A\+T\+A\+\_\+\+S\+I\+ZE / 4)
+\item 
+\#define {\bfseries M\+L\+C\+\_\+\+L\+A\+R\+G\+E\+\_\+\+S\+P\+A\+R\+E\+\_\+\+W\+O\+R\+D\+\_\+\+C\+O\+U\+NT}~(M\+L\+C\+\_\+\+L\+A\+R\+G\+E\+\_\+\+S\+P\+A\+R\+E\+\_\+\+S\+I\+ZE / 4)
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ N\+A\+ND Flash Clock Control Register (F\+L\+A\+S\+H\+C\+L\+K\+\_\+\+C\+T\+RL)}\par
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bfseries F\+L\+A\+S\+H\+C\+L\+K\+\_\+\+I\+R\+Q\+\_\+\+M\+LC}~B\+S\+P\+\_\+\+B\+I\+T32(5)
+\item 
+\#define {\bfseries F\+L\+A\+S\+H\+C\+L\+K\+\_\+\+M\+L\+C\+\_\+\+D\+M\+A\+\_\+\+R\+NB}~B\+S\+P\+\_\+\+B\+I\+T32(4)
+\item 
+\#define {\bfseries F\+L\+A\+S\+H\+C\+L\+K\+\_\+\+M\+L\+C\+\_\+\+D\+M\+A\+\_\+\+I\+NT}~B\+S\+P\+\_\+\+B\+I\+T32(3)
+\item 
+\#define {\bfseries F\+L\+A\+S\+H\+C\+L\+K\+\_\+\+S\+E\+L\+E\+C\+T\+\_\+\+S\+LC}~B\+S\+P\+\_\+\+B\+I\+T32(2)
+\item 
+\#define {\bfseries F\+L\+A\+S\+H\+C\+L\+K\+\_\+\+M\+L\+C\+\_\+\+C\+L\+K\+\_\+\+E\+N\+A\+B\+LE}~B\+S\+P\+\_\+\+B\+I\+T32(1)
+\item 
+\#define {\bfseries F\+L\+A\+S\+H\+C\+L\+K\+\_\+\+S\+L\+C\+\_\+\+C\+L\+K\+\_\+\+E\+N\+A\+B\+LE}~B\+S\+P\+\_\+\+B\+I\+T32(0)
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ M\+LC N\+A\+ND Timing Register (M\+L\+C\+\_\+\+T\+I\+M\+E\+\_\+\+R\+EG)}\par
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bfseries M\+L\+C\+\_\+\+T\+I\+M\+E\+\_\+\+W\+R\+\_\+\+L\+OW}(val)~B\+S\+P\+\_\+\+F\+L\+D32(val, 0, 3)
+\item 
+\#define {\bfseries M\+L\+C\+\_\+\+T\+I\+M\+E\+\_\+\+W\+R\+\_\+\+H\+I\+GH}(val)~B\+S\+P\+\_\+\+F\+L\+D32(val, 4, 7)
+\item 
+\#define {\bfseries M\+L\+C\+\_\+\+T\+I\+M\+E\+\_\+\+R\+D\+\_\+\+L\+OW}(val)~B\+S\+P\+\_\+\+F\+L\+D32(val, 8, 11)
+\item 
+\#define {\bfseries M\+L\+C\+\_\+\+T\+I\+M\+E\+\_\+\+R\+D\+\_\+\+H\+I\+GH}(val)~B\+S\+P\+\_\+\+F\+L\+D32(val, 12, 15)
+\item 
+\#define {\bfseries M\+L\+C\+\_\+\+T\+I\+M\+E\+\_\+\+N\+A\+N\+D\+\_\+\+TA}(val)~B\+S\+P\+\_\+\+F\+L\+D32(val, 16, 18)
+\item 
+\#define {\bfseries M\+L\+C\+\_\+\+T\+I\+M\+E\+\_\+\+B\+U\+S\+Y\+\_\+\+D\+E\+L\+AY}(val)~B\+S\+P\+\_\+\+F\+L\+D32(val, 19, 23)
+\item 
+\#define {\bfseries M\+L\+C\+\_\+\+T\+I\+M\+E\+\_\+\+T\+C\+E\+A\+\_\+\+D\+E\+L\+AY}(val)~B\+S\+P\+\_\+\+F\+L\+D32(val, 24, 25)
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ M\+LC N\+A\+ND Lock Protection Register (M\+L\+C\+\_\+\+L\+O\+C\+K\+\_\+\+PR)}\par
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bfseries M\+L\+C\+\_\+\+U\+N\+L\+O\+C\+K\+\_\+\+P\+R\+OT}~0xa25e
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ M\+LC N\+A\+ND Status Register (M\+L\+C\+\_\+\+I\+SR)}\par
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bfseries M\+L\+C\+\_\+\+I\+S\+R\+\_\+\+D\+E\+C\+O\+D\+E\+R\+\_\+\+F\+A\+I\+L\+U\+RE}~B\+S\+P\+\_\+\+B\+I\+T32(6)
+\item 
+\#define {\bfseries M\+L\+C\+\_\+\+I\+S\+R\+\_\+\+S\+Y\+M\+B\+O\+L\+\_\+\+E\+R\+R\+O\+RS}(reg)~B\+S\+P\+\_\+\+F\+L\+D32\+G\+ET(reg, 4, 5)
+\item 
+\#define {\bfseries M\+L\+C\+\_\+\+I\+S\+R\+\_\+\+E\+R\+R\+O\+R\+S\+\_\+\+D\+E\+T\+E\+C\+T\+ED}~B\+S\+P\+\_\+\+B\+I\+T32(3)
+\item 
+\#define {\bfseries M\+L\+C\+\_\+\+I\+S\+R\+\_\+\+E\+C\+C\+\_\+\+R\+E\+A\+DY}~B\+S\+P\+\_\+\+B\+I\+T32(2)
+\item 
+\#define {\bfseries M\+L\+C\+\_\+\+I\+S\+R\+\_\+\+C\+O\+N\+T\+R\+O\+L\+L\+E\+R\+\_\+\+R\+E\+A\+DY}~B\+S\+P\+\_\+\+B\+I\+T32(1)
+\item 
+\#define {\bfseries M\+L\+C\+\_\+\+I\+S\+R\+\_\+\+N\+A\+N\+D\+\_\+\+R\+E\+A\+DY}~B\+S\+P\+\_\+\+B\+I\+T32(0)
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ M\+LC N\+A\+ND Controller Configuration Register (M\+L\+C\+\_\+\+I\+CR)}\par
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bfseries M\+L\+C\+\_\+\+I\+C\+R\+\_\+\+S\+O\+F\+T\+\_\+\+W\+R\+I\+T\+E\+\_\+\+P\+R\+OT}~B\+S\+P\+\_\+\+B\+I\+T32(3)
+\item 
+\#define {\bfseries M\+L\+C\+\_\+\+I\+C\+R\+\_\+\+L\+A\+R\+G\+E\+\_\+\+P\+A\+G\+ES}~B\+S\+P\+\_\+\+B\+I\+T32(2)
+\item 
+\#define {\bfseries M\+L\+C\+\_\+\+I\+C\+R\+\_\+\+A\+D\+D\+R\+\_\+\+W\+O\+R\+D\+\_\+\+C\+O\+U\+N\+T\+\_\+4\+\_\+5}~B\+S\+P\+\_\+\+B\+I\+T32(1)
+\item 
+\#define {\bfseries M\+L\+C\+\_\+\+I\+C\+R\+\_\+\+I\+O\+\_\+\+B\+U\+S\+\_\+16}~B\+S\+P\+\_\+\+B\+I\+T32(0)
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ M\+LC N\+A\+ND Auto Encode Register (M\+L\+C\+\_\+\+E\+C\+C\+\_\+\+A\+U\+T\+O\+\_\+\+E\+NC)}\par
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bfseries M\+L\+C\+\_\+\+E\+C\+C\+\_\+\+A\+U\+T\+O\+\_\+\+E\+N\+C\+\_\+\+P\+R\+O\+G\+R\+AM}~B\+S\+P\+\_\+\+B\+I\+T32(8)
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ N\+A\+ND Status Register}\par
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bfseries N\+A\+N\+D\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+E\+R\+R\+OR}~(1\+U $<$$<$ 0)
+\item 
+\#define {\bfseries N\+A\+N\+D\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+R\+E\+A\+DY}~(1\+U $<$$<$ 6)
+\item 
+\#define {\bfseries N\+A\+N\+D\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+N\+O\+T\+\_\+\+P\+R\+O\+T\+E\+C\+T\+ED}~(1\+U $<$$<$ 7)
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef bool($\ast$ \mbox{\hyperlink{group__lpc32xx__nand__mlc_ga8adf1c46b26e07838b729a78d83332ee}{lpc32xx\+\_\+mlc\+\_\+read\+\_\+process}}) (void $\ast$process\+\_\+arg, uint32\+\_\+t page\+\_\+index, uint32\+\_\+t page\+\_\+size, uint32\+\_\+t page\+\_\+data \mbox{[}M\+L\+C\+\_\+\+L\+A\+R\+G\+E\+\_\+\+D\+A\+T\+A\+\_\+\+W\+O\+R\+D\+\_\+\+C\+O\+U\+NT\mbox{]}, uint32\+\_\+t page\+\_\+spare \mbox{[}M\+L\+C\+\_\+\+L\+A\+R\+G\+E\+\_\+\+S\+P\+A\+R\+E\+\_\+\+W\+O\+R\+D\+\_\+\+C\+O\+U\+NT\mbox{]})
+\begin{DoxyCompactList}\small\item\em Read blocks process function type. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{group__lpc32xx__nand__mlc_ga223b19df7910441502b54c1561f29dcb}{lpc32xx\+\_\+mlc\+\_\+init}} (const \mbox{\hyperlink{structlpc32xx__mlc__config}{lpc32xx\+\_\+mlc\+\_\+config}} $\ast$cfg)
+\begin{DoxyCompactList}\small\item\em Initializes the M\+LC N\+A\+ND controller according to {\itshape cfg}. \end{DoxyCompactList}\item 
+uint32\+\_\+t {\bfseries lpc32xx\+\_\+mlc\+\_\+page\+\_\+size} (void)
+\item 
+uint32\+\_\+t {\bfseries lpc32xx\+\_\+mlc\+\_\+pages\+\_\+per\+\_\+block} (void)
+\item 
+uint32\+\_\+t {\bfseries lpc32xx\+\_\+mlc\+\_\+block\+\_\+count} (void)
+\item 
+uint32\+\_\+t {\bfseries lpc32xx\+\_\+mlc\+\_\+io\+\_\+width} (void)
+\item 
+void {\bfseries lpc32xx\+\_\+mlc\+\_\+write\+\_\+protection} (uint32\+\_\+t page\+\_\+index\+\_\+low, uint32\+\_\+t page\+\_\+index\+\_\+high)
+\item 
+void {\bfseries lpc32xx\+\_\+mlc\+\_\+read\+\_\+id} (uint8\+\_\+t $\ast$id, size\+\_\+t n)
+\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{group__lpc32xx__nand__mlc_gad998b76b7200ed71c4a99422ae2f036c}{lpc32xx\+\_\+mlc\+\_\+read\+\_\+page}} (uint32\+\_\+t page\+\_\+index, void $\ast$data, void $\ast$spare, uint32\+\_\+t $\ast$symbol\+\_\+error\+\_\+count)
+\begin{DoxyCompactList}\small\item\em Reads the page with index {\itshape page\+\_\+index}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{group__lpc32xx__nand__mlc_gad2e1dff4507a4ba350d817a1493cad5f}{lpc32xx\+\_\+mlc\+\_\+is\+\_\+valid\+\_\+block}} (uint32\+\_\+t block\+\_\+index)
+\begin{DoxyCompactList}\small\item\em Checks if the block with index {\itshape block\+\_\+index} is valid. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{group__lpc32xx__nand__mlc_ga602a6e700d0e763ba5ca98874b92f926}{lpc32xx\+\_\+mlc\+\_\+erase\+\_\+block}} (uint32\+\_\+t block\+\_\+index)
+\begin{DoxyCompactList}\small\item\em Erases the block with index {\itshape block\+\_\+index}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{group__lpc32xx__nand__mlc_gab3b2378535527c368dd10f78a4eca68c}{lpc32xx\+\_\+mlc\+\_\+erase\+\_\+block\+\_\+safe}} (uint32\+\_\+t block\+\_\+index)
+\begin{DoxyCompactList}\small\item\em Erases the block with index {\itshape block\+\_\+index}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{group__lpc32xx__nand__mlc_gab7abd0702699aa8db9c2acb4eb55258c}{lpc32xx\+\_\+mlc\+\_\+erase\+\_\+block\+\_\+safe\+\_\+3}} (uint32\+\_\+t block\+\_\+index, uint32\+\_\+t page\+\_\+begin, uint32\+\_\+t page\+\_\+end)
+\begin{DoxyCompactList}\small\item\em Erases the block with index {\itshape block\+\_\+index}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__lpc32xx__nand__mlc_gae790b87623d06d4795abd696698e9344}{lpc32xx\+\_\+mlc\+\_\+zero\+\_\+pages}} (uint32\+\_\+t page\+\_\+begin, uint32\+\_\+t page\+\_\+end)
+\begin{DoxyCompactList}\small\item\em Writes zero values to the pages specified by {\itshape page\+\_\+begin} and {\itshape page\+\_\+end}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{group__lpc32xx__nand__mlc_ga3e7231705d7d840e2e71fbb64534b2f0}{lpc32xx\+\_\+mlc\+\_\+write\+\_\+page\+\_\+with\+\_\+ecc}} (uint32\+\_\+t page\+\_\+index, const void $\ast$data, const void $\ast$spare)
+\begin{DoxyCompactList}\small\item\em Writes the page with index {\itshape page\+\_\+index}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{group__lpc32xx__nand__mlc_gafa7ec91e1dfa52e3bcc614f4a9a66ab2}{lpc32xx\+\_\+mlc\+\_\+write\+\_\+blocks}} (uint32\+\_\+t block\+\_\+begin, uint32\+\_\+t block\+\_\+end, const void $\ast$src, size\+\_\+t src\+\_\+size, uint32\+\_\+t page\+\_\+buffer \mbox{[}M\+L\+C\+\_\+\+L\+A\+R\+G\+E\+\_\+\+D\+A\+T\+A\+\_\+\+W\+O\+R\+D\+\_\+\+C\+O\+U\+NT\mbox{]})
+\begin{DoxyCompactList}\small\item\em Writes {\itshape src\+\_\+size} Bytes from {\itshape src} to the flash area specified by {\itshape block\+\_\+begin} and {\itshape block\+\_\+end}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__ClassicStatus_ga545d41846817eaba6143d52ee4d9e9fe}{rtems\+\_\+status\+\_\+code}} \mbox{\hyperlink{group__lpc32xx__nand__mlc_ga2d5f41c8abd5910ad853e7ba096c9f7b}{lpc32xx\+\_\+mlc\+\_\+read\+\_\+blocks}} (uint32\+\_\+t block\+\_\+begin, uint32\+\_\+t block\+\_\+end, \mbox{\hyperlink{group__lpc32xx__nand__mlc_ga8adf1c46b26e07838b729a78d83332ee}{lpc32xx\+\_\+mlc\+\_\+read\+\_\+process}} process, void $\ast$process\+\_\+arg, uint32\+\_\+t page\+\_\+buffer\+\_\+0 \mbox{[}M\+L\+C\+\_\+\+L\+A\+R\+G\+E\+\_\+\+D\+A\+T\+A\+\_\+\+W\+O\+R\+D\+\_\+\+C\+O\+U\+NT\mbox{]}, uint32\+\_\+t page\+\_\+buffer\+\_\+1 \mbox{[}M\+L\+C\+\_\+\+L\+A\+R\+G\+E\+\_\+\+D\+A\+T\+A\+\_\+\+W\+O\+R\+D\+\_\+\+C\+O\+U\+NT\mbox{]})
+\begin{DoxyCompactList}\small\item\em Reads the pages of block {\itshape block\+\_\+begin} up to and excluding {\itshape block\+\_\+end}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+N\+A\+ND M\+LC controller A\+PI. 
+

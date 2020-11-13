@@ -1,0 +1,33 @@
+\hypertarget{threadmp_8c}{}\section{cpukit/score/src/threadmp.c File Reference}
+\label{threadmp_8c}\index{cpukit/score/src/threadmp.c@{cpukit/score/src/threadmp.c}}
+
+
+Distributed MP Support.  
+
+
+{\ttfamily \#include $<$rtems/score/threadimpl.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/score/isrlock.\+h$>$}\newline
+{\ttfamily \#include $<$rtems/score/schedulerimpl.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{threadmp_8c_ad32615d6dfc3813e829b9e345f17ab14}\label{threadmp_8c_ad32615d6dfc3813e829b9e345f17ab14}} 
+\#define {\bfseries T\+H\+R\+E\+A\+D\+\_\+\+M\+P\+\_\+\+P\+R\+O\+X\+Y\+\_\+\+O\+F\+\_\+\+A\+C\+T\+I\+V\+E\+\_\+\+N\+O\+DE}(the\+\_\+node)~\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gab2e7a0141fd898ae358fa9b134aa2610}{R\+T\+E\+M\+S\+\_\+\+C\+O\+N\+T\+A\+I\+N\+E\+R\+\_\+\+OF}}( the\+\_\+node, \mbox{\hyperlink{structThread__Proxy__control}{Thread\+\_\+\+Proxy\+\_\+control}}, Active )
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{group__RTEMSScoreThreadMP_ga96f0434ad7036721909abeedd0322bba}{\+\_\+\+Thread\+\_\+\+M\+P\+\_\+\+Handler\+\_\+initialization}} (uint32\+\_\+t maximum\+\_\+proxies)
+\begin{DoxyCompactList}\small\item\em Initialize MP thread handler. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$ \mbox{\hyperlink{group__RTEMSScoreThreadMP_gaa0f7e564ad228364fb5bf36163bdaefe}{\+\_\+\+Thread\+\_\+\+M\+P\+\_\+\+Allocate\+\_\+proxy}} (\mbox{\hyperlink{group__RTEMSScoreStates_gaeebbea0bfca162709b124fd519cf99d3}{States\+\_\+\+Control}} the\+\_\+state)
+\begin{DoxyCompactList}\small\item\em Allocates a MP proxy control block from the inactive chain of free proxy control blocks. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$ \mbox{\hyperlink{group__RTEMSScoreThreadMP_ga6dbcb30a4cb121951088a85af42227e2}{\+\_\+\+Thread\+\_\+\+M\+P\+\_\+\+Find\+\_\+proxy}} (\mbox{\hyperlink{group__RTEMSScoreObject_ga5821f52a51072941bdd603e542d0863e}{Objects\+\_\+\+Id}} the\+\_\+id)
+\begin{DoxyCompactList}\small\item\em Removes the MP proxy control block for the specified id from the active chain of proxy control blocks. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__RTEMSScoreThreadMP_gaf6fae1158c34ddc94d640819c4302516}{\+\_\+\+Thread\+\_\+\+M\+P\+\_\+\+Free\+\_\+proxy}} (\mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$the\+\_\+thread)
+\begin{DoxyCompactList}\small\item\em Trees a proxy control block to the inactive chain of free proxy control blocks. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Distributed MP Support. 
+

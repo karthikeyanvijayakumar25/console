@@ -1,0 +1,184 @@
+\hypertarget{group__RTEMSScoreCPUV850CPUContext}{}\section{Processor Dependent Context Management}
+\label{group__RTEMSScoreCPUV850CPUContext}\index{Processor Dependent Context Management@{Processor Dependent Context Management}}
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structContext__Control}{Context\+\_\+\+Control}}
+\begin{DoxyCompactList}\small\item\em Thread register context. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structCPU__Interrupt__frame}{C\+P\+U\+\_\+\+Interrupt\+\_\+frame}}
+\begin{DoxyCompactList}\small\item\em Interrupt stack frame (I\+SF). \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__RTEMSScoreCPUV850CPUContext_ga896055157b72692a6141f7c0039eabdf}{\+\_\+\+C\+P\+U\+\_\+\+Context\+\_\+\+Get\+\_\+\+SP}}(\+\_\+context)~(\+\_\+context)-\/$>$r3\+\_\+stack\+\_\+pointer
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{group__RTEMSScoreCPUV850CPUContext_gaa9f8cc989454b28232e5375e30c90970}{\+\_\+\+C\+P\+U\+\_\+\+Context\+\_\+switch}} (\mbox{\hyperlink{structContext__Control}{Context\+\_\+\+Control}} $\ast$run, \mbox{\hyperlink{structContext__Control}{Context\+\_\+\+Control}} $\ast$heir)
+\begin{DoxyCompactList}\small\item\em C\+PU switch context. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__RTEMSScoreCPUV850CPUContext_ga80726ebfe00f31a88b086cc4474c472f}{\+\_\+\+C\+P\+U\+\_\+\+Context\+\_\+restore}} (\mbox{\hyperlink{structContext__Control}{Context\+\_\+\+Control}} $\ast$new\+\_\+context) \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gaa2f0ed67aa174f684bb31b7e8bdb386f}{R\+T\+E\+M\+S\+\_\+\+N\+O\+\_\+\+R\+E\+T\+U\+RN}}
+\begin{DoxyCompactList}\small\item\em S\+P\+A\+RC specific context restore. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+From the highest level viewpoint, there are 2 types of context to save.
+
+
+\begin{DoxyEnumerate}
+\item Interrupt registers to save
+\item Task level registers to save
+\end{DoxyEnumerate}
+
+Since R\+T\+E\+MS handles integer and floating point contexts separately, this means we have the following 3 context items\+:
+
+
+\begin{DoxyEnumerate}
+\item task level context stuff\+:\+: \mbox{\hyperlink{structContext__Control}{Context\+\_\+\+Control}}
+\item floating point task stuff\+:\+: \mbox{\hyperlink{structContext__Control__fp}{Context\+\_\+\+Control\+\_\+fp}}
+\item special interrupt level context \+:: \mbox{\hyperlink{structCPU__Interrupt__frame}{C\+P\+U\+\_\+\+Interrupt\+\_\+frame}}
+\end{DoxyEnumerate}
+
+On some processors, it is cost-\/effective to save only the callee preserved registers during a task context switch. This means that the I\+SR code needs to save those registers which do not persist across function calls. It is not mandatory to make this distinctions between the caller/callee saves registers for the purpose of minimizing context saved during task switch and on interrupts. If the cost of saving extra registers is minimal, simplicity is the choice. Save the same context on interrupt entry as for tasks in this case.
+
+Additionally, if gdb is to be made aware of R\+T\+E\+MS tasks for this C\+PU, then care should be used in designing the context area.
+
+On some C\+P\+Us with hardware floating point support, the \mbox{\hyperlink{structContext__Control__fp}{Context\+\_\+\+Control\+\_\+fp}} structure will not be used or it simply consist of an array of a fixed number of bytes. This is done when the floating point context is dumped by a \char`\"{}\+F\+P save context\char`\"{} type instruction and the format is not really defined by the C\+PU. In this case, there is no need to figure out the exact format -- only the size. Of course, although this is enough information for R\+T\+E\+MS, it is probably not enough for a debugger such as gdb. But that is another problem.
+
+Port Specific Information\+:
+
+On the v850, this port saves special registers and those that are callee saved.
+
+Should be large enough to run all R\+T\+E\+MS tests. This ensures that a \char`\"{}reasonable\char`\"{} small application should not have any problems.
+
+Port Specific Information\+:
+
+This should be very conservative on the v850.
+
+Initialize the context to a state suitable for starting a task after a context restore operation. Generally, this involves\+:
+
+
+\begin{DoxyItemize}
+\item setting a starting address
+\item preparing the stack
+\item preparing the stack and frame pointers
+\item setting the proper interrupt level in the context
+\item initializing the floating point context
+\end{DoxyItemize}
+
+This routine generally does not set any unnecessary register in the context. The state of the \char`\"{}general data\char`\"{} registers is undefined at task start time.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+the\+\_\+context} & is the context structure to be initialized \\
+\hline
+\mbox{\texttt{ in}}  & {\em \+\_\+stack\+\_\+base} & is the lowest physical address of this task\textquotesingle{}s stack \\
+\hline
+\mbox{\texttt{ in}}  & {\em \+\_\+size} & is the size of this task\textquotesingle{}s stack \\
+\hline
+\mbox{\texttt{ in}}  & {\em \+\_\+isr} & is the interrupt disable level \\
+\hline
+\mbox{\texttt{ in}}  & {\em \+\_\+entry\+\_\+point} & is the thread\textquotesingle{}s entry point. This is always {\itshape \+\_\+\+Thread\+\_\+\+Handler} \\
+\hline
+\mbox{\texttt{ in}}  & {\em \+\_\+is\+\_\+fp} & is T\+R\+UE if the thread is to be a floating point thread. This is typically only used on C\+P\+Us where the F\+PU may be easily disabled by software such as on the S\+P\+A\+RC where the P\+SR contains an enable F\+PU bit. \\
+\hline
+\mbox{\texttt{ in}}  & {\em tls\+\_\+area} & is the thread-\/local storage (T\+LS) area\\
+\hline
+\end{DoxyParams}
+Port Specific Information\+:
+
+This method is implemented in C on the v850. 
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{group__RTEMSScoreCPUV850CPUContext_ga896055157b72692a6141f7c0039eabdf}\label{group__RTEMSScoreCPUV850CPUContext_ga896055157b72692a6141f7c0039eabdf}} 
+\index{Processor Dependent Context Management@{Processor Dependent Context Management}!\_CPU\_Context\_Get\_SP@{\_CPU\_Context\_Get\_SP}}
+\index{\_CPU\_Context\_Get\_SP@{\_CPU\_Context\_Get\_SP}!Processor Dependent Context Management@{Processor Dependent Context Management}}
+\subsubsection{\texorpdfstring{\_CPU\_Context\_Get\_SP}{\_CPU\_Context\_Get\_SP}}
+{\footnotesize\ttfamily \#define \+\_\+\+C\+P\+U\+\_\+\+Context\+\_\+\+Get\+\_\+\+SP(\begin{DoxyParamCaption}\item[{}]{\+\_\+context }\end{DoxyParamCaption})~(\+\_\+context)-\/$>$r3\+\_\+stack\+\_\+pointer}
+
+This macro returns the stack pointer associated with {\itshape \+\_\+context}.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+context} & is the thread context area to access\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+This method returns the stack pointer. 
+\end{DoxyReturn}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{group__RTEMSScoreCPUV850CPUContext_ga80726ebfe00f31a88b086cc4474c472f}\label{group__RTEMSScoreCPUV850CPUContext_ga80726ebfe00f31a88b086cc4474c472f}} 
+\index{Processor Dependent Context Management@{Processor Dependent Context Management}!\_CPU\_Context\_restore@{\_CPU\_Context\_restore}}
+\index{\_CPU\_Context\_restore@{\_CPU\_Context\_restore}!Processor Dependent Context Management@{Processor Dependent Context Management}}
+\subsubsection{\texorpdfstring{\_CPU\_Context\_restore()}{\_CPU\_Context\_restore()}}
+{\footnotesize\ttfamily void \+\_\+\+C\+P\+U\+\_\+\+Context\+\_\+restore (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structContext__Control}{Context\+\_\+\+Control}} $\ast$}]{new\+\_\+context }\end{DoxyParamCaption})}
+
+
+
+S\+P\+A\+RC specific context restore. 
+
+This routine is generally used only to restart self in an efficient manner. It may simply be a label in \mbox{\hyperlink{group__RTEMSScoreCPUARM_gaa9f8cc989454b28232e5375e30c90970}{\+\_\+\+C\+P\+U\+\_\+\+Context\+\_\+switch}}.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em new\+\_\+context} & points to the context to be restored.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+May be unnecessary to reload some registers.
+\end{DoxyNote}
+Port Specific Information\+:
+
+This is implemented in assembly on the v850.
+
+This routine is generally used only to restart self in an efficient manner. It may simply be a label in \mbox{\hyperlink{group__RTEMSScoreCPUARM_gaa9f8cc989454b28232e5375e30c90970}{\+\_\+\+C\+P\+U\+\_\+\+Context\+\_\+switch}}.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em new\+\_\+context} & points to the context to be restored.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+May be unnecessary to reload some registers.
+\end{DoxyNote}
+Port Specific Information\+:
+
+X\+XX document implementation including references if appropriate \mbox{\Hypertarget{group__RTEMSScoreCPUV850CPUContext_gaa9f8cc989454b28232e5375e30c90970}\label{group__RTEMSScoreCPUV850CPUContext_gaa9f8cc989454b28232e5375e30c90970}} 
+\index{Processor Dependent Context Management@{Processor Dependent Context Management}!\_CPU\_Context\_switch@{\_CPU\_Context\_switch}}
+\index{\_CPU\_Context\_switch@{\_CPU\_Context\_switch}!Processor Dependent Context Management@{Processor Dependent Context Management}}
+\subsubsection{\texorpdfstring{\_CPU\_Context\_switch()}{\_CPU\_Context\_switch()}}
+{\footnotesize\ttfamily void \+\_\+\+C\+P\+U\+\_\+\+Context\+\_\+switch (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structContext__Control}{Context\+\_\+\+Control}} $\ast$}]{run,  }\item[{\mbox{\hyperlink{structContext__Control}{Context\+\_\+\+Control}} $\ast$}]{heir }\end{DoxyParamCaption})}
+
+
+
+C\+PU switch context. 
+
+This routine switches from the run context to the heir context.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em run} & points to the context of the currently executing task \\
+\hline
+\mbox{\texttt{ in}}  & {\em heir} & points to the context of the heir task\\
+\hline
+\end{DoxyParams}
+Port Specific Information\+:
+
+This is implemented in assembly on the v850.
+
+S\+P\+A\+RC specific context switch.
+
+This routine switches from the run context to the heir context.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em run} & points to the context of the currently executing task \\
+\hline
+\mbox{\texttt{ in}}  & {\em heir} & points to the context of the heir task\\
+\hline
+\end{DoxyParams}
+Port Specific Information\+:
+
+X\+XX document implementation including references if appropriate 

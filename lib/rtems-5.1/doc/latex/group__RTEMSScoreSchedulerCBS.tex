@@ -1,0 +1,652 @@
+\hypertarget{group__RTEMSScoreSchedulerCBS}{}\section{C\+BS Scheduler}
+\label{group__RTEMSScoreSchedulerCBS}\index{CBS Scheduler@{CBS Scheduler}}
+
+
+C\+BS Scheduler.  
+
+
+\subsection*{Files}
+\begin{DoxyCompactItemize}
+\item 
+file \mbox{\hyperlink{schedulercbs_8h}{schedulercbs.\+h}}
+\begin{DoxyCompactList}\small\item\em Thread manipulation for the C\+BS scheduler. \end{DoxyCompactList}\item 
+file \mbox{\hyperlink{schedulercbsimpl_8h}{schedulercbsimpl.\+h}}
+\begin{DoxyCompactList}\small\item\em C\+BS Scheduler Implementation. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structScheduler__CBS__Parameters}{Scheduler\+\_\+\+C\+B\+S\+\_\+\+Parameters}}
+\item 
+struct \mbox{\hyperlink{structScheduler__CBS__Server}{Scheduler\+\_\+\+C\+B\+S\+\_\+\+Server}}
+\item 
+struct \mbox{\hyperlink{structScheduler__CBS__Node}{Scheduler\+\_\+\+C\+B\+S\+\_\+\+Node}}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{group__RTEMSScoreSchedulerCBS_ga06715df28599f11df4689063b6673e41}\label{group__RTEMSScoreSchedulerCBS_ga06715df28599f11df4689063b6673e41}} 
+\#define {\bfseries S\+C\+H\+E\+D\+U\+L\+E\+R\+\_\+\+C\+B\+S\+\_\+\+M\+A\+X\+I\+M\+U\+M\+\_\+\+P\+R\+I\+O\+R\+I\+TY}~S\+C\+H\+E\+D\+U\+L\+E\+R\+\_\+\+E\+D\+F\+\_\+\+M\+A\+X\+I\+M\+U\+M\+\_\+\+P\+R\+I\+O\+R\+I\+TY
+\item 
+\#define \mbox{\hyperlink{group__RTEMSScoreSchedulerCBS_gacc7efa225c425f676bafa3e5af3c6117}{S\+C\+H\+E\+D\+U\+L\+E\+R\+\_\+\+C\+B\+S\+\_\+\+E\+N\+T\+R\+Y\+\_\+\+P\+O\+I\+N\+TS}}
+\item 
+\mbox{\Hypertarget{group__RTEMSScoreSchedulerCBS_ga7dba3699ae2b293b937826c7b75e3f1d}\label{group__RTEMSScoreSchedulerCBS_ga7dba3699ae2b293b937826c7b75e3f1d}} 
+\#define {\bfseries S\+C\+H\+E\+D\+U\+L\+E\+R\+\_\+\+C\+B\+S\+\_\+\+OK}~0
+\item 
+\mbox{\Hypertarget{group__RTEMSScoreSchedulerCBS_ga1879cc34d66a149be3abea029d34fda7}\label{group__RTEMSScoreSchedulerCBS_ga1879cc34d66a149be3abea029d34fda7}} 
+\#define {\bfseries S\+C\+H\+E\+D\+U\+L\+E\+R\+\_\+\+C\+B\+S\+\_\+\+E\+R\+R\+O\+R\+\_\+\+G\+E\+N\+E\+R\+IC}~-\/16
+\item 
+\mbox{\Hypertarget{group__RTEMSScoreSchedulerCBS_ga95eee745932451f33fe66968c1c9369c}\label{group__RTEMSScoreSchedulerCBS_ga95eee745932451f33fe66968c1c9369c}} 
+\#define {\bfseries S\+C\+H\+E\+D\+U\+L\+E\+R\+\_\+\+C\+B\+S\+\_\+\+E\+R\+R\+O\+R\+\_\+\+N\+O\+\_\+\+M\+E\+M\+O\+RY}~-\/17
+\item 
+\mbox{\Hypertarget{group__RTEMSScoreSchedulerCBS_ga7775052b140cd6f668e1748a79673454}\label{group__RTEMSScoreSchedulerCBS_ga7775052b140cd6f668e1748a79673454}} 
+\#define {\bfseries S\+C\+H\+E\+D\+U\+L\+E\+R\+\_\+\+C\+B\+S\+\_\+\+E\+R\+R\+O\+R\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+P\+A\+R\+A\+M\+E\+T\+ER}~-\/18
+\item 
+\mbox{\Hypertarget{group__RTEMSScoreSchedulerCBS_ga5929eface80d9ad7b13ac75c4c3a560d}\label{group__RTEMSScoreSchedulerCBS_ga5929eface80d9ad7b13ac75c4c3a560d}} 
+\#define {\bfseries S\+C\+H\+E\+D\+U\+L\+E\+R\+\_\+\+C\+B\+S\+\_\+\+E\+R\+R\+O\+R\+\_\+\+U\+N\+A\+U\+T\+H\+O\+R\+I\+Z\+ED}~-\/19
+\item 
+\mbox{\Hypertarget{group__RTEMSScoreSchedulerCBS_ga446c08ba2f7295ffc37116094318844d}\label{group__RTEMSScoreSchedulerCBS_ga446c08ba2f7295ffc37116094318844d}} 
+\#define {\bfseries S\+C\+H\+E\+D\+U\+L\+E\+R\+\_\+\+C\+B\+S\+\_\+\+E\+R\+R\+O\+R\+\_\+\+U\+N\+I\+M\+P\+L\+E\+M\+E\+N\+T\+ED}~-\/20
+\item 
+\mbox{\Hypertarget{group__RTEMSScoreSchedulerCBS_ga8aa5dd90215750605bdf6d906e8f183f}\label{group__RTEMSScoreSchedulerCBS_ga8aa5dd90215750605bdf6d906e8f183f}} 
+\#define {\bfseries S\+C\+H\+E\+D\+U\+L\+E\+R\+\_\+\+C\+B\+S\+\_\+\+E\+R\+R\+O\+R\+\_\+\+M\+I\+S\+S\+I\+N\+G\+\_\+\+C\+O\+M\+P\+O\+N\+E\+NT}~-\/21
+\item 
+\mbox{\Hypertarget{group__RTEMSScoreSchedulerCBS_ga74aa67736ea6de9de78396020cb23612}\label{group__RTEMSScoreSchedulerCBS_ga74aa67736ea6de9de78396020cb23612}} 
+\#define {\bfseries S\+C\+H\+E\+D\+U\+L\+E\+R\+\_\+\+C\+B\+S\+\_\+\+E\+R\+R\+O\+R\+\_\+\+I\+N\+C\+O\+N\+S\+I\+S\+T\+E\+N\+T\+\_\+\+S\+T\+A\+TE}~-\/22
+\item 
+\mbox{\Hypertarget{group__RTEMSScoreSchedulerCBS_ga11ed7da699cb722f39f18e1232b3dee8}\label{group__RTEMSScoreSchedulerCBS_ga11ed7da699cb722f39f18e1232b3dee8}} 
+\#define {\bfseries S\+C\+H\+E\+D\+U\+L\+E\+R\+\_\+\+C\+B\+S\+\_\+\+E\+R\+R\+O\+R\+\_\+\+S\+Y\+S\+T\+E\+M\+\_\+\+O\+V\+E\+R\+L\+O\+AD}~-\/23
+\item 
+\mbox{\Hypertarget{group__RTEMSScoreSchedulerCBS_ga48378a6cd658ba40bec825863477a637}\label{group__RTEMSScoreSchedulerCBS_ga48378a6cd658ba40bec825863477a637}} 
+\#define {\bfseries S\+C\+H\+E\+D\+U\+L\+E\+R\+\_\+\+C\+B\+S\+\_\+\+E\+R\+R\+O\+R\+\_\+\+I\+N\+T\+E\+R\+N\+A\+L\+\_\+\+E\+R\+R\+OR}~-\/24
+\item 
+\mbox{\Hypertarget{group__RTEMSScoreSchedulerCBS_gae0ee8c5781c04c97bace0482eb953b34}\label{group__RTEMSScoreSchedulerCBS_gae0ee8c5781c04c97bace0482eb953b34}} 
+\#define {\bfseries S\+C\+H\+E\+D\+U\+L\+E\+R\+\_\+\+C\+B\+S\+\_\+\+E\+R\+R\+O\+R\+\_\+\+N\+O\+T\+\_\+\+F\+O\+U\+ND}~-\/25
+\item 
+\mbox{\Hypertarget{group__RTEMSScoreSchedulerCBS_ga5096157327e8cf8a9b0561146c2aaadf}\label{group__RTEMSScoreSchedulerCBS_ga5096157327e8cf8a9b0561146c2aaadf}} 
+\#define {\bfseries S\+C\+H\+E\+D\+U\+L\+E\+R\+\_\+\+C\+B\+S\+\_\+\+E\+R\+R\+O\+R\+\_\+\+F\+U\+LL}~-\/26
+\item 
+\mbox{\Hypertarget{group__RTEMSScoreSchedulerCBS_gaad50801158e611bfd465543ebd43f9a1}\label{group__RTEMSScoreSchedulerCBS_gaad50801158e611bfd465543ebd43f9a1}} 
+\#define {\bfseries S\+C\+H\+E\+D\+U\+L\+E\+R\+\_\+\+C\+B\+S\+\_\+\+E\+R\+R\+O\+R\+\_\+\+E\+M\+P\+TY}~-\/27
+\item 
+\mbox{\Hypertarget{group__RTEMSScoreSchedulerCBS_ga104d3ab97fee7eadc937ea783000b93e}\label{group__RTEMSScoreSchedulerCBS_ga104d3ab97fee7eadc937ea783000b93e}} 
+\#define {\bfseries S\+C\+H\+E\+D\+U\+L\+E\+R\+\_\+\+C\+B\+S\+\_\+\+E\+R\+R\+O\+R\+\_\+\+N\+O\+S\+E\+R\+V\+ER}~S\+C\+H\+E\+D\+U\+L\+E\+R\+\_\+\+C\+B\+S\+\_\+\+E\+R\+R\+O\+R\+\_\+\+N\+O\+T\+\_\+\+F\+O\+U\+ND
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef uint32\+\_\+t \mbox{\hyperlink{group__RTEMSScoreSchedulerCBS_gaec8b0a87aaeee5befd176ed946ad60a7}{Scheduler\+\_\+\+C\+B\+S\+\_\+\+Server\+\_\+id}}
+\item 
+typedef void($\ast$ \mbox{\hyperlink{group__RTEMSScoreSchedulerCBS_ga71e1a7a66ea3c1fcb7e25e900f773858}{Scheduler\+\_\+\+C\+B\+S\+\_\+\+Budget\+\_\+overrun}}) (\mbox{\hyperlink{group__RTEMSScoreSchedulerCBS_gaec8b0a87aaeee5befd176ed946ad60a7}{Scheduler\+\_\+\+C\+B\+S\+\_\+\+Server\+\_\+id}} server\+\_\+id)
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{group__RTEMSScoreSchedulerCBS_gae0d9c2720ee46efdfe87ebf87cd45cae}{\+\_\+\+Scheduler\+\_\+\+C\+B\+S\+\_\+\+Unblock}} (const \mbox{\hyperlink{struct__Scheduler__Control}{Scheduler\+\_\+\+Control}} $\ast$scheduler, \mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$the\+\_\+thread, \mbox{\hyperlink{structScheduler__Node}{Scheduler\+\_\+\+Node}} $\ast$node)
+\begin{DoxyCompactList}\small\item\em Unblocks a thread. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__RTEMSScoreSchedulerCBS_ga26f13ab87c29b1b9abf5e8defae50d47}{\+\_\+\+Scheduler\+\_\+\+C\+B\+S\+\_\+\+Release\+\_\+job}} (const \mbox{\hyperlink{struct__Scheduler__Control}{Scheduler\+\_\+\+Control}} $\ast$scheduler, \mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$the\+\_\+thread, \mbox{\hyperlink{structPriority__Node}{Priority\+\_\+\+Node}} $\ast$priority\+\_\+node, uint64\+\_\+t deadline, \mbox{\hyperlink{structThread__queue__Context}{Thread\+\_\+queue\+\_\+\+Context}} $\ast$queue\+\_\+context)
+\begin{DoxyCompactList}\small\item\em Releases a job. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__RTEMSScoreSchedulerCBS_gaa7df4531e6a166ebebde6355dba251a6}{\+\_\+\+Scheduler\+\_\+\+C\+B\+S\+\_\+\+Cancel\+\_\+job}} (const \mbox{\hyperlink{struct__Scheduler__Control}{Scheduler\+\_\+\+Control}} $\ast$scheduler, \mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$the\+\_\+thread, \mbox{\hyperlink{structPriority__Node}{Priority\+\_\+\+Node}} $\ast$priority\+\_\+node, \mbox{\hyperlink{structThread__queue__Context}{Thread\+\_\+queue\+\_\+\+Context}} $\ast$queue\+\_\+context)
+\begin{DoxyCompactList}\small\item\em Cancels a job. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__RTEMSScoreSchedulerCBS_gad7d02d4d314db30e554b22d2f3c0054d}{\+\_\+\+Scheduler\+\_\+\+C\+B\+S\+\_\+\+Initialize}} (void)
+\begin{DoxyCompactList}\small\item\em \+\_\+\+Scheduler\+\_\+\+C\+B\+S\+\_\+\+Initialize \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__RTEMSScoreSchedulerCBS_gad50adf7e8daf5e926a241e81c5468023}{\+\_\+\+Scheduler\+\_\+\+C\+B\+S\+\_\+\+Attach\+\_\+thread}} (\mbox{\hyperlink{group__RTEMSScoreSchedulerCBS_gaec8b0a87aaeee5befd176ed946ad60a7}{Scheduler\+\_\+\+C\+B\+S\+\_\+\+Server\+\_\+id}} server\+\_\+id, \mbox{\hyperlink{group__ClassicTasks_gab20892b814dced7dd4e5b9bf42becd57}{rtems\+\_\+id}} task\+\_\+id)
+\begin{DoxyCompactList}\small\item\em Attaches a task to an already existing server. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__RTEMSScoreSchedulerCBS_ga9f70f5f54408811d14c4fec717348443}{\+\_\+\+Scheduler\+\_\+\+C\+B\+S\+\_\+\+Detach\+\_\+thread}} (\mbox{\hyperlink{group__RTEMSScoreSchedulerCBS_gaec8b0a87aaeee5befd176ed946ad60a7}{Scheduler\+\_\+\+C\+B\+S\+\_\+\+Server\+\_\+id}} server\+\_\+id, \mbox{\hyperlink{group__ClassicTasks_gab20892b814dced7dd4e5b9bf42becd57}{rtems\+\_\+id}} task\+\_\+id)
+\begin{DoxyCompactList}\small\item\em Detaches from the C\+BS Server. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__RTEMSScoreSchedulerCBS_ga3229f13147960346f284d67dcb30feee}{\+\_\+\+Scheduler\+\_\+\+C\+B\+S\+\_\+\+Cleanup}} (void)
+\begin{DoxyCompactList}\small\item\em Cleans up resources associated to the C\+BS Library. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__RTEMSScoreSchedulerCBS_ga321aafe13a9f4b7815c5250789419dcd}{\+\_\+\+Scheduler\+\_\+\+C\+B\+S\+\_\+\+Create\+\_\+server}} (\mbox{\hyperlink{structScheduler__CBS__Parameters}{Scheduler\+\_\+\+C\+B\+S\+\_\+\+Parameters}} $\ast$params, \mbox{\hyperlink{group__RTEMSScoreSchedulerCBS_ga71e1a7a66ea3c1fcb7e25e900f773858}{Scheduler\+\_\+\+C\+B\+S\+\_\+\+Budget\+\_\+overrun}} budget\+\_\+overrun\+\_\+callback, \mbox{\hyperlink{group__ClassicTasks_gab20892b814dced7dd4e5b9bf42becd57}{rtems\+\_\+id}} $\ast$server\+\_\+id)
+\begin{DoxyCompactList}\small\item\em Creates a new server with specified parameters. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__RTEMSScoreSchedulerCBS_gaa0492d484f48089e4418faa2ed3a83f9}{\+\_\+\+Scheduler\+\_\+\+C\+B\+S\+\_\+\+Destroy\+\_\+server}} (\mbox{\hyperlink{group__RTEMSScoreSchedulerCBS_gaec8b0a87aaeee5befd176ed946ad60a7}{Scheduler\+\_\+\+C\+B\+S\+\_\+\+Server\+\_\+id}} server\+\_\+id)
+\begin{DoxyCompactList}\small\item\em Detaches all tasks from a server and destroys it. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__RTEMSScoreSchedulerCBS_ga9e02096eb010c0141c4c66c27f338aba}{\+\_\+\+Scheduler\+\_\+\+C\+B\+S\+\_\+\+Get\+\_\+approved\+\_\+budget}} (\mbox{\hyperlink{group__RTEMSScoreSchedulerCBS_gaec8b0a87aaeee5befd176ed946ad60a7}{Scheduler\+\_\+\+C\+B\+S\+\_\+\+Server\+\_\+id}} server\+\_\+id, time\+\_\+t $\ast$approved\+\_\+budget)
+\begin{DoxyCompactList}\small\item\em Retrieves the approved budget. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__RTEMSScoreSchedulerCBS_ga881bfce00d607ef1ec895fa5e73043af}{\+\_\+\+Scheduler\+\_\+\+C\+B\+S\+\_\+\+Get\+\_\+remaining\+\_\+budget}} (\mbox{\hyperlink{group__RTEMSScoreSchedulerCBS_gaec8b0a87aaeee5befd176ed946ad60a7}{Scheduler\+\_\+\+C\+B\+S\+\_\+\+Server\+\_\+id}} server\+\_\+id, time\+\_\+t $\ast$remaining\+\_\+budget)
+\begin{DoxyCompactList}\small\item\em Retrieves remaining budget for the current server instance. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__RTEMSScoreSchedulerCBS_gaab8e7331d587e5fbae175acd70fe962e}{\+\_\+\+Scheduler\+\_\+\+C\+B\+S\+\_\+\+Get\+\_\+execution\+\_\+time}} (\mbox{\hyperlink{group__RTEMSScoreSchedulerCBS_gaec8b0a87aaeee5befd176ed946ad60a7}{Scheduler\+\_\+\+C\+B\+S\+\_\+\+Server\+\_\+id}} server\+\_\+id, time\+\_\+t $\ast$exec\+\_\+time, time\+\_\+t $\ast$abs\+\_\+time)
+\begin{DoxyCompactList}\small\item\em Gets relative time info. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__RTEMSScoreSchedulerCBS_gae4acd9e160c2a357b9256ee604de0d6f}{\+\_\+\+Scheduler\+\_\+\+C\+B\+S\+\_\+\+Get\+\_\+parameters}} (\mbox{\hyperlink{group__RTEMSScoreSchedulerCBS_gaec8b0a87aaeee5befd176ed946ad60a7}{Scheduler\+\_\+\+C\+B\+S\+\_\+\+Server\+\_\+id}} server\+\_\+id, \mbox{\hyperlink{structScheduler__CBS__Parameters}{Scheduler\+\_\+\+C\+B\+S\+\_\+\+Parameters}} $\ast$params)
+\begin{DoxyCompactList}\small\item\em Retrieves C\+BS scheduling parameters. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__RTEMSScoreSchedulerCBS_ga00f5de4bbf2dd36138965f58675a1673}{\+\_\+\+Scheduler\+\_\+\+C\+B\+S\+\_\+\+Get\+\_\+server\+\_\+id}} (\mbox{\hyperlink{group__ClassicTasks_gab20892b814dced7dd4e5b9bf42becd57}{rtems\+\_\+id}} task\+\_\+id, \mbox{\hyperlink{group__RTEMSScoreSchedulerCBS_gaec8b0a87aaeee5befd176ed946ad60a7}{Scheduler\+\_\+\+C\+B\+S\+\_\+\+Server\+\_\+id}} $\ast$server\+\_\+id)
+\begin{DoxyCompactList}\small\item\em Gets a thread server id. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__RTEMSScoreSchedulerCBS_gaf899d82926e2d6d83ac1fb6d1072b932}{\+\_\+\+Scheduler\+\_\+\+C\+B\+S\+\_\+\+Set\+\_\+parameters}} (\mbox{\hyperlink{group__RTEMSScoreSchedulerCBS_gaec8b0a87aaeee5befd176ed946ad60a7}{Scheduler\+\_\+\+C\+B\+S\+\_\+\+Server\+\_\+id}} server\+\_\+id, \mbox{\hyperlink{structScheduler__CBS__Parameters}{Scheduler\+\_\+\+C\+B\+S\+\_\+\+Parameters}} $\ast$parameters)
+\begin{DoxyCompactList}\small\item\em Sets parameters for C\+BS scheduling. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__RTEMSScoreSchedulerCBS_ga4dfdf34a4a2601925b2d5cdbf67d07a9}{\+\_\+\+Scheduler\+\_\+\+C\+B\+S\+\_\+\+Budget\+\_\+callout}} (\mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$the\+\_\+thread)
+\begin{DoxyCompactList}\small\item\em Invoked when a limited time quantum is exceeded. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__RTEMSScoreSchedulerCBS_gabb8137112e3b30c70daa4dc3221093cb}{\+\_\+\+Scheduler\+\_\+\+C\+B\+S\+\_\+\+Node\+\_\+initialize}} (const \mbox{\hyperlink{struct__Scheduler__Control}{Scheduler\+\_\+\+Control}} $\ast$scheduler, \mbox{\hyperlink{structScheduler__Node}{Scheduler\+\_\+\+Node}} $\ast$node, \mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$the\+\_\+thread, \mbox{\hyperlink{group__RTEMSScorePriority_ga59d02b58072d31a9a1cfe644557aefe2}{Priority\+\_\+\+Control}} priority)
+\begin{DoxyCompactList}\small\item\em Initializes a C\+BS specific scheduler node of {\itshape the\+\_\+thread}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} \mbox{\hyperlink{structScheduler__CBS__Node}{Scheduler\+\_\+\+C\+B\+S\+\_\+\+Node}} $\ast$ \mbox{\hyperlink{group__RTEMSScoreSchedulerCBS_gac2cf154d9842c9449d74735b2b1d0a82}{\+\_\+\+Scheduler\+\_\+\+C\+B\+S\+\_\+\+Thread\+\_\+get\+\_\+node}} (\mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$the\+\_\+thread)
+\begin{DoxyCompactList}\small\item\em Gets the C\+BS node of the thread. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} \mbox{\hyperlink{structScheduler__CBS__Node}{Scheduler\+\_\+\+C\+B\+S\+\_\+\+Node}} $\ast$ \mbox{\hyperlink{group__RTEMSScoreSchedulerCBS_gae69b2b7650d05a7f48695c83f815d6fd}{\+\_\+\+Scheduler\+\_\+\+C\+B\+S\+\_\+\+Node\+\_\+downcast}} (\mbox{\hyperlink{structScheduler__Node}{Scheduler\+\_\+\+Node}} $\ast$node)
+\begin{DoxyCompactList}\small\item\em Casts the scheduler node to a scheduler C\+BS node. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const uint32\+\_\+t \mbox{\hyperlink{group__RTEMSScoreSchedulerCBS_gad7073b55d1b96892798bbc516978f0ee}{\+\_\+\+Scheduler\+\_\+\+C\+B\+S\+\_\+\+Maximum\+\_\+servers}}
+\item 
+\mbox{\hyperlink{structScheduler__CBS__Server}{Scheduler\+\_\+\+C\+B\+S\+\_\+\+Server}} \mbox{\hyperlink{group__RTEMSScoreSchedulerCBS_ga12ae8c17a62c8837b43a6a6e7a1844f4}{\+\_\+\+Scheduler\+\_\+\+C\+B\+S\+\_\+\+Server\+\_\+list}} \mbox{[}$\,$\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+C\+BS Scheduler. 
+
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{group__RTEMSScoreSchedulerCBS_gacc7efa225c425f676bafa3e5af3c6117}\label{group__RTEMSScoreSchedulerCBS_gacc7efa225c425f676bafa3e5af3c6117}} 
+\index{CBS Scheduler@{CBS Scheduler}!SCHEDULER\_CBS\_ENTRY\_POINTS@{SCHEDULER\_CBS\_ENTRY\_POINTS}}
+\index{SCHEDULER\_CBS\_ENTRY\_POINTS@{SCHEDULER\_CBS\_ENTRY\_POINTS}!CBS Scheduler@{CBS Scheduler}}
+\subsubsection{\texorpdfstring{SCHEDULER\_CBS\_ENTRY\_POINTS}{SCHEDULER\_CBS\_ENTRY\_POINTS}}
+{\footnotesize\ttfamily \#define S\+C\+H\+E\+D\+U\+L\+E\+R\+\_\+\+C\+B\+S\+\_\+\+E\+N\+T\+R\+Y\+\_\+\+P\+O\+I\+N\+TS}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{ \(\backslash\)}
+\DoxyCodeLine{    \_Scheduler\_EDF\_Initialize,       \textcolor{comment}{/* initialize entry point */} \(\backslash\)}
+\DoxyCodeLine{    \_Scheduler\_EDF\_Schedule,         \textcolor{comment}{/* schedule entry point */} \(\backslash\)}
+\DoxyCodeLine{    \_Scheduler\_EDF\_Yield,            \textcolor{comment}{/* yield entry point */} \(\backslash\)}
+\DoxyCodeLine{    \_Scheduler\_EDF\_Block,            \textcolor{comment}{/* block entry point */} \(\backslash\)}
+\DoxyCodeLine{    \_Scheduler\_CBS\_Unblock,          \textcolor{comment}{/* unblock entry point */} \(\backslash\)}
+\DoxyCodeLine{    \_Scheduler\_EDF\_Update\_priority,  \textcolor{comment}{/* update priority entry point */} \(\backslash\)}
+\DoxyCodeLine{    \_Scheduler\_EDF\_Map\_priority,     \textcolor{comment}{/* map priority entry point */} \(\backslash\)}
+\DoxyCodeLine{    \_Scheduler\_EDF\_Unmap\_priority,   \textcolor{comment}{/* unmap priority entry point */} \mbox{\hyperlink{group__RTEMSScoreSchedulerCBS_gabb8137112e3b30c70daa4dc3221093cb}{\(\backslash\)}}}
+\DoxyCodeLine{\mbox{\hyperlink{group__RTEMSScoreSchedulerCBS_gabb8137112e3b30c70daa4dc3221093cb}{    SCHEDULER\_OPERATION\_DEFAULT\_ASK\_FOR\_HELP \(\backslash\)}}}
+\DoxyCodeLine{\mbox{\hyperlink{group__RTEMSScoreSchedulerCBS_gabb8137112e3b30c70daa4dc3221093cb}{    \_Scheduler\_CBS\_Node\_initialize}},  \textcolor{comment}{/* node initialize entry point */} \(\backslash\)}
+\DoxyCodeLine{    \_Scheduler\_default\_Node\_destroy, \textcolor{comment}{/* node destroy entry point */} \(\backslash\)}
+\DoxyCodeLine{    \_Scheduler\_CBS\_Release\_job,      \textcolor{comment}{/* new period of task */} \(\backslash\)}
+\DoxyCodeLine{    \_Scheduler\_CBS\_Cancel\_job,       \textcolor{comment}{/* cancel period of task */} \(\backslash\)}
+\DoxyCodeLine{    \_Scheduler\_default\_Tick,         \textcolor{comment}{/* tick entry point */} \(\backslash\)}
+\DoxyCodeLine{    \_Scheduler\_default\_Start\_idle    \textcolor{comment}{/* start idle entry point */} \(\backslash\)}
+\DoxyCodeLine{    SCHEDULER\_OPERATION\_DEFAULT\_GET\_SET\_AFFINITY \(\backslash\)}
+\DoxyCodeLine{  \}}
+
+\end{DoxyCode}
+Entry points for the Constant Bandwidth Server Scheduler.
+
+\begin{DoxyNote}{Note}
+\+: The C\+BS scheduler is an enhancement of E\+DF scheduler, therefor some routines are similar. 
+\end{DoxyNote}
+
+
+\subsection{Typedef Documentation}
+\mbox{\Hypertarget{group__RTEMSScoreSchedulerCBS_ga71e1a7a66ea3c1fcb7e25e900f773858}\label{group__RTEMSScoreSchedulerCBS_ga71e1a7a66ea3c1fcb7e25e900f773858}} 
+\index{CBS Scheduler@{CBS Scheduler}!Scheduler\_CBS\_Budget\_overrun@{Scheduler\_CBS\_Budget\_overrun}}
+\index{Scheduler\_CBS\_Budget\_overrun@{Scheduler\_CBS\_Budget\_overrun}!CBS Scheduler@{CBS Scheduler}}
+\subsubsection{\texorpdfstring{Scheduler\_CBS\_Budget\_overrun}{Scheduler\_CBS\_Budget\_overrun}}
+{\footnotesize\ttfamily typedef void($\ast$ Scheduler\+\_\+\+C\+B\+S\+\_\+\+Budget\+\_\+overrun) (\mbox{\hyperlink{group__RTEMSScoreSchedulerCBS_gaec8b0a87aaeee5befd176ed946ad60a7}{Scheduler\+\_\+\+C\+B\+S\+\_\+\+Server\+\_\+id}} server\+\_\+id)}
+
+Callback function invoked when a budget overrun of a task occurs. \mbox{\Hypertarget{group__RTEMSScoreSchedulerCBS_gaec8b0a87aaeee5befd176ed946ad60a7}\label{group__RTEMSScoreSchedulerCBS_gaec8b0a87aaeee5befd176ed946ad60a7}} 
+\index{CBS Scheduler@{CBS Scheduler}!Scheduler\_CBS\_Server\_id@{Scheduler\_CBS\_Server\_id}}
+\index{Scheduler\_CBS\_Server\_id@{Scheduler\_CBS\_Server\_id}!CBS Scheduler@{CBS Scheduler}}
+\subsubsection{\texorpdfstring{Scheduler\_CBS\_Server\_id}{Scheduler\_CBS\_Server\_id}}
+{\footnotesize\ttfamily typedef uint32\+\_\+t \mbox{\hyperlink{group__RTEMSScoreSchedulerCBS_gaec8b0a87aaeee5befd176ed946ad60a7}{Scheduler\+\_\+\+C\+B\+S\+\_\+\+Server\+\_\+id}}}
+
+Server id. 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{group__RTEMSScoreSchedulerCBS_gad50adf7e8daf5e926a241e81c5468023}\label{group__RTEMSScoreSchedulerCBS_gad50adf7e8daf5e926a241e81c5468023}} 
+\index{CBS Scheduler@{CBS Scheduler}!\_Scheduler\_CBS\_Attach\_thread@{\_Scheduler\_CBS\_Attach\_thread}}
+\index{\_Scheduler\_CBS\_Attach\_thread@{\_Scheduler\_CBS\_Attach\_thread}!CBS Scheduler@{CBS Scheduler}}
+\subsubsection{\texorpdfstring{\_Scheduler\_CBS\_Attach\_thread()}{\_Scheduler\_CBS\_Attach\_thread()}}
+{\footnotesize\ttfamily int \+\_\+\+Scheduler\+\_\+\+C\+B\+S\+\_\+\+Attach\+\_\+thread (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__RTEMSScoreSchedulerCBS_gaec8b0a87aaeee5befd176ed946ad60a7}{Scheduler\+\_\+\+C\+B\+S\+\_\+\+Server\+\_\+id}}}]{server\+\_\+id,  }\item[{\mbox{\hyperlink{group__ClassicTasks_gab20892b814dced7dd4e5b9bf42becd57}{rtems\+\_\+id}}}]{task\+\_\+id }\end{DoxyParamCaption})}
+
+
+
+Attaches a task to an already existing server. 
+
+Attach a task to an already existing server.
+
+
+\begin{DoxyParams}{Parameters}
+{\em server\+\_\+id} & The id of the existing server. \\
+\hline
+{\em task\+\_\+id} & The id of the task to attach.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em S\+C\+H\+E\+D\+U\+L\+E\+R\+\_\+\+C\+B\+S\+\_\+\+OK} & The operation was successful. \\
+\hline
+{\em S\+C\+H\+E\+D\+U\+L\+E\+R\+\_\+\+C\+B\+S\+\_\+\+E\+R\+R\+O\+R\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+P\+A\+R\+A\+M\+E\+T\+ER} & The server id is so big or there is no thread for this task id. \\
+\hline
+{\em S\+C\+H\+E\+D\+U\+L\+E\+R\+\_\+\+C\+B\+S\+\_\+\+E\+R\+R\+O\+R\+\_\+\+N\+O\+S\+E\+R\+V\+ER} & The server is not yet initialized. \\
+\hline
+{\em S\+C\+H\+E\+D\+U\+L\+E\+R\+\_\+\+C\+B\+S\+\_\+\+E\+R\+R\+O\+R\+\_\+\+F\+U\+LL} & The server already has a task. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{group__RTEMSScoreSchedulerCBS_ga4dfdf34a4a2601925b2d5cdbf67d07a9}\label{group__RTEMSScoreSchedulerCBS_ga4dfdf34a4a2601925b2d5cdbf67d07a9}} 
+\index{CBS Scheduler@{CBS Scheduler}!\_Scheduler\_CBS\_Budget\_callout@{\_Scheduler\_CBS\_Budget\_callout}}
+\index{\_Scheduler\_CBS\_Budget\_callout@{\_Scheduler\_CBS\_Budget\_callout}!CBS Scheduler@{CBS Scheduler}}
+\subsubsection{\texorpdfstring{\_Scheduler\_CBS\_Budget\_callout()}{\_Scheduler\_CBS\_Budget\_callout()}}
+{\footnotesize\ttfamily void \+\_\+\+Scheduler\+\_\+\+C\+B\+S\+\_\+\+Budget\+\_\+callout (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$}]{the\+\_\+thread }\end{DoxyParamCaption})}
+
+
+
+Invoked when a limited time quantum is exceeded. 
+
+This routine is invoked when a limited time quantum is exceeded.
+
+
+\begin{DoxyParams}{Parameters}
+{\em the\+\_\+thread} & The thread that exceeded a limited time quantum. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__RTEMSScoreSchedulerCBS_gaa7df4531e6a166ebebde6355dba251a6}\label{group__RTEMSScoreSchedulerCBS_gaa7df4531e6a166ebebde6355dba251a6}} 
+\index{CBS Scheduler@{CBS Scheduler}!\_Scheduler\_CBS\_Cancel\_job@{\_Scheduler\_CBS\_Cancel\_job}}
+\index{\_Scheduler\_CBS\_Cancel\_job@{\_Scheduler\_CBS\_Cancel\_job}!CBS Scheduler@{CBS Scheduler}}
+\subsubsection{\texorpdfstring{\_Scheduler\_CBS\_Cancel\_job()}{\_Scheduler\_CBS\_Cancel\_job()}}
+{\footnotesize\ttfamily void \+\_\+\+Scheduler\+\_\+\+C\+B\+S\+\_\+\+Cancel\+\_\+job (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct__Scheduler__Control}{Scheduler\+\_\+\+Control}} $\ast$}]{scheduler,  }\item[{\mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$}]{the\+\_\+thread,  }\item[{\mbox{\hyperlink{structPriority__Node}{Priority\+\_\+\+Node}} $\ast$}]{priority\+\_\+node,  }\item[{\mbox{\hyperlink{structThread__queue__Context}{Thread\+\_\+queue\+\_\+\+Context}} $\ast$}]{queue\+\_\+context }\end{DoxyParamCaption})}
+
+
+
+Cancels a job. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em scheduler} & The scheduler for the operation. \\
+\hline
+{\em the\+\_\+thread} & The corresponding thread. \\
+\hline
+{\em priority\+\_\+node} & The priority node for the operation. \\
+\hline
+{\em queue\+\_\+context} & The thread queue context. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__RTEMSScoreSchedulerCBS_ga3229f13147960346f284d67dcb30feee}\label{group__RTEMSScoreSchedulerCBS_ga3229f13147960346f284d67dcb30feee}} 
+\index{CBS Scheduler@{CBS Scheduler}!\_Scheduler\_CBS\_Cleanup@{\_Scheduler\_CBS\_Cleanup}}
+\index{\_Scheduler\_CBS\_Cleanup@{\_Scheduler\_CBS\_Cleanup}!CBS Scheduler@{CBS Scheduler}}
+\subsubsection{\texorpdfstring{\_Scheduler\_CBS\_Cleanup()}{\_Scheduler\_CBS\_Cleanup()}}
+{\footnotesize\ttfamily int \+\_\+\+Scheduler\+\_\+\+C\+B\+S\+\_\+\+Cleanup (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Cleans up resources associated to the C\+BS Library. 
+
+Cleanup resources associated to the C\+BS Library.
+
+\begin{DoxyReturn}{Returns}
+This method always returns S\+C\+H\+E\+D\+U\+L\+E\+R\+\_\+\+C\+B\+S\+\_\+\+OK. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{group__RTEMSScoreSchedulerCBS_ga321aafe13a9f4b7815c5250789419dcd}\label{group__RTEMSScoreSchedulerCBS_ga321aafe13a9f4b7815c5250789419dcd}} 
+\index{CBS Scheduler@{CBS Scheduler}!\_Scheduler\_CBS\_Create\_server@{\_Scheduler\_CBS\_Create\_server}}
+\index{\_Scheduler\_CBS\_Create\_server@{\_Scheduler\_CBS\_Create\_server}!CBS Scheduler@{CBS Scheduler}}
+\subsubsection{\texorpdfstring{\_Scheduler\_CBS\_Create\_server()}{\_Scheduler\_CBS\_Create\_server()}}
+{\footnotesize\ttfamily int \+\_\+\+Scheduler\+\_\+\+C\+B\+S\+\_\+\+Create\+\_\+server (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structScheduler__CBS__Parameters}{Scheduler\+\_\+\+C\+B\+S\+\_\+\+Parameters}} $\ast$}]{params,  }\item[{\mbox{\hyperlink{group__RTEMSScoreSchedulerCBS_ga71e1a7a66ea3c1fcb7e25e900f773858}{Scheduler\+\_\+\+C\+B\+S\+\_\+\+Budget\+\_\+overrun}}}]{budget\+\_\+overrun\+\_\+callback,  }\item[{\mbox{\hyperlink{group__ClassicTasks_gab20892b814dced7dd4e5b9bf42becd57}{rtems\+\_\+id}} $\ast$}]{server\+\_\+id }\end{DoxyParamCaption})}
+
+
+
+Creates a new server with specified parameters. 
+
+Create a new server with specified parameters.
+
+
+\begin{DoxyParams}[1]{Parameters}
+ & {\em params} & The parameters for the server. \\
+\hline
+ & {\em budget\+\_\+overrun\+\_\+callback} & The budget overrun for the new server. \\
+\hline
+\mbox{\texttt{ out}}  & {\em server\+\_\+id} & In the case of success, this parameter contains the id of the newly created server.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em S\+C\+H\+E\+D\+U\+L\+E\+R\+\_\+\+C\+B\+S\+\_\+\+OK} & The operation succeeded. \\
+\hline
+{\em S\+C\+H\+E\+D\+U\+L\+E\+R\+\_\+\+C\+B\+S\+\_\+\+E\+R\+R\+O\+R\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+P\+A\+R\+A\+M\+E\+T\+ER} & The given parameters are invalid. \\
+\hline
+{\em S\+C\+H\+E\+D\+U\+L\+E\+R\+\_\+\+C\+B\+S\+\_\+\+E\+R\+R\+O\+R\+\_\+\+F\+U\+LL} & The maximum number of servers was already created, a new server cannot be created. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{group__RTEMSScoreSchedulerCBS_gaa0492d484f48089e4418faa2ed3a83f9}\label{group__RTEMSScoreSchedulerCBS_gaa0492d484f48089e4418faa2ed3a83f9}} 
+\index{CBS Scheduler@{CBS Scheduler}!\_Scheduler\_CBS\_Destroy\_server@{\_Scheduler\_CBS\_Destroy\_server}}
+\index{\_Scheduler\_CBS\_Destroy\_server@{\_Scheduler\_CBS\_Destroy\_server}!CBS Scheduler@{CBS Scheduler}}
+\subsubsection{\texorpdfstring{\_Scheduler\_CBS\_Destroy\_server()}{\_Scheduler\_CBS\_Destroy\_server()}}
+{\footnotesize\ttfamily int \+\_\+\+Scheduler\+\_\+\+C\+B\+S\+\_\+\+Destroy\+\_\+server (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__RTEMSScoreSchedulerCBS_gaec8b0a87aaeee5befd176ed946ad60a7}{Scheduler\+\_\+\+C\+B\+S\+\_\+\+Server\+\_\+id}}}]{server\+\_\+id }\end{DoxyParamCaption})}
+
+
+
+Detaches all tasks from a server and destroys it. 
+
+Detach all tasks from a server and destroy it.
+
+
+\begin{DoxyParams}{Parameters}
+{\em server\+\_\+id} & The id of the server to destroy.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em S\+C\+H\+E\+D\+U\+L\+E\+R\+\_\+\+C\+B\+S\+\_\+\+OK} & The operation was successful. \\
+\hline
+{\em S\+C\+H\+E\+D\+U\+L\+E\+R\+\_\+\+C\+B\+S\+\_\+\+E\+R\+R\+O\+R\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+P\+A\+R\+A\+M\+E\+T\+ER} & The server id is too big. \\
+\hline
+{\em S\+C\+H\+E\+D\+U\+L\+E\+R\+\_\+\+C\+B\+S\+\_\+\+E\+R\+R\+O\+R\+\_\+\+N\+O\+S\+E\+R\+V\+ER} & There is no initialized server with this id. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{group__RTEMSScoreSchedulerCBS_ga9f70f5f54408811d14c4fec717348443}\label{group__RTEMSScoreSchedulerCBS_ga9f70f5f54408811d14c4fec717348443}} 
+\index{CBS Scheduler@{CBS Scheduler}!\_Scheduler\_CBS\_Detach\_thread@{\_Scheduler\_CBS\_Detach\_thread}}
+\index{\_Scheduler\_CBS\_Detach\_thread@{\_Scheduler\_CBS\_Detach\_thread}!CBS Scheduler@{CBS Scheduler}}
+\subsubsection{\texorpdfstring{\_Scheduler\_CBS\_Detach\_thread()}{\_Scheduler\_CBS\_Detach\_thread()}}
+{\footnotesize\ttfamily int \+\_\+\+Scheduler\+\_\+\+C\+B\+S\+\_\+\+Detach\+\_\+thread (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__RTEMSScoreSchedulerCBS_gaec8b0a87aaeee5befd176ed946ad60a7}{Scheduler\+\_\+\+C\+B\+S\+\_\+\+Server\+\_\+id}}}]{server\+\_\+id,  }\item[{\mbox{\hyperlink{group__ClassicTasks_gab20892b814dced7dd4e5b9bf42becd57}{rtems\+\_\+id}}}]{task\+\_\+id }\end{DoxyParamCaption})}
+
+
+
+Detaches from the C\+BS Server. 
+
+Detach from the C\+BS Server.
+
+
+\begin{DoxyParams}{Parameters}
+{\em server\+\_\+id} & The id of the existing server. \\
+\hline
+{\em task\+\_\+id} & The id of the task to attach.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em S\+C\+H\+E\+D\+U\+L\+E\+R\+\_\+\+C\+B\+S\+\_\+\+OK} & The operation was successful. \\
+\hline
+{\em S\+C\+H\+E\+D\+U\+L\+E\+R\+\_\+\+C\+B\+S\+\_\+\+E\+R\+R\+O\+R\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+P\+A\+R\+A\+M\+E\+T\+ER} & The server id is to big, or the task with this id is not attached to this server or there is no thread with this task. \\
+\hline
+{\em S\+C\+H\+E\+D\+U\+L\+E\+R\+\_\+\+C\+B\+S\+\_\+\+E\+R\+R\+O\+R\+\_\+\+N\+O\+S\+E\+R\+V\+ER} & The server is not yet initialized. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{group__RTEMSScoreSchedulerCBS_ga9e02096eb010c0141c4c66c27f338aba}\label{group__RTEMSScoreSchedulerCBS_ga9e02096eb010c0141c4c66c27f338aba}} 
+\index{CBS Scheduler@{CBS Scheduler}!\_Scheduler\_CBS\_Get\_approved\_budget@{\_Scheduler\_CBS\_Get\_approved\_budget}}
+\index{\_Scheduler\_CBS\_Get\_approved\_budget@{\_Scheduler\_CBS\_Get\_approved\_budget}!CBS Scheduler@{CBS Scheduler}}
+\subsubsection{\texorpdfstring{\_Scheduler\_CBS\_Get\_approved\_budget()}{\_Scheduler\_CBS\_Get\_approved\_budget()}}
+{\footnotesize\ttfamily int \+\_\+\+Scheduler\+\_\+\+C\+B\+S\+\_\+\+Get\+\_\+approved\+\_\+budget (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__RTEMSScoreSchedulerCBS_gaec8b0a87aaeee5befd176ed946ad60a7}{Scheduler\+\_\+\+C\+B\+S\+\_\+\+Server\+\_\+id}}}]{server\+\_\+id,  }\item[{time\+\_\+t $\ast$}]{approved\+\_\+budget }\end{DoxyParamCaption})}
+
+
+
+Retrieves the approved budget. 
+
+Retrieve the budget that has been approved for the subsequent server instances.
+
+
+\begin{DoxyParams}[1]{Parameters}
+ & {\em server\+\_\+id} & The id of the server instance of which the budget is wanted. \\
+\hline
+\mbox{\texttt{ out}}  & {\em approved\+\_\+budget} & Contains the approved budget after a successful method call.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em S\+C\+H\+E\+D\+U\+L\+E\+R\+\_\+\+C\+B\+S\+\_\+\+OK} & The operation was successful. \\
+\hline
+{\em S\+C\+H\+E\+D\+U\+L\+E\+R\+\_\+\+C\+B\+S\+\_\+\+E\+R\+R\+O\+R\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+P\+A\+R\+A\+M\+E\+T\+ER} & The server id is too big. \\
+\hline
+{\em S\+C\+H\+E\+D\+U\+L\+E\+R\+\_\+\+C\+B\+S\+\_\+\+E\+R\+R\+O\+R\+\_\+\+N\+O\+S\+E\+R\+V\+ER} & There is no initialized server with this id. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{group__RTEMSScoreSchedulerCBS_gaab8e7331d587e5fbae175acd70fe962e}\label{group__RTEMSScoreSchedulerCBS_gaab8e7331d587e5fbae175acd70fe962e}} 
+\index{CBS Scheduler@{CBS Scheduler}!\_Scheduler\_CBS\_Get\_execution\_time@{\_Scheduler\_CBS\_Get\_execution\_time}}
+\index{\_Scheduler\_CBS\_Get\_execution\_time@{\_Scheduler\_CBS\_Get\_execution\_time}!CBS Scheduler@{CBS Scheduler}}
+\subsubsection{\texorpdfstring{\_Scheduler\_CBS\_Get\_execution\_time()}{\_Scheduler\_CBS\_Get\_execution\_time()}}
+{\footnotesize\ttfamily int \+\_\+\+Scheduler\+\_\+\+C\+B\+S\+\_\+\+Get\+\_\+execution\+\_\+time (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__RTEMSScoreSchedulerCBS_gaec8b0a87aaeee5befd176ed946ad60a7}{Scheduler\+\_\+\+C\+B\+S\+\_\+\+Server\+\_\+id}}}]{server\+\_\+id,  }\item[{time\+\_\+t $\ast$}]{exec\+\_\+time,  }\item[{time\+\_\+t $\ast$}]{abs\+\_\+time }\end{DoxyParamCaption})}
+
+
+
+Gets relative time info. 
+
+Retrieve time info relative to {\itshape server\+\_\+id}. The server status code is returned.
+
+
+\begin{DoxyParams}[1]{Parameters}
+ & {\em server\+\_\+id} & is the server to get the status code from. \\
+\hline
+\mbox{\texttt{ out}}  & {\em exec\+\_\+time} & Contains the execution time after a successful method call. \\
+\hline
+ & {\em abs\+\_\+time} & Not apparently used.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em S\+C\+H\+E\+D\+U\+L\+E\+R\+\_\+\+C\+B\+S\+\_\+\+OK} & The operation was successful. \\
+\hline
+{\em S\+C\+H\+E\+D\+U\+L\+E\+R\+\_\+\+C\+B\+S\+\_\+\+E\+R\+R\+O\+R\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+P\+A\+R\+A\+M\+E\+T\+ER} & The server id is too big. \\
+\hline
+{\em S\+C\+H\+E\+D\+U\+L\+E\+R\+\_\+\+C\+B\+S\+\_\+\+E\+R\+R\+O\+R\+\_\+\+N\+O\+S\+E\+R\+V\+ER} & There is no initialized server with this id. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{group__RTEMSScoreSchedulerCBS_gae4acd9e160c2a357b9256ee604de0d6f}\label{group__RTEMSScoreSchedulerCBS_gae4acd9e160c2a357b9256ee604de0d6f}} 
+\index{CBS Scheduler@{CBS Scheduler}!\_Scheduler\_CBS\_Get\_parameters@{\_Scheduler\_CBS\_Get\_parameters}}
+\index{\_Scheduler\_CBS\_Get\_parameters@{\_Scheduler\_CBS\_Get\_parameters}!CBS Scheduler@{CBS Scheduler}}
+\subsubsection{\texorpdfstring{\_Scheduler\_CBS\_Get\_parameters()}{\_Scheduler\_CBS\_Get\_parameters()}}
+{\footnotesize\ttfamily int \+\_\+\+Scheduler\+\_\+\+C\+B\+S\+\_\+\+Get\+\_\+parameters (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__RTEMSScoreSchedulerCBS_gaec8b0a87aaeee5befd176ed946ad60a7}{Scheduler\+\_\+\+C\+B\+S\+\_\+\+Server\+\_\+id}}}]{server\+\_\+id,  }\item[{\mbox{\hyperlink{structScheduler__CBS__Parameters}{Scheduler\+\_\+\+C\+B\+S\+\_\+\+Parameters}} $\ast$}]{params }\end{DoxyParamCaption})}
+
+
+
+Retrieves C\+BS scheduling parameters. 
+
+Retrieve C\+BS scheduling parameters.
+
+
+\begin{DoxyParams}[1]{Parameters}
+ & {\em server\+\_\+id} & The id of the server to get the scheduling parameters from. \\
+\hline
+\mbox{\texttt{ out}}  & {\em params} & Will contain the scheduling parameters after successful method call.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em S\+C\+H\+E\+D\+U\+L\+E\+R\+\_\+\+C\+B\+S\+\_\+\+OK} & The operation was successful. \\
+\hline
+{\em S\+C\+H\+E\+D\+U\+L\+E\+R\+\_\+\+C\+B\+S\+\_\+\+E\+R\+R\+O\+R\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+P\+A\+R\+A\+M\+E\+T\+ER} & The server id is too big. \\
+\hline
+{\em S\+C\+H\+E\+D\+U\+L\+E\+R\+\_\+\+C\+B\+S\+\_\+\+E\+R\+R\+O\+R\+\_\+\+N\+O\+S\+E\+R\+V\+ER} & There is no initialized server with this id. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{group__RTEMSScoreSchedulerCBS_ga881bfce00d607ef1ec895fa5e73043af}\label{group__RTEMSScoreSchedulerCBS_ga881bfce00d607ef1ec895fa5e73043af}} 
+\index{CBS Scheduler@{CBS Scheduler}!\_Scheduler\_CBS\_Get\_remaining\_budget@{\_Scheduler\_CBS\_Get\_remaining\_budget}}
+\index{\_Scheduler\_CBS\_Get\_remaining\_budget@{\_Scheduler\_CBS\_Get\_remaining\_budget}!CBS Scheduler@{CBS Scheduler}}
+\subsubsection{\texorpdfstring{\_Scheduler\_CBS\_Get\_remaining\_budget()}{\_Scheduler\_CBS\_Get\_remaining\_budget()}}
+{\footnotesize\ttfamily int \+\_\+\+Scheduler\+\_\+\+C\+B\+S\+\_\+\+Get\+\_\+remaining\+\_\+budget (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__RTEMSScoreSchedulerCBS_gaec8b0a87aaeee5befd176ed946ad60a7}{Scheduler\+\_\+\+C\+B\+S\+\_\+\+Server\+\_\+id}}}]{server\+\_\+id,  }\item[{time\+\_\+t $\ast$}]{remaining\+\_\+budget }\end{DoxyParamCaption})}
+
+
+
+Retrieves remaining budget for the current server instance. 
+
+Retrieve remaining budget for the current server instance.
+
+
+\begin{DoxyParams}[1]{Parameters}
+ & {\em server\+\_\+id} & The id of the server instance of which the remaining budget is wanted. \\
+\hline
+\mbox{\texttt{ out}}  & {\em remaining\+\_\+budget} & Contains the remaining budget after a successful method call.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em S\+C\+H\+E\+D\+U\+L\+E\+R\+\_\+\+C\+B\+S\+\_\+\+OK} & The operation was successful. \\
+\hline
+{\em S\+C\+H\+E\+D\+U\+L\+E\+R\+\_\+\+C\+B\+S\+\_\+\+E\+R\+R\+O\+R\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+P\+A\+R\+A\+M\+E\+T\+ER} & The server id is too big. \\
+\hline
+{\em S\+C\+H\+E\+D\+U\+L\+E\+R\+\_\+\+C\+B\+S\+\_\+\+E\+R\+R\+O\+R\+\_\+\+N\+O\+S\+E\+R\+V\+ER} & There is no initialized server with this id. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{group__RTEMSScoreSchedulerCBS_ga00f5de4bbf2dd36138965f58675a1673}\label{group__RTEMSScoreSchedulerCBS_ga00f5de4bbf2dd36138965f58675a1673}} 
+\index{CBS Scheduler@{CBS Scheduler}!\_Scheduler\_CBS\_Get\_server\_id@{\_Scheduler\_CBS\_Get\_server\_id}}
+\index{\_Scheduler\_CBS\_Get\_server\_id@{\_Scheduler\_CBS\_Get\_server\_id}!CBS Scheduler@{CBS Scheduler}}
+\subsubsection{\texorpdfstring{\_Scheduler\_CBS\_Get\_server\_id()}{\_Scheduler\_CBS\_Get\_server\_id()}}
+{\footnotesize\ttfamily int \+\_\+\+Scheduler\+\_\+\+C\+B\+S\+\_\+\+Get\+\_\+server\+\_\+id (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__ClassicTasks_gab20892b814dced7dd4e5b9bf42becd57}{rtems\+\_\+id}}}]{task\+\_\+id,  }\item[{\mbox{\hyperlink{group__RTEMSScoreSchedulerCBS_gaec8b0a87aaeee5befd176ed946ad60a7}{Scheduler\+\_\+\+C\+B\+S\+\_\+\+Server\+\_\+id}} $\ast$}]{server\+\_\+id }\end{DoxyParamCaption})}
+
+
+
+Gets a thread server id. 
+
+Get a thread server id, or S\+C\+H\+E\+D\+U\+L\+E\+R\+\_\+\+C\+B\+S\+\_\+\+E\+R\+R\+O\+R\+\_\+\+N\+O\+T\+\_\+\+F\+O\+U\+ND if it is not attached to any server.
+
+
+\begin{DoxyParams}[1]{Parameters}
+ & {\em task\+\_\+id} & The id of the task to get the corresponding server. \\
+\hline
+\mbox{\texttt{ out}}  & {\em server\+\_\+id} & Will contain the server id after successful method call. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em S\+C\+H\+E\+D\+U\+L\+E\+R\+\_\+\+C\+B\+S\+\_\+\+OK} & The operation was successful \\
+\hline
+{\em S\+C\+H\+E\+D\+U\+L\+E\+R\+\_\+\+C\+B\+S\+\_\+\+E\+R\+R\+O\+R\+\_\+\+N\+O\+S\+E\+R\+V\+ER} & There is no server with this task attached. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{group__RTEMSScoreSchedulerCBS_gad7d02d4d314db30e554b22d2f3c0054d}\label{group__RTEMSScoreSchedulerCBS_gad7d02d4d314db30e554b22d2f3c0054d}} 
+\index{CBS Scheduler@{CBS Scheduler}!\_Scheduler\_CBS\_Initialize@{\_Scheduler\_CBS\_Initialize}}
+\index{\_Scheduler\_CBS\_Initialize@{\_Scheduler\_CBS\_Initialize}!CBS Scheduler@{CBS Scheduler}}
+\subsubsection{\texorpdfstring{\_Scheduler\_CBS\_Initialize()}{\_Scheduler\_CBS\_Initialize()}}
+{\footnotesize\ttfamily int \+\_\+\+Scheduler\+\_\+\+C\+B\+S\+\_\+\+Initialize (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+\+\_\+\+Scheduler\+\_\+\+C\+B\+S\+\_\+\+Initialize 
+
+Initializes the C\+BS library.
+
+\begin{DoxyReturn}{Returns}
+S\+C\+H\+E\+D\+U\+L\+E\+R\+\_\+\+C\+B\+S\+\_\+\+OK This method always returns this status. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{group__RTEMSScoreSchedulerCBS_gae69b2b7650d05a7f48695c83f815d6fd}\label{group__RTEMSScoreSchedulerCBS_gae69b2b7650d05a7f48695c83f815d6fd}} 
+\index{CBS Scheduler@{CBS Scheduler}!\_Scheduler\_CBS\_Node\_downcast@{\_Scheduler\_CBS\_Node\_downcast}}
+\index{\_Scheduler\_CBS\_Node\_downcast@{\_Scheduler\_CBS\_Node\_downcast}!CBS Scheduler@{CBS Scheduler}}
+\subsubsection{\texorpdfstring{\_Scheduler\_CBS\_Node\_downcast()}{\_Scheduler\_CBS\_Node\_downcast()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} \mbox{\hyperlink{structScheduler__CBS__Node}{Scheduler\+\_\+\+C\+B\+S\+\_\+\+Node}}$\ast$ \+\_\+\+Scheduler\+\_\+\+C\+B\+S\+\_\+\+Node\+\_\+downcast (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structScheduler__Node}{Scheduler\+\_\+\+Node}} $\ast$}]{node }\end{DoxyParamCaption})}
+
+
+
+Casts the scheduler node to a scheduler C\+BS node. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em node} & The node to be casted to a scheduler C\+BS node.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+C\+BS Node pointer to {\itshape node}. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{group__RTEMSScoreSchedulerCBS_gabb8137112e3b30c70daa4dc3221093cb}\label{group__RTEMSScoreSchedulerCBS_gabb8137112e3b30c70daa4dc3221093cb}} 
+\index{CBS Scheduler@{CBS Scheduler}!\_Scheduler\_CBS\_Node\_initialize@{\_Scheduler\_CBS\_Node\_initialize}}
+\index{\_Scheduler\_CBS\_Node\_initialize@{\_Scheduler\_CBS\_Node\_initialize}!CBS Scheduler@{CBS Scheduler}}
+\subsubsection{\texorpdfstring{\_Scheduler\_CBS\_Node\_initialize()}{\_Scheduler\_CBS\_Node\_initialize()}}
+{\footnotesize\ttfamily void \+\_\+\+Scheduler\+\_\+\+C\+B\+S\+\_\+\+Node\+\_\+initialize (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct__Scheduler__Control}{Scheduler\+\_\+\+Control}} $\ast$}]{scheduler,  }\item[{\mbox{\hyperlink{structScheduler__Node}{Scheduler\+\_\+\+Node}} $\ast$}]{node,  }\item[{\mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$}]{the\+\_\+thread,  }\item[{\mbox{\hyperlink{group__RTEMSScorePriority_ga59d02b58072d31a9a1cfe644557aefe2}{Priority\+\_\+\+Control}}}]{priority }\end{DoxyParamCaption})}
+
+
+
+Initializes a C\+BS specific scheduler node of {\itshape the\+\_\+thread}. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+ & {\em scheduler} & The scheduler control for the operation. \\
+\hline
+\mbox{\texttt{ out}}  & {\em node} & The scheduler node to initalize. \\
+\hline
+ & {\em the\+\_\+thread} & The thread to initialize a scheduler node for. \\
+\hline
+ & {\em priority} & The priority for the node. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__RTEMSScoreSchedulerCBS_ga26f13ab87c29b1b9abf5e8defae50d47}\label{group__RTEMSScoreSchedulerCBS_ga26f13ab87c29b1b9abf5e8defae50d47}} 
+\index{CBS Scheduler@{CBS Scheduler}!\_Scheduler\_CBS\_Release\_job@{\_Scheduler\_CBS\_Release\_job}}
+\index{\_Scheduler\_CBS\_Release\_job@{\_Scheduler\_CBS\_Release\_job}!CBS Scheduler@{CBS Scheduler}}
+\subsubsection{\texorpdfstring{\_Scheduler\_CBS\_Release\_job()}{\_Scheduler\_CBS\_Release\_job()}}
+{\footnotesize\ttfamily void \+\_\+\+Scheduler\+\_\+\+C\+B\+S\+\_\+\+Release\+\_\+job (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct__Scheduler__Control}{Scheduler\+\_\+\+Control}} $\ast$}]{scheduler,  }\item[{\mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$}]{the\+\_\+thread,  }\item[{\mbox{\hyperlink{structPriority__Node}{Priority\+\_\+\+Node}} $\ast$}]{priority\+\_\+node,  }\item[{uint64\+\_\+t}]{deadline,  }\item[{\mbox{\hyperlink{structThread__queue__Context}{Thread\+\_\+queue\+\_\+\+Context}} $\ast$}]{queue\+\_\+context }\end{DoxyParamCaption})}
+
+
+
+Releases a job. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em scheduler} & The scheduler for the operation. \\
+\hline
+{\em the\+\_\+thread} & The corresponding thread. \\
+\hline
+{\em priority\+\_\+node} & The priority node for the operation. \\
+\hline
+{\em deadline} & The deadline for the job. \\
+\hline
+{\em queue\+\_\+context} & The thread queue context. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__RTEMSScoreSchedulerCBS_gaf899d82926e2d6d83ac1fb6d1072b932}\label{group__RTEMSScoreSchedulerCBS_gaf899d82926e2d6d83ac1fb6d1072b932}} 
+\index{CBS Scheduler@{CBS Scheduler}!\_Scheduler\_CBS\_Set\_parameters@{\_Scheduler\_CBS\_Set\_parameters}}
+\index{\_Scheduler\_CBS\_Set\_parameters@{\_Scheduler\_CBS\_Set\_parameters}!CBS Scheduler@{CBS Scheduler}}
+\subsubsection{\texorpdfstring{\_Scheduler\_CBS\_Set\_parameters()}{\_Scheduler\_CBS\_Set\_parameters()}}
+{\footnotesize\ttfamily int \+\_\+\+Scheduler\+\_\+\+C\+B\+S\+\_\+\+Set\+\_\+parameters (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__RTEMSScoreSchedulerCBS_gaec8b0a87aaeee5befd176ed946ad60a7}{Scheduler\+\_\+\+C\+B\+S\+\_\+\+Server\+\_\+id}}}]{server\+\_\+id,  }\item[{\mbox{\hyperlink{structScheduler__CBS__Parameters}{Scheduler\+\_\+\+C\+B\+S\+\_\+\+Parameters}} $\ast$}]{parameters }\end{DoxyParamCaption})}
+
+
+
+Sets parameters for C\+BS scheduling. 
+
+Change C\+BS scheduling parameters.
+
+
+\begin{DoxyParams}{Parameters}
+{\em server\+\_\+id} & The id of the server. \\
+\hline
+{\em parameters} & The parameters to set.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em S\+C\+H\+E\+D\+U\+L\+E\+R\+\_\+\+C\+B\+S\+\_\+\+OK} & The operation was successful. \\
+\hline
+{\em S\+C\+H\+E\+D\+U\+L\+E\+R\+\_\+\+C\+B\+S\+\_\+\+E\+R\+R\+O\+R\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+P\+A\+R\+A\+M\+E\+T\+ER} & The server id is too big or the given parameters are invalid. \\
+\hline
+{\em S\+C\+H\+E\+D\+U\+L\+E\+R\+\_\+\+C\+B\+S\+\_\+\+E\+R\+R\+O\+R\+\_\+\+N\+O\+S\+E\+R\+V\+ER} & There is no server with this id. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{group__RTEMSScoreSchedulerCBS_gac2cf154d9842c9449d74735b2b1d0a82}\label{group__RTEMSScoreSchedulerCBS_gac2cf154d9842c9449d74735b2b1d0a82}} 
+\index{CBS Scheduler@{CBS Scheduler}!\_Scheduler\_CBS\_Thread\_get\_node@{\_Scheduler\_CBS\_Thread\_get\_node}}
+\index{\_Scheduler\_CBS\_Thread\_get\_node@{\_Scheduler\_CBS\_Thread\_get\_node}!CBS Scheduler@{CBS Scheduler}}
+\subsubsection{\texorpdfstring{\_Scheduler\_CBS\_Thread\_get\_node()}{\_Scheduler\_CBS\_Thread\_get\_node()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__RTEMSScoreBaseDefs_gac216239df231d5dbd15e3520b0b9313f}{R\+T\+E\+M\+S\+\_\+\+I\+N\+L\+I\+N\+E\+\_\+\+R\+O\+U\+T\+I\+NE}} \mbox{\hyperlink{structScheduler__CBS__Node}{Scheduler\+\_\+\+C\+B\+S\+\_\+\+Node}}$\ast$ \+\_\+\+Scheduler\+\_\+\+C\+B\+S\+\_\+\+Thread\+\_\+get\+\_\+node (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$}]{the\+\_\+thread }\end{DoxyParamCaption})}
+
+
+
+Gets the C\+BS node of the thread. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em the\+\_\+thread} & The thread to get the C\+BS node of.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to the scheduler node of {\itshape the\+\_\+thread}. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{group__RTEMSScoreSchedulerCBS_gae0d9c2720ee46efdfe87ebf87cd45cae}\label{group__RTEMSScoreSchedulerCBS_gae0d9c2720ee46efdfe87ebf87cd45cae}} 
+\index{CBS Scheduler@{CBS Scheduler}!\_Scheduler\_CBS\_Unblock@{\_Scheduler\_CBS\_Unblock}}
+\index{\_Scheduler\_CBS\_Unblock@{\_Scheduler\_CBS\_Unblock}!CBS Scheduler@{CBS Scheduler}}
+\subsubsection{\texorpdfstring{\_Scheduler\_CBS\_Unblock()}{\_Scheduler\_CBS\_Unblock()}}
+{\footnotesize\ttfamily void \+\_\+\+Scheduler\+\_\+\+C\+B\+S\+\_\+\+Unblock (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct__Scheduler__Control}{Scheduler\+\_\+\+Control}} $\ast$}]{scheduler,  }\item[{\mbox{\hyperlink{struct__Thread__Control}{Thread\+\_\+\+Control}} $\ast$}]{the\+\_\+thread,  }\item[{\mbox{\hyperlink{structScheduler__Node}{Scheduler\+\_\+\+Node}} $\ast$}]{node }\end{DoxyParamCaption})}
+
+
+
+Unblocks a thread. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em scheduler} & The scheduler control. \\
+\hline
+{\em the\+\_\+thread} & The thread to unblock. \\
+\hline
+{\em node} & The scheduler node. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{group__RTEMSScoreSchedulerCBS_gad7073b55d1b96892798bbc516978f0ee}\label{group__RTEMSScoreSchedulerCBS_gad7073b55d1b96892798bbc516978f0ee}} 
+\index{CBS Scheduler@{CBS Scheduler}!\_Scheduler\_CBS\_Maximum\_servers@{\_Scheduler\_CBS\_Maximum\_servers}}
+\index{\_Scheduler\_CBS\_Maximum\_servers@{\_Scheduler\_CBS\_Maximum\_servers}!CBS Scheduler@{CBS Scheduler}}
+\subsubsection{\texorpdfstring{\_Scheduler\_CBS\_Maximum\_servers}{\_Scheduler\_CBS\_Maximum\_servers}}
+{\footnotesize\ttfamily const uint32\+\_\+t \+\_\+\+Scheduler\+\_\+\+C\+B\+S\+\_\+\+Maximum\+\_\+servers}
+
+Maximum number of simultaneous servers. \mbox{\Hypertarget{group__RTEMSScoreSchedulerCBS_ga12ae8c17a62c8837b43a6a6e7a1844f4}\label{group__RTEMSScoreSchedulerCBS_ga12ae8c17a62c8837b43a6a6e7a1844f4}} 
+\index{CBS Scheduler@{CBS Scheduler}!\_Scheduler\_CBS\_Server\_list@{\_Scheduler\_CBS\_Server\_list}}
+\index{\_Scheduler\_CBS\_Server\_list@{\_Scheduler\_CBS\_Server\_list}!CBS Scheduler@{CBS Scheduler}}
+\subsubsection{\texorpdfstring{\_Scheduler\_CBS\_Server\_list}{\_Scheduler\_CBS\_Server\_list}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structScheduler__CBS__Server}{Scheduler\+\_\+\+C\+B\+S\+\_\+\+Server}} \+\_\+\+Scheduler\+\_\+\+C\+B\+S\+\_\+\+Server\+\_\+list\mbox{[}$\,$\mbox{]}}
+
+List of servers. The {\itshape \mbox{\hyperlink{structScheduler__CBS__Server}{Scheduler\+\_\+\+C\+B\+S\+\_\+\+Server}}} is the index to the array of pointers to {\itshape \+\_\+\+Scheduler\+\_\+\+C\+B\+S\+\_\+\+Server\+\_\+list}. 

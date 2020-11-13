@@ -1,0 +1,53 @@
+\hypertarget{powerpc_2gen83xx_2console_2console-config_8c}{}\section{bsps/powerpc/gen83xx/console/console-\/config.c File Reference}
+\label{powerpc_2gen83xx_2console_2console-config_8c}\index{bsps/powerpc/gen83xx/console/console-\/config.c@{bsps/powerpc/gen83xx/console/console-\/config.c}}
+
+
+Console configuration.  
+
+
+{\ttfamily \#include $<$rtems/bsp\+Io.\+h$>$}\newline
+{\ttfamily \#include $<$libchip/ns16550.\+h$>$}\newline
+{\ttfamily \#include $<$mpc83xx/mpc83xx.\+h$>$}\newline
+{\ttfamily \#include $<$bsp.\+h$>$}\newline
+{\ttfamily \#include $<$bsp/irq.\+h$>$}\newline
+{\ttfamily \#include $<$bsp/console-\/termios.\+h$>$}\newline
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{powerpc_2gen83xx_2console_2console-config_8c_aa1e88fec2a0add03b025c33d9c965738}\label{powerpc_2gen83xx_2console_2console-config_8c_aa1e88fec2a0add03b025c33d9c965738}} 
+\#define {\bfseries D\+E\+V\+I\+C\+E\+\_\+\+F\+NS}~\&ns16550\+\_\+handler\+\_\+polled
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const \mbox{\hyperlink{structconsole__device}{console\+\_\+device}} \mbox{\hyperlink{group__ConsoleTermios_ga7f058e756eb724397922b823131fba5c}{console\+\_\+device\+\_\+table}} \mbox{[}$\,$\mbox{]}
+\begin{DoxyCompactList}\small\item\em Table for console devices installed via \mbox{\hyperlink{arm_2raspberrypi_2console_2console-config_8c_a4bdc321ef3ab62a261d77b5dbe075566}{console\+\_\+initialize()}} during system initialization. \end{DoxyCompactList}\item 
+const size\+\_\+t \mbox{\hyperlink{group__ConsoleTermios_gabca2c9c9873b0482f9fd306e6bade017}{console\+\_\+device\+\_\+count}} = R\+T\+E\+M\+S\+\_\+\+A\+R\+R\+A\+Y\+\_\+\+S\+I\+ZE(\mbox{\hyperlink{group__ConsoleTermios_ga7f058e756eb724397922b823131fba5c}{console\+\_\+device\+\_\+table}})
+\begin{DoxyCompactList}\small\item\em Count of entries in the console\+\_\+device\+\_\+table. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{bspIo_8h_a0b0dff1c3d35110ae303b4098c60dc14}{B\+S\+P\+\_\+output\+\_\+char\+\_\+function\+\_\+type}} \mbox{\hyperlink{powerpc_2gen83xx_2console_2console-config_8c_a5fb8c9c4f076f0340b4a17ed432ced5c}{B\+S\+P\+\_\+output\+\_\+char}} = gen83xx\+\_\+output\+\_\+char
+\item 
+\mbox{\hyperlink{bspIo_8h_a132b9ceff428a634ece5dfaac7ef1006}{B\+S\+P\+\_\+polling\+\_\+getchar\+\_\+function\+\_\+type}} \mbox{\hyperlink{powerpc_2gen83xx_2console_2console-config_8c_ae5846eecdfa8f2813504371bf01c29b0}{B\+S\+P\+\_\+poll\+\_\+char}} = \mbox{\hyperlink{bestcomm__api_8h_a872bb74de61c3689ccd5b41873fce42c}{N\+U\+LL}}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Console configuration. 
+
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{powerpc_2gen83xx_2console_2console-config_8c_a5fb8c9c4f076f0340b4a17ed432ced5c}\label{powerpc_2gen83xx_2console_2console-config_8c_a5fb8c9c4f076f0340b4a17ed432ced5c}} 
+\index{console-\/config.c@{console-\/config.c}!BSP\_output\_char@{BSP\_output\_char}}
+\index{BSP\_output\_char@{BSP\_output\_char}!console-\/config.c@{console-\/config.c}}
+\subsubsection{\texorpdfstring{BSP\_output\_char}{BSP\_output\_char}}
+{\footnotesize\ttfamily \mbox{\hyperlink{bspIo_8h_a0b0dff1c3d35110ae303b4098c60dc14}{B\+S\+P\+\_\+output\+\_\+char\+\_\+function\+\_\+type}} B\+S\+P\+\_\+output\+\_\+char = gen83xx\+\_\+output\+\_\+char}
+
+This variable points to the B\+SP provided method to output a character for the purposes of debug output.
+
+It must output only the specific character. It must not perform character translations, e.\+g. \char`\"{}\textbackslash{}n\char`\"{} to \char`\"{}\textbackslash{}r\textbackslash{}n\char`\"{}. \mbox{\Hypertarget{powerpc_2gen83xx_2console_2console-config_8c_ae5846eecdfa8f2813504371bf01c29b0}\label{powerpc_2gen83xx_2console_2console-config_8c_ae5846eecdfa8f2813504371bf01c29b0}} 
+\index{console-\/config.c@{console-\/config.c}!BSP\_poll\_char@{BSP\_poll\_char}}
+\index{BSP\_poll\_char@{BSP\_poll\_char}!console-\/config.c@{console-\/config.c}}
+\subsubsection{\texorpdfstring{BSP\_poll\_char}{BSP\_poll\_char}}
+{\footnotesize\ttfamily \mbox{\hyperlink{bspIo_8h_a132b9ceff428a634ece5dfaac7ef1006}{B\+S\+P\+\_\+polling\+\_\+getchar\+\_\+function\+\_\+type}} B\+S\+P\+\_\+poll\+\_\+char = \mbox{\hyperlink{bestcomm__api_8h_a872bb74de61c3689ccd5b41873fce42c}{N\+U\+LL}}}
+
+This variable points to the B\+SP provided method to input a character for the purposes of debug input. 
