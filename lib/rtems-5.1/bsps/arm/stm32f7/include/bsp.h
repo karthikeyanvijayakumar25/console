@@ -1,6 +1,6 @@
 /**
  * @file
- * @ingroup RTEMSBSPsARMSTM32F4
+ * @ingroup RTEMSBSPsARMSTM32F7
  * @brief Global BSP definitions.
  */
 
@@ -18,15 +18,15 @@
  * http://www.rtems.org/license/LICENSE.
  */
 
-#ifndef LIBBSP_ARM_STM32F4_BSP_H
-#define LIBBSP_ARM_STM32F4_BSP_H
+#ifndef LIBBSP_ARM_STM32F7_BSP_H
+#define LIBBSP_ARM_STM32F7_BSP_H
 
 /**
- * @defgroup RTEMSBSPsARMSTM32F4 STM32F4
+ * @defgroup RTEMSBSPsARMSTM32F7 STM32F7
  *
  * @ingroup RTEMSBSPsARM
  *
- * @brief STM32F4 Board Support Package.
+ * @brief STM32F7 Board Support Package.
  *
  * @{
  */
@@ -46,7 +46,7 @@ extern "C" {
 
 #define BSP_ARMV7M_SYSTICK_PRIORITY (14 << 4)
 
-#define BSP_ARMV7M_SYSTICK_FREQUENCY STM32F4_HCLK
+#define BSP_ARMV7M_SYSTICK_FREQUENCY STM32F7_HCLK
 
 #ifdef __cplusplus
 }
@@ -55,4 +55,4 @@ extern "C" {
 /** @} */
 
 
-#endif /* LIBBSP_ARM_STM32F4_BSP_H */
+#endif /* LIBBSP_ARM_STM32F7_BSP_H */

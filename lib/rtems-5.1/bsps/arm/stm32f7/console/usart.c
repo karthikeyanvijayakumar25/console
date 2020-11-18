@@ -19,11 +19,12 @@
 #include <bsp/rcc.h>
 #include <bsp/irq.h>
 #include <bsp/usart.h>
-#include <bsp/stm32f4.h>
 
-static volatile stm32f4_usart *usart_get_regs(const console_tbl *ct)
+#include "../include/bsp/stm32f7.h"
+
+static volatile stm32f7_usart *usart_get_regs(const console_tbl *ct)
 {
-  return (stm32f4_usart *) ct->ulCtrlPort1;
+  return (stm32f7_usart *) ct->ulCtrlPort1;
 }
 
 #if 0
@@ -33,18 +34,18 @@ static rtems_vector_number usart_get_irq_number(const console_tbl *ct)
 }
 #endif
 
-static const stm32f4_rcc_index usart_rcc_index [] = {
-  STM32F4_RCC_USART1,
-  STM32F4_RCC_USART2,
-  STM32F4_RCC_USART3,
-  STM32F4_RCC_UART4,
-  STM32F4_RCC_UART5,
-#ifdef STM32F4_FAMILY_F4XXXX
-  STM32F4_RCC_USART6
-#endif /* STM32F4_FAMILY_F4XXXX */
+static const stm32f7_rcc_index usart_rcc_index [] = {
+  STM32F7_RCC_USART1,
+  STM32F7_RCC_USART2,
+  STM32F7_RCC_USART3,
+  STM32F7_RCC_UART4,
+  STM32F7_RCC_UART5,
+#ifdef STM32F7_FAMILY_F7XXXX
+  STM32F7_RCC_USART6
+#endif /* STM32F7_FAMILY_F7XXXX */
 };
 
-static stm32f4_rcc_index usart_get_rcc_index(const console_tbl *ct)
+static stm32f7_rcc_index usart_get_rcc_index(const console_tbl *ct)
 {
   return usart_rcc_index [ct->ulCtrlPort2];
 }
@@ -52,8 +53,8 @@ static stm32f4_rcc_index usart_get_rcc_index(const console_tbl *ct)
 static const uint8_t usart_pclk_index [] = { 1, 0, 0, 0, 0, 1 };
 
 static const uint32_t usart_pclk_by_index [] = {
-  STM32F4_PCLK1,
-  STM32F4_PCLK2
+  STM32F7_PCLK1,
+  STM32F7_PCLK2
 };
 
 static uint32_t usart_get_pclk(const console_tbl *ct)
@@ -82,12 +83,12 @@ static uint32_t usart_get_baud(const console_tbl *ct)
  * 2. div_fraction = pclk / (baud - a * div_mantissa)
  */
 static uint32_t usart_get_bbr(
-  volatile stm32f4_usart *usart,
+  volatile stm32f7_usart *usart,
   uint32_t pclk,
   uint32_t baud
 )
 {
-  uint32_t a = 8 * (2 - ((usart->cr1 & STM32F4_USART_CR1_OVER8) != 0));
+  uint32_t a = 8 * (2 - ((usart->cr1 & STM32F7_USART_CR1_OVER8) != 0));
   uint32_t div_mantissa_low = pclk / (a * baud);
   uint32_t div_fraction_low = pclk / (baud - a * div_mantissa_low);
   uint32_t div_mantissa_high;
@@ -116,27 +117,27 @@ static uint32_t usart_get_bbr(
     div_fraction = div_fraction_high;
   }
 
-  return STM32F4_USART_BBR_DIV_MANTISSA(div_mantissa)
-    | STM32F4_USART_BBR_DIV_FRACTION(div_fraction);
+  return STM32F7_USART_BBR_DIV_MANTISSA(div_mantissa)
+    | STM32STM32F7_USART_BBR_DIV_FRACTION(div_fraction);
 }
 
 static void usart_initialize(int minor)
 {
   const console_tbl *ct = Console_Port_Tbl [minor];
-  volatile stm32f4_usart *usart = usart_get_regs(ct);
+  volatile stm32f7_usart *usart = usart_get_regs(ct);
   uint32_t pclk = usart_get_pclk(ct);
   uint32_t baud = usart_get_baud(ct);
-  stm32f4_rcc_index rcc_index = usart_get_rcc_index(ct);
+  stm32f7_rcc_index rcc_index = usart_get_rcc_index(ct);
 
-  stm32f4_rcc_set_clock(rcc_index, true);
+  stm32f7_rcc_set_clock(rcc_index, true);
 
   usart->cr1 = 0;
   usart->cr2 = 0;
   usart->cr3 = 0;
   usart->bbr = usart_get_bbr(usart, pclk, baud);
-  usart->cr1 = STM32F4_USART_CR1_UE
-    | STM32F4_USART_CR1_TE
-    | STM32F4_USART_CR1_RE;
+  usart->cr1 = STM32F7_USART_CR1_UE
+    | STM32F7_USART_CR1_TE
+    | STM32F7_USART_CR1_RE;
 }
 
 static int usart_first_open(int major, int minor, void *arg)
@@ -160,10 +161,10 @@ static int usart_last_close(int major, int minor, void *arg)
 static int usart_read_polled(int minor)
 {
   const console_tbl *ct = Console_Port_Tbl [minor];
-  volatile stm32f4_usart *usart = usart_get_regs(ct);
+  volatile stm32f7_usart *usart = usart_get_regs(ct);
 
-  if ((usart->sr & STM32F4_USART_SR_RXNE) != 0) {
-    return STM32F4_USART_DR_GET(usart->dr);
+  if ((usart->sr & STM32F7_USART_SR_RXNE) != 0) {
+    return STM32F7_USART_DR_GET(usart->dr);
   } else {
     return -1;
   }
@@ -172,13 +173,13 @@ static int usart_read_polled(int minor)
 static void usart_write_polled(int minor, char c)
 {
   const console_tbl *ct = Console_Port_Tbl [minor];
-  volatile stm32f4_usart *usart = usart_get_regs(ct);
+  volatile stm32f7_usart *usart = usart_get_regs(ct);
 
-  while ((usart->sr & STM32F4_USART_SR_TXE) == 0) {
+  while ((usart->sr & STM32F7_USART_SR_TXE) == 0) {
     /* Wait */
   }
 
-  usart->dr = STM32F4_USART_DR(c);
+  usart->dr = STM32F7_USART_DR(c);
 }
 
 static ssize_t usart_write_support_polled(
@@ -201,7 +202,7 @@ static int usart_set_attributes(int minor, const struct termios *term)
   return -1;
 }
 
-const console_fns stm32f4_usart_fns = {
+const console_fns stm32f7_usart_fns = {
   .deviceProbe = libchip_serial_default_probe,
   .deviceFirstOpen = usart_first_open,
   .deviceLastClose = usart_last_close,

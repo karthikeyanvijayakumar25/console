@@ -1,6 +1,6 @@
 /**
  * @file
- * @ingroup stm32f4_i2c I2C Support
+ * @ingroup stm32f7_i2c I2C Support
  * @brief I2C-module.
  */
 
@@ -23,21 +23,21 @@
  * wants to generate the condition automatically when sending or receiving data.
  */
 
-#ifndef LIBBSP_ARM_STM32F4_I2C_H
-#define LIBBSP_ARM_STM32F4_I2C_H
+#ifndef LIBBSP_ARM_STM32F7_I2C_H
+#define LIBBSP_ARM_STM32F7_I2C_H
 
 #include <rtems.h>
 
 #include <bsp/io.h>
-#include <bsp/stm32f4.h>
+#include "stm32f7.h"
 
 #ifdef __cplusplus
 extern "C" {
 #endif /* __cplusplus */
 
 /**
- * @defgroup stm32f4_i2c I2C Support
- * @ingroup RTEMSBSPsARMSTM32F4
+ * @defgroup stm32f7_i2c I2C Support
+ * @ingroup RTEMSBSPsARMSTM32F7
  * @brief I2C Module
  * @{
  */
@@ -54,10 +54,10 @@ typedef struct {
   size_t len;
   /** @brief Buffer for data */
   uint8_t *buf;
-} stm32f4_i2c_message;
+} stm32f7_i2c_message;
 
 typedef struct {
-  volatile stm32f4_i2c *regs;
+  volatile stm32f7_i2c *regs;
   size_t index;
   rtems_vector_number vector;
   rtems_id mutex;
@@ -67,25 +67,25 @@ typedef struct {
   size_t len;
   bool read;
   uint8_t addr_with_rw;
-} stm32f4_i2c_bus_entry;
+} stm32f7_i2c_bus_entry;
 
 /** @brief Initialise the i2c module. */
-rtems_status_code stm32f4_i2c_init(stm32f4_i2c_bus_entry *e);
+rtems_status_code stm32f7_i2c_init(stm32f7_i2c_bus_entry *e);
 
 /** @brief Process a i2c message */
-rtems_status_code stm32f4_i2c_process_message(
-  stm32f4_i2c_bus_entry *e,
-  stm32f4_i2c_message *msg
+rtems_status_code stm32f7_i2c_process_message(
+  stm32f7_i2c_bus_entry *e,
+  stm32f7_i2c_message *msg
 );
 
 /** @brief Set another baud rate than the default one */
-rtems_status_code stm32f4_i2c_set_bitrate(
-  stm32f4_i2c_bus_entry *e,
+rtems_status_code stm32f7_i2c_set_bitrate(
+  stm32f7_i2c_bus_entry *e,
   uint32_t br
 );
 
-extern stm32f4_i2c_bus_entry *const stm32f4_i2c1;
-extern stm32f4_i2c_bus_entry *const stm32f4_i2c2;
+extern stm32f7_i2c_bus_entry *const stm32f7_i2c1;
+extern stm32f7_i2c_bus_entry *const stm32f7_i2c2;
 
 /** @} */
 
@@ -93,4 +93,4 @@ extern stm32f4_i2c_bus_entry *const stm32f4_i2c2;
 }
 #endif /* __cplusplus */
 
-#endif /* LIBBSP_ARM_STM32F4_I2C_H */
+#endif /* LIBBSP_ARM_STM32F7_I2C_H */

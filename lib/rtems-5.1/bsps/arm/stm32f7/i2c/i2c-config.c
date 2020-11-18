@@ -16,22 +16,22 @@
 #include <bsp/i2c.h>
 #include <bsp/irq.h>
 
-#ifdef STM32F4_ENABLE_I2C1
-  static stm32f4_i2c_bus_entry stm32f4_i2c1_entry = {
-    .regs = STM32F4_I2C1,
+#ifdef STM32F7_ENABLE_I2C1
+  static stm32f7_i2c_bus_entry stm32f7_i2c1_entry = {
+    .regs = STM32F7_I2C1,
     .index = 0,
-    .vector = STM32F4_IRQ_I2C1_EV,
+    .vector = STM32F7_IRQ_I2C1_EV,
   };
 
-  stm32f4_i2c_bus_entry *const stm32f4_i2c1 = &stm32f4_i2c1_entry;
+  stm32f7_i2c_bus_entry *const stm32f7_i2c1 = &stm32f7_i2c1_entry;
 #endif
 
-#ifdef STM32F4_ENABLE_I2C2
-  static stm32f4_i2c_bus_entry stm32f4_i2c2_entry = {
-    .regs = STM32F4_I2C2,
+#ifdef STM32F7_ENABLE_I2C2
+  static stm32f7_i2c_bus_entry stm32f7_i2c2_entry = {
+    .regs = STM32F7_I2C2,
     .index = 1,
-    .vector = STM32F4_IRQ_I2C2_EV,
+    .vector = STM32F7_IRQ_I2C2_EV,
   };
 
-  stm32f4_i2c_bus_entry *const stm32f4_i2c2 = &stm32f4_i2c2_entry;
+  stm32f7_i2c_bus_entry *const stm32f7_i2c2 = &stm32f7_i2c2_entry;
 #endif

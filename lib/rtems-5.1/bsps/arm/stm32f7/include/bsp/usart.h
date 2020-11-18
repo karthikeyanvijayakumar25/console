@@ -1,6 +1,6 @@
 /**
  * @file
- * @ingroup stm32f4_usart
+ * @ingroup stm32f7_usart
  * @brief USART (universal synchronous/asynchronous receiver/transmitter) support.
  */
 
@@ -18,14 +18,14 @@
  * http://www.rtems.org/license/LICENSE.
  */
 
-#ifndef LIBBSP_ARM_STM32F4_USART_H
-#define LIBBSP_ARM_STM32F4_USART_H
+#ifndef LIBBSP_ARM_STM32F7_USART_H
+#define LIBBSP_ARM_STM32F7_USART_H
 
 #include <libchip/serial.h>
 
 /**
- * @defgroup stm32f4_usart USART Support
- * @ingroup RTEMSBSPsARMSTM32F4
+ * @defgroup stm32f7_usart USART Support
+ * @ingroup RTEMSBSPsARMSTM32F7
  * @brief USART Support
  * @{
  */
@@ -34,7 +34,7 @@
 extern "C" {
 #endif /* __cplusplus */
 
-extern const console_fns stm32f4_usart_fns;
+extern const console_fns stm32f7_usart_fns;
 
 /** @} */
 
@@ -42,4 +42,4 @@ extern const console_fns stm32f4_usart_fns;
 }
 #endif /* __cplusplus */
 
-#endif /* LIBBSP_ARM_STM32F4_USART_H */
+#endif /* LIBBSP_ARM_STM32F7_USART_H */

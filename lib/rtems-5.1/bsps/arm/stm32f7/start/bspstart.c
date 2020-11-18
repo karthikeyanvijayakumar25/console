@@ -18,12 +18,12 @@
 #include <bsp/bootcard.h>
 #include <bsp/irq-generic.h>
 #include <assert.h>
-#include <bsp/stm32f4.h>
+#include "../include/bsp/stm32f7.h"
 
-#ifdef STM32F4_FAMILY_F4XXXX
+#ifdef STM32F7_FAMILY_F7XXXX
 
-#include <bsp/stm32f4xxxx_rcc.h>
-#include <bsp/stm32f4xxxx_flash.h>
+#include "../include/bsp/stm32f7xxxx_rcc.h"
+#include "../include/bsp/stm32f7xxxx_flash.h"
 
 static rtems_status_code set_system_clk(
   uint32_t sys_clk,
@@ -33,7 +33,7 @@ static rtems_status_code set_system_clk(
 
 static void init_main_osc( void )
 {
-  volatile stm32f4_rcc *rcc = STM32F4_RCC;
+  volatile stm32f7_rcc *rcc = STM32F7_RCC;
   rtems_status_code     status;
 
   /* Revert to reset values */
@@ -45,8 +45,8 @@ static void init_main_osc( void )
 
   rcc->cr &= 0xF0F0FFFD;   /* turn off all clocks and PLL except HSI */
 
-  status = set_system_clk( STM32F4_SYSCLK / 1000000L,
-    STM32F4_HSE_OSCILLATOR / 1000000L,
+  status = set_system_clk( STM32F7_SYSCLK / 1000000L,
+    STM32F7_HSE_OSCILLATOR / 1000000L,
     1 );
 
   assert( rtems_is_status_successful( status ) );
@@ -63,9 +63,9 @@ static void init_main_osc( void )
  * Best fits for the clocks are achieved with multiplies of 42MHz.
  * Even though APB1, APB2 and AHB are calculated user is still required
  * to provide correct values for the bsp configuration for the:
- * STM32F4_PCLK1
- * STM32F4_PCLK2
- * STM32F4_HCLK
+ * STM32F7_PCLK1
+ * STM32F7_PCLK2
+ * STM32F7_HCLK
  * as those are used for the peripheral clocking calculations.
  *
  * @param sys_clk Desired system clock in MHz.
@@ -84,8 +84,8 @@ static rtems_status_code set_system_clk(
   uint32_t hse_flag
 )
 {
-  volatile stm32f4_rcc   *rcc = STM32F4_RCC;
-  volatile stm32f4_flash *flash = STM32F4_FLASH;
+  volatile stm32f7_rcc   *rcc = STM32F7_RCC;
+  volatile stm32f7_flash *flash = STM32F7_FLASH;
   long                    timeout = 0;
 
   int src_clk = 0;
@@ -257,10 +257,10 @@ static rtems_status_code set_system_clk(
    * Set flash parameters, hard coded for now for fast system clocks.
    * TODO implement some math to use flash on as low latancy as possible
    */
-  flash->acr = STM32F4_FLASH_ACR_LATENCY( 5 ) | /* latency */
-               STM32F4_FLASH_ACR_ICEN |       /* instruction cache */
-               STM32F4_FLASH_ACR_DCEN |        /* data cache */
-               STM32F4_FLASH_ACR_PRFTEN;
+  flash->acr = STM32F7_FLASH_ACR_LATENCY( 5 ) | /* latency */
+               STM32F7_FLASH_ACR_ICEN |       /* instruction cache */
+               STM32F7_FLASH_ACR_DCEN |        /* data cache */
+               STM32F7_FLASH_ACR_PRFTEN;
 
   /* turn on PLL */
   rcc->cr |= RCC_CR_PLLON;
@@ -282,22 +282,22 @@ static rtems_status_code set_system_clk(
   return RTEMS_SUCCESSFUL;
 }
 
-#endif /* STM32F4_FAMILY_F4XXXX */
+#endif /* STM32F7_FAMILY_F7XXXX */
 
-#ifdef STM32F4_FAMILY_F10XXX
+#ifdef STM32F7_FAMILY_F10XXX
 
 static void init_main_osc( void )
 {
 
 }
 
-#endif /* STM32F4_FAMILY_F10XXX */
+#endif /* STM32F7_FAMILY_F10XXX */
 
 void bsp_start( void )
 {
   init_main_osc();
 
-  stm32f4_gpio_set_config_array( &stm32f4_start_config_gpio[ 0 ] );
+  stm32f7_gpio_set_config_array( &stm32f7_start_config_gpio[ 0 ] );
 
   bsp_interrupt_initialize();
 }

@@ -1,7 +1,7 @@
 /**
  * @file
- * @ingroup stm32f4_gpio
- * @brief STM32F4XXXX GPIO support.
+ * @ingroup stm32f7_gpio
+ * @brief STM32F7XXXX GPIO support.
  */
 
 /*
@@ -18,8 +18,8 @@
  * http://www.rtems.org/license/LICENSE.
  */
 
-#ifndef LIBBSP_ARM_STM32F4_STM32F4XXXX_GPIO_H
-#define LIBBSP_ARM_STM32F4_STM32F4XXXX_GPIO_H
+#ifndef LIBBSP_ARM_STM32F7_STM32F7XXXX_GPIO_H
+#define LIBBSP_ARM_STM32F7_STM32F7XXXX_GPIO_H
 
 #include <bsp/utility.h>
 
@@ -34,6 +34,6 @@ typedef struct {
 	uint32_t lckr;
 	uint32_t afr [2];
 	uint32_t reserved_28 [246];
-} stm32f4_gpio;
+} stm32f7_gpio;
 
-#endif /* LIBBSP_ARM_STM32F4_STM32F4XXXX_GPIO_H */
+#endif /* LIBBSP_ARM_STM32F7_STM32F7XXXX_GPIO_H */

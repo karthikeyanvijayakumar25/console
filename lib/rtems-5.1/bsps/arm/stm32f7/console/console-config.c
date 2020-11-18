@@ -19,73 +19,73 @@
 #include <bspopts.h>
 #include <bsp/irq.h>
 #include <bsp/usart.h>
-#include <bsp/stm32f4.h>
+#include "../include/bsp/stm32f7.h"
 
 console_tbl Console_Configuration_Ports [] = {
-  #ifdef STM32F4_ENABLE_USART_1
+  #ifdef STM32F7_ENABLE_USART_1
     {
       .sDeviceName = "/dev/ttyS0",
       .deviceType = SERIAL_CUSTOM,
-      .pDeviceFns = &stm32f4_usart_fns,
-      .ulCtrlPort1 = (uint32_t) STM32F4_USART_1,
+      .pDeviceFns = &stm32f7_usart_fns,
+      .ulCtrlPort1 = (uint32_t) STM32F7_USART_1,
       .ulCtrlPort2 = 0,
-      .ulClock = STM32F4_USART_BAUD,
-      .ulIntVector = STM32F4_IRQ_USART1
+      .ulClock = STM32F7_USART_BAUD,
+      .ulIntVector = STM32F7_IRQ_USART1
     },
   #endif
-  #ifdef STM32F4_ENABLE_USART_2
+  #ifdef STM32F7_ENABLE_USART_2
     {
       .sDeviceName = "/dev/ttyS1",
       .deviceType = SERIAL_CUSTOM,
-      .pDeviceFns = &stm32f4_usart_fns,
-      .ulCtrlPort1 = (uint32_t) STM32F4_USART_2,
+      .pDeviceFns = &stm32f7_usart_fns,
+      .ulCtrlPort1 = (uint32_t) STM32F7_USART_2,
       .ulCtrlPort2 = 1,
-      .ulClock = STM32F4_USART_BAUD,
-      .ulIntVector = STM32F4_IRQ_USART2
+      .ulClock = STM32F7_USART_BAUD,
+      .ulIntVector = STM32F7_IRQ_USART2
     },
   #endif
-  #ifdef STM32F4_ENABLE_USART_3
+  #ifdef STM32F7_ENABLE_USART_3
     {
       .sDeviceName = "/dev/ttyS2",
       .deviceType = SERIAL_CUSTOM,
-      .pDeviceFns = &stm32f4_usart_fns,
-      .ulCtrlPort1 = (uint32_t) STM32F4_USART_3,
+      .pDeviceFns = &stm32f7_usart_fns,
+      .ulCtrlPort1 = (uint32_t) STM32F7_USART_3,
       .ulCtrlPort2 = 2,
-      .ulClock = STM32F4_USART_BAUD,
-      .ulIntVector = STM32F4_IRQ_USART3
+      .ulClock = STM32F7_USART_BAUD,
+      .ulIntVector = STM32F7_IRQ_USART3
     },
   #endif
-  #ifdef STM32F4_ENABLE_UART_4
+  #ifdef STM32F7_ENABLE_UART_4
     {
       .sDeviceName = "/dev/ttyS3",
       .deviceType = SERIAL_CUSTOM,
-      .pDeviceFns = &stm32f4_usart_fns,
-      .ulCtrlPort1 = (uint32_t) STM32F4_USART_4,
+      .pDeviceFns = &stm32f7_usart_fns,
+      .ulCtrlPort1 = (uint32_t) STM32F7_USART_4,
       .ulCtrlPort2 = 3,
-      .ulClock = STM32F4_USART_BAUD,
-      .ulIntVector = STM32F4_IRQ_UART4
+      .ulClock = STM32F7_USART_BAUD,
+      .ulIntVector = STM32F7_IRQ_UART4
     },
   #endif
-  #ifdef STM32F4_ENABLE_UART_5
+  #ifdef STM32F7_ENABLE_UART_5
     {
       .sDeviceName = "/dev/ttyS4",
       .deviceType = SERIAL_CUSTOM,
-      .pDeviceFns = &stm32f4_usart_fns,
-      .ulCtrlPort1 = (uint32_t) STM32F4_USART_5,
+      .pDeviceFns = &stm32f7_usart_fns,
+      .ulCtrlPort1 = (uint32_t) STM32F7_USART_5,
       .ulCtrlPort2 = 4,
-      .ulClock = STM32F4_USART_BAUD,
-      .ulIntVector = STM32F4_IRQ_UART5
+      .ulClock = STM32F7_USART_BAUD,
+      .ulIntVector = STM32F7_IRQ_UART5
     },
   #endif
-  #ifdef STM32F4_ENABLE_USART_6
+  #ifdef STM32F7_ENABLE_USART_6
     {
       .sDeviceName = "/dev/ttyS5",
       .deviceType = SERIAL_CUSTOM,
-      .pDeviceFns = &stm32f4_usart_fns,
-      .ulCtrlPort1 = (uint32_t) STM32F4_USART_6,
+      .pDeviceFns = &stm32f7_usart_fns,
+      .ulCtrlPort1 = (uint32_t) STM32F7_USART_6,
       .ulCtrlPort2 = 5,
-      .ulClock = STM32F4_USART_BAUD,
-      .ulIntVector = STM32F4_IRQ_USART6
+      .ulClock = STM32F7_USART_BAUD,
+      .ulIntVector = STM32F7_IRQ_USART6
     },
   #endif
 };
