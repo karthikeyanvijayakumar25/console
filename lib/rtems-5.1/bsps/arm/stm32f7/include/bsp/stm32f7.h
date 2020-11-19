@@ -133,8 +133,8 @@
  * @{
  */
 
-#include <bsp/stm32f7xxxx_flash.h>
-#define STM32F7_FLASH ((volatile stm32f7_flash *) (STM32F7_AHB1_BASE + 0x3c00))
+//#include <bsp/stm32f7xxxx_flash.h>
+///#define STM32F7_FLASH ((volatile stm32f7_flash *) (STM32F7_AHB1_BASE + 0x3c00))
 
 /** @} */
 
@@ -192,67 +192,5 @@
 /** @} */
 
 #endif /* STM32F7_FAMILY_F7XXXX */
-
-#ifdef STM32F7_FAMILY_F10XXX
-
-/**
- * @name STM32F10 EXTI
- * @{
- */
-
-#include <bsp/stm32f10xxx_exti.h>
-#define STM32F7_EXTI ((volatile stm32f7_exti *) (STM32F7_BASE + 0x40010400))
-
-/** @} */
-
-/**
- * @name STM32F10XXX GPIO
- * @{
- */
-
-#include <bsp/stm32f10xxx_gpio.h>
-#define STM32F7_GPIO(i) ((volatile stm32f7_gpio *) (STM32F7_BASE + 0x40010800 + i * 0x400))
-#define STM32F7_AFIO ((volatile stm32f7_afio *) (STM32F7_BASE + 0x40010000))
-
-/** @} */
-
-/**
- * @name STM32F10XXX RCC
- * @{
- */
-
-#include <bsp/stm32f10xxx_rcc.h>
-#define STM32F7_RCC ((volatile stm32f7_rcc *) (STM32F7_BASE + 0x40021000))
-
-/** @} */
-
-/**
- * @name STM32 I2C
- * @{
- */
-
-#include <bsp/stm32_i2c.h>
-#define STM32F7_I2C2 ((volatile stm32f7_i2c *) (STM32F7_BASE + 0x40005800))
-#define STM32F7_I2C1 ((volatile stm32f7_i2c *) (STM32F7_BASE + 0x40005400))
-
-/** @} */
-
-/**
- * @name STM32 USART
- * @{
- */
-
-#include <bsp/stm32_usart.h>
-#define STM32F7_USART_1 ((volatile stm32f7_usart *) (STM32F7_BASE + 0x40013800))
-#define STM32F7_USART_2 ((volatile stm32f7_usart *) (STM32F7_BASE + 0x40004400))
-#define STM32F7_USART_3 ((volatile stm32f7_usart *) (STM32F7_BASE + 0x40004800))
-#define STM32F7_USART_4 ((volatile stm32f7_usart *) (STM32F7_BASE + 0x40004c00))
-#define STM32F7_USART_5 ((volatile stm32f7_usart *) (STM32F7_BASE + 0x40005000))
-
-/** @} */
-
-/** @} */
-
-#endif /* STM32F7_FAMILY_F10XXX */
 
 #endif /* LIBBSP_ARM_STM32F7_STM32F7_H */

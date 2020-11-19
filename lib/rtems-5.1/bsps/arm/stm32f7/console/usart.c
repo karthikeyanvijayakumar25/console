@@ -118,7 +118,7 @@ static uint32_t usart_get_bbr(
   }
 
   return STM32F7_USART_BBR_DIV_MANTISSA(div_mantissa)
-    | STM32STM32F7_USART_BBR_DIV_FRACTION(div_fraction);
+    | STM32F7_USART_BBR_DIV_FRACTION(div_fraction);
 }
 
 static void usart_initialize(int minor)

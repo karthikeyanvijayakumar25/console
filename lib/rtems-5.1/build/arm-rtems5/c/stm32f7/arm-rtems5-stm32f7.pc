@@ -1,0 +1,18 @@
+#
+# pkg-config support file for RTEMS BSP stm32f7
+#
+# Warning: This stuff is experimental and may be changed at any time.
+#
+prefix=/opt/rtems-5
+exec_prefix=/opt/rtems-5/arm-rtems5
+libdir=${exec_prefix}/stm32f7/lib
+includedir=${exec_prefix}/stm32f7/lib/include
+
+CFLAGS=-mthumb -mcpu=cortex-m4 -O2 -g -ffunction-sections -fdata-sections -Wall -Wmissing-prototypes -Wimplicit-function-declaration -Wstrict-prototypes -Wnested-externs
+RTEMS_BSP=stm32f7
+
+Name: arm-rtems5-stm32f7
+Version: 5.1.0
+Description: RTEMS BSP stm32f7
+Libs:
+Cflags: -qrtems -B${exec_prefix}/lib/ -B${libdir}/ --specs bsp_specs ${CFLAGS}

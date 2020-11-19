@@ -142,11 +142,11 @@ am__distuninstallcheck_listfiles = $(distuninstallcheck_listfiles) \
   | sed 's|^\./|$(prefix)/|' | grep -v '$(infodir)/dir$$'
 distcleancheck_listfiles = find . -type f -print
 pkgdatadir = ${datarootdir}/rtems5
-ACLOCAL = ${SHELL} /home/embeddeduser/consolePrjt/rtems-5.1/missing --run aclocal-1.12
+ACLOCAL = ${SHELL} /home/embeddeduser/consolePrjt/emp/lib/rtems-5.1/missing --run aclocal-1.12
 AMTAR = $${TAR-tar}
-AUTOCONF = ${SHELL} /home/embeddeduser/consolePrjt/rtems-5.1/missing --run autoconf
-AUTOHEADER = ${SHELL} /home/embeddeduser/consolePrjt/rtems-5.1/missing --run autoheader
-AUTOMAKE = ${SHELL} /home/embeddeduser/consolePrjt/rtems-5.1/missing --run automake-1.12
+AUTOCONF = ${SHELL} /home/embeddeduser/consolePrjt/emp/lib/rtems-5.1/missing --run autoconf
+AUTOHEADER = ${SHELL} /home/embeddeduser/consolePrjt/emp/lib/rtems-5.1/missing --run autoheader
+AUTOMAKE = ${SHELL} /home/embeddeduser/consolePrjt/emp/lib/rtems-5.1/missing --run automake-1.12
 AWK = mawk
 CYGPATH_W = echo
 DEFS = -DPACKAGE_NAME=\"rtems-c\" -DPACKAGE_TARNAME=\"rtems-c\" -DPACKAGE_VERSION=\"5.1.0\" -DPACKAGE_STRING=\"rtems-c\ 5.1.0\" -DPACKAGE_BUGREPORT=\"https://devel.rtems.org/newticket\" -DPACKAGE_URL=\"\"
@@ -163,7 +163,7 @@ LIBS =
 LTLIBOBJS = 
 MAINT = #
 MAKE = make
-MAKEINFO = ${SHELL} /home/embeddeduser/consolePrjt/rtems-5.1/missing --run makeinfo
+MAKEINFO = ${SHELL} /home/embeddeduser/consolePrjt/emp/lib/rtems-5.1/missing --run makeinfo
 MKDIR_P = /usr/bin/mkdir -p
 PACKAGE = rtems-c
 PACKAGE_BUGREPORT = https://devel.rtems.org/newticket
@@ -175,19 +175,19 @@ PACKAGE_VERSION = 5.1.0
 PATH_SEPARATOR = :
 PROJECT_ROOT = ../$(top_builddir)
 PROJECT_TOPdir = ../../$(top_builddir)
-RTEMS_BSP_LIST =  stm32f4
+RTEMS_BSP_LIST =  stm32f7
 RTEMS_BUILD_ROOT = 
 RTEMS_CPU = arm
-RTEMS_SOURCE_ROOT = /home/embeddeduser/consolePrjt/rtems-5.1
+RTEMS_SOURCE_ROOT = /home/embeddeduser/consolePrjt/emp/lib/rtems-5.1
 RTEMS_TOPdir = ..
 SET_MAKE = 
 SHELL = /bin/bash
 STRIP = arm-rtems5-strip
 VERSION = 5.1.0
-abs_builddir = /home/embeddeduser/consolePrjt/rtems-5.1/build/arm-rtems5/c
-abs_srcdir = /home/embeddeduser/consolePrjt/rtems-5.1/build/arm-rtems5/c/../../../c
-abs_top_builddir = /home/embeddeduser/consolePrjt/rtems-5.1/build/arm-rtems5/c
-abs_top_srcdir = /home/embeddeduser/consolePrjt/rtems-5.1/build/arm-rtems5/c/../../../c
+abs_builddir = /home/embeddeduser/consolePrjt/emp/lib/rtems-5.1/build/arm-rtems5/c
+abs_srcdir = /home/embeddeduser/consolePrjt/emp/lib/rtems-5.1/build/arm-rtems5/c/../../../c
+abs_top_builddir = /home/embeddeduser/consolePrjt/emp/lib/rtems-5.1/build/arm-rtems5/c
+abs_top_srcdir = /home/embeddeduser/consolePrjt/emp/lib/rtems-5.1/build/arm-rtems5/c/../../../c
 am__leading_dot = .
 am__tar = $${TAR-tar} chof - "$$tardir"
 am__untar = $${TAR-tar} xf -
@@ -211,7 +211,7 @@ host_vendor = unknown
 htmldir = ${docdir}
 includedir = /opt/rtems-5/arm-rtems5/include
 infodir = ${datarootdir}/info
-install_sh = ${SHELL} /home/embeddeduser/consolePrjt/rtems-5.1/install-sh
+install_sh = ${SHELL} /home/embeddeduser/consolePrjt/emp/lib/rtems-5.1/install-sh
 libdir = ${exec_prefix}/lib
 libexecdir = ${exec_prefix}/libexec
 localedir = ${datarootdir}/locale
@@ -727,11 +727,11 @@ all-local: $(RTEMS_BSP)
 # Otherwise a system limit (for SysV at least) may be exceeded.
 .NOEXPORT:
 
-stm32f4: src/configure
+stm32f7: src/configure
 	@set fnord $(MAKEFLAGS); amf=$$2; \
-	  echo "Configuring RTEMS_BSP=stm32f4"; \
-	  $(MKDIR_P) stm32f4; \
-	  ( cd stm32f4 && \
-           CONFIG_SHELL=$(SHELL) RTEMS_BSP=stm32f4 $(rtems_bsp_configure) \
-           --with-rtems-build-top=$${PWD} --with-rtems-source-top=/home/embeddeduser/consolePrjt/rtems-5.1 ) \
+	  echo "Configuring RTEMS_BSP=stm32f7"; \
+	  $(MKDIR_P) stm32f7; \
+	  ( cd stm32f7 && \
+           CONFIG_SHELL=$(SHELL) RTEMS_BSP=stm32f7 $(rtems_bsp_configure) \
+           --with-rtems-build-top=$${PWD} --with-rtems-source-top=/home/embeddeduser/consolePrjt/emp/lib/rtems-5.1 ) \
 	  || case "$$amf" in *=*) exit 1;; *k*) fail=yes;; *) exit 1;; esac;
