@@ -19,12 +19,17 @@
 #include <bsp/irq-generic.h>
 #include <assert.h>
 #include "../include/bsp/stm32f7.h"
+#include "../include/bsp/timer.h"
 
 #ifdef STM32F7_FAMILY_F7XXXX
 
 #include "../include/bsp/stm32f7xxxx_rcc.h"
 #include "../include/bsp/stm32f7xxxx_flash.h"
+#include <../hal/Core/Inc/main.h>
+#include <../hal/Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h>
+#include <../hal/Core/Inc/stm32f7xx_it.h>
 
+#if 0
 static rtems_status_code set_system_clk(
   uint32_t sys_clk,
   uint32_t hse_clk,
@@ -292,10 +297,29 @@ static void init_main_osc( void )
 }
 
 #endif /* STM32F7_FAMILY_F10XXX */
+#endif
 
 void bsp_start( void )
 {
-  init_main_osc();
+//  init_main_osc();
+
+  /* Call HAL System init. This is where some of the Errata workarounds are implemented */
+  SystemInit();
+
+  /* Initialize interrupt vector table */
+  bsp_interrupt_initialize();
+
+  hal_timer_initialize();
+
+  SystemClock_Config();
+
+  /* Enable Instruction and Data Cache */
+  SCB_EnableICache();
+  SCB_EnableDCache();
+
+  MX_GPIO_Init();
+
+  MX_USART3_UART_Init();
 
   stm32f7_gpio_set_config_array( &stm32f7_start_config_gpio[ 0 ] );
 

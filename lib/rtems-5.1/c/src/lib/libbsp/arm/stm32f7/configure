@@ -1398,6 +1398,7 @@ Some influential environment variables:
   CCAS        assembler compiler command (defaults to CC)
   CCASFLAGS   assembler compiler flags (defaults to CFLAGS)
   RTEMS_BSP               The RTEMS BSP name
+  STM32F7_FAMILY_F10XXX   Chip belongs to the STM32F10XXX family.
   STM32F7_FAMILY_F7XXXX   Chip belongs to the STM32F7XXXX family.
   STM32F7_HSE_OSCILLATOR  HSE oscillator frequency in Hz
   STM32F7_SYSCLK          SYSCLK frequency in Hz
@@ -1929,6 +1930,7 @@ ac_cpp='$CPP $CPPFLAGS'
 ac_compile='$CC -c $CFLAGS $CPPFLAGS conftest.$ac_ext >&5'
 ac_link='$CC -o conftest$ac_exeext $CFLAGS $CPPFLAGS $LDFLAGS conftest.$ac_ext $LIBS >&5'
 ac_compiler_gnu=$ac_cv_c_compiler_gnu
+
 
 
 
@@ -4562,6 +4564,20 @@ fi
 
 
 
+case "${RTEMS_BSP}" in
+stm32f1* )
+  STM32F7_FAMILY_F10XXX=${STM32F7_FAMILY_F10XXX-1} ;;
+esac
+if test -n "${STM32F7_FAMILY_F10XXX}"; then
+cat >>confdefs.h <<_ACEOF
+#define STM32F7_FAMILY_F10XXX $STM32F7_FAMILY_F10XXX
+_ACEOF
+fi
+
+
+
+
+
 
 
 
@@ -4805,8 +4821,8 @@ fi
 
 
 case "${RTEMS_BSP}" in
-stm32f7* )
-  STM32F7_ENABLE_I2C1=${STM32F7_ENABLE_I2C1-1} ;;
+stm32f1* )
+  STM32F7_ENABLE_I2C1=${STM32F7_ENABLE_I2C1-} ;;
 * )
   STM32F7_ENABLE_I2C1=${STM32F7_ENABLE_I2C1-} ;;
 esac

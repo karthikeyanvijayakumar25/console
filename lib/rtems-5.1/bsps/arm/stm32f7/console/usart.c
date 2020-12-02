@@ -163,8 +163,22 @@ static int usart_read_polled(int minor)
   const console_tbl *ct = Console_Port_Tbl [minor];
   volatile stm32f7_usart *usart = usart_get_regs(ct);
 
-  if ((usart->sr & STM32F7_USART_SR_RXNE) != 0) {
-    return STM32F7_USART_DR_GET(usart->dr);
+//  if ((usart->isr & STM32F7_USART_SR_ORE) != 0)
+//  {
+//    usart->icr = 0x08; /* clear ore flag */
+//    printk("\nRX buffer overrun\n");
+//    return -1;
+//  }
+//  else if ((usart->isr & STM32F7_USART_SR_RXNE) != 0)
+//  {
+//    return STM32F7_USART_RDR_GET(usart->rdr);
+//  }
+//  else
+//  {
+//    return -1;
+//  }
+  if ((usart->isr & STM32F7_USART_SR_RXNE) != 0) {
+    return STM32F7_USART_RDR_GET(usart->rdr);
   } else {
     return -1;
   }
@@ -175,11 +189,11 @@ static void usart_write_polled(int minor, char c)
   const console_tbl *ct = Console_Port_Tbl [minor];
   volatile stm32f7_usart *usart = usart_get_regs(ct);
 
-  while ((usart->sr & STM32F7_USART_SR_TXE) == 0) {
+  while ((usart->isr & STM32F7_USART_SR_TXE) == 0) {
     /* Wait */
   }
 
-  usart->dr = STM32F7_USART_DR(c);
+  usart->tdr = STM32F7_USART_TDR(c);
 }
 
 static ssize_t usart_write_support_polled(

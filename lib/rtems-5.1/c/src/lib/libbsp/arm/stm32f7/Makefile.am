@@ -25,8 +25,15 @@ dist_project_lib_DATA += ../../../../../../bsps/arm/stm32f7/start/linkcmds.stm32
 ###############################################################################
 
 project_lib_LIBRARIES = librtemsbsp.a
-
+librtemsbsp_a_CPPFLAGS = $(AM_CPPFLAGS)
 librtemsbsp_a_SOURCES =
+
+librtemsbsp_a_CPPFLAGS += -DUSE_HAL_DRIVER -DSTM32F767xx
+librtemsbsp_a_CPPFLAGS += -I$(RTEMS_SOURCE_ROOT)/bsps/arm/stm32f7/hal/Core/Inc
+librtemsbsp_a_CPPFLAGS += -I$(RTEMS_SOURCE_ROOT)/bsps/arm/stm32f7/hal/Drivers/STM32F7xx_HAL_Driver/Inc
+librtemsbsp_a_CPPFLAGS += -I$(RTEMS_SOURCE_ROOT)/bsps/arm/stm32f7/hal/Drivers/STM32F7xx_HAL_Driver/Inc/Legacy
+librtemsbsp_a_CPPFLAGS += -I$(RTEMS_SOURCE_ROOT)/bsps/arm/stm32f7/hal/Drivers/CMSIS/Device/ST/STM32F7xx/Include
+librtemsbsp_a_CPPFLAGS += -I$(RTEMS_SOURCE_ROOT)/bsps/arm/stm32f7/hal/Drivers/CMSIS/Include
 
 # Shared
 librtemsbsp_a_SOURCES += ../../../../../../bsps/shared/dev/getentropy/getentropy-cpucounter.c
@@ -70,6 +77,46 @@ librtemsbsp_a_SOURCES += ../../../../../../bsps/shared/dev/btimer/btimer-stub.c
 
 # Cache
 librtemsbsp_a_SOURCES += ../../../../../../bsps/shared/cache/nocache.c
+
+# Benchmark Timer
+librtemsbsp_a_SOURCES += ../../../../../../bsps/arm/stm32f7/timer/timer.c
+
+# HAL
+librtemsbsp_a_SOURCES += ../../../../../../bsps/arm/stm32f7/hal/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_crc_ex.c
+librtemsbsp_a_SOURCES += ../../../../../../bsps/arm/stm32f7/hal/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_wwdg.c
+librtemsbsp_a_SOURCES += ../../../../../../bsps/arm/stm32f7/hal/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dac.c
+librtemsbsp_a_SOURCES += ../../../../../../bsps/arm/stm32f7/hal/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_crc.c
+librtemsbsp_a_SOURCES += ../../../../../../bsps/arm/stm32f7/hal/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dma.c
+librtemsbsp_a_SOURCES += ../../../../../../bsps/arm/stm32f7/hal/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dma_ex.c
+librtemsbsp_a_SOURCES += ../../../../../../bsps/arm/stm32f7/hal/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_spi.c
+librtemsbsp_a_SOURCES += ../../../../../../bsps/arm/stm32f7/hal/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_pwr_ex.c
+librtemsbsp_a_SOURCES += ../../../../../../bsps/arm/stm32f7/hal/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rtc_ex.c
+librtemsbsp_a_SOURCES += ../../../../../../bsps/arm/stm32f7/hal/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rtc.c
+librtemsbsp_a_SOURCES += ../../../../../../bsps/arm/stm32f7/hal/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_pwr.c
+librtemsbsp_a_SOURCES += ../../../../../../bsps/arm/stm32f7/hal/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rcc.c
+librtemsbsp_a_SOURCES += ../../../../../../bsps/arm/stm32f7/hal/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_i2c_ex.c
+librtemsbsp_a_SOURCES += ../../../../../../bsps/arm/stm32f7/hal/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rcc_ex.c
+librtemsbsp_a_SOURCES += ../../../../../../bsps/arm/stm32f7/hal/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_tim.c
+librtemsbsp_a_SOURCES += ../../../../../../bsps/arm/stm32f7/hal/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal.c
+librtemsbsp_a_SOURCES += ../../../../../../bsps/arm/stm32f7/hal/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_flash.c
+librtemsbsp_a_SOURCES += ../../../../../../bsps/arm/stm32f7/hal/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_gpio.c
+librtemsbsp_a_SOURCES += ../../../../../../bsps/arm/stm32f7/hal/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_tim_ex.c
+librtemsbsp_a_SOURCES += ../../../../../../bsps/arm/stm32f7/hal/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_iwdg.c
+librtemsbsp_a_SOURCES += ../../../../../../bsps/arm/stm32f7/hal/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_adc.c
+librtemsbsp_a_SOURCES += ../../../../../../bsps/arm/stm32f7/hal/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_i2c.c
+librtemsbsp_a_SOURCES += ../../../../../../bsps/arm/stm32f7/hal/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_adc_ex.c
+librtemsbsp_a_SOURCES += ../../../../../../bsps/arm/stm32f7/hal/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_cortex.c
+librtemsbsp_a_SOURCES += ../../../../../../bsps/arm/stm32f7/hal/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_flash_ex.c
+librtemsbsp_a_SOURCES += ../../../../../../bsps/arm/stm32f7/hal/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_uart.c
+librtemsbsp_a_SOURCES += ../../../../../../bsps/arm/stm32f7/hal/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dac_ex.c
+librtemsbsp_a_SOURCES += ../../../../../../bsps/arm/stm32f7/hal/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_eth.c
+librtemsbsp_a_SOURCES += ../../../../../../bsps/arm/stm32f7/hal/Core/Src/main.c
+librtemsbsp_a_SOURCES += ../../../../../../bsps/arm/stm32f7/hal/Core/Src/system_stm32f7xx.c
+librtemsbsp_a_SOURCES += ../../../../../../bsps/arm/stm32f7/hal/Core/Src/stm32f7xx_it.c
+librtemsbsp_a_SOURCES += ../../../../../../bsps/arm/stm32f7/hal/Core/Src/stm32f7xx_hal_timebase_tim.c
+librtemsbsp_a_SOURCES += ../../../../../../bsps/arm/stm32f7/hal/Core/Src/stm32f7xx_hal_msp.c
+
+
 
 ###############################################################################
 #                  Special Rules                                              #

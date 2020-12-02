@@ -133,8 +133,8 @@
  * @{
  */
 
-//#include <bsp/stm32f7xxxx_flash.h>
-///#define STM32F7_FLASH ((volatile stm32f7_flash *) (STM32F7_AHB1_BASE + 0x3c00))
+#include <bsp/stm32f7xxxx_flash.h>
+#define STM32F7_FLASH ((volatile stm32f7_flash *) (STM32F7_AHB1_BASE + 0x3c00))
 
 /** @} */
 
